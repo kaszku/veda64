@@ -49,7 +49,7 @@ std::optional<Instruction> decode_reserved(uint32_t insn) {
     // Switch for mask 0xFFFF0000u (1 pattern, 1 encoding)
     switch (insn & 0xFFFF0000u) {
         case 0x00000000u: { // UDF_only_perm_undef
-                        Instruction result(Mnemonic::UDF, insn);
+                        Instruction result(Mnemonic::UDF, insn, 1541);
                         ReservedEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::imm(enc.udf_only_perm_undef.imm16));

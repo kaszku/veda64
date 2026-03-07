@@ -8,4633 +8,4632 @@
 
 namespace veda64::ir {
 
-// Auto-generated IR classification table
-// 4623 entries covering classified encodings
+// IR table indexed by encoding_id (4623 classified, 4623 total)
 
 const IrEntry ir_table[] = {
-    { 0xFFFFFFFFU, 0xC0480001U, Mnemonic::ZERO, IrTemplate::System, Opcode::UNDEF, 0 }, // ZERO
-    { 0xFFFFFFFFU, 0x252C9000U, Mnemonic::SETFFR, IrTemplate::SimdBinop, Opcode::AND, 0 }, // SETFFR
-    { 0xFFFFFFFFU, 0xD503219FU, Mnemonic::AUTIA1716, IrTemplate::Nop, Opcode::NOP, 0 }, // AUTIA1716
-    { 0xFFFFFFFFU, 0xD50323BFU, Mnemonic::AUTIASP, IrTemplate::Nop, Opcode::NOP, 0 }, // AUTIASP
-    { 0xFFFFFFFFU, 0xD503239FU, Mnemonic::AUTIAZ, IrTemplate::Nop, Opcode::NOP, 0 }, // AUTIAZ
-    { 0xFFFFFFFFU, 0xD50321DFU, Mnemonic::AUTIB1716, IrTemplate::Nop, Opcode::NOP, 0 }, // AUTIB1716
-    { 0xFFFFFFFFU, 0xD50323FFU, Mnemonic::AUTIBSP, IrTemplate::Nop, Opcode::NOP, 0 }, // AUTIBSP
-    { 0xFFFFFFFFU, 0xD50323DFU, Mnemonic::AUTIBZ, IrTemplate::Nop, Opcode::NOP, 0 }, // AUTIBZ
-    { 0xFFFFFFFFU, 0xD503251FU, Mnemonic::CHKFEAT, IrTemplate::Nop, Opcode::NOP, 0 }, // CHKFEAT
-    { 0xFFFFFFFFU, 0xD50322DFU, Mnemonic::CLRBHB, IrTemplate::Nop, Opcode::NOP, 0 }, // CLRBHB
-    { 0xFFFFFFFFU, 0xD503229FU, Mnemonic::CSDB, IrTemplate::Nop, Opcode::NOP, 0 }, // CSDB
-    { 0xFFFFFFFFU, 0xD50320DFU, Mnemonic::DGH, IrTemplate::Nop, Opcode::NOP, 0 }, // DGH
-    { 0xFFFFFFFFU, 0xD6BF03E0U, Mnemonic::DRPS, IrTemplate::BranchReg, Opcode::BRANCH, 0 }, // DRPS
-    { 0xFFFFFFFFU, 0xD69F03E0U, Mnemonic::ERET, IrTemplate::BranchReg, Opcode::BRANCH, 0 }, // ERET
-    { 0xFFFFFFFFU, 0xD69F0BFFU, Mnemonic::ERETAA, IrTemplate::BranchReg, Opcode::BRANCH, 0 }, // ERETAA
-    { 0xFFFFFFFFU, 0xD69F0FFFU, Mnemonic::ERETAB, IrTemplate::BranchReg, Opcode::BRANCH, 0 }, // ERETAB
-    { 0xFFFFFFFFU, 0xD503221FU, Mnemonic::ESB, IrTemplate::Nop, Opcode::NOP, 0 }, // ESB
-    { 0xFFFFFFFFU, 0xD503227FU, Mnemonic::GCSB, IrTemplate::Nop, Opcode::NOP, 0 }, // GCSB
-    { 0xFFFFFFFFU, 0xD503201FU, Mnemonic::NOP, IrTemplate::Nop, Opcode::NOP, 0 }, // NOP
-    { 0xFFFFFFFFU, 0xD503211FU, Mnemonic::PACIA1716, IrTemplate::Nop, Opcode::NOP, 0 }, // PACIA1716
-    { 0xFFFFFFFFU, 0xD503233FU, Mnemonic::PACIASP, IrTemplate::Nop, Opcode::NOP, 0 }, // PACIASP
-    { 0xFFFFFFFFU, 0xD503231FU, Mnemonic::PACIAZ, IrTemplate::Nop, Opcode::NOP, 0 }, // PACIAZ
-    { 0xFFFFFFFFU, 0xD503215FU, Mnemonic::PACIB1716, IrTemplate::Nop, Opcode::NOP, 0 }, // PACIB1716
-    { 0xFFFFFFFFU, 0xD503237FU, Mnemonic::PACIBSP, IrTemplate::Nop, Opcode::NOP, 0 }, // PACIBSP
-    { 0xFFFFFFFFU, 0xD503235FU, Mnemonic::PACIBZ, IrTemplate::Nop, Opcode::NOP, 0 }, // PACIBZ
-    { 0xFFFFFFFFU, 0xD50324FFU, Mnemonic::PACM, IrTemplate::Nop, Opcode::NOP, 0 }, // PACM
-    { 0xFFFFFFFFU, 0xD503223FU, Mnemonic::PSB, IrTemplate::Nop, Opcode::NOP, 0 }, // PSB
-    { 0xFFFFFFFFU, 0xD503349FU, Mnemonic::DSB, IrTemplate::Nop, Opcode::BARRIER, 0 }, // DSB
-    { 0xFFFFFFFFU, 0xD65F0BFFU, Mnemonic::RETAA, IrTemplate::BranchReg, Opcode::RET, 0 }, // RETAA
-    { 0xFFFFFFFFU, 0xD65F0FFFU, Mnemonic::RETAB, IrTemplate::BranchReg, Opcode::RET, 0 }, // RETAB
-    { 0xFFFFFFFFU, 0xD503209FU, Mnemonic::SEV, IrTemplate::Nop, Opcode::NOP, 0 }, // SEV
-    { 0xFFFFFFFFU, 0xD50320BFU, Mnemonic::SEVL, IrTemplate::Nop, Opcode::NOP, 0 }, // SEVL
-    { 0xFFFFFFFFU, 0xD503309FU, Mnemonic::DSB, IrTemplate::Nop, Opcode::BARRIER, 0 }, // DSB
-    { 0xFFFFFFFFU, 0xD503269FU, Mnemonic::STCPH, IrTemplate::Nop, Opcode::NOP, 0 }, // STCPH
-    { 0xFFFFFFFFU, 0xD503225FU, Mnemonic::TSB, IrTemplate::Nop, Opcode::NOP, 0 }, // TSB
-    { 0xFFFFFFFFU, 0xD503205FU, Mnemonic::WFE, IrTemplate::Nop, Opcode::NOP, 0 }, // WFE
-    { 0xFFFFFFFFU, 0xD503207FU, Mnemonic::WFI, IrTemplate::Nop, Opcode::NOP, 0 }, // WFI
-    { 0xFFFFFFFFU, 0xD50320FFU, Mnemonic::XPACLRI, IrTemplate::Nop, Opcode::NOP, 0 }, // XPACLRI
-    { 0xFFFFFFFFU, 0xD503203FU, Mnemonic::YIELD, IrTemplate::Nop, Opcode::NOP, 0 }, // YIELD
-    { 0xFFFFFFFFU, 0xDAC1BBFEU, Mnemonic::AUTIA171615, IrTemplate::System, Opcode::UNDEF, 0 }, // AUTIA171615
-    { 0xFFFFFFFFU, 0xDAC1BFFEU, Mnemonic::AUTIB171615, IrTemplate::System, Opcode::UNDEF, 0 }, // AUTIB171615
-    { 0xFFFFFFFFU, 0xDAC18BFEU, Mnemonic::PACIA171615, IrTemplate::System, Opcode::UNDEF, 0 }, // PACIA171615
-    { 0xFFFFFFFFU, 0xDAC1A3FEU, Mnemonic::PACIASPPC, IrTemplate::System, Opcode::UNDEF, 0 }, // PACIASPPC
-    { 0xFFFFFFFFU, 0xDAC18FFEU, Mnemonic::PACIB171615, IrTemplate::System, Opcode::UNDEF, 0 }, // PACIB171615
-    { 0xFFFFFFFFU, 0xDAC1A7FEU, Mnemonic::PACIBSPPC, IrTemplate::System, Opcode::UNDEF, 0 }, // PACIBSPPC
-    { 0xFFFFFFFFU, 0xDAC183FEU, Mnemonic::PACNBIASPPC, IrTemplate::System, Opcode::UNDEF, 0 }, // PACNBIASPPC
-    { 0xFFFFFFFFU, 0xDAC187FEU, Mnemonic::PACNBIBSPPC, IrTemplate::System, Opcode::UNDEF, 0 }, // PACNBIBSPPC
-    { 0xFFFFF3FFU, 0xD503323FU, Mnemonic::DSB, IrTemplate::Nop, Opcode::BARRIER, 0 }, // DSB
-    { 0xFFFF9FFEU, 0xC00F0000U, Mnemonic::ZERO, IrTemplate::System, Opcode::UNDEF, 0 }, // ZERO
-    { 0xFFFF9FFEU, 0xC00F8000U, Mnemonic::ZERO, IrTemplate::System, Opcode::UNDEF, 0 }, // ZERO
-    { 0xFFFFFF1FU, 0xD503241FU, Mnemonic::BTI, IrTemplate::Nop, Opcode::NOP, 0 }, // BTI
-    { 0xFFFFFF1FU, 0xD503261FU, Mnemonic::SHUH, IrTemplate::Nop, Opcode::NOP, 0 }, // SHUH
-    { 0xFFFFFF1FU, 0xD503261FU, Mnemonic::STSHH, IrTemplate::Nop, Opcode::NOP, 0 }, // STSHH
-    { 0xFFFF9FFCU, 0xC00D0000U, Mnemonic::ZERO, IrTemplate::System, Opcode::UNDEF, 0 }, // ZERO
-    { 0xFFFF9FFCU, 0xC00D8000U, Mnemonic::ZERO, IrTemplate::System, Opcode::UNDEF, 0 }, // ZERO
-    { 0xFFFF9FFCU, 0xC00E8000U, Mnemonic::ZERO, IrTemplate::System, Opcode::UNDEF, 0 }, // ZERO
-    { 0xFFFFFFF0U, 0x2518E400U, Mnemonic::PFALSE, IrTemplate::SimdBinop, Opcode::AND, 0 }, // PFALSE
-    { 0xFFFFFFF0U, 0x2519F000U, Mnemonic::RDFFR, IrTemplate::SimdBinop, Opcode::AND, 0 }, // RDFFR
-    { 0xFFFFFE1FU, 0x25289000U, Mnemonic::WRFFR, IrTemplate::SimdBinop, Opcode::AND, 0 }, // WRFFR
-    { 0xFFFFF0FFU, 0xD500405FU, Mnemonic::AXFLAG, IrTemplate::System, Opcode::UNDEF, 0 }, // AXFLAG
-    { 0xFFFFF0FFU, 0xD500401FU, Mnemonic::CFINV, IrTemplate::System, Opcode::UNDEF, 0 }, // CFINV
-    { 0xFFFFF0FFU, 0xD503305FU, Mnemonic::CLREX, IrTemplate::Nop, Opcode::BARRIER, 0 }, // CLREX
-    { 0xFFFFF0FFU, 0xD50330BFU, Mnemonic::DMB, IrTemplate::Nop, Opcode::BARRIER, 0 }, // DMB
-    { 0xFFFFF0FFU, 0xD503309FU, Mnemonic::DSB, IrTemplate::Nop, Opcode::BARRIER, 0 }, // DSB
-    { 0xFFFFF0FFU, 0xD50330DFU, Mnemonic::ISB, IrTemplate::Nop, Opcode::BARRIER, 0 }, // ISB
-    { 0xFFFFF0FFU, 0xD50330FFU, Mnemonic::SB, IrTemplate::Nop, Opcode::BARRIER, 0 }, // SB
-    { 0xFFFFF0FFU, 0xD503407FU, Mnemonic::MSR, IrTemplate::System, Opcode::UNDEF, 0 }, // MSR
-    { 0xFFFFF0FFU, 0xD503407FU, Mnemonic::MSR, IrTemplate::System, Opcode::UNDEF, 0 }, // MSR
-    { 0xFFFFF0FFU, 0xD500403FU, Mnemonic::XAFLAG, IrTemplate::System, Opcode::UNDEF, 0 }, // XAFLAG
-    { 0xFFFFFC1FU, 0xE11F8000U, Mnemonic::LDR, IrTemplate::System, Opcode::UNDEF, 0 }, // LDR
-    { 0xFFFFFC1FU, 0xE13F8000U, Mnemonic::STR, IrTemplate::System, Opcode::UNDEF, 0 }, // STR
-    { 0xFFFF9FF8U, 0xC00C0000U, Mnemonic::ZERO, IrTemplate::System, Opcode::UNDEF, 0 }, // ZERO
-    { 0xFFFF9FF8U, 0xC00E0000U, Mnemonic::ZERO, IrTemplate::System, Opcode::UNDEF, 0 }, // ZERO
-    { 0xFFFF9FF8U, 0xC00C8000U, Mnemonic::ZERO, IrTemplate::System, Opcode::UNDEF, 0 }, // ZERO
-    { 0xFFFFFFE0U, 0x4520E400U, Mnemonic::AESIMC, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // AESIMC
-    { 0xFFFFFFE0U, 0x4520E000U, Mnemonic::AESMC, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // AESMC
-    { 0xFF3FFFF8U, 0x25207810U, Mnemonic::PTRUE, IrTemplate::SimdBinop, Opcode::CMP_SLT, 0 }, // PTRUE
-    { 0xFFFFFFE0U, 0xD50E7000U, Mnemonic::SYS, IrTemplate::System, Opcode::UNDEF, 0 }, // SYS
-    { 0xFFFFFC1FU, 0xD63F0000U, Mnemonic::BLR, IrTemplate::BranchReg, Opcode::CALL, 0 }, // BLR
-    { 0xFFFFFC1FU, 0xD63F081FU, Mnemonic::BLRAAZ, IrTemplate::BranchReg, Opcode::CALL, 0 }, // BLRAAZ
-    { 0xFFFFFC1FU, 0xD63F0C1FU, Mnemonic::BLRABZ, IrTemplate::BranchReg, Opcode::CALL, 0 }, // BLRABZ
-    { 0xFFFFFC1FU, 0xD61F0000U, Mnemonic::BR, IrTemplate::BranchReg, Opcode::BRANCH, 0 }, // BR
-    { 0xFFFFFC1FU, 0xD61F081FU, Mnemonic::BRAAZ, IrTemplate::BranchReg, Opcode::BRANCH, 0 }, // BRAAZ
-    { 0xFFFFFC1FU, 0xD61F0C1FU, Mnemonic::BRABZ, IrTemplate::BranchReg, Opcode::BRANCH, 0 }, // BRABZ
-    { 0xFFFFFFE0U, 0xD50B7380U, Mnemonic::SYS, IrTemplate::System, Opcode::UNDEF, 0 }, // SYS
-    { 0xFFFFFFE0U, 0xD50B73C0U, Mnemonic::SYS, IrTemplate::System, Opcode::UNDEF, 0 }, // SYS
-    { 0xFFFFFFE0U, 0xD50B73E0U, Mnemonic::SYS, IrTemplate::System, Opcode::UNDEF, 0 }, // SYS
-    { 0xFFFFFFE0U, 0xD50B73A0U, Mnemonic::SYS, IrTemplate::System, Opcode::UNDEF, 0 }, // SYS
-    { 0xFFFFFFE0U, 0xD50877A0U, Mnemonic::SYS, IrTemplate::System, Opcode::UNDEF, 0 }, // SYS
-    { 0xFFFFFFE0U, 0xD52B7720U, Mnemonic::SYSL, IrTemplate::System, Opcode::UNDEF, 0 }, // SYSL
-    { 0xFFFFFFE0U, 0xD50877C0U, Mnemonic::SYS, IrTemplate::System, Opcode::UNDEF, 0 }, // SYS
-    { 0xFFFFFFE0U, 0xD50B7700U, Mnemonic::SYS, IrTemplate::System, Opcode::UNDEF, 0 }, // SYS
-    { 0xFFFFFFE0U, 0xD5087780U, Mnemonic::SYS, IrTemplate::System, Opcode::UNDEF, 0 }, // SYS
-    { 0xFFFFFFE0U, 0xD50B7740U, Mnemonic::SYS, IrTemplate::System, Opcode::UNDEF, 0 }, // SYS
-    { 0xFFFFFFE0U, 0xD52B7760U, Mnemonic::SYSL, IrTemplate::System, Opcode::UNDEF, 0 }, // SYSL
-    { 0xFFFFFC1FU, 0xD65F0000U, Mnemonic::RET, IrTemplate::BranchReg, Opcode::RET, 0 }, // RET
-    { 0xFFFFFFE0U, 0xD65F0BE0U, Mnemonic::RETAASPPCR, IrTemplate::BranchReg, Opcode::RET, 0 }, // RETAASPPCR
-    { 0xFFFFFFE0U, 0xD65F0FE0U, Mnemonic::RETABSPPCR, IrTemplate::BranchReg, Opcode::RET, 0 }, // RETABSPPCR
-    { 0xFFFFFFE0U, 0xD50B72E0U, Mnemonic::SYS, IrTemplate::System, Opcode::UNDEF, 0 }, // SYS
-    { 0xFFFFFFE0U, 0xD5031000U, Mnemonic::WFET, IrTemplate::System, Opcode::UNDEF, 0 }, // WFET
-    { 0xFFFFFFE0U, 0xD5031020U, Mnemonic::WFIT, IrTemplate::System, Opcode::UNDEF, 0 }, // WFIT
-    { 0xFFFFFFE0U, 0xDAC13BE0U, Mnemonic::AUTDZA, IrTemplate::System, Opcode::UNDEF, 0 }, // AUTDZA
-    { 0xFFFFFFE0U, 0xDAC13FE0U, Mnemonic::AUTDZB, IrTemplate::System, Opcode::UNDEF, 0 }, // AUTDZB
-    { 0xFFFFFFE0U, 0xDAC133E0U, Mnemonic::AUTIZA, IrTemplate::System, Opcode::UNDEF, 0 }, // AUTIZA
-    { 0xFFFFFC1FU, 0xDAC1901EU, Mnemonic::AUTIASPPCR, IrTemplate::System, Opcode::UNDEF, 0 }, // AUTIASPPCR
-    { 0xFFFFFFE0U, 0xDAC137E0U, Mnemonic::AUTIZB, IrTemplate::System, Opcode::UNDEF, 0 }, // AUTIZB
-    { 0xFFFFFC1FU, 0xDAC1941EU, Mnemonic::AUTIBSPPCR, IrTemplate::System, Opcode::UNDEF, 0 }, // AUTIBSPPCR
-    { 0xFFFFFFE0U, 0xDAC12BE0U, Mnemonic::PACDZA, IrTemplate::System, Opcode::UNDEF, 0 }, // PACDZA
-    { 0xFFFFFFE0U, 0xDAC12FE0U, Mnemonic::PACDZB, IrTemplate::System, Opcode::UNDEF, 0 }, // PACDZB
-    { 0xFFFFFFE0U, 0xDAC123E0U, Mnemonic::PACIZA, IrTemplate::System, Opcode::UNDEF, 0 }, // PACIZA
-    { 0xFFFFFFE0U, 0xDAC127E0U, Mnemonic::PACIZB, IrTemplate::System, Opcode::UNDEF, 0 }, // PACIZB
-    { 0xFFFFFC1FU, 0x3A00080DU, Mnemonic::SETF8, IrTemplate::GpBinop, Opcode::ADD, 0 }, // SETF8
-    { 0xFFFFFC1FU, 0x3A00480DU, Mnemonic::SETF16, IrTemplate::GpBinop, Opcode::ADD, 0 }, // SETF16
-    { 0xFFFFFFE0U, 0xDAC147E0U, Mnemonic::XPACD, IrTemplate::System, Opcode::UNDEF, 0 }, // XPACD
-    { 0xFFFFFFE0U, 0xDAC143E0U, Mnemonic::XPACI, IrTemplate::System, Opcode::UNDEF, 0 }, // XPACI
-    { 0xFFE3FFE3U, 0xC120B900U, Mnemonic::BFMAX, IrTemplate::System, Opcode::UNDEF, 0 }, // BFMAX
-    { 0xFFE3FFE3U, 0xC120B920U, Mnemonic::BFMAXNM, IrTemplate::System, Opcode::UNDEF, 0 }, // BFMAXNM
-    { 0xFFE3FFE3U, 0xC120B901U, Mnemonic::BFMIN, IrTemplate::System, Opcode::UNDEF, 0 }, // BFMIN
-    { 0xFFE3FFE3U, 0xC120B921U, Mnemonic::BFMINNM, IrTemplate::System, Opcode::UNDEF, 0 }, // BFMINNM
-    { 0xFFE3FFE3U, 0xC120B980U, Mnemonic::BFSCALE, IrTemplate::System, Opcode::UNDEF, 0 }, // BFSCALE
-    { 0xFFFFFC63U, 0xC131E000U, Mnemonic::FCVTZS, IrTemplate::System, Opcode::UNDEF, 0 }, // FCVTZS
-    { 0xFFFFFC63U, 0xC131E020U, Mnemonic::FCVTZU, IrTemplate::System, Opcode::UNDEF, 0 }, // FCVTZU
-    { 0xFFFFFC63U, 0xC1BCE000U, Mnemonic::FRINTA, IrTemplate::System, Opcode::UNDEF, 0 }, // FRINTA
-    { 0xFFFFFC63U, 0xC1BAE000U, Mnemonic::FRINTM, IrTemplate::System, Opcode::UNDEF, 0 }, // FRINTM
-    { 0xFFFFFC63U, 0xC1B8E000U, Mnemonic::FRINTN, IrTemplate::System, Opcode::UNDEF, 0 }, // FRINTN
-    { 0xFFFFFC63U, 0xC1B9E000U, Mnemonic::FRINTP, IrTemplate::System, Opcode::UNDEF, 0 }, // FRINTP
-    { 0xFFFFFC63U, 0xC08A0000U, Mnemonic::LUTI6, IrTemplate::System, Opcode::UNDEF, 0 }, // LUTI6
-    { 0xFFFFFC6CU, 0xC09A0000U, Mnemonic::LUTI6, IrTemplate::System, Opcode::UNDEF, 0 }, // LUTI6
-    { 0xFFFFFC63U, 0xC132E000U, Mnemonic::SCVTF, IrTemplate::System, Opcode::UNDEF, 0 }, // SCVTF
-    { 0xFFFFFC63U, 0xC132E020U, Mnemonic::UCVTF, IrTemplate::System, Opcode::UNDEF, 0 }, // UCVTF
-    { 0xFFFFFC63U, 0xC137E002U, Mnemonic::UZP, IrTemplate::System, Opcode::UNDEF, 0 }, // UZP
-    { 0xFFFFFC63U, 0xC137E000U, Mnemonic::ZIP, IrTemplate::System, Opcode::UNDEF, 0 }, // ZIP
-    { 0xFFF0FFE3U, 0xC120A900U, Mnemonic::BFMAX, IrTemplate::System, Opcode::UNDEF, 0 }, // BFMAX
-    { 0xFFF0FFE3U, 0xC120A920U, Mnemonic::BFMAXNM, IrTemplate::System, Opcode::UNDEF, 0 }, // BFMAXNM
-    { 0xFFF0FFE3U, 0xC120A901U, Mnemonic::BFMIN, IrTemplate::System, Opcode::UNDEF, 0 }, // BFMIN
-    { 0xFFF0FFE3U, 0xC120A921U, Mnemonic::BFMINNM, IrTemplate::System, Opcode::UNDEF, 0 }, // BFMINNM
-    { 0xFFF1FE3EU, 0x81300008U, Mnemonic::BFMOP4A, IrTemplate::System, Opcode::UNDEF, 0 }, // BFMOP4A
-    { 0xFFF1FE3EU, 0x81200008U, Mnemonic::BFMOP4A, IrTemplate::System, Opcode::UNDEF, 0 }, // BFMOP4A
-    { 0xFFF1FE3EU, 0x81200208U, Mnemonic::BFMOP4A, IrTemplate::System, Opcode::UNDEF, 0 }, // BFMOP4A
-    { 0xFFF1FE3EU, 0x81300208U, Mnemonic::BFMOP4A, IrTemplate::System, Opcode::UNDEF, 0 }, // BFMOP4A
-    { 0xFFF1FE3EU, 0x81300018U, Mnemonic::BFMOP4S, IrTemplate::System, Opcode::UNDEF, 0 }, // BFMOP4S
-    { 0xFFF1FE3EU, 0x81200018U, Mnemonic::BFMOP4S, IrTemplate::System, Opcode::UNDEF, 0 }, // BFMOP4S
-    { 0xFFF1FE3EU, 0x81200218U, Mnemonic::BFMOP4S, IrTemplate::System, Opcode::UNDEF, 0 }, // BFMOP4S
-    { 0xFFF1FE3EU, 0x81300218U, Mnemonic::BFMOP4S, IrTemplate::System, Opcode::UNDEF, 0 }, // BFMOP4S
-    { 0xFFF0FFE3U, 0xC120A980U, Mnemonic::BFSCALE, IrTemplate::System, Opcode::UNDEF, 0 }, // BFSCALE
-    { 0xFFF1FE3EU, 0x80300008U, Mnemonic::FMOP4A, IrTemplate::System, Opcode::UNDEF, 0 }, // FMOP4A
-    { 0xFFF1FE3EU, 0x80200008U, Mnemonic::FMOP4A, IrTemplate::System, Opcode::UNDEF, 0 }, // FMOP4A
-    { 0xFFF1FE3EU, 0x80200208U, Mnemonic::FMOP4A, IrTemplate::System, Opcode::UNDEF, 0 }, // FMOP4A
-    { 0xFFF1FE3EU, 0x80300208U, Mnemonic::FMOP4A, IrTemplate::System, Opcode::UNDEF, 0 }, // FMOP4A
-    { 0xFFF1FE3EU, 0x81100008U, Mnemonic::FMOP4A, IrTemplate::System, Opcode::UNDEF, 0 }, // FMOP4A
-    { 0xFFF1FE3EU, 0x81000008U, Mnemonic::FMOP4A, IrTemplate::System, Opcode::UNDEF, 0 }, // FMOP4A
-    { 0xFFF1FE3EU, 0x81000208U, Mnemonic::FMOP4A, IrTemplate::System, Opcode::UNDEF, 0 }, // FMOP4A
-    { 0xFFF1FE3EU, 0x81100208U, Mnemonic::FMOP4A, IrTemplate::System, Opcode::UNDEF, 0 }, // FMOP4A
-    { 0xFFF1FE3EU, 0x81100018U, Mnemonic::FMOP4S, IrTemplate::System, Opcode::UNDEF, 0 }, // FMOP4S
-    { 0xFFF1FE3EU, 0x81000018U, Mnemonic::FMOP4S, IrTemplate::System, Opcode::UNDEF, 0 }, // FMOP4S
-    { 0xFFF1FE3EU, 0x81000218U, Mnemonic::FMOP4S, IrTemplate::System, Opcode::UNDEF, 0 }, // FMOP4S
-    { 0xFFF1FE3EU, 0x81100218U, Mnemonic::FMOP4S, IrTemplate::System, Opcode::UNDEF, 0 }, // FMOP4S
-    { 0xFFFFCFE0U, 0xC04F03E0U, Mnemonic::MOVT, IrTemplate::System, Opcode::UNDEF, 0 }, // MOVT
-    { 0xFF3FFFE0U, 0x2538C000U, Mnemonic::DUP, IrTemplate::SimdUnary, Opcode::COPY, 0 }, // DUP
-    { 0xFFFFF01FU, 0xD503201FU, Mnemonic::HINT, IrTemplate::Nop, Opcode::NOP, 0 }, // HINT
-    { 0xFFFF9C78U, 0xC1E51C00U, Mnemonic::BFADD, IrTemplate::System, Opcode::UNDEF, 0 }, // BFADD
-    { 0xFFF0FFE1U, 0xC120A100U, Mnemonic::BFMAX, IrTemplate::System, Opcode::UNDEF, 0 }, // BFMAX
-    { 0xFFE1FFE1U, 0xC120B100U, Mnemonic::BFMAX, IrTemplate::System, Opcode::UNDEF, 0 }, // BFMAX
-    { 0xFFF0FFE1U, 0xC120A120U, Mnemonic::BFMAXNM, IrTemplate::System, Opcode::UNDEF, 0 }, // BFMAXNM
-    { 0xFFE1FFE1U, 0xC120B120U, Mnemonic::BFMAXNM, IrTemplate::System, Opcode::UNDEF, 0 }, // BFMAXNM
-    { 0xFFF0FFE1U, 0xC120A101U, Mnemonic::BFMIN, IrTemplate::System, Opcode::UNDEF, 0 }, // BFMIN
-    { 0xFFE1FFE1U, 0xC120B101U, Mnemonic::BFMIN, IrTemplate::System, Opcode::UNDEF, 0 }, // BFMIN
-    { 0xFFF0FFE1U, 0xC120A121U, Mnemonic::BFMINNM, IrTemplate::System, Opcode::UNDEF, 0 }, // BFMINNM
-    { 0xFFE1FFE1U, 0xC120B121U, Mnemonic::BFMINNM, IrTemplate::System, Opcode::UNDEF, 0 }, // BFMINNM
-    { 0xFFF1FE3CU, 0x81100000U, Mnemonic::BFMOP4A, IrTemplate::System, Opcode::UNDEF, 0 }, // BFMOP4A
-    { 0xFFF1FE3CU, 0x81000000U, Mnemonic::BFMOP4A, IrTemplate::System, Opcode::UNDEF, 0 }, // BFMOP4A
-    { 0xFFF1FE3CU, 0x81000200U, Mnemonic::BFMOP4A, IrTemplate::System, Opcode::UNDEF, 0 }, // BFMOP4A
-    { 0xFFF1FE3CU, 0x81100200U, Mnemonic::BFMOP4A, IrTemplate::System, Opcode::UNDEF, 0 }, // BFMOP4A
-    { 0xFFF1FE3CU, 0x81100010U, Mnemonic::BFMOP4S, IrTemplate::System, Opcode::UNDEF, 0 }, // BFMOP4S
-    { 0xFFF1FE3CU, 0x81000010U, Mnemonic::BFMOP4S, IrTemplate::System, Opcode::UNDEF, 0 }, // BFMOP4S
-    { 0xFFF1FE3CU, 0x81000210U, Mnemonic::BFMOP4S, IrTemplate::System, Opcode::UNDEF, 0 }, // BFMOP4S
-    { 0xFFF1FE3CU, 0x81100210U, Mnemonic::BFMOP4S, IrTemplate::System, Opcode::UNDEF, 0 }, // BFMOP4S
-    { 0xFFF0FFE1U, 0xC120A180U, Mnemonic::BFSCALE, IrTemplate::System, Opcode::UNDEF, 0 }, // BFSCALE
-    { 0xFFE1FFE1U, 0xC120B180U, Mnemonic::BFSCALE, IrTemplate::System, Opcode::UNDEF, 0 }, // BFSCALE
-    { 0xFFFF9C78U, 0xC1E51C08U, Mnemonic::BFSUB, IrTemplate::System, Opcode::UNDEF, 0 }, // BFSUB
-    { 0xFFFF9C78U, 0xC1A51C00U, Mnemonic::FADD, IrTemplate::System, Opcode::UNDEF, 0 }, // FADD
-    { 0xFF23FFE3U, 0xC120B940U, Mnemonic::FAMAX, IrTemplate::System, Opcode::UNDEF, 0 }, // FAMAX
-    { 0xFF23FFE3U, 0xC120B941U, Mnemonic::FAMIN, IrTemplate::System, Opcode::UNDEF, 0 }, // FAMIN
-    { 0xFFFFFC60U, 0xC134E000U, Mnemonic::FCVT, IrTemplate::System, Opcode::UNDEF, 0 }, // FCVT
-    { 0xFFFFFC60U, 0xC134E020U, Mnemonic::FCVTN, IrTemplate::System, Opcode::UNDEF, 0 }, // FCVTN
-    { 0xFFFFFC21U, 0xC121E000U, Mnemonic::FCVTZS, IrTemplate::System, Opcode::UNDEF, 0 }, // FCVTZS
-    { 0xFFFFFC21U, 0xC121E020U, Mnemonic::FCVTZU, IrTemplate::System, Opcode::UNDEF, 0 }, // FCVTZU
-    { 0xFF23FFE3U, 0xC120B900U, Mnemonic::FMAX, IrTemplate::System, Opcode::UNDEF, 0 }, // FMAX
-    { 0xFF23FFE3U, 0xC120B920U, Mnemonic::FMAXNM, IrTemplate::System, Opcode::UNDEF, 0 }, // FMAXNM
-    { 0xFF23FFE3U, 0xC120B901U, Mnemonic::FMIN, IrTemplate::System, Opcode::UNDEF, 0 }, // FMIN
-    { 0xFF23FFE3U, 0xC120B921U, Mnemonic::FMINNM, IrTemplate::System, Opcode::UNDEF, 0 }, // FMINNM
-    { 0xFFF1FE3CU, 0x80300000U, Mnemonic::FMOP4A, IrTemplate::System, Opcode::UNDEF, 0 }, // FMOP4A
-    { 0xFFF1FE3CU, 0x80200000U, Mnemonic::FMOP4A, IrTemplate::System, Opcode::UNDEF, 0 }, // FMOP4A
-    { 0xFFF1FE3CU, 0x80200200U, Mnemonic::FMOP4A, IrTemplate::System, Opcode::UNDEF, 0 }, // FMOP4A
-    { 0xFFF1FE3CU, 0x80300200U, Mnemonic::FMOP4A, IrTemplate::System, Opcode::UNDEF, 0 }, // FMOP4A
-    { 0xFFF1FE3CU, 0x81300000U, Mnemonic::FMOP4A, IrTemplate::System, Opcode::UNDEF, 0 }, // FMOP4A
-    { 0xFFF1FE3CU, 0x81200000U, Mnemonic::FMOP4A, IrTemplate::System, Opcode::UNDEF, 0 }, // FMOP4A
-    { 0xFFF1FE3CU, 0x81200200U, Mnemonic::FMOP4A, IrTemplate::System, Opcode::UNDEF, 0 }, // FMOP4A
-    { 0xFFF1FE3CU, 0x81300200U, Mnemonic::FMOP4A, IrTemplate::System, Opcode::UNDEF, 0 }, // FMOP4A
-    { 0xFFF1FE3CU, 0x80100000U, Mnemonic::FMOP4A, IrTemplate::System, Opcode::UNDEF, 0 }, // FMOP4A
-    { 0xFFF1FE3CU, 0x80000000U, Mnemonic::FMOP4A, IrTemplate::System, Opcode::UNDEF, 0 }, // FMOP4A
-    { 0xFFF1FE3CU, 0x80000200U, Mnemonic::FMOP4A, IrTemplate::System, Opcode::UNDEF, 0 }, // FMOP4A
-    { 0xFFF1FE3CU, 0x80100200U, Mnemonic::FMOP4A, IrTemplate::System, Opcode::UNDEF, 0 }, // FMOP4A
-    { 0xFFF1FE3CU, 0x81300010U, Mnemonic::FMOP4S, IrTemplate::System, Opcode::UNDEF, 0 }, // FMOP4S
-    { 0xFFF1FE3CU, 0x81200010U, Mnemonic::FMOP4S, IrTemplate::System, Opcode::UNDEF, 0 }, // FMOP4S
-    { 0xFFF1FE3CU, 0x81200210U, Mnemonic::FMOP4S, IrTemplate::System, Opcode::UNDEF, 0 }, // FMOP4S
-    { 0xFFF1FE3CU, 0x81300210U, Mnemonic::FMOP4S, IrTemplate::System, Opcode::UNDEF, 0 }, // FMOP4S
-    { 0xFFF1FE3CU, 0x80100010U, Mnemonic::FMOP4S, IrTemplate::System, Opcode::UNDEF, 0 }, // FMOP4S
-    { 0xFFF1FE3CU, 0x80000010U, Mnemonic::FMOP4S, IrTemplate::System, Opcode::UNDEF, 0 }, // FMOP4S
-    { 0xFFF1FE3CU, 0x80000210U, Mnemonic::FMOP4S, IrTemplate::System, Opcode::UNDEF, 0 }, // FMOP4S
-    { 0xFFF1FE3CU, 0x80100210U, Mnemonic::FMOP4S, IrTemplate::System, Opcode::UNDEF, 0 }, // FMOP4S
-    { 0xFFFFFC21U, 0xC1ACE000U, Mnemonic::FRINTA, IrTemplate::System, Opcode::UNDEF, 0 }, // FRINTA
-    { 0xFFFFFC21U, 0xC1AAE000U, Mnemonic::FRINTM, IrTemplate::System, Opcode::UNDEF, 0 }, // FRINTM
-    { 0xFFFFFC21U, 0xC1A8E000U, Mnemonic::FRINTN, IrTemplate::System, Opcode::UNDEF, 0 }, // FRINTN
-    { 0xFFFFFC21U, 0xC1A9E000U, Mnemonic::FRINTP, IrTemplate::System, Opcode::UNDEF, 0 }, // FRINTP
-    { 0xFF23FFE3U, 0xC120B980U, Mnemonic::FSCALE, IrTemplate::System, Opcode::UNDEF, 0 }, // FSCALE
-    { 0xFFFF9C78U, 0xC1A51C08U, Mnemonic::FSUB, IrTemplate::System, Opcode::UNDEF, 0 }, // FSUB
-    { 0xFFFF1F83U, 0xC0060400U, Mnemonic::MOVA, IrTemplate::System, Opcode::UNDEF, 0 }, // MOVA
-    { 0xFFFF1F83U, 0xC0460400U, Mnemonic::MOVA, IrTemplate::System, Opcode::UNDEF, 0 }, // MOVA
-    { 0xFFFF1F83U, 0xC0860400U, Mnemonic::MOVA, IrTemplate::System, Opcode::UNDEF, 0 }, // MOVA
-    { 0xFFFF9F03U, 0xC0060C00U, Mnemonic::MOVA, IrTemplate::System, Opcode::UNDEF, 0 }, // MOVA
-    { 0xFFFF1C7CU, 0xC0040400U, Mnemonic::MOVA, IrTemplate::System, Opcode::UNDEF, 0 }, // MOVA
-    { 0xFFFF1C7CU, 0xC0440400U, Mnemonic::MOVA, IrTemplate::System, Opcode::UNDEF, 0 }, // MOVA
-    { 0xFFFF1C7CU, 0xC0840400U, Mnemonic::MOVA, IrTemplate::System, Opcode::UNDEF, 0 }, // MOVA
-    { 0xFFFF9C78U, 0xC0040C00U, Mnemonic::MOVA, IrTemplate::System, Opcode::UNDEF, 0 }, // MOVA
-    { 0xFFFF1F83U, 0xC0060400U, Mnemonic::MOVA, IrTemplate::System, Opcode::UNDEF, 0 }, // MOVA
-    { 0xFFFF1F83U, 0xC0460400U, Mnemonic::MOVA, IrTemplate::System, Opcode::UNDEF, 0 }, // MOVA
-    { 0xFFFF1F83U, 0xC0860400U, Mnemonic::MOVA, IrTemplate::System, Opcode::UNDEF, 0 }, // MOVA
-    { 0xFFFF9F03U, 0xC0060C00U, Mnemonic::MOVA, IrTemplate::System, Opcode::UNDEF, 0 }, // MOVA
-    { 0xFFFF1C7CU, 0xC0040400U, Mnemonic::MOVA, IrTemplate::System, Opcode::UNDEF, 0 }, // MOVA
-    { 0xFFFF1C7CU, 0xC0440400U, Mnemonic::MOVA, IrTemplate::System, Opcode::UNDEF, 0 }, // MOVA
-    { 0xFFFF1C7CU, 0xC0840400U, Mnemonic::MOVA, IrTemplate::System, Opcode::UNDEF, 0 }, // MOVA
-    { 0xFFFF9C78U, 0xC0040C00U, Mnemonic::MOVA, IrTemplate::System, Opcode::UNDEF, 0 }, // MOVA
-    { 0xFFFF1F83U, 0xC0060600U, Mnemonic::MOVAZ, IrTemplate::System, Opcode::UNDEF, 0 }, // MOVAZ
-    { 0xFFFF1F83U, 0xC0460600U, Mnemonic::MOVAZ, IrTemplate::System, Opcode::UNDEF, 0 }, // MOVAZ
-    { 0xFFFF1F83U, 0xC0860600U, Mnemonic::MOVAZ, IrTemplate::System, Opcode::UNDEF, 0 }, // MOVAZ
-    { 0xFFFF9F03U, 0xC0060E00U, Mnemonic::MOVAZ, IrTemplate::System, Opcode::UNDEF, 0 }, // MOVAZ
-    { 0xFFFF8FE0U, 0xC04C03E0U, Mnemonic::MOVT, IrTemplate::System, Opcode::UNDEF, 0 }, // MOVT
-    { 0xFFFF8FE0U, 0xC04E03E0U, Mnemonic::MOVT, IrTemplate::System, Opcode::UNDEF, 0 }, // MOVT
-    { 0xFFFFFC21U, 0xC122E000U, Mnemonic::SCVTF, IrTemplate::System, Opcode::UNDEF, 0 }, // SCVTF
-    { 0xFF23FFE3U, 0xC120B800U, Mnemonic::SMAX, IrTemplate::System, Opcode::UNDEF, 0 }, // SMAX
-    { 0xFF23FFE3U, 0xC120B820U, Mnemonic::SMIN, IrTemplate::System, Opcode::UNDEF, 0 }, // SMIN
-    { 0xFFF1FE3CU, 0x80108008U, Mnemonic::SMOP4A, IrTemplate::System, Opcode::UNDEF, 0 }, // SMOP4A
-    { 0xFFF1FE3CU, 0x80008008U, Mnemonic::SMOP4A, IrTemplate::System, Opcode::UNDEF, 0 }, // SMOP4A
-    { 0xFFF1FE3CU, 0x80008208U, Mnemonic::SMOP4A, IrTemplate::System, Opcode::UNDEF, 0 }, // SMOP4A
-    { 0xFFF1FE3CU, 0x80108208U, Mnemonic::SMOP4A, IrTemplate::System, Opcode::UNDEF, 0 }, // SMOP4A
-    { 0xFFF1FE3CU, 0x80108000U, Mnemonic::SMOP4A, IrTemplate::System, Opcode::UNDEF, 0 }, // SMOP4A
-    { 0xFFF1FE3CU, 0x80008000U, Mnemonic::SMOP4A, IrTemplate::System, Opcode::UNDEF, 0 }, // SMOP4A
-    { 0xFFF1FE3CU, 0x80008200U, Mnemonic::SMOP4A, IrTemplate::System, Opcode::UNDEF, 0 }, // SMOP4A
-    { 0xFFF1FE3CU, 0x80108200U, Mnemonic::SMOP4A, IrTemplate::System, Opcode::UNDEF, 0 }, // SMOP4A
-    { 0xFFF1FE3CU, 0x80108018U, Mnemonic::SMOP4S, IrTemplate::System, Opcode::UNDEF, 0 }, // SMOP4S
-    { 0xFFF1FE3CU, 0x80008018U, Mnemonic::SMOP4S, IrTemplate::System, Opcode::UNDEF, 0 }, // SMOP4S
-    { 0xFFF1FE3CU, 0x80008218U, Mnemonic::SMOP4S, IrTemplate::System, Opcode::UNDEF, 0 }, // SMOP4S
-    { 0xFFF1FE3CU, 0x80108218U, Mnemonic::SMOP4S, IrTemplate::System, Opcode::UNDEF, 0 }, // SMOP4S
-    { 0xFFF1FE3CU, 0x80108010U, Mnemonic::SMOP4S, IrTemplate::System, Opcode::UNDEF, 0 }, // SMOP4S
-    { 0xFFF1FE3CU, 0x80008010U, Mnemonic::SMOP4S, IrTemplate::System, Opcode::UNDEF, 0 }, // SMOP4S
-    { 0xFFF1FE3CU, 0x80008210U, Mnemonic::SMOP4S, IrTemplate::System, Opcode::UNDEF, 0 }, // SMOP4S
-    { 0xFFF1FE3CU, 0x80108210U, Mnemonic::SMOP4S, IrTemplate::System, Opcode::UNDEF, 0 }, // SMOP4S
-    { 0xFF23FFE3U, 0xC120BC00U, Mnemonic::SQDMULH, IrTemplate::System, Opcode::UNDEF, 0 }, // SQDMULH
-    { 0xFF23FFE3U, 0xC120BA20U, Mnemonic::SRSHL, IrTemplate::System, Opcode::UNDEF, 0 }, // SRSHL
-    { 0xFFF1FE3CU, 0x80308000U, Mnemonic::SUMOP4A, IrTemplate::System, Opcode::UNDEF, 0 }, // SUMOP4A
-    { 0xFFF1FE3CU, 0x80208000U, Mnemonic::SUMOP4A, IrTemplate::System, Opcode::UNDEF, 0 }, // SUMOP4A
-    { 0xFFF1FE3CU, 0x80208200U, Mnemonic::SUMOP4A, IrTemplate::System, Opcode::UNDEF, 0 }, // SUMOP4A
-    { 0xFFF1FE3CU, 0x80308200U, Mnemonic::SUMOP4A, IrTemplate::System, Opcode::UNDEF, 0 }, // SUMOP4A
-    { 0xFFF1FE3CU, 0x80308010U, Mnemonic::SUMOP4S, IrTemplate::System, Opcode::UNDEF, 0 }, // SUMOP4S
-    { 0xFFF1FE3CU, 0x80208010U, Mnemonic::SUMOP4S, IrTemplate::System, Opcode::UNDEF, 0 }, // SUMOP4S
-    { 0xFFF1FE3CU, 0x80208210U, Mnemonic::SUMOP4S, IrTemplate::System, Opcode::UNDEF, 0 }, // SUMOP4S
-    { 0xFFF1FE3CU, 0x80308210U, Mnemonic::SUMOP4S, IrTemplate::System, Opcode::UNDEF, 0 }, // SUMOP4S
-    { 0xFFFFFC21U, 0xC122E020U, Mnemonic::UCVTF, IrTemplate::System, Opcode::UNDEF, 0 }, // UCVTF
-    { 0xFF23FFE3U, 0xC120B801U, Mnemonic::UMAX, IrTemplate::System, Opcode::UNDEF, 0 }, // UMAX
-    { 0xFF23FFE3U, 0xC120B821U, Mnemonic::UMIN, IrTemplate::System, Opcode::UNDEF, 0 }, // UMIN
-    { 0xFFF1FE3CU, 0x81108008U, Mnemonic::UMOP4A, IrTemplate::System, Opcode::UNDEF, 0 }, // UMOP4A
-    { 0xFFF1FE3CU, 0x81008008U, Mnemonic::UMOP4A, IrTemplate::System, Opcode::UNDEF, 0 }, // UMOP4A
-    { 0xFFF1FE3CU, 0x81008208U, Mnemonic::UMOP4A, IrTemplate::System, Opcode::UNDEF, 0 }, // UMOP4A
-    { 0xFFF1FE3CU, 0x81108208U, Mnemonic::UMOP4A, IrTemplate::System, Opcode::UNDEF, 0 }, // UMOP4A
-    { 0xFFF1FE3CU, 0x81308000U, Mnemonic::UMOP4A, IrTemplate::System, Opcode::UNDEF, 0 }, // UMOP4A
-    { 0xFFF1FE3CU, 0x81208000U, Mnemonic::UMOP4A, IrTemplate::System, Opcode::UNDEF, 0 }, // UMOP4A
-    { 0xFFF1FE3CU, 0x81208200U, Mnemonic::UMOP4A, IrTemplate::System, Opcode::UNDEF, 0 }, // UMOP4A
-    { 0xFFF1FE3CU, 0x81308200U, Mnemonic::UMOP4A, IrTemplate::System, Opcode::UNDEF, 0 }, // UMOP4A
-    { 0xFFF1FE3CU, 0x81108018U, Mnemonic::UMOP4S, IrTemplate::System, Opcode::UNDEF, 0 }, // UMOP4S
-    { 0xFFF1FE3CU, 0x81008018U, Mnemonic::UMOP4S, IrTemplate::System, Opcode::UNDEF, 0 }, // UMOP4S
-    { 0xFFF1FE3CU, 0x81008218U, Mnemonic::UMOP4S, IrTemplate::System, Opcode::UNDEF, 0 }, // UMOP4S
-    { 0xFFF1FE3CU, 0x81108218U, Mnemonic::UMOP4S, IrTemplate::System, Opcode::UNDEF, 0 }, // UMOP4S
-    { 0xFFF1FE3CU, 0x81308010U, Mnemonic::UMOP4S, IrTemplate::System, Opcode::UNDEF, 0 }, // UMOP4S
-    { 0xFFF1FE3CU, 0x81208010U, Mnemonic::UMOP4S, IrTemplate::System, Opcode::UNDEF, 0 }, // UMOP4S
-    { 0xFFF1FE3CU, 0x81208210U, Mnemonic::UMOP4S, IrTemplate::System, Opcode::UNDEF, 0 }, // UMOP4S
-    { 0xFFF1FE3CU, 0x81308210U, Mnemonic::UMOP4S, IrTemplate::System, Opcode::UNDEF, 0 }, // UMOP4S
-    { 0xFF23FFE3U, 0xC120BA21U, Mnemonic::URSHL, IrTemplate::System, Opcode::UNDEF, 0 }, // URSHL
-    { 0xFFF1FE3CU, 0x81108000U, Mnemonic::USMOP4A, IrTemplate::System, Opcode::UNDEF, 0 }, // USMOP4A
-    { 0xFFF1FE3CU, 0x81008000U, Mnemonic::USMOP4A, IrTemplate::System, Opcode::UNDEF, 0 }, // USMOP4A
-    { 0xFFF1FE3CU, 0x81008200U, Mnemonic::USMOP4A, IrTemplate::System, Opcode::UNDEF, 0 }, // USMOP4A
-    { 0xFFF1FE3CU, 0x81108200U, Mnemonic::USMOP4A, IrTemplate::System, Opcode::UNDEF, 0 }, // USMOP4A
-    { 0xFFF1FE3CU, 0x81108010U, Mnemonic::USMOP4S, IrTemplate::System, Opcode::UNDEF, 0 }, // USMOP4S
-    { 0xFFF1FE3CU, 0x81008010U, Mnemonic::USMOP4S, IrTemplate::System, Opcode::UNDEF, 0 }, // USMOP4S
-    { 0xFFF1FE3CU, 0x81008210U, Mnemonic::USMOP4S, IrTemplate::System, Opcode::UNDEF, 0 }, // USMOP4S
-    { 0xFFF1FE3CU, 0x81108210U, Mnemonic::USMOP4S, IrTemplate::System, Opcode::UNDEF, 0 }, // USMOP4S
-    { 0xFF3FFC63U, 0xC136E002U, Mnemonic::UZP, IrTemplate::System, Opcode::UNDEF, 0 }, // UZP
-    { 0xFFFFFF00U, 0xC0080000U, Mnemonic::ZERO, IrTemplate::System, Opcode::UNDEF, 0 }, // ZERO
-    { 0xFF3FFC63U, 0xC136E000U, Mnemonic::ZIP, IrTemplate::System, Opcode::UNDEF, 0 }, // ZIP
-    { 0xFFFFFE10U, 0x2558C000U, Mnemonic::PFIRST, IrTemplate::SimdBinop, Opcode::AND, 0 }, // PFIRST
-    { 0xFFFFC21FU, 0x2550C000U, Mnemonic::PTEST, IrTemplate::SimdBinop, Opcode::AND, 0 }, // PTEST
-    { 0xFFFFFE10U, 0x05314000U, Mnemonic::PUNPKHI, IrTemplate::SimdUnary, Opcode::COPY, 0 }, // PUNPKHI
-    { 0xFFFFFE10U, 0x05304000U, Mnemonic::PUNPKLO, IrTemplate::SimdUnary, Opcode::COPY, 0 }, // PUNPKLO
-    { 0xFFFFFE10U, 0x2518F000U, Mnemonic::RDFFR, IrTemplate::SimdBinop, Opcode::AND, 0 }, // RDFFR
-    { 0xFFFFFE10U, 0x2558F000U, Mnemonic::RDFFRS, IrTemplate::SimdBinop, Opcode::AND, 0 }, // RDFFRS
-    { 0xFFFFFF00U, 0xD5097200U, Mnemonic::SYS, IrTemplate::System, Opcode::UNDEF, 0 }, // SYS
-    { 0xFFFFFF00U, 0xD528C300U, Mnemonic::SYSL, IrTemplate::System, Opcode::UNDEF, 0 }, // SYSL
-    { 0xFFFFFF00U, 0xD508C000U, Mnemonic::SYS, IrTemplate::System, Opcode::UNDEF, 0 }, // SYS
-    { 0xFFFFFF00U, 0xD50C7000U, Mnemonic::SYS, IrTemplate::System, Opcode::UNDEF, 0 }, // SYS
-    { 0xFF30FFE3U, 0xC120AB00U, Mnemonic::ADD, IrTemplate::System, Opcode::UNDEF, 0 }, // ADD
-    { 0xFFBF9C78U, 0xC1A11C10U, Mnemonic::ADD, IrTemplate::System, Opcode::UNDEF, 0 }, // ADD
-    { 0xFFFFFC01U, 0xC166E000U, Mnemonic::BF1CVT, IrTemplate::System, Opcode::UNDEF, 0 }, // BF1CVT
-    { 0xFFFFFC01U, 0xC1E6E000U, Mnemonic::BF2CVT, IrTemplate::System, Opcode::UNDEF, 0 }, // BF2CVT
-    { 0xFFFFFC01U, 0xC166E001U, Mnemonic::BF1CVTL, IrTemplate::System, Opcode::UNDEF, 0 }, // BF1CVTL
-    { 0xFFFFFC01U, 0xC1E6E001U, Mnemonic::BF2CVTL, IrTemplate::System, Opcode::UNDEF, 0 }, // BF2CVTL
-    { 0xFFFF9C38U, 0xC1E41C00U, Mnemonic::BFADD, IrTemplate::System, Opcode::UNDEF, 0 }, // BFADD
-    { 0xFFFFFC20U, 0xC164E000U, Mnemonic::BFCVT, IrTemplate::System, Opcode::UNDEF, 0 }, // BFCVT
-    { 0xFFFFFC20U, 0xC160E000U, Mnemonic::BFCVT, IrTemplate::System, Opcode::UNDEF, 0 }, // BFCVT
-    { 0xFFFFFC20U, 0xC160E020U, Mnemonic::BFCVTN, IrTemplate::System, Opcode::UNDEF, 0 }, // BFCVTN
-    { 0xFFE3FC63U, 0xC121E400U, Mnemonic::BFMUL, IrTemplate::System, Opcode::UNDEF, 0 }, // BFMUL
-    { 0xFFFF9C38U, 0xC1E41C08U, Mnemonic::BFSUB, IrTemplate::System, Opcode::UNDEF, 0 }, // BFSUB
-    { 0xFFFFFC01U, 0xC126E000U, Mnemonic::F1CVT, IrTemplate::System, Opcode::UNDEF, 0 }, // F1CVT
-    { 0xFFFFFC01U, 0xC1A6E000U, Mnemonic::F2CVT, IrTemplate::System, Opcode::UNDEF, 0 }, // F2CVT
-    { 0xFFFFFC01U, 0xC126E001U, Mnemonic::F1CVTL, IrTemplate::System, Opcode::UNDEF, 0 }, // F1CVTL
-    { 0xFFFFFC01U, 0xC1A6E001U, Mnemonic::F2CVTL, IrTemplate::System, Opcode::UNDEF, 0 }, // F2CVTL
-    { 0xFFFF9C38U, 0xC1A41C00U, Mnemonic::FADD, IrTemplate::System, Opcode::UNDEF, 0 }, // FADD
-    { 0xFFBF9C78U, 0xC1A11C00U, Mnemonic::FADD, IrTemplate::System, Opcode::UNDEF, 0 }, // FADD
-    { 0xFFFFFC01U, 0xC1A0E000U, Mnemonic::FCVT, IrTemplate::System, Opcode::UNDEF, 0 }, // FCVT
-    { 0xFFFFFC20U, 0xC124E000U, Mnemonic::FCVT, IrTemplate::System, Opcode::UNDEF, 0 }, // FCVT
-    { 0xFFFFFC20U, 0xC120E000U, Mnemonic::FCVT, IrTemplate::System, Opcode::UNDEF, 0 }, // FCVT
-    { 0xFFFFFC01U, 0xC1A0E001U, Mnemonic::FCVTL, IrTemplate::System, Opcode::UNDEF, 0 }, // FCVTL
-    { 0xFFFFFC20U, 0xC120E020U, Mnemonic::FCVTN, IrTemplate::System, Opcode::UNDEF, 0 }, // FCVTN
-    { 0xFF30FFE3U, 0xC120A900U, Mnemonic::FMAX, IrTemplate::System, Opcode::UNDEF, 0 }, // FMAX
-    { 0xFF30FFE3U, 0xC120A920U, Mnemonic::FMAXNM, IrTemplate::System, Opcode::UNDEF, 0 }, // FMAXNM
-    { 0xFF30FFE3U, 0xC120A901U, Mnemonic::FMIN, IrTemplate::System, Opcode::UNDEF, 0 }, // FMIN
-    { 0xFF30FFE3U, 0xC120A921U, Mnemonic::FMINNM, IrTemplate::System, Opcode::UNDEF, 0 }, // FMINNM
-    { 0xFFE39C7EU, 0xC1A10020U, Mnemonic::FMLALL, IrTemplate::System, Opcode::UNDEF, 0 }, // FMLALL
-    { 0xFFF1FE38U, 0x80D00008U, Mnemonic::FMOP4A, IrTemplate::System, Opcode::UNDEF, 0 }, // FMOP4A
-    { 0xFFF1FE38U, 0x80C00008U, Mnemonic::FMOP4A, IrTemplate::System, Opcode::UNDEF, 0 }, // FMOP4A
-    { 0xFFF1FE38U, 0x80C00208U, Mnemonic::FMOP4A, IrTemplate::System, Opcode::UNDEF, 0 }, // FMOP4A
-    { 0xFFF1FE38U, 0x80D00208U, Mnemonic::FMOP4A, IrTemplate::System, Opcode::UNDEF, 0 }, // FMOP4A
-    { 0xFFF1FE38U, 0x80D00018U, Mnemonic::FMOP4S, IrTemplate::System, Opcode::UNDEF, 0 }, // FMOP4S
-    { 0xFFF1FE38U, 0x80C00018U, Mnemonic::FMOP4S, IrTemplate::System, Opcode::UNDEF, 0 }, // FMOP4S
-    { 0xFFF1FE38U, 0x80C00218U, Mnemonic::FMOP4S, IrTemplate::System, Opcode::UNDEF, 0 }, // FMOP4S
-    { 0xFFF1FE38U, 0x80D00218U, Mnemonic::FMOP4S, IrTemplate::System, Opcode::UNDEF, 0 }, // FMOP4S
-    { 0xFF30FFE3U, 0xC120A980U, Mnemonic::FSCALE, IrTemplate::System, Opcode::UNDEF, 0 }, // FSCALE
-    { 0xFFFF9C38U, 0xC1A41C08U, Mnemonic::FSUB, IrTemplate::System, Opcode::UNDEF, 0 }, // FSUB
-    { 0xFFBF9C78U, 0xC1A11C08U, Mnemonic::FSUB, IrTemplate::System, Opcode::UNDEF, 0 }, // FSUB
-    { 0xFFFFCC23U, 0xC08B0000U, Mnemonic::LUTI4, IrTemplate::System, Opcode::UNDEF, 0 }, // LUTI4
-    { 0xFFFFCC2CU, 0xC09B0000U, Mnemonic::LUTI4, IrTemplate::System, Opcode::UNDEF, 0 }, // LUTI4
-    { 0xFFFF1F03U, 0xC0C60400U, Mnemonic::MOVA, IrTemplate::System, Opcode::UNDEF, 0 }, // MOVA
-    { 0xFFFF9F01U, 0xC0060800U, Mnemonic::MOVA, IrTemplate::System, Opcode::UNDEF, 0 }, // MOVA
-    { 0xFFFF1C78U, 0xC0C40400U, Mnemonic::MOVA, IrTemplate::System, Opcode::UNDEF, 0 }, // MOVA
-    { 0xFFFF9C38U, 0xC0040800U, Mnemonic::MOVA, IrTemplate::System, Opcode::UNDEF, 0 }, // MOVA
-    { 0xFFFF1F03U, 0xC0C60400U, Mnemonic::MOVA, IrTemplate::System, Opcode::UNDEF, 0 }, // MOVA
-    { 0xFFFF9F01U, 0xC0060800U, Mnemonic::MOVA, IrTemplate::System, Opcode::UNDEF, 0 }, // MOVA
-    { 0xFFFF1C78U, 0xC0C40400U, Mnemonic::MOVA, IrTemplate::System, Opcode::UNDEF, 0 }, // MOVA
-    { 0xFFFF9C38U, 0xC0040800U, Mnemonic::MOVA, IrTemplate::System, Opcode::UNDEF, 0 }, // MOVA
-    { 0xFFFF1F03U, 0xC0C60600U, Mnemonic::MOVAZ, IrTemplate::System, Opcode::UNDEF, 0 }, // MOVAZ
-    { 0xFFFF9F01U, 0xC0060A00U, Mnemonic::MOVAZ, IrTemplate::System, Opcode::UNDEF, 0 }, // MOVAZ
-    { 0xFF30FFE3U, 0xC120A800U, Mnemonic::SMAX, IrTemplate::System, Opcode::UNDEF, 0 }, // SMAX
-    { 0xFF30FFE3U, 0xC120A820U, Mnemonic::SMIN, IrTemplate::System, Opcode::UNDEF, 0 }, // SMIN
-    { 0xFFF1FE38U, 0xA0D00008U, Mnemonic::SMOP4A, IrTemplate::System, Opcode::UNDEF, 0 }, // SMOP4A
-    { 0xFFF1FE38U, 0xA0C00008U, Mnemonic::SMOP4A, IrTemplate::System, Opcode::UNDEF, 0 }, // SMOP4A
-    { 0xFFF1FE38U, 0xA0C00208U, Mnemonic::SMOP4A, IrTemplate::System, Opcode::UNDEF, 0 }, // SMOP4A
-    { 0xFFF1FE38U, 0xA0D00208U, Mnemonic::SMOP4A, IrTemplate::System, Opcode::UNDEF, 0 }, // SMOP4A
-    { 0xFFF1FE38U, 0xA0D00018U, Mnemonic::SMOP4S, IrTemplate::System, Opcode::UNDEF, 0 }, // SMOP4S
-    { 0xFFF1FE38U, 0xA0C00018U, Mnemonic::SMOP4S, IrTemplate::System, Opcode::UNDEF, 0 }, // SMOP4S
-    { 0xFFF1FE38U, 0xA0C00218U, Mnemonic::SMOP4S, IrTemplate::System, Opcode::UNDEF, 0 }, // SMOP4S
-    { 0xFFF1FE38U, 0xA0D00218U, Mnemonic::SMOP4S, IrTemplate::System, Opcode::UNDEF, 0 }, // SMOP4S
-    { 0xFFFFFC20U, 0xC123E000U, Mnemonic::SQCVT, IrTemplate::System, Opcode::UNDEF, 0 }, // SQCVT
-    { 0xFF7FFC60U, 0xC133E000U, Mnemonic::SQCVT, IrTemplate::System, Opcode::UNDEF, 0 }, // SQCVT
-    { 0xFF7FFC60U, 0xC133E040U, Mnemonic::SQCVTN, IrTemplate::System, Opcode::UNDEF, 0 }, // SQCVTN
-    { 0xFFFFFC20U, 0xC163E000U, Mnemonic::SQCVTU, IrTemplate::System, Opcode::UNDEF, 0 }, // SQCVTU
-    { 0xFF7FFC60U, 0xC173E000U, Mnemonic::SQCVTU, IrTemplate::System, Opcode::UNDEF, 0 }, // SQCVTU
-    { 0xFF7FFC60U, 0xC173E040U, Mnemonic::SQCVTUN, IrTemplate::System, Opcode::UNDEF, 0 }, // SQCVTUN
-    { 0xFF30FFE3U, 0xC120AC00U, Mnemonic::SQDMULH, IrTemplate::System, Opcode::UNDEF, 0 }, // SQDMULH
-    { 0xFF30FFE3U, 0xC120AA20U, Mnemonic::SRSHL, IrTemplate::System, Opcode::UNDEF, 0 }, // SRSHL
-    { 0xFFBF9C78U, 0xC1A11C18U, Mnemonic::SUB, IrTemplate::System, Opcode::UNDEF, 0 }, // SUB
-    { 0xFFF1FE38U, 0xA0F00008U, Mnemonic::SUMOP4A, IrTemplate::System, Opcode::UNDEF, 0 }, // SUMOP4A
-    { 0xFFF1FE38U, 0xA0E00008U, Mnemonic::SUMOP4A, IrTemplate::System, Opcode::UNDEF, 0 }, // SUMOP4A
-    { 0xFFF1FE38U, 0xA0E00208U, Mnemonic::SUMOP4A, IrTemplate::System, Opcode::UNDEF, 0 }, // SUMOP4A
-    { 0xFFF1FE38U, 0xA0F00208U, Mnemonic::SUMOP4A, IrTemplate::System, Opcode::UNDEF, 0 }, // SUMOP4A
-    { 0xFFF1FE38U, 0xA0F00018U, Mnemonic::SUMOP4S, IrTemplate::System, Opcode::UNDEF, 0 }, // SUMOP4S
-    { 0xFFF1FE38U, 0xA0E00018U, Mnemonic::SUMOP4S, IrTemplate::System, Opcode::UNDEF, 0 }, // SUMOP4S
-    { 0xFFF1FE38U, 0xA0E00218U, Mnemonic::SUMOP4S, IrTemplate::System, Opcode::UNDEF, 0 }, // SUMOP4S
-    { 0xFFF1FE38U, 0xA0F00218U, Mnemonic::SUMOP4S, IrTemplate::System, Opcode::UNDEF, 0 }, // SUMOP4S
-    { 0xFF3FFC23U, 0xC135E000U, Mnemonic::SUNPK, IrTemplate::System, Opcode::UNDEF, 0 }, // SUNPK
-    { 0xFF30FFE3U, 0xC120A801U, Mnemonic::UMAX, IrTemplate::System, Opcode::UNDEF, 0 }, // UMAX
-    { 0xFF30FFE3U, 0xC120A821U, Mnemonic::UMIN, IrTemplate::System, Opcode::UNDEF, 0 }, // UMIN
-    { 0xFFF1FE38U, 0xA1F00008U, Mnemonic::UMOP4A, IrTemplate::System, Opcode::UNDEF, 0 }, // UMOP4A
-    { 0xFFF1FE38U, 0xA1E00008U, Mnemonic::UMOP4A, IrTemplate::System, Opcode::UNDEF, 0 }, // UMOP4A
-    { 0xFFF1FE38U, 0xA1E00208U, Mnemonic::UMOP4A, IrTemplate::System, Opcode::UNDEF, 0 }, // UMOP4A
-    { 0xFFF1FE38U, 0xA1F00208U, Mnemonic::UMOP4A, IrTemplate::System, Opcode::UNDEF, 0 }, // UMOP4A
-    { 0xFFF1FE38U, 0xA1F00018U, Mnemonic::UMOP4S, IrTemplate::System, Opcode::UNDEF, 0 }, // UMOP4S
-    { 0xFFF1FE38U, 0xA1E00018U, Mnemonic::UMOP4S, IrTemplate::System, Opcode::UNDEF, 0 }, // UMOP4S
-    { 0xFFF1FE38U, 0xA1E00218U, Mnemonic::UMOP4S, IrTemplate::System, Opcode::UNDEF, 0 }, // UMOP4S
-    { 0xFFF1FE38U, 0xA1F00218U, Mnemonic::UMOP4S, IrTemplate::System, Opcode::UNDEF, 0 }, // UMOP4S
-    { 0xFFFFFC20U, 0xC123E020U, Mnemonic::UQCVT, IrTemplate::System, Opcode::UNDEF, 0 }, // UQCVT
-    { 0xFF7FFC60U, 0xC133E020U, Mnemonic::UQCVT, IrTemplate::System, Opcode::UNDEF, 0 }, // UQCVT
-    { 0xFF7FFC60U, 0xC133E060U, Mnemonic::UQCVTN, IrTemplate::System, Opcode::UNDEF, 0 }, // UQCVTN
-    { 0xFF30FFE3U, 0xC120AA21U, Mnemonic::URSHL, IrTemplate::System, Opcode::UNDEF, 0 }, // URSHL
-    { 0xFFE39C7EU, 0xC1A10004U, Mnemonic::USMLALL, IrTemplate::System, Opcode::UNDEF, 0 }, // USMLALL
-    { 0xFFF1FE38U, 0xA1D00008U, Mnemonic::USMOP4A, IrTemplate::System, Opcode::UNDEF, 0 }, // USMOP4A
-    { 0xFFF1FE38U, 0xA1C00008U, Mnemonic::USMOP4A, IrTemplate::System, Opcode::UNDEF, 0 }, // USMOP4A
-    { 0xFFF1FE38U, 0xA1C00208U, Mnemonic::USMOP4A, IrTemplate::System, Opcode::UNDEF, 0 }, // USMOP4A
-    { 0xFFF1FE38U, 0xA1D00208U, Mnemonic::USMOP4A, IrTemplate::System, Opcode::UNDEF, 0 }, // USMOP4A
-    { 0xFFF1FE38U, 0xA1D00018U, Mnemonic::USMOP4S, IrTemplate::System, Opcode::UNDEF, 0 }, // USMOP4S
-    { 0xFFF1FE38U, 0xA1C00018U, Mnemonic::USMOP4S, IrTemplate::System, Opcode::UNDEF, 0 }, // USMOP4S
-    { 0xFFF1FE38U, 0xA1C00218U, Mnemonic::USMOP4S, IrTemplate::System, Opcode::UNDEF, 0 }, // USMOP4S
-    { 0xFFF1FE38U, 0xA1D00218U, Mnemonic::USMOP4S, IrTemplate::System, Opcode::UNDEF, 0 }, // USMOP4S
-    { 0xFF3FFC23U, 0xC135E001U, Mnemonic::UUNPK, IrTemplate::System, Opcode::UNDEF, 0 }, // UUNPK
-    { 0xFFFFFC20U, 0x650A3800U, Mnemonic::BFCVTN, IrTemplate::FpBinop, Opcode::FADD, 0 }, // BFCVTN
-    { 0xFFFFFC20U, 0x650A3000U, Mnemonic::FCVTN, IrTemplate::FpBinop, Opcode::FADD, 0 }, // FCVTN
-    { 0xFFFFFC20U, 0x650A3400U, Mnemonic::FCVTNB, IrTemplate::FpBinop, Opcode::FADD, 0 }, // FCVTNB
-    { 0xFFFFFC20U, 0x650A3C00U, Mnemonic::FCVTNT, IrTemplate::FpBinop, Opcode::FADD, 0 }, // FCVTNT
-    { 0xFFFFFC10U, 0x052A3800U, Mnemonic::PMOV, IrTemplate::SimdUnary, Opcode::COPY, 0 }, // PMOV
-    { 0xFFFFFE00U, 0x052B3800U, Mnemonic::PMOV, IrTemplate::SimdUnary, Opcode::COPY, 0 }, // PMOV
-    { 0xFFFFFC20U, 0x45314000U, Mnemonic::SQCVTN, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // SQCVTN
-    { 0xFFFFFC20U, 0x45315000U, Mnemonic::SQCVTUN, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // SQCVTUN
-    { 0xFFFFFC20U, 0x45314800U, Mnemonic::UQCVTN, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // UQCVTN
-    { 0xFFFF0FE0U, 0x1A9F07E0U, Mnemonic::CSINC, IrTemplate::CondSelect, Opcode::COPY, 0 }, // CSINC
-    { 0xFFFF0FE0U, 0x9A9F07E0U, Mnemonic::CSINC, IrTemplate::CondSelect, Opcode::COPY, 0 }, // CSINC
-    { 0xFFFF0FE0U, 0x5A9F03E0U, Mnemonic::CSINV, IrTemplate::CondSelect, Opcode::COPY, 0 }, // CSINV
-    { 0xFFFF0FE0U, 0xDA9F03E0U, Mnemonic::CSINV, IrTemplate::CondSelect, Opcode::COPY, 0 }, // CSINV
-    { 0xFF30FFE1U, 0xC120A300U, Mnemonic::ADD, IrTemplate::System, Opcode::UNDEF, 0 }, // ADD
-    { 0xFFBF9C38U, 0xC1A01C10U, Mnemonic::ADD, IrTemplate::System, Opcode::UNDEF, 0 }, // ADD
-    { 0xFFE39C7CU, 0xC1A10810U, Mnemonic::BFMLAL, IrTemplate::System, Opcode::UNDEF, 0 }, // BFMLAL
-    { 0xFFE39C7CU, 0xC1A10818U, Mnemonic::BFMLSL, IrTemplate::System, Opcode::UNDEF, 0 }, // BFMLSL
-    { 0xFFE1FC63U, 0xC121E800U, Mnemonic::BFMUL, IrTemplate::System, Opcode::UNDEF, 0 }, // BFMUL
-    { 0xFFBF9C38U, 0xC1A01C00U, Mnemonic::FADD, IrTemplate::System, Opcode::UNDEF, 0 }, // FADD
-    { 0xFF21FFE1U, 0xC120B140U, Mnemonic::FAMAX, IrTemplate::System, Opcode::UNDEF, 0 }, // FAMAX
-    { 0xFF21FFE1U, 0xC120B141U, Mnemonic::FAMIN, IrTemplate::System, Opcode::UNDEF, 0 }, // FAMIN
-    { 0xFF30FFE1U, 0xC120A100U, Mnemonic::FMAX, IrTemplate::System, Opcode::UNDEF, 0 }, // FMAX
-    { 0xFF21FFE1U, 0xC120B100U, Mnemonic::FMAX, IrTemplate::System, Opcode::UNDEF, 0 }, // FMAX
-    { 0xFF30FFE1U, 0xC120A120U, Mnemonic::FMAXNM, IrTemplate::System, Opcode::UNDEF, 0 }, // FMAXNM
-    { 0xFF21FFE1U, 0xC120B120U, Mnemonic::FMAXNM, IrTemplate::System, Opcode::UNDEF, 0 }, // FMAXNM
-    { 0xFF30FFE1U, 0xC120A101U, Mnemonic::FMIN, IrTemplate::System, Opcode::UNDEF, 0 }, // FMIN
-    { 0xFF21FFE1U, 0xC120B101U, Mnemonic::FMIN, IrTemplate::System, Opcode::UNDEF, 0 }, // FMIN
-    { 0xFF30FFE1U, 0xC120A121U, Mnemonic::FMINNM, IrTemplate::System, Opcode::UNDEF, 0 }, // FMINNM
-    { 0xFF21FFE1U, 0xC120B121U, Mnemonic::FMINNM, IrTemplate::System, Opcode::UNDEF, 0 }, // FMINNM
-    { 0xFFE39C7CU, 0xC1A10820U, Mnemonic::FMLAL, IrTemplate::System, Opcode::UNDEF, 0 }, // FMLAL
-    { 0xFFE39C7CU, 0xC1A10800U, Mnemonic::FMLAL, IrTemplate::System, Opcode::UNDEF, 0 }, // FMLAL
-    { 0xFFE39C7CU, 0xC1A10808U, Mnemonic::FMLSL, IrTemplate::System, Opcode::UNDEF, 0 }, // FMLSL
-    { 0xFF30FFE1U, 0xC120A180U, Mnemonic::FSCALE, IrTemplate::System, Opcode::UNDEF, 0 }, // FSCALE
-    { 0xFF21FFE1U, 0xC120B180U, Mnemonic::FSCALE, IrTemplate::System, Opcode::UNDEF, 0 }, // FSCALE
-    { 0xFFBF9C38U, 0xC1A01C08U, Mnemonic::FSUB, IrTemplate::System, Opcode::UNDEF, 0 }, // FSUB
-    { 0xFFFFFC00U, 0xC0C84000U, Mnemonic::LUTI6, IrTemplate::System, Opcode::UNDEF, 0 }, // LUTI6
-    { 0xFFFF1F01U, 0xC0060000U, Mnemonic::MOVA, IrTemplate::System, Opcode::UNDEF, 0 }, // MOVA
-    { 0xFFFF1F01U, 0xC0460000U, Mnemonic::MOVA, IrTemplate::System, Opcode::UNDEF, 0 }, // MOVA
-    { 0xFFFF1F01U, 0xC0860000U, Mnemonic::MOVA, IrTemplate::System, Opcode::UNDEF, 0 }, // MOVA
-    { 0xFFFF1F01U, 0xC0C60000U, Mnemonic::MOVA, IrTemplate::System, Opcode::UNDEF, 0 }, // MOVA
-    { 0xFFFF1C38U, 0xC0040000U, Mnemonic::MOVA, IrTemplate::System, Opcode::UNDEF, 0 }, // MOVA
-    { 0xFFFF1C38U, 0xC0440000U, Mnemonic::MOVA, IrTemplate::System, Opcode::UNDEF, 0 }, // MOVA
-    { 0xFFFF1C38U, 0xC0840000U, Mnemonic::MOVA, IrTemplate::System, Opcode::UNDEF, 0 }, // MOVA
-    { 0xFFFF1C38U, 0xC0C40000U, Mnemonic::MOVA, IrTemplate::System, Opcode::UNDEF, 0 }, // MOVA
-    { 0xFFFF1F01U, 0xC0060000U, Mnemonic::MOVA, IrTemplate::System, Opcode::UNDEF, 0 }, // MOVA
-    { 0xFFFF1F01U, 0xC0460000U, Mnemonic::MOVA, IrTemplate::System, Opcode::UNDEF, 0 }, // MOVA
-    { 0xFFFF1F01U, 0xC0860000U, Mnemonic::MOVA, IrTemplate::System, Opcode::UNDEF, 0 }, // MOVA
-    { 0xFFFF1F01U, 0xC0C60000U, Mnemonic::MOVA, IrTemplate::System, Opcode::UNDEF, 0 }, // MOVA
-    { 0xFFFF1C38U, 0xC0040000U, Mnemonic::MOVA, IrTemplate::System, Opcode::UNDEF, 0 }, // MOVA
-    { 0xFFFF1C38U, 0xC0440000U, Mnemonic::MOVA, IrTemplate::System, Opcode::UNDEF, 0 }, // MOVA
-    { 0xFFFF1C38U, 0xC0840000U, Mnemonic::MOVA, IrTemplate::System, Opcode::UNDEF, 0 }, // MOVA
-    { 0xFFFF1C38U, 0xC0C40000U, Mnemonic::MOVA, IrTemplate::System, Opcode::UNDEF, 0 }, // MOVA
-    { 0xFFFF1F01U, 0xC0060200U, Mnemonic::MOVAZ, IrTemplate::System, Opcode::UNDEF, 0 }, // MOVAZ
-    { 0xFFFF1F01U, 0xC0460200U, Mnemonic::MOVAZ, IrTemplate::System, Opcode::UNDEF, 0 }, // MOVAZ
-    { 0xFFFF1F01U, 0xC0860200U, Mnemonic::MOVAZ, IrTemplate::System, Opcode::UNDEF, 0 }, // MOVAZ
-    { 0xFFFF1F01U, 0xC0C60200U, Mnemonic::MOVAZ, IrTemplate::System, Opcode::UNDEF, 0 }, // MOVAZ
-    { 0xFF30FFE1U, 0xC120A000U, Mnemonic::SMAX, IrTemplate::System, Opcode::UNDEF, 0 }, // SMAX
-    { 0xFF21FFE1U, 0xC120B000U, Mnemonic::SMAX, IrTemplate::System, Opcode::UNDEF, 0 }, // SMAX
-    { 0xFF30FFE1U, 0xC120A020U, Mnemonic::SMIN, IrTemplate::System, Opcode::UNDEF, 0 }, // SMIN
-    { 0xFF21FFE1U, 0xC120B020U, Mnemonic::SMIN, IrTemplate::System, Opcode::UNDEF, 0 }, // SMIN
-    { 0xFFE39C7CU, 0xC1E10800U, Mnemonic::SMLAL, IrTemplate::System, Opcode::UNDEF, 0 }, // SMLAL
-    { 0xFFA39C7EU, 0xC1A10000U, Mnemonic::SMLALL, IrTemplate::System, Opcode::UNDEF, 0 }, // SMLALL
-    { 0xFFE39C7CU, 0xC1E10808U, Mnemonic::SMLSL, IrTemplate::System, Opcode::UNDEF, 0 }, // SMLSL
-    { 0xFFA39C7EU, 0xC1A10008U, Mnemonic::SMLSLL, IrTemplate::System, Opcode::UNDEF, 0 }, // SMLSLL
-    { 0xFF30FFE1U, 0xC120A400U, Mnemonic::SQDMULH, IrTemplate::System, Opcode::UNDEF, 0 }, // SQDMULH
-    { 0xFF21FFE1U, 0xC120B400U, Mnemonic::SQDMULH, IrTemplate::System, Opcode::UNDEF, 0 }, // SQDMULH
-    { 0xFF30FFE1U, 0xC120A220U, Mnemonic::SRSHL, IrTemplate::System, Opcode::UNDEF, 0 }, // SRSHL
-    { 0xFF21FFE1U, 0xC120B220U, Mnemonic::SRSHL, IrTemplate::System, Opcode::UNDEF, 0 }, // SRSHL
-    { 0xFFBF9C38U, 0xC1A01C18U, Mnemonic::SUB, IrTemplate::System, Opcode::UNDEF, 0 }, // SUB
-    { 0xFF30FFE1U, 0xC120A001U, Mnemonic::UMAX, IrTemplate::System, Opcode::UNDEF, 0 }, // UMAX
-    { 0xFF21FFE1U, 0xC120B001U, Mnemonic::UMAX, IrTemplate::System, Opcode::UNDEF, 0 }, // UMAX
-    { 0xFF30FFE1U, 0xC120A021U, Mnemonic::UMIN, IrTemplate::System, Opcode::UNDEF, 0 }, // UMIN
-    { 0xFF21FFE1U, 0xC120B021U, Mnemonic::UMIN, IrTemplate::System, Opcode::UNDEF, 0 }, // UMIN
-    { 0xFFE39C7CU, 0xC1E10810U, Mnemonic::UMLAL, IrTemplate::System, Opcode::UNDEF, 0 }, // UMLAL
-    { 0xFFA39C7EU, 0xC1A10010U, Mnemonic::UMLALL, IrTemplate::System, Opcode::UNDEF, 0 }, // UMLALL
-    { 0xFFE39C7CU, 0xC1E10818U, Mnemonic::UMLSL, IrTemplate::System, Opcode::UNDEF, 0 }, // UMLSL
-    { 0xFFA39C7EU, 0xC1A10018U, Mnemonic::UMLSLL, IrTemplate::System, Opcode::UNDEF, 0 }, // UMLSLL
-    { 0xFF30FFE1U, 0xC120A221U, Mnemonic::URSHL, IrTemplate::System, Opcode::UNDEF, 0 }, // URSHL
-    { 0xFF21FFE1U, 0xC120B221U, Mnemonic::URSHL, IrTemplate::System, Opcode::UNDEF, 0 }, // URSHL
-    { 0xFFE7FC03U, 0x4526EC00U, Mnemonic::AESD, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // AESD
-    { 0xFFFFFC00U, 0x4522E400U, Mnemonic::AESD, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // AESD
-    { 0xFFE7FC03U, 0x4527EC00U, Mnemonic::AESDIMC, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // AESDIMC
-    { 0xFFE7FC03U, 0x4526E800U, Mnemonic::AESE, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // AESE
-    { 0xFFFFFC00U, 0x4522E000U, Mnemonic::AESE, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // AESE
-    { 0xFFE7FC03U, 0x4527E800U, Mnemonic::AESEMC, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // AESEMC
-    { 0xFFFFFC00U, 0x65083800U, Mnemonic::BF1CVT, IrTemplate::FpBinop, Opcode::FADD, 0 }, // BF1CVT
-    { 0xFFFFFC00U, 0x65083C00U, Mnemonic::BF2CVT, IrTemplate::FpBinop, Opcode::FADD, 0 }, // BF2CVT
-    { 0xFFFFFC00U, 0x65093800U, Mnemonic::BF1CVTLT, IrTemplate::FpBinop, Opcode::FADD, 0 }, // BF1CVTLT
-    { 0xFFFFFC00U, 0x65093C00U, Mnemonic::BF2CVTLT, IrTemplate::FpBinop, Opcode::FADD, 0 }, // BF2CVTLT
-    { 0xFFFFFC00U, 0x65083000U, Mnemonic::F1CVT, IrTemplate::FpBinop, Opcode::FADD, 0 }, // F1CVT
-    { 0xFFFFFC00U, 0x65083400U, Mnemonic::F2CVT, IrTemplate::FpBinop, Opcode::FADD, 0 }, // F2CVT
-    { 0xFFFFFC00U, 0x65093000U, Mnemonic::F1CVTLT, IrTemplate::FpBinop, Opcode::FADD, 0 }, // F1CVTLT
-    { 0xFFFFFC00U, 0x65093400U, Mnemonic::F2CVTLT, IrTemplate::FpBinop, Opcode::FADD, 0 }, // F2CVTLT
-    { 0xFFFFFC00U, 0x0420BC00U, Mnemonic::MOVPRFX, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // MOVPRFX
-    { 0xFF3FFE10U, 0x25207410U, Mnemonic::PEXT, IrTemplate::SimdBinop, Opcode::CMP_SLT, 0 }, // PEXT
-    { 0xFFFDFC10U, 0x052C3800U, Mnemonic::PMOV, IrTemplate::SimdUnary, Opcode::COPY, 0 }, // PMOV
-    { 0xFFFDFE00U, 0x052D3800U, Mnemonic::PMOV, IrTemplate::SimdUnary, Opcode::COPY, 0 }, // PMOV
-    { 0xFF3FFE10U, 0x2519C400U, Mnemonic::PNEXT, IrTemplate::SimdBinop, Opcode::AND, 0 }, // PNEXT
-    { 0xFF3FFE10U, 0x05344000U, Mnemonic::REV, IrTemplate::SimdUnary, Opcode::COPY, 0 }, // REV
-    { 0xFFFFFC00U, 0x4523E000U, Mnemonic::SM4E, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // SM4E
-    { 0xFFFFFC00U, 0x11000000U, Mnemonic::ADD, IrTemplate::GpBinopImm, Opcode::ADD, 0 }, // ADD
-    { 0xFFFFFC00U, 0x91000000U, Mnemonic::ADD, IrTemplate::GpBinopImm, Opcode::ADD, 0 }, // ADD
-    { 0xFFFFFC00U, 0x13001C00U, Mnemonic::SBFM, IrTemplate::GpBitfield, Opcode::EXTRACT, 0 }, // SBFM
-    { 0xFFFFFC00U, 0x93401C00U, Mnemonic::SBFM, IrTemplate::GpBitfield, Opcode::EXTRACT, 0 }, // SBFM
-    { 0xFFFFFC00U, 0x13003C00U, Mnemonic::SBFM, IrTemplate::GpBitfield, Opcode::EXTRACT, 0 }, // SBFM
-    { 0xFFFFFC00U, 0x93403C00U, Mnemonic::SBFM, IrTemplate::GpBitfield, Opcode::EXTRACT, 0 }, // SBFM
-    { 0xFFFFFC00U, 0x93407C00U, Mnemonic::SBFM, IrTemplate::GpBitfield, Opcode::EXTRACT, 0 }, // SBFM
-    { 0xFFFFFC00U, 0x53001C00U, Mnemonic::UBFM, IrTemplate::GpBitfield, Opcode::EXTRACT, 0 }, // UBFM
-    { 0xFFFFFC00U, 0x53003C00U, Mnemonic::UBFM, IrTemplate::GpBitfield, Opcode::EXTRACT, 0 }, // UBFM
-    { 0xFFFFFC00U, 0xD73F0800U, Mnemonic::BLRAA, IrTemplate::BranchReg, Opcode::CALL, 0 }, // BLRAA
-    { 0xFFFFFC00U, 0xD73F0C00U, Mnemonic::BLRAB, IrTemplate::BranchReg, Opcode::CALL, 0 }, // BLRAB
-    { 0xFFFFFC00U, 0xD71F0800U, Mnemonic::BRAA, IrTemplate::BranchReg, Opcode::BRANCH, 0 }, // BRAA
-    { 0xFFFFFC00U, 0xD71F0C00U, Mnemonic::BRAB, IrTemplate::BranchReg, Opcode::BRANCH, 0 }, // BRAB
-    { 0xFFF8F01FU, 0xD500401FU, Mnemonic::MSR, IrTemplate::System, Opcode::UNDEF, 0 }, // MSR
-    { 0xFFFFFC00U, 0x5AC02000U, Mnemonic::ABS, IrTemplate::GpBinop, Opcode::SUB, 0 }, // ABS
-    { 0xFFFFFC00U, 0xDAC02000U, Mnemonic::ABS, IrTemplate::GpBinop, Opcode::SUB, 0 }, // ABS
-    { 0xFFFFFC00U, 0xDAC11800U, Mnemonic::AUTDA, IrTemplate::System, Opcode::UNDEF, 0 }, // AUTDA
-    { 0xFFFFFC00U, 0xDAC11C00U, Mnemonic::AUTDB, IrTemplate::System, Opcode::UNDEF, 0 }, // AUTDB
-    { 0xFFFFFC00U, 0xDAC11000U, Mnemonic::AUTIA, IrTemplate::System, Opcode::UNDEF, 0 }, // AUTIA
-    { 0xFFFFFC00U, 0xDAC11400U, Mnemonic::AUTIB, IrTemplate::System, Opcode::UNDEF, 0 }, // AUTIB
-    { 0xFFFFFC00U, 0x5AC01400U, Mnemonic::CLS, IrTemplate::SimdUnary, Opcode::COPY, 0 }, // CLS
-    { 0xFFFFFC00U, 0xDAC01400U, Mnemonic::CLS, IrTemplate::SimdUnary, Opcode::COPY, 0 }, // CLS
-    { 0xFFFFFC00U, 0x5AC01000U, Mnemonic::CLZ, IrTemplate::SimdUnary, Opcode::COPY, 0 }, // CLZ
-    { 0xFFFFFC00U, 0xDAC01000U, Mnemonic::CLZ, IrTemplate::SimdUnary, Opcode::COPY, 0 }, // CLZ
-    { 0xFFE0FC1FU, 0xBAC0001FU, Mnemonic::SUBPS, IrTemplate::System, Opcode::UNDEF, 0 }, // SUBPS
-    { 0xFFFFFC00U, 0x5AC01C00U, Mnemonic::CNT, IrTemplate::System, Opcode::UNDEF, 0 }, // CNT
-    { 0xFFFFFC00U, 0xDAC01C00U, Mnemonic::CNT, IrTemplate::System, Opcode::UNDEF, 0 }, // CNT
-    { 0xFFFFFC00U, 0x5AC01800U, Mnemonic::CTZ, IrTemplate::System, Opcode::UNDEF, 0 }, // CTZ
-    { 0xFFFFFC00U, 0xDAC01800U, Mnemonic::CTZ, IrTemplate::System, Opcode::UNDEF, 0 }, // CTZ
-    { 0xFFE0FFE0U, 0x2A0003E0U, Mnemonic::ORR, IrTemplate::GpBinop, Opcode::OR, 0 }, // ORR
-    { 0xFFE0FFE0U, 0xAA0003E0U, Mnemonic::ORR, IrTemplate::GpBinop, Opcode::OR, 0 }, // ORR
-    { 0xFFE0FFE0U, 0x5A0003E0U, Mnemonic::SBC, IrTemplate::GpBinop, Opcode::SUB_CARRY, 0 }, // SBC
-    { 0xFFE0FFE0U, 0xDA0003E0U, Mnemonic::SBC, IrTemplate::GpBinop, Opcode::SUB_CARRY, 0 }, // SBC
-    { 0xFFE0FFE0U, 0x7A0003E0U, Mnemonic::SBCS, IrTemplate::GpBinopFlags, Opcode::SUB_CARRY, 0 }, // SBCS
-    { 0xFFE0FFE0U, 0xFA0003E0U, Mnemonic::SBCS, IrTemplate::GpBinopFlags, Opcode::SUB_CARRY, 0 }, // SBCS
-    { 0xFFFFFC00U, 0xDAC10800U, Mnemonic::PACDA, IrTemplate::System, Opcode::UNDEF, 0 }, // PACDA
-    { 0xFFFFFC00U, 0xDAC10C00U, Mnemonic::PACDB, IrTemplate::System, Opcode::UNDEF, 0 }, // PACDB
-    { 0xFFFFFC00U, 0xDAC10000U, Mnemonic::PACIA, IrTemplate::System, Opcode::UNDEF, 0 }, // PACIA
-    { 0xFFFFFC00U, 0xDAC10400U, Mnemonic::PACIB, IrTemplate::System, Opcode::UNDEF, 0 }, // PACIB
-    { 0xFFFFFC00U, 0x5AC00000U, Mnemonic::RBIT, IrTemplate::System, Opcode::UNDEF, 0 }, // RBIT
-    { 0xFFFFFC00U, 0xDAC00000U, Mnemonic::RBIT, IrTemplate::System, Opcode::UNDEF, 0 }, // RBIT
-    { 0xFFFFFC00U, 0x5AC00800U, Mnemonic::REV, IrTemplate::SimdUnary, Opcode::COPY, 0 }, // REV
-    { 0xFFFFFC00U, 0xDAC00C00U, Mnemonic::REV, IrTemplate::SimdUnary, Opcode::COPY, 0 }, // REV
-    { 0xFFFFFC00U, 0x5AC00400U, Mnemonic::REV16, IrTemplate::SimdUnary, Opcode::COPY, 0 }, // REV16
-    { 0xFFFFFC00U, 0xDAC00400U, Mnemonic::REV16, IrTemplate::SimdUnary, Opcode::COPY, 0 }, // REV16
-    { 0xFFFFFC00U, 0xDAC00800U, Mnemonic::REV32, IrTemplate::SimdUnary, Opcode::COPY, 0 }, // REV32
-    { 0xFFFFFC00U, 0xDAC00C00U, Mnemonic::REV, IrTemplate::SimdUnary, Opcode::COPY, 0 }, // REV
-    { 0xFFFFFC00U, 0x5EE0B800U, Mnemonic::ABS, IrTemplate::SimdUnary, Opcode::COPY, 0 }, // ABS
-    { 0xFFFFFC00U, 0x5EF1B800U, Mnemonic::ADDP, IrTemplate::SimdUnary, Opcode::ADD, 0 }, // ADDP
-    { 0xFFFFFC00U, 0x4E285800U, Mnemonic::AESD, IrTemplate::System, Opcode::UNDEF, 0 }, // AESD
-    { 0xFFFFFC00U, 0x4E284800U, Mnemonic::AESE, IrTemplate::System, Opcode::UNDEF, 0 }, // AESE
-    { 0xFFFFFC00U, 0x4E287800U, Mnemonic::AESIMC, IrTemplate::System, Opcode::UNDEF, 0 }, // AESIMC
-    { 0xFFFFFC00U, 0x4E286800U, Mnemonic::AESMC, IrTemplate::System, Opcode::UNDEF, 0 }, // AESMC
-    { 0xFFFFFC00U, 0x1E634000U, Mnemonic::BFCVT, IrTemplate::SimdUnary, Opcode::FLOAT2FLOAT, 0 }, // BFCVT
-    { 0xFFFFFC00U, 0x5EE09800U, Mnemonic::CMEQ, IrTemplate::SimdUnary, Opcode::COPY, 0 }, // CMEQ
-    { 0xFFFFFC00U, 0x7EE08800U, Mnemonic::CMGE, IrTemplate::SimdUnary, Opcode::COPY, 0 }, // CMGE
-    { 0xFFFFFC00U, 0x5EE08800U, Mnemonic::CMGT, IrTemplate::SimdUnary, Opcode::COPY, 0 }, // CMGT
-    { 0xFFFFFC00U, 0x7EE09800U, Mnemonic::CMLE, IrTemplate::SimdUnary, Opcode::COPY, 0 }, // CMLE
-    { 0xFFFFFC00U, 0x5EE0A800U, Mnemonic::CMLT, IrTemplate::SimdUnary, Opcode::COPY, 0 }, // CMLT
-    { 0xFFFFFC00U, 0x1EE0C000U, Mnemonic::FABS, IrTemplate::SimdUnary, Opcode::FABS, 0 }, // FABS
-    { 0xFFFFFC00U, 0x1E20C000U, Mnemonic::FABS, IrTemplate::SimdUnary, Opcode::FABS, 0 }, // FABS
-    { 0xFFFFFC00U, 0x1E60C000U, Mnemonic::FABS, IrTemplate::SimdUnary, Opcode::FABS, 0 }, // FABS
-    { 0xFFFFFC00U, 0x5E30D800U, Mnemonic::FADDP, IrTemplate::SimdUnary, Opcode::ADD, 0 }, // FADDP
-    { 0xFFFFFC00U, 0x5EF8D800U, Mnemonic::FCMEQ, IrTemplate::SimdUnary, Opcode::COPY, 0 }, // FCMEQ
-    { 0xFFFFFC00U, 0x7EF8C800U, Mnemonic::FCMGE, IrTemplate::SimdUnary, Opcode::COPY, 0 }, // FCMGE
-    { 0xFFFFFC00U, 0x5EF8C800U, Mnemonic::FCMGT, IrTemplate::SimdUnary, Opcode::COPY, 0 }, // FCMGT
-    { 0xFFFFFC00U, 0x7EF8D800U, Mnemonic::FCMLE, IrTemplate::SimdUnary, Opcode::COPY, 0 }, // FCMLE
-    { 0xFFFFFC00U, 0x5EF8E800U, Mnemonic::FCMLT, IrTemplate::SimdUnary, Opcode::COPY, 0 }, // FCMLT
-    { 0xFFE0FC1FU, 0x1EE02000U, Mnemonic::FCMP, IrTemplate::FpBinop, Opcode::FSUB, 0 }, // FCMP
-    { 0xFFE0FC1FU, 0x1EE02008U, Mnemonic::FCMP, IrTemplate::FpBinop, Opcode::FSUB, 0 }, // FCMP
-    { 0xFFE0FC1FU, 0x1E202000U, Mnemonic::FCMP, IrTemplate::FpBinop, Opcode::FSUB, 0 }, // FCMP
-    { 0xFFE0FC1FU, 0x1E202008U, Mnemonic::FCMP, IrTemplate::FpBinop, Opcode::FSUB, 0 }, // FCMP
-    { 0xFFE0FC1FU, 0x1E602000U, Mnemonic::FCMP, IrTemplate::FpBinop, Opcode::FSUB, 0 }, // FCMP
-    { 0xFFE0FC1FU, 0x1E602008U, Mnemonic::FCMP, IrTemplate::FpBinop, Opcode::FSUB, 0 }, // FCMP
-    { 0xFFE0FC1FU, 0x1EE02010U, Mnemonic::FCMPE, IrTemplate::FpBinop, Opcode::FSUB, 0 }, // FCMPE
-    { 0xFFE0FC1FU, 0x1EE02018U, Mnemonic::FCMPE, IrTemplate::FpBinop, Opcode::FSUB, 0 }, // FCMPE
-    { 0xFFE0FC1FU, 0x1E202010U, Mnemonic::FCMPE, IrTemplate::FpBinop, Opcode::FSUB, 0 }, // FCMPE
-    { 0xFFE0FC1FU, 0x1E202018U, Mnemonic::FCMPE, IrTemplate::FpBinop, Opcode::FSUB, 0 }, // FCMPE
-    { 0xFFE0FC1FU, 0x1E602010U, Mnemonic::FCMPE, IrTemplate::FpBinop, Opcode::FSUB, 0 }, // FCMPE
-    { 0xFFE0FC1FU, 0x1E602018U, Mnemonic::FCMPE, IrTemplate::FpBinop, Opcode::FSUB, 0 }, // FCMPE
-    { 0xFFFFFC00U, 0x1EE24000U, Mnemonic::FCVT, IrTemplate::SimdUnary, Opcode::FLOAT2FLOAT, 0 }, // FCVT
-    { 0xFFFFFC00U, 0x1EE2C000U, Mnemonic::FCVT, IrTemplate::SimdUnary, Opcode::FLOAT2FLOAT, 0 }, // FCVT
-    { 0xFFFFFC00U, 0x1E23C000U, Mnemonic::FCVT, IrTemplate::SimdUnary, Opcode::FLOAT2FLOAT, 0 }, // FCVT
-    { 0xFFFFFC00U, 0x1E22C000U, Mnemonic::FCVT, IrTemplate::SimdUnary, Opcode::FLOAT2FLOAT, 0 }, // FCVT
-    { 0xFFFFFC00U, 0x1E63C000U, Mnemonic::FCVT, IrTemplate::SimdUnary, Opcode::FLOAT2FLOAT, 0 }, // FCVT
-    { 0xFFFFFC00U, 0x1E624000U, Mnemonic::FCVT, IrTemplate::SimdUnary, Opcode::FLOAT2FLOAT, 0 }, // FCVT
-    { 0xFFFFFC00U, 0x5E79C800U, Mnemonic::FCVTAS, IrTemplate::SimdUnary, Opcode::COPY, 0 }, // FCVTAS
-    { 0xFFFFFC00U, 0x1EE40000U, Mnemonic::FCVTAS, IrTemplate::FpConvert, Opcode::FLOAT2INT, 0 }, // FCVTAS
-    { 0xFFFFFC00U, 0x9EE40000U, Mnemonic::FCVTAS, IrTemplate::FpConvert, Opcode::FLOAT2INT, 0 }, // FCVTAS
-    { 0xFFFFFC00U, 0x1E240000U, Mnemonic::FCVTAS, IrTemplate::FpConvert, Opcode::FLOAT2INT, 0 }, // FCVTAS
-    { 0xFFFFFC00U, 0x9E240000U, Mnemonic::FCVTAS, IrTemplate::FpConvert, Opcode::FLOAT2INT, 0 }, // FCVTAS
-    { 0xFFFFFC00U, 0x1E640000U, Mnemonic::FCVTAS, IrTemplate::FpConvert, Opcode::FLOAT2INT, 0 }, // FCVTAS
-    { 0xFFFFFC00U, 0x9E640000U, Mnemonic::FCVTAS, IrTemplate::FpConvert, Opcode::FLOAT2INT, 0 }, // FCVTAS
-    { 0xFFFFFC00U, 0x1EFA0000U, Mnemonic::FCVTAS, IrTemplate::FpConvert, Opcode::FLOAT2INT, 0 }, // FCVTAS
-    { 0xFFFFFC00U, 0x9EFA0000U, Mnemonic::FCVTAS, IrTemplate::FpConvert, Opcode::FLOAT2INT, 0 }, // FCVTAS
-    { 0xFFFFFC00U, 0x9E3A0000U, Mnemonic::FCVTAS, IrTemplate::FpConvert, Opcode::FLOAT2INT, 0 }, // FCVTAS
-    { 0xFFFFFC00U, 0x1E7A0000U, Mnemonic::FCVTAS, IrTemplate::FpConvert, Opcode::FLOAT2INT, 0 }, // FCVTAS
-    { 0xFFFFFC00U, 0x7E79C800U, Mnemonic::FCVTAU, IrTemplate::SimdUnary, Opcode::COPY, 0 }, // FCVTAU
-    { 0xFFFFFC00U, 0x1EE50000U, Mnemonic::FCVTAU, IrTemplate::FpConvert, Opcode::FLOAT2INT, 0 }, // FCVTAU
-    { 0xFFFFFC00U, 0x9EE50000U, Mnemonic::FCVTAU, IrTemplate::FpConvert, Opcode::FLOAT2INT, 0 }, // FCVTAU
-    { 0xFFFFFC00U, 0x1E250000U, Mnemonic::FCVTAU, IrTemplate::FpConvert, Opcode::FLOAT2INT, 0 }, // FCVTAU
-    { 0xFFFFFC00U, 0x9E250000U, Mnemonic::FCVTAU, IrTemplate::FpConvert, Opcode::FLOAT2INT, 0 }, // FCVTAU
-    { 0xFFFFFC00U, 0x1E650000U, Mnemonic::FCVTAU, IrTemplate::FpConvert, Opcode::FLOAT2INT, 0 }, // FCVTAU
-    { 0xFFFFFC00U, 0x9E650000U, Mnemonic::FCVTAU, IrTemplate::FpConvert, Opcode::FLOAT2INT, 0 }, // FCVTAU
-    { 0xFFFFFC00U, 0x1EFB0000U, Mnemonic::FCVTAU, IrTemplate::FpConvert, Opcode::FLOAT2INT, 0 }, // FCVTAU
-    { 0xFFFFFC00U, 0x9EFB0000U, Mnemonic::FCVTAU, IrTemplate::FpConvert, Opcode::FLOAT2INT, 0 }, // FCVTAU
-    { 0xFFFFFC00U, 0x9E3B0000U, Mnemonic::FCVTAU, IrTemplate::FpConvert, Opcode::FLOAT2INT, 0 }, // FCVTAU
-    { 0xFFFFFC00U, 0x1E7B0000U, Mnemonic::FCVTAU, IrTemplate::FpConvert, Opcode::FLOAT2INT, 0 }, // FCVTAU
-    { 0xFFFFFC00U, 0x5E79B800U, Mnemonic::FCVTMS, IrTemplate::SimdUnary, Opcode::COPY, 0 }, // FCVTMS
-    { 0xFFFFFC00U, 0x1EF00000U, Mnemonic::FCVTMS, IrTemplate::FpConvert, Opcode::FLOAT2INT, 0 }, // FCVTMS
-    { 0xFFFFFC00U, 0x9EF00000U, Mnemonic::FCVTMS, IrTemplate::FpConvert, Opcode::FLOAT2INT, 0 }, // FCVTMS
-    { 0xFFFFFC00U, 0x1E300000U, Mnemonic::FCVTMS, IrTemplate::FpConvert, Opcode::FLOAT2INT, 0 }, // FCVTMS
-    { 0xFFFFFC00U, 0x9E300000U, Mnemonic::FCVTMS, IrTemplate::FpConvert, Opcode::FLOAT2INT, 0 }, // FCVTMS
-    { 0xFFFFFC00U, 0x1E700000U, Mnemonic::FCVTMS, IrTemplate::FpConvert, Opcode::FLOAT2INT, 0 }, // FCVTMS
-    { 0xFFFFFC00U, 0x9E700000U, Mnemonic::FCVTMS, IrTemplate::FpConvert, Opcode::FLOAT2INT, 0 }, // FCVTMS
-    { 0xFFFFFC00U, 0x1EF40000U, Mnemonic::FCVTMS, IrTemplate::FpConvert, Opcode::FLOAT2INT, 0 }, // FCVTMS
-    { 0xFFFFFC00U, 0x9EF40000U, Mnemonic::FCVTMS, IrTemplate::FpConvert, Opcode::FLOAT2INT, 0 }, // FCVTMS
-    { 0xFFFFFC00U, 0x9E340000U, Mnemonic::FCVTMS, IrTemplate::FpConvert, Opcode::FLOAT2INT, 0 }, // FCVTMS
-    { 0xFFFFFC00U, 0x1E740000U, Mnemonic::FCVTMS, IrTemplate::FpConvert, Opcode::FLOAT2INT, 0 }, // FCVTMS
-    { 0xFFFFFC00U, 0x7E79B800U, Mnemonic::FCVTMU, IrTemplate::SimdUnary, Opcode::COPY, 0 }, // FCVTMU
-    { 0xFFFFFC00U, 0x1EF10000U, Mnemonic::FCVTMU, IrTemplate::FpConvert, Opcode::FLOAT2INT, 0 }, // FCVTMU
-    { 0xFFFFFC00U, 0x9EF10000U, Mnemonic::FCVTMU, IrTemplate::FpConvert, Opcode::FLOAT2INT, 0 }, // FCVTMU
-    { 0xFFFFFC00U, 0x1E310000U, Mnemonic::FCVTMU, IrTemplate::FpConvert, Opcode::FLOAT2INT, 0 }, // FCVTMU
-    { 0xFFFFFC00U, 0x9E310000U, Mnemonic::FCVTMU, IrTemplate::FpConvert, Opcode::FLOAT2INT, 0 }, // FCVTMU
-    { 0xFFFFFC00U, 0x1E710000U, Mnemonic::FCVTMU, IrTemplate::FpConvert, Opcode::FLOAT2INT, 0 }, // FCVTMU
-    { 0xFFFFFC00U, 0x9E710000U, Mnemonic::FCVTMU, IrTemplate::FpConvert, Opcode::FLOAT2INT, 0 }, // FCVTMU
-    { 0xFFFFFC00U, 0x1EF50000U, Mnemonic::FCVTMU, IrTemplate::FpConvert, Opcode::FLOAT2INT, 0 }, // FCVTMU
-    { 0xFFFFFC00U, 0x9EF50000U, Mnemonic::FCVTMU, IrTemplate::FpConvert, Opcode::FLOAT2INT, 0 }, // FCVTMU
-    { 0xFFFFFC00U, 0x9E350000U, Mnemonic::FCVTMU, IrTemplate::FpConvert, Opcode::FLOAT2INT, 0 }, // FCVTMU
-    { 0xFFFFFC00U, 0x1E750000U, Mnemonic::FCVTMU, IrTemplate::FpConvert, Opcode::FLOAT2INT, 0 }, // FCVTMU
-    { 0xFFFFFC00U, 0x5E79A800U, Mnemonic::FCVTNS, IrTemplate::SimdUnary, Opcode::COPY, 0 }, // FCVTNS
-    { 0xFFFFFC00U, 0x1EE00000U, Mnemonic::FCVTNS, IrTemplate::FpConvert, Opcode::FLOAT2INT, 0 }, // FCVTNS
-    { 0xFFFFFC00U, 0x9EE00000U, Mnemonic::FCVTNS, IrTemplate::FpConvert, Opcode::FLOAT2INT, 0 }, // FCVTNS
-    { 0xFFFFFC00U, 0x1E200000U, Mnemonic::FCVTNS, IrTemplate::FpConvert, Opcode::FLOAT2INT, 0 }, // FCVTNS
-    { 0xFFFFFC00U, 0x9E200000U, Mnemonic::FCVTNS, IrTemplate::FpConvert, Opcode::FLOAT2INT, 0 }, // FCVTNS
-    { 0xFFFFFC00U, 0x1E600000U, Mnemonic::FCVTNS, IrTemplate::FpConvert, Opcode::FLOAT2INT, 0 }, // FCVTNS
-    { 0xFFFFFC00U, 0x9E600000U, Mnemonic::FCVTNS, IrTemplate::FpConvert, Opcode::FLOAT2INT, 0 }, // FCVTNS
-    { 0xFFFFFC00U, 0x1EEA0000U, Mnemonic::FCVTNS, IrTemplate::FpConvert, Opcode::FLOAT2INT, 0 }, // FCVTNS
-    { 0xFFFFFC00U, 0x9EEA0000U, Mnemonic::FCVTNS, IrTemplate::FpConvert, Opcode::FLOAT2INT, 0 }, // FCVTNS
-    { 0xFFFFFC00U, 0x9E2A0000U, Mnemonic::FCVTNS, IrTemplate::FpConvert, Opcode::FLOAT2INT, 0 }, // FCVTNS
-    { 0xFFFFFC00U, 0x1E6A0000U, Mnemonic::FCVTNS, IrTemplate::FpConvert, Opcode::FLOAT2INT, 0 }, // FCVTNS
-    { 0xFFFFFC00U, 0x7E79A800U, Mnemonic::FCVTNU, IrTemplate::SimdUnary, Opcode::COPY, 0 }, // FCVTNU
-    { 0xFFFFFC00U, 0x1EE10000U, Mnemonic::FCVTNU, IrTemplate::FpConvert, Opcode::FLOAT2INT, 0 }, // FCVTNU
-    { 0xFFFFFC00U, 0x9EE10000U, Mnemonic::FCVTNU, IrTemplate::FpConvert, Opcode::FLOAT2INT, 0 }, // FCVTNU
-    { 0xFFFFFC00U, 0x1E210000U, Mnemonic::FCVTNU, IrTemplate::FpConvert, Opcode::FLOAT2INT, 0 }, // FCVTNU
-    { 0xFFFFFC00U, 0x9E210000U, Mnemonic::FCVTNU, IrTemplate::FpConvert, Opcode::FLOAT2INT, 0 }, // FCVTNU
-    { 0xFFFFFC00U, 0x1E610000U, Mnemonic::FCVTNU, IrTemplate::FpConvert, Opcode::FLOAT2INT, 0 }, // FCVTNU
-    { 0xFFFFFC00U, 0x9E610000U, Mnemonic::FCVTNU, IrTemplate::FpConvert, Opcode::FLOAT2INT, 0 }, // FCVTNU
-    { 0xFFFFFC00U, 0x1EEB0000U, Mnemonic::FCVTNU, IrTemplate::FpConvert, Opcode::FLOAT2INT, 0 }, // FCVTNU
-    { 0xFFFFFC00U, 0x9EEB0000U, Mnemonic::FCVTNU, IrTemplate::FpConvert, Opcode::FLOAT2INT, 0 }, // FCVTNU
-    { 0xFFFFFC00U, 0x9E2B0000U, Mnemonic::FCVTNU, IrTemplate::FpConvert, Opcode::FLOAT2INT, 0 }, // FCVTNU
-    { 0xFFFFFC00U, 0x1E6B0000U, Mnemonic::FCVTNU, IrTemplate::FpConvert, Opcode::FLOAT2INT, 0 }, // FCVTNU
-    { 0xFFFFFC00U, 0x5EF9A800U, Mnemonic::FCVTPS, IrTemplate::SimdUnary, Opcode::COPY, 0 }, // FCVTPS
-    { 0xFFFFFC00U, 0x1EE80000U, Mnemonic::FCVTPS, IrTemplate::FpConvert, Opcode::FLOAT2INT, 0 }, // FCVTPS
-    { 0xFFFFFC00U, 0x9EE80000U, Mnemonic::FCVTPS, IrTemplate::FpConvert, Opcode::FLOAT2INT, 0 }, // FCVTPS
-    { 0xFFFFFC00U, 0x1E280000U, Mnemonic::FCVTPS, IrTemplate::FpConvert, Opcode::FLOAT2INT, 0 }, // FCVTPS
-    { 0xFFFFFC00U, 0x9E280000U, Mnemonic::FCVTPS, IrTemplate::FpConvert, Opcode::FLOAT2INT, 0 }, // FCVTPS
-    { 0xFFFFFC00U, 0x1E680000U, Mnemonic::FCVTPS, IrTemplate::FpConvert, Opcode::FLOAT2INT, 0 }, // FCVTPS
-    { 0xFFFFFC00U, 0x9E680000U, Mnemonic::FCVTPS, IrTemplate::FpConvert, Opcode::FLOAT2INT, 0 }, // FCVTPS
-    { 0xFFFFFC00U, 0x1EF20000U, Mnemonic::FCVTPS, IrTemplate::FpConvert, Opcode::FLOAT2INT, 0 }, // FCVTPS
-    { 0xFFFFFC00U, 0x9EF20000U, Mnemonic::FCVTPS, IrTemplate::FpConvert, Opcode::FLOAT2INT, 0 }, // FCVTPS
-    { 0xFFFFFC00U, 0x9E320000U, Mnemonic::FCVTPS, IrTemplate::FpConvert, Opcode::FLOAT2INT, 0 }, // FCVTPS
-    { 0xFFFFFC00U, 0x1E720000U, Mnemonic::FCVTPS, IrTemplate::FpConvert, Opcode::FLOAT2INT, 0 }, // FCVTPS
-    { 0xFFFFFC00U, 0x7EF9A800U, Mnemonic::FCVTPU, IrTemplate::SimdUnary, Opcode::COPY, 0 }, // FCVTPU
-    { 0xFFFFFC00U, 0x1EE90000U, Mnemonic::FCVTPU, IrTemplate::FpConvert, Opcode::FLOAT2INT, 0 }, // FCVTPU
-    { 0xFFFFFC00U, 0x9EE90000U, Mnemonic::FCVTPU, IrTemplate::FpConvert, Opcode::FLOAT2INT, 0 }, // FCVTPU
-    { 0xFFFFFC00U, 0x1E290000U, Mnemonic::FCVTPU, IrTemplate::FpConvert, Opcode::FLOAT2INT, 0 }, // FCVTPU
-    { 0xFFFFFC00U, 0x9E290000U, Mnemonic::FCVTPU, IrTemplate::FpConvert, Opcode::FLOAT2INT, 0 }, // FCVTPU
-    { 0xFFFFFC00U, 0x1E690000U, Mnemonic::FCVTPU, IrTemplate::FpConvert, Opcode::FLOAT2INT, 0 }, // FCVTPU
-    { 0xFFFFFC00U, 0x9E690000U, Mnemonic::FCVTPU, IrTemplate::FpConvert, Opcode::FLOAT2INT, 0 }, // FCVTPU
-    { 0xFFFFFC00U, 0x1EF30000U, Mnemonic::FCVTPU, IrTemplate::FpConvert, Opcode::FLOAT2INT, 0 }, // FCVTPU
-    { 0xFFFFFC00U, 0x9EF30000U, Mnemonic::FCVTPU, IrTemplate::FpConvert, Opcode::FLOAT2INT, 0 }, // FCVTPU
-    { 0xFFFFFC00U, 0x9E330000U, Mnemonic::FCVTPU, IrTemplate::FpConvert, Opcode::FLOAT2INT, 0 }, // FCVTPU
-    { 0xFFFFFC00U, 0x1E730000U, Mnemonic::FCVTPU, IrTemplate::FpConvert, Opcode::FLOAT2INT, 0 }, // FCVTPU
-    { 0xFFFFFC00U, 0x7E616800U, Mnemonic::FCVTXN, IrTemplate::SimdUnary, Opcode::COPY, 0 }, // FCVTXN
-    { 0xFFFFFC00U, 0x5EF9B800U, Mnemonic::FCVTZS, IrTemplate::SimdUnary, Opcode::COPY, 0 }, // FCVTZS
-    { 0xFFFFFC00U, 0x1EF80000U, Mnemonic::FCVTZS, IrTemplate::FpConvert, Opcode::FLOAT2INT, 0 }, // FCVTZS
-    { 0xFFFFFC00U, 0x9EF80000U, Mnemonic::FCVTZS, IrTemplate::FpConvert, Opcode::FLOAT2INT, 0 }, // FCVTZS
-    { 0xFFFFFC00U, 0x1E380000U, Mnemonic::FCVTZS, IrTemplate::FpConvert, Opcode::FLOAT2INT, 0 }, // FCVTZS
-    { 0xFFFFFC00U, 0x9E380000U, Mnemonic::FCVTZS, IrTemplate::FpConvert, Opcode::FLOAT2INT, 0 }, // FCVTZS
-    { 0xFFFFFC00U, 0x1E780000U, Mnemonic::FCVTZS, IrTemplate::FpConvert, Opcode::FLOAT2INT, 0 }, // FCVTZS
-    { 0xFFFFFC00U, 0x9E780000U, Mnemonic::FCVTZS, IrTemplate::FpConvert, Opcode::FLOAT2INT, 0 }, // FCVTZS
-    { 0xFFFFFC00U, 0x1EF60000U, Mnemonic::FCVTZS, IrTemplate::FpConvert, Opcode::FLOAT2INT, 0 }, // FCVTZS
-    { 0xFFFFFC00U, 0x9EF60000U, Mnemonic::FCVTZS, IrTemplate::FpConvert, Opcode::FLOAT2INT, 0 }, // FCVTZS
-    { 0xFFFFFC00U, 0x9E360000U, Mnemonic::FCVTZS, IrTemplate::FpConvert, Opcode::FLOAT2INT, 0 }, // FCVTZS
-    { 0xFFFFFC00U, 0x1E760000U, Mnemonic::FCVTZS, IrTemplate::FpConvert, Opcode::FLOAT2INT, 0 }, // FCVTZS
-    { 0xFFFFFC00U, 0x7EF9B800U, Mnemonic::FCVTZU, IrTemplate::SimdUnary, Opcode::COPY, 0 }, // FCVTZU
-    { 0xFFFFFC00U, 0x1EF90000U, Mnemonic::FCVTZU, IrTemplate::FpConvert, Opcode::FLOAT2INT, 0 }, // FCVTZU
-    { 0xFFFFFC00U, 0x9EF90000U, Mnemonic::FCVTZU, IrTemplate::FpConvert, Opcode::FLOAT2INT, 0 }, // FCVTZU
-    { 0xFFFFFC00U, 0x1E390000U, Mnemonic::FCVTZU, IrTemplate::FpConvert, Opcode::FLOAT2INT, 0 }, // FCVTZU
-    { 0xFFFFFC00U, 0x9E390000U, Mnemonic::FCVTZU, IrTemplate::FpConvert, Opcode::FLOAT2INT, 0 }, // FCVTZU
-    { 0xFFFFFC00U, 0x1E790000U, Mnemonic::FCVTZU, IrTemplate::FpConvert, Opcode::FLOAT2INT, 0 }, // FCVTZU
-    { 0xFFFFFC00U, 0x9E790000U, Mnemonic::FCVTZU, IrTemplate::FpConvert, Opcode::FLOAT2INT, 0 }, // FCVTZU
-    { 0xFFFFFC00U, 0x1EF70000U, Mnemonic::FCVTZU, IrTemplate::FpConvert, Opcode::FLOAT2INT, 0 }, // FCVTZU
-    { 0xFFFFFC00U, 0x9EF70000U, Mnemonic::FCVTZU, IrTemplate::FpConvert, Opcode::FLOAT2INT, 0 }, // FCVTZU
-    { 0xFFFFFC00U, 0x9E370000U, Mnemonic::FCVTZU, IrTemplate::FpConvert, Opcode::FLOAT2INT, 0 }, // FCVTZU
-    { 0xFFFFFC00U, 0x1E770000U, Mnemonic::FCVTZU, IrTemplate::FpConvert, Opcode::FLOAT2INT, 0 }, // FCVTZU
-    { 0xFFFFFC00U, 0x1E7E0000U, Mnemonic::FJCVTZS, IrTemplate::FpConvert, Opcode::FLOAT2INT, 0 }, // FJCVTZS
-    { 0xFFFFFC00U, 0x5E30C800U, Mnemonic::FMAXNMP, IrTemplate::SimdUnary, Opcode::ADD, 0 }, // FMAXNMP
-    { 0xFFFFFC00U, 0x6E30C800U, Mnemonic::FMAXNMV, IrTemplate::SimdUnary, Opcode::ADD, 0 }, // FMAXNMV
-    { 0xFFFFFC00U, 0x5E30F800U, Mnemonic::FMAXP, IrTemplate::SimdUnary, Opcode::ADD, 0 }, // FMAXP
-    { 0xFFFFFC00U, 0x6E30F800U, Mnemonic::FMAXV, IrTemplate::SimdUnary, Opcode::ADD, 0 }, // FMAXV
-    { 0xFFFFFC00U, 0x5EB0C800U, Mnemonic::FMINNMP, IrTemplate::SimdUnary, Opcode::ADD, 0 }, // FMINNMP
-    { 0xFFFFFC00U, 0x6EB0C800U, Mnemonic::FMINNMV, IrTemplate::SimdUnary, Opcode::ADD, 0 }, // FMINNMV
-    { 0xFFFFFC00U, 0x5EB0F800U, Mnemonic::FMINP, IrTemplate::SimdUnary, Opcode::ADD, 0 }, // FMINP
-    { 0xFFFFFC00U, 0x6EB0F800U, Mnemonic::FMINV, IrTemplate::SimdUnary, Opcode::ADD, 0 }, // FMINV
-    { 0xFFFFFC00U, 0x1EE04000U, Mnemonic::FMOV, IrTemplate::SimdUnary, Opcode::COPY, 0 }, // FMOV
-    { 0xFFFFFC00U, 0x1E204000U, Mnemonic::FMOV, IrTemplate::SimdUnary, Opcode::COPY, 0 }, // FMOV
-    { 0xFFFFFC00U, 0x1E604000U, Mnemonic::FMOV, IrTemplate::SimdUnary, Opcode::COPY, 0 }, // FMOV
-    { 0xFFFFFC00U, 0x1EE60000U, Mnemonic::FMOV, IrTemplate::SimdUnary, Opcode::COPY, 0 }, // FMOV
-    { 0xFFFFFC00U, 0x9EE60000U, Mnemonic::FMOV, IrTemplate::SimdUnary, Opcode::COPY, 0 }, // FMOV
-    { 0xFFFFFC00U, 0x1EE70000U, Mnemonic::FMOV, IrTemplate::SimdUnary, Opcode::COPY, 0 }, // FMOV
-    { 0xFFFFFC00U, 0x1E270000U, Mnemonic::FMOV, IrTemplate::SimdUnary, Opcode::COPY, 0 }, // FMOV
-    { 0xFFFFFC00U, 0x1E260000U, Mnemonic::FMOV, IrTemplate::SimdUnary, Opcode::COPY, 0 }, // FMOV
-    { 0xFFFFFC00U, 0x9EE70000U, Mnemonic::FMOV, IrTemplate::SimdUnary, Opcode::COPY, 0 }, // FMOV
-    { 0xFFFFFC00U, 0x9E670000U, Mnemonic::FMOV, IrTemplate::SimdUnary, Opcode::COPY, 0 }, // FMOV
-    { 0xFFFFFC00U, 0x9EAF0000U, Mnemonic::FMOV, IrTemplate::SimdUnary, Opcode::COPY, 0 }, // FMOV
-    { 0xFFFFFC00U, 0x9E660000U, Mnemonic::FMOV, IrTemplate::SimdUnary, Opcode::COPY, 0 }, // FMOV
-    { 0xFFFFFC00U, 0x9EAE0000U, Mnemonic::FMOV, IrTemplate::SimdUnary, Opcode::COPY, 0 }, // FMOV
-    { 0xFFFFFC00U, 0x1EE14000U, Mnemonic::FNEG, IrTemplate::SimdUnary, Opcode::FNEG, 0 }, // FNEG
-    { 0xFFFFFC00U, 0x1E214000U, Mnemonic::FNEG, IrTemplate::SimdUnary, Opcode::FNEG, 0 }, // FNEG
-    { 0xFFFFFC00U, 0x1E614000U, Mnemonic::FNEG, IrTemplate::SimdUnary, Opcode::FNEG, 0 }, // FNEG
-    { 0xFFFFFC00U, 0x5EF9D800U, Mnemonic::FRECPE, IrTemplate::SimdUnary, Opcode::COPY, 0 }, // FRECPE
-    { 0xFFFFFC00U, 0x5EF9F800U, Mnemonic::FRECPX, IrTemplate::SimdUnary, Opcode::COPY, 0 }, // FRECPX
-    { 0xFFFFFC00U, 0x1E28C000U, Mnemonic::FRINT32X, IrTemplate::SimdUnary, Opcode::COPY, 0 }, // FRINT32X
-    { 0xFFFFFC00U, 0x1E68C000U, Mnemonic::FRINT32X, IrTemplate::SimdUnary, Opcode::COPY, 0 }, // FRINT32X
-    { 0xFFFFFC00U, 0x1E284000U, Mnemonic::FRINT32Z, IrTemplate::SimdUnary, Opcode::COPY, 0 }, // FRINT32Z
-    { 0xFFFFFC00U, 0x1E684000U, Mnemonic::FRINT32Z, IrTemplate::SimdUnary, Opcode::COPY, 0 }, // FRINT32Z
-    { 0xFFFFFC00U, 0x1E29C000U, Mnemonic::FRINT64X, IrTemplate::SimdUnary, Opcode::COPY, 0 }, // FRINT64X
-    { 0xFFFFFC00U, 0x1E69C000U, Mnemonic::FRINT64X, IrTemplate::SimdUnary, Opcode::COPY, 0 }, // FRINT64X
-    { 0xFFFFFC00U, 0x1E294000U, Mnemonic::FRINT64Z, IrTemplate::SimdUnary, Opcode::COPY, 0 }, // FRINT64Z
-    { 0xFFFFFC00U, 0x1E694000U, Mnemonic::FRINT64Z, IrTemplate::SimdUnary, Opcode::COPY, 0 }, // FRINT64Z
-    { 0xFFFFFC00U, 0x1EE64000U, Mnemonic::FRINTA, IrTemplate::SimdUnary, Opcode::COPY, 0 }, // FRINTA
-    { 0xFFFFFC00U, 0x1E264000U, Mnemonic::FRINTA, IrTemplate::SimdUnary, Opcode::COPY, 0 }, // FRINTA
-    { 0xFFFFFC00U, 0x1E664000U, Mnemonic::FRINTA, IrTemplate::SimdUnary, Opcode::COPY, 0 }, // FRINTA
-    { 0xFFFFFC00U, 0x1EE7C000U, Mnemonic::FRINTI, IrTemplate::SimdUnary, Opcode::COPY, 0 }, // FRINTI
-    { 0xFFFFFC00U, 0x1E27C000U, Mnemonic::FRINTI, IrTemplate::SimdUnary, Opcode::COPY, 0 }, // FRINTI
-    { 0xFFFFFC00U, 0x1E67C000U, Mnemonic::FRINTI, IrTemplate::SimdUnary, Opcode::COPY, 0 }, // FRINTI
-    { 0xFFFFFC00U, 0x1EE54000U, Mnemonic::FRINTM, IrTemplate::SimdUnary, Opcode::COPY, 0 }, // FRINTM
-    { 0xFFFFFC00U, 0x1E254000U, Mnemonic::FRINTM, IrTemplate::SimdUnary, Opcode::COPY, 0 }, // FRINTM
-    { 0xFFFFFC00U, 0x1E654000U, Mnemonic::FRINTM, IrTemplate::SimdUnary, Opcode::COPY, 0 }, // FRINTM
-    { 0xFFFFFC00U, 0x1EE44000U, Mnemonic::FRINTN, IrTemplate::SimdUnary, Opcode::COPY, 0 }, // FRINTN
-    { 0xFFFFFC00U, 0x1E244000U, Mnemonic::FRINTN, IrTemplate::SimdUnary, Opcode::COPY, 0 }, // FRINTN
-    { 0xFFFFFC00U, 0x1E644000U, Mnemonic::FRINTN, IrTemplate::SimdUnary, Opcode::COPY, 0 }, // FRINTN
-    { 0xFFFFFC00U, 0x1EE4C000U, Mnemonic::FRINTP, IrTemplate::SimdUnary, Opcode::COPY, 0 }, // FRINTP
-    { 0xFFFFFC00U, 0x1E24C000U, Mnemonic::FRINTP, IrTemplate::SimdUnary, Opcode::COPY, 0 }, // FRINTP
-    { 0xFFFFFC00U, 0x1E64C000U, Mnemonic::FRINTP, IrTemplate::SimdUnary, Opcode::COPY, 0 }, // FRINTP
-    { 0xFFFFFC00U, 0x1EE74000U, Mnemonic::FRINTX, IrTemplate::SimdUnary, Opcode::COPY, 0 }, // FRINTX
-    { 0xFFFFFC00U, 0x1E274000U, Mnemonic::FRINTX, IrTemplate::SimdUnary, Opcode::COPY, 0 }, // FRINTX
-    { 0xFFFFFC00U, 0x1E674000U, Mnemonic::FRINTX, IrTemplate::SimdUnary, Opcode::COPY, 0 }, // FRINTX
-    { 0xFFFFFC00U, 0x1EE5C000U, Mnemonic::FRINTZ, IrTemplate::SimdUnary, Opcode::COPY, 0 }, // FRINTZ
-    { 0xFFFFFC00U, 0x1E25C000U, Mnemonic::FRINTZ, IrTemplate::SimdUnary, Opcode::COPY, 0 }, // FRINTZ
-    { 0xFFFFFC00U, 0x1E65C000U, Mnemonic::FRINTZ, IrTemplate::SimdUnary, Opcode::COPY, 0 }, // FRINTZ
-    { 0xFFFFFC00U, 0x7EF9D800U, Mnemonic::FRSQRTE, IrTemplate::SimdUnary, Opcode::COPY, 0 }, // FRSQRTE
-    { 0xFFFFFC00U, 0x1EE1C000U, Mnemonic::FSQRT, IrTemplate::SimdUnary, Opcode::FSQRT, 0 }, // FSQRT
-    { 0xFFFFFC00U, 0x1E21C000U, Mnemonic::FSQRT, IrTemplate::SimdUnary, Opcode::FSQRT, 0 }, // FSQRT
-    { 0xFFFFFC00U, 0x1E61C000U, Mnemonic::FSQRT, IrTemplate::SimdUnary, Opcode::FSQRT, 0 }, // FSQRT
-    { 0xFFFFFC00U, 0x7EE0B800U, Mnemonic::NEG, IrTemplate::SimdUnary, Opcode::COPY, 0 }, // NEG
-    { 0xFFFFFC00U, 0x5E79D800U, Mnemonic::SCVTF, IrTemplate::SimdUnary, Opcode::COPY, 0 }, // SCVTF
-    { 0xFFFFFC00U, 0x1EE20000U, Mnemonic::SCVTF, IrTemplate::FpConvert, Opcode::INT2FLOAT, 0 }, // SCVTF
-    { 0xFFFFFC00U, 0x1E220000U, Mnemonic::SCVTF, IrTemplate::FpConvert, Opcode::INT2FLOAT, 0 }, // SCVTF
-    { 0xFFFFFC00U, 0x1E620000U, Mnemonic::SCVTF, IrTemplate::FpConvert, Opcode::INT2FLOAT, 0 }, // SCVTF
-    { 0xFFFFFC00U, 0x9EE20000U, Mnemonic::SCVTF, IrTemplate::FpConvert, Opcode::INT2FLOAT, 0 }, // SCVTF
-    { 0xFFFFFC00U, 0x9E220000U, Mnemonic::SCVTF, IrTemplate::FpConvert, Opcode::INT2FLOAT, 0 }, // SCVTF
-    { 0xFFFFFC00U, 0x9E620000U, Mnemonic::SCVTF, IrTemplate::FpConvert, Opcode::INT2FLOAT, 0 }, // SCVTF
-    { 0xFFFFFC00U, 0x1EFC0000U, Mnemonic::SCVTF, IrTemplate::FpConvert, Opcode::INT2FLOAT, 0 }, // SCVTF
-    { 0xFFFFFC00U, 0x1E7C0000U, Mnemonic::SCVTF, IrTemplate::FpConvert, Opcode::INT2FLOAT, 0 }, // SCVTF
-    { 0xFFFFFC00U, 0x9EFC0000U, Mnemonic::SCVTF, IrTemplate::FpConvert, Opcode::INT2FLOAT, 0 }, // SCVTF
-    { 0xFFFFFC00U, 0x9E3C0000U, Mnemonic::SCVTF, IrTemplate::FpConvert, Opcode::INT2FLOAT, 0 }, // SCVTF
-    { 0xFFFFFC00U, 0x5E280800U, Mnemonic::SHA1H, IrTemplate::System, Opcode::UNDEF, 0 }, // SHA1H
-    { 0xFFFFFC00U, 0x5E281800U, Mnemonic::SHA1SU1, IrTemplate::System, Opcode::UNDEF, 0 }, // SHA1SU1
-    { 0xFFFFFC00U, 0x5E282800U, Mnemonic::SHA256SU0, IrTemplate::System, Opcode::UNDEF, 0 }, // SHA256SU0
-    { 0xFFFFFC00U, 0xCEC08000U, Mnemonic::SHA512SU0, IrTemplate::System, Opcode::UNDEF, 0 }, // SHA512SU0
-    { 0xFFFFFC00U, 0xCEC08400U, Mnemonic::SM4E, IrTemplate::System, Opcode::UNDEF, 0 }, // SM4E
-    { 0xFFFFFC00U, 0x7E79D800U, Mnemonic::UCVTF, IrTemplate::SimdUnary, Opcode::COPY, 0 }, // UCVTF
-    { 0xFFFFFC00U, 0x1EE30000U, Mnemonic::UCVTF, IrTemplate::FpConvert, Opcode::INT2FLOAT, 0 }, // UCVTF
-    { 0xFFFFFC00U, 0x1E230000U, Mnemonic::UCVTF, IrTemplate::FpConvert, Opcode::INT2FLOAT, 0 }, // UCVTF
-    { 0xFFFFFC00U, 0x1E630000U, Mnemonic::UCVTF, IrTemplate::FpConvert, Opcode::INT2FLOAT, 0 }, // UCVTF
-    { 0xFFFFFC00U, 0x9EE30000U, Mnemonic::UCVTF, IrTemplate::FpConvert, Opcode::INT2FLOAT, 0 }, // UCVTF
-    { 0xFFFFFC00U, 0x9E230000U, Mnemonic::UCVTF, IrTemplate::FpConvert, Opcode::INT2FLOAT, 0 }, // UCVTF
-    { 0xFFFFFC00U, 0x9E630000U, Mnemonic::UCVTF, IrTemplate::FpConvert, Opcode::INT2FLOAT, 0 }, // UCVTF
-    { 0xFFFFFC00U, 0x1EFD0000U, Mnemonic::UCVTF, IrTemplate::FpConvert, Opcode::INT2FLOAT, 0 }, // UCVTF
-    { 0xFFFFFC00U, 0x1E7D0000U, Mnemonic::UCVTF, IrTemplate::FpConvert, Opcode::INT2FLOAT, 0 }, // UCVTF
-    { 0xFFFFFC00U, 0x9EFD0000U, Mnemonic::UCVTF, IrTemplate::FpConvert, Opcode::INT2FLOAT, 0 }, // UCVTF
-    { 0xFFFFFC00U, 0x9E3D0000U, Mnemonic::UCVTF, IrTemplate::FpConvert, Opcode::INT2FLOAT, 0 }, // UCVTF
-    { 0xFFFFFC00U, 0xD91F0C00U, Mnemonic::GCSSTR, IrTemplate::System, Opcode::UNDEF, 0 }, // GCSSTR
-    { 0xFFFFFC00U, 0xD91F1C00U, Mnemonic::GCSSTTR, IrTemplate::System, Opcode::UNDEF, 0 }, // GCSSTTR
-    { 0xFFFFFC00U, 0xF83FD000U, Mnemonic::LD64B, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // LD64B
-    { 0xFFFFFC00U, 0x99C00800U, Mnemonic::LDAPR, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LDAPR
-    { 0xFFFFFC00U, 0xD9C00800U, Mnemonic::LDAPR, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LDAPR
-    { 0xFFFFFC00U, 0xD9E00000U, Mnemonic::LDGM, IrTemplate::System, Opcode::UNDEF, 0 }, // LDGM
-    { 0xFFFFFC00U, 0xF83F9000U, Mnemonic::ST64B, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // ST64B
-    { 0xFFE0FC1FU, 0xB820001FU, Mnemonic::LDADD, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // LDADD
-    { 0xFFE0FC1FU, 0xB860001FU, Mnemonic::LDADDL, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // LDADDL
-    { 0xFFE0FC1FU, 0xF820001FU, Mnemonic::LDADD, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // LDADD
-    { 0xFFE0FC1FU, 0xF860001FU, Mnemonic::LDADDL, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // LDADDL
-    { 0xFFE0FC1FU, 0x3820001FU, Mnemonic::LDADDB, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // LDADDB
-    { 0xFFE0FC1FU, 0x3860001FU, Mnemonic::LDADDLB, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // LDADDLB
-    { 0xFFE0FC1FU, 0x7820001FU, Mnemonic::LDADDH, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // LDADDH
-    { 0xFFE0FC1FU, 0x7860001FU, Mnemonic::LDADDLH, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // LDADDLH
-    { 0xFFE0FC1FU, 0x3C20801FU, Mnemonic::STBFADD, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // STBFADD
-    { 0xFFE0FC1FU, 0x3C60801FU, Mnemonic::STBFADDL, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // STBFADDL
-    { 0xFFE0FC1FU, 0x3C20C01FU, Mnemonic::STBFMAX, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // STBFMAX
-    { 0xFFE0FC1FU, 0x3C60C01FU, Mnemonic::STBFMAXL, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // STBFMAXL
-    { 0xFFE0FC1FU, 0x3C20E01FU, Mnemonic::STBFMAXNM, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // STBFMAXNM
-    { 0xFFE0FC1FU, 0x3C60E01FU, Mnemonic::STBFMAXNML, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // STBFMAXNML
-    { 0xFFE0FC1FU, 0x3C20D01FU, Mnemonic::STBFMIN, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // STBFMIN
-    { 0xFFE0FC1FU, 0x3C60D01FU, Mnemonic::STBFMINL, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // STBFMINL
-    { 0xFFE0FC1FU, 0x3C20F01FU, Mnemonic::STBFMINNM, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // STBFMINNM
-    { 0xFFE0FC1FU, 0x3C60F01FU, Mnemonic::STBFMINNML, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // STBFMINNML
-    { 0xFFE0FC1FU, 0xB820101FU, Mnemonic::LDCLR, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // LDCLR
-    { 0xFFE0FC1FU, 0xB860101FU, Mnemonic::LDCLRL, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // LDCLRL
-    { 0xFFE0FC1FU, 0xF820101FU, Mnemonic::LDCLR, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // LDCLR
-    { 0xFFE0FC1FU, 0xF860101FU, Mnemonic::LDCLRL, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // LDCLRL
-    { 0xFFE0FC1FU, 0x3820101FU, Mnemonic::LDCLRB, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // LDCLRB
-    { 0xFFE0FC1FU, 0x3860101FU, Mnemonic::LDCLRLB, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // LDCLRLB
-    { 0xFFE0FC1FU, 0x7820101FU, Mnemonic::LDCLRH, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // LDCLRH
-    { 0xFFE0FC1FU, 0x7860101FU, Mnemonic::LDCLRLH, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // LDCLRLH
-    { 0xFFE0FC1FU, 0xB820201FU, Mnemonic::LDEOR, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // LDEOR
-    { 0xFFE0FC1FU, 0xB860201FU, Mnemonic::LDEORL, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // LDEORL
-    { 0xFFE0FC1FU, 0xF820201FU, Mnemonic::LDEOR, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // LDEOR
-    { 0xFFE0FC1FU, 0xF860201FU, Mnemonic::LDEORL, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // LDEORL
-    { 0xFFE0FC1FU, 0x3820201FU, Mnemonic::LDEORB, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // LDEORB
-    { 0xFFE0FC1FU, 0x3860201FU, Mnemonic::LDEORLB, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // LDEORLB
-    { 0xFFE0FC1FU, 0x7820201FU, Mnemonic::LDEORH, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // LDEORH
-    { 0xFFE0FC1FU, 0x7860201FU, Mnemonic::LDEORLH, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // LDEORLH
-    { 0xFFE0FC1FU, 0x7C20801FU, Mnemonic::STFADD, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // STFADD
-    { 0xFFE0FC1FU, 0x7C60801FU, Mnemonic::STFADDL, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // STFADDL
-    { 0xFFE0FC1FU, 0xBC20801FU, Mnemonic::STFADD, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // STFADD
-    { 0xFFE0FC1FU, 0xBC60801FU, Mnemonic::STFADDL, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // STFADDL
-    { 0xFFE0FC1FU, 0xFC20801FU, Mnemonic::STFADD, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // STFADD
-    { 0xFFE0FC1FU, 0xFC60801FU, Mnemonic::STFADDL, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // STFADDL
-    { 0xFFE0FC1FU, 0x7C20C01FU, Mnemonic::STFMAX, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // STFMAX
-    { 0xFFE0FC1FU, 0x7C60C01FU, Mnemonic::STFMAXL, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // STFMAXL
-    { 0xFFE0FC1FU, 0xBC20C01FU, Mnemonic::STFMAX, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // STFMAX
-    { 0xFFE0FC1FU, 0xBC60C01FU, Mnemonic::STFMAXL, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // STFMAXL
-    { 0xFFE0FC1FU, 0xFC20C01FU, Mnemonic::STFMAX, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // STFMAX
-    { 0xFFE0FC1FU, 0xFC60C01FU, Mnemonic::STFMAXL, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // STFMAXL
-    { 0xFFE0FC1FU, 0x7C20E01FU, Mnemonic::STFMAXNM, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // STFMAXNM
-    { 0xFFE0FC1FU, 0x7C60E01FU, Mnemonic::STFMAXNML, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // STFMAXNML
-    { 0xFFE0FC1FU, 0xBC20E01FU, Mnemonic::STFMAXNM, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // STFMAXNM
-    { 0xFFE0FC1FU, 0xBC60E01FU, Mnemonic::STFMAXNML, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // STFMAXNML
-    { 0xFFE0FC1FU, 0xFC20E01FU, Mnemonic::STFMAXNM, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // STFMAXNM
-    { 0xFFE0FC1FU, 0xFC60E01FU, Mnemonic::STFMAXNML, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // STFMAXNML
-    { 0xFFE0FC1FU, 0x7C20D01FU, Mnemonic::STFMIN, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // STFMIN
-    { 0xFFE0FC1FU, 0x7C60D01FU, Mnemonic::STFMINL, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // STFMINL
-    { 0xFFE0FC1FU, 0xBC20D01FU, Mnemonic::STFMIN, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // STFMIN
-    { 0xFFE0FC1FU, 0xBC60D01FU, Mnemonic::STFMINL, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // STFMINL
-    { 0xFFE0FC1FU, 0xFC20D01FU, Mnemonic::STFMIN, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // STFMIN
-    { 0xFFE0FC1FU, 0xFC60D01FU, Mnemonic::STFMINL, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // STFMINL
-    { 0xFFE0FC1FU, 0x7C20F01FU, Mnemonic::STFMINNM, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // STFMINNM
-    { 0xFFE0FC1FU, 0x7C60F01FU, Mnemonic::STFMINNML, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // STFMINNML
-    { 0xFFE0FC1FU, 0xBC20F01FU, Mnemonic::STFMINNM, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // STFMINNM
-    { 0xFFE0FC1FU, 0xBC60F01FU, Mnemonic::STFMINNML, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // STFMINNML
-    { 0xFFE0FC1FU, 0xFC20F01FU, Mnemonic::STFMINNM, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // STFMINNM
-    { 0xFFE0FC1FU, 0xFC60F01FU, Mnemonic::STFMINNML, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // STFMINNML
-    { 0xFFFFFC00U, 0xD9A00000U, Mnemonic::STGM, IrTemplate::System, Opcode::UNDEF, 0 }, // STGM
-    { 0xFFFFFC00U, 0x99800800U, Mnemonic::STLR, IrTemplate::StoreReg, Opcode::STORE, 0 }, // STLR
-    { 0xFFFFFC00U, 0xD9800800U, Mnemonic::STLR, IrTemplate::StoreReg, Opcode::STORE, 0 }, // STLR
-    { 0xFFE0FC1FU, 0xB820301FU, Mnemonic::LDSET, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // LDSET
-    { 0xFFE0FC1FU, 0xB860301FU, Mnemonic::LDSETL, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // LDSETL
-    { 0xFFE0FC1FU, 0xF820301FU, Mnemonic::LDSET, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // LDSET
-    { 0xFFE0FC1FU, 0xF860301FU, Mnemonic::LDSETL, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // LDSETL
-    { 0xFFE0FC1FU, 0x3820301FU, Mnemonic::LDSETB, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // LDSETB
-    { 0xFFE0FC1FU, 0x3860301FU, Mnemonic::LDSETLB, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // LDSETLB
-    { 0xFFE0FC1FU, 0x7820301FU, Mnemonic::LDSETH, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // LDSETH
-    { 0xFFE0FC1FU, 0x7860301FU, Mnemonic::LDSETLH, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // LDSETLH
-    { 0xFFE0FC1FU, 0xB820401FU, Mnemonic::LDSMAX, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // LDSMAX
-    { 0xFFE0FC1FU, 0xB860401FU, Mnemonic::LDSMAXL, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // LDSMAXL
-    { 0xFFE0FC1FU, 0xF820401FU, Mnemonic::LDSMAX, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // LDSMAX
-    { 0xFFE0FC1FU, 0xF860401FU, Mnemonic::LDSMAXL, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // LDSMAXL
-    { 0xFFE0FC1FU, 0x3820401FU, Mnemonic::LDSMAXB, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // LDSMAXB
-    { 0xFFE0FC1FU, 0x3860401FU, Mnemonic::LDSMAXLB, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // LDSMAXLB
-    { 0xFFE0FC1FU, 0x7820401FU, Mnemonic::LDSMAXH, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // LDSMAXH
-    { 0xFFE0FC1FU, 0x7860401FU, Mnemonic::LDSMAXLH, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // LDSMAXLH
-    { 0xFFE0FC1FU, 0xB820501FU, Mnemonic::LDSMIN, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // LDSMIN
-    { 0xFFE0FC1FU, 0xB860501FU, Mnemonic::LDSMINL, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // LDSMINL
-    { 0xFFE0FC1FU, 0xF820501FU, Mnemonic::LDSMIN, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // LDSMIN
-    { 0xFFE0FC1FU, 0xF860501FU, Mnemonic::LDSMINL, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // LDSMINL
-    { 0xFFE0FC1FU, 0x3820501FU, Mnemonic::LDSMINB, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // LDSMINB
-    { 0xFFE0FC1FU, 0x3860501FU, Mnemonic::LDSMINLB, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // LDSMINLB
-    { 0xFFE0FC1FU, 0x7820501FU, Mnemonic::LDSMINH, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // LDSMINH
-    { 0xFFE0FC1FU, 0x7860501FU, Mnemonic::LDSMINLH, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // LDSMINLH
-    { 0xFFE0FC1FU, 0x1920041FU, Mnemonic::LDTADD, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // LDTADD
-    { 0xFFE0FC1FU, 0x1960041FU, Mnemonic::LDTADDL, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // LDTADDL
-    { 0xFFE0FC1FU, 0x5920041FU, Mnemonic::LDTADD, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // LDTADD
-    { 0xFFE0FC1FU, 0x5960041FU, Mnemonic::LDTADDL, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // LDTADDL
-    { 0xFFE0FC1FU, 0x1920141FU, Mnemonic::LDTCLR, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // LDTCLR
-    { 0xFFE0FC1FU, 0x1960141FU, Mnemonic::LDTCLRL, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // LDTCLRL
-    { 0xFFE0FC1FU, 0x5920141FU, Mnemonic::LDTCLR, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // LDTCLR
-    { 0xFFE0FC1FU, 0x5960141FU, Mnemonic::LDTCLRL, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // LDTCLRL
-    { 0xFFE0FC1FU, 0x1920341FU, Mnemonic::LDTSET, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // LDTSET
-    { 0xFFE0FC1FU, 0x1960341FU, Mnemonic::LDTSETL, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // LDTSETL
-    { 0xFFE0FC1FU, 0x5920341FU, Mnemonic::LDTSET, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // LDTSET
-    { 0xFFE0FC1FU, 0x5960341FU, Mnemonic::LDTSETL, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // LDTSETL
-    { 0xFFE0FC1FU, 0xB820601FU, Mnemonic::LDUMAX, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // LDUMAX
-    { 0xFFE0FC1FU, 0xB860601FU, Mnemonic::LDUMAXL, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // LDUMAXL
-    { 0xFFE0FC1FU, 0xF820601FU, Mnemonic::LDUMAX, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // LDUMAX
-    { 0xFFE0FC1FU, 0xF860601FU, Mnemonic::LDUMAXL, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // LDUMAXL
-    { 0xFFE0FC1FU, 0x3820601FU, Mnemonic::LDUMAXB, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // LDUMAXB
-    { 0xFFE0FC1FU, 0x3860601FU, Mnemonic::LDUMAXLB, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // LDUMAXLB
-    { 0xFFE0FC1FU, 0x7820601FU, Mnemonic::LDUMAXH, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // LDUMAXH
-    { 0xFFE0FC1FU, 0x7860601FU, Mnemonic::LDUMAXLH, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // LDUMAXLH
-    { 0xFFE0FC1FU, 0xB820701FU, Mnemonic::LDUMIN, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // LDUMIN
-    { 0xFFE0FC1FU, 0xB860701FU, Mnemonic::LDUMINL, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // LDUMINL
-    { 0xFFE0FC1FU, 0xF820701FU, Mnemonic::LDUMIN, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // LDUMIN
-    { 0xFFE0FC1FU, 0xF860701FU, Mnemonic::LDUMINL, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // LDUMINL
-    { 0xFFE0FC1FU, 0x3820701FU, Mnemonic::LDUMINB, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // LDUMINB
-    { 0xFFE0FC1FU, 0x3860701FU, Mnemonic::LDUMINLB, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // LDUMINLB
-    { 0xFFE0FC1FU, 0x7820701FU, Mnemonic::LDUMINH, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // LDUMINH
-    { 0xFFE0FC1FU, 0x7860701FU, Mnemonic::LDUMINLH, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // LDUMINLH
-    { 0xFFFFFC00U, 0xD9200000U, Mnemonic::STZGM, IrTemplate::System, Opcode::UNDEF, 0 }, // STZGM
-    { 0xFFE39C78U, 0xC1A11010U, Mnemonic::BFDOT, IrTemplate::System, Opcode::UNDEF, 0 }, // BFDOT
-    { 0xFFE39C78U, 0xC1E11008U, Mnemonic::BFMLA, IrTemplate::System, Opcode::UNDEF, 0 }, // BFMLA
-    { 0xFFE39C78U, 0xC1E11018U, Mnemonic::BFMLS, IrTemplate::System, Opcode::UNDEF, 0 }, // BFMLS
-    { 0xFFE39C78U, 0xC1A11030U, Mnemonic::FDOT, IrTemplate::System, Opcode::UNDEF, 0 }, // FDOT
-    { 0xFFE39C78U, 0xC1A11020U, Mnemonic::FDOT, IrTemplate::System, Opcode::UNDEF, 0 }, // FDOT
-    { 0xFFE39C78U, 0xC1A11000U, Mnemonic::FDOT, IrTemplate::System, Opcode::UNDEF, 0 }, // FDOT
-    { 0xFFE39C78U, 0xC1A11008U, Mnemonic::FMLA, IrTemplate::System, Opcode::UNDEF, 0 }, // FMLA
-    { 0xFFE19C3EU, 0xC1A00020U, Mnemonic::FMLALL, IrTemplate::System, Opcode::UNDEF, 0 }, // FMLALL
-    { 0xFFE39C78U, 0xC1A11018U, Mnemonic::FMLS, IrTemplate::System, Opcode::UNDEF, 0 }, // FMLS
-    { 0xFF23FC63U, 0xC121E400U, Mnemonic::FMUL, IrTemplate::System, Opcode::UNDEF, 0 }, // FMUL
-    { 0xFFFF9C10U, 0xE1000000U, Mnemonic::LDR, IrTemplate::System, Opcode::UNDEF, 0 }, // LDR
-    { 0xFFFECC03U, 0xC08A8000U, Mnemonic::LUTI4, IrTemplate::System, Opcode::UNDEF, 0 }, // LUTI4
-    { 0xFFFECC0CU, 0xC09A8000U, Mnemonic::LUTI4, IrTemplate::System, Opcode::UNDEF, 0 }, // LUTI4
-    { 0xFFE39C78U, 0xC1E11408U, Mnemonic::SDOT, IrTemplate::System, Opcode::UNDEF, 0 }, // SDOT
-    { 0xFFFF9C10U, 0xE1200000U, Mnemonic::STR, IrTemplate::System, Opcode::UNDEF, 0 }, // STR
-    { 0xFF3FFC01U, 0xC125E000U, Mnemonic::SUNPK, IrTemplate::System, Opcode::UNDEF, 0 }, // SUNPK
-    { 0xFFE39C78U, 0xC1E11418U, Mnemonic::UDOT, IrTemplate::System, Opcode::UNDEF, 0 }, // UDOT
-    { 0xFFE39C78U, 0xC1A11408U, Mnemonic::USDOT, IrTemplate::System, Opcode::UNDEF, 0 }, // USDOT
-    { 0xFFE19C3EU, 0xC1A00004U, Mnemonic::USMLALL, IrTemplate::System, Opcode::UNDEF, 0 }, // USMLALL
-    { 0xFF3FFC01U, 0xC125E001U, Mnemonic::UUNPK, IrTemplate::System, Opcode::UNDEF, 0 }, // UUNPK
-    { 0xFFE7FC01U, 0x4522EC00U, Mnemonic::AESD, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // AESD
-    { 0xFFE7FC01U, 0x4523EC00U, Mnemonic::AESDIMC, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // AESDIMC
-    { 0xFFE7FC01U, 0x4522E800U, Mnemonic::AESE, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // AESE
-    { 0xFFE7FC01U, 0x4523E800U, Mnemonic::AESEMC, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // AESEMC
-    { 0xFFA0FC1FU, 0x25A02000U, Mnemonic::CTERMEQ, IrTemplate::System, Opcode::UNDEF, 0 }, // CTERMEQ
-    { 0xFFA0FC1FU, 0x25A02010U, Mnemonic::CTERMNE, IrTemplate::System, Opcode::UNDEF, 0 }, // CTERMNE
-    { 0xFF3FFE00U, 0x252D8800U, Mnemonic::DECP, IrTemplate::SimdBinop, Opcode::AND, 0 }, // DECP
-    { 0xFF3FFE00U, 0x252D8000U, Mnemonic::DECP, IrTemplate::SimdBinop, Opcode::AND, 0 }, // DECP
-    { 0xFF3FE3C0U, 0x65188000U, Mnemonic::FADD, IrTemplate::FpBinop, Opcode::FADD, 0 }, // FADD
-    { 0xFF3FFC20U, 0x650D3000U, Mnemonic::FCVTZSN, IrTemplate::FpBinop, Opcode::FADD, 0 }, // FCVTZSN
-    { 0xFF3FFC20U, 0x650D3400U, Mnemonic::FCVTZUN, IrTemplate::FpBinop, Opcode::FADD, 0 }, // FCVTZUN
-    { 0xFF3FE3C0U, 0x651E8000U, Mnemonic::FMAX, IrTemplate::FpBinop, Opcode::FADD, 0 }, // FMAX
-    { 0xFF3FE3C0U, 0x651C8000U, Mnemonic::FMAXNM, IrTemplate::FpBinop, Opcode::FADD, 0 }, // FMAXNM
-    { 0xFF3FE3C0U, 0x651F8000U, Mnemonic::FMIN, IrTemplate::FpBinop, Opcode::FADD, 0 }, // FMIN
-    { 0xFF3FE3C0U, 0x651D8000U, Mnemonic::FMINNM, IrTemplate::FpBinop, Opcode::FADD, 0 }, // FMINNM
-    { 0xFF30FFE0U, 0x05104000U, Mnemonic::CPY, IrTemplate::SimdUnary, Opcode::COPY, 0 }, // CPY
-    { 0xFF3FE3C0U, 0x651A8000U, Mnemonic::FMUL, IrTemplate::FpBinop, Opcode::FADD, 0 }, // FMUL
-    { 0xFF3FE3C0U, 0x65198000U, Mnemonic::FSUB, IrTemplate::FpBinop, Opcode::FADD, 0 }, // FSUB
-    { 0xFF3FE3C0U, 0x651B8000U, Mnemonic::FSUBR, IrTemplate::FpBinop, Opcode::FADD, 0 }, // FSUBR
-    { 0xFF3FFE00U, 0x252C8800U, Mnemonic::INCP, IrTemplate::SimdBinop, Opcode::AND, 0 }, // INCP
-    { 0xFF3FFE00U, 0x252C8000U, Mnemonic::INCP, IrTemplate::SimdBinop, Opcode::AND, 0 }, // INCP
-    { 0xFF3FFC10U, 0x25207010U, Mnemonic::PEXT, IrTemplate::SimdBinop, Opcode::CMP_SLT, 0 }, // PEXT
-    { 0xFFF9FC10U, 0x05683800U, Mnemonic::PMOV, IrTemplate::SimdUnary, Opcode::COPY, 0 }, // PMOV
-    { 0xFFF9FE00U, 0x05693800U, Mnemonic::PMOV, IrTemplate::SimdUnary, Opcode::COPY, 0 }, // PMOV
-    { 0xFF3FFC10U, 0x2518E000U, Mnemonic::PTRUE, IrTemplate::SimdBinop, Opcode::AND, 0 }, // PTRUE
-    { 0xFF3FFC10U, 0x2519E000U, Mnemonic::PTRUES, IrTemplate::SimdBinop, Opcode::AND, 0 }, // PTRUES
-    { 0xFFFFF800U, 0x04BF5800U, Mnemonic::RDSVL, IrTemplate::System, Opcode::UNDEF, 0 }, // RDSVL
-    { 0xFFFFF800U, 0x04BF5000U, Mnemonic::RDVL, IrTemplate::System, Opcode::UNDEF, 0 }, // RDVL
-    { 0xFF3FFE00U, 0x252A8800U, Mnemonic::SQDECP, IrTemplate::SimdBinop, Opcode::AND, 0 }, // SQDECP
-    { 0xFF3FFE00U, 0x252A8C00U, Mnemonic::SQDECP, IrTemplate::SimdBinop, Opcode::AND, 0 }, // SQDECP
-    { 0xFF3FFE00U, 0x252A8000U, Mnemonic::SQDECP, IrTemplate::SimdBinop, Opcode::AND, 0 }, // SQDECP
-    { 0xFF3FFE00U, 0x25288800U, Mnemonic::SQINCP, IrTemplate::SimdBinop, Opcode::AND, 0 }, // SQINCP
-    { 0xFF3FFE00U, 0x25288C00U, Mnemonic::SQINCP, IrTemplate::SimdBinop, Opcode::AND, 0 }, // SQINCP
-    { 0xFF3FFE00U, 0x25288000U, Mnemonic::SQINCP, IrTemplate::SimdBinop, Opcode::AND, 0 }, // SQINCP
-    { 0xFF3FFE00U, 0x252B8800U, Mnemonic::UQDECP, IrTemplate::SimdBinop, Opcode::AND, 0 }, // UQDECP
-    { 0xFF3FFE00U, 0x252B8C00U, Mnemonic::UQDECP, IrTemplate::SimdBinop, Opcode::AND, 0 }, // UQDECP
-    { 0xFF3FFE00U, 0x252B8000U, Mnemonic::UQDECP, IrTemplate::SimdBinop, Opcode::AND, 0 }, // UQDECP
-    { 0xFF3FFE00U, 0x25298800U, Mnemonic::UQINCP, IrTemplate::SimdBinop, Opcode::AND, 0 }, // UQINCP
-    { 0xFF3FFE00U, 0x25298C00U, Mnemonic::UQINCP, IrTemplate::SimdBinop, Opcode::AND, 0 }, // UQINCP
-    { 0xFF3FFE00U, 0x25298000U, Mnemonic::UQINCP, IrTemplate::SimdBinop, Opcode::AND, 0 }, // UQINCP
-    { 0xBFFFFC00U, 0x2EA17800U, Mnemonic::BF1CVTL, IrTemplate::SimdUnary, Opcode::FLOAT2FLOAT, 0 }, // BF1CVTL
-    { 0xBFFFFC00U, 0x2EE17800U, Mnemonic::BF2CVTL, IrTemplate::SimdUnary, Opcode::FLOAT2FLOAT, 0 }, // BF2CVTL
-    { 0xBFFFFC00U, 0x0EA16800U, Mnemonic::BFCVTN, IrTemplate::SimdUnary, Opcode::FLOAT2FLOAT, 0 }, // BFCVTN
-    { 0xBFFFFC00U, 0x2E217800U, Mnemonic::F1CVTL, IrTemplate::SimdUnary, Opcode::FLOAT2FLOAT, 0 }, // F1CVTL
-    { 0xBFFFFC00U, 0x2E617800U, Mnemonic::F2CVTL, IrTemplate::SimdUnary, Opcode::FLOAT2FLOAT, 0 }, // F2CVTL
-    { 0xBFFFFC00U, 0x0EF8F800U, Mnemonic::FABS, IrTemplate::SimdUnary, Opcode::FABS, 0 }, // FABS
-    { 0xFFBFFC00U, 0x7E30D800U, Mnemonic::FADDP, IrTemplate::SimdUnary, Opcode::ADD, 0 }, // FADDP
-    { 0xFFBFFC00U, 0x5EA0D800U, Mnemonic::FCMEQ, IrTemplate::SimdUnary, Opcode::COPY, 0 }, // FCMEQ
-    { 0xBFFFFC00U, 0x0EF8D800U, Mnemonic::FCMEQ, IrTemplate::SimdUnary, Opcode::CMP_EQ, 0 }, // FCMEQ
-    { 0xFFBFFC00U, 0x7EA0C800U, Mnemonic::FCMGE, IrTemplate::SimdUnary, Opcode::COPY, 0 }, // FCMGE
-    { 0xBFFFFC00U, 0x2EF8C800U, Mnemonic::FCMGE, IrTemplate::SimdUnary, Opcode::CMP_SLE, 0 }, // FCMGE
-    { 0xFFBFFC00U, 0x5EA0C800U, Mnemonic::FCMGT, IrTemplate::SimdUnary, Opcode::COPY, 0 }, // FCMGT
-    { 0xBFFFFC00U, 0x0EF8C800U, Mnemonic::FCMGT, IrTemplate::SimdUnary, Opcode::CMP_SLT, 0 }, // FCMGT
-    { 0xFFBFFC00U, 0x7EA0D800U, Mnemonic::FCMLE, IrTemplate::SimdUnary, Opcode::COPY, 0 }, // FCMLE
-    { 0xBFFFFC00U, 0x2EF8D800U, Mnemonic::FCMLE, IrTemplate::SimdUnary, Opcode::CMP_SLE, 0 }, // FCMLE
-    { 0xFFBFFC00U, 0x5EA0E800U, Mnemonic::FCMLT, IrTemplate::SimdUnary, Opcode::COPY, 0 }, // FCMLT
-    { 0xBFFFFC00U, 0x0EF8E800U, Mnemonic::FCMLT, IrTemplate::SimdUnary, Opcode::CMP_SLT, 0 }, // FCMLT
-    { 0xFFBFFC00U, 0x5E21C800U, Mnemonic::FCVTAS, IrTemplate::SimdUnary, Opcode::COPY, 0 }, // FCVTAS
-    { 0xBFFFFC00U, 0x0E79C800U, Mnemonic::FCVTAS, IrTemplate::SimdUnary, Opcode::FLOAT2FLOAT, 0 }, // FCVTAS
-    { 0xFFBFFC00U, 0x7E21C800U, Mnemonic::FCVTAU, IrTemplate::SimdUnary, Opcode::COPY, 0 }, // FCVTAU
-    { 0xBFFFFC00U, 0x2E79C800U, Mnemonic::FCVTAU, IrTemplate::SimdUnary, Opcode::FLOAT2FLOAT, 0 }, // FCVTAU
-    { 0xFFBFFC00U, 0x5E21B800U, Mnemonic::FCVTMS, IrTemplate::SimdUnary, Opcode::COPY, 0 }, // FCVTMS
-    { 0xBFFFFC00U, 0x0E79B800U, Mnemonic::FCVTMS, IrTemplate::SimdUnary, Opcode::FLOAT2FLOAT, 0 }, // FCVTMS
-    { 0xFFBFFC00U, 0x7E21B800U, Mnemonic::FCVTMU, IrTemplate::SimdUnary, Opcode::COPY, 0 }, // FCVTMU
-    { 0xBFFFFC00U, 0x2E79B800U, Mnemonic::FCVTMU, IrTemplate::SimdUnary, Opcode::FLOAT2FLOAT, 0 }, // FCVTMU
-    { 0xFFBFFC00U, 0x5E21A800U, Mnemonic::FCVTNS, IrTemplate::SimdUnary, Opcode::COPY, 0 }, // FCVTNS
-    { 0xBFFFFC00U, 0x0E79A800U, Mnemonic::FCVTNS, IrTemplate::SimdUnary, Opcode::FLOAT2FLOAT, 0 }, // FCVTNS
-    { 0xFFBFFC00U, 0x7E21A800U, Mnemonic::FCVTNU, IrTemplate::SimdUnary, Opcode::COPY, 0 }, // FCVTNU
-    { 0xBFFFFC00U, 0x2E79A800U, Mnemonic::FCVTNU, IrTemplate::SimdUnary, Opcode::FLOAT2FLOAT, 0 }, // FCVTNU
-    { 0xFFBFFC00U, 0x5EA1A800U, Mnemonic::FCVTPS, IrTemplate::SimdUnary, Opcode::COPY, 0 }, // FCVTPS
-    { 0xBFFFFC00U, 0x0EF9A800U, Mnemonic::FCVTPS, IrTemplate::SimdUnary, Opcode::FLOAT2FLOAT, 0 }, // FCVTPS
-    { 0xFFBFFC00U, 0x7EA1A800U, Mnemonic::FCVTPU, IrTemplate::SimdUnary, Opcode::COPY, 0 }, // FCVTPU
-    { 0xBFFFFC00U, 0x2EF9A800U, Mnemonic::FCVTPU, IrTemplate::SimdUnary, Opcode::FLOAT2FLOAT, 0 }, // FCVTPU
-    { 0xBFFFFC00U, 0x2E616800U, Mnemonic::FCVTXN, IrTemplate::SimdUnary, Opcode::FLOAT2FLOAT, 0 }, // FCVTXN
-    { 0xFFBFFC00U, 0x5EA1B800U, Mnemonic::FCVTZS, IrTemplate::SimdUnary, Opcode::COPY, 0 }, // FCVTZS
-    { 0xBFFFFC00U, 0x0EF9B800U, Mnemonic::FCVTZS, IrTemplate::SimdUnary, Opcode::FLOAT2FLOAT, 0 }, // FCVTZS
-    { 0xFFBFFC00U, 0x7EA1B800U, Mnemonic::FCVTZU, IrTemplate::SimdUnary, Opcode::COPY, 0 }, // FCVTZU
-    { 0xBFFFFC00U, 0x2EF9B800U, Mnemonic::FCVTZU, IrTemplate::SimdUnary, Opcode::FLOAT2FLOAT, 0 }, // FCVTZU
-    { 0xFFBFFC00U, 0x7E30C800U, Mnemonic::FMAXNMP, IrTemplate::SimdUnary, Opcode::ADD, 0 }, // FMAXNMP
-    { 0xBFFFFC00U, 0x0E30C800U, Mnemonic::FMAXNMV, IrTemplate::SimdUnary, Opcode::ADD, 0 }, // FMAXNMV
-    { 0xFFBFFC00U, 0x7E30F800U, Mnemonic::FMAXP, IrTemplate::SimdUnary, Opcode::ADD, 0 }, // FMAXP
-    { 0xBFFFFC00U, 0x0E30F800U, Mnemonic::FMAXV, IrTemplate::SimdUnary, Opcode::ADD, 0 }, // FMAXV
-    { 0xFFBFFC00U, 0x7EB0C800U, Mnemonic::FMINNMP, IrTemplate::SimdUnary, Opcode::ADD, 0 }, // FMINNMP
-    { 0xBFFFFC00U, 0x0EB0C800U, Mnemonic::FMINNMV, IrTemplate::SimdUnary, Opcode::ADD, 0 }, // FMINNMV
-    { 0xFFBFFC00U, 0x7EB0F800U, Mnemonic::FMINP, IrTemplate::SimdUnary, Opcode::ADD, 0 }, // FMINP
-    { 0xBFFFFC00U, 0x0EB0F800U, Mnemonic::FMINV, IrTemplate::SimdUnary, Opcode::ADD, 0 }, // FMINV
-    { 0xBFFFFC00U, 0x2EF8F800U, Mnemonic::FNEG, IrTemplate::SimdUnary, Opcode::FNEG, 0 }, // FNEG
-    { 0xFFBFFC00U, 0x5EA1D800U, Mnemonic::FRECPE, IrTemplate::SimdUnary, Opcode::COPY, 0 }, // FRECPE
-    { 0xBFFFFC00U, 0x0EF9D800U, Mnemonic::FRECPE, IrTemplate::SimdUnary, Opcode::COPY, 0 }, // FRECPE
-    { 0xFFBFFC00U, 0x5EA1F800U, Mnemonic::FRECPX, IrTemplate::SimdUnary, Opcode::COPY, 0 }, // FRECPX
-    { 0xBFFFFC00U, 0x2E798800U, Mnemonic::FRINTA, IrTemplate::SimdUnary, Opcode::COPY, 0 }, // FRINTA
-    { 0xBFFFFC00U, 0x2EF99800U, Mnemonic::FRINTI, IrTemplate::SimdUnary, Opcode::COPY, 0 }, // FRINTI
-    { 0xBFFFFC00U, 0x0E799800U, Mnemonic::FRINTM, IrTemplate::SimdUnary, Opcode::COPY, 0 }, // FRINTM
-    { 0xBFFFFC00U, 0x0E798800U, Mnemonic::FRINTN, IrTemplate::SimdUnary, Opcode::COPY, 0 }, // FRINTN
-    { 0xBFFFFC00U, 0x0EF98800U, Mnemonic::FRINTP, IrTemplate::SimdUnary, Opcode::COPY, 0 }, // FRINTP
-    { 0xBFFFFC00U, 0x2E799800U, Mnemonic::FRINTX, IrTemplate::SimdUnary, Opcode::COPY, 0 }, // FRINTX
-    { 0xBFFFFC00U, 0x0EF99800U, Mnemonic::FRINTZ, IrTemplate::SimdUnary, Opcode::COPY, 0 }, // FRINTZ
-    { 0xFFBFFC00U, 0x7EA1D800U, Mnemonic::FRSQRTE, IrTemplate::SimdUnary, Opcode::COPY, 0 }, // FRSQRTE
-    { 0xBFFFFC00U, 0x2EF9D800U, Mnemonic::FRSQRTE, IrTemplate::SimdUnary, Opcode::COPY, 0 }, // FRSQRTE
-    { 0xBFFFFC00U, 0x2EF9F800U, Mnemonic::FSQRT, IrTemplate::SimdUnary, Opcode::FSQRT, 0 }, // FSQRT
-    { 0xBFFFFC00U, 0x2E205800U, Mnemonic::NOT, IrTemplate::SimdUnary, Opcode::NOT, 0 }, // NOT
-    { 0xBFFFFC00U, 0x2E205800U, Mnemonic::NOT, IrTemplate::SimdUnary, Opcode::NOT, 0 }, // NOT
-    { 0xBFFFFC00U, 0x2E605800U, Mnemonic::RBIT, IrTemplate::SimdUnary, Opcode::COPY, 0 }, // RBIT
-    { 0xFFBFFC00U, 0x5E21D800U, Mnemonic::SCVTF, IrTemplate::SimdUnary, Opcode::COPY, 0 }, // SCVTF
-    { 0xBFFFFC00U, 0x0E79D800U, Mnemonic::SCVTF, IrTemplate::SimdUnary, Opcode::COPY, 0 }, // SCVTF
-    { 0xFFBFFC00U, 0x7E21D800U, Mnemonic::UCVTF, IrTemplate::SimdUnary, Opcode::COPY, 0 }, // UCVTF
-    { 0xBFFFFC00U, 0x2E79D800U, Mnemonic::UCVTF, IrTemplate::SimdUnary, Opcode::COPY, 0 }, // UCVTF
-    { 0xBFFFFC00U, 0x0D408400U, Mnemonic::LD1, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LD1
-    { 0xBFFFFC00U, 0x0DDF8400U, Mnemonic::LD1, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LD1
-    { 0xBFFFFC00U, 0x0D608400U, Mnemonic::LD2, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LD2
-    { 0xBFFFFC00U, 0x0DFF8400U, Mnemonic::LD2, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LD2
-    { 0xBFFFFC00U, 0x0D40A400U, Mnemonic::LD3, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LD3
-    { 0xBFFFFC00U, 0x0DDFA400U, Mnemonic::LD3, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LD3
-    { 0xBFFFFC00U, 0x0D60A400U, Mnemonic::LD4, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LD4
-    { 0xBFFFFC00U, 0x0DFFA400U, Mnemonic::LD4, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LD4
-    { 0xBFFFFC00U, 0x0D418400U, Mnemonic::LDAP1, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LDAP1
-    { 0xBFFFFC00U, 0x0D008400U, Mnemonic::ST1, IrTemplate::StoreReg, Opcode::STORE, 0 }, // ST1
-    { 0xBFFFFC00U, 0x0D9F8400U, Mnemonic::ST1, IrTemplate::StoreReg, Opcode::STORE, 0 }, // ST1
-    { 0xBFFFFC00U, 0x0D208400U, Mnemonic::ST2, IrTemplate::StoreReg, Opcode::STORE, 0 }, // ST2
-    { 0xBFFFFC00U, 0x0DBF8400U, Mnemonic::ST2, IrTemplate::StoreReg, Opcode::STORE, 0 }, // ST2
-    { 0xBFFFFC00U, 0x0D00A400U, Mnemonic::ST3, IrTemplate::StoreReg, Opcode::STORE, 0 }, // ST3
-    { 0xBFFFFC00U, 0x0D9FA400U, Mnemonic::ST3, IrTemplate::StoreReg, Opcode::STORE, 0 }, // ST3
-    { 0xBFFFFC00U, 0x0D20A400U, Mnemonic::ST4, IrTemplate::StoreReg, Opcode::STORE, 0 }, // ST4
-    { 0xBFFFFC00U, 0x0DBFA400U, Mnemonic::ST4, IrTemplate::StoreReg, Opcode::STORE, 0 }, // ST4
-    { 0xBFFFFC00U, 0x0D018400U, Mnemonic::STL1, IrTemplate::StoreReg, Opcode::STORE, 0 }, // STL1
-    { 0xFFA39C78U, 0xC1A11810U, Mnemonic::ADD, IrTemplate::System, Opcode::UNDEF, 0 }, // ADD
-    { 0xFFE19C3CU, 0xC1A00810U, Mnemonic::BFMLAL, IrTemplate::System, Opcode::UNDEF, 0 }, // BFMLAL
-    { 0xFFE19C3CU, 0xC1A00818U, Mnemonic::BFMLSL, IrTemplate::System, Opcode::UNDEF, 0 }, // BFMLSL
-    { 0xFFE1FC21U, 0xC120E800U, Mnemonic::BFMUL, IrTemplate::System, Opcode::UNDEF, 0 }, // BFMUL
-    { 0xFFE1FC21U, 0xC120E400U, Mnemonic::BFMUL, IrTemplate::System, Opcode::UNDEF, 0 }, // BFMUL
-    { 0xFFA39C78U, 0xC1A11800U, Mnemonic::FMLA, IrTemplate::System, Opcode::UNDEF, 0 }, // FMLA
-    { 0xFFE19C3CU, 0xC1A00820U, Mnemonic::FMLAL, IrTemplate::System, Opcode::UNDEF, 0 }, // FMLAL
-    { 0xFFE19C3CU, 0xC1A00800U, Mnemonic::FMLAL, IrTemplate::System, Opcode::UNDEF, 0 }, // FMLAL
-    { 0xFFF09C1EU, 0xC1200002U, Mnemonic::FMLALL, IrTemplate::System, Opcode::UNDEF, 0 }, // FMLALL
-    { 0xFFF09C1EU, 0xC1300002U, Mnemonic::FMLALL, IrTemplate::System, Opcode::UNDEF, 0 }, // FMLALL
-    { 0xFFA39C78U, 0xC1A11808U, Mnemonic::FMLS, IrTemplate::System, Opcode::UNDEF, 0 }, // FMLS
-    { 0xFFE19C3CU, 0xC1A00808U, Mnemonic::FMLSL, IrTemplate::System, Opcode::UNDEF, 0 }, // FMLSL
-    { 0xFF21FC63U, 0xC121E800U, Mnemonic::FMUL, IrTemplate::System, Opcode::UNDEF, 0 }, // FMUL
-    { 0xFFFCCC03U, 0xC08C8000U, Mnemonic::LUTI2, IrTemplate::System, Opcode::UNDEF, 0 }, // LUTI2
-    { 0xFFFCCC0CU, 0xC09C8000U, Mnemonic::LUTI2, IrTemplate::System, Opcode::UNDEF, 0 }, // LUTI2
-    { 0xFFFF1E00U, 0xC0020200U, Mnemonic::MOVAZ, IrTemplate::System, Opcode::UNDEF, 0 }, // MOVAZ
-    { 0xFFFF1E00U, 0xC0420200U, Mnemonic::MOVAZ, IrTemplate::System, Opcode::UNDEF, 0 }, // MOVAZ
-    { 0xFFFF1E00U, 0xC0820200U, Mnemonic::MOVAZ, IrTemplate::System, Opcode::UNDEF, 0 }, // MOVAZ
-    { 0xFFFF1E00U, 0xC0C20200U, Mnemonic::MOVAZ, IrTemplate::System, Opcode::UNDEF, 0 }, // MOVAZ
-    { 0xFFFF1E00U, 0xC0C30200U, Mnemonic::MOVAZ, IrTemplate::System, Opcode::UNDEF, 0 }, // MOVAZ
-    { 0xFFA39C78U, 0xC1A11400U, Mnemonic::SDOT, IrTemplate::System, Opcode::UNDEF, 0 }, // SDOT
-    { 0xFFE19C3CU, 0xC1E00800U, Mnemonic::SMLAL, IrTemplate::System, Opcode::UNDEF, 0 }, // SMLAL
-    { 0xFFA19C3EU, 0xC1A00000U, Mnemonic::SMLALL, IrTemplate::System, Opcode::UNDEF, 0 }, // SMLALL
-    { 0xFFE19C3CU, 0xC1E00808U, Mnemonic::SMLSL, IrTemplate::System, Opcode::UNDEF, 0 }, // SMLSL
-    { 0xFFA19C3EU, 0xC1A00008U, Mnemonic::SMLSLL, IrTemplate::System, Opcode::UNDEF, 0 }, // SMLSLL
-    { 0xFFA39C78U, 0xC1A11818U, Mnemonic::SUB, IrTemplate::System, Opcode::UNDEF, 0 }, // SUB
-    { 0xFFF09C1EU, 0xC1200014U, Mnemonic::SUMLALL, IrTemplate::System, Opcode::UNDEF, 0 }, // SUMLALL
-    { 0xFFF09C1EU, 0xC1300014U, Mnemonic::SUMLALL, IrTemplate::System, Opcode::UNDEF, 0 }, // SUMLALL
-    { 0xFFA39C78U, 0xC1A11410U, Mnemonic::UDOT, IrTemplate::System, Opcode::UNDEF, 0 }, // UDOT
-    { 0xFFE19C3CU, 0xC1E00810U, Mnemonic::UMLAL, IrTemplate::System, Opcode::UNDEF, 0 }, // UMLAL
-    { 0xFFA19C3EU, 0xC1A00010U, Mnemonic::UMLALL, IrTemplate::System, Opcode::UNDEF, 0 }, // UMLALL
-    { 0xFFE19C3CU, 0xC1E00818U, Mnemonic::UMLSL, IrTemplate::System, Opcode::UNDEF, 0 }, // UMLSL
-    { 0xFFA19C3EU, 0xC1A00018U, Mnemonic::UMLSLL, IrTemplate::System, Opcode::UNDEF, 0 }, // UMLSLL
-    { 0xFFF09C1EU, 0xC1200004U, Mnemonic::USMLALL, IrTemplate::System, Opcode::UNDEF, 0 }, // USMLALL
-    { 0xFFF09C1EU, 0xC1300004U, Mnemonic::USMLALL, IrTemplate::System, Opcode::UNDEF, 0 }, // USMLALL
-    { 0xFFFFC210U, 0x25504000U, Mnemonic::BRKAS, IrTemplate::SimdBinop, Opcode::AND, 0 }, // BRKAS
-    { 0xFFFFC210U, 0x25D04000U, Mnemonic::BRKBS, IrTemplate::SimdBinop, Opcode::AND, 0 }, // BRKBS
-    { 0xFFFFC210U, 0x25184000U, Mnemonic::BRKN, IrTemplate::SimdBinop, Opcode::AND, 0 }, // BRKN
-    { 0xFFFFC210U, 0x25584000U, Mnemonic::BRKNS, IrTemplate::SimdBinop, Opcode::AND, 0 }, // BRKNS
-    { 0xFF3FFA00U, 0x25208200U, Mnemonic::CNTP, IrTemplate::SimdBinop, Opcode::AND, 0 }, // CNTP
-    { 0xFF3FFC00U, 0x05203800U, Mnemonic::DUP, IrTemplate::SimdUnary, Opcode::COPY, 0 }, // DUP
-    { 0xFF3FFC00U, 0x0420B800U, Mnemonic::FEXPA, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // FEXPA
-    { 0xFF3FFC00U, 0x650E3000U, Mnemonic::FRECPE, IrTemplate::FpBinop, Opcode::FADD, 0 }, // FRECPE
-    { 0xFF3FFC00U, 0x650F3000U, Mnemonic::FRSQRTE, IrTemplate::FpBinop, Opcode::FADD, 0 }, // FRSQRTE
-    { 0xFF3FFC00U, 0x05243800U, Mnemonic::INSR, IrTemplate::SimdUnary, Opcode::COPY, 0 }, // INSR
-    { 0xFF3FFC00U, 0x05343800U, Mnemonic::INSR, IrTemplate::SimdUnary, Opcode::COPY, 0 }, // INSR
-    { 0xFF3FFC00U, 0x05203800U, Mnemonic::DUP, IrTemplate::SimdUnary, Opcode::COPY, 0 }, // DUP
-    { 0xFFB9FC10U, 0x05A83800U, Mnemonic::PMOV, IrTemplate::SimdUnary, Opcode::COPY, 0 }, // PMOV
-    { 0xFFB9FE00U, 0x05A93800U, Mnemonic::PMOV, IrTemplate::SimdUnary, Opcode::COPY, 0 }, // PMOV
-    { 0xFF3FFC00U, 0x05383800U, Mnemonic::REV, IrTemplate::SimdUnary, Opcode::COPY, 0 }, // REV
-    { 0xFF3FFC00U, 0x650C3000U, Mnemonic::SCVTF, IrTemplate::FpBinop, Opcode::FADD, 0 }, // SCVTF
-    { 0xFF3FFC00U, 0x650C3800U, Mnemonic::SCVTFLT, IrTemplate::FpBinop, Opcode::FADD, 0 }, // SCVTFLT
-    { 0xFFF8FC20U, 0x45A82800U, Mnemonic::SQRSHRN, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // SQRSHRN
-    { 0xFFF8FC20U, 0x45A80800U, Mnemonic::SQRSHRUN, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // SQRSHRUN
-    { 0xFF3FFC00U, 0x05313800U, Mnemonic::SUNPKHI, IrTemplate::SimdUnary, Opcode::COPY, 0 }, // SUNPKHI
-    { 0xFF3FFC00U, 0x05303800U, Mnemonic::SUNPKLO, IrTemplate::SimdUnary, Opcode::COPY, 0 }, // SUNPKLO
-    { 0xFF3FFC00U, 0x650C3400U, Mnemonic::UCVTF, IrTemplate::FpBinop, Opcode::FADD, 0 }, // UCVTF
-    { 0xFF3FFC00U, 0x650C3C00U, Mnemonic::UCVTFLT, IrTemplate::FpBinop, Opcode::FADD, 0 }, // UCVTFLT
-    { 0xFFF8FC20U, 0x45A83800U, Mnemonic::UQRSHRN, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // UQRSHRN
-    { 0xFF3FFC00U, 0x05333800U, Mnemonic::UUNPKHI, IrTemplate::SimdUnary, Opcode::COPY, 0 }, // UUNPKHI
-    { 0xFF3FFC00U, 0x05323800U, Mnemonic::UUNPKLO, IrTemplate::SimdUnary, Opcode::COPY, 0 }, // UUNPKLO
-    { 0xBFBFFC00U, 0x0EA0F800U, Mnemonic::FABS, IrTemplate::SimdUnary, Opcode::FABS, 0 }, // FABS
-    { 0xBFBFFC00U, 0x0EA0D800U, Mnemonic::FCMEQ, IrTemplate::SimdUnary, Opcode::CMP_EQ, 0 }, // FCMEQ
-    { 0xBFBFFC00U, 0x2EA0C800U, Mnemonic::FCMGE, IrTemplate::SimdUnary, Opcode::CMP_SLE, 0 }, // FCMGE
-    { 0xBFBFFC00U, 0x0EA0C800U, Mnemonic::FCMGT, IrTemplate::SimdUnary, Opcode::CMP_SLT, 0 }, // FCMGT
-    { 0xBFBFFC00U, 0x2EA0D800U, Mnemonic::FCMLE, IrTemplate::SimdUnary, Opcode::CMP_SLE, 0 }, // FCMLE
-    { 0xBFBFFC00U, 0x0EA0E800U, Mnemonic::FCMLT, IrTemplate::SimdUnary, Opcode::CMP_SLT, 0 }, // FCMLT
-    { 0xBFBFFC00U, 0x0E21C800U, Mnemonic::FCVTAS, IrTemplate::SimdUnary, Opcode::FLOAT2FLOAT, 0 }, // FCVTAS
-    { 0xBFBFFC00U, 0x2E21C800U, Mnemonic::FCVTAU, IrTemplate::SimdUnary, Opcode::FLOAT2FLOAT, 0 }, // FCVTAU
-    { 0xBFBFFC00U, 0x0E217800U, Mnemonic::FCVTL, IrTemplate::SimdUnary, Opcode::FLOAT2FLOAT, 0 }, // FCVTL
-    { 0xBFBFFC00U, 0x0E21B800U, Mnemonic::FCVTMS, IrTemplate::SimdUnary, Opcode::FLOAT2FLOAT, 0 }, // FCVTMS
-    { 0xBFBFFC00U, 0x2E21B800U, Mnemonic::FCVTMU, IrTemplate::SimdUnary, Opcode::FLOAT2FLOAT, 0 }, // FCVTMU
-    { 0xBFBFFC00U, 0x0E216800U, Mnemonic::FCVTN, IrTemplate::SimdUnary, Opcode::FLOAT2FLOAT, 0 }, // FCVTN
-    { 0xBFBFFC00U, 0x0E21A800U, Mnemonic::FCVTNS, IrTemplate::SimdUnary, Opcode::FLOAT2FLOAT, 0 }, // FCVTNS
-    { 0xBFBFFC00U, 0x2E21A800U, Mnemonic::FCVTNU, IrTemplate::SimdUnary, Opcode::FLOAT2FLOAT, 0 }, // FCVTNU
-    { 0xBFBFFC00U, 0x0EA1A800U, Mnemonic::FCVTPS, IrTemplate::SimdUnary, Opcode::FLOAT2FLOAT, 0 }, // FCVTPS
-    { 0xBFBFFC00U, 0x2EA1A800U, Mnemonic::FCVTPU, IrTemplate::SimdUnary, Opcode::FLOAT2FLOAT, 0 }, // FCVTPU
-    { 0xBFBFFC00U, 0x0EA1B800U, Mnemonic::FCVTZS, IrTemplate::SimdUnary, Opcode::FLOAT2FLOAT, 0 }, // FCVTZS
-    { 0xBFBFFC00U, 0x2EA1B800U, Mnemonic::FCVTZU, IrTemplate::SimdUnary, Opcode::FLOAT2FLOAT, 0 }, // FCVTZU
-    { 0xBFBFFC00U, 0x2EA0F800U, Mnemonic::FNEG, IrTemplate::SimdUnary, Opcode::FNEG, 0 }, // FNEG
-    { 0xBFBFFC00U, 0x0EA1D800U, Mnemonic::FRECPE, IrTemplate::SimdUnary, Opcode::COPY, 0 }, // FRECPE
-    { 0xBFBFFC00U, 0x2E21E800U, Mnemonic::FRINT32X, IrTemplate::SimdUnary, Opcode::COPY, 0 }, // FRINT32X
-    { 0xBFBFFC00U, 0x0E21E800U, Mnemonic::FRINT32Z, IrTemplate::SimdUnary, Opcode::COPY, 0 }, // FRINT32Z
-    { 0xBFBFFC00U, 0x2E21F800U, Mnemonic::FRINT64X, IrTemplate::SimdUnary, Opcode::COPY, 0 }, // FRINT64X
-    { 0xBFBFFC00U, 0x0E21F800U, Mnemonic::FRINT64Z, IrTemplate::SimdUnary, Opcode::COPY, 0 }, // FRINT64Z
-    { 0xBFBFFC00U, 0x2E218800U, Mnemonic::FRINTA, IrTemplate::SimdUnary, Opcode::COPY, 0 }, // FRINTA
-    { 0xBFBFFC00U, 0x2EA19800U, Mnemonic::FRINTI, IrTemplate::SimdUnary, Opcode::COPY, 0 }, // FRINTI
-    { 0xBFBFFC00U, 0x0E219800U, Mnemonic::FRINTM, IrTemplate::SimdUnary, Opcode::COPY, 0 }, // FRINTM
-    { 0xBFBFFC00U, 0x0E218800U, Mnemonic::FRINTN, IrTemplate::SimdUnary, Opcode::COPY, 0 }, // FRINTN
-    { 0xBFBFFC00U, 0x0EA18800U, Mnemonic::FRINTP, IrTemplate::SimdUnary, Opcode::COPY, 0 }, // FRINTP
-    { 0xBFBFFC00U, 0x2E219800U, Mnemonic::FRINTX, IrTemplate::SimdUnary, Opcode::COPY, 0 }, // FRINTX
-    { 0xBFBFFC00U, 0x0EA19800U, Mnemonic::FRINTZ, IrTemplate::SimdUnary, Opcode::COPY, 0 }, // FRINTZ
-    { 0xBFBFFC00U, 0x2EA1D800U, Mnemonic::FRSQRTE, IrTemplate::SimdUnary, Opcode::COPY, 0 }, // FRSQRTE
-    { 0xBFBFFC00U, 0x2EA1F800U, Mnemonic::FSQRT, IrTemplate::SimdUnary, Opcode::FSQRT, 0 }, // FSQRT
-    { 0xBFBFFC00U, 0x0E21D800U, Mnemonic::SCVTF, IrTemplate::SimdUnary, Opcode::COPY, 0 }, // SCVTF
-    { 0xFF3FFC00U, 0x5E207800U, Mnemonic::SQABS, IrTemplate::SimdUnary, Opcode::COPY, 0 }, // SQABS
-    { 0xFF3FFC00U, 0x7E207800U, Mnemonic::SQNEG, IrTemplate::SimdUnary, Opcode::COPY, 0 }, // SQNEG
-    { 0xFF3FFC00U, 0x5E214800U, Mnemonic::SQXTN, IrTemplate::SimdUnary, Opcode::COPY, 0 }, // SQXTN
-    { 0xFF3FFC00U, 0x7E212800U, Mnemonic::SQXTUN, IrTemplate::SimdUnary, Opcode::COPY, 0 }, // SQXTUN
-    { 0xFF3FFC00U, 0x5E203800U, Mnemonic::SUQADD, IrTemplate::SimdUnary, Opcode::COPY, 0 }, // SUQADD
-    { 0xBFBFFC00U, 0x2E21D800U, Mnemonic::UCVTF, IrTemplate::SimdUnary, Opcode::COPY, 0 }, // UCVTF
-    { 0xFF3FFC00U, 0x7E214800U, Mnemonic::UQXTN, IrTemplate::SimdUnary, Opcode::COPY, 0 }, // UQXTN
-    { 0xBFBFFC00U, 0x0EA1C800U, Mnemonic::URECPE, IrTemplate::SimdUnary, Opcode::COPY, 0 }, // URECPE
-    { 0xBFBFFC00U, 0x2EA1C800U, Mnemonic::URSQRTE, IrTemplate::SimdUnary, Opcode::COPY, 0 }, // URSQRTE
-    { 0xFF3FFC00U, 0x7E203800U, Mnemonic::USQADD, IrTemplate::SimdUnary, Opcode::COPY, 0 }, // USQADD
-    { 0xBFFFEC00U, 0x0D408000U, Mnemonic::LD1, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LD1
-    { 0xBFFFEC00U, 0x0DDF8000U, Mnemonic::LD1, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LD1
-    { 0xBFFFEC00U, 0x0D608000U, Mnemonic::LD2, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LD2
-    { 0xBFFFEC00U, 0x0DFF8000U, Mnemonic::LD2, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LD2
-    { 0xBFFFEC00U, 0x0D40A000U, Mnemonic::LD3, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LD3
-    { 0xBFFFEC00U, 0x0DDFA000U, Mnemonic::LD3, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LD3
-    { 0xBFFFEC00U, 0x0D60A000U, Mnemonic::LD4, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LD4
-    { 0xBFFFEC00U, 0x0DFFA000U, Mnemonic::LD4, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LD4
-    { 0xBFFFEC00U, 0x0D008000U, Mnemonic::ST1, IrTemplate::StoreReg, Opcode::STORE, 0 }, // ST1
-    { 0xBFFFEC00U, 0x0D9F8000U, Mnemonic::ST1, IrTemplate::StoreReg, Opcode::STORE, 0 }, // ST1
-    { 0xBFFFEC00U, 0x0D208000U, Mnemonic::ST2, IrTemplate::StoreReg, Opcode::STORE, 0 }, // ST2
-    { 0xBFFFEC00U, 0x0DBF8000U, Mnemonic::ST2, IrTemplate::StoreReg, Opcode::STORE, 0 }, // ST2
-    { 0xBFFFEC00U, 0x0D00A000U, Mnemonic::ST3, IrTemplate::StoreReg, Opcode::STORE, 0 }, // ST3
-    { 0xBFFFEC00U, 0x0D9FA000U, Mnemonic::ST3, IrTemplate::StoreReg, Opcode::STORE, 0 }, // ST3
-    { 0xBFFFEC00U, 0x0D20A000U, Mnemonic::ST4, IrTemplate::StoreReg, Opcode::STORE, 0 }, // ST4
-    { 0xBFFFEC00U, 0x0DBFA000U, Mnemonic::ST4, IrTemplate::StoreReg, Opcode::STORE, 0 }, // ST4
-    { 0xFFFF001CU, 0xC0900000U, Mnemonic::ADDHA, IrTemplate::System, Opcode::UNDEF, 0 }, // ADDHA
-    { 0xFFFF001CU, 0xC0910000U, Mnemonic::ADDVA, IrTemplate::System, Opcode::UNDEF, 0 }, // ADDVA
-    { 0xFFE0FC03U, 0xC120C800U, Mnemonic::BFCLAMP, IrTemplate::System, Opcode::UNDEF, 0 }, // BFCLAMP
-    { 0xFFE19C38U, 0xC1A01010U, Mnemonic::BFDOT, IrTemplate::System, Opcode::UNDEF, 0 }, // BFDOT
-    { 0xFFE19C38U, 0xC1E01008U, Mnemonic::BFMLA, IrTemplate::System, Opcode::UNDEF, 0 }, // BFMLA
-    { 0xFFF09C1CU, 0xC1200810U, Mnemonic::BFMLAL, IrTemplate::System, Opcode::UNDEF, 0 }, // BFMLAL
-    { 0xFFF09C1CU, 0xC1300810U, Mnemonic::BFMLAL, IrTemplate::System, Opcode::UNDEF, 0 }, // BFMLAL
-    { 0xFFE19C38U, 0xC1E01018U, Mnemonic::BFMLS, IrTemplate::System, Opcode::UNDEF, 0 }, // BFMLS
-    { 0xFFF09C1CU, 0xC1200818U, Mnemonic::BFMLSL, IrTemplate::System, Opcode::UNDEF, 0 }, // BFMLSL
-    { 0xFFF09C1CU, 0xC1300818U, Mnemonic::BFMLSL, IrTemplate::System, Opcode::UNDEF, 0 }, // BFMLSL
-    { 0xFFE19C38U, 0xC1A01030U, Mnemonic::FDOT, IrTemplate::System, Opcode::UNDEF, 0 }, // FDOT
-    { 0xFFE19C38U, 0xC1A01020U, Mnemonic::FDOT, IrTemplate::System, Opcode::UNDEF, 0 }, // FDOT
-    { 0xFFE19C38U, 0xC1A01000U, Mnemonic::FDOT, IrTemplate::System, Opcode::UNDEF, 0 }, // FDOT
-    { 0xFFF09878U, 0xC1D08000U, Mnemonic::FMLA, IrTemplate::System, Opcode::UNDEF, 0 }, // FMLA
-    { 0xFFE19C38U, 0xC1A01008U, Mnemonic::FMLA, IrTemplate::System, Opcode::UNDEF, 0 }, // FMLA
-    { 0xFFF09C1CU, 0xC1200804U, Mnemonic::FMLAL, IrTemplate::System, Opcode::UNDEF, 0 }, // FMLAL
-    { 0xFFF09C1CU, 0xC1300804U, Mnemonic::FMLAL, IrTemplate::System, Opcode::UNDEF, 0 }, // FMLAL
-    { 0xFFF09C1CU, 0xC1200800U, Mnemonic::FMLAL, IrTemplate::System, Opcode::UNDEF, 0 }, // FMLAL
-    { 0xFFF09C1CU, 0xC1300800U, Mnemonic::FMLAL, IrTemplate::System, Opcode::UNDEF, 0 }, // FMLAL
-    { 0xFFF09C1CU, 0xC1300400U, Mnemonic::FMLALL, IrTemplate::System, Opcode::UNDEF, 0 }, // FMLALL
-    { 0xFFF09878U, 0xC1D08010U, Mnemonic::FMLS, IrTemplate::System, Opcode::UNDEF, 0 }, // FMLS
-    { 0xFFE19C38U, 0xC1A01018U, Mnemonic::FMLS, IrTemplate::System, Opcode::UNDEF, 0 }, // FMLS
-    { 0xFFF09C1CU, 0xC1200808U, Mnemonic::FMLSL, IrTemplate::System, Opcode::UNDEF, 0 }, // FMLSL
-    { 0xFFF09C1CU, 0xC1300808U, Mnemonic::FMLSL, IrTemplate::System, Opcode::UNDEF, 0 }, // FMLSL
-    { 0xFFFE4C01U, 0xC08A4000U, Mnemonic::LUTI4, IrTemplate::System, Opcode::UNDEF, 0 }, // LUTI4
-    { 0xFFFE4C08U, 0xC09A4000U, Mnemonic::LUTI4, IrTemplate::System, Opcode::UNDEF, 0 }, // LUTI4
-    { 0xFFE19C38U, 0xC1E01408U, Mnemonic::SDOT, IrTemplate::System, Opcode::UNDEF, 0 }, // SDOT
-    { 0xFFF09878U, 0xC1D08008U, Mnemonic::SDOT, IrTemplate::System, Opcode::UNDEF, 0 }, // SDOT
-    { 0xFFF09C1CU, 0xC1600800U, Mnemonic::SMLAL, IrTemplate::System, Opcode::UNDEF, 0 }, // SMLAL
-    { 0xFFF09C1CU, 0xC1700800U, Mnemonic::SMLAL, IrTemplate::System, Opcode::UNDEF, 0 }, // SMLAL
-    { 0xFFF09878U, 0xC1908000U, Mnemonic::SMLALL, IrTemplate::System, Opcode::UNDEF, 0 }, // SMLALL
-    { 0xFFB09C1EU, 0xC1200000U, Mnemonic::SMLALL, IrTemplate::System, Opcode::UNDEF, 0 }, // SMLALL
-    { 0xFFB09C1EU, 0xC1300000U, Mnemonic::SMLALL, IrTemplate::System, Opcode::UNDEF, 0 }, // SMLALL
-    { 0xFFF09C1CU, 0xC1600808U, Mnemonic::SMLSL, IrTemplate::System, Opcode::UNDEF, 0 }, // SMLSL
-    { 0xFFF09C1CU, 0xC1700808U, Mnemonic::SMLSL, IrTemplate::System, Opcode::UNDEF, 0 }, // SMLSL
-    { 0xFFF09878U, 0xC1908008U, Mnemonic::SMLSLL, IrTemplate::System, Opcode::UNDEF, 0 }, // SMLSLL
-    { 0xFFB09C1EU, 0xC1200008U, Mnemonic::SMLSLL, IrTemplate::System, Opcode::UNDEF, 0 }, // SMLSLL
-    { 0xFFB09C1EU, 0xC1300008U, Mnemonic::SMLSLL, IrTemplate::System, Opcode::UNDEF, 0 }, // SMLSLL
-    { 0xFFF0FC20U, 0xC1E0D400U, Mnemonic::SQRSHR, IrTemplate::System, Opcode::UNDEF, 0 }, // SQRSHR
-    { 0xFFF0FC20U, 0xC1F0D400U, Mnemonic::SQRSHRU, IrTemplate::System, Opcode::UNDEF, 0 }, // SQRSHRU
-    { 0xFFF09878U, 0xC1D08808U, Mnemonic::SVDOT, IrTemplate::System, Opcode::UNDEF, 0 }, // SVDOT
-    { 0xFFE19C38U, 0xC1E01418U, Mnemonic::UDOT, IrTemplate::System, Opcode::UNDEF, 0 }, // UDOT
-    { 0xFFF09878U, 0xC1D08018U, Mnemonic::UDOT, IrTemplate::System, Opcode::UNDEF, 0 }, // UDOT
-    { 0xFFF09C1CU, 0xC1600810U, Mnemonic::UMLAL, IrTemplate::System, Opcode::UNDEF, 0 }, // UMLAL
-    { 0xFFF09C1CU, 0xC1700810U, Mnemonic::UMLAL, IrTemplate::System, Opcode::UNDEF, 0 }, // UMLAL
-    { 0xFFF09878U, 0xC1908010U, Mnemonic::UMLALL, IrTemplate::System, Opcode::UNDEF, 0 }, // UMLALL
-    { 0xFFB09C1EU, 0xC1200010U, Mnemonic::UMLALL, IrTemplate::System, Opcode::UNDEF, 0 }, // UMLALL
-    { 0xFFB09C1EU, 0xC1300010U, Mnemonic::UMLALL, IrTemplate::System, Opcode::UNDEF, 0 }, // UMLALL
-    { 0xFFF09C1CU, 0xC1600818U, Mnemonic::UMLSL, IrTemplate::System, Opcode::UNDEF, 0 }, // UMLSL
-    { 0xFFF09C1CU, 0xC1700818U, Mnemonic::UMLSL, IrTemplate::System, Opcode::UNDEF, 0 }, // UMLSL
-    { 0xFFF09878U, 0xC1908018U, Mnemonic::UMLSLL, IrTemplate::System, Opcode::UNDEF, 0 }, // UMLSLL
-    { 0xFFB09C1EU, 0xC1200018U, Mnemonic::UMLSLL, IrTemplate::System, Opcode::UNDEF, 0 }, // UMLSLL
-    { 0xFFB09C1EU, 0xC1300018U, Mnemonic::UMLSLL, IrTemplate::System, Opcode::UNDEF, 0 }, // UMLSLL
-    { 0xFFF0FC20U, 0xC1E0D420U, Mnemonic::UQRSHR, IrTemplate::System, Opcode::UNDEF, 0 }, // UQRSHR
-    { 0xFFE19C38U, 0xC1A01408U, Mnemonic::USDOT, IrTemplate::System, Opcode::UNDEF, 0 }, // USDOT
-    { 0xFFF09C1CU, 0xC1200404U, Mnemonic::USMLALL, IrTemplate::System, Opcode::UNDEF, 0 }, // USMLALL
-    { 0xFFF09878U, 0xC1D08818U, Mnemonic::UVDOT, IrTemplate::System, Opcode::UNDEF, 0 }, // UVDOT
-    { 0xFFFFE000U, 0x04C40000U, Mnemonic::ADDPT, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // ADDPT
-    { 0xFFFFE000U, 0x65008000U, Mnemonic::BFADD, IrTemplate::FpBinop, Opcode::FADD, 0 }, // BFADD
-    { 0xFFFFE000U, 0x658AA000U, Mnemonic::BFCVT, IrTemplate::FpBinop, Opcode::FADD, 0 }, // BFCVT
-    { 0xFFFFE000U, 0x649AC000U, Mnemonic::BFCVT, IrTemplate::FpBinop, Opcode::FADD, 0 }, // BFCVT
-    { 0xFFFFE000U, 0x648AA000U, Mnemonic::BFCVTNT, IrTemplate::FpBinop, Opcode::FADD, 0 }, // BFCVTNT
-    { 0xFFFFE000U, 0x6482A000U, Mnemonic::BFCVTNT, IrTemplate::FpBinop, Opcode::FADD, 0 }, // BFCVTNT
-    { 0xFFFFE000U, 0x65068000U, Mnemonic::BFMAX, IrTemplate::FpBinop, Opcode::FADD, 0 }, // BFMAX
-    { 0xFFFFE000U, 0x65048000U, Mnemonic::BFMAXNM, IrTemplate::FpBinop, Opcode::FADD, 0 }, // BFMAXNM
-    { 0xFFFFE000U, 0x65078000U, Mnemonic::BFMIN, IrTemplate::FpBinop, Opcode::FADD, 0 }, // BFMIN
-    { 0xFFFFE000U, 0x65058000U, Mnemonic::BFMINNM, IrTemplate::FpBinop, Opcode::FADD, 0 }, // BFMINNM
-    { 0xFFFFE000U, 0x65028000U, Mnemonic::BFMUL, IrTemplate::FpBinop, Opcode::FADD, 0 }, // BFMUL
-    { 0xFFFFE000U, 0x65098000U, Mnemonic::BFSCALE, IrTemplate::FpBinop, Opcode::FADD, 0 }, // BFSCALE
-    { 0xFFFFE000U, 0x65018000U, Mnemonic::BFSUB, IrTemplate::FpBinop, Opcode::FADD, 0 }, // BFSUB
-    { 0xFFFFC200U, 0x25104000U, Mnemonic::BRKA, IrTemplate::SimdBinop, Opcode::AND, 0 }, // BRKA
-    { 0xFFFFC200U, 0x25904000U, Mnemonic::BRKB, IrTemplate::SimdBinop, Opcode::AND, 0 }, // BRKB
-    { 0xFF3FF800U, 0x4500D800U, Mnemonic::CADD, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // CADD
-    { 0xFFFFE000U, 0x6589A000U, Mnemonic::FCVT, IrTemplate::FpBinop, Opcode::FADD, 0 }, // FCVT
-    { 0xFFFFE000U, 0x649AA000U, Mnemonic::FCVT, IrTemplate::FpBinop, Opcode::FADD, 0 }, // FCVT
-    { 0xFFFFE000U, 0x65C9A000U, Mnemonic::FCVT, IrTemplate::FpBinop, Opcode::FADD, 0 }, // FCVT
-    { 0xFFFFE000U, 0x64DAA000U, Mnemonic::FCVT, IrTemplate::FpBinop, Opcode::FADD, 0 }, // FCVT
-    { 0xFFFFE000U, 0x6588A000U, Mnemonic::FCVT, IrTemplate::FpBinop, Opcode::FADD, 0 }, // FCVT
-    { 0xFFFFE000U, 0x649A8000U, Mnemonic::FCVT, IrTemplate::FpBinop, Opcode::FADD, 0 }, // FCVT
-    { 0xFFFFE000U, 0x65CBA000U, Mnemonic::FCVT, IrTemplate::FpBinop, Opcode::FADD, 0 }, // FCVT
-    { 0xFFFFE000U, 0x64DAE000U, Mnemonic::FCVT, IrTemplate::FpBinop, Opcode::FADD, 0 }, // FCVT
-    { 0xFFFFE000U, 0x65C8A000U, Mnemonic::FCVT, IrTemplate::FpBinop, Opcode::FADD, 0 }, // FCVT
-    { 0xFFFFE000U, 0x64DA8000U, Mnemonic::FCVT, IrTemplate::FpBinop, Opcode::FADD, 0 }, // FCVT
-    { 0xFFFFE000U, 0x65CAA000U, Mnemonic::FCVT, IrTemplate::FpBinop, Opcode::FADD, 0 }, // FCVT
-    { 0xFFFFE000U, 0x64DAC000U, Mnemonic::FCVT, IrTemplate::FpBinop, Opcode::FADD, 0 }, // FCVT
-    { 0xFFFFE000U, 0x6489A000U, Mnemonic::FCVTLT, IrTemplate::FpBinop, Opcode::FADD, 0 }, // FCVTLT
-    { 0xFFFFE000U, 0x6481A000U, Mnemonic::FCVTLT, IrTemplate::FpBinop, Opcode::FADD, 0 }, // FCVTLT
-    { 0xFFFFE000U, 0x64CBA000U, Mnemonic::FCVTLT, IrTemplate::FpBinop, Opcode::FADD, 0 }, // FCVTLT
-    { 0xFFFFE000U, 0x64C3A000U, Mnemonic::FCVTLT, IrTemplate::FpBinop, Opcode::FADD, 0 }, // FCVTLT
-    { 0xFFFFE000U, 0x6488A000U, Mnemonic::FCVTNT, IrTemplate::FpBinop, Opcode::FADD, 0 }, // FCVTNT
-    { 0xFFFFE000U, 0x6480A000U, Mnemonic::FCVTNT, IrTemplate::FpBinop, Opcode::FADD, 0 }, // FCVTNT
-    { 0xFFFFE000U, 0x64CAA000U, Mnemonic::FCVTNT, IrTemplate::FpBinop, Opcode::FADD, 0 }, // FCVTNT
-    { 0xFFFFE000U, 0x64C2A000U, Mnemonic::FCVTNT, IrTemplate::FpBinop, Opcode::FADD, 0 }, // FCVTNT
-    { 0xFFFFE000U, 0x650AA000U, Mnemonic::FCVTX, IrTemplate::FpBinop, Opcode::FADD, 0 }, // FCVTX
-    { 0xFFFFE000U, 0x641AC000U, Mnemonic::FCVTX, IrTemplate::FpBinop, Opcode::FADD, 0 }, // FCVTX
-    { 0xFFFFE000U, 0x640AA000U, Mnemonic::FCVTXNT, IrTemplate::FpBinop, Opcode::FADD, 0 }, // FCVTXNT
-    { 0xFFFFE000U, 0x6402A000U, Mnemonic::FCVTXNT, IrTemplate::FpBinop, Opcode::FADD, 0 }, // FCVTXNT
-    { 0xFFFFE000U, 0x655AA000U, Mnemonic::FCVTZS, IrTemplate::FpBinop, Opcode::FADD, 0 }, // FCVTZS
-    { 0xFFFFE000U, 0x645EC000U, Mnemonic::FCVTZS, IrTemplate::FpBinop, Opcode::FADD, 0 }, // FCVTZS
-    { 0xFFFFE000U, 0x655CA000U, Mnemonic::FCVTZS, IrTemplate::FpBinop, Opcode::FADD, 0 }, // FCVTZS
-    { 0xFFFFE000U, 0x645F8000U, Mnemonic::FCVTZS, IrTemplate::FpBinop, Opcode::FADD, 0 }, // FCVTZS
-    { 0xFFFFE000U, 0x655EA000U, Mnemonic::FCVTZS, IrTemplate::FpBinop, Opcode::FADD, 0 }, // FCVTZS
-    { 0xFFFFE000U, 0x645FC000U, Mnemonic::FCVTZS, IrTemplate::FpBinop, Opcode::FADD, 0 }, // FCVTZS
-    { 0xFFFFE000U, 0x659CA000U, Mnemonic::FCVTZS, IrTemplate::FpBinop, Opcode::FADD, 0 }, // FCVTZS
-    { 0xFFFFE000U, 0x649F8000U, Mnemonic::FCVTZS, IrTemplate::FpBinop, Opcode::FADD, 0 }, // FCVTZS
-    { 0xFFFFE000U, 0x65DCA000U, Mnemonic::FCVTZS, IrTemplate::FpBinop, Opcode::FADD, 0 }, // FCVTZS
-    { 0xFFFFE000U, 0x64DF8000U, Mnemonic::FCVTZS, IrTemplate::FpBinop, Opcode::FADD, 0 }, // FCVTZS
-    { 0xFFFFE000U, 0x65D8A000U, Mnemonic::FCVTZS, IrTemplate::FpBinop, Opcode::FADD, 0 }, // FCVTZS
-    { 0xFFFFE000U, 0x64DE8000U, Mnemonic::FCVTZS, IrTemplate::FpBinop, Opcode::FADD, 0 }, // FCVTZS
-    { 0xFFFFE000U, 0x65DEA000U, Mnemonic::FCVTZS, IrTemplate::FpBinop, Opcode::FADD, 0 }, // FCVTZS
-    { 0xFFFFE000U, 0x64DFC000U, Mnemonic::FCVTZS, IrTemplate::FpBinop, Opcode::FADD, 0 }, // FCVTZS
-    { 0xFFFFE000U, 0x655BA000U, Mnemonic::FCVTZU, IrTemplate::FpBinop, Opcode::FADD, 0 }, // FCVTZU
-    { 0xFFFFE000U, 0x645EE000U, Mnemonic::FCVTZU, IrTemplate::FpBinop, Opcode::FADD, 0 }, // FCVTZU
-    { 0xFFFFE000U, 0x655DA000U, Mnemonic::FCVTZU, IrTemplate::FpBinop, Opcode::FADD, 0 }, // FCVTZU
-    { 0xFFFFE000U, 0x645FA000U, Mnemonic::FCVTZU, IrTemplate::FpBinop, Opcode::FADD, 0 }, // FCVTZU
-    { 0xFFFFE000U, 0x655FA000U, Mnemonic::FCVTZU, IrTemplate::FpBinop, Opcode::FADD, 0 }, // FCVTZU
-    { 0xFFFFE000U, 0x645FE000U, Mnemonic::FCVTZU, IrTemplate::FpBinop, Opcode::FADD, 0 }, // FCVTZU
-    { 0xFFFFE000U, 0x659DA000U, Mnemonic::FCVTZU, IrTemplate::FpBinop, Opcode::FADD, 0 }, // FCVTZU
-    { 0xFFFFE000U, 0x649FA000U, Mnemonic::FCVTZU, IrTemplate::FpBinop, Opcode::FADD, 0 }, // FCVTZU
-    { 0xFFFFE000U, 0x65DDA000U, Mnemonic::FCVTZU, IrTemplate::FpBinop, Opcode::FADD, 0 }, // FCVTZU
-    { 0xFFFFE000U, 0x64DFA000U, Mnemonic::FCVTZU, IrTemplate::FpBinop, Opcode::FADD, 0 }, // FCVTZU
-    { 0xFFFFE000U, 0x65D9A000U, Mnemonic::FCVTZU, IrTemplate::FpBinop, Opcode::FADD, 0 }, // FCVTZU
-    { 0xFFFFE000U, 0x64DEA000U, Mnemonic::FCVTZU, IrTemplate::FpBinop, Opcode::FADD, 0 }, // FCVTZU
-    { 0xFFFFE000U, 0x65DFA000U, Mnemonic::FCVTZU, IrTemplate::FpBinop, Opcode::FADD, 0 }, // FCVTZU
-    { 0xFFFFE000U, 0x64DFE000U, Mnemonic::FCVTZU, IrTemplate::FpBinop, Opcode::FADD, 0 }, // FCVTZU
-    { 0xFFFFE000U, 0x052E8000U, Mnemonic::REVD, IrTemplate::SimdUnary, Opcode::COPY, 0 }, // REVD
-    { 0xFFFFE000U, 0x052EA000U, Mnemonic::REVD, IrTemplate::SimdUnary, Opcode::COPY, 0 }, // REVD
-    { 0xFFFFE000U, 0x6552A000U, Mnemonic::SCVTF, IrTemplate::FpBinop, Opcode::FADD, 0 }, // SCVTF
-    { 0xFFFFE000U, 0x645CC000U, Mnemonic::SCVTF, IrTemplate::FpBinop, Opcode::FADD, 0 }, // SCVTF
-    { 0xFFFFE000U, 0x6554A000U, Mnemonic::SCVTF, IrTemplate::FpBinop, Opcode::FADD, 0 }, // SCVTF
-    { 0xFFFFE000U, 0x645D8000U, Mnemonic::SCVTF, IrTemplate::FpBinop, Opcode::FADD, 0 }, // SCVTF
-    { 0xFFFFE000U, 0x6594A000U, Mnemonic::SCVTF, IrTemplate::FpBinop, Opcode::FADD, 0 }, // SCVTF
-    { 0xFFFFE000U, 0x649D8000U, Mnemonic::SCVTF, IrTemplate::FpBinop, Opcode::FADD, 0 }, // SCVTF
-    { 0xFFFFE000U, 0x65D0A000U, Mnemonic::SCVTF, IrTemplate::FpBinop, Opcode::FADD, 0 }, // SCVTF
-    { 0xFFFFE000U, 0x64DC8000U, Mnemonic::SCVTF, IrTemplate::FpBinop, Opcode::FADD, 0 }, // SCVTF
-    { 0xFFFFE000U, 0x6556A000U, Mnemonic::SCVTF, IrTemplate::FpBinop, Opcode::FADD, 0 }, // SCVTF
-    { 0xFFFFE000U, 0x645DC000U, Mnemonic::SCVTF, IrTemplate::FpBinop, Opcode::FADD, 0 }, // SCVTF
-    { 0xFFFFE000U, 0x65D4A000U, Mnemonic::SCVTF, IrTemplate::FpBinop, Opcode::FADD, 0 }, // SCVTF
-    { 0xFFFFE000U, 0x64DD8000U, Mnemonic::SCVTF, IrTemplate::FpBinop, Opcode::FADD, 0 }, // SCVTF
-    { 0xFFFFE000U, 0x65D6A000U, Mnemonic::SCVTF, IrTemplate::FpBinop, Opcode::FADD, 0 }, // SCVTF
-    { 0xFFFFE000U, 0x64DDC000U, Mnemonic::SCVTF, IrTemplate::FpBinop, Opcode::FADD, 0 }, // SCVTF
-    { 0xFF3FF800U, 0x4501D800U, Mnemonic::SQCADD, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // SQCADD
-    { 0xFFF0FC20U, 0x45B02800U, Mnemonic::SQRSHRN, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // SQRSHRN
-    { 0xFFF0FC20U, 0x45B00800U, Mnemonic::SQRSHRUN, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // SQRSHRUN
-    { 0xFFA7FC00U, 0x45204000U, Mnemonic::SQXTNB, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // SQXTNB
-    { 0xFFA7FC00U, 0x45204400U, Mnemonic::SQXTNT, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // SQXTNT
-    { 0xFFA7FC00U, 0x45205000U, Mnemonic::SQXTUNB, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // SQXTUNB
-    { 0xFFA7FC00U, 0x45205400U, Mnemonic::SQXTUNT, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // SQXTUNT
-    { 0xFFFFE000U, 0x04C50000U, Mnemonic::SUBPT, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // SUBPT
-    { 0xFFFFE000U, 0x6553A000U, Mnemonic::UCVTF, IrTemplate::FpBinop, Opcode::FADD, 0 }, // UCVTF
-    { 0xFFFFE000U, 0x645CE000U, Mnemonic::UCVTF, IrTemplate::FpBinop, Opcode::FADD, 0 }, // UCVTF
-    { 0xFFFFE000U, 0x6555A000U, Mnemonic::UCVTF, IrTemplate::FpBinop, Opcode::FADD, 0 }, // UCVTF
-    { 0xFFFFE000U, 0x645DA000U, Mnemonic::UCVTF, IrTemplate::FpBinop, Opcode::FADD, 0 }, // UCVTF
-    { 0xFFFFE000U, 0x6595A000U, Mnemonic::UCVTF, IrTemplate::FpBinop, Opcode::FADD, 0 }, // UCVTF
-    { 0xFFFFE000U, 0x649DA000U, Mnemonic::UCVTF, IrTemplate::FpBinop, Opcode::FADD, 0 }, // UCVTF
-    { 0xFFFFE000U, 0x65D1A000U, Mnemonic::UCVTF, IrTemplate::FpBinop, Opcode::FADD, 0 }, // UCVTF
-    { 0xFFFFE000U, 0x64DCA000U, Mnemonic::UCVTF, IrTemplate::FpBinop, Opcode::FADD, 0 }, // UCVTF
-    { 0xFFFFE000U, 0x6557A000U, Mnemonic::UCVTF, IrTemplate::FpBinop, Opcode::FADD, 0 }, // UCVTF
-    { 0xFFFFE000U, 0x645DE000U, Mnemonic::UCVTF, IrTemplate::FpBinop, Opcode::FADD, 0 }, // UCVTF
-    { 0xFFFFE000U, 0x65D5A000U, Mnemonic::UCVTF, IrTemplate::FpBinop, Opcode::FADD, 0 }, // UCVTF
-    { 0xFFFFE000U, 0x64DDA000U, Mnemonic::UCVTF, IrTemplate::FpBinop, Opcode::FADD, 0 }, // UCVTF
-    { 0xFFFFE000U, 0x65D7A000U, Mnemonic::UCVTF, IrTemplate::FpBinop, Opcode::FADD, 0 }, // UCVTF
-    { 0xFFFFE000U, 0x64DDE000U, Mnemonic::UCVTF, IrTemplate::FpBinop, Opcode::FADD, 0 }, // UCVTF
-    { 0xFFF0FC20U, 0x45B03800U, Mnemonic::UQRSHRN, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // UQRSHRN
-    { 0xFFA7FC00U, 0x45204800U, Mnemonic::UQXTNB, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // UQXTNB
-    { 0xFFA7FC00U, 0x45204C00U, Mnemonic::UQXTNT, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // UQXTNT
-    { 0xBF3FFC00U, 0x0E20B800U, Mnemonic::ABS, IrTemplate::SimdUnary, Opcode::NEG, 0 }, // ABS
-    { 0xBF3FFC00U, 0x0E31B800U, Mnemonic::ADDV, IrTemplate::SimdUnary, Opcode::ADD, 0 }, // ADDV
-    { 0xBF3FFC00U, 0x0E204800U, Mnemonic::CLS, IrTemplate::SimdUnary, Opcode::COPY, 0 }, // CLS
-    { 0xBF3FFC00U, 0x2E204800U, Mnemonic::CLZ, IrTemplate::SimdUnary, Opcode::COPY, 0 }, // CLZ
-    { 0xBF3FFC00U, 0x0E209800U, Mnemonic::CMEQ, IrTemplate::SimdUnary, Opcode::CMP_EQ, 0 }, // CMEQ
-    { 0xBF3FFC00U, 0x2E208800U, Mnemonic::CMGE, IrTemplate::SimdUnary, Opcode::CMP_SLE, 0 }, // CMGE
-    { 0xBF3FFC00U, 0x0E208800U, Mnemonic::CMGT, IrTemplate::SimdUnary, Opcode::CMP_SLT, 0 }, // CMGT
-    { 0xBF3FFC00U, 0x2E209800U, Mnemonic::CMLE, IrTemplate::SimdUnary, Opcode::CMP_SLE, 0 }, // CMLE
-    { 0xBF3FFC00U, 0x0E20A800U, Mnemonic::CMLT, IrTemplate::SimdUnary, Opcode::CMP_SLT, 0 }, // CMLT
-    { 0xBF3FFC00U, 0x0E205800U, Mnemonic::CNT, IrTemplate::SimdUnary, Opcode::COPY, 0 }, // CNT
-    { 0xFFF8FC00U, 0x6F00F400U, Mnemonic::FMOV, IrTemplate::SimdUnary, Opcode::COPY, 0 }, // FMOV
-    { 0xFFE01FE0U, 0x1EE01000U, Mnemonic::FMOV, IrTemplate::SimdBinop, Opcode::UNDEF, 0 }, // FMOV
-    { 0xFFE01FE0U, 0x1E201000U, Mnemonic::FMOV, IrTemplate::SimdBinop, Opcode::UNDEF, 0 }, // FMOV
-    { 0xFFE01FE0U, 0x1E601000U, Mnemonic::FMOV, IrTemplate::SimdBinop, Opcode::UNDEF, 0 }, // FMOV
-    { 0xFFF8FC00U, 0x2F00E400U, Mnemonic::MOVI, IrTemplate::SimdUnary, Opcode::COPY, 0 }, // MOVI
-    { 0xFFF8FC00U, 0x6F00E400U, Mnemonic::MOVI, IrTemplate::SimdUnary, Opcode::COPY, 0 }, // MOVI
-    { 0xBF3FFC00U, 0x2E20B800U, Mnemonic::NEG, IrTemplate::SimdUnary, Opcode::NEG, 0 }, // NEG
-    { 0xBF3FFC00U, 0x0E201800U, Mnemonic::REV16, IrTemplate::SimdUnary, Opcode::COPY, 0 }, // REV16
-    { 0xBF3FFC00U, 0x2E200800U, Mnemonic::REV32, IrTemplate::SimdUnary, Opcode::COPY, 0 }, // REV32
-    { 0xBF3FFC00U, 0x0E200800U, Mnemonic::REV64, IrTemplate::SimdUnary, Opcode::COPY, 0 }, // REV64
-    { 0xBF3FFC00U, 0x0E206800U, Mnemonic::SADALP, IrTemplate::SimdUnary, Opcode::COPY, 0 }, // SADALP
-    { 0xBF3FFC00U, 0x0E202800U, Mnemonic::SADDLP, IrTemplate::SimdUnary, Opcode::COPY, 0 }, // SADDLP
-    { 0xBF3FFC00U, 0x0E303800U, Mnemonic::SADDLV, IrTemplate::SimdUnary, Opcode::ADD, 0 }, // SADDLV
-    { 0xBF3FFC00U, 0x2E213800U, Mnemonic::SHLL, IrTemplate::SimdUnary, Opcode::COPY, 0 }, // SHLL
-    { 0xBF3FFC00U, 0x0E30A800U, Mnemonic::SMAXV, IrTemplate::SimdUnary, Opcode::ADD, 0 }, // SMAXV
-    { 0xBF3FFC00U, 0x0E31A800U, Mnemonic::SMINV, IrTemplate::SimdUnary, Opcode::ADD, 0 }, // SMINV
-    { 0xBF3FFC00U, 0x0E207800U, Mnemonic::SQABS, IrTemplate::SimdUnary, Opcode::NEG, 0 }, // SQABS
-    { 0xBF3FFC00U, 0x2E207800U, Mnemonic::SQNEG, IrTemplate::SimdUnary, Opcode::NEG, 0 }, // SQNEG
-    { 0xBF3FFC00U, 0x0E214800U, Mnemonic::SQXTN, IrTemplate::SimdUnary, Opcode::COPY, 0 }, // SQXTN
-    { 0xBF3FFC00U, 0x2E212800U, Mnemonic::SQXTUN, IrTemplate::SimdUnary, Opcode::COPY, 0 }, // SQXTUN
-    { 0xBF3FFC00U, 0x0E203800U, Mnemonic::SUQADD, IrTemplate::SimdUnary, Opcode::COPY, 0 }, // SUQADD
-    { 0xBF3FFC00U, 0x2E206800U, Mnemonic::UADALP, IrTemplate::SimdUnary, Opcode::COPY, 0 }, // UADALP
-    { 0xBF3FFC00U, 0x2E202800U, Mnemonic::UADDLP, IrTemplate::SimdUnary, Opcode::COPY, 0 }, // UADDLP
-    { 0xBF3FFC00U, 0x2E303800U, Mnemonic::UADDLV, IrTemplate::SimdUnary, Opcode::ADD, 0 }, // UADDLV
-    { 0xBF3FFC00U, 0x2E30A800U, Mnemonic::UMAXV, IrTemplate::SimdUnary, Opcode::ADD, 0 }, // UMAXV
-    { 0xBF3FFC00U, 0x2E31A800U, Mnemonic::UMINV, IrTemplate::SimdUnary, Opcode::ADD, 0 }, // UMINV
-    { 0xBF3FFC00U, 0x2E214800U, Mnemonic::UQXTN, IrTemplate::SimdUnary, Opcode::COPY, 0 }, // UQXTN
-    { 0xBF3FFC00U, 0x2E203800U, Mnemonic::USQADD, IrTemplate::SimdUnary, Opcode::COPY, 0 }, // USQADD
-    { 0xBF3FFC00U, 0x0E212800U, Mnemonic::XTN, IrTemplate::SimdUnary, Opcode::COPY, 0 }, // XTN
-    { 0xBFFFF000U, 0x0C407000U, Mnemonic::LD1, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LD1
-    { 0xBFFFF000U, 0x0C40A000U, Mnemonic::LD1, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LD1
-    { 0xBFFFF000U, 0x0C406000U, Mnemonic::LD1, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LD1
-    { 0xBFFFF000U, 0x0C402000U, Mnemonic::LD1, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LD1
-    { 0xBFFFF000U, 0x0CDF7000U, Mnemonic::LD1, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LD1
-    { 0xBFFFF000U, 0x0CDFA000U, Mnemonic::LD1, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LD1
-    { 0xBFFFF000U, 0x0CDF6000U, Mnemonic::LD1, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LD1
-    { 0xBFFFF000U, 0x0CDF2000U, Mnemonic::LD1, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LD1
-    { 0xBFFFF000U, 0x0D40C000U, Mnemonic::LD1R, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LD1R
-    { 0xBFFFF000U, 0x0DDFC000U, Mnemonic::LD1R, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LD1R
-    { 0xBFFFF000U, 0x0C408000U, Mnemonic::LD2, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LD2
-    { 0xBFFFF000U, 0x0CDF8000U, Mnemonic::LD2, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LD2
-    { 0xBFFFF000U, 0x0D60C000U, Mnemonic::LD2R, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LD2R
-    { 0xBFFFF000U, 0x0DFFC000U, Mnemonic::LD2R, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LD2R
-    { 0xBFFFF000U, 0x0C404000U, Mnemonic::LD3, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LD3
-    { 0xBFFFF000U, 0x0CDF4000U, Mnemonic::LD3, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LD3
-    { 0xBFFFF000U, 0x0D40E000U, Mnemonic::LD3R, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LD3R
-    { 0xBFFFF000U, 0x0DDFE000U, Mnemonic::LD3R, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LD3R
-    { 0xBFFFF000U, 0x0C400000U, Mnemonic::LD4, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LD4
-    { 0xBFFFF000U, 0x0CDF0000U, Mnemonic::LD4, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LD4
-    { 0xBFFFF000U, 0x0D60E000U, Mnemonic::LD4R, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LD4R
-    { 0xBFFFF000U, 0x0DFFE000U, Mnemonic::LD4R, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LD4R
-    { 0xBFFFF000U, 0x0C007000U, Mnemonic::ST1, IrTemplate::StoreReg, Opcode::STORE, 0 }, // ST1
-    { 0xBFFFF000U, 0x0C00A000U, Mnemonic::ST1, IrTemplate::StoreReg, Opcode::STORE, 0 }, // ST1
-    { 0xBFFFF000U, 0x0C006000U, Mnemonic::ST1, IrTemplate::StoreReg, Opcode::STORE, 0 }, // ST1
-    { 0xBFFFF000U, 0x0C002000U, Mnemonic::ST1, IrTemplate::StoreReg, Opcode::STORE, 0 }, // ST1
-    { 0xBFFFF000U, 0x0C9F7000U, Mnemonic::ST1, IrTemplate::StoreReg, Opcode::STORE, 0 }, // ST1
-    { 0xBFFFF000U, 0x0C9FA000U, Mnemonic::ST1, IrTemplate::StoreReg, Opcode::STORE, 0 }, // ST1
-    { 0xBFFFF000U, 0x0C9F6000U, Mnemonic::ST1, IrTemplate::StoreReg, Opcode::STORE, 0 }, // ST1
-    { 0xBFFFF000U, 0x0C9F2000U, Mnemonic::ST1, IrTemplate::StoreReg, Opcode::STORE, 0 }, // ST1
-    { 0xBFFFF000U, 0x0C008000U, Mnemonic::ST2, IrTemplate::StoreReg, Opcode::STORE, 0 }, // ST2
-    { 0xBFFFF000U, 0x0C9F8000U, Mnemonic::ST2, IrTemplate::StoreReg, Opcode::STORE, 0 }, // ST2
-    { 0xBFFFF000U, 0x0C004000U, Mnemonic::ST3, IrTemplate::StoreReg, Opcode::STORE, 0 }, // ST3
-    { 0xBFFFF000U, 0x0C9F4000U, Mnemonic::ST3, IrTemplate::StoreReg, Opcode::STORE, 0 }, // ST3
-    { 0xBFFFF000U, 0x0C000000U, Mnemonic::ST4, IrTemplate::StoreReg, Opcode::STORE, 0 }, // ST4
-    { 0xBFFFF000U, 0x0C9F0000U, Mnemonic::ST4, IrTemplate::StoreReg, Opcode::STORE, 0 }, // ST4
-    { 0xFFA19C38U, 0xC1A01810U, Mnemonic::ADD, IrTemplate::System, Opcode::UNDEF, 0 }, // ADD
-    { 0xFFFF0018U, 0xC0D00000U, Mnemonic::ADDHA, IrTemplate::System, Opcode::UNDEF, 0 }, // ADDHA
-    { 0xFFFF0018U, 0xC0D10000U, Mnemonic::ADDVA, IrTemplate::System, Opcode::UNDEF, 0 }, // ADDVA
-    { 0xFFE0FC01U, 0xC120C000U, Mnemonic::BFCLAMP, IrTemplate::System, Opcode::UNDEF, 0 }, // BFCLAMP
-    { 0xFFF09078U, 0xC1509018U, Mnemonic::BFDOT, IrTemplate::System, Opcode::UNDEF, 0 }, // BFDOT
-    { 0xFFF09C18U, 0xC1201010U, Mnemonic::BFDOT, IrTemplate::System, Opcode::UNDEF, 0 }, // BFDOT
-    { 0xFFF09C18U, 0xC1301010U, Mnemonic::BFDOT, IrTemplate::System, Opcode::UNDEF, 0 }, // BFDOT
-    { 0xFFF09C18U, 0xC1601C00U, Mnemonic::BFMLA, IrTemplate::System, Opcode::UNDEF, 0 }, // BFMLA
-    { 0xFFF09C18U, 0xC1701C00U, Mnemonic::BFMLA, IrTemplate::System, Opcode::UNDEF, 0 }, // BFMLA
-    { 0xFFF09078U, 0xC1909010U, Mnemonic::BFMLAL, IrTemplate::System, Opcode::UNDEF, 0 }, // BFMLAL
-    { 0xFFF09C18U, 0xC1200C10U, Mnemonic::BFMLAL, IrTemplate::System, Opcode::UNDEF, 0 }, // BFMLAL
-    { 0xFFF09C18U, 0xC1601C08U, Mnemonic::BFMLS, IrTemplate::System, Opcode::UNDEF, 0 }, // BFMLS
-    { 0xFFF09C18U, 0xC1701C08U, Mnemonic::BFMLS, IrTemplate::System, Opcode::UNDEF, 0 }, // BFMLS
-    { 0xFFF09078U, 0xC1909018U, Mnemonic::BFMLSL, IrTemplate::System, Opcode::UNDEF, 0 }, // BFMLSL
-    { 0xFFF09C18U, 0xC1200C18U, Mnemonic::BFMLSL, IrTemplate::System, Opcode::UNDEF, 0 }, // BFMLSL
-    { 0xFFF09078U, 0xC1508008U, Mnemonic::FDOT, IrTemplate::System, Opcode::UNDEF, 0 }, // FDOT
-    { 0xFFF09C18U, 0xC1201018U, Mnemonic::FDOT, IrTemplate::System, Opcode::UNDEF, 0 }, // FDOT
-    { 0xFFF09C18U, 0xC1301018U, Mnemonic::FDOT, IrTemplate::System, Opcode::UNDEF, 0 }, // FDOT
-    { 0xFFF09C18U, 0xC1201008U, Mnemonic::FDOT, IrTemplate::System, Opcode::UNDEF, 0 }, // FDOT
-    { 0xFFF09C18U, 0xC1301008U, Mnemonic::FDOT, IrTemplate::System, Opcode::UNDEF, 0 }, // FDOT
-    { 0xFFF09078U, 0xC1509008U, Mnemonic::FDOT, IrTemplate::System, Opcode::UNDEF, 0 }, // FDOT
-    { 0xFFF09C18U, 0xC1201000U, Mnemonic::FDOT, IrTemplate::System, Opcode::UNDEF, 0 }, // FDOT
-    { 0xFFF09C18U, 0xC1301000U, Mnemonic::FDOT, IrTemplate::System, Opcode::UNDEF, 0 }, // FDOT
-    { 0xFFF09838U, 0xC1D00000U, Mnemonic::FMLA, IrTemplate::System, Opcode::UNDEF, 0 }, // FMLA
-    { 0xFFF09078U, 0xC1508000U, Mnemonic::FMLA, IrTemplate::System, Opcode::UNDEF, 0 }, // FMLA
-    { 0xFFF09C18U, 0xC1201C00U, Mnemonic::FMLA, IrTemplate::System, Opcode::UNDEF, 0 }, // FMLA
-    { 0xFFF09C18U, 0xC1301C00U, Mnemonic::FMLA, IrTemplate::System, Opcode::UNDEF, 0 }, // FMLA
-    { 0xFFA19C38U, 0xC1A01800U, Mnemonic::FMLA, IrTemplate::System, Opcode::UNDEF, 0 }, // FMLA
-    { 0xFFF09C18U, 0xC1300C00U, Mnemonic::FMLAL, IrTemplate::System, Opcode::UNDEF, 0 }, // FMLAL
-    { 0xFFF09078U, 0xC1909000U, Mnemonic::FMLAL, IrTemplate::System, Opcode::UNDEF, 0 }, // FMLAL
-    { 0xFFF09C18U, 0xC1200C00U, Mnemonic::FMLAL, IrTemplate::System, Opcode::UNDEF, 0 }, // FMLAL
-    { 0xFFF09078U, 0xC1108040U, Mnemonic::FMLALL, IrTemplate::System, Opcode::UNDEF, 0 }, // FMLALL
-    { 0xFFF09838U, 0xC1D00010U, Mnemonic::FMLS, IrTemplate::System, Opcode::UNDEF, 0 }, // FMLS
-    { 0xFFF09078U, 0xC1508010U, Mnemonic::FMLS, IrTemplate::System, Opcode::UNDEF, 0 }, // FMLS
-    { 0xFFF09C18U, 0xC1201C08U, Mnemonic::FMLS, IrTemplate::System, Opcode::UNDEF, 0 }, // FMLS
-    { 0xFFF09C18U, 0xC1301C08U, Mnemonic::FMLS, IrTemplate::System, Opcode::UNDEF, 0 }, // FMLS
-    { 0xFFA19C38U, 0xC1A01808U, Mnemonic::FMLS, IrTemplate::System, Opcode::UNDEF, 0 }, // FMLS
-    { 0xFFF09078U, 0xC1909008U, Mnemonic::FMLSL, IrTemplate::System, Opcode::UNDEF, 0 }, // FMLSL
-    { 0xFFF09C18U, 0xC1200C08U, Mnemonic::FMLSL, IrTemplate::System, Opcode::UNDEF, 0 }, // FMLSL
-    { 0xFF21FC21U, 0xC120E800U, Mnemonic::FMUL, IrTemplate::System, Opcode::UNDEF, 0 }, // FMUL
-    { 0xFF21FC21U, 0xC120E400U, Mnemonic::FMUL, IrTemplate::System, Opcode::UNDEF, 0 }, // FMUL
-    { 0xFFFC4C01U, 0xC08C4000U, Mnemonic::LUTI2, IrTemplate::System, Opcode::UNDEF, 0 }, // LUTI2
-    { 0xFFFC4C08U, 0xC09C4000U, Mnemonic::LUTI2, IrTemplate::System, Opcode::UNDEF, 0 }, // LUTI2
-    { 0xFFA0FC03U, 0xC120F400U, Mnemonic::LUTI6, IrTemplate::System, Opcode::UNDEF, 0 }, // LUTI6
-    { 0xFFA0FC0CU, 0xC120FC00U, Mnemonic::LUTI6, IrTemplate::System, Opcode::UNDEF, 0 }, // LUTI6
-    { 0xFFF09078U, 0xC1509000U, Mnemonic::SDOT, IrTemplate::System, Opcode::UNDEF, 0 }, // SDOT
-    { 0xFFF09C18U, 0xC1601408U, Mnemonic::SDOT, IrTemplate::System, Opcode::UNDEF, 0 }, // SDOT
-    { 0xFFF09C18U, 0xC1701408U, Mnemonic::SDOT, IrTemplate::System, Opcode::UNDEF, 0 }, // SDOT
-    { 0xFFF09838U, 0xC1D00008U, Mnemonic::SDOT, IrTemplate::System, Opcode::UNDEF, 0 }, // SDOT
-    { 0xFFF09078U, 0xC1509020U, Mnemonic::SDOT, IrTemplate::System, Opcode::UNDEF, 0 }, // SDOT
-    { 0xFFA19C38U, 0xC1A01400U, Mnemonic::SDOT, IrTemplate::System, Opcode::UNDEF, 0 }, // SDOT
-    { 0xFF23E063U, 0xC1218000U, Mnemonic::SEL, IrTemplate::System, Opcode::UNDEF, 0 }, // SEL
-    { 0xFFF09078U, 0xC1D09000U, Mnemonic::SMLAL, IrTemplate::System, Opcode::UNDEF, 0 }, // SMLAL
-    { 0xFFF09C18U, 0xC1600C00U, Mnemonic::SMLAL, IrTemplate::System, Opcode::UNDEF, 0 }, // SMLAL
-    { 0xFFF09838U, 0xC1900000U, Mnemonic::SMLALL, IrTemplate::System, Opcode::UNDEF, 0 }, // SMLALL
-    { 0xFFF09078U, 0xC1108000U, Mnemonic::SMLALL, IrTemplate::System, Opcode::UNDEF, 0 }, // SMLALL
-    { 0xFFB09C1CU, 0xC1200400U, Mnemonic::SMLALL, IrTemplate::System, Opcode::UNDEF, 0 }, // SMLALL
-    { 0xFFF09078U, 0xC1D09008U, Mnemonic::SMLSL, IrTemplate::System, Opcode::UNDEF, 0 }, // SMLSL
-    { 0xFFF09C18U, 0xC1600C08U, Mnemonic::SMLSL, IrTemplate::System, Opcode::UNDEF, 0 }, // SMLSL
-    { 0xFFF09838U, 0xC1900008U, Mnemonic::SMLSLL, IrTemplate::System, Opcode::UNDEF, 0 }, // SMLSLL
-    { 0xFFF09078U, 0xC1108008U, Mnemonic::SMLSLL, IrTemplate::System, Opcode::UNDEF, 0 }, // SMLSLL
-    { 0xFFB09C1CU, 0xC1200408U, Mnemonic::SMLSLL, IrTemplate::System, Opcode::UNDEF, 0 }, // SMLSLL
-    { 0xFFA19C38U, 0xC1A01818U, Mnemonic::SUB, IrTemplate::System, Opcode::UNDEF, 0 }, // SUB
-    { 0xFFF09078U, 0xC1509038U, Mnemonic::SUDOT, IrTemplate::System, Opcode::UNDEF, 0 }, // SUDOT
-    { 0xFFF09C18U, 0xC1201418U, Mnemonic::SUDOT, IrTemplate::System, Opcode::UNDEF, 0 }, // SUDOT
-    { 0xFFF09C18U, 0xC1301418U, Mnemonic::SUDOT, IrTemplate::System, Opcode::UNDEF, 0 }, // SUDOT
-    { 0xFFF09078U, 0xC1108030U, Mnemonic::SUMLALL, IrTemplate::System, Opcode::UNDEF, 0 }, // SUMLALL
-    { 0xFFF09078U, 0xC1508038U, Mnemonic::SUVDOT, IrTemplate::System, Opcode::UNDEF, 0 }, // SUVDOT
-    { 0xFFF09078U, 0xC1508020U, Mnemonic::SVDOT, IrTemplate::System, Opcode::UNDEF, 0 }, // SVDOT
-    { 0xFFF09078U, 0xC1509010U, Mnemonic::UDOT, IrTemplate::System, Opcode::UNDEF, 0 }, // UDOT
-    { 0xFFF09C18U, 0xC1601418U, Mnemonic::UDOT, IrTemplate::System, Opcode::UNDEF, 0 }, // UDOT
-    { 0xFFF09C18U, 0xC1701418U, Mnemonic::UDOT, IrTemplate::System, Opcode::UNDEF, 0 }, // UDOT
-    { 0xFFF09838U, 0xC1D00018U, Mnemonic::UDOT, IrTemplate::System, Opcode::UNDEF, 0 }, // UDOT
-    { 0xFFF09078U, 0xC1509030U, Mnemonic::UDOT, IrTemplate::System, Opcode::UNDEF, 0 }, // UDOT
-    { 0xFFA19C38U, 0xC1A01410U, Mnemonic::UDOT, IrTemplate::System, Opcode::UNDEF, 0 }, // UDOT
-    { 0xFFF09078U, 0xC1D09010U, Mnemonic::UMLAL, IrTemplate::System, Opcode::UNDEF, 0 }, // UMLAL
-    { 0xFFF09C18U, 0xC1600C10U, Mnemonic::UMLAL, IrTemplate::System, Opcode::UNDEF, 0 }, // UMLAL
-    { 0xFFF09838U, 0xC1900010U, Mnemonic::UMLALL, IrTemplate::System, Opcode::UNDEF, 0 }, // UMLALL
-    { 0xFFF09078U, 0xC1108010U, Mnemonic::UMLALL, IrTemplate::System, Opcode::UNDEF, 0 }, // UMLALL
-    { 0xFFB09C1CU, 0xC1200410U, Mnemonic::UMLALL, IrTemplate::System, Opcode::UNDEF, 0 }, // UMLALL
-    { 0xFFF09078U, 0xC1D09018U, Mnemonic::UMLSL, IrTemplate::System, Opcode::UNDEF, 0 }, // UMLSL
-    { 0xFFF09C18U, 0xC1600C18U, Mnemonic::UMLSL, IrTemplate::System, Opcode::UNDEF, 0 }, // UMLSL
-    { 0xFFF09838U, 0xC1900018U, Mnemonic::UMLSLL, IrTemplate::System, Opcode::UNDEF, 0 }, // UMLSLL
-    { 0xFFF09078U, 0xC1108018U, Mnemonic::UMLSLL, IrTemplate::System, Opcode::UNDEF, 0 }, // UMLSLL
-    { 0xFFB09C1CU, 0xC1200418U, Mnemonic::UMLSLL, IrTemplate::System, Opcode::UNDEF, 0 }, // UMLSLL
-    { 0xFFF09078U, 0xC1509028U, Mnemonic::USDOT, IrTemplate::System, Opcode::UNDEF, 0 }, // USDOT
-    { 0xFFF09C18U, 0xC1201408U, Mnemonic::USDOT, IrTemplate::System, Opcode::UNDEF, 0 }, // USDOT
-    { 0xFFF09C18U, 0xC1301408U, Mnemonic::USDOT, IrTemplate::System, Opcode::UNDEF, 0 }, // USDOT
-    { 0xFFF09078U, 0xC1108020U, Mnemonic::USMLALL, IrTemplate::System, Opcode::UNDEF, 0 }, // USMLALL
-    { 0xFFF09078U, 0xC1508028U, Mnemonic::USVDOT, IrTemplate::System, Opcode::UNDEF, 0 }, // USVDOT
-    { 0xFFF09078U, 0xC1508030U, Mnemonic::UVDOT, IrTemplate::System, Opcode::UNDEF, 0 }, // UVDOT
-    { 0xFFE0FC01U, 0xC120D401U, Mnemonic::UZP, IrTemplate::System, Opcode::UNDEF, 0 }, // UZP
-    { 0xFFE0FC01U, 0xC120D400U, Mnemonic::ZIP, IrTemplate::System, Opcode::UNDEF, 0 }, // ZIP
-    { 0xFFF0FC00U, 0x0420E000U, Mnemonic::CNTB, IrTemplate::System, Opcode::UNDEF, 0 }, // CNTB
-    { 0xFFF0FC00U, 0x04E0E000U, Mnemonic::CNTD, IrTemplate::System, Opcode::UNDEF, 0 }, // CNTD
-    { 0xFFF0FC00U, 0x0460E000U, Mnemonic::CNTH, IrTemplate::System, Opcode::UNDEF, 0 }, // CNTH
-    { 0xFFF0FC00U, 0x04A0E000U, Mnemonic::CNTW, IrTemplate::System, Opcode::UNDEF, 0 }, // CNTW
-    { 0xFFBFE000U, 0x05218000U, Mnemonic::COMPACT, IrTemplate::SimdUnary, Opcode::COPY, 0 }, // COMPACT
-    { 0xFFBFE000U, 0x05A18000U, Mnemonic::COMPACT, IrTemplate::SimdUnary, Opcode::COPY, 0 }, // COMPACT
-    { 0xFFF0FC00U, 0x0430E400U, Mnemonic::DECB, IrTemplate::System, Opcode::UNDEF, 0 }, // DECB
-    { 0xFFF0FC00U, 0x04F0E400U, Mnemonic::DECD, IrTemplate::System, Opcode::UNDEF, 0 }, // DECD
-    { 0xFFF0FC00U, 0x0470E400U, Mnemonic::DECH, IrTemplate::System, Opcode::UNDEF, 0 }, // DECH
-    { 0xFFF0FC00U, 0x04B0E400U, Mnemonic::DECW, IrTemplate::System, Opcode::UNDEF, 0 }, // DECW
-    { 0xFFF0FC00U, 0x04F0C400U, Mnemonic::DECD, IrTemplate::System, Opcode::UNDEF, 0 }, // DECD
-    { 0xFFF0FC00U, 0x0470C400U, Mnemonic::DECH, IrTemplate::System, Opcode::UNDEF, 0 }, // DECH
-    { 0xFFF0FC00U, 0x04B0C400U, Mnemonic::DECW, IrTemplate::System, Opcode::UNDEF, 0 }, // DECW
-    { 0xFFF0FC00U, 0x05602400U, Mnemonic::EXTQ, IrTemplate::SimdUnary, Opcode::COPY, 0 }, // EXTQ
-    { 0xFF3FE010U, 0x65122000U, Mnemonic::FCMEQ, IrTemplate::FpBinop, Opcode::FADD, 0 }, // FCMEQ
-    { 0xFF3FE010U, 0x65102010U, Mnemonic::FCMGT, IrTemplate::FpBinop, Opcode::FADD, 0 }, // FCMGT
-    { 0xFF3FE010U, 0x65102000U, Mnemonic::FCMGE, IrTemplate::FpBinop, Opcode::FADD, 0 }, // FCMGE
-    { 0xFF3FE010U, 0x65112000U, Mnemonic::FCMLT, IrTemplate::FpBinop, Opcode::FADD, 0 }, // FCMLT
-    { 0xFF3FE010U, 0x65112010U, Mnemonic::FCMLE, IrTemplate::FpBinop, Opcode::FADD, 0 }, // FCMLE
-    { 0xFF3FE010U, 0x65132000U, Mnemonic::FCMNE, IrTemplate::FpBinop, Opcode::FADD, 0 }, // FCMNE
-    { 0xFFFDE000U, 0x6511A000U, Mnemonic::FRINT32X, IrTemplate::FpBinop, Opcode::FADD, 0 }, // FRINT32X
-    { 0xFFFFA000U, 0x641CA000U, Mnemonic::FRINT32X, IrTemplate::FpBinop, Opcode::FADD, 0 }, // FRINT32X
-    { 0xFFFDE000U, 0x6510A000U, Mnemonic::FRINT32Z, IrTemplate::FpBinop, Opcode::FADD, 0 }, // FRINT32Z
-    { 0xFFFFA000U, 0x641C8000U, Mnemonic::FRINT32Z, IrTemplate::FpBinop, Opcode::FADD, 0 }, // FRINT32Z
-    { 0xFFFDE000U, 0x6515A000U, Mnemonic::FRINT64X, IrTemplate::FpBinop, Opcode::FADD, 0 }, // FRINT64X
-    { 0xFFFFA000U, 0x641DA000U, Mnemonic::FRINT64X, IrTemplate::FpBinop, Opcode::FADD, 0 }, // FRINT64X
-    { 0xFFFDE000U, 0x6514A000U, Mnemonic::FRINT64Z, IrTemplate::FpBinop, Opcode::FADD, 0 }, // FRINT64Z
-    { 0xFFFFA000U, 0x641D8000U, Mnemonic::FRINT64Z, IrTemplate::FpBinop, Opcode::FADD, 0 }, // FRINT64Z
-    { 0xFFF0FC00U, 0x0430E000U, Mnemonic::INCB, IrTemplate::System, Opcode::UNDEF, 0 }, // INCB
-    { 0xFFF0FC00U, 0x04F0E000U, Mnemonic::INCD, IrTemplate::System, Opcode::UNDEF, 0 }, // INCD
-    { 0xFFF0FC00U, 0x0470E000U, Mnemonic::INCH, IrTemplate::System, Opcode::UNDEF, 0 }, // INCH
-    { 0xFFF0FC00U, 0x04B0E000U, Mnemonic::INCW, IrTemplate::System, Opcode::UNDEF, 0 }, // INCW
-    { 0xFFF0FC00U, 0x04F0C000U, Mnemonic::INCD, IrTemplate::System, Opcode::UNDEF, 0 }, // INCD
-    { 0xFFF0FC00U, 0x0470C000U, Mnemonic::INCH, IrTemplate::System, Opcode::UNDEF, 0 }, // INCH
-    { 0xFFF0FC00U, 0x04B0C000U, Mnemonic::INCW, IrTemplate::System, Opcode::UNDEF, 0 }, // INCW
-    { 0xFFE0FC01U, 0x4520FC00U, Mnemonic::PMLAL, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // PMLAL
-    { 0xFFE0FC01U, 0x4520F800U, Mnemonic::PMULL, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // PMULL
-    { 0xFFF0FC00U, 0x0420F800U, Mnemonic::SQDECB, IrTemplate::System, Opcode::UNDEF, 0 }, // SQDECB
-    { 0xFFF0FC00U, 0x0430F800U, Mnemonic::SQDECB, IrTemplate::System, Opcode::UNDEF, 0 }, // SQDECB
-    { 0xFFF0FC00U, 0x04E0F800U, Mnemonic::SQDECD, IrTemplate::System, Opcode::UNDEF, 0 }, // SQDECD
-    { 0xFFF0FC00U, 0x04F0F800U, Mnemonic::SQDECD, IrTemplate::System, Opcode::UNDEF, 0 }, // SQDECD
-    { 0xFFF0FC00U, 0x04E0C800U, Mnemonic::SQDECD, IrTemplate::System, Opcode::UNDEF, 0 }, // SQDECD
-    { 0xFFF0FC00U, 0x0460F800U, Mnemonic::SQDECH, IrTemplate::System, Opcode::UNDEF, 0 }, // SQDECH
-    { 0xFFF0FC00U, 0x0470F800U, Mnemonic::SQDECH, IrTemplate::System, Opcode::UNDEF, 0 }, // SQDECH
-    { 0xFFF0FC00U, 0x0460C800U, Mnemonic::SQDECH, IrTemplate::System, Opcode::UNDEF, 0 }, // SQDECH
-    { 0xFFF0FC00U, 0x04A0F800U, Mnemonic::SQDECW, IrTemplate::System, Opcode::UNDEF, 0 }, // SQDECW
-    { 0xFFF0FC00U, 0x04B0F800U, Mnemonic::SQDECW, IrTemplate::System, Opcode::UNDEF, 0 }, // SQDECW
-    { 0xFFF0FC00U, 0x04A0C800U, Mnemonic::SQDECW, IrTemplate::System, Opcode::UNDEF, 0 }, // SQDECW
-    { 0xFFF0FC00U, 0x0420F000U, Mnemonic::SQINCB, IrTemplate::System, Opcode::UNDEF, 0 }, // SQINCB
-    { 0xFFF0FC00U, 0x0430F000U, Mnemonic::SQINCB, IrTemplate::System, Opcode::UNDEF, 0 }, // SQINCB
-    { 0xFFF0FC00U, 0x04E0F000U, Mnemonic::SQINCD, IrTemplate::System, Opcode::UNDEF, 0 }, // SQINCD
-    { 0xFFF0FC00U, 0x04F0F000U, Mnemonic::SQINCD, IrTemplate::System, Opcode::UNDEF, 0 }, // SQINCD
-    { 0xFFF0FC00U, 0x04E0C000U, Mnemonic::SQINCD, IrTemplate::System, Opcode::UNDEF, 0 }, // SQINCD
-    { 0xFFF0FC00U, 0x0460F000U, Mnemonic::SQINCH, IrTemplate::System, Opcode::UNDEF, 0 }, // SQINCH
-    { 0xFFF0FC00U, 0x0470F000U, Mnemonic::SQINCH, IrTemplate::System, Opcode::UNDEF, 0 }, // SQINCH
-    { 0xFFF0FC00U, 0x0460C000U, Mnemonic::SQINCH, IrTemplate::System, Opcode::UNDEF, 0 }, // SQINCH
-    { 0xFFF0FC00U, 0x04A0F000U, Mnemonic::SQINCW, IrTemplate::System, Opcode::UNDEF, 0 }, // SQINCW
-    { 0xFFF0FC00U, 0x04B0F000U, Mnemonic::SQINCW, IrTemplate::System, Opcode::UNDEF, 0 }, // SQINCW
-    { 0xFFF0FC00U, 0x04A0C000U, Mnemonic::SQINCW, IrTemplate::System, Opcode::UNDEF, 0 }, // SQINCW
-    { 0xFFE0FC20U, 0x45A00000U, Mnemonic::SQSHRN, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // SQSHRN
-    { 0xFFE0FC20U, 0x45A02000U, Mnemonic::SQSHRUN, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // SQSHRUN
-    { 0xFF30FE10U, 0x05205000U, Mnemonic::TRN1, IrTemplate::SimdUnary, Opcode::COPY, 0 }, // TRN1
-    { 0xFF30FE10U, 0x05205400U, Mnemonic::TRN2, IrTemplate::SimdUnary, Opcode::COPY, 0 }, // TRN2
-    { 0xFFF0FC00U, 0x0420FC00U, Mnemonic::UQDECB, IrTemplate::System, Opcode::UNDEF, 0 }, // UQDECB
-    { 0xFFF0FC00U, 0x0430FC00U, Mnemonic::UQDECB, IrTemplate::System, Opcode::UNDEF, 0 }, // UQDECB
-    { 0xFFF0FC00U, 0x04E0FC00U, Mnemonic::UQDECD, IrTemplate::System, Opcode::UNDEF, 0 }, // UQDECD
-    { 0xFFF0FC00U, 0x04F0FC00U, Mnemonic::UQDECD, IrTemplate::System, Opcode::UNDEF, 0 }, // UQDECD
-    { 0xFFF0FC00U, 0x04E0CC00U, Mnemonic::UQDECD, IrTemplate::System, Opcode::UNDEF, 0 }, // UQDECD
-    { 0xFFF0FC00U, 0x0460FC00U, Mnemonic::UQDECH, IrTemplate::System, Opcode::UNDEF, 0 }, // UQDECH
-    { 0xFFF0FC00U, 0x0470FC00U, Mnemonic::UQDECH, IrTemplate::System, Opcode::UNDEF, 0 }, // UQDECH
-    { 0xFFF0FC00U, 0x0460CC00U, Mnemonic::UQDECH, IrTemplate::System, Opcode::UNDEF, 0 }, // UQDECH
-    { 0xFFF0FC00U, 0x04A0FC00U, Mnemonic::UQDECW, IrTemplate::System, Opcode::UNDEF, 0 }, // UQDECW
-    { 0xFFF0FC00U, 0x04B0FC00U, Mnemonic::UQDECW, IrTemplate::System, Opcode::UNDEF, 0 }, // UQDECW
-    { 0xFFF0FC00U, 0x04A0CC00U, Mnemonic::UQDECW, IrTemplate::System, Opcode::UNDEF, 0 }, // UQDECW
-    { 0xFFF0FC00U, 0x0420F400U, Mnemonic::UQINCB, IrTemplate::System, Opcode::UNDEF, 0 }, // UQINCB
-    { 0xFFF0FC00U, 0x0430F400U, Mnemonic::UQINCB, IrTemplate::System, Opcode::UNDEF, 0 }, // UQINCB
-    { 0xFFF0FC00U, 0x04E0F400U, Mnemonic::UQINCD, IrTemplate::System, Opcode::UNDEF, 0 }, // UQINCD
-    { 0xFFF0FC00U, 0x04F0F400U, Mnemonic::UQINCD, IrTemplate::System, Opcode::UNDEF, 0 }, // UQINCD
-    { 0xFFF0FC00U, 0x04E0C400U, Mnemonic::UQINCD, IrTemplate::System, Opcode::UNDEF, 0 }, // UQINCD
-    { 0xFFF0FC00U, 0x0460F400U, Mnemonic::UQINCH, IrTemplate::System, Opcode::UNDEF, 0 }, // UQINCH
-    { 0xFFF0FC00U, 0x0470F400U, Mnemonic::UQINCH, IrTemplate::System, Opcode::UNDEF, 0 }, // UQINCH
-    { 0xFFF0FC00U, 0x0460C400U, Mnemonic::UQINCH, IrTemplate::System, Opcode::UNDEF, 0 }, // UQINCH
-    { 0xFFF0FC00U, 0x04A0F400U, Mnemonic::UQINCW, IrTemplate::System, Opcode::UNDEF, 0 }, // UQINCW
-    { 0xFFF0FC00U, 0x04B0F400U, Mnemonic::UQINCW, IrTemplate::System, Opcode::UNDEF, 0 }, // UQINCW
-    { 0xFFF0FC00U, 0x04A0C400U, Mnemonic::UQINCW, IrTemplate::System, Opcode::UNDEF, 0 }, // UQINCW
-    { 0xFFE0FC20U, 0x45A01000U, Mnemonic::UQSHRN, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // UQSHRN
-    { 0xFF30FE10U, 0x05204800U, Mnemonic::UZP1, IrTemplate::SimdUnary, Opcode::COPY, 0 }, // UZP1
-    { 0xFF30FE10U, 0x05204C00U, Mnemonic::UZP2, IrTemplate::SimdUnary, Opcode::COPY, 0 }, // UZP2
-    { 0xFF30FE10U, 0x05204400U, Mnemonic::ZIP2, IrTemplate::SimdUnary, Opcode::COPY, 0 }, // ZIP2
-    { 0xFF30FE10U, 0x05204000U, Mnemonic::ZIP1, IrTemplate::SimdUnary, Opcode::COPY, 0 }, // ZIP1
-    { 0xBFF8FC00U, 0x0F00FC00U, Mnemonic::FMOV, IrTemplate::SimdUnary, Opcode::COPY, 0 }, // FMOV
-    { 0xBFF8FC00U, 0x0F00F400U, Mnemonic::FMOV, IrTemplate::SimdUnary, Opcode::COPY, 0 }, // FMOV
-    { 0xBFF8FC00U, 0x0F00E400U, Mnemonic::MOVI, IrTemplate::SimdUnary, Opcode::COPY, 0 }, // MOVI
-    { 0xBFFFE000U, 0x0D400000U, Mnemonic::LD1, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LD1
-    { 0xBFFFE000U, 0x0D404000U, Mnemonic::LD1, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LD1
-    { 0xBFFFE000U, 0x0DDF0000U, Mnemonic::LD1, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LD1
-    { 0xBFFFE000U, 0x0DDF4000U, Mnemonic::LD1, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LD1
-    { 0xBFFFE000U, 0x0D600000U, Mnemonic::LD2, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LD2
-    { 0xBFFFE000U, 0x0D604000U, Mnemonic::LD2, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LD2
-    { 0xBFFFE000U, 0x0DFF0000U, Mnemonic::LD2, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LD2
-    { 0xBFFFE000U, 0x0DFF4000U, Mnemonic::LD2, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LD2
-    { 0xBFFFE000U, 0x0D402000U, Mnemonic::LD3, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LD3
-    { 0xBFFFE000U, 0x0D406000U, Mnemonic::LD3, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LD3
-    { 0xBFFFE000U, 0x0DDF2000U, Mnemonic::LD3, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LD3
-    { 0xBFFFE000U, 0x0DDF6000U, Mnemonic::LD3, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LD3
-    { 0xBFFFE000U, 0x0D602000U, Mnemonic::LD4, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LD4
-    { 0xBFFFE000U, 0x0D606000U, Mnemonic::LD4, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LD4
-    { 0xBFFFE000U, 0x0DFF2000U, Mnemonic::LD4, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LD4
-    { 0xBFFFE000U, 0x0DFF6000U, Mnemonic::LD4, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LD4
-    { 0xBFFFE000U, 0x0D000000U, Mnemonic::ST1, IrTemplate::StoreReg, Opcode::STORE, 0 }, // ST1
-    { 0xBFFFE000U, 0x0D004000U, Mnemonic::ST1, IrTemplate::StoreReg, Opcode::STORE, 0 }, // ST1
-    { 0xBFFFE000U, 0x0D9F0000U, Mnemonic::ST1, IrTemplate::StoreReg, Opcode::STORE, 0 }, // ST1
-    { 0xBFFFE000U, 0x0D9F4000U, Mnemonic::ST1, IrTemplate::StoreReg, Opcode::STORE, 0 }, // ST1
-    { 0xBFFFE000U, 0x0D200000U, Mnemonic::ST2, IrTemplate::StoreReg, Opcode::STORE, 0 }, // ST2
-    { 0xBFFFE000U, 0x0D204000U, Mnemonic::ST2, IrTemplate::StoreReg, Opcode::STORE, 0 }, // ST2
-    { 0xBFFFE000U, 0x0DBF0000U, Mnemonic::ST2, IrTemplate::StoreReg, Opcode::STORE, 0 }, // ST2
-    { 0xBFFFE000U, 0x0DBF4000U, Mnemonic::ST2, IrTemplate::StoreReg, Opcode::STORE, 0 }, // ST2
-    { 0xBFFFE000U, 0x0D002000U, Mnemonic::ST3, IrTemplate::StoreReg, Opcode::STORE, 0 }, // ST3
-    { 0xBFFFE000U, 0x0D006000U, Mnemonic::ST3, IrTemplate::StoreReg, Opcode::STORE, 0 }, // ST3
-    { 0xBFFFE000U, 0x0D9F2000U, Mnemonic::ST3, IrTemplate::StoreReg, Opcode::STORE, 0 }, // ST3
-    { 0xBFFFE000U, 0x0D9F6000U, Mnemonic::ST3, IrTemplate::StoreReg, Opcode::STORE, 0 }, // ST3
-    { 0xBFFFE000U, 0x0D202000U, Mnemonic::ST4, IrTemplate::StoreReg, Opcode::STORE, 0 }, // ST4
-    { 0xBFFFE000U, 0x0D206000U, Mnemonic::ST4, IrTemplate::StoreReg, Opcode::STORE, 0 }, // ST4
-    { 0xBFFFE000U, 0x0DBF2000U, Mnemonic::ST4, IrTemplate::StoreReg, Opcode::STORE, 0 }, // ST4
-    { 0xBFFFE000U, 0x0DBF6000U, Mnemonic::ST4, IrTemplate::StoreReg, Opcode::STORE, 0 }, // ST4
-    { 0xFFB09C18U, 0xC1201810U, Mnemonic::ADD, IrTemplate::System, Opcode::UNDEF, 0 }, // ADD
-    { 0xFFB09C18U, 0xC1301810U, Mnemonic::ADD, IrTemplate::System, Opcode::UNDEF, 0 }, // ADD
-    { 0xFFF09038U, 0xC1501018U, Mnemonic::BFDOT, IrTemplate::System, Opcode::UNDEF, 0 }, // BFDOT
-    { 0xFFF09070U, 0xC1109020U, Mnemonic::BFMLA, IrTemplate::System, Opcode::UNDEF, 0 }, // BFMLA
-    { 0xFFF09038U, 0xC1901010U, Mnemonic::BFMLAL, IrTemplate::System, Opcode::UNDEF, 0 }, // BFMLAL
-    { 0xFFF09070U, 0xC1109030U, Mnemonic::BFMLS, IrTemplate::System, Opcode::UNDEF, 0 }, // BFMLS
-    { 0xFFF09038U, 0xC1901018U, Mnemonic::BFMLSL, IrTemplate::System, Opcode::UNDEF, 0 }, // BFMLSL
-    { 0xFFE0E00EU, 0x81600008U, Mnemonic::BFTMOPA, IrTemplate::System, Opcode::UNDEF, 0 }, // BFTMOPA
-    { 0xFFF09038U, 0xC1500018U, Mnemonic::BFVDOT, IrTemplate::System, Opcode::UNDEF, 0 }, // BFVDOT
-    { 0xFF20FC03U, 0xC120C800U, Mnemonic::FCLAMP, IrTemplate::System, Opcode::UNDEF, 0 }, // FCLAMP
-    { 0xFFF09038U, 0xC1500038U, Mnemonic::FDOT, IrTemplate::System, Opcode::UNDEF, 0 }, // FDOT
-    { 0xFFF09070U, 0xC1109040U, Mnemonic::FDOT, IrTemplate::System, Opcode::UNDEF, 0 }, // FDOT
-    { 0xFFF09038U, 0xC1501008U, Mnemonic::FDOT, IrTemplate::System, Opcode::UNDEF, 0 }, // FDOT
-    { 0xFFF09038U, 0xC1500000U, Mnemonic::FMLA, IrTemplate::System, Opcode::UNDEF, 0 }, // FMLA
-    { 0xFFF09070U, 0xC1109000U, Mnemonic::FMLA, IrTemplate::System, Opcode::UNDEF, 0 }, // FMLA
-    { 0xFFB09C18U, 0xC1201800U, Mnemonic::FMLA, IrTemplate::System, Opcode::UNDEF, 0 }, // FMLA
-    { 0xFFB09C18U, 0xC1301800U, Mnemonic::FMLA, IrTemplate::System, Opcode::UNDEF, 0 }, // FMLA
-    { 0xFFF09070U, 0xC1909020U, Mnemonic::FMLAL, IrTemplate::System, Opcode::UNDEF, 0 }, // FMLAL
-    { 0xFFF09038U, 0xC1901000U, Mnemonic::FMLAL, IrTemplate::System, Opcode::UNDEF, 0 }, // FMLAL
-    { 0xFFF09038U, 0xC1900020U, Mnemonic::FMLALL, IrTemplate::System, Opcode::UNDEF, 0 }, // FMLALL
-    { 0xFFF09038U, 0xC1500010U, Mnemonic::FMLS, IrTemplate::System, Opcode::UNDEF, 0 }, // FMLS
-    { 0xFFF09070U, 0xC1109010U, Mnemonic::FMLS, IrTemplate::System, Opcode::UNDEF, 0 }, // FMLS
-    { 0xFFB09C18U, 0xC1201808U, Mnemonic::FMLS, IrTemplate::System, Opcode::UNDEF, 0 }, // FMLS
-    { 0xFFB09C18U, 0xC1301808U, Mnemonic::FMLS, IrTemplate::System, Opcode::UNDEF, 0 }, // FMLS
-    { 0xFFF09038U, 0xC1901008U, Mnemonic::FMLSL, IrTemplate::System, Opcode::UNDEF, 0 }, // FMLSL
-    { 0xFFE0E00EU, 0x80600008U, Mnemonic::FTMOPA, IrTemplate::System, Opcode::UNDEF, 0 }, // FTMOPA
-    { 0xFFE0E00EU, 0x81400008U, Mnemonic::FTMOPA, IrTemplate::System, Opcode::UNDEF, 0 }, // FTMOPA
-    { 0xFFF09038U, 0xC1500008U, Mnemonic::FVDOT, IrTemplate::System, Opcode::UNDEF, 0 }, // FVDOT
-    { 0xFFF09830U, 0xC1D00800U, Mnemonic::FVDOTB, IrTemplate::System, Opcode::UNDEF, 0 }, // FVDOTB
-    { 0xFFF09830U, 0xC1D00810U, Mnemonic::FVDOTT, IrTemplate::System, Opcode::UNDEF, 0 }, // FVDOTT
-    { 0xFFF0E003U, 0xA0408000U, Mnemonic::LD1B, IrTemplate::System, Opcode::UNDEF, 0 }, // LD1B
-    { 0xFFF0E00CU, 0xA1408000U, Mnemonic::LD1B, IrTemplate::System, Opcode::UNDEF, 0 }, // LD1B
-    { 0xFFF0E003U, 0xA040E000U, Mnemonic::LD1D, IrTemplate::System, Opcode::UNDEF, 0 }, // LD1D
-    { 0xFFF0E00CU, 0xA140E000U, Mnemonic::LD1D, IrTemplate::System, Opcode::UNDEF, 0 }, // LD1D
-    { 0xFFF0E003U, 0xA040A000U, Mnemonic::LD1H, IrTemplate::System, Opcode::UNDEF, 0 }, // LD1H
-    { 0xFFF0E00CU, 0xA140A000U, Mnemonic::LD1H, IrTemplate::System, Opcode::UNDEF, 0 }, // LD1H
-    { 0xFFF0E003U, 0xA040C000U, Mnemonic::LD1W, IrTemplate::System, Opcode::UNDEF, 0 }, // LD1W
-    { 0xFFF0E00CU, 0xA140C000U, Mnemonic::LD1W, IrTemplate::System, Opcode::UNDEF, 0 }, // LD1W
-    { 0xFFF0E003U, 0xA0408001U, Mnemonic::LDNT1B, IrTemplate::System, Opcode::UNDEF, 0 }, // LDNT1B
-    { 0xFFF0E00CU, 0xA1408008U, Mnemonic::LDNT1B, IrTemplate::System, Opcode::UNDEF, 0 }, // LDNT1B
-    { 0xFFF0E003U, 0xA040E001U, Mnemonic::LDNT1D, IrTemplate::System, Opcode::UNDEF, 0 }, // LDNT1D
-    { 0xFFF0E00CU, 0xA140E008U, Mnemonic::LDNT1D, IrTemplate::System, Opcode::UNDEF, 0 }, // LDNT1D
-    { 0xFFF0E003U, 0xA040A001U, Mnemonic::LDNT1H, IrTemplate::System, Opcode::UNDEF, 0 }, // LDNT1H
-    { 0xFFF0E00CU, 0xA140A008U, Mnemonic::LDNT1H, IrTemplate::System, Opcode::UNDEF, 0 }, // LDNT1H
-    { 0xFFF0E003U, 0xA040C001U, Mnemonic::LDNT1W, IrTemplate::System, Opcode::UNDEF, 0 }, // LDNT1W
-    { 0xFFF0E00CU, 0xA140C008U, Mnemonic::LDNT1W, IrTemplate::System, Opcode::UNDEF, 0 }, // LDNT1W
-    { 0xFFFE0C00U, 0xC0CA0000U, Mnemonic::LUTI4, IrTemplate::System, Opcode::UNDEF, 0 }, // LUTI4
-    { 0xFFFF0200U, 0xC0020000U, Mnemonic::MOVA, IrTemplate::System, Opcode::UNDEF, 0 }, // MOVA
-    { 0xFFFF0200U, 0xC0420000U, Mnemonic::MOVA, IrTemplate::System, Opcode::UNDEF, 0 }, // MOVA
-    { 0xFFFF0200U, 0xC0820000U, Mnemonic::MOVA, IrTemplate::System, Opcode::UNDEF, 0 }, // MOVA
-    { 0xFFFF0200U, 0xC0C20000U, Mnemonic::MOVA, IrTemplate::System, Opcode::UNDEF, 0 }, // MOVA
-    { 0xFFFF0200U, 0xC0C30000U, Mnemonic::MOVA, IrTemplate::System, Opcode::UNDEF, 0 }, // MOVA
-    { 0xFFFF0010U, 0xC0000000U, Mnemonic::MOVA, IrTemplate::System, Opcode::UNDEF, 0 }, // MOVA
-    { 0xFFFF0010U, 0xC0400000U, Mnemonic::MOVA, IrTemplate::System, Opcode::UNDEF, 0 }, // MOVA
-    { 0xFFFF0010U, 0xC0800000U, Mnemonic::MOVA, IrTemplate::System, Opcode::UNDEF, 0 }, // MOVA
-    { 0xFFFF0010U, 0xC0C00000U, Mnemonic::MOVA, IrTemplate::System, Opcode::UNDEF, 0 }, // MOVA
-    { 0xFFFF0010U, 0xC0C10000U, Mnemonic::MOVA, IrTemplate::System, Opcode::UNDEF, 0 }, // MOVA
-    { 0xFFFF0200U, 0xC0020000U, Mnemonic::MOVA, IrTemplate::System, Opcode::UNDEF, 0 }, // MOVA
-    { 0xFFFF0200U, 0xC0420000U, Mnemonic::MOVA, IrTemplate::System, Opcode::UNDEF, 0 }, // MOVA
-    { 0xFFFF0200U, 0xC0820000U, Mnemonic::MOVA, IrTemplate::System, Opcode::UNDEF, 0 }, // MOVA
-    { 0xFFFF0200U, 0xC0C20000U, Mnemonic::MOVA, IrTemplate::System, Opcode::UNDEF, 0 }, // MOVA
-    { 0xFFFF0200U, 0xC0C30000U, Mnemonic::MOVA, IrTemplate::System, Opcode::UNDEF, 0 }, // MOVA
-    { 0xFFFF0010U, 0xC0000000U, Mnemonic::MOVA, IrTemplate::System, Opcode::UNDEF, 0 }, // MOVA
-    { 0xFFFF0010U, 0xC0400000U, Mnemonic::MOVA, IrTemplate::System, Opcode::UNDEF, 0 }, // MOVA
-    { 0xFFFF0010U, 0xC0800000U, Mnemonic::MOVA, IrTemplate::System, Opcode::UNDEF, 0 }, // MOVA
-    { 0xFFFF0010U, 0xC0C00000U, Mnemonic::MOVA, IrTemplate::System, Opcode::UNDEF, 0 }, // MOVA
-    { 0xFFFF0010U, 0xC0C10000U, Mnemonic::MOVA, IrTemplate::System, Opcode::UNDEF, 0 }, // MOVA
-    { 0xFF20FC03U, 0xC120CC00U, Mnemonic::SCLAMP, IrTemplate::System, Opcode::UNDEF, 0 }, // SCLAMP
-    { 0xFFF09038U, 0xC1501000U, Mnemonic::SDOT, IrTemplate::System, Opcode::UNDEF, 0 }, // SDOT
-    { 0xFFF09038U, 0xC1501020U, Mnemonic::SDOT, IrTemplate::System, Opcode::UNDEF, 0 }, // SDOT
-    { 0xFFB09C18U, 0xC1201400U, Mnemonic::SDOT, IrTemplate::System, Opcode::UNDEF, 0 }, // SDOT
-    { 0xFFB09C18U, 0xC1301400U, Mnemonic::SDOT, IrTemplate::System, Opcode::UNDEF, 0 }, // SDOT
-    { 0xFFF09038U, 0xC1D01000U, Mnemonic::SMLAL, IrTemplate::System, Opcode::UNDEF, 0 }, // SMLAL
-    { 0xFFF09038U, 0xC1100000U, Mnemonic::SMLALL, IrTemplate::System, Opcode::UNDEF, 0 }, // SMLALL
-    { 0xFFF09038U, 0xC1D01008U, Mnemonic::SMLSL, IrTemplate::System, Opcode::UNDEF, 0 }, // SMLSL
-    { 0xFFF09038U, 0xC1100008U, Mnemonic::SMLSLL, IrTemplate::System, Opcode::UNDEF, 0 }, // SMLSLL
-    { 0xFF20FC60U, 0xC120D800U, Mnemonic::SQRSHR, IrTemplate::System, Opcode::UNDEF, 0 }, // SQRSHR
-    { 0xFF20FC60U, 0xC120DC00U, Mnemonic::SQRSHRN, IrTemplate::System, Opcode::UNDEF, 0 }, // SQRSHRN
-    { 0xFF20FC60U, 0xC120D840U, Mnemonic::SQRSHRU, IrTemplate::System, Opcode::UNDEF, 0 }, // SQRSHRU
-    { 0xFF20FC60U, 0xC120DC40U, Mnemonic::SQRSHRUN, IrTemplate::System, Opcode::UNDEF, 0 }, // SQRSHRUN
-    { 0xFFF0E003U, 0xA0608000U, Mnemonic::ST1B, IrTemplate::System, Opcode::UNDEF, 0 }, // ST1B
-    { 0xFFF0E00CU, 0xA1608000U, Mnemonic::ST1B, IrTemplate::System, Opcode::UNDEF, 0 }, // ST1B
-    { 0xFFF0E003U, 0xA060E000U, Mnemonic::ST1D, IrTemplate::System, Opcode::UNDEF, 0 }, // ST1D
-    { 0xFFF0E00CU, 0xA160E000U, Mnemonic::ST1D, IrTemplate::System, Opcode::UNDEF, 0 }, // ST1D
-    { 0xFFF0E003U, 0xA060A000U, Mnemonic::ST1H, IrTemplate::System, Opcode::UNDEF, 0 }, // ST1H
-    { 0xFFF0E00CU, 0xA160A000U, Mnemonic::ST1H, IrTemplate::System, Opcode::UNDEF, 0 }, // ST1H
-    { 0xFFF0E003U, 0xA060C000U, Mnemonic::ST1W, IrTemplate::System, Opcode::UNDEF, 0 }, // ST1W
-    { 0xFFF0E00CU, 0xA160C000U, Mnemonic::ST1W, IrTemplate::System, Opcode::UNDEF, 0 }, // ST1W
-    { 0xFFF0E003U, 0xA0608001U, Mnemonic::STNT1B, IrTemplate::System, Opcode::UNDEF, 0 }, // STNT1B
-    { 0xFFF0E00CU, 0xA1608008U, Mnemonic::STNT1B, IrTemplate::System, Opcode::UNDEF, 0 }, // STNT1B
-    { 0xFFF0E003U, 0xA060E001U, Mnemonic::STNT1D, IrTemplate::System, Opcode::UNDEF, 0 }, // STNT1D
-    { 0xFFF0E00CU, 0xA160E008U, Mnemonic::STNT1D, IrTemplate::System, Opcode::UNDEF, 0 }, // STNT1D
-    { 0xFFF0E003U, 0xA060A001U, Mnemonic::STNT1H, IrTemplate::System, Opcode::UNDEF, 0 }, // STNT1H
-    { 0xFFF0E00CU, 0xA160A008U, Mnemonic::STNT1H, IrTemplate::System, Opcode::UNDEF, 0 }, // STNT1H
-    { 0xFFF0E003U, 0xA060C001U, Mnemonic::STNT1W, IrTemplate::System, Opcode::UNDEF, 0 }, // STNT1W
-    { 0xFFF0E00CU, 0xA160C008U, Mnemonic::STNT1W, IrTemplate::System, Opcode::UNDEF, 0 }, // STNT1W
-    { 0xFFB09C18U, 0xC1201818U, Mnemonic::SUB, IrTemplate::System, Opcode::UNDEF, 0 }, // SUB
-    { 0xFFB09C18U, 0xC1301818U, Mnemonic::SUB, IrTemplate::System, Opcode::UNDEF, 0 }, // SUB
-    { 0xFFF09038U, 0xC1501038U, Mnemonic::SUDOT, IrTemplate::System, Opcode::UNDEF, 0 }, // SUDOT
-    { 0xFFF09038U, 0xC1100030U, Mnemonic::SUMLALL, IrTemplate::System, Opcode::UNDEF, 0 }, // SUMLALL
-    { 0xFFF09038U, 0xC1500020U, Mnemonic::SVDOT, IrTemplate::System, Opcode::UNDEF, 0 }, // SVDOT
-    { 0xFF20FC03U, 0xC120CC01U, Mnemonic::UCLAMP, IrTemplate::System, Opcode::UNDEF, 0 }, // UCLAMP
-    { 0xFFF09038U, 0xC1501010U, Mnemonic::UDOT, IrTemplate::System, Opcode::UNDEF, 0 }, // UDOT
-    { 0xFFF09038U, 0xC1501030U, Mnemonic::UDOT, IrTemplate::System, Opcode::UNDEF, 0 }, // UDOT
-    { 0xFFB09C18U, 0xC1201410U, Mnemonic::UDOT, IrTemplate::System, Opcode::UNDEF, 0 }, // UDOT
-    { 0xFFB09C18U, 0xC1301410U, Mnemonic::UDOT, IrTemplate::System, Opcode::UNDEF, 0 }, // UDOT
-    { 0xFFF09038U, 0xC1D01010U, Mnemonic::UMLAL, IrTemplate::System, Opcode::UNDEF, 0 }, // UMLAL
-    { 0xFFF09038U, 0xC1100010U, Mnemonic::UMLALL, IrTemplate::System, Opcode::UNDEF, 0 }, // UMLALL
-    { 0xFFF09038U, 0xC1D01018U, Mnemonic::UMLSL, IrTemplate::System, Opcode::UNDEF, 0 }, // UMLSL
-    { 0xFFF09038U, 0xC1100018U, Mnemonic::UMLSLL, IrTemplate::System, Opcode::UNDEF, 0 }, // UMLSLL
-    { 0xFF20FC60U, 0xC120D820U, Mnemonic::UQRSHR, IrTemplate::System, Opcode::UNDEF, 0 }, // UQRSHR
-    { 0xFF20FC60U, 0xC120DC20U, Mnemonic::UQRSHRN, IrTemplate::System, Opcode::UNDEF, 0 }, // UQRSHRN
-    { 0xFFF09038U, 0xC1501028U, Mnemonic::USDOT, IrTemplate::System, Opcode::UNDEF, 0 }, // USDOT
-    { 0xFFF09038U, 0xC1100020U, Mnemonic::USMLALL, IrTemplate::System, Opcode::UNDEF, 0 }, // USMLALL
-    { 0xFFF09038U, 0xC1500030U, Mnemonic::UVDOT, IrTemplate::System, Opcode::UNDEF, 0 }, // UVDOT
-    { 0xFF3FE000U, 0x0416A000U, Mnemonic::ABS, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // ABS
-    { 0xFF3FE000U, 0x0406A000U, Mnemonic::ABS, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // ABS
-    { 0xFF3FE000U, 0x04000000U, Mnemonic::ADD, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // ADD
-    { 0xFF3FE000U, 0x4411A000U, Mnemonic::ADDP, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // ADDP
-    { 0xFFE0FC00U, 0x04E00800U, Mnemonic::ADDPT, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // ADDPT
-    { 0xFF3FE000U, 0x04052000U, Mnemonic::ADDQV, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // ADDQV
-    { 0xFF3FE000U, 0x041A0000U, Mnemonic::AND, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // AND
-    { 0xFFE0FC00U, 0x04203000U, Mnemonic::AND, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // AND
-    { 0xFF3FE000U, 0x041E2000U, Mnemonic::ANDQV, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // ANDQV
-    { 0xFF3FE000U, 0x041A2000U, Mnemonic::ANDV, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // ANDV
-    { 0xFF3FE000U, 0x04008000U, Mnemonic::ASR, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // ASR
-    { 0xFF3FE000U, 0x04188000U, Mnemonic::ASR, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // ASR
-    { 0xFF3FE000U, 0x04108000U, Mnemonic::ASR, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // ASR
-    { 0xFF3FE000U, 0x04048000U, Mnemonic::ASRD, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // ASRD
-    { 0xFF3FE000U, 0x04148000U, Mnemonic::ASRR, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // ASRR
-    { 0xFFE0FC00U, 0x04603800U, Mnemonic::BCAX, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // BCAX
-    { 0xFFE0FC00U, 0x65000000U, Mnemonic::BFADD, IrTemplate::FpBinop, Opcode::FADD, 0 }, // BFADD
-    { 0xFFE0FC00U, 0x64202400U, Mnemonic::BFCLAMP, IrTemplate::FpBinop, Opcode::FADD, 0 }, // BFCLAMP
-    { 0xFFE0FC00U, 0x64608000U, Mnemonic::BFDOT, IrTemplate::FpBinop, Opcode::FADD, 0 }, // BFDOT
-    { 0xFFE0FC00U, 0x64604000U, Mnemonic::BFDOT, IrTemplate::FpBinop, Opcode::FADD, 0 }, // BFDOT
-    { 0xFFE0FC00U, 0x64E08000U, Mnemonic::BFMLALB, IrTemplate::FpBinop, Opcode::FADD, 0 }, // BFMLALB
-    { 0xFFE0FC00U, 0x64E08400U, Mnemonic::BFMLALT, IrTemplate::FpBinop, Opcode::FADD, 0 }, // BFMLALT
-    { 0xFFE0FC00U, 0x64E0A000U, Mnemonic::BFMLSLB, IrTemplate::FpBinop, Opcode::FADD, 0 }, // BFMLSLB
-    { 0xFFE0FC00U, 0x64E0A400U, Mnemonic::BFMLSLT, IrTemplate::FpBinop, Opcode::FADD, 0 }, // BFMLSLT
-    { 0xFFE0FC00U, 0x64E0E000U, Mnemonic::BFMMLA, IrTemplate::FpBinop, Opcode::FADD, 0 }, // BFMMLA
-    { 0xFFE0FC00U, 0x6460E400U, Mnemonic::BFMMLA, IrTemplate::FpBinop, Opcode::FADD, 0 }, // BFMMLA
-    { 0xFFE0FC00U, 0x65000800U, Mnemonic::BFMUL, IrTemplate::FpBinop, Opcode::FADD, 0 }, // BFMUL
-    { 0xFFE0FC00U, 0x65000400U, Mnemonic::BFSUB, IrTemplate::FpBinop, Opcode::FADD, 0 }, // BFSUB
-    { 0xFF3FE000U, 0x041B0000U, Mnemonic::BIC, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // BIC
-    { 0xFFE0FC00U, 0x04E03000U, Mnemonic::BIC, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // BIC
-    { 0xFFE0FC00U, 0x04603C00U, Mnemonic::BSL1N, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // BSL1N
-    { 0xFFE0FC00U, 0x04A03C00U, Mnemonic::BSL2N, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // BSL2N
-    { 0xFFE0FC00U, 0x04203C00U, Mnemonic::BSL, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // BSL
-    { 0xFF3FE000U, 0x0530A000U, Mnemonic::CLASTA, IrTemplate::SimdUnary, Opcode::COPY, 0 }, // CLASTA
-    { 0xFF3FE000U, 0x052A8000U, Mnemonic::CLASTA, IrTemplate::SimdUnary, Opcode::COPY, 0 }, // CLASTA
-    { 0xFF3FE000U, 0x05288000U, Mnemonic::CLASTA, IrTemplate::SimdUnary, Opcode::COPY, 0 }, // CLASTA
-    { 0xFF3FE000U, 0x0531A000U, Mnemonic::CLASTB, IrTemplate::SimdUnary, Opcode::COPY, 0 }, // CLASTB
-    { 0xFF3FE000U, 0x052B8000U, Mnemonic::CLASTB, IrTemplate::SimdUnary, Opcode::COPY, 0 }, // CLASTB
-    { 0xFF3FE000U, 0x05298000U, Mnemonic::CLASTB, IrTemplate::SimdUnary, Opcode::COPY, 0 }, // CLASTB
-    { 0xFF3FE000U, 0x0418A000U, Mnemonic::CLS, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // CLS
-    { 0xFF3FE000U, 0x0408A000U, Mnemonic::CLS, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // CLS
-    { 0xFF3FE000U, 0x0419A000U, Mnemonic::CLZ, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // CLZ
-    { 0xFF3FE000U, 0x0409A000U, Mnemonic::CLZ, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // CLZ
-    { 0xFF3FE000U, 0x041BA000U, Mnemonic::CNOT, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // CNOT
-    { 0xFF3FE000U, 0x040BA000U, Mnemonic::CNOT, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // CNOT
-    { 0xFF3FE000U, 0x041AA000U, Mnemonic::CNT, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // CNT
-    { 0xFF3FE000U, 0x040AA000U, Mnemonic::CNT, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // CNT
-    { 0xFF3FC200U, 0x25208000U, Mnemonic::CNTP, IrTemplate::SimdBinop, Opcode::AND, 0 }, // CNTP
-    { 0xFF3FE000U, 0x0528A000U, Mnemonic::CPY, IrTemplate::SimdUnary, Opcode::COPY, 0 }, // CPY
-    { 0xFF3FE000U, 0x05208000U, Mnemonic::CPY, IrTemplate::SimdUnary, Opcode::COPY, 0 }, // CPY
-    { 0xFFE0FC00U, 0x05202400U, Mnemonic::DUPQ, IrTemplate::SimdUnary, Opcode::COPY, 0 }, // DUPQ
-    { 0xFFE0FC00U, 0x04203800U, Mnemonic::EOR3, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // EOR3
-    { 0xFF3FE000U, 0x04190000U, Mnemonic::EOR, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // EOR
-    { 0xFFE0FC00U, 0x04A03000U, Mnemonic::EOR, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // EOR
-    { 0xFF3FE000U, 0x041D2000U, Mnemonic::EORQV, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // EORQV
-    { 0xFF3FE000U, 0x04192000U, Mnemonic::EORV, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // EORV
-    { 0xFF3FE000U, 0x05318000U, Mnemonic::EXPAND, IrTemplate::SimdUnary, Opcode::COPY, 0 }, // EXPAND
-    { 0xFF3FE000U, 0x65088000U, Mnemonic::FABD, IrTemplate::FpBinop, Opcode::FADD, 0 }, // FABD
-    { 0xFF3FE000U, 0x041CA000U, Mnemonic::FABS, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // FABS
-    { 0xFF3FE000U, 0x040CA000U, Mnemonic::FABS, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // FABS
-    { 0xFF3FE000U, 0x65008000U, Mnemonic::FADD, IrTemplate::FpBinop, Opcode::FADD, 0 }, // FADD
-    { 0xFF3FE000U, 0x65182000U, Mnemonic::FADDA, IrTemplate::FpBinop, Opcode::FADD, 0 }, // FADDA
-    { 0xFF3FE000U, 0x64108000U, Mnemonic::FADDP, IrTemplate::FpBinop, Opcode::FADD, 0 }, // FADDP
-    { 0xFF3FE000U, 0x6410A000U, Mnemonic::FADDQV, IrTemplate::FpBinop, Opcode::FADD, 0 }, // FADDQV
-    { 0xFF3FE000U, 0x65002000U, Mnemonic::FADDV, IrTemplate::FpBinop, Opcode::FADD, 0 }, // FADDV
-    { 0xFF3FE000U, 0x650E8000U, Mnemonic::FAMAX, IrTemplate::FpBinop, Opcode::FADD, 0 }, // FAMAX
-    { 0xFF3FE000U, 0x650F8000U, Mnemonic::FAMIN, IrTemplate::FpBinop, Opcode::FADD, 0 }, // FAMIN
-    { 0xFF3FE000U, 0x650D8000U, Mnemonic::FDIV, IrTemplate::FpBinop, Opcode::FADD, 0 }, // FDIV
-    { 0xFF3FE000U, 0x650C8000U, Mnemonic::FDIVR, IrTemplate::FpBinop, Opcode::FADD, 0 }, // FDIVR
-    { 0xFFE0FC00U, 0x64608400U, Mnemonic::FDOT, IrTemplate::FpBinop, Opcode::FADD, 0 }, // FDOT
-    { 0xFFE0FC00U, 0x64604400U, Mnemonic::FDOT, IrTemplate::FpBinop, Opcode::FADD, 0 }, // FDOT
-    { 0xFFE0FC00U, 0x64208400U, Mnemonic::FDOT, IrTemplate::FpBinop, Opcode::FADD, 0 }, // FDOT
-    { 0xFFE0FC00U, 0x64208000U, Mnemonic::FDOT, IrTemplate::FpBinop, Opcode::FADD, 0 }, // FDOT
-    { 0xFFE0FC00U, 0x64204000U, Mnemonic::FDOT, IrTemplate::FpBinop, Opcode::FADD, 0 }, // FDOT
-    { 0xFF3FE000U, 0x2539C000U, Mnemonic::FDUP, IrTemplate::SimdUnary, Opcode::COPY, 0 }, // FDUP
-    { 0xFF3FC200U, 0x25218000U, Mnemonic::FIRSTP, IrTemplate::SimdBinop, Opcode::AND, 0 }, // FIRSTP
-    { 0xFFF9E000U, 0x6518A000U, Mnemonic::FLOGB, IrTemplate::FpBinop, Opcode::FADD, 0 }, // FLOGB
-    { 0xFFFF8000U, 0x641E8000U, Mnemonic::FLOGB, IrTemplate::FpBinop, Opcode::FADD, 0 }, // FLOGB
-    { 0xFF3FE000U, 0x65068000U, Mnemonic::FMAX, IrTemplate::FpBinop, Opcode::FADD, 0 }, // FMAX
-    { 0xFF3FE000U, 0x65048000U, Mnemonic::FMAXNM, IrTemplate::FpBinop, Opcode::FADD, 0 }, // FMAXNM
-    { 0xFF3FE000U, 0x64148000U, Mnemonic::FMAXNMP, IrTemplate::FpBinop, Opcode::FADD, 0 }, // FMAXNMP
-    { 0xFF3FE000U, 0x6414A000U, Mnemonic::FMAXNMQV, IrTemplate::FpBinop, Opcode::FADD, 0 }, // FMAXNMQV
-    { 0xFF3FE000U, 0x65042000U, Mnemonic::FMAXNMV, IrTemplate::FpBinop, Opcode::FADD, 0 }, // FMAXNMV
-    { 0xFF3FE000U, 0x64168000U, Mnemonic::FMAXP, IrTemplate::FpBinop, Opcode::FADD, 0 }, // FMAXP
-    { 0xFF3FE000U, 0x6416A000U, Mnemonic::FMAXQV, IrTemplate::FpBinop, Opcode::FADD, 0 }, // FMAXQV
-    { 0xFF3FE000U, 0x65062000U, Mnemonic::FMAXV, IrTemplate::FpBinop, Opcode::FADD, 0 }, // FMAXV
-    { 0xFF3FE000U, 0x65078000U, Mnemonic::FMIN, IrTemplate::FpBinop, Opcode::FADD, 0 }, // FMIN
-    { 0xFF3FE000U, 0x65058000U, Mnemonic::FMINNM, IrTemplate::FpBinop, Opcode::FADD, 0 }, // FMINNM
-    { 0xFF3FE000U, 0x64158000U, Mnemonic::FMINNMP, IrTemplate::FpBinop, Opcode::FADD, 0 }, // FMINNMP
-    { 0xFF3FE000U, 0x6415A000U, Mnemonic::FMINNMQV, IrTemplate::FpBinop, Opcode::FADD, 0 }, // FMINNMQV
-    { 0xFF3FE000U, 0x65052000U, Mnemonic::FMINNMV, IrTemplate::FpBinop, Opcode::FADD, 0 }, // FMINNMV
-    { 0xFF3FE000U, 0x64178000U, Mnemonic::FMINP, IrTemplate::FpBinop, Opcode::FADD, 0 }, // FMINP
-    { 0xFF3FE000U, 0x6417A000U, Mnemonic::FMINQV, IrTemplate::FpBinop, Opcode::FADD, 0 }, // FMINQV
-    { 0xFF3FE000U, 0x65072000U, Mnemonic::FMINV, IrTemplate::FpBinop, Opcode::FADD, 0 }, // FMINV
-    { 0xFFE0FC00U, 0x64A00000U, Mnemonic::FMLA, IrTemplate::FpBinop, Opcode::FADD, 0 }, // FMLA
-    { 0xFFE0FC00U, 0x64E00000U, Mnemonic::FMLA, IrTemplate::FpBinop, Opcode::FADD, 0 }, // FMLA
-    { 0xFFE0FC00U, 0x64A08800U, Mnemonic::FMLALB, IrTemplate::FpBinop, Opcode::FADD, 0 }, // FMLALB
-    { 0xFFE0FC00U, 0x64A08000U, Mnemonic::FMLALB, IrTemplate::FpBinop, Opcode::FADD, 0 }, // FMLALB
-    { 0xFFE0FC00U, 0x64208800U, Mnemonic::FMLALLBB, IrTemplate::FpBinop, Opcode::FADD, 0 }, // FMLALLBB
-    { 0xFFE0FC00U, 0x64209800U, Mnemonic::FMLALLBT, IrTemplate::FpBinop, Opcode::FADD, 0 }, // FMLALLBT
-    { 0xFFE0FC00U, 0x6420A800U, Mnemonic::FMLALLTB, IrTemplate::FpBinop, Opcode::FADD, 0 }, // FMLALLTB
-    { 0xFFE0FC00U, 0x6420B800U, Mnemonic::FMLALLTT, IrTemplate::FpBinop, Opcode::FADD, 0 }, // FMLALLTT
-    { 0xFFE0FC00U, 0x64A09800U, Mnemonic::FMLALT, IrTemplate::FpBinop, Opcode::FADD, 0 }, // FMLALT
-    { 0xFFE0FC00U, 0x64A08400U, Mnemonic::FMLALT, IrTemplate::FpBinop, Opcode::FADD, 0 }, // FMLALT
-    { 0xFFE0FC00U, 0x64A00400U, Mnemonic::FMLS, IrTemplate::FpBinop, Opcode::FADD, 0 }, // FMLS
-    { 0xFFE0FC00U, 0x64E00400U, Mnemonic::FMLS, IrTemplate::FpBinop, Opcode::FADD, 0 }, // FMLS
-    { 0xFFE0FC00U, 0x64A0A000U, Mnemonic::FMLSLB, IrTemplate::FpBinop, Opcode::FADD, 0 }, // FMLSLB
-    { 0xFFE0FC00U, 0x64A0A400U, Mnemonic::FMLSLT, IrTemplate::FpBinop, Opcode::FADD, 0 }, // FMLSLT
-    { 0xFFE0FC00U, 0x6460E000U, Mnemonic::FMMLA, IrTemplate::FpBinop, Opcode::FADD, 0 }, // FMMLA
-    { 0xFFE0FC00U, 0x6420E000U, Mnemonic::FMMLA, IrTemplate::FpBinop, Opcode::FADD, 0 }, // FMMLA
-    { 0xFFE0FC00U, 0x6420E400U, Mnemonic::FMMLA, IrTemplate::FpBinop, Opcode::FADD, 0 }, // FMMLA
-    { 0xFFE0FC00U, 0x64A0E000U, Mnemonic::FMMLA, IrTemplate::FpBinop, Opcode::FADD, 0 }, // FMMLA
-    { 0xFFE0FC00U, 0x64A0E400U, Mnemonic::FMMLA, IrTemplate::FpBinop, Opcode::FADD, 0 }, // FMMLA
-    { 0xFFE0FC00U, 0x64E0E400U, Mnemonic::FMMLA, IrTemplate::FpBinop, Opcode::FADD, 0 }, // FMMLA
-    { 0xFF3FE000U, 0x2539C000U, Mnemonic::FDUP, IrTemplate::SimdUnary, Opcode::COPY, 0 }, // FDUP
-    { 0xFF3FE000U, 0x65028000U, Mnemonic::FMUL, IrTemplate::FpBinop, Opcode::FADD, 0 }, // FMUL
-    { 0xFFE0FC00U, 0x64A02000U, Mnemonic::FMUL, IrTemplate::FpBinop, Opcode::FADD, 0 }, // FMUL
-    { 0xFFE0FC00U, 0x64E02000U, Mnemonic::FMUL, IrTemplate::FpBinop, Opcode::FADD, 0 }, // FMUL
-    { 0xFF3FE000U, 0x650A8000U, Mnemonic::FMULX, IrTemplate::FpBinop, Opcode::FADD, 0 }, // FMULX
-    { 0xFF3FE000U, 0x041DA000U, Mnemonic::FNEG, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // FNEG
-    { 0xFF3FE000U, 0x040DA000U, Mnemonic::FNEG, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // FNEG
-    { 0xFF3FE000U, 0x650CA000U, Mnemonic::FRECPX, IrTemplate::FpBinop, Opcode::FADD, 0 }, // FRECPX
-    { 0xFF3FE000U, 0x641B8000U, Mnemonic::FRECPX, IrTemplate::FpBinop, Opcode::FADD, 0 }, // FRECPX
-    { 0xFF3FE000U, 0x6506A000U, Mnemonic::FRINTX, IrTemplate::FpBinop, Opcode::FADD, 0 }, // FRINTX
-    { 0xFF3FE000U, 0x6419C000U, Mnemonic::FRINTX, IrTemplate::FpBinop, Opcode::FADD, 0 }, // FRINTX
-    { 0xFF3FE000U, 0x6507A000U, Mnemonic::FRINTI, IrTemplate::FpBinop, Opcode::FADD, 0 }, // FRINTI
-    { 0xFF3FE000U, 0x6419E000U, Mnemonic::FRINTI, IrTemplate::FpBinop, Opcode::FADD, 0 }, // FRINTI
-    { 0xFF3FE000U, 0x6504A000U, Mnemonic::FRINTA, IrTemplate::FpBinop, Opcode::FADD, 0 }, // FRINTA
-    { 0xFF3FE000U, 0x64198000U, Mnemonic::FRINTA, IrTemplate::FpBinop, Opcode::FADD, 0 }, // FRINTA
-    { 0xFF3FE000U, 0x6500A000U, Mnemonic::FRINTN, IrTemplate::FpBinop, Opcode::FADD, 0 }, // FRINTN
-    { 0xFF3FE000U, 0x64188000U, Mnemonic::FRINTN, IrTemplate::FpBinop, Opcode::FADD, 0 }, // FRINTN
-    { 0xFF3FE000U, 0x6503A000U, Mnemonic::FRINTZ, IrTemplate::FpBinop, Opcode::FADD, 0 }, // FRINTZ
-    { 0xFF3FE000U, 0x6418E000U, Mnemonic::FRINTZ, IrTemplate::FpBinop, Opcode::FADD, 0 }, // FRINTZ
-    { 0xFF3FE000U, 0x6502A000U, Mnemonic::FRINTM, IrTemplate::FpBinop, Opcode::FADD, 0 }, // FRINTM
-    { 0xFF3FE000U, 0x6418C000U, Mnemonic::FRINTM, IrTemplate::FpBinop, Opcode::FADD, 0 }, // FRINTM
-    { 0xFF3FE000U, 0x6501A000U, Mnemonic::FRINTP, IrTemplate::FpBinop, Opcode::FADD, 0 }, // FRINTP
-    { 0xFF3FE000U, 0x6418A000U, Mnemonic::FRINTP, IrTemplate::FpBinop, Opcode::FADD, 0 }, // FRINTP
-    { 0xFF3FE000U, 0x65098000U, Mnemonic::FSCALE, IrTemplate::FpBinop, Opcode::FADD, 0 }, // FSCALE
-    { 0xFF3FE000U, 0x650DA000U, Mnemonic::FSQRT, IrTemplate::FpBinop, Opcode::FADD, 0 }, // FSQRT
-    { 0xFF3FE000U, 0x641BA000U, Mnemonic::FSQRT, IrTemplate::FpBinop, Opcode::FADD, 0 }, // FSQRT
-    { 0xFF3FE000U, 0x65018000U, Mnemonic::FSUB, IrTemplate::FpBinop, Opcode::FADD, 0 }, // FSUB
-    { 0xFF3FE000U, 0x65038000U, Mnemonic::FSUBR, IrTemplate::FpBinop, Opcode::FADD, 0 }, // FSUBR
-    { 0xFF38FC00U, 0x65108000U, Mnemonic::FTMAD, IrTemplate::FpBinop, Opcode::FADD, 0 }, // FTMAD
-    { 0xFF3FE000U, 0x0520A000U, Mnemonic::LASTA, IrTemplate::SimdUnary, Opcode::COPY, 0 }, // LASTA
-    { 0xFF3FE000U, 0x05228000U, Mnemonic::LASTA, IrTemplate::SimdUnary, Opcode::COPY, 0 }, // LASTA
-    { 0xFF3FE000U, 0x0521A000U, Mnemonic::LASTB, IrTemplate::SimdUnary, Opcode::COPY, 0 }, // LASTB
-    { 0xFF3FE000U, 0x05238000U, Mnemonic::LASTB, IrTemplate::SimdUnary, Opcode::COPY, 0 }, // LASTB
-    { 0xFF3FC200U, 0x25228000U, Mnemonic::LASTP, IrTemplate::SimdBinop, Opcode::AND, 0 }, // LASTP
-    { 0xFF3FE000U, 0x04038000U, Mnemonic::LSL, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // LSL
-    { 0xFF3FE000U, 0x041B8000U, Mnemonic::LSL, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // LSL
-    { 0xFF3FE000U, 0x04138000U, Mnemonic::LSL, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // LSL
-    { 0xFF3FE000U, 0x04178000U, Mnemonic::LSLR, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // LSLR
-    { 0xFF3FE000U, 0x04018000U, Mnemonic::LSR, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // LSR
-    { 0xFF3FE000U, 0x04198000U, Mnemonic::LSR, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // LSR
-    { 0xFF3FE000U, 0x04118000U, Mnemonic::LSR, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // LSR
-    { 0xFF3FE000U, 0x04158000U, Mnemonic::LSRR, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // LSRR
-    { 0xFFE0FC00U, 0x4520AC00U, Mnemonic::LUTI6, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // LUTI6
-    { 0xFFE0FC00U, 0x44C0D800U, Mnemonic::MADPT, IrTemplate::System, Opcode::UNDEF, 0 }, // MADPT
-    { 0xFFE0FC00U, 0x44A00800U, Mnemonic::MLA, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // MLA
-    { 0xFFE0FC00U, 0x44E00800U, Mnemonic::MLA, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // MLA
-    { 0xFFE0FC00U, 0x44C0D000U, Mnemonic::MLAPT, IrTemplate::System, Opcode::UNDEF, 0 }, // MLAPT
-    { 0xFFE0FC00U, 0x44A00C00U, Mnemonic::MLS, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // MLS
-    { 0xFFE0FC00U, 0x44E00C00U, Mnemonic::MLS, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // MLS
-    { 0xFF3FE000U, 0x0528A000U, Mnemonic::CPY, IrTemplate::SimdUnary, Opcode::COPY, 0 }, // CPY
-    { 0xFF3FE000U, 0x05208000U, Mnemonic::CPY, IrTemplate::SimdUnary, Opcode::COPY, 0 }, // CPY
-    { 0xFFE0FC00U, 0x04603000U, Mnemonic::ORR, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // ORR
-    { 0xFF3FE000U, 0x04100000U, Mnemonic::MUL, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // MUL
-    { 0xFF3FE000U, 0x2530C000U, Mnemonic::MUL, IrTemplate::SimdUnary, Opcode::COPY, 0 }, // MUL
-    { 0xFFE0FC00U, 0x44A0F800U, Mnemonic::MUL, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // MUL
-    { 0xFFE0FC00U, 0x44E0F800U, Mnemonic::MUL, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // MUL
-    { 0xFFE0FC00U, 0x04E03C00U, Mnemonic::NBSL, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // NBSL
-    { 0xFF3FE000U, 0x0417A000U, Mnemonic::NEG, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // NEG
-    { 0xFF3FE000U, 0x0407A000U, Mnemonic::NEG, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // NEG
-    { 0xFF3FE000U, 0x041EA000U, Mnemonic::NOT, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // NOT
-    { 0xFF3FE000U, 0x040EA000U, Mnemonic::NOT, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // NOT
-    { 0xFF3FE000U, 0x041C2000U, Mnemonic::ORQV, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // ORQV
-    { 0xFF3FE000U, 0x04180000U, Mnemonic::ORR, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // ORR
-    { 0xFFE0FC00U, 0x04603000U, Mnemonic::ORR, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // ORR
-    { 0xFF3FE000U, 0x04182000U, Mnemonic::ORV, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // ORV
-    { 0xFFE0FC00U, 0x04206400U, Mnemonic::PMUL, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // PMUL
-    { 0xFFE0FC00U, 0x45006800U, Mnemonic::PMULLB, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // PMULLB
-    { 0xFFE0FC00U, 0x45006C00U, Mnemonic::PMULLT, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // PMULLT
-    { 0xFFE0FC00U, 0x4520F400U, Mnemonic::RAX1, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // RAX1
-    { 0xFF3FE000U, 0x05278000U, Mnemonic::RBIT, IrTemplate::SimdUnary, Opcode::COPY, 0 }, // RBIT
-    { 0xFF3FE000U, 0x0527A000U, Mnemonic::RBIT, IrTemplate::SimdUnary, Opcode::COPY, 0 }, // RBIT
-    { 0xFF3FE000U, 0x05248000U, Mnemonic::REVB, IrTemplate::SimdUnary, Opcode::COPY, 0 }, // REVB
-    { 0xFF3FE000U, 0x0524A000U, Mnemonic::REVB, IrTemplate::SimdUnary, Opcode::COPY, 0 }, // REVB
-    { 0xFF3FE000U, 0x05258000U, Mnemonic::REVH, IrTemplate::SimdUnary, Opcode::COPY, 0 }, // REVH
-    { 0xFF3FE000U, 0x0525A000U, Mnemonic::REVH, IrTemplate::SimdUnary, Opcode::COPY, 0 }, // REVH
-    { 0xFF3FE000U, 0x05268000U, Mnemonic::REVW, IrTemplate::SimdUnary, Opcode::COPY, 0 }, // REVW
-    { 0xFF3FE000U, 0x0526A000U, Mnemonic::REVW, IrTemplate::SimdUnary, Opcode::COPY, 0 }, // REVW
-    { 0xFF3FE000U, 0x040C0000U, Mnemonic::SABD, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // SABD
-    { 0xFF3FE000U, 0x4404A000U, Mnemonic::SADALP, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // SADALP
-    { 0xFF3FE000U, 0x04002000U, Mnemonic::SADDV, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // SADDV
-    { 0xFF3FE000U, 0x04140000U, Mnemonic::SDIV, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // SDIV
-    { 0xFF3FE000U, 0x04160000U, Mnemonic::SDIVR, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // SDIVR
-    { 0xFFE0FC00U, 0x44400000U, Mnemonic::SDOT, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // SDOT
-    { 0xFFE0FC00U, 0x4400C800U, Mnemonic::SDOT, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // SDOT
-    { 0xFFE0FC00U, 0x4480C800U, Mnemonic::SDOT, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // SDOT
-    { 0xFFE0FC00U, 0x44A00000U, Mnemonic::SDOT, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // SDOT
-    { 0xFFE0FC00U, 0x44E00000U, Mnemonic::SDOT, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // SDOT
-    { 0xFF3FE000U, 0x44108000U, Mnemonic::SHADD, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // SHADD
-    { 0xFF3FE000U, 0x44128000U, Mnemonic::SHSUB, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // SHSUB
-    { 0xFF3FE000U, 0x44168000U, Mnemonic::SHSUBR, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // SHSUBR
-    { 0xFFE0FC00U, 0x4520F000U, Mnemonic::SM4EKEY, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // SM4EKEY
-    { 0xFF3FE000U, 0x04080000U, Mnemonic::SMAX, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // SMAX
-    { 0xFF3FE000U, 0x2528C000U, Mnemonic::SMAX, IrTemplate::SimdUnary, Opcode::COPY, 0 }, // SMAX
-    { 0xFF3FE000U, 0x4414A000U, Mnemonic::SMAXP, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // SMAXP
-    { 0xFF3FE000U, 0x040C2000U, Mnemonic::SMAXQV, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // SMAXQV
-    { 0xFF3FE000U, 0x04082000U, Mnemonic::SMAXV, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // SMAXV
-    { 0xFF3FE000U, 0x040A0000U, Mnemonic::SMIN, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // SMIN
-    { 0xFF3FE000U, 0x252AC000U, Mnemonic::SMIN, IrTemplate::SimdUnary, Opcode::COPY, 0 }, // SMIN
-    { 0xFF3FE000U, 0x4416A000U, Mnemonic::SMINP, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // SMINP
-    { 0xFF3FE000U, 0x040E2000U, Mnemonic::SMINQV, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // SMINQV
-    { 0xFF3FE000U, 0x040A2000U, Mnemonic::SMINV, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // SMINV
-    { 0xFFE0FC00U, 0x45009800U, Mnemonic::SMMLA, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // SMMLA
-    { 0xFF3FE000U, 0x04120000U, Mnemonic::SMULH, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // SMULH
-    { 0xFF3FE000U, 0x052D8000U, Mnemonic::SPLICE, IrTemplate::SimdUnary, Opcode::COPY, 0 }, // SPLICE
-    { 0xFF3FE000U, 0x052C8000U, Mnemonic::SPLICE, IrTemplate::SimdUnary, Opcode::COPY, 0 }, // SPLICE
-    { 0xFF3FE000U, 0x4408A000U, Mnemonic::SQABS, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // SQABS
-    { 0xFF3FE000U, 0x440AA000U, Mnemonic::SQABS, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // SQABS
-    { 0xFF3FE000U, 0x44188000U, Mnemonic::SQADD, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // SQADD
-    { 0xFFE0FC00U, 0x44A0F000U, Mnemonic::SQDMULH, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // SQDMULH
-    { 0xFFE0FC00U, 0x44E0F000U, Mnemonic::SQDMULH, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // SQDMULH
-    { 0xFF3FE000U, 0x4409A000U, Mnemonic::SQNEG, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // SQNEG
-    { 0xFF3FE000U, 0x440BA000U, Mnemonic::SQNEG, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // SQNEG
-    { 0xFFE0FC00U, 0x44A01000U, Mnemonic::SQRDMLAH, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // SQRDMLAH
-    { 0xFFE0FC00U, 0x44E01000U, Mnemonic::SQRDMLAH, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // SQRDMLAH
-    { 0xFFE0FC00U, 0x44A01400U, Mnemonic::SQRDMLSH, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // SQRDMLSH
-    { 0xFFE0FC00U, 0x44E01400U, Mnemonic::SQRDMLSH, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // SQRDMLSH
-    { 0xFFE0FC00U, 0x44A0F400U, Mnemonic::SQRDMULH, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // SQRDMULH
-    { 0xFFE0FC00U, 0x44E0F400U, Mnemonic::SQRDMULH, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // SQRDMULH
-    { 0xFF3FE000U, 0x440A8000U, Mnemonic::SQRSHL, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // SQRSHL
-    { 0xFF3FE000U, 0x440E8000U, Mnemonic::SQRSHLR, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // SQRSHLR
-    { 0xFF3FE000U, 0x04068000U, Mnemonic::SQSHL, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // SQSHL
-    { 0xFF3FE000U, 0x44088000U, Mnemonic::SQSHL, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // SQSHL
-    { 0xFF3FE000U, 0x440C8000U, Mnemonic::SQSHLR, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // SQSHLR
-    { 0xFF3FE000U, 0x040F8000U, Mnemonic::SQSHLU, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // SQSHLU
-    { 0xFF3FE000U, 0x441A8000U, Mnemonic::SQSUB, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // SQSUB
-    { 0xFF3FE000U, 0x441E8000U, Mnemonic::SQSUBR, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // SQSUBR
-    { 0xFF3FE000U, 0x44148000U, Mnemonic::SRHADD, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // SRHADD
-    { 0xFF3FE000U, 0x44028000U, Mnemonic::SRSHL, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // SRSHL
-    { 0xFF3FE000U, 0x44068000U, Mnemonic::SRSHLR, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // SRSHLR
-    { 0xFF3FE000U, 0x040C8000U, Mnemonic::SRSHR, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // SRSHR
-    { 0xFF3FE000U, 0x04010000U, Mnemonic::SUB, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // SUB
-    { 0xFF3FE000U, 0x4410A000U, Mnemonic::SUBP, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // SUBP
-    { 0xFFE0FC00U, 0x04E00C00U, Mnemonic::SUBPT, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // SUBPT
-    { 0xFF3FE000U, 0x04030000U, Mnemonic::SUBR, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // SUBR
-    { 0xFFE0FC00U, 0x44A01C00U, Mnemonic::SUDOT, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // SUDOT
-    { 0xFF3FE000U, 0x441C8000U, Mnemonic::SUQADD, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // SUQADD
-    { 0xFF3FE000U, 0x0410A000U, Mnemonic::SXTB, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // SXTB
-    { 0xFF3FE000U, 0x0400A000U, Mnemonic::SXTB, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // SXTB
-    { 0xFF3FE000U, 0x0412A000U, Mnemonic::SXTH, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // SXTH
-    { 0xFF3FE000U, 0x0402A000U, Mnemonic::SXTH, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // SXTH
-    { 0xFF3FE000U, 0x0414A000U, Mnemonic::SXTW, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // SXTW
-    { 0xFF3FE000U, 0x0404A000U, Mnemonic::SXTW, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // SXTW
-    { 0xFFE0FC00U, 0x05A01800U, Mnemonic::TRN1, IrTemplate::SimdUnary, Opcode::COPY, 0 }, // TRN1
-    { 0xFFE0FC00U, 0x05A01C00U, Mnemonic::TRN2, IrTemplate::SimdUnary, Opcode::COPY, 0 }, // TRN2
-    { 0xFF3FE000U, 0x040D0000U, Mnemonic::UABD, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // UABD
-    { 0xFF3FE000U, 0x4405A000U, Mnemonic::UADALP, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // UADALP
-    { 0xFF3FE000U, 0x04012000U, Mnemonic::UADDV, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // UADDV
-    { 0xFF3FE000U, 0x04150000U, Mnemonic::UDIV, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // UDIV
-    { 0xFF3FE000U, 0x04170000U, Mnemonic::UDIVR, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // UDIVR
-    { 0xFFE0FC00U, 0x44400400U, Mnemonic::UDOT, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // UDOT
-    { 0xFFE0FC00U, 0x4400CC00U, Mnemonic::UDOT, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // UDOT
-    { 0xFFE0FC00U, 0x4480CC00U, Mnemonic::UDOT, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // UDOT
-    { 0xFFE0FC00U, 0x44A00400U, Mnemonic::UDOT, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // UDOT
-    { 0xFFE0FC00U, 0x44E00400U, Mnemonic::UDOT, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // UDOT
-    { 0xFF3FE000U, 0x44118000U, Mnemonic::UHADD, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // UHADD
-    { 0xFF3FE000U, 0x44138000U, Mnemonic::UHSUB, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // UHSUB
-    { 0xFF3FE000U, 0x44178000U, Mnemonic::UHSUBR, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // UHSUBR
-    { 0xFF3FE000U, 0x04090000U, Mnemonic::UMAX, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // UMAX
-    { 0xFF3FE000U, 0x2529C000U, Mnemonic::UMAX, IrTemplate::SimdUnary, Opcode::COPY, 0 }, // UMAX
-    { 0xFF3FE000U, 0x4415A000U, Mnemonic::UMAXP, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // UMAXP
-    { 0xFF3FE000U, 0x040D2000U, Mnemonic::UMAXQV, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // UMAXQV
-    { 0xFF3FE000U, 0x04092000U, Mnemonic::UMAXV, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // UMAXV
-    { 0xFF3FE000U, 0x040B0000U, Mnemonic::UMIN, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // UMIN
-    { 0xFF3FE000U, 0x252BC000U, Mnemonic::UMIN, IrTemplate::SimdUnary, Opcode::COPY, 0 }, // UMIN
-    { 0xFF3FE000U, 0x4417A000U, Mnemonic::UMINP, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // UMINP
-    { 0xFF3FE000U, 0x040F2000U, Mnemonic::UMINQV, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // UMINQV
-    { 0xFF3FE000U, 0x040B2000U, Mnemonic::UMINV, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // UMINV
-    { 0xFFE0FC00U, 0x45C09800U, Mnemonic::UMMLA, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // UMMLA
-    { 0xFF3FE000U, 0x04130000U, Mnemonic::UMULH, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // UMULH
-    { 0xFF3FE000U, 0x44198000U, Mnemonic::UQADD, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // UQADD
-    { 0xFF3FE000U, 0x440B8000U, Mnemonic::UQRSHL, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // UQRSHL
-    { 0xFF3FE000U, 0x440F8000U, Mnemonic::UQRSHLR, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // UQRSHLR
-    { 0xFF3FE000U, 0x04078000U, Mnemonic::UQSHL, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // UQSHL
-    { 0xFF3FE000U, 0x44098000U, Mnemonic::UQSHL, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // UQSHL
-    { 0xFF3FE000U, 0x440D8000U, Mnemonic::UQSHLR, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // UQSHLR
-    { 0xFF3FE000U, 0x441B8000U, Mnemonic::UQSUB, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // UQSUB
-    { 0xFF3FE000U, 0x441F8000U, Mnemonic::UQSUBR, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // UQSUBR
-    { 0xFF3FE000U, 0x4400A000U, Mnemonic::URECPE, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // URECPE
-    { 0xFF3FE000U, 0x4402A000U, Mnemonic::URECPE, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // URECPE
-    { 0xFF3FE000U, 0x44158000U, Mnemonic::URHADD, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // URHADD
-    { 0xFF3FE000U, 0x44038000U, Mnemonic::URSHL, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // URSHL
-    { 0xFF3FE000U, 0x44078000U, Mnemonic::URSHLR, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // URSHLR
-    { 0xFF3FE000U, 0x040D8000U, Mnemonic::URSHR, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // URSHR
-    { 0xFF3FE000U, 0x4401A000U, Mnemonic::URSQRTE, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // URSQRTE
-    { 0xFF3FE000U, 0x4403A000U, Mnemonic::URSQRTE, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // URSQRTE
-    { 0xFFE0FC00U, 0x44807800U, Mnemonic::USDOT, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // USDOT
-    { 0xFFE0FC00U, 0x44A01800U, Mnemonic::USDOT, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // USDOT
-    { 0xFFE0FC00U, 0x45809800U, Mnemonic::USMMLA, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // USMMLA
-    { 0xFF3FE000U, 0x441D8000U, Mnemonic::USQADD, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // USQADD
-    { 0xFF3FE000U, 0x0411A000U, Mnemonic::UXTB, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // UXTB
-    { 0xFF3FE000U, 0x0401A000U, Mnemonic::UXTB, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // UXTB
-    { 0xFF3FE000U, 0x0413A000U, Mnemonic::UXTH, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // UXTH
-    { 0xFF3FE000U, 0x0403A000U, Mnemonic::UXTH, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // UXTH
-    { 0xFF3FE000U, 0x0415A000U, Mnemonic::UXTW, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // UXTW
-    { 0xFF3FE000U, 0x0405A000U, Mnemonic::UXTW, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // UXTW
-    { 0xFFE0FC00U, 0x05A00800U, Mnemonic::UZP1, IrTemplate::SimdUnary, Opcode::COPY, 0 }, // UZP1
-    { 0xFFE0FC00U, 0x05A00C00U, Mnemonic::UZP2, IrTemplate::SimdUnary, Opcode::COPY, 0 }, // UZP2
-    { 0xFF20FC11U, 0x25205010U, Mnemonic::WHILEGE, IrTemplate::SimdBinop, Opcode::CMP_SLT, 0 }, // WHILEGE
-    { 0xFF20FC11U, 0x25205011U, Mnemonic::WHILEGT, IrTemplate::SimdBinop, Opcode::CMP_SLT, 0 }, // WHILEGT
-    { 0xFF20FC11U, 0x25205811U, Mnemonic::WHILEHI, IrTemplate::SimdBinop, Opcode::CMP_SLT, 0 }, // WHILEHI
-    { 0xFF20FC11U, 0x25205810U, Mnemonic::WHILEHS, IrTemplate::SimdBinop, Opcode::CMP_SLT, 0 }, // WHILEHS
-    { 0xFF20FC11U, 0x25205411U, Mnemonic::WHILELE, IrTemplate::SimdBinop, Opcode::CMP_SLT, 0 }, // WHILELE
-    { 0xFF20FC11U, 0x25205C10U, Mnemonic::WHILELO, IrTemplate::SimdBinop, Opcode::CMP_SLT, 0 }, // WHILELO
-    { 0xFF20FC11U, 0x25205C11U, Mnemonic::WHILELS, IrTemplate::SimdBinop, Opcode::CMP_SLT, 0 }, // WHILELS
-    { 0xFF20FC11U, 0x25205410U, Mnemonic::WHILELT, IrTemplate::SimdBinop, Opcode::CMP_SLT, 0 }, // WHILELT
-    { 0xFFE0FC00U, 0x05A00400U, Mnemonic::ZIP2, IrTemplate::SimdUnary, Opcode::COPY, 0 }, // ZIP2
-    { 0xFFE0FC00U, 0x05A00000U, Mnemonic::ZIP1, IrTemplate::SimdUnary, Opcode::COPY, 0 }, // ZIP1
-    { 0xFFF8F000U, 0xD5087000U, Mnemonic::SYS, IrTemplate::System, Opcode::UNDEF, 0 }, // SYS
-    { 0xFFF8F000U, 0xD5087000U, Mnemonic::SYS, IrTemplate::System, Opcode::UNDEF, 0 }, // SYS
-    { 0xFFF8F000U, 0xD508C000U, Mnemonic::SYS, IrTemplate::System, Opcode::UNDEF, 0 }, // SYS
-    { 0xFFF8F000U, 0xD5087000U, Mnemonic::SYS, IrTemplate::System, Opcode::UNDEF, 0 }, // SYS
-    { 0xFFE0FC00U, 0x1A000000U, Mnemonic::ADC, IrTemplate::GpBinop, Opcode::ADD_CARRY, 0 }, // ADC
-    { 0xFFE0FC00U, 0x9A000000U, Mnemonic::ADC, IrTemplate::GpBinop, Opcode::ADD_CARRY, 0 }, // ADC
-    { 0xFFE0FC00U, 0x3A000000U, Mnemonic::ADCS, IrTemplate::GpBinopFlags, Opcode::ADD_CARRY, 0 }, // ADCS
-    { 0xFFE0FC00U, 0xBA000000U, Mnemonic::ADCS, IrTemplate::GpBinopFlags, Opcode::ADD_CARRY, 0 }, // ADCS
-    { 0xFFE0FC00U, 0x1AC02800U, Mnemonic::ASRV, IrTemplate::GpShift, Opcode::SAR, 0 }, // ASRV
-    { 0xFFE0FC00U, 0x9AC02800U, Mnemonic::ASRV, IrTemplate::GpShift, Opcode::SAR, 0 }, // ASRV
-    { 0xFFE0FC00U, 0x1AC02800U, Mnemonic::ASRV, IrTemplate::GpShift, Opcode::SAR, 0 }, // ASRV
-    { 0xFFE0FC00U, 0x9AC02800U, Mnemonic::ASRV, IrTemplate::GpShift, Opcode::SAR, 0 }, // ASRV
-    { 0xFFE0FC00U, 0x1AC04000U, Mnemonic::CRC32B, IrTemplate::System, Opcode::UNDEF, 0 }, // CRC32B
-    { 0xFFE0FC00U, 0x1AC04400U, Mnemonic::CRC32H, IrTemplate::System, Opcode::UNDEF, 0 }, // CRC32H
-    { 0xFFE0FC00U, 0x1AC04800U, Mnemonic::CRC32W, IrTemplate::System, Opcode::UNDEF, 0 }, // CRC32W
-    { 0xFFE0FC00U, 0x9AC04C00U, Mnemonic::CRC32X, IrTemplate::System, Opcode::UNDEF, 0 }, // CRC32X
-    { 0xFFE0FC00U, 0x1AC05000U, Mnemonic::CRC32CB, IrTemplate::System, Opcode::UNDEF, 0 }, // CRC32CB
-    { 0xFFE0FC00U, 0x1AC05400U, Mnemonic::CRC32CH, IrTemplate::System, Opcode::UNDEF, 0 }, // CRC32CH
-    { 0xFFE0FC00U, 0x1AC05800U, Mnemonic::CRC32CW, IrTemplate::System, Opcode::UNDEF, 0 }, // CRC32CW
-    { 0xFFE0FC00U, 0x9AC05C00U, Mnemonic::CRC32CX, IrTemplate::System, Opcode::UNDEF, 0 }, // CRC32CX
-    { 0xFFE0FC00U, 0x9AC01400U, Mnemonic::GMI, IrTemplate::System, Opcode::UNDEF, 0 }, // GMI
-    { 0xFFE0FC00U, 0x9AC01000U, Mnemonic::IRG, IrTemplate::System, Opcode::UNDEF, 0 }, // IRG
-    { 0xFFE0FC00U, 0x1AC02000U, Mnemonic::LSLV, IrTemplate::GpShift, Opcode::SHL, 0 }, // LSLV
-    { 0xFFE0FC00U, 0x9AC02000U, Mnemonic::LSLV, IrTemplate::GpShift, Opcode::SHL, 0 }, // LSLV
-    { 0xFFE0FC00U, 0x1AC02000U, Mnemonic::LSLV, IrTemplate::GpShift, Opcode::SHL, 0 }, // LSLV
-    { 0xFFE0FC00U, 0x9AC02000U, Mnemonic::LSLV, IrTemplate::GpShift, Opcode::SHL, 0 }, // LSLV
-    { 0xFFE0FC00U, 0x1AC02400U, Mnemonic::LSRV, IrTemplate::GpShift, Opcode::SHR, 0 }, // LSRV
-    { 0xFFE0FC00U, 0x9AC02400U, Mnemonic::LSRV, IrTemplate::GpShift, Opcode::SHR, 0 }, // LSRV
-    { 0xFFE0FC00U, 0x1AC02400U, Mnemonic::LSRV, IrTemplate::GpShift, Opcode::SHR, 0 }, // LSRV
-    { 0xFFE0FC00U, 0x9AC02400U, Mnemonic::LSRV, IrTemplate::GpShift, Opcode::SHR, 0 }, // LSRV
-    { 0xFFE0FC00U, 0x1B00FC00U, Mnemonic::MSUB, IrTemplate::GpMul, Opcode::MUL, 1 }, // MSUB
-    { 0xFFE0FC00U, 0x9B00FC00U, Mnemonic::MSUB, IrTemplate::GpMul, Opcode::MUL, 1 }, // MSUB
-    { 0xFFE0FC00U, 0x1B007C00U, Mnemonic::MADD, IrTemplate::GpMul, Opcode::MUL, 0 }, // MADD
-    { 0xFFE0FC00U, 0x9B007C00U, Mnemonic::MADD, IrTemplate::GpMul, Opcode::MUL, 0 }, // MADD
-    { 0xFFE0FC00U, 0x9AC03000U, Mnemonic::PACGA, IrTemplate::System, Opcode::UNDEF, 0 }, // PACGA
-    { 0xFFE07C10U, 0xBA000400U, Mnemonic::RMIF, IrTemplate::GpBinop, Opcode::ADD, 0 }, // RMIF
-    { 0xFFE0FC00U, 0x1AC02C00U, Mnemonic::RORV, IrTemplate::GpShift, Opcode::ROR, 0 }, // RORV
-    { 0xFFE0FC00U, 0x9AC02C00U, Mnemonic::RORV, IrTemplate::GpShift, Opcode::ROR, 0 }, // RORV
-    { 0xFFE0FC00U, 0x1AC02C00U, Mnemonic::RORV, IrTemplate::GpShift, Opcode::ROR, 0 }, // RORV
-    { 0xFFE0FC00U, 0x9AC02C00U, Mnemonic::RORV, IrTemplate::GpShift, Opcode::ROR, 0 }, // RORV
-    { 0xFFE0FC00U, 0x5A000000U, Mnemonic::SBC, IrTemplate::GpBinop, Opcode::SUB_CARRY, 0 }, // SBC
-    { 0xFFE0FC00U, 0xDA000000U, Mnemonic::SBC, IrTemplate::GpBinop, Opcode::SUB_CARRY, 0 }, // SBC
-    { 0xFFE0FC00U, 0x7A000000U, Mnemonic::SBCS, IrTemplate::GpBinopFlags, Opcode::SUB_CARRY, 0 }, // SBCS
-    { 0xFFE0FC00U, 0xFA000000U, Mnemonic::SBCS, IrTemplate::GpBinopFlags, Opcode::SUB_CARRY, 0 }, // SBCS
-    { 0xFFE0FC00U, 0x1AC00C00U, Mnemonic::SDIV, IrTemplate::GpDiv, Opcode::SDIV, 0 }, // SDIV
-    { 0xFFE0FC00U, 0x9AC00C00U, Mnemonic::SDIV, IrTemplate::GpDiv, Opcode::SDIV, 0 }, // SDIV
-    { 0xFFE0FC00U, 0x1AC06000U, Mnemonic::SMAX, IrTemplate::System, Opcode::UNDEF, 0 }, // SMAX
-    { 0xFFE0FC00U, 0x9AC06000U, Mnemonic::SMAX, IrTemplate::System, Opcode::UNDEF, 0 }, // SMAX
-    { 0xFFE0FC00U, 0x1AC06800U, Mnemonic::SMIN, IrTemplate::System, Opcode::UNDEF, 0 }, // SMIN
-    { 0xFFE0FC00U, 0x9AC06800U, Mnemonic::SMIN, IrTemplate::System, Opcode::UNDEF, 0 }, // SMIN
-    { 0xFFE0FC00U, 0x9B20FC00U, Mnemonic::SMSUBL, IrTemplate::GpMul, Opcode::MUL, 1 }, // SMSUBL
-    { 0xFFE0FC00U, 0x9B207C00U, Mnemonic::SMADDL, IrTemplate::GpMul, Opcode::MUL, 0 }, // SMADDL
-    { 0xFFE0FC00U, 0x9AC00000U, Mnemonic::SUBP, IrTemplate::System, Opcode::UNDEF, 0 }, // SUBP
-    { 0xFFE0FC00U, 0xBAC00000U, Mnemonic::SUBPS, IrTemplate::System, Opcode::UNDEF, 0 }, // SUBPS
-    { 0xFFE0FC00U, 0x1AC00800U, Mnemonic::UDIV, IrTemplate::GpDiv, Opcode::UDIV, 0 }, // UDIV
-    { 0xFFE0FC00U, 0x9AC00800U, Mnemonic::UDIV, IrTemplate::GpDiv, Opcode::UDIV, 0 }, // UDIV
-    { 0xFFE0FC00U, 0x1AC06400U, Mnemonic::UMAX, IrTemplate::System, Opcode::UNDEF, 0 }, // UMAX
-    { 0xFFE0FC00U, 0x9AC06400U, Mnemonic::UMAX, IrTemplate::System, Opcode::UNDEF, 0 }, // UMAX
-    { 0xFFE0FC00U, 0x1AC06C00U, Mnemonic::UMIN, IrTemplate::System, Opcode::UNDEF, 0 }, // UMIN
-    { 0xFFE0FC00U, 0x9AC06C00U, Mnemonic::UMIN, IrTemplate::System, Opcode::UNDEF, 0 }, // UMIN
-    { 0xFFE0FC00U, 0x9BA0FC00U, Mnemonic::UMSUBL, IrTemplate::GpMul, Opcode::MUL, 1 }, // UMSUBL
-    { 0xFFE0FC00U, 0x9BA07C00U, Mnemonic::UMADDL, IrTemplate::GpMul, Opcode::MUL, 0 }, // UMADDL
-    { 0xFFE0FC00U, 0x5EE08400U, Mnemonic::ADD, IrTemplate::FpBinop, Opcode::FADD, 0 }, // ADD
-    { 0xFFE0FC00U, 0x6E40EC00U, Mnemonic::BFMMLA, IrTemplate::SimdBinop, Opcode::FADD, 0 }, // BFMMLA
-    { 0xFFE0FC00U, 0x7EE08C00U, Mnemonic::CMEQ, IrTemplate::FpBinop, Opcode::FADD, 0 }, // CMEQ
-    { 0xFFE0FC00U, 0x5EE03C00U, Mnemonic::CMGE, IrTemplate::FpBinop, Opcode::FADD, 0 }, // CMGE
-    { 0xFFE0FC00U, 0x5EE03400U, Mnemonic::CMGT, IrTemplate::FpBinop, Opcode::FADD, 0 }, // CMGT
-    { 0xFFE0FC00U, 0x7EE03400U, Mnemonic::CMHI, IrTemplate::FpBinop, Opcode::FADD, 0 }, // CMHI
-    { 0xFFE0FC00U, 0x7EE03C00U, Mnemonic::CMHS, IrTemplate::FpBinop, Opcode::FADD, 0 }, // CMHS
-    { 0xFFE0FC00U, 0x5EE08C00U, Mnemonic::CMTST, IrTemplate::FpBinop, Opcode::FADD, 0 }, // CMTST
-    { 0xFFE0FC00U, 0x5E000400U, Mnemonic::DUP, IrTemplate::SimdUnary, Opcode::COPY, 0 }, // DUP
-    { 0xFFE0FC00U, 0x7EC01400U, Mnemonic::FABD, IrTemplate::FpBinop, Opcode::FADD, 0 }, // FABD
-    { 0xFFE0FC00U, 0x7E402C00U, Mnemonic::FACGE, IrTemplate::FpBinop, Opcode::FADD, 0 }, // FACGE
-    { 0xFFE0FC00U, 0x7EC02C00U, Mnemonic::FACGT, IrTemplate::FpBinop, Opcode::FADD, 0 }, // FACGT
-    { 0xFFE0FC00U, 0x1EE02800U, Mnemonic::FADD, IrTemplate::FpBinop, Opcode::FADD, 0 }, // FADD
-    { 0xFFE0FC00U, 0x1E202800U, Mnemonic::FADD, IrTemplate::FpBinop, Opcode::FADD, 0 }, // FADD
-    { 0xFFE0FC00U, 0x1E602800U, Mnemonic::FADD, IrTemplate::FpBinop, Opcode::FADD, 0 }, // FADD
-    { 0xFFE0FC00U, 0x5E402400U, Mnemonic::FCMEQ, IrTemplate::FpBinop, Opcode::FADD, 0 }, // FCMEQ
-    { 0xFFE0FC00U, 0x7E402400U, Mnemonic::FCMGE, IrTemplate::FpBinop, Opcode::FADD, 0 }, // FCMGE
-    { 0xFFE0FC00U, 0x7EC02400U, Mnemonic::FCMGT, IrTemplate::FpBinop, Opcode::FADD, 0 }, // FCMGT
-    { 0xFFE0FC00U, 0x1EE01800U, Mnemonic::FDIV, IrTemplate::FpBinop, Opcode::FDIV, 0 }, // FDIV
-    { 0xFFE0FC00U, 0x1E201800U, Mnemonic::FDIV, IrTemplate::FpBinop, Opcode::FDIV, 0 }, // FDIV
-    { 0xFFE0FC00U, 0x1E601800U, Mnemonic::FDIV, IrTemplate::FpBinop, Opcode::FDIV, 0 }, // FDIV
-    { 0xFFE0FC00U, 0x1EE04800U, Mnemonic::FMAX, IrTemplate::FpBinop, Opcode::FADD, 0 }, // FMAX
-    { 0xFFE0FC00U, 0x1E204800U, Mnemonic::FMAX, IrTemplate::FpBinop, Opcode::FADD, 0 }, // FMAX
-    { 0xFFE0FC00U, 0x1E604800U, Mnemonic::FMAX, IrTemplate::FpBinop, Opcode::FADD, 0 }, // FMAX
-    { 0xFFE0FC00U, 0x1EE06800U, Mnemonic::FMAXNM, IrTemplate::FpBinop, Opcode::FADD, 0 }, // FMAXNM
-    { 0xFFE0FC00U, 0x1E206800U, Mnemonic::FMAXNM, IrTemplate::FpBinop, Opcode::FADD, 0 }, // FMAXNM
-    { 0xFFE0FC00U, 0x1E606800U, Mnemonic::FMAXNM, IrTemplate::FpBinop, Opcode::FADD, 0 }, // FMAXNM
-    { 0xFFE0FC00U, 0x1EE05800U, Mnemonic::FMIN, IrTemplate::FpBinop, Opcode::FSUB, 0 }, // FMIN
-    { 0xFFE0FC00U, 0x1E205800U, Mnemonic::FMIN, IrTemplate::FpBinop, Opcode::FSUB, 0 }, // FMIN
-    { 0xFFE0FC00U, 0x1E605800U, Mnemonic::FMIN, IrTemplate::FpBinop, Opcode::FSUB, 0 }, // FMIN
-    { 0xFFE0FC00U, 0x1EE07800U, Mnemonic::FMINNM, IrTemplate::FpBinop, Opcode::FSUB, 0 }, // FMINNM
-    { 0xFFE0FC00U, 0x1E207800U, Mnemonic::FMINNM, IrTemplate::FpBinop, Opcode::FSUB, 0 }, // FMINNM
-    { 0xFFE0FC00U, 0x1E607800U, Mnemonic::FMINNM, IrTemplate::FpBinop, Opcode::FSUB, 0 }, // FMINNM
-    { 0xFFE0FC00U, 0x0EC0FC00U, Mnemonic::FMLALB, IrTemplate::SimdBinop, Opcode::FADD, 0 }, // FMLALB
-    { 0xFFE0FC00U, 0x4EC0FC00U, Mnemonic::FMLALT, IrTemplate::SimdBinop, Opcode::FADD, 0 }, // FMLALT
-    { 0xFFE0FC00U, 0x0E00C400U, Mnemonic::FMLALLBB, IrTemplate::SimdBinop, Opcode::FADD, 0 }, // FMLALLBB
-    { 0xFFE0FC00U, 0x0E40C400U, Mnemonic::FMLALLBT, IrTemplate::SimdBinop, Opcode::FADD, 0 }, // FMLALLBT
-    { 0xFFE0FC00U, 0x4E00C400U, Mnemonic::FMLALLTB, IrTemplate::SimdBinop, Opcode::FADD, 0 }, // FMLALLTB
-    { 0xFFE0FC00U, 0x4E40C400U, Mnemonic::FMLALLTT, IrTemplate::SimdBinop, Opcode::FADD, 0 }, // FMLALLTT
-    { 0xFFE0FC00U, 0x4EC0EC00U, Mnemonic::FMMLA, IrTemplate::SimdBinop, Opcode::FADD, 0 }, // FMMLA
-    { 0xFFE0FC00U, 0x4E40EC00U, Mnemonic::FMMLA, IrTemplate::SimdBinop, Opcode::FADD, 0 }, // FMMLA
-    { 0xFFE0FC00U, 0x6E00EC00U, Mnemonic::FMMLA, IrTemplate::SimdBinop, Opcode::FADD, 0 }, // FMMLA
-    { 0xFFE0FC00U, 0x6E80EC00U, Mnemonic::FMMLA, IrTemplate::SimdBinop, Opcode::FADD, 0 }, // FMMLA
-    { 0xFFE0FC00U, 0x1EE00800U, Mnemonic::FMUL, IrTemplate::FpBinop, Opcode::FMUL, 0 }, // FMUL
-    { 0xFFE0FC00U, 0x1E200800U, Mnemonic::FMUL, IrTemplate::FpBinop, Opcode::FMUL, 0 }, // FMUL
-    { 0xFFE0FC00U, 0x1E600800U, Mnemonic::FMUL, IrTemplate::FpBinop, Opcode::FMUL, 0 }, // FMUL
-    { 0xFFE0FC00U, 0x5E401C00U, Mnemonic::FMULX, IrTemplate::FpBinop, Opcode::FADD, 0 }, // FMULX
-    { 0xFFE0FC00U, 0x1EE08800U, Mnemonic::FNMUL, IrTemplate::FpBinop, Opcode::FMUL, 0 }, // FNMUL
-    { 0xFFE0FC00U, 0x1E208800U, Mnemonic::FNMUL, IrTemplate::FpBinop, Opcode::FMUL, 0 }, // FNMUL
-    { 0xFFE0FC00U, 0x1E608800U, Mnemonic::FNMUL, IrTemplate::FpBinop, Opcode::FMUL, 0 }, // FNMUL
-    { 0xFFE0FC00U, 0x5E403C00U, Mnemonic::FRECPS, IrTemplate::FpBinop, Opcode::FADD, 0 }, // FRECPS
-    { 0xFFE0FC00U, 0x5EC03C00U, Mnemonic::FRSQRTS, IrTemplate::FpBinop, Opcode::FADD, 0 }, // FRSQRTS
-    { 0xFFE0FC00U, 0x1EE03800U, Mnemonic::FSUB, IrTemplate::FpBinop, Opcode::FSUB, 0 }, // FSUB
-    { 0xFFE0FC00U, 0x1E203800U, Mnemonic::FSUB, IrTemplate::FpBinop, Opcode::FSUB, 0 }, // FSUB
-    { 0xFFE0FC00U, 0x1E603800U, Mnemonic::FSUB, IrTemplate::FpBinop, Opcode::FSUB, 0 }, // FSUB
-    { 0xFFE0FC00U, 0x4E001C00U, Mnemonic::INS, IrTemplate::SimdUnary, Opcode::COPY, 0 }, // INS
-    { 0xFFE0FC00U, 0x5E000400U, Mnemonic::DUP, IrTemplate::SimdUnary, Opcode::COPY, 0 }, // DUP
-    { 0xFFE0FC00U, 0x4E001C00U, Mnemonic::INS, IrTemplate::SimdUnary, Opcode::COPY, 0 }, // INS
-    { 0xFFE0FC00U, 0x0E003C00U, Mnemonic::UMOV, IrTemplate::SimdUnary, Opcode::COPY, 0 }, // UMOV
-    { 0xFFE0FC00U, 0x4E003C00U, Mnemonic::UMOV, IrTemplate::SimdUnary, Opcode::COPY, 0 }, // UMOV
-    { 0xFFE0FC00U, 0xCE608C00U, Mnemonic::RAX1, IrTemplate::System, Opcode::UNDEF, 0 }, // RAX1
-    { 0xFFE0FC00U, 0x5E000000U, Mnemonic::SHA1C, IrTemplate::System, Opcode::UNDEF, 0 }, // SHA1C
-    { 0xFFE0FC00U, 0x5E002000U, Mnemonic::SHA1M, IrTemplate::System, Opcode::UNDEF, 0 }, // SHA1M
-    { 0xFFE0FC00U, 0x5E001000U, Mnemonic::SHA1P, IrTemplate::System, Opcode::UNDEF, 0 }, // SHA1P
-    { 0xFFE0FC00U, 0x5E003000U, Mnemonic::SHA1SU0, IrTemplate::System, Opcode::UNDEF, 0 }, // SHA1SU0
-    { 0xFFE0FC00U, 0x5E005000U, Mnemonic::SHA256H2, IrTemplate::System, Opcode::UNDEF, 0 }, // SHA256H2
-    { 0xFFE0FC00U, 0x5E004000U, Mnemonic::SHA256H, IrTemplate::System, Opcode::UNDEF, 0 }, // SHA256H
-    { 0xFFE0FC00U, 0x5E006000U, Mnemonic::SHA256SU1, IrTemplate::System, Opcode::UNDEF, 0 }, // SHA256SU1
-    { 0xFFE0FC00U, 0xCE608400U, Mnemonic::SHA512H2, IrTemplate::System, Opcode::UNDEF, 0 }, // SHA512H2
-    { 0xFFE0FC00U, 0xCE608000U, Mnemonic::SHA512H, IrTemplate::System, Opcode::UNDEF, 0 }, // SHA512H
-    { 0xFFE0FC00U, 0xCE608800U, Mnemonic::SHA512SU1, IrTemplate::System, Opcode::UNDEF, 0 }, // SHA512SU1
-    { 0xFFE0FC00U, 0xCE60C000U, Mnemonic::SM3PARTW1, IrTemplate::System, Opcode::UNDEF, 0 }, // SM3PARTW1
-    { 0xFFE0FC00U, 0xCE60C400U, Mnemonic::SM3PARTW2, IrTemplate::System, Opcode::UNDEF, 0 }, // SM3PARTW2
-    { 0xFFE0FC00U, 0xCE60C800U, Mnemonic::SM4EKEY, IrTemplate::System, Opcode::UNDEF, 0 }, // SM4EKEY
-    { 0xFFE0FC00U, 0x4E80A400U, Mnemonic::SMMLA, IrTemplate::SimdBinop, Opcode::FADD, 0 }, // SMMLA
-    { 0xFFE0FC00U, 0x0E002C00U, Mnemonic::SMOV, IrTemplate::SimdUnary, Opcode::COPY, 0 }, // SMOV
-    { 0xFFE0FC00U, 0x4E002C00U, Mnemonic::SMOV, IrTemplate::SimdUnary, Opcode::COPY, 0 }, // SMOV
-    { 0xFFE0FC00U, 0x5EE05400U, Mnemonic::SRSHL, IrTemplate::FpBinop, Opcode::FADD, 0 }, // SRSHL
-    { 0xFFE0FC00U, 0x5EE04400U, Mnemonic::SSHL, IrTemplate::FpBinop, Opcode::FADD, 0 }, // SSHL
-    { 0xFFE0FC00U, 0x7EE08400U, Mnemonic::SUB, IrTemplate::FpBinop, Opcode::FADD, 0 }, // SUB
-    { 0xBF87FC00U, 0x0F00A400U, Mnemonic::SSHLL, IrTemplate::SimdBinop, Opcode::SHL, 0 }, // SSHLL
-    { 0xFFE0FC00U, 0x6E80A400U, Mnemonic::UMMLA, IrTemplate::SimdBinop, Opcode::FADD, 0 }, // UMMLA
-    { 0xFFE0FC00U, 0x0E003C00U, Mnemonic::UMOV, IrTemplate::SimdUnary, Opcode::COPY, 0 }, // UMOV
-    { 0xFFE0FC00U, 0x4E003C00U, Mnemonic::UMOV, IrTemplate::SimdUnary, Opcode::COPY, 0 }, // UMOV
-    { 0xFFE0FC00U, 0x7EE05400U, Mnemonic::URSHL, IrTemplate::FpBinop, Opcode::FADD, 0 }, // URSHL
-    { 0xFFE0FC00U, 0x7EE04400U, Mnemonic::USHL, IrTemplate::FpBinop, Opcode::FADD, 0 }, // USHL
-    { 0xFFE0FC00U, 0x4E80AC00U, Mnemonic::USMMLA, IrTemplate::SimdBinop, Opcode::FADD, 0 }, // USMMLA
-    { 0xBF87FC00U, 0x2F00A400U, Mnemonic::USHLL, IrTemplate::SimdBinop, Opcode::SHL, 0 }, // USHLL
-    { 0xFFE0FC00U, 0x88A07C00U, Mnemonic::CAS, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // CAS
-    { 0xFFE0FC00U, 0x88E07C00U, Mnemonic::CASA, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // CASA
-    { 0xFFE0FC00U, 0x88E0FC00U, Mnemonic::CASAL, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // CASAL
-    { 0xFFE0FC00U, 0x88A0FC00U, Mnemonic::CASL, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // CASL
-    { 0xFFE0FC00U, 0xC8A07C00U, Mnemonic::CAS, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // CAS
-    { 0xFFE0FC00U, 0xC8E07C00U, Mnemonic::CASA, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // CASA
-    { 0xFFE0FC00U, 0xC8E0FC00U, Mnemonic::CASAL, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // CASAL
-    { 0xFFE0FC00U, 0xC8A0FC00U, Mnemonic::CASL, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // CASL
-    { 0xFFE0FC00U, 0x08A07C00U, Mnemonic::CASB, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // CASB
-    { 0xFFE0FC00U, 0x08E07C00U, Mnemonic::CASAB, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // CASAB
-    { 0xFFE0FC00U, 0x08E0FC00U, Mnemonic::CASALB, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // CASALB
-    { 0xFFE0FC00U, 0x08A0FC00U, Mnemonic::CASLB, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // CASLB
-    { 0xFFE0FC00U, 0x48A07C00U, Mnemonic::CASH, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // CASH
-    { 0xFFE0FC00U, 0x48E07C00U, Mnemonic::CASAH, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // CASAH
-    { 0xFFE0FC00U, 0x48E0FC00U, Mnemonic::CASALH, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // CASALH
-    { 0xFFE0FC00U, 0x48A0FC00U, Mnemonic::CASLH, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // CASLH
-    { 0xFFE0FC00U, 0x08207C00U, Mnemonic::CASP, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // CASP
-    { 0xFFE0FC00U, 0x08607C00U, Mnemonic::CASPA, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // CASPA
-    { 0xFFE0FC00U, 0x0860FC00U, Mnemonic::CASPAL, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // CASPAL
-    { 0xFFE0FC00U, 0x0820FC00U, Mnemonic::CASPL, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // CASPL
-    { 0xFFE0FC00U, 0x48207C00U, Mnemonic::CASP, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // CASP
-    { 0xFFE0FC00U, 0x48607C00U, Mnemonic::CASPA, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // CASPA
-    { 0xFFE0FC00U, 0x4860FC00U, Mnemonic::CASPAL, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // CASPAL
-    { 0xFFE0FC00U, 0x4820FC00U, Mnemonic::CASPL, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // CASPL
-    { 0xFFE0FC00U, 0x49807C00U, Mnemonic::CASPT, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // CASPT
-    { 0xFFE0FC00U, 0x49C07C00U, Mnemonic::CASPAT, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // CASPAT
-    { 0xFFE0FC00U, 0x49C0FC00U, Mnemonic::CASPALT, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // CASPALT
-    { 0xFFE0FC00U, 0x4980FC00U, Mnemonic::CASPLT, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // CASPLT
-    { 0xFFE0FC00U, 0xC9807C00U, Mnemonic::CAST, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // CAST
-    { 0xFFE0FC00U, 0xC9C07C00U, Mnemonic::CASAT, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // CASAT
-    { 0xFFE0FC00U, 0xC9C0FC00U, Mnemonic::CASALT, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // CASALT
-    { 0xFFE0FC00U, 0xC980FC00U, Mnemonic::CASLT, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // CASLT
-    { 0xFFE0FC00U, 0xB8200000U, Mnemonic::LDADD, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // LDADD
-    { 0xFFE0FC00U, 0xB8A00000U, Mnemonic::LDADDA, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // LDADDA
-    { 0xFFE0FC00U, 0xB8E00000U, Mnemonic::LDADDAL, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // LDADDAL
-    { 0xFFE0FC00U, 0xB8600000U, Mnemonic::LDADDL, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // LDADDL
-    { 0xFFE0FC00U, 0xF8200000U, Mnemonic::LDADD, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // LDADD
-    { 0xFFE0FC00U, 0xF8A00000U, Mnemonic::LDADDA, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // LDADDA
-    { 0xFFE0FC00U, 0xF8E00000U, Mnemonic::LDADDAL, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // LDADDAL
-    { 0xFFE0FC00U, 0xF8600000U, Mnemonic::LDADDL, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // LDADDL
-    { 0xFFE0FC00U, 0x38200000U, Mnemonic::LDADDB, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // LDADDB
-    { 0xFFE0FC00U, 0x38A00000U, Mnemonic::LDADDAB, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // LDADDAB
-    { 0xFFE0FC00U, 0x38E00000U, Mnemonic::LDADDALB, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // LDADDALB
-    { 0xFFE0FC00U, 0x38600000U, Mnemonic::LDADDLB, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // LDADDLB
-    { 0xFFE0FC00U, 0x78200000U, Mnemonic::LDADDH, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // LDADDH
-    { 0xFFE0FC00U, 0x78A00000U, Mnemonic::LDADDAH, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // LDADDAH
-    { 0xFFE0FC00U, 0x78E00000U, Mnemonic::LDADDALH, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // LDADDALH
-    { 0xFFE0FC00U, 0x78600000U, Mnemonic::LDADDLH, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // LDADDLH
-    { 0xFFE0FC00U, 0xD9405800U, Mnemonic::LDAP, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LDAP
-    { 0xFFE0FC00U, 0xD9407800U, Mnemonic::LDAPP, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LDAPP
-    { 0xFFE0FC00U, 0xB8A0C000U, Mnemonic::LDAPR, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // LDAPR
-    { 0xFFE0FC00U, 0xF8A0C000U, Mnemonic::LDAPR, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // LDAPR
-    { 0xFFE0FC00U, 0x38A0C000U, Mnemonic::LDAPRB, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // LDAPRB
-    { 0xFFE0FC00U, 0x78A0C000U, Mnemonic::LDAPRH, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // LDAPRH
-    { 0xFFE0FC00U, 0x3C200000U, Mnemonic::LDBFADD, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // LDBFADD
-    { 0xFFE0FC00U, 0x3CA00000U, Mnemonic::LDBFADDA, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // LDBFADDA
-    { 0xFFE0FC00U, 0x3CE00000U, Mnemonic::LDBFADDAL, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // LDBFADDAL
-    { 0xFFE0FC00U, 0x3C600000U, Mnemonic::LDBFADDL, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // LDBFADDL
-    { 0xFFE0FC00U, 0x3C204000U, Mnemonic::LDBFMAX, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // LDBFMAX
-    { 0xFFE0FC00U, 0x3CA04000U, Mnemonic::LDBFMAXA, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // LDBFMAXA
-    { 0xFFE0FC00U, 0x3CE04000U, Mnemonic::LDBFMAXAL, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // LDBFMAXAL
-    { 0xFFE0FC00U, 0x3C604000U, Mnemonic::LDBFMAXL, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // LDBFMAXL
-    { 0xFFE0FC00U, 0x3C206000U, Mnemonic::LDBFMAXNM, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // LDBFMAXNM
-    { 0xFFE0FC00U, 0x3CA06000U, Mnemonic::LDBFMAXNMA, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // LDBFMAXNMA
-    { 0xFFE0FC00U, 0x3CE06000U, Mnemonic::LDBFMAXNMAL, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // LDBFMAXNMAL
-    { 0xFFE0FC00U, 0x3C606000U, Mnemonic::LDBFMAXNML, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // LDBFMAXNML
-    { 0xFFE0FC00U, 0x3C205000U, Mnemonic::LDBFMIN, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // LDBFMIN
-    { 0xFFE0FC00U, 0x3CA05000U, Mnemonic::LDBFMINA, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // LDBFMINA
-    { 0xFFE0FC00U, 0x3CE05000U, Mnemonic::LDBFMINAL, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // LDBFMINAL
-    { 0xFFE0FC00U, 0x3C605000U, Mnemonic::LDBFMINL, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // LDBFMINL
-    { 0xFFE0FC00U, 0x3C207000U, Mnemonic::LDBFMINNM, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // LDBFMINNM
-    { 0xFFE0FC00U, 0x3CA07000U, Mnemonic::LDBFMINNMA, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // LDBFMINNMA
-    { 0xFFE0FC00U, 0x3CE07000U, Mnemonic::LDBFMINNMAL, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // LDBFMINNMAL
-    { 0xFFE0FC00U, 0x3C607000U, Mnemonic::LDBFMINNML, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // LDBFMINNML
-    { 0xFFE0FC00U, 0xB8201000U, Mnemonic::LDCLR, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // LDCLR
-    { 0xFFE0FC00U, 0xB8A01000U, Mnemonic::LDCLRA, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // LDCLRA
-    { 0xFFE0FC00U, 0xB8E01000U, Mnemonic::LDCLRAL, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // LDCLRAL
-    { 0xFFE0FC00U, 0xB8601000U, Mnemonic::LDCLRL, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // LDCLRL
-    { 0xFFE0FC00U, 0xF8201000U, Mnemonic::LDCLR, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // LDCLR
-    { 0xFFE0FC00U, 0xF8A01000U, Mnemonic::LDCLRA, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // LDCLRA
-    { 0xFFE0FC00U, 0xF8E01000U, Mnemonic::LDCLRAL, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // LDCLRAL
-    { 0xFFE0FC00U, 0xF8601000U, Mnemonic::LDCLRL, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // LDCLRL
-    { 0xFFE0FC00U, 0x38201000U, Mnemonic::LDCLRB, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // LDCLRB
-    { 0xFFE0FC00U, 0x38A01000U, Mnemonic::LDCLRAB, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // LDCLRAB
-    { 0xFFE0FC00U, 0x38E01000U, Mnemonic::LDCLRALB, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // LDCLRALB
-    { 0xFFE0FC00U, 0x38601000U, Mnemonic::LDCLRLB, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // LDCLRLB
-    { 0xFFE0FC00U, 0x78201000U, Mnemonic::LDCLRH, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // LDCLRH
-    { 0xFFE0FC00U, 0x78A01000U, Mnemonic::LDCLRAH, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // LDCLRAH
-    { 0xFFE0FC00U, 0x78E01000U, Mnemonic::LDCLRALH, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // LDCLRALH
-    { 0xFFE0FC00U, 0x78601000U, Mnemonic::LDCLRLH, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // LDCLRLH
-    { 0xFFE0FC00U, 0x19201000U, Mnemonic::LDCLRP, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // LDCLRP
-    { 0xFFE0FC00U, 0x19A01000U, Mnemonic::LDCLRPA, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // LDCLRPA
-    { 0xFFE0FC00U, 0x19E01000U, Mnemonic::LDCLRPAL, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // LDCLRPAL
-    { 0xFFE0FC00U, 0x19601000U, Mnemonic::LDCLRPL, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // LDCLRPL
-    { 0xFFE0FC00U, 0xB8202000U, Mnemonic::LDEOR, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // LDEOR
-    { 0xFFE0FC00U, 0xB8A02000U, Mnemonic::LDEORA, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // LDEORA
-    { 0xFFE0FC00U, 0xB8E02000U, Mnemonic::LDEORAL, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // LDEORAL
-    { 0xFFE0FC00U, 0xB8602000U, Mnemonic::LDEORL, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // LDEORL
-    { 0xFFE0FC00U, 0xF8202000U, Mnemonic::LDEOR, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // LDEOR
-    { 0xFFE0FC00U, 0xF8A02000U, Mnemonic::LDEORA, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // LDEORA
-    { 0xFFE0FC00U, 0xF8E02000U, Mnemonic::LDEORAL, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // LDEORAL
-    { 0xFFE0FC00U, 0xF8602000U, Mnemonic::LDEORL, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // LDEORL
-    { 0xFFE0FC00U, 0x38202000U, Mnemonic::LDEORB, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // LDEORB
-    { 0xFFE0FC00U, 0x38A02000U, Mnemonic::LDEORAB, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // LDEORAB
-    { 0xFFE0FC00U, 0x38E02000U, Mnemonic::LDEORALB, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // LDEORALB
-    { 0xFFE0FC00U, 0x38602000U, Mnemonic::LDEORLB, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // LDEORLB
-    { 0xFFE0FC00U, 0x78202000U, Mnemonic::LDEORH, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // LDEORH
-    { 0xFFE0FC00U, 0x78A02000U, Mnemonic::LDEORAH, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // LDEORAH
-    { 0xFFE0FC00U, 0x78E02000U, Mnemonic::LDEORALH, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // LDEORALH
-    { 0xFFE0FC00U, 0x78602000U, Mnemonic::LDEORLH, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // LDEORLH
-    { 0xFFE0FC00U, 0x7C200000U, Mnemonic::LDFADD, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // LDFADD
-    { 0xFFE0FC00U, 0x7CA00000U, Mnemonic::LDFADDA, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // LDFADDA
-    { 0xFFE0FC00U, 0x7CE00000U, Mnemonic::LDFADDAL, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // LDFADDAL
-    { 0xFFE0FC00U, 0x7C600000U, Mnemonic::LDFADDL, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // LDFADDL
-    { 0xFFE0FC00U, 0xBC200000U, Mnemonic::LDFADD, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // LDFADD
-    { 0xFFE0FC00U, 0xBCA00000U, Mnemonic::LDFADDA, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // LDFADDA
-    { 0xFFE0FC00U, 0xBCE00000U, Mnemonic::LDFADDAL, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // LDFADDAL
-    { 0xFFE0FC00U, 0xBC600000U, Mnemonic::LDFADDL, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // LDFADDL
-    { 0xFFE0FC00U, 0xFC200000U, Mnemonic::LDFADD, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // LDFADD
-    { 0xFFE0FC00U, 0xFCA00000U, Mnemonic::LDFADDA, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // LDFADDA
-    { 0xFFE0FC00U, 0xFCE00000U, Mnemonic::LDFADDAL, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // LDFADDAL
-    { 0xFFE0FC00U, 0xFC600000U, Mnemonic::LDFADDL, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // LDFADDL
-    { 0xFFE0FC00U, 0x7C204000U, Mnemonic::LDFMAX, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // LDFMAX
-    { 0xFFE0FC00U, 0x7CA04000U, Mnemonic::LDFMAXA, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // LDFMAXA
-    { 0xFFE0FC00U, 0x7CE04000U, Mnemonic::LDFMAXAL, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // LDFMAXAL
-    { 0xFFE0FC00U, 0x7C604000U, Mnemonic::LDFMAXL, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // LDFMAXL
-    { 0xFFE0FC00U, 0xBC204000U, Mnemonic::LDFMAX, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // LDFMAX
-    { 0xFFE0FC00U, 0xBCA04000U, Mnemonic::LDFMAXA, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // LDFMAXA
-    { 0xFFE0FC00U, 0xBCE04000U, Mnemonic::LDFMAXAL, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // LDFMAXAL
-    { 0xFFE0FC00U, 0xBC604000U, Mnemonic::LDFMAXL, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // LDFMAXL
-    { 0xFFE0FC00U, 0xFC204000U, Mnemonic::LDFMAX, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // LDFMAX
-    { 0xFFE0FC00U, 0xFCA04000U, Mnemonic::LDFMAXA, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // LDFMAXA
-    { 0xFFE0FC00U, 0xFCE04000U, Mnemonic::LDFMAXAL, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // LDFMAXAL
-    { 0xFFE0FC00U, 0xFC604000U, Mnemonic::LDFMAXL, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // LDFMAXL
-    { 0xFFE0FC00U, 0x7C206000U, Mnemonic::LDFMAXNM, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // LDFMAXNM
-    { 0xFFE0FC00U, 0x7CA06000U, Mnemonic::LDFMAXNMA, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // LDFMAXNMA
-    { 0xFFE0FC00U, 0x7CE06000U, Mnemonic::LDFMAXNMAL, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // LDFMAXNMAL
-    { 0xFFE0FC00U, 0x7C606000U, Mnemonic::LDFMAXNML, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // LDFMAXNML
-    { 0xFFE0FC00U, 0xBC206000U, Mnemonic::LDFMAXNM, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // LDFMAXNM
-    { 0xFFE0FC00U, 0xBCA06000U, Mnemonic::LDFMAXNMA, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // LDFMAXNMA
-    { 0xFFE0FC00U, 0xBCE06000U, Mnemonic::LDFMAXNMAL, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // LDFMAXNMAL
-    { 0xFFE0FC00U, 0xBC606000U, Mnemonic::LDFMAXNML, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // LDFMAXNML
-    { 0xFFE0FC00U, 0xFC206000U, Mnemonic::LDFMAXNM, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // LDFMAXNM
-    { 0xFFE0FC00U, 0xFCA06000U, Mnemonic::LDFMAXNMA, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // LDFMAXNMA
-    { 0xFFE0FC00U, 0xFCE06000U, Mnemonic::LDFMAXNMAL, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // LDFMAXNMAL
-    { 0xFFE0FC00U, 0xFC606000U, Mnemonic::LDFMAXNML, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // LDFMAXNML
-    { 0xFFE0FC00U, 0x7C205000U, Mnemonic::LDFMIN, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // LDFMIN
-    { 0xFFE0FC00U, 0x7CA05000U, Mnemonic::LDFMINA, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // LDFMINA
-    { 0xFFE0FC00U, 0x7CE05000U, Mnemonic::LDFMINAL, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // LDFMINAL
-    { 0xFFE0FC00U, 0x7C605000U, Mnemonic::LDFMINL, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // LDFMINL
-    { 0xFFE0FC00U, 0xBC205000U, Mnemonic::LDFMIN, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // LDFMIN
-    { 0xFFE0FC00U, 0xBCA05000U, Mnemonic::LDFMINA, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // LDFMINA
-    { 0xFFE0FC00U, 0xBCE05000U, Mnemonic::LDFMINAL, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // LDFMINAL
-    { 0xFFE0FC00U, 0xBC605000U, Mnemonic::LDFMINL, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // LDFMINL
-    { 0xFFE0FC00U, 0xFC205000U, Mnemonic::LDFMIN, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // LDFMIN
-    { 0xFFE0FC00U, 0xFCA05000U, Mnemonic::LDFMINA, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // LDFMINA
-    { 0xFFE0FC00U, 0xFCE05000U, Mnemonic::LDFMINAL, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // LDFMINAL
-    { 0xFFE0FC00U, 0xFC605000U, Mnemonic::LDFMINL, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // LDFMINL
-    { 0xFFE0FC00U, 0x7C207000U, Mnemonic::LDFMINNM, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // LDFMINNM
-    { 0xFFE0FC00U, 0x7CA07000U, Mnemonic::LDFMINNMA, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // LDFMINNMA
-    { 0xFFE0FC00U, 0x7CE07000U, Mnemonic::LDFMINNMAL, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // LDFMINNMAL
-    { 0xFFE0FC00U, 0x7C607000U, Mnemonic::LDFMINNML, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // LDFMINNML
-    { 0xFFE0FC00U, 0xBC207000U, Mnemonic::LDFMINNM, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // LDFMINNM
-    { 0xFFE0FC00U, 0xBCA07000U, Mnemonic::LDFMINNMA, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // LDFMINNMA
-    { 0xFFE0FC00U, 0xBCE07000U, Mnemonic::LDFMINNMAL, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // LDFMINNMAL
-    { 0xFFE0FC00U, 0xBC607000U, Mnemonic::LDFMINNML, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // LDFMINNML
-    { 0xFFE0FC00U, 0xFC207000U, Mnemonic::LDFMINNM, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // LDFMINNM
-    { 0xFFE0FC00U, 0xFCA07000U, Mnemonic::LDFMINNMA, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // LDFMINNMA
-    { 0xFFE0FC00U, 0xFCE07000U, Mnemonic::LDFMINNMAL, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // LDFMINNMAL
-    { 0xFFE0FC00U, 0xFC607000U, Mnemonic::LDFMINNML, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // LDFMINNML
-    { 0xFFE0FC00U, 0x99400800U, Mnemonic::LDIAPP, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LDIAPP
-    { 0xFFE0FC00U, 0x99401800U, Mnemonic::LDIAPP, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LDIAPP
-    { 0xFFE0FC00U, 0xD9400800U, Mnemonic::LDIAPP, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LDIAPP
-    { 0xFFE0FC00U, 0xD9401800U, Mnemonic::LDIAPP, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LDIAPP
-    { 0xFFE0FC00U, 0xB8203000U, Mnemonic::LDSET, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // LDSET
-    { 0xFFE0FC00U, 0xB8A03000U, Mnemonic::LDSETA, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // LDSETA
-    { 0xFFE0FC00U, 0xB8E03000U, Mnemonic::LDSETAL, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // LDSETAL
-    { 0xFFE0FC00U, 0xB8603000U, Mnemonic::LDSETL, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // LDSETL
-    { 0xFFE0FC00U, 0xF8203000U, Mnemonic::LDSET, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // LDSET
-    { 0xFFE0FC00U, 0xF8A03000U, Mnemonic::LDSETA, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // LDSETA
-    { 0xFFE0FC00U, 0xF8E03000U, Mnemonic::LDSETAL, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // LDSETAL
-    { 0xFFE0FC00U, 0xF8603000U, Mnemonic::LDSETL, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // LDSETL
-    { 0xFFE0FC00U, 0x38203000U, Mnemonic::LDSETB, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // LDSETB
-    { 0xFFE0FC00U, 0x38A03000U, Mnemonic::LDSETAB, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // LDSETAB
-    { 0xFFE0FC00U, 0x38E03000U, Mnemonic::LDSETALB, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // LDSETALB
-    { 0xFFE0FC00U, 0x38603000U, Mnemonic::LDSETLB, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // LDSETLB
-    { 0xFFE0FC00U, 0x78203000U, Mnemonic::LDSETH, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // LDSETH
-    { 0xFFE0FC00U, 0x78A03000U, Mnemonic::LDSETAH, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // LDSETAH
-    { 0xFFE0FC00U, 0x78E03000U, Mnemonic::LDSETALH, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // LDSETALH
-    { 0xFFE0FC00U, 0x78603000U, Mnemonic::LDSETLH, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // LDSETLH
-    { 0xFFE0FC00U, 0x19203000U, Mnemonic::LDSETP, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // LDSETP
-    { 0xFFE0FC00U, 0x19A03000U, Mnemonic::LDSETPA, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // LDSETPA
-    { 0xFFE0FC00U, 0x19E03000U, Mnemonic::LDSETPAL, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // LDSETPAL
-    { 0xFFE0FC00U, 0x19603000U, Mnemonic::LDSETPL, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // LDSETPL
-    { 0xFFE0FC00U, 0xB8204000U, Mnemonic::LDSMAX, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // LDSMAX
-    { 0xFFE0FC00U, 0xB8A04000U, Mnemonic::LDSMAXA, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // LDSMAXA
-    { 0xFFE0FC00U, 0xB8E04000U, Mnemonic::LDSMAXAL, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // LDSMAXAL
-    { 0xFFE0FC00U, 0xB8604000U, Mnemonic::LDSMAXL, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // LDSMAXL
-    { 0xFFE0FC00U, 0xF8204000U, Mnemonic::LDSMAX, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // LDSMAX
-    { 0xFFE0FC00U, 0xF8A04000U, Mnemonic::LDSMAXA, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // LDSMAXA
-    { 0xFFE0FC00U, 0xF8E04000U, Mnemonic::LDSMAXAL, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // LDSMAXAL
-    { 0xFFE0FC00U, 0xF8604000U, Mnemonic::LDSMAXL, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // LDSMAXL
-    { 0xFFE0FC00U, 0x38204000U, Mnemonic::LDSMAXB, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // LDSMAXB
-    { 0xFFE0FC00U, 0x38A04000U, Mnemonic::LDSMAXAB, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // LDSMAXAB
-    { 0xFFE0FC00U, 0x38E04000U, Mnemonic::LDSMAXALB, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // LDSMAXALB
-    { 0xFFE0FC00U, 0x38604000U, Mnemonic::LDSMAXLB, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // LDSMAXLB
-    { 0xFFE0FC00U, 0x78204000U, Mnemonic::LDSMAXH, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // LDSMAXH
-    { 0xFFE0FC00U, 0x78A04000U, Mnemonic::LDSMAXAH, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // LDSMAXAH
-    { 0xFFE0FC00U, 0x78E04000U, Mnemonic::LDSMAXALH, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // LDSMAXALH
-    { 0xFFE0FC00U, 0x78604000U, Mnemonic::LDSMAXLH, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // LDSMAXLH
-    { 0xFFE0FC00U, 0xB8205000U, Mnemonic::LDSMIN, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // LDSMIN
-    { 0xFFE0FC00U, 0xB8A05000U, Mnemonic::LDSMINA, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // LDSMINA
-    { 0xFFE0FC00U, 0xB8E05000U, Mnemonic::LDSMINAL, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // LDSMINAL
-    { 0xFFE0FC00U, 0xB8605000U, Mnemonic::LDSMINL, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // LDSMINL
-    { 0xFFE0FC00U, 0xF8205000U, Mnemonic::LDSMIN, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // LDSMIN
-    { 0xFFE0FC00U, 0xF8A05000U, Mnemonic::LDSMINA, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // LDSMINA
-    { 0xFFE0FC00U, 0xF8E05000U, Mnemonic::LDSMINAL, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // LDSMINAL
-    { 0xFFE0FC00U, 0xF8605000U, Mnemonic::LDSMINL, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // LDSMINL
-    { 0xFFE0FC00U, 0x38205000U, Mnemonic::LDSMINB, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // LDSMINB
-    { 0xFFE0FC00U, 0x38A05000U, Mnemonic::LDSMINAB, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // LDSMINAB
-    { 0xFFE0FC00U, 0x38E05000U, Mnemonic::LDSMINALB, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // LDSMINALB
-    { 0xFFE0FC00U, 0x38605000U, Mnemonic::LDSMINLB, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // LDSMINLB
-    { 0xFFE0FC00U, 0x78205000U, Mnemonic::LDSMINH, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // LDSMINH
-    { 0xFFE0FC00U, 0x78A05000U, Mnemonic::LDSMINAH, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // LDSMINAH
-    { 0xFFE0FC00U, 0x78E05000U, Mnemonic::LDSMINALH, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // LDSMINALH
-    { 0xFFE0FC00U, 0x78605000U, Mnemonic::LDSMINLH, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // LDSMINLH
-    { 0xFFE0FC00U, 0x19200400U, Mnemonic::LDTADD, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // LDTADD
-    { 0xFFE0FC00U, 0x19A00400U, Mnemonic::LDTADDA, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // LDTADDA
-    { 0xFFE0FC00U, 0x19E00400U, Mnemonic::LDTADDAL, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // LDTADDAL
-    { 0xFFE0FC00U, 0x19600400U, Mnemonic::LDTADDL, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // LDTADDL
-    { 0xFFE0FC00U, 0x59200400U, Mnemonic::LDTADD, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // LDTADD
-    { 0xFFE0FC00U, 0x59A00400U, Mnemonic::LDTADDA, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // LDTADDA
-    { 0xFFE0FC00U, 0x59E00400U, Mnemonic::LDTADDAL, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // LDTADDAL
-    { 0xFFE0FC00U, 0x59600400U, Mnemonic::LDTADDL, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // LDTADDL
-    { 0xFFE0FC00U, 0x19201400U, Mnemonic::LDTCLR, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // LDTCLR
-    { 0xFFE0FC00U, 0x19A01400U, Mnemonic::LDTCLRA, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // LDTCLRA
-    { 0xFFE0FC00U, 0x19E01400U, Mnemonic::LDTCLRAL, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // LDTCLRAL
-    { 0xFFE0FC00U, 0x19601400U, Mnemonic::LDTCLRL, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // LDTCLRL
-    { 0xFFE0FC00U, 0x59201400U, Mnemonic::LDTCLR, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // LDTCLR
-    { 0xFFE0FC00U, 0x59A01400U, Mnemonic::LDTCLRA, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // LDTCLRA
-    { 0xFFE0FC00U, 0x59E01400U, Mnemonic::LDTCLRAL, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // LDTCLRAL
-    { 0xFFE0FC00U, 0x59601400U, Mnemonic::LDTCLRL, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // LDTCLRL
-    { 0xFFE0FC00U, 0x19203400U, Mnemonic::LDTSET, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // LDTSET
-    { 0xFFE0FC00U, 0x19A03400U, Mnemonic::LDTSETA, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // LDTSETA
-    { 0xFFE0FC00U, 0x19E03400U, Mnemonic::LDTSETAL, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // LDTSETAL
-    { 0xFFE0FC00U, 0x19603400U, Mnemonic::LDTSETL, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // LDTSETL
-    { 0xFFE0FC00U, 0x59203400U, Mnemonic::LDTSET, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // LDTSET
-    { 0xFFE0FC00U, 0x59A03400U, Mnemonic::LDTSETA, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // LDTSETA
-    { 0xFFE0FC00U, 0x59E03400U, Mnemonic::LDTSETAL, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // LDTSETAL
-    { 0xFFE0FC00U, 0x59603400U, Mnemonic::LDTSETL, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // LDTSETL
-    { 0xFFE0FC00U, 0xB8206000U, Mnemonic::LDUMAX, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // LDUMAX
-    { 0xFFE0FC00U, 0xB8A06000U, Mnemonic::LDUMAXA, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // LDUMAXA
-    { 0xFFE0FC00U, 0xB8E06000U, Mnemonic::LDUMAXAL, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // LDUMAXAL
-    { 0xFFE0FC00U, 0xB8606000U, Mnemonic::LDUMAXL, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // LDUMAXL
-    { 0xFFE0FC00U, 0xF8206000U, Mnemonic::LDUMAX, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // LDUMAX
-    { 0xFFE0FC00U, 0xF8A06000U, Mnemonic::LDUMAXA, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // LDUMAXA
-    { 0xFFE0FC00U, 0xF8E06000U, Mnemonic::LDUMAXAL, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // LDUMAXAL
-    { 0xFFE0FC00U, 0xF8606000U, Mnemonic::LDUMAXL, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // LDUMAXL
-    { 0xFFE0FC00U, 0x38206000U, Mnemonic::LDUMAXB, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // LDUMAXB
-    { 0xFFE0FC00U, 0x38A06000U, Mnemonic::LDUMAXAB, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // LDUMAXAB
-    { 0xFFE0FC00U, 0x38E06000U, Mnemonic::LDUMAXALB, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // LDUMAXALB
-    { 0xFFE0FC00U, 0x38606000U, Mnemonic::LDUMAXLB, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // LDUMAXLB
-    { 0xFFE0FC00U, 0x78206000U, Mnemonic::LDUMAXH, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // LDUMAXH
-    { 0xFFE0FC00U, 0x78A06000U, Mnemonic::LDUMAXAH, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // LDUMAXAH
-    { 0xFFE0FC00U, 0x78E06000U, Mnemonic::LDUMAXALH, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // LDUMAXALH
-    { 0xFFE0FC00U, 0x78606000U, Mnemonic::LDUMAXLH, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // LDUMAXLH
-    { 0xFFE0FC00U, 0xB8207000U, Mnemonic::LDUMIN, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // LDUMIN
-    { 0xFFE0FC00U, 0xB8A07000U, Mnemonic::LDUMINA, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // LDUMINA
-    { 0xFFE0FC00U, 0xB8E07000U, Mnemonic::LDUMINAL, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // LDUMINAL
-    { 0xFFE0FC00U, 0xB8607000U, Mnemonic::LDUMINL, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // LDUMINL
-    { 0xFFE0FC00U, 0xF8207000U, Mnemonic::LDUMIN, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // LDUMIN
-    { 0xFFE0FC00U, 0xF8A07000U, Mnemonic::LDUMINA, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // LDUMINA
-    { 0xFFE0FC00U, 0xF8E07000U, Mnemonic::LDUMINAL, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // LDUMINAL
-    { 0xFFE0FC00U, 0xF8607000U, Mnemonic::LDUMINL, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // LDUMINL
-    { 0xFFE0FC00U, 0x38207000U, Mnemonic::LDUMINB, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // LDUMINB
-    { 0xFFE0FC00U, 0x38A07000U, Mnemonic::LDUMINAB, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // LDUMINAB
-    { 0xFFE0FC00U, 0x38E07000U, Mnemonic::LDUMINALB, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // LDUMINALB
-    { 0xFFE0FC00U, 0x38607000U, Mnemonic::LDUMINLB, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // LDUMINLB
-    { 0xFFE0FC00U, 0x78207000U, Mnemonic::LDUMINH, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // LDUMINH
-    { 0xFFE0FC00U, 0x78A07000U, Mnemonic::LDUMINAH, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // LDUMINAH
-    { 0xFFE0FC00U, 0x78E07000U, Mnemonic::LDUMINALH, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // LDUMINALH
-    { 0xFFE0FC00U, 0x78607000U, Mnemonic::LDUMINLH, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // LDUMINLH
-    { 0xFFE0FC00U, 0x19200800U, Mnemonic::RCWCAS, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // RCWCAS
-    { 0xFFE0FC00U, 0x19A00800U, Mnemonic::RCWCASA, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // RCWCASA
-    { 0xFFE0FC00U, 0x19E00800U, Mnemonic::RCWCASAL, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // RCWCASAL
-    { 0xFFE0FC00U, 0x19600800U, Mnemonic::RCWCASL, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // RCWCASL
-    { 0xFFE0FC00U, 0x19200C00U, Mnemonic::RCWCASP, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // RCWCASP
-    { 0xFFE0FC00U, 0x19A00C00U, Mnemonic::RCWCASPA, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // RCWCASPA
-    { 0xFFE0FC00U, 0x19E00C00U, Mnemonic::RCWCASPAL, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // RCWCASPAL
-    { 0xFFE0FC00U, 0x19600C00U, Mnemonic::RCWCASPL, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // RCWCASPL
-    { 0xFFE0FC00U, 0x38209000U, Mnemonic::RCWCLR, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // RCWCLR
-    { 0xFFE0FC00U, 0x38A09000U, Mnemonic::RCWCLRA, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // RCWCLRA
-    { 0xFFE0FC00U, 0x38E09000U, Mnemonic::RCWCLRAL, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // RCWCLRAL
-    { 0xFFE0FC00U, 0x38609000U, Mnemonic::RCWCLRL, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // RCWCLRL
-    { 0xFFE0FC00U, 0x19209000U, Mnemonic::RCWCLRP, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // RCWCLRP
-    { 0xFFE0FC00U, 0x19A09000U, Mnemonic::RCWCLRPA, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // RCWCLRPA
-    { 0xFFE0FC00U, 0x19E09000U, Mnemonic::RCWCLRPAL, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // RCWCLRPAL
-    { 0xFFE0FC00U, 0x19609000U, Mnemonic::RCWCLRPL, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // RCWCLRPL
-    { 0xFFE0FC00U, 0x59200800U, Mnemonic::RCWSCAS, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // RCWSCAS
-    { 0xFFE0FC00U, 0x59A00800U, Mnemonic::RCWSCASA, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // RCWSCASA
-    { 0xFFE0FC00U, 0x59E00800U, Mnemonic::RCWSCASAL, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // RCWSCASAL
-    { 0xFFE0FC00U, 0x59600800U, Mnemonic::RCWSCASL, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // RCWSCASL
-    { 0xFFE0FC00U, 0x59200C00U, Mnemonic::RCWSCASP, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // RCWSCASP
-    { 0xFFE0FC00U, 0x59A00C00U, Mnemonic::RCWSCASPA, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // RCWSCASPA
-    { 0xFFE0FC00U, 0x59E00C00U, Mnemonic::RCWSCASPAL, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // RCWSCASPAL
-    { 0xFFE0FC00U, 0x59600C00U, Mnemonic::RCWSCASPL, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // RCWSCASPL
-    { 0xFFE0FC00U, 0x78209000U, Mnemonic::RCWSCLR, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // RCWSCLR
-    { 0xFFE0FC00U, 0x78A09000U, Mnemonic::RCWSCLRA, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // RCWSCLRA
-    { 0xFFE0FC00U, 0x78E09000U, Mnemonic::RCWSCLRAL, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // RCWSCLRAL
-    { 0xFFE0FC00U, 0x78609000U, Mnemonic::RCWSCLRL, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // RCWSCLRL
-    { 0xFFE0FC00U, 0x59209000U, Mnemonic::RCWSCLRP, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // RCWSCLRP
-    { 0xFFE0FC00U, 0x59A09000U, Mnemonic::RCWSCLRPA, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // RCWSCLRPA
-    { 0xFFE0FC00U, 0x59E09000U, Mnemonic::RCWSCLRPAL, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // RCWSCLRPAL
-    { 0xFFE0FC00U, 0x59609000U, Mnemonic::RCWSCLRPL, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // RCWSCLRPL
-    { 0xFFE0FC00U, 0x3820B000U, Mnemonic::RCWSET, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // RCWSET
-    { 0xFFE0FC00U, 0x38A0B000U, Mnemonic::RCWSETA, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // RCWSETA
-    { 0xFFE0FC00U, 0x38E0B000U, Mnemonic::RCWSETAL, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // RCWSETAL
-    { 0xFFE0FC00U, 0x3860B000U, Mnemonic::RCWSETL, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // RCWSETL
-    { 0xFFE0FC00U, 0x1920B000U, Mnemonic::RCWSETP, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // RCWSETP
-    { 0xFFE0FC00U, 0x19A0B000U, Mnemonic::RCWSETPA, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // RCWSETPA
-    { 0xFFE0FC00U, 0x19E0B000U, Mnemonic::RCWSETPAL, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // RCWSETPAL
-    { 0xFFE0FC00U, 0x1960B000U, Mnemonic::RCWSETPL, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // RCWSETPL
-    { 0xFFE0FC00U, 0x7820B000U, Mnemonic::RCWSSET, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // RCWSSET
-    { 0xFFE0FC00U, 0x78A0B000U, Mnemonic::RCWSSETA, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // RCWSSETA
-    { 0xFFE0FC00U, 0x78E0B000U, Mnemonic::RCWSSETAL, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // RCWSSETAL
-    { 0xFFE0FC00U, 0x7860B000U, Mnemonic::RCWSSETL, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // RCWSSETL
-    { 0xFFE0FC00U, 0x5920B000U, Mnemonic::RCWSSETP, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // RCWSSETP
-    { 0xFFE0FC00U, 0x59A0B000U, Mnemonic::RCWSSETPA, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // RCWSSETPA
-    { 0xFFE0FC00U, 0x59E0B000U, Mnemonic::RCWSSETPAL, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // RCWSSETPAL
-    { 0xFFE0FC00U, 0x5960B000U, Mnemonic::RCWSSETPL, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // RCWSSETPL
-    { 0xFFE0FC00U, 0x7820A000U, Mnemonic::RCWSSWP, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // RCWSSWP
-    { 0xFFE0FC00U, 0x78A0A000U, Mnemonic::RCWSSWPA, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // RCWSSWPA
-    { 0xFFE0FC00U, 0x78E0A000U, Mnemonic::RCWSSWPAL, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // RCWSSWPAL
-    { 0xFFE0FC00U, 0x7860A000U, Mnemonic::RCWSSWPL, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // RCWSSWPL
-    { 0xFFE0FC00U, 0x5920A000U, Mnemonic::RCWSSWPP, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // RCWSSWPP
-    { 0xFFE0FC00U, 0x59A0A000U, Mnemonic::RCWSSWPPA, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // RCWSSWPPA
-    { 0xFFE0FC00U, 0x59E0A000U, Mnemonic::RCWSSWPPAL, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // RCWSSWPPAL
-    { 0xFFE0FC00U, 0x5960A000U, Mnemonic::RCWSSWPPL, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // RCWSSWPPL
-    { 0xFFE0FC00U, 0x3820A000U, Mnemonic::RCWSWP, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // RCWSWP
-    { 0xFFE0FC00U, 0x38A0A000U, Mnemonic::RCWSWPA, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // RCWSWPA
-    { 0xFFE0FC00U, 0x38E0A000U, Mnemonic::RCWSWPAL, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // RCWSWPAL
-    { 0xFFE0FC00U, 0x3860A000U, Mnemonic::RCWSWPL, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // RCWSWPL
-    { 0xFFE0FC00U, 0x1920A000U, Mnemonic::RCWSWPP, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // RCWSWPP
-    { 0xFFE0FC00U, 0x19A0A000U, Mnemonic::RCWSWPPA, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // RCWSWPPA
-    { 0xFFE0FC00U, 0x19E0A000U, Mnemonic::RCWSWPPAL, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // RCWSWPPAL
-    { 0xFFE0FC00U, 0x1960A000U, Mnemonic::RCWSWPPL, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // RCWSWPPL
-    { 0xFFE0FC00U, 0xF820B000U, Mnemonic::ST64BV, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // ST64BV
-    { 0xFFE0FC00U, 0xF820A000U, Mnemonic::ST64BV0, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // ST64BV0
-    { 0xFFE0FC00U, 0x99000800U, Mnemonic::STILP, IrTemplate::StoreReg, Opcode::STORE, 0 }, // STILP
-    { 0xFFE0FC00U, 0x99001800U, Mnemonic::STILP, IrTemplate::StoreReg, Opcode::STORE, 0 }, // STILP
-    { 0xFFE0FC00U, 0xD9000800U, Mnemonic::STILP, IrTemplate::StoreReg, Opcode::STORE, 0 }, // STILP
-    { 0xFFE0FC00U, 0xD9001800U, Mnemonic::STILP, IrTemplate::StoreReg, Opcode::STORE, 0 }, // STILP
-    { 0xFFE0FC00U, 0xD9005800U, Mnemonic::STLP, IrTemplate::StoreReg, Opcode::STORE, 0 }, // STLP
-    { 0xFFE0FC00U, 0xB8208000U, Mnemonic::SWP, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // SWP
-    { 0xFFE0FC00U, 0xB8A08000U, Mnemonic::SWPA, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // SWPA
-    { 0xFFE0FC00U, 0xB8E08000U, Mnemonic::SWPAL, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // SWPAL
-    { 0xFFE0FC00U, 0xB8608000U, Mnemonic::SWPL, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // SWPL
-    { 0xFFE0FC00U, 0xF8208000U, Mnemonic::SWP, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // SWP
-    { 0xFFE0FC00U, 0xF8A08000U, Mnemonic::SWPA, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // SWPA
-    { 0xFFE0FC00U, 0xF8E08000U, Mnemonic::SWPAL, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // SWPAL
-    { 0xFFE0FC00U, 0xF8608000U, Mnemonic::SWPL, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // SWPL
-    { 0xFFE0FC00U, 0x38208000U, Mnemonic::SWPB, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // SWPB
-    { 0xFFE0FC00U, 0x38A08000U, Mnemonic::SWPAB, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // SWPAB
-    { 0xFFE0FC00U, 0x38E08000U, Mnemonic::SWPALB, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // SWPALB
-    { 0xFFE0FC00U, 0x38608000U, Mnemonic::SWPLB, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // SWPLB
-    { 0xFFE0FC00U, 0x78208000U, Mnemonic::SWPH, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // SWPH
-    { 0xFFE0FC00U, 0x78A08000U, Mnemonic::SWPAH, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // SWPAH
-    { 0xFFE0FC00U, 0x78E08000U, Mnemonic::SWPALH, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // SWPALH
-    { 0xFFE0FC00U, 0x78608000U, Mnemonic::SWPLH, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // SWPLH
-    { 0xFFE0FC00U, 0x19208000U, Mnemonic::SWPP, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // SWPP
-    { 0xFFE0FC00U, 0x19A08000U, Mnemonic::SWPPA, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // SWPPA
-    { 0xFFE0FC00U, 0x19E08000U, Mnemonic::SWPPAL, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // SWPPAL
-    { 0xFFE0FC00U, 0x19608000U, Mnemonic::SWPPL, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // SWPPL
-    { 0xFFE0FC00U, 0x19208400U, Mnemonic::SWPT, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // SWPT
-    { 0xFFE0FC00U, 0x19A08400U, Mnemonic::SWPTA, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // SWPTA
-    { 0xFFE0FC00U, 0x19E08400U, Mnemonic::SWPTAL, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // SWPTAL
-    { 0xFFE0FC00U, 0x19608400U, Mnemonic::SWPTL, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // SWPTL
-    { 0xFFE0FC00U, 0x59208400U, Mnemonic::SWPT, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // SWPT
-    { 0xFFE0FC00U, 0x59A08400U, Mnemonic::SWPTA, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // SWPTA
-    { 0xFFE0FC00U, 0x59E08400U, Mnemonic::SWPTAL, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // SWPTAL
-    { 0xFFE0FC00U, 0x59608400U, Mnemonic::SWPTL, IrTemplate::Atomic, Opcode::UNDEF, 0 }, // SWPTL
-    { 0xFFFF0000U, 0x00000000U, Mnemonic::UDF, IrTemplate::System, Opcode::UNDEF, 0 }, // UDF
-    { 0xFFF09030U, 0xC1101020U, Mnemonic::BFMLA, IrTemplate::System, Opcode::UNDEF, 0 }, // BFMLA
-    { 0xFFF09030U, 0xC1101030U, Mnemonic::BFMLS, IrTemplate::System, Opcode::UNDEF, 0 }, // BFMLS
-    { 0xFFE0E00CU, 0x81400000U, Mnemonic::BFTMOPA, IrTemplate::System, Opcode::UNDEF, 0 }, // BFTMOPA
-    { 0xFF20FC01U, 0xC120C000U, Mnemonic::FCLAMP, IrTemplate::System, Opcode::UNDEF, 0 }, // FCLAMP
-    { 0xFFF09030U, 0xC1D00020U, Mnemonic::FDOT, IrTemplate::System, Opcode::UNDEF, 0 }, // FDOT
-    { 0xFFF09030U, 0xC1101000U, Mnemonic::FMLA, IrTemplate::System, Opcode::UNDEF, 0 }, // FMLA
-    { 0xFFF09030U, 0xC1901030U, Mnemonic::FMLAL, IrTemplate::System, Opcode::UNDEF, 0 }, // FMLAL
-    { 0xFFF09030U, 0xC1101010U, Mnemonic::FMLS, IrTemplate::System, Opcode::UNDEF, 0 }, // FMLS
-    { 0xFFE0E00CU, 0x80600000U, Mnemonic::FTMOPA, IrTemplate::System, Opcode::UNDEF, 0 }, // FTMOPA
-    { 0xFFE0E00CU, 0x81600000U, Mnemonic::FTMOPA, IrTemplate::System, Opcode::UNDEF, 0 }, // FTMOPA
-    { 0xFFE0E00CU, 0x80400000U, Mnemonic::FTMOPA, IrTemplate::System, Opcode::UNDEF, 0 }, // FTMOPA
-    { 0xFFF09030U, 0xC1D01020U, Mnemonic::FVDOT, IrTemplate::System, Opcode::UNDEF, 0 }, // FVDOT
-    { 0xFFF0E001U, 0xA0400000U, Mnemonic::LD1B, IrTemplate::System, Opcode::UNDEF, 0 }, // LD1B
-    { 0xFFE0E003U, 0xA0008000U, Mnemonic::LD1B, IrTemplate::System, Opcode::UNDEF, 0 }, // LD1B
-    { 0xFFF0E008U, 0xA1400000U, Mnemonic::LD1B, IrTemplate::System, Opcode::UNDEF, 0 }, // LD1B
-    { 0xFFE0E00CU, 0xA1008000U, Mnemonic::LD1B, IrTemplate::System, Opcode::UNDEF, 0 }, // LD1B
-    { 0xFFF0E001U, 0xA0406000U, Mnemonic::LD1D, IrTemplate::System, Opcode::UNDEF, 0 }, // LD1D
-    { 0xFFE0E003U, 0xA000E000U, Mnemonic::LD1D, IrTemplate::System, Opcode::UNDEF, 0 }, // LD1D
-    { 0xFFF0E008U, 0xA1406000U, Mnemonic::LD1D, IrTemplate::System, Opcode::UNDEF, 0 }, // LD1D
-    { 0xFFE0E00CU, 0xA100E000U, Mnemonic::LD1D, IrTemplate::System, Opcode::UNDEF, 0 }, // LD1D
-    { 0xFFF0E001U, 0xA0402000U, Mnemonic::LD1H, IrTemplate::System, Opcode::UNDEF, 0 }, // LD1H
-    { 0xFFE0E003U, 0xA000A000U, Mnemonic::LD1H, IrTemplate::System, Opcode::UNDEF, 0 }, // LD1H
-    { 0xFFF0E008U, 0xA1402000U, Mnemonic::LD1H, IrTemplate::System, Opcode::UNDEF, 0 }, // LD1H
-    { 0xFFE0E00CU, 0xA100A000U, Mnemonic::LD1H, IrTemplate::System, Opcode::UNDEF, 0 }, // LD1H
-    { 0xFFF0E001U, 0xA0404000U, Mnemonic::LD1W, IrTemplate::System, Opcode::UNDEF, 0 }, // LD1W
-    { 0xFFE0E003U, 0xA000C000U, Mnemonic::LD1W, IrTemplate::System, Opcode::UNDEF, 0 }, // LD1W
-    { 0xFFF0E008U, 0xA1404000U, Mnemonic::LD1W, IrTemplate::System, Opcode::UNDEF, 0 }, // LD1W
-    { 0xFFE0E00CU, 0xA100C000U, Mnemonic::LD1W, IrTemplate::System, Opcode::UNDEF, 0 }, // LD1W
-    { 0xFFF0E001U, 0xA0400001U, Mnemonic::LDNT1B, IrTemplate::System, Opcode::UNDEF, 0 }, // LDNT1B
-    { 0xFFE0E003U, 0xA0008001U, Mnemonic::LDNT1B, IrTemplate::System, Opcode::UNDEF, 0 }, // LDNT1B
-    { 0xFFF0E008U, 0xA1400008U, Mnemonic::LDNT1B, IrTemplate::System, Opcode::UNDEF, 0 }, // LDNT1B
-    { 0xFFE0E00CU, 0xA1008008U, Mnemonic::LDNT1B, IrTemplate::System, Opcode::UNDEF, 0 }, // LDNT1B
-    { 0xFFF0E001U, 0xA0406001U, Mnemonic::LDNT1D, IrTemplate::System, Opcode::UNDEF, 0 }, // LDNT1D
-    { 0xFFE0E003U, 0xA000E001U, Mnemonic::LDNT1D, IrTemplate::System, Opcode::UNDEF, 0 }, // LDNT1D
-    { 0xFFF0E008U, 0xA1406008U, Mnemonic::LDNT1D, IrTemplate::System, Opcode::UNDEF, 0 }, // LDNT1D
-    { 0xFFE0E00CU, 0xA100E008U, Mnemonic::LDNT1D, IrTemplate::System, Opcode::UNDEF, 0 }, // LDNT1D
-    { 0xFFF0E001U, 0xA0402001U, Mnemonic::LDNT1H, IrTemplate::System, Opcode::UNDEF, 0 }, // LDNT1H
-    { 0xFFE0E003U, 0xA000A001U, Mnemonic::LDNT1H, IrTemplate::System, Opcode::UNDEF, 0 }, // LDNT1H
-    { 0xFFF0E008U, 0xA1402008U, Mnemonic::LDNT1H, IrTemplate::System, Opcode::UNDEF, 0 }, // LDNT1H
-    { 0xFFE0E00CU, 0xA100A008U, Mnemonic::LDNT1H, IrTemplate::System, Opcode::UNDEF, 0 }, // LDNT1H
-    { 0xFFF0E001U, 0xA0404001U, Mnemonic::LDNT1W, IrTemplate::System, Opcode::UNDEF, 0 }, // LDNT1W
-    { 0xFFE0E003U, 0xA000C001U, Mnemonic::LDNT1W, IrTemplate::System, Opcode::UNDEF, 0 }, // LDNT1W
-    { 0xFFF0E008U, 0xA1404008U, Mnemonic::LDNT1W, IrTemplate::System, Opcode::UNDEF, 0 }, // LDNT1W
-    { 0xFFE0E00CU, 0xA100C008U, Mnemonic::LDNT1W, IrTemplate::System, Opcode::UNDEF, 0 }, // LDNT1W
-    { 0xFFFC0C00U, 0xC0CC0000U, Mnemonic::LUTI2, IrTemplate::System, Opcode::UNDEF, 0 }, // LUTI2
-    { 0xFF20FC01U, 0xC120C400U, Mnemonic::SCLAMP, IrTemplate::System, Opcode::UNDEF, 0 }, // SCLAMP
-    { 0xFFF0101CU, 0xC1800000U, Mnemonic::SMLALL, IrTemplate::System, Opcode::UNDEF, 0 }, // SMLALL
-    { 0xFFF0101CU, 0xC1800008U, Mnemonic::SMLSLL, IrTemplate::System, Opcode::UNDEF, 0 }, // SMLSLL
-    { 0xFFF0E001U, 0xA0600000U, Mnemonic::ST1B, IrTemplate::System, Opcode::UNDEF, 0 }, // ST1B
-    { 0xFFE0E003U, 0xA0208000U, Mnemonic::ST1B, IrTemplate::System, Opcode::UNDEF, 0 }, // ST1B
-    { 0xFFF0E008U, 0xA1600000U, Mnemonic::ST1B, IrTemplate::System, Opcode::UNDEF, 0 }, // ST1B
-    { 0xFFE0E00CU, 0xA1208000U, Mnemonic::ST1B, IrTemplate::System, Opcode::UNDEF, 0 }, // ST1B
-    { 0xFFF0E001U, 0xA0606000U, Mnemonic::ST1D, IrTemplate::System, Opcode::UNDEF, 0 }, // ST1D
-    { 0xFFE0E003U, 0xA020E000U, Mnemonic::ST1D, IrTemplate::System, Opcode::UNDEF, 0 }, // ST1D
-    { 0xFFF0E008U, 0xA1606000U, Mnemonic::ST1D, IrTemplate::System, Opcode::UNDEF, 0 }, // ST1D
-    { 0xFFE0E00CU, 0xA120E000U, Mnemonic::ST1D, IrTemplate::System, Opcode::UNDEF, 0 }, // ST1D
-    { 0xFFF0E001U, 0xA0602000U, Mnemonic::ST1H, IrTemplate::System, Opcode::UNDEF, 0 }, // ST1H
-    { 0xFFE0E003U, 0xA020A000U, Mnemonic::ST1H, IrTemplate::System, Opcode::UNDEF, 0 }, // ST1H
-    { 0xFFF0E008U, 0xA1602000U, Mnemonic::ST1H, IrTemplate::System, Opcode::UNDEF, 0 }, // ST1H
-    { 0xFFE0E00CU, 0xA120A000U, Mnemonic::ST1H, IrTemplate::System, Opcode::UNDEF, 0 }, // ST1H
-    { 0xFFF0E001U, 0xA0604000U, Mnemonic::ST1W, IrTemplate::System, Opcode::UNDEF, 0 }, // ST1W
-    { 0xFFE0E003U, 0xA020C000U, Mnemonic::ST1W, IrTemplate::System, Opcode::UNDEF, 0 }, // ST1W
-    { 0xFFF0E008U, 0xA1604000U, Mnemonic::ST1W, IrTemplate::System, Opcode::UNDEF, 0 }, // ST1W
-    { 0xFFE0E00CU, 0xA120C000U, Mnemonic::ST1W, IrTemplate::System, Opcode::UNDEF, 0 }, // ST1W
-    { 0xFFE0E00CU, 0x80408008U, Mnemonic::STMOPA, IrTemplate::System, Opcode::UNDEF, 0 }, // STMOPA
-    { 0xFFE0E00CU, 0x80408000U, Mnemonic::STMOPA, IrTemplate::System, Opcode::UNDEF, 0 }, // STMOPA
-    { 0xFFF0E001U, 0xA0600001U, Mnemonic::STNT1B, IrTemplate::System, Opcode::UNDEF, 0 }, // STNT1B
-    { 0xFFE0E003U, 0xA0208001U, Mnemonic::STNT1B, IrTemplate::System, Opcode::UNDEF, 0 }, // STNT1B
-    { 0xFFF0E008U, 0xA1600008U, Mnemonic::STNT1B, IrTemplate::System, Opcode::UNDEF, 0 }, // STNT1B
-    { 0xFFE0E00CU, 0xA1208008U, Mnemonic::STNT1B, IrTemplate::System, Opcode::UNDEF, 0 }, // STNT1B
-    { 0xFFF0E001U, 0xA0606001U, Mnemonic::STNT1D, IrTemplate::System, Opcode::UNDEF, 0 }, // STNT1D
-    { 0xFFE0E003U, 0xA020E001U, Mnemonic::STNT1D, IrTemplate::System, Opcode::UNDEF, 0 }, // STNT1D
-    { 0xFFF0E008U, 0xA1606008U, Mnemonic::STNT1D, IrTemplate::System, Opcode::UNDEF, 0 }, // STNT1D
-    { 0xFFE0E00CU, 0xA120E008U, Mnemonic::STNT1D, IrTemplate::System, Opcode::UNDEF, 0 }, // STNT1D
-    { 0xFFF0E001U, 0xA0602001U, Mnemonic::STNT1H, IrTemplate::System, Opcode::UNDEF, 0 }, // STNT1H
-    { 0xFFE0E003U, 0xA020A001U, Mnemonic::STNT1H, IrTemplate::System, Opcode::UNDEF, 0 }, // STNT1H
-    { 0xFFF0E008U, 0xA1602008U, Mnemonic::STNT1H, IrTemplate::System, Opcode::UNDEF, 0 }, // STNT1H
-    { 0xFFE0E00CU, 0xA120A008U, Mnemonic::STNT1H, IrTemplate::System, Opcode::UNDEF, 0 }, // STNT1H
-    { 0xFFF0E001U, 0xA0604001U, Mnemonic::STNT1W, IrTemplate::System, Opcode::UNDEF, 0 }, // STNT1W
-    { 0xFFE0E003U, 0xA020C001U, Mnemonic::STNT1W, IrTemplate::System, Opcode::UNDEF, 0 }, // STNT1W
-    { 0xFFF0E008U, 0xA1604008U, Mnemonic::STNT1W, IrTemplate::System, Opcode::UNDEF, 0 }, // STNT1W
-    { 0xFFE0E00CU, 0xA120C008U, Mnemonic::STNT1W, IrTemplate::System, Opcode::UNDEF, 0 }, // STNT1W
-    { 0xFFE0E00CU, 0x80608000U, Mnemonic::SUTMOPA, IrTemplate::System, Opcode::UNDEF, 0 }, // SUTMOPA
-    { 0xFF20FC01U, 0xC120C401U, Mnemonic::UCLAMP, IrTemplate::System, Opcode::UNDEF, 0 }, // UCLAMP
-    { 0xFFF0101CU, 0xC1800010U, Mnemonic::UMLALL, IrTemplate::System, Opcode::UNDEF, 0 }, // UMLALL
-    { 0xFFF0101CU, 0xC1800018U, Mnemonic::UMLSLL, IrTemplate::System, Opcode::UNDEF, 0 }, // UMLSLL
-    { 0xFFE0E00CU, 0x81408000U, Mnemonic::USTMOPA, IrTemplate::System, Opcode::UNDEF, 0 }, // USTMOPA
-    { 0xFFE0E00CU, 0x81408008U, Mnemonic::UTMOPA, IrTemplate::System, Opcode::UNDEF, 0 }, // UTMOPA
-    { 0xFFE0E00CU, 0x81608000U, Mnemonic::UTMOPA, IrTemplate::System, Opcode::UNDEF, 0 }, // UTMOPA
-    { 0xFF20FC01U, 0xC120D001U, Mnemonic::UZP, IrTemplate::System, Opcode::UNDEF, 0 }, // UZP
-    { 0xFF20FC01U, 0xC120D000U, Mnemonic::ZIP, IrTemplate::System, Opcode::UNDEF, 0 }, // ZIP
-    { 0xFFA0FC00U, 0x4500D000U, Mnemonic::ADCLB, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // ADCLB
-    { 0xFFA0FC00U, 0x4500D400U, Mnemonic::ADCLT, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // ADCLT
-    { 0xFF3FC000U, 0x2520C000U, Mnemonic::ADD, IrTemplate::SimdUnary, Opcode::COPY, 0 }, // ADD
-    { 0xFFE0F800U, 0x04605000U, Mnemonic::ADDPL, IrTemplate::System, Opcode::UNDEF, 0 }, // ADDPL
-    { 0xFFE0F800U, 0x04605800U, Mnemonic::ADDSPL, IrTemplate::System, Opcode::UNDEF, 0 }, // ADDSPL
-    { 0xFFE0F800U, 0x04205800U, Mnemonic::ADDSVL, IrTemplate::System, Opcode::UNDEF, 0 }, // ADDSVL
-    { 0xFFE0F800U, 0x04205000U, Mnemonic::ADDVL, IrTemplate::System, Opcode::UNDEF, 0 }, // ADDVL
-    { 0xFFF0C210U, 0x25004000U, Mnemonic::AND, IrTemplate::SimdBinop, Opcode::AND, 0 }, // AND
-    { 0xFFF0C210U, 0x25404000U, Mnemonic::ANDS, IrTemplate::SimdBinop, Opcode::AND, 0 }, // ANDS
-    { 0xFFA0FC00U, 0x64200800U, Mnemonic::BFMLA, IrTemplate::FpBinop, Opcode::FADD, 0 }, // BFMLA
-    { 0xFFE0F400U, 0x64E04000U, Mnemonic::BFMLALB, IrTemplate::FpBinop, Opcode::FADD, 0 }, // BFMLALB
-    { 0xFFE0F400U, 0x64E04400U, Mnemonic::BFMLALT, IrTemplate::FpBinop, Opcode::FADD, 0 }, // BFMLALT
-    { 0xFFA0FC00U, 0x64200C00U, Mnemonic::BFMLS, IrTemplate::FpBinop, Opcode::FADD, 0 }, // BFMLS
-    { 0xFFE0F400U, 0x64E06000U, Mnemonic::BFMLSLB, IrTemplate::FpBinop, Opcode::FADD, 0 }, // BFMLSLB
-    { 0xFFE0F400U, 0x64E06400U, Mnemonic::BFMLSLT, IrTemplate::FpBinop, Opcode::FADD, 0 }, // BFMLSLT
-    { 0xFFA0FC00U, 0x64202800U, Mnemonic::BFMUL, IrTemplate::FpBinop, Opcode::FADD, 0 }, // BFMUL
-    { 0xFFF0C210U, 0x25004010U, Mnemonic::BIC, IrTemplate::SimdBinop, Opcode::AND, 0 }, // BIC
-    { 0xFFF0C210U, 0x25404010U, Mnemonic::BICS, IrTemplate::SimdBinop, Opcode::AND, 0 }, // BICS
-    { 0xFFF0C210U, 0x2500C000U, Mnemonic::BRKPA, IrTemplate::SimdBinop, Opcode::AND, 0 }, // BRKPA
-    { 0xFFF0C210U, 0x2540C000U, Mnemonic::BRKPAS, IrTemplate::SimdBinop, Opcode::AND, 0 }, // BRKPAS
-    { 0xFFF0C210U, 0x2500C010U, Mnemonic::BRKPB, IrTemplate::SimdBinop, Opcode::AND, 0 }, // BRKPB
-    { 0xFFF0C210U, 0x2540C010U, Mnemonic::BRKPBS, IrTemplate::SimdBinop, Opcode::AND, 0 }, // BRKPBS
-    { 0xFF3FC000U, 0x2538C000U, Mnemonic::DUP, IrTemplate::SimdUnary, Opcode::COPY, 0 }, // DUP
-    { 0xFFF0C210U, 0x25004200U, Mnemonic::EOR, IrTemplate::SimdBinop, Opcode::AND, 0 }, // EOR
-    { 0xFFF0C210U, 0x25404200U, Mnemonic::EORS, IrTemplate::SimdBinop, Opcode::AND, 0 }, // EORS
-    { 0xFF3EE000U, 0x64008000U, Mnemonic::FCADD, IrTemplate::FpBinop, Opcode::FADD, 0 }, // FCADD
-    { 0xFFE0F400U, 0x64204400U, Mnemonic::FDOT, IrTemplate::FpBinop, Opcode::FADD, 0 }, // FDOT
-    { 0xFFA0FC00U, 0x64200000U, Mnemonic::FMLA, IrTemplate::FpBinop, Opcode::FADD, 0 }, // FMLA
-    { 0xFFE0F400U, 0x64A04000U, Mnemonic::FMLALB, IrTemplate::FpBinop, Opcode::FADD, 0 }, // FMLALB
-    { 0xFFE0F400U, 0x64A04400U, Mnemonic::FMLALT, IrTemplate::FpBinop, Opcode::FADD, 0 }, // FMLALT
-    { 0xFFA0FC00U, 0x64200400U, Mnemonic::FMLS, IrTemplate::FpBinop, Opcode::FADD, 0 }, // FMLS
-    { 0xFFE0F400U, 0x64A06000U, Mnemonic::FMLSLB, IrTemplate::FpBinop, Opcode::FADD, 0 }, // FMLSLB
-    { 0xFFE0F400U, 0x64A06400U, Mnemonic::FMLSLT, IrTemplate::FpBinop, Opcode::FADD, 0 }, // FMLSLT
-    { 0xFFA0FC00U, 0x64202000U, Mnemonic::FMUL, IrTemplate::FpBinop, Opcode::FADD, 0 }, // FMUL
-    { 0xFF60FC00U, 0x4560A400U, Mnemonic::LUTI4, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // LUTI4
-    { 0xFF60FC00U, 0x4560AC00U, Mnemonic::LUTI6, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // LUTI6
-    { 0xFFA0FC00U, 0x44200800U, Mnemonic::MLA, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // MLA
-    { 0xFFA0FC00U, 0x44200C00U, Mnemonic::MLS, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // MLS
-    { 0xFFF0C210U, 0x25004000U, Mnemonic::AND, IrTemplate::SimdBinop, Opcode::AND, 0 }, // AND
-    { 0xFF3FC000U, 0x2538C000U, Mnemonic::DUP, IrTemplate::SimdUnary, Opcode::COPY, 0 }, // DUP
-    { 0xFFF0C210U, 0x25804000U, Mnemonic::ORR, IrTemplate::SimdBinop, Opcode::AND, 0 }, // ORR
-    { 0xFFF0C210U, 0x25004210U, Mnemonic::SEL, IrTemplate::SimdBinop, Opcode::AND, 0 }, // SEL
-    { 0xFF3EE000U, 0x04102000U, Mnemonic::MOVPRFX, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // MOVPRFX
-    { 0xFFF0C210U, 0x25404000U, Mnemonic::ANDS, IrTemplate::SimdBinop, Opcode::AND, 0 }, // ANDS
-    { 0xFFF0C210U, 0x25C04000U, Mnemonic::ORRS, IrTemplate::SimdBinop, Opcode::AND, 0 }, // ORRS
-    { 0xFFA0FC00U, 0x4420F800U, Mnemonic::MUL, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // MUL
-    { 0xFFF0C210U, 0x25804210U, Mnemonic::NAND, IrTemplate::SimdBinop, Opcode::AND, 0 }, // NAND
-    { 0xFFF0C210U, 0x25C04210U, Mnemonic::NANDS, IrTemplate::SimdBinop, Opcode::AND, 0 }, // NANDS
-    { 0xFFF0C210U, 0x25804200U, Mnemonic::NOR, IrTemplate::SimdBinop, Opcode::AND, 0 }, // NOR
-    { 0xFFF0C210U, 0x25C04200U, Mnemonic::NORS, IrTemplate::SimdBinop, Opcode::AND, 0 }, // NORS
-    { 0xFFF0C210U, 0x25004200U, Mnemonic::EOR, IrTemplate::SimdBinop, Opcode::AND, 0 }, // EOR
-    { 0xFFF0C210U, 0x25404200U, Mnemonic::EORS, IrTemplate::SimdBinop, Opcode::AND, 0 }, // EORS
-    { 0xFFF0C210U, 0x25804010U, Mnemonic::ORN, IrTemplate::SimdBinop, Opcode::AND, 0 }, // ORN
-    { 0xFFF0C210U, 0x25C04010U, Mnemonic::ORNS, IrTemplate::SimdBinop, Opcode::AND, 0 }, // ORNS
-    { 0xFFF0C210U, 0x25804000U, Mnemonic::ORR, IrTemplate::SimdBinop, Opcode::AND, 0 }, // ORR
-    { 0xFFF0C210U, 0x25C04000U, Mnemonic::ORRS, IrTemplate::SimdBinop, Opcode::AND, 0 }, // ORRS
-    { 0xFFA0FC00U, 0x45201800U, Mnemonic::RSHRNB, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // RSHRNB
-    { 0xFFA0FC00U, 0x45201C00U, Mnemonic::RSHRNT, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // RSHRNT
-    { 0xFFA0FC00U, 0x4580D000U, Mnemonic::SBCLB, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // SBCLB
-    { 0xFFA0FC00U, 0x4580D400U, Mnemonic::SBCLT, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // SBCLT
-    { 0xFFA0FC00U, 0x44200000U, Mnemonic::SDOT, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // SDOT
-    { 0xFFF0C210U, 0x25004210U, Mnemonic::SEL, IrTemplate::SimdBinop, Opcode::AND, 0 }, // SEL
-    { 0xFFA0FC00U, 0x45201000U, Mnemonic::SHRNB, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // SHRNB
-    { 0xFFA0FC00U, 0x45201400U, Mnemonic::SHRNT, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // SHRNT
-    { 0xFFE0F400U, 0x44A08000U, Mnemonic::SMLALB, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // SMLALB
-    { 0xFFE0F400U, 0x44E08000U, Mnemonic::SMLALB, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // SMLALB
-    { 0xFFE0F400U, 0x44A08400U, Mnemonic::SMLALT, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // SMLALT
-    { 0xFFE0F400U, 0x44E08400U, Mnemonic::SMLALT, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // SMLALT
-    { 0xFFE0F400U, 0x44A0A000U, Mnemonic::SMLSLB, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // SMLSLB
-    { 0xFFE0F400U, 0x44E0A000U, Mnemonic::SMLSLB, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // SMLSLB
-    { 0xFFE0F400U, 0x44A0A400U, Mnemonic::SMLSLT, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // SMLSLT
-    { 0xFFE0F400U, 0x44E0A400U, Mnemonic::SMLSLT, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // SMLSLT
-    { 0xFFE0F400U, 0x44A0C000U, Mnemonic::SMULLB, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // SMULLB
-    { 0xFFE0F400U, 0x44E0C000U, Mnemonic::SMULLB, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // SMULLB
-    { 0xFFE0F400U, 0x44A0C400U, Mnemonic::SMULLT, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // SMULLT
-    { 0xFFE0F400U, 0x44E0C400U, Mnemonic::SMULLT, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // SMULLT
-    { 0xFF3FC000U, 0x2524C000U, Mnemonic::SQADD, IrTemplate::SimdUnary, Opcode::COPY, 0 }, // SQADD
-    { 0xFFE0F400U, 0x44A02000U, Mnemonic::SQDMLALB, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // SQDMLALB
-    { 0xFFE0F400U, 0x44E02000U, Mnemonic::SQDMLALB, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // SQDMLALB
-    { 0xFFE0F400U, 0x44A02400U, Mnemonic::SQDMLALT, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // SQDMLALT
-    { 0xFFE0F400U, 0x44E02400U, Mnemonic::SQDMLALT, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // SQDMLALT
-    { 0xFFE0F400U, 0x44A03000U, Mnemonic::SQDMLSLB, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // SQDMLSLB
-    { 0xFFE0F400U, 0x44E03000U, Mnemonic::SQDMLSLB, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // SQDMLSLB
-    { 0xFFE0F400U, 0x44A03400U, Mnemonic::SQDMLSLT, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // SQDMLSLT
-    { 0xFFE0F400U, 0x44E03400U, Mnemonic::SQDMLSLT, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // SQDMLSLT
-    { 0xFFA0FC00U, 0x4420F000U, Mnemonic::SQDMULH, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // SQDMULH
-    { 0xFFE0F400U, 0x44A0E000U, Mnemonic::SQDMULLB, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // SQDMULLB
-    { 0xFFE0F400U, 0x44E0E000U, Mnemonic::SQDMULLB, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // SQDMULLB
-    { 0xFFE0F400U, 0x44A0E400U, Mnemonic::SQDMULLT, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // SQDMULLT
-    { 0xFFE0F400U, 0x44E0E400U, Mnemonic::SQDMULLT, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // SQDMULLT
-    { 0xFFA0FC00U, 0x44201000U, Mnemonic::SQRDMLAH, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // SQRDMLAH
-    { 0xFFA0FC00U, 0x44201400U, Mnemonic::SQRDMLSH, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // SQRDMLSH
-    { 0xFFA0FC00U, 0x4420F400U, Mnemonic::SQRDMULH, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // SQRDMULH
-    { 0xFFA0FC00U, 0x45202800U, Mnemonic::SQRSHRNB, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // SQRSHRNB
-    { 0xFFA0FC00U, 0x45202C00U, Mnemonic::SQRSHRNT, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // SQRSHRNT
-    { 0xFFA0FC00U, 0x45200800U, Mnemonic::SQRSHRUNB, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // SQRSHRUNB
-    { 0xFFA0FC00U, 0x45200C00U, Mnemonic::SQRSHRUNT, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // SQRSHRUNT
-    { 0xFFA0FC00U, 0x45202000U, Mnemonic::SQSHRNB, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // SQSHRNB
-    { 0xFFA0FC00U, 0x45202400U, Mnemonic::SQSHRNT, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // SQSHRNT
-    { 0xFFA0FC00U, 0x45200000U, Mnemonic::SQSHRUNB, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // SQSHRUNB
-    { 0xFFA0FC00U, 0x45200400U, Mnemonic::SQSHRUNT, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // SQSHRUNT
-    { 0xFF3FC000U, 0x2526C000U, Mnemonic::SQSUB, IrTemplate::SimdUnary, Opcode::COPY, 0 }, // SQSUB
-    { 0xFFA0FC00U, 0x4500A000U, Mnemonic::SSHLLB, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // SSHLLB
-    { 0xFFA0FC00U, 0x4500A400U, Mnemonic::SSHLLT, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // SSHLLT
-    { 0xFF3FC000U, 0x2521C000U, Mnemonic::SUB, IrTemplate::SimdUnary, Opcode::COPY, 0 }, // SUB
-    { 0xFF3FC000U, 0x2523C000U, Mnemonic::SUBR, IrTemplate::SimdUnary, Opcode::COPY, 0 }, // SUBR
-    { 0xFFA0FC00U, 0x44200400U, Mnemonic::UDOT, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // UDOT
-    { 0xFFE0F400U, 0x44A09000U, Mnemonic::UMLALB, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // UMLALB
-    { 0xFFE0F400U, 0x44E09000U, Mnemonic::UMLALB, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // UMLALB
-    { 0xFFE0F400U, 0x44A09400U, Mnemonic::UMLALT, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // UMLALT
-    { 0xFFE0F400U, 0x44E09400U, Mnemonic::UMLALT, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // UMLALT
-    { 0xFFE0F400U, 0x44A0B000U, Mnemonic::UMLSLB, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // UMLSLB
-    { 0xFFE0F400U, 0x44E0B000U, Mnemonic::UMLSLB, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // UMLSLB
-    { 0xFFE0F400U, 0x44A0B400U, Mnemonic::UMLSLT, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // UMLSLT
-    { 0xFFE0F400U, 0x44E0B400U, Mnemonic::UMLSLT, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // UMLSLT
-    { 0xFFE0F400U, 0x44A0D000U, Mnemonic::UMULLB, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // UMULLB
-    { 0xFFE0F400U, 0x44E0D000U, Mnemonic::UMULLB, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // UMULLB
-    { 0xFFE0F400U, 0x44A0D400U, Mnemonic::UMULLT, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // UMULLT
-    { 0xFFE0F400U, 0x44E0D400U, Mnemonic::UMULLT, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // UMULLT
-    { 0xFF3FC000U, 0x2525C000U, Mnemonic::UQADD, IrTemplate::SimdUnary, Opcode::COPY, 0 }, // UQADD
-    { 0xFFA0FC00U, 0x45203800U, Mnemonic::UQRSHRNB, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // UQRSHRNB
-    { 0xFFA0FC00U, 0x45203C00U, Mnemonic::UQRSHRNT, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // UQRSHRNT
-    { 0xFFA0FC00U, 0x45203000U, Mnemonic::UQSHRNB, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // UQSHRNB
-    { 0xFFA0FC00U, 0x45203400U, Mnemonic::UQSHRNT, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // UQSHRNT
-    { 0xFF3FC000U, 0x2527C000U, Mnemonic::UQSUB, IrTemplate::SimdUnary, Opcode::COPY, 0 }, // UQSUB
-    { 0xFFA0FC00U, 0x4500A800U, Mnemonic::USHLLB, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // USHLLB
-    { 0xFFA0FC00U, 0x4500AC00U, Mnemonic::USHLLT, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // USHLLT
-    { 0xFF20DC18U, 0x25204010U, Mnemonic::WHILEGE, IrTemplate::SimdBinop, Opcode::CMP_SLT, 0 }, // WHILEGE
-    { 0xFF20DC18U, 0x25204018U, Mnemonic::WHILEGT, IrTemplate::SimdBinop, Opcode::CMP_SLT, 0 }, // WHILEGT
-    { 0xFF20DC18U, 0x25204818U, Mnemonic::WHILEHI, IrTemplate::SimdBinop, Opcode::CMP_SLT, 0 }, // WHILEHI
-    { 0xFF20DC18U, 0x25204810U, Mnemonic::WHILEHS, IrTemplate::SimdBinop, Opcode::CMP_SLT, 0 }, // WHILEHS
-    { 0xFF20DC18U, 0x25204418U, Mnemonic::WHILELE, IrTemplate::SimdBinop, Opcode::CMP_SLT, 0 }, // WHILELE
-    { 0xFF20DC18U, 0x25204C10U, Mnemonic::WHILELO, IrTemplate::SimdBinop, Opcode::CMP_SLT, 0 }, // WHILELO
-    { 0xFF20DC18U, 0x25204C18U, Mnemonic::WHILELS, IrTemplate::SimdBinop, Opcode::CMP_SLT, 0 }, // WHILELS
-    { 0xFF20DC18U, 0x25204410U, Mnemonic::WHILELT, IrTemplate::SimdBinop, Opcode::CMP_SLT, 0 }, // WHILELT
-    { 0xFF20FC10U, 0x25203010U, Mnemonic::WHILERW, IrTemplate::System, Opcode::UNDEF, 0 }, // WHILERW
-    { 0xFF20FC10U, 0x25203000U, Mnemonic::WHILEWR, IrTemplate::System, Opcode::UNDEF, 0 }, // WHILEWR
-    { 0xFFC0FC00U, 0x13007C00U, Mnemonic::SBFM, IrTemplate::GpBitfield, Opcode::EXTRACT, 0 }, // SBFM
-    { 0xFFC0FC00U, 0x9340FC00U, Mnemonic::SBFM, IrTemplate::GpBitfield, Opcode::EXTRACT, 0 }, // SBFM
-    { 0xFFE0001FU, 0xF380001FU, Mnemonic::AUTIASPPC, IrTemplate::GpBinopImm, Opcode::ADD, 0 }, // AUTIASPPC
-    { 0xFFE0001FU, 0xF3A0001FU, Mnemonic::AUTIBSPPC, IrTemplate::GpBinopImm, Opcode::ADD, 0 }, // AUTIBSPPC
-    { 0xFFC0FC00U, 0x53007C00U, Mnemonic::UBFM, IrTemplate::GpBitfield, Opcode::EXTRACT, 0 }, // UBFM
-    { 0xFFC0FC00U, 0xD340FC00U, Mnemonic::UBFM, IrTemplate::GpBitfield, Opcode::EXTRACT, 0 }, // UBFM
-    { 0xFFE0001FU, 0xD4200000U, Mnemonic::BRK, IrTemplate::System, Opcode::UNDEF, 0 }, // BRK
-    { 0xFFE0001FU, 0xD4A00001U, Mnemonic::DCPS1, IrTemplate::System, Opcode::UNDEF, 0 }, // DCPS1
-    { 0xFFE0001FU, 0xD4A00002U, Mnemonic::DCPS2, IrTemplate::System, Opcode::UNDEF, 0 }, // DCPS2
-    { 0xFFE0001FU, 0xD4A00003U, Mnemonic::DCPS3, IrTemplate::System, Opcode::UNDEF, 0 }, // DCPS3
-    { 0xFFE0001FU, 0xD4400000U, Mnemonic::HLT, IrTemplate::System, Opcode::UNDEF, 0 }, // HLT
-    { 0xFFE0001FU, 0xD4000002U, Mnemonic::HVC, IrTemplate::System, Opcode::UNDEF, 0 }, // HVC
-    { 0xFFE0001FU, 0x5500001FU, Mnemonic::RETAASPPC, IrTemplate::BranchReg, Opcode::BRANCH, 0 }, // RETAASPPC
-    { 0xFFE0001FU, 0x5520001FU, Mnemonic::RETABSPPC, IrTemplate::BranchReg, Opcode::BRANCH, 0 }, // RETABSPPC
-    { 0xFFE0001FU, 0xD4000003U, Mnemonic::SMC, IrTemplate::System, Opcode::UNDEF, 0 }, // SMC
-    { 0xFFE0001FU, 0xD4000001U, Mnemonic::SVC, IrTemplate::System, Opcode::UNDEF, 0 }, // SVC
-    { 0xFFE0001FU, 0x2B20001FU, Mnemonic::ADDS, IrTemplate::GpBinopFlags, Opcode::ADD, 0 }, // ADDS
-    { 0xFFE0001FU, 0xAB20001FU, Mnemonic::ADDS, IrTemplate::GpBinopFlags, Opcode::ADD, 0 }, // ADDS
-    { 0xFFE0001FU, 0x6B20001FU, Mnemonic::SUBS, IrTemplate::GpBinopFlags, Opcode::SUB, 0 }, // SUBS
-    { 0xFFE0001FU, 0xEB20001FU, Mnemonic::SUBS, IrTemplate::GpBinopFlags, Opcode::SUB, 0 }, // SUBS
-    { 0xBFE0FC00U, 0x0E201C00U, Mnemonic::AND, IrTemplate::SimdBinop, Opcode::AND, 0 }, // AND
-    { 0xBFE0FC00U, 0x2E40FC00U, Mnemonic::BFDOT, IrTemplate::SimdBinop, Opcode::FADD, 0 }, // BFDOT
-    { 0xBFE0FC00U, 0x2EC0FC00U, Mnemonic::BFMLAL, IrTemplate::SimdBinop, Opcode::FADD, 0 }, // BFMLAL
-    { 0xBFE0FC00U, 0x0E601C00U, Mnemonic::BIC, IrTemplate::SimdBinop, Opcode::AND, 0 }, // BIC
-    { 0xBFE0FC00U, 0x2EE01C00U, Mnemonic::BIF, IrTemplate::SimdBinop, Opcode::AND, 0 }, // BIF
-    { 0xBFE0FC00U, 0x2EA01C00U, Mnemonic::BIT, IrTemplate::SimdBinop, Opcode::AND, 0 }, // BIT
-    { 0xBFE0FC00U, 0x2E601C00U, Mnemonic::BSL, IrTemplate::SimdBinop, Opcode::AND, 0 }, // BSL
-    { 0xBFE0FC00U, 0x0E000400U, Mnemonic::DUP, IrTemplate::SimdUnary, Opcode::COPY, 0 }, // DUP
-    { 0xBFE0FC00U, 0x0E000C00U, Mnemonic::DUP, IrTemplate::SimdUnary, Opcode::COPY, 0 }, // DUP
-    { 0xBFE0FC00U, 0x2E201C00U, Mnemonic::EOR, IrTemplate::SimdBinop, Opcode::XOR, 0 }, // EOR
-    { 0xFFA0FC00U, 0x7EA0D400U, Mnemonic::FABD, IrTemplate::FpBinop, Opcode::FADD, 0 }, // FABD
-    { 0xBFE0FC00U, 0x2EC01400U, Mnemonic::FABD, IrTemplate::SimdBinop, Opcode::FADD, 0 }, // FABD
-    { 0xFFA0FC00U, 0x7E20EC00U, Mnemonic::FACGE, IrTemplate::FpBinop, Opcode::FADD, 0 }, // FACGE
-    { 0xBFE0FC00U, 0x2E402C00U, Mnemonic::FACGE, IrTemplate::SimdBinop, Opcode::FADD, 0 }, // FACGE
-    { 0xFFA0FC00U, 0x7EA0EC00U, Mnemonic::FACGT, IrTemplate::FpBinop, Opcode::FADD, 0 }, // FACGT
-    { 0xBFE0FC00U, 0x2EC02C00U, Mnemonic::FACGT, IrTemplate::SimdBinop, Opcode::FADD, 0 }, // FACGT
-    { 0xBFE0FC00U, 0x0E401400U, Mnemonic::FADD, IrTemplate::SimdBinop, Opcode::FADD, 0 }, // FADD
-    { 0xBFE0FC00U, 0x2E401400U, Mnemonic::FADDP, IrTemplate::SimdBinop, Opcode::FADD, 0 }, // FADDP
-    { 0xBFE0FC00U, 0x0EC01C00U, Mnemonic::FAMAX, IrTemplate::SimdBinop, Opcode::FADD, 0 }, // FAMAX
-    { 0xBFE0FC00U, 0x2EC01C00U, Mnemonic::FAMIN, IrTemplate::SimdBinop, Opcode::FADD, 0 }, // FAMIN
-    { 0xFFA0FC00U, 0x5E20E400U, Mnemonic::FCMEQ, IrTemplate::FpBinop, Opcode::FADD, 0 }, // FCMEQ
-    { 0xBFE0FC00U, 0x0E402400U, Mnemonic::FCMEQ, IrTemplate::SimdBinop, Opcode::FADD, 0 }, // FCMEQ
-    { 0xFFA0FC00U, 0x7E20E400U, Mnemonic::FCMGE, IrTemplate::FpBinop, Opcode::FADD, 0 }, // FCMGE
-    { 0xBFE0FC00U, 0x2E402400U, Mnemonic::FCMGE, IrTemplate::SimdBinop, Opcode::FADD, 0 }, // FCMGE
-    { 0xFFA0FC00U, 0x7EA0E400U, Mnemonic::FCMGT, IrTemplate::FpBinop, Opcode::FADD, 0 }, // FCMGT
-    { 0xBFE0FC00U, 0x2EC02400U, Mnemonic::FCMGT, IrTemplate::SimdBinop, Opcode::FADD, 0 }, // FCMGT
-    { 0xBFE0FC00U, 0x0E40F400U, Mnemonic::FCVTN, IrTemplate::SimdBinop, Opcode::FADD, 0 }, // FCVTN
-    { 0xBFE0FC00U, 0x0E00F400U, Mnemonic::FCVTN, IrTemplate::SimdBinop, Opcode::FADD, 0 }, // FCVTN
-    { 0xFFFF0000U, 0x1ED80000U, Mnemonic::FCVTZS, IrTemplate::FpConvert, Opcode::FLOAT2INT, 0 }, // FCVTZS
-    { 0xFFFF0000U, 0x9ED80000U, Mnemonic::FCVTZS, IrTemplate::FpConvert, Opcode::FLOAT2INT, 0 }, // FCVTZS
-    { 0xFFFF0000U, 0x1E180000U, Mnemonic::FCVTZS, IrTemplate::FpConvert, Opcode::FLOAT2INT, 0 }, // FCVTZS
-    { 0xFFFF0000U, 0x9E180000U, Mnemonic::FCVTZS, IrTemplate::FpConvert, Opcode::FLOAT2INT, 0 }, // FCVTZS
-    { 0xFFFF0000U, 0x1E580000U, Mnemonic::FCVTZS, IrTemplate::FpConvert, Opcode::FLOAT2INT, 0 }, // FCVTZS
-    { 0xFFFF0000U, 0x9E580000U, Mnemonic::FCVTZS, IrTemplate::FpConvert, Opcode::FLOAT2INT, 0 }, // FCVTZS
-    { 0xFFFF0000U, 0x1ED90000U, Mnemonic::FCVTZU, IrTemplate::FpConvert, Opcode::FLOAT2INT, 0 }, // FCVTZU
-    { 0xFFFF0000U, 0x9ED90000U, Mnemonic::FCVTZU, IrTemplate::FpConvert, Opcode::FLOAT2INT, 0 }, // FCVTZU
-    { 0xFFFF0000U, 0x1E190000U, Mnemonic::FCVTZU, IrTemplate::FpConvert, Opcode::FLOAT2INT, 0 }, // FCVTZU
-    { 0xFFFF0000U, 0x9E190000U, Mnemonic::FCVTZU, IrTemplate::FpConvert, Opcode::FLOAT2INT, 0 }, // FCVTZU
-    { 0xFFFF0000U, 0x1E590000U, Mnemonic::FCVTZU, IrTemplate::FpConvert, Opcode::FLOAT2INT, 0 }, // FCVTZU
-    { 0xFFFF0000U, 0x9E590000U, Mnemonic::FCVTZU, IrTemplate::FpConvert, Opcode::FLOAT2INT, 0 }, // FCVTZU
-    { 0xBFE0FC00U, 0x2E403C00U, Mnemonic::FDIV, IrTemplate::SimdBinop, Opcode::FDIV, 0 }, // FDIV
-    { 0xBFE0FC00U, 0x0E40FC00U, Mnemonic::FDOT, IrTemplate::SimdBinop, Opcode::FADD, 0 }, // FDOT
-    { 0xBFE0FC00U, 0x0E00FC00U, Mnemonic::FDOT, IrTemplate::SimdBinop, Opcode::FADD, 0 }, // FDOT
-    { 0xBFE0FC00U, 0x0E80FC00U, Mnemonic::FDOT, IrTemplate::SimdBinop, Opcode::FADD, 0 }, // FDOT
-    { 0xBFE0FC00U, 0x0E403400U, Mnemonic::FMAX, IrTemplate::SimdBinop, Opcode::FADD, 0 }, // FMAX
-    { 0xBFE0FC00U, 0x0E400400U, Mnemonic::FMAXNM, IrTemplate::SimdBinop, Opcode::FADD, 0 }, // FMAXNM
-    { 0xBFE0FC00U, 0x2E400400U, Mnemonic::FMAXNMP, IrTemplate::SimdBinop, Opcode::FADD, 0 }, // FMAXNMP
-    { 0xBFE0FC00U, 0x2E403400U, Mnemonic::FMAXP, IrTemplate::SimdBinop, Opcode::FADD, 0 }, // FMAXP
-    { 0xBFE0FC00U, 0x0EC03400U, Mnemonic::FMIN, IrTemplate::SimdBinop, Opcode::FSUB, 0 }, // FMIN
-    { 0xBFE0FC00U, 0x0EC00400U, Mnemonic::FMINNM, IrTemplate::SimdBinop, Opcode::FADD, 0 }, // FMINNM
-    { 0xBFE0FC00U, 0x2EC00400U, Mnemonic::FMINNMP, IrTemplate::SimdBinop, Opcode::FADD, 0 }, // FMINNMP
-    { 0xBFE0FC00U, 0x2EC03400U, Mnemonic::FMINP, IrTemplate::SimdBinop, Opcode::FADD, 0 }, // FMINP
-    { 0xBFE0FC00U, 0x0E400C00U, Mnemonic::FMLA, IrTemplate::SimdBinop, Opcode::FADD, 0 }, // FMLA
-    { 0xBFE0FC00U, 0x0E20EC00U, Mnemonic::FMLAL, IrTemplate::SimdBinop, Opcode::FADD, 0 }, // FMLAL
-    { 0xBFE0FC00U, 0x2E20CC00U, Mnemonic::FMLAL2, IrTemplate::SimdBinop, Opcode::FADD, 0 }, // FMLAL2
-    { 0xBFE0FC00U, 0x0EC00C00U, Mnemonic::FMLS, IrTemplate::SimdBinop, Opcode::FADD, 0 }, // FMLS
-    { 0xBFE0FC00U, 0x0EA0EC00U, Mnemonic::FMLSL, IrTemplate::SimdBinop, Opcode::FADD, 0 }, // FMLSL
-    { 0xBFE0FC00U, 0x2EA0CC00U, Mnemonic::FMLSL2, IrTemplate::SimdBinop, Opcode::FADD, 0 }, // FMLSL2
-    { 0xBFE0FC00U, 0x2E401C00U, Mnemonic::FMUL, IrTemplate::SimdBinop, Opcode::FMUL, 0 }, // FMUL
-    { 0xFFA0FC00U, 0x5E20DC00U, Mnemonic::FMULX, IrTemplate::FpBinop, Opcode::FADD, 0 }, // FMULX
-    { 0xBFE0FC00U, 0x0E401C00U, Mnemonic::FMULX, IrTemplate::SimdBinop, Opcode::FADD, 0 }, // FMULX
-    { 0xFFA0FC00U, 0x5E20FC00U, Mnemonic::FRECPS, IrTemplate::FpBinop, Opcode::FADD, 0 }, // FRECPS
-    { 0xBFE0FC00U, 0x0E403C00U, Mnemonic::FRECPS, IrTemplate::SimdBinop, Opcode::FADD, 0 }, // FRECPS
-    { 0xFFA0FC00U, 0x5EA0FC00U, Mnemonic::FRSQRTS, IrTemplate::FpBinop, Opcode::FADD, 0 }, // FRSQRTS
-    { 0xBFE0FC00U, 0x0EC03C00U, Mnemonic::FRSQRTS, IrTemplate::SimdBinop, Opcode::FADD, 0 }, // FRSQRTS
-    { 0xBFE0FC00U, 0x2EC03C00U, Mnemonic::FSCALE, IrTemplate::SimdBinop, Opcode::FADD, 0 }, // FSCALE
-    { 0xBFE0FC00U, 0x0EC01400U, Mnemonic::FSUB, IrTemplate::SimdBinop, Opcode::FSUB, 0 }, // FSUB
-    { 0xBFE0FC00U, 0x0EA01C00U, Mnemonic::ORR, IrTemplate::SimdBinop, Opcode::OR, 0 }, // ORR
-    { 0xBFE0FC00U, 0x0EE01C00U, Mnemonic::ORN, IrTemplate::SimdBinop, Opcode::OR, 0 }, // ORN
-    { 0xBFE0FC00U, 0x0EA01C00U, Mnemonic::ORR, IrTemplate::SimdBinop, Opcode::OR, 0 }, // ORR
-    { 0xFFFF0000U, 0x1EC20000U, Mnemonic::SCVTF, IrTemplate::FpConvert, Opcode::INT2FLOAT, 0 }, // SCVTF
-    { 0xFFFF0000U, 0x9EC20000U, Mnemonic::SCVTF, IrTemplate::FpConvert, Opcode::INT2FLOAT, 0 }, // SCVTF
-    { 0xFFFF0000U, 0x1E020000U, Mnemonic::SCVTF, IrTemplate::FpConvert, Opcode::INT2FLOAT, 0 }, // SCVTF
-    { 0xFFFF0000U, 0x9E020000U, Mnemonic::SCVTF, IrTemplate::FpConvert, Opcode::INT2FLOAT, 0 }, // SCVTF
-    { 0xFFFF0000U, 0x1E420000U, Mnemonic::SCVTF, IrTemplate::FpConvert, Opcode::INT2FLOAT, 0 }, // SCVTF
-    { 0xFFFF0000U, 0x9E420000U, Mnemonic::SCVTF, IrTemplate::FpConvert, Opcode::INT2FLOAT, 0 }, // SCVTF
-    { 0xBFE0FC00U, 0x0E000000U, Mnemonic::TBL, IrTemplate::SimdBinop, Opcode::COPY, 0 }, // TBL
-    { 0xBFE0FC00U, 0x0E002000U, Mnemonic::TBL, IrTemplate::SimdBinop, Opcode::COPY, 0 }, // TBL
-    { 0xBFE0FC00U, 0x0E004000U, Mnemonic::TBL, IrTemplate::SimdBinop, Opcode::COPY, 0 }, // TBL
-    { 0xBFE0FC00U, 0x0E006000U, Mnemonic::TBL, IrTemplate::SimdBinop, Opcode::COPY, 0 }, // TBL
-    { 0xBFE0FC00U, 0x0E001000U, Mnemonic::TBX, IrTemplate::SimdBinop, Opcode::COPY, 0 }, // TBX
-    { 0xBFE0FC00U, 0x0E003000U, Mnemonic::TBX, IrTemplate::SimdBinop, Opcode::COPY, 0 }, // TBX
-    { 0xBFE0FC00U, 0x0E005000U, Mnemonic::TBX, IrTemplate::SimdBinop, Opcode::COPY, 0 }, // TBX
-    { 0xBFE0FC00U, 0x0E007000U, Mnemonic::TBX, IrTemplate::SimdBinop, Opcode::COPY, 0 }, // TBX
-    { 0xFFFF0000U, 0x1EC30000U, Mnemonic::UCVTF, IrTemplate::FpConvert, Opcode::INT2FLOAT, 0 }, // UCVTF
-    { 0xFFFF0000U, 0x9EC30000U, Mnemonic::UCVTF, IrTemplate::FpConvert, Opcode::INT2FLOAT, 0 }, // UCVTF
-    { 0xFFFF0000U, 0x1E030000U, Mnemonic::UCVTF, IrTemplate::FpConvert, Opcode::INT2FLOAT, 0 }, // UCVTF
-    { 0xFFFF0000U, 0x9E030000U, Mnemonic::UCVTF, IrTemplate::FpConvert, Opcode::INT2FLOAT, 0 }, // UCVTF
-    { 0xFFFF0000U, 0x1E430000U, Mnemonic::UCVTF, IrTemplate::FpConvert, Opcode::INT2FLOAT, 0 }, // UCVTF
-    { 0xFFFF0000U, 0x9E430000U, Mnemonic::UCVTF, IrTemplate::FpConvert, Opcode::INT2FLOAT, 0 }, // UCVTF
-    { 0xBFE0FC00U, 0x0E809C00U, Mnemonic::USDOT, IrTemplate::SimdBinop, Opcode::FADD, 0 }, // USDOT
-    { 0xBFE0FC00U, 0x0DC08400U, Mnemonic::LD1, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LD1
-    { 0xBFE0FC00U, 0x0DE08400U, Mnemonic::LD2, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LD2
-    { 0xBFE0FC00U, 0x0DC0A400U, Mnemonic::LD3, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LD3
-    { 0xBFE0FC00U, 0x0DE0A400U, Mnemonic::LD4, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LD4
-    { 0xFFE0EC00U, 0x3C606800U, Mnemonic::LDR, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LDR
-    { 0xFFE0EC00U, 0x38606800U, Mnemonic::LDRB, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LDRB
-    { 0xFFE0EC00U, 0x38E06800U, Mnemonic::LDRSB, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LDRSB
-    { 0xFFE0EC00U, 0x38A06800U, Mnemonic::LDRSB, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LDRSB
-    { 0xBFE0FC00U, 0x0D808400U, Mnemonic::ST1, IrTemplate::StoreReg, Opcode::STORE, 0 }, // ST1
-    { 0xBFE0FC00U, 0x0DA08400U, Mnemonic::ST2, IrTemplate::StoreReg, Opcode::STORE, 0 }, // ST2
-    { 0xBFE0FC00U, 0x0D80A400U, Mnemonic::ST3, IrTemplate::StoreReg, Opcode::STORE, 0 }, // ST3
-    { 0xBFE0FC00U, 0x0DA0A400U, Mnemonic::ST4, IrTemplate::StoreReg, Opcode::STORE, 0 }, // ST4
-    { 0xFFE0EC00U, 0x3C206800U, Mnemonic::STR, IrTemplate::StoreReg, Opcode::STORE, 0 }, // STR
-    { 0xFFE0EC00U, 0x38206800U, Mnemonic::STRB, IrTemplate::StoreReg, Opcode::STORE, 0 }, // STRB
-    { 0xFFF01018U, 0xC1801010U, Mnemonic::BFMLAL, IrTemplate::System, Opcode::UNDEF, 0 }, // BFMLAL
-    { 0xFFF01018U, 0xC1801018U, Mnemonic::BFMLSL, IrTemplate::System, Opcode::UNDEF, 0 }, // BFMLSL
-    { 0xFFE0001EU, 0x81A00008U, Mnemonic::BFMOPA, IrTemplate::System, Opcode::UNDEF, 0 }, // BFMOPA
-    { 0xFFE0001EU, 0x81A00018U, Mnemonic::BFMOPS, IrTemplate::System, Opcode::UNDEF, 0 }, // BFMOPS
-    { 0xFFF01018U, 0xC1801000U, Mnemonic::FMLAL, IrTemplate::System, Opcode::UNDEF, 0 }, // FMLAL
-    { 0xFFF0001CU, 0xC1400000U, Mnemonic::FMLALL, IrTemplate::System, Opcode::UNDEF, 0 }, // FMLALL
-    { 0xFFF01018U, 0xC1801008U, Mnemonic::FMLSL, IrTemplate::System, Opcode::UNDEF, 0 }, // FMLSL
-    { 0xFFE0001EU, 0x80A00008U, Mnemonic::FMOPA, IrTemplate::System, Opcode::UNDEF, 0 }, // FMOPA
-    { 0xFFE0001EU, 0x81800008U, Mnemonic::FMOPA, IrTemplate::System, Opcode::UNDEF, 0 }, // FMOPA
-    { 0xFFE0001EU, 0x81800018U, Mnemonic::FMOPS, IrTemplate::System, Opcode::UNDEF, 0 }, // FMOPS
-    { 0xFFE0E001U, 0xA0000000U, Mnemonic::LD1B, IrTemplate::System, Opcode::UNDEF, 0 }, // LD1B
-    { 0xFFE0E008U, 0xA1000000U, Mnemonic::LD1B, IrTemplate::System, Opcode::UNDEF, 0 }, // LD1B
-    { 0xFFE0E001U, 0xA0006000U, Mnemonic::LD1D, IrTemplate::System, Opcode::UNDEF, 0 }, // LD1D
-    { 0xFFE0E008U, 0xA1006000U, Mnemonic::LD1D, IrTemplate::System, Opcode::UNDEF, 0 }, // LD1D
-    { 0xFFE0E001U, 0xA0002000U, Mnemonic::LD1H, IrTemplate::System, Opcode::UNDEF, 0 }, // LD1H
-    { 0xFFE0E008U, 0xA1002000U, Mnemonic::LD1H, IrTemplate::System, Opcode::UNDEF, 0 }, // LD1H
-    { 0xFFE0E001U, 0xA0004000U, Mnemonic::LD1W, IrTemplate::System, Opcode::UNDEF, 0 }, // LD1W
-    { 0xFFE0E008U, 0xA1004000U, Mnemonic::LD1W, IrTemplate::System, Opcode::UNDEF, 0 }, // LD1W
-    { 0xFFE0E001U, 0xA0000001U, Mnemonic::LDNT1B, IrTemplate::System, Opcode::UNDEF, 0 }, // LDNT1B
-    { 0xFFE0E008U, 0xA1000008U, Mnemonic::LDNT1B, IrTemplate::System, Opcode::UNDEF, 0 }, // LDNT1B
-    { 0xFFE0E001U, 0xA0006001U, Mnemonic::LDNT1D, IrTemplate::System, Opcode::UNDEF, 0 }, // LDNT1D
-    { 0xFFE0E008U, 0xA1006008U, Mnemonic::LDNT1D, IrTemplate::System, Opcode::UNDEF, 0 }, // LDNT1D
-    { 0xFFE0E001U, 0xA0002001U, Mnemonic::LDNT1H, IrTemplate::System, Opcode::UNDEF, 0 }, // LDNT1H
-    { 0xFFE0E008U, 0xA1002008U, Mnemonic::LDNT1H, IrTemplate::System, Opcode::UNDEF, 0 }, // LDNT1H
-    { 0xFFE0E001U, 0xA0004001U, Mnemonic::LDNT1W, IrTemplate::System, Opcode::UNDEF, 0 }, // LDNT1W
-    { 0xFFE0E008U, 0xA1004008U, Mnemonic::LDNT1W, IrTemplate::System, Opcode::UNDEF, 0 }, // LDNT1W
-    { 0xFF21E021U, 0xC1208000U, Mnemonic::SEL, IrTemplate::System, Opcode::UNDEF, 0 }, // SEL
-    { 0xFFF01018U, 0xC1C01000U, Mnemonic::SMLAL, IrTemplate::System, Opcode::UNDEF, 0 }, // SMLAL
-    { 0xFFF0001CU, 0xC1000000U, Mnemonic::SMLALL, IrTemplate::System, Opcode::UNDEF, 0 }, // SMLALL
-    { 0xFFF01018U, 0xC1C01008U, Mnemonic::SMLSL, IrTemplate::System, Opcode::UNDEF, 0 }, // SMLSL
-    { 0xFFF0001CU, 0xC1000008U, Mnemonic::SMLSLL, IrTemplate::System, Opcode::UNDEF, 0 }, // SMLSLL
-    { 0xFFE0E001U, 0xA0200000U, Mnemonic::ST1B, IrTemplate::System, Opcode::UNDEF, 0 }, // ST1B
-    { 0xFFE0E008U, 0xA1200000U, Mnemonic::ST1B, IrTemplate::System, Opcode::UNDEF, 0 }, // ST1B
-    { 0xFFE0E001U, 0xA0206000U, Mnemonic::ST1D, IrTemplate::System, Opcode::UNDEF, 0 }, // ST1D
-    { 0xFFE0E008U, 0xA1206000U, Mnemonic::ST1D, IrTemplate::System, Opcode::UNDEF, 0 }, // ST1D
-    { 0xFFE0E001U, 0xA0202000U, Mnemonic::ST1H, IrTemplate::System, Opcode::UNDEF, 0 }, // ST1H
-    { 0xFFE0E008U, 0xA1202000U, Mnemonic::ST1H, IrTemplate::System, Opcode::UNDEF, 0 }, // ST1H
-    { 0xFFE0E001U, 0xA0204000U, Mnemonic::ST1W, IrTemplate::System, Opcode::UNDEF, 0 }, // ST1W
-    { 0xFFE0E008U, 0xA1204000U, Mnemonic::ST1W, IrTemplate::System, Opcode::UNDEF, 0 }, // ST1W
-    { 0xFFE0E001U, 0xA0200001U, Mnemonic::STNT1B, IrTemplate::System, Opcode::UNDEF, 0 }, // STNT1B
-    { 0xFFE0E008U, 0xA1200008U, Mnemonic::STNT1B, IrTemplate::System, Opcode::UNDEF, 0 }, // STNT1B
-    { 0xFFE0E001U, 0xA0206001U, Mnemonic::STNT1D, IrTemplate::System, Opcode::UNDEF, 0 }, // STNT1D
-    { 0xFFE0E008U, 0xA1206008U, Mnemonic::STNT1D, IrTemplate::System, Opcode::UNDEF, 0 }, // STNT1D
-    { 0xFFE0E001U, 0xA0202001U, Mnemonic::STNT1H, IrTemplate::System, Opcode::UNDEF, 0 }, // STNT1H
-    { 0xFFE0E008U, 0xA1202008U, Mnemonic::STNT1H, IrTemplate::System, Opcode::UNDEF, 0 }, // STNT1H
-    { 0xFFE0E001U, 0xA0204001U, Mnemonic::STNT1W, IrTemplate::System, Opcode::UNDEF, 0 }, // STNT1W
-    { 0xFFE0E008U, 0xA1204008U, Mnemonic::STNT1W, IrTemplate::System, Opcode::UNDEF, 0 }, // STNT1W
-    { 0xFFF0001CU, 0xC1000014U, Mnemonic::SUMLALL, IrTemplate::System, Opcode::UNDEF, 0 }, // SUMLALL
-    { 0xFFF01018U, 0xC1C01010U, Mnemonic::UMLAL, IrTemplate::System, Opcode::UNDEF, 0 }, // UMLAL
-    { 0xFFF0001CU, 0xC1000010U, Mnemonic::UMLALL, IrTemplate::System, Opcode::UNDEF, 0 }, // UMLALL
-    { 0xFFF01018U, 0xC1C01018U, Mnemonic::UMLSL, IrTemplate::System, Opcode::UNDEF, 0 }, // UMLSL
-    { 0xFFF0001CU, 0xC1000018U, Mnemonic::UMLSLL, IrTemplate::System, Opcode::UNDEF, 0 }, // UMLSLL
-    { 0xFFF0001CU, 0xC1000004U, Mnemonic::USMLALL, IrTemplate::System, Opcode::UNDEF, 0 }, // USMLALL
-    { 0xFF20FC00U, 0x04200000U, Mnemonic::ADD, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // ADD
-    { 0xFF20FC00U, 0x45206000U, Mnemonic::ADDHNB, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // ADDHNB
-    { 0xFF20FC00U, 0x45206400U, Mnemonic::ADDHNT, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // ADDHNT
-    { 0xFF20FC00U, 0x04207800U, Mnemonic::ADDQP, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // ADDQP
-    { 0xFF20FC00U, 0x04207C00U, Mnemonic::ADDSUBP, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // ADDSUBP
-    { 0xFFE0F000U, 0x0420A000U, Mnemonic::ADR, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // ADR
-    { 0xFFE0F000U, 0x0460A000U, Mnemonic::ADR, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // ADR
-    { 0xFF20FC00U, 0x04209000U, Mnemonic::ASR, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // ASR
-    { 0xFF20FC00U, 0x04208000U, Mnemonic::ASR, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // ASR
-    { 0xFF20FC00U, 0x4500B400U, Mnemonic::BDEP, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // BDEP
-    { 0xFF20FC00U, 0x4500B000U, Mnemonic::BEXT, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // BEXT
-    { 0xFF20FC00U, 0x4500B800U, Mnemonic::BGRP, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // BGRP
-    { 0xFFE0F000U, 0x44A04000U, Mnemonic::CDOT, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // CDOT
-    { 0xFFE0F000U, 0x44E04000U, Mnemonic::CDOT, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // CDOT
-    { 0xFFE0F000U, 0x44A06000U, Mnemonic::CMLA, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // CMLA
-    { 0xFFE0F000U, 0x44E06000U, Mnemonic::CMLA, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // CMLA
-    { 0xFF20FC00U, 0x05202000U, Mnemonic::DUP, IrTemplate::SimdUnary, Opcode::COPY, 0 }, // DUP
-    { 0xFF20FC00U, 0x45009000U, Mnemonic::EORBT, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // EORBT
-    { 0xFF20FC00U, 0x45009400U, Mnemonic::EORTB, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // EORTB
-    { 0xFF20FC00U, 0x65000000U, Mnemonic::FADD, IrTemplate::FpBinop, Opcode::FADD, 0 }, // FADD
-    { 0xFF20FC00U, 0x64202400U, Mnemonic::FCLAMP, IrTemplate::FpBinop, Opcode::FADD, 0 }, // FCLAMP
-    { 0xFFE0F000U, 0x64A01000U, Mnemonic::FCMLA, IrTemplate::FpBinop, Opcode::FADD, 0 }, // FCMLA
-    { 0xFFE0F000U, 0x64E01000U, Mnemonic::FCMLA, IrTemplate::FpBinop, Opcode::FADD, 0 }, // FCMLA
-    { 0xFFE0F000U, 0x64205000U, Mnemonic::FMLALB, IrTemplate::FpBinop, Opcode::FADD, 0 }, // FMLALB
-    { 0xFFE0F000U, 0x6420C000U, Mnemonic::FMLALLBB, IrTemplate::FpBinop, Opcode::FADD, 0 }, // FMLALLBB
-    { 0xFFE0F000U, 0x6460C000U, Mnemonic::FMLALLBT, IrTemplate::FpBinop, Opcode::FADD, 0 }, // FMLALLBT
-    { 0xFFE0F000U, 0x64A0C000U, Mnemonic::FMLALLTB, IrTemplate::FpBinop, Opcode::FADD, 0 }, // FMLALLTB
-    { 0xFFE0F000U, 0x64E0C000U, Mnemonic::FMLALLTT, IrTemplate::FpBinop, Opcode::FADD, 0 }, // FMLALLTT
-    { 0xFFE0F000U, 0x64A05000U, Mnemonic::FMLALT, IrTemplate::FpBinop, Opcode::FADD, 0 }, // FMLALT
-    { 0xFF20FC00U, 0x65000800U, Mnemonic::FMUL, IrTemplate::FpBinop, Opcode::FADD, 0 }, // FMUL
-    { 0xFF20FC00U, 0x65001800U, Mnemonic::FRECPS, IrTemplate::FpBinop, Opcode::FADD, 0 }, // FRECPS
-    { 0xFF20FC00U, 0x65001C00U, Mnemonic::FRSQRTS, IrTemplate::FpBinop, Opcode::FADD, 0 }, // FRSQRTS
-    { 0xFF20FC00U, 0x65000400U, Mnemonic::FSUB, IrTemplate::FpBinop, Opcode::FADD, 0 }, // FSUB
-    { 0xFF20FC00U, 0x65000C00U, Mnemonic::FTSMUL, IrTemplate::FpBinop, Opcode::FADD, 0 }, // FTSMUL
-    { 0xFF20FC00U, 0x0420B000U, Mnemonic::FTSSEL, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // FTSSEL
-    { 0xFF20FC00U, 0x4520A000U, Mnemonic::HISTSEG, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // HISTSEG
-    { 0xFF20FC00U, 0x04204000U, Mnemonic::INDEX, IrTemplate::System, Opcode::UNDEF, 0 }, // INDEX
-    { 0xFF20FC00U, 0x04204800U, Mnemonic::INDEX, IrTemplate::System, Opcode::UNDEF, 0 }, // INDEX
-    { 0xFF20FC00U, 0x04204400U, Mnemonic::INDEX, IrTemplate::System, Opcode::UNDEF, 0 }, // INDEX
-    { 0xFF20FC00U, 0x04204C00U, Mnemonic::INDEX, IrTemplate::System, Opcode::UNDEF, 0 }, // INDEX
-    { 0xFFF0E000U, 0xA400A000U, Mnemonic::LD1B, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LD1B
-    { 0xFFF0E000U, 0xA420A000U, Mnemonic::LD1B, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LD1B
-    { 0xFFF0E000U, 0xA440A000U, Mnemonic::LD1B, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LD1B
-    { 0xFFF0E000U, 0xA460A000U, Mnemonic::LD1B, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LD1B
-    { 0xFFF0E000U, 0xA5E0A000U, Mnemonic::LD1D, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LD1D
-    { 0xFFF0E000U, 0xA5902000U, Mnemonic::LD1D, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LD1D
-    { 0xFFF0E000U, 0xA4A0A000U, Mnemonic::LD1H, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LD1H
-    { 0xFFF0E000U, 0xA4C0A000U, Mnemonic::LD1H, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LD1H
-    { 0xFFF0E000U, 0xA4E0A000U, Mnemonic::LD1H, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LD1H
-    { 0xFFF0E000U, 0xA4202000U, Mnemonic::LD1ROB, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LD1ROB
-    { 0xFFF0E000U, 0xA5A02000U, Mnemonic::LD1ROD, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LD1ROD
-    { 0xFFF0E000U, 0xA4A02000U, Mnemonic::LD1ROH, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LD1ROH
-    { 0xFFF0E000U, 0xA5202000U, Mnemonic::LD1ROW, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LD1ROW
-    { 0xFFF0E000U, 0xA4002000U, Mnemonic::LD1RQB, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LD1RQB
-    { 0xFFF0E000U, 0xA5802000U, Mnemonic::LD1RQD, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LD1RQD
-    { 0xFFF0E000U, 0xA4802000U, Mnemonic::LD1RQH, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LD1RQH
-    { 0xFFF0E000U, 0xA5002000U, Mnemonic::LD1RQW, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LD1RQW
-    { 0xFFF0E000U, 0xA5C0A000U, Mnemonic::LD1SB, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LD1SB
-    { 0xFFF0E000U, 0xA5A0A000U, Mnemonic::LD1SB, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LD1SB
-    { 0xFFF0E000U, 0xA580A000U, Mnemonic::LD1SB, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LD1SB
-    { 0xFFF0E000U, 0xA520A000U, Mnemonic::LD1SH, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LD1SH
-    { 0xFFF0E000U, 0xA500A000U, Mnemonic::LD1SH, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LD1SH
-    { 0xFFF0E000U, 0xA480A000U, Mnemonic::LD1SW, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LD1SW
-    { 0xFFF0E000U, 0xA540A000U, Mnemonic::LD1W, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LD1W
-    { 0xFFF0E000U, 0xA560A000U, Mnemonic::LD1W, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LD1W
-    { 0xFFF0E000U, 0xA5102000U, Mnemonic::LD1W, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LD1W
-    { 0xFFF0E000U, 0xA420E000U, Mnemonic::LD2B, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LD2B
-    { 0xFFF0E000U, 0xA5A0E000U, Mnemonic::LD2D, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LD2D
-    { 0xFFF0E000U, 0xA4A0E000U, Mnemonic::LD2H, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LD2H
-    { 0xFFF0E000U, 0xA490E000U, Mnemonic::LD2Q, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LD2Q
-    { 0xFFF0E000U, 0xA520E000U, Mnemonic::LD2W, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LD2W
-    { 0xFFF0E000U, 0xA440E000U, Mnemonic::LD3B, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LD3B
-    { 0xFFF0E000U, 0xA5C0E000U, Mnemonic::LD3D, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LD3D
-    { 0xFFF0E000U, 0xA4C0E000U, Mnemonic::LD3H, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LD3H
-    { 0xFFF0E000U, 0xA510E000U, Mnemonic::LD3Q, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LD3Q
-    { 0xFFF0E000U, 0xA540E000U, Mnemonic::LD3W, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LD3W
-    { 0xFFF0E000U, 0xA460E000U, Mnemonic::LD4B, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LD4B
-    { 0xFFF0E000U, 0xA5E0E000U, Mnemonic::LD4D, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LD4D
-    { 0xFFF0E000U, 0xA4E0E000U, Mnemonic::LD4H, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LD4H
-    { 0xFFF0E000U, 0xA590E000U, Mnemonic::LD4Q, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LD4Q
-    { 0xFFF0E000U, 0xA560E000U, Mnemonic::LD4W, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LD4W
-    { 0xFFF0E000U, 0xA410A000U, Mnemonic::LDNF1B, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LDNF1B
-    { 0xFFF0E000U, 0xA430A000U, Mnemonic::LDNF1B, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LDNF1B
-    { 0xFFF0E000U, 0xA450A000U, Mnemonic::LDNF1B, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LDNF1B
-    { 0xFFF0E000U, 0xA470A000U, Mnemonic::LDNF1B, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LDNF1B
-    { 0xFFF0E000U, 0xA5F0A000U, Mnemonic::LDNF1D, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LDNF1D
-    { 0xFFF0E000U, 0xA4B0A000U, Mnemonic::LDNF1H, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LDNF1H
-    { 0xFFF0E000U, 0xA4D0A000U, Mnemonic::LDNF1H, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LDNF1H
-    { 0xFFF0E000U, 0xA4F0A000U, Mnemonic::LDNF1H, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LDNF1H
-    { 0xFFF0E000U, 0xA5D0A000U, Mnemonic::LDNF1SB, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LDNF1SB
-    { 0xFFF0E000U, 0xA5B0A000U, Mnemonic::LDNF1SB, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LDNF1SB
-    { 0xFFF0E000U, 0xA590A000U, Mnemonic::LDNF1SB, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LDNF1SB
-    { 0xFFF0E000U, 0xA530A000U, Mnemonic::LDNF1SH, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LDNF1SH
-    { 0xFFF0E000U, 0xA510A000U, Mnemonic::LDNF1SH, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LDNF1SH
-    { 0xFFF0E000U, 0xA490A000U, Mnemonic::LDNF1SW, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LDNF1SW
-    { 0xFFF0E000U, 0xA550A000U, Mnemonic::LDNF1W, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LDNF1W
-    { 0xFFF0E000U, 0xA570A000U, Mnemonic::LDNF1W, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LDNF1W
-    { 0xFFF0E000U, 0xA400E000U, Mnemonic::LDNT1B, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LDNT1B
-    { 0xFFF0E000U, 0xA580E000U, Mnemonic::LDNT1D, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LDNT1D
-    { 0xFFF0E000U, 0xA480E000U, Mnemonic::LDNT1H, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LDNT1H
-    { 0xFFF0E000U, 0xA500E000U, Mnemonic::LDNT1W, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LDNT1W
-    { 0xFF20FC00U, 0x04209C00U, Mnemonic::LSL, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // LSL
-    { 0xFF20FC00U, 0x04208C00U, Mnemonic::LSL, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // LSL
-    { 0xFF20FC00U, 0x04209400U, Mnemonic::LSR, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // LSR
-    { 0xFF20FC00U, 0x04208400U, Mnemonic::LSR, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // LSR
-    { 0xFF20FC00U, 0x4520B000U, Mnemonic::LUTI2, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // LUTI2
-    { 0xFF20FC00U, 0x4520B400U, Mnemonic::LUTI4, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // LUTI4
-    { 0xFF20FC00U, 0x4520BC00U, Mnemonic::LUTI4, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // LUTI4
-    { 0xFF20FC00U, 0x05202000U, Mnemonic::DUP, IrTemplate::SimdUnary, Opcode::COPY, 0 }, // DUP
-    { 0xFF20FC00U, 0x05202000U, Mnemonic::DUP, IrTemplate::SimdUnary, Opcode::COPY, 0 }, // DUP
-    { 0xFF20FC00U, 0x04206000U, Mnemonic::MUL, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // MUL
-    { 0xFF20FC00U, 0x45006800U, Mnemonic::PMULLB, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // PMULLB
-    { 0xFF20FC00U, 0x45006C00U, Mnemonic::PMULLT, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // PMULLT
-    { 0xFFE0E010U, 0x8400E000U, Mnemonic::PRFB, IrTemplate::StoreReg, Opcode::STORE, 0 }, // PRFB
-    { 0xFFE0E010U, 0xC400E000U, Mnemonic::PRFB, IrTemplate::StoreReg, Opcode::STORE, 0 }, // PRFB
-    { 0xFFE0E010U, 0x8400C000U, Mnemonic::PRFB, IrTemplate::StoreReg, Opcode::STORE, 0 }, // PRFB
-    { 0xFFE0E010U, 0xC4608000U, Mnemonic::PRFB, IrTemplate::StoreReg, Opcode::STORE, 0 }, // PRFB
-    { 0xFFE0E010U, 0x8580E000U, Mnemonic::PRFD, IrTemplate::StoreReg, Opcode::STORE, 0 }, // PRFD
-    { 0xFFE0E010U, 0xC580E000U, Mnemonic::PRFD, IrTemplate::StoreReg, Opcode::STORE, 0 }, // PRFD
-    { 0xFFE0E010U, 0x8580C000U, Mnemonic::PRFD, IrTemplate::StoreReg, Opcode::STORE, 0 }, // PRFD
-    { 0xFFE0E010U, 0xC460E000U, Mnemonic::PRFD, IrTemplate::StoreReg, Opcode::STORE, 0 }, // PRFD
-    { 0xFFE0E010U, 0x8480E000U, Mnemonic::PRFH, IrTemplate::StoreReg, Opcode::STORE, 0 }, // PRFH
-    { 0xFFE0E010U, 0xC480E000U, Mnemonic::PRFH, IrTemplate::StoreReg, Opcode::STORE, 0 }, // PRFH
-    { 0xFFE0E010U, 0x8480C000U, Mnemonic::PRFH, IrTemplate::StoreReg, Opcode::STORE, 0 }, // PRFH
-    { 0xFFE0E010U, 0xC460A000U, Mnemonic::PRFH, IrTemplate::StoreReg, Opcode::STORE, 0 }, // PRFH
-    { 0xFFE0E010U, 0x8500E000U, Mnemonic::PRFW, IrTemplate::StoreReg, Opcode::STORE, 0 }, // PRFW
-    { 0xFFE0E010U, 0xC500E000U, Mnemonic::PRFW, IrTemplate::StoreReg, Opcode::STORE, 0 }, // PRFW
-    { 0xFFE0E010U, 0x8500C000U, Mnemonic::PRFW, IrTemplate::StoreReg, Opcode::STORE, 0 }, // PRFW
-    { 0xFFE0E010U, 0xC460C000U, Mnemonic::PRFW, IrTemplate::StoreReg, Opcode::STORE, 0 }, // PRFW
-    { 0xFF20FC00U, 0x45206800U, Mnemonic::RADDHNB, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // RADDHNB
-    { 0xFF20FC00U, 0x45206C00U, Mnemonic::RADDHNT, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // RADDHNT
-    { 0xFF20FC00U, 0x45207800U, Mnemonic::RSUBHNB, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // RSUBHNB
-    { 0xFF20FC00U, 0x45207C00U, Mnemonic::RSUBHNT, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // RSUBHNT
-    { 0xFF20FC00U, 0x4500F800U, Mnemonic::SABA, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // SABA
-    { 0xFF20FC00U, 0x4400D400U, Mnemonic::SABAL, IrTemplate::System, Opcode::UNDEF, 0 }, // SABAL
-    { 0xFF20FC00U, 0x4500C000U, Mnemonic::SABALB, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // SABALB
-    { 0xFF20FC00U, 0x4500C400U, Mnemonic::SABALT, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // SABALT
-    { 0xFF20FC00U, 0x45003000U, Mnemonic::SABDLB, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // SABDLB
-    { 0xFF20FC00U, 0x45003400U, Mnemonic::SABDLT, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // SABDLT
-    { 0xFF20FC00U, 0x45000000U, Mnemonic::SADDLB, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // SADDLB
-    { 0xFF20FC00U, 0x45008000U, Mnemonic::SADDLBT, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // SADDLBT
-    { 0xFF20FC00U, 0x45000400U, Mnemonic::SADDLT, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // SADDLT
-    { 0xFF20FC00U, 0x45004000U, Mnemonic::SADDWB, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // SADDWB
-    { 0xFF20FC00U, 0x45004400U, Mnemonic::SADDWT, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // SADDWT
-    { 0xFF20FC00U, 0x4400C000U, Mnemonic::SCLAMP, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // SCLAMP
-    { 0xFF20FC00U, 0x44000000U, Mnemonic::SDOT, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // SDOT
-    { 0xFF20FC00U, 0x4500F400U, Mnemonic::SLI, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // SLI
-    { 0xFF20FC00U, 0x44004000U, Mnemonic::SMLALB, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // SMLALB
-    { 0xFF20FC00U, 0x44004400U, Mnemonic::SMLALT, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // SMLALT
-    { 0xFF20FC00U, 0x44005000U, Mnemonic::SMLSLB, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // SMLSLB
-    { 0xFF20FC00U, 0x44005400U, Mnemonic::SMLSLT, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // SMLSLT
-    { 0xFF20FC00U, 0x04206800U, Mnemonic::SMULH, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // SMULH
-    { 0xFF20FC00U, 0x45007000U, Mnemonic::SMULLB, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // SMULLB
-    { 0xFF20FC00U, 0x45007400U, Mnemonic::SMULLT, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // SMULLT
-    { 0xFF20FC00U, 0x04201000U, Mnemonic::SQADD, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // SQADD
-    { 0xFF20FC00U, 0x44006000U, Mnemonic::SQDMLALB, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // SQDMLALB
-    { 0xFF20FC00U, 0x44000800U, Mnemonic::SQDMLALBT, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // SQDMLALBT
-    { 0xFF20FC00U, 0x44006400U, Mnemonic::SQDMLALT, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // SQDMLALT
-    { 0xFF20FC00U, 0x44006800U, Mnemonic::SQDMLSLB, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // SQDMLSLB
-    { 0xFF20FC00U, 0x44000C00U, Mnemonic::SQDMLSLBT, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // SQDMLSLBT
-    { 0xFF20FC00U, 0x44006C00U, Mnemonic::SQDMLSLT, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // SQDMLSLT
-    { 0xFF20FC00U, 0x04207000U, Mnemonic::SQDMULH, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // SQDMULH
-    { 0xFF20FC00U, 0x45006000U, Mnemonic::SQDMULLB, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // SQDMULLB
-    { 0xFF20FC00U, 0x45006400U, Mnemonic::SQDMULLT, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // SQDMULLT
-    { 0xFFE0F000U, 0x44A07000U, Mnemonic::SQRDCMLAH, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // SQRDCMLAH
-    { 0xFFE0F000U, 0x44E07000U, Mnemonic::SQRDCMLAH, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // SQRDCMLAH
-    { 0xFF20FC00U, 0x44007000U, Mnemonic::SQRDMLAH, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // SQRDMLAH
-    { 0xFF20FC00U, 0x44007400U, Mnemonic::SQRDMLSH, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // SQRDMLSH
-    { 0xFF20FC00U, 0x04207400U, Mnemonic::SQRDMULH, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // SQRDMULH
-    { 0xFF20FC00U, 0x04201800U, Mnemonic::SQSUB, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // SQSUB
-    { 0xFF20FC00U, 0x4500F000U, Mnemonic::SRI, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // SRI
-    { 0xFF20FC00U, 0x4500E800U, Mnemonic::SRSRA, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // SRSRA
-    { 0xFF20FC00U, 0x4500E000U, Mnemonic::SSRA, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // SSRA
-    { 0xFF20FC00U, 0x45001000U, Mnemonic::SSUBLB, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // SSUBLB
-    { 0xFF20FC00U, 0x45008800U, Mnemonic::SSUBLBT, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // SSUBLBT
-    { 0xFF20FC00U, 0x45001400U, Mnemonic::SSUBLT, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // SSUBLT
-    { 0xFF20FC00U, 0x45008C00U, Mnemonic::SSUBLTB, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // SSUBLTB
-    { 0xFF20FC00U, 0x45005000U, Mnemonic::SSUBWB, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // SSUBWB
-    { 0xFF20FC00U, 0x45005400U, Mnemonic::SSUBWT, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // SSUBWT
-    { 0xFFF0E000U, 0xE5E0E000U, Mnemonic::ST1D, IrTemplate::StoreReg, Opcode::STORE, 0 }, // ST1D
-    { 0xFFF0E000U, 0xE5C0E000U, Mnemonic::ST1D, IrTemplate::StoreReg, Opcode::STORE, 0 }, // ST1D
-    { 0xFFF0E000U, 0xE500E000U, Mnemonic::ST1W, IrTemplate::StoreReg, Opcode::STORE, 0 }, // ST1W
-    { 0xFFF0E000U, 0xE430E000U, Mnemonic::ST2B, IrTemplate::StoreReg, Opcode::STORE, 0 }, // ST2B
-    { 0xFFF0E000U, 0xE5B0E000U, Mnemonic::ST2D, IrTemplate::StoreReg, Opcode::STORE, 0 }, // ST2D
-    { 0xFFF0E000U, 0xE4B0E000U, Mnemonic::ST2H, IrTemplate::StoreReg, Opcode::STORE, 0 }, // ST2H
-    { 0xFFF0E000U, 0xE4400000U, Mnemonic::ST2Q, IrTemplate::StoreReg, Opcode::STORE, 0 }, // ST2Q
-    { 0xFFF0E000U, 0xE530E000U, Mnemonic::ST2W, IrTemplate::StoreReg, Opcode::STORE, 0 }, // ST2W
-    { 0xFFF0E000U, 0xE450E000U, Mnemonic::ST3B, IrTemplate::StoreReg, Opcode::STORE, 0 }, // ST3B
-    { 0xFFF0E000U, 0xE5D0E000U, Mnemonic::ST3D, IrTemplate::StoreReg, Opcode::STORE, 0 }, // ST3D
-    { 0xFFF0E000U, 0xE4D0E000U, Mnemonic::ST3H, IrTemplate::StoreReg, Opcode::STORE, 0 }, // ST3H
-    { 0xFFF0E000U, 0xE4800000U, Mnemonic::ST3Q, IrTemplate::StoreReg, Opcode::STORE, 0 }, // ST3Q
-    { 0xFFF0E000U, 0xE550E000U, Mnemonic::ST3W, IrTemplate::StoreReg, Opcode::STORE, 0 }, // ST3W
-    { 0xFFF0E000U, 0xE470E000U, Mnemonic::ST4B, IrTemplate::StoreReg, Opcode::STORE, 0 }, // ST4B
-    { 0xFFF0E000U, 0xE5F0E000U, Mnemonic::ST4D, IrTemplate::StoreReg, Opcode::STORE, 0 }, // ST4D
-    { 0xFFF0E000U, 0xE4F0E000U, Mnemonic::ST4H, IrTemplate::StoreReg, Opcode::STORE, 0 }, // ST4H
-    { 0xFFF0E000U, 0xE4C00000U, Mnemonic::ST4Q, IrTemplate::StoreReg, Opcode::STORE, 0 }, // ST4Q
-    { 0xFFF0E000U, 0xE570E000U, Mnemonic::ST4W, IrTemplate::StoreReg, Opcode::STORE, 0 }, // ST4W
-    { 0xFFF0E000U, 0xE410E000U, Mnemonic::STNT1B, IrTemplate::StoreReg, Opcode::STORE, 0 }, // STNT1B
-    { 0xFFF0E000U, 0xE590E000U, Mnemonic::STNT1D, IrTemplate::StoreReg, Opcode::STORE, 0 }, // STNT1D
-    { 0xFFF0E000U, 0xE490E000U, Mnemonic::STNT1H, IrTemplate::StoreReg, Opcode::STORE, 0 }, // STNT1H
-    { 0xFFF0E000U, 0xE510E000U, Mnemonic::STNT1W, IrTemplate::StoreReg, Opcode::STORE, 0 }, // STNT1W
-    { 0xFF20FC00U, 0x04200400U, Mnemonic::SUB, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // SUB
-    { 0xFF20FC00U, 0x45207000U, Mnemonic::SUBHNB, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // SUBHNB
-    { 0xFF20FC00U, 0x45207400U, Mnemonic::SUBHNT, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // SUBHNT
-    { 0xFF20FC00U, 0x05203000U, Mnemonic::TBL, IrTemplate::SimdUnary, Opcode::COPY, 0 }, // TBL
-    { 0xFF20FC00U, 0x05202800U, Mnemonic::TBL, IrTemplate::SimdUnary, Opcode::COPY, 0 }, // TBL
-    { 0xFF20FC00U, 0x4400F800U, Mnemonic::TBLQ, IrTemplate::SimdUnary, Opcode::COPY, 0 }, // TBLQ
-    { 0xFF20FC00U, 0x05202C00U, Mnemonic::TBX, IrTemplate::SimdUnary, Opcode::COPY, 0 }, // TBX
-    { 0xFF20FC00U, 0x05203400U, Mnemonic::TBXQ, IrTemplate::SimdUnary, Opcode::COPY, 0 }, // TBXQ
-    { 0xFF20FC00U, 0x05207000U, Mnemonic::TRN1, IrTemplate::SimdUnary, Opcode::COPY, 0 }, // TRN1
-    { 0xFF20FC00U, 0x05207400U, Mnemonic::TRN2, IrTemplate::SimdUnary, Opcode::COPY, 0 }, // TRN2
-    { 0xFF20FC00U, 0x4500FC00U, Mnemonic::UABA, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // UABA
-    { 0xFF20FC00U, 0x4400DC00U, Mnemonic::UABAL, IrTemplate::System, Opcode::UNDEF, 0 }, // UABAL
-    { 0xFF20FC00U, 0x4500C800U, Mnemonic::UABALB, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // UABALB
-    { 0xFF20FC00U, 0x4500CC00U, Mnemonic::UABALT, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // UABALT
-    { 0xFF20FC00U, 0x45003800U, Mnemonic::UABDLB, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // UABDLB
-    { 0xFF20FC00U, 0x45003C00U, Mnemonic::UABDLT, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // UABDLT
-    { 0xFF20FC00U, 0x45000800U, Mnemonic::UADDLB, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // UADDLB
-    { 0xFF20FC00U, 0x45000C00U, Mnemonic::UADDLT, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // UADDLT
-    { 0xFF20FC00U, 0x45004800U, Mnemonic::UADDWB, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // UADDWB
-    { 0xFF20FC00U, 0x45004C00U, Mnemonic::UADDWT, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // UADDWT
-    { 0xFF20FC00U, 0x4400C400U, Mnemonic::UCLAMP, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // UCLAMP
-    { 0xFF20FC00U, 0x44000400U, Mnemonic::UDOT, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // UDOT
-    { 0xFF20FC00U, 0x44004800U, Mnemonic::UMLALB, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // UMLALB
-    { 0xFF20FC00U, 0x44004C00U, Mnemonic::UMLALT, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // UMLALT
-    { 0xFF20FC00U, 0x44005800U, Mnemonic::UMLSLB, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // UMLSLB
-    { 0xFF20FC00U, 0x44005C00U, Mnemonic::UMLSLT, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // UMLSLT
-    { 0xFF20FC00U, 0x04206C00U, Mnemonic::UMULH, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // UMULH
-    { 0xFF20FC00U, 0x45007800U, Mnemonic::UMULLB, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // UMULLB
-    { 0xFF20FC00U, 0x45007C00U, Mnemonic::UMULLT, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // UMULLT
-    { 0xFF20FC00U, 0x04201400U, Mnemonic::UQADD, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // UQADD
-    { 0xFF20FC00U, 0x04201C00U, Mnemonic::UQSUB, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // UQSUB
-    { 0xFF20FC00U, 0x4500EC00U, Mnemonic::URSRA, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // URSRA
-    { 0xFF20FC00U, 0x4500E400U, Mnemonic::USRA, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // USRA
-    { 0xFF20FC00U, 0x45001800U, Mnemonic::USUBLB, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // USUBLB
-    { 0xFF20FC00U, 0x45001C00U, Mnemonic::USUBLT, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // USUBLT
-    { 0xFF20FC00U, 0x45005800U, Mnemonic::USUBWB, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // USUBWB
-    { 0xFF20FC00U, 0x45005C00U, Mnemonic::USUBWT, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // USUBWT
-    { 0xFF20FC00U, 0x05206800U, Mnemonic::UZP1, IrTemplate::SimdUnary, Opcode::COPY, 0 }, // UZP1
-    { 0xFF20FC00U, 0x05206C00U, Mnemonic::UZP2, IrTemplate::SimdUnary, Opcode::COPY, 0 }, // UZP2
-    { 0xFF20FC00U, 0x4400E800U, Mnemonic::UZPQ1, IrTemplate::SimdUnary, Opcode::COPY, 0 }, // UZPQ1
-    { 0xFF20FC00U, 0x4400EC00U, Mnemonic::UZPQ2, IrTemplate::SimdUnary, Opcode::COPY, 0 }, // UZPQ2
-    { 0xFF20EC10U, 0x25200000U, Mnemonic::WHILEGE, IrTemplate::System, Opcode::UNDEF, 0 }, // WHILEGE
-    { 0xFF20EC10U, 0x25200010U, Mnemonic::WHILEGT, IrTemplate::System, Opcode::UNDEF, 0 }, // WHILEGT
-    { 0xFF20EC10U, 0x25200810U, Mnemonic::WHILEHI, IrTemplate::System, Opcode::UNDEF, 0 }, // WHILEHI
-    { 0xFF20EC10U, 0x25200800U, Mnemonic::WHILEHS, IrTemplate::System, Opcode::UNDEF, 0 }, // WHILEHS
-    { 0xFF20EC10U, 0x25200410U, Mnemonic::WHILELE, IrTemplate::System, Opcode::UNDEF, 0 }, // WHILELE
-    { 0xFF20EC10U, 0x25200C00U, Mnemonic::WHILELO, IrTemplate::System, Opcode::UNDEF, 0 }, // WHILELO
-    { 0xFF20EC10U, 0x25200C10U, Mnemonic::WHILELS, IrTemplate::System, Opcode::UNDEF, 0 }, // WHILELS
-    { 0xFF20EC10U, 0x25200400U, Mnemonic::WHILELT, IrTemplate::System, Opcode::UNDEF, 0 }, // WHILELT
-    { 0xFF20FC00U, 0x04203400U, Mnemonic::XAR, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // XAR
-    { 0xFF20FC00U, 0x05206400U, Mnemonic::ZIP2, IrTemplate::SimdUnary, Opcode::COPY, 0 }, // ZIP2
-    { 0xFF20FC00U, 0x05206000U, Mnemonic::ZIP1, IrTemplate::SimdUnary, Opcode::COPY, 0 }, // ZIP1
-    { 0xFF20FC00U, 0x4400E000U, Mnemonic::ZIPQ1, IrTemplate::SimdUnary, Opcode::COPY, 0 }, // ZIPQ1
-    { 0xFF20FC00U, 0x4400E400U, Mnemonic::ZIPQ2, IrTemplate::SimdUnary, Opcode::COPY, 0 }, // ZIPQ2
-    { 0xFFC003E0U, 0x330003E0U, Mnemonic::BFM, IrTemplate::GpBitfield, Opcode::EXTRACT, 0 }, // BFM
-    { 0xFFC003E0U, 0xB34003E0U, Mnemonic::BFM, IrTemplate::GpBitfield, Opcode::EXTRACT, 0 }, // BFM
-    { 0xFFC003E0U, 0x320003E0U, Mnemonic::ORR, IrTemplate::GpBinopImm, Opcode::OR, 0 }, // ORR
-    { 0xFFC0001FU, 0x7200001FU, Mnemonic::ANDS, IrTemplate::GpBinopImmFlags, Opcode::AND, 0 }, // ANDS
-    { 0xBFA0FC00U, 0x2EA0D400U, Mnemonic::FABD, IrTemplate::SimdBinop, Opcode::FADD, 0 }, // FABD
-    { 0xBFA0FC00U, 0x2E20EC00U, Mnemonic::FACGE, IrTemplate::SimdBinop, Opcode::FADD, 0 }, // FACGE
-    { 0xBFA0FC00U, 0x2EA0EC00U, Mnemonic::FACGT, IrTemplate::SimdBinop, Opcode::FADD, 0 }, // FACGT
-    { 0xBFA0FC00U, 0x0E20D400U, Mnemonic::FADD, IrTemplate::SimdBinop, Opcode::FADD, 0 }, // FADD
-    { 0xBFA0FC00U, 0x2E20D400U, Mnemonic::FADDP, IrTemplate::SimdBinop, Opcode::FADD, 0 }, // FADDP
-    { 0xBFA0FC00U, 0x0E20E400U, Mnemonic::FCMEQ, IrTemplate::SimdBinop, Opcode::FADD, 0 }, // FCMEQ
-    { 0xBFA0FC00U, 0x2E20E400U, Mnemonic::FCMGE, IrTemplate::SimdBinop, Opcode::FADD, 0 }, // FCMGE
-    { 0xBFA0FC00U, 0x2EA0E400U, Mnemonic::FCMGT, IrTemplate::SimdBinop, Opcode::FADD, 0 }, // FCMGT
-    { 0xFF80FC00U, 0x5F00FC00U, Mnemonic::FCVTZS, IrTemplate::SimdUnary, Opcode::SHL, 0 }, // FCVTZS
-    { 0xFF80FC00U, 0x7F00FC00U, Mnemonic::FCVTZU, IrTemplate::SimdUnary, Opcode::SHL, 0 }, // FCVTZU
-    { 0xBFA0FC00U, 0x2E20FC00U, Mnemonic::FDIV, IrTemplate::SimdBinop, Opcode::FDIV, 0 }, // FDIV
-    { 0xBFA0FC00U, 0x0E20F400U, Mnemonic::FMAX, IrTemplate::SimdBinop, Opcode::FADD, 0 }, // FMAX
-    { 0xBFA0FC00U, 0x0E20C400U, Mnemonic::FMAXNM, IrTemplate::SimdBinop, Opcode::FADD, 0 }, // FMAXNM
-    { 0xBFA0FC00U, 0x2E20C400U, Mnemonic::FMAXNMP, IrTemplate::SimdBinop, Opcode::FADD, 0 }, // FMAXNMP
-    { 0xBFA0FC00U, 0x2E20F400U, Mnemonic::FMAXP, IrTemplate::SimdBinop, Opcode::FADD, 0 }, // FMAXP
-    { 0xBFA0FC00U, 0x0EA0F400U, Mnemonic::FMIN, IrTemplate::SimdBinop, Opcode::FSUB, 0 }, // FMIN
-    { 0xBFA0FC00U, 0x0EA0C400U, Mnemonic::FMINNM, IrTemplate::SimdBinop, Opcode::FADD, 0 }, // FMINNM
-    { 0xBFA0FC00U, 0x2EA0C400U, Mnemonic::FMINNMP, IrTemplate::SimdBinop, Opcode::FADD, 0 }, // FMINNMP
-    { 0xBFA0FC00U, 0x2EA0F400U, Mnemonic::FMINP, IrTemplate::SimdBinop, Opcode::FADD, 0 }, // FMINP
-    { 0xFFC0F400U, 0x5F001000U, Mnemonic::FMLA, IrTemplate::FpBinop, Opcode::FMUL, 0 }, // FMLA
-    { 0xBFA0FC00U, 0x0E20CC00U, Mnemonic::FMLA, IrTemplate::SimdBinop, Opcode::FADD, 0 }, // FMLA
-    { 0xFFC0F400U, 0x0FC00000U, Mnemonic::FMLALB, IrTemplate::SimdBinop, Opcode::MUL, 0 }, // FMLALB
-    { 0xFFC0F400U, 0x4FC00000U, Mnemonic::FMLALT, IrTemplate::SimdBinop, Opcode::MUL, 0 }, // FMLALT
-    { 0xFFC0F400U, 0x2F008000U, Mnemonic::FMLALLBB, IrTemplate::SimdBinop, Opcode::MUL, 0 }, // FMLALLBB
-    { 0xFFC0F400U, 0x2F408000U, Mnemonic::FMLALLBT, IrTemplate::SimdBinop, Opcode::MUL, 0 }, // FMLALLBT
-    { 0xFFC0F400U, 0x6F008000U, Mnemonic::FMLALLTB, IrTemplate::SimdBinop, Opcode::MUL, 0 }, // FMLALLTB
-    { 0xFFC0F400U, 0x6F408000U, Mnemonic::FMLALLTT, IrTemplate::SimdBinop, Opcode::MUL, 0 }, // FMLALLTT
-    { 0xFFC0F400U, 0x5F005000U, Mnemonic::FMLS, IrTemplate::FpBinop, Opcode::FMUL, 0 }, // FMLS
-    { 0xBFA0FC00U, 0x0EA0CC00U, Mnemonic::FMLS, IrTemplate::SimdBinop, Opcode::FADD, 0 }, // FMLS
-    { 0xFFC0F400U, 0x5F009000U, Mnemonic::FMUL, IrTemplate::FpBinop, Opcode::FMUL, 0 }, // FMUL
-    { 0xBFA0FC00U, 0x2E20DC00U, Mnemonic::FMUL, IrTemplate::SimdBinop, Opcode::FMUL, 0 }, // FMUL
-    { 0xFFC0F400U, 0x7F009000U, Mnemonic::FMULX, IrTemplate::FpBinop, Opcode::FMUL, 0 }, // FMULX
-    { 0xBFA0FC00U, 0x0E20DC00U, Mnemonic::FMULX, IrTemplate::SimdBinop, Opcode::FADD, 0 }, // FMULX
-    { 0xBFA0FC00U, 0x0E20FC00U, Mnemonic::FRECPS, IrTemplate::SimdBinop, Opcode::FADD, 0 }, // FRECPS
-    { 0xBFA0FC00U, 0x0EA0FC00U, Mnemonic::FRSQRTS, IrTemplate::SimdBinop, Opcode::FADD, 0 }, // FRSQRTS
-    { 0xBFA0FC00U, 0x0EA0D400U, Mnemonic::FSUB, IrTemplate::SimdBinop, Opcode::FSUB, 0 }, // FSUB
-    { 0xFFE09C00U, 0x4E801000U, Mnemonic::LUTI2, IrTemplate::SimdBinop, Opcode::COPY, 0 }, // LUTI2
-    { 0xFFE09C00U, 0x4E400000U, Mnemonic::LUTI4, IrTemplate::SimdBinop, Opcode::COPY, 0 }, // LUTI4
-    { 0xFFE09C00U, 0x4E401000U, Mnemonic::LUTI4, IrTemplate::SimdBinop, Opcode::COPY, 0 }, // LUTI4
-    { 0xFF80FC00U, 0x5F00E400U, Mnemonic::SCVTF, IrTemplate::SimdUnary, Opcode::SHL, 0 }, // SCVTF
-    { 0xFF80FC00U, 0x5F005400U, Mnemonic::SHL, IrTemplate::SimdUnary, Opcode::SHL, 0 }, // SHL
-    { 0xFF80FC00U, 0x7F005400U, Mnemonic::SLI, IrTemplate::SimdUnary, Opcode::SHL, 0 }, // SLI
-    { 0xFFE0CC00U, 0xCE408000U, Mnemonic::SM3TT1A, IrTemplate::System, Opcode::UNDEF, 0 }, // SM3TT1A
-    { 0xFFE0CC00U, 0xCE408400U, Mnemonic::SM3TT1B, IrTemplate::System, Opcode::UNDEF, 0 }, // SM3TT1B
-    { 0xFFE0CC00U, 0xCE408800U, Mnemonic::SM3TT2A, IrTemplate::System, Opcode::UNDEF, 0 }, // SM3TT2A
-    { 0xFFE0CC00U, 0xCE408C00U, Mnemonic::SM3TT2B, IrTemplate::System, Opcode::UNDEF, 0 }, // SM3TT2B
-    { 0xFF20FC00U, 0x5E200C00U, Mnemonic::SQADD, IrTemplate::FpBinop, Opcode::FADD, 0 }, // SQADD
-    { 0xFF20FC00U, 0x5E209000U, Mnemonic::SQDMLAL, IrTemplate::FpBinop, Opcode::FADD, 0 }, // SQDMLAL
-    { 0xFF20FC00U, 0x5E20B000U, Mnemonic::SQDMLSL, IrTemplate::FpBinop, Opcode::FADD, 0 }, // SQDMLSL
-    { 0xFF20FC00U, 0x5E20B400U, Mnemonic::SQDMULH, IrTemplate::FpBinop, Opcode::FADD, 0 }, // SQDMULH
-    { 0xFF20FC00U, 0x5E20D000U, Mnemonic::SQDMULL, IrTemplate::FpBinop, Opcode::FADD, 0 }, // SQDMULL
-    { 0xFF20FC00U, 0x7E008400U, Mnemonic::SQRDMLAH, IrTemplate::FpBinop, Opcode::FADD, 0 }, // SQRDMLAH
-    { 0xFF20FC00U, 0x7E008C00U, Mnemonic::SQRDMLSH, IrTemplate::FpBinop, Opcode::FADD, 0 }, // SQRDMLSH
-    { 0xFF20FC00U, 0x7E20B400U, Mnemonic::SQRDMULH, IrTemplate::FpBinop, Opcode::FADD, 0 }, // SQRDMULH
-    { 0xFF20FC00U, 0x5E205C00U, Mnemonic::SQRSHL, IrTemplate::FpBinop, Opcode::FADD, 0 }, // SQRSHL
-    { 0xFF80FC00U, 0x5F009C00U, Mnemonic::SQRSHRN, IrTemplate::SimdUnary, Opcode::SHL, 0 }, // SQRSHRN
-    { 0xFF80FC00U, 0x7F008C00U, Mnemonic::SQRSHRUN, IrTemplate::SimdUnary, Opcode::SHL, 0 }, // SQRSHRUN
-    { 0xFF80FC00U, 0x5F007400U, Mnemonic::SQSHL, IrTemplate::SimdUnary, Opcode::SHL, 0 }, // SQSHL
-    { 0xFF20FC00U, 0x5E204C00U, Mnemonic::SQSHL, IrTemplate::FpBinop, Opcode::FADD, 0 }, // SQSHL
-    { 0xFF80FC00U, 0x7F006400U, Mnemonic::SQSHLU, IrTemplate::SimdUnary, Opcode::SHL, 0 }, // SQSHLU
-    { 0xFF80FC00U, 0x5F009400U, Mnemonic::SQSHRN, IrTemplate::SimdUnary, Opcode::SHL, 0 }, // SQSHRN
-    { 0xFF80FC00U, 0x7F008400U, Mnemonic::SQSHRUN, IrTemplate::SimdUnary, Opcode::SHL, 0 }, // SQSHRUN
-    { 0xFF20FC00U, 0x5E202C00U, Mnemonic::SQSUB, IrTemplate::FpBinop, Opcode::FADD, 0 }, // SQSUB
-    { 0xFF80FC00U, 0x7F004400U, Mnemonic::SRI, IrTemplate::SimdUnary, Opcode::SHL, 0 }, // SRI
-    { 0xFF80FC00U, 0x5F002400U, Mnemonic::SRSHR, IrTemplate::SimdUnary, Opcode::SHL, 0 }, // SRSHR
-    { 0xFF80FC00U, 0x5F003400U, Mnemonic::SRSRA, IrTemplate::SimdUnary, Opcode::SHL, 0 }, // SRSRA
-    { 0xFF80FC00U, 0x5F000400U, Mnemonic::SSHR, IrTemplate::SimdUnary, Opcode::SHL, 0 }, // SSHR
-    { 0xFF80FC00U, 0x5F001400U, Mnemonic::SSRA, IrTemplate::SimdUnary, Opcode::SHL, 0 }, // SSRA
-    { 0xFF80FC00U, 0x7F00E400U, Mnemonic::UCVTF, IrTemplate::SimdUnary, Opcode::SHL, 0 }, // UCVTF
-    { 0xFF20FC00U, 0x7E200C00U, Mnemonic::UQADD, IrTemplate::FpBinop, Opcode::FADD, 0 }, // UQADD
-    { 0xFF20FC00U, 0x7E205C00U, Mnemonic::UQRSHL, IrTemplate::FpBinop, Opcode::FADD, 0 }, // UQRSHL
-    { 0xFF80FC00U, 0x7F009C00U, Mnemonic::UQRSHRN, IrTemplate::SimdUnary, Opcode::SHL, 0 }, // UQRSHRN
-    { 0xFF80FC00U, 0x7F007400U, Mnemonic::UQSHL, IrTemplate::SimdUnary, Opcode::SHL, 0 }, // UQSHL
-    { 0xFF20FC00U, 0x7E204C00U, Mnemonic::UQSHL, IrTemplate::FpBinop, Opcode::FADD, 0 }, // UQSHL
-    { 0xFF80FC00U, 0x7F009400U, Mnemonic::UQSHRN, IrTemplate::SimdUnary, Opcode::SHL, 0 }, // UQSHRN
-    { 0xFF20FC00U, 0x7E202C00U, Mnemonic::UQSUB, IrTemplate::FpBinop, Opcode::FADD, 0 }, // UQSUB
-    { 0xFF80FC00U, 0x7F002400U, Mnemonic::URSHR, IrTemplate::SimdUnary, Opcode::SHL, 0 }, // URSHR
-    { 0xFF80FC00U, 0x7F003400U, Mnemonic::URSRA, IrTemplate::SimdUnary, Opcode::SHL, 0 }, // URSRA
-    { 0xFF80FC00U, 0x7F000400U, Mnemonic::USHR, IrTemplate::SimdUnary, Opcode::SHL, 0 }, // USHR
-    { 0xFF80FC00U, 0x7F001400U, Mnemonic::USRA, IrTemplate::SimdUnary, Opcode::SHL, 0 }, // USRA
-    { 0x3FE0FC00U, 0x19000400U, Mnemonic::CPYFP, IrTemplate::System, Opcode::UNDEF, 0 }, // CPYFP
-    { 0x3FE0FC00U, 0x19400400U, Mnemonic::CPYFM, IrTemplate::System, Opcode::UNDEF, 0 }, // CPYFM
-    { 0x3FE0FC00U, 0x19800400U, Mnemonic::CPYFE, IrTemplate::System, Opcode::UNDEF, 0 }, // CPYFE
-    { 0x3FE0FC00U, 0x1900C400U, Mnemonic::CPYFPN, IrTemplate::System, Opcode::UNDEF, 0 }, // CPYFPN
-    { 0x3FE0FC00U, 0x1940C400U, Mnemonic::CPYFMN, IrTemplate::System, Opcode::UNDEF, 0 }, // CPYFMN
-    { 0x3FE0FC00U, 0x1980C400U, Mnemonic::CPYFEN, IrTemplate::System, Opcode::UNDEF, 0 }, // CPYFEN
-    { 0x3FE0FC00U, 0x19008400U, Mnemonic::CPYFPRN, IrTemplate::System, Opcode::UNDEF, 0 }, // CPYFPRN
-    { 0x3FE0FC00U, 0x19408400U, Mnemonic::CPYFMRN, IrTemplate::System, Opcode::UNDEF, 0 }, // CPYFMRN
-    { 0x3FE0FC00U, 0x19808400U, Mnemonic::CPYFERN, IrTemplate::System, Opcode::UNDEF, 0 }, // CPYFERN
-    { 0x3FE0FC00U, 0x19002400U, Mnemonic::CPYFPRT, IrTemplate::System, Opcode::UNDEF, 0 }, // CPYFPRT
-    { 0x3FE0FC00U, 0x19402400U, Mnemonic::CPYFMRT, IrTemplate::System, Opcode::UNDEF, 0 }, // CPYFMRT
-    { 0x3FE0FC00U, 0x19802400U, Mnemonic::CPYFERT, IrTemplate::System, Opcode::UNDEF, 0 }, // CPYFERT
-    { 0x3FE0FC00U, 0x1900E400U, Mnemonic::CPYFPRTN, IrTemplate::System, Opcode::UNDEF, 0 }, // CPYFPRTN
-    { 0x3FE0FC00U, 0x1940E400U, Mnemonic::CPYFMRTN, IrTemplate::System, Opcode::UNDEF, 0 }, // CPYFMRTN
-    { 0x3FE0FC00U, 0x1980E400U, Mnemonic::CPYFERTN, IrTemplate::System, Opcode::UNDEF, 0 }, // CPYFERTN
-    { 0x3FE0FC00U, 0x1900A400U, Mnemonic::CPYFPRTRN, IrTemplate::System, Opcode::UNDEF, 0 }, // CPYFPRTRN
-    { 0x3FE0FC00U, 0x1940A400U, Mnemonic::CPYFMRTRN, IrTemplate::System, Opcode::UNDEF, 0 }, // CPYFMRTRN
-    { 0x3FE0FC00U, 0x1980A400U, Mnemonic::CPYFERTRN, IrTemplate::System, Opcode::UNDEF, 0 }, // CPYFERTRN
-    { 0x3FE0FC00U, 0x19006400U, Mnemonic::CPYFPRTWN, IrTemplate::System, Opcode::UNDEF, 0 }, // CPYFPRTWN
-    { 0x3FE0FC00U, 0x19406400U, Mnemonic::CPYFMRTWN, IrTemplate::System, Opcode::UNDEF, 0 }, // CPYFMRTWN
-    { 0x3FE0FC00U, 0x19806400U, Mnemonic::CPYFERTWN, IrTemplate::System, Opcode::UNDEF, 0 }, // CPYFERTWN
-    { 0x3FE0FC00U, 0x19003400U, Mnemonic::CPYFPT, IrTemplate::System, Opcode::UNDEF, 0 }, // CPYFPT
-    { 0x3FE0FC00U, 0x19403400U, Mnemonic::CPYFMT, IrTemplate::System, Opcode::UNDEF, 0 }, // CPYFMT
-    { 0x3FE0FC00U, 0x19803400U, Mnemonic::CPYFET, IrTemplate::System, Opcode::UNDEF, 0 }, // CPYFET
-    { 0x3FE0FC00U, 0x1900F400U, Mnemonic::CPYFPTN, IrTemplate::System, Opcode::UNDEF, 0 }, // CPYFPTN
-    { 0x3FE0FC00U, 0x1940F400U, Mnemonic::CPYFMTN, IrTemplate::System, Opcode::UNDEF, 0 }, // CPYFMTN
-    { 0x3FE0FC00U, 0x1980F400U, Mnemonic::CPYFETN, IrTemplate::System, Opcode::UNDEF, 0 }, // CPYFETN
-    { 0x3FE0FC00U, 0x1900B400U, Mnemonic::CPYFPTRN, IrTemplate::System, Opcode::UNDEF, 0 }, // CPYFPTRN
-    { 0x3FE0FC00U, 0x1940B400U, Mnemonic::CPYFMTRN, IrTemplate::System, Opcode::UNDEF, 0 }, // CPYFMTRN
-    { 0x3FE0FC00U, 0x1980B400U, Mnemonic::CPYFETRN, IrTemplate::System, Opcode::UNDEF, 0 }, // CPYFETRN
-    { 0x3FE0FC00U, 0x19007400U, Mnemonic::CPYFPTWN, IrTemplate::System, Opcode::UNDEF, 0 }, // CPYFPTWN
-    { 0x3FE0FC00U, 0x19407400U, Mnemonic::CPYFMTWN, IrTemplate::System, Opcode::UNDEF, 0 }, // CPYFMTWN
-    { 0x3FE0FC00U, 0x19807400U, Mnemonic::CPYFETWN, IrTemplate::System, Opcode::UNDEF, 0 }, // CPYFETWN
-    { 0x3FE0FC00U, 0x19004400U, Mnemonic::CPYFPWN, IrTemplate::System, Opcode::UNDEF, 0 }, // CPYFPWN
-    { 0x3FE0FC00U, 0x19404400U, Mnemonic::CPYFMWN, IrTemplate::System, Opcode::UNDEF, 0 }, // CPYFMWN
-    { 0x3FE0FC00U, 0x19804400U, Mnemonic::CPYFEWN, IrTemplate::System, Opcode::UNDEF, 0 }, // CPYFEWN
-    { 0x3FE0FC00U, 0x19001400U, Mnemonic::CPYFPWT, IrTemplate::System, Opcode::UNDEF, 0 }, // CPYFPWT
-    { 0x3FE0FC00U, 0x19401400U, Mnemonic::CPYFMWT, IrTemplate::System, Opcode::UNDEF, 0 }, // CPYFMWT
-    { 0x3FE0FC00U, 0x19801400U, Mnemonic::CPYFEWT, IrTemplate::System, Opcode::UNDEF, 0 }, // CPYFEWT
-    { 0x3FE0FC00U, 0x1900D400U, Mnemonic::CPYFPWTN, IrTemplate::System, Opcode::UNDEF, 0 }, // CPYFPWTN
-    { 0x3FE0FC00U, 0x1940D400U, Mnemonic::CPYFMWTN, IrTemplate::System, Opcode::UNDEF, 0 }, // CPYFMWTN
-    { 0x3FE0FC00U, 0x1980D400U, Mnemonic::CPYFEWTN, IrTemplate::System, Opcode::UNDEF, 0 }, // CPYFEWTN
-    { 0x3FE0FC00U, 0x19009400U, Mnemonic::CPYFPWTRN, IrTemplate::System, Opcode::UNDEF, 0 }, // CPYFPWTRN
-    { 0x3FE0FC00U, 0x19409400U, Mnemonic::CPYFMWTRN, IrTemplate::System, Opcode::UNDEF, 0 }, // CPYFMWTRN
-    { 0x3FE0FC00U, 0x19809400U, Mnemonic::CPYFEWTRN, IrTemplate::System, Opcode::UNDEF, 0 }, // CPYFEWTRN
-    { 0x3FE0FC00U, 0x19005400U, Mnemonic::CPYFPWTWN, IrTemplate::System, Opcode::UNDEF, 0 }, // CPYFPWTWN
-    { 0x3FE0FC00U, 0x19405400U, Mnemonic::CPYFMWTWN, IrTemplate::System, Opcode::UNDEF, 0 }, // CPYFMWTWN
-    { 0x3FE0FC00U, 0x19805400U, Mnemonic::CPYFEWTWN, IrTemplate::System, Opcode::UNDEF, 0 }, // CPYFEWTWN
-    { 0x3FE0FC00U, 0x1D000400U, Mnemonic::CPYP, IrTemplate::System, Opcode::UNDEF, 0 }, // CPYP
-    { 0x3FE0FC00U, 0x1D400400U, Mnemonic::CPYM, IrTemplate::System, Opcode::UNDEF, 0 }, // CPYM
-    { 0x3FE0FC00U, 0x1D800400U, Mnemonic::CPYE, IrTemplate::System, Opcode::UNDEF, 0 }, // CPYE
-    { 0x3FE0FC00U, 0x1D00C400U, Mnemonic::CPYPN, IrTemplate::System, Opcode::UNDEF, 0 }, // CPYPN
-    { 0x3FE0FC00U, 0x1D40C400U, Mnemonic::CPYMN, IrTemplate::System, Opcode::UNDEF, 0 }, // CPYMN
-    { 0x3FE0FC00U, 0x1D80C400U, Mnemonic::CPYEN, IrTemplate::System, Opcode::UNDEF, 0 }, // CPYEN
-    { 0x3FE0FC00U, 0x1D008400U, Mnemonic::CPYPRN, IrTemplate::System, Opcode::UNDEF, 0 }, // CPYPRN
-    { 0x3FE0FC00U, 0x1D408400U, Mnemonic::CPYMRN, IrTemplate::System, Opcode::UNDEF, 0 }, // CPYMRN
-    { 0x3FE0FC00U, 0x1D808400U, Mnemonic::CPYERN, IrTemplate::System, Opcode::UNDEF, 0 }, // CPYERN
-    { 0x3FE0FC00U, 0x1D002400U, Mnemonic::CPYPRT, IrTemplate::System, Opcode::UNDEF, 0 }, // CPYPRT
-    { 0x3FE0FC00U, 0x1D402400U, Mnemonic::CPYMRT, IrTemplate::System, Opcode::UNDEF, 0 }, // CPYMRT
-    { 0x3FE0FC00U, 0x1D802400U, Mnemonic::CPYERT, IrTemplate::System, Opcode::UNDEF, 0 }, // CPYERT
-    { 0x3FE0FC00U, 0x1D00E400U, Mnemonic::CPYPRTN, IrTemplate::System, Opcode::UNDEF, 0 }, // CPYPRTN
-    { 0x3FE0FC00U, 0x1D40E400U, Mnemonic::CPYMRTN, IrTemplate::System, Opcode::UNDEF, 0 }, // CPYMRTN
-    { 0x3FE0FC00U, 0x1D80E400U, Mnemonic::CPYERTN, IrTemplate::System, Opcode::UNDEF, 0 }, // CPYERTN
-    { 0x3FE0FC00U, 0x1D00A400U, Mnemonic::CPYPRTRN, IrTemplate::System, Opcode::UNDEF, 0 }, // CPYPRTRN
-    { 0x3FE0FC00U, 0x1D40A400U, Mnemonic::CPYMRTRN, IrTemplate::System, Opcode::UNDEF, 0 }, // CPYMRTRN
-    { 0x3FE0FC00U, 0x1D80A400U, Mnemonic::CPYERTRN, IrTemplate::System, Opcode::UNDEF, 0 }, // CPYERTRN
-    { 0x3FE0FC00U, 0x1D006400U, Mnemonic::CPYPRTWN, IrTemplate::System, Opcode::UNDEF, 0 }, // CPYPRTWN
-    { 0x3FE0FC00U, 0x1D406400U, Mnemonic::CPYMRTWN, IrTemplate::System, Opcode::UNDEF, 0 }, // CPYMRTWN
-    { 0x3FE0FC00U, 0x1D806400U, Mnemonic::CPYERTWN, IrTemplate::System, Opcode::UNDEF, 0 }, // CPYERTWN
-    { 0x3FE0FC00U, 0x1D003400U, Mnemonic::CPYPT, IrTemplate::System, Opcode::UNDEF, 0 }, // CPYPT
-    { 0x3FE0FC00U, 0x1D403400U, Mnemonic::CPYMT, IrTemplate::System, Opcode::UNDEF, 0 }, // CPYMT
-    { 0x3FE0FC00U, 0x1D803400U, Mnemonic::CPYET, IrTemplate::System, Opcode::UNDEF, 0 }, // CPYET
-    { 0x3FE0FC00U, 0x1D00F400U, Mnemonic::CPYPTN, IrTemplate::System, Opcode::UNDEF, 0 }, // CPYPTN
-    { 0x3FE0FC00U, 0x1D40F400U, Mnemonic::CPYMTN, IrTemplate::System, Opcode::UNDEF, 0 }, // CPYMTN
-    { 0x3FE0FC00U, 0x1D80F400U, Mnemonic::CPYETN, IrTemplate::System, Opcode::UNDEF, 0 }, // CPYETN
-    { 0x3FE0FC00U, 0x1D00B400U, Mnemonic::CPYPTRN, IrTemplate::System, Opcode::UNDEF, 0 }, // CPYPTRN
-    { 0x3FE0FC00U, 0x1D40B400U, Mnemonic::CPYMTRN, IrTemplate::System, Opcode::UNDEF, 0 }, // CPYMTRN
-    { 0x3FE0FC00U, 0x1D80B400U, Mnemonic::CPYETRN, IrTemplate::System, Opcode::UNDEF, 0 }, // CPYETRN
-    { 0x3FE0FC00U, 0x1D007400U, Mnemonic::CPYPTWN, IrTemplate::System, Opcode::UNDEF, 0 }, // CPYPTWN
-    { 0x3FE0FC00U, 0x1D407400U, Mnemonic::CPYMTWN, IrTemplate::System, Opcode::UNDEF, 0 }, // CPYMTWN
-    { 0x3FE0FC00U, 0x1D807400U, Mnemonic::CPYETWN, IrTemplate::System, Opcode::UNDEF, 0 }, // CPYETWN
-    { 0x3FE0FC00U, 0x1D004400U, Mnemonic::CPYPWN, IrTemplate::System, Opcode::UNDEF, 0 }, // CPYPWN
-    { 0x3FE0FC00U, 0x1D404400U, Mnemonic::CPYMWN, IrTemplate::System, Opcode::UNDEF, 0 }, // CPYMWN
-    { 0x3FE0FC00U, 0x1D804400U, Mnemonic::CPYEWN, IrTemplate::System, Opcode::UNDEF, 0 }, // CPYEWN
-    { 0x3FE0FC00U, 0x1D001400U, Mnemonic::CPYPWT, IrTemplate::System, Opcode::UNDEF, 0 }, // CPYPWT
-    { 0x3FE0FC00U, 0x1D401400U, Mnemonic::CPYMWT, IrTemplate::System, Opcode::UNDEF, 0 }, // CPYMWT
-    { 0x3FE0FC00U, 0x1D801400U, Mnemonic::CPYEWT, IrTemplate::System, Opcode::UNDEF, 0 }, // CPYEWT
-    { 0x3FE0FC00U, 0x1D00D400U, Mnemonic::CPYPWTN, IrTemplate::System, Opcode::UNDEF, 0 }, // CPYPWTN
-    { 0x3FE0FC00U, 0x1D40D400U, Mnemonic::CPYMWTN, IrTemplate::System, Opcode::UNDEF, 0 }, // CPYMWTN
-    { 0x3FE0FC00U, 0x1D80D400U, Mnemonic::CPYEWTN, IrTemplate::System, Opcode::UNDEF, 0 }, // CPYEWTN
-    { 0x3FE0FC00U, 0x1D009400U, Mnemonic::CPYPWTRN, IrTemplate::System, Opcode::UNDEF, 0 }, // CPYPWTRN
-    { 0x3FE0FC00U, 0x1D409400U, Mnemonic::CPYMWTRN, IrTemplate::System, Opcode::UNDEF, 0 }, // CPYMWTRN
-    { 0x3FE0FC00U, 0x1D809400U, Mnemonic::CPYEWTRN, IrTemplate::System, Opcode::UNDEF, 0 }, // CPYEWTRN
-    { 0x3FE0FC00U, 0x1D005400U, Mnemonic::CPYPWTWN, IrTemplate::System, Opcode::UNDEF, 0 }, // CPYPWTWN
-    { 0x3FE0FC00U, 0x1D405400U, Mnemonic::CPYMWTWN, IrTemplate::System, Opcode::UNDEF, 0 }, // CPYMWTWN
-    { 0x3FE0FC00U, 0x1D805400U, Mnemonic::CPYEWTWN, IrTemplate::System, Opcode::UNDEF, 0 }, // CPYEWTWN
-    { 0xBFE0EC00U, 0x0DC08000U, Mnemonic::LD1, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LD1
-    { 0xBFE0EC00U, 0x0DE08000U, Mnemonic::LD2, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LD2
-    { 0xBFE0EC00U, 0x0DC0A000U, Mnemonic::LD3, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LD3
-    { 0xBFE0EC00U, 0x0DE0A000U, Mnemonic::LD4, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LD4
-    { 0x3FE0FC00U, 0x1DC00400U, Mnemonic::SETGP, IrTemplate::System, Opcode::UNDEF, 0 }, // SETGP
-    { 0x3FE0FC00U, 0x1DC04400U, Mnemonic::SETGM, IrTemplate::System, Opcode::UNDEF, 0 }, // SETGM
-    { 0x3FE0FC00U, 0x1DC08400U, Mnemonic::SETGE, IrTemplate::System, Opcode::UNDEF, 0 }, // SETGE
-    { 0x3FE0FC00U, 0x1DC02400U, Mnemonic::SETGPN, IrTemplate::System, Opcode::UNDEF, 0 }, // SETGPN
-    { 0x3FE0FC00U, 0x1DC06400U, Mnemonic::SETGMN, IrTemplate::System, Opcode::UNDEF, 0 }, // SETGMN
-    { 0x3FE0FC00U, 0x1DC0A400U, Mnemonic::SETGEN, IrTemplate::System, Opcode::UNDEF, 0 }, // SETGEN
-    { 0x3FE0FC00U, 0x1DC01400U, Mnemonic::SETGPT, IrTemplate::System, Opcode::UNDEF, 0 }, // SETGPT
-    { 0x3FE0FC00U, 0x1DC05400U, Mnemonic::SETGMT, IrTemplate::System, Opcode::UNDEF, 0 }, // SETGMT
-    { 0x3FE0FC00U, 0x1DC09400U, Mnemonic::SETGET, IrTemplate::System, Opcode::UNDEF, 0 }, // SETGET
-    { 0x3FE0FC00U, 0x1DC03400U, Mnemonic::SETGPTN, IrTemplate::System, Opcode::UNDEF, 0 }, // SETGPTN
-    { 0x3FE0FC00U, 0x1DC07400U, Mnemonic::SETGMTN, IrTemplate::System, Opcode::UNDEF, 0 }, // SETGMTN
-    { 0x3FE0FC00U, 0x1DC0B400U, Mnemonic::SETGETN, IrTemplate::System, Opcode::UNDEF, 0 }, // SETGETN
-    { 0x3FE0FC00U, 0x19C00400U, Mnemonic::SETP, IrTemplate::System, Opcode::UNDEF, 0 }, // SETP
-    { 0x3FE0FC00U, 0x19C04400U, Mnemonic::SETM, IrTemplate::System, Opcode::UNDEF, 0 }, // SETM
-    { 0x3FE0FC00U, 0x19C08400U, Mnemonic::SETE, IrTemplate::System, Opcode::UNDEF, 0 }, // SETE
-    { 0x3FE0FC00U, 0x19C02400U, Mnemonic::SETPN, IrTemplate::System, Opcode::UNDEF, 0 }, // SETPN
-    { 0x3FE0FC00U, 0x19C06400U, Mnemonic::SETMN, IrTemplate::System, Opcode::UNDEF, 0 }, // SETMN
-    { 0x3FE0FC00U, 0x19C0A400U, Mnemonic::SETEN, IrTemplate::System, Opcode::UNDEF, 0 }, // SETEN
-    { 0x3FE0FC00U, 0x19C01400U, Mnemonic::SETPT, IrTemplate::System, Opcode::UNDEF, 0 }, // SETPT
-    { 0x3FE0FC00U, 0x19C05400U, Mnemonic::SETMT, IrTemplate::System, Opcode::UNDEF, 0 }, // SETMT
-    { 0x3FE0FC00U, 0x19C09400U, Mnemonic::SETET, IrTemplate::System, Opcode::UNDEF, 0 }, // SETET
-    { 0x3FE0FC00U, 0x19C03400U, Mnemonic::SETPTN, IrTemplate::System, Opcode::UNDEF, 0 }, // SETPTN
-    { 0x3FE0FC00U, 0x19C07400U, Mnemonic::SETMTN, IrTemplate::System, Opcode::UNDEF, 0 }, // SETMTN
-    { 0x3FE0FC00U, 0x19C0B400U, Mnemonic::SETETN, IrTemplate::System, Opcode::UNDEF, 0 }, // SETETN
-    { 0xBFE0EC00U, 0x0D808000U, Mnemonic::ST1, IrTemplate::StoreReg, Opcode::STORE, 0 }, // ST1
-    { 0xBFE0EC00U, 0x0DA08000U, Mnemonic::ST2, IrTemplate::StoreReg, Opcode::STORE, 0 }, // ST2
-    { 0xBFE0EC00U, 0x0D80A000U, Mnemonic::ST3, IrTemplate::StoreReg, Opcode::STORE, 0 }, // ST3
-    { 0xBFE0EC00U, 0x0DA0A000U, Mnemonic::ST4, IrTemplate::StoreReg, Opcode::STORE, 0 }, // ST4
-    { 0xFFE0001CU, 0x81800000U, Mnemonic::BFMOPA, IrTemplate::System, Opcode::UNDEF, 0 }, // BFMOPA
-    { 0xFFE0001CU, 0x81800010U, Mnemonic::BFMOPS, IrTemplate::System, Opcode::UNDEF, 0 }, // BFMOPS
-    { 0xFFE0001CU, 0x80800008U, Mnemonic::BMOPA, IrTemplate::System, Opcode::UNDEF, 0 }, // BMOPA
-    { 0xFFE0001CU, 0x80800018U, Mnemonic::BMOPS, IrTemplate::System, Opcode::UNDEF, 0 }, // BMOPS
-    { 0xFFF01010U, 0xC1C00000U, Mnemonic::FMLAL, IrTemplate::System, Opcode::UNDEF, 0 }, // FMLAL
-    { 0xFFE0001CU, 0x80A00000U, Mnemonic::FMOPA, IrTemplate::System, Opcode::UNDEF, 0 }, // FMOPA
-    { 0xFFE0001CU, 0x81A00000U, Mnemonic::FMOPA, IrTemplate::System, Opcode::UNDEF, 0 }, // FMOPA
-    { 0xFFE0001CU, 0x80800000U, Mnemonic::FMOPA, IrTemplate::System, Opcode::UNDEF, 0 }, // FMOPA
-    { 0xFFE0001CU, 0x81A00010U, Mnemonic::FMOPS, IrTemplate::System, Opcode::UNDEF, 0 }, // FMOPS
-    { 0xFFE0001CU, 0x80800010U, Mnemonic::FMOPS, IrTemplate::System, Opcode::UNDEF, 0 }, // FMOPS
-    { 0xFFE0001CU, 0xA0800008U, Mnemonic::SMOPA, IrTemplate::System, Opcode::UNDEF, 0 }, // SMOPA
-    { 0xFFE0001CU, 0xA0800000U, Mnemonic::SMOPA, IrTemplate::System, Opcode::UNDEF, 0 }, // SMOPA
-    { 0xFFE0001CU, 0xA0800018U, Mnemonic::SMOPS, IrTemplate::System, Opcode::UNDEF, 0 }, // SMOPS
-    { 0xFFE0001CU, 0xA0800010U, Mnemonic::SMOPS, IrTemplate::System, Opcode::UNDEF, 0 }, // SMOPS
-    { 0xFFE0001CU, 0xA0A00000U, Mnemonic::SUMOPA, IrTemplate::System, Opcode::UNDEF, 0 }, // SUMOPA
-    { 0xFFE0001CU, 0xA0A00010U, Mnemonic::SUMOPS, IrTemplate::System, Opcode::UNDEF, 0 }, // SUMOPS
-    { 0xFFE0001CU, 0xA1800008U, Mnemonic::UMOPA, IrTemplate::System, Opcode::UNDEF, 0 }, // UMOPA
-    { 0xFFE0001CU, 0xA1A00000U, Mnemonic::UMOPA, IrTemplate::System, Opcode::UNDEF, 0 }, // UMOPA
-    { 0xFFE0001CU, 0xA1800018U, Mnemonic::UMOPS, IrTemplate::System, Opcode::UNDEF, 0 }, // UMOPS
-    { 0xFFE0001CU, 0xA1A00010U, Mnemonic::UMOPS, IrTemplate::System, Opcode::UNDEF, 0 }, // UMOPS
-    { 0xFFE0001CU, 0xA1800000U, Mnemonic::USMOPA, IrTemplate::System, Opcode::UNDEF, 0 }, // USMOPA
-    { 0xFFE0001CU, 0xA1800010U, Mnemonic::USMOPS, IrTemplate::System, Opcode::UNDEF, 0 }, // USMOPS
-    { 0xFFA0F000U, 0x04A0A000U, Mnemonic::ADR, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // ADR
-    { 0xFFFC0000U, 0x05800000U, Mnemonic::AND, IrTemplate::SimdBinop, Opcode::AND, 0 }, // AND
-    { 0xFFE0E000U, 0x65200000U, Mnemonic::BFMLA, IrTemplate::FpBinop, Opcode::FADD, 0 }, // BFMLA
-    { 0xFFE0E000U, 0x65202000U, Mnemonic::BFMLS, IrTemplate::FpBinop, Opcode::FADD, 0 }, // BFMLS
-    { 0xFFFC0000U, 0x05800000U, Mnemonic::AND, IrTemplate::SimdBinop, Opcode::AND, 0 }, // AND
-    { 0xFFFC0000U, 0x05C00000U, Mnemonic::DUPM, IrTemplate::SimdBinop, Opcode::AND, 0 }, // DUPM
-    { 0xFFFC0000U, 0x05400000U, Mnemonic::EOR, IrTemplate::SimdBinop, Opcode::AND, 0 }, // EOR
-    { 0xFFFC0000U, 0x05400000U, Mnemonic::EOR, IrTemplate::SimdBinop, Opcode::AND, 0 }, // EOR
-    { 0xFFE0E000U, 0x05600000U, Mnemonic::EXT, IrTemplate::SimdUnary, Opcode::COPY, 0 }, // EXT
-    { 0xFFE0E000U, 0x05200000U, Mnemonic::EXT, IrTemplate::SimdUnary, Opcode::COPY, 0 }, // EXT
-    { 0xFFE0E000U, 0x8420C000U, Mnemonic::LD1B, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LD1B
-    { 0xFFE0E000U, 0xC420C000U, Mnemonic::LD1B, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LD1B
-    { 0xFFE0E000U, 0xA4004000U, Mnemonic::LD1B, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LD1B
-    { 0xFFE0E000U, 0xA4204000U, Mnemonic::LD1B, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LD1B
-    { 0xFFE0E000U, 0xA4404000U, Mnemonic::LD1B, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LD1B
-    { 0xFFE0E000U, 0xA4604000U, Mnemonic::LD1B, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LD1B
-    { 0xFFE0E000U, 0xC440C000U, Mnemonic::LD1B, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LD1B
-    { 0xFFE0E000U, 0xC5A0C000U, Mnemonic::LD1D, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LD1D
-    { 0xFFE0E000U, 0xA5E04000U, Mnemonic::LD1D, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LD1D
-    { 0xFFE0E000U, 0xA5808000U, Mnemonic::LD1D, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LD1D
-    { 0xFFE0E000U, 0xC5E0C000U, Mnemonic::LD1D, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LD1D
-    { 0xFFE0E000U, 0xC5C0C000U, Mnemonic::LD1D, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LD1D
-    { 0xFFE0E000U, 0x84A0C000U, Mnemonic::LD1H, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LD1H
-    { 0xFFE0E000U, 0xC4A0C000U, Mnemonic::LD1H, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LD1H
-    { 0xFFE0E000U, 0xA4A04000U, Mnemonic::LD1H, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LD1H
-    { 0xFFE0E000U, 0xA4C04000U, Mnemonic::LD1H, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LD1H
-    { 0xFFE0E000U, 0xA4E04000U, Mnemonic::LD1H, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LD1H
-    { 0xFFE0E000U, 0xC4E0C000U, Mnemonic::LD1H, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LD1H
-    { 0xFFE0E000U, 0xC4C0C000U, Mnemonic::LD1H, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LD1H
-    { 0xFFE0E000U, 0xC400A000U, Mnemonic::LD1Q, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LD1Q
-    { 0xFFE0E000U, 0xA4200000U, Mnemonic::LD1ROB, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LD1ROB
-    { 0xFFE0E000U, 0xA5A00000U, Mnemonic::LD1ROD, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LD1ROD
-    { 0xFFE0E000U, 0xA4A00000U, Mnemonic::LD1ROH, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LD1ROH
-    { 0xFFE0E000U, 0xA5200000U, Mnemonic::LD1ROW, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LD1ROW
-    { 0xFFE0E000U, 0xA4000000U, Mnemonic::LD1RQB, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LD1RQB
-    { 0xFFE0E000U, 0xA5800000U, Mnemonic::LD1RQD, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LD1RQD
-    { 0xFFE0E000U, 0xA4800000U, Mnemonic::LD1RQH, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LD1RQH
-    { 0xFFE0E000U, 0xA5000000U, Mnemonic::LD1RQW, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LD1RQW
-    { 0xFFE0E000U, 0x84208000U, Mnemonic::LD1SB, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LD1SB
-    { 0xFFE0E000U, 0xC4208000U, Mnemonic::LD1SB, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LD1SB
-    { 0xFFE0E000U, 0xA5C04000U, Mnemonic::LD1SB, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LD1SB
-    { 0xFFE0E000U, 0xA5A04000U, Mnemonic::LD1SB, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LD1SB
-    { 0xFFE0E000U, 0xA5804000U, Mnemonic::LD1SB, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LD1SB
-    { 0xFFE0E000U, 0xC4408000U, Mnemonic::LD1SB, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LD1SB
-    { 0xFFE0E000U, 0x84A08000U, Mnemonic::LD1SH, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LD1SH
-    { 0xFFE0E000U, 0xC4A08000U, Mnemonic::LD1SH, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LD1SH
-    { 0xFFE0E000U, 0xA5204000U, Mnemonic::LD1SH, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LD1SH
-    { 0xFFE0E000U, 0xA5004000U, Mnemonic::LD1SH, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LD1SH
-    { 0xFFE0E000U, 0xC4E08000U, Mnemonic::LD1SH, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LD1SH
-    { 0xFFE0E000U, 0xC4C08000U, Mnemonic::LD1SH, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LD1SH
-    { 0xFFE0E000U, 0xC5208000U, Mnemonic::LD1SW, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LD1SW
-    { 0xFFE0E000U, 0xA4804000U, Mnemonic::LD1SW, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LD1SW
-    { 0xFFE0E000U, 0xC5608000U, Mnemonic::LD1SW, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LD1SW
-    { 0xFFE0E000U, 0xC5408000U, Mnemonic::LD1SW, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LD1SW
-    { 0xFFE0E000U, 0x8520C000U, Mnemonic::LD1W, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LD1W
-    { 0xFFE0E000U, 0xC520C000U, Mnemonic::LD1W, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LD1W
-    { 0xFFE0E000U, 0xA5404000U, Mnemonic::LD1W, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LD1W
-    { 0xFFE0E000U, 0xA5604000U, Mnemonic::LD1W, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LD1W
-    { 0xFFE0E000U, 0xA5008000U, Mnemonic::LD1W, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LD1W
-    { 0xFFE0E000U, 0xC560C000U, Mnemonic::LD1W, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LD1W
-    { 0xFFE0E000U, 0xC540C000U, Mnemonic::LD1W, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LD1W
-    { 0xFFE0E000U, 0xA420C000U, Mnemonic::LD2B, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LD2B
-    { 0xFFE0E000U, 0xA5A0C000U, Mnemonic::LD2D, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LD2D
-    { 0xFFE0E000U, 0xA4A0C000U, Mnemonic::LD2H, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LD2H
-    { 0xFFE0E000U, 0xA4A08000U, Mnemonic::LD2Q, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LD2Q
-    { 0xFFE0E000U, 0xA520C000U, Mnemonic::LD2W, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LD2W
-    { 0xFFE0E000U, 0xA440C000U, Mnemonic::LD3B, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LD3B
-    { 0xFFE0E000U, 0xA5C0C000U, Mnemonic::LD3D, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LD3D
-    { 0xFFE0E000U, 0xA4C0C000U, Mnemonic::LD3H, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LD3H
-    { 0xFFE0E000U, 0xA5208000U, Mnemonic::LD3Q, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LD3Q
-    { 0xFFE0E000U, 0xA540C000U, Mnemonic::LD3W, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LD3W
-    { 0xFFE0E000U, 0xA460C000U, Mnemonic::LD4B, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LD4B
-    { 0xFFE0E000U, 0xA5E0C000U, Mnemonic::LD4D, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LD4D
-    { 0xFFE0E000U, 0xA4E0C000U, Mnemonic::LD4H, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LD4H
-    { 0xFFE0E000U, 0xA5A08000U, Mnemonic::LD4Q, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LD4Q
-    { 0xFFE0E000U, 0xA560C000U, Mnemonic::LD4W, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LD4W
-    { 0xFFE0E000U, 0x8420E000U, Mnemonic::LDFF1B, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LDFF1B
-    { 0xFFE0E000U, 0xC420E000U, Mnemonic::LDFF1B, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LDFF1B
-    { 0xFFE0E000U, 0xA4006000U, Mnemonic::LDFF1B, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LDFF1B
-    { 0xFFE0E000U, 0xA4206000U, Mnemonic::LDFF1B, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LDFF1B
-    { 0xFFE0E000U, 0xA4406000U, Mnemonic::LDFF1B, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LDFF1B
-    { 0xFFE0E000U, 0xA4606000U, Mnemonic::LDFF1B, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LDFF1B
-    { 0xFFE0E000U, 0xC440E000U, Mnemonic::LDFF1B, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LDFF1B
-    { 0xFFE0E000U, 0xC5A0E000U, Mnemonic::LDFF1D, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LDFF1D
-    { 0xFFE0E000U, 0xA5E06000U, Mnemonic::LDFF1D, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LDFF1D
-    { 0xFFE0E000U, 0xC5E0E000U, Mnemonic::LDFF1D, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LDFF1D
-    { 0xFFE0E000U, 0xC5C0E000U, Mnemonic::LDFF1D, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LDFF1D
-    { 0xFFE0E000U, 0x84A0E000U, Mnemonic::LDFF1H, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LDFF1H
-    { 0xFFE0E000U, 0xC4A0E000U, Mnemonic::LDFF1H, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LDFF1H
-    { 0xFFE0E000U, 0xA4A06000U, Mnemonic::LDFF1H, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LDFF1H
-    { 0xFFE0E000U, 0xA4C06000U, Mnemonic::LDFF1H, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LDFF1H
-    { 0xFFE0E000U, 0xA4E06000U, Mnemonic::LDFF1H, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LDFF1H
-    { 0xFFE0E000U, 0xC4E0E000U, Mnemonic::LDFF1H, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LDFF1H
-    { 0xFFE0E000U, 0xC4C0E000U, Mnemonic::LDFF1H, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LDFF1H
-    { 0xFFE0E000U, 0x8420A000U, Mnemonic::LDFF1SB, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LDFF1SB
-    { 0xFFE0E000U, 0xC420A000U, Mnemonic::LDFF1SB, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LDFF1SB
-    { 0xFFE0E000U, 0xA5C06000U, Mnemonic::LDFF1SB, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LDFF1SB
-    { 0xFFE0E000U, 0xA5A06000U, Mnemonic::LDFF1SB, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LDFF1SB
-    { 0xFFE0E000U, 0xA5806000U, Mnemonic::LDFF1SB, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LDFF1SB
-    { 0xFFE0E000U, 0xC440A000U, Mnemonic::LDFF1SB, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LDFF1SB
-    { 0xFFE0E000U, 0x84A0A000U, Mnemonic::LDFF1SH, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LDFF1SH
-    { 0xFFE0E000U, 0xC4A0A000U, Mnemonic::LDFF1SH, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LDFF1SH
-    { 0xFFE0E000U, 0xA5206000U, Mnemonic::LDFF1SH, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LDFF1SH
-    { 0xFFE0E000U, 0xA5006000U, Mnemonic::LDFF1SH, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LDFF1SH
-    { 0xFFE0E000U, 0xC4E0A000U, Mnemonic::LDFF1SH, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LDFF1SH
-    { 0xFFE0E000U, 0xC4C0A000U, Mnemonic::LDFF1SH, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LDFF1SH
-    { 0xFFE0E000U, 0xC520A000U, Mnemonic::LDFF1SW, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LDFF1SW
-    { 0xFFE0E000U, 0xA4806000U, Mnemonic::LDFF1SW, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LDFF1SW
-    { 0xFFE0E000U, 0xC560A000U, Mnemonic::LDFF1SW, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LDFF1SW
-    { 0xFFE0E000U, 0xC540A000U, Mnemonic::LDFF1SW, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LDFF1SW
-    { 0xFFE0E000U, 0x8520E000U, Mnemonic::LDFF1W, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LDFF1W
-    { 0xFFE0E000U, 0xC520E000U, Mnemonic::LDFF1W, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LDFF1W
-    { 0xFFE0E000U, 0xA5406000U, Mnemonic::LDFF1W, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LDFF1W
-    { 0xFFE0E000U, 0xA5606000U, Mnemonic::LDFF1W, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LDFF1W
-    { 0xFFE0E000U, 0xC560E000U, Mnemonic::LDFF1W, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LDFF1W
-    { 0xFFE0E000U, 0xC540E000U, Mnemonic::LDFF1W, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LDFF1W
-    { 0xFFE0E000U, 0x8400A000U, Mnemonic::LDNT1B, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LDNT1B
-    { 0xFFE0E000U, 0xC400C000U, Mnemonic::LDNT1B, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LDNT1B
-    { 0xFFE0E000U, 0xA400C000U, Mnemonic::LDNT1B, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LDNT1B
-    { 0xFFE0E000U, 0xC580C000U, Mnemonic::LDNT1D, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LDNT1D
-    { 0xFFE0E000U, 0xA580C000U, Mnemonic::LDNT1D, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LDNT1D
-    { 0xFFE0E000U, 0x8480A000U, Mnemonic::LDNT1H, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LDNT1H
-    { 0xFFE0E000U, 0xC480C000U, Mnemonic::LDNT1H, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LDNT1H
-    { 0xFFE0E000U, 0xA480C000U, Mnemonic::LDNT1H, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LDNT1H
-    { 0xFFE0E000U, 0x84008000U, Mnemonic::LDNT1SB, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LDNT1SB
-    { 0xFFE0E000U, 0xC4008000U, Mnemonic::LDNT1SB, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LDNT1SB
-    { 0xFFE0E000U, 0x84808000U, Mnemonic::LDNT1SH, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LDNT1SH
-    { 0xFFE0E000U, 0xC4808000U, Mnemonic::LDNT1SH, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LDNT1SH
-    { 0xFFE0E000U, 0xC5008000U, Mnemonic::LDNT1SW, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LDNT1SW
-    { 0xFFE0E000U, 0x8500A000U, Mnemonic::LDNT1W, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LDNT1W
-    { 0xFFE0E000U, 0xC500C000U, Mnemonic::LDNT1W, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LDNT1W
-    { 0xFFE0E000U, 0xA500C000U, Mnemonic::LDNT1W, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LDNT1W
-    { 0xFFC0E010U, 0x85800000U, Mnemonic::LDR, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LDR
-    { 0xFF20EC00U, 0x4520A800U, Mnemonic::LUTI2, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // LUTI2
-    { 0xFFFC0000U, 0x05C00000U, Mnemonic::DUPM, IrTemplate::SimdBinop, Opcode::AND, 0 }, // DUPM
-    { 0xFFFC0000U, 0x05000000U, Mnemonic::ORR, IrTemplate::SimdBinop, Opcode::AND, 0 }, // ORR
-    { 0xFFFC0000U, 0x05000000U, Mnemonic::ORR, IrTemplate::SimdBinop, Opcode::AND, 0 }, // ORR
-    { 0xFFC0E010U, 0x85C00000U, Mnemonic::PRFB, IrTemplate::StoreReg, Opcode::STORE, 0 }, // PRFB
-    { 0xFFA0E010U, 0x84200000U, Mnemonic::PRFB, IrTemplate::StoreReg, Opcode::STORE, 0 }, // PRFB
-    { 0xFFA0E010U, 0xC4200000U, Mnemonic::PRFB, IrTemplate::StoreReg, Opcode::STORE, 0 }, // PRFB
-    { 0xFFC0E010U, 0x85C06000U, Mnemonic::PRFD, IrTemplate::StoreReg, Opcode::STORE, 0 }, // PRFD
-    { 0xFFA0E010U, 0x84206000U, Mnemonic::PRFD, IrTemplate::StoreReg, Opcode::STORE, 0 }, // PRFD
-    { 0xFFA0E010U, 0xC4206000U, Mnemonic::PRFD, IrTemplate::StoreReg, Opcode::STORE, 0 }, // PRFD
-    { 0xFFC0E010U, 0x85C02000U, Mnemonic::PRFH, IrTemplate::StoreReg, Opcode::STORE, 0 }, // PRFH
-    { 0xFFA0E010U, 0x84202000U, Mnemonic::PRFH, IrTemplate::StoreReg, Opcode::STORE, 0 }, // PRFH
-    { 0xFFA0E010U, 0xC4202000U, Mnemonic::PRFH, IrTemplate::StoreReg, Opcode::STORE, 0 }, // PRFH
-    { 0xFFC0E010U, 0x85C04000U, Mnemonic::PRFW, IrTemplate::StoreReg, Opcode::STORE, 0 }, // PRFW
-    { 0xFFA0E010U, 0x84204000U, Mnemonic::PRFW, IrTemplate::StoreReg, Opcode::STORE, 0 }, // PRFW
-    { 0xFFA0E010U, 0xC4204000U, Mnemonic::PRFW, IrTemplate::StoreReg, Opcode::STORE, 0 }, // PRFW
-    { 0xFFE0E000U, 0xE460A000U, Mnemonic::ST1B, IrTemplate::StoreReg, Opcode::STORE, 0 }, // ST1B
-    { 0xFFE0E000U, 0xE440A000U, Mnemonic::ST1B, IrTemplate::StoreReg, Opcode::STORE, 0 }, // ST1B
-    { 0xFFE0E000U, 0xE400A000U, Mnemonic::ST1B, IrTemplate::StoreReg, Opcode::STORE, 0 }, // ST1B
-    { 0xFFE0E000U, 0xE5C0A000U, Mnemonic::ST1D, IrTemplate::StoreReg, Opcode::STORE, 0 }, // ST1D
-    { 0xFFE0E000U, 0xE5E04000U, Mnemonic::ST1D, IrTemplate::StoreReg, Opcode::STORE, 0 }, // ST1D
-    { 0xFFE0E000U, 0xE5C04000U, Mnemonic::ST1D, IrTemplate::StoreReg, Opcode::STORE, 0 }, // ST1D
-    { 0xFFE0E000U, 0xE5A0A000U, Mnemonic::ST1D, IrTemplate::StoreReg, Opcode::STORE, 0 }, // ST1D
-    { 0xFFE0E000U, 0xE580A000U, Mnemonic::ST1D, IrTemplate::StoreReg, Opcode::STORE, 0 }, // ST1D
-    { 0xFFE0E000U, 0xE4E0A000U, Mnemonic::ST1H, IrTemplate::StoreReg, Opcode::STORE, 0 }, // ST1H
-    { 0xFFE0E000U, 0xE4C0A000U, Mnemonic::ST1H, IrTemplate::StoreReg, Opcode::STORE, 0 }, // ST1H
-    { 0xFFE0E000U, 0xE4A0A000U, Mnemonic::ST1H, IrTemplate::StoreReg, Opcode::STORE, 0 }, // ST1H
-    { 0xFFE0E000U, 0xE480A000U, Mnemonic::ST1H, IrTemplate::StoreReg, Opcode::STORE, 0 }, // ST1H
-    { 0xFFE0E000U, 0xE4202000U, Mnemonic::ST1Q, IrTemplate::StoreReg, Opcode::STORE, 0 }, // ST1Q
-    { 0xFFE0E000U, 0xE560A000U, Mnemonic::ST1W, IrTemplate::StoreReg, Opcode::STORE, 0 }, // ST1W
-    { 0xFFE0E000U, 0xE540A000U, Mnemonic::ST1W, IrTemplate::StoreReg, Opcode::STORE, 0 }, // ST1W
-    { 0xFFD0E000U, 0xE540E000U, Mnemonic::ST1W, IrTemplate::StoreReg, Opcode::STORE, 0 }, // ST1W
-    { 0xFFE0E000U, 0xE5004000U, Mnemonic::ST1W, IrTemplate::StoreReg, Opcode::STORE, 0 }, // ST1W
-    { 0xFFE0E000U, 0xE520A000U, Mnemonic::ST1W, IrTemplate::StoreReg, Opcode::STORE, 0 }, // ST1W
-    { 0xFFE0E000U, 0xE500A000U, Mnemonic::ST1W, IrTemplate::StoreReg, Opcode::STORE, 0 }, // ST1W
-    { 0xFFE0E000U, 0xE4206000U, Mnemonic::ST2B, IrTemplate::StoreReg, Opcode::STORE, 0 }, // ST2B
-    { 0xFFE0E000U, 0xE5A06000U, Mnemonic::ST2D, IrTemplate::StoreReg, Opcode::STORE, 0 }, // ST2D
-    { 0xFFE0E000U, 0xE4A06000U, Mnemonic::ST2H, IrTemplate::StoreReg, Opcode::STORE, 0 }, // ST2H
-    { 0xFFE0E000U, 0xE4600000U, Mnemonic::ST2Q, IrTemplate::StoreReg, Opcode::STORE, 0 }, // ST2Q
-    { 0xFFE0E000U, 0xE5206000U, Mnemonic::ST2W, IrTemplate::StoreReg, Opcode::STORE, 0 }, // ST2W
-    { 0xFFE0E000U, 0xE4406000U, Mnemonic::ST3B, IrTemplate::StoreReg, Opcode::STORE, 0 }, // ST3B
-    { 0xFFE0E000U, 0xE5C06000U, Mnemonic::ST3D, IrTemplate::StoreReg, Opcode::STORE, 0 }, // ST3D
-    { 0xFFE0E000U, 0xE4C06000U, Mnemonic::ST3H, IrTemplate::StoreReg, Opcode::STORE, 0 }, // ST3H
-    { 0xFFE0E000U, 0xE4A00000U, Mnemonic::ST3Q, IrTemplate::StoreReg, Opcode::STORE, 0 }, // ST3Q
-    { 0xFFE0E000U, 0xE5406000U, Mnemonic::ST3W, IrTemplate::StoreReg, Opcode::STORE, 0 }, // ST3W
-    { 0xFFE0E000U, 0xE4606000U, Mnemonic::ST4B, IrTemplate::StoreReg, Opcode::STORE, 0 }, // ST4B
-    { 0xFFE0E000U, 0xE5E06000U, Mnemonic::ST4D, IrTemplate::StoreReg, Opcode::STORE, 0 }, // ST4D
-    { 0xFFE0E000U, 0xE4E06000U, Mnemonic::ST4H, IrTemplate::StoreReg, Opcode::STORE, 0 }, // ST4H
-    { 0xFFE0E000U, 0xE4E00000U, Mnemonic::ST4Q, IrTemplate::StoreReg, Opcode::STORE, 0 }, // ST4Q
-    { 0xFFE0E000U, 0xE5606000U, Mnemonic::ST4W, IrTemplate::StoreReg, Opcode::STORE, 0 }, // ST4W
-    { 0xFFE0E000U, 0xE4402000U, Mnemonic::STNT1B, IrTemplate::StoreReg, Opcode::STORE, 0 }, // STNT1B
-    { 0xFFE0E000U, 0xE4002000U, Mnemonic::STNT1B, IrTemplate::StoreReg, Opcode::STORE, 0 }, // STNT1B
-    { 0xFFE0E000U, 0xE4006000U, Mnemonic::STNT1B, IrTemplate::StoreReg, Opcode::STORE, 0 }, // STNT1B
-    { 0xFFE0E000U, 0xE5802000U, Mnemonic::STNT1D, IrTemplate::StoreReg, Opcode::STORE, 0 }, // STNT1D
-    { 0xFFE0E000U, 0xE5806000U, Mnemonic::STNT1D, IrTemplate::StoreReg, Opcode::STORE, 0 }, // STNT1D
-    { 0xFFE0E000U, 0xE4C02000U, Mnemonic::STNT1H, IrTemplate::StoreReg, Opcode::STORE, 0 }, // STNT1H
-    { 0xFFE0E000U, 0xE4802000U, Mnemonic::STNT1H, IrTemplate::StoreReg, Opcode::STORE, 0 }, // STNT1H
-    { 0xFFE0E000U, 0xE4806000U, Mnemonic::STNT1H, IrTemplate::StoreReg, Opcode::STORE, 0 }, // STNT1H
-    { 0xFFE0E000U, 0xE5402000U, Mnemonic::STNT1W, IrTemplate::StoreReg, Opcode::STORE, 0 }, // STNT1W
-    { 0xFFE0E000U, 0xE5002000U, Mnemonic::STNT1W, IrTemplate::StoreReg, Opcode::STORE, 0 }, // STNT1W
-    { 0xFFE0E000U, 0xE5006000U, Mnemonic::STNT1W, IrTemplate::StoreReg, Opcode::STORE, 0 }, // STNT1W
-    { 0xFFC0E010U, 0xE5800000U, Mnemonic::STR, IrTemplate::StoreReg, Opcode::STORE, 0 }, // STR
-    { 0xFF80001FU, 0x3100001FU, Mnemonic::ADDS, IrTemplate::GpBinopImmFlags, Opcode::ADD, 0 }, // ADDS
-    { 0xFF80001FU, 0xB100001FU, Mnemonic::ADDS, IrTemplate::GpBinopImmFlags, Opcode::ADD, 0 }, // ADDS
-    { 0xFF80001FU, 0x7100001FU, Mnemonic::SUBS, IrTemplate::GpBinopImmFlags, Opcode::SUB, 0 }, // SUBS
-    { 0xFF80001FU, 0xF100001FU, Mnemonic::SUBS, IrTemplate::GpBinopImmFlags, Opcode::SUB, 0 }, // SUBS
-    { 0xFF8003E0U, 0xB20003E0U, Mnemonic::ORR, IrTemplate::GpBinopImm, Opcode::OR, 0 }, // ORR
-    { 0xFFFC0000U, 0x11C00000U, Mnemonic::SMAX, IrTemplate::GpBinopImm, Opcode::ADD, 0 }, // SMAX
-    { 0xFFFC0000U, 0x91C00000U, Mnemonic::SMAX, IrTemplate::GpBinopImm, Opcode::ADD, 0 }, // SMAX
-    { 0xFFFC0000U, 0x11C80000U, Mnemonic::SMIN, IrTemplate::GpBinopImm, Opcode::ADD, 0 }, // SMIN
-    { 0xFFFC0000U, 0x91C80000U, Mnemonic::SMIN, IrTemplate::GpBinopImm, Opcode::ADD, 0 }, // SMIN
-    { 0xFF80001FU, 0xF200001FU, Mnemonic::ANDS, IrTemplate::GpBinopImmFlags, Opcode::AND, 0 }, // ANDS
-    { 0xFFFC0000U, 0x11C40000U, Mnemonic::UMAX, IrTemplate::GpBinopImm, Opcode::ADD, 0 }, // UMAX
-    { 0xFFFC0000U, 0x91C40000U, Mnemonic::UMAX, IrTemplate::GpBinopImm, Opcode::ADD, 0 }, // UMAX
-    { 0xFFFC0000U, 0x11CC0000U, Mnemonic::UMIN, IrTemplate::GpBinopImm, Opcode::ADD, 0 }, // UMIN
-    { 0xFFFC0000U, 0x91CC0000U, Mnemonic::UMIN, IrTemplate::GpBinopImm, Opcode::ADD, 0 }, // UMIN
-    { 0xFFE0E000U, 0x9A002000U, Mnemonic::ADDPT, IrTemplate::GpBinop, Opcode::ADD, 0 }, // ADDPT
-    { 0xFFE00C10U, 0x3A400800U, Mnemonic::CCMN, IrTemplate::GpBinopFlags, Opcode::SUB, 0 }, // CCMN
-    { 0xFFE00C10U, 0xBA400800U, Mnemonic::CCMN, IrTemplate::GpBinopFlags, Opcode::SUB, 0 }, // CCMN
-    { 0xFFE00C10U, 0x3A400000U, Mnemonic::CCMN, IrTemplate::GpBinopFlags, Opcode::SUB, 0 }, // CCMN
-    { 0xFFE00C10U, 0xBA400000U, Mnemonic::CCMN, IrTemplate::GpBinopFlags, Opcode::SUB, 0 }, // CCMN
-    { 0xFFE00C10U, 0x7A400800U, Mnemonic::CCMP, IrTemplate::GpBinopFlags, Opcode::SUB, 0 }, // CCMP
-    { 0xFFE00C10U, 0xFA400800U, Mnemonic::CCMP, IrTemplate::GpBinopFlags, Opcode::SUB, 0 }, // CCMP
-    { 0xFFE00C10U, 0x7A400000U, Mnemonic::CCMP, IrTemplate::GpBinopFlags, Opcode::SUB, 0 }, // CCMP
-    { 0xFFE00C10U, 0xFA400000U, Mnemonic::CCMP, IrTemplate::GpBinopFlags, Opcode::SUB, 0 }, // CCMP
-    { 0xFF20001FU, 0x2B00001FU, Mnemonic::ADDS, IrTemplate::GpBinopFlags, Opcode::ADD, 0 }, // ADDS
-    { 0xFF20001FU, 0xAB00001FU, Mnemonic::ADDS, IrTemplate::GpBinopFlags, Opcode::ADD, 0 }, // ADDS
-    { 0xFF20001FU, 0x6B00001FU, Mnemonic::SUBS, IrTemplate::GpBinopFlags, Opcode::SUB, 0 }, // SUBS
-    { 0xFF20001FU, 0xEB00001FU, Mnemonic::SUBS, IrTemplate::GpBinopFlags, Opcode::SUB, 0 }, // SUBS
-    { 0xFF2003E0U, 0x2A2003E0U, Mnemonic::ORN, IrTemplate::GpBinop, Opcode::OR, 0 }, // ORN
-    { 0xFF2003E0U, 0xAA2003E0U, Mnemonic::ORN, IrTemplate::GpBinop, Opcode::OR, 0 }, // ORN
-    { 0xFF2003E0U, 0x4B0003E0U, Mnemonic::SUB, IrTemplate::GpBinop, Opcode::SUB, 0 }, // SUB
-    { 0xFF2003E0U, 0xCB0003E0U, Mnemonic::SUB, IrTemplate::GpBinop, Opcode::SUB, 0 }, // SUB
-    { 0xFF2003E0U, 0x6B0003E0U, Mnemonic::SUBS, IrTemplate::GpBinopFlags, Opcode::SUB, 0 }, // SUBS
-    { 0xFF2003E0U, 0xEB0003E0U, Mnemonic::SUBS, IrTemplate::GpBinopFlags, Opcode::SUB, 0 }, // SUBS
-    { 0xFFE0E000U, 0xDA002000U, Mnemonic::SUBPT, IrTemplate::GpBinop, Opcode::ADD, 0 }, // SUBPT
-    { 0xFF20001FU, 0x6A00001FU, Mnemonic::ANDS, IrTemplate::GpBinopFlags, Opcode::AND, 0 }, // ANDS
-    { 0xFF20001FU, 0xEA00001FU, Mnemonic::ANDS, IrTemplate::GpBinopFlags, Opcode::AND, 0 }, // ANDS
-    { 0xBF20FC00U, 0x0E208400U, Mnemonic::ADD, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // ADD
-    { 0xBF20FC00U, 0x0E204000U, Mnemonic::ADDHN, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // ADDHN
-    { 0xBF20FC00U, 0x0E20BC00U, Mnemonic::ADDP, IrTemplate::SimdBinop, Opcode::FADD, 0 }, // ADDP
-    { 0xBFC0F400U, 0x0F40F000U, Mnemonic::BFDOT, IrTemplate::SimdBinop, Opcode::MUL, 0 }, // BFDOT
-    { 0xBFC0F400U, 0x0FC0F000U, Mnemonic::BFMLAL, IrTemplate::SimdBinop, Opcode::MUL, 0 }, // BFMLAL
-    { 0xBFF80C00U, 0x2F000400U, Mnemonic::BIC, IrTemplate::SimdUnary, Opcode::COPY, 0 }, // BIC
-    { 0xBFF80C00U, 0x2F000400U, Mnemonic::BIC, IrTemplate::SimdUnary, Opcode::COPY, 0 }, // BIC
-    { 0xBF20FC00U, 0x2E208C00U, Mnemonic::CMEQ, IrTemplate::SimdBinop, Opcode::CMP_EQ, 0 }, // CMEQ
-    { 0xBF20FC00U, 0x0E203C00U, Mnemonic::CMGE, IrTemplate::SimdBinop, Opcode::CMP_SLE, 0 }, // CMGE
-    { 0xBF20FC00U, 0x0E203400U, Mnemonic::CMGT, IrTemplate::SimdBinop, Opcode::CMP_SLT, 0 }, // CMGT
-    { 0xBF20FC00U, 0x2E203400U, Mnemonic::CMHI, IrTemplate::SimdBinop, Opcode::CMP_ULT, 0 }, // CMHI
-    { 0xBF20FC00U, 0x2E203C00U, Mnemonic::CMHS, IrTemplate::SimdBinop, Opcode::CMP_ULE, 0 }, // CMHS
-    { 0xBF20FC00U, 0x0E208C00U, Mnemonic::CMTST, IrTemplate::SimdBinop, Opcode::AND, 0 }, // CMTST
-    { 0xBF20FC00U, 0x0E20DC00U, Mnemonic::FAMAX, IrTemplate::SimdBinop, Opcode::FADD, 0 }, // FAMAX
-    { 0xBF20FC00U, 0x2E20DC00U, Mnemonic::FAMIN, IrTemplate::SimdBinop, Opcode::FADD, 0 }, // FAMIN
-    { 0xFFE00C10U, 0x1EE00400U, Mnemonic::FCCMP, IrTemplate::GpBinopFlags, Opcode::FSUB, 0 }, // FCCMP
-    { 0xFFE00C10U, 0x1E200400U, Mnemonic::FCCMP, IrTemplate::GpBinopFlags, Opcode::FSUB, 0 }, // FCCMP
-    { 0xFFE00C10U, 0x1E600400U, Mnemonic::FCCMP, IrTemplate::GpBinopFlags, Opcode::FSUB, 0 }, // FCCMP
-    { 0xFFE00C10U, 0x1EE00410U, Mnemonic::FCCMPE, IrTemplate::GpBinopFlags, Opcode::FSUB, 0 }, // FCCMPE
-    { 0xFFE00C10U, 0x1E200410U, Mnemonic::FCCMPE, IrTemplate::GpBinopFlags, Opcode::FSUB, 0 }, // FCCMPE
-    { 0xFFE00C10U, 0x1E600410U, Mnemonic::FCCMPE, IrTemplate::GpBinopFlags, Opcode::FSUB, 0 }, // FCCMPE
-    { 0xBF80FC00U, 0x0F00FC00U, Mnemonic::FCVTZS, IrTemplate::SimdBinop, Opcode::SHL, 0 }, // FCVTZS
-    { 0xBF80FC00U, 0x2F00FC00U, Mnemonic::FCVTZU, IrTemplate::SimdBinop, Opcode::SHL, 0 }, // FCVTZU
-    { 0xBFC0F400U, 0x0F400000U, Mnemonic::FDOT, IrTemplate::SimdBinop, Opcode::MUL, 0 }, // FDOT
-    { 0xBFC0F400U, 0x0F000000U, Mnemonic::FDOT, IrTemplate::SimdBinop, Opcode::MUL, 0 }, // FDOT
-    { 0xBFC0F400U, 0x0F409000U, Mnemonic::FDOT, IrTemplate::SimdBinop, Opcode::MUL, 0 }, // FDOT
-    { 0xFF80F400U, 0x5F801000U, Mnemonic::FMLA, IrTemplate::FpBinop, Opcode::FMUL, 0 }, // FMLA
-    { 0xBFC0F400U, 0x0F001000U, Mnemonic::FMLA, IrTemplate::SimdBinop, Opcode::MUL, 0 }, // FMLA
-    { 0xBFC0F400U, 0x0F800000U, Mnemonic::FMLAL, IrTemplate::SimdBinop, Opcode::MUL, 0 }, // FMLAL
-    { 0xBFC0F400U, 0x2F808000U, Mnemonic::FMLAL2, IrTemplate::SimdBinop, Opcode::MUL, 0 }, // FMLAL2
-    { 0xFF80F400U, 0x5F805000U, Mnemonic::FMLS, IrTemplate::FpBinop, Opcode::FMUL, 0 }, // FMLS
-    { 0xBFC0F400U, 0x0F005000U, Mnemonic::FMLS, IrTemplate::SimdBinop, Opcode::MUL, 0 }, // FMLS
-    { 0xBFC0F400U, 0x0F804000U, Mnemonic::FMLSL, IrTemplate::SimdBinop, Opcode::MUL, 0 }, // FMLSL
-    { 0xBFC0F400U, 0x2F80C000U, Mnemonic::FMLSL2, IrTemplate::SimdBinop, Opcode::MUL, 0 }, // FMLSL2
-    { 0xFF80F400U, 0x5F809000U, Mnemonic::FMUL, IrTemplate::FpBinop, Opcode::FMUL, 0 }, // FMUL
-    { 0xBFC0F400U, 0x0F009000U, Mnemonic::FMUL, IrTemplate::SimdBinop, Opcode::MUL, 0 }, // FMUL
-    { 0xFF80F400U, 0x7F809000U, Mnemonic::FMULX, IrTemplate::FpBinop, Opcode::FMUL, 0 }, // FMULX
-    { 0xBFC0F400U, 0x2F009000U, Mnemonic::FMULX, IrTemplate::SimdBinop, Opcode::MUL, 0 }, // FMULX
-    { 0xBF20FC00U, 0x2E20FC00U, Mnemonic::FSCALE, IrTemplate::SimdBinop, Opcode::FADD, 0 }, // FSCALE
-    { 0xFFE08C00U, 0x4EC00000U, Mnemonic::LUTI2, IrTemplate::SimdBinop, Opcode::COPY, 0 }, // LUTI2
-    { 0xBF20FC00U, 0x0E209400U, Mnemonic::MLA, IrTemplate::SimdBinop, Opcode::FADD, 0 }, // MLA
-    { 0xBF20FC00U, 0x2E209400U, Mnemonic::MLS, IrTemplate::SimdBinop, Opcode::FADD, 0 }, // MLS
-    { 0xBFF80C00U, 0x0F000400U, Mnemonic::MOVI, IrTemplate::SimdUnary, Opcode::COPY, 0 }, // MOVI
-    { 0xBFF80C00U, 0x0F000400U, Mnemonic::MOVI, IrTemplate::SimdUnary, Opcode::COPY, 0 }, // MOVI
-    { 0xBFF80C00U, 0x0F000400U, Mnemonic::MOVI, IrTemplate::SimdUnary, Opcode::COPY, 0 }, // MOVI
-    { 0xBF20FC00U, 0x0E209C00U, Mnemonic::MUL, IrTemplate::SimdBinop, Opcode::MUL, 0 }, // MUL
-    { 0xBFF80C00U, 0x2F000400U, Mnemonic::MVNI, IrTemplate::SimdUnary, Opcode::COPY, 0 }, // MVNI
-    { 0xBFF80C00U, 0x2F000400U, Mnemonic::MVNI, IrTemplate::SimdUnary, Opcode::COPY, 0 }, // MVNI
-    { 0xBFF80C00U, 0x2F000400U, Mnemonic::MVNI, IrTemplate::SimdUnary, Opcode::COPY, 0 }, // MVNI
-    { 0xBFF80C00U, 0x0F000400U, Mnemonic::ORR, IrTemplate::SimdUnary, Opcode::COPY, 0 }, // ORR
-    { 0xBFF80C00U, 0x0F000400U, Mnemonic::ORR, IrTemplate::SimdUnary, Opcode::COPY, 0 }, // ORR
-    { 0xBF20FC00U, 0x2E209C00U, Mnemonic::PMUL, IrTemplate::SimdBinop, Opcode::FADD, 0 }, // PMUL
-    { 0xBF20FC00U, 0x0E20E000U, Mnemonic::PMULL, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // PMULL
-    { 0xBF20FC00U, 0x2E204000U, Mnemonic::RADDHN, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // RADDHN
-    { 0xBF80FC00U, 0x0F008C00U, Mnemonic::RSHRN, IrTemplate::SimdBinop, Opcode::SHL, 0 }, // RSHRN
-    { 0xBF20FC00U, 0x2E206000U, Mnemonic::RSUBHN, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // RSUBHN
-    { 0xBF20FC00U, 0x0E207C00U, Mnemonic::SABA, IrTemplate::SimdBinop, Opcode::FADD, 0 }, // SABA
-    { 0xBF20FC00U, 0x0E205000U, Mnemonic::SABAL, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // SABAL
-    { 0xBF20FC00U, 0x0E207400U, Mnemonic::SABD, IrTemplate::SimdBinop, Opcode::FADD, 0 }, // SABD
-    { 0xBF20FC00U, 0x0E207000U, Mnemonic::SABDL, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // SABDL
-    { 0xBF20FC00U, 0x0E200000U, Mnemonic::SADDL, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // SADDL
-    { 0xBF20FC00U, 0x0E201000U, Mnemonic::SADDW, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // SADDW
-    { 0xBF80FC00U, 0x0F00E400U, Mnemonic::SCVTF, IrTemplate::SimdBinop, Opcode::SHL, 0 }, // SCVTF
-    { 0xBF20FC00U, 0x0E009400U, Mnemonic::SDOT, IrTemplate::SimdBinop, Opcode::FADD, 0 }, // SDOT
-    { 0xBF20FC00U, 0x0E200400U, Mnemonic::SHADD, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // SHADD
-    { 0xBF80FC00U, 0x0F005400U, Mnemonic::SHL, IrTemplate::SimdBinop, Opcode::SHL, 0 }, // SHL
-    { 0xBF80FC00U, 0x0F008400U, Mnemonic::SHRN, IrTemplate::SimdBinop, Opcode::SHL, 0 }, // SHRN
-    { 0xBF20FC00U, 0x0E202400U, Mnemonic::SHSUB, IrTemplate::SimdBinop, Opcode::SUB, 0 }, // SHSUB
-    { 0xBF80FC00U, 0x2F005400U, Mnemonic::SLI, IrTemplate::SimdBinop, Opcode::SHL, 0 }, // SLI
-    { 0xBF20FC00U, 0x0E206400U, Mnemonic::SMAX, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // SMAX
-    { 0xBF20FC00U, 0x0E20A400U, Mnemonic::SMAXP, IrTemplate::SimdBinop, Opcode::FADD, 0 }, // SMAXP
-    { 0xBF20FC00U, 0x0E206C00U, Mnemonic::SMIN, IrTemplate::SimdBinop, Opcode::SUB, 0 }, // SMIN
-    { 0xBF20FC00U, 0x0E20AC00U, Mnemonic::SMINP, IrTemplate::SimdBinop, Opcode::FADD, 0 }, // SMINP
-    { 0xBF20FC00U, 0x0E208000U, Mnemonic::SMLAL, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // SMLAL
-    { 0xBF20FC00U, 0x0E20A000U, Mnemonic::SMLSL, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // SMLSL
-    { 0xBF20FC00U, 0x0E20C000U, Mnemonic::SMULL, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // SMULL
-    { 0xBF20FC00U, 0x0E200C00U, Mnemonic::SQADD, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // SQADD
-    { 0xBF20FC00U, 0x0E209000U, Mnemonic::SQDMLAL, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // SQDMLAL
-    { 0xBF20FC00U, 0x0E20B000U, Mnemonic::SQDMLSL, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // SQDMLSL
-    { 0xBF20FC00U, 0x0E20B400U, Mnemonic::SQDMULH, IrTemplate::SimdBinop, Opcode::FADD, 0 }, // SQDMULH
-    { 0xBF20FC00U, 0x0E20D000U, Mnemonic::SQDMULL, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // SQDMULL
-    { 0xBF20FC00U, 0x2E008400U, Mnemonic::SQRDMLAH, IrTemplate::SimdBinop, Opcode::FADD, 0 }, // SQRDMLAH
-    { 0xBF20FC00U, 0x2E008C00U, Mnemonic::SQRDMLSH, IrTemplate::SimdBinop, Opcode::FADD, 0 }, // SQRDMLSH
-    { 0xBF20FC00U, 0x2E20B400U, Mnemonic::SQRDMULH, IrTemplate::SimdBinop, Opcode::FADD, 0 }, // SQRDMULH
-    { 0xBF20FC00U, 0x0E205C00U, Mnemonic::SQRSHL, IrTemplate::SimdBinop, Opcode::FADD, 0 }, // SQRSHL
-    { 0xBF80FC00U, 0x0F009C00U, Mnemonic::SQRSHRN, IrTemplate::SimdBinop, Opcode::SHL, 0 }, // SQRSHRN
-    { 0xBF80FC00U, 0x2F008C00U, Mnemonic::SQRSHRUN, IrTemplate::SimdBinop, Opcode::SHL, 0 }, // SQRSHRUN
-    { 0xBF80FC00U, 0x0F007400U, Mnemonic::SQSHL, IrTemplate::SimdBinop, Opcode::SHL, 0 }, // SQSHL
-    { 0xBF20FC00U, 0x0E204C00U, Mnemonic::SQSHL, IrTemplate::SimdBinop, Opcode::SHL, 0 }, // SQSHL
-    { 0xBF80FC00U, 0x2F006400U, Mnemonic::SQSHLU, IrTemplate::SimdBinop, Opcode::SHL, 0 }, // SQSHLU
-    { 0xBF80FC00U, 0x0F009400U, Mnemonic::SQSHRN, IrTemplate::SimdBinop, Opcode::SHL, 0 }, // SQSHRN
-    { 0xBF80FC00U, 0x2F008400U, Mnemonic::SQSHRUN, IrTemplate::SimdBinop, Opcode::SHL, 0 }, // SQSHRUN
-    { 0xBF20FC00U, 0x0E202C00U, Mnemonic::SQSUB, IrTemplate::SimdBinop, Opcode::SUB, 0 }, // SQSUB
-    { 0xBF20FC00U, 0x0E201400U, Mnemonic::SRHADD, IrTemplate::SimdBinop, Opcode::FADD, 0 }, // SRHADD
-    { 0xBF80FC00U, 0x2F004400U, Mnemonic::SRI, IrTemplate::SimdBinop, Opcode::SHL, 0 }, // SRI
-    { 0xBF20FC00U, 0x0E205400U, Mnemonic::SRSHL, IrTemplate::SimdBinop, Opcode::SHL, 0 }, // SRSHL
-    { 0xBF80FC00U, 0x0F002400U, Mnemonic::SRSHR, IrTemplate::SimdBinop, Opcode::SHL, 0 }, // SRSHR
-    { 0xBF80FC00U, 0x0F003400U, Mnemonic::SRSRA, IrTemplate::SimdBinop, Opcode::SHL, 0 }, // SRSRA
-    { 0xBF20FC00U, 0x0E204400U, Mnemonic::SSHL, IrTemplate::SimdBinop, Opcode::SHL, 0 }, // SSHL
-    { 0xBF80FC00U, 0x0F00A400U, Mnemonic::SSHLL, IrTemplate::SimdBinop, Opcode::SHL, 0 }, // SSHLL
-    { 0xBF80FC00U, 0x0F000400U, Mnemonic::SSHR, IrTemplate::SimdBinop, Opcode::SHL, 0 }, // SSHR
-    { 0xBF80FC00U, 0x0F001400U, Mnemonic::SSRA, IrTemplate::SimdBinop, Opcode::SHL, 0 }, // SSRA
-    { 0xBF20FC00U, 0x0E202000U, Mnemonic::SSUBL, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // SSUBL
-    { 0xBF20FC00U, 0x0E203000U, Mnemonic::SSUBW, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // SSUBW
-    { 0xBF20FC00U, 0x2E208400U, Mnemonic::SUB, IrTemplate::SimdBinop, Opcode::SUB, 0 }, // SUB
-    { 0xBF20FC00U, 0x0E206000U, Mnemonic::SUBHN, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // SUBHN
-    { 0xBFC0F400U, 0x0F00F000U, Mnemonic::SUDOT, IrTemplate::SimdBinop, Opcode::MUL, 0 }, // SUDOT
-    { 0xBF20FC00U, 0x0E002800U, Mnemonic::TRN1, IrTemplate::SimdBinop, Opcode::COPY, 0 }, // TRN1
-    { 0xBF20FC00U, 0x0E006800U, Mnemonic::TRN2, IrTemplate::SimdBinop, Opcode::COPY, 0 }, // TRN2
-    { 0xBF20FC00U, 0x2E207C00U, Mnemonic::UABA, IrTemplate::SimdBinop, Opcode::FADD, 0 }, // UABA
-    { 0xBF20FC00U, 0x2E205000U, Mnemonic::UABAL, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // UABAL
-    { 0xBF20FC00U, 0x2E207400U, Mnemonic::UABD, IrTemplate::SimdBinop, Opcode::FADD, 0 }, // UABD
-    { 0xBF20FC00U, 0x2E207000U, Mnemonic::UABDL, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // UABDL
-    { 0xBF20FC00U, 0x2E200000U, Mnemonic::UADDL, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // UADDL
-    { 0xBF20FC00U, 0x2E201000U, Mnemonic::UADDW, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // UADDW
-    { 0xBF80FC00U, 0x2F00E400U, Mnemonic::UCVTF, IrTemplate::SimdBinop, Opcode::SHL, 0 }, // UCVTF
-    { 0xBF20FC00U, 0x2E009400U, Mnemonic::UDOT, IrTemplate::SimdBinop, Opcode::FADD, 0 }, // UDOT
-    { 0xBF20FC00U, 0x2E200400U, Mnemonic::UHADD, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // UHADD
-    { 0xBF20FC00U, 0x2E202400U, Mnemonic::UHSUB, IrTemplate::SimdBinop, Opcode::SUB, 0 }, // UHSUB
-    { 0xBF20FC00U, 0x2E206400U, Mnemonic::UMAX, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // UMAX
-    { 0xBF20FC00U, 0x2E20A400U, Mnemonic::UMAXP, IrTemplate::SimdBinop, Opcode::FADD, 0 }, // UMAXP
-    { 0xBF20FC00U, 0x2E206C00U, Mnemonic::UMIN, IrTemplate::SimdBinop, Opcode::SUB, 0 }, // UMIN
-    { 0xBF20FC00U, 0x2E20AC00U, Mnemonic::UMINP, IrTemplate::SimdBinop, Opcode::FADD, 0 }, // UMINP
-    { 0xBF20FC00U, 0x2E208000U, Mnemonic::UMLAL, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // UMLAL
-    { 0xBF20FC00U, 0x2E20A000U, Mnemonic::UMLSL, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // UMLSL
-    { 0xBF20FC00U, 0x2E20C000U, Mnemonic::UMULL, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // UMULL
-    { 0xBF20FC00U, 0x2E200C00U, Mnemonic::UQADD, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // UQADD
-    { 0xBF20FC00U, 0x2E205C00U, Mnemonic::UQRSHL, IrTemplate::SimdBinop, Opcode::FADD, 0 }, // UQRSHL
-    { 0xBF80FC00U, 0x2F009C00U, Mnemonic::UQRSHRN, IrTemplate::SimdBinop, Opcode::SHL, 0 }, // UQRSHRN
-    { 0xBF80FC00U, 0x2F007400U, Mnemonic::UQSHL, IrTemplate::SimdBinop, Opcode::SHL, 0 }, // UQSHL
-    { 0xBF20FC00U, 0x2E204C00U, Mnemonic::UQSHL, IrTemplate::SimdBinop, Opcode::SHL, 0 }, // UQSHL
-    { 0xBF80FC00U, 0x2F009400U, Mnemonic::UQSHRN, IrTemplate::SimdBinop, Opcode::SHL, 0 }, // UQSHRN
-    { 0xBF20FC00U, 0x2E202C00U, Mnemonic::UQSUB, IrTemplate::SimdBinop, Opcode::SUB, 0 }, // UQSUB
-    { 0xBF20FC00U, 0x2E201400U, Mnemonic::URHADD, IrTemplate::SimdBinop, Opcode::FADD, 0 }, // URHADD
-    { 0xBF20FC00U, 0x2E205400U, Mnemonic::URSHL, IrTemplate::SimdBinop, Opcode::SHL, 0 }, // URSHL
-    { 0xBF80FC00U, 0x2F002400U, Mnemonic::URSHR, IrTemplate::SimdBinop, Opcode::SHL, 0 }, // URSHR
-    { 0xBF80FC00U, 0x2F003400U, Mnemonic::URSRA, IrTemplate::SimdBinop, Opcode::SHL, 0 }, // URSRA
-    { 0xBFC0F400U, 0x0F80F000U, Mnemonic::USDOT, IrTemplate::SimdBinop, Opcode::MUL, 0 }, // USDOT
-    { 0xBF20FC00U, 0x2E204400U, Mnemonic::USHL, IrTemplate::SimdBinop, Opcode::SHL, 0 }, // USHL
-    { 0xBF80FC00U, 0x2F00A400U, Mnemonic::USHLL, IrTemplate::SimdBinop, Opcode::SHL, 0 }, // USHLL
-    { 0xBF80FC00U, 0x2F000400U, Mnemonic::USHR, IrTemplate::SimdBinop, Opcode::SHL, 0 }, // USHR
-    { 0xBF80FC00U, 0x2F001400U, Mnemonic::USRA, IrTemplate::SimdBinop, Opcode::SHL, 0 }, // USRA
-    { 0xBF20FC00U, 0x2E202000U, Mnemonic::USUBL, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // USUBL
-    { 0xBF20FC00U, 0x2E203000U, Mnemonic::USUBW, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // USUBW
-    { 0xBF20FC00U, 0x0E001800U, Mnemonic::UZP1, IrTemplate::SimdBinop, Opcode::COPY, 0 }, // UZP1
-    { 0xBF20FC00U, 0x0E005800U, Mnemonic::UZP2, IrTemplate::SimdBinop, Opcode::COPY, 0 }, // UZP2
-    { 0xBF20FC00U, 0x0E003800U, Mnemonic::ZIP1, IrTemplate::SimdBinop, Opcode::COPY, 0 }, // ZIP1
-    { 0xBF20FC00U, 0x0E007800U, Mnemonic::ZIP2, IrTemplate::SimdBinop, Opcode::COPY, 0 }, // ZIP2
-    { 0xBFE0F000U, 0x0CC07000U, Mnemonic::LD1, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LD1
-    { 0xBFE0F000U, 0x0CC0A000U, Mnemonic::LD1, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LD1
-    { 0xBFE0F000U, 0x0CC06000U, Mnemonic::LD1, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LD1
-    { 0xBFE0F000U, 0x0CC02000U, Mnemonic::LD1, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LD1
-    { 0xBFE0F000U, 0x0DC0C000U, Mnemonic::LD1R, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LD1R
-    { 0xBFE0F000U, 0x0CC08000U, Mnemonic::LD2, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LD2
-    { 0xBFE0F000U, 0x0DE0C000U, Mnemonic::LD2R, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LD2R
-    { 0xBFE0F000U, 0x0CC04000U, Mnemonic::LD3, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LD3
-    { 0xBFE0F000U, 0x0DC0E000U, Mnemonic::LD3R, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LD3R
-    { 0xBFE0F000U, 0x0CC00000U, Mnemonic::LD4, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LD4
-    { 0xBFE0F000U, 0x0DE0E000U, Mnemonic::LD4R, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LD4R
-    { 0xBFE0F000U, 0x0C807000U, Mnemonic::ST1, IrTemplate::StoreReg, Opcode::STORE, 0 }, // ST1
-    { 0xBFE0F000U, 0x0C80A000U, Mnemonic::ST1, IrTemplate::StoreReg, Opcode::STORE, 0 }, // ST1
-    { 0xBFE0F000U, 0x0C806000U, Mnemonic::ST1, IrTemplate::StoreReg, Opcode::STORE, 0 }, // ST1
-    { 0xBFE0F000U, 0x0C802000U, Mnemonic::ST1, IrTemplate::StoreReg, Opcode::STORE, 0 }, // ST1
-    { 0xBFE0F000U, 0x0C808000U, Mnemonic::ST2, IrTemplate::StoreReg, Opcode::STORE, 0 }, // ST2
-    { 0xBFE0F000U, 0x0C804000U, Mnemonic::ST3, IrTemplate::StoreReg, Opcode::STORE, 0 }, // ST3
-    { 0xBFE0F000U, 0x0C800000U, Mnemonic::ST4, IrTemplate::StoreReg, Opcode::STORE, 0 }, // ST4
-    { 0xFFE00018U, 0x80C00000U, Mnemonic::FMOPA, IrTemplate::System, Opcode::UNDEF, 0 }, // FMOPA
-    { 0xFFE00018U, 0x80C00010U, Mnemonic::FMOPS, IrTemplate::System, Opcode::UNDEF, 0 }, // FMOPS
-    { 0xFFE00018U, 0xA0C00000U, Mnemonic::SMOPA, IrTemplate::System, Opcode::UNDEF, 0 }, // SMOPA
-    { 0xFFE00018U, 0xA0C00010U, Mnemonic::SMOPS, IrTemplate::System, Opcode::UNDEF, 0 }, // SMOPS
-    { 0xFFE00018U, 0xA0E00000U, Mnemonic::SUMOPA, IrTemplate::System, Opcode::UNDEF, 0 }, // SUMOPA
-    { 0xFFE00018U, 0xA0E00010U, Mnemonic::SUMOPS, IrTemplate::System, Opcode::UNDEF, 0 }, // SUMOPS
-    { 0xFFE00018U, 0xA1E00000U, Mnemonic::UMOPA, IrTemplate::System, Opcode::UNDEF, 0 }, // UMOPA
-    { 0xFFE00018U, 0xA1E00010U, Mnemonic::UMOPS, IrTemplate::System, Opcode::UNDEF, 0 }, // UMOPS
-    { 0xFFE00018U, 0xA1C00000U, Mnemonic::USMOPA, IrTemplate::System, Opcode::UNDEF, 0 }, // USMOPA
-    { 0xFFE00018U, 0xA1C00010U, Mnemonic::USMOPS, IrTemplate::System, Opcode::UNDEF, 0 }, // USMOPS
-    { 0xFF20F000U, 0x44001000U, Mnemonic::CDOT, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // CDOT
-    { 0xFF20F000U, 0x44002000U, Mnemonic::CMLA, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // CMLA
-    { 0xFF20E010U, 0x25008000U, Mnemonic::CMPEQ, IrTemplate::System, Opcode::UNDEF, 0 }, // CMPEQ
-    { 0xFF20E010U, 0x25000010U, Mnemonic::CMPGT, IrTemplate::System, Opcode::UNDEF, 0 }, // CMPGT
-    { 0xFF20E010U, 0x25000000U, Mnemonic::CMPGE, IrTemplate::System, Opcode::UNDEF, 0 }, // CMPGE
-    { 0xFF20E010U, 0x25002000U, Mnemonic::CMPLT, IrTemplate::System, Opcode::UNDEF, 0 }, // CMPLT
-    { 0xFF20E010U, 0x25002010U, Mnemonic::CMPLE, IrTemplate::System, Opcode::UNDEF, 0 }, // CMPLE
-    { 0xFF20E010U, 0x25008010U, Mnemonic::CMPNE, IrTemplate::System, Opcode::UNDEF, 0 }, // CMPNE
-    { 0xFF20E010U, 0x24002000U, Mnemonic::CMPEQ, IrTemplate::System, Opcode::UNDEF, 0 }, // CMPEQ
-    { 0xFF20E010U, 0x24004010U, Mnemonic::CMPGT, IrTemplate::System, Opcode::UNDEF, 0 }, // CMPGT
-    { 0xFF20E010U, 0x24004000U, Mnemonic::CMPGE, IrTemplate::System, Opcode::UNDEF, 0 }, // CMPGE
-    { 0xFF20E010U, 0x2400C010U, Mnemonic::CMPHI, IrTemplate::System, Opcode::UNDEF, 0 }, // CMPHI
-    { 0xFF20E010U, 0x2400C000U, Mnemonic::CMPHS, IrTemplate::System, Opcode::UNDEF, 0 }, // CMPHS
-    { 0xFF20E010U, 0x24006000U, Mnemonic::CMPLT, IrTemplate::System, Opcode::UNDEF, 0 }, // CMPLT
-    { 0xFF20E010U, 0x24006010U, Mnemonic::CMPLE, IrTemplate::System, Opcode::UNDEF, 0 }, // CMPLE
-    { 0xFF20E010U, 0x2400E000U, Mnemonic::CMPLO, IrTemplate::System, Opcode::UNDEF, 0 }, // CMPLO
-    { 0xFF20E010U, 0x2400E010U, Mnemonic::CMPLS, IrTemplate::System, Opcode::UNDEF, 0 }, // CMPLS
-    { 0xFF20E010U, 0x24002010U, Mnemonic::CMPNE, IrTemplate::System, Opcode::UNDEF, 0 }, // CMPNE
-    { 0xFF20E010U, 0x2400A000U, Mnemonic::CMPEQ, IrTemplate::System, Opcode::UNDEF, 0 }, // CMPEQ
-    { 0xFF20E010U, 0x24008010U, Mnemonic::CMPGT, IrTemplate::System, Opcode::UNDEF, 0 }, // CMPGT
-    { 0xFF20E010U, 0x24008000U, Mnemonic::CMPGE, IrTemplate::System, Opcode::UNDEF, 0 }, // CMPGE
-    { 0xFF20E010U, 0x24000010U, Mnemonic::CMPHI, IrTemplate::System, Opcode::UNDEF, 0 }, // CMPHI
-    { 0xFF20E010U, 0x24000000U, Mnemonic::CMPHS, IrTemplate::System, Opcode::UNDEF, 0 }, // CMPHS
-    { 0xFF20E010U, 0x2400A010U, Mnemonic::CMPNE, IrTemplate::System, Opcode::UNDEF, 0 }, // CMPNE
-    { 0xFF20E010U, 0x24008000U, Mnemonic::CMPGE, IrTemplate::System, Opcode::UNDEF, 0 }, // CMPGE
-    { 0xFF20E010U, 0x24000010U, Mnemonic::CMPHI, IrTemplate::System, Opcode::UNDEF, 0 }, // CMPHI
-    { 0xFF20E010U, 0x24000000U, Mnemonic::CMPHS, IrTemplate::System, Opcode::UNDEF, 0 }, // CMPHS
-    { 0xFF20E010U, 0x24008010U, Mnemonic::CMPGT, IrTemplate::System, Opcode::UNDEF, 0 }, // CMPGT
-    { 0xFF20E010U, 0x6500E010U, Mnemonic::FACGT, IrTemplate::FpBinop, Opcode::FADD, 0 }, // FACGT
-    { 0xFF20E010U, 0x6500C010U, Mnemonic::FACGE, IrTemplate::FpBinop, Opcode::FADD, 0 }, // FACGE
-    { 0xFF20E010U, 0x6500C010U, Mnemonic::FACGE, IrTemplate::FpBinop, Opcode::FADD, 0 }, // FACGE
-    { 0xFF20E010U, 0x6500E010U, Mnemonic::FACGT, IrTemplate::FpBinop, Opcode::FADD, 0 }, // FACGT
-    { 0xFF20E010U, 0x65006000U, Mnemonic::FCMEQ, IrTemplate::FpBinop, Opcode::FADD, 0 }, // FCMEQ
-    { 0xFF20E010U, 0x65004010U, Mnemonic::FCMGT, IrTemplate::FpBinop, Opcode::FADD, 0 }, // FCMGT
-    { 0xFF20E010U, 0x65004000U, Mnemonic::FCMGE, IrTemplate::FpBinop, Opcode::FADD, 0 }, // FCMGE
-    { 0xFF20E010U, 0x65006010U, Mnemonic::FCMNE, IrTemplate::FpBinop, Opcode::FADD, 0 }, // FCMNE
-    { 0xFF20E010U, 0x6500C000U, Mnemonic::FCMUO, IrTemplate::FpBinop, Opcode::FADD, 0 }, // FCMUO
-    { 0xFF20E010U, 0x65004000U, Mnemonic::FCMGE, IrTemplate::FpBinop, Opcode::FADD, 0 }, // FCMGE
-    { 0xFF20E010U, 0x65004010U, Mnemonic::FCMGT, IrTemplate::FpBinop, Opcode::FADD, 0 }, // FCMGT
-    { 0xFF30E000U, 0x0510C000U, Mnemonic::FCPY, IrTemplate::SimdUnary, Opcode::COPY, 0 }, // FCPY
-    { 0xFF30E000U, 0x0510C000U, Mnemonic::FCPY, IrTemplate::SimdUnary, Opcode::COPY, 0 }, // FCPY
-    { 0xFFA0E000U, 0xC4004000U, Mnemonic::LD1B, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LD1B
-    { 0xFFA0E000U, 0x84004000U, Mnemonic::LD1B, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LD1B
-    { 0xFFA0E000U, 0xC5A04000U, Mnemonic::LD1D, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LD1D
-    { 0xFFA0E000U, 0xC5804000U, Mnemonic::LD1D, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LD1D
-    { 0xFFA0E000U, 0x84A04000U, Mnemonic::LD1H, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LD1H
-    { 0xFFA0E000U, 0xC4A04000U, Mnemonic::LD1H, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LD1H
-    { 0xFFA0E000U, 0xC4804000U, Mnemonic::LD1H, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LD1H
-    { 0xFFA0E000U, 0x84804000U, Mnemonic::LD1H, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LD1H
-    { 0xFFC0E000U, 0x84408000U, Mnemonic::LD1RB, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LD1RB
-    { 0xFFC0E000U, 0x8440A000U, Mnemonic::LD1RB, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LD1RB
-    { 0xFFC0E000U, 0x8440C000U, Mnemonic::LD1RB, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LD1RB
-    { 0xFFC0E000U, 0x8440E000U, Mnemonic::LD1RB, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LD1RB
-    { 0xFFC0E000U, 0x85C0E000U, Mnemonic::LD1RD, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LD1RD
-    { 0xFFC0E000U, 0x84C0A000U, Mnemonic::LD1RH, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LD1RH
-    { 0xFFC0E000U, 0x84C0C000U, Mnemonic::LD1RH, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LD1RH
-    { 0xFFC0E000U, 0x84C0E000U, Mnemonic::LD1RH, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LD1RH
-    { 0xFFC0E000U, 0x85C0C000U, Mnemonic::LD1RSB, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LD1RSB
-    { 0xFFC0E000U, 0x85C0A000U, Mnemonic::LD1RSB, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LD1RSB
-    { 0xFFC0E000U, 0x85C08000U, Mnemonic::LD1RSB, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LD1RSB
-    { 0xFFC0E000U, 0x8540A000U, Mnemonic::LD1RSH, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LD1RSH
-    { 0xFFC0E000U, 0x85408000U, Mnemonic::LD1RSH, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LD1RSH
-    { 0xFFC0E000U, 0x84C08000U, Mnemonic::LD1RSW, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LD1RSW
-    { 0xFFC0E000U, 0x8540C000U, Mnemonic::LD1RW, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LD1RW
-    { 0xFFC0E000U, 0x8540E000U, Mnemonic::LD1RW, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LD1RW
-    { 0xFFA0E000U, 0xC4000000U, Mnemonic::LD1SB, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LD1SB
-    { 0xFFA0E000U, 0x84000000U, Mnemonic::LD1SB, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LD1SB
-    { 0xFFA0E000U, 0x84A00000U, Mnemonic::LD1SH, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LD1SH
-    { 0xFFA0E000U, 0xC4A00000U, Mnemonic::LD1SH, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LD1SH
-    { 0xFFA0E000U, 0xC4800000U, Mnemonic::LD1SH, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LD1SH
-    { 0xFFA0E000U, 0x84800000U, Mnemonic::LD1SH, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LD1SH
-    { 0xFFA0E000U, 0xC5200000U, Mnemonic::LD1SW, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LD1SW
-    { 0xFFA0E000U, 0xC5000000U, Mnemonic::LD1SW, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LD1SW
-    { 0xFFA0E000U, 0x85204000U, Mnemonic::LD1W, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LD1W
-    { 0xFFA0E000U, 0xC5204000U, Mnemonic::LD1W, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LD1W
-    { 0xFFA0E000U, 0xC5004000U, Mnemonic::LD1W, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LD1W
-    { 0xFFA0E000U, 0x85004000U, Mnemonic::LD1W, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LD1W
-    { 0xFFA0E000U, 0xC4006000U, Mnemonic::LDFF1B, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LDFF1B
-    { 0xFFA0E000U, 0x84006000U, Mnemonic::LDFF1B, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LDFF1B
-    { 0xFFA0E000U, 0xC5A06000U, Mnemonic::LDFF1D, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LDFF1D
-    { 0xFFA0E000U, 0xC5806000U, Mnemonic::LDFF1D, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LDFF1D
-    { 0xFFA0E000U, 0x84A06000U, Mnemonic::LDFF1H, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LDFF1H
-    { 0xFFA0E000U, 0xC4A06000U, Mnemonic::LDFF1H, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LDFF1H
-    { 0xFFA0E000U, 0xC4806000U, Mnemonic::LDFF1H, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LDFF1H
-    { 0xFFA0E000U, 0x84806000U, Mnemonic::LDFF1H, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LDFF1H
-    { 0xFFA0E000U, 0xC4002000U, Mnemonic::LDFF1SB, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LDFF1SB
-    { 0xFFA0E000U, 0x84002000U, Mnemonic::LDFF1SB, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LDFF1SB
-    { 0xFFA0E000U, 0x84A02000U, Mnemonic::LDFF1SH, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LDFF1SH
-    { 0xFFA0E000U, 0xC4A02000U, Mnemonic::LDFF1SH, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LDFF1SH
-    { 0xFFA0E000U, 0xC4802000U, Mnemonic::LDFF1SH, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LDFF1SH
-    { 0xFFA0E000U, 0x84802000U, Mnemonic::LDFF1SH, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LDFF1SH
-    { 0xFFA0E000U, 0xC5202000U, Mnemonic::LDFF1SW, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LDFF1SW
-    { 0xFFA0E000U, 0xC5002000U, Mnemonic::LDFF1SW, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LDFF1SW
-    { 0xFFA0E000U, 0x85206000U, Mnemonic::LDFF1W, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LDFF1W
-    { 0xFFA0E000U, 0xC5206000U, Mnemonic::LDFF1W, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LDFF1W
-    { 0xFFA0E000U, 0xC5006000U, Mnemonic::LDFF1W, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LDFF1W
-    { 0xFFA0E000U, 0x85006000U, Mnemonic::LDFF1W, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LDFF1W
-    { 0xFFC0E000U, 0x85804000U, Mnemonic::LDR, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LDR
-    { 0xFF20E010U, 0x45208000U, Mnemonic::MATCH, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // MATCH
-    { 0xFF20E010U, 0x45208010U, Mnemonic::NMATCH, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // NMATCH
-    { 0xFF20C210U, 0x25204000U, Mnemonic::PSEL, IrTemplate::SimdBinop, Opcode::AND, 0 }, // PSEL
-    { 0xFF20F000U, 0x44003000U, Mnemonic::SQRDCMLAH, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // SQRDCMLAH
-    { 0xFF90E000U, 0xE400E000U, Mnemonic::ST1B, IrTemplate::StoreReg, Opcode::STORE, 0 }, // ST1B
-    { 0xFFE0A000U, 0xE4008000U, Mnemonic::ST1B, IrTemplate::StoreReg, Opcode::STORE, 0 }, // ST1B
-    { 0xFFE0A000U, 0xE4408000U, Mnemonic::ST1B, IrTemplate::StoreReg, Opcode::STORE, 0 }, // ST1B
-    { 0xFFE0A000U, 0xE5A08000U, Mnemonic::ST1D, IrTemplate::StoreReg, Opcode::STORE, 0 }, // ST1D
-    { 0xFFE0A000U, 0xE5808000U, Mnemonic::ST1D, IrTemplate::StoreReg, Opcode::STORE, 0 }, // ST1D
-    { 0xFF90E000U, 0xE480E000U, Mnemonic::ST1H, IrTemplate::StoreReg, Opcode::STORE, 0 }, // ST1H
-    { 0xFFE0A000U, 0xE4E08000U, Mnemonic::ST1H, IrTemplate::StoreReg, Opcode::STORE, 0 }, // ST1H
-    { 0xFFE0A000U, 0xE4A08000U, Mnemonic::ST1H, IrTemplate::StoreReg, Opcode::STORE, 0 }, // ST1H
-    { 0xFFE0A000U, 0xE4808000U, Mnemonic::ST1H, IrTemplate::StoreReg, Opcode::STORE, 0 }, // ST1H
-    { 0xFFE0A000U, 0xE4C08000U, Mnemonic::ST1H, IrTemplate::StoreReg, Opcode::STORE, 0 }, // ST1H
-    { 0xFFC0E000U, 0xE5404000U, Mnemonic::ST1W, IrTemplate::StoreReg, Opcode::STORE, 0 }, // ST1W
-    { 0xFFE0A000U, 0xE5608000U, Mnemonic::ST1W, IrTemplate::StoreReg, Opcode::STORE, 0 }, // ST1W
-    { 0xFFE0A000U, 0xE5208000U, Mnemonic::ST1W, IrTemplate::StoreReg, Opcode::STORE, 0 }, // ST1W
-    { 0xFFE0A000U, 0xE5008000U, Mnemonic::ST1W, IrTemplate::StoreReg, Opcode::STORE, 0 }, // ST1W
-    { 0xFFE0A000U, 0xE5408000U, Mnemonic::ST1W, IrTemplate::StoreReg, Opcode::STORE, 0 }, // ST1W
-    { 0xFFC0E000U, 0xE5804000U, Mnemonic::STR, IrTemplate::StoreReg, Opcode::STORE, 0 }, // STR
-    { 0xFFE0C000U, 0x74008000U, Mnemonic::CBBGT, IrTemplate::CompareBranch, Opcode::CMP_SLT, 0 }, // CBBGT
-    { 0xFFE0C000U, 0x74208000U, Mnemonic::CBBGE, IrTemplate::CompareBranch, Opcode::CMP_SLT, 0 }, // CBBGE
-    { 0xFFE0C000U, 0x74408000U, Mnemonic::CBBHI, IrTemplate::CompareBranch, Opcode::CMP_SLT, 0 }, // CBBHI
-    { 0xFFE0C000U, 0x74608000U, Mnemonic::CBBHS, IrTemplate::CompareBranch, Opcode::CMP_SLT, 0 }, // CBBHS
-    { 0xFFE0C000U, 0x74C08000U, Mnemonic::CBBEQ, IrTemplate::CompareBranch, Opcode::CMP_SLT, 0 }, // CBBEQ
-    { 0xFFE0C000U, 0x74E08000U, Mnemonic::CBBNE, IrTemplate::CompareBranch, Opcode::CMP_SLT, 0 }, // CBBNE
-    { 0xFFE0C000U, 0x74208000U, Mnemonic::CBBGE, IrTemplate::CompareBranch, Opcode::CMP_SLT, 0 }, // CBBGE
-    { 0xFFE0C000U, 0x74408000U, Mnemonic::CBBHI, IrTemplate::CompareBranch, Opcode::CMP_SLT, 0 }, // CBBHI
-    { 0xFFE0C000U, 0x74608000U, Mnemonic::CBBHS, IrTemplate::CompareBranch, Opcode::CMP_SLT, 0 }, // CBBHS
-    { 0xFFE0C000U, 0x74008000U, Mnemonic::CBBGT, IrTemplate::CompareBranch, Opcode::CMP_SLT, 0 }, // CBBGT
-    { 0xFFE0C000U, 0x74000000U, Mnemonic::CBGT, IrTemplate::CompareBranch, Opcode::CMP_SLT, 0 }, // CBGT
-    { 0xFFE0C000U, 0x74200000U, Mnemonic::CBGE, IrTemplate::CompareBranch, Opcode::CMP_SLT, 0 }, // CBGE
-    { 0xFFE0C000U, 0x74400000U, Mnemonic::CBHI, IrTemplate::CompareBranch, Opcode::CMP_SLT, 0 }, // CBHI
-    { 0xFFE0C000U, 0x74600000U, Mnemonic::CBHS, IrTemplate::CompareBranch, Opcode::CMP_SLT, 0 }, // CBHS
-    { 0xFFE0C000U, 0x74C00000U, Mnemonic::CBEQ, IrTemplate::CompareBranch, Opcode::CMP_SLT, 0 }, // CBEQ
-    { 0xFFE0C000U, 0x74E00000U, Mnemonic::CBNE, IrTemplate::CompareBranch, Opcode::CMP_SLT, 0 }, // CBNE
-    { 0xFFE0C000U, 0xF4000000U, Mnemonic::CBGT, IrTemplate::CompareBranch, Opcode::CMP_SLT, 0 }, // CBGT
-    { 0xFFE0C000U, 0xF4200000U, Mnemonic::CBGE, IrTemplate::CompareBranch, Opcode::CMP_SLT, 0 }, // CBGE
-    { 0xFFE0C000U, 0xF4400000U, Mnemonic::CBHI, IrTemplate::CompareBranch, Opcode::CMP_SLT, 0 }, // CBHI
-    { 0xFFE0C000U, 0xF4600000U, Mnemonic::CBHS, IrTemplate::CompareBranch, Opcode::CMP_SLT, 0 }, // CBHS
-    { 0xFFE0C000U, 0xF4C00000U, Mnemonic::CBEQ, IrTemplate::CompareBranch, Opcode::CMP_SLT, 0 }, // CBEQ
-    { 0xFFE0C000U, 0xF4E00000U, Mnemonic::CBNE, IrTemplate::CompareBranch, Opcode::CMP_SLT, 0 }, // CBNE
-    { 0xFFE0C000U, 0x7400C000U, Mnemonic::CBHGT, IrTemplate::CompareBranch, Opcode::CMP_SLT, 0 }, // CBHGT
-    { 0xFFE0C000U, 0x7420C000U, Mnemonic::CBHGE, IrTemplate::CompareBranch, Opcode::CMP_SLT, 0 }, // CBHGE
-    { 0xFFE0C000U, 0x7440C000U, Mnemonic::CBHHI, IrTemplate::CompareBranch, Opcode::CMP_SLT, 0 }, // CBHHI
-    { 0xFFE0C000U, 0x7460C000U, Mnemonic::CBHHS, IrTemplate::CompareBranch, Opcode::CMP_SLT, 0 }, // CBHHS
-    { 0xFFE0C000U, 0x74C0C000U, Mnemonic::CBHEQ, IrTemplate::CompareBranch, Opcode::CMP_SLT, 0 }, // CBHEQ
-    { 0xFFE0C000U, 0x74E0C000U, Mnemonic::CBHNE, IrTemplate::CompareBranch, Opcode::CMP_SLT, 0 }, // CBHNE
-    { 0xFFE0C000U, 0x7420C000U, Mnemonic::CBHGE, IrTemplate::CompareBranch, Opcode::CMP_SLT, 0 }, // CBHGE
-    { 0xFFE0C000U, 0x7440C000U, Mnemonic::CBHHI, IrTemplate::CompareBranch, Opcode::CMP_SLT, 0 }, // CBHHI
-    { 0xFFE0C000U, 0x7460C000U, Mnemonic::CBHHS, IrTemplate::CompareBranch, Opcode::CMP_SLT, 0 }, // CBHHS
-    { 0xFFE0C000U, 0x7400C000U, Mnemonic::CBHGT, IrTemplate::CompareBranch, Opcode::CMP_SLT, 0 }, // CBHGT
-    { 0xFFE0C000U, 0x74200000U, Mnemonic::CBGE, IrTemplate::CompareBranch, Opcode::CMP_SLT, 0 }, // CBGE
-    { 0xFFE0C000U, 0xF4200000U, Mnemonic::CBGE, IrTemplate::CompareBranch, Opcode::CMP_SLT, 0 }, // CBGE
-    { 0xFFE0C000U, 0x74400000U, Mnemonic::CBHI, IrTemplate::CompareBranch, Opcode::CMP_SLT, 0 }, // CBHI
-    { 0xFFE0C000U, 0xF4400000U, Mnemonic::CBHI, IrTemplate::CompareBranch, Opcode::CMP_SLT, 0 }, // CBHI
-    { 0xFFE0C000U, 0x74600000U, Mnemonic::CBHS, IrTemplate::CompareBranch, Opcode::CMP_SLT, 0 }, // CBHS
-    { 0xFFE0C000U, 0xF4600000U, Mnemonic::CBHS, IrTemplate::CompareBranch, Opcode::CMP_SLT, 0 }, // CBHS
-    { 0xFFE0C000U, 0x74000000U, Mnemonic::CBGT, IrTemplate::CompareBranch, Opcode::CMP_SLT, 0 }, // CBGT
-    { 0xFFE0C000U, 0xF4000000U, Mnemonic::CBGT, IrTemplate::CompareBranch, Opcode::CMP_SLT, 0 }, // CBGT
-    { 0xFFF80000U, 0xD5080000U, Mnemonic::SYS, IrTemplate::System, Opcode::UNDEF, 0 }, // SYS
-    { 0xFFF80000U, 0xD5280000U, Mnemonic::SYSL, IrTemplate::System, Opcode::UNDEF, 0 }, // SYSL
-    { 0xFFF80000U, 0xD5480000U, Mnemonic::SYSP, IrTemplate::System, Opcode::UNDEF, 0 }, // SYSP
-    { 0xFFF80000U, 0xD5080000U, Mnemonic::SYS, IrTemplate::System, Opcode::UNDEF, 0 }, // SYS
-    { 0xFFF80000U, 0xD5480000U, Mnemonic::SYSP, IrTemplate::System, Opcode::UNDEF, 0 }, // SYSP
-    { 0xFFE00C00U, 0x1A800400U, Mnemonic::CSINC, IrTemplate::CondSelect, Opcode::COPY, 0 }, // CSINC
-    { 0xFFE00C00U, 0x9A800400U, Mnemonic::CSINC, IrTemplate::CondSelect, Opcode::COPY, 0 }, // CSINC
-    { 0xFFE00C00U, 0x5A800000U, Mnemonic::CSINV, IrTemplate::CondSelect, Opcode::COPY, 0 }, // CSINV
-    { 0xFFE00C00U, 0xDA800000U, Mnemonic::CSINV, IrTemplate::CondSelect, Opcode::COPY, 0 }, // CSINV
-    { 0xFFE00C00U, 0x5A800400U, Mnemonic::CSNEG, IrTemplate::CondSelect, Opcode::COPY, 0 }, // CSNEG
-    { 0xFFE00C00U, 0xDA800400U, Mnemonic::CSNEG, IrTemplate::CondSelect, Opcode::COPY, 0 }, // CSNEG
-    { 0xFFE00C00U, 0x1A800000U, Mnemonic::CSEL, IrTemplate::CondSelect, Opcode::COPY, 0 }, // CSEL
-    { 0xFFE00C00U, 0x9A800000U, Mnemonic::CSEL, IrTemplate::CondSelect, Opcode::COPY, 0 }, // CSEL
-    { 0xFFE00C00U, 0x1A800400U, Mnemonic::CSINC, IrTemplate::CondSelect, Opcode::COPY, 0 }, // CSINC
-    { 0xFFE00C00U, 0x9A800400U, Mnemonic::CSINC, IrTemplate::CondSelect, Opcode::COPY, 0 }, // CSINC
-    { 0xFFE00C00U, 0x5A800000U, Mnemonic::CSINV, IrTemplate::CondSelect, Opcode::COPY, 0 }, // CSINV
-    { 0xFFE00C00U, 0xDA800000U, Mnemonic::CSINV, IrTemplate::CondSelect, Opcode::COPY, 0 }, // CSINV
-    { 0xFFE00C00U, 0x5A800400U, Mnemonic::CSNEG, IrTemplate::CondSelect, Opcode::COPY, 0 }, // CSNEG
-    { 0xFFE00C00U, 0xDA800400U, Mnemonic::CSNEG, IrTemplate::CondSelect, Opcode::COPY, 0 }, // CSNEG
-    { 0xBF20EC00U, 0x2E00E400U, Mnemonic::FCADD, IrTemplate::SimdBinop, Opcode::FADD, 0 }, // FCADD
-    { 0xFFE00C00U, 0x1EE00C00U, Mnemonic::FCSEL, IrTemplate::CondSelect, Opcode::COPY, 0 }, // FCSEL
-    { 0xFFE00C00U, 0x1E200C00U, Mnemonic::FCSEL, IrTemplate::CondSelect, Opcode::COPY, 0 }, // FCSEL
-    { 0xFFE00C00U, 0x1E600C00U, Mnemonic::FCSEL, IrTemplate::CondSelect, Opcode::COPY, 0 }, // FCSEL
-    { 0xBF80F400U, 0x0F801000U, Mnemonic::FMLA, IrTemplate::SimdBinop, Opcode::MUL, 0 }, // FMLA
-    { 0xBF80F400U, 0x0F805000U, Mnemonic::FMLS, IrTemplate::SimdBinop, Opcode::MUL, 0 }, // FMLS
-    { 0xBF80F400U, 0x0F809000U, Mnemonic::FMUL, IrTemplate::SimdBinop, Opcode::MUL, 0 }, // FMUL
-    { 0xBF80F400U, 0x2F809000U, Mnemonic::FMULX, IrTemplate::SimdBinop, Opcode::MUL, 0 }, // FMULX
-    { 0xFFE08400U, 0x6E000400U, Mnemonic::INS, IrTemplate::SimdUnary, Opcode::COPY, 0 }, // INS
-    { 0xFFE08400U, 0x6E000400U, Mnemonic::INS, IrTemplate::SimdUnary, Opcode::COPY, 0 }, // INS
-    { 0xFF00F400U, 0x5F003000U, Mnemonic::SQDMLAL, IrTemplate::FpBinop, Opcode::FMUL, 0 }, // SQDMLAL
-    { 0xFF00F400U, 0x5F007000U, Mnemonic::SQDMLSL, IrTemplate::FpBinop, Opcode::FMUL, 0 }, // SQDMLSL
-    { 0xFF00F400U, 0x5F00C000U, Mnemonic::SQDMULH, IrTemplate::FpBinop, Opcode::FMUL, 0 }, // SQDMULH
-    { 0xFF00F400U, 0x5F00B000U, Mnemonic::SQDMULL, IrTemplate::FpBinop, Opcode::FMUL, 0 }, // SQDMULL
-    { 0xFF00F400U, 0x7F00D000U, Mnemonic::SQRDMLAH, IrTemplate::FpBinop, Opcode::FMUL, 0 }, // SQRDMLAH
-    { 0xFF00F400U, 0x7F00F000U, Mnemonic::SQRDMLSH, IrTemplate::FpBinop, Opcode::FMUL, 0 }, // SQRDMLSH
-    { 0xFF00F400U, 0x5F00D000U, Mnemonic::SQRDMULH, IrTemplate::FpBinop, Opcode::FMUL, 0 }, // SQRDMULH
-    { 0xBFE0E000U, 0x0DC00000U, Mnemonic::LD1, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LD1
-    { 0xBFE0E000U, 0x0DC04000U, Mnemonic::LD1, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LD1
-    { 0xBFE0E000U, 0x0DE00000U, Mnemonic::LD2, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LD2
-    { 0xBFE0E000U, 0x0DE04000U, Mnemonic::LD2, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LD2
-    { 0xBFE0E000U, 0x0DC02000U, Mnemonic::LD3, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LD3
-    { 0xBFE0E000U, 0x0DC06000U, Mnemonic::LD3, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LD3
-    { 0xBFE0E000U, 0x0DE02000U, Mnemonic::LD4, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LD4
-    { 0xBFE0E000U, 0x0DE06000U, Mnemonic::LD4, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LD4
-    { 0xFFE00C00U, 0x1D400800U, Mnemonic::LDAPUR, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LDAPUR
-    { 0xFFE00C00U, 0x5D400800U, Mnemonic::LDAPUR, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LDAPUR
-    { 0xFFE00C00U, 0x9D400800U, Mnemonic::LDAPUR, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LDAPUR
-    { 0xFFE00C00U, 0xDD400800U, Mnemonic::LDAPUR, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LDAPUR
-    { 0xFFE00C00U, 0x1DC00800U, Mnemonic::LDAPUR, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LDAPUR
-    { 0xFFE00C00U, 0x99400000U, Mnemonic::LDAPUR, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LDAPUR
-    { 0xFFE00C00U, 0xD9400000U, Mnemonic::LDAPUR, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LDAPUR
-    { 0xFFE00C00U, 0x19400000U, Mnemonic::LDAPURB, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LDAPURB
-    { 0xFFE00C00U, 0x59400000U, Mnemonic::LDAPURH, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LDAPURH
-    { 0xFFE00C00U, 0x19C00000U, Mnemonic::LDAPURSB, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LDAPURSB
-    { 0xFFE00C00U, 0x19800000U, Mnemonic::LDAPURSB, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LDAPURSB
-    { 0xFFE00C00U, 0x59C00000U, Mnemonic::LDAPURSH, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LDAPURSH
-    { 0xFFE00C00U, 0x59800000U, Mnemonic::LDAPURSH, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LDAPURSH
-    { 0xFFE00C00U, 0x99800000U, Mnemonic::LDAPURSW, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LDAPURSW
-    { 0xFFE00C00U, 0xD9600000U, Mnemonic::LDG, IrTemplate::System, Opcode::UNDEF, 0 }, // LDG
-    { 0xFFE00C00U, 0x3C400400U, Mnemonic::LDR, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LDR
-    { 0xFFE00C00U, 0x7C400400U, Mnemonic::LDR, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LDR
-    { 0xFFE00C00U, 0xBC400400U, Mnemonic::LDR, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LDR
-    { 0xFFE00C00U, 0xFC400400U, Mnemonic::LDR, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LDR
-    { 0xFFE00C00U, 0x3CC00400U, Mnemonic::LDR, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LDR
-    { 0xFFE00C00U, 0x3C400C00U, Mnemonic::LDR, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LDR
-    { 0xFFE00C00U, 0x7C400C00U, Mnemonic::LDR, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LDR
-    { 0xFFE00C00U, 0xBC400C00U, Mnemonic::LDR, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LDR
-    { 0xFFE00C00U, 0xFC400C00U, Mnemonic::LDR, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LDR
-    { 0xFFE00C00U, 0x3CC00C00U, Mnemonic::LDR, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LDR
-    { 0xFFE00C00U, 0xB8400400U, Mnemonic::LDR, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LDR
-    { 0xFFE00C00U, 0xF8400400U, Mnemonic::LDR, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LDR
-    { 0xFFE00C00U, 0xB8400C00U, Mnemonic::LDR, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LDR
-    { 0xFFE00C00U, 0xF8400C00U, Mnemonic::LDR, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LDR
-    { 0xFFE00C00U, 0x3C600800U, Mnemonic::LDR, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LDR
-    { 0xFFE00C00U, 0x7C600800U, Mnemonic::LDR, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LDR
-    { 0xFFE00C00U, 0xBC600800U, Mnemonic::LDR, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LDR
-    { 0xFFE00C00U, 0xFC600800U, Mnemonic::LDR, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LDR
-    { 0xFFE00C00U, 0x3CE00800U, Mnemonic::LDR, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LDR
-    { 0xFFE00C00U, 0xB8600800U, Mnemonic::LDR, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LDR
-    { 0xFFE00C00U, 0xF8600800U, Mnemonic::LDR, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LDR
-    { 0xFFE00C00U, 0x38400400U, Mnemonic::LDRB, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LDRB
-    { 0xFFE00C00U, 0x38400C00U, Mnemonic::LDRB, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LDRB
-    { 0xFFE00C00U, 0x38600800U, Mnemonic::LDRB, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LDRB
-    { 0xFFE00C00U, 0x78400400U, Mnemonic::LDRH, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LDRH
-    { 0xFFE00C00U, 0x78400C00U, Mnemonic::LDRH, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LDRH
-    { 0xFFE00C00U, 0x78600800U, Mnemonic::LDRH, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LDRH
-    { 0xFFE00C00U, 0x38C00400U, Mnemonic::LDRSB, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LDRSB
-    { 0xFFE00C00U, 0x38800400U, Mnemonic::LDRSB, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LDRSB
-    { 0xFFE00C00U, 0x38C00C00U, Mnemonic::LDRSB, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LDRSB
-    { 0xFFE00C00U, 0x38800C00U, Mnemonic::LDRSB, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LDRSB
-    { 0xFFE00C00U, 0x38E00800U, Mnemonic::LDRSB, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LDRSB
-    { 0xFFE00C00U, 0x38A00800U, Mnemonic::LDRSB, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LDRSB
-    { 0xFFE00C00U, 0x78C00400U, Mnemonic::LDRSH, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LDRSH
-    { 0xFFE00C00U, 0x78800400U, Mnemonic::LDRSH, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LDRSH
-    { 0xFFE00C00U, 0x78C00C00U, Mnemonic::LDRSH, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LDRSH
-    { 0xFFE00C00U, 0x78800C00U, Mnemonic::LDRSH, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LDRSH
-    { 0xFFE00C00U, 0x78E00800U, Mnemonic::LDRSH, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LDRSH
-    { 0xFFE00C00U, 0x78A00800U, Mnemonic::LDRSH, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LDRSH
-    { 0xFFE00C00U, 0xB8800400U, Mnemonic::LDRSW, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LDRSW
-    { 0xFFE00C00U, 0xB8800C00U, Mnemonic::LDRSW, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LDRSW
-    { 0xFFE00C00U, 0xB8A00800U, Mnemonic::LDRSW, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LDRSW
-    { 0xFFE00C00U, 0xB8400800U, Mnemonic::LDTR, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LDTR
-    { 0xFFE00C00U, 0xF8400800U, Mnemonic::LDTR, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LDTR
-    { 0xFFE00C00U, 0x38400800U, Mnemonic::LDTRB, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LDTRB
-    { 0xFFE00C00U, 0x78400800U, Mnemonic::LDTRH, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LDTRH
-    { 0xFFE00C00U, 0x38C00800U, Mnemonic::LDTRSB, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LDTRSB
-    { 0xFFE00C00U, 0x38800800U, Mnemonic::LDTRSB, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LDTRSB
-    { 0xFFE00C00U, 0x78C00800U, Mnemonic::LDTRSH, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LDTRSH
-    { 0xFFE00C00U, 0x78800800U, Mnemonic::LDTRSH, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LDTRSH
-    { 0xFFE00C00U, 0xB8800800U, Mnemonic::LDTRSW, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LDTRSW
-    { 0xFFE00C00U, 0x3C400000U, Mnemonic::LDUR, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LDUR
-    { 0xFFE00C00U, 0x7C400000U, Mnemonic::LDUR, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LDUR
-    { 0xFFE00C00U, 0xBC400000U, Mnemonic::LDUR, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LDUR
-    { 0xFFE00C00U, 0xFC400000U, Mnemonic::LDUR, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LDUR
-    { 0xFFE00C00U, 0x3CC00000U, Mnemonic::LDUR, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LDUR
-    { 0xFFE00C00U, 0xB8400000U, Mnemonic::LDUR, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LDUR
-    { 0xFFE00C00U, 0xF8400000U, Mnemonic::LDUR, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LDUR
-    { 0xFFE00C00U, 0x38400000U, Mnemonic::LDURB, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LDURB
-    { 0xFFE00C00U, 0x78400000U, Mnemonic::LDURH, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LDURH
-    { 0xFFE00C00U, 0x38C00000U, Mnemonic::LDURSB, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LDURSB
-    { 0xFFE00C00U, 0x38800000U, Mnemonic::LDURSB, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LDURSB
-    { 0xFFE00C00U, 0x78C00000U, Mnemonic::LDURSH, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LDURSH
-    { 0xFFE00C00U, 0x78800000U, Mnemonic::LDURSH, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LDURSH
-    { 0xFFE00C00U, 0xB8800000U, Mnemonic::LDURSW, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LDURSW
-    { 0xFFE00C00U, 0xF8A00800U, Mnemonic::PRFM, IrTemplate::Nop, Opcode::NOP, 0 }, // PRFM
-    { 0xFFE00C00U, 0xF8800000U, Mnemonic::PRFUM, IrTemplate::Nop, Opcode::NOP, 0 }, // PRFUM
-    { 0xFFE00C00U, 0xF8A00800U, Mnemonic::RPRFM, IrTemplate::Nop, Opcode::NOP, 0 }, // RPRFM
-    { 0xBFE0E000U, 0x0D800000U, Mnemonic::ST1, IrTemplate::StoreReg, Opcode::STORE, 0 }, // ST1
-    { 0xBFE0E000U, 0x0D804000U, Mnemonic::ST1, IrTemplate::StoreReg, Opcode::STORE, 0 }, // ST1
-    { 0xBFE0E000U, 0x0DA00000U, Mnemonic::ST2, IrTemplate::StoreReg, Opcode::STORE, 0 }, // ST2
-    { 0xBFE0E000U, 0x0DA04000U, Mnemonic::ST2, IrTemplate::StoreReg, Opcode::STORE, 0 }, // ST2
-    { 0xFFE00C00U, 0xD9A00400U, Mnemonic::ST2G, IrTemplate::System, Opcode::UNDEF, 0 }, // ST2G
-    { 0xFFE00C00U, 0xD9A00C00U, Mnemonic::ST2G, IrTemplate::System, Opcode::UNDEF, 0 }, // ST2G
-    { 0xFFE00C00U, 0xD9A00800U, Mnemonic::ST2G, IrTemplate::System, Opcode::UNDEF, 0 }, // ST2G
-    { 0xBFE0E000U, 0x0D802000U, Mnemonic::ST3, IrTemplate::StoreReg, Opcode::STORE, 0 }, // ST3
-    { 0xBFE0E000U, 0x0D806000U, Mnemonic::ST3, IrTemplate::StoreReg, Opcode::STORE, 0 }, // ST3
-    { 0xBFE0E000U, 0x0DA02000U, Mnemonic::ST4, IrTemplate::StoreReg, Opcode::STORE, 0 }, // ST4
-    { 0xBFE0E000U, 0x0DA06000U, Mnemonic::ST4, IrTemplate::StoreReg, Opcode::STORE, 0 }, // ST4
-    { 0xFFE00C00U, 0xD9200400U, Mnemonic::STG, IrTemplate::System, Opcode::UNDEF, 0 }, // STG
-    { 0xFFE00C00U, 0xD9200C00U, Mnemonic::STG, IrTemplate::System, Opcode::UNDEF, 0 }, // STG
-    { 0xFFE00C00U, 0xD9200800U, Mnemonic::STG, IrTemplate::System, Opcode::UNDEF, 0 }, // STG
-    { 0xFFE00C00U, 0x1D000800U, Mnemonic::STLUR, IrTemplate::StoreReg, Opcode::STORE, 0 }, // STLUR
-    { 0xFFE00C00U, 0x5D000800U, Mnemonic::STLUR, IrTemplate::StoreReg, Opcode::STORE, 0 }, // STLUR
-    { 0xFFE00C00U, 0x9D000800U, Mnemonic::STLUR, IrTemplate::StoreReg, Opcode::STORE, 0 }, // STLUR
-    { 0xFFE00C00U, 0xDD000800U, Mnemonic::STLUR, IrTemplate::StoreReg, Opcode::STORE, 0 }, // STLUR
-    { 0xFFE00C00U, 0x1D800800U, Mnemonic::STLUR, IrTemplate::StoreReg, Opcode::STORE, 0 }, // STLUR
-    { 0xFFE00C00U, 0x99000000U, Mnemonic::STLUR, IrTemplate::StoreReg, Opcode::STORE, 0 }, // STLUR
-    { 0xFFE00C00U, 0xD9000000U, Mnemonic::STLUR, IrTemplate::StoreReg, Opcode::STORE, 0 }, // STLUR
-    { 0xFFE00C00U, 0x19000000U, Mnemonic::STLURB, IrTemplate::StoreReg, Opcode::STORE, 0 }, // STLURB
-    { 0xFFE00C00U, 0x59000000U, Mnemonic::STLURH, IrTemplate::StoreReg, Opcode::STORE, 0 }, // STLURH
-    { 0xFFE00C00U, 0x3C000400U, Mnemonic::STR, IrTemplate::StoreReg, Opcode::STORE, 0 }, // STR
-    { 0xFFE00C00U, 0x7C000400U, Mnemonic::STR, IrTemplate::StoreReg, Opcode::STORE, 0 }, // STR
-    { 0xFFE00C00U, 0xBC000400U, Mnemonic::STR, IrTemplate::StoreReg, Opcode::STORE, 0 }, // STR
-    { 0xFFE00C00U, 0xFC000400U, Mnemonic::STR, IrTemplate::StoreReg, Opcode::STORE, 0 }, // STR
-    { 0xFFE00C00U, 0x3C800400U, Mnemonic::STR, IrTemplate::StoreReg, Opcode::STORE, 0 }, // STR
-    { 0xFFE00C00U, 0x3C000C00U, Mnemonic::STR, IrTemplate::StoreReg, Opcode::STORE, 0 }, // STR
-    { 0xFFE00C00U, 0x7C000C00U, Mnemonic::STR, IrTemplate::StoreReg, Opcode::STORE, 0 }, // STR
-    { 0xFFE00C00U, 0xBC000C00U, Mnemonic::STR, IrTemplate::StoreReg, Opcode::STORE, 0 }, // STR
-    { 0xFFE00C00U, 0xFC000C00U, Mnemonic::STR, IrTemplate::StoreReg, Opcode::STORE, 0 }, // STR
-    { 0xFFE00C00U, 0x3C800C00U, Mnemonic::STR, IrTemplate::StoreReg, Opcode::STORE, 0 }, // STR
-    { 0xFFE00C00U, 0xB8000400U, Mnemonic::STR, IrTemplate::StoreReg, Opcode::STORE, 0 }, // STR
-    { 0xFFE00C00U, 0xF8000400U, Mnemonic::STR, IrTemplate::StoreReg, Opcode::STORE, 0 }, // STR
-    { 0xFFE00C00U, 0xB8000C00U, Mnemonic::STR, IrTemplate::StoreReg, Opcode::STORE, 0 }, // STR
-    { 0xFFE00C00U, 0xF8000C00U, Mnemonic::STR, IrTemplate::StoreReg, Opcode::STORE, 0 }, // STR
-    { 0xFFE00C00U, 0x3C200800U, Mnemonic::STR, IrTemplate::StoreReg, Opcode::STORE, 0 }, // STR
-    { 0xFFE00C00U, 0x7C200800U, Mnemonic::STR, IrTemplate::StoreReg, Opcode::STORE, 0 }, // STR
-    { 0xFFE00C00U, 0xBC200800U, Mnemonic::STR, IrTemplate::StoreReg, Opcode::STORE, 0 }, // STR
-    { 0xFFE00C00U, 0xFC200800U, Mnemonic::STR, IrTemplate::StoreReg, Opcode::STORE, 0 }, // STR
-    { 0xFFE00C00U, 0x3CA00800U, Mnemonic::STR, IrTemplate::StoreReg, Opcode::STORE, 0 }, // STR
-    { 0xFFE00C00U, 0xB8200800U, Mnemonic::STR, IrTemplate::StoreReg, Opcode::STORE, 0 }, // STR
-    { 0xFFE00C00U, 0xF8200800U, Mnemonic::STR, IrTemplate::StoreReg, Opcode::STORE, 0 }, // STR
-    { 0xFFE00C00U, 0x38000400U, Mnemonic::STRB, IrTemplate::StoreReg, Opcode::STORE, 0 }, // STRB
-    { 0xFFE00C00U, 0x38000C00U, Mnemonic::STRB, IrTemplate::StoreReg, Opcode::STORE, 0 }, // STRB
-    { 0xFFE00C00U, 0x38200800U, Mnemonic::STRB, IrTemplate::StoreReg, Opcode::STORE, 0 }, // STRB
-    { 0xFFE00C00U, 0x78000400U, Mnemonic::STRH, IrTemplate::StoreReg, Opcode::STORE, 0 }, // STRH
-    { 0xFFE00C00U, 0x78000C00U, Mnemonic::STRH, IrTemplate::StoreReg, Opcode::STORE, 0 }, // STRH
-    { 0xFFE00C00U, 0x78200800U, Mnemonic::STRH, IrTemplate::StoreReg, Opcode::STORE, 0 }, // STRH
-    { 0xFFE00C00U, 0xB8000800U, Mnemonic::STTR, IrTemplate::StoreReg, Opcode::STORE, 0 }, // STTR
-    { 0xFFE00C00U, 0xF8000800U, Mnemonic::STTR, IrTemplate::StoreReg, Opcode::STORE, 0 }, // STTR
-    { 0xFFE00C00U, 0x38000800U, Mnemonic::STTRB, IrTemplate::StoreReg, Opcode::STORE, 0 }, // STTRB
-    { 0xFFE00C00U, 0x78000800U, Mnemonic::STTRH, IrTemplate::StoreReg, Opcode::STORE, 0 }, // STTRH
-    { 0xFFE00C00U, 0x3C000000U, Mnemonic::STUR, IrTemplate::StoreReg, Opcode::STORE, 0 }, // STUR
-    { 0xFFE00C00U, 0x7C000000U, Mnemonic::STUR, IrTemplate::StoreReg, Opcode::STORE, 0 }, // STUR
-    { 0xFFE00C00U, 0xBC000000U, Mnemonic::STUR, IrTemplate::StoreReg, Opcode::STORE, 0 }, // STUR
-    { 0xFFE00C00U, 0xFC000000U, Mnemonic::STUR, IrTemplate::StoreReg, Opcode::STORE, 0 }, // STUR
-    { 0xFFE00C00U, 0x3C800000U, Mnemonic::STUR, IrTemplate::StoreReg, Opcode::STORE, 0 }, // STUR
-    { 0xFFE00C00U, 0xB8000000U, Mnemonic::STUR, IrTemplate::StoreReg, Opcode::STORE, 0 }, // STUR
-    { 0xFFE00C00U, 0xF8000000U, Mnemonic::STUR, IrTemplate::StoreReg, Opcode::STORE, 0 }, // STUR
-    { 0xFFE00C00U, 0x38000000U, Mnemonic::STURB, IrTemplate::StoreReg, Opcode::STORE, 0 }, // STURB
-    { 0xFFE00C00U, 0x78000000U, Mnemonic::STURH, IrTemplate::StoreReg, Opcode::STORE, 0 }, // STURH
-    { 0xFFE00C00U, 0xD9E00400U, Mnemonic::STZ2G, IrTemplate::System, Opcode::UNDEF, 0 }, // STZ2G
-    { 0xFFE00C00U, 0xD9E00C00U, Mnemonic::STZ2G, IrTemplate::System, Opcode::UNDEF, 0 }, // STZ2G
-    { 0xFFE00C00U, 0xD9E00800U, Mnemonic::STZ2G, IrTemplate::System, Opcode::UNDEF, 0 }, // STZ2G
-    { 0xFFE00C00U, 0xD9600400U, Mnemonic::STZG, IrTemplate::System, Opcode::UNDEF, 0 }, // STZG
-    { 0xFFE00C00U, 0xD9600C00U, Mnemonic::STZG, IrTemplate::System, Opcode::UNDEF, 0 }, // STZG
-    { 0xFFE00C00U, 0xD9600800U, Mnemonic::STZG, IrTemplate::System, Opcode::UNDEF, 0 }, // STZG
-    { 0xFFE00010U, 0xE0000000U, Mnemonic::LD1B, IrTemplate::System, Opcode::UNDEF, 0 }, // LD1B
-    { 0xFFE00010U, 0xE0C00000U, Mnemonic::LD1D, IrTemplate::System, Opcode::UNDEF, 0 }, // LD1D
-    { 0xFFE00010U, 0xE0400000U, Mnemonic::LD1H, IrTemplate::System, Opcode::UNDEF, 0 }, // LD1H
-    { 0xFFE00010U, 0xE1C00000U, Mnemonic::LD1Q, IrTemplate::System, Opcode::UNDEF, 0 }, // LD1Q
-    { 0xFFE00010U, 0xE0800000U, Mnemonic::LD1W, IrTemplate::System, Opcode::UNDEF, 0 }, // LD1W
-    { 0xFFE00010U, 0xE0200000U, Mnemonic::ST1B, IrTemplate::System, Opcode::UNDEF, 0 }, // ST1B
-    { 0xFFE00010U, 0xE0E00000U, Mnemonic::ST1D, IrTemplate::System, Opcode::UNDEF, 0 }, // ST1D
-    { 0xFFE00010U, 0xE0600000U, Mnemonic::ST1H, IrTemplate::System, Opcode::UNDEF, 0 }, // ST1H
-    { 0xFFE00010U, 0xE1E00000U, Mnemonic::ST1Q, IrTemplate::System, Opcode::UNDEF, 0 }, // ST1Q
-    { 0xFFE00010U, 0xE0A00000U, Mnemonic::ST1W, IrTemplate::System, Opcode::UNDEF, 0 }, // ST1W
-    { 0xFF30C000U, 0x05100000U, Mnemonic::CPY, IrTemplate::SimdUnary, Opcode::COPY, 0 }, // CPY
-    { 0xFF30C000U, 0x05104000U, Mnemonic::CPY, IrTemplate::SimdUnary, Opcode::COPY, 0 }, // CPY
-    { 0xFF20E000U, 0x65208000U, Mnemonic::FMAD, IrTemplate::FpBinop, Opcode::FADD, 0 }, // FMAD
-    { 0xFF20E000U, 0x65200000U, Mnemonic::FMLA, IrTemplate::FpBinop, Opcode::FADD, 0 }, // FMLA
-    { 0xFF20E000U, 0x65202000U, Mnemonic::FMLS, IrTemplate::FpBinop, Opcode::FADD, 0 }, // FMLS
-    { 0xFF20E000U, 0x6520A000U, Mnemonic::FMSB, IrTemplate::FpBinop, Opcode::FADD, 0 }, // FMSB
-    { 0xFF20E000U, 0x6520C000U, Mnemonic::FNMAD, IrTemplate::FpBinop, Opcode::FADD, 0 }, // FNMAD
-    { 0xFF20E000U, 0x65204000U, Mnemonic::FNMLA, IrTemplate::FpBinop, Opcode::FADD, 0 }, // FNMLA
-    { 0xFF20E000U, 0x65206000U, Mnemonic::FNMLS, IrTemplate::FpBinop, Opcode::FADD, 0 }, // FNMLS
-    { 0xFF20E000U, 0x6520E000U, Mnemonic::FNMSB, IrTemplate::FpBinop, Opcode::FADD, 0 }, // FNMSB
-    { 0xFF20E000U, 0x4520C000U, Mnemonic::HISTCNT, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // HISTCNT
-    { 0xFF20E000U, 0x0400C000U, Mnemonic::MAD, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // MAD
-    { 0xFF20E000U, 0x04004000U, Mnemonic::MLA, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // MLA
-    { 0xFF20E000U, 0x04006000U, Mnemonic::MLS, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // MLS
-    { 0xFF30C000U, 0x05100000U, Mnemonic::CPY, IrTemplate::SimdUnary, Opcode::COPY, 0 }, // CPY
-    { 0xFF30C000U, 0x05104000U, Mnemonic::CPY, IrTemplate::SimdUnary, Opcode::COPY, 0 }, // CPY
-    { 0xFF20E000U, 0x0400E000U, Mnemonic::MSB, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // MSB
-    { 0xFF80E000U, 0xE4004000U, Mnemonic::ST1B, IrTemplate::StoreReg, Opcode::STORE, 0 }, // ST1B
-    { 0xFF80E000U, 0xE4804000U, Mnemonic::ST1H, IrTemplate::StoreReg, Opcode::STORE, 0 }, // ST1H
-    { 0xFFE04000U, 0x75000000U, Mnemonic::CBGT, IrTemplate::CompareBranch, Opcode::CMP_SLT, 0 }, // CBGT
-    { 0xFFE04000U, 0x75200000U, Mnemonic::CBLT, IrTemplate::CompareBranch, Opcode::CMP_SLT, 0 }, // CBLT
-    { 0xFFE04000U, 0x75400000U, Mnemonic::CBHI, IrTemplate::CompareBranch, Opcode::CMP_SLT, 0 }, // CBHI
-    { 0xFFE04000U, 0x75600000U, Mnemonic::CBLO, IrTemplate::CompareBranch, Opcode::CMP_SLT, 0 }, // CBLO
-    { 0xFFE04000U, 0x75C00000U, Mnemonic::CBEQ, IrTemplate::CompareBranch, Opcode::CMP_SLT, 0 }, // CBEQ
-    { 0xFFE04000U, 0x75E00000U, Mnemonic::CBNE, IrTemplate::CompareBranch, Opcode::CMP_SLT, 0 }, // CBNE
-    { 0xFFE04000U, 0xF5000000U, Mnemonic::CBGT, IrTemplate::CompareBranch, Opcode::CMP_SLT, 0 }, // CBGT
-    { 0xFFE04000U, 0xF5200000U, Mnemonic::CBLT, IrTemplate::CompareBranch, Opcode::CMP_SLT, 0 }, // CBLT
-    { 0xFFE04000U, 0xF5400000U, Mnemonic::CBHI, IrTemplate::CompareBranch, Opcode::CMP_SLT, 0 }, // CBHI
-    { 0xFFE04000U, 0xF5600000U, Mnemonic::CBLO, IrTemplate::CompareBranch, Opcode::CMP_SLT, 0 }, // CBLO
-    { 0xFFE04000U, 0xF5C00000U, Mnemonic::CBEQ, IrTemplate::CompareBranch, Opcode::CMP_SLT, 0 }, // CBEQ
-    { 0xFFE04000U, 0xF5E00000U, Mnemonic::CBNE, IrTemplate::CompareBranch, Opcode::CMP_SLT, 0 }, // CBNE
-    { 0xFFE04000U, 0x75000000U, Mnemonic::CBGT, IrTemplate::CompareBranch, Opcode::CMP_SLT, 0 }, // CBGT
-    { 0xFFE04000U, 0xF5000000U, Mnemonic::CBGT, IrTemplate::CompareBranch, Opcode::CMP_SLT, 0 }, // CBGT
-    { 0xFFE04000U, 0x75400000U, Mnemonic::CBHI, IrTemplate::CompareBranch, Opcode::CMP_SLT, 0 }, // CBHI
-    { 0xFFE04000U, 0xF5400000U, Mnemonic::CBHI, IrTemplate::CompareBranch, Opcode::CMP_SLT, 0 }, // CBHI
-    { 0xFFE04000U, 0x75200000U, Mnemonic::CBLT, IrTemplate::CompareBranch, Opcode::CMP_SLT, 0 }, // CBLT
-    { 0xFFE04000U, 0xF5200000U, Mnemonic::CBLT, IrTemplate::CompareBranch, Opcode::CMP_SLT, 0 }, // CBLT
-    { 0xFFE04000U, 0x75600000U, Mnemonic::CBLO, IrTemplate::CompareBranch, Opcode::CMP_SLT, 0 }, // CBLO
-    { 0xFFE04000U, 0xF5600000U, Mnemonic::CBLO, IrTemplate::CompareBranch, Opcode::CMP_SLT, 0 }, // CBLO
-    { 0xFFF00000U, 0xD5700000U, Mnemonic::MRRS, IrTemplate::System, Opcode::UNDEF, 0 }, // MRRS
-    { 0xFFF00000U, 0xD5300000U, Mnemonic::MRS, IrTemplate::System, Opcode::UNDEF, 0 }, // MRS
-    { 0xFFF00000U, 0xD5100000U, Mnemonic::MSR, IrTemplate::System, Opcode::UNDEF, 0 }, // MSR
-    { 0xFFF00000U, 0xD5500000U, Mnemonic::MSRR, IrTemplate::System, Opcode::UNDEF, 0 }, // MSRR
-    { 0xFFE08000U, 0x1B000000U, Mnemonic::MADD, IrTemplate::GpMul, Opcode::MUL, 0 }, // MADD
-    { 0xFFE08000U, 0x9B000000U, Mnemonic::MADD, IrTemplate::GpMul, Opcode::MUL, 0 }, // MADD
-    { 0xFFE08000U, 0x9B600000U, Mnemonic::MADDPT, IrTemplate::GpMul, Opcode::MUL, 0 }, // MADDPT
-    { 0xFFE08000U, 0x1B008000U, Mnemonic::MSUB, IrTemplate::GpMul, Opcode::MUL, 1 }, // MSUB
-    { 0xFFE08000U, 0x9B008000U, Mnemonic::MSUB, IrTemplate::GpMul, Opcode::MUL, 1 }, // MSUB
-    { 0xFFE08000U, 0x9B608000U, Mnemonic::MSUBPT, IrTemplate::GpMul, Opcode::MUL, 1 }, // MSUBPT
-    { 0xFFE08000U, 0x9B200000U, Mnemonic::SMADDL, IrTemplate::GpMul, Opcode::MUL, 0 }, // SMADDL
-    { 0xFFE08000U, 0x9B208000U, Mnemonic::SMSUBL, IrTemplate::GpMul, Opcode::MUL, 1 }, // SMSUBL
-    { 0xFFE08000U, 0x9B400000U, Mnemonic::SMULH, IrTemplate::GpMul, Opcode::MUL, 2 }, // SMULH
-    { 0xFFE08000U, 0x9BA00000U, Mnemonic::UMADDL, IrTemplate::GpMul, Opcode::MUL, 0 }, // UMADDL
-    { 0xFFE08000U, 0x9BA08000U, Mnemonic::UMSUBL, IrTemplate::GpMul, Opcode::MUL, 1 }, // UMSUBL
-    { 0xFFE08000U, 0x9BC00000U, Mnemonic::UMULH, IrTemplate::GpMul, Opcode::MUL, 2 }, // UMULH
-    { 0xFFE08000U, 0xCE200000U, Mnemonic::BCAX, IrTemplate::System, Opcode::UNDEF, 0 }, // BCAX
-    { 0xFFE08000U, 0xCE000000U, Mnemonic::EOR3, IrTemplate::System, Opcode::UNDEF, 0 }, // EOR3
-    { 0xBFE08400U, 0x2E000000U, Mnemonic::EXT, IrTemplate::SimdBinop, Opcode::EXTRACT, 0 }, // EXT
-    { 0xBF20E400U, 0x2E00C400U, Mnemonic::FCMLA, IrTemplate::SimdBinop, Opcode::FADD, 0 }, // FCMLA
-    { 0xFFE08000U, 0x1FC00000U, Mnemonic::FMADD, IrTemplate::SimdBinop, Opcode::UNDEF, 0 }, // FMADD
-    { 0xFFE08000U, 0x1F000000U, Mnemonic::FMADD, IrTemplate::SimdBinop, Opcode::UNDEF, 0 }, // FMADD
-    { 0xFFE08000U, 0x1F400000U, Mnemonic::FMADD, IrTemplate::SimdBinop, Opcode::UNDEF, 0 }, // FMADD
-    { 0xFFE08000U, 0x1FC08000U, Mnemonic::FMSUB, IrTemplate::SimdBinop, Opcode::UNDEF, 0 }, // FMSUB
-    { 0xFFE08000U, 0x1F008000U, Mnemonic::FMSUB, IrTemplate::SimdBinop, Opcode::UNDEF, 0 }, // FMSUB
-    { 0xFFE08000U, 0x1F408000U, Mnemonic::FMSUB, IrTemplate::SimdBinop, Opcode::UNDEF, 0 }, // FMSUB
-    { 0xFFE08000U, 0x1FE00000U, Mnemonic::FNMADD, IrTemplate::SimdBinop, Opcode::UNDEF, 0 }, // FNMADD
-    { 0xFFE08000U, 0x1F200000U, Mnemonic::FNMADD, IrTemplate::SimdBinop, Opcode::UNDEF, 0 }, // FNMADD
-    { 0xFFE08000U, 0x1F600000U, Mnemonic::FNMADD, IrTemplate::SimdBinop, Opcode::UNDEF, 0 }, // FNMADD
-    { 0xFFE08000U, 0x1FE08000U, Mnemonic::FNMSUB, IrTemplate::SimdBinop, Opcode::UNDEF, 0 }, // FNMSUB
-    { 0xFFE08000U, 0x1F208000U, Mnemonic::FNMSUB, IrTemplate::SimdBinop, Opcode::UNDEF, 0 }, // FNMSUB
-    { 0xFFE08000U, 0x1F608000U, Mnemonic::FNMSUB, IrTemplate::SimdBinop, Opcode::UNDEF, 0 }, // FNMSUB
-    { 0xBF00F400U, 0x2F000000U, Mnemonic::MLA, IrTemplate::SimdBinop, Opcode::MUL, 0 }, // MLA
-    { 0xBF00F400U, 0x2F004000U, Mnemonic::MLS, IrTemplate::SimdBinop, Opcode::MUL, 0 }, // MLS
-    { 0xBF00F400U, 0x0F008000U, Mnemonic::MUL, IrTemplate::SimdBinop, Opcode::MUL, 0 }, // MUL
-    { 0xBF00F400U, 0x0F00E000U, Mnemonic::SDOT, IrTemplate::SimdBinop, Opcode::MUL, 0 }, // SDOT
-    { 0xFFE08000U, 0xCE400000U, Mnemonic::SM3SS1, IrTemplate::System, Opcode::UNDEF, 0 }, // SM3SS1
-    { 0xBF00F400U, 0x0F002000U, Mnemonic::SMLAL, IrTemplate::SimdBinop, Opcode::MUL, 0 }, // SMLAL
-    { 0xBF00F400U, 0x0F006000U, Mnemonic::SMLSL, IrTemplate::SimdBinop, Opcode::MUL, 0 }, // SMLSL
-    { 0xBF00F400U, 0x0F00A000U, Mnemonic::SMULL, IrTemplate::SimdBinop, Opcode::MUL, 0 }, // SMULL
-    { 0xBF00F400U, 0x0F003000U, Mnemonic::SQDMLAL, IrTemplate::SimdBinop, Opcode::MUL, 0 }, // SQDMLAL
-    { 0xBF00F400U, 0x0F007000U, Mnemonic::SQDMLSL, IrTemplate::SimdBinop, Opcode::MUL, 0 }, // SQDMLSL
-    { 0xBF00F400U, 0x0F00C000U, Mnemonic::SQDMULH, IrTemplate::SimdBinop, Opcode::MUL, 0 }, // SQDMULH
-    { 0xBF00F400U, 0x0F00B000U, Mnemonic::SQDMULL, IrTemplate::SimdBinop, Opcode::MUL, 0 }, // SQDMULL
-    { 0xBF00F400U, 0x2F00D000U, Mnemonic::SQRDMLAH, IrTemplate::SimdBinop, Opcode::MUL, 0 }, // SQRDMLAH
-    { 0xBF00F400U, 0x2F00F000U, Mnemonic::SQRDMLSH, IrTemplate::SimdBinop, Opcode::MUL, 0 }, // SQRDMLSH
-    { 0xBF00F400U, 0x0F00D000U, Mnemonic::SQRDMULH, IrTemplate::SimdBinop, Opcode::MUL, 0 }, // SQRDMULH
-    { 0xBF00F400U, 0x2F00E000U, Mnemonic::UDOT, IrTemplate::SimdBinop, Opcode::MUL, 0 }, // UDOT
-    { 0xBF00F400U, 0x2F002000U, Mnemonic::UMLAL, IrTemplate::SimdBinop, Opcode::MUL, 0 }, // UMLAL
-    { 0xBF00F400U, 0x2F006000U, Mnemonic::UMLSL, IrTemplate::SimdBinop, Opcode::MUL, 0 }, // UMLSL
-    { 0xBF00F400U, 0x2F00A000U, Mnemonic::UMULL, IrTemplate::SimdBinop, Opcode::MUL, 0 }, // UMULL
-    { 0xFFE08000U, 0x88C08000U, Mnemonic::LDAR, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LDAR
-    { 0xFFE08000U, 0xC8C08000U, Mnemonic::LDAR, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LDAR
-    { 0xFFE08000U, 0x08C08000U, Mnemonic::LDARB, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LDARB
-    { 0xFFE08000U, 0x48C08000U, Mnemonic::LDARH, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LDARH
-    { 0xFFE08000U, 0x89408000U, Mnemonic::LDATXR, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LDATXR
-    { 0xFFE08000U, 0xC9408000U, Mnemonic::LDATXR, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LDATXR
-    { 0xFFE08000U, 0x88608000U, Mnemonic::LDAXP, IrTemplate::LoadPair, Opcode::LOAD, 0 }, // LDAXP
-    { 0xFFE08000U, 0xC8608000U, Mnemonic::LDAXP, IrTemplate::LoadPair, Opcode::LOAD, 0 }, // LDAXP
-    { 0xFFE08000U, 0x88408000U, Mnemonic::LDAXR, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LDAXR
-    { 0xFFE08000U, 0xC8408000U, Mnemonic::LDAXR, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LDAXR
-    { 0xFFE08000U, 0x08408000U, Mnemonic::LDAXRB, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LDAXRB
-    { 0xFFE08000U, 0x48408000U, Mnemonic::LDAXRH, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LDAXRH
-    { 0xFFE08000U, 0x88C00000U, Mnemonic::LDLAR, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LDLAR
-    { 0xFFE08000U, 0xC8C00000U, Mnemonic::LDLAR, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LDLAR
-    { 0xFFE08000U, 0x08C00000U, Mnemonic::LDLARB, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LDLARB
-    { 0xFFE08000U, 0x48C00000U, Mnemonic::LDLARH, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LDLARH
-    { 0xFFA00C00U, 0xF8200400U, Mnemonic::LDRAA, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LDRAA
-    { 0xFFA00C00U, 0xF8200C00U, Mnemonic::LDRAA, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LDRAA
-    { 0xFFA00C00U, 0xF8A00400U, Mnemonic::LDRAB, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LDRAB
-    { 0xFFA00C00U, 0xF8A00C00U, Mnemonic::LDRAB, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LDRAB
-    { 0xFFE08000U, 0x89400000U, Mnemonic::LDTXR, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LDTXR
-    { 0xFFE08000U, 0xC9400000U, Mnemonic::LDTXR, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LDTXR
-    { 0xFFE08000U, 0x88600000U, Mnemonic::LDXP, IrTemplate::LoadPair, Opcode::LOAD, 0 }, // LDXP
-    { 0xFFE08000U, 0xC8600000U, Mnemonic::LDXP, IrTemplate::LoadPair, Opcode::LOAD, 0 }, // LDXP
-    { 0xFFE08000U, 0x88400000U, Mnemonic::LDXR, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LDXR
-    { 0xFFE08000U, 0xC8400000U, Mnemonic::LDXR, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LDXR
-    { 0xFFE08000U, 0x08400000U, Mnemonic::LDXRB, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LDXRB
-    { 0xFFE08000U, 0x48400000U, Mnemonic::LDXRH, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LDXRH
-    { 0xFFE08000U, 0x88800000U, Mnemonic::STLLR, IrTemplate::StoreReg, Opcode::STORE, 0 }, // STLLR
-    { 0xFFE08000U, 0xC8800000U, Mnemonic::STLLR, IrTemplate::StoreReg, Opcode::STORE, 0 }, // STLLR
-    { 0xFFE08000U, 0x08800000U, Mnemonic::STLLRB, IrTemplate::StoreReg, Opcode::STORE, 0 }, // STLLRB
-    { 0xFFE08000U, 0x48800000U, Mnemonic::STLLRH, IrTemplate::StoreReg, Opcode::STORE, 0 }, // STLLRH
-    { 0xFFE08000U, 0x88808000U, Mnemonic::STLR, IrTemplate::StoreReg, Opcode::STORE, 0 }, // STLR
-    { 0xFFE08000U, 0xC8808000U, Mnemonic::STLR, IrTemplate::StoreReg, Opcode::STORE, 0 }, // STLR
-    { 0xFFE08000U, 0x08808000U, Mnemonic::STLRB, IrTemplate::StoreReg, Opcode::STORE, 0 }, // STLRB
-    { 0xFFE08000U, 0x48808000U, Mnemonic::STLRH, IrTemplate::StoreReg, Opcode::STORE, 0 }, // STLRH
-    { 0xFFE08000U, 0x89008000U, Mnemonic::STLTXR, IrTemplate::StoreReg, Opcode::STORE, 0 }, // STLTXR
-    { 0xFFE08000U, 0xC9008000U, Mnemonic::STLTXR, IrTemplate::StoreReg, Opcode::STORE, 0 }, // STLTXR
-    { 0xFFE08000U, 0x88208000U, Mnemonic::STLXP, IrTemplate::StorePair, Opcode::STORE, 0 }, // STLXP
-    { 0xFFE08000U, 0xC8208000U, Mnemonic::STLXP, IrTemplate::StorePair, Opcode::STORE, 0 }, // STLXP
-    { 0xFFE08000U, 0x88008000U, Mnemonic::STLXR, IrTemplate::StoreReg, Opcode::STORE, 0 }, // STLXR
-    { 0xFFE08000U, 0xC8008000U, Mnemonic::STLXR, IrTemplate::StoreReg, Opcode::STORE, 0 }, // STLXR
-    { 0xFFE08000U, 0x08008000U, Mnemonic::STLXRB, IrTemplate::StoreReg, Opcode::STORE, 0 }, // STLXRB
-    { 0xFFE08000U, 0x48008000U, Mnemonic::STLXRH, IrTemplate::StoreReg, Opcode::STORE, 0 }, // STLXRH
-    { 0xFFE08000U, 0x89000000U, Mnemonic::STTXR, IrTemplate::StoreReg, Opcode::STORE, 0 }, // STTXR
-    { 0xFFE08000U, 0xC9000000U, Mnemonic::STTXR, IrTemplate::StoreReg, Opcode::STORE, 0 }, // STTXR
-    { 0xFFE08000U, 0x88200000U, Mnemonic::STXP, IrTemplate::StorePair, Opcode::STORE, 0 }, // STXP
-    { 0xFFE08000U, 0xC8200000U, Mnemonic::STXP, IrTemplate::StorePair, Opcode::STORE, 0 }, // STXP
-    { 0xFFE08000U, 0x88000000U, Mnemonic::STXR, IrTemplate::StoreReg, Opcode::STORE, 0 }, // STXR
-    { 0xFFE08000U, 0xC8000000U, Mnemonic::STXR, IrTemplate::StoreReg, Opcode::STORE, 0 }, // STXR
-    { 0xFFE08000U, 0x08000000U, Mnemonic::STXRB, IrTemplate::StoreReg, Opcode::STORE, 0 }, // STXRB
-    { 0xFFE08000U, 0x48000000U, Mnemonic::STXRH, IrTemplate::StoreReg, Opcode::STORE, 0 }, // STXRH
-    { 0xFF202010U, 0x24200010U, Mnemonic::CMPHI, IrTemplate::System, Opcode::UNDEF, 0 }, // CMPHI
-    { 0xFF202010U, 0x24200000U, Mnemonic::CMPHS, IrTemplate::System, Opcode::UNDEF, 0 }, // CMPHS
-    { 0xFF202010U, 0x24202000U, Mnemonic::CMPLO, IrTemplate::System, Opcode::UNDEF, 0 }, // CMPLO
-    { 0xFF202010U, 0x24202010U, Mnemonic::CMPLS, IrTemplate::System, Opcode::UNDEF, 0 }, // CMPLS
-    { 0xFF20C000U, 0x0520C000U, Mnemonic::SEL, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // SEL
-    { 0xFF20C000U, 0x0520C000U, Mnemonic::SEL, IrTemplate::SimdBinop, Opcode::ADD, 0 }, // SEL
-    { 0xFFE00000U, 0x13800000U, Mnemonic::EXTR, IrTemplate::GpBitfield, Opcode::EXTRACT, 0 }, // EXTR
-    { 0xFFE00000U, 0x93C00000U, Mnemonic::EXTR, IrTemplate::GpBitfield, Opcode::EXTRACT, 0 }, // EXTR
-    { 0xFFE00000U, 0x13800000U, Mnemonic::EXTR, IrTemplate::GpBitfield, Opcode::EXTRACT, 0 }, // EXTR
-    { 0xFFE00000U, 0x93C00000U, Mnemonic::EXTR, IrTemplate::GpBitfield, Opcode::EXTRACT, 0 }, // EXTR
-    { 0xFFE00000U, 0x0B200000U, Mnemonic::ADD, IrTemplate::GpBinop, Opcode::ADD, 0 }, // ADD
-    { 0xFFE00000U, 0x8B200000U, Mnemonic::ADD, IrTemplate::GpBinop, Opcode::ADD, 0 }, // ADD
-    { 0xFFE00000U, 0x2B200000U, Mnemonic::ADDS, IrTemplate::GpBinopFlags, Opcode::ADD, 0 }, // ADDS
-    { 0xFFE00000U, 0xAB200000U, Mnemonic::ADDS, IrTemplate::GpBinopFlags, Opcode::ADD, 0 }, // ADDS
-    { 0xFFE00000U, 0x4B200000U, Mnemonic::SUB, IrTemplate::GpBinop, Opcode::SUB, 0 }, // SUB
-    { 0xFFE00000U, 0xCB200000U, Mnemonic::SUB, IrTemplate::GpBinop, Opcode::SUB, 0 }, // SUB
-    { 0xFFE00000U, 0x6B200000U, Mnemonic::SUBS, IrTemplate::GpBinopFlags, Opcode::SUB, 0 }, // SUBS
-    { 0xFFE00000U, 0xEB200000U, Mnemonic::SUBS, IrTemplate::GpBinopFlags, Opcode::SUB, 0 }, // SUBS
-    { 0xFFE00000U, 0xCE800000U, Mnemonic::XAR, IrTemplate::System, Opcode::UNDEF, 0 }, // XAR
-    { 0xFF208000U, 0x64000000U, Mnemonic::FCMLA, IrTemplate::FpBinop, Opcode::FADD, 0 }, // FCMLA
-    { 0xFFC00000U, 0x91800000U, Mnemonic::ADDG, IrTemplate::GpBinopImm, Opcode::ADD, 0 }, // ADDG
-    { 0xFFC00000U, 0x12000000U, Mnemonic::AND, IrTemplate::GpBinopImm, Opcode::AND, 0 }, // AND
-    { 0xFFC00000U, 0x72000000U, Mnemonic::ANDS, IrTemplate::GpBinopImmFlags, Opcode::AND, 0 }, // ANDS
-    { 0xFFC00000U, 0x33000000U, Mnemonic::BFM, IrTemplate::GpBitfield, Opcode::EXTRACT, 0 }, // BFM
-    { 0xFFC00000U, 0xB3400000U, Mnemonic::BFM, IrTemplate::GpBitfield, Opcode::EXTRACT, 0 }, // BFM
-    { 0xFFC00000U, 0x33000000U, Mnemonic::BFM, IrTemplate::GpBitfield, Opcode::EXTRACT, 0 }, // BFM
-    { 0xFFC00000U, 0xB3400000U, Mnemonic::BFM, IrTemplate::GpBitfield, Opcode::EXTRACT, 0 }, // BFM
-    { 0xFFC00000U, 0x33000000U, Mnemonic::BFM, IrTemplate::GpBitfield, Opcode::EXTRACT, 0 }, // BFM
-    { 0xFFC00000U, 0xB3400000U, Mnemonic::BFM, IrTemplate::GpBitfield, Opcode::EXTRACT, 0 }, // BFM
-    { 0xFFC00000U, 0x52000000U, Mnemonic::EOR, IrTemplate::GpBinopImm, Opcode::XOR, 0 }, // EOR
-    { 0xFFC00000U, 0x53000000U, Mnemonic::UBFM, IrTemplate::GpBitfield, Opcode::EXTRACT, 0 }, // UBFM
-    { 0xFFC00000U, 0xD3400000U, Mnemonic::UBFM, IrTemplate::GpBitfield, Opcode::EXTRACT, 0 }, // UBFM
-    { 0xFFC00000U, 0x32000000U, Mnemonic::ORR, IrTemplate::GpBinopImm, Opcode::OR, 0 }, // ORR
-    { 0xFFC00000U, 0x13000000U, Mnemonic::SBFM, IrTemplate::GpBitfield, Opcode::EXTRACT, 0 }, // SBFM
-    { 0xFFC00000U, 0x93400000U, Mnemonic::SBFM, IrTemplate::GpBitfield, Opcode::EXTRACT, 0 }, // SBFM
-    { 0xFFC00000U, 0x13000000U, Mnemonic::SBFM, IrTemplate::GpBitfield, Opcode::EXTRACT, 0 }, // SBFM
-    { 0xFFC00000U, 0x93400000U, Mnemonic::SBFM, IrTemplate::GpBitfield, Opcode::EXTRACT, 0 }, // SBFM
-    { 0xFFC00000U, 0x13000000U, Mnemonic::SBFM, IrTemplate::GpBitfield, Opcode::EXTRACT, 0 }, // SBFM
-    { 0xFFC00000U, 0x93400000U, Mnemonic::SBFM, IrTemplate::GpBitfield, Opcode::EXTRACT, 0 }, // SBFM
-    { 0xFFC00000U, 0xD1800000U, Mnemonic::SUBG, IrTemplate::GpBinopImm, Opcode::ADD, 0 }, // SUBG
-    { 0xFFC00000U, 0x53000000U, Mnemonic::UBFM, IrTemplate::GpBitfield, Opcode::EXTRACT, 0 }, // UBFM
-    { 0xFFC00000U, 0xD3400000U, Mnemonic::UBFM, IrTemplate::GpBitfield, Opcode::EXTRACT, 0 }, // UBFM
-    { 0xFFC00000U, 0x53000000U, Mnemonic::UBFM, IrTemplate::GpBitfield, Opcode::EXTRACT, 0 }, // UBFM
-    { 0xFFC00000U, 0xD3400000U, Mnemonic::UBFM, IrTemplate::GpBitfield, Opcode::EXTRACT, 0 }, // UBFM
-    { 0xFFC00000U, 0x53000000U, Mnemonic::UBFM, IrTemplate::GpBitfield, Opcode::EXTRACT, 0 }, // UBFM
-    { 0xFFC00000U, 0xD3400000U, Mnemonic::UBFM, IrTemplate::GpBitfield, Opcode::EXTRACT, 0 }, // UBFM
-    { 0xBF009400U, 0x2F001000U, Mnemonic::FCMLA, IrTemplate::SimdBinop, Opcode::MUL, 0 }, // FCMLA
-    { 0xFFC00000U, 0x2C400000U, Mnemonic::LDNP, IrTemplate::LoadPair, Opcode::LOAD, 0 }, // LDNP
-    { 0xFFC00000U, 0x6C400000U, Mnemonic::LDNP, IrTemplate::LoadPair, Opcode::LOAD, 0 }, // LDNP
-    { 0xFFC00000U, 0xAC400000U, Mnemonic::LDNP, IrTemplate::LoadPair, Opcode::LOAD, 0 }, // LDNP
-    { 0xFFC00000U, 0x28400000U, Mnemonic::LDNP, IrTemplate::LoadPair, Opcode::LOAD, 0 }, // LDNP
-    { 0xFFC00000U, 0xA8400000U, Mnemonic::LDNP, IrTemplate::LoadPair, Opcode::LOAD, 0 }, // LDNP
-    { 0xFFC00000U, 0x2CC00000U, Mnemonic::LDP, IrTemplate::LoadPair, Opcode::LOAD, 0 }, // LDP
-    { 0xFFC00000U, 0x6CC00000U, Mnemonic::LDP, IrTemplate::LoadPair, Opcode::LOAD, 0 }, // LDP
-    { 0xFFC00000U, 0xACC00000U, Mnemonic::LDP, IrTemplate::LoadPair, Opcode::LOAD, 0 }, // LDP
-    { 0xFFC00000U, 0x2DC00000U, Mnemonic::LDP, IrTemplate::LoadPair, Opcode::LOAD, 0 }, // LDP
-    { 0xFFC00000U, 0x6DC00000U, Mnemonic::LDP, IrTemplate::LoadPair, Opcode::LOAD, 0 }, // LDP
-    { 0xFFC00000U, 0xADC00000U, Mnemonic::LDP, IrTemplate::LoadPair, Opcode::LOAD, 0 }, // LDP
-    { 0xFFC00000U, 0x2D400000U, Mnemonic::LDP, IrTemplate::LoadPair, Opcode::LOAD, 0 }, // LDP
-    { 0xFFC00000U, 0x6D400000U, Mnemonic::LDP, IrTemplate::LoadPair, Opcode::LOAD, 0 }, // LDP
-    { 0xFFC00000U, 0xAD400000U, Mnemonic::LDP, IrTemplate::LoadPair, Opcode::LOAD, 0 }, // LDP
-    { 0xFFC00000U, 0x28C00000U, Mnemonic::LDP, IrTemplate::LoadPair, Opcode::LOAD, 0 }, // LDP
-    { 0xFFC00000U, 0xA8C00000U, Mnemonic::LDP, IrTemplate::LoadPair, Opcode::LOAD, 0 }, // LDP
-    { 0xFFC00000U, 0x29C00000U, Mnemonic::LDP, IrTemplate::LoadPair, Opcode::LOAD, 0 }, // LDP
-    { 0xFFC00000U, 0xA9C00000U, Mnemonic::LDP, IrTemplate::LoadPair, Opcode::LOAD, 0 }, // LDP
-    { 0xFFC00000U, 0x29400000U, Mnemonic::LDP, IrTemplate::LoadPair, Opcode::LOAD, 0 }, // LDP
-    { 0xFFC00000U, 0xA9400000U, Mnemonic::LDP, IrTemplate::LoadPair, Opcode::LOAD, 0 }, // LDP
-    { 0xFFC00000U, 0x68C00000U, Mnemonic::LDPSW, IrTemplate::LoadPair, Opcode::LOAD, 0 }, // LDPSW
-    { 0xFFC00000U, 0x69C00000U, Mnemonic::LDPSW, IrTemplate::LoadPair, Opcode::LOAD, 0 }, // LDPSW
-    { 0xFFC00000U, 0x69400000U, Mnemonic::LDPSW, IrTemplate::LoadPair, Opcode::LOAD, 0 }, // LDPSW
-    { 0xFFC00000U, 0x3D400000U, Mnemonic::LDR, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LDR
-    { 0xFFC00000U, 0x7D400000U, Mnemonic::LDR, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LDR
-    { 0xFFC00000U, 0xBD400000U, Mnemonic::LDR, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LDR
-    { 0xFFC00000U, 0xFD400000U, Mnemonic::LDR, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LDR
-    { 0xFFC00000U, 0x3DC00000U, Mnemonic::LDR, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LDR
-    { 0xFFC00000U, 0xB9400000U, Mnemonic::LDR, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LDR
-    { 0xFFC00000U, 0xF9400000U, Mnemonic::LDR, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LDR
-    { 0xFFC00000U, 0x39400000U, Mnemonic::LDRB, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LDRB
-    { 0xFFC00000U, 0x79400000U, Mnemonic::LDRH, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LDRH
-    { 0xFFC00000U, 0x39C00000U, Mnemonic::LDRSB, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LDRSB
-    { 0xFFC00000U, 0x39800000U, Mnemonic::LDRSB, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LDRSB
-    { 0xFFC00000U, 0x79C00000U, Mnemonic::LDRSH, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LDRSH
-    { 0xFFC00000U, 0x79800000U, Mnemonic::LDRSH, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LDRSH
-    { 0xFFC00000U, 0xB9800000U, Mnemonic::LDRSW, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LDRSW
-    { 0xFFC00000U, 0xEC400000U, Mnemonic::LDTNP, IrTemplate::LoadPair, Opcode::LOAD, 0 }, // LDTNP
-    { 0xFFC00000U, 0xE8400000U, Mnemonic::LDTNP, IrTemplate::LoadPair, Opcode::LOAD, 0 }, // LDTNP
-    { 0xFFC00000U, 0xECC00000U, Mnemonic::LDTP, IrTemplate::LoadPair, Opcode::LOAD, 0 }, // LDTP
-    { 0xFFC00000U, 0xEDC00000U, Mnemonic::LDTP, IrTemplate::LoadPair, Opcode::LOAD, 0 }, // LDTP
-    { 0xFFC00000U, 0xED400000U, Mnemonic::LDTP, IrTemplate::LoadPair, Opcode::LOAD, 0 }, // LDTP
-    { 0xFFC00000U, 0xE8C00000U, Mnemonic::LDTP, IrTemplate::LoadPair, Opcode::LOAD, 0 }, // LDTP
-    { 0xFFC00000U, 0xE9C00000U, Mnemonic::LDTP, IrTemplate::LoadPair, Opcode::LOAD, 0 }, // LDTP
-    { 0xFFC00000U, 0xE9400000U, Mnemonic::LDTP, IrTemplate::LoadPair, Opcode::LOAD, 0 }, // LDTP
-    { 0xFFC00000U, 0xF9800000U, Mnemonic::PRFM, IrTemplate::Nop, Opcode::NOP, 0 }, // PRFM
-    { 0xFFC00000U, 0x68800000U, Mnemonic::STGP, IrTemplate::StorePair, Opcode::STORE, 0 }, // STGP
-    { 0xFFC00000U, 0x69800000U, Mnemonic::STGP, IrTemplate::StorePair, Opcode::STORE, 0 }, // STGP
-    { 0xFFC00000U, 0x69000000U, Mnemonic::STGP, IrTemplate::StorePair, Opcode::STORE, 0 }, // STGP
-    { 0xFFC00000U, 0x2C000000U, Mnemonic::STNP, IrTemplate::StorePair, Opcode::STORE, 0 }, // STNP
-    { 0xFFC00000U, 0x6C000000U, Mnemonic::STNP, IrTemplate::StorePair, Opcode::STORE, 0 }, // STNP
-    { 0xFFC00000U, 0xAC000000U, Mnemonic::STNP, IrTemplate::StorePair, Opcode::STORE, 0 }, // STNP
-    { 0xFFC00000U, 0x28000000U, Mnemonic::STNP, IrTemplate::StorePair, Opcode::STORE, 0 }, // STNP
-    { 0xFFC00000U, 0xA8000000U, Mnemonic::STNP, IrTemplate::StorePair, Opcode::STORE, 0 }, // STNP
-    { 0xFFC00000U, 0x2C800000U, Mnemonic::STP, IrTemplate::StorePair, Opcode::STORE, 0 }, // STP
-    { 0xFFC00000U, 0x6C800000U, Mnemonic::STP, IrTemplate::StorePair, Opcode::STORE, 0 }, // STP
-    { 0xFFC00000U, 0xAC800000U, Mnemonic::STP, IrTemplate::StorePair, Opcode::STORE, 0 }, // STP
-    { 0xFFC00000U, 0x2D800000U, Mnemonic::STP, IrTemplate::StorePair, Opcode::STORE, 0 }, // STP
-    { 0xFFC00000U, 0x6D800000U, Mnemonic::STP, IrTemplate::StorePair, Opcode::STORE, 0 }, // STP
-    { 0xFFC00000U, 0xAD800000U, Mnemonic::STP, IrTemplate::StorePair, Opcode::STORE, 0 }, // STP
-    { 0xFFC00000U, 0x2D000000U, Mnemonic::STP, IrTemplate::StorePair, Opcode::STORE, 0 }, // STP
-    { 0xFFC00000U, 0x6D000000U, Mnemonic::STP, IrTemplate::StorePair, Opcode::STORE, 0 }, // STP
-    { 0xFFC00000U, 0xAD000000U, Mnemonic::STP, IrTemplate::StorePair, Opcode::STORE, 0 }, // STP
-    { 0xFFC00000U, 0x28800000U, Mnemonic::STP, IrTemplate::StorePair, Opcode::STORE, 0 }, // STP
-    { 0xFFC00000U, 0xA8800000U, Mnemonic::STP, IrTemplate::StorePair, Opcode::STORE, 0 }, // STP
-    { 0xFFC00000U, 0x29800000U, Mnemonic::STP, IrTemplate::StorePair, Opcode::STORE, 0 }, // STP
-    { 0xFFC00000U, 0xA9800000U, Mnemonic::STP, IrTemplate::StorePair, Opcode::STORE, 0 }, // STP
-    { 0xFFC00000U, 0x29000000U, Mnemonic::STP, IrTemplate::StorePair, Opcode::STORE, 0 }, // STP
-    { 0xFFC00000U, 0xA9000000U, Mnemonic::STP, IrTemplate::StorePair, Opcode::STORE, 0 }, // STP
-    { 0xFFC00000U, 0x3D000000U, Mnemonic::STR, IrTemplate::StoreReg, Opcode::STORE, 0 }, // STR
-    { 0xFFC00000U, 0x7D000000U, Mnemonic::STR, IrTemplate::StoreReg, Opcode::STORE, 0 }, // STR
-    { 0xFFC00000U, 0xBD000000U, Mnemonic::STR, IrTemplate::StoreReg, Opcode::STORE, 0 }, // STR
-    { 0xFFC00000U, 0xFD000000U, Mnemonic::STR, IrTemplate::StoreReg, Opcode::STORE, 0 }, // STR
-    { 0xFFC00000U, 0x3D800000U, Mnemonic::STR, IrTemplate::StoreReg, Opcode::STORE, 0 }, // STR
-    { 0xFFC00000U, 0xB9000000U, Mnemonic::STR, IrTemplate::StoreReg, Opcode::STORE, 0 }, // STR
-    { 0xFFC00000U, 0xF9000000U, Mnemonic::STR, IrTemplate::StoreReg, Opcode::STORE, 0 }, // STR
-    { 0xFFC00000U, 0x39000000U, Mnemonic::STRB, IrTemplate::StoreReg, Opcode::STORE, 0 }, // STRB
-    { 0xFFC00000U, 0x79000000U, Mnemonic::STRH, IrTemplate::StoreReg, Opcode::STORE, 0 }, // STRH
-    { 0xFFC00000U, 0xEC000000U, Mnemonic::STTNP, IrTemplate::StorePair, Opcode::STORE, 0 }, // STTNP
-    { 0xFFC00000U, 0xE8000000U, Mnemonic::STTNP, IrTemplate::StorePair, Opcode::STORE, 0 }, // STTNP
-    { 0xFFC00000U, 0xEC800000U, Mnemonic::STTP, IrTemplate::StorePair, Opcode::STORE, 0 }, // STTP
-    { 0xFFC00000U, 0xED800000U, Mnemonic::STTP, IrTemplate::StorePair, Opcode::STORE, 0 }, // STTP
-    { 0xFFC00000U, 0xED000000U, Mnemonic::STTP, IrTemplate::StorePair, Opcode::STORE, 0 }, // STTP
-    { 0xFFC00000U, 0xE8800000U, Mnemonic::STTP, IrTemplate::StorePair, Opcode::STORE, 0 }, // STTP
-    { 0xFFC00000U, 0xE9800000U, Mnemonic::STTP, IrTemplate::StorePair, Opcode::STORE, 0 }, // STTP
-    { 0xFFC00000U, 0xE9000000U, Mnemonic::STTP, IrTemplate::StorePair, Opcode::STORE, 0 }, // STTP
-    { 0xFF800000U, 0x11000000U, Mnemonic::ADD, IrTemplate::GpBinopImm, Opcode::ADD, 0 }, // ADD
-    { 0xFF800000U, 0x91000000U, Mnemonic::ADD, IrTemplate::GpBinopImm, Opcode::ADD, 0 }, // ADD
-    { 0xFF800000U, 0x31000000U, Mnemonic::ADDS, IrTemplate::GpBinopImmFlags, Opcode::ADD, 0 }, // ADDS
-    { 0xFF800000U, 0xB1000000U, Mnemonic::ADDS, IrTemplate::GpBinopImmFlags, Opcode::ADD, 0 }, // ADDS
-    { 0xFF800000U, 0x92000000U, Mnemonic::AND, IrTemplate::GpBinopImm, Opcode::AND, 0 }, // AND
-    { 0xFF800000U, 0xF2000000U, Mnemonic::ANDS, IrTemplate::GpBinopImmFlags, Opcode::AND, 0 }, // ANDS
-    { 0xFF800000U, 0xD2000000U, Mnemonic::EOR, IrTemplate::GpBinopImm, Opcode::XOR, 0 }, // EOR
-    { 0xFF800000U, 0x12800000U, Mnemonic::MOVN, IrTemplate::GpMoveImm, Opcode::NOT, 0 }, // MOVN
-    { 0xFF800000U, 0x92800000U, Mnemonic::MOVN, IrTemplate::GpMoveImm, Opcode::NOT, 0 }, // MOVN
-    { 0xFF800000U, 0x52800000U, Mnemonic::MOVZ, IrTemplate::GpMoveImm, Opcode::COPY, 0 }, // MOVZ
-    { 0xFF800000U, 0xD2800000U, Mnemonic::MOVZ, IrTemplate::GpMoveImm, Opcode::COPY, 0 }, // MOVZ
-    { 0xFF800000U, 0x72800000U, Mnemonic::MOVK, IrTemplate::GpMoveImm, Opcode::COPY, 0 }, // MOVK
-    { 0xFF800000U, 0xF2800000U, Mnemonic::MOVK, IrTemplate::GpMoveImm, Opcode::COPY, 0 }, // MOVK
-    { 0xFF800000U, 0x12800000U, Mnemonic::MOVN, IrTemplate::GpMoveImm, Opcode::NOT, 0 }, // MOVN
-    { 0xFF800000U, 0x92800000U, Mnemonic::MOVN, IrTemplate::GpMoveImm, Opcode::NOT, 0 }, // MOVN
-    { 0xFF800000U, 0x52800000U, Mnemonic::MOVZ, IrTemplate::GpMoveImm, Opcode::COPY, 0 }, // MOVZ
-    { 0xFF800000U, 0xD2800000U, Mnemonic::MOVZ, IrTemplate::GpMoveImm, Opcode::COPY, 0 }, // MOVZ
-    { 0xFF800000U, 0xB2000000U, Mnemonic::ORR, IrTemplate::GpBinopImm, Opcode::OR, 0 }, // ORR
-    { 0xFF800000U, 0x51000000U, Mnemonic::SUB, IrTemplate::GpBinopImm, Opcode::SUB, 0 }, // SUB
-    { 0xFF800000U, 0xD1000000U, Mnemonic::SUB, IrTemplate::GpBinopImm, Opcode::SUB, 0 }, // SUB
-    { 0xFF800000U, 0x71000000U, Mnemonic::SUBS, IrTemplate::GpBinopImmFlags, Opcode::SUB, 0 }, // SUBS
-    { 0xFF800000U, 0xF1000000U, Mnemonic::SUBS, IrTemplate::GpBinopImmFlags, Opcode::SUB, 0 }, // SUBS
-    { 0xFF000010U, 0x54000000U, Mnemonic::B, IrTemplate::BranchCond, Opcode::CBRANCH, 0 }, // B
-    { 0xFF000010U, 0x54000010U, Mnemonic::BC, IrTemplate::BranchCond, Opcode::CBRANCH, 0 }, // BC
-    { 0xFF200000U, 0x0B000000U, Mnemonic::ADD, IrTemplate::GpBinop, Opcode::ADD, 0 }, // ADD
-    { 0xFF200000U, 0x8B000000U, Mnemonic::ADD, IrTemplate::GpBinop, Opcode::ADD, 0 }, // ADD
-    { 0xFF200000U, 0x2B000000U, Mnemonic::ADDS, IrTemplate::GpBinopFlags, Opcode::ADD, 0 }, // ADDS
-    { 0xFF200000U, 0xAB000000U, Mnemonic::ADDS, IrTemplate::GpBinopFlags, Opcode::ADD, 0 }, // ADDS
-    { 0xFF200000U, 0x0A000000U, Mnemonic::AND, IrTemplate::GpBinop, Opcode::AND, 0 }, // AND
-    { 0xFF200000U, 0x8A000000U, Mnemonic::AND, IrTemplate::GpBinop, Opcode::AND, 0 }, // AND
-    { 0xFF200000U, 0x6A000000U, Mnemonic::ANDS, IrTemplate::GpBinopFlags, Opcode::AND, 0 }, // ANDS
-    { 0xFF200000U, 0xEA000000U, Mnemonic::ANDS, IrTemplate::GpBinopFlags, Opcode::AND, 0 }, // ANDS
-    { 0xFF200000U, 0x0A200000U, Mnemonic::BIC, IrTemplate::GpBinop, Opcode::AND, 0 }, // BIC
-    { 0xFF200000U, 0x8A200000U, Mnemonic::BIC, IrTemplate::GpBinop, Opcode::AND, 0 }, // BIC
-    { 0xFF200000U, 0x6A200000U, Mnemonic::BICS, IrTemplate::GpBinopFlags, Opcode::AND, 0 }, // BICS
-    { 0xFF200000U, 0xEA200000U, Mnemonic::BICS, IrTemplate::GpBinopFlags, Opcode::AND, 0 }, // BICS
-    { 0xFF200000U, 0x4A200000U, Mnemonic::EON, IrTemplate::GpBinop, Opcode::XOR, 0 }, // EON
-    { 0xFF200000U, 0xCA200000U, Mnemonic::EON, IrTemplate::GpBinop, Opcode::XOR, 0 }, // EON
-    { 0xFF200000U, 0x4A000000U, Mnemonic::EOR, IrTemplate::GpBinop, Opcode::XOR, 0 }, // EOR
-    { 0xFF200000U, 0xCA000000U, Mnemonic::EOR, IrTemplate::GpBinop, Opcode::XOR, 0 }, // EOR
-    { 0xFF200000U, 0x2A200000U, Mnemonic::ORN, IrTemplate::GpBinop, Opcode::OR, 0 }, // ORN
-    { 0xFF200000U, 0xAA200000U, Mnemonic::ORN, IrTemplate::GpBinop, Opcode::OR, 0 }, // ORN
-    { 0xFF200000U, 0x2A000000U, Mnemonic::ORR, IrTemplate::GpBinop, Opcode::OR, 0 }, // ORR
-    { 0xFF200000U, 0xAA000000U, Mnemonic::ORR, IrTemplate::GpBinop, Opcode::OR, 0 }, // ORR
-    { 0xFF200000U, 0x4B000000U, Mnemonic::SUB, IrTemplate::GpBinop, Opcode::SUB, 0 }, // SUB
-    { 0xFF200000U, 0xCB000000U, Mnemonic::SUB, IrTemplate::GpBinop, Opcode::SUB, 0 }, // SUB
-    { 0xFF200000U, 0x6B000000U, Mnemonic::SUBS, IrTemplate::GpBinopFlags, Opcode::SUB, 0 }, // SUBS
-    { 0xFF200000U, 0xEB000000U, Mnemonic::SUBS, IrTemplate::GpBinopFlags, Opcode::SUB, 0 }, // SUBS
-    { 0xFF000000U, 0x35000000U, Mnemonic::CBNZ, IrTemplate::CompareBranch, Opcode::CMP_NE, 0 }, // CBNZ
-    { 0xFF000000U, 0xB5000000U, Mnemonic::CBNZ, IrTemplate::CompareBranch, Opcode::CMP_NE, 0 }, // CBNZ
-    { 0xFF000000U, 0x34000000U, Mnemonic::CBZ, IrTemplate::CompareBranch, Opcode::CMP_EQ, 0 }, // CBZ
-    { 0xFF000000U, 0xB4000000U, Mnemonic::CBZ, IrTemplate::CompareBranch, Opcode::CMP_EQ, 0 }, // CBZ
-    { 0xFF000000U, 0x1C000000U, Mnemonic::LDR, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LDR
-    { 0xFF000000U, 0x5C000000U, Mnemonic::LDR, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LDR
-    { 0xFF000000U, 0x9C000000U, Mnemonic::LDR, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LDR
-    { 0xFF000000U, 0x18000000U, Mnemonic::LDR, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LDR
-    { 0xFF000000U, 0x58000000U, Mnemonic::LDR, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LDR
-    { 0xFF000000U, 0x98000000U, Mnemonic::LDRSW, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // LDRSW
-    { 0xFF000000U, 0xD8000000U, Mnemonic::PRFM, IrTemplate::LoadReg, Opcode::LOAD, 0 }, // PRFM
-    { 0x7F000000U, 0x37000000U, Mnemonic::TBNZ, IrTemplate::TestBranch, Opcode::CMP_NE, 0 }, // TBNZ
-    { 0x7F000000U, 0x36000000U, Mnemonic::TBZ, IrTemplate::TestBranch, Opcode::CMP_EQ, 0 }, // TBZ
-    { 0x9F000000U, 0x10000000U, Mnemonic::ADR, IrTemplate::GpBinopImm, Opcode::ADD, 0 }, // ADR
-    { 0x9F000000U, 0x90000000U, Mnemonic::ADRP, IrTemplate::GpBinopImm, Opcode::ADD, 0 }, // ADRP
-    { 0xFC000000U, 0x14000000U, Mnemonic::B, IrTemplate::BranchUncond, Opcode::BRANCH, 0 }, // B
-    { 0xFC000000U, 0x94000000U, Mnemonic::BL, IrTemplate::BranchUncond, Opcode::CALL, 0 }, // BL
+    /* [0] APAS_SYS_CR_systeminstrs */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [1] AT_SYS_CR_systeminstrs */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2] AUTIA1716_HI_hints */ { IrTemplate::Nop, Opcode::NOP, 0 },
+    /* [3] AUTIASP_HI_hints */ { IrTemplate::Nop, Opcode::NOP, 0 },
+    /* [4] AUTIAZ_HI_hints */ { IrTemplate::Nop, Opcode::NOP, 0 },
+    /* [5] AUTIB1716_HI_hints */ { IrTemplate::Nop, Opcode::NOP, 0 },
+    /* [6] AUTIBSP_HI_hints */ { IrTemplate::Nop, Opcode::NOP, 0 },
+    /* [7] AUTIBZ_HI_hints */ { IrTemplate::Nop, Opcode::NOP, 0 },
+    /* [8] AXFLAG_M_pstate */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [9] B_only_condbranch */ { IrTemplate::BranchCond, Opcode::CBRANCH, 0 },
+    /* [10] B_only_branch_imm */ { IrTemplate::BranchUncond, Opcode::BRANCH, 0 },
+    /* [11] BC_only_condbranch */ { IrTemplate::BranchCond, Opcode::CBRANCH, 0 },
+    /* [12] BL_only_branch_imm */ { IrTemplate::BranchUncond, Opcode::CALL, 0 },
+    /* [13] BLR_64_branch_reg */ { IrTemplate::BranchReg, Opcode::CALL, 0 },
+    /* [14] BLRAA_64P_branch_reg */ { IrTemplate::BranchReg, Opcode::CALL, 0 },
+    /* [15] BLRAAZ_64_branch_reg */ { IrTemplate::BranchReg, Opcode::CALL, 0 },
+    /* [16] BLRAB_64P_branch_reg */ { IrTemplate::BranchReg, Opcode::CALL, 0 },
+    /* [17] BLRABZ_64_branch_reg */ { IrTemplate::BranchReg, Opcode::CALL, 0 },
+    /* [18] BR_64_branch_reg */ { IrTemplate::BranchReg, Opcode::BRANCH, 0 },
+    /* [19] BRAA_64P_branch_reg */ { IrTemplate::BranchReg, Opcode::BRANCH, 0 },
+    /* [20] BRAAZ_64_branch_reg */ { IrTemplate::BranchReg, Opcode::BRANCH, 0 },
+    /* [21] BRAB_64P_branch_reg */ { IrTemplate::BranchReg, Opcode::BRANCH, 0 },
+    /* [22] BRABZ_64_branch_reg */ { IrTemplate::BranchReg, Opcode::BRANCH, 0 },
+    /* [23] BRB_SYS_CR_systeminstrs */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [24] BRK_EX_exception */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [25] BTI_HB_hints */ { IrTemplate::Nop, Opcode::NOP, 0 },
+    /* [26] CBBGT_8_regs */ { IrTemplate::CompareBranch, Opcode::CMP_SLT, 0 },
+    /* [27] CBBGE_8_regs */ { IrTemplate::CompareBranch, Opcode::CMP_SLT, 0 },
+    /* [28] CBBHI_8_regs */ { IrTemplate::CompareBranch, Opcode::CMP_SLT, 0 },
+    /* [29] CBBHS_8_regs */ { IrTemplate::CompareBranch, Opcode::CMP_SLT, 0 },
+    /* [30] CBBEQ_8_regs */ { IrTemplate::CompareBranch, Opcode::CMP_SLT, 0 },
+    /* [31] CBBNE_8_regs */ { IrTemplate::CompareBranch, Opcode::CMP_SLT, 0 },
+    /* [32] CBBLE_CBBGE_8_regs */ { IrTemplate::CompareBranch, Opcode::CMP_SLT, 0 },
+    /* [33] CBBLO_CBBHI_8_regs */ { IrTemplate::CompareBranch, Opcode::CMP_SLT, 0 },
+    /* [34] CBBLS_CBBHS_8_regs */ { IrTemplate::CompareBranch, Opcode::CMP_SLT, 0 },
+    /* [35] CBBLT_CBBGT_8_regs */ { IrTemplate::CompareBranch, Opcode::CMP_SLT, 0 },
+    /* [36] CBGT_32_imm */ { IrTemplate::CompareBranch, Opcode::CMP_SLT, 0 },
+    /* [37] CBLT_32_imm */ { IrTemplate::CompareBranch, Opcode::CMP_SLT, 0 },
+    /* [38] CBHI_32_imm */ { IrTemplate::CompareBranch, Opcode::CMP_SLT, 0 },
+    /* [39] CBLO_32_imm */ { IrTemplate::CompareBranch, Opcode::CMP_SLT, 0 },
+    /* [40] CBEQ_32_imm */ { IrTemplate::CompareBranch, Opcode::CMP_SLT, 0 },
+    /* [41] CBNE_32_imm */ { IrTemplate::CompareBranch, Opcode::CMP_SLT, 0 },
+    /* [42] CBGT_64_imm */ { IrTemplate::CompareBranch, Opcode::CMP_SLT, 0 },
+    /* [43] CBLT_64_imm */ { IrTemplate::CompareBranch, Opcode::CMP_SLT, 0 },
+    /* [44] CBHI_64_imm */ { IrTemplate::CompareBranch, Opcode::CMP_SLT, 0 },
+    /* [45] CBLO_64_imm */ { IrTemplate::CompareBranch, Opcode::CMP_SLT, 0 },
+    /* [46] CBEQ_64_imm */ { IrTemplate::CompareBranch, Opcode::CMP_SLT, 0 },
+    /* [47] CBNE_64_imm */ { IrTemplate::CompareBranch, Opcode::CMP_SLT, 0 },
+    /* [48] CBGT_32_regs */ { IrTemplate::CompareBranch, Opcode::CMP_SLT, 0 },
+    /* [49] CBGE_32_regs */ { IrTemplate::CompareBranch, Opcode::CMP_SLT, 0 },
+    /* [50] CBHI_32_regs */ { IrTemplate::CompareBranch, Opcode::CMP_SLT, 0 },
+    /* [51] CBHS_32_regs */ { IrTemplate::CompareBranch, Opcode::CMP_SLT, 0 },
+    /* [52] CBEQ_32_regs */ { IrTemplate::CompareBranch, Opcode::CMP_SLT, 0 },
+    /* [53] CBNE_32_regs */ { IrTemplate::CompareBranch, Opcode::CMP_SLT, 0 },
+    /* [54] CBGT_64_regs */ { IrTemplate::CompareBranch, Opcode::CMP_SLT, 0 },
+    /* [55] CBGE_64_regs */ { IrTemplate::CompareBranch, Opcode::CMP_SLT, 0 },
+    /* [56] CBHI_64_regs */ { IrTemplate::CompareBranch, Opcode::CMP_SLT, 0 },
+    /* [57] CBHS_64_regs */ { IrTemplate::CompareBranch, Opcode::CMP_SLT, 0 },
+    /* [58] CBEQ_64_regs */ { IrTemplate::CompareBranch, Opcode::CMP_SLT, 0 },
+    /* [59] CBNE_64_regs */ { IrTemplate::CompareBranch, Opcode::CMP_SLT, 0 },
+    /* [60] CBGE_CBGT_32_imm */ { IrTemplate::CompareBranch, Opcode::CMP_SLT, 0 },
+    /* [61] CBGE_CBGT_64_imm */ { IrTemplate::CompareBranch, Opcode::CMP_SLT, 0 },
+    /* [62] CBHGT_16_regs */ { IrTemplate::CompareBranch, Opcode::CMP_SLT, 0 },
+    /* [63] CBHGE_16_regs */ { IrTemplate::CompareBranch, Opcode::CMP_SLT, 0 },
+    /* [64] CBHHI_16_regs */ { IrTemplate::CompareBranch, Opcode::CMP_SLT, 0 },
+    /* [65] CBHHS_16_regs */ { IrTemplate::CompareBranch, Opcode::CMP_SLT, 0 },
+    /* [66] CBHEQ_16_regs */ { IrTemplate::CompareBranch, Opcode::CMP_SLT, 0 },
+    /* [67] CBHNE_16_regs */ { IrTemplate::CompareBranch, Opcode::CMP_SLT, 0 },
+    /* [68] CBHLE_CBHGE_16_regs */ { IrTemplate::CompareBranch, Opcode::CMP_SLT, 0 },
+    /* [69] CBHLO_CBHHI_16_regs */ { IrTemplate::CompareBranch, Opcode::CMP_SLT, 0 },
+    /* [70] CBHLS_CBHHS_16_regs */ { IrTemplate::CompareBranch, Opcode::CMP_SLT, 0 },
+    /* [71] CBHLT_CBHGT_16_regs */ { IrTemplate::CompareBranch, Opcode::CMP_SLT, 0 },
+    /* [72] CBHS_CBHI_32_imm */ { IrTemplate::CompareBranch, Opcode::CMP_SLT, 0 },
+    /* [73] CBHS_CBHI_64_imm */ { IrTemplate::CompareBranch, Opcode::CMP_SLT, 0 },
+    /* [74] CBLE_CBLT_32_imm */ { IrTemplate::CompareBranch, Opcode::CMP_SLT, 0 },
+    /* [75] CBLE_CBLT_64_imm */ { IrTemplate::CompareBranch, Opcode::CMP_SLT, 0 },
+    /* [76] CBLE_CBGE_32_regs */ { IrTemplate::CompareBranch, Opcode::CMP_SLT, 0 },
+    /* [77] CBLE_CBGE_64_regs */ { IrTemplate::CompareBranch, Opcode::CMP_SLT, 0 },
+    /* [78] CBLO_CBHI_32_regs */ { IrTemplate::CompareBranch, Opcode::CMP_SLT, 0 },
+    /* [79] CBLO_CBHI_64_regs */ { IrTemplate::CompareBranch, Opcode::CMP_SLT, 0 },
+    /* [80] CBLS_CBLO_32_imm */ { IrTemplate::CompareBranch, Opcode::CMP_SLT, 0 },
+    /* [81] CBLS_CBLO_64_imm */ { IrTemplate::CompareBranch, Opcode::CMP_SLT, 0 },
+    /* [82] CBLS_CBHS_32_regs */ { IrTemplate::CompareBranch, Opcode::CMP_SLT, 0 },
+    /* [83] CBLS_CBHS_64_regs */ { IrTemplate::CompareBranch, Opcode::CMP_SLT, 0 },
+    /* [84] CBLT_CBGT_32_regs */ { IrTemplate::CompareBranch, Opcode::CMP_SLT, 0 },
+    /* [85] CBLT_CBGT_64_regs */ { IrTemplate::CompareBranch, Opcode::CMP_SLT, 0 },
+    /* [86] CBNZ_32_compbranch */ { IrTemplate::CompareBranch, Opcode::CMP_NE, 0 },
+    /* [87] CBNZ_64_compbranch */ { IrTemplate::CompareBranch, Opcode::CMP_NE, 0 },
+    /* [88] CBZ_32_compbranch */ { IrTemplate::CompareBranch, Opcode::CMP_EQ, 0 },
+    /* [89] CBZ_64_compbranch */ { IrTemplate::CompareBranch, Opcode::CMP_EQ, 0 },
+    /* [90] CFINV_M_pstate */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [91] CFP_SYS_CR_systeminstrs */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [92] CHKFEAT_HF_hints */ { IrTemplate::Nop, Opcode::NOP, 0 },
+    /* [93] CLRBHB_HI_hints */ { IrTemplate::Nop, Opcode::NOP, 0 },
+    /* [94] CLREX_BN_barriers */ { IrTemplate::Nop, Opcode::BARRIER, 0 },
+    /* [95] COSP_SYS_CR_systeminstrs */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [96] CPP_SYS_CR_systeminstrs */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [97] CSDB_HI_hints */ { IrTemplate::Nop, Opcode::NOP, 0 },
+    /* [98] DC_SYS_CR_systeminstrs */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [99] DCPS1_DC_exception */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [100] DCPS2_DC_exception */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [101] DCPS3_DC_exception */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [102] DGH_HI_hints */ { IrTemplate::Nop, Opcode::NOP, 0 },
+    /* [103] DMB_BO_barriers */ { IrTemplate::Nop, Opcode::BARRIER, 0 },
+    /* [104] DRPS_64E_branch_reg */ { IrTemplate::BranchReg, Opcode::BRANCH, 0 },
+    /* [105] DSB_BO_barriers */ { IrTemplate::Nop, Opcode::BARRIER, 0 },
+    /* [106] DSB_BOn_barriers */ { IrTemplate::Nop, Opcode::BARRIER, 0 },
+    /* [107] DVP_SYS_CR_systeminstrs */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [108] ERET_64E_branch_reg */ { IrTemplate::BranchReg, Opcode::BRANCH, 0 },
+    /* [109] ERETAA_64E_branch_reg */ { IrTemplate::BranchReg, Opcode::BRANCH, 0 },
+    /* [110] ERETAB_64E_branch_reg */ { IrTemplate::BranchReg, Opcode::BRANCH, 0 },
+    /* [111] ESB_HI_hints */ { IrTemplate::Nop, Opcode::NOP, 0 },
+    /* [112] GCSB_HD_hints */ { IrTemplate::Nop, Opcode::NOP, 0 },
+    /* [113] GCSPOPCX_SYS_CR_systeminstrs */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [114] GCSPOPM_SYSL_RC_systeminstrs */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [115] GCSPOPX_SYS_CR_systeminstrs */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [116] GCSPUSHM_SYS_CR_systeminstrs */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [117] GCSPUSHX_SYS_CR_systeminstrs */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [118] GCSSS1_SYS_CR_systeminstrs */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [119] GCSSS2_SYSL_RC_systeminstrs */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [120] GIC_SYS_CR_systeminstrs */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [121] GICR_SYSL_RC_systeminstrs */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [122] GSB_SYS_CR_systeminstrs */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [123] HINT_HM_hints */ { IrTemplate::Nop, Opcode::NOP, 0 },
+    /* [124] HLT_EX_exception */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [125] HVC_EX_exception */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [126] IC_SYS_CR_systeminstrs */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [127] ISB_BI_barriers */ { IrTemplate::Nop, Opcode::BARRIER, 0 },
+    /* [128] MLBI_SYS_CR_systeminstrs */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [129] MRRS_RS_systemmovepr */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [130] MRS_RS_systemmove */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [131] MSR_SI_pstate */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [132] MSR_SR_systemmove */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [133] MSRR_SR_systemmovepr */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [134] NOP_HI_hints */ { IrTemplate::Nop, Opcode::NOP, 0 },
+    /* [135] PACIA1716_HI_hints */ { IrTemplate::Nop, Opcode::NOP, 0 },
+    /* [136] PACIASP_HI_hints */ { IrTemplate::Nop, Opcode::NOP, 0 },
+    /* [137] PACIAZ_HI_hints */ { IrTemplate::Nop, Opcode::NOP, 0 },
+    /* [138] PACIB1716_HI_hints */ { IrTemplate::Nop, Opcode::NOP, 0 },
+    /* [139] PACIBSP_HI_hints */ { IrTemplate::Nop, Opcode::NOP, 0 },
+    /* [140] PACIBZ_HI_hints */ { IrTemplate::Nop, Opcode::NOP, 0 },
+    /* [141] PACM_HI_hints */ { IrTemplate::Nop, Opcode::NOP, 0 },
+    /* [142] PSB_HC_hints */ { IrTemplate::Nop, Opcode::NOP, 0 },
+    /* [143] PSSBB_DSB_BO_barriers */ { IrTemplate::Nop, Opcode::BARRIER, 0 },
+    /* [144] RET_64R_branch_reg */ { IrTemplate::BranchReg, Opcode::RET, 0 },
+    /* [145] RETAA_64E_branch_reg */ { IrTemplate::BranchReg, Opcode::RET, 0 },
+    /* [146] RETAB_64E_branch_reg */ { IrTemplate::BranchReg, Opcode::RET, 0 },
+    /* [147] RETAASPPC_only_miscbranch */ { IrTemplate::BranchReg, Opcode::BRANCH, 0 },
+    /* [148] RETABSPPC_only_miscbranch */ { IrTemplate::BranchReg, Opcode::BRANCH, 0 },
+    /* [149] RETAASPPCR_64M_branch_reg */ { IrTemplate::BranchReg, Opcode::RET, 0 },
+    /* [150] RETABSPPCR_64M_branch_reg */ { IrTemplate::BranchReg, Opcode::RET, 0 },
+    /* [151] SB_only_barriers */ { IrTemplate::Nop, Opcode::BARRIER, 0 },
+    /* [152] SEV_HI_hints */ { IrTemplate::Nop, Opcode::NOP, 0 },
+    /* [153] SEVL_HI_hints */ { IrTemplate::Nop, Opcode::NOP, 0 },
+    /* [154] SHUH_HI_hints */ { IrTemplate::Nop, Opcode::NOP, 0 },
+    /* [155] SMC_EX_exception */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [156] SMSTART_MSR_SI_pstate */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [157] SMSTOP_MSR_SI_pstate */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [158] SSBB_DSB_BO_barriers */ { IrTemplate::Nop, Opcode::BARRIER, 0 },
+    /* [159] STCPH_HI_hints */ { IrTemplate::Nop, Opcode::NOP, 0 },
+    /* [160] STSHH_HI_hints */ { IrTemplate::Nop, Opcode::NOP, 0 },
+    /* [161] SVC_EX_exception */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [162] SYS_CR_systeminstrs */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [163] SYSL_RC_systeminstrs */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [164] SYSP_CR_syspairinstrs */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [165] TBNZ_only_testbranch */ { IrTemplate::TestBranch, Opcode::CMP_NE, 0 },
+    /* [166] TBZ_only_testbranch */ { IrTemplate::TestBranch, Opcode::CMP_EQ, 0 },
+    /* [167] TLBI_SYS_CR_systeminstrs */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [168] TLBIP_SYSP_CR_syspairinstrs */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [169] TRCIT_SYS_CR_systeminstrs */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [170] TSB_HC_hints */ { IrTemplate::Nop, Opcode::NOP, 0 },
+    /* [171] WFE_HI_hints */ { IrTemplate::Nop, Opcode::NOP, 0 },
+    /* [172] WFET_only_systeminstrswithreg */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [173] WFI_HI_hints */ { IrTemplate::Nop, Opcode::NOP, 0 },
+    /* [174] WFIT_only_systeminstrswithreg */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [175] XAFLAG_M_pstate */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [176] XPACLRI_HI_hints */ { IrTemplate::Nop, Opcode::NOP, 0 },
+    /* [177] YIELD_HI_hints */ { IrTemplate::Nop, Opcode::NOP, 0 },
+    /* [178] ADD_32_addsub_imm */ { IrTemplate::GpBinopImm, Opcode::ADD, 0 },
+    /* [179] ADD_64_addsub_imm */ { IrTemplate::GpBinopImm, Opcode::ADD, 0 },
+    /* [180] ADDG_64_addsub_immtags */ { IrTemplate::GpBinopImm, Opcode::ADD, 0 },
+    /* [181] ADDS_32S_addsub_imm */ { IrTemplate::GpBinopImmFlags, Opcode::ADD, 0 },
+    /* [182] ADDS_64S_addsub_imm */ { IrTemplate::GpBinopImmFlags, Opcode::ADD, 0 },
+    /* [183] ADR_only_pcreladdr */ { IrTemplate::GpBinopImm, Opcode::ADD, 0 },
+    /* [184] ADRP_only_pcreladdr */ { IrTemplate::GpBinopImm, Opcode::ADD, 0 },
+    /* [185] AND_32_log_imm */ { IrTemplate::GpBinopImm, Opcode::AND, 0 },
+    /* [186] AND_64_log_imm */ { IrTemplate::GpBinopImm, Opcode::AND, 0 },
+    /* [187] ANDS_32S_log_imm */ { IrTemplate::GpBinopImmFlags, Opcode::AND, 0 },
+    /* [188] ANDS_64S_log_imm */ { IrTemplate::GpBinopImmFlags, Opcode::AND, 0 },
+    /* [189] ASR_SBFM_32M_bitfield */ { IrTemplate::GpBitfield, Opcode::EXTRACT, 0 },
+    /* [190] ASR_SBFM_64M_bitfield */ { IrTemplate::GpBitfield, Opcode::EXTRACT, 0 },
+    /* [191] AUTIASPPC_only_dp_1src_imm */ { IrTemplate::GpBinopImm, Opcode::ADD, 0 },
+    /* [192] AUTIBSPPC_only_dp_1src_imm */ { IrTemplate::GpBinopImm, Opcode::ADD, 0 },
+    /* [193] BFC_BFM_32M_bitfield */ { IrTemplate::GpBitfield, Opcode::EXTRACT, 0 },
+    /* [194] BFC_BFM_64M_bitfield */ { IrTemplate::GpBitfield, Opcode::EXTRACT, 0 },
+    /* [195] BFI_BFM_32M_bitfield */ { IrTemplate::GpBitfield, Opcode::EXTRACT, 0 },
+    /* [196] BFI_BFM_64M_bitfield */ { IrTemplate::GpBitfield, Opcode::EXTRACT, 0 },
+    /* [197] BFM_32M_bitfield */ { IrTemplate::GpBitfield, Opcode::EXTRACT, 0 },
+    /* [198] BFM_64M_bitfield */ { IrTemplate::GpBitfield, Opcode::EXTRACT, 0 },
+    /* [199] BFXIL_BFM_32M_bitfield */ { IrTemplate::GpBitfield, Opcode::EXTRACT, 0 },
+    /* [200] BFXIL_BFM_64M_bitfield */ { IrTemplate::GpBitfield, Opcode::EXTRACT, 0 },
+    /* [201] CMN_ADDS_32S_addsub_imm */ { IrTemplate::GpBinopImmFlags, Opcode::ADD, 0 },
+    /* [202] CMN_ADDS_64S_addsub_imm */ { IrTemplate::GpBinopImmFlags, Opcode::ADD, 0 },
+    /* [203] CMP_SUBS_32S_addsub_imm */ { IrTemplate::GpBinopImmFlags, Opcode::SUB, 0 },
+    /* [204] CMP_SUBS_64S_addsub_imm */ { IrTemplate::GpBinopImmFlags, Opcode::SUB, 0 },
+    /* [205] EOR_32_log_imm */ { IrTemplate::GpBinopImm, Opcode::XOR, 0 },
+    /* [206] EOR_64_log_imm */ { IrTemplate::GpBinopImm, Opcode::XOR, 0 },
+    /* [207] EXTR_32_extract */ { IrTemplate::GpBitfield, Opcode::EXTRACT, 0 },
+    /* [208] EXTR_64_extract */ { IrTemplate::GpBitfield, Opcode::EXTRACT, 0 },
+    /* [209] LSL_UBFM_32M_bitfield */ { IrTemplate::GpBitfield, Opcode::EXTRACT, 0 },
+    /* [210] LSL_UBFM_64M_bitfield */ { IrTemplate::GpBitfield, Opcode::EXTRACT, 0 },
+    /* [211] LSR_UBFM_32M_bitfield */ { IrTemplate::GpBitfield, Opcode::EXTRACT, 0 },
+    /* [212] LSR_UBFM_64M_bitfield */ { IrTemplate::GpBitfield, Opcode::EXTRACT, 0 },
+    /* [213] MOV_ADD_32_addsub_imm */ { IrTemplate::GpBinopImm, Opcode::ADD, 0 },
+    /* [214] MOV_ADD_64_addsub_imm */ { IrTemplate::GpBinopImm, Opcode::ADD, 0 },
+    /* [215] MOV_MOVN_32_movewide */ { IrTemplate::GpMoveImm, Opcode::NOT, 0 },
+    /* [216] MOV_MOVN_64_movewide */ { IrTemplate::GpMoveImm, Opcode::NOT, 0 },
+    /* [217] MOV_MOVZ_32_movewide */ { IrTemplate::GpMoveImm, Opcode::COPY, 0 },
+    /* [218] MOV_MOVZ_64_movewide */ { IrTemplate::GpMoveImm, Opcode::COPY, 0 },
+    /* [219] MOV_ORR_32_log_imm */ { IrTemplate::GpBinopImm, Opcode::OR, 0 },
+    /* [220] MOV_ORR_64_log_imm */ { IrTemplate::GpBinopImm, Opcode::OR, 0 },
+    /* [221] MOVK_32_movewide */ { IrTemplate::GpMoveImm, Opcode::COPY, 0 },
+    /* [222] MOVK_64_movewide */ { IrTemplate::GpMoveImm, Opcode::COPY, 0 },
+    /* [223] MOVN_32_movewide */ { IrTemplate::GpMoveImm, Opcode::NOT, 0 },
+    /* [224] MOVN_64_movewide */ { IrTemplate::GpMoveImm, Opcode::NOT, 0 },
+    /* [225] MOVZ_32_movewide */ { IrTemplate::GpMoveImm, Opcode::COPY, 0 },
+    /* [226] MOVZ_64_movewide */ { IrTemplate::GpMoveImm, Opcode::COPY, 0 },
+    /* [227] ORR_32_log_imm */ { IrTemplate::GpBinopImm, Opcode::OR, 0 },
+    /* [228] ORR_64_log_imm */ { IrTemplate::GpBinopImm, Opcode::OR, 0 },
+    /* [229] ROR_EXTR_32_extract */ { IrTemplate::GpBitfield, Opcode::EXTRACT, 0 },
+    /* [230] ROR_EXTR_64_extract */ { IrTemplate::GpBitfield, Opcode::EXTRACT, 0 },
+    /* [231] SBFIZ_SBFM_32M_bitfield */ { IrTemplate::GpBitfield, Opcode::EXTRACT, 0 },
+    /* [232] SBFIZ_SBFM_64M_bitfield */ { IrTemplate::GpBitfield, Opcode::EXTRACT, 0 },
+    /* [233] SBFM_32M_bitfield */ { IrTemplate::GpBitfield, Opcode::EXTRACT, 0 },
+    /* [234] SBFM_64M_bitfield */ { IrTemplate::GpBitfield, Opcode::EXTRACT, 0 },
+    /* [235] SBFX_SBFM_32M_bitfield */ { IrTemplate::GpBitfield, Opcode::EXTRACT, 0 },
+    /* [236] SBFX_SBFM_64M_bitfield */ { IrTemplate::GpBitfield, Opcode::EXTRACT, 0 },
+    /* [237] SMAX_32_minmax_imm */ { IrTemplate::GpBinopImm, Opcode::ADD, 0 },
+    /* [238] SMAX_64_minmax_imm */ { IrTemplate::GpBinopImm, Opcode::ADD, 0 },
+    /* [239] SMIN_32_minmax_imm */ { IrTemplate::GpBinopImm, Opcode::ADD, 0 },
+    /* [240] SMIN_64_minmax_imm */ { IrTemplate::GpBinopImm, Opcode::ADD, 0 },
+    /* [241] SUB_32_addsub_imm */ { IrTemplate::GpBinopImm, Opcode::SUB, 0 },
+    /* [242] SUB_64_addsub_imm */ { IrTemplate::GpBinopImm, Opcode::SUB, 0 },
+    /* [243] SUBG_64_addsub_immtags */ { IrTemplate::GpBinopImm, Opcode::ADD, 0 },
+    /* [244] SUBS_32S_addsub_imm */ { IrTemplate::GpBinopImmFlags, Opcode::SUB, 0 },
+    /* [245] SUBS_64S_addsub_imm */ { IrTemplate::GpBinopImmFlags, Opcode::SUB, 0 },
+    /* [246] SXTB_SBFM_32M_bitfield */ { IrTemplate::GpBitfield, Opcode::EXTRACT, 0 },
+    /* [247] SXTB_SBFM_64M_bitfield */ { IrTemplate::GpBitfield, Opcode::EXTRACT, 0 },
+    /* [248] SXTH_SBFM_32M_bitfield */ { IrTemplate::GpBitfield, Opcode::EXTRACT, 0 },
+    /* [249] SXTH_SBFM_64M_bitfield */ { IrTemplate::GpBitfield, Opcode::EXTRACT, 0 },
+    /* [250] SXTW_SBFM_64M_bitfield */ { IrTemplate::GpBitfield, Opcode::EXTRACT, 0 },
+    /* [251] TST_ANDS_32S_log_imm */ { IrTemplate::GpBinopImmFlags, Opcode::AND, 0 },
+    /* [252] TST_ANDS_64S_log_imm */ { IrTemplate::GpBinopImmFlags, Opcode::AND, 0 },
+    /* [253] UBFIZ_UBFM_32M_bitfield */ { IrTemplate::GpBitfield, Opcode::EXTRACT, 0 },
+    /* [254] UBFIZ_UBFM_64M_bitfield */ { IrTemplate::GpBitfield, Opcode::EXTRACT, 0 },
+    /* [255] UBFM_32M_bitfield */ { IrTemplate::GpBitfield, Opcode::EXTRACT, 0 },
+    /* [256] UBFM_64M_bitfield */ { IrTemplate::GpBitfield, Opcode::EXTRACT, 0 },
+    /* [257] UBFX_UBFM_32M_bitfield */ { IrTemplate::GpBitfield, Opcode::EXTRACT, 0 },
+    /* [258] UBFX_UBFM_64M_bitfield */ { IrTemplate::GpBitfield, Opcode::EXTRACT, 0 },
+    /* [259] UMAX_32U_minmax_imm */ { IrTemplate::GpBinopImm, Opcode::ADD, 0 },
+    /* [260] UMAX_64U_minmax_imm */ { IrTemplate::GpBinopImm, Opcode::ADD, 0 },
+    /* [261] UMIN_32U_minmax_imm */ { IrTemplate::GpBinopImm, Opcode::ADD, 0 },
+    /* [262] UMIN_64U_minmax_imm */ { IrTemplate::GpBinopImm, Opcode::ADD, 0 },
+    /* [263] UXTB_UBFM_32M_bitfield */ { IrTemplate::GpBitfield, Opcode::EXTRACT, 0 },
+    /* [264] UXTH_UBFM_32M_bitfield */ { IrTemplate::GpBitfield, Opcode::EXTRACT, 0 },
+    /* [265] ABS_32_dp_1src */ { IrTemplate::GpBinop, Opcode::SUB, 0 },
+    /* [266] ABS_64_dp_1src */ { IrTemplate::GpBinop, Opcode::SUB, 0 },
+    /* [267] ADC_32_addsub_carry */ { IrTemplate::GpBinop, Opcode::ADD_CARRY, 0 },
+    /* [268] ADC_64_addsub_carry */ { IrTemplate::GpBinop, Opcode::ADD_CARRY, 0 },
+    /* [269] ADCS_32_addsub_carry */ { IrTemplate::GpBinopFlags, Opcode::ADD_CARRY, 0 },
+    /* [270] ADCS_64_addsub_carry */ { IrTemplate::GpBinopFlags, Opcode::ADD_CARRY, 0 },
+    /* [271] ADD_32_addsub_ext */ { IrTemplate::GpBinop, Opcode::ADD, 0 },
+    /* [272] ADD_64_addsub_ext */ { IrTemplate::GpBinop, Opcode::ADD, 0 },
+    /* [273] ADD_32_addsub_shift */ { IrTemplate::GpBinop, Opcode::ADD, 0 },
+    /* [274] ADD_64_addsub_shift */ { IrTemplate::GpBinop, Opcode::ADD, 0 },
+    /* [275] ADDPT_64_addsub_pt */ { IrTemplate::GpBinop, Opcode::ADD, 0 },
+    /* [276] ADDS_32S_addsub_ext */ { IrTemplate::GpBinopFlags, Opcode::ADD, 0 },
+    /* [277] ADDS_64S_addsub_ext */ { IrTemplate::GpBinopFlags, Opcode::ADD, 0 },
+    /* [278] ADDS_32_addsub_shift */ { IrTemplate::GpBinopFlags, Opcode::ADD, 0 },
+    /* [279] ADDS_64_addsub_shift */ { IrTemplate::GpBinopFlags, Opcode::ADD, 0 },
+    /* [280] AND_32_log_shift */ { IrTemplate::GpBinop, Opcode::AND, 0 },
+    /* [281] AND_64_log_shift */ { IrTemplate::GpBinop, Opcode::AND, 0 },
+    /* [282] ANDS_32_log_shift */ { IrTemplate::GpBinopFlags, Opcode::AND, 0 },
+    /* [283] ANDS_64_log_shift */ { IrTemplate::GpBinopFlags, Opcode::AND, 0 },
+    /* [284] ASR_ASRV_32_dp_2src */ { IrTemplate::GpShift, Opcode::SAR, 0 },
+    /* [285] ASR_ASRV_64_dp_2src */ { IrTemplate::GpShift, Opcode::SAR, 0 },
+    /* [286] ASRV_32_dp_2src */ { IrTemplate::GpShift, Opcode::SAR, 0 },
+    /* [287] ASRV_64_dp_2src */ { IrTemplate::GpShift, Opcode::SAR, 0 },
+    /* [288] AUTDA_64P_dp_1src */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [289] AUTDZA_64Z_dp_1src */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [290] AUTDB_64P_dp_1src */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [291] AUTDZB_64Z_dp_1src */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [292] AUTIA_64P_dp_1src */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [293] AUTIZA_64Z_dp_1src */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [294] AUTIA171615_64LR_dp_1src */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [295] AUTIASPPCR_64LRR_dp_1src */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [296] AUTIB_64P_dp_1src */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [297] AUTIZB_64Z_dp_1src */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [298] AUTIB171615_64LR_dp_1src */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [299] AUTIBSPPCR_64LRR_dp_1src */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [300] BIC_32_log_shift */ { IrTemplate::GpBinop, Opcode::AND, 0 },
+    /* [301] BIC_64_log_shift */ { IrTemplate::GpBinop, Opcode::AND, 0 },
+    /* [302] BICS_32_log_shift */ { IrTemplate::GpBinopFlags, Opcode::AND, 0 },
+    /* [303] BICS_64_log_shift */ { IrTemplate::GpBinopFlags, Opcode::AND, 0 },
+    /* [304] CCMN_32_condcmp_imm */ { IrTemplate::GpBinopFlags, Opcode::SUB, 0 },
+    /* [305] CCMN_64_condcmp_imm */ { IrTemplate::GpBinopFlags, Opcode::SUB, 0 },
+    /* [306] CCMN_32_condcmp_reg */ { IrTemplate::GpBinopFlags, Opcode::SUB, 0 },
+    /* [307] CCMN_64_condcmp_reg */ { IrTemplate::GpBinopFlags, Opcode::SUB, 0 },
+    /* [308] CCMP_32_condcmp_imm */ { IrTemplate::GpBinopFlags, Opcode::SUB, 0 },
+    /* [309] CCMP_64_condcmp_imm */ { IrTemplate::GpBinopFlags, Opcode::SUB, 0 },
+    /* [310] CCMP_32_condcmp_reg */ { IrTemplate::GpBinopFlags, Opcode::SUB, 0 },
+    /* [311] CCMP_64_condcmp_reg */ { IrTemplate::GpBinopFlags, Opcode::SUB, 0 },
+    /* [312] CINC_CSINC_32_condsel */ { IrTemplate::CondSelect, Opcode::COPY, 0 },
+    /* [313] CINC_CSINC_64_condsel */ { IrTemplate::CondSelect, Opcode::COPY, 0 },
+    /* [314] CINV_CSINV_32_condsel */ { IrTemplate::CondSelect, Opcode::COPY, 0 },
+    /* [315] CINV_CSINV_64_condsel */ { IrTemplate::CondSelect, Opcode::COPY, 0 },
+    /* [316] CLS_32_dp_1src */ { IrTemplate::SimdUnary, Opcode::COPY, 0 },
+    /* [317] CLS_64_dp_1src */ { IrTemplate::SimdUnary, Opcode::COPY, 0 },
+    /* [318] CLZ_32_dp_1src */ { IrTemplate::SimdUnary, Opcode::COPY, 0 },
+    /* [319] CLZ_64_dp_1src */ { IrTemplate::SimdUnary, Opcode::COPY, 0 },
+    /* [320] CMN_ADDS_32S_addsub_ext */ { IrTemplate::GpBinopFlags, Opcode::ADD, 0 },
+    /* [321] CMN_ADDS_64S_addsub_ext */ { IrTemplate::GpBinopFlags, Opcode::ADD, 0 },
+    /* [322] CMN_ADDS_32_addsub_shift */ { IrTemplate::GpBinopFlags, Opcode::ADD, 0 },
+    /* [323] CMN_ADDS_64_addsub_shift */ { IrTemplate::GpBinopFlags, Opcode::ADD, 0 },
+    /* [324] CMP_SUBS_32S_addsub_ext */ { IrTemplate::GpBinopFlags, Opcode::SUB, 0 },
+    /* [325] CMP_SUBS_64S_addsub_ext */ { IrTemplate::GpBinopFlags, Opcode::SUB, 0 },
+    /* [326] CMP_SUBS_32_addsub_shift */ { IrTemplate::GpBinopFlags, Opcode::SUB, 0 },
+    /* [327] CMP_SUBS_64_addsub_shift */ { IrTemplate::GpBinopFlags, Opcode::SUB, 0 },
+    /* [328] CMPP_SUBPS_64S_dp_2src */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [329] CNEG_CSNEG_32_condsel */ { IrTemplate::CondSelect, Opcode::COPY, 0 },
+    /* [330] CNEG_CSNEG_64_condsel */ { IrTemplate::CondSelect, Opcode::COPY, 0 },
+    /* [331] CNT_32_dp_1src */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [332] CNT_64_dp_1src */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [333] CRC32B_32C_dp_2src */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [334] CRC32H_32C_dp_2src */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [335] CRC32W_32C_dp_2src */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [336] CRC32X_64C_dp_2src */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [337] CRC32CB_32C_dp_2src */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [338] CRC32CH_32C_dp_2src */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [339] CRC32CW_32C_dp_2src */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [340] CRC32CX_64C_dp_2src */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [341] CSEL_32_condsel */ { IrTemplate::CondSelect, Opcode::COPY, 0 },
+    /* [342] CSEL_64_condsel */ { IrTemplate::CondSelect, Opcode::COPY, 0 },
+    /* [343] CSET_CSINC_32_condsel */ { IrTemplate::CondSelect, Opcode::COPY, 0 },
+    /* [344] CSET_CSINC_64_condsel */ { IrTemplate::CondSelect, Opcode::COPY, 0 },
+    /* [345] CSETM_CSINV_32_condsel */ { IrTemplate::CondSelect, Opcode::COPY, 0 },
+    /* [346] CSETM_CSINV_64_condsel */ { IrTemplate::CondSelect, Opcode::COPY, 0 },
+    /* [347] CSINC_32_condsel */ { IrTemplate::CondSelect, Opcode::COPY, 0 },
+    /* [348] CSINC_64_condsel */ { IrTemplate::CondSelect, Opcode::COPY, 0 },
+    /* [349] CSINV_32_condsel */ { IrTemplate::CondSelect, Opcode::COPY, 0 },
+    /* [350] CSINV_64_condsel */ { IrTemplate::CondSelect, Opcode::COPY, 0 },
+    /* [351] CSNEG_32_condsel */ { IrTemplate::CondSelect, Opcode::COPY, 0 },
+    /* [352] CSNEG_64_condsel */ { IrTemplate::CondSelect, Opcode::COPY, 0 },
+    /* [353] CTZ_32_dp_1src */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [354] CTZ_64_dp_1src */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [355] EON_32_log_shift */ { IrTemplate::GpBinop, Opcode::XOR, 0 },
+    /* [356] EON_64_log_shift */ { IrTemplate::GpBinop, Opcode::XOR, 0 },
+    /* [357] EOR_32_log_shift */ { IrTemplate::GpBinop, Opcode::XOR, 0 },
+    /* [358] EOR_64_log_shift */ { IrTemplate::GpBinop, Opcode::XOR, 0 },
+    /* [359] GMI_64G_dp_2src */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [360] IRG_64I_dp_2src */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [361] LSL_LSLV_32_dp_2src */ { IrTemplate::GpShift, Opcode::SHL, 0 },
+    /* [362] LSL_LSLV_64_dp_2src */ { IrTemplate::GpShift, Opcode::SHL, 0 },
+    /* [363] LSLV_32_dp_2src */ { IrTemplate::GpShift, Opcode::SHL, 0 },
+    /* [364] LSLV_64_dp_2src */ { IrTemplate::GpShift, Opcode::SHL, 0 },
+    /* [365] LSR_LSRV_32_dp_2src */ { IrTemplate::GpShift, Opcode::SHR, 0 },
+    /* [366] LSR_LSRV_64_dp_2src */ { IrTemplate::GpShift, Opcode::SHR, 0 },
+    /* [367] LSRV_32_dp_2src */ { IrTemplate::GpShift, Opcode::SHR, 0 },
+    /* [368] LSRV_64_dp_2src */ { IrTemplate::GpShift, Opcode::SHR, 0 },
+    /* [369] MADD_32A_dp_3src */ { IrTemplate::GpMul, Opcode::MUL, 0 },
+    /* [370] MADD_64A_dp_3src */ { IrTemplate::GpMul, Opcode::MUL, 0 },
+    /* [371] MADDPT_64A_dp_3src */ { IrTemplate::GpMul, Opcode::MUL, 0 },
+    /* [372] MNEG_MSUB_32A_dp_3src */ { IrTemplate::GpMul, Opcode::MUL, 1 },
+    /* [373] MNEG_MSUB_64A_dp_3src */ { IrTemplate::GpMul, Opcode::MUL, 1 },
+    /* [374] MOV_ORR_32_log_shift */ { IrTemplate::GpBinop, Opcode::OR, 0 },
+    /* [375] MOV_ORR_64_log_shift */ { IrTemplate::GpBinop, Opcode::OR, 0 },
+    /* [376] MSUB_32A_dp_3src */ { IrTemplate::GpMul, Opcode::MUL, 1 },
+    /* [377] MSUB_64A_dp_3src */ { IrTemplate::GpMul, Opcode::MUL, 1 },
+    /* [378] MSUBPT_64A_dp_3src */ { IrTemplate::GpMul, Opcode::MUL, 1 },
+    /* [379] MUL_MADD_32A_dp_3src */ { IrTemplate::GpMul, Opcode::MUL, 0 },
+    /* [380] MUL_MADD_64A_dp_3src */ { IrTemplate::GpMul, Opcode::MUL, 0 },
+    /* [381] MVN_ORN_32_log_shift */ { IrTemplate::GpBinop, Opcode::OR, 0 },
+    /* [382] MVN_ORN_64_log_shift */ { IrTemplate::GpBinop, Opcode::OR, 0 },
+    /* [383] NEG_SUB_32_addsub_shift */ { IrTemplate::GpBinop, Opcode::SUB, 0 },
+    /* [384] NEG_SUB_64_addsub_shift */ { IrTemplate::GpBinop, Opcode::SUB, 0 },
+    /* [385] NEGS_SUBS_32_addsub_shift */ { IrTemplate::GpBinopFlags, Opcode::SUB, 0 },
+    /* [386] NEGS_SUBS_64_addsub_shift */ { IrTemplate::GpBinopFlags, Opcode::SUB, 0 },
+    /* [387] NGC_SBC_32_addsub_carry */ { IrTemplate::GpBinop, Opcode::SUB_CARRY, 0 },
+    /* [388] NGC_SBC_64_addsub_carry */ { IrTemplate::GpBinop, Opcode::SUB_CARRY, 0 },
+    /* [389] NGCS_SBCS_32_addsub_carry */ { IrTemplate::GpBinopFlags, Opcode::SUB_CARRY, 0 },
+    /* [390] NGCS_SBCS_64_addsub_carry */ { IrTemplate::GpBinopFlags, Opcode::SUB_CARRY, 0 },
+    /* [391] ORN_32_log_shift */ { IrTemplate::GpBinop, Opcode::OR, 0 },
+    /* [392] ORN_64_log_shift */ { IrTemplate::GpBinop, Opcode::OR, 0 },
+    /* [393] ORR_32_log_shift */ { IrTemplate::GpBinop, Opcode::OR, 0 },
+    /* [394] ORR_64_log_shift */ { IrTemplate::GpBinop, Opcode::OR, 0 },
+    /* [395] PACDA_64P_dp_1src */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [396] PACDZA_64Z_dp_1src */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [397] PACDB_64P_dp_1src */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [398] PACDZB_64Z_dp_1src */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [399] PACGA_64P_dp_2src */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [400] PACIA_64P_dp_1src */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [401] PACIZA_64Z_dp_1src */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [402] PACIA171615_64LR_dp_1src */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [403] PACIASPPC_64LR_dp_1src */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [404] PACIB_64P_dp_1src */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [405] PACIZB_64Z_dp_1src */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [406] PACIB171615_64LR_dp_1src */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [407] PACIBSPPC_64LR_dp_1src */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [408] PACNBIASPPC_64LR_dp_1src */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [409] PACNBIBSPPC_64LR_dp_1src */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [410] RBIT_32_dp_1src */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [411] RBIT_64_dp_1src */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [412] REV_32_dp_1src */ { IrTemplate::SimdUnary, Opcode::COPY, 0 },
+    /* [413] REV_64_dp_1src */ { IrTemplate::SimdUnary, Opcode::COPY, 0 },
+    /* [414] REV16_32_dp_1src */ { IrTemplate::SimdUnary, Opcode::COPY, 0 },
+    /* [415] REV16_64_dp_1src */ { IrTemplate::SimdUnary, Opcode::COPY, 0 },
+    /* [416] REV32_64_dp_1src */ { IrTemplate::SimdUnary, Opcode::COPY, 0 },
+    /* [417] REV64_REV_64_dp_1src */ { IrTemplate::SimdUnary, Opcode::COPY, 0 },
+    /* [418] RMIF_only_rmif */ { IrTemplate::GpBinop, Opcode::ADD, 0 },
+    /* [419] ROR_RORV_32_dp_2src */ { IrTemplate::GpShift, Opcode::ROR, 0 },
+    /* [420] ROR_RORV_64_dp_2src */ { IrTemplate::GpShift, Opcode::ROR, 0 },
+    /* [421] RORV_32_dp_2src */ { IrTemplate::GpShift, Opcode::ROR, 0 },
+    /* [422] RORV_64_dp_2src */ { IrTemplate::GpShift, Opcode::ROR, 0 },
+    /* [423] SBC_32_addsub_carry */ { IrTemplate::GpBinop, Opcode::SUB_CARRY, 0 },
+    /* [424] SBC_64_addsub_carry */ { IrTemplate::GpBinop, Opcode::SUB_CARRY, 0 },
+    /* [425] SBCS_32_addsub_carry */ { IrTemplate::GpBinopFlags, Opcode::SUB_CARRY, 0 },
+    /* [426] SBCS_64_addsub_carry */ { IrTemplate::GpBinopFlags, Opcode::SUB_CARRY, 0 },
+    /* [427] SDIV_32_dp_2src */ { IrTemplate::GpDiv, Opcode::SDIV, 0 },
+    /* [428] SDIV_64_dp_2src */ { IrTemplate::GpDiv, Opcode::SDIV, 0 },
+    /* [429] SETF8_only_setf */ { IrTemplate::GpBinop, Opcode::ADD, 0 },
+    /* [430] SETF16_only_setf */ { IrTemplate::GpBinop, Opcode::ADD, 0 },
+    /* [431] SMADDL_64WA_dp_3src */ { IrTemplate::GpMul, Opcode::MUL, 0 },
+    /* [432] SMAX_32_dp_2src */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [433] SMAX_64_dp_2src */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [434] SMIN_32_dp_2src */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [435] SMIN_64_dp_2src */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [436] SMNEGL_SMSUBL_64WA_dp_3src */ { IrTemplate::GpMul, Opcode::MUL, 1 },
+    /* [437] SMSUBL_64WA_dp_3src */ { IrTemplate::GpMul, Opcode::MUL, 1 },
+    /* [438] SMULH_64_dp_3src */ { IrTemplate::GpMul, Opcode::MUL, 2 },
+    /* [439] SMULL_SMADDL_64WA_dp_3src */ { IrTemplate::GpMul, Opcode::MUL, 0 },
+    /* [440] SUB_32_addsub_ext */ { IrTemplate::GpBinop, Opcode::SUB, 0 },
+    /* [441] SUB_64_addsub_ext */ { IrTemplate::GpBinop, Opcode::SUB, 0 },
+    /* [442] SUB_32_addsub_shift */ { IrTemplate::GpBinop, Opcode::SUB, 0 },
+    /* [443] SUB_64_addsub_shift */ { IrTemplate::GpBinop, Opcode::SUB, 0 },
+    /* [444] SUBP_64S_dp_2src */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [445] SUBPS_64S_dp_2src */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [446] SUBPT_64_addsub_pt */ { IrTemplate::GpBinop, Opcode::ADD, 0 },
+    /* [447] SUBS_32S_addsub_ext */ { IrTemplate::GpBinopFlags, Opcode::SUB, 0 },
+    /* [448] SUBS_64S_addsub_ext */ { IrTemplate::GpBinopFlags, Opcode::SUB, 0 },
+    /* [449] SUBS_32_addsub_shift */ { IrTemplate::GpBinopFlags, Opcode::SUB, 0 },
+    /* [450] SUBS_64_addsub_shift */ { IrTemplate::GpBinopFlags, Opcode::SUB, 0 },
+    /* [451] TST_ANDS_32_log_shift */ { IrTemplate::GpBinopFlags, Opcode::AND, 0 },
+    /* [452] TST_ANDS_64_log_shift */ { IrTemplate::GpBinopFlags, Opcode::AND, 0 },
+    /* [453] UDIV_32_dp_2src */ { IrTemplate::GpDiv, Opcode::UDIV, 0 },
+    /* [454] UDIV_64_dp_2src */ { IrTemplate::GpDiv, Opcode::UDIV, 0 },
+    /* [455] UMADDL_64WA_dp_3src */ { IrTemplate::GpMul, Opcode::MUL, 0 },
+    /* [456] UMAX_32_dp_2src */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [457] UMAX_64_dp_2src */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [458] UMIN_32_dp_2src */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [459] UMIN_64_dp_2src */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [460] UMNEGL_UMSUBL_64WA_dp_3src */ { IrTemplate::GpMul, Opcode::MUL, 1 },
+    /* [461] UMSUBL_64WA_dp_3src */ { IrTemplate::GpMul, Opcode::MUL, 1 },
+    /* [462] UMULH_64_dp_3src */ { IrTemplate::GpMul, Opcode::MUL, 2 },
+    /* [463] UMULL_UMADDL_64WA_dp_3src */ { IrTemplate::GpMul, Opcode::MUL, 0 },
+    /* [464] XPACD_64Z_dp_1src */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [465] XPACI_64Z_dp_1src */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [466] CAS_C32_comswap */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [467] CASA_C32_comswap */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [468] CASAL_C32_comswap */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [469] CASL_C32_comswap */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [470] CAS_C64_comswap */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [471] CASA_C64_comswap */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [472] CASAL_C64_comswap */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [473] CASL_C64_comswap */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [474] CASB_C32_comswap */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [475] CASAB_C32_comswap */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [476] CASALB_C32_comswap */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [477] CASLB_C32_comswap */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [478] CASH_C32_comswap */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [479] CASAH_C32_comswap */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [480] CASALH_C32_comswap */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [481] CASLH_C32_comswap */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [482] CASP_CP32_comswappr */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [483] CASPA_CP32_comswappr */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [484] CASPAL_CP32_comswappr */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [485] CASPL_CP32_comswappr */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [486] CASP_CP64_comswappr */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [487] CASPA_CP64_comswappr */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [488] CASPAL_CP64_comswappr */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [489] CASPL_CP64_comswappr */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [490] CASPT_CP64_comswappr_unpriv */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [491] CASPAT_CP64_comswappr_unpriv */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [492] CASPALT_CP64_comswappr_unpriv */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [493] CASPLT_CP64_comswappr_unpriv */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [494] CAST_C64_comswap_unpriv */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [495] CASAT_C64_comswap_unpriv */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [496] CASALT_C64_comswap_unpriv */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [497] CASLT_C64_comswap_unpriv */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [498] CPYFP_CPY_memcms */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [499] CPYFM_CPY_memcms */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [500] CPYFE_CPY_memcms */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [501] CPYFPN_CPY_memcms */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [502] CPYFMN_CPY_memcms */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [503] CPYFEN_CPY_memcms */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [504] CPYFPRN_CPY_memcms */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [505] CPYFMRN_CPY_memcms */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [506] CPYFERN_CPY_memcms */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [507] CPYFPRT_CPY_memcms */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [508] CPYFMRT_CPY_memcms */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [509] CPYFERT_CPY_memcms */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [510] CPYFPRTN_CPY_memcms */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [511] CPYFMRTN_CPY_memcms */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [512] CPYFERTN_CPY_memcms */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [513] CPYFPRTRN_CPY_memcms */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [514] CPYFMRTRN_CPY_memcms */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [515] CPYFERTRN_CPY_memcms */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [516] CPYFPRTWN_CPY_memcms */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [517] CPYFMRTWN_CPY_memcms */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [518] CPYFERTWN_CPY_memcms */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [519] CPYFPT_CPY_memcms */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [520] CPYFMT_CPY_memcms */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [521] CPYFET_CPY_memcms */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [522] CPYFPTN_CPY_memcms */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [523] CPYFMTN_CPY_memcms */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [524] CPYFETN_CPY_memcms */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [525] CPYFPTRN_CPY_memcms */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [526] CPYFMTRN_CPY_memcms */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [527] CPYFETRN_CPY_memcms */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [528] CPYFPTWN_CPY_memcms */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [529] CPYFMTWN_CPY_memcms */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [530] CPYFETWN_CPY_memcms */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [531] CPYFPWN_CPY_memcms */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [532] CPYFMWN_CPY_memcms */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [533] CPYFEWN_CPY_memcms */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [534] CPYFPWT_CPY_memcms */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [535] CPYFMWT_CPY_memcms */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [536] CPYFEWT_CPY_memcms */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [537] CPYFPWTN_CPY_memcms */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [538] CPYFMWTN_CPY_memcms */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [539] CPYFEWTN_CPY_memcms */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [540] CPYFPWTRN_CPY_memcms */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [541] CPYFMWTRN_CPY_memcms */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [542] CPYFEWTRN_CPY_memcms */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [543] CPYFPWTWN_CPY_memcms */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [544] CPYFMWTWN_CPY_memcms */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [545] CPYFEWTWN_CPY_memcms */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [546] CPYP_CPY_memcms */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [547] CPYM_CPY_memcms */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [548] CPYE_CPY_memcms */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [549] CPYPN_CPY_memcms */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [550] CPYMN_CPY_memcms */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [551] CPYEN_CPY_memcms */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [552] CPYPRN_CPY_memcms */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [553] CPYMRN_CPY_memcms */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [554] CPYERN_CPY_memcms */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [555] CPYPRT_CPY_memcms */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [556] CPYMRT_CPY_memcms */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [557] CPYERT_CPY_memcms */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [558] CPYPRTN_CPY_memcms */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [559] CPYMRTN_CPY_memcms */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [560] CPYERTN_CPY_memcms */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [561] CPYPRTRN_CPY_memcms */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [562] CPYMRTRN_CPY_memcms */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [563] CPYERTRN_CPY_memcms */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [564] CPYPRTWN_CPY_memcms */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [565] CPYMRTWN_CPY_memcms */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [566] CPYERTWN_CPY_memcms */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [567] CPYPT_CPY_memcms */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [568] CPYMT_CPY_memcms */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [569] CPYET_CPY_memcms */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [570] CPYPTN_CPY_memcms */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [571] CPYMTN_CPY_memcms */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [572] CPYETN_CPY_memcms */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [573] CPYPTRN_CPY_memcms */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [574] CPYMTRN_CPY_memcms */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [575] CPYETRN_CPY_memcms */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [576] CPYPTWN_CPY_memcms */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [577] CPYMTWN_CPY_memcms */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [578] CPYETWN_CPY_memcms */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [579] CPYPWN_CPY_memcms */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [580] CPYMWN_CPY_memcms */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [581] CPYEWN_CPY_memcms */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [582] CPYPWT_CPY_memcms */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [583] CPYMWT_CPY_memcms */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [584] CPYEWT_CPY_memcms */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [585] CPYPWTN_CPY_memcms */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [586] CPYMWTN_CPY_memcms */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [587] CPYEWTN_CPY_memcms */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [588] CPYPWTRN_CPY_memcms */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [589] CPYMWTRN_CPY_memcms */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [590] CPYEWTRN_CPY_memcms */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [591] CPYPWTWN_CPY_memcms */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [592] CPYMWTWN_CPY_memcms */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [593] CPYEWTWN_CPY_memcms */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [594] GCSSTR_64_ldst_gcs */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [595] GCSSTTR_64_ldst_gcs */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [596] LD1_asisdlse_R1_1v */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [597] LD1_asisdlse_R2_2v */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [598] LD1_asisdlse_R3_3v */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [599] LD1_asisdlse_R4_4v */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [600] LD1_asisdlsep_I1_i1 */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [601] LD1_asisdlsep_R1_r1 */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [602] LD1_asisdlsep_I2_i2 */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [603] LD1_asisdlsep_R2_r2 */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [604] LD1_asisdlsep_I3_i3 */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [605] LD1_asisdlsep_R3_r3 */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [606] LD1_asisdlsep_I4_i4 */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [607] LD1_asisdlsep_R4_r4 */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [608] LD1_asisdlso_B1_1b */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [609] LD1_asisdlso_H1_1h */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [610] LD1_asisdlso_S1_1s */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [611] LD1_asisdlso_D1_1d */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [612] LD1_asisdlsop_B1_i1b */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [613] LD1_asisdlsop_BX1_r1b */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [614] LD1_asisdlsop_D1_i1d */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [615] LD1_asisdlsop_DX1_r1d */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [616] LD1_asisdlsop_H1_i1h */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [617] LD1_asisdlsop_HX1_r1h */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [618] LD1_asisdlsop_S1_i1s */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [619] LD1_asisdlsop_SX1_r1s */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [620] LD1R_asisdlso_R1 */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [621] LD1R_asisdlsop_R1_i */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [622] LD1R_asisdlsop_RX1_r */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [623] LD2_asisdlse_R2 */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [624] LD2_asisdlsep_I2_i */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [625] LD2_asisdlsep_R2_r */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [626] LD2_asisdlso_B2_2b */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [627] LD2_asisdlso_H2_2h */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [628] LD2_asisdlso_S2_2s */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [629] LD2_asisdlso_D2_2d */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [630] LD2_asisdlsop_B2_i2b */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [631] LD2_asisdlsop_BX2_r2b */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [632] LD2_asisdlsop_H2_i2h */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [633] LD2_asisdlsop_HX2_r2h */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [634] LD2_asisdlsop_S2_i2s */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [635] LD2_asisdlsop_SX2_r2s */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [636] LD2_asisdlsop_D2_i2d */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [637] LD2_asisdlsop_DX2_r2d */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [638] LD2R_asisdlso_R2 */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [639] LD2R_asisdlsop_R2_i */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [640] LD2R_asisdlsop_RX2_r */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [641] LD3_asisdlse_R3 */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [642] LD3_asisdlsep_I3_i */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [643] LD3_asisdlsep_R3_r */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [644] LD3_asisdlso_B3_3b */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [645] LD3_asisdlso_H3_3h */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [646] LD3_asisdlso_S3_3s */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [647] LD3_asisdlso_D3_3d */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [648] LD3_asisdlsop_B3_i3b */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [649] LD3_asisdlsop_BX3_r3b */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [650] LD3_asisdlsop_H3_i3h */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [651] LD3_asisdlsop_HX3_r3h */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [652] LD3_asisdlsop_S3_i3s */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [653] LD3_asisdlsop_SX3_r3s */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [654] LD3_asisdlsop_D3_i3d */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [655] LD3_asisdlsop_DX3_r3d */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [656] LD3R_asisdlso_R3 */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [657] LD3R_asisdlsop_R3_i */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [658] LD3R_asisdlsop_RX3_r */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [659] LD4_asisdlse_R4 */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [660] LD4_asisdlsep_I4_i */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [661] LD4_asisdlsep_R4_r */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [662] LD4_asisdlso_B4_4b */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [663] LD4_asisdlso_H4_4h */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [664] LD4_asisdlso_S4_4s */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [665] LD4_asisdlso_D4_4d */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [666] LD4_asisdlsop_B4_i4b */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [667] LD4_asisdlsop_BX4_r4b */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [668] LD4_asisdlsop_H4_i4h */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [669] LD4_asisdlsop_HX4_r4h */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [670] LD4_asisdlsop_S4_i4s */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [671] LD4_asisdlsop_SX4_r4s */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [672] LD4_asisdlsop_D4_i4d */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [673] LD4_asisdlsop_DX4_r4d */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [674] LD4R_asisdlso_R4 */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [675] LD4R_asisdlsop_R4_i */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [676] LD4R_asisdlsop_RX4_r */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [677] LD64B_64L_memop */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [678] LDADD_32_memop */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [679] LDADDA_32_memop */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [680] LDADDAL_32_memop */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [681] LDADDL_32_memop */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [682] LDADD_64_memop */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [683] LDADDA_64_memop */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [684] LDADDAL_64_memop */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [685] LDADDL_64_memop */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [686] LDADDB_32_memop */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [687] LDADDAB_32_memop */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [688] LDADDALB_32_memop */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [689] LDADDLB_32_memop */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [690] LDADDH_32_memop */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [691] LDADDAH_32_memop */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [692] LDADDALH_32_memop */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [693] LDADDLH_32_memop */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [694] LDAP1_asisdlso_D1 */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [695] LDAP_64_ldiappstilp */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [696] LDAPP_64_ldiappstilp */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [697] LDAPR_32L_ldapstl_writeback */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [698] LDAPR_64L_ldapstl_writeback */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [699] LDAPR_32L_memop */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [700] LDAPR_64L_memop */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [701] LDAPRB_32L_memop */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [702] LDAPRH_32L_memop */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [703] LDAPUR_B_ldapstl_simd */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [704] LDAPUR_H_ldapstl_simd */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [705] LDAPUR_S_ldapstl_simd */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [706] LDAPUR_D_ldapstl_simd */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [707] LDAPUR_Q_ldapstl_simd */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [708] LDAPUR_32_ldapstl_unscaled */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [709] LDAPUR_64_ldapstl_unscaled */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [710] LDAPURB_32_ldapstl_unscaled */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [711] LDAPURH_32_ldapstl_unscaled */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [712] LDAPURSB_32_ldapstl_unscaled */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [713] LDAPURSB_64_ldapstl_unscaled */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [714] LDAPURSH_32_ldapstl_unscaled */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [715] LDAPURSH_64_ldapstl_unscaled */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [716] LDAPURSW_64_ldapstl_unscaled */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [717] LDAR_LR32_ldstord */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [718] LDAR_LR64_ldstord */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [719] LDARB_LR32_ldstord */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [720] LDARH_LR32_ldstord */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [721] LDATXR_LR32_ldstexclr_unpriv */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [722] LDATXR_LR64_ldstexclr_unpriv */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [723] LDAXP_LP32_ldstexclp */ { IrTemplate::LoadPair, Opcode::LOAD, 0 },
+    /* [724] LDAXP_LP64_ldstexclp */ { IrTemplate::LoadPair, Opcode::LOAD, 0 },
+    /* [725] LDAXR_LR32_ldstexclr */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [726] LDAXR_LR64_ldstexclr */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [727] LDAXRB_LR32_ldstexclr */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [728] LDAXRH_LR32_ldstexclr */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [729] LDBFADD_16 */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [730] LDBFADDA_16 */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [731] LDBFADDAL_16 */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [732] LDBFADDL_16 */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [733] LDBFMAX_16 */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [734] LDBFMAXA_16 */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [735] LDBFMAXAL_16 */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [736] LDBFMAXL_16 */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [737] LDBFMAXNM_16 */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [738] LDBFMAXNMA_16 */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [739] LDBFMAXNMAL_16 */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [740] LDBFMAXNML_16 */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [741] LDBFMIN_16 */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [742] LDBFMINA_16 */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [743] LDBFMINAL_16 */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [744] LDBFMINL_16 */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [745] LDBFMINNM_16 */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [746] LDBFMINNMA_16 */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [747] LDBFMINNMAL_16 */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [748] LDBFMINNML_16 */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [749] LDCLR_32_memop */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [750] LDCLRA_32_memop */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [751] LDCLRAL_32_memop */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [752] LDCLRL_32_memop */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [753] LDCLR_64_memop */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [754] LDCLRA_64_memop */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [755] LDCLRAL_64_memop */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [756] LDCLRL_64_memop */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [757] LDCLRB_32_memop */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [758] LDCLRAB_32_memop */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [759] LDCLRALB_32_memop */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [760] LDCLRLB_32_memop */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [761] LDCLRH_32_memop */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [762] LDCLRAH_32_memop */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [763] LDCLRALH_32_memop */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [764] LDCLRLH_32_memop */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [765] LDCLRP_128_memop_128 */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [766] LDCLRPA_128_memop_128 */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [767] LDCLRPAL_128_memop_128 */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [768] LDCLRPL_128_memop_128 */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [769] LDEOR_32_memop */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [770] LDEORA_32_memop */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [771] LDEORAL_32_memop */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [772] LDEORL_32_memop */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [773] LDEOR_64_memop */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [774] LDEORA_64_memop */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [775] LDEORAL_64_memop */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [776] LDEORL_64_memop */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [777] LDEORB_32_memop */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [778] LDEORAB_32_memop */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [779] LDEORALB_32_memop */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [780] LDEORLB_32_memop */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [781] LDEORH_32_memop */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [782] LDEORAH_32_memop */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [783] LDEORALH_32_memop */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [784] LDEORLH_32_memop */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [785] LDFADD_16 */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [786] LDFADDA_16 */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [787] LDFADDAL_16 */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [788] LDFADDL_16 */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [789] LDFADD_32 */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [790] LDFADDA_32 */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [791] LDFADDAL_32 */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [792] LDFADDL_32 */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [793] LDFADD_64 */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [794] LDFADDA_64 */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [795] LDFADDAL_64 */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [796] LDFADDL_64 */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [797] LDFMAX_16 */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [798] LDFMAXA_16 */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [799] LDFMAXAL_16 */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [800] LDFMAXL_16 */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [801] LDFMAX_32 */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [802] LDFMAXA_32 */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [803] LDFMAXAL_32 */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [804] LDFMAXL_32 */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [805] LDFMAX_64 */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [806] LDFMAXA_64 */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [807] LDFMAXAL_64 */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [808] LDFMAXL_64 */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [809] LDFMAXNM_16 */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [810] LDFMAXNMA_16 */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [811] LDFMAXNMAL_16 */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [812] LDFMAXNML_16 */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [813] LDFMAXNM_32 */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [814] LDFMAXNMA_32 */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [815] LDFMAXNMAL_32 */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [816] LDFMAXNML_32 */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [817] LDFMAXNM_64 */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [818] LDFMAXNMA_64 */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [819] LDFMAXNMAL_64 */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [820] LDFMAXNML_64 */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [821] LDFMIN_16 */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [822] LDFMINA_16 */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [823] LDFMINAL_16 */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [824] LDFMINL_16 */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [825] LDFMIN_32 */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [826] LDFMINA_32 */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [827] LDFMINAL_32 */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [828] LDFMINL_32 */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [829] LDFMIN_64 */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [830] LDFMINA_64 */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [831] LDFMINAL_64 */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [832] LDFMINL_64 */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [833] LDFMINNM_16 */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [834] LDFMINNMA_16 */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [835] LDFMINNMAL_16 */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [836] LDFMINNML_16 */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [837] LDFMINNM_32 */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [838] LDFMINNMA_32 */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [839] LDFMINNMAL_32 */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [840] LDFMINNML_32 */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [841] LDFMINNM_64 */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [842] LDFMINNMA_64 */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [843] LDFMINNMAL_64 */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [844] LDFMINNML_64 */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [845] LDG_64Loffset_ldsttags */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [846] LDGM_64bulk_ldsttags */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [847] LDIAPP_32LE_ldiappstilp */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [848] LDIAPP_32L_ldiappstilp */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [849] LDIAPP_64LS_ldiappstilp */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [850] LDIAPP_64L_ldiappstilp */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [851] LDLAR_LR32_ldstord */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [852] LDLAR_LR64_ldstord */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [853] LDLARB_LR32_ldstord */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [854] LDLARH_LR32_ldstord */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [855] LDNP_S_ldstnapair_offs */ { IrTemplate::LoadPair, Opcode::LOAD, 0 },
+    /* [856] LDNP_D_ldstnapair_offs */ { IrTemplate::LoadPair, Opcode::LOAD, 0 },
+    /* [857] LDNP_Q_ldstnapair_offs */ { IrTemplate::LoadPair, Opcode::LOAD, 0 },
+    /* [858] LDNP_32_ldstnapair_offs */ { IrTemplate::LoadPair, Opcode::LOAD, 0 },
+    /* [859] LDNP_64_ldstnapair_offs */ { IrTemplate::LoadPair, Opcode::LOAD, 0 },
+    /* [860] LDP_S_ldstpair_post */ { IrTemplate::LoadPair, Opcode::LOAD, 0 },
+    /* [861] LDP_D_ldstpair_post */ { IrTemplate::LoadPair, Opcode::LOAD, 0 },
+    /* [862] LDP_Q_ldstpair_post */ { IrTemplate::LoadPair, Opcode::LOAD, 0 },
+    /* [863] LDP_S_ldstpair_pre */ { IrTemplate::LoadPair, Opcode::LOAD, 0 },
+    /* [864] LDP_D_ldstpair_pre */ { IrTemplate::LoadPair, Opcode::LOAD, 0 },
+    /* [865] LDP_Q_ldstpair_pre */ { IrTemplate::LoadPair, Opcode::LOAD, 0 },
+    /* [866] LDP_S_ldstpair_off */ { IrTemplate::LoadPair, Opcode::LOAD, 0 },
+    /* [867] LDP_D_ldstpair_off */ { IrTemplate::LoadPair, Opcode::LOAD, 0 },
+    /* [868] LDP_Q_ldstpair_off */ { IrTemplate::LoadPair, Opcode::LOAD, 0 },
+    /* [869] LDP_32_ldstpair_post */ { IrTemplate::LoadPair, Opcode::LOAD, 0 },
+    /* [870] LDP_64_ldstpair_post */ { IrTemplate::LoadPair, Opcode::LOAD, 0 },
+    /* [871] LDP_32_ldstpair_pre */ { IrTemplate::LoadPair, Opcode::LOAD, 0 },
+    /* [872] LDP_64_ldstpair_pre */ { IrTemplate::LoadPair, Opcode::LOAD, 0 },
+    /* [873] LDP_32_ldstpair_off */ { IrTemplate::LoadPair, Opcode::LOAD, 0 },
+    /* [874] LDP_64_ldstpair_off */ { IrTemplate::LoadPair, Opcode::LOAD, 0 },
+    /* [875] LDPSW_64_ldstpair_post */ { IrTemplate::LoadPair, Opcode::LOAD, 0 },
+    /* [876] LDPSW_64_ldstpair_pre */ { IrTemplate::LoadPair, Opcode::LOAD, 0 },
+    /* [877] LDPSW_64_ldstpair_off */ { IrTemplate::LoadPair, Opcode::LOAD, 0 },
+    /* [878] LDR_B_ldst_immpost */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [879] LDR_H_ldst_immpost */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [880] LDR_S_ldst_immpost */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [881] LDR_D_ldst_immpost */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [882] LDR_Q_ldst_immpost */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [883] LDR_B_ldst_immpre */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [884] LDR_H_ldst_immpre */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [885] LDR_S_ldst_immpre */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [886] LDR_D_ldst_immpre */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [887] LDR_Q_ldst_immpre */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [888] LDR_B_ldst_pos */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [889] LDR_H_ldst_pos */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [890] LDR_S_ldst_pos */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [891] LDR_D_ldst_pos */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [892] LDR_Q_ldst_pos */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [893] LDR_32_ldst_immpost */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [894] LDR_64_ldst_immpost */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [895] LDR_32_ldst_immpre */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [896] LDR_64_ldst_immpre */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [897] LDR_32_ldst_pos */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [898] LDR_64_ldst_pos */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [899] LDR_S_loadlit */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [900] LDR_D_loadlit */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [901] LDR_Q_loadlit */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [902] LDR_32_loadlit */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [903] LDR_64_loadlit */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [904] LDR_B_ldst_regoff */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [905] LDR_BL_ldst_regoff */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [906] LDR_H_ldst_regoff */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [907] LDR_S_ldst_regoff */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [908] LDR_D_ldst_regoff */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [909] LDR_Q_ldst_regoff */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [910] LDR_32_ldst_regoff */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [911] LDR_64_ldst_regoff */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [912] LDRAA_64_ldst_pac */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [913] LDRAA_64W_ldst_pac */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [914] LDRAB_64_ldst_pac */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [915] LDRAB_64W_ldst_pac */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [916] LDRB_32_ldst_immpost */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [917] LDRB_32_ldst_immpre */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [918] LDRB_32_ldst_pos */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [919] LDRB_32B_ldst_regoff */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [920] LDRB_32BL_ldst_regoff */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [921] LDRH_32_ldst_immpost */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [922] LDRH_32_ldst_immpre */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [923] LDRH_32_ldst_pos */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [924] LDRH_32_ldst_regoff */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [925] LDRSB_32_ldst_immpost */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [926] LDRSB_64_ldst_immpost */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [927] LDRSB_32_ldst_immpre */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [928] LDRSB_64_ldst_immpre */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [929] LDRSB_32_ldst_pos */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [930] LDRSB_64_ldst_pos */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [931] LDRSB_32B_ldst_regoff */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [932] LDRSB_32BL_ldst_regoff */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [933] LDRSB_64B_ldst_regoff */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [934] LDRSB_64BL_ldst_regoff */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [935] LDRSH_32_ldst_immpost */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [936] LDRSH_64_ldst_immpost */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [937] LDRSH_32_ldst_immpre */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [938] LDRSH_64_ldst_immpre */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [939] LDRSH_32_ldst_pos */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [940] LDRSH_64_ldst_pos */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [941] LDRSH_32_ldst_regoff */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [942] LDRSH_64_ldst_regoff */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [943] LDRSW_64_ldst_immpost */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [944] LDRSW_64_ldst_immpre */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [945] LDRSW_64_ldst_pos */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [946] LDRSW_64_loadlit */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [947] LDRSW_64_ldst_regoff */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [948] LDSET_32_memop */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [949] LDSETA_32_memop */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [950] LDSETAL_32_memop */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [951] LDSETL_32_memop */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [952] LDSET_64_memop */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [953] LDSETA_64_memop */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [954] LDSETAL_64_memop */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [955] LDSETL_64_memop */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [956] LDSETB_32_memop */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [957] LDSETAB_32_memop */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [958] LDSETALB_32_memop */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [959] LDSETLB_32_memop */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [960] LDSETH_32_memop */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [961] LDSETAH_32_memop */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [962] LDSETALH_32_memop */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [963] LDSETLH_32_memop */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [964] LDSETP_128_memop_128 */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [965] LDSETPA_128_memop_128 */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [966] LDSETPAL_128_memop_128 */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [967] LDSETPL_128_memop_128 */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [968] LDSMAX_32_memop */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [969] LDSMAXA_32_memop */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [970] LDSMAXAL_32_memop */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [971] LDSMAXL_32_memop */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [972] LDSMAX_64_memop */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [973] LDSMAXA_64_memop */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [974] LDSMAXAL_64_memop */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [975] LDSMAXL_64_memop */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [976] LDSMAXB_32_memop */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [977] LDSMAXAB_32_memop */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [978] LDSMAXALB_32_memop */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [979] LDSMAXLB_32_memop */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [980] LDSMAXH_32_memop */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [981] LDSMAXAH_32_memop */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [982] LDSMAXALH_32_memop */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [983] LDSMAXLH_32_memop */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [984] LDSMIN_32_memop */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [985] LDSMINA_32_memop */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [986] LDSMINAL_32_memop */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [987] LDSMINL_32_memop */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [988] LDSMIN_64_memop */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [989] LDSMINA_64_memop */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [990] LDSMINAL_64_memop */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [991] LDSMINL_64_memop */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [992] LDSMINB_32_memop */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [993] LDSMINAB_32_memop */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [994] LDSMINALB_32_memop */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [995] LDSMINLB_32_memop */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [996] LDSMINH_32_memop */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [997] LDSMINAH_32_memop */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [998] LDSMINALH_32_memop */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [999] LDSMINLH_32_memop */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [1000] LDTADD_32_memop_unpriv */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [1001] LDTADDA_32_memop_unpriv */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [1002] LDTADDAL_32_memop_unpriv */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [1003] LDTADDL_32_memop_unpriv */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [1004] LDTADD_64_memop_unpriv */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [1005] LDTADDA_64_memop_unpriv */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [1006] LDTADDAL_64_memop_unpriv */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [1007] LDTADDL_64_memop_unpriv */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [1008] LDTCLR_32_memop_unpriv */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [1009] LDTCLRA_32_memop_unpriv */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [1010] LDTCLRAL_32_memop_unpriv */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [1011] LDTCLRL_32_memop_unpriv */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [1012] LDTCLR_64_memop_unpriv */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [1013] LDTCLRA_64_memop_unpriv */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [1014] LDTCLRAL_64_memop_unpriv */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [1015] LDTCLRL_64_memop_unpriv */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [1016] LDTNP_Q_ldstnapair_offs */ { IrTemplate::LoadPair, Opcode::LOAD, 0 },
+    /* [1017] LDTNP_64_ldstnapair_offs */ { IrTemplate::LoadPair, Opcode::LOAD, 0 },
+    /* [1018] LDTP_Q_ldstpair_post */ { IrTemplate::LoadPair, Opcode::LOAD, 0 },
+    /* [1019] LDTP_Q_ldstpair_pre */ { IrTemplate::LoadPair, Opcode::LOAD, 0 },
+    /* [1020] LDTP_Q_ldstpair_off */ { IrTemplate::LoadPair, Opcode::LOAD, 0 },
+    /* [1021] LDTP_64_ldstpair_post */ { IrTemplate::LoadPair, Opcode::LOAD, 0 },
+    /* [1022] LDTP_64_ldstpair_pre */ { IrTemplate::LoadPair, Opcode::LOAD, 0 },
+    /* [1023] LDTP_64_ldstpair_off */ { IrTemplate::LoadPair, Opcode::LOAD, 0 },
+    /* [1024] LDTR_32_ldst_unpriv */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [1025] LDTR_64_ldst_unpriv */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [1026] LDTRB_32_ldst_unpriv */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [1027] LDTRH_32_ldst_unpriv */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [1028] LDTRSB_32_ldst_unpriv */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [1029] LDTRSB_64_ldst_unpriv */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [1030] LDTRSH_32_ldst_unpriv */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [1031] LDTRSH_64_ldst_unpriv */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [1032] LDTRSW_64_ldst_unpriv */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [1033] LDTSET_32_memop_unpriv */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [1034] LDTSETA_32_memop_unpriv */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [1035] LDTSETAL_32_memop_unpriv */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [1036] LDTSETL_32_memop_unpriv */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [1037] LDTSET_64_memop_unpriv */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [1038] LDTSETA_64_memop_unpriv */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [1039] LDTSETAL_64_memop_unpriv */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [1040] LDTSETL_64_memop_unpriv */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [1041] LDTXR_LR32_ldstexclr_unpriv */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [1042] LDTXR_LR64_ldstexclr_unpriv */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [1043] LDUMAX_32_memop */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [1044] LDUMAXA_32_memop */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [1045] LDUMAXAL_32_memop */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [1046] LDUMAXL_32_memop */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [1047] LDUMAX_64_memop */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [1048] LDUMAXA_64_memop */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [1049] LDUMAXAL_64_memop */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [1050] LDUMAXL_64_memop */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [1051] LDUMAXB_32_memop */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [1052] LDUMAXAB_32_memop */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [1053] LDUMAXALB_32_memop */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [1054] LDUMAXLB_32_memop */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [1055] LDUMAXH_32_memop */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [1056] LDUMAXAH_32_memop */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [1057] LDUMAXALH_32_memop */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [1058] LDUMAXLH_32_memop */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [1059] LDUMIN_32_memop */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [1060] LDUMINA_32_memop */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [1061] LDUMINAL_32_memop */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [1062] LDUMINL_32_memop */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [1063] LDUMIN_64_memop */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [1064] LDUMINA_64_memop */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [1065] LDUMINAL_64_memop */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [1066] LDUMINL_64_memop */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [1067] LDUMINB_32_memop */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [1068] LDUMINAB_32_memop */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [1069] LDUMINALB_32_memop */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [1070] LDUMINLB_32_memop */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [1071] LDUMINH_32_memop */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [1072] LDUMINAH_32_memop */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [1073] LDUMINALH_32_memop */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [1074] LDUMINLH_32_memop */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [1075] LDUR_B_ldst_unscaled */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [1076] LDUR_H_ldst_unscaled */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [1077] LDUR_S_ldst_unscaled */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [1078] LDUR_D_ldst_unscaled */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [1079] LDUR_Q_ldst_unscaled */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [1080] LDUR_32_ldst_unscaled */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [1081] LDUR_64_ldst_unscaled */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [1082] LDURB_32_ldst_unscaled */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [1083] LDURH_32_ldst_unscaled */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [1084] LDURSB_32_ldst_unscaled */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [1085] LDURSB_64_ldst_unscaled */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [1086] LDURSH_32_ldst_unscaled */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [1087] LDURSH_64_ldst_unscaled */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [1088] LDURSW_64_ldst_unscaled */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [1089] LDXP_LP32_ldstexclp */ { IrTemplate::LoadPair, Opcode::LOAD, 0 },
+    /* [1090] LDXP_LP64_ldstexclp */ { IrTemplate::LoadPair, Opcode::LOAD, 0 },
+    /* [1091] LDXR_LR32_ldstexclr */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [1092] LDXR_LR64_ldstexclr */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [1093] LDXRB_LR32_ldstexclr */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [1094] LDXRH_LR32_ldstexclr */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [1095] PRFM_P_ldst_pos */ { IrTemplate::Nop, Opcode::NOP, 0 },
+    /* [1096] PRFM_P_loadlit */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [1097] PRFM_P_ldst_regoff */ { IrTemplate::Nop, Opcode::NOP, 0 },
+    /* [1098] PRFUM_P_ldst_unscaled */ { IrTemplate::Nop, Opcode::NOP, 0 },
+    /* [1099] RCWCAS_C64_rcwcomswap */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [1100] RCWCASA_C64_rcwcomswap */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [1101] RCWCASAL_C64_rcwcomswap */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [1102] RCWCASL_C64_rcwcomswap */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [1103] RCWCASP_C64_rcwcomswappr */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [1104] RCWCASPA_C64_rcwcomswappr */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [1105] RCWCASPAL_C64_rcwcomswappr */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [1106] RCWCASPL_C64_rcwcomswappr */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [1107] RCWCLR_64_memop */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [1108] RCWCLRA_64_memop */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [1109] RCWCLRAL_64_memop */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [1110] RCWCLRL_64_memop */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [1111] RCWCLRP_128_memop_128 */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [1112] RCWCLRPA_128_memop_128 */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [1113] RCWCLRPAL_128_memop_128 */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [1114] RCWCLRPL_128_memop_128 */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [1115] RCWSCAS_C64_rcwcomswap */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [1116] RCWSCASA_C64_rcwcomswap */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [1117] RCWSCASAL_C64_rcwcomswap */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [1118] RCWSCASL_C64_rcwcomswap */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [1119] RCWSCASP_C64_rcwcomswappr */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [1120] RCWSCASPA_C64_rcwcomswappr */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [1121] RCWSCASPAL_C64_rcwcomswappr */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [1122] RCWSCASPL_C64_rcwcomswappr */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [1123] RCWSCLR_64_memop */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [1124] RCWSCLRA_64_memop */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [1125] RCWSCLRAL_64_memop */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [1126] RCWSCLRL_64_memop */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [1127] RCWSCLRP_128_memop_128 */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [1128] RCWSCLRPA_128_memop_128 */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [1129] RCWSCLRPAL_128_memop_128 */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [1130] RCWSCLRPL_128_memop_128 */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [1131] RCWSET_64_memop */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [1132] RCWSETA_64_memop */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [1133] RCWSETAL_64_memop */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [1134] RCWSETL_64_memop */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [1135] RCWSETP_128_memop_128 */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [1136] RCWSETPA_128_memop_128 */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [1137] RCWSETPAL_128_memop_128 */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [1138] RCWSETPL_128_memop_128 */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [1139] RCWSSET_64_memop */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [1140] RCWSSETA_64_memop */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [1141] RCWSSETAL_64_memop */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [1142] RCWSSETL_64_memop */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [1143] RCWSSETP_128_memop_128 */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [1144] RCWSSETPA_128_memop_128 */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [1145] RCWSSETPAL_128_memop_128 */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [1146] RCWSSETPL_128_memop_128 */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [1147] RCWSSWP_64_memop */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [1148] RCWSSWPA_64_memop */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [1149] RCWSSWPAL_64_memop */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [1150] RCWSSWPL_64_memop */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [1151] RCWSSWPP_128_memop_128 */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [1152] RCWSSWPPA_128_memop_128 */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [1153] RCWSSWPPAL_128_memop_128 */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [1154] RCWSSWPPL_128_memop_128 */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [1155] RCWSWP_64_memop */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [1156] RCWSWPA_64_memop */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [1157] RCWSWPAL_64_memop */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [1158] RCWSWPL_64_memop */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [1159] RCWSWPP_128_memop_128 */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [1160] RCWSWPPA_128_memop_128 */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [1161] RCWSWPPAL_128_memop_128 */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [1162] RCWSWPPL_128_memop_128 */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [1163] RPRFM_R_ldst_regoff */ { IrTemplate::Nop, Opcode::NOP, 0 },
+    /* [1164] SETGP_SET_memcms */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [1165] SETGM_SET_memcms */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [1166] SETGE_SET_memcms */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [1167] SETGPN_SET_memcms */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [1168] SETGMN_SET_memcms */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [1169] SETGEN_SET_memcms */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [1170] SETGPT_SET_memcms */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [1171] SETGMT_SET_memcms */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [1172] SETGET_SET_memcms */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [1173] SETGPTN_SET_memcms */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [1174] SETGMTN_SET_memcms */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [1175] SETGETN_SET_memcms */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [1176] SETP_SET_memcms */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [1177] SETM_SET_memcms */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [1178] SETE_SET_memcms */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [1179] SETPN_SET_memcms */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [1180] SETMN_SET_memcms */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [1181] SETEN_SET_memcms */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [1182] SETPT_SET_memcms */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [1183] SETMT_SET_memcms */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [1184] SETET_SET_memcms */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [1185] SETPTN_SET_memcms */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [1186] SETMTN_SET_memcms */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [1187] SETETN_SET_memcms */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [1188] ST1_asisdlse_R1_1v */ { IrTemplate::StoreReg, Opcode::STORE, 0 },
+    /* [1189] ST1_asisdlse_R2_2v */ { IrTemplate::StoreReg, Opcode::STORE, 0 },
+    /* [1190] ST1_asisdlse_R3_3v */ { IrTemplate::StoreReg, Opcode::STORE, 0 },
+    /* [1191] ST1_asisdlse_R4_4v */ { IrTemplate::StoreReg, Opcode::STORE, 0 },
+    /* [1192] ST1_asisdlsep_I1_i1 */ { IrTemplate::StoreReg, Opcode::STORE, 0 },
+    /* [1193] ST1_asisdlsep_R1_r1 */ { IrTemplate::StoreReg, Opcode::STORE, 0 },
+    /* [1194] ST1_asisdlsep_I2_i2 */ { IrTemplate::StoreReg, Opcode::STORE, 0 },
+    /* [1195] ST1_asisdlsep_R2_r2 */ { IrTemplate::StoreReg, Opcode::STORE, 0 },
+    /* [1196] ST1_asisdlsep_I3_i3 */ { IrTemplate::StoreReg, Opcode::STORE, 0 },
+    /* [1197] ST1_asisdlsep_R3_r3 */ { IrTemplate::StoreReg, Opcode::STORE, 0 },
+    /* [1198] ST1_asisdlsep_I4_i4 */ { IrTemplate::StoreReg, Opcode::STORE, 0 },
+    /* [1199] ST1_asisdlsep_R4_r4 */ { IrTemplate::StoreReg, Opcode::STORE, 0 },
+    /* [1200] ST1_asisdlso_B1_1b */ { IrTemplate::StoreReg, Opcode::STORE, 0 },
+    /* [1201] ST1_asisdlso_H1_1h */ { IrTemplate::StoreReg, Opcode::STORE, 0 },
+    /* [1202] ST1_asisdlso_S1_1s */ { IrTemplate::StoreReg, Opcode::STORE, 0 },
+    /* [1203] ST1_asisdlso_D1_1d */ { IrTemplate::StoreReg, Opcode::STORE, 0 },
+    /* [1204] ST1_asisdlsop_B1_i1b */ { IrTemplate::StoreReg, Opcode::STORE, 0 },
+    /* [1205] ST1_asisdlsop_BX1_r1b */ { IrTemplate::StoreReg, Opcode::STORE, 0 },
+    /* [1206] ST1_asisdlsop_H1_i1h */ { IrTemplate::StoreReg, Opcode::STORE, 0 },
+    /* [1207] ST1_asisdlsop_HX1_r1h */ { IrTemplate::StoreReg, Opcode::STORE, 0 },
+    /* [1208] ST1_asisdlsop_S1_i1s */ { IrTemplate::StoreReg, Opcode::STORE, 0 },
+    /* [1209] ST1_asisdlsop_SX1_r1s */ { IrTemplate::StoreReg, Opcode::STORE, 0 },
+    /* [1210] ST1_asisdlsop_D1_i1d */ { IrTemplate::StoreReg, Opcode::STORE, 0 },
+    /* [1211] ST1_asisdlsop_DX1_r1d */ { IrTemplate::StoreReg, Opcode::STORE, 0 },
+    /* [1212] ST2_asisdlse_R2 */ { IrTemplate::StoreReg, Opcode::STORE, 0 },
+    /* [1213] ST2_asisdlsep_I2_i */ { IrTemplate::StoreReg, Opcode::STORE, 0 },
+    /* [1214] ST2_asisdlsep_R2_r */ { IrTemplate::StoreReg, Opcode::STORE, 0 },
+    /* [1215] ST2_asisdlso_B2_2b */ { IrTemplate::StoreReg, Opcode::STORE, 0 },
+    /* [1216] ST2_asisdlso_H2_2h */ { IrTemplate::StoreReg, Opcode::STORE, 0 },
+    /* [1217] ST2_asisdlso_S2_2s */ { IrTemplate::StoreReg, Opcode::STORE, 0 },
+    /* [1218] ST2_asisdlso_D2_2d */ { IrTemplate::StoreReg, Opcode::STORE, 0 },
+    /* [1219] ST2_asisdlsop_B2_i2b */ { IrTemplate::StoreReg, Opcode::STORE, 0 },
+    /* [1220] ST2_asisdlsop_BX2_r2b */ { IrTemplate::StoreReg, Opcode::STORE, 0 },
+    /* [1221] ST2_asisdlsop_H2_i2h */ { IrTemplate::StoreReg, Opcode::STORE, 0 },
+    /* [1222] ST2_asisdlsop_HX2_r2h */ { IrTemplate::StoreReg, Opcode::STORE, 0 },
+    /* [1223] ST2_asisdlsop_S2_i2s */ { IrTemplate::StoreReg, Opcode::STORE, 0 },
+    /* [1224] ST2_asisdlsop_SX2_r2s */ { IrTemplate::StoreReg, Opcode::STORE, 0 },
+    /* [1225] ST2_asisdlsop_D2_i2d */ { IrTemplate::StoreReg, Opcode::STORE, 0 },
+    /* [1226] ST2_asisdlsop_DX2_r2d */ { IrTemplate::StoreReg, Opcode::STORE, 0 },
+    /* [1227] ST2G_64Spost_ldsttags */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [1228] ST2G_64Spre_ldsttags */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [1229] ST2G_64Soffset_ldsttags */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [1230] ST3_asisdlse_R3 */ { IrTemplate::StoreReg, Opcode::STORE, 0 },
+    /* [1231] ST3_asisdlsep_I3_i */ { IrTemplate::StoreReg, Opcode::STORE, 0 },
+    /* [1232] ST3_asisdlsep_R3_r */ { IrTemplate::StoreReg, Opcode::STORE, 0 },
+    /* [1233] ST3_asisdlso_B3_3b */ { IrTemplate::StoreReg, Opcode::STORE, 0 },
+    /* [1234] ST3_asisdlso_H3_3h */ { IrTemplate::StoreReg, Opcode::STORE, 0 },
+    /* [1235] ST3_asisdlso_S3_3s */ { IrTemplate::StoreReg, Opcode::STORE, 0 },
+    /* [1236] ST3_asisdlso_D3_3d */ { IrTemplate::StoreReg, Opcode::STORE, 0 },
+    /* [1237] ST3_asisdlsop_B3_i3b */ { IrTemplate::StoreReg, Opcode::STORE, 0 },
+    /* [1238] ST3_asisdlsop_BX3_r3b */ { IrTemplate::StoreReg, Opcode::STORE, 0 },
+    /* [1239] ST3_asisdlsop_H3_i3h */ { IrTemplate::StoreReg, Opcode::STORE, 0 },
+    /* [1240] ST3_asisdlsop_HX3_r3h */ { IrTemplate::StoreReg, Opcode::STORE, 0 },
+    /* [1241] ST3_asisdlsop_S3_i3s */ { IrTemplate::StoreReg, Opcode::STORE, 0 },
+    /* [1242] ST3_asisdlsop_SX3_r3s */ { IrTemplate::StoreReg, Opcode::STORE, 0 },
+    /* [1243] ST3_asisdlsop_D3_i3d */ { IrTemplate::StoreReg, Opcode::STORE, 0 },
+    /* [1244] ST3_asisdlsop_DX3_r3d */ { IrTemplate::StoreReg, Opcode::STORE, 0 },
+    /* [1245] ST4_asisdlse_R4 */ { IrTemplate::StoreReg, Opcode::STORE, 0 },
+    /* [1246] ST4_asisdlsep_I4_i */ { IrTemplate::StoreReg, Opcode::STORE, 0 },
+    /* [1247] ST4_asisdlsep_R4_r */ { IrTemplate::StoreReg, Opcode::STORE, 0 },
+    /* [1248] ST4_asisdlso_B4_4b */ { IrTemplate::StoreReg, Opcode::STORE, 0 },
+    /* [1249] ST4_asisdlso_H4_4h */ { IrTemplate::StoreReg, Opcode::STORE, 0 },
+    /* [1250] ST4_asisdlso_S4_4s */ { IrTemplate::StoreReg, Opcode::STORE, 0 },
+    /* [1251] ST4_asisdlso_D4_4d */ { IrTemplate::StoreReg, Opcode::STORE, 0 },
+    /* [1252] ST4_asisdlsop_B4_i4b */ { IrTemplate::StoreReg, Opcode::STORE, 0 },
+    /* [1253] ST4_asisdlsop_BX4_r4b */ { IrTemplate::StoreReg, Opcode::STORE, 0 },
+    /* [1254] ST4_asisdlsop_H4_i4h */ { IrTemplate::StoreReg, Opcode::STORE, 0 },
+    /* [1255] ST4_asisdlsop_HX4_r4h */ { IrTemplate::StoreReg, Opcode::STORE, 0 },
+    /* [1256] ST4_asisdlsop_S4_i4s */ { IrTemplate::StoreReg, Opcode::STORE, 0 },
+    /* [1257] ST4_asisdlsop_SX4_r4s */ { IrTemplate::StoreReg, Opcode::STORE, 0 },
+    /* [1258] ST4_asisdlsop_D4_i4d */ { IrTemplate::StoreReg, Opcode::STORE, 0 },
+    /* [1259] ST4_asisdlsop_DX4_r4d */ { IrTemplate::StoreReg, Opcode::STORE, 0 },
+    /* [1260] ST64B_64L_memop */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [1261] ST64BV_64_memop */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [1262] ST64BV0_64_memop */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [1263] STADD_LDADD_32_memop */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [1264] STADDL_LDADDL_32_memop */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [1265] STADD_LDADD_64_memop */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [1266] STADDL_LDADDL_64_memop */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [1267] STADDB_LDADDB_32_memop */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [1268] STADDLB_LDADDLB_32_memop */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [1269] STADDH_LDADDH_32_memop */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [1270] STADDLH_LDADDLH_32_memop */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [1271] STBFADD_16 */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [1272] STBFADDL_16 */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [1273] STBFMAX_16 */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [1274] STBFMAXL_16 */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [1275] STBFMAXNM_16 */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [1276] STBFMAXNML_16 */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [1277] STBFMIN_16 */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [1278] STBFMINL_16 */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [1279] STBFMINNM_16 */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [1280] STBFMINNML_16 */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [1281] STCLR_LDCLR_32_memop */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [1282] STCLRL_LDCLRL_32_memop */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [1283] STCLR_LDCLR_64_memop */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [1284] STCLRL_LDCLRL_64_memop */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [1285] STCLRB_LDCLRB_32_memop */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [1286] STCLRLB_LDCLRLB_32_memop */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [1287] STCLRH_LDCLRH_32_memop */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [1288] STCLRLH_LDCLRLH_32_memop */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [1289] STEOR_LDEOR_32_memop */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [1290] STEORL_LDEORL_32_memop */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [1291] STEOR_LDEOR_64_memop */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [1292] STEORL_LDEORL_64_memop */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [1293] STEORB_LDEORB_32_memop */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [1294] STEORLB_LDEORLB_32_memop */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [1295] STEORH_LDEORH_32_memop */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [1296] STEORLH_LDEORLH_32_memop */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [1297] STFADD_16 */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [1298] STFADDL_16 */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [1299] STFADD_32 */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [1300] STFADDL_32 */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [1301] STFADD_64 */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [1302] STFADDL_64 */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [1303] STFMAX_16 */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [1304] STFMAXL_16 */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [1305] STFMAX_32 */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [1306] STFMAXL_32 */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [1307] STFMAX_64 */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [1308] STFMAXL_64 */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [1309] STFMAXNM_16 */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [1310] STFMAXNML_16 */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [1311] STFMAXNM_32 */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [1312] STFMAXNML_32 */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [1313] STFMAXNM_64 */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [1314] STFMAXNML_64 */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [1315] STFMIN_16 */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [1316] STFMINL_16 */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [1317] STFMIN_32 */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [1318] STFMINL_32 */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [1319] STFMIN_64 */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [1320] STFMINL_64 */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [1321] STFMINNM_16 */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [1322] STFMINNML_16 */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [1323] STFMINNM_32 */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [1324] STFMINNML_32 */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [1325] STFMINNM_64 */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [1326] STFMINNML_64 */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [1327] STG_64Spost_ldsttags */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [1328] STG_64Spre_ldsttags */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [1329] STG_64Soffset_ldsttags */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [1330] STGM_64bulk_ldsttags */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [1331] STGP_64_ldstpair_post */ { IrTemplate::StorePair, Opcode::STORE, 0 },
+    /* [1332] STGP_64_ldstpair_pre */ { IrTemplate::StorePair, Opcode::STORE, 0 },
+    /* [1333] STGP_64_ldstpair_off */ { IrTemplate::StorePair, Opcode::STORE, 0 },
+    /* [1334] STILP_32SE_ldiappstilp */ { IrTemplate::StoreReg, Opcode::STORE, 0 },
+    /* [1335] STILP_32S_ldiappstilp */ { IrTemplate::StoreReg, Opcode::STORE, 0 },
+    /* [1336] STILP_64SS_ldiappstilp */ { IrTemplate::StoreReg, Opcode::STORE, 0 },
+    /* [1337] STILP_64S_ldiappstilp */ { IrTemplate::StoreReg, Opcode::STORE, 0 },
+    /* [1338] STL1_asisdlso_D1 */ { IrTemplate::StoreReg, Opcode::STORE, 0 },
+    /* [1339] STLLR_SL32_ldstord */ { IrTemplate::StoreReg, Opcode::STORE, 0 },
+    /* [1340] STLLR_SL64_ldstord */ { IrTemplate::StoreReg, Opcode::STORE, 0 },
+    /* [1341] STLLRB_SL32_ldstord */ { IrTemplate::StoreReg, Opcode::STORE, 0 },
+    /* [1342] STLLRH_SL32_ldstord */ { IrTemplate::StoreReg, Opcode::STORE, 0 },
+    /* [1343] STLP_64_ldiappstilp */ { IrTemplate::StoreReg, Opcode::STORE, 0 },
+    /* [1344] STLR_SL32_ldstord */ { IrTemplate::StoreReg, Opcode::STORE, 0 },
+    /* [1345] STLR_SL64_ldstord */ { IrTemplate::StoreReg, Opcode::STORE, 0 },
+    /* [1346] STLR_32S_ldapstl_writeback */ { IrTemplate::StoreReg, Opcode::STORE, 0 },
+    /* [1347] STLR_64S_ldapstl_writeback */ { IrTemplate::StoreReg, Opcode::STORE, 0 },
+    /* [1348] STLRB_SL32_ldstord */ { IrTemplate::StoreReg, Opcode::STORE, 0 },
+    /* [1349] STLRH_SL32_ldstord */ { IrTemplate::StoreReg, Opcode::STORE, 0 },
+    /* [1350] STLTXR_SR32_ldstexclr_unpriv */ { IrTemplate::StoreReg, Opcode::STORE, 0 },
+    /* [1351] STLTXR_SR64_ldstexclr_unpriv */ { IrTemplate::StoreReg, Opcode::STORE, 0 },
+    /* [1352] STLUR_B_ldapstl_simd */ { IrTemplate::StoreReg, Opcode::STORE, 0 },
+    /* [1353] STLUR_H_ldapstl_simd */ { IrTemplate::StoreReg, Opcode::STORE, 0 },
+    /* [1354] STLUR_S_ldapstl_simd */ { IrTemplate::StoreReg, Opcode::STORE, 0 },
+    /* [1355] STLUR_D_ldapstl_simd */ { IrTemplate::StoreReg, Opcode::STORE, 0 },
+    /* [1356] STLUR_Q_ldapstl_simd */ { IrTemplate::StoreReg, Opcode::STORE, 0 },
+    /* [1357] STLUR_32_ldapstl_unscaled */ { IrTemplate::StoreReg, Opcode::STORE, 0 },
+    /* [1358] STLUR_64_ldapstl_unscaled */ { IrTemplate::StoreReg, Opcode::STORE, 0 },
+    /* [1359] STLURB_32_ldapstl_unscaled */ { IrTemplate::StoreReg, Opcode::STORE, 0 },
+    /* [1360] STLURH_32_ldapstl_unscaled */ { IrTemplate::StoreReg, Opcode::STORE, 0 },
+    /* [1361] STLXP_SP32_ldstexclp */ { IrTemplate::StorePair, Opcode::STORE, 0 },
+    /* [1362] STLXP_SP64_ldstexclp */ { IrTemplate::StorePair, Opcode::STORE, 0 },
+    /* [1363] STLXR_SR32_ldstexclr */ { IrTemplate::StoreReg, Opcode::STORE, 0 },
+    /* [1364] STLXR_SR64_ldstexclr */ { IrTemplate::StoreReg, Opcode::STORE, 0 },
+    /* [1365] STLXRB_SR32_ldstexclr */ { IrTemplate::StoreReg, Opcode::STORE, 0 },
+    /* [1366] STLXRH_SR32_ldstexclr */ { IrTemplate::StoreReg, Opcode::STORE, 0 },
+    /* [1367] STNP_S_ldstnapair_offs */ { IrTemplate::StorePair, Opcode::STORE, 0 },
+    /* [1368] STNP_D_ldstnapair_offs */ { IrTemplate::StorePair, Opcode::STORE, 0 },
+    /* [1369] STNP_Q_ldstnapair_offs */ { IrTemplate::StorePair, Opcode::STORE, 0 },
+    /* [1370] STNP_32_ldstnapair_offs */ { IrTemplate::StorePair, Opcode::STORE, 0 },
+    /* [1371] STNP_64_ldstnapair_offs */ { IrTemplate::StorePair, Opcode::STORE, 0 },
+    /* [1372] STP_S_ldstpair_post */ { IrTemplate::StorePair, Opcode::STORE, 0 },
+    /* [1373] STP_D_ldstpair_post */ { IrTemplate::StorePair, Opcode::STORE, 0 },
+    /* [1374] STP_Q_ldstpair_post */ { IrTemplate::StorePair, Opcode::STORE, 0 },
+    /* [1375] STP_S_ldstpair_pre */ { IrTemplate::StorePair, Opcode::STORE, 0 },
+    /* [1376] STP_D_ldstpair_pre */ { IrTemplate::StorePair, Opcode::STORE, 0 },
+    /* [1377] STP_Q_ldstpair_pre */ { IrTemplate::StorePair, Opcode::STORE, 0 },
+    /* [1378] STP_S_ldstpair_off */ { IrTemplate::StorePair, Opcode::STORE, 0 },
+    /* [1379] STP_D_ldstpair_off */ { IrTemplate::StorePair, Opcode::STORE, 0 },
+    /* [1380] STP_Q_ldstpair_off */ { IrTemplate::StorePair, Opcode::STORE, 0 },
+    /* [1381] STP_32_ldstpair_post */ { IrTemplate::StorePair, Opcode::STORE, 0 },
+    /* [1382] STP_64_ldstpair_post */ { IrTemplate::StorePair, Opcode::STORE, 0 },
+    /* [1383] STP_32_ldstpair_pre */ { IrTemplate::StorePair, Opcode::STORE, 0 },
+    /* [1384] STP_64_ldstpair_pre */ { IrTemplate::StorePair, Opcode::STORE, 0 },
+    /* [1385] STP_32_ldstpair_off */ { IrTemplate::StorePair, Opcode::STORE, 0 },
+    /* [1386] STP_64_ldstpair_off */ { IrTemplate::StorePair, Opcode::STORE, 0 },
+    /* [1387] STR_B_ldst_immpost */ { IrTemplate::StoreReg, Opcode::STORE, 0 },
+    /* [1388] STR_H_ldst_immpost */ { IrTemplate::StoreReg, Opcode::STORE, 0 },
+    /* [1389] STR_S_ldst_immpost */ { IrTemplate::StoreReg, Opcode::STORE, 0 },
+    /* [1390] STR_D_ldst_immpost */ { IrTemplate::StoreReg, Opcode::STORE, 0 },
+    /* [1391] STR_Q_ldst_immpost */ { IrTemplate::StoreReg, Opcode::STORE, 0 },
+    /* [1392] STR_B_ldst_immpre */ { IrTemplate::StoreReg, Opcode::STORE, 0 },
+    /* [1393] STR_H_ldst_immpre */ { IrTemplate::StoreReg, Opcode::STORE, 0 },
+    /* [1394] STR_S_ldst_immpre */ { IrTemplate::StoreReg, Opcode::STORE, 0 },
+    /* [1395] STR_D_ldst_immpre */ { IrTemplate::StoreReg, Opcode::STORE, 0 },
+    /* [1396] STR_Q_ldst_immpre */ { IrTemplate::StoreReg, Opcode::STORE, 0 },
+    /* [1397] STR_B_ldst_pos */ { IrTemplate::StoreReg, Opcode::STORE, 0 },
+    /* [1398] STR_H_ldst_pos */ { IrTemplate::StoreReg, Opcode::STORE, 0 },
+    /* [1399] STR_S_ldst_pos */ { IrTemplate::StoreReg, Opcode::STORE, 0 },
+    /* [1400] STR_D_ldst_pos */ { IrTemplate::StoreReg, Opcode::STORE, 0 },
+    /* [1401] STR_Q_ldst_pos */ { IrTemplate::StoreReg, Opcode::STORE, 0 },
+    /* [1402] STR_32_ldst_immpost */ { IrTemplate::StoreReg, Opcode::STORE, 0 },
+    /* [1403] STR_64_ldst_immpost */ { IrTemplate::StoreReg, Opcode::STORE, 0 },
+    /* [1404] STR_32_ldst_immpre */ { IrTemplate::StoreReg, Opcode::STORE, 0 },
+    /* [1405] STR_64_ldst_immpre */ { IrTemplate::StoreReg, Opcode::STORE, 0 },
+    /* [1406] STR_32_ldst_pos */ { IrTemplate::StoreReg, Opcode::STORE, 0 },
+    /* [1407] STR_64_ldst_pos */ { IrTemplate::StoreReg, Opcode::STORE, 0 },
+    /* [1408] STR_B_ldst_regoff */ { IrTemplate::StoreReg, Opcode::STORE, 0 },
+    /* [1409] STR_BL_ldst_regoff */ { IrTemplate::StoreReg, Opcode::STORE, 0 },
+    /* [1410] STR_H_ldst_regoff */ { IrTemplate::StoreReg, Opcode::STORE, 0 },
+    /* [1411] STR_S_ldst_regoff */ { IrTemplate::StoreReg, Opcode::STORE, 0 },
+    /* [1412] STR_D_ldst_regoff */ { IrTemplate::StoreReg, Opcode::STORE, 0 },
+    /* [1413] STR_Q_ldst_regoff */ { IrTemplate::StoreReg, Opcode::STORE, 0 },
+    /* [1414] STR_32_ldst_regoff */ { IrTemplate::StoreReg, Opcode::STORE, 0 },
+    /* [1415] STR_64_ldst_regoff */ { IrTemplate::StoreReg, Opcode::STORE, 0 },
+    /* [1416] STRB_32_ldst_immpost */ { IrTemplate::StoreReg, Opcode::STORE, 0 },
+    /* [1417] STRB_32_ldst_immpre */ { IrTemplate::StoreReg, Opcode::STORE, 0 },
+    /* [1418] STRB_32_ldst_pos */ { IrTemplate::StoreReg, Opcode::STORE, 0 },
+    /* [1419] STRB_32B_ldst_regoff */ { IrTemplate::StoreReg, Opcode::STORE, 0 },
+    /* [1420] STRB_32BL_ldst_regoff */ { IrTemplate::StoreReg, Opcode::STORE, 0 },
+    /* [1421] STRH_32_ldst_immpost */ { IrTemplate::StoreReg, Opcode::STORE, 0 },
+    /* [1422] STRH_32_ldst_immpre */ { IrTemplate::StoreReg, Opcode::STORE, 0 },
+    /* [1423] STRH_32_ldst_pos */ { IrTemplate::StoreReg, Opcode::STORE, 0 },
+    /* [1424] STRH_32_ldst_regoff */ { IrTemplate::StoreReg, Opcode::STORE, 0 },
+    /* [1425] STSET_LDSET_32_memop */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [1426] STSETL_LDSETL_32_memop */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [1427] STSET_LDSET_64_memop */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [1428] STSETL_LDSETL_64_memop */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [1429] STSETB_LDSETB_32_memop */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [1430] STSETLB_LDSETLB_32_memop */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [1431] STSETH_LDSETH_32_memop */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [1432] STSETLH_LDSETLH_32_memop */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [1433] STSMAX_LDSMAX_32_memop */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [1434] STSMAXL_LDSMAXL_32_memop */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [1435] STSMAX_LDSMAX_64_memop */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [1436] STSMAXL_LDSMAXL_64_memop */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [1437] STSMAXB_LDSMAXB_32_memop */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [1438] STSMAXLB_LDSMAXLB_32_memop */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [1439] STSMAXH_LDSMAXH_32_memop */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [1440] STSMAXLH_LDSMAXLH_32_memop */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [1441] STSMIN_LDSMIN_32_memop */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [1442] STSMINL_LDSMINL_32_memop */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [1443] STSMIN_LDSMIN_64_memop */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [1444] STSMINL_LDSMINL_64_memop */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [1445] STSMINB_LDSMINB_32_memop */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [1446] STSMINLB_LDSMINLB_32_memop */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [1447] STSMINH_LDSMINH_32_memop */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [1448] STSMINLH_LDSMINLH_32_memop */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [1449] STTADD_LDTADD_32_memop_unpriv */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [1450] STTADDL_LDTADDL_32_memop_unpriv */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [1451] STTADD_LDTADD_64_memop_unpriv */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [1452] STTADDL_LDTADDL_64_memop_unpriv */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [1453] STTCLR_LDTCLR_32_memop_unpriv */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [1454] STTCLRL_LDTCLRL_32_memop_unpriv */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [1455] STTCLR_LDTCLR_64_memop_unpriv */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [1456] STTCLRL_LDTCLRL_64_memop_unpriv */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [1457] STTNP_Q_ldstnapair_offs */ { IrTemplate::StorePair, Opcode::STORE, 0 },
+    /* [1458] STTNP_64_ldstnapair_offs */ { IrTemplate::StorePair, Opcode::STORE, 0 },
+    /* [1459] STTP_Q_ldstpair_post */ { IrTemplate::StorePair, Opcode::STORE, 0 },
+    /* [1460] STTP_Q_ldstpair_pre */ { IrTemplate::StorePair, Opcode::STORE, 0 },
+    /* [1461] STTP_Q_ldstpair_off */ { IrTemplate::StorePair, Opcode::STORE, 0 },
+    /* [1462] STTP_64_ldstpair_post */ { IrTemplate::StorePair, Opcode::STORE, 0 },
+    /* [1463] STTP_64_ldstpair_pre */ { IrTemplate::StorePair, Opcode::STORE, 0 },
+    /* [1464] STTP_64_ldstpair_off */ { IrTemplate::StorePair, Opcode::STORE, 0 },
+    /* [1465] STTR_32_ldst_unpriv */ { IrTemplate::StoreReg, Opcode::STORE, 0 },
+    /* [1466] STTR_64_ldst_unpriv */ { IrTemplate::StoreReg, Opcode::STORE, 0 },
+    /* [1467] STTRB_32_ldst_unpriv */ { IrTemplate::StoreReg, Opcode::STORE, 0 },
+    /* [1468] STTRH_32_ldst_unpriv */ { IrTemplate::StoreReg, Opcode::STORE, 0 },
+    /* [1469] STTSET_LDTSET_32_memop_unpriv */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [1470] STTSETL_LDTSETL_32_memop_unpriv */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [1471] STTSET_LDTSET_64_memop_unpriv */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [1472] STTSETL_LDTSETL_64_memop_unpriv */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [1473] STTXR_SR32_ldstexclr_unpriv */ { IrTemplate::StoreReg, Opcode::STORE, 0 },
+    /* [1474] STTXR_SR64_ldstexclr_unpriv */ { IrTemplate::StoreReg, Opcode::STORE, 0 },
+    /* [1475] STUMAX_LDUMAX_32_memop */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [1476] STUMAXL_LDUMAXL_32_memop */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [1477] STUMAX_LDUMAX_64_memop */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [1478] STUMAXL_LDUMAXL_64_memop */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [1479] STUMAXB_LDUMAXB_32_memop */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [1480] STUMAXLB_LDUMAXLB_32_memop */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [1481] STUMAXH_LDUMAXH_32_memop */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [1482] STUMAXLH_LDUMAXLH_32_memop */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [1483] STUMIN_LDUMIN_32_memop */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [1484] STUMINL_LDUMINL_32_memop */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [1485] STUMIN_LDUMIN_64_memop */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [1486] STUMINL_LDUMINL_64_memop */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [1487] STUMINB_LDUMINB_32_memop */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [1488] STUMINLB_LDUMINLB_32_memop */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [1489] STUMINH_LDUMINH_32_memop */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [1490] STUMINLH_LDUMINLH_32_memop */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [1491] STUR_B_ldst_unscaled */ { IrTemplate::StoreReg, Opcode::STORE, 0 },
+    /* [1492] STUR_H_ldst_unscaled */ { IrTemplate::StoreReg, Opcode::STORE, 0 },
+    /* [1493] STUR_S_ldst_unscaled */ { IrTemplate::StoreReg, Opcode::STORE, 0 },
+    /* [1494] STUR_D_ldst_unscaled */ { IrTemplate::StoreReg, Opcode::STORE, 0 },
+    /* [1495] STUR_Q_ldst_unscaled */ { IrTemplate::StoreReg, Opcode::STORE, 0 },
+    /* [1496] STUR_32_ldst_unscaled */ { IrTemplate::StoreReg, Opcode::STORE, 0 },
+    /* [1497] STUR_64_ldst_unscaled */ { IrTemplate::StoreReg, Opcode::STORE, 0 },
+    /* [1498] STURB_32_ldst_unscaled */ { IrTemplate::StoreReg, Opcode::STORE, 0 },
+    /* [1499] STURH_32_ldst_unscaled */ { IrTemplate::StoreReg, Opcode::STORE, 0 },
+    /* [1500] STXP_SP32_ldstexclp */ { IrTemplate::StorePair, Opcode::STORE, 0 },
+    /* [1501] STXP_SP64_ldstexclp */ { IrTemplate::StorePair, Opcode::STORE, 0 },
+    /* [1502] STXR_SR32_ldstexclr */ { IrTemplate::StoreReg, Opcode::STORE, 0 },
+    /* [1503] STXR_SR64_ldstexclr */ { IrTemplate::StoreReg, Opcode::STORE, 0 },
+    /* [1504] STXRB_SR32_ldstexclr */ { IrTemplate::StoreReg, Opcode::STORE, 0 },
+    /* [1505] STXRH_SR32_ldstexclr */ { IrTemplate::StoreReg, Opcode::STORE, 0 },
+    /* [1506] STZ2G_64Spost_ldsttags */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [1507] STZ2G_64Spre_ldsttags */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [1508] STZ2G_64Soffset_ldsttags */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [1509] STZG_64Spost_ldsttags */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [1510] STZG_64Spre_ldsttags */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [1511] STZG_64Soffset_ldsttags */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [1512] STZGM_64bulk_ldsttags */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [1513] SWP_32_memop */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [1514] SWPA_32_memop */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [1515] SWPAL_32_memop */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [1516] SWPL_32_memop */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [1517] SWP_64_memop */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [1518] SWPA_64_memop */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [1519] SWPAL_64_memop */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [1520] SWPL_64_memop */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [1521] SWPB_32_memop */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [1522] SWPAB_32_memop */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [1523] SWPALB_32_memop */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [1524] SWPLB_32_memop */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [1525] SWPH_32_memop */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [1526] SWPAH_32_memop */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [1527] SWPALH_32_memop */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [1528] SWPLH_32_memop */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [1529] SWPP_128_memop_128 */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [1530] SWPPA_128_memop_128 */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [1531] SWPPAL_128_memop_128 */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [1532] SWPPL_128_memop_128 */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [1533] SWPT_32_memop_unpriv */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [1534] SWPTA_32_memop_unpriv */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [1535] SWPTAL_32_memop_unpriv */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [1536] SWPTL_32_memop_unpriv */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [1537] SWPT_64_memop_unpriv */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [1538] SWPTA_64_memop_unpriv */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [1539] SWPTAL_64_memop_unpriv */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [1540] SWPTL_64_memop_unpriv */ { IrTemplate::Atomic, Opcode::UNDEF, 0 },
+    /* [1541] UDF_only_perm_undef */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [1542] ABS_asisdmisc_R */ { IrTemplate::SimdUnary, Opcode::COPY, 0 },
+    /* [1543] ABS_asimdmisc_R */ { IrTemplate::SimdUnary, Opcode::NEG, 0 },
+    /* [1544] ADD_asisdsame_only */ { IrTemplate::FpBinop, Opcode::FADD, 0 },
+    /* [1545] ADD_asimdsame_only */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [1546] ADDHN_asimddiff_N */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [1547] ADDP_asisdpair_only */ { IrTemplate::SimdUnary, Opcode::ADD, 0 },
+    /* [1548] ADDP_asimdsame_only */ { IrTemplate::SimdBinop, Opcode::FADD, 0 },
+    /* [1549] ADDV_asimdall_only */ { IrTemplate::SimdUnary, Opcode::ADD, 0 },
+    /* [1550] AESD_B_cryptoaes */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [1551] AESE_B_cryptoaes */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [1552] AESIMC_B_cryptoaes */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [1553] AESMC_B_cryptoaes */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [1554] AND_asimdsame_only */ { IrTemplate::SimdBinop, Opcode::AND, 0 },
+    /* [1555] BCAX_VVV16_crypto4 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [1556] BF1CVTL_asimdmisc_V */ { IrTemplate::SimdUnary, Opcode::FLOAT2FLOAT, 0 },
+    /* [1557] BF2CVTL_asimdmisc_V */ { IrTemplate::SimdUnary, Opcode::FLOAT2FLOAT, 0 },
+    /* [1558] BFCVT_BS_floatdp1 */ { IrTemplate::SimdUnary, Opcode::FLOAT2FLOAT, 0 },
+    /* [1559] BFCVTN_asimdmisc_4S */ { IrTemplate::SimdUnary, Opcode::FLOAT2FLOAT, 0 },
+    /* [1560] BFDOT_asimdelem_E */ { IrTemplate::SimdBinop, Opcode::MUL, 0 },
+    /* [1561] BFDOT_asimdsame2_D */ { IrTemplate::SimdBinop, Opcode::FADD, 0 },
+    /* [1562] BFMLAL_asimdelem_F */ { IrTemplate::SimdBinop, Opcode::MUL, 0 },
+    /* [1563] BFMLAL_asimdsame2_F_ */ { IrTemplate::SimdBinop, Opcode::FADD, 0 },
+    /* [1564] BFMMLA_asimdsame2_E */ { IrTemplate::SimdBinop, Opcode::FADD, 0 },
+    /* [1565] BIC_asimdimm_L_hl */ { IrTemplate::SimdUnary, Opcode::COPY, 0 },
+    /* [1566] BIC_asimdimm_L_sl */ { IrTemplate::SimdUnary, Opcode::COPY, 0 },
+    /* [1567] BIC_asimdsame_only */ { IrTemplate::SimdBinop, Opcode::AND, 0 },
+    /* [1568] BIF_asimdsame_only */ { IrTemplate::SimdBinop, Opcode::AND, 0 },
+    /* [1569] BIT_asimdsame_only */ { IrTemplate::SimdBinop, Opcode::AND, 0 },
+    /* [1570] BSL_asimdsame_only */ { IrTemplate::SimdBinop, Opcode::AND, 0 },
+    /* [1571] CLS_asimdmisc_R */ { IrTemplate::SimdUnary, Opcode::COPY, 0 },
+    /* [1572] CLZ_asimdmisc_R */ { IrTemplate::SimdUnary, Opcode::COPY, 0 },
+    /* [1573] CMEQ_asisdsame_only */ { IrTemplate::FpBinop, Opcode::FADD, 0 },
+    /* [1574] CMEQ_asimdsame_only */ { IrTemplate::SimdBinop, Opcode::CMP_EQ, 0 },
+    /* [1575] CMEQ_asisdmisc_Z */ { IrTemplate::SimdUnary, Opcode::COPY, 0 },
+    /* [1576] CMEQ_asimdmisc_Z */ { IrTemplate::SimdUnary, Opcode::CMP_EQ, 0 },
+    /* [1577] CMGE_asisdsame_only */ { IrTemplate::FpBinop, Opcode::FADD, 0 },
+    /* [1578] CMGE_asimdsame_only */ { IrTemplate::SimdBinop, Opcode::CMP_SLE, 0 },
+    /* [1579] CMGE_asisdmisc_Z */ { IrTemplate::SimdUnary, Opcode::COPY, 0 },
+    /* [1580] CMGE_asimdmisc_Z */ { IrTemplate::SimdUnary, Opcode::CMP_SLE, 0 },
+    /* [1581] CMGT_asisdsame_only */ { IrTemplate::FpBinop, Opcode::FADD, 0 },
+    /* [1582] CMGT_asimdsame_only */ { IrTemplate::SimdBinop, Opcode::CMP_SLT, 0 },
+    /* [1583] CMGT_asisdmisc_Z */ { IrTemplate::SimdUnary, Opcode::COPY, 0 },
+    /* [1584] CMGT_asimdmisc_Z */ { IrTemplate::SimdUnary, Opcode::CMP_SLT, 0 },
+    /* [1585] CMHI_asisdsame_only */ { IrTemplate::FpBinop, Opcode::FADD, 0 },
+    /* [1586] CMHI_asimdsame_only */ { IrTemplate::SimdBinop, Opcode::CMP_ULT, 0 },
+    /* [1587] CMHS_asisdsame_only */ { IrTemplate::FpBinop, Opcode::FADD, 0 },
+    /* [1588] CMHS_asimdsame_only */ { IrTemplate::SimdBinop, Opcode::CMP_ULE, 0 },
+    /* [1589] CMLE_asisdmisc_Z */ { IrTemplate::SimdUnary, Opcode::COPY, 0 },
+    /* [1590] CMLE_asimdmisc_Z */ { IrTemplate::SimdUnary, Opcode::CMP_SLE, 0 },
+    /* [1591] CMLT_asisdmisc_Z */ { IrTemplate::SimdUnary, Opcode::COPY, 0 },
+    /* [1592] CMLT_asimdmisc_Z */ { IrTemplate::SimdUnary, Opcode::CMP_SLT, 0 },
+    /* [1593] CMTST_asisdsame_only */ { IrTemplate::FpBinop, Opcode::FADD, 0 },
+    /* [1594] CMTST_asimdsame_only */ { IrTemplate::SimdBinop, Opcode::AND, 0 },
+    /* [1595] CNT_asimdmisc_R */ { IrTemplate::SimdUnary, Opcode::COPY, 0 },
+    /* [1596] DUP_asisdone_only */ { IrTemplate::SimdUnary, Opcode::COPY, 0 },
+    /* [1597] DUP_asimdins_DV_v */ { IrTemplate::SimdUnary, Opcode::COPY, 0 },
+    /* [1598] DUP_asimdins_DR_r */ { IrTemplate::SimdUnary, Opcode::COPY, 0 },
+    /* [1599] EOR3_VVV16_crypto4 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [1600] EOR_asimdsame_only */ { IrTemplate::SimdBinop, Opcode::XOR, 0 },
+    /* [1601] EXT_asimdext_only */ { IrTemplate::SimdBinop, Opcode::EXTRACT, 0 },
+    /* [1602] F1CVTL_asimdmisc_V */ { IrTemplate::SimdUnary, Opcode::FLOAT2FLOAT, 0 },
+    /* [1603] F2CVTL_asimdmisc_V */ { IrTemplate::SimdUnary, Opcode::FLOAT2FLOAT, 0 },
+    /* [1604] FABD_asisdsamefp16_only */ { IrTemplate::FpBinop, Opcode::FADD, 0 },
+    /* [1605] FABD_asisdsame_only */ { IrTemplate::FpBinop, Opcode::FADD, 0 },
+    /* [1606] FABD_asimdsamefp16_only */ { IrTemplate::SimdBinop, Opcode::FADD, 0 },
+    /* [1607] FABD_asimdsame_only */ { IrTemplate::SimdBinop, Opcode::FADD, 0 },
+    /* [1608] FABS_asimdmiscfp16_R */ { IrTemplate::SimdUnary, Opcode::FABS, 0 },
+    /* [1609] FABS_asimdmisc_R */ { IrTemplate::SimdUnary, Opcode::FABS, 0 },
+    /* [1610] FABS_H_floatdp1 */ { IrTemplate::SimdUnary, Opcode::FABS, 0 },
+    /* [1611] FABS_S_floatdp1 */ { IrTemplate::SimdUnary, Opcode::FABS, 0 },
+    /* [1612] FABS_D_floatdp1 */ { IrTemplate::SimdUnary, Opcode::FABS, 0 },
+    /* [1613] FACGE_asisdsamefp16_only */ { IrTemplate::FpBinop, Opcode::FADD, 0 },
+    /* [1614] FACGE_asisdsame_only */ { IrTemplate::FpBinop, Opcode::FADD, 0 },
+    /* [1615] FACGE_asimdsamefp16_only */ { IrTemplate::SimdBinop, Opcode::FADD, 0 },
+    /* [1616] FACGE_asimdsame_only */ { IrTemplate::SimdBinop, Opcode::FADD, 0 },
+    /* [1617] FACGT_asisdsamefp16_only */ { IrTemplate::FpBinop, Opcode::FADD, 0 },
+    /* [1618] FACGT_asisdsame_only */ { IrTemplate::FpBinop, Opcode::FADD, 0 },
+    /* [1619] FACGT_asimdsamefp16_only */ { IrTemplate::SimdBinop, Opcode::FADD, 0 },
+    /* [1620] FACGT_asimdsame_only */ { IrTemplate::SimdBinop, Opcode::FADD, 0 },
+    /* [1621] FADD_asimdsamefp16_only */ { IrTemplate::SimdBinop, Opcode::FADD, 0 },
+    /* [1622] FADD_asimdsame_only */ { IrTemplate::SimdBinop, Opcode::FADD, 0 },
+    /* [1623] FADD_H_floatdp2 */ { IrTemplate::FpBinop, Opcode::FADD, 0 },
+    /* [1624] FADD_S_floatdp2 */ { IrTemplate::FpBinop, Opcode::FADD, 0 },
+    /* [1625] FADD_D_floatdp2 */ { IrTemplate::FpBinop, Opcode::FADD, 0 },
+    /* [1626] FADDP_asisdpair_only_H */ { IrTemplate::SimdUnary, Opcode::ADD, 0 },
+    /* [1627] FADDP_asisdpair_only_SD */ { IrTemplate::SimdUnary, Opcode::ADD, 0 },
+    /* [1628] FADDP_asimdsamefp16_only */ { IrTemplate::SimdBinop, Opcode::FADD, 0 },
+    /* [1629] FADDP_asimdsame_only */ { IrTemplate::SimdBinop, Opcode::FADD, 0 },
+    /* [1630] FAMAX_asimdsamefp16_only */ { IrTemplate::SimdBinop, Opcode::FADD, 0 },
+    /* [1631] FAMAX_asimdsame_only */ { IrTemplate::SimdBinop, Opcode::FADD, 0 },
+    /* [1632] FAMIN_asimdsamefp16_only */ { IrTemplate::SimdBinop, Opcode::FADD, 0 },
+    /* [1633] FAMIN_asimdsame_only */ { IrTemplate::SimdBinop, Opcode::FADD, 0 },
+    /* [1634] FCADD_asimdsame2_C */ { IrTemplate::SimdBinop, Opcode::FADD, 0 },
+    /* [1635] FCCMP_H_floatccmp */ { IrTemplate::GpBinopFlags, Opcode::FSUB, 0 },
+    /* [1636] FCCMP_S_floatccmp */ { IrTemplate::GpBinopFlags, Opcode::FSUB, 0 },
+    /* [1637] FCCMP_D_floatccmp */ { IrTemplate::GpBinopFlags, Opcode::FSUB, 0 },
+    /* [1638] FCCMPE_H_floatccmp */ { IrTemplate::GpBinopFlags, Opcode::FSUB, 0 },
+    /* [1639] FCCMPE_S_floatccmp */ { IrTemplate::GpBinopFlags, Opcode::FSUB, 0 },
+    /* [1640] FCCMPE_D_floatccmp */ { IrTemplate::GpBinopFlags, Opcode::FSUB, 0 },
+    /* [1641] FCMEQ_asisdsamefp16_only */ { IrTemplate::FpBinop, Opcode::FADD, 0 },
+    /* [1642] FCMEQ_asisdsame_only */ { IrTemplate::FpBinop, Opcode::FADD, 0 },
+    /* [1643] FCMEQ_asimdsamefp16_only */ { IrTemplate::SimdBinop, Opcode::FADD, 0 },
+    /* [1644] FCMEQ_asimdsame_only */ { IrTemplate::SimdBinop, Opcode::FADD, 0 },
+    /* [1645] FCMEQ_asisdmiscfp16_FZ */ { IrTemplate::SimdUnary, Opcode::COPY, 0 },
+    /* [1646] FCMEQ_asisdmisc_FZ */ { IrTemplate::SimdUnary, Opcode::COPY, 0 },
+    /* [1647] FCMEQ_asimdmiscfp16_FZ */ { IrTemplate::SimdUnary, Opcode::CMP_EQ, 0 },
+    /* [1648] FCMEQ_asimdmisc_FZ */ { IrTemplate::SimdUnary, Opcode::CMP_EQ, 0 },
+    /* [1649] FCMGE_asisdsamefp16_only */ { IrTemplate::FpBinop, Opcode::FADD, 0 },
+    /* [1650] FCMGE_asisdsame_only */ { IrTemplate::FpBinop, Opcode::FADD, 0 },
+    /* [1651] FCMGE_asimdsamefp16_only */ { IrTemplate::SimdBinop, Opcode::FADD, 0 },
+    /* [1652] FCMGE_asimdsame_only */ { IrTemplate::SimdBinop, Opcode::FADD, 0 },
+    /* [1653] FCMGE_asisdmiscfp16_FZ */ { IrTemplate::SimdUnary, Opcode::COPY, 0 },
+    /* [1654] FCMGE_asisdmisc_FZ */ { IrTemplate::SimdUnary, Opcode::COPY, 0 },
+    /* [1655] FCMGE_asimdmiscfp16_FZ */ { IrTemplate::SimdUnary, Opcode::CMP_SLE, 0 },
+    /* [1656] FCMGE_asimdmisc_FZ */ { IrTemplate::SimdUnary, Opcode::CMP_SLE, 0 },
+    /* [1657] FCMGT_asisdsamefp16_only */ { IrTemplate::FpBinop, Opcode::FADD, 0 },
+    /* [1658] FCMGT_asisdsame_only */ { IrTemplate::FpBinop, Opcode::FADD, 0 },
+    /* [1659] FCMGT_asimdsamefp16_only */ { IrTemplate::SimdBinop, Opcode::FADD, 0 },
+    /* [1660] FCMGT_asimdsame_only */ { IrTemplate::SimdBinop, Opcode::FADD, 0 },
+    /* [1661] FCMGT_asisdmiscfp16_FZ */ { IrTemplate::SimdUnary, Opcode::COPY, 0 },
+    /* [1662] FCMGT_asisdmisc_FZ */ { IrTemplate::SimdUnary, Opcode::COPY, 0 },
+    /* [1663] FCMGT_asimdmiscfp16_FZ */ { IrTemplate::SimdUnary, Opcode::CMP_SLT, 0 },
+    /* [1664] FCMGT_asimdmisc_FZ */ { IrTemplate::SimdUnary, Opcode::CMP_SLT, 0 },
+    /* [1665] FCMLA_advsimd_elt */ { IrTemplate::SimdBinop, Opcode::MUL, 0 },
+    /* [1666] FCMLA_asimdsame2_C */ { IrTemplate::SimdBinop, Opcode::FADD, 0 },
+    /* [1667] FCMLE_asisdmiscfp16_FZ */ { IrTemplate::SimdUnary, Opcode::COPY, 0 },
+    /* [1668] FCMLE_asisdmisc_FZ */ { IrTemplate::SimdUnary, Opcode::COPY, 0 },
+    /* [1669] FCMLE_asimdmiscfp16_FZ */ { IrTemplate::SimdUnary, Opcode::CMP_SLE, 0 },
+    /* [1670] FCMLE_asimdmisc_FZ */ { IrTemplate::SimdUnary, Opcode::CMP_SLE, 0 },
+    /* [1671] FCMLT_asisdmiscfp16_FZ */ { IrTemplate::SimdUnary, Opcode::COPY, 0 },
+    /* [1672] FCMLT_asisdmisc_FZ */ { IrTemplate::SimdUnary, Opcode::COPY, 0 },
+    /* [1673] FCMLT_asimdmiscfp16_FZ */ { IrTemplate::SimdUnary, Opcode::CMP_SLT, 0 },
+    /* [1674] FCMLT_asimdmisc_FZ */ { IrTemplate::SimdUnary, Opcode::CMP_SLT, 0 },
+    /* [1675] FCMP_H_floatcmp */ { IrTemplate::FpBinop, Opcode::FSUB, 0 },
+    /* [1676] FCMP_HZ_floatcmp */ { IrTemplate::FpBinop, Opcode::FSUB, 0 },
+    /* [1677] FCMP_S_floatcmp */ { IrTemplate::FpBinop, Opcode::FSUB, 0 },
+    /* [1678] FCMP_SZ_floatcmp */ { IrTemplate::FpBinop, Opcode::FSUB, 0 },
+    /* [1679] FCMP_D_floatcmp */ { IrTemplate::FpBinop, Opcode::FSUB, 0 },
+    /* [1680] FCMP_DZ_floatcmp */ { IrTemplate::FpBinop, Opcode::FSUB, 0 },
+    /* [1681] FCMPE_H_floatcmp */ { IrTemplate::FpBinop, Opcode::FSUB, 0 },
+    /* [1682] FCMPE_HZ_floatcmp */ { IrTemplate::FpBinop, Opcode::FSUB, 0 },
+    /* [1683] FCMPE_S_floatcmp */ { IrTemplate::FpBinop, Opcode::FSUB, 0 },
+    /* [1684] FCMPE_SZ_floatcmp */ { IrTemplate::FpBinop, Opcode::FSUB, 0 },
+    /* [1685] FCMPE_D_floatcmp */ { IrTemplate::FpBinop, Opcode::FSUB, 0 },
+    /* [1686] FCMPE_DZ_floatcmp */ { IrTemplate::FpBinop, Opcode::FSUB, 0 },
+    /* [1687] FCSEL_H_floatsel */ { IrTemplate::CondSelect, Opcode::COPY, 0 },
+    /* [1688] FCSEL_S_floatsel */ { IrTemplate::CondSelect, Opcode::COPY, 0 },
+    /* [1689] FCSEL_D_floatsel */ { IrTemplate::CondSelect, Opcode::COPY, 0 },
+    /* [1690] FCVT_SH_floatdp1 */ { IrTemplate::SimdUnary, Opcode::FLOAT2FLOAT, 0 },
+    /* [1691] FCVT_DH_floatdp1 */ { IrTemplate::SimdUnary, Opcode::FLOAT2FLOAT, 0 },
+    /* [1692] FCVT_HS_floatdp1 */ { IrTemplate::SimdUnary, Opcode::FLOAT2FLOAT, 0 },
+    /* [1693] FCVT_DS_floatdp1 */ { IrTemplate::SimdUnary, Opcode::FLOAT2FLOAT, 0 },
+    /* [1694] FCVT_HD_floatdp1 */ { IrTemplate::SimdUnary, Opcode::FLOAT2FLOAT, 0 },
+    /* [1695] FCVT_SD_floatdp1 */ { IrTemplate::SimdUnary, Opcode::FLOAT2FLOAT, 0 },
+    /* [1696] FCVTAS_asisdmiscfp16_R */ { IrTemplate::SimdUnary, Opcode::COPY, 0 },
+    /* [1697] FCVTAS_asisdmisc_R */ { IrTemplate::SimdUnary, Opcode::COPY, 0 },
+    /* [1698] FCVTAS_asimdmiscfp16_R */ { IrTemplate::SimdUnary, Opcode::FLOAT2FLOAT, 0 },
+    /* [1699] FCVTAS_asimdmisc_R */ { IrTemplate::SimdUnary, Opcode::FLOAT2FLOAT, 0 },
+    /* [1700] FCVTAS_32H_float2int */ { IrTemplate::FpConvert, Opcode::FLOAT2INT, 0 },
+    /* [1701] FCVTAS_64H_float2int */ { IrTemplate::FpConvert, Opcode::FLOAT2INT, 0 },
+    /* [1702] FCVTAS_32S_float2int */ { IrTemplate::FpConvert, Opcode::FLOAT2INT, 0 },
+    /* [1703] FCVTAS_64S_float2int */ { IrTemplate::FpConvert, Opcode::FLOAT2INT, 0 },
+    /* [1704] FCVTAS_32D_float2int */ { IrTemplate::FpConvert, Opcode::FLOAT2INT, 0 },
+    /* [1705] FCVTAS_64D_float2int */ { IrTemplate::FpConvert, Opcode::FLOAT2INT, 0 },
+    /* [1706] FCVTAS_sisd_32H */ { IrTemplate::FpConvert, Opcode::FLOAT2INT, 0 },
+    /* [1707] FCVTAS_sisd_64H */ { IrTemplate::FpConvert, Opcode::FLOAT2INT, 0 },
+    /* [1708] FCVTAS_sisd_64S */ { IrTemplate::FpConvert, Opcode::FLOAT2INT, 0 },
+    /* [1709] FCVTAS_sisd_32D */ { IrTemplate::FpConvert, Opcode::FLOAT2INT, 0 },
+    /* [1710] FCVTAU_asisdmiscfp16_R */ { IrTemplate::SimdUnary, Opcode::COPY, 0 },
+    /* [1711] FCVTAU_asisdmisc_R */ { IrTemplate::SimdUnary, Opcode::COPY, 0 },
+    /* [1712] FCVTAU_asimdmiscfp16_R */ { IrTemplate::SimdUnary, Opcode::FLOAT2FLOAT, 0 },
+    /* [1713] FCVTAU_asimdmisc_R */ { IrTemplate::SimdUnary, Opcode::FLOAT2FLOAT, 0 },
+    /* [1714] FCVTAU_32H_float2int */ { IrTemplate::FpConvert, Opcode::FLOAT2INT, 0 },
+    /* [1715] FCVTAU_64H_float2int */ { IrTemplate::FpConvert, Opcode::FLOAT2INT, 0 },
+    /* [1716] FCVTAU_32S_float2int */ { IrTemplate::FpConvert, Opcode::FLOAT2INT, 0 },
+    /* [1717] FCVTAU_64S_float2int */ { IrTemplate::FpConvert, Opcode::FLOAT2INT, 0 },
+    /* [1718] FCVTAU_32D_float2int */ { IrTemplate::FpConvert, Opcode::FLOAT2INT, 0 },
+    /* [1719] FCVTAU_64D_float2int */ { IrTemplate::FpConvert, Opcode::FLOAT2INT, 0 },
+    /* [1720] FCVTAU_sisd_32H */ { IrTemplate::FpConvert, Opcode::FLOAT2INT, 0 },
+    /* [1721] FCVTAU_sisd_64H */ { IrTemplate::FpConvert, Opcode::FLOAT2INT, 0 },
+    /* [1722] FCVTAU_sisd_64S */ { IrTemplate::FpConvert, Opcode::FLOAT2INT, 0 },
+    /* [1723] FCVTAU_sisd_32D */ { IrTemplate::FpConvert, Opcode::FLOAT2INT, 0 },
+    /* [1724] FCVTL_asimdmisc_L */ { IrTemplate::SimdUnary, Opcode::FLOAT2FLOAT, 0 },
+    /* [1725] FCVTMS_asisdmiscfp16_R */ { IrTemplate::SimdUnary, Opcode::COPY, 0 },
+    /* [1726] FCVTMS_asisdmisc_R */ { IrTemplate::SimdUnary, Opcode::COPY, 0 },
+    /* [1727] FCVTMS_asimdmiscfp16_R */ { IrTemplate::SimdUnary, Opcode::FLOAT2FLOAT, 0 },
+    /* [1728] FCVTMS_asimdmisc_R */ { IrTemplate::SimdUnary, Opcode::FLOAT2FLOAT, 0 },
+    /* [1729] FCVTMS_32H_float2int */ { IrTemplate::FpConvert, Opcode::FLOAT2INT, 0 },
+    /* [1730] FCVTMS_64H_float2int */ { IrTemplate::FpConvert, Opcode::FLOAT2INT, 0 },
+    /* [1731] FCVTMS_32S_float2int */ { IrTemplate::FpConvert, Opcode::FLOAT2INT, 0 },
+    /* [1732] FCVTMS_64S_float2int */ { IrTemplate::FpConvert, Opcode::FLOAT2INT, 0 },
+    /* [1733] FCVTMS_32D_float2int */ { IrTemplate::FpConvert, Opcode::FLOAT2INT, 0 },
+    /* [1734] FCVTMS_64D_float2int */ { IrTemplate::FpConvert, Opcode::FLOAT2INT, 0 },
+    /* [1735] FCVTMS_sisd_32H */ { IrTemplate::FpConvert, Opcode::FLOAT2INT, 0 },
+    /* [1736] FCVTMS_sisd_64H */ { IrTemplate::FpConvert, Opcode::FLOAT2INT, 0 },
+    /* [1737] FCVTMS_sisd_64S */ { IrTemplate::FpConvert, Opcode::FLOAT2INT, 0 },
+    /* [1738] FCVTMS_sisd_32D */ { IrTemplate::FpConvert, Opcode::FLOAT2INT, 0 },
+    /* [1739] FCVTMU_asisdmiscfp16_R */ { IrTemplate::SimdUnary, Opcode::COPY, 0 },
+    /* [1740] FCVTMU_asisdmisc_R */ { IrTemplate::SimdUnary, Opcode::COPY, 0 },
+    /* [1741] FCVTMU_asimdmiscfp16_R */ { IrTemplate::SimdUnary, Opcode::FLOAT2FLOAT, 0 },
+    /* [1742] FCVTMU_asimdmisc_R */ { IrTemplate::SimdUnary, Opcode::FLOAT2FLOAT, 0 },
+    /* [1743] FCVTMU_32H_float2int */ { IrTemplate::FpConvert, Opcode::FLOAT2INT, 0 },
+    /* [1744] FCVTMU_64H_float2int */ { IrTemplate::FpConvert, Opcode::FLOAT2INT, 0 },
+    /* [1745] FCVTMU_32S_float2int */ { IrTemplate::FpConvert, Opcode::FLOAT2INT, 0 },
+    /* [1746] FCVTMU_64S_float2int */ { IrTemplate::FpConvert, Opcode::FLOAT2INT, 0 },
+    /* [1747] FCVTMU_32D_float2int */ { IrTemplate::FpConvert, Opcode::FLOAT2INT, 0 },
+    /* [1748] FCVTMU_64D_float2int */ { IrTemplate::FpConvert, Opcode::FLOAT2INT, 0 },
+    /* [1749] FCVTMU_sisd_32H */ { IrTemplate::FpConvert, Opcode::FLOAT2INT, 0 },
+    /* [1750] FCVTMU_sisd_64H */ { IrTemplate::FpConvert, Opcode::FLOAT2INT, 0 },
+    /* [1751] FCVTMU_sisd_64S */ { IrTemplate::FpConvert, Opcode::FLOAT2INT, 0 },
+    /* [1752] FCVTMU_sisd_32D */ { IrTemplate::FpConvert, Opcode::FLOAT2INT, 0 },
+    /* [1753] FCVTN_asimdmisc_N */ { IrTemplate::SimdUnary, Opcode::FLOAT2FLOAT, 0 },
+    /* [1754] FCVTN_asimdsame2_D */ { IrTemplate::SimdBinop, Opcode::FADD, 0 },
+    /* [1755] FCVTN_asimdsame2_H */ { IrTemplate::SimdBinop, Opcode::FADD, 0 },
+    /* [1756] FCVTNS_asisdmiscfp16_R */ { IrTemplate::SimdUnary, Opcode::COPY, 0 },
+    /* [1757] FCVTNS_asisdmisc_R */ { IrTemplate::SimdUnary, Opcode::COPY, 0 },
+    /* [1758] FCVTNS_asimdmiscfp16_R */ { IrTemplate::SimdUnary, Opcode::FLOAT2FLOAT, 0 },
+    /* [1759] FCVTNS_asimdmisc_R */ { IrTemplate::SimdUnary, Opcode::FLOAT2FLOAT, 0 },
+    /* [1760] FCVTNS_32H_float2int */ { IrTemplate::FpConvert, Opcode::FLOAT2INT, 0 },
+    /* [1761] FCVTNS_64H_float2int */ { IrTemplate::FpConvert, Opcode::FLOAT2INT, 0 },
+    /* [1762] FCVTNS_32S_float2int */ { IrTemplate::FpConvert, Opcode::FLOAT2INT, 0 },
+    /* [1763] FCVTNS_64S_float2int */ { IrTemplate::FpConvert, Opcode::FLOAT2INT, 0 },
+    /* [1764] FCVTNS_32D_float2int */ { IrTemplate::FpConvert, Opcode::FLOAT2INT, 0 },
+    /* [1765] FCVTNS_64D_float2int */ { IrTemplate::FpConvert, Opcode::FLOAT2INT, 0 },
+    /* [1766] FCVTNS_sisd_32H */ { IrTemplate::FpConvert, Opcode::FLOAT2INT, 0 },
+    /* [1767] FCVTNS_sisd_64H */ { IrTemplate::FpConvert, Opcode::FLOAT2INT, 0 },
+    /* [1768] FCVTNS_sisd_64S */ { IrTemplate::FpConvert, Opcode::FLOAT2INT, 0 },
+    /* [1769] FCVTNS_sisd_32D */ { IrTemplate::FpConvert, Opcode::FLOAT2INT, 0 },
+    /* [1770] FCVTNU_asisdmiscfp16_R */ { IrTemplate::SimdUnary, Opcode::COPY, 0 },
+    /* [1771] FCVTNU_asisdmisc_R */ { IrTemplate::SimdUnary, Opcode::COPY, 0 },
+    /* [1772] FCVTNU_asimdmiscfp16_R */ { IrTemplate::SimdUnary, Opcode::FLOAT2FLOAT, 0 },
+    /* [1773] FCVTNU_asimdmisc_R */ { IrTemplate::SimdUnary, Opcode::FLOAT2FLOAT, 0 },
+    /* [1774] FCVTNU_32H_float2int */ { IrTemplate::FpConvert, Opcode::FLOAT2INT, 0 },
+    /* [1775] FCVTNU_64H_float2int */ { IrTemplate::FpConvert, Opcode::FLOAT2INT, 0 },
+    /* [1776] FCVTNU_32S_float2int */ { IrTemplate::FpConvert, Opcode::FLOAT2INT, 0 },
+    /* [1777] FCVTNU_64S_float2int */ { IrTemplate::FpConvert, Opcode::FLOAT2INT, 0 },
+    /* [1778] FCVTNU_32D_float2int */ { IrTemplate::FpConvert, Opcode::FLOAT2INT, 0 },
+    /* [1779] FCVTNU_64D_float2int */ { IrTemplate::FpConvert, Opcode::FLOAT2INT, 0 },
+    /* [1780] FCVTNU_sisd_32H */ { IrTemplate::FpConvert, Opcode::FLOAT2INT, 0 },
+    /* [1781] FCVTNU_sisd_64H */ { IrTemplate::FpConvert, Opcode::FLOAT2INT, 0 },
+    /* [1782] FCVTNU_sisd_64S */ { IrTemplate::FpConvert, Opcode::FLOAT2INT, 0 },
+    /* [1783] FCVTNU_sisd_32D */ { IrTemplate::FpConvert, Opcode::FLOAT2INT, 0 },
+    /* [1784] FCVTPS_asisdmiscfp16_R */ { IrTemplate::SimdUnary, Opcode::COPY, 0 },
+    /* [1785] FCVTPS_asisdmisc_R */ { IrTemplate::SimdUnary, Opcode::COPY, 0 },
+    /* [1786] FCVTPS_asimdmiscfp16_R */ { IrTemplate::SimdUnary, Opcode::FLOAT2FLOAT, 0 },
+    /* [1787] FCVTPS_asimdmisc_R */ { IrTemplate::SimdUnary, Opcode::FLOAT2FLOAT, 0 },
+    /* [1788] FCVTPS_32H_float2int */ { IrTemplate::FpConvert, Opcode::FLOAT2INT, 0 },
+    /* [1789] FCVTPS_64H_float2int */ { IrTemplate::FpConvert, Opcode::FLOAT2INT, 0 },
+    /* [1790] FCVTPS_32S_float2int */ { IrTemplate::FpConvert, Opcode::FLOAT2INT, 0 },
+    /* [1791] FCVTPS_64S_float2int */ { IrTemplate::FpConvert, Opcode::FLOAT2INT, 0 },
+    /* [1792] FCVTPS_32D_float2int */ { IrTemplate::FpConvert, Opcode::FLOAT2INT, 0 },
+    /* [1793] FCVTPS_64D_float2int */ { IrTemplate::FpConvert, Opcode::FLOAT2INT, 0 },
+    /* [1794] FCVTPS_sisd_32H */ { IrTemplate::FpConvert, Opcode::FLOAT2INT, 0 },
+    /* [1795] FCVTPS_sisd_64H */ { IrTemplate::FpConvert, Opcode::FLOAT2INT, 0 },
+    /* [1796] FCVTPS_sisd_64S */ { IrTemplate::FpConvert, Opcode::FLOAT2INT, 0 },
+    /* [1797] FCVTPS_sisd_32D */ { IrTemplate::FpConvert, Opcode::FLOAT2INT, 0 },
+    /* [1798] FCVTPU_asisdmiscfp16_R */ { IrTemplate::SimdUnary, Opcode::COPY, 0 },
+    /* [1799] FCVTPU_asisdmisc_R */ { IrTemplate::SimdUnary, Opcode::COPY, 0 },
+    /* [1800] FCVTPU_asimdmiscfp16_R */ { IrTemplate::SimdUnary, Opcode::FLOAT2FLOAT, 0 },
+    /* [1801] FCVTPU_asimdmisc_R */ { IrTemplate::SimdUnary, Opcode::FLOAT2FLOAT, 0 },
+    /* [1802] FCVTPU_32H_float2int */ { IrTemplate::FpConvert, Opcode::FLOAT2INT, 0 },
+    /* [1803] FCVTPU_64H_float2int */ { IrTemplate::FpConvert, Opcode::FLOAT2INT, 0 },
+    /* [1804] FCVTPU_32S_float2int */ { IrTemplate::FpConvert, Opcode::FLOAT2INT, 0 },
+    /* [1805] FCVTPU_64S_float2int */ { IrTemplate::FpConvert, Opcode::FLOAT2INT, 0 },
+    /* [1806] FCVTPU_32D_float2int */ { IrTemplate::FpConvert, Opcode::FLOAT2INT, 0 },
+    /* [1807] FCVTPU_64D_float2int */ { IrTemplate::FpConvert, Opcode::FLOAT2INT, 0 },
+    /* [1808] FCVTPU_sisd_32H */ { IrTemplate::FpConvert, Opcode::FLOAT2INT, 0 },
+    /* [1809] FCVTPU_sisd_64H */ { IrTemplate::FpConvert, Opcode::FLOAT2INT, 0 },
+    /* [1810] FCVTPU_sisd_64S */ { IrTemplate::FpConvert, Opcode::FLOAT2INT, 0 },
+    /* [1811] FCVTPU_sisd_32D */ { IrTemplate::FpConvert, Opcode::FLOAT2INT, 0 },
+    /* [1812] FCVTXN_asisdmisc_N */ { IrTemplate::SimdUnary, Opcode::COPY, 0 },
+    /* [1813] FCVTXN_asimdmisc_N */ { IrTemplate::SimdUnary, Opcode::FLOAT2FLOAT, 0 },
+    /* [1814] FCVTZS_asisdshf_C */ { IrTemplate::SimdUnary, Opcode::SHL, 0 },
+    /* [1815] FCVTZS_asimdshf_C */ { IrTemplate::SimdBinop, Opcode::SHL, 0 },
+    /* [1816] FCVTZS_asisdmiscfp16_R */ { IrTemplate::SimdUnary, Opcode::COPY, 0 },
+    /* [1817] FCVTZS_asisdmisc_R */ { IrTemplate::SimdUnary, Opcode::COPY, 0 },
+    /* [1818] FCVTZS_asimdmiscfp16_R */ { IrTemplate::SimdUnary, Opcode::FLOAT2FLOAT, 0 },
+    /* [1819] FCVTZS_asimdmisc_R */ { IrTemplate::SimdUnary, Opcode::FLOAT2FLOAT, 0 },
+    /* [1820] FCVTZS_32H_float2fix */ { IrTemplate::FpConvert, Opcode::FLOAT2INT, 0 },
+    /* [1821] FCVTZS_64H_float2fix */ { IrTemplate::FpConvert, Opcode::FLOAT2INT, 0 },
+    /* [1822] FCVTZS_32S_float2fix */ { IrTemplate::FpConvert, Opcode::FLOAT2INT, 0 },
+    /* [1823] FCVTZS_64S_float2fix */ { IrTemplate::FpConvert, Opcode::FLOAT2INT, 0 },
+    /* [1824] FCVTZS_32D_float2fix */ { IrTemplate::FpConvert, Opcode::FLOAT2INT, 0 },
+    /* [1825] FCVTZS_64D_float2fix */ { IrTemplate::FpConvert, Opcode::FLOAT2INT, 0 },
+    /* [1826] FCVTZS_32H_float2int */ { IrTemplate::FpConvert, Opcode::FLOAT2INT, 0 },
+    /* [1827] FCVTZS_64H_float2int */ { IrTemplate::FpConvert, Opcode::FLOAT2INT, 0 },
+    /* [1828] FCVTZS_32S_float2int */ { IrTemplate::FpConvert, Opcode::FLOAT2INT, 0 },
+    /* [1829] FCVTZS_64S_float2int */ { IrTemplate::FpConvert, Opcode::FLOAT2INT, 0 },
+    /* [1830] FCVTZS_32D_float2int */ { IrTemplate::FpConvert, Opcode::FLOAT2INT, 0 },
+    /* [1831] FCVTZS_64D_float2int */ { IrTemplate::FpConvert, Opcode::FLOAT2INT, 0 },
+    /* [1832] FCVTZS_sisd_32H */ { IrTemplate::FpConvert, Opcode::FLOAT2INT, 0 },
+    /* [1833] FCVTZS_sisd_64H */ { IrTemplate::FpConvert, Opcode::FLOAT2INT, 0 },
+    /* [1834] FCVTZS_sisd_64S */ { IrTemplate::FpConvert, Opcode::FLOAT2INT, 0 },
+    /* [1835] FCVTZS_sisd_32D */ { IrTemplate::FpConvert, Opcode::FLOAT2INT, 0 },
+    /* [1836] FCVTZU_asisdshf_C */ { IrTemplate::SimdUnary, Opcode::SHL, 0 },
+    /* [1837] FCVTZU_asimdshf_C */ { IrTemplate::SimdBinop, Opcode::SHL, 0 },
+    /* [1838] FCVTZU_asisdmiscfp16_R */ { IrTemplate::SimdUnary, Opcode::COPY, 0 },
+    /* [1839] FCVTZU_asisdmisc_R */ { IrTemplate::SimdUnary, Opcode::COPY, 0 },
+    /* [1840] FCVTZU_asimdmiscfp16_R */ { IrTemplate::SimdUnary, Opcode::FLOAT2FLOAT, 0 },
+    /* [1841] FCVTZU_asimdmisc_R */ { IrTemplate::SimdUnary, Opcode::FLOAT2FLOAT, 0 },
+    /* [1842] FCVTZU_32H_float2fix */ { IrTemplate::FpConvert, Opcode::FLOAT2INT, 0 },
+    /* [1843] FCVTZU_64H_float2fix */ { IrTemplate::FpConvert, Opcode::FLOAT2INT, 0 },
+    /* [1844] FCVTZU_32S_float2fix */ { IrTemplate::FpConvert, Opcode::FLOAT2INT, 0 },
+    /* [1845] FCVTZU_64S_float2fix */ { IrTemplate::FpConvert, Opcode::FLOAT2INT, 0 },
+    /* [1846] FCVTZU_32D_float2fix */ { IrTemplate::FpConvert, Opcode::FLOAT2INT, 0 },
+    /* [1847] FCVTZU_64D_float2fix */ { IrTemplate::FpConvert, Opcode::FLOAT2INT, 0 },
+    /* [1848] FCVTZU_32H_float2int */ { IrTemplate::FpConvert, Opcode::FLOAT2INT, 0 },
+    /* [1849] FCVTZU_64H_float2int */ { IrTemplate::FpConvert, Opcode::FLOAT2INT, 0 },
+    /* [1850] FCVTZU_32S_float2int */ { IrTemplate::FpConvert, Opcode::FLOAT2INT, 0 },
+    /* [1851] FCVTZU_64S_float2int */ { IrTemplate::FpConvert, Opcode::FLOAT2INT, 0 },
+    /* [1852] FCVTZU_32D_float2int */ { IrTemplate::FpConvert, Opcode::FLOAT2INT, 0 },
+    /* [1853] FCVTZU_64D_float2int */ { IrTemplate::FpConvert, Opcode::FLOAT2INT, 0 },
+    /* [1854] FCVTZU_sisd_32H */ { IrTemplate::FpConvert, Opcode::FLOAT2INT, 0 },
+    /* [1855] FCVTZU_sisd_64H */ { IrTemplate::FpConvert, Opcode::FLOAT2INT, 0 },
+    /* [1856] FCVTZU_sisd_64S */ { IrTemplate::FpConvert, Opcode::FLOAT2INT, 0 },
+    /* [1857] FCVTZU_sisd_32D */ { IrTemplate::FpConvert, Opcode::FLOAT2INT, 0 },
+    /* [1858] FDIV_asimdsamefp16_only */ { IrTemplate::SimdBinop, Opcode::FDIV, 0 },
+    /* [1859] FDIV_asimdsame_only */ { IrTemplate::SimdBinop, Opcode::FDIV, 0 },
+    /* [1860] FDIV_H_floatdp2 */ { IrTemplate::FpBinop, Opcode::FDIV, 0 },
+    /* [1861] FDIV_S_floatdp2 */ { IrTemplate::FpBinop, Opcode::FDIV, 0 },
+    /* [1862] FDIV_D_floatdp2 */ { IrTemplate::FpBinop, Opcode::FDIV, 0 },
+    /* [1863] FDOT_asimdelem_G */ { IrTemplate::SimdBinop, Opcode::MUL, 0 },
+    /* [1864] FDOT_asimdsame2_D */ { IrTemplate::SimdBinop, Opcode::FADD, 0 },
+    /* [1865] FDOT_asimdelem_D */ { IrTemplate::SimdBinop, Opcode::MUL, 0 },
+    /* [1866] FDOT_asimdsame2_DD */ { IrTemplate::SimdBinop, Opcode::FADD, 0 },
+    /* [1867] FDOT_asimdelem_FP16FP32 */ { IrTemplate::SimdBinop, Opcode::MUL, 0 },
+    /* [1868] FDOT_asimdsame2_FP16FP32 */ { IrTemplate::SimdBinop, Opcode::FADD, 0 },
+    /* [1869] FJCVTZS_32D_float2int */ { IrTemplate::FpConvert, Opcode::FLOAT2INT, 0 },
+    /* [1870] FMADD_H_floatdp3 */ { IrTemplate::SimdBinop, Opcode::UNDEF, 0 },
+    /* [1871] FMADD_S_floatdp3 */ { IrTemplate::SimdBinop, Opcode::UNDEF, 0 },
+    /* [1872] FMADD_D_floatdp3 */ { IrTemplate::SimdBinop, Opcode::UNDEF, 0 },
+    /* [1873] FMAX_asimdsamefp16_only */ { IrTemplate::SimdBinop, Opcode::FADD, 0 },
+    /* [1874] FMAX_asimdsame_only */ { IrTemplate::SimdBinop, Opcode::FADD, 0 },
+    /* [1875] FMAX_H_floatdp2 */ { IrTemplate::FpBinop, Opcode::FADD, 0 },
+    /* [1876] FMAX_S_floatdp2 */ { IrTemplate::FpBinop, Opcode::FADD, 0 },
+    /* [1877] FMAX_D_floatdp2 */ { IrTemplate::FpBinop, Opcode::FADD, 0 },
+    /* [1878] FMAXNM_asimdsamefp16_only */ { IrTemplate::SimdBinop, Opcode::FADD, 0 },
+    /* [1879] FMAXNM_asimdsame_only */ { IrTemplate::SimdBinop, Opcode::FADD, 0 },
+    /* [1880] FMAXNM_H_floatdp2 */ { IrTemplate::FpBinop, Opcode::FADD, 0 },
+    /* [1881] FMAXNM_S_floatdp2 */ { IrTemplate::FpBinop, Opcode::FADD, 0 },
+    /* [1882] FMAXNM_D_floatdp2 */ { IrTemplate::FpBinop, Opcode::FADD, 0 },
+    /* [1883] FMAXNMP_asisdpair_only_H */ { IrTemplate::SimdUnary, Opcode::ADD, 0 },
+    /* [1884] FMAXNMP_asisdpair_only_SD */ { IrTemplate::SimdUnary, Opcode::ADD, 0 },
+    /* [1885] FMAXNMP_asimdsamefp16_only */ { IrTemplate::SimdBinop, Opcode::FADD, 0 },
+    /* [1886] FMAXNMP_asimdsame_only */ { IrTemplate::SimdBinop, Opcode::FADD, 0 },
+    /* [1887] FMAXNMV_asimdall_only_H */ { IrTemplate::SimdUnary, Opcode::ADD, 0 },
+    /* [1888] FMAXNMV_asimdall_only_SD */ { IrTemplate::SimdUnary, Opcode::ADD, 0 },
+    /* [1889] FMAXP_asisdpair_only_H */ { IrTemplate::SimdUnary, Opcode::ADD, 0 },
+    /* [1890] FMAXP_asisdpair_only_SD */ { IrTemplate::SimdUnary, Opcode::ADD, 0 },
+    /* [1891] FMAXP_asimdsamefp16_only */ { IrTemplate::SimdBinop, Opcode::FADD, 0 },
+    /* [1892] FMAXP_asimdsame_only */ { IrTemplate::SimdBinop, Opcode::FADD, 0 },
+    /* [1893] FMAXV_asimdall_only_H */ { IrTemplate::SimdUnary, Opcode::ADD, 0 },
+    /* [1894] FMAXV_asimdall_only_SD */ { IrTemplate::SimdUnary, Opcode::ADD, 0 },
+    /* [1895] FMIN_asimdsamefp16_only */ { IrTemplate::SimdBinop, Opcode::FSUB, 0 },
+    /* [1896] FMIN_asimdsame_only */ { IrTemplate::SimdBinop, Opcode::FSUB, 0 },
+    /* [1897] FMIN_H_floatdp2 */ { IrTemplate::FpBinop, Opcode::FSUB, 0 },
+    /* [1898] FMIN_S_floatdp2 */ { IrTemplate::FpBinop, Opcode::FSUB, 0 },
+    /* [1899] FMIN_D_floatdp2 */ { IrTemplate::FpBinop, Opcode::FSUB, 0 },
+    /* [1900] FMINNM_asimdsamefp16_only */ { IrTemplate::SimdBinop, Opcode::FADD, 0 },
+    /* [1901] FMINNM_asimdsame_only */ { IrTemplate::SimdBinop, Opcode::FADD, 0 },
+    /* [1902] FMINNM_H_floatdp2 */ { IrTemplate::FpBinop, Opcode::FSUB, 0 },
+    /* [1903] FMINNM_S_floatdp2 */ { IrTemplate::FpBinop, Opcode::FSUB, 0 },
+    /* [1904] FMINNM_D_floatdp2 */ { IrTemplate::FpBinop, Opcode::FSUB, 0 },
+    /* [1905] FMINNMP_asisdpair_only_H */ { IrTemplate::SimdUnary, Opcode::ADD, 0 },
+    /* [1906] FMINNMP_asisdpair_only_SD */ { IrTemplate::SimdUnary, Opcode::ADD, 0 },
+    /* [1907] FMINNMP_asimdsamefp16_only */ { IrTemplate::SimdBinop, Opcode::FADD, 0 },
+    /* [1908] FMINNMP_asimdsame_only */ { IrTemplate::SimdBinop, Opcode::FADD, 0 },
+    /* [1909] FMINNMV_asimdall_only_H */ { IrTemplate::SimdUnary, Opcode::ADD, 0 },
+    /* [1910] FMINNMV_asimdall_only_SD */ { IrTemplate::SimdUnary, Opcode::ADD, 0 },
+    /* [1911] FMINP_asisdpair_only_H */ { IrTemplate::SimdUnary, Opcode::ADD, 0 },
+    /* [1912] FMINP_asisdpair_only_SD */ { IrTemplate::SimdUnary, Opcode::ADD, 0 },
+    /* [1913] FMINP_asimdsamefp16_only */ { IrTemplate::SimdBinop, Opcode::FADD, 0 },
+    /* [1914] FMINP_asimdsame_only */ { IrTemplate::SimdBinop, Opcode::FADD, 0 },
+    /* [1915] FMINV_asimdall_only_H */ { IrTemplate::SimdUnary, Opcode::ADD, 0 },
+    /* [1916] FMINV_asimdall_only_SD */ { IrTemplate::SimdUnary, Opcode::ADD, 0 },
+    /* [1917] FMLA_asisdelem_RH_H */ { IrTemplate::FpBinop, Opcode::FMUL, 0 },
+    /* [1918] FMLA_asisdelem_R_SD */ { IrTemplate::FpBinop, Opcode::FMUL, 0 },
+    /* [1919] FMLA_asimdelem_RH_H */ { IrTemplate::SimdBinop, Opcode::MUL, 0 },
+    /* [1920] FMLA_asimdelem_R_SD */ { IrTemplate::SimdBinop, Opcode::MUL, 0 },
+    /* [1921] FMLA_asimdsamefp16_only */ { IrTemplate::SimdBinop, Opcode::FADD, 0 },
+    /* [1922] FMLA_asimdsame_only */ { IrTemplate::SimdBinop, Opcode::FADD, 0 },
+    /* [1923] FMLAL_asimdelem_LH */ { IrTemplate::SimdBinop, Opcode::MUL, 0 },
+    /* [1924] FMLAL2_asimdelem_LH */ { IrTemplate::SimdBinop, Opcode::MUL, 0 },
+    /* [1925] FMLAL_asimdsame_F */ { IrTemplate::SimdBinop, Opcode::FADD, 0 },
+    /* [1926] FMLAL2_asimdsame_F */ { IrTemplate::SimdBinop, Opcode::FADD, 0 },
+    /* [1927] FMLALB_asimdelem_H */ { IrTemplate::SimdBinop, Opcode::MUL, 0 },
+    /* [1928] FMLALT_asimdelem_H */ { IrTemplate::SimdBinop, Opcode::MUL, 0 },
+    /* [1929] FMLALB_asimdsame2_J */ { IrTemplate::SimdBinop, Opcode::FADD, 0 },
+    /* [1930] FMLALT_asimdsame2_J */ { IrTemplate::SimdBinop, Opcode::FADD, 0 },
+    /* [1931] FMLALLBB_asimdelem_J */ { IrTemplate::SimdBinop, Opcode::MUL, 0 },
+    /* [1932] FMLALLBT_asimdelem_J */ { IrTemplate::SimdBinop, Opcode::MUL, 0 },
+    /* [1933] FMLALLTB_asimdelem_J */ { IrTemplate::SimdBinop, Opcode::MUL, 0 },
+    /* [1934] FMLALLTT_asimdelem_J */ { IrTemplate::SimdBinop, Opcode::MUL, 0 },
+    /* [1935] FMLALLBB_asimdsame2_G */ { IrTemplate::SimdBinop, Opcode::FADD, 0 },
+    /* [1936] FMLALLBT_asimdsame2_G */ { IrTemplate::SimdBinop, Opcode::FADD, 0 },
+    /* [1937] FMLALLTB_asimdsame2_G */ { IrTemplate::SimdBinop, Opcode::FADD, 0 },
+    /* [1938] FMLALLTT_asimdsame2_G */ { IrTemplate::SimdBinop, Opcode::FADD, 0 },
+    /* [1939] FMLS_asisdelem_RH_H */ { IrTemplate::FpBinop, Opcode::FMUL, 0 },
+    /* [1940] FMLS_asisdelem_R_SD */ { IrTemplate::FpBinop, Opcode::FMUL, 0 },
+    /* [1941] FMLS_asimdelem_RH_H */ { IrTemplate::SimdBinop, Opcode::MUL, 0 },
+    /* [1942] FMLS_asimdelem_R_SD */ { IrTemplate::SimdBinop, Opcode::MUL, 0 },
+    /* [1943] FMLS_asimdsamefp16_only */ { IrTemplate::SimdBinop, Opcode::FADD, 0 },
+    /* [1944] FMLS_asimdsame_only */ { IrTemplate::SimdBinop, Opcode::FADD, 0 },
+    /* [1945] FMLSL_asimdelem_LH */ { IrTemplate::SimdBinop, Opcode::MUL, 0 },
+    /* [1946] FMLSL2_asimdelem_LH */ { IrTemplate::SimdBinop, Opcode::MUL, 0 },
+    /* [1947] FMLSL_asimdsame_F */ { IrTemplate::SimdBinop, Opcode::FADD, 0 },
+    /* [1948] FMLSL2_asimdsame_F */ { IrTemplate::SimdBinop, Opcode::FADD, 0 },
+    /* [1949] FMMLA_asimd_FP16FP16 */ { IrTemplate::SimdBinop, Opcode::FADD, 0 },
+    /* [1950] FMMLA_asimd_FP16FP32 */ { IrTemplate::SimdBinop, Opcode::FADD, 0 },
+    /* [1951] FMMLA_asimd_FP8FP16 */ { IrTemplate::SimdBinop, Opcode::FADD, 0 },
+    /* [1952] FMMLA_asimd_FP8FP32 */ { IrTemplate::SimdBinop, Opcode::FADD, 0 },
+    /* [1953] FMOV_asimdimm_H_h */ { IrTemplate::SimdUnary, Opcode::COPY, 0 },
+    /* [1954] FMOV_asimdimm_S_s */ { IrTemplate::SimdUnary, Opcode::COPY, 0 },
+    /* [1955] FMOV_asimdimm_D2_d */ { IrTemplate::SimdUnary, Opcode::COPY, 0 },
+    /* [1956] FMOV_H_floatdp1 */ { IrTemplate::SimdUnary, Opcode::COPY, 0 },
+    /* [1957] FMOV_S_floatdp1 */ { IrTemplate::SimdUnary, Opcode::COPY, 0 },
+    /* [1958] FMOV_D_floatdp1 */ { IrTemplate::SimdUnary, Opcode::COPY, 0 },
+    /* [1959] FMOV_32H_float2int */ { IrTemplate::SimdUnary, Opcode::COPY, 0 },
+    /* [1960] FMOV_64H_float2int */ { IrTemplate::SimdUnary, Opcode::COPY, 0 },
+    /* [1961] FMOV_H32_float2int */ { IrTemplate::SimdUnary, Opcode::COPY, 0 },
+    /* [1962] FMOV_S32_float2int */ { IrTemplate::SimdUnary, Opcode::COPY, 0 },
+    /* [1963] FMOV_32S_float2int */ { IrTemplate::SimdUnary, Opcode::COPY, 0 },
+    /* [1964] FMOV_H64_float2int */ { IrTemplate::SimdUnary, Opcode::COPY, 0 },
+    /* [1965] FMOV_D64_float2int */ { IrTemplate::SimdUnary, Opcode::COPY, 0 },
+    /* [1966] FMOV_V64I_float2int */ { IrTemplate::SimdUnary, Opcode::COPY, 0 },
+    /* [1967] FMOV_64D_float2int */ { IrTemplate::SimdUnary, Opcode::COPY, 0 },
+    /* [1968] FMOV_64VX_float2int */ { IrTemplate::SimdUnary, Opcode::COPY, 0 },
+    /* [1969] FMOV_H_floatimm */ { IrTemplate::SimdBinop, Opcode::UNDEF, 0 },
+    /* [1970] FMOV_S_floatimm */ { IrTemplate::SimdBinop, Opcode::UNDEF, 0 },
+    /* [1971] FMOV_D_floatimm */ { IrTemplate::SimdBinop, Opcode::UNDEF, 0 },
+    /* [1972] FMSUB_H_floatdp3 */ { IrTemplate::SimdBinop, Opcode::UNDEF, 0 },
+    /* [1973] FMSUB_S_floatdp3 */ { IrTemplate::SimdBinop, Opcode::UNDEF, 0 },
+    /* [1974] FMSUB_D_floatdp3 */ { IrTemplate::SimdBinop, Opcode::UNDEF, 0 },
+    /* [1975] FMUL_asisdelem_RH_H */ { IrTemplate::FpBinop, Opcode::FMUL, 0 },
+    /* [1976] FMUL_asisdelem_R_SD */ { IrTemplate::FpBinop, Opcode::FMUL, 0 },
+    /* [1977] FMUL_asimdelem_RH_H */ { IrTemplate::SimdBinop, Opcode::MUL, 0 },
+    /* [1978] FMUL_asimdelem_R_SD */ { IrTemplate::SimdBinop, Opcode::MUL, 0 },
+    /* [1979] FMUL_asimdsamefp16_only */ { IrTemplate::SimdBinop, Opcode::FMUL, 0 },
+    /* [1980] FMUL_asimdsame_only */ { IrTemplate::SimdBinop, Opcode::FMUL, 0 },
+    /* [1981] FMUL_H_floatdp2 */ { IrTemplate::FpBinop, Opcode::FMUL, 0 },
+    /* [1982] FMUL_S_floatdp2 */ { IrTemplate::FpBinop, Opcode::FMUL, 0 },
+    /* [1983] FMUL_D_floatdp2 */ { IrTemplate::FpBinop, Opcode::FMUL, 0 },
+    /* [1984] FMULX_asisdelem_RH_H */ { IrTemplate::FpBinop, Opcode::FMUL, 0 },
+    /* [1985] FMULX_asisdelem_R_SD */ { IrTemplate::FpBinop, Opcode::FMUL, 0 },
+    /* [1986] FMULX_asimdelem_RH_H */ { IrTemplate::SimdBinop, Opcode::MUL, 0 },
+    /* [1987] FMULX_asimdelem_R_SD */ { IrTemplate::SimdBinop, Opcode::MUL, 0 },
+    /* [1988] FMULX_asisdsamefp16_only */ { IrTemplate::FpBinop, Opcode::FADD, 0 },
+    /* [1989] FMULX_asisdsame_only */ { IrTemplate::FpBinop, Opcode::FADD, 0 },
+    /* [1990] FMULX_asimdsamefp16_only */ { IrTemplate::SimdBinop, Opcode::FADD, 0 },
+    /* [1991] FMULX_asimdsame_only */ { IrTemplate::SimdBinop, Opcode::FADD, 0 },
+    /* [1992] FNEG_asimdmiscfp16_R */ { IrTemplate::SimdUnary, Opcode::FNEG, 0 },
+    /* [1993] FNEG_asimdmisc_R */ { IrTemplate::SimdUnary, Opcode::FNEG, 0 },
+    /* [1994] FNEG_H_floatdp1 */ { IrTemplate::SimdUnary, Opcode::FNEG, 0 },
+    /* [1995] FNEG_S_floatdp1 */ { IrTemplate::SimdUnary, Opcode::FNEG, 0 },
+    /* [1996] FNEG_D_floatdp1 */ { IrTemplate::SimdUnary, Opcode::FNEG, 0 },
+    /* [1997] FNMADD_H_floatdp3 */ { IrTemplate::SimdBinop, Opcode::UNDEF, 0 },
+    /* [1998] FNMADD_S_floatdp3 */ { IrTemplate::SimdBinop, Opcode::UNDEF, 0 },
+    /* [1999] FNMADD_D_floatdp3 */ { IrTemplate::SimdBinop, Opcode::UNDEF, 0 },
+    /* [2000] FNMSUB_H_floatdp3 */ { IrTemplate::SimdBinop, Opcode::UNDEF, 0 },
+    /* [2001] FNMSUB_S_floatdp3 */ { IrTemplate::SimdBinop, Opcode::UNDEF, 0 },
+    /* [2002] FNMSUB_D_floatdp3 */ { IrTemplate::SimdBinop, Opcode::UNDEF, 0 },
+    /* [2003] FNMUL_H_floatdp2 */ { IrTemplate::FpBinop, Opcode::FMUL, 0 },
+    /* [2004] FNMUL_S_floatdp2 */ { IrTemplate::FpBinop, Opcode::FMUL, 0 },
+    /* [2005] FNMUL_D_floatdp2 */ { IrTemplate::FpBinop, Opcode::FMUL, 0 },
+    /* [2006] FRECPE_asisdmiscfp16_R */ { IrTemplate::SimdUnary, Opcode::COPY, 0 },
+    /* [2007] FRECPE_asisdmisc_R */ { IrTemplate::SimdUnary, Opcode::COPY, 0 },
+    /* [2008] FRECPE_asimdmiscfp16_R */ { IrTemplate::SimdUnary, Opcode::COPY, 0 },
+    /* [2009] FRECPE_asimdmisc_R */ { IrTemplate::SimdUnary, Opcode::COPY, 0 },
+    /* [2010] FRECPS_asisdsamefp16_only */ { IrTemplate::FpBinop, Opcode::FADD, 0 },
+    /* [2011] FRECPS_asisdsame_only */ { IrTemplate::FpBinop, Opcode::FADD, 0 },
+    /* [2012] FRECPS_asimdsamefp16_only */ { IrTemplate::SimdBinop, Opcode::FADD, 0 },
+    /* [2013] FRECPS_asimdsame_only */ { IrTemplate::SimdBinop, Opcode::FADD, 0 },
+    /* [2014] FRECPX_asisdmiscfp16_R */ { IrTemplate::SimdUnary, Opcode::COPY, 0 },
+    /* [2015] FRECPX_asisdmisc_R */ { IrTemplate::SimdUnary, Opcode::COPY, 0 },
+    /* [2016] FRINT32X_asimdmisc_R */ { IrTemplate::SimdUnary, Opcode::COPY, 0 },
+    /* [2017] FRINT32X_S_floatdp1 */ { IrTemplate::SimdUnary, Opcode::COPY, 0 },
+    /* [2018] FRINT32X_D_floatdp1 */ { IrTemplate::SimdUnary, Opcode::COPY, 0 },
+    /* [2019] FRINT32Z_asimdmisc_R */ { IrTemplate::SimdUnary, Opcode::COPY, 0 },
+    /* [2020] FRINT32Z_S_floatdp1 */ { IrTemplate::SimdUnary, Opcode::COPY, 0 },
+    /* [2021] FRINT32Z_D_floatdp1 */ { IrTemplate::SimdUnary, Opcode::COPY, 0 },
+    /* [2022] FRINT64X_asimdmisc_R */ { IrTemplate::SimdUnary, Opcode::COPY, 0 },
+    /* [2023] FRINT64X_S_floatdp1 */ { IrTemplate::SimdUnary, Opcode::COPY, 0 },
+    /* [2024] FRINT64X_D_floatdp1 */ { IrTemplate::SimdUnary, Opcode::COPY, 0 },
+    /* [2025] FRINT64Z_asimdmisc_R */ { IrTemplate::SimdUnary, Opcode::COPY, 0 },
+    /* [2026] FRINT64Z_S_floatdp1 */ { IrTemplate::SimdUnary, Opcode::COPY, 0 },
+    /* [2027] FRINT64Z_D_floatdp1 */ { IrTemplate::SimdUnary, Opcode::COPY, 0 },
+    /* [2028] FRINTA_asimdmiscfp16_R */ { IrTemplate::SimdUnary, Opcode::COPY, 0 },
+    /* [2029] FRINTA_asimdmisc_R */ { IrTemplate::SimdUnary, Opcode::COPY, 0 },
+    /* [2030] FRINTA_H_floatdp1 */ { IrTemplate::SimdUnary, Opcode::COPY, 0 },
+    /* [2031] FRINTA_S_floatdp1 */ { IrTemplate::SimdUnary, Opcode::COPY, 0 },
+    /* [2032] FRINTA_D_floatdp1 */ { IrTemplate::SimdUnary, Opcode::COPY, 0 },
+    /* [2033] FRINTI_asimdmiscfp16_R */ { IrTemplate::SimdUnary, Opcode::COPY, 0 },
+    /* [2034] FRINTI_asimdmisc_R */ { IrTemplate::SimdUnary, Opcode::COPY, 0 },
+    /* [2035] FRINTI_H_floatdp1 */ { IrTemplate::SimdUnary, Opcode::COPY, 0 },
+    /* [2036] FRINTI_S_floatdp1 */ { IrTemplate::SimdUnary, Opcode::COPY, 0 },
+    /* [2037] FRINTI_D_floatdp1 */ { IrTemplate::SimdUnary, Opcode::COPY, 0 },
+    /* [2038] FRINTM_asimdmiscfp16_R */ { IrTemplate::SimdUnary, Opcode::COPY, 0 },
+    /* [2039] FRINTM_asimdmisc_R */ { IrTemplate::SimdUnary, Opcode::COPY, 0 },
+    /* [2040] FRINTM_H_floatdp1 */ { IrTemplate::SimdUnary, Opcode::COPY, 0 },
+    /* [2041] FRINTM_S_floatdp1 */ { IrTemplate::SimdUnary, Opcode::COPY, 0 },
+    /* [2042] FRINTM_D_floatdp1 */ { IrTemplate::SimdUnary, Opcode::COPY, 0 },
+    /* [2043] FRINTN_asimdmiscfp16_R */ { IrTemplate::SimdUnary, Opcode::COPY, 0 },
+    /* [2044] FRINTN_asimdmisc_R */ { IrTemplate::SimdUnary, Opcode::COPY, 0 },
+    /* [2045] FRINTN_H_floatdp1 */ { IrTemplate::SimdUnary, Opcode::COPY, 0 },
+    /* [2046] FRINTN_S_floatdp1 */ { IrTemplate::SimdUnary, Opcode::COPY, 0 },
+    /* [2047] FRINTN_D_floatdp1 */ { IrTemplate::SimdUnary, Opcode::COPY, 0 },
+    /* [2048] FRINTP_asimdmiscfp16_R */ { IrTemplate::SimdUnary, Opcode::COPY, 0 },
+    /* [2049] FRINTP_asimdmisc_R */ { IrTemplate::SimdUnary, Opcode::COPY, 0 },
+    /* [2050] FRINTP_H_floatdp1 */ { IrTemplate::SimdUnary, Opcode::COPY, 0 },
+    /* [2051] FRINTP_S_floatdp1 */ { IrTemplate::SimdUnary, Opcode::COPY, 0 },
+    /* [2052] FRINTP_D_floatdp1 */ { IrTemplate::SimdUnary, Opcode::COPY, 0 },
+    /* [2053] FRINTX_asimdmiscfp16_R */ { IrTemplate::SimdUnary, Opcode::COPY, 0 },
+    /* [2054] FRINTX_asimdmisc_R */ { IrTemplate::SimdUnary, Opcode::COPY, 0 },
+    /* [2055] FRINTX_H_floatdp1 */ { IrTemplate::SimdUnary, Opcode::COPY, 0 },
+    /* [2056] FRINTX_S_floatdp1 */ { IrTemplate::SimdUnary, Opcode::COPY, 0 },
+    /* [2057] FRINTX_D_floatdp1 */ { IrTemplate::SimdUnary, Opcode::COPY, 0 },
+    /* [2058] FRINTZ_asimdmiscfp16_R */ { IrTemplate::SimdUnary, Opcode::COPY, 0 },
+    /* [2059] FRINTZ_asimdmisc_R */ { IrTemplate::SimdUnary, Opcode::COPY, 0 },
+    /* [2060] FRINTZ_H_floatdp1 */ { IrTemplate::SimdUnary, Opcode::COPY, 0 },
+    /* [2061] FRINTZ_S_floatdp1 */ { IrTemplate::SimdUnary, Opcode::COPY, 0 },
+    /* [2062] FRINTZ_D_floatdp1 */ { IrTemplate::SimdUnary, Opcode::COPY, 0 },
+    /* [2063] FRSQRTE_asisdmiscfp16_R */ { IrTemplate::SimdUnary, Opcode::COPY, 0 },
+    /* [2064] FRSQRTE_asisdmisc_R */ { IrTemplate::SimdUnary, Opcode::COPY, 0 },
+    /* [2065] FRSQRTE_asimdmiscfp16_R */ { IrTemplate::SimdUnary, Opcode::COPY, 0 },
+    /* [2066] FRSQRTE_asimdmisc_R */ { IrTemplate::SimdUnary, Opcode::COPY, 0 },
+    /* [2067] FRSQRTS_asisdsamefp16_only */ { IrTemplate::FpBinop, Opcode::FADD, 0 },
+    /* [2068] FRSQRTS_asisdsame_only */ { IrTemplate::FpBinop, Opcode::FADD, 0 },
+    /* [2069] FRSQRTS_asimdsamefp16_only */ { IrTemplate::SimdBinop, Opcode::FADD, 0 },
+    /* [2070] FRSQRTS_asimdsame_only */ { IrTemplate::SimdBinop, Opcode::FADD, 0 },
+    /* [2071] FSCALE_asimdsamefp16_only */ { IrTemplate::SimdBinop, Opcode::FADD, 0 },
+    /* [2072] FSCALE_asimdsame_only */ { IrTemplate::SimdBinop, Opcode::FADD, 0 },
+    /* [2073] FSQRT_asimdmiscfp16_R */ { IrTemplate::SimdUnary, Opcode::FSQRT, 0 },
+    /* [2074] FSQRT_asimdmisc_R */ { IrTemplate::SimdUnary, Opcode::FSQRT, 0 },
+    /* [2075] FSQRT_H_floatdp1 */ { IrTemplate::SimdUnary, Opcode::FSQRT, 0 },
+    /* [2076] FSQRT_S_floatdp1 */ { IrTemplate::SimdUnary, Opcode::FSQRT, 0 },
+    /* [2077] FSQRT_D_floatdp1 */ { IrTemplate::SimdUnary, Opcode::FSQRT, 0 },
+    /* [2078] FSUB_asimdsamefp16_only */ { IrTemplate::SimdBinop, Opcode::FSUB, 0 },
+    /* [2079] FSUB_asimdsame_only */ { IrTemplate::SimdBinop, Opcode::FSUB, 0 },
+    /* [2080] FSUB_H_floatdp2 */ { IrTemplate::FpBinop, Opcode::FSUB, 0 },
+    /* [2081] FSUB_S_floatdp2 */ { IrTemplate::FpBinop, Opcode::FSUB, 0 },
+    /* [2082] FSUB_D_floatdp2 */ { IrTemplate::FpBinop, Opcode::FSUB, 0 },
+    /* [2083] INS_asimdins_IV_v */ { IrTemplate::SimdUnary, Opcode::COPY, 0 },
+    /* [2084] INS_asimdins_IR_r */ { IrTemplate::SimdUnary, Opcode::COPY, 0 },
+    /* [2085] LUTI2_asimdtbl_L5 */ { IrTemplate::SimdBinop, Opcode::COPY, 0 },
+    /* [2086] LUTI2_asimdtbl_L6 */ { IrTemplate::SimdBinop, Opcode::COPY, 0 },
+    /* [2087] LUTI4_asimdtbl_L5 */ { IrTemplate::SimdBinop, Opcode::COPY, 0 },
+    /* [2088] LUTI4_asimdtbl_L7 */ { IrTemplate::SimdBinop, Opcode::COPY, 0 },
+    /* [2089] MLA_asimdelem_R */ { IrTemplate::SimdBinop, Opcode::MUL, 0 },
+    /* [2090] MLA_asimdsame_only */ { IrTemplate::SimdBinop, Opcode::FADD, 0 },
+    /* [2091] MLS_asimdelem_R */ { IrTemplate::SimdBinop, Opcode::MUL, 0 },
+    /* [2092] MLS_asimdsame_only */ { IrTemplate::SimdBinop, Opcode::FADD, 0 },
+    /* [2093] MOV_DUP_asisdone_only */ { IrTemplate::SimdUnary, Opcode::COPY, 0 },
+    /* [2094] MOV_INS_asimdins_IV_v */ { IrTemplate::SimdUnary, Opcode::COPY, 0 },
+    /* [2095] MOV_INS_asimdins_IR_r */ { IrTemplate::SimdUnary, Opcode::COPY, 0 },
+    /* [2096] MOV_ORR_asimdsame_only */ { IrTemplate::SimdBinop, Opcode::OR, 0 },
+    /* [2097] MOV_UMOV_asimdins_W_w */ { IrTemplate::SimdUnary, Opcode::COPY, 0 },
+    /* [2098] MOV_UMOV_asimdins_X_x */ { IrTemplate::SimdUnary, Opcode::COPY, 0 },
+    /* [2099] MOVI_asimdimm_N_b */ { IrTemplate::SimdUnary, Opcode::COPY, 0 },
+    /* [2100] MOVI_asimdimm_L_hl */ { IrTemplate::SimdUnary, Opcode::COPY, 0 },
+    /* [2101] MOVI_asimdimm_L_sl */ { IrTemplate::SimdUnary, Opcode::COPY, 0 },
+    /* [2102] MOVI_asimdimm_M_sm */ { IrTemplate::SimdUnary, Opcode::COPY, 0 },
+    /* [2103] MOVI_asimdimm_D_ds */ { IrTemplate::SimdUnary, Opcode::COPY, 0 },
+    /* [2104] MOVI_asimdimm_D2_d */ { IrTemplate::SimdUnary, Opcode::COPY, 0 },
+    /* [2105] MUL_asimdelem_R */ { IrTemplate::SimdBinop, Opcode::MUL, 0 },
+    /* [2106] MUL_asimdsame_only */ { IrTemplate::SimdBinop, Opcode::MUL, 0 },
+    /* [2107] MVN_NOT_asimdmisc_R */ { IrTemplate::SimdUnary, Opcode::NOT, 0 },
+    /* [2108] MVNI_asimdimm_L_hl */ { IrTemplate::SimdUnary, Opcode::COPY, 0 },
+    /* [2109] MVNI_asimdimm_L_sl */ { IrTemplate::SimdUnary, Opcode::COPY, 0 },
+    /* [2110] MVNI_asimdimm_M_sm */ { IrTemplate::SimdUnary, Opcode::COPY, 0 },
+    /* [2111] NEG_asisdmisc_R */ { IrTemplate::SimdUnary, Opcode::COPY, 0 },
+    /* [2112] NEG_asimdmisc_R */ { IrTemplate::SimdUnary, Opcode::NEG, 0 },
+    /* [2113] NOT_asimdmisc_R */ { IrTemplate::SimdUnary, Opcode::NOT, 0 },
+    /* [2114] ORN_asimdsame_only */ { IrTemplate::SimdBinop, Opcode::OR, 0 },
+    /* [2115] ORR_asimdimm_L_hl */ { IrTemplate::SimdUnary, Opcode::COPY, 0 },
+    /* [2116] ORR_asimdimm_L_sl */ { IrTemplate::SimdUnary, Opcode::COPY, 0 },
+    /* [2117] ORR_asimdsame_only */ { IrTemplate::SimdBinop, Opcode::OR, 0 },
+    /* [2118] PMUL_asimdsame_only */ { IrTemplate::SimdBinop, Opcode::FADD, 0 },
+    /* [2119] PMULL_asimddiff_L */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [2120] RADDHN_asimddiff_N */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [2121] RAX1_VVV2_cryptosha512_3 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2122] RBIT_asimdmisc_R */ { IrTemplate::SimdUnary, Opcode::COPY, 0 },
+    /* [2123] REV16_asimdmisc_R */ { IrTemplate::SimdUnary, Opcode::COPY, 0 },
+    /* [2124] REV32_asimdmisc_R */ { IrTemplate::SimdUnary, Opcode::COPY, 0 },
+    /* [2125] REV64_asimdmisc_R */ { IrTemplate::SimdUnary, Opcode::COPY, 0 },
+    /* [2126] RSHRN_asimdshf_N */ { IrTemplate::SimdBinop, Opcode::SHL, 0 },
+    /* [2127] RSUBHN_asimddiff_N */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [2128] SABA_asimdsame_only */ { IrTemplate::SimdBinop, Opcode::FADD, 0 },
+    /* [2129] SABAL_asimddiff_L */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [2130] SABD_asimdsame_only */ { IrTemplate::SimdBinop, Opcode::FADD, 0 },
+    /* [2131] SABDL_asimddiff_L */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [2132] SADALP_asimdmisc_P */ { IrTemplate::SimdUnary, Opcode::COPY, 0 },
+    /* [2133] SADDL_asimddiff_L */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [2134] SADDLP_asimdmisc_P */ { IrTemplate::SimdUnary, Opcode::COPY, 0 },
+    /* [2135] SADDLV_asimdall_only */ { IrTemplate::SimdUnary, Opcode::ADD, 0 },
+    /* [2136] SADDW_asimddiff_W */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [2137] SCVTF_asisdshf_C */ { IrTemplate::SimdUnary, Opcode::SHL, 0 },
+    /* [2138] SCVTF_asimdshf_C */ { IrTemplate::SimdBinop, Opcode::SHL, 0 },
+    /* [2139] SCVTF_asisdmiscfp16_R */ { IrTemplate::SimdUnary, Opcode::COPY, 0 },
+    /* [2140] SCVTF_asisdmisc_R */ { IrTemplate::SimdUnary, Opcode::COPY, 0 },
+    /* [2141] SCVTF_asimdmiscfp16_R */ { IrTemplate::SimdUnary, Opcode::COPY, 0 },
+    /* [2142] SCVTF_asimdmisc_R */ { IrTemplate::SimdUnary, Opcode::COPY, 0 },
+    /* [2143] SCVTF_H32_float2fix */ { IrTemplate::FpConvert, Opcode::INT2FLOAT, 0 },
+    /* [2144] SCVTF_H64_float2fix */ { IrTemplate::FpConvert, Opcode::INT2FLOAT, 0 },
+    /* [2145] SCVTF_S32_float2fix */ { IrTemplate::FpConvert, Opcode::INT2FLOAT, 0 },
+    /* [2146] SCVTF_S64_float2fix */ { IrTemplate::FpConvert, Opcode::INT2FLOAT, 0 },
+    /* [2147] SCVTF_D32_float2fix */ { IrTemplate::FpConvert, Opcode::INT2FLOAT, 0 },
+    /* [2148] SCVTF_D64_float2fix */ { IrTemplate::FpConvert, Opcode::INT2FLOAT, 0 },
+    /* [2149] SCVTF_H32_float2int */ { IrTemplate::FpConvert, Opcode::INT2FLOAT, 0 },
+    /* [2150] SCVTF_S32_float2int */ { IrTemplate::FpConvert, Opcode::INT2FLOAT, 0 },
+    /* [2151] SCVTF_D32_float2int */ { IrTemplate::FpConvert, Opcode::INT2FLOAT, 0 },
+    /* [2152] SCVTF_H64_float2int */ { IrTemplate::FpConvert, Opcode::INT2FLOAT, 0 },
+    /* [2153] SCVTF_S64_float2int */ { IrTemplate::FpConvert, Opcode::INT2FLOAT, 0 },
+    /* [2154] SCVTF_D64_float2int */ { IrTemplate::FpConvert, Opcode::INT2FLOAT, 0 },
+    /* [2155] SCVTF_sisd_32H */ { IrTemplate::FpConvert, Opcode::INT2FLOAT, 0 },
+    /* [2156] SCVTF_sisd_32D */ { IrTemplate::FpConvert, Opcode::INT2FLOAT, 0 },
+    /* [2157] SCVTF_sisd_64H */ { IrTemplate::FpConvert, Opcode::INT2FLOAT, 0 },
+    /* [2158] SCVTF_sisd_64S */ { IrTemplate::FpConvert, Opcode::INT2FLOAT, 0 },
+    /* [2159] SDOT_asimdelem_D */ { IrTemplate::SimdBinop, Opcode::MUL, 0 },
+    /* [2160] SDOT_asimdsame2_D */ { IrTemplate::SimdBinop, Opcode::FADD, 0 },
+    /* [2161] SHA1C_QSV_cryptosha3 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2162] SHA1H_SS_cryptosha2 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2163] SHA1M_QSV_cryptosha3 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2164] SHA1P_QSV_cryptosha3 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2165] SHA1SU0_VVV_cryptosha3 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2166] SHA1SU1_VV_cryptosha2 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2167] SHA256H2_QQV_cryptosha3 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2168] SHA256H_QQV_cryptosha3 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2169] SHA256SU0_VV_cryptosha2 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2170] SHA256SU1_VVV_cryptosha3 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2171] SHA512H2_QQV_cryptosha512_3 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2172] SHA512H_QQV_cryptosha512_3 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2173] SHA512SU0_VV2_cryptosha512_2 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2174] SHA512SU1_VVV2_cryptosha512_3 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2175] SHADD_asimdsame_only */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [2176] SHL_asisdshf_R */ { IrTemplate::SimdUnary, Opcode::SHL, 0 },
+    /* [2177] SHL_asimdshf_R */ { IrTemplate::SimdBinop, Opcode::SHL, 0 },
+    /* [2178] SHLL_asimdmisc_S */ { IrTemplate::SimdUnary, Opcode::COPY, 0 },
+    /* [2179] SHRN_asimdshf_N */ { IrTemplate::SimdBinop, Opcode::SHL, 0 },
+    /* [2180] SHSUB_asimdsame_only */ { IrTemplate::SimdBinop, Opcode::SUB, 0 },
+    /* [2181] SLI_asisdshf_R */ { IrTemplate::SimdUnary, Opcode::SHL, 0 },
+    /* [2182] SLI_asimdshf_R */ { IrTemplate::SimdBinop, Opcode::SHL, 0 },
+    /* [2183] SM3PARTW1_VVV4_cryptosha512_3 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2184] SM3PARTW2_VVV4_cryptosha512_3 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2185] SM3SS1_VVV4_crypto4 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2186] SM3TT1A_VVV4_crypto3_imm2 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2187] SM3TT1B_VVV4_crypto3_imm2 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2188] SM3TT2A_VVV4_crypto3_imm2 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2189] SM3TT2B_VVV_crypto3_imm2 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2190] SM4E_VV4_cryptosha512_2 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2191] SM4EKEY_VVV4_cryptosha512_3 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2192] SMAX_asimdsame_only */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [2193] SMAXP_asimdsame_only */ { IrTemplate::SimdBinop, Opcode::FADD, 0 },
+    /* [2194] SMAXV_asimdall_only */ { IrTemplate::SimdUnary, Opcode::ADD, 0 },
+    /* [2195] SMIN_asimdsame_only */ { IrTemplate::SimdBinop, Opcode::SUB, 0 },
+    /* [2196] SMINP_asimdsame_only */ { IrTemplate::SimdBinop, Opcode::FADD, 0 },
+    /* [2197] SMINV_asimdall_only */ { IrTemplate::SimdUnary, Opcode::ADD, 0 },
+    /* [2198] SMLAL_asimdelem_L */ { IrTemplate::SimdBinop, Opcode::MUL, 0 },
+    /* [2199] SMLAL_asimddiff_L */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [2200] SMLSL_asimdelem_L */ { IrTemplate::SimdBinop, Opcode::MUL, 0 },
+    /* [2201] SMLSL_asimddiff_L */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [2202] SMMLA_asimdsame2_G */ { IrTemplate::SimdBinop, Opcode::FADD, 0 },
+    /* [2203] SMOV_asimdins_W_w */ { IrTemplate::SimdUnary, Opcode::COPY, 0 },
+    /* [2204] SMOV_asimdins_X_x */ { IrTemplate::SimdUnary, Opcode::COPY, 0 },
+    /* [2205] SMULL_asimdelem_L */ { IrTemplate::SimdBinop, Opcode::MUL, 0 },
+    /* [2206] SMULL_asimddiff_L */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [2207] SQABS_asisdmisc_R */ { IrTemplate::SimdUnary, Opcode::COPY, 0 },
+    /* [2208] SQABS_asimdmisc_R */ { IrTemplate::SimdUnary, Opcode::NEG, 0 },
+    /* [2209] SQADD_asisdsame_only */ { IrTemplate::FpBinop, Opcode::FADD, 0 },
+    /* [2210] SQADD_asimdsame_only */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [2211] SQDMLAL_asisdelem_L */ { IrTemplate::FpBinop, Opcode::FMUL, 0 },
+    /* [2212] SQDMLAL_asimdelem_L */ { IrTemplate::SimdBinop, Opcode::MUL, 0 },
+    /* [2213] SQDMLAL_asisddiff_only */ { IrTemplate::FpBinop, Opcode::FADD, 0 },
+    /* [2214] SQDMLAL_asimddiff_L */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [2215] SQDMLSL_asisdelem_L */ { IrTemplate::FpBinop, Opcode::FMUL, 0 },
+    /* [2216] SQDMLSL_asimdelem_L */ { IrTemplate::SimdBinop, Opcode::MUL, 0 },
+    /* [2217] SQDMLSL_asisddiff_only */ { IrTemplate::FpBinop, Opcode::FADD, 0 },
+    /* [2218] SQDMLSL_asimddiff_L */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [2219] SQDMULH_asisdelem_R */ { IrTemplate::FpBinop, Opcode::FMUL, 0 },
+    /* [2220] SQDMULH_asimdelem_R */ { IrTemplate::SimdBinop, Opcode::MUL, 0 },
+    /* [2221] SQDMULH_asisdsame_only */ { IrTemplate::FpBinop, Opcode::FADD, 0 },
+    /* [2222] SQDMULH_asimdsame_only */ { IrTemplate::SimdBinop, Opcode::FADD, 0 },
+    /* [2223] SQDMULL_asimdelem_L */ { IrTemplate::SimdBinop, Opcode::MUL, 0 },
+    /* [2224] SQDMULL_asisdelem_L */ { IrTemplate::FpBinop, Opcode::FMUL, 0 },
+    /* [2225] SQDMULL_asisddiff_only */ { IrTemplate::FpBinop, Opcode::FADD, 0 },
+    /* [2226] SQDMULL_asimddiff_L */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [2227] SQNEG_asisdmisc_R */ { IrTemplate::SimdUnary, Opcode::COPY, 0 },
+    /* [2228] SQNEG_asimdmisc_R */ { IrTemplate::SimdUnary, Opcode::NEG, 0 },
+    /* [2229] SQRDMLAH_asisdelem_R */ { IrTemplate::FpBinop, Opcode::FMUL, 0 },
+    /* [2230] SQRDMLAH_asimdelem_R */ { IrTemplate::SimdBinop, Opcode::MUL, 0 },
+    /* [2231] SQRDMLAH_asisdsame2_only */ { IrTemplate::FpBinop, Opcode::FADD, 0 },
+    /* [2232] SQRDMLAH_asimdsame2_only */ { IrTemplate::SimdBinop, Opcode::FADD, 0 },
+    /* [2233] SQRDMLSH_asisdelem_R */ { IrTemplate::FpBinop, Opcode::FMUL, 0 },
+    /* [2234] SQRDMLSH_asimdelem_R */ { IrTemplate::SimdBinop, Opcode::MUL, 0 },
+    /* [2235] SQRDMLSH_asisdsame2_only */ { IrTemplate::FpBinop, Opcode::FADD, 0 },
+    /* [2236] SQRDMLSH_asimdsame2_only */ { IrTemplate::SimdBinop, Opcode::FADD, 0 },
+    /* [2237] SQRDMULH_asisdelem_R */ { IrTemplate::FpBinop, Opcode::FMUL, 0 },
+    /* [2238] SQRDMULH_asimdelem_R */ { IrTemplate::SimdBinop, Opcode::MUL, 0 },
+    /* [2239] SQRDMULH_asisdsame_only */ { IrTemplate::FpBinop, Opcode::FADD, 0 },
+    /* [2240] SQRDMULH_asimdsame_only */ { IrTemplate::SimdBinop, Opcode::FADD, 0 },
+    /* [2241] SQRSHL_asisdsame_only */ { IrTemplate::FpBinop, Opcode::FADD, 0 },
+    /* [2242] SQRSHL_asimdsame_only */ { IrTemplate::SimdBinop, Opcode::FADD, 0 },
+    /* [2243] SQRSHRN_asisdshf_N */ { IrTemplate::SimdUnary, Opcode::SHL, 0 },
+    /* [2244] SQRSHRN_asimdshf_N */ { IrTemplate::SimdBinop, Opcode::SHL, 0 },
+    /* [2245] SQRSHRUN_asisdshf_N */ { IrTemplate::SimdUnary, Opcode::SHL, 0 },
+    /* [2246] SQRSHRUN_asimdshf_N */ { IrTemplate::SimdBinop, Opcode::SHL, 0 },
+    /* [2247] SQSHL_asisdshf_R */ { IrTemplate::SimdUnary, Opcode::SHL, 0 },
+    /* [2248] SQSHL_asimdshf_R */ { IrTemplate::SimdBinop, Opcode::SHL, 0 },
+    /* [2249] SQSHL_asisdsame_only */ { IrTemplate::FpBinop, Opcode::FADD, 0 },
+    /* [2250] SQSHL_asimdsame_only */ { IrTemplate::SimdBinop, Opcode::SHL, 0 },
+    /* [2251] SQSHLU_asisdshf_R */ { IrTemplate::SimdUnary, Opcode::SHL, 0 },
+    /* [2252] SQSHLU_asimdshf_R */ { IrTemplate::SimdBinop, Opcode::SHL, 0 },
+    /* [2253] SQSHRN_asisdshf_N */ { IrTemplate::SimdUnary, Opcode::SHL, 0 },
+    /* [2254] SQSHRN_asimdshf_N */ { IrTemplate::SimdBinop, Opcode::SHL, 0 },
+    /* [2255] SQSHRUN_asisdshf_N */ { IrTemplate::SimdUnary, Opcode::SHL, 0 },
+    /* [2256] SQSHRUN_asimdshf_N */ { IrTemplate::SimdBinop, Opcode::SHL, 0 },
+    /* [2257] SQSUB_asisdsame_only */ { IrTemplate::FpBinop, Opcode::FADD, 0 },
+    /* [2258] SQSUB_asimdsame_only */ { IrTemplate::SimdBinop, Opcode::SUB, 0 },
+    /* [2259] SQXTN_asisdmisc_N */ { IrTemplate::SimdUnary, Opcode::COPY, 0 },
+    /* [2260] SQXTN_asimdmisc_N */ { IrTemplate::SimdUnary, Opcode::COPY, 0 },
+    /* [2261] SQXTUN_asisdmisc_N */ { IrTemplate::SimdUnary, Opcode::COPY, 0 },
+    /* [2262] SQXTUN_asimdmisc_N */ { IrTemplate::SimdUnary, Opcode::COPY, 0 },
+    /* [2263] SRHADD_asimdsame_only */ { IrTemplate::SimdBinop, Opcode::FADD, 0 },
+    /* [2264] SRI_asisdshf_R */ { IrTemplate::SimdUnary, Opcode::SHL, 0 },
+    /* [2265] SRI_asimdshf_R */ { IrTemplate::SimdBinop, Opcode::SHL, 0 },
+    /* [2266] SRSHL_asisdsame_only */ { IrTemplate::FpBinop, Opcode::FADD, 0 },
+    /* [2267] SRSHL_asimdsame_only */ { IrTemplate::SimdBinop, Opcode::SHL, 0 },
+    /* [2268] SRSHR_asisdshf_R */ { IrTemplate::SimdUnary, Opcode::SHL, 0 },
+    /* [2269] SRSHR_asimdshf_R */ { IrTemplate::SimdBinop, Opcode::SHL, 0 },
+    /* [2270] SRSRA_asisdshf_R */ { IrTemplate::SimdUnary, Opcode::SHL, 0 },
+    /* [2271] SRSRA_asimdshf_R */ { IrTemplate::SimdBinop, Opcode::SHL, 0 },
+    /* [2272] SSHL_asisdsame_only */ { IrTemplate::FpBinop, Opcode::FADD, 0 },
+    /* [2273] SSHL_asimdsame_only */ { IrTemplate::SimdBinop, Opcode::SHL, 0 },
+    /* [2274] SSHLL_asimdshf_L */ { IrTemplate::SimdBinop, Opcode::SHL, 0 },
+    /* [2275] SSHR_asisdshf_R */ { IrTemplate::SimdUnary, Opcode::SHL, 0 },
+    /* [2276] SSHR_asimdshf_R */ { IrTemplate::SimdBinop, Opcode::SHL, 0 },
+    /* [2277] SSRA_asisdshf_R */ { IrTemplate::SimdUnary, Opcode::SHL, 0 },
+    /* [2278] SSRA_asimdshf_R */ { IrTemplate::SimdBinop, Opcode::SHL, 0 },
+    /* [2279] SSUBL_asimddiff_L */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [2280] SSUBW_asimddiff_W */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [2281] SUB_asisdsame_only */ { IrTemplate::FpBinop, Opcode::FADD, 0 },
+    /* [2282] SUB_asimdsame_only */ { IrTemplate::SimdBinop, Opcode::SUB, 0 },
+    /* [2283] SUBHN_asimddiff_N */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [2284] SUDOT_asimdelem_D */ { IrTemplate::SimdBinop, Opcode::MUL, 0 },
+    /* [2285] SUQADD_asisdmisc_R */ { IrTemplate::SimdUnary, Opcode::COPY, 0 },
+    /* [2286] SUQADD_asimdmisc_R */ { IrTemplate::SimdUnary, Opcode::COPY, 0 },
+    /* [2287] SXTL_SSHLL_asimdshf_L */ { IrTemplate::SimdBinop, Opcode::SHL, 0 },
+    /* [2288] TBL_asimdtbl_L1_1 */ { IrTemplate::SimdBinop, Opcode::COPY, 0 },
+    /* [2289] TBL_asimdtbl_L2_2 */ { IrTemplate::SimdBinop, Opcode::COPY, 0 },
+    /* [2290] TBL_asimdtbl_L3_3 */ { IrTemplate::SimdBinop, Opcode::COPY, 0 },
+    /* [2291] TBL_asimdtbl_L4_4 */ { IrTemplate::SimdBinop, Opcode::COPY, 0 },
+    /* [2292] TBX_asimdtbl_L1_1 */ { IrTemplate::SimdBinop, Opcode::COPY, 0 },
+    /* [2293] TBX_asimdtbl_L2_2 */ { IrTemplate::SimdBinop, Opcode::COPY, 0 },
+    /* [2294] TBX_asimdtbl_L3_3 */ { IrTemplate::SimdBinop, Opcode::COPY, 0 },
+    /* [2295] TBX_asimdtbl_L4_4 */ { IrTemplate::SimdBinop, Opcode::COPY, 0 },
+    /* [2296] TRN1_asimdperm_only */ { IrTemplate::SimdBinop, Opcode::COPY, 0 },
+    /* [2297] TRN2_asimdperm_only */ { IrTemplate::SimdBinop, Opcode::COPY, 0 },
+    /* [2298] UABA_asimdsame_only */ { IrTemplate::SimdBinop, Opcode::FADD, 0 },
+    /* [2299] UABAL_asimddiff_L */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [2300] UABD_asimdsame_only */ { IrTemplate::SimdBinop, Opcode::FADD, 0 },
+    /* [2301] UABDL_asimddiff_L */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [2302] UADALP_asimdmisc_P */ { IrTemplate::SimdUnary, Opcode::COPY, 0 },
+    /* [2303] UADDL_asimddiff_L */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [2304] UADDLP_asimdmisc_P */ { IrTemplate::SimdUnary, Opcode::COPY, 0 },
+    /* [2305] UADDLV_asimdall_only */ { IrTemplate::SimdUnary, Opcode::ADD, 0 },
+    /* [2306] UADDW_asimddiff_W */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [2307] UCVTF_asisdshf_C */ { IrTemplate::SimdUnary, Opcode::SHL, 0 },
+    /* [2308] UCVTF_asimdshf_C */ { IrTemplate::SimdBinop, Opcode::SHL, 0 },
+    /* [2309] UCVTF_asisdmiscfp16_R */ { IrTemplate::SimdUnary, Opcode::COPY, 0 },
+    /* [2310] UCVTF_asisdmisc_R */ { IrTemplate::SimdUnary, Opcode::COPY, 0 },
+    /* [2311] UCVTF_asimdmiscfp16_R */ { IrTemplate::SimdUnary, Opcode::COPY, 0 },
+    /* [2312] UCVTF_asimdmisc_R */ { IrTemplate::SimdUnary, Opcode::COPY, 0 },
+    /* [2313] UCVTF_H32_float2fix */ { IrTemplate::FpConvert, Opcode::INT2FLOAT, 0 },
+    /* [2314] UCVTF_H64_float2fix */ { IrTemplate::FpConvert, Opcode::INT2FLOAT, 0 },
+    /* [2315] UCVTF_S32_float2fix */ { IrTemplate::FpConvert, Opcode::INT2FLOAT, 0 },
+    /* [2316] UCVTF_S64_float2fix */ { IrTemplate::FpConvert, Opcode::INT2FLOAT, 0 },
+    /* [2317] UCVTF_D32_float2fix */ { IrTemplate::FpConvert, Opcode::INT2FLOAT, 0 },
+    /* [2318] UCVTF_D64_float2fix */ { IrTemplate::FpConvert, Opcode::INT2FLOAT, 0 },
+    /* [2319] UCVTF_H32_float2int */ { IrTemplate::FpConvert, Opcode::INT2FLOAT, 0 },
+    /* [2320] UCVTF_S32_float2int */ { IrTemplate::FpConvert, Opcode::INT2FLOAT, 0 },
+    /* [2321] UCVTF_D32_float2int */ { IrTemplate::FpConvert, Opcode::INT2FLOAT, 0 },
+    /* [2322] UCVTF_H64_float2int */ { IrTemplate::FpConvert, Opcode::INT2FLOAT, 0 },
+    /* [2323] UCVTF_S64_float2int */ { IrTemplate::FpConvert, Opcode::INT2FLOAT, 0 },
+    /* [2324] UCVTF_D64_float2int */ { IrTemplate::FpConvert, Opcode::INT2FLOAT, 0 },
+    /* [2325] UCVTF_sisd_32H */ { IrTemplate::FpConvert, Opcode::INT2FLOAT, 0 },
+    /* [2326] UCVTF_sisd_32D */ { IrTemplate::FpConvert, Opcode::INT2FLOAT, 0 },
+    /* [2327] UCVTF_sisd_64H */ { IrTemplate::FpConvert, Opcode::INT2FLOAT, 0 },
+    /* [2328] UCVTF_sisd_64S */ { IrTemplate::FpConvert, Opcode::INT2FLOAT, 0 },
+    /* [2329] UDOT_asimdelem_D */ { IrTemplate::SimdBinop, Opcode::MUL, 0 },
+    /* [2330] UDOT_asimdsame2_D */ { IrTemplate::SimdBinop, Opcode::FADD, 0 },
+    /* [2331] UHADD_asimdsame_only */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [2332] UHSUB_asimdsame_only */ { IrTemplate::SimdBinop, Opcode::SUB, 0 },
+    /* [2333] UMAX_asimdsame_only */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [2334] UMAXP_asimdsame_only */ { IrTemplate::SimdBinop, Opcode::FADD, 0 },
+    /* [2335] UMAXV_asimdall_only */ { IrTemplate::SimdUnary, Opcode::ADD, 0 },
+    /* [2336] UMIN_asimdsame_only */ { IrTemplate::SimdBinop, Opcode::SUB, 0 },
+    /* [2337] UMINP_asimdsame_only */ { IrTemplate::SimdBinop, Opcode::FADD, 0 },
+    /* [2338] UMINV_asimdall_only */ { IrTemplate::SimdUnary, Opcode::ADD, 0 },
+    /* [2339] UMLAL_asimdelem_L */ { IrTemplate::SimdBinop, Opcode::MUL, 0 },
+    /* [2340] UMLAL_asimddiff_L */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [2341] UMLSL_asimdelem_L */ { IrTemplate::SimdBinop, Opcode::MUL, 0 },
+    /* [2342] UMLSL_asimddiff_L */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [2343] UMMLA_asimdsame2_G */ { IrTemplate::SimdBinop, Opcode::FADD, 0 },
+    /* [2344] UMOV_asimdins_W_w */ { IrTemplate::SimdUnary, Opcode::COPY, 0 },
+    /* [2345] UMOV_asimdins_X_x */ { IrTemplate::SimdUnary, Opcode::COPY, 0 },
+    /* [2346] UMULL_asimdelem_L */ { IrTemplate::SimdBinop, Opcode::MUL, 0 },
+    /* [2347] UMULL_asimddiff_L */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [2348] UQADD_asisdsame_only */ { IrTemplate::FpBinop, Opcode::FADD, 0 },
+    /* [2349] UQADD_asimdsame_only */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [2350] UQRSHL_asisdsame_only */ { IrTemplate::FpBinop, Opcode::FADD, 0 },
+    /* [2351] UQRSHL_asimdsame_only */ { IrTemplate::SimdBinop, Opcode::FADD, 0 },
+    /* [2352] UQRSHRN_asisdshf_N */ { IrTemplate::SimdUnary, Opcode::SHL, 0 },
+    /* [2353] UQRSHRN_asimdshf_N */ { IrTemplate::SimdBinop, Opcode::SHL, 0 },
+    /* [2354] UQSHL_asisdshf_R */ { IrTemplate::SimdUnary, Opcode::SHL, 0 },
+    /* [2355] UQSHL_asimdshf_R */ { IrTemplate::SimdBinop, Opcode::SHL, 0 },
+    /* [2356] UQSHL_asisdsame_only */ { IrTemplate::FpBinop, Opcode::FADD, 0 },
+    /* [2357] UQSHL_asimdsame_only */ { IrTemplate::SimdBinop, Opcode::SHL, 0 },
+    /* [2358] UQSHRN_asisdshf_N */ { IrTemplate::SimdUnary, Opcode::SHL, 0 },
+    /* [2359] UQSHRN_asimdshf_N */ { IrTemplate::SimdBinop, Opcode::SHL, 0 },
+    /* [2360] UQSUB_asisdsame_only */ { IrTemplate::FpBinop, Opcode::FADD, 0 },
+    /* [2361] UQSUB_asimdsame_only */ { IrTemplate::SimdBinop, Opcode::SUB, 0 },
+    /* [2362] UQXTN_asisdmisc_N */ { IrTemplate::SimdUnary, Opcode::COPY, 0 },
+    /* [2363] UQXTN_asimdmisc_N */ { IrTemplate::SimdUnary, Opcode::COPY, 0 },
+    /* [2364] URECPE_asimdmisc_R */ { IrTemplate::SimdUnary, Opcode::COPY, 0 },
+    /* [2365] URHADD_asimdsame_only */ { IrTemplate::SimdBinop, Opcode::FADD, 0 },
+    /* [2366] URSHL_asisdsame_only */ { IrTemplate::FpBinop, Opcode::FADD, 0 },
+    /* [2367] URSHL_asimdsame_only */ { IrTemplate::SimdBinop, Opcode::SHL, 0 },
+    /* [2368] URSHR_asisdshf_R */ { IrTemplate::SimdUnary, Opcode::SHL, 0 },
+    /* [2369] URSHR_asimdshf_R */ { IrTemplate::SimdBinop, Opcode::SHL, 0 },
+    /* [2370] URSQRTE_asimdmisc_R */ { IrTemplate::SimdUnary, Opcode::COPY, 0 },
+    /* [2371] URSRA_asisdshf_R */ { IrTemplate::SimdUnary, Opcode::SHL, 0 },
+    /* [2372] URSRA_asimdshf_R */ { IrTemplate::SimdBinop, Opcode::SHL, 0 },
+    /* [2373] USDOT_asimdelem_D */ { IrTemplate::SimdBinop, Opcode::MUL, 0 },
+    /* [2374] USDOT_asimdsame2_D */ { IrTemplate::SimdBinop, Opcode::FADD, 0 },
+    /* [2375] USHL_asisdsame_only */ { IrTemplate::FpBinop, Opcode::FADD, 0 },
+    /* [2376] USHL_asimdsame_only */ { IrTemplate::SimdBinop, Opcode::SHL, 0 },
+    /* [2377] USHLL_asimdshf_L */ { IrTemplate::SimdBinop, Opcode::SHL, 0 },
+    /* [2378] USHR_asisdshf_R */ { IrTemplate::SimdUnary, Opcode::SHL, 0 },
+    /* [2379] USHR_asimdshf_R */ { IrTemplate::SimdBinop, Opcode::SHL, 0 },
+    /* [2380] USMMLA_asimdsame2_G */ { IrTemplate::SimdBinop, Opcode::FADD, 0 },
+    /* [2381] USQADD_asisdmisc_R */ { IrTemplate::SimdUnary, Opcode::COPY, 0 },
+    /* [2382] USQADD_asimdmisc_R */ { IrTemplate::SimdUnary, Opcode::COPY, 0 },
+    /* [2383] USRA_asisdshf_R */ { IrTemplate::SimdUnary, Opcode::SHL, 0 },
+    /* [2384] USRA_asimdshf_R */ { IrTemplate::SimdBinop, Opcode::SHL, 0 },
+    /* [2385] USUBL_asimddiff_L */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [2386] USUBW_asimddiff_W */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [2387] UXTL_USHLL_asimdshf_L */ { IrTemplate::SimdBinop, Opcode::SHL, 0 },
+    /* [2388] UZP1_asimdperm_only */ { IrTemplate::SimdBinop, Opcode::COPY, 0 },
+    /* [2389] UZP2_asimdperm_only */ { IrTemplate::SimdBinop, Opcode::COPY, 0 },
+    /* [2390] XAR_VVV2_crypto3_imm6 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2391] XTN_asimdmisc_N */ { IrTemplate::SimdUnary, Opcode::COPY, 0 },
+    /* [2392] ZIP1_asimdperm_only */ { IrTemplate::SimdBinop, Opcode::COPY, 0 },
+    /* [2393] ZIP2_asimdperm_only */ { IrTemplate::SimdBinop, Opcode::COPY, 0 },
+    /* [2394] add_mz_zzv_2x1 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2395] add_mz_zzv_4x1 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2396] add_za_zw_2x2 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2397] add_za_zw_4x4 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2398] add_za_zzv_2x1 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2399] add_za_zzv_4x1 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2400] add_za_zzw_2x2 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2401] add_za_zzw_4x4 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2402] addha_za_pp_z_32 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2403] addha_za_pp_z_64 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2404] addva_za_pp_z_32 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2405] addva_za_pp_z_64 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2406] bf1cvt_mz2_z8_ */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2407] bf2cvt_mz2_z8_ */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2408] bf1cvtl_mz2_z8_ */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2409] bf2cvtl_mz2_z8_ */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2410] bfadd_za_zw_2x2_16 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2411] bfadd_za_zw_4x4_16 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2412] bfclamp_mz_zz_2 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2413] bfclamp_mz_zz_4 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2414] bfcvt_z8_mz2_ */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2415] bfcvt_z_mz2_ */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2416] bfcvtn_z_mz2_ */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2417] bfdot_za_zzi_2xi */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2418] bfdot_za_zzi_4xi */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2419] bfdot_za_zzv_2x1 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2420] bfdot_za_zzv_4x1 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2421] bfdot_za_zzw_2x2 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2422] bfdot_za_zzw_4x4 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2423] bfmax_mz_zzv_2x1 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2424] bfmax_mz_zzv_4x1 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2425] bfmax_mz_zzw_2x2 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2426] bfmax_mz_zzw_4x4 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2427] bfmaxnm_mz_zzv_2x1 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2428] bfmaxnm_mz_zzv_4x1 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2429] bfmaxnm_mz_zzw_2x2 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2430] bfmaxnm_mz_zzw_4x4 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2431] bfmin_mz_zzv_2x1 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2432] bfmin_mz_zzv_4x1 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2433] bfmin_mz_zzw_2x2 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2434] bfmin_mz_zzw_4x4 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2435] bfminnm_mz_zzv_2x1 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2436] bfminnm_mz_zzv_4x1 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2437] bfminnm_mz_zzw_2x2 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2438] bfminnm_mz_zzw_4x4 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2439] bfmla_za_zzi_h2xi */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2440] bfmla_za_zzi_h4xi */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2441] bfmla_za_zzv_2x1_16 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2442] bfmla_za_zzv_4x1_16 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2443] bfmla_za_zzw_2x2_16 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2444] bfmla_za_zzw_4x4_16 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2445] bfmlal_za_zzi_1 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2446] bfmlal_za_zzi_2xi */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2447] bfmlal_za_zzi_4xi */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2448] bfmlal_za_zzv_1 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2449] bfmlal_za_zzv_2x1 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2450] bfmlal_za_zzv_4x1 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2451] bfmlal_za_zzw_2x2 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2452] bfmlal_za_zzw_4x4 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2453] bfmls_za_zzi_h2xi */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2454] bfmls_za_zzi_h4xi */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2455] bfmls_za_zzv_2x1_16 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2456] bfmls_za_zzv_4x1_16 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2457] bfmls_za_zzw_2x2_16 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2458] bfmls_za_zzw_4x4_16 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2459] bfmlsl_za_zzi_1 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2460] bfmlsl_za_zzi_2xi */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2461] bfmlsl_za_zzi_4xi */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2462] bfmlsl_za_zzv_1 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2463] bfmlsl_za_zzv_2x1 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2464] bfmlsl_za_zzv_4x1 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2465] bfmlsl_za_zzw_2x2 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2466] bfmlsl_za_zzw_4x4 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2467] bfmop4a_za32_zz_h1x2 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2468] bfmop4a_za32_zz_h1x1 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2469] bfmop4a_za32_zz_h2x1 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2470] bfmop4a_za32_zz_h2x2 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2471] bfmop4a_za_zz_h1x2 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2472] bfmop4a_za_zz_h1x1 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2473] bfmop4a_za_zz_h2x1 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2474] bfmop4a_za_zz_h2x2 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2475] bfmop4s_za32_zz_h1x2 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2476] bfmop4s_za32_zz_h1x1 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2477] bfmop4s_za32_zz_h2x1 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2478] bfmop4s_za32_zz_h2x2 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2479] bfmop4s_za_zz_h1x2 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2480] bfmop4s_za_zz_h1x1 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2481] bfmop4s_za_zz_h2x1 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2482] bfmop4s_za_zz_h2x2 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2483] bfmopa_za32_pp_zz_ */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2484] bfmopa_za_pp_zz_16 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2485] bfmops_za32_pp_zz_ */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2486] bfmops_za_pp_zz_16 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2487] bfmul_mz_zzv_2x1 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2488] bfmul_mz_zzv_4x1 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2489] bfmul_mz_zzw_2x2 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2490] bfmul_mz_zzw_4x4 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2491] bfscale_mz_zzv_2x1 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2492] bfscale_mz_zzv_4x1 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2493] bfscale_mz_zzw_2x2 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2494] bfscale_mz_zzw_4x4 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2495] bfsub_za_zw_2x2_16 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2496] bfsub_za_zw_4x4_16 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2497] bftmopa_za32_zzzi_h2x1 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2498] bftmopa_za_zzzi_h2x1 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2499] bfvdot_za_zzi_2xi */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2500] bmopa_za_pp_zz_32 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2501] bmops_za_pp_zz_32 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2502] f1cvt_mz2_z8_ */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2503] f2cvt_mz2_z8_ */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2504] f1cvtl_mz2_z8_ */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2505] f2cvtl_mz2_z8_ */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2506] fadd_za_zw_2x2 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2507] fadd_za_zw_2x2_16 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2508] fadd_za_zw_4x4 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2509] fadd_za_zw_4x4_16 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2510] famax_mz_zzw_2x2 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2511] famax_mz_zzw_4x4 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2512] famin_mz_zzw_2x2 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2513] famin_mz_zzw_4x4 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2514] fclamp_mz_zz_2 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2515] fclamp_mz_zz_4 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2516] fcvt_mz2_z_ */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2517] fcvt_z8_mz2_ */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2518] fcvt_z8_mz4_ */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2519] fcvt_z_mz2_ */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2520] fcvtl_mz2_z_ */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2521] fcvtn_z8_mz4_ */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2522] fcvtn_z_mz2_ */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2523] fcvtzs_mz_z_2 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2524] fcvtzs_mz_z_4 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2525] fcvtzu_mz_z_2 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2526] fcvtzu_mz_z_4 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2527] fdot_za32_z8z8i_2xi */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2528] fdot_za32_z8z8i_4xi */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2529] fdot_za32_z8z8v_2x1 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2530] fdot_za32_z8z8v_4x1 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2531] fdot_za32_z8z8w_2x2 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2532] fdot_za32_z8z8w_4x4 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2533] fdot_za_z8z8i_2xi */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2534] fdot_za_z8z8i_4xi */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2535] fdot_za_z8z8v_2x1 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2536] fdot_za_z8z8v_4x1 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2537] fdot_za_z8z8w_2x2 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2538] fdot_za_z8z8w_4x4 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2539] fdot_za_zzi_2xi */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2540] fdot_za_zzi_4xi */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2541] fdot_za_zzv_2x1 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2542] fdot_za_zzv_4x1 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2543] fdot_za_zzw_2x2 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2544] fdot_za_zzw_4x4 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2545] fmax_mz_zzv_2x1 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2546] fmax_mz_zzv_4x1 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2547] fmax_mz_zzw_2x2 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2548] fmax_mz_zzw_4x4 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2549] fmaxnm_mz_zzv_2x1 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2550] fmaxnm_mz_zzv_4x1 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2551] fmaxnm_mz_zzw_2x2 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2552] fmaxnm_mz_zzw_4x4 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2553] fmin_mz_zzv_2x1 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2554] fmin_mz_zzv_4x1 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2555] fmin_mz_zzw_2x2 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2556] fmin_mz_zzw_4x4 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2557] fminnm_mz_zzv_2x1 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2558] fminnm_mz_zzv_4x1 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2559] fminnm_mz_zzw_2x2 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2560] fminnm_mz_zzw_4x4 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2561] fmla_za_zzi_h2xi */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2562] fmla_za_zzi_s2xi */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2563] fmla_za_zzi_d2xi */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2564] fmla_za_zzi_h4xi */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2565] fmla_za_zzi_s4xi */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2566] fmla_za_zzi_d4xi */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2567] fmla_za_zzv_2x1 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2568] fmla_za_zzv_2x1_16 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2569] fmla_za_zzv_4x1 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2570] fmla_za_zzv_4x1_16 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2571] fmla_za_zzw_2x2 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2572] fmla_za_zzw_2x2_16 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2573] fmla_za_zzw_4x4 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2574] fmla_za_zzw_4x4_16 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2575] fmlal_za_z8z8i_1 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2576] fmlal_za_z8z8i_2xi */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2577] fmlal_za_z8z8i_4xi */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2578] fmlal_za_z8z8v_1 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2579] fmlal_za_z8z8v_2x1 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2580] fmlal_za_z8z8v_4x1 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2581] fmlal_za_z8z8w_2x2 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2582] fmlal_za_z8z8w_4x4 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2583] fmlal_za_zzi_1 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2584] fmlal_za_zzi_2xi */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2585] fmlal_za_zzi_4xi */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2586] fmlal_za_zzv_1 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2587] fmlal_za_zzv_2x1 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2588] fmlal_za_zzv_4x1 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2589] fmlal_za_zzw_2x2 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2590] fmlal_za_zzw_4x4 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2591] fmlall_za32_z8z8i_1 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2592] fmlall_za32_z8z8i_2xi */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2593] fmlall_za32_z8z8i_4xi */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2594] fmlall_za32_z8z8v_1 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2595] fmlall_za32_z8z8v_2x1 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2596] fmlall_za32_z8z8v_4x1 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2597] fmlall_za32_z8z8w_2x2 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2598] fmlall_za32_z8z8w_4x4 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2599] fmls_za_zzi_h2xi */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2600] fmls_za_zzi_s2xi */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2601] fmls_za_zzi_d2xi */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2602] fmls_za_zzi_h4xi */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2603] fmls_za_zzi_s4xi */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2604] fmls_za_zzi_d4xi */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2605] fmls_za_zzv_2x1 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2606] fmls_za_zzv_2x1_16 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2607] fmls_za_zzv_4x1 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2608] fmls_za_zzv_4x1_16 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2609] fmls_za_zzw_2x2 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2610] fmls_za_zzw_2x2_16 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2611] fmls_za_zzw_4x4 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2612] fmls_za_zzw_4x4_16 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2613] fmlsl_za_zzi_1 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2614] fmlsl_za_zzi_2xi */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2615] fmlsl_za_zzi_4xi */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2616] fmlsl_za_zzv_1 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2617] fmlsl_za_zzv_2x1 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2618] fmlsl_za_zzv_4x1 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2619] fmlsl_za_zzw_2x2 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2620] fmlsl_za_zzw_4x4 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2621] fmop4a_za16_z8z8_b1x2 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2622] fmop4a_za16_z8z8_b1x1 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2623] fmop4a_za16_z8z8_b2x1 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2624] fmop4a_za16_z8z8_b2x2 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2625] fmop4a_za32_z8z8_b1x2 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2626] fmop4a_za32_z8z8_b1x1 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2627] fmop4a_za32_z8z8_b2x1 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2628] fmop4a_za32_z8z8_b2x2 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2629] fmop4a_za32_zz_h1x2 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2630] fmop4a_za32_zz_h1x1 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2631] fmop4a_za32_zz_h2x1 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2632] fmop4a_za32_zz_h2x2 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2633] fmop4a_za_zz_h1x2 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2634] fmop4a_za_zz_h1x1 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2635] fmop4a_za_zz_h2x1 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2636] fmop4a_za_zz_h2x2 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2637] fmop4a_za_zz_s1x2 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2638] fmop4a_za_zz_s1x1 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2639] fmop4a_za_zz_s2x1 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2640] fmop4a_za_zz_s2x2 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2641] fmop4a_za_zz_d1x2 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2642] fmop4a_za_zz_d1x1 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2643] fmop4a_za_zz_d2x1 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2644] fmop4a_za_zz_d2x2 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2645] fmop4s_za32_zz_h1x2 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2646] fmop4s_za32_zz_h1x1 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2647] fmop4s_za32_zz_h2x1 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2648] fmop4s_za32_zz_h2x2 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2649] fmop4s_za_zz_h1x2 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2650] fmop4s_za_zz_h1x1 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2651] fmop4s_za_zz_h2x1 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2652] fmop4s_za_zz_h2x2 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2653] fmop4s_za_zz_s1x2 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2654] fmop4s_za_zz_s1x1 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2655] fmop4s_za_zz_s2x1 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2656] fmop4s_za_zz_s2x2 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2657] fmop4s_za_zz_d1x2 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2658] fmop4s_za_zz_d1x1 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2659] fmop4s_za_zz_d2x1 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2660] fmop4s_za_zz_d2x2 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2661] fmopa_za16_pp_z8z8_8 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2662] fmopa_za32_pp_z8z8_8 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2663] fmopa_za32_pp_zz_16 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2664] fmopa_za_pp_zz_16 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2665] fmopa_za_pp_zz_32 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2666] fmopa_za_pp_zz_64 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2667] fmops_za32_pp_zz_16 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2668] fmops_za_pp_zz_16 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2669] fmops_za_pp_zz_32 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2670] fmops_za_pp_zz_64 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2671] fmul_mz_zzv_2x1 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2672] fmul_mz_zzv_4x1 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2673] fmul_mz_zzw_2x2 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2674] fmul_mz_zzw_4x4 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2675] frinta_mz_z_2 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2676] frinta_mz_z_4 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2677] frintm_mz_z_2 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2678] frintm_mz_z_4 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2679] frintn_mz_z_2 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2680] frintn_mz_z_4 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2681] frintp_mz_z_2 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2682] frintp_mz_z_4 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2683] fscale_mz_zzv_2x1 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2684] fscale_mz_zzv_4x1 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2685] fscale_mz_zzw_2x2 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2686] fscale_mz_zzw_4x4 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2687] fsub_za_zw_2x2 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2688] fsub_za_zw_2x2_16 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2689] fsub_za_zw_4x4 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2690] fsub_za_zw_4x4_16 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2691] ftmopa_za16_z8z8zi_b2x1 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2692] ftmopa_za32_z8z8zi_b2x1 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2693] ftmopa_za32_zzzi_h2x1 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2694] ftmopa_za_zzzi_h2x1 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2695] ftmopa_za_zzzi_s2x1 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2696] fvdot_za_z8z8i_2xi */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2697] fvdot_za_zzi_2xi */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2698] fvdotb_za32_z8z8i_2xi */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2699] fvdott_za32_z8z8i_2xi */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2700] ld1b_mz_p_bi_2 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2701] ld1b_mz_p_bi_4 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2702] ld1b_mz_p_br_2 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2703] ld1b_mz_p_br_4 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2704] ld1b_mzx_p_bi_2x8 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2705] ld1b_mzx_p_bi_4x4 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2706] ld1b_mzx_p_br_2x8 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2707] ld1b_mzx_p_br_4x4 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2708] ld1b_za_p_rrr_ */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2709] ld1d_mz_p_bi_2 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2710] ld1d_mz_p_bi_4 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2711] ld1d_mz_p_br_2 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2712] ld1d_mz_p_br_4 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2713] ld1d_mzx_p_bi_2x8 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2714] ld1d_mzx_p_bi_4x4 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2715] ld1d_mzx_p_br_2x8 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2716] ld1d_mzx_p_br_4x4 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2717] ld1d_za_p_rrr_ */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2718] ld1h_mz_p_bi_2 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2719] ld1h_mz_p_bi_4 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2720] ld1h_mz_p_br_2 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2721] ld1h_mz_p_br_4 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2722] ld1h_mzx_p_bi_2x8 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2723] ld1h_mzx_p_bi_4x4 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2724] ld1h_mzx_p_br_2x8 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2725] ld1h_mzx_p_br_4x4 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2726] ld1h_za_p_rrr_ */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2727] ld1q_za_p_rrr_ */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2728] ld1w_mz_p_bi_2 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2729] ld1w_mz_p_bi_4 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2730] ld1w_mz_p_br_2 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2731] ld1w_mz_p_br_4 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2732] ld1w_mzx_p_bi_2x8 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2733] ld1w_mzx_p_bi_4x4 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2734] ld1w_mzx_p_br_2x8 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2735] ld1w_mzx_p_br_4x4 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2736] ld1w_za_p_rrr_ */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2737] ldnt1b_mz_p_bi_2 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2738] ldnt1b_mz_p_bi_4 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2739] ldnt1b_mz_p_br_2 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2740] ldnt1b_mz_p_br_4 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2741] ldnt1b_mzx_p_bi_2x8 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2742] ldnt1b_mzx_p_bi_4x4 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2743] ldnt1b_mzx_p_br_2x8 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2744] ldnt1b_mzx_p_br_4x4 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2745] ldnt1d_mz_p_bi_2 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2746] ldnt1d_mz_p_bi_4 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2747] ldnt1d_mz_p_br_2 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2748] ldnt1d_mz_p_br_4 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2749] ldnt1d_mzx_p_bi_2x8 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2750] ldnt1d_mzx_p_bi_4x4 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2751] ldnt1d_mzx_p_br_2x8 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2752] ldnt1d_mzx_p_br_4x4 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2753] ldnt1h_mz_p_bi_2 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2754] ldnt1h_mz_p_bi_4 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2755] ldnt1h_mz_p_br_2 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2756] ldnt1h_mz_p_br_4 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2757] ldnt1h_mzx_p_bi_2x8 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2758] ldnt1h_mzx_p_bi_4x4 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2759] ldnt1h_mzx_p_br_2x8 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2760] ldnt1h_mzx_p_br_4x4 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2761] ldnt1w_mz_p_bi_2 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2762] ldnt1w_mz_p_bi_4 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2763] ldnt1w_mz_p_br_2 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2764] ldnt1w_mz_p_br_4 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2765] ldnt1w_mzx_p_bi_2x8 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2766] ldnt1w_mzx_p_bi_4x4 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2767] ldnt1w_mzx_p_br_2x8 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2768] ldnt1w_mzx_p_br_4x4 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2769] ldr_za_ri_ */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2770] ldr_zt_br_ */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2771] luti2_mz2_ztz_1 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2772] luti2_mz2_ztz_8 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2773] luti2_mz4_ztz_1 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2774] luti2_mz4_ztz_4 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2775] luti2_z_ztz_ */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2776] luti4_mz2_ztz_1 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2777] luti4_mz2_ztz_8 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2778] luti4_mz4_ztmz2_1 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2779] luti4_mz4_ztmz2_4 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2780] luti4_mz4_ztz_1 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2781] luti4_mz4_ztz_4 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2782] luti4_z_ztz_ */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2783] luti6_mz4_zmz2_1 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2784] luti6_mz4_zmz2_4 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2785] luti6_mz4_ztmz3_1 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2786] luti6_mz4_ztmz3_4 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2787] luti6_z_ztz_ */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2788] mov_mz2_za_b1_mova_mz2_za_b1 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2789] mov_mz2_za_h1_mova_mz2_za_h1 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2790] mov_mz2_za_w1_mova_mz2_za_w1 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2791] mov_mz2_za_d1_mova_mz2_za_d1 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2792] mov_mz4_za_b1_mova_mz4_za_b1 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2793] mov_mz4_za_h1_mova_mz4_za_h1 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2794] mov_mz4_za_w1_mova_mz4_za_w1 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2795] mov_mz4_za_d1_mova_mz4_za_d1 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2796] mov_mz_za2_1_mova_mz_za2_1 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2797] mov_mz_za4_1_mova_mz_za4_1 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2798] mov_z_p_rza_b_mova_z_p_rza_b */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2799] mov_z_p_rza_h_mova_z_p_rza_h */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2800] mov_z_p_rza_w_mova_z_p_rza_w */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2801] mov_z_p_rza_d_mova_z_p_rza_d */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2802] mov_z_p_rza_q_mova_z_p_rza_q */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2803] mov_za2_z_b1_mova_za2_z_b1 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2804] mov_za2_z_h1_mova_za2_z_h1 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2805] mov_za2_z_w1_mova_za2_z_w1 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2806] mov_za2_z_d1_mova_za2_z_d1 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2807] mov_za4_z_b1_mova_za4_z_b1 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2808] mov_za4_z_h1_mova_za4_z_h1 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2809] mov_za4_z_w1_mova_za4_z_w1 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2810] mov_za4_z_d1_mova_za4_z_d1 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2811] mov_za_mz2_1_mova_za_mz2_1 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2812] mov_za_mz4_1_mova_za_mz4_1 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2813] mov_za_p_rz_b_mova_za_p_rz_b */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2814] mov_za_p_rz_h_mova_za_p_rz_h */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2815] mov_za_p_rz_w_mova_za_p_rz_w */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2816] mov_za_p_rz_d_mova_za_p_rz_d */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2817] mov_za_p_rz_q_mova_za_p_rz_q */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2818] mova_mz2_za_b1 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2819] mova_mz2_za_h1 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2820] mova_mz2_za_w1 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2821] mova_mz2_za_d1 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2822] mova_mz4_za_b1 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2823] mova_mz4_za_h1 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2824] mova_mz4_za_w1 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2825] mova_mz4_za_d1 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2826] mova_mz_za2_1 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2827] mova_mz_za4_1 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2828] mova_z_p_rza_b */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2829] mova_z_p_rza_h */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2830] mova_z_p_rza_w */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2831] mova_z_p_rza_d */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2832] mova_z_p_rza_q */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2833] mova_za2_z_b1 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2834] mova_za2_z_h1 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2835] mova_za2_z_w1 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2836] mova_za2_z_d1 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2837] mova_za4_z_b1 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2838] mova_za4_z_h1 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2839] mova_za4_z_w1 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2840] mova_za4_z_d1 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2841] mova_za_mz2_1 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2842] mova_za_mz4_1 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2843] mova_za_p_rz_b */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2844] mova_za_p_rz_h */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2845] mova_za_p_rz_w */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2846] mova_za_p_rz_d */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2847] mova_za_p_rz_q */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2848] movaz_mz2_za_b1 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2849] movaz_mz2_za_h1 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2850] movaz_mz2_za_w1 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2851] movaz_mz2_za_d1 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2852] movaz_mz4_za_b1 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2853] movaz_mz4_za_h1 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2854] movaz_mz4_za_w1 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2855] movaz_mz4_za_d1 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2856] movaz_mz_za2_1 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2857] movaz_mz_za4_1 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2858] movaz_z_rza_b */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2859] movaz_z_rza_h */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2860] movaz_z_rza_w */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2861] movaz_z_rza_d */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2862] movaz_z_rza_q */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2863] movt_r_zt_ */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2864] movt_zt_r_ */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2865] movt_zt_z_ */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2866] sclamp_mz_zz_2 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2867] sclamp_mz_zz_4 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2868] scvtf_mz_z_2 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2869] scvtf_mz_z_4 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2870] sdot_za32_zzi_2xi */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2871] sdot_za32_zzi_4xi */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2872] sdot_za32_zzv_2x1 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2873] sdot_za32_zzv_4x1 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2874] sdot_za32_zzw_2x2 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2875] sdot_za32_zzw_4x4 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2876] sdot_za_zzi_s2xi */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2877] sdot_za_zzi_d2xi */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2878] sdot_za_zzi_s4xi */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2879] sdot_za_zzi_d4xi */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2880] sdot_za_zzv_2x1 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2881] sdot_za_zzv_4x1 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2882] sdot_za_zzw_2x2 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2883] sdot_za_zzw_4x4 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2884] sel_mz_p_zz_2 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2885] sel_mz_p_zz_4 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2886] smax_mz_zzv_2x1 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2887] smax_mz_zzv_4x1 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2888] smax_mz_zzw_2x2 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2889] smax_mz_zzw_4x4 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2890] smin_mz_zzv_2x1 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2891] smin_mz_zzv_4x1 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2892] smin_mz_zzw_2x2 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2893] smin_mz_zzw_4x4 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2894] smlal_za_zzi_1 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2895] smlal_za_zzi_2xi */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2896] smlal_za_zzi_4xi */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2897] smlal_za_zzv_1 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2898] smlal_za_zzv_2x1 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2899] smlal_za_zzv_4x1 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2900] smlal_za_zzw_2x2 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2901] smlal_za_zzw_4x4 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2902] smlall_za_zzi_s */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2903] smlall_za_zzi_d */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2904] smlall_za_zzi_s2xi */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2905] smlall_za_zzi_d2xi */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2906] smlall_za_zzi_s4xi */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2907] smlall_za_zzi_d4xi */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2908] smlall_za_zzv_1 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2909] smlall_za_zzv_2x1 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2910] smlall_za_zzv_4x1 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2911] smlall_za_zzw_2x2 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2912] smlall_za_zzw_4x4 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2913] smlsl_za_zzi_1 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2914] smlsl_za_zzi_2xi */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2915] smlsl_za_zzi_4xi */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2916] smlsl_za_zzv_1 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2917] smlsl_za_zzv_2x1 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2918] smlsl_za_zzv_4x1 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2919] smlsl_za_zzw_2x2 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2920] smlsl_za_zzw_4x4 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2921] smlsll_za_zzi_s */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2922] smlsll_za_zzi_d */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2923] smlsll_za_zzi_s2xi */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2924] smlsll_za_zzi_d2xi */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2925] smlsll_za_zzi_s4xi */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2926] smlsll_za_zzi_d4xi */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2927] smlsll_za_zzv_1 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2928] smlsll_za_zzv_2x1 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2929] smlsll_za_zzv_4x1 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2930] smlsll_za_zzw_2x2 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2931] smlsll_za_zzw_4x4 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2932] smop4a_za32_zz_h1x2 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2933] smop4a_za32_zz_h1x1 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2934] smop4a_za32_zz_h2x1 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2935] smop4a_za32_zz_h2x2 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2936] smop4a_za_zz_b1x2 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2937] smop4a_za_zz_b1x1 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2938] smop4a_za_zz_b2x1 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2939] smop4a_za_zz_b2x2 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2940] smop4a_za_zz_h1x2 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2941] smop4a_za_zz_h1x1 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2942] smop4a_za_zz_h2x1 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2943] smop4a_za_zz_h2x2 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2944] smop4s_za32_zz_h1x2 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2945] smop4s_za32_zz_h1x1 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2946] smop4s_za32_zz_h2x1 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2947] smop4s_za32_zz_h2x2 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2948] smop4s_za_zz_b1x2 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2949] smop4s_za_zz_b1x1 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2950] smop4s_za_zz_b2x1 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2951] smop4s_za_zz_b2x2 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2952] smop4s_za_zz_h1x2 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2953] smop4s_za_zz_h1x1 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2954] smop4s_za_zz_h2x1 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2955] smop4s_za_zz_h2x2 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2956] smopa_za32_pp_zz_16 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2957] smopa_za_pp_zz_32 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2958] smopa_za_pp_zz_64 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2959] smops_za32_pp_zz_16 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2960] smops_za_pp_zz_32 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2961] smops_za_pp_zz_64 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2962] sqcvt_z_mz2_ */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2963] sqcvt_z_mz4_ */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2964] sqcvtn_z_mz4_ */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2965] sqcvtu_z_mz2_ */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2966] sqcvtu_z_mz4_ */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2967] sqcvtun_z_mz4_ */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2968] sqdmulh_mz_zzv_2x1 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2969] sqdmulh_mz_zzv_4x1 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2970] sqdmulh_mz_zzw_2x2 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2971] sqdmulh_mz_zzw_4x4 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2972] sqrshr_z_mz2_ */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2973] sqrshr_z_mz4_ */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2974] sqrshrn_z_mz4_ */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2975] sqrshru_z_mz2_ */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2976] sqrshru_z_mz4_ */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2977] sqrshrun_z_mz4_ */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2978] srshl_mz_zzv_2x1 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2979] srshl_mz_zzv_4x1 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2980] srshl_mz_zzw_2x2 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2981] srshl_mz_zzw_4x4 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2982] st1b_mz_p_bi_2 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2983] st1b_mz_p_bi_4 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2984] st1b_mz_p_br_2 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2985] st1b_mz_p_br_4 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2986] st1b_mzx_p_bi_2x8 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2987] st1b_mzx_p_bi_4x4 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2988] st1b_mzx_p_br_2x8 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2989] st1b_mzx_p_br_4x4 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2990] st1b_za_p_rrr_ */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2991] st1d_mz_p_bi_2 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2992] st1d_mz_p_bi_4 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2993] st1d_mz_p_br_2 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2994] st1d_mz_p_br_4 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2995] st1d_mzx_p_bi_2x8 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2996] st1d_mzx_p_bi_4x4 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2997] st1d_mzx_p_br_2x8 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2998] st1d_mzx_p_br_4x4 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [2999] st1d_za_p_rrr_ */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [3000] st1h_mz_p_bi_2 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [3001] st1h_mz_p_bi_4 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [3002] st1h_mz_p_br_2 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [3003] st1h_mz_p_br_4 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [3004] st1h_mzx_p_bi_2x8 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [3005] st1h_mzx_p_bi_4x4 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [3006] st1h_mzx_p_br_2x8 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [3007] st1h_mzx_p_br_4x4 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [3008] st1h_za_p_rrr_ */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [3009] st1q_za_p_rrr_ */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [3010] st1w_mz_p_bi_2 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [3011] st1w_mz_p_bi_4 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [3012] st1w_mz_p_br_2 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [3013] st1w_mz_p_br_4 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [3014] st1w_mzx_p_bi_2x8 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [3015] st1w_mzx_p_bi_4x4 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [3016] st1w_mzx_p_br_2x8 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [3017] st1w_mzx_p_br_4x4 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [3018] st1w_za_p_rrr_ */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [3019] stmopa_za32_zzzi_h2x1 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [3020] stmopa_za_zzzi_b2x1 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [3021] stnt1b_mz_p_bi_2 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [3022] stnt1b_mz_p_bi_4 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [3023] stnt1b_mz_p_br_2 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [3024] stnt1b_mz_p_br_4 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [3025] stnt1b_mzx_p_bi_2x8 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [3026] stnt1b_mzx_p_bi_4x4 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [3027] stnt1b_mzx_p_br_2x8 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [3028] stnt1b_mzx_p_br_4x4 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [3029] stnt1d_mz_p_bi_2 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [3030] stnt1d_mz_p_bi_4 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [3031] stnt1d_mz_p_br_2 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [3032] stnt1d_mz_p_br_4 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [3033] stnt1d_mzx_p_bi_2x8 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [3034] stnt1d_mzx_p_bi_4x4 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [3035] stnt1d_mzx_p_br_2x8 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [3036] stnt1d_mzx_p_br_4x4 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [3037] stnt1h_mz_p_bi_2 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [3038] stnt1h_mz_p_bi_4 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [3039] stnt1h_mz_p_br_2 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [3040] stnt1h_mz_p_br_4 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [3041] stnt1h_mzx_p_bi_2x8 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [3042] stnt1h_mzx_p_bi_4x4 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [3043] stnt1h_mzx_p_br_2x8 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [3044] stnt1h_mzx_p_br_4x4 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [3045] stnt1w_mz_p_bi_2 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [3046] stnt1w_mz_p_bi_4 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [3047] stnt1w_mz_p_br_2 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [3048] stnt1w_mz_p_br_4 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [3049] stnt1w_mzx_p_bi_2x8 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [3050] stnt1w_mzx_p_bi_4x4 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [3051] stnt1w_mzx_p_br_2x8 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [3052] stnt1w_mzx_p_br_4x4 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [3053] str_za_ri_ */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [3054] str_zt_br_ */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [3055] sub_za_zw_2x2 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [3056] sub_za_zw_4x4 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [3057] sub_za_zzv_2x1 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [3058] sub_za_zzv_4x1 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [3059] sub_za_zzw_2x2 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [3060] sub_za_zzw_4x4 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [3061] sudot_za_zzi_s2xi */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [3062] sudot_za_zzi_s4xi */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [3063] sudot_za_zzv_s2x1 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [3064] sudot_za_zzv_s4x1 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [3065] sumlall_za_zzi_s */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [3066] sumlall_za_zzi_s2xi */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [3067] sumlall_za_zzi_s4xi */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [3068] sumlall_za_zzv_s2x1 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [3069] sumlall_za_zzv_s4x1 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [3070] sumop4a_za_zz_b1x2 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [3071] sumop4a_za_zz_b1x1 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [3072] sumop4a_za_zz_b2x1 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [3073] sumop4a_za_zz_b2x2 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [3074] sumop4a_za_zz_h1x2 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [3075] sumop4a_za_zz_h1x1 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [3076] sumop4a_za_zz_h2x1 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [3077] sumop4a_za_zz_h2x2 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [3078] sumop4s_za_zz_b1x2 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [3079] sumop4s_za_zz_b1x1 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [3080] sumop4s_za_zz_b2x1 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [3081] sumop4s_za_zz_b2x2 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [3082] sumop4s_za_zz_h1x2 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [3083] sumop4s_za_zz_h1x1 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [3084] sumop4s_za_zz_h2x1 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [3085] sumop4s_za_zz_h2x2 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [3086] sumopa_za_pp_zz_32 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [3087] sumopa_za_pp_zz_64 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [3088] sumops_za_pp_zz_32 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [3089] sumops_za_pp_zz_64 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [3090] sunpk_mz_z_2 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [3091] sunpk_mz_z_4 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [3092] sutmopa_za_zzzi_b2x1 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [3093] suvdot_za_zzi_s4xi */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [3094] svdot_za32_zzi_2xi */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [3095] svdot_za_zzi_s4xi */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [3096] svdot_za_zzi_d4xi */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [3097] uclamp_mz_zz_2 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [3098] uclamp_mz_zz_4 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [3099] ucvtf_mz_z_2 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [3100] ucvtf_mz_z_4 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [3101] udot_za32_zzi_2xi */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [3102] udot_za32_zzi_4xi */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [3103] udot_za32_zzv_2x1 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [3104] udot_za32_zzv_4x1 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [3105] udot_za32_zzw_2x2 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [3106] udot_za32_zzw_4x4 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [3107] udot_za_zzi_s2xi */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [3108] udot_za_zzi_d2xi */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [3109] udot_za_zzi_s4xi */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [3110] udot_za_zzi_d4xi */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [3111] udot_za_zzv_2x1 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [3112] udot_za_zzv_4x1 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [3113] udot_za_zzw_2x2 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [3114] udot_za_zzw_4x4 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [3115] umax_mz_zzv_2x1 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [3116] umax_mz_zzv_4x1 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [3117] umax_mz_zzw_2x2 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [3118] umax_mz_zzw_4x4 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [3119] umin_mz_zzv_2x1 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [3120] umin_mz_zzv_4x1 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [3121] umin_mz_zzw_2x2 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [3122] umin_mz_zzw_4x4 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [3123] umlal_za_zzi_1 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [3124] umlal_za_zzi_2xi */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [3125] umlal_za_zzi_4xi */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [3126] umlal_za_zzv_1 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [3127] umlal_za_zzv_2x1 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [3128] umlal_za_zzv_4x1 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [3129] umlal_za_zzw_2x2 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [3130] umlal_za_zzw_4x4 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [3131] umlall_za_zzi_s */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [3132] umlall_za_zzi_d */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [3133] umlall_za_zzi_s2xi */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [3134] umlall_za_zzi_d2xi */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [3135] umlall_za_zzi_s4xi */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [3136] umlall_za_zzi_d4xi */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [3137] umlall_za_zzv_1 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [3138] umlall_za_zzv_2x1 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [3139] umlall_za_zzv_4x1 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [3140] umlall_za_zzw_2x2 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [3141] umlall_za_zzw_4x4 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [3142] umlsl_za_zzi_1 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [3143] umlsl_za_zzi_2xi */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [3144] umlsl_za_zzi_4xi */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [3145] umlsl_za_zzv_1 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [3146] umlsl_za_zzv_2x1 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [3147] umlsl_za_zzv_4x1 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [3148] umlsl_za_zzw_2x2 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [3149] umlsl_za_zzw_4x4 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [3150] umlsll_za_zzi_s */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [3151] umlsll_za_zzi_d */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [3152] umlsll_za_zzi_s2xi */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [3153] umlsll_za_zzi_d2xi */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [3154] umlsll_za_zzi_s4xi */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [3155] umlsll_za_zzi_d4xi */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [3156] umlsll_za_zzv_1 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [3157] umlsll_za_zzv_2x1 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [3158] umlsll_za_zzv_4x1 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [3159] umlsll_za_zzw_2x2 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [3160] umlsll_za_zzw_4x4 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [3161] umop4a_za32_zz_h1x2 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [3162] umop4a_za32_zz_h1x1 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [3163] umop4a_za32_zz_h2x1 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [3164] umop4a_za32_zz_h2x2 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [3165] umop4a_za_zz_b1x2 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [3166] umop4a_za_zz_b1x1 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [3167] umop4a_za_zz_b2x1 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [3168] umop4a_za_zz_b2x2 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [3169] umop4a_za_zz_h1x2 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [3170] umop4a_za_zz_h1x1 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [3171] umop4a_za_zz_h2x1 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [3172] umop4a_za_zz_h2x2 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [3173] umop4s_za32_zz_h1x2 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [3174] umop4s_za32_zz_h1x1 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [3175] umop4s_za32_zz_h2x1 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [3176] umop4s_za32_zz_h2x2 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [3177] umop4s_za_zz_b1x2 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [3178] umop4s_za_zz_b1x1 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [3179] umop4s_za_zz_b2x1 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [3180] umop4s_za_zz_b2x2 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [3181] umop4s_za_zz_h1x2 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [3182] umop4s_za_zz_h1x1 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [3183] umop4s_za_zz_h2x1 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [3184] umop4s_za_zz_h2x2 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [3185] umopa_za32_pp_zz_16 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [3186] umopa_za_pp_zz_32 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [3187] umopa_za_pp_zz_64 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [3188] umops_za32_pp_zz_16 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [3189] umops_za_pp_zz_32 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [3190] umops_za_pp_zz_64 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [3191] uqcvt_z_mz2_ */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [3192] uqcvt_z_mz4_ */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [3193] uqcvtn_z_mz4_ */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [3194] uqrshr_z_mz2_ */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [3195] uqrshr_z_mz4_ */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [3196] uqrshrn_z_mz4_ */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [3197] urshl_mz_zzv_2x1 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [3198] urshl_mz_zzv_4x1 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [3199] urshl_mz_zzw_2x2 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [3200] urshl_mz_zzw_4x4 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [3201] usdot_za_zzi_s2xi */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [3202] usdot_za_zzi_s4xi */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [3203] usdot_za_zzv_s2x1 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [3204] usdot_za_zzv_s4x1 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [3205] usdot_za_zzw_s2x2 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [3206] usdot_za_zzw_s4x4 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [3207] usmlall_za_zzi_s */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [3208] usmlall_za_zzi_s2xi */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [3209] usmlall_za_zzi_s4xi */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [3210] usmlall_za_zzv_s */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [3211] usmlall_za_zzv_s2x1 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [3212] usmlall_za_zzv_s4x1 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [3213] usmlall_za_zzw_s2x2 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [3214] usmlall_za_zzw_s4x4 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [3215] usmop4a_za_zz_b1x2 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [3216] usmop4a_za_zz_b1x1 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [3217] usmop4a_za_zz_b2x1 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [3218] usmop4a_za_zz_b2x2 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [3219] usmop4a_za_zz_h1x2 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [3220] usmop4a_za_zz_h1x1 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [3221] usmop4a_za_zz_h2x1 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [3222] usmop4a_za_zz_h2x2 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [3223] usmop4s_za_zz_b1x2 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [3224] usmop4s_za_zz_b1x1 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [3225] usmop4s_za_zz_b2x1 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [3226] usmop4s_za_zz_b2x2 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [3227] usmop4s_za_zz_h1x2 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [3228] usmop4s_za_zz_h1x1 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [3229] usmop4s_za_zz_h2x1 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [3230] usmop4s_za_zz_h2x2 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [3231] usmopa_za_pp_zz_32 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [3232] usmopa_za_pp_zz_64 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [3233] usmops_za_pp_zz_32 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [3234] usmops_za_pp_zz_64 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [3235] ustmopa_za_zzzi_b2x1 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [3236] usvdot_za_zzi_s4xi */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [3237] utmopa_za32_zzzi_h2x1 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [3238] utmopa_za_zzzi_b2x1 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [3239] uunpk_mz_z_2 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [3240] uunpk_mz_z_4 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [3241] uvdot_za32_zzi_2xi */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [3242] uvdot_za_zzi_s4xi */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [3243] uvdot_za_zzi_d4xi */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [3244] uzp_mz_z_4 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [3245] uzp_mz_z_4q */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [3246] uzp_mz_zz_2 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [3247] uzp_mz_zz_2q */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [3248] zero_za1_ri_2 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [3249] zero_za1_ri_4 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [3250] zero_za2_ri_1 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [3251] zero_za2_ri_2 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [3252] zero_za2_ri_4 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [3253] zero_za4_ri_1 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [3254] zero_za4_ri_2 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [3255] zero_za4_ri_4 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [3256] zero_za_i_ */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [3257] zero_zt_i_ */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [3258] zip_mz_z_4 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [3259] zip_mz_z_4q */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [3260] zip_mz_zz_2 */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [3261] zip_mz_zz_2q */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [3262] abs_z_p_z_m */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [3263] abs_z_p_z_z */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [3264] adclb_z_zzz_ */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [3265] adclt_z_zzz_ */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [3266] add_z_p_zz_ */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [3267] add_z_zi_ */ { IrTemplate::SimdUnary, Opcode::COPY, 0 },
+    /* [3268] add_z_zz_ */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [3269] addhnb_z_zz_ */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [3270] addhnt_z_zz_ */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [3271] addp_z_p_zz_ */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [3272] addpl_r_ri_ */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [3273] addpt_z_p_zz_ */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [3274] addpt_z_zz_ */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [3275] addqp_z_zz_ */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [3276] addqv_z_p_z_ */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [3277] addspl_r_ri_ */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [3278] addsubp_z_zz_ */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [3279] addsvl_r_ri_ */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [3280] addvl_r_ri_ */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [3281] adr_z_az_sd_same_scaled */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [3282] adr_z_az_d_s32_scaled */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [3283] adr_z_az_d_u32_scaled */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [3284] aesd_mz_zzi_2x1 */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [3285] aesd_mz_zzi_4x1 */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [3286] aesd_z_zz_ */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [3287] aesdimc_mz_zzi_2x1 */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [3288] aesdimc_mz_zzi_4x1 */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [3289] aese_mz_zzi_2x1 */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [3290] aese_mz_zzi_4x1 */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [3291] aese_z_zz_ */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [3292] aesemc_mz_zzi_2x1 */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [3293] aesemc_mz_zzi_4x1 */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [3294] aesimc_z_z_ */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [3295] aesmc_z_z_ */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [3296] and_p_p_pp_z */ { IrTemplate::SimdBinop, Opcode::AND, 0 },
+    /* [3297] and_z_p_zz_ */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [3298] and_z_zi_ */ { IrTemplate::SimdBinop, Opcode::AND, 0 },
+    /* [3299] and_z_zz_ */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [3300] andqv_z_p_z_ */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [3301] ands_p_p_pp_z */ { IrTemplate::SimdBinop, Opcode::AND, 0 },
+    /* [3302] andv_r_p_z_ */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [3303] asr_z_p_zi_ */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [3304] asr_z_p_zw_ */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [3305] asr_z_p_zz_ */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [3306] asr_z_zi_ */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [3307] asr_z_zw_ */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [3308] asrd_z_p_zi_ */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [3309] asrr_z_p_zz_ */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [3310] bcax_z_zzz_ */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [3311] bdep_z_zz_ */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [3312] bext_z_zz_ */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [3313] bf1cvt_z_z8_b2bf */ { IrTemplate::FpBinop, Opcode::FADD, 0 },
+    /* [3314] bf2cvt_z_z8_b2bf */ { IrTemplate::FpBinop, Opcode::FADD, 0 },
+    /* [3315] bf1cvtlt_z_z8_b2bf */ { IrTemplate::FpBinop, Opcode::FADD, 0 },
+    /* [3316] bf2cvtlt_z_z8_b2bf */ { IrTemplate::FpBinop, Opcode::FADD, 0 },
+    /* [3317] bfadd_z_p_zz_ */ { IrTemplate::FpBinop, Opcode::FADD, 0 },
+    /* [3318] bfadd_z_zz_ */ { IrTemplate::FpBinop, Opcode::FADD, 0 },
+    /* [3319] bfclamp_z_zz_ */ { IrTemplate::FpBinop, Opcode::FADD, 0 },
+    /* [3320] bfcvt_z_p_z_s2bf */ { IrTemplate::FpBinop, Opcode::FADD, 0 },
+    /* [3321] bfcvt_z_p_z_s2bfz */ { IrTemplate::FpBinop, Opcode::FADD, 0 },
+    /* [3322] bfcvtn_z8_mz2_bf2b */ { IrTemplate::FpBinop, Opcode::FADD, 0 },
+    /* [3323] bfcvtnt_z_p_z_s2bf */ { IrTemplate::FpBinop, Opcode::FADD, 0 },
+    /* [3324] bfcvtnt_z_p_z_s2bfz */ { IrTemplate::FpBinop, Opcode::FADD, 0 },
+    /* [3325] bfdot_z_zzz_ */ { IrTemplate::FpBinop, Opcode::FADD, 0 },
+    /* [3326] bfdot_z_zzzi_ */ { IrTemplate::FpBinop, Opcode::FADD, 0 },
+    /* [3327] bfmax_z_p_zz_ */ { IrTemplate::FpBinop, Opcode::FADD, 0 },
+    /* [3328] bfmaxnm_z_p_zz_ */ { IrTemplate::FpBinop, Opcode::FADD, 0 },
+    /* [3329] bfmin_z_p_zz_ */ { IrTemplate::FpBinop, Opcode::FADD, 0 },
+    /* [3330] bfminnm_z_p_zz_ */ { IrTemplate::FpBinop, Opcode::FADD, 0 },
+    /* [3331] bfmla_z_p_zzz_ */ { IrTemplate::FpBinop, Opcode::FADD, 0 },
+    /* [3332] bfmla_z_zzzi_h */ { IrTemplate::FpBinop, Opcode::FADD, 0 },
+    /* [3333] bfmlalb_z_zzz_ */ { IrTemplate::FpBinop, Opcode::FADD, 0 },
+    /* [3334] bfmlalb_z_zzzi_ */ { IrTemplate::FpBinop, Opcode::FADD, 0 },
+    /* [3335] bfmlalt_z_zzz_ */ { IrTemplate::FpBinop, Opcode::FADD, 0 },
+    /* [3336] bfmlalt_z_zzzi_ */ { IrTemplate::FpBinop, Opcode::FADD, 0 },
+    /* [3337] bfmls_z_p_zzz_ */ { IrTemplate::FpBinop, Opcode::FADD, 0 },
+    /* [3338] bfmls_z_zzzi_h */ { IrTemplate::FpBinop, Opcode::FADD, 0 },
+    /* [3339] bfmlslb_z_zzz_ */ { IrTemplate::FpBinop, Opcode::FADD, 0 },
+    /* [3340] bfmlslb_z_zzzi_ */ { IrTemplate::FpBinop, Opcode::FADD, 0 },
+    /* [3341] bfmlslt_z_zzz_ */ { IrTemplate::FpBinop, Opcode::FADD, 0 },
+    /* [3342] bfmlslt_z_zzzi_ */ { IrTemplate::FpBinop, Opcode::FADD, 0 },
+    /* [3343] bfmmla_z_zzz_h */ { IrTemplate::FpBinop, Opcode::FADD, 0 },
+    /* [3344] bfmmla_z_zzz_ */ { IrTemplate::FpBinop, Opcode::FADD, 0 },
+    /* [3345] bfmul_z_p_zz_ */ { IrTemplate::FpBinop, Opcode::FADD, 0 },
+    /* [3346] bfmul_z_zz_ */ { IrTemplate::FpBinop, Opcode::FADD, 0 },
+    /* [3347] bfmul_z_zzi_h */ { IrTemplate::FpBinop, Opcode::FADD, 0 },
+    /* [3348] bfscale_z_p_zz_ */ { IrTemplate::FpBinop, Opcode::FADD, 0 },
+    /* [3349] bfsub_z_p_zz_ */ { IrTemplate::FpBinop, Opcode::FADD, 0 },
+    /* [3350] bfsub_z_zz_ */ { IrTemplate::FpBinop, Opcode::FADD, 0 },
+    /* [3351] bgrp_z_zz_ */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [3352] bic_z_zi__and_z_zi_ */ { IrTemplate::SimdBinop, Opcode::AND, 0 },
+    /* [3353] bic_p_p_pp_z */ { IrTemplate::SimdBinop, Opcode::AND, 0 },
+    /* [3354] bic_z_p_zz_ */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [3355] bic_z_zz_ */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [3356] bics_p_p_pp_z */ { IrTemplate::SimdBinop, Opcode::AND, 0 },
+    /* [3357] brka_p_p_p_ */ { IrTemplate::SimdBinop, Opcode::AND, 0 },
+    /* [3358] brkas_p_p_p_z */ { IrTemplate::SimdBinop, Opcode::AND, 0 },
+    /* [3359] brkb_p_p_p_ */ { IrTemplate::SimdBinop, Opcode::AND, 0 },
+    /* [3360] brkbs_p_p_p_z */ { IrTemplate::SimdBinop, Opcode::AND, 0 },
+    /* [3361] brkn_p_p_pp_ */ { IrTemplate::SimdBinop, Opcode::AND, 0 },
+    /* [3362] brkns_p_p_pp_ */ { IrTemplate::SimdBinop, Opcode::AND, 0 },
+    /* [3363] brkpa_p_p_pp_ */ { IrTemplate::SimdBinop, Opcode::AND, 0 },
+    /* [3364] brkpas_p_p_pp_ */ { IrTemplate::SimdBinop, Opcode::AND, 0 },
+    /* [3365] brkpb_p_p_pp_ */ { IrTemplate::SimdBinop, Opcode::AND, 0 },
+    /* [3366] brkpbs_p_p_pp_ */ { IrTemplate::SimdBinop, Opcode::AND, 0 },
+    /* [3367] bsl1n_z_zzz_ */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [3368] bsl2n_z_zzz_ */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [3369] bsl_z_zzz_ */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [3370] cadd_z_zz_ */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [3371] cdot_z_zzz_ */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [3372] cdot_z_zzzi_s */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [3373] cdot_z_zzzi_d */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [3374] clasta_r_p_z_ */ { IrTemplate::SimdUnary, Opcode::COPY, 0 },
+    /* [3375] clasta_v_p_z_ */ { IrTemplate::SimdUnary, Opcode::COPY, 0 },
+    /* [3376] clasta_z_p_zz_ */ { IrTemplate::SimdUnary, Opcode::COPY, 0 },
+    /* [3377] clastb_r_p_z_ */ { IrTemplate::SimdUnary, Opcode::COPY, 0 },
+    /* [3378] clastb_v_p_z_ */ { IrTemplate::SimdUnary, Opcode::COPY, 0 },
+    /* [3379] clastb_z_p_zz_ */ { IrTemplate::SimdUnary, Opcode::COPY, 0 },
+    /* [3380] cls_z_p_z_m */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [3381] cls_z_p_z_z */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [3382] clz_z_p_z_m */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [3383] clz_z_p_z_z */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [3384] cmla_z_zzz_ */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [3385] cmla_z_zzzi_h */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [3386] cmla_z_zzzi_s */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [3387] cmpeq_p_p_zi_ */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [3388] cmpgt_p_p_zi_ */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [3389] cmpge_p_p_zi_ */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [3390] cmphi_p_p_zi_ */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [3391] cmphs_p_p_zi_ */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [3392] cmplt_p_p_zi_ */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [3393] cmple_p_p_zi_ */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [3394] cmplo_p_p_zi_ */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [3395] cmpls_p_p_zi_ */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [3396] cmpne_p_p_zi_ */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [3397] cmpeq_p_p_zw_ */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [3398] cmpgt_p_p_zw_ */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [3399] cmpge_p_p_zw_ */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [3400] cmphi_p_p_zw_ */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [3401] cmphs_p_p_zw_ */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [3402] cmplt_p_p_zw_ */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [3403] cmple_p_p_zw_ */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [3404] cmplo_p_p_zw_ */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [3405] cmpls_p_p_zw_ */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [3406] cmpne_p_p_zw_ */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [3407] cmpeq_p_p_zz_ */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [3408] cmpgt_p_p_zz_ */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [3409] cmpge_p_p_zz_ */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [3410] cmphi_p_p_zz_ */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [3411] cmphs_p_p_zz_ */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [3412] cmpne_p_p_zz_ */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [3413] cmple_p_p_zz__cmpge_p_p_zz_ */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [3414] cmplo_p_p_zz__cmphi_p_p_zz_ */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [3415] cmpls_p_p_zz__cmphs_p_p_zz_ */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [3416] cmplt_p_p_zz__cmpgt_p_p_zz_ */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [3417] cnot_z_p_z_m */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [3418] cnot_z_p_z_z */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [3419] cnt_z_p_z_m */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [3420] cnt_z_p_z_z */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [3421] cntb_r_s_ */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [3422] cntd_r_s_ */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [3423] cnth_r_s_ */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [3424] cntw_r_s_ */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [3425] cntp_r_p_p_ */ { IrTemplate::SimdBinop, Opcode::AND, 0 },
+    /* [3426] cntp_r_pn_ */ { IrTemplate::SimdBinop, Opcode::AND, 0 },
+    /* [3427] compact_z_p_z_s */ { IrTemplate::SimdUnary, Opcode::COPY, 0 },
+    /* [3428] compact_z_p_z_ */ { IrTemplate::SimdUnary, Opcode::COPY, 0 },
+    /* [3429] cpy_z_o_i_ */ { IrTemplate::SimdUnary, Opcode::COPY, 0 },
+    /* [3430] cpy_z_p_i_ */ { IrTemplate::SimdUnary, Opcode::COPY, 0 },
+    /* [3431] cpy_z_p_r_ */ { IrTemplate::SimdUnary, Opcode::COPY, 0 },
+    /* [3432] cpy_z_p_v_ */ { IrTemplate::SimdUnary, Opcode::COPY, 0 },
+    /* [3433] ctermeq_rr_ */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [3434] ctermne_rr_ */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [3435] decb_r_rs_ */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [3436] decd_r_rs_ */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [3437] dech_r_rs_ */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [3438] decw_r_rs_ */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [3439] decd_z_zs_ */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [3440] dech_z_zs_ */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [3441] decw_z_zs_ */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [3442] decp_r_p_r_ */ { IrTemplate::SimdBinop, Opcode::AND, 0 },
+    /* [3443] decp_z_p_z_ */ { IrTemplate::SimdBinop, Opcode::AND, 0 },
+    /* [3444] dup_z_i_ */ { IrTemplate::SimdUnary, Opcode::COPY, 0 },
+    /* [3445] dup_z_r_ */ { IrTemplate::SimdUnary, Opcode::COPY, 0 },
+    /* [3446] dup_z_zi_ */ { IrTemplate::SimdUnary, Opcode::COPY, 0 },
+    /* [3447] dupm_z_i_ */ { IrTemplate::SimdBinop, Opcode::AND, 0 },
+    /* [3448] dupq_z_zi_ */ { IrTemplate::SimdUnary, Opcode::COPY, 0 },
+    /* [3449] eon_z_zi__eor_z_zi_ */ { IrTemplate::SimdBinop, Opcode::AND, 0 },
+    /* [3450] eor3_z_zzz_ */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [3451] eor_p_p_pp_z */ { IrTemplate::SimdBinop, Opcode::AND, 0 },
+    /* [3452] eor_z_p_zz_ */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [3453] eor_z_zi_ */ { IrTemplate::SimdBinop, Opcode::AND, 0 },
+    /* [3454] eor_z_zz_ */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [3455] eorbt_z_zz_ */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [3456] eorqv_z_p_z_ */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [3457] eors_p_p_pp_z */ { IrTemplate::SimdBinop, Opcode::AND, 0 },
+    /* [3458] eortb_z_zz_ */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [3459] eorv_r_p_z_ */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [3460] expand_z_p_z_ */ { IrTemplate::SimdUnary, Opcode::COPY, 0 },
+    /* [3461] ext_z_zi_con */ { IrTemplate::SimdUnary, Opcode::COPY, 0 },
+    /* [3462] ext_z_zi_des */ { IrTemplate::SimdUnary, Opcode::COPY, 0 },
+    /* [3463] extq_z_zi_des */ { IrTemplate::SimdUnary, Opcode::COPY, 0 },
+    /* [3464] f1cvt_z_z8_b2h */ { IrTemplate::FpBinop, Opcode::FADD, 0 },
+    /* [3465] f2cvt_z_z8_b2h */ { IrTemplate::FpBinop, Opcode::FADD, 0 },
+    /* [3466] f1cvtlt_z_z8_b2h */ { IrTemplate::FpBinop, Opcode::FADD, 0 },
+    /* [3467] f2cvtlt_z_z8_b2h */ { IrTemplate::FpBinop, Opcode::FADD, 0 },
+    /* [3468] fabd_z_p_zz_ */ { IrTemplate::FpBinop, Opcode::FADD, 0 },
+    /* [3469] fabs_z_p_z_m */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [3470] fabs_z_p_z_z */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [3471] facgt_p_p_zz_ */ { IrTemplate::FpBinop, Opcode::FADD, 0 },
+    /* [3472] facge_p_p_zz_ */ { IrTemplate::FpBinop, Opcode::FADD, 0 },
+    /* [3473] facle_p_p_zz__facge_p_p_zz_ */ { IrTemplate::FpBinop, Opcode::FADD, 0 },
+    /* [3474] faclt_p_p_zz__facgt_p_p_zz_ */ { IrTemplate::FpBinop, Opcode::FADD, 0 },
+    /* [3475] fadd_z_p_zs_ */ { IrTemplate::FpBinop, Opcode::FADD, 0 },
+    /* [3476] fadd_z_p_zz_ */ { IrTemplate::FpBinop, Opcode::FADD, 0 },
+    /* [3477] fadd_z_zz_ */ { IrTemplate::FpBinop, Opcode::FADD, 0 },
+    /* [3478] fadda_v_p_z_ */ { IrTemplate::FpBinop, Opcode::FADD, 0 },
+    /* [3479] faddp_z_p_zz_ */ { IrTemplate::FpBinop, Opcode::FADD, 0 },
+    /* [3480] faddqv_z_p_z_ */ { IrTemplate::FpBinop, Opcode::FADD, 0 },
+    /* [3481] faddv_v_p_z_ */ { IrTemplate::FpBinop, Opcode::FADD, 0 },
+    /* [3482] famax_z_p_zz_ */ { IrTemplate::FpBinop, Opcode::FADD, 0 },
+    /* [3483] famin_z_p_zz_ */ { IrTemplate::FpBinop, Opcode::FADD, 0 },
+    /* [3484] fcadd_z_p_zz_ */ { IrTemplate::FpBinop, Opcode::FADD, 0 },
+    /* [3485] fclamp_z_zz_ */ { IrTemplate::FpBinop, Opcode::FADD, 0 },
+    /* [3486] fcmeq_p_p_z0_ */ { IrTemplate::FpBinop, Opcode::FADD, 0 },
+    /* [3487] fcmgt_p_p_z0_ */ { IrTemplate::FpBinop, Opcode::FADD, 0 },
+    /* [3488] fcmge_p_p_z0_ */ { IrTemplate::FpBinop, Opcode::FADD, 0 },
+    /* [3489] fcmlt_p_p_z0_ */ { IrTemplate::FpBinop, Opcode::FADD, 0 },
+    /* [3490] fcmle_p_p_z0_ */ { IrTemplate::FpBinop, Opcode::FADD, 0 },
+    /* [3491] fcmne_p_p_z0_ */ { IrTemplate::FpBinop, Opcode::FADD, 0 },
+    /* [3492] fcmeq_p_p_zz_ */ { IrTemplate::FpBinop, Opcode::FADD, 0 },
+    /* [3493] fcmgt_p_p_zz_ */ { IrTemplate::FpBinop, Opcode::FADD, 0 },
+    /* [3494] fcmge_p_p_zz_ */ { IrTemplate::FpBinop, Opcode::FADD, 0 },
+    /* [3495] fcmne_p_p_zz_ */ { IrTemplate::FpBinop, Opcode::FADD, 0 },
+    /* [3496] fcmuo_p_p_zz_ */ { IrTemplate::FpBinop, Opcode::FADD, 0 },
+    /* [3497] fcmla_z_p_zzz_ */ { IrTemplate::FpBinop, Opcode::FADD, 0 },
+    /* [3498] fcmla_z_zzzi_h */ { IrTemplate::FpBinop, Opcode::FADD, 0 },
+    /* [3499] fcmla_z_zzzi_s */ { IrTemplate::FpBinop, Opcode::FADD, 0 },
+    /* [3500] fcmle_p_p_zz__fcmge_p_p_zz_ */ { IrTemplate::FpBinop, Opcode::FADD, 0 },
+    /* [3501] fcmlt_p_p_zz__fcmgt_p_p_zz_ */ { IrTemplate::FpBinop, Opcode::FADD, 0 },
+    /* [3502] fcpy_z_p_i_ */ { IrTemplate::SimdUnary, Opcode::COPY, 0 },
+    /* [3503] fcvt_z_p_z_h2s */ { IrTemplate::FpBinop, Opcode::FADD, 0 },
+    /* [3504] fcvt_z_p_z_h2sz */ { IrTemplate::FpBinop, Opcode::FADD, 0 },
+    /* [3505] fcvt_z_p_z_h2d */ { IrTemplate::FpBinop, Opcode::FADD, 0 },
+    /* [3506] fcvt_z_p_z_h2dz */ { IrTemplate::FpBinop, Opcode::FADD, 0 },
+    /* [3507] fcvt_z_p_z_s2h */ { IrTemplate::FpBinop, Opcode::FADD, 0 },
+    /* [3508] fcvt_z_p_z_s2hz */ { IrTemplate::FpBinop, Opcode::FADD, 0 },
+    /* [3509] fcvt_z_p_z_s2d */ { IrTemplate::FpBinop, Opcode::FADD, 0 },
+    /* [3510] fcvt_z_p_z_s2dz */ { IrTemplate::FpBinop, Opcode::FADD, 0 },
+    /* [3511] fcvt_z_p_z_d2h */ { IrTemplate::FpBinop, Opcode::FADD, 0 },
+    /* [3512] fcvt_z_p_z_d2hz */ { IrTemplate::FpBinop, Opcode::FADD, 0 },
+    /* [3513] fcvt_z_p_z_d2s */ { IrTemplate::FpBinop, Opcode::FADD, 0 },
+    /* [3514] fcvt_z_p_z_d2sz */ { IrTemplate::FpBinop, Opcode::FADD, 0 },
+    /* [3515] fcvtlt_z_p_z_h2s */ { IrTemplate::FpBinop, Opcode::FADD, 0 },
+    /* [3516] fcvtlt_z_p_z_h2sz */ { IrTemplate::FpBinop, Opcode::FADD, 0 },
+    /* [3517] fcvtlt_z_p_z_s2d */ { IrTemplate::FpBinop, Opcode::FADD, 0 },
+    /* [3518] fcvtlt_z_p_z_s2dz */ { IrTemplate::FpBinop, Opcode::FADD, 0 },
+    /* [3519] fcvtn_z8_mz2_h2b */ { IrTemplate::FpBinop, Opcode::FADD, 0 },
+    /* [3520] fcvtnb_z8_mz2_s2b */ { IrTemplate::FpBinop, Opcode::FADD, 0 },
+    /* [3521] fcvtnt_z8_mz2_s2b */ { IrTemplate::FpBinop, Opcode::FADD, 0 },
+    /* [3522] fcvtnt_z_p_z_s2h */ { IrTemplate::FpBinop, Opcode::FADD, 0 },
+    /* [3523] fcvtnt_z_p_z_s2hz */ { IrTemplate::FpBinop, Opcode::FADD, 0 },
+    /* [3524] fcvtnt_z_p_z_d2s */ { IrTemplate::FpBinop, Opcode::FADD, 0 },
+    /* [3525] fcvtnt_z_p_z_d2sz */ { IrTemplate::FpBinop, Opcode::FADD, 0 },
+    /* [3526] fcvtx_z_p_z_d2s */ { IrTemplate::FpBinop, Opcode::FADD, 0 },
+    /* [3527] fcvtx_z_p_z_d2sz */ { IrTemplate::FpBinop, Opcode::FADD, 0 },
+    /* [3528] fcvtxnt_z_p_z_d2s */ { IrTemplate::FpBinop, Opcode::FADD, 0 },
+    /* [3529] fcvtxnt_z_p_z_d2sz */ { IrTemplate::FpBinop, Opcode::FADD, 0 },
+    /* [3530] fcvtzs_z_p_z_fp162h */ { IrTemplate::FpBinop, Opcode::FADD, 0 },
+    /* [3531] fcvtzs_z_p_z_fp162hz */ { IrTemplate::FpBinop, Opcode::FADD, 0 },
+    /* [3532] fcvtzs_z_p_z_fp162w */ { IrTemplate::FpBinop, Opcode::FADD, 0 },
+    /* [3533] fcvtzs_z_p_z_fp162wz */ { IrTemplate::FpBinop, Opcode::FADD, 0 },
+    /* [3534] fcvtzs_z_p_z_fp162x */ { IrTemplate::FpBinop, Opcode::FADD, 0 },
+    /* [3535] fcvtzs_z_p_z_fp162xz */ { IrTemplate::FpBinop, Opcode::FADD, 0 },
+    /* [3536] fcvtzs_z_p_z_s2w */ { IrTemplate::FpBinop, Opcode::FADD, 0 },
+    /* [3537] fcvtzs_z_p_z_s2wz */ { IrTemplate::FpBinop, Opcode::FADD, 0 },
+    /* [3538] fcvtzs_z_p_z_s2x */ { IrTemplate::FpBinop, Opcode::FADD, 0 },
+    /* [3539] fcvtzs_z_p_z_s2xz */ { IrTemplate::FpBinop, Opcode::FADD, 0 },
+    /* [3540] fcvtzs_z_p_z_d2w */ { IrTemplate::FpBinop, Opcode::FADD, 0 },
+    /* [3541] fcvtzs_z_p_z_d2wz */ { IrTemplate::FpBinop, Opcode::FADD, 0 },
+    /* [3542] fcvtzs_z_p_z_d2x */ { IrTemplate::FpBinop, Opcode::FADD, 0 },
+    /* [3543] fcvtzs_z_p_z_d2xz */ { IrTemplate::FpBinop, Opcode::FADD, 0 },
+    /* [3544] fcvtzsn_z_mz2_ */ { IrTemplate::FpBinop, Opcode::FADD, 0 },
+    /* [3545] fcvtzu_z_p_z_fp162h */ { IrTemplate::FpBinop, Opcode::FADD, 0 },
+    /* [3546] fcvtzu_z_p_z_fp162hz */ { IrTemplate::FpBinop, Opcode::FADD, 0 },
+    /* [3547] fcvtzu_z_p_z_fp162w */ { IrTemplate::FpBinop, Opcode::FADD, 0 },
+    /* [3548] fcvtzu_z_p_z_fp162wz */ { IrTemplate::FpBinop, Opcode::FADD, 0 },
+    /* [3549] fcvtzu_z_p_z_fp162x */ { IrTemplate::FpBinop, Opcode::FADD, 0 },
+    /* [3550] fcvtzu_z_p_z_fp162xz */ { IrTemplate::FpBinop, Opcode::FADD, 0 },
+    /* [3551] fcvtzu_z_p_z_s2w */ { IrTemplate::FpBinop, Opcode::FADD, 0 },
+    /* [3552] fcvtzu_z_p_z_s2wz */ { IrTemplate::FpBinop, Opcode::FADD, 0 },
+    /* [3553] fcvtzu_z_p_z_s2x */ { IrTemplate::FpBinop, Opcode::FADD, 0 },
+    /* [3554] fcvtzu_z_p_z_s2xz */ { IrTemplate::FpBinop, Opcode::FADD, 0 },
+    /* [3555] fcvtzu_z_p_z_d2w */ { IrTemplate::FpBinop, Opcode::FADD, 0 },
+    /* [3556] fcvtzu_z_p_z_d2wz */ { IrTemplate::FpBinop, Opcode::FADD, 0 },
+    /* [3557] fcvtzu_z_p_z_d2x */ { IrTemplate::FpBinop, Opcode::FADD, 0 },
+    /* [3558] fcvtzu_z_p_z_d2xz */ { IrTemplate::FpBinop, Opcode::FADD, 0 },
+    /* [3559] fcvtzun_z_mz2_ */ { IrTemplate::FpBinop, Opcode::FADD, 0 },
+    /* [3560] fdiv_z_p_zz_ */ { IrTemplate::FpBinop, Opcode::FADD, 0 },
+    /* [3561] fdivr_z_p_zz_ */ { IrTemplate::FpBinop, Opcode::FADD, 0 },
+    /* [3562] fdot_z32_zz8z8_ */ { IrTemplate::FpBinop, Opcode::FADD, 0 },
+    /* [3563] fdot_z32_zz8z8i_ */ { IrTemplate::FpBinop, Opcode::FADD, 0 },
+    /* [3564] fdot_z_zz8z8_ */ { IrTemplate::FpBinop, Opcode::FADD, 0 },
+    /* [3565] fdot_z_zz8z8i_ */ { IrTemplate::FpBinop, Opcode::FADD, 0 },
+    /* [3566] fdot_z_zzz_ */ { IrTemplate::FpBinop, Opcode::FADD, 0 },
+    /* [3567] fdot_z_zzzi_ */ { IrTemplate::FpBinop, Opcode::FADD, 0 },
+    /* [3568] fdup_z_i_ */ { IrTemplate::SimdUnary, Opcode::COPY, 0 },
+    /* [3569] fexpa_z_z_ */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [3570] firstp_r_p_p_ */ { IrTemplate::SimdBinop, Opcode::AND, 0 },
+    /* [3571] flogb_z_p_z_m */ { IrTemplate::FpBinop, Opcode::FADD, 0 },
+    /* [3572] flogb_z_p_z_z */ { IrTemplate::FpBinop, Opcode::FADD, 0 },
+    /* [3573] fmad_z_p_zzz_ */ { IrTemplate::FpBinop, Opcode::FADD, 0 },
+    /* [3574] fmax_z_p_zs_ */ { IrTemplate::FpBinop, Opcode::FADD, 0 },
+    /* [3575] fmax_z_p_zz_ */ { IrTemplate::FpBinop, Opcode::FADD, 0 },
+    /* [3576] fmaxnm_z_p_zs_ */ { IrTemplate::FpBinop, Opcode::FADD, 0 },
+    /* [3577] fmaxnm_z_p_zz_ */ { IrTemplate::FpBinop, Opcode::FADD, 0 },
+    /* [3578] fmaxnmp_z_p_zz_ */ { IrTemplate::FpBinop, Opcode::FADD, 0 },
+    /* [3579] fmaxnmqv_z_p_z_ */ { IrTemplate::FpBinop, Opcode::FADD, 0 },
+    /* [3580] fmaxnmv_v_p_z_ */ { IrTemplate::FpBinop, Opcode::FADD, 0 },
+    /* [3581] fmaxp_z_p_zz_ */ { IrTemplate::FpBinop, Opcode::FADD, 0 },
+    /* [3582] fmaxqv_z_p_z_ */ { IrTemplate::FpBinop, Opcode::FADD, 0 },
+    /* [3583] fmaxv_v_p_z_ */ { IrTemplate::FpBinop, Opcode::FADD, 0 },
+    /* [3584] fmin_z_p_zs_ */ { IrTemplate::FpBinop, Opcode::FADD, 0 },
+    /* [3585] fmin_z_p_zz_ */ { IrTemplate::FpBinop, Opcode::FADD, 0 },
+    /* [3586] fminnm_z_p_zs_ */ { IrTemplate::FpBinop, Opcode::FADD, 0 },
+    /* [3587] fminnm_z_p_zz_ */ { IrTemplate::FpBinop, Opcode::FADD, 0 },
+    /* [3588] fminnmp_z_p_zz_ */ { IrTemplate::FpBinop, Opcode::FADD, 0 },
+    /* [3589] fminnmqv_z_p_z_ */ { IrTemplate::FpBinop, Opcode::FADD, 0 },
+    /* [3590] fminnmv_v_p_z_ */ { IrTemplate::FpBinop, Opcode::FADD, 0 },
+    /* [3591] fminp_z_p_zz_ */ { IrTemplate::FpBinop, Opcode::FADD, 0 },
+    /* [3592] fminqv_z_p_z_ */ { IrTemplate::FpBinop, Opcode::FADD, 0 },
+    /* [3593] fminv_v_p_z_ */ { IrTemplate::FpBinop, Opcode::FADD, 0 },
+    /* [3594] fmla_z_p_zzz_ */ { IrTemplate::FpBinop, Opcode::FADD, 0 },
+    /* [3595] fmla_z_zzzi_h */ { IrTemplate::FpBinop, Opcode::FADD, 0 },
+    /* [3596] fmla_z_zzzi_s */ { IrTemplate::FpBinop, Opcode::FADD, 0 },
+    /* [3597] fmla_z_zzzi_d */ { IrTemplate::FpBinop, Opcode::FADD, 0 },
+    /* [3598] fmlalb_z_z8z8z8_ */ { IrTemplate::FpBinop, Opcode::FADD, 0 },
+    /* [3599] fmlalb_z_z8z8z8i_ */ { IrTemplate::FpBinop, Opcode::FADD, 0 },
+    /* [3600] fmlalb_z_zzz_ */ { IrTemplate::FpBinop, Opcode::FADD, 0 },
+    /* [3601] fmlalb_z_zzzi_s */ { IrTemplate::FpBinop, Opcode::FADD, 0 },
+    /* [3602] fmlallbb_z32_z8z8z8_ */ { IrTemplate::FpBinop, Opcode::FADD, 0 },
+    /* [3603] fmlallbb_z32_z8z8z8i_ */ { IrTemplate::FpBinop, Opcode::FADD, 0 },
+    /* [3604] fmlallbt_z32_z8z8z8_ */ { IrTemplate::FpBinop, Opcode::FADD, 0 },
+    /* [3605] fmlallbt_z32_z8z8z8i_ */ { IrTemplate::FpBinop, Opcode::FADD, 0 },
+    /* [3606] fmlalltb_z32_z8z8z8_ */ { IrTemplate::FpBinop, Opcode::FADD, 0 },
+    /* [3607] fmlalltb_z32_z8z8z8i_ */ { IrTemplate::FpBinop, Opcode::FADD, 0 },
+    /* [3608] fmlalltt_z32_z8z8z8_ */ { IrTemplate::FpBinop, Opcode::FADD, 0 },
+    /* [3609] fmlalltt_z32_z8z8z8i_ */ { IrTemplate::FpBinop, Opcode::FADD, 0 },
+    /* [3610] fmlalt_z_z8z8z8_ */ { IrTemplate::FpBinop, Opcode::FADD, 0 },
+    /* [3611] fmlalt_z_z8z8z8i_ */ { IrTemplate::FpBinop, Opcode::FADD, 0 },
+    /* [3612] fmlalt_z_zzz_ */ { IrTemplate::FpBinop, Opcode::FADD, 0 },
+    /* [3613] fmlalt_z_zzzi_s */ { IrTemplate::FpBinop, Opcode::FADD, 0 },
+    /* [3614] fmls_z_p_zzz_ */ { IrTemplate::FpBinop, Opcode::FADD, 0 },
+    /* [3615] fmls_z_zzzi_h */ { IrTemplate::FpBinop, Opcode::FADD, 0 },
+    /* [3616] fmls_z_zzzi_s */ { IrTemplate::FpBinop, Opcode::FADD, 0 },
+    /* [3617] fmls_z_zzzi_d */ { IrTemplate::FpBinop, Opcode::FADD, 0 },
+    /* [3618] fmlslb_z_zzz_ */ { IrTemplate::FpBinop, Opcode::FADD, 0 },
+    /* [3619] fmlslb_z_zzzi_s */ { IrTemplate::FpBinop, Opcode::FADD, 0 },
+    /* [3620] fmlslt_z_zzz_ */ { IrTemplate::FpBinop, Opcode::FADD, 0 },
+    /* [3621] fmlslt_z_zzzi_s */ { IrTemplate::FpBinop, Opcode::FADD, 0 },
+    /* [3622] fmmla_z16_zz8z8_ */ { IrTemplate::FpBinop, Opcode::FADD, 0 },
+    /* [3623] fmmla_z32_zz8z8_ */ { IrTemplate::FpBinop, Opcode::FADD, 0 },
+    /* [3624] fmmla_z32_zzz_h */ { IrTemplate::FpBinop, Opcode::FADD, 0 },
+    /* [3625] fmmla_z_zzz_h */ { IrTemplate::FpBinop, Opcode::FADD, 0 },
+    /* [3626] fmmla_z_zzz_s */ { IrTemplate::FpBinop, Opcode::FADD, 0 },
+    /* [3627] fmmla_z_zzz_d */ { IrTemplate::FpBinop, Opcode::FADD, 0 },
+    /* [3628] fmov_z_p_0__cpy_z_p_i_ */ { IrTemplate::SimdUnary, Opcode::COPY, 0 },
+    /* [3629] fmov_z_0__dup_z_i_ */ { IrTemplate::SimdUnary, Opcode::COPY, 0 },
+    /* [3630] fmov_z_p_i__fcpy_z_p_i_ */ { IrTemplate::SimdUnary, Opcode::COPY, 0 },
+    /* [3631] fmov_z_i__fdup_z_i_ */ { IrTemplate::SimdUnary, Opcode::COPY, 0 },
+    /* [3632] fmsb_z_p_zzz_ */ { IrTemplate::FpBinop, Opcode::FADD, 0 },
+    /* [3633] fmul_z_p_zs_ */ { IrTemplate::FpBinop, Opcode::FADD, 0 },
+    /* [3634] fmul_z_p_zz_ */ { IrTemplate::FpBinop, Opcode::FADD, 0 },
+    /* [3635] fmul_z_zz_ */ { IrTemplate::FpBinop, Opcode::FADD, 0 },
+    /* [3636] fmul_z_zzi_h */ { IrTemplate::FpBinop, Opcode::FADD, 0 },
+    /* [3637] fmul_z_zzi_s */ { IrTemplate::FpBinop, Opcode::FADD, 0 },
+    /* [3638] fmul_z_zzi_d */ { IrTemplate::FpBinop, Opcode::FADD, 0 },
+    /* [3639] fmulx_z_p_zz_ */ { IrTemplate::FpBinop, Opcode::FADD, 0 },
+    /* [3640] fneg_z_p_z_m */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [3641] fneg_z_p_z_z */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [3642] fnmad_z_p_zzz_ */ { IrTemplate::FpBinop, Opcode::FADD, 0 },
+    /* [3643] fnmla_z_p_zzz_ */ { IrTemplate::FpBinop, Opcode::FADD, 0 },
+    /* [3644] fnmls_z_p_zzz_ */ { IrTemplate::FpBinop, Opcode::FADD, 0 },
+    /* [3645] fnmsb_z_p_zzz_ */ { IrTemplate::FpBinop, Opcode::FADD, 0 },
+    /* [3646] frecpe_z_z_ */ { IrTemplate::FpBinop, Opcode::FADD, 0 },
+    /* [3647] frecps_z_zz_ */ { IrTemplate::FpBinop, Opcode::FADD, 0 },
+    /* [3648] frecpx_z_p_z_m */ { IrTemplate::FpBinop, Opcode::FADD, 0 },
+    /* [3649] frecpx_z_p_z_z */ { IrTemplate::FpBinop, Opcode::FADD, 0 },
+    /* [3650] frint32x_z_p_z_m */ { IrTemplate::FpBinop, Opcode::FADD, 0 },
+    /* [3651] frint32x_z_p_z_z */ { IrTemplate::FpBinop, Opcode::FADD, 0 },
+    /* [3652] frint32z_z_p_z_m */ { IrTemplate::FpBinop, Opcode::FADD, 0 },
+    /* [3653] frint32z_z_p_z_z */ { IrTemplate::FpBinop, Opcode::FADD, 0 },
+    /* [3654] frint64x_z_p_z_m */ { IrTemplate::FpBinop, Opcode::FADD, 0 },
+    /* [3655] frint64x_z_p_z_z */ { IrTemplate::FpBinop, Opcode::FADD, 0 },
+    /* [3656] frint64z_z_p_z_m */ { IrTemplate::FpBinop, Opcode::FADD, 0 },
+    /* [3657] frint64z_z_p_z_z */ { IrTemplate::FpBinop, Opcode::FADD, 0 },
+    /* [3658] frintx_z_p_z_m */ { IrTemplate::FpBinop, Opcode::FADD, 0 },
+    /* [3659] frintx_z_p_z_z */ { IrTemplate::FpBinop, Opcode::FADD, 0 },
+    /* [3660] frinti_z_p_z_m */ { IrTemplate::FpBinop, Opcode::FADD, 0 },
+    /* [3661] frinti_z_p_z_z */ { IrTemplate::FpBinop, Opcode::FADD, 0 },
+    /* [3662] frinta_z_p_z_m */ { IrTemplate::FpBinop, Opcode::FADD, 0 },
+    /* [3663] frinta_z_p_z_z */ { IrTemplate::FpBinop, Opcode::FADD, 0 },
+    /* [3664] frintn_z_p_z_m */ { IrTemplate::FpBinop, Opcode::FADD, 0 },
+    /* [3665] frintn_z_p_z_z */ { IrTemplate::FpBinop, Opcode::FADD, 0 },
+    /* [3666] frintz_z_p_z_m */ { IrTemplate::FpBinop, Opcode::FADD, 0 },
+    /* [3667] frintz_z_p_z_z */ { IrTemplate::FpBinop, Opcode::FADD, 0 },
+    /* [3668] frintm_z_p_z_m */ { IrTemplate::FpBinop, Opcode::FADD, 0 },
+    /* [3669] frintm_z_p_z_z */ { IrTemplate::FpBinop, Opcode::FADD, 0 },
+    /* [3670] frintp_z_p_z_m */ { IrTemplate::FpBinop, Opcode::FADD, 0 },
+    /* [3671] frintp_z_p_z_z */ { IrTemplate::FpBinop, Opcode::FADD, 0 },
+    /* [3672] frsqrte_z_z_ */ { IrTemplate::FpBinop, Opcode::FADD, 0 },
+    /* [3673] frsqrts_z_zz_ */ { IrTemplate::FpBinop, Opcode::FADD, 0 },
+    /* [3674] fscale_z_p_zz_ */ { IrTemplate::FpBinop, Opcode::FADD, 0 },
+    /* [3675] fsqrt_z_p_z_m */ { IrTemplate::FpBinop, Opcode::FADD, 0 },
+    /* [3676] fsqrt_z_p_z_z */ { IrTemplate::FpBinop, Opcode::FADD, 0 },
+    /* [3677] fsub_z_p_zs_ */ { IrTemplate::FpBinop, Opcode::FADD, 0 },
+    /* [3678] fsub_z_p_zz_ */ { IrTemplate::FpBinop, Opcode::FADD, 0 },
+    /* [3679] fsub_z_zz_ */ { IrTemplate::FpBinop, Opcode::FADD, 0 },
+    /* [3680] fsubr_z_p_zs_ */ { IrTemplate::FpBinop, Opcode::FADD, 0 },
+    /* [3681] fsubr_z_p_zz_ */ { IrTemplate::FpBinop, Opcode::FADD, 0 },
+    /* [3682] ftmad_z_zzi_ */ { IrTemplate::FpBinop, Opcode::FADD, 0 },
+    /* [3683] ftsmul_z_zz_ */ { IrTemplate::FpBinop, Opcode::FADD, 0 },
+    /* [3684] ftssel_z_zz_ */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [3685] histcnt_z_p_zz_ */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [3686] histseg_z_zz_ */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [3687] incb_r_rs_ */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [3688] incd_r_rs_ */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [3689] inch_r_rs_ */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [3690] incw_r_rs_ */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [3691] incd_z_zs_ */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [3692] inch_z_zs_ */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [3693] incw_z_zs_ */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [3694] incp_r_p_r_ */ { IrTemplate::SimdBinop, Opcode::AND, 0 },
+    /* [3695] incp_z_p_z_ */ { IrTemplate::SimdBinop, Opcode::AND, 0 },
+    /* [3696] index_z_ii_ */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [3697] index_z_ir_ */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [3698] index_z_ri_ */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [3699] index_z_rr_ */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [3700] insr_z_r_ */ { IrTemplate::SimdUnary, Opcode::COPY, 0 },
+    /* [3701] insr_z_v_ */ { IrTemplate::SimdUnary, Opcode::COPY, 0 },
+    /* [3702] lasta_r_p_z_ */ { IrTemplate::SimdUnary, Opcode::COPY, 0 },
+    /* [3703] lasta_v_p_z_ */ { IrTemplate::SimdUnary, Opcode::COPY, 0 },
+    /* [3704] lastb_r_p_z_ */ { IrTemplate::SimdUnary, Opcode::COPY, 0 },
+    /* [3705] lastb_v_p_z_ */ { IrTemplate::SimdUnary, Opcode::COPY, 0 },
+    /* [3706] lastp_r_p_p_ */ { IrTemplate::SimdBinop, Opcode::AND, 0 },
+    /* [3707] ld1b_z_p_ai_s */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [3708] ld1b_z_p_ai_d */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [3709] ld1b_z_p_bi_u8 */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [3710] ld1b_z_p_bi_u16 */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [3711] ld1b_z_p_bi_u32 */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [3712] ld1b_z_p_bi_u64 */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [3713] ld1b_z_p_br_u8 */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [3714] ld1b_z_p_br_u16 */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [3715] ld1b_z_p_br_u32 */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [3716] ld1b_z_p_br_u64 */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [3717] ld1b_z_p_bz_d_x32_unscaled */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [3718] ld1b_z_p_bz_s_x32_unscaled */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [3719] ld1b_z_p_bz_d_64_unscaled */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [3720] ld1d_z_p_ai_d */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [3721] ld1d_z_p_bi_u64 */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [3722] ld1d_z_p_bi_u128 */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [3723] ld1d_z_p_br_u64 */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [3724] ld1d_z_p_br_u128 */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [3725] ld1d_z_p_bz_d_x32_scaled */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [3726] ld1d_z_p_bz_d_x32_unscaled */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [3727] ld1d_z_p_bz_d_64_scaled */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [3728] ld1d_z_p_bz_d_64_unscaled */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [3729] ld1h_z_p_ai_s */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [3730] ld1h_z_p_ai_d */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [3731] ld1h_z_p_bi_u16 */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [3732] ld1h_z_p_bi_u32 */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [3733] ld1h_z_p_bi_u64 */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [3734] ld1h_z_p_br_u16 */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [3735] ld1h_z_p_br_u32 */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [3736] ld1h_z_p_br_u64 */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [3737] ld1h_z_p_bz_s_x32_scaled */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [3738] ld1h_z_p_bz_d_x32_scaled */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [3739] ld1h_z_p_bz_d_x32_unscaled */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [3740] ld1h_z_p_bz_s_x32_unscaled */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [3741] ld1h_z_p_bz_d_64_scaled */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [3742] ld1h_z_p_bz_d_64_unscaled */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [3743] ld1q_z_p_ar_d_64_unscaled */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [3744] ld1rb_z_p_bi_u8 */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [3745] ld1rb_z_p_bi_u16 */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [3746] ld1rb_z_p_bi_u32 */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [3747] ld1rb_z_p_bi_u64 */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [3748] ld1rd_z_p_bi_u64 */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [3749] ld1rh_z_p_bi_u16 */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [3750] ld1rh_z_p_bi_u32 */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [3751] ld1rh_z_p_bi_u64 */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [3752] ld1rob_z_p_bi_u8 */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [3753] ld1rob_z_p_br_contiguous */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [3754] ld1rod_z_p_bi_u64 */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [3755] ld1rod_z_p_br_contiguous */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [3756] ld1roh_z_p_bi_u16 */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [3757] ld1roh_z_p_br_contiguous */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [3758] ld1row_z_p_bi_u32 */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [3759] ld1row_z_p_br_contiguous */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [3760] ld1rqb_z_p_bi_u8 */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [3761] ld1rqb_z_p_br_contiguous */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [3762] ld1rqd_z_p_bi_u64 */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [3763] ld1rqd_z_p_br_contiguous */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [3764] ld1rqh_z_p_bi_u16 */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [3765] ld1rqh_z_p_br_contiguous */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [3766] ld1rqw_z_p_bi_u32 */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [3767] ld1rqw_z_p_br_contiguous */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [3768] ld1rsb_z_p_bi_s16 */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [3769] ld1rsb_z_p_bi_s32 */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [3770] ld1rsb_z_p_bi_s64 */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [3771] ld1rsh_z_p_bi_s32 */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [3772] ld1rsh_z_p_bi_s64 */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [3773] ld1rsw_z_p_bi_s64 */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [3774] ld1rw_z_p_bi_u32 */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [3775] ld1rw_z_p_bi_u64 */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [3776] ld1sb_z_p_ai_s */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [3777] ld1sb_z_p_ai_d */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [3778] ld1sb_z_p_bi_s16 */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [3779] ld1sb_z_p_bi_s32 */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [3780] ld1sb_z_p_bi_s64 */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [3781] ld1sb_z_p_br_s16 */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [3782] ld1sb_z_p_br_s32 */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [3783] ld1sb_z_p_br_s64 */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [3784] ld1sb_z_p_bz_d_x32_unscaled */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [3785] ld1sb_z_p_bz_s_x32_unscaled */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [3786] ld1sb_z_p_bz_d_64_unscaled */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [3787] ld1sh_z_p_ai_s */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [3788] ld1sh_z_p_ai_d */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [3789] ld1sh_z_p_bi_s32 */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [3790] ld1sh_z_p_bi_s64 */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [3791] ld1sh_z_p_br_s32 */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [3792] ld1sh_z_p_br_s64 */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [3793] ld1sh_z_p_bz_s_x32_scaled */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [3794] ld1sh_z_p_bz_d_x32_scaled */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [3795] ld1sh_z_p_bz_d_x32_unscaled */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [3796] ld1sh_z_p_bz_s_x32_unscaled */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [3797] ld1sh_z_p_bz_d_64_scaled */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [3798] ld1sh_z_p_bz_d_64_unscaled */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [3799] ld1sw_z_p_ai_d */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [3800] ld1sw_z_p_bi_s64 */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [3801] ld1sw_z_p_br_s64 */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [3802] ld1sw_z_p_bz_d_x32_scaled */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [3803] ld1sw_z_p_bz_d_x32_unscaled */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [3804] ld1sw_z_p_bz_d_64_scaled */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [3805] ld1sw_z_p_bz_d_64_unscaled */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [3806] ld1w_z_p_ai_s */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [3807] ld1w_z_p_ai_d */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [3808] ld1w_z_p_bi_u32 */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [3809] ld1w_z_p_bi_u64 */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [3810] ld1w_z_p_bi_u128 */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [3811] ld1w_z_p_br_u32 */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [3812] ld1w_z_p_br_u64 */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [3813] ld1w_z_p_br_u128 */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [3814] ld1w_z_p_bz_s_x32_scaled */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [3815] ld1w_z_p_bz_d_x32_scaled */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [3816] ld1w_z_p_bz_d_x32_unscaled */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [3817] ld1w_z_p_bz_s_x32_unscaled */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [3818] ld1w_z_p_bz_d_64_scaled */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [3819] ld1w_z_p_bz_d_64_unscaled */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [3820] ld2b_z_p_bi_contiguous */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [3821] ld2b_z_p_br_contiguous */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [3822] ld2d_z_p_bi_contiguous */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [3823] ld2d_z_p_br_contiguous */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [3824] ld2h_z_p_bi_contiguous */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [3825] ld2h_z_p_br_contiguous */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [3826] ld2q_z_p_bi_contiguous */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [3827] ld2q_z_p_br_contiguous */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [3828] ld2w_z_p_bi_contiguous */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [3829] ld2w_z_p_br_contiguous */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [3830] ld3b_z_p_bi_contiguous */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [3831] ld3b_z_p_br_contiguous */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [3832] ld3d_z_p_bi_contiguous */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [3833] ld3d_z_p_br_contiguous */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [3834] ld3h_z_p_bi_contiguous */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [3835] ld3h_z_p_br_contiguous */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [3836] ld3q_z_p_bi_contiguous */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [3837] ld3q_z_p_br_contiguous */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [3838] ld3w_z_p_bi_contiguous */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [3839] ld3w_z_p_br_contiguous */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [3840] ld4b_z_p_bi_contiguous */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [3841] ld4b_z_p_br_contiguous */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [3842] ld4d_z_p_bi_contiguous */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [3843] ld4d_z_p_br_contiguous */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [3844] ld4h_z_p_bi_contiguous */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [3845] ld4h_z_p_br_contiguous */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [3846] ld4q_z_p_bi_contiguous */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [3847] ld4q_z_p_br_contiguous */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [3848] ld4w_z_p_bi_contiguous */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [3849] ld4w_z_p_br_contiguous */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [3850] ldff1b_z_p_ai_s */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [3851] ldff1b_z_p_ai_d */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [3852] ldff1b_z_p_br_u8 */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [3853] ldff1b_z_p_br_u16 */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [3854] ldff1b_z_p_br_u32 */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [3855] ldff1b_z_p_br_u64 */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [3856] ldff1b_z_p_bz_d_x32_unscaled */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [3857] ldff1b_z_p_bz_s_x32_unscaled */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [3858] ldff1b_z_p_bz_d_64_unscaled */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [3859] ldff1d_z_p_ai_d */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [3860] ldff1d_z_p_br_u64 */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [3861] ldff1d_z_p_bz_d_x32_scaled */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [3862] ldff1d_z_p_bz_d_x32_unscaled */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [3863] ldff1d_z_p_bz_d_64_scaled */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [3864] ldff1d_z_p_bz_d_64_unscaled */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [3865] ldff1h_z_p_ai_s */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [3866] ldff1h_z_p_ai_d */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [3867] ldff1h_z_p_br_u16 */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [3868] ldff1h_z_p_br_u32 */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [3869] ldff1h_z_p_br_u64 */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [3870] ldff1h_z_p_bz_s_x32_scaled */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [3871] ldff1h_z_p_bz_d_x32_scaled */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [3872] ldff1h_z_p_bz_d_x32_unscaled */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [3873] ldff1h_z_p_bz_s_x32_unscaled */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [3874] ldff1h_z_p_bz_d_64_scaled */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [3875] ldff1h_z_p_bz_d_64_unscaled */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [3876] ldff1sb_z_p_ai_s */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [3877] ldff1sb_z_p_ai_d */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [3878] ldff1sb_z_p_br_s16 */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [3879] ldff1sb_z_p_br_s32 */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [3880] ldff1sb_z_p_br_s64 */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [3881] ldff1sb_z_p_bz_d_x32_unscaled */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [3882] ldff1sb_z_p_bz_s_x32_unscaled */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [3883] ldff1sb_z_p_bz_d_64_unscaled */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [3884] ldff1sh_z_p_ai_s */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [3885] ldff1sh_z_p_ai_d */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [3886] ldff1sh_z_p_br_s32 */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [3887] ldff1sh_z_p_br_s64 */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [3888] ldff1sh_z_p_bz_s_x32_scaled */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [3889] ldff1sh_z_p_bz_d_x32_scaled */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [3890] ldff1sh_z_p_bz_d_x32_unscaled */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [3891] ldff1sh_z_p_bz_s_x32_unscaled */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [3892] ldff1sh_z_p_bz_d_64_scaled */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [3893] ldff1sh_z_p_bz_d_64_unscaled */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [3894] ldff1sw_z_p_ai_d */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [3895] ldff1sw_z_p_br_s64 */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [3896] ldff1sw_z_p_bz_d_x32_scaled */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [3897] ldff1sw_z_p_bz_d_x32_unscaled */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [3898] ldff1sw_z_p_bz_d_64_scaled */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [3899] ldff1sw_z_p_bz_d_64_unscaled */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [3900] ldff1w_z_p_ai_s */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [3901] ldff1w_z_p_ai_d */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [3902] ldff1w_z_p_br_u32 */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [3903] ldff1w_z_p_br_u64 */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [3904] ldff1w_z_p_bz_s_x32_scaled */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [3905] ldff1w_z_p_bz_d_x32_scaled */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [3906] ldff1w_z_p_bz_d_x32_unscaled */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [3907] ldff1w_z_p_bz_s_x32_unscaled */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [3908] ldff1w_z_p_bz_d_64_scaled */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [3909] ldff1w_z_p_bz_d_64_unscaled */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [3910] ldnf1b_z_p_bi_u8 */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [3911] ldnf1b_z_p_bi_u16 */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [3912] ldnf1b_z_p_bi_u32 */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [3913] ldnf1b_z_p_bi_u64 */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [3914] ldnf1d_z_p_bi_u64 */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [3915] ldnf1h_z_p_bi_u16 */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [3916] ldnf1h_z_p_bi_u32 */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [3917] ldnf1h_z_p_bi_u64 */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [3918] ldnf1sb_z_p_bi_s16 */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [3919] ldnf1sb_z_p_bi_s32 */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [3920] ldnf1sb_z_p_bi_s64 */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [3921] ldnf1sh_z_p_bi_s32 */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [3922] ldnf1sh_z_p_bi_s64 */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [3923] ldnf1sw_z_p_bi_s64 */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [3924] ldnf1w_z_p_bi_u32 */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [3925] ldnf1w_z_p_bi_u64 */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [3926] ldnt1b_z_p_ar_s_x32_unscaled */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [3927] ldnt1b_z_p_ar_d_64_unscaled */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [3928] ldnt1b_z_p_bi_contiguous */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [3929] ldnt1b_z_p_br_contiguous */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [3930] ldnt1d_z_p_ar_d_64_unscaled */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [3931] ldnt1d_z_p_bi_contiguous */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [3932] ldnt1d_z_p_br_contiguous */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [3933] ldnt1h_z_p_ar_s_x32_unscaled */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [3934] ldnt1h_z_p_ar_d_64_unscaled */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [3935] ldnt1h_z_p_bi_contiguous */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [3936] ldnt1h_z_p_br_contiguous */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [3937] ldnt1sb_z_p_ar_s_x32_unscaled */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [3938] ldnt1sb_z_p_ar_d_64_unscaled */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [3939] ldnt1sh_z_p_ar_s_x32_unscaled */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [3940] ldnt1sh_z_p_ar_d_64_unscaled */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [3941] ldnt1sw_z_p_ar_d_64_unscaled */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [3942] ldnt1w_z_p_ar_s_x32_unscaled */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [3943] ldnt1w_z_p_ar_d_64_unscaled */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [3944] ldnt1w_z_p_bi_contiguous */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [3945] ldnt1w_z_p_br_contiguous */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [3946] ldr_p_bi_ */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [3947] ldr_z_bi_ */ { IrTemplate::LoadReg, Opcode::LOAD, 0 },
+    /* [3948] lsl_z_p_zi_ */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [3949] lsl_z_p_zw_ */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [3950] lsl_z_p_zz_ */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [3951] lsl_z_zi_ */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [3952] lsl_z_zw_ */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [3953] lslr_z_p_zz_ */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [3954] lsr_z_p_zi_ */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [3955] lsr_z_p_zw_ */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [3956] lsr_z_p_zz_ */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [3957] lsr_z_zi_ */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [3958] lsr_z_zw_ */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [3959] lsrr_z_p_zz_ */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [3960] luti2_z_zz_8 */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [3961] luti2_z_zz_16 */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [3962] luti4_z_zz_8 */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [3963] luti4_z_zz_2x16 */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [3964] luti4_z_zz_1x16 */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [3965] luti6_z_zzz_16 */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [3966] luti6_z_zzz_8 */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [3967] mad_z_p_zzz_ */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [3968] madpt_z_zzz_ */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [3969] match_p_p_zz_ */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [3970] mla_z_p_zzz_ */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [3971] mla_z_zzzi_h */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [3972] mla_z_zzzi_s */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [3973] mla_z_zzzi_d */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [3974] mlapt_z_zzz_ */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [3975] mls_z_p_zzz_ */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [3976] mls_z_zzzi_h */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [3977] mls_z_zzzi_s */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [3978] mls_z_zzzi_d */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [3979] movz_p_p_p__and_p_p_pp_z */ { IrTemplate::SimdBinop, Opcode::AND, 0 },
+    /* [3980] mov_z_o_i__cpy_z_o_i_ */ { IrTemplate::SimdUnary, Opcode::COPY, 0 },
+    /* [3981] mov_z_p_i__cpy_z_p_i_ */ { IrTemplate::SimdUnary, Opcode::COPY, 0 },
+    /* [3982] mov_z_p_r__cpy_z_p_r_ */ { IrTemplate::SimdUnary, Opcode::COPY, 0 },
+    /* [3983] mov_z_p_v__cpy_z_p_v_ */ { IrTemplate::SimdUnary, Opcode::COPY, 0 },
+    /* [3984] mov_z_i__dup_z_i_ */ { IrTemplate::SimdUnary, Opcode::COPY, 0 },
+    /* [3985] mov_z_r__dup_z_r_ */ { IrTemplate::SimdUnary, Opcode::COPY, 0 },
+    /* [3986] mov_z_v__dup_z_zi_ */ { IrTemplate::SimdUnary, Opcode::COPY, 0 },
+    /* [3987] mov_z_zi__dup_z_zi_ */ { IrTemplate::SimdUnary, Opcode::COPY, 0 },
+    /* [3988] mov_z_m__dupm_z_i_ */ { IrTemplate::SimdBinop, Opcode::AND, 0 },
+    /* [3989] mov_p_p__orr_p_p_pp_z */ { IrTemplate::SimdBinop, Opcode::AND, 0 },
+    /* [3990] mov_z_z__orr_z_zz_ */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [3991] movm_p_p_p__sel_p_p_pp_ */ { IrTemplate::SimdBinop, Opcode::AND, 0 },
+    /* [3992] mov_z_p_z__sel_z_p_zz_ */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [3993] movprfx_z_p_z_ */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [3994] movprfx_z_z_ */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [3995] movzs_p_p_p__ands_p_p_pp_z */ { IrTemplate::SimdBinop, Opcode::AND, 0 },
+    /* [3996] movs_p_p__orrs_p_p_pp_z */ { IrTemplate::SimdBinop, Opcode::AND, 0 },
+    /* [3997] msb_z_p_zzz_ */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [3998] mul_z_p_zz_ */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [3999] mul_z_zi_ */ { IrTemplate::SimdUnary, Opcode::COPY, 0 },
+    /* [4000] mul_z_zz_ */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [4001] mul_z_zzi_h */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [4002] mul_z_zzi_s */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [4003] mul_z_zzi_d */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [4004] nand_p_p_pp_z */ { IrTemplate::SimdBinop, Opcode::AND, 0 },
+    /* [4005] nands_p_p_pp_z */ { IrTemplate::SimdBinop, Opcode::AND, 0 },
+    /* [4006] nbsl_z_zzz_ */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [4007] neg_z_p_z_m */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [4008] neg_z_p_z_z */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [4009] nmatch_p_p_zz_ */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [4010] nor_p_p_pp_z */ { IrTemplate::SimdBinop, Opcode::AND, 0 },
+    /* [4011] nors_p_p_pp_z */ { IrTemplate::SimdBinop, Opcode::AND, 0 },
+    /* [4012] not_p_p_p_z_eor_p_p_pp_z */ { IrTemplate::SimdBinop, Opcode::AND, 0 },
+    /* [4013] not_z_p_z_m */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [4014] not_z_p_z_z */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [4015] nots_p_p_p_z_eors_p_p_pp_z */ { IrTemplate::SimdBinop, Opcode::AND, 0 },
+    /* [4016] orn_z_zi__orr_z_zi_ */ { IrTemplate::SimdBinop, Opcode::AND, 0 },
+    /* [4017] orn_p_p_pp_z */ { IrTemplate::SimdBinop, Opcode::AND, 0 },
+    /* [4018] orns_p_p_pp_z */ { IrTemplate::SimdBinop, Opcode::AND, 0 },
+    /* [4019] orqv_z_p_z_ */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [4020] orr_p_p_pp_z */ { IrTemplate::SimdBinop, Opcode::AND, 0 },
+    /* [4021] orr_z_p_zz_ */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [4022] orr_z_zi_ */ { IrTemplate::SimdBinop, Opcode::AND, 0 },
+    /* [4023] orr_z_zz_ */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [4024] orrs_p_p_pp_z */ { IrTemplate::SimdBinop, Opcode::AND, 0 },
+    /* [4025] orv_r_p_z_ */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [4026] pext_pn_rr_ */ { IrTemplate::SimdBinop, Opcode::CMP_SLT, 0 },
+    /* [4027] pext_pp_rr_ */ { IrTemplate::SimdBinop, Opcode::CMP_SLT, 0 },
+    /* [4028] pfalse_p_ */ { IrTemplate::SimdBinop, Opcode::AND, 0 },
+    /* [4029] pfirst_p_p_p_ */ { IrTemplate::SimdBinop, Opcode::AND, 0 },
+    /* [4030] pmlal_mz_zzzw_1x2 */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [4031] pmov_p_zi_b */ { IrTemplate::SimdUnary, Opcode::COPY, 0 },
+    /* [4032] pmov_p_zi_d */ { IrTemplate::SimdUnary, Opcode::COPY, 0 },
+    /* [4033] pmov_p_zi_h */ { IrTemplate::SimdUnary, Opcode::COPY, 0 },
+    /* [4034] pmov_p_zi_s */ { IrTemplate::SimdUnary, Opcode::COPY, 0 },
+    /* [4035] pmov_z_pi_b */ { IrTemplate::SimdUnary, Opcode::COPY, 0 },
+    /* [4036] pmov_z_pi_d */ { IrTemplate::SimdUnary, Opcode::COPY, 0 },
+    /* [4037] pmov_z_pi_h */ { IrTemplate::SimdUnary, Opcode::COPY, 0 },
+    /* [4038] pmov_z_pi_s */ { IrTemplate::SimdUnary, Opcode::COPY, 0 },
+    /* [4039] pmul_z_zz_ */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [4040] pmull_mz_zzw_1x2 */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [4041] pmullb_z_zz_ */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [4042] pmullb_z_zz_q */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [4043] pmullt_z_zz_ */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [4044] pmullt_z_zz_q */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [4045] pnext_p_p_p_ */ { IrTemplate::SimdBinop, Opcode::AND, 0 },
+    /* [4046] prfb_i_p_ai_s */ { IrTemplate::StoreReg, Opcode::STORE, 0 },
+    /* [4047] prfb_i_p_ai_d */ { IrTemplate::StoreReg, Opcode::STORE, 0 },
+    /* [4048] prfb_i_p_bi_s */ { IrTemplate::StoreReg, Opcode::STORE, 0 },
+    /* [4049] prfb_i_p_br_s */ { IrTemplate::StoreReg, Opcode::STORE, 0 },
+    /* [4050] prfb_i_p_bz_s_x32_scaled */ { IrTemplate::StoreReg, Opcode::STORE, 0 },
+    /* [4051] prfb_i_p_bz_d_x32_scaled */ { IrTemplate::StoreReg, Opcode::STORE, 0 },
+    /* [4052] prfb_i_p_bz_d_64_scaled */ { IrTemplate::StoreReg, Opcode::STORE, 0 },
+    /* [4053] prfd_i_p_ai_s */ { IrTemplate::StoreReg, Opcode::STORE, 0 },
+    /* [4054] prfd_i_p_ai_d */ { IrTemplate::StoreReg, Opcode::STORE, 0 },
+    /* [4055] prfd_i_p_bi_s */ { IrTemplate::StoreReg, Opcode::STORE, 0 },
+    /* [4056] prfd_i_p_br_s */ { IrTemplate::StoreReg, Opcode::STORE, 0 },
+    /* [4057] prfd_i_p_bz_s_x32_scaled */ { IrTemplate::StoreReg, Opcode::STORE, 0 },
+    /* [4058] prfd_i_p_bz_d_x32_scaled */ { IrTemplate::StoreReg, Opcode::STORE, 0 },
+    /* [4059] prfd_i_p_bz_d_64_scaled */ { IrTemplate::StoreReg, Opcode::STORE, 0 },
+    /* [4060] prfh_i_p_ai_s */ { IrTemplate::StoreReg, Opcode::STORE, 0 },
+    /* [4061] prfh_i_p_ai_d */ { IrTemplate::StoreReg, Opcode::STORE, 0 },
+    /* [4062] prfh_i_p_bi_s */ { IrTemplate::StoreReg, Opcode::STORE, 0 },
+    /* [4063] prfh_i_p_br_s */ { IrTemplate::StoreReg, Opcode::STORE, 0 },
+    /* [4064] prfh_i_p_bz_s_x32_scaled */ { IrTemplate::StoreReg, Opcode::STORE, 0 },
+    /* [4065] prfh_i_p_bz_d_x32_scaled */ { IrTemplate::StoreReg, Opcode::STORE, 0 },
+    /* [4066] prfh_i_p_bz_d_64_scaled */ { IrTemplate::StoreReg, Opcode::STORE, 0 },
+    /* [4067] prfw_i_p_ai_s */ { IrTemplate::StoreReg, Opcode::STORE, 0 },
+    /* [4068] prfw_i_p_ai_d */ { IrTemplate::StoreReg, Opcode::STORE, 0 },
+    /* [4069] prfw_i_p_bi_s */ { IrTemplate::StoreReg, Opcode::STORE, 0 },
+    /* [4070] prfw_i_p_br_s */ { IrTemplate::StoreReg, Opcode::STORE, 0 },
+    /* [4071] prfw_i_p_bz_s_x32_scaled */ { IrTemplate::StoreReg, Opcode::STORE, 0 },
+    /* [4072] prfw_i_p_bz_d_x32_scaled */ { IrTemplate::StoreReg, Opcode::STORE, 0 },
+    /* [4073] prfw_i_p_bz_d_64_scaled */ { IrTemplate::StoreReg, Opcode::STORE, 0 },
+    /* [4074] psel_p_ppi_ */ { IrTemplate::SimdBinop, Opcode::AND, 0 },
+    /* [4075] ptest__p_p_ */ { IrTemplate::SimdBinop, Opcode::AND, 0 },
+    /* [4076] ptrue_p_s_ */ { IrTemplate::SimdBinop, Opcode::AND, 0 },
+    /* [4077] ptrue_pn_i_ */ { IrTemplate::SimdBinop, Opcode::CMP_SLT, 0 },
+    /* [4078] ptrues_p_s_ */ { IrTemplate::SimdBinop, Opcode::AND, 0 },
+    /* [4079] punpkhi_p_p_ */ { IrTemplate::SimdUnary, Opcode::COPY, 0 },
+    /* [4080] punpklo_p_p_ */ { IrTemplate::SimdUnary, Opcode::COPY, 0 },
+    /* [4081] raddhnb_z_zz_ */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [4082] raddhnt_z_zz_ */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [4083] rax1_z_zz_ */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [4084] rbit_z_p_z_m */ { IrTemplate::SimdUnary, Opcode::COPY, 0 },
+    /* [4085] rbit_z_p_z_z */ { IrTemplate::SimdUnary, Opcode::COPY, 0 },
+    /* [4086] rdffr_p_f_ */ { IrTemplate::SimdBinop, Opcode::AND, 0 },
+    /* [4087] rdffr_p_p_f_ */ { IrTemplate::SimdBinop, Opcode::AND, 0 },
+    /* [4088] rdffrs_p_p_f_ */ { IrTemplate::SimdBinop, Opcode::AND, 0 },
+    /* [4089] rdsvl_r_i_ */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [4090] rdvl_r_i_ */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [4091] rev_p_p_ */ { IrTemplate::SimdUnary, Opcode::COPY, 0 },
+    /* [4092] rev_z_z_ */ { IrTemplate::SimdUnary, Opcode::COPY, 0 },
+    /* [4093] revb_z_z_m */ { IrTemplate::SimdUnary, Opcode::COPY, 0 },
+    /* [4094] revb_z_z_z */ { IrTemplate::SimdUnary, Opcode::COPY, 0 },
+    /* [4095] revh_z_z_m */ { IrTemplate::SimdUnary, Opcode::COPY, 0 },
+    /* [4096] revh_z_z_z */ { IrTemplate::SimdUnary, Opcode::COPY, 0 },
+    /* [4097] revw_z_z_m */ { IrTemplate::SimdUnary, Opcode::COPY, 0 },
+    /* [4098] revw_z_z_z */ { IrTemplate::SimdUnary, Opcode::COPY, 0 },
+    /* [4099] revd_z_p_z_m */ { IrTemplate::SimdUnary, Opcode::COPY, 0 },
+    /* [4100] revd_z_p_z_z */ { IrTemplate::SimdUnary, Opcode::COPY, 0 },
+    /* [4101] rshrnb_z_zi_ */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [4102] rshrnt_z_zi_ */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [4103] rsubhnb_z_zz_ */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [4104] rsubhnt_z_zz_ */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [4105] saba_z_zzz_ */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [4106] sabal_z_zz_ */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [4107] sabalb_z_zzz_ */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [4108] sabalt_z_zzz_ */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [4109] sabd_z_p_zz_ */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [4110] sabdlb_z_zz_ */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [4111] sabdlt_z_zz_ */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [4112] sadalp_z_p_z_ */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [4113] saddlb_z_zz_ */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [4114] saddlbt_z_zz_ */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [4115] saddlt_z_zz_ */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [4116] saddv_r_p_z_ */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [4117] saddwb_z_zz_ */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [4118] saddwt_z_zz_ */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [4119] sbclb_z_zzz_ */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [4120] sbclt_z_zzz_ */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [4121] sclamp_z_zz_ */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [4122] scvtf_z_p_z_h2fp16 */ { IrTemplate::FpBinop, Opcode::FADD, 0 },
+    /* [4123] scvtf_z_p_z_h2fp16z */ { IrTemplate::FpBinop, Opcode::FADD, 0 },
+    /* [4124] scvtf_z_p_z_w2fp16 */ { IrTemplate::FpBinop, Opcode::FADD, 0 },
+    /* [4125] scvtf_z_p_z_w2fp16z */ { IrTemplate::FpBinop, Opcode::FADD, 0 },
+    /* [4126] scvtf_z_p_z_w2s */ { IrTemplate::FpBinop, Opcode::FADD, 0 },
+    /* [4127] scvtf_z_p_z_w2sz */ { IrTemplate::FpBinop, Opcode::FADD, 0 },
+    /* [4128] scvtf_z_p_z_w2d */ { IrTemplate::FpBinop, Opcode::FADD, 0 },
+    /* [4129] scvtf_z_p_z_w2dz */ { IrTemplate::FpBinop, Opcode::FADD, 0 },
+    /* [4130] scvtf_z_p_z_x2fp16 */ { IrTemplate::FpBinop, Opcode::FADD, 0 },
+    /* [4131] scvtf_z_p_z_x2fp16z */ { IrTemplate::FpBinop, Opcode::FADD, 0 },
+    /* [4132] scvtf_z_p_z_x2s */ { IrTemplate::FpBinop, Opcode::FADD, 0 },
+    /* [4133] scvtf_z_p_z_x2sz */ { IrTemplate::FpBinop, Opcode::FADD, 0 },
+    /* [4134] scvtf_z_p_z_x2d */ { IrTemplate::FpBinop, Opcode::FADD, 0 },
+    /* [4135] scvtf_z_p_z_x2dz */ { IrTemplate::FpBinop, Opcode::FADD, 0 },
+    /* [4136] scvtf_z_z_ */ { IrTemplate::FpBinop, Opcode::FADD, 0 },
+    /* [4137] scvtflt_z_z_ */ { IrTemplate::FpBinop, Opcode::FADD, 0 },
+    /* [4138] sdiv_z_p_zz_ */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [4139] sdivr_z_p_zz_ */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [4140] sdot_z16_zzz_h */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [4141] sdot_z32_zzz_ */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [4142] sdot_z16_zzzi_h */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [4143] sdot_z32_zzzi_ */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [4144] sdot_z_zzz_ */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [4145] sdot_z_zzzi_s */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [4146] sdot_z_zzzi_d */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [4147] sel_p_p_pp_ */ { IrTemplate::SimdBinop, Opcode::AND, 0 },
+    /* [4148] sel_z_p_zz_ */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [4149] setffr_f_ */ { IrTemplate::SimdBinop, Opcode::AND, 0 },
+    /* [4150] shadd_z_p_zz_ */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [4151] shrnb_z_zi_ */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [4152] shrnt_z_zi_ */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [4153] shsub_z_p_zz_ */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [4154] shsubr_z_p_zz_ */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [4155] sli_z_zzi_ */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [4156] sm4e_z_zz_ */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [4157] sm4ekey_z_zz_ */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [4158] smax_z_p_zz_ */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [4159] smax_z_zi_ */ { IrTemplate::SimdUnary, Opcode::COPY, 0 },
+    /* [4160] smaxp_z_p_zz_ */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [4161] smaxqv_z_p_z_ */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [4162] smaxv_r_p_z_ */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [4163] smin_z_p_zz_ */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [4164] smin_z_zi_ */ { IrTemplate::SimdUnary, Opcode::COPY, 0 },
+    /* [4165] sminp_z_p_zz_ */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [4166] sminqv_z_p_z_ */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [4167] sminv_r_p_z_ */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [4168] smlalb_z_zzz_ */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [4169] smlalb_z_zzzi_s */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [4170] smlalb_z_zzzi_d */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [4171] smlalt_z_zzz_ */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [4172] smlalt_z_zzzi_s */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [4173] smlalt_z_zzzi_d */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [4174] smlslb_z_zzz_ */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [4175] smlslb_z_zzzi_s */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [4176] smlslb_z_zzzi_d */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [4177] smlslt_z_zzz_ */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [4178] smlslt_z_zzzi_s */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [4179] smlslt_z_zzzi_d */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [4180] smmla_z_zzz_ */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [4181] smulh_z_p_zz_ */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [4182] smulh_z_zz_ */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [4183] smullb_z_zz_ */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [4184] smullb_z_zzi_s */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [4185] smullb_z_zzi_d */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [4186] smullt_z_zz_ */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [4187] smullt_z_zzi_s */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [4188] smullt_z_zzi_d */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [4189] splice_z_p_zz_con */ { IrTemplate::SimdUnary, Opcode::COPY, 0 },
+    /* [4190] splice_z_p_zz_des */ { IrTemplate::SimdUnary, Opcode::COPY, 0 },
+    /* [4191] sqabs_z_p_z_m */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [4192] sqabs_z_p_z_z */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [4193] sqadd_z_p_zz_ */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [4194] sqadd_z_zi_ */ { IrTemplate::SimdUnary, Opcode::COPY, 0 },
+    /* [4195] sqadd_z_zz_ */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [4196] sqcadd_z_zz_ */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [4197] sqcvtn_z_mz2_ */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [4198] sqcvtun_z_mz2_ */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [4199] sqdecb_r_rs_sx */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [4200] sqdecb_r_rs_x */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [4201] sqdecd_r_rs_sx */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [4202] sqdecd_r_rs_x */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [4203] sqdecd_z_zs_ */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [4204] sqdech_r_rs_sx */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [4205] sqdech_r_rs_x */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [4206] sqdech_z_zs_ */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [4207] sqdecp_r_p_r_sx */ { IrTemplate::SimdBinop, Opcode::AND, 0 },
+    /* [4208] sqdecp_r_p_r_x */ { IrTemplate::SimdBinop, Opcode::AND, 0 },
+    /* [4209] sqdecp_z_p_z_ */ { IrTemplate::SimdBinop, Opcode::AND, 0 },
+    /* [4210] sqdecw_r_rs_sx */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [4211] sqdecw_r_rs_x */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [4212] sqdecw_z_zs_ */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [4213] sqdmlalb_z_zzz_ */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [4214] sqdmlalb_z_zzzi_s */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [4215] sqdmlalb_z_zzzi_d */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [4216] sqdmlalbt_z_zzz_ */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [4217] sqdmlalt_z_zzz_ */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [4218] sqdmlalt_z_zzzi_s */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [4219] sqdmlalt_z_zzzi_d */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [4220] sqdmlslb_z_zzz_ */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [4221] sqdmlslb_z_zzzi_s */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [4222] sqdmlslb_z_zzzi_d */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [4223] sqdmlslbt_z_zzz_ */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [4224] sqdmlslt_z_zzz_ */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [4225] sqdmlslt_z_zzzi_s */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [4226] sqdmlslt_z_zzzi_d */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [4227] sqdmulh_z_zz_ */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [4228] sqdmulh_z_zzi_h */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [4229] sqdmulh_z_zzi_s */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [4230] sqdmulh_z_zzi_d */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [4231] sqdmullb_z_zz_ */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [4232] sqdmullb_z_zzi_s */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [4233] sqdmullb_z_zzi_d */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [4234] sqdmullt_z_zz_ */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [4235] sqdmullt_z_zzi_s */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [4236] sqdmullt_z_zzi_d */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [4237] sqincb_r_rs_sx */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [4238] sqincb_r_rs_x */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [4239] sqincd_r_rs_sx */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [4240] sqincd_r_rs_x */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [4241] sqincd_z_zs_ */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [4242] sqinch_r_rs_sx */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [4243] sqinch_r_rs_x */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [4244] sqinch_z_zs_ */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [4245] sqincp_r_p_r_sx */ { IrTemplate::SimdBinop, Opcode::AND, 0 },
+    /* [4246] sqincp_r_p_r_x */ { IrTemplate::SimdBinop, Opcode::AND, 0 },
+    /* [4247] sqincp_z_p_z_ */ { IrTemplate::SimdBinop, Opcode::AND, 0 },
+    /* [4248] sqincw_r_rs_sx */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [4249] sqincw_r_rs_x */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [4250] sqincw_z_zs_ */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [4251] sqneg_z_p_z_m */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [4252] sqneg_z_p_z_z */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [4253] sqrdcmlah_z_zzz_ */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [4254] sqrdcmlah_z_zzzi_h */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [4255] sqrdcmlah_z_zzzi_s */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [4256] sqrdmlah_z_zzz_ */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [4257] sqrdmlah_z_zzzi_h */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [4258] sqrdmlah_z_zzzi_s */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [4259] sqrdmlah_z_zzzi_d */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [4260] sqrdmlsh_z_zzz_ */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [4261] sqrdmlsh_z_zzzi_h */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [4262] sqrdmlsh_z_zzzi_s */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [4263] sqrdmlsh_z_zzzi_d */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [4264] sqrdmulh_z_zz_ */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [4265] sqrdmulh_z_zzi_h */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [4266] sqrdmulh_z_zzi_s */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [4267] sqrdmulh_z_zzi_d */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [4268] sqrshl_z_p_zz_ */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [4269] sqrshlr_z_p_zz_ */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [4270] sqrshrn_z_mz2_b */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [4271] sqrshrn_z_mz2_ */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [4272] sqrshrnb_z_zi_ */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [4273] sqrshrnt_z_zi_ */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [4274] sqrshrun_z_mz2_b */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [4275] sqrshrun_z_mz2_ */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [4276] sqrshrunb_z_zi_ */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [4277] sqrshrunt_z_zi_ */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [4278] sqshl_z_p_zi_ */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [4279] sqshl_z_p_zz_ */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [4280] sqshlr_z_p_zz_ */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [4281] sqshlu_z_p_zi_ */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [4282] sqshrn_z_mz2_ */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [4283] sqshrnb_z_zi_ */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [4284] sqshrnt_z_zi_ */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [4285] sqshrun_z_mz2_ */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [4286] sqshrunb_z_zi_ */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [4287] sqshrunt_z_zi_ */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [4288] sqsub_z_p_zz_ */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [4289] sqsub_z_zi_ */ { IrTemplate::SimdUnary, Opcode::COPY, 0 },
+    /* [4290] sqsub_z_zz_ */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [4291] sqsubr_z_p_zz_ */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [4292] sqxtnb_z_zz_ */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [4293] sqxtnt_z_zz_ */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [4294] sqxtunb_z_zz_ */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [4295] sqxtunt_z_zz_ */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [4296] srhadd_z_p_zz_ */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [4297] sri_z_zzi_ */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [4298] srshl_z_p_zz_ */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [4299] srshlr_z_p_zz_ */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [4300] srshr_z_p_zi_ */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [4301] srsra_z_zi_ */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [4302] sshllb_z_zi_ */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [4303] sshllt_z_zi_ */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [4304] ssra_z_zi_ */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [4305] ssublb_z_zz_ */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [4306] ssublbt_z_zz_ */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [4307] ssublt_z_zz_ */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [4308] ssubltb_z_zz_ */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [4309] ssubwb_z_zz_ */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [4310] ssubwt_z_zz_ */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [4311] st1b_z_p_ai_s */ { IrTemplate::StoreReg, Opcode::STORE, 0 },
+    /* [4312] st1b_z_p_ai_d */ { IrTemplate::StoreReg, Opcode::STORE, 0 },
+    /* [4313] st1b_z_p_bi_ */ { IrTemplate::StoreReg, Opcode::STORE, 0 },
+    /* [4314] st1b_z_p_br_ */ { IrTemplate::StoreReg, Opcode::STORE, 0 },
+    /* [4315] st1b_z_p_bz_d_x32_unscaled */ { IrTemplate::StoreReg, Opcode::STORE, 0 },
+    /* [4316] st1b_z_p_bz_s_x32_unscaled */ { IrTemplate::StoreReg, Opcode::STORE, 0 },
+    /* [4317] st1b_z_p_bz_d_64_unscaled */ { IrTemplate::StoreReg, Opcode::STORE, 0 },
+    /* [4318] st1d_z_p_ai_d */ { IrTemplate::StoreReg, Opcode::STORE, 0 },
+    /* [4319] st1d_z_p_bi_ */ { IrTemplate::StoreReg, Opcode::STORE, 0 },
+    /* [4320] st1d_z_p_bi_u128 */ { IrTemplate::StoreReg, Opcode::STORE, 0 },
+    /* [4321] st1d_z_p_br_ */ { IrTemplate::StoreReg, Opcode::STORE, 0 },
+    /* [4322] st1d_z_p_br_u128 */ { IrTemplate::StoreReg, Opcode::STORE, 0 },
+    /* [4323] st1d_z_p_bz_d_x32_scaled */ { IrTemplate::StoreReg, Opcode::STORE, 0 },
+    /* [4324] st1d_z_p_bz_d_x32_unscaled */ { IrTemplate::StoreReg, Opcode::STORE, 0 },
+    /* [4325] st1d_z_p_bz_d_64_scaled */ { IrTemplate::StoreReg, Opcode::STORE, 0 },
+    /* [4326] st1d_z_p_bz_d_64_unscaled */ { IrTemplate::StoreReg, Opcode::STORE, 0 },
+    /* [4327] st1h_z_p_ai_s */ { IrTemplate::StoreReg, Opcode::STORE, 0 },
+    /* [4328] st1h_z_p_ai_d */ { IrTemplate::StoreReg, Opcode::STORE, 0 },
+    /* [4329] st1h_z_p_bi_ */ { IrTemplate::StoreReg, Opcode::STORE, 0 },
+    /* [4330] st1h_z_p_br_ */ { IrTemplate::StoreReg, Opcode::STORE, 0 },
+    /* [4331] st1h_z_p_bz_s_x32_scaled */ { IrTemplate::StoreReg, Opcode::STORE, 0 },
+    /* [4332] st1h_z_p_bz_d_x32_scaled */ { IrTemplate::StoreReg, Opcode::STORE, 0 },
+    /* [4333] st1h_z_p_bz_d_x32_unscaled */ { IrTemplate::StoreReg, Opcode::STORE, 0 },
+    /* [4334] st1h_z_p_bz_s_x32_unscaled */ { IrTemplate::StoreReg, Opcode::STORE, 0 },
+    /* [4335] st1h_z_p_bz_d_64_scaled */ { IrTemplate::StoreReg, Opcode::STORE, 0 },
+    /* [4336] st1h_z_p_bz_d_64_unscaled */ { IrTemplate::StoreReg, Opcode::STORE, 0 },
+    /* [4337] st1q_z_p_ar_d_64_unscaled */ { IrTemplate::StoreReg, Opcode::STORE, 0 },
+    /* [4338] st1w_z_p_ai_s */ { IrTemplate::StoreReg, Opcode::STORE, 0 },
+    /* [4339] st1w_z_p_ai_d */ { IrTemplate::StoreReg, Opcode::STORE, 0 },
+    /* [4340] st1w_z_p_bi_ */ { IrTemplate::StoreReg, Opcode::STORE, 0 },
+    /* [4341] st1w_z_p_bi_u128 */ { IrTemplate::StoreReg, Opcode::STORE, 0 },
+    /* [4342] st1w_z_p_br_ */ { IrTemplate::StoreReg, Opcode::STORE, 0 },
+    /* [4343] st1w_z_p_br_u128 */ { IrTemplate::StoreReg, Opcode::STORE, 0 },
+    /* [4344] st1w_z_p_bz_s_x32_scaled */ { IrTemplate::StoreReg, Opcode::STORE, 0 },
+    /* [4345] st1w_z_p_bz_d_x32_scaled */ { IrTemplate::StoreReg, Opcode::STORE, 0 },
+    /* [4346] st1w_z_p_bz_d_x32_unscaled */ { IrTemplate::StoreReg, Opcode::STORE, 0 },
+    /* [4347] st1w_z_p_bz_s_x32_unscaled */ { IrTemplate::StoreReg, Opcode::STORE, 0 },
+    /* [4348] st1w_z_p_bz_d_64_scaled */ { IrTemplate::StoreReg, Opcode::STORE, 0 },
+    /* [4349] st1w_z_p_bz_d_64_unscaled */ { IrTemplate::StoreReg, Opcode::STORE, 0 },
+    /* [4350] st2b_z_p_bi_contiguous */ { IrTemplate::StoreReg, Opcode::STORE, 0 },
+    /* [4351] st2b_z_p_br_contiguous */ { IrTemplate::StoreReg, Opcode::STORE, 0 },
+    /* [4352] st2d_z_p_bi_contiguous */ { IrTemplate::StoreReg, Opcode::STORE, 0 },
+    /* [4353] st2d_z_p_br_contiguous */ { IrTemplate::StoreReg, Opcode::STORE, 0 },
+    /* [4354] st2h_z_p_bi_contiguous */ { IrTemplate::StoreReg, Opcode::STORE, 0 },
+    /* [4355] st2h_z_p_br_contiguous */ { IrTemplate::StoreReg, Opcode::STORE, 0 },
+    /* [4356] st2q_z_p_bi_contiguous */ { IrTemplate::StoreReg, Opcode::STORE, 0 },
+    /* [4357] st2q_z_p_br_contiguous */ { IrTemplate::StoreReg, Opcode::STORE, 0 },
+    /* [4358] st2w_z_p_bi_contiguous */ { IrTemplate::StoreReg, Opcode::STORE, 0 },
+    /* [4359] st2w_z_p_br_contiguous */ { IrTemplate::StoreReg, Opcode::STORE, 0 },
+    /* [4360] st3b_z_p_bi_contiguous */ { IrTemplate::StoreReg, Opcode::STORE, 0 },
+    /* [4361] st3b_z_p_br_contiguous */ { IrTemplate::StoreReg, Opcode::STORE, 0 },
+    /* [4362] st3d_z_p_bi_contiguous */ { IrTemplate::StoreReg, Opcode::STORE, 0 },
+    /* [4363] st3d_z_p_br_contiguous */ { IrTemplate::StoreReg, Opcode::STORE, 0 },
+    /* [4364] st3h_z_p_bi_contiguous */ { IrTemplate::StoreReg, Opcode::STORE, 0 },
+    /* [4365] st3h_z_p_br_contiguous */ { IrTemplate::StoreReg, Opcode::STORE, 0 },
+    /* [4366] st3q_z_p_bi_contiguous */ { IrTemplate::StoreReg, Opcode::STORE, 0 },
+    /* [4367] st3q_z_p_br_contiguous */ { IrTemplate::StoreReg, Opcode::STORE, 0 },
+    /* [4368] st3w_z_p_bi_contiguous */ { IrTemplate::StoreReg, Opcode::STORE, 0 },
+    /* [4369] st3w_z_p_br_contiguous */ { IrTemplate::StoreReg, Opcode::STORE, 0 },
+    /* [4370] st4b_z_p_bi_contiguous */ { IrTemplate::StoreReg, Opcode::STORE, 0 },
+    /* [4371] st4b_z_p_br_contiguous */ { IrTemplate::StoreReg, Opcode::STORE, 0 },
+    /* [4372] st4d_z_p_bi_contiguous */ { IrTemplate::StoreReg, Opcode::STORE, 0 },
+    /* [4373] st4d_z_p_br_contiguous */ { IrTemplate::StoreReg, Opcode::STORE, 0 },
+    /* [4374] st4h_z_p_bi_contiguous */ { IrTemplate::StoreReg, Opcode::STORE, 0 },
+    /* [4375] st4h_z_p_br_contiguous */ { IrTemplate::StoreReg, Opcode::STORE, 0 },
+    /* [4376] st4q_z_p_bi_contiguous */ { IrTemplate::StoreReg, Opcode::STORE, 0 },
+    /* [4377] st4q_z_p_br_contiguous */ { IrTemplate::StoreReg, Opcode::STORE, 0 },
+    /* [4378] st4w_z_p_bi_contiguous */ { IrTemplate::StoreReg, Opcode::STORE, 0 },
+    /* [4379] st4w_z_p_br_contiguous */ { IrTemplate::StoreReg, Opcode::STORE, 0 },
+    /* [4380] stnt1b_z_p_ar_s_x32_unscaled */ { IrTemplate::StoreReg, Opcode::STORE, 0 },
+    /* [4381] stnt1b_z_p_ar_d_64_unscaled */ { IrTemplate::StoreReg, Opcode::STORE, 0 },
+    /* [4382] stnt1b_z_p_bi_contiguous */ { IrTemplate::StoreReg, Opcode::STORE, 0 },
+    /* [4383] stnt1b_z_p_br_contiguous */ { IrTemplate::StoreReg, Opcode::STORE, 0 },
+    /* [4384] stnt1d_z_p_ar_d_64_unscaled */ { IrTemplate::StoreReg, Opcode::STORE, 0 },
+    /* [4385] stnt1d_z_p_bi_contiguous */ { IrTemplate::StoreReg, Opcode::STORE, 0 },
+    /* [4386] stnt1d_z_p_br_contiguous */ { IrTemplate::StoreReg, Opcode::STORE, 0 },
+    /* [4387] stnt1h_z_p_ar_s_x32_unscaled */ { IrTemplate::StoreReg, Opcode::STORE, 0 },
+    /* [4388] stnt1h_z_p_ar_d_64_unscaled */ { IrTemplate::StoreReg, Opcode::STORE, 0 },
+    /* [4389] stnt1h_z_p_bi_contiguous */ { IrTemplate::StoreReg, Opcode::STORE, 0 },
+    /* [4390] stnt1h_z_p_br_contiguous */ { IrTemplate::StoreReg, Opcode::STORE, 0 },
+    /* [4391] stnt1w_z_p_ar_s_x32_unscaled */ { IrTemplate::StoreReg, Opcode::STORE, 0 },
+    /* [4392] stnt1w_z_p_ar_d_64_unscaled */ { IrTemplate::StoreReg, Opcode::STORE, 0 },
+    /* [4393] stnt1w_z_p_bi_contiguous */ { IrTemplate::StoreReg, Opcode::STORE, 0 },
+    /* [4394] stnt1w_z_p_br_contiguous */ { IrTemplate::StoreReg, Opcode::STORE, 0 },
+    /* [4395] str_p_bi_ */ { IrTemplate::StoreReg, Opcode::STORE, 0 },
+    /* [4396] str_z_bi_ */ { IrTemplate::StoreReg, Opcode::STORE, 0 },
+    /* [4397] sub_z_p_zz_ */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [4398] sub_z_zi_ */ { IrTemplate::SimdUnary, Opcode::COPY, 0 },
+    /* [4399] sub_z_zz_ */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [4400] subhnb_z_zz_ */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [4401] subhnt_z_zz_ */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [4402] subp_z_p_zz_ */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [4403] subpt_z_p_zz_ */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [4404] subpt_z_zz_ */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [4405] subr_z_p_zz_ */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [4406] subr_z_zi_ */ { IrTemplate::SimdUnary, Opcode::COPY, 0 },
+    /* [4407] sudot_z_zzzi_s */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [4408] sunpkhi_z_z_ */ { IrTemplate::SimdUnary, Opcode::COPY, 0 },
+    /* [4409] sunpklo_z_z_ */ { IrTemplate::SimdUnary, Opcode::COPY, 0 },
+    /* [4410] suqadd_z_p_zz_ */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [4411] sxtb_z_p_z_m */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [4412] sxtb_z_p_z_z */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [4413] sxth_z_p_z_m */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [4414] sxth_z_p_z_z */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [4415] sxtw_z_p_z_m */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [4416] sxtw_z_p_z_z */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [4417] tbl_z_zz_1 */ { IrTemplate::SimdUnary, Opcode::COPY, 0 },
+    /* [4418] tbl_z_zz_2 */ { IrTemplate::SimdUnary, Opcode::COPY, 0 },
+    /* [4419] tblq_z_zz_ */ { IrTemplate::SimdUnary, Opcode::COPY, 0 },
+    /* [4420] tbx_z_zz_ */ { IrTemplate::SimdUnary, Opcode::COPY, 0 },
+    /* [4421] tbxq_z_zz_ */ { IrTemplate::SimdUnary, Opcode::COPY, 0 },
+    /* [4422] trn1_p_pp_ */ { IrTemplate::SimdUnary, Opcode::COPY, 0 },
+    /* [4423] trn2_p_pp_ */ { IrTemplate::SimdUnary, Opcode::COPY, 0 },
+    /* [4424] trn1_z_zz_ */ { IrTemplate::SimdUnary, Opcode::COPY, 0 },
+    /* [4425] trn1_z_zz_q */ { IrTemplate::SimdUnary, Opcode::COPY, 0 },
+    /* [4426] trn2_z_zz_ */ { IrTemplate::SimdUnary, Opcode::COPY, 0 },
+    /* [4427] trn2_z_zz_q */ { IrTemplate::SimdUnary, Opcode::COPY, 0 },
+    /* [4428] uaba_z_zzz_ */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [4429] uabal_z_zz_ */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [4430] uabalb_z_zzz_ */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [4431] uabalt_z_zzz_ */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [4432] uabd_z_p_zz_ */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [4433] uabdlb_z_zz_ */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [4434] uabdlt_z_zz_ */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [4435] uadalp_z_p_z_ */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [4436] uaddlb_z_zz_ */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [4437] uaddlt_z_zz_ */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [4438] uaddv_r_p_z_ */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [4439] uaddwb_z_zz_ */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [4440] uaddwt_z_zz_ */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [4441] uclamp_z_zz_ */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [4442] ucvtf_z_p_z_h2fp16 */ { IrTemplate::FpBinop, Opcode::FADD, 0 },
+    /* [4443] ucvtf_z_p_z_h2fp16z */ { IrTemplate::FpBinop, Opcode::FADD, 0 },
+    /* [4444] ucvtf_z_p_z_w2fp16 */ { IrTemplate::FpBinop, Opcode::FADD, 0 },
+    /* [4445] ucvtf_z_p_z_w2fp16z */ { IrTemplate::FpBinop, Opcode::FADD, 0 },
+    /* [4446] ucvtf_z_p_z_w2s */ { IrTemplate::FpBinop, Opcode::FADD, 0 },
+    /* [4447] ucvtf_z_p_z_w2sz */ { IrTemplate::FpBinop, Opcode::FADD, 0 },
+    /* [4448] ucvtf_z_p_z_w2d */ { IrTemplate::FpBinop, Opcode::FADD, 0 },
+    /* [4449] ucvtf_z_p_z_w2dz */ { IrTemplate::FpBinop, Opcode::FADD, 0 },
+    /* [4450] ucvtf_z_p_z_x2fp16 */ { IrTemplate::FpBinop, Opcode::FADD, 0 },
+    /* [4451] ucvtf_z_p_z_x2fp16z */ { IrTemplate::FpBinop, Opcode::FADD, 0 },
+    /* [4452] ucvtf_z_p_z_x2s */ { IrTemplate::FpBinop, Opcode::FADD, 0 },
+    /* [4453] ucvtf_z_p_z_x2sz */ { IrTemplate::FpBinop, Opcode::FADD, 0 },
+    /* [4454] ucvtf_z_p_z_x2d */ { IrTemplate::FpBinop, Opcode::FADD, 0 },
+    /* [4455] ucvtf_z_p_z_x2dz */ { IrTemplate::FpBinop, Opcode::FADD, 0 },
+    /* [4456] ucvtf_z_z_ */ { IrTemplate::FpBinop, Opcode::FADD, 0 },
+    /* [4457] ucvtflt_z_z_ */ { IrTemplate::FpBinop, Opcode::FADD, 0 },
+    /* [4458] udiv_z_p_zz_ */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [4459] udivr_z_p_zz_ */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [4460] udot_z16_zzz_h */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [4461] udot_z32_zzz_ */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [4462] udot_z16_zzzi_h */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [4463] udot_z32_zzzi_ */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [4464] udot_z_zzz_ */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [4465] udot_z_zzzi_s */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [4466] udot_z_zzzi_d */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [4467] uhadd_z_p_zz_ */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [4468] uhsub_z_p_zz_ */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [4469] uhsubr_z_p_zz_ */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [4470] umax_z_p_zz_ */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [4471] umax_z_zi_ */ { IrTemplate::SimdUnary, Opcode::COPY, 0 },
+    /* [4472] umaxp_z_p_zz_ */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [4473] umaxqv_z_p_z_ */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [4474] umaxv_r_p_z_ */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [4475] umin_z_p_zz_ */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [4476] umin_z_zi_ */ { IrTemplate::SimdUnary, Opcode::COPY, 0 },
+    /* [4477] uminp_z_p_zz_ */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [4478] uminqv_z_p_z_ */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [4479] uminv_r_p_z_ */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [4480] umlalb_z_zzz_ */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [4481] umlalb_z_zzzi_s */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [4482] umlalb_z_zzzi_d */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [4483] umlalt_z_zzz_ */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [4484] umlalt_z_zzzi_s */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [4485] umlalt_z_zzzi_d */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [4486] umlslb_z_zzz_ */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [4487] umlslb_z_zzzi_s */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [4488] umlslb_z_zzzi_d */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [4489] umlslt_z_zzz_ */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [4490] umlslt_z_zzzi_s */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [4491] umlslt_z_zzzi_d */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [4492] ummla_z_zzz_ */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [4493] umulh_z_p_zz_ */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [4494] umulh_z_zz_ */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [4495] umullb_z_zz_ */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [4496] umullb_z_zzi_s */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [4497] umullb_z_zzi_d */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [4498] umullt_z_zz_ */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [4499] umullt_z_zzi_s */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [4500] umullt_z_zzi_d */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [4501] uqadd_z_p_zz_ */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [4502] uqadd_z_zi_ */ { IrTemplate::SimdUnary, Opcode::COPY, 0 },
+    /* [4503] uqadd_z_zz_ */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [4504] uqcvtn_z_mz2_ */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [4505] uqdecb_r_rs_uw */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [4506] uqdecb_r_rs_x */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [4507] uqdecd_r_rs_uw */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [4508] uqdecd_r_rs_x */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [4509] uqdecd_z_zs_ */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [4510] uqdech_r_rs_uw */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [4511] uqdech_r_rs_x */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [4512] uqdech_z_zs_ */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [4513] uqdecp_r_p_r_uw */ { IrTemplate::SimdBinop, Opcode::AND, 0 },
+    /* [4514] uqdecp_r_p_r_x */ { IrTemplate::SimdBinop, Opcode::AND, 0 },
+    /* [4515] uqdecp_z_p_z_ */ { IrTemplate::SimdBinop, Opcode::AND, 0 },
+    /* [4516] uqdecw_r_rs_uw */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [4517] uqdecw_r_rs_x */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [4518] uqdecw_z_zs_ */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [4519] uqincb_r_rs_uw */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [4520] uqincb_r_rs_x */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [4521] uqincd_r_rs_uw */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [4522] uqincd_r_rs_x */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [4523] uqincd_z_zs_ */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [4524] uqinch_r_rs_uw */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [4525] uqinch_r_rs_x */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [4526] uqinch_z_zs_ */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [4527] uqincp_r_p_r_uw */ { IrTemplate::SimdBinop, Opcode::AND, 0 },
+    /* [4528] uqincp_r_p_r_x */ { IrTemplate::SimdBinop, Opcode::AND, 0 },
+    /* [4529] uqincp_z_p_z_ */ { IrTemplate::SimdBinop, Opcode::AND, 0 },
+    /* [4530] uqincw_r_rs_uw */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [4531] uqincw_r_rs_x */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [4532] uqincw_z_zs_ */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [4533] uqrshl_z_p_zz_ */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [4534] uqrshlr_z_p_zz_ */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [4535] uqrshrn_z_mz2_b */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [4536] uqrshrn_z_mz2_ */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [4537] uqrshrnb_z_zi_ */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [4538] uqrshrnt_z_zi_ */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [4539] uqshl_z_p_zi_ */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [4540] uqshl_z_p_zz_ */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [4541] uqshlr_z_p_zz_ */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [4542] uqshrn_z_mz2_ */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [4543] uqshrnb_z_zi_ */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [4544] uqshrnt_z_zi_ */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [4545] uqsub_z_p_zz_ */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [4546] uqsub_z_zi_ */ { IrTemplate::SimdUnary, Opcode::COPY, 0 },
+    /* [4547] uqsub_z_zz_ */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [4548] uqsubr_z_p_zz_ */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [4549] uqxtnb_z_zz_ */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [4550] uqxtnt_z_zz_ */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [4551] urecpe_z_p_z_m */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [4552] urecpe_z_p_z_z */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [4553] urhadd_z_p_zz_ */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [4554] urshl_z_p_zz_ */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [4555] urshlr_z_p_zz_ */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [4556] urshr_z_p_zi_ */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [4557] ursqrte_z_p_z_m */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [4558] ursqrte_z_p_z_z */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [4559] ursra_z_zi_ */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [4560] usdot_z_zzz_s */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [4561] usdot_z_zzzi_s */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [4562] ushllb_z_zi_ */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [4563] ushllt_z_zi_ */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [4564] usmmla_z_zzz_ */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [4565] usqadd_z_p_zz_ */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [4566] usra_z_zi_ */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [4567] usublb_z_zz_ */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [4568] usublt_z_zz_ */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [4569] usubwb_z_zz_ */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [4570] usubwt_z_zz_ */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [4571] uunpkhi_z_z_ */ { IrTemplate::SimdUnary, Opcode::COPY, 0 },
+    /* [4572] uunpklo_z_z_ */ { IrTemplate::SimdUnary, Opcode::COPY, 0 },
+    /* [4573] uxtb_z_p_z_m */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [4574] uxtb_z_p_z_z */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [4575] uxth_z_p_z_m */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [4576] uxth_z_p_z_z */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [4577] uxtw_z_p_z_m */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [4578] uxtw_z_p_z_z */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [4579] uzp1_p_pp_ */ { IrTemplate::SimdUnary, Opcode::COPY, 0 },
+    /* [4580] uzp2_p_pp_ */ { IrTemplate::SimdUnary, Opcode::COPY, 0 },
+    /* [4581] uzp1_z_zz_ */ { IrTemplate::SimdUnary, Opcode::COPY, 0 },
+    /* [4582] uzp1_z_zz_q */ { IrTemplate::SimdUnary, Opcode::COPY, 0 },
+    /* [4583] uzp2_z_zz_ */ { IrTemplate::SimdUnary, Opcode::COPY, 0 },
+    /* [4584] uzp2_z_zz_q */ { IrTemplate::SimdUnary, Opcode::COPY, 0 },
+    /* [4585] uzpq1_z_zz_ */ { IrTemplate::SimdUnary, Opcode::COPY, 0 },
+    /* [4586] uzpq2_z_zz_ */ { IrTemplate::SimdUnary, Opcode::COPY, 0 },
+    /* [4587] whilege_p_p_rr_ */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [4588] whilege_pn_rr_ */ { IrTemplate::SimdBinop, Opcode::CMP_SLT, 0 },
+    /* [4589] whilege_pp_rr_ */ { IrTemplate::SimdBinop, Opcode::CMP_SLT, 0 },
+    /* [4590] whilegt_p_p_rr_ */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [4591] whilegt_pn_rr_ */ { IrTemplate::SimdBinop, Opcode::CMP_SLT, 0 },
+    /* [4592] whilegt_pp_rr_ */ { IrTemplate::SimdBinop, Opcode::CMP_SLT, 0 },
+    /* [4593] whilehi_p_p_rr_ */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [4594] whilehi_pn_rr_ */ { IrTemplate::SimdBinop, Opcode::CMP_SLT, 0 },
+    /* [4595] whilehi_pp_rr_ */ { IrTemplate::SimdBinop, Opcode::CMP_SLT, 0 },
+    /* [4596] whilehs_p_p_rr_ */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [4597] whilehs_pn_rr_ */ { IrTemplate::SimdBinop, Opcode::CMP_SLT, 0 },
+    /* [4598] whilehs_pp_rr_ */ { IrTemplate::SimdBinop, Opcode::CMP_SLT, 0 },
+    /* [4599] whilele_p_p_rr_ */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [4600] whilele_pn_rr_ */ { IrTemplate::SimdBinop, Opcode::CMP_SLT, 0 },
+    /* [4601] whilele_pp_rr_ */ { IrTemplate::SimdBinop, Opcode::CMP_SLT, 0 },
+    /* [4602] whilelo_p_p_rr_ */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [4603] whilelo_pn_rr_ */ { IrTemplate::SimdBinop, Opcode::CMP_SLT, 0 },
+    /* [4604] whilelo_pp_rr_ */ { IrTemplate::SimdBinop, Opcode::CMP_SLT, 0 },
+    /* [4605] whilels_p_p_rr_ */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [4606] whilels_pn_rr_ */ { IrTemplate::SimdBinop, Opcode::CMP_SLT, 0 },
+    /* [4607] whilels_pp_rr_ */ { IrTemplate::SimdBinop, Opcode::CMP_SLT, 0 },
+    /* [4608] whilelt_p_p_rr_ */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [4609] whilelt_pn_rr_ */ { IrTemplate::SimdBinop, Opcode::CMP_SLT, 0 },
+    /* [4610] whilelt_pp_rr_ */ { IrTemplate::SimdBinop, Opcode::CMP_SLT, 0 },
+    /* [4611] whilerw_p_rr_ */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [4612] whilewr_p_rr_ */ { IrTemplate::System, Opcode::UNDEF, 0 },
+    /* [4613] wrffr_f_p_ */ { IrTemplate::SimdBinop, Opcode::AND, 0 },
+    /* [4614] xar_z_zzi_ */ { IrTemplate::SimdBinop, Opcode::ADD, 0 },
+    /* [4615] zip2_p_pp_ */ { IrTemplate::SimdUnary, Opcode::COPY, 0 },
+    /* [4616] zip1_p_pp_ */ { IrTemplate::SimdUnary, Opcode::COPY, 0 },
+    /* [4617] zip2_z_zz_ */ { IrTemplate::SimdUnary, Opcode::COPY, 0 },
+    /* [4618] zip2_z_zz_q */ { IrTemplate::SimdUnary, Opcode::COPY, 0 },
+    /* [4619] zip1_z_zz_ */ { IrTemplate::SimdUnary, Opcode::COPY, 0 },
+    /* [4620] zip1_z_zz_q */ { IrTemplate::SimdUnary, Opcode::COPY, 0 },
+    /* [4621] zipq1_z_zz_ */ { IrTemplate::SimdUnary, Opcode::COPY, 0 },
+    /* [4622] zipq2_z_zz_ */ { IrTemplate::SimdUnary, Opcode::COPY, 0 },
 };
 
 const size_t ir_table_size = 4623;

@@ -5294,221 +5294,221 @@ std::optional<Instruction> decode_control(uint32_t insn) {
     // Switch for mask 0xFFFFFFFFu (37 patterns, 37 encodings)
     switch (insn & 0xFFFFFFFFu) {
         case 0xD503201Fu: { // NOP_HI_hints
-                        Instruction result(Mnemonic::NOP, insn);
+                        Instruction result(Mnemonic::NOP, insn, 134);
                         ControlEncoding enc = {};
                         enc.raw = insn;
                         return result;
         }
         case 0xD503203Fu: { // YIELD_HI_hints
-                        Instruction result(Mnemonic::YIELD, insn);
+                        Instruction result(Mnemonic::YIELD, insn, 177);
                         ControlEncoding enc = {};
                         enc.raw = insn;
                         return result;
         }
         case 0xD503205Fu: { // WFE_HI_hints
-                        Instruction result(Mnemonic::WFE, insn);
+                        Instruction result(Mnemonic::WFE, insn, 171);
                         ControlEncoding enc = {};
                         enc.raw = insn;
                         return result;
         }
         case 0xD503207Fu: { // WFI_HI_hints
-                        Instruction result(Mnemonic::WFI, insn);
+                        Instruction result(Mnemonic::WFI, insn, 173);
                         ControlEncoding enc = {};
                         enc.raw = insn;
                         return result;
         }
         case 0xD503209Fu: { // SEV_HI_hints
-                        Instruction result(Mnemonic::SEV, insn);
+                        Instruction result(Mnemonic::SEV, insn, 152);
                         ControlEncoding enc = {};
                         enc.raw = insn;
                         return result;
         }
         case 0xD50320BFu: { // SEVL_HI_hints
-                        Instruction result(Mnemonic::SEVL, insn);
+                        Instruction result(Mnemonic::SEVL, insn, 153);
                         ControlEncoding enc = {};
                         enc.raw = insn;
                         return result;
         }
         case 0xD50320DFu: { // DGH_HI_hints
-                        Instruction result(Mnemonic::DGH, insn);
+                        Instruction result(Mnemonic::DGH, insn, 102);
                         ControlEncoding enc = {};
                         enc.raw = insn;
                         return result;
         }
         case 0xD50320FFu: { // XPACLRI_HI_hints
-                        Instruction result(Mnemonic::XPACLRI, insn);
+                        Instruction result(Mnemonic::XPACLRI, insn, 176);
                         ControlEncoding enc = {};
                         enc.raw = insn;
                         return result;
         }
         case 0xD503211Fu: { // PACIA1716_HI_hints
-                        Instruction result(Mnemonic::PACIA1716, insn);
+                        Instruction result(Mnemonic::PACIA1716, insn, 135);
                         ControlEncoding enc = {};
                         enc.raw = insn;
                         return result;
         }
         case 0xD503215Fu: { // PACIB1716_HI_hints
-                        Instruction result(Mnemonic::PACIB1716, insn);
+                        Instruction result(Mnemonic::PACIB1716, insn, 138);
                         ControlEncoding enc = {};
                         enc.raw = insn;
                         return result;
         }
         case 0xD503219Fu: { // AUTIA1716_HI_hints
-                        Instruction result(Mnemonic::AUTIA1716, insn);
+                        Instruction result(Mnemonic::AUTIA1716, insn, 2);
                         ControlEncoding enc = {};
                         enc.raw = insn;
                         return result;
         }
         case 0xD50321DFu: { // AUTIB1716_HI_hints
-                        Instruction result(Mnemonic::AUTIB1716, insn);
+                        Instruction result(Mnemonic::AUTIB1716, insn, 5);
                         ControlEncoding enc = {};
                         enc.raw = insn;
                         return result;
         }
         case 0xD503221Fu: { // ESB_HI_hints
-                        Instruction result(Mnemonic::ESB, insn);
+                        Instruction result(Mnemonic::ESB, insn, 111);
                         ControlEncoding enc = {};
                         enc.raw = insn;
                         return result;
         }
         case 0xD503223Fu: { // PSB_HC_hints
-                        Instruction result(Mnemonic::PSB, insn);
+                        Instruction result(Mnemonic::PSB, insn, 142);
                         result.operands.push_back(Operand::fixed_sym(0u)); // csync
                         return result;
         }
         case 0xD503225Fu: { // TSB_HC_hints
-                        Instruction result(Mnemonic::TSB, insn);
+                        Instruction result(Mnemonic::TSB, insn, 170);
                         result.operands.push_back(Operand::fixed_sym(0u)); // csync
                         return result;
         }
         case 0xD503227Fu: { // GCSB_HD_hints
-                        Instruction result(Mnemonic::GCSB, insn);
+                        Instruction result(Mnemonic::GCSB, insn, 112);
                         result.operands.push_back(Operand::fixed_sym(1u)); // dsync
                         return result;
         }
         case 0xD503229Fu: { // CSDB_HI_hints
-                        Instruction result(Mnemonic::CSDB, insn);
+                        Instruction result(Mnemonic::CSDB, insn, 97);
                         ControlEncoding enc = {};
                         enc.raw = insn;
                         return result;
         }
         case 0xD50322DFu: { // CLRBHB_HI_hints
-                        Instruction result(Mnemonic::CLRBHB, insn);
+                        Instruction result(Mnemonic::CLRBHB, insn, 93);
                         ControlEncoding enc = {};
                         enc.raw = insn;
                         return result;
         }
         case 0xD503231Fu: { // PACIAZ_HI_hints
-                        Instruction result(Mnemonic::PACIAZ, insn);
+                        Instruction result(Mnemonic::PACIAZ, insn, 137);
                         ControlEncoding enc = {};
                         enc.raw = insn;
                         return result;
         }
         case 0xD503233Fu: { // PACIASP_HI_hints
-                        Instruction result(Mnemonic::PACIASP, insn);
+                        Instruction result(Mnemonic::PACIASP, insn, 136);
                         ControlEncoding enc = {};
                         enc.raw = insn;
                         return result;
         }
         case 0xD503235Fu: { // PACIBZ_HI_hints
-                        Instruction result(Mnemonic::PACIBZ, insn);
+                        Instruction result(Mnemonic::PACIBZ, insn, 140);
                         ControlEncoding enc = {};
                         enc.raw = insn;
                         return result;
         }
         case 0xD503237Fu: { // PACIBSP_HI_hints
-                        Instruction result(Mnemonic::PACIBSP, insn);
+                        Instruction result(Mnemonic::PACIBSP, insn, 139);
                         ControlEncoding enc = {};
                         enc.raw = insn;
                         return result;
         }
         case 0xD503239Fu: { // AUTIAZ_HI_hints
-                        Instruction result(Mnemonic::AUTIAZ, insn);
+                        Instruction result(Mnemonic::AUTIAZ, insn, 4);
                         ControlEncoding enc = {};
                         enc.raw = insn;
                         return result;
         }
         case 0xD50323BFu: { // AUTIASP_HI_hints
-                        Instruction result(Mnemonic::AUTIASP, insn);
+                        Instruction result(Mnemonic::AUTIASP, insn, 3);
                         ControlEncoding enc = {};
                         enc.raw = insn;
                         return result;
         }
         case 0xD50323DFu: { // AUTIBZ_HI_hints
-                        Instruction result(Mnemonic::AUTIBZ, insn);
+                        Instruction result(Mnemonic::AUTIBZ, insn, 7);
                         ControlEncoding enc = {};
                         enc.raw = insn;
                         return result;
         }
         case 0xD50323FFu: { // AUTIBSP_HI_hints
-                        Instruction result(Mnemonic::AUTIBSP, insn);
+                        Instruction result(Mnemonic::AUTIBSP, insn, 6);
                         ControlEncoding enc = {};
                         enc.raw = insn;
                         return result;
         }
         case 0xD50324FFu: { // PACM_HI_hints
-                        Instruction result(Mnemonic::PACM, insn);
+                        Instruction result(Mnemonic::PACM, insn, 141);
                         ControlEncoding enc = {};
                         enc.raw = insn;
                         return result;
         }
         case 0xD503251Fu: { // CHKFEAT_HF_hints
-                        Instruction result(Mnemonic::CHKFEAT, insn);
+                        Instruction result(Mnemonic::CHKFEAT, insn, 92);
                         ControlEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(16u, true));
                         return result;
         }
         case 0xD503269Fu: { // STCPH_HI_hints
-                        Instruction result(Mnemonic::STCPH, insn);
+                        Instruction result(Mnemonic::STCPH, insn, 159);
                         ControlEncoding enc = {};
                         enc.raw = insn;
                         return result;
         }
         case 0xD503309Fu: { // SSBB_DSB_BO_barriers
-                        Instruction result(Mnemonic::DSB, insn);
+                        Instruction result(Mnemonic::DSB, insn, 158);
                         ControlEncoding enc = {};
                         enc.raw = insn;
                         return result;
         }
         case 0xD503349Fu: { // PSSBB_DSB_BO_barriers
-                        Instruction result(Mnemonic::DSB, insn);
+                        Instruction result(Mnemonic::DSB, insn, 143);
                         ControlEncoding enc = {};
                         enc.raw = insn;
                         return result;
         }
         case 0xD65F0BFFu: { // RETAA_64E_branch_reg
-                        Instruction result(Mnemonic::RETAA, insn);
+                        Instruction result(Mnemonic::RETAA, insn, 145);
                         ControlEncoding enc = {};
                         enc.raw = insn;
                         return result;
         }
         case 0xD65F0FFFu: { // RETAB_64E_branch_reg
-                        Instruction result(Mnemonic::RETAB, insn);
+                        Instruction result(Mnemonic::RETAB, insn, 146);
                         ControlEncoding enc = {};
                         enc.raw = insn;
                         return result;
         }
         case 0xD69F03E0u: { // ERET_64E_branch_reg
-                        Instruction result(Mnemonic::ERET, insn);
+                        Instruction result(Mnemonic::ERET, insn, 108);
                         ControlEncoding enc = {};
                         enc.raw = insn;
                         return result;
         }
         case 0xD69F0BFFu: { // ERETAA_64E_branch_reg
-                        Instruction result(Mnemonic::ERETAA, insn);
+                        Instruction result(Mnemonic::ERETAA, insn, 109);
                         ControlEncoding enc = {};
                         enc.raw = insn;
                         return result;
         }
         case 0xD69F0FFFu: { // ERETAB_64E_branch_reg
-                        Instruction result(Mnemonic::ERETAB, insn);
+                        Instruction result(Mnemonic::ERETAB, insn, 110);
                         ControlEncoding enc = {};
                         enc.raw = insn;
                         return result;
         }
         case 0xD6BF03E0u: { // DRPS_64E_branch_reg
-                        Instruction result(Mnemonic::DRPS, insn);
+                        Instruction result(Mnemonic::DRPS, insn, 104);
                         ControlEncoding enc = {};
                         enc.raw = insn;
                         return result;
@@ -5519,21 +5519,21 @@ std::optional<Instruction> decode_control(uint32_t insn) {
     // Switch for mask 0xFFFFFFE0u (17 patterns, 17 encodings)
     switch (insn & 0xFFFFFFE0u) {
         case 0xD5031000u: { // WFET_only_systeminstrswithreg
-                        Instruction result(Mnemonic::WFET, insn);
+                        Instruction result(Mnemonic::WFET, insn, 172);
                         ControlEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.wfet_only_systeminstrswithreg.Rd, true));
                         return result;
         }
         case 0xD5031020u: { // WFIT_only_systeminstrswithreg
-                        Instruction result(Mnemonic::WFIT, insn);
+                        Instruction result(Mnemonic::WFIT, insn, 174);
                         ControlEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.wfit_only_systeminstrswithreg.Rd, true));
                         return result;
         }
         case 0xD5087780u: { // GCSPUSHX_SYS_CR_systeminstrs
-                        Instruction result(Mnemonic::SYS, insn);
+                        Instruction result(Mnemonic::SYS, insn, 117);
                         ControlEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -5541,7 +5541,7 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         return result;
         }
         case 0xD50877A0u: { // GCSPOPCX_SYS_CR_systeminstrs
-                        Instruction result(Mnemonic::SYS, insn);
+                        Instruction result(Mnemonic::SYS, insn, 113);
                         ControlEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -5549,7 +5549,7 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         return result;
         }
         case 0xD50877C0u: { // GCSPOPX_SYS_CR_systeminstrs
-                        Instruction result(Mnemonic::SYS, insn);
+                        Instruction result(Mnemonic::SYS, insn, 115);
                         ControlEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -5557,14 +5557,14 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         return result;
         }
         case 0xD50B72E0u: { // TRCIT_SYS_CR_systeminstrs
-                        Instruction result(Mnemonic::SYS, insn);
+                        Instruction result(Mnemonic::SYS, insn, 169);
                         ControlEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.trcit_sys_cr_systeminstrs.Rt, true));
                         return result;
         }
         case 0xD50B7380u: { // CFP_SYS_CR_systeminstrs
-                        Instruction result(Mnemonic::SYS, insn);
+                        Instruction result(Mnemonic::SYS, insn, 91);
             #ifdef VEDA64_STRINGS
                         if (decode_sys_alias(insn, result)) return result;
             #endif
@@ -5585,7 +5585,7 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         return result;
         }
         case 0xD50B73A0u: { // DVP_SYS_CR_systeminstrs
-                        Instruction result(Mnemonic::SYS, insn);
+                        Instruction result(Mnemonic::SYS, insn, 107);
             #ifdef VEDA64_STRINGS
                         if (decode_sys_alias(insn, result)) return result;
             #endif
@@ -5606,14 +5606,14 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         return result;
         }
         case 0xD50B73C0u: { // COSP_SYS_CR_systeminstrs
-                        Instruction result(Mnemonic::SYS, insn);
+                        Instruction result(Mnemonic::SYS, insn, 95);
                         ControlEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.cosp_sys_cr_systeminstrs.Rt, true));
                         return result;
         }
         case 0xD50B73E0u: { // CPP_SYS_CR_systeminstrs
-                        Instruction result(Mnemonic::SYS, insn);
+                        Instruction result(Mnemonic::SYS, insn, 96);
             #ifdef VEDA64_STRINGS
                         if (decode_sys_alias(insn, result)) return result;
             #endif
@@ -5634,21 +5634,21 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         return result;
         }
         case 0xD50B7700u: { // GCSPUSHM_SYS_CR_systeminstrs
-                        Instruction result(Mnemonic::SYS, insn);
+                        Instruction result(Mnemonic::SYS, insn, 116);
                         ControlEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.gcspushm_sys_cr_systeminstrs.Rt, true));
                         return result;
         }
         case 0xD50B7740u: { // GCSSS1_SYS_CR_systeminstrs
-                        Instruction result(Mnemonic::SYS, insn);
+                        Instruction result(Mnemonic::SYS, insn, 118);
                         ControlEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.gcsss1sys_cr_systeminstrs.Rt, true));
                         return result;
         }
         case 0xD50E7000u: { // APAS_SYS_CR_systeminstrs
-                        Instruction result(Mnemonic::SYS, insn);
+                        Instruction result(Mnemonic::SYS, insn, 0);
             #ifdef VEDA64_STRINGS
                         if (decode_sys_alias(insn, result)) return result;
             #endif
@@ -5669,14 +5669,14 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         return result;
         }
         case 0xD52B7720u: { // GCSPOPM_SYSL_RC_systeminstrs
-                        Instruction result(Mnemonic::SYSL, insn);
+                        Instruction result(Mnemonic::SYSL, insn, 114);
                         ControlEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.gcspopm_sysl_rc_systeminstrs.Rt, true));
                         return result;
         }
         case 0xD52B7760u: { // GCSSS2_SYSL_RC_systeminstrs
-                        Instruction result(Mnemonic::SYSL, insn);
+                        Instruction result(Mnemonic::SYSL, insn, 119);
                         ControlEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.gcsss2sysl_rc_systeminstrs.Rt, true));
@@ -5684,7 +5684,7 @@ std::optional<Instruction> decode_control(uint32_t insn) {
         }
         case 0xD65F0BE0u: { // RETAASPPCR_64M_branch_reg
             if (((insn >> 0) & 0x1F) == 0x1F) break;
-                        Instruction result(Mnemonic::RETAASPPCR, insn);
+                        Instruction result(Mnemonic::RETAASPPCR, insn, 149);
                         ControlEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.retaasppcr64m_branch_reg.Rm, true));
@@ -5692,7 +5692,7 @@ std::optional<Instruction> decode_control(uint32_t insn) {
         }
         case 0xD65F0FE0u: { // RETABSPPCR_64M_branch_reg
             if (((insn >> 0) & 0x1F) == 0x1F) break;
-                        Instruction result(Mnemonic::RETABSPPCR, insn);
+                        Instruction result(Mnemonic::RETABSPPCR, insn, 150);
                         ControlEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.retabsppcr64m_branch_reg.Rm, true));
@@ -5704,13 +5704,13 @@ std::optional<Instruction> decode_control(uint32_t insn) {
     // Switch for mask 0xFFFFFFDFu (2 patterns, 2 encodings)
     switch (insn & 0xFFFFFFDFu) {
         case 0xD503261Fu: { // STSHH_HI_hints
-                        Instruction result(Mnemonic::STSHH, insn);
+                        Instruction result(Mnemonic::STSHH, insn, 160);
                         ControlEncoding enc = {};
                         enc.raw = insn;
                         return result;
         }
         case 0xD503265Fu: { // SHUH_HI_hints
-                        Instruction result(Mnemonic::SHUH, insn);
+                        Instruction result(Mnemonic::SHUH, insn, 154);
                         ControlEncoding enc = {};
                         enc.raw = insn;
                         return result;
@@ -5721,7 +5721,7 @@ std::optional<Instruction> decode_control(uint32_t insn) {
     // Switch for mask 0xFFFFFF80u (1 pattern, 1 encoding)
     switch (insn & 0xFFFFFF80u) {
         case 0xD50C7080u: { // MLBI_SYS_CR_systeminstrs
-                        Instruction result(Mnemonic::SYS, insn);
+                        Instruction result(Mnemonic::SYS, insn, 128);
                         ControlEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -5734,7 +5734,7 @@ std::optional<Instruction> decode_control(uint32_t insn) {
     // Switch for mask 0xFFFFFF3Fu (1 pattern, 1 encoding)
     switch (insn & 0xFFFFFF3Fu) {
         case 0xD503241Fu: { // BTI_HB_hints
-                        Instruction result(Mnemonic::BTI, insn);
+                        Instruction result(Mnemonic::BTI, insn, 25);
                         ControlEncoding enc = {};
                         enc.raw = insn;
                         return result;
@@ -5745,14 +5745,14 @@ std::optional<Instruction> decode_control(uint32_t insn) {
     // Switch for mask 0xFFFFFF00u (3 patterns, 3 encodings)
     switch (insn & 0xFFFFFF00u) {
         case 0xD508C000u: { // GSB_SYS_CR_systeminstrs
-                        Instruction result(Mnemonic::SYS, insn);
+                        Instruction result(Mnemonic::SYS, insn, 122);
                         ControlEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::imm(enc.gsb_sys_cr_systeminstrs.op2));
                         return result;
         }
         case 0xD5097200u: { // BRB_SYS_CR_systeminstrs
-                        Instruction result(Mnemonic::SYS, insn);
+                        Instruction result(Mnemonic::SYS, insn, 23);
             #ifdef VEDA64_STRINGS
                         if (decode_sys_alias(insn, result)) return result;
             #endif
@@ -5773,7 +5773,7 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         return result;
         }
         case 0xD528C300u: { // GICR_SYSL_RC_systeminstrs
-                        Instruction result(Mnemonic::SYSL, insn);
+                        Instruction result(Mnemonic::SYSL, insn, 121);
                         ControlEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.gicr_sysl_rc_systeminstrs.Rt, true));
@@ -5786,7 +5786,7 @@ std::optional<Instruction> decode_control(uint32_t insn) {
     // Switch for mask 0xFFFFFE00u (1 pattern, 1 encoding)
     switch (insn & 0xFFFFFE00u) {
         case 0xD508C400u: { // GIC_SYS_CR_systeminstrs
-                        Instruction result(Mnemonic::SYS, insn);
+                        Instruction result(Mnemonic::SYS, insn, 120);
             #ifdef VEDA64_STRINGS
                         if (decode_sys_alias(insn, result)) return result;
             #endif
@@ -5812,49 +5812,49 @@ std::optional<Instruction> decode_control(uint32_t insn) {
     // Switch for mask 0xFFFFFC1Fu (7 patterns, 7 encodings)
     switch (insn & 0xFFFFFC1Fu) {
         case 0xD61F0000u: { // BR_64_branch_reg
-                        Instruction result(Mnemonic::BR, insn);
+                        Instruction result(Mnemonic::BR, insn, 18);
                         ControlEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.br64branch_reg.Rn, true));
                         return result;
         }
         case 0xD61F081Fu: { // BRAAZ_64_branch_reg
-                        Instruction result(Mnemonic::BRAAZ, insn);
+                        Instruction result(Mnemonic::BRAAZ, insn, 20);
                         ControlEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.braaz64branch_reg.Rn, true));
                         return result;
         }
         case 0xD61F0C1Fu: { // BRABZ_64_branch_reg
-                        Instruction result(Mnemonic::BRABZ, insn);
+                        Instruction result(Mnemonic::BRABZ, insn, 22);
                         ControlEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.brabz64branch_reg.Rn, true));
                         return result;
         }
         case 0xD63F0000u: { // BLR_64_branch_reg
-                        Instruction result(Mnemonic::BLR, insn);
+                        Instruction result(Mnemonic::BLR, insn, 13);
                         ControlEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.blr64branch_reg.Rn, true));
                         return result;
         }
         case 0xD63F081Fu: { // BLRAAZ_64_branch_reg
-                        Instruction result(Mnemonic::BLRAAZ, insn);
+                        Instruction result(Mnemonic::BLRAAZ, insn, 15);
                         ControlEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.blraaz64branch_reg.Rn, true));
                         return result;
         }
         case 0xD63F0C1Fu: { // BLRABZ_64_branch_reg
-                        Instruction result(Mnemonic::BLRABZ, insn);
+                        Instruction result(Mnemonic::BLRABZ, insn, 17);
                         ControlEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.blrabz64branch_reg.Rn, true));
                         return result;
         }
         case 0xD65F0000u: { // RET_64R_branch_reg
-                        Instruction result(Mnemonic::RET, insn);
+                        Instruction result(Mnemonic::RET, insn, 144);
                         ControlEncoding enc = {}; enc.raw = insn;
                         if (enc.ret64r_branch_reg.Rn != 30)
                             result.operands.push_back(Operand::gp(enc.ret64r_branch_reg.Rn, true));
@@ -5866,7 +5866,7 @@ std::optional<Instruction> decode_control(uint32_t insn) {
     // Switch for mask 0xFFFFFC00u (4 patterns, 4 encodings)
     switch (insn & 0xFFFFFC00u) {
         case 0xD71F0800u: { // BRAA_64P_branch_reg
-                        Instruction result(Mnemonic::BRAA, insn);
+                        Instruction result(Mnemonic::BRAA, insn, 19);
                         ControlEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.braa64p_branch_reg.Rn, true));
@@ -5874,7 +5874,7 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         return result;
         }
         case 0xD71F0C00u: { // BRAB_64P_branch_reg
-                        Instruction result(Mnemonic::BRAB, insn);
+                        Instruction result(Mnemonic::BRAB, insn, 21);
                         ControlEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.brab64p_branch_reg.Rn, true));
@@ -5882,7 +5882,7 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         return result;
         }
         case 0xD73F0800u: { // BLRAA_64P_branch_reg
-                        Instruction result(Mnemonic::BLRAA, insn);
+                        Instruction result(Mnemonic::BLRAA, insn, 14);
                         ControlEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.blraa64p_branch_reg.Rn, true));
@@ -5890,7 +5890,7 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         return result;
         }
         case 0xD73F0C00u: { // BLRAB_64P_branch_reg
-                        Instruction result(Mnemonic::BLRAB, insn);
+                        Instruction result(Mnemonic::BLRAB, insn, 16);
                         ControlEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.blrab64p_branch_reg.Rn, true));
@@ -5903,7 +5903,7 @@ std::optional<Instruction> decode_control(uint32_t insn) {
     // Switch for mask 0xFFFFF9FFu (2 patterns, 2 encodings)
     switch (insn & 0xFFFFF9FFu) {
         case 0xD503407Fu: { // SMSTOP_MSR_SI_pstate
-                        Instruction result(Mnemonic::MSR, insn);
+                        Instruction result(Mnemonic::MSR, insn, 157);
                         {
                             uint32_t _op1 = (insn >> 16) & 7;
                             uint32_t _CRm = (insn >> 8) & 0xF;
@@ -5919,7 +5919,7 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         return result;
         }
         case 0xD503417Fu: { // SMSTART_MSR_SI_pstate
-                        Instruction result(Mnemonic::MSR, insn);
+                        Instruction result(Mnemonic::MSR, insn, 156);
                         {
                             uint32_t _op1 = (insn >> 16) & 7;
                             uint32_t _CRm = (insn >> 8) & 0xF;
@@ -5940,7 +5940,7 @@ std::optional<Instruction> decode_control(uint32_t insn) {
     // Switch for mask 0xFFFFF3FFu (1 pattern, 1 encoding)
     switch (insn & 0xFFFFF3FFu) {
         case 0xD503323Fu: { // DSB_BOn_barriers
-                        Instruction result(Mnemonic::DSB, insn);
+                        Instruction result(Mnemonic::DSB, insn, 106);
                         ControlEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::barrier_op(static_cast<BarrierOp>(enc.dsb_bon_barriers.imm2)));
@@ -5953,32 +5953,32 @@ std::optional<Instruction> decode_control(uint32_t insn) {
     // Switch for mask 0xFFFFF0FFu (8 patterns, 8 encodings)
     switch (insn & 0xFFFFF0FFu) {
         case 0xD500401Fu: { // CFINV_M_pstate
-                        Instruction result(Mnemonic::CFINV, insn);
+                        Instruction result(Mnemonic::CFINV, insn, 90);
                         ControlEncoding enc = {};
                         enc.raw = insn;
                         return result;
         }
         case 0xD500403Fu: { // XAFLAG_M_pstate
-                        Instruction result(Mnemonic::XAFLAG, insn);
+                        Instruction result(Mnemonic::XAFLAG, insn, 175);
                         ControlEncoding enc = {};
                         enc.raw = insn;
                         return result;
         }
         case 0xD500405Fu: { // AXFLAG_M_pstate
-                        Instruction result(Mnemonic::AXFLAG, insn);
+                        Instruction result(Mnemonic::AXFLAG, insn, 8);
                         ControlEncoding enc = {};
                         enc.raw = insn;
                         return result;
         }
         case 0xD503305Fu: { // CLREX_BN_barriers
-                        Instruction result(Mnemonic::CLREX, insn);
+                        Instruction result(Mnemonic::CLREX, insn, 94);
                         ControlEncoding enc = {};
                         enc.raw = insn;
                         if (enc.clrex_bn_barriers.CRm != 15) result.operands.push_back(Operand::imm(enc.clrex_bn_barriers.CRm));
                         return result;
         }
         case 0xD503309Fu: { // DSB_BO_barriers
-                        Instruction result(Mnemonic::DSB, insn);
+                        Instruction result(Mnemonic::DSB, insn, 105);
                         ControlEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::barrier_op(static_cast<BarrierOp>(enc.dsb_bo_barriers.CRm)));
@@ -5986,7 +5986,7 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         return result;
         }
         case 0xD50330BFu: { // DMB_BO_barriers
-                        Instruction result(Mnemonic::DMB, insn);
+                        Instruction result(Mnemonic::DMB, insn, 103);
                         ControlEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::barrier_op(static_cast<BarrierOp>(enc.dmb_bo_barriers.CRm)));
@@ -5994,7 +5994,7 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         return result;
         }
         case 0xD50330DFu: { // ISB_BI_barriers
-                        Instruction result(Mnemonic::ISB, insn);
+                        Instruction result(Mnemonic::ISB, insn, 127);
                         ControlEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::barrier_op(static_cast<BarrierOp>(enc.isb_bi_barriers.CRm)));
@@ -6002,7 +6002,7 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         return result;
         }
         case 0xD50330FFu: { // SB_only_barriers
-                        Instruction result(Mnemonic::SB, insn);
+                        Instruction result(Mnemonic::SB, insn, 151);
                         ControlEncoding enc = {};
                         enc.raw = insn;
                         return result;
@@ -6013,7 +6013,7 @@ std::optional<Instruction> decode_control(uint32_t insn) {
     // Switch for mask 0xFFFFF01Fu (1 pattern, 1 encoding)
     switch (insn & 0xFFFFF01Fu) {
         case 0xD503201Fu: { // HINT_HM_hints
-                        Instruction result(Mnemonic::HINT, insn);
+                        Instruction result(Mnemonic::HINT, insn, 123);
                         // HINT instruction - decode to alias based on CRm:op2
                         uint32_t CRm = (insn >> 8) & 0xF;
                         uint32_t op2 = (insn >> 5) & 0x7;
@@ -6055,7 +6055,7 @@ std::optional<Instruction> decode_control(uint32_t insn) {
     // Switch for mask 0xFFF8FE00u (1 pattern, 1 encoding)
     switch (insn & 0xFFF8FE00u) {
         case 0xD5087800u: { // AT_SYS_CR_systeminstrs
-                        Instruction result(Mnemonic::SYS, insn);
+                        Instruction result(Mnemonic::SYS, insn, 1);
             #ifdef VEDA64_STRINGS
                         if (decode_sys_alias(insn, result)) return result;
             #endif
@@ -6081,7 +6081,7 @@ std::optional<Instruction> decode_control(uint32_t insn) {
     // Switch for mask 0xFFF8F01Fu (1 pattern, 1 encoding)
     switch (insn & 0xFFF8F01Fu) {
         case 0xD500401Fu: { // MSR_SI_pstate
-                        Instruction result(Mnemonic::MSR, insn);
+                        Instruction result(Mnemonic::MSR, insn, 131);
                         {
                             uint32_t _op1 = (insn >> 16) & 7;
                             uint32_t _CRm = (insn >> 8) & 0xF;
@@ -6103,7 +6103,7 @@ std::optional<Instruction> decode_control(uint32_t insn) {
     switch (insn & 0xFFF8F000u) {
         case 0xD5087000u: { // DC_SYS_CR_systeminstrs
             // Also matches: IC_SYS_CR_systeminstrs (SYS)
-                        Instruction result(Mnemonic::SYS, insn);
+                        Instruction result(Mnemonic::SYS, insn, 98);
             #ifdef VEDA64_STRINGS
                         if (decode_sys_alias(insn, result)) return result;
             #endif
@@ -6129,7 +6129,7 @@ std::optional<Instruction> decode_control(uint32_t insn) {
     // Switch for mask 0xFFF8E000u (2 patterns, 2 encodings)
     switch (insn & 0xFFF8E000u) {
         case 0xD5088000u: { // TLBI_SYS_CR_systeminstrs
-                        Instruction result(Mnemonic::SYS, insn);
+                        Instruction result(Mnemonic::SYS, insn, 167);
             #ifdef VEDA64_STRINGS
                         if (decode_sys_alias(insn, result)) return result;
             #endif
@@ -6150,7 +6150,7 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         return result;
         }
         case 0xD5488000u: { // TLBIP_SYSP_CR_syspairinstrs
-                        Instruction result(Mnemonic::SYSP, insn);
+                        Instruction result(Mnemonic::SYSP, insn, 168);
                         ControlEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -6163,7 +6163,7 @@ std::optional<Instruction> decode_control(uint32_t insn) {
     // Switch for mask 0xFFF80000u (3 patterns, 3 encodings)
     switch (insn & 0xFFF80000u) {
         case 0xD5080000u: { // SYS_CR_systeminstrs
-                        Instruction result(Mnemonic::SYS, insn);
+                        Instruction result(Mnemonic::SYS, insn, 162);
                         ControlEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -6177,7 +6177,7 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         return result;
         }
         case 0xD5280000u: { // SYSL_RC_systeminstrs
-                        Instruction result(Mnemonic::SYSL, insn);
+                        Instruction result(Mnemonic::SYSL, insn, 163);
                         ControlEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -6191,7 +6191,7 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         return result;
         }
         case 0xD5480000u: { // SYSP_CR_syspairinstrs
-                        Instruction result(Mnemonic::SYSP, insn);
+                        Instruction result(Mnemonic::SYSP, insn, 164);
                         ControlEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -6204,7 +6204,7 @@ std::optional<Instruction> decode_control(uint32_t insn) {
     // Switch for mask 0xFFF00000u (4 patterns, 4 encodings)
     switch (insn & 0xFFF00000u) {
         case 0xD5100000u: { // MSR_SR_systemmove
-                        Instruction result(Mnemonic::MSR, insn);
+                        Instruction result(Mnemonic::MSR, insn, 132);
                         ControlEncoding enc = {};
                         enc.raw = insn;
                         uint32_t sysreg = (enc.msr_sr_systemmove.o0 << 14) | (enc.msr_sr_systemmove.op1 << 11) | (enc.msr_sr_systemmove.CRn << 7) | (enc.msr_sr_systemmove.CRm << 3) | enc.msr_sr_systemmove.op2;
@@ -6215,7 +6215,7 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         return result;
         }
         case 0xD5300000u: { // MRS_RS_systemmove
-                        Instruction result(Mnemonic::MRS, insn);
+                        Instruction result(Mnemonic::MRS, insn, 130);
                         ControlEncoding enc = {};
                         enc.raw = insn;
                         uint32_t sysreg = (enc.mrs_rs_systemmove.o0 << 14) | (enc.mrs_rs_systemmove.op1 << 11) | (enc.mrs_rs_systemmove.CRn << 7) | (enc.mrs_rs_systemmove.CRm << 3) | enc.mrs_rs_systemmove.op2;
@@ -6226,7 +6226,7 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         return result;
         }
         case 0xD5500000u: { // MSRR_SR_systemmovepr
-                        Instruction result(Mnemonic::MSRR, insn);
+                        Instruction result(Mnemonic::MSRR, insn, 133);
                         ControlEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -6234,7 +6234,7 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         return result;
         }
         case 0xD5700000u: { // MRRS_RS_systemmovepr
-                        Instruction result(Mnemonic::MRRS, insn);
+                        Instruction result(Mnemonic::MRRS, insn, 129);
                         ControlEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -6248,7 +6248,7 @@ std::optional<Instruction> decode_control(uint32_t insn) {
     switch (insn & 0xFFE0C000u) {
         case 0x74000000u: { // CBGT_32_regs
             // Also matches: CBLT_CBGT_32_regs (CBGT)
-                        Instruction result(Mnemonic::CBGT, insn);
+                        Instruction result(Mnemonic::CBGT, insn, 48);
                         ControlEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.cbgt32regs.Rt, false));
@@ -6262,7 +6262,7 @@ std::optional<Instruction> decode_control(uint32_t insn) {
         }
         case 0x74008000u: { // CBBGT_8_regs
             // Also matches: CBBLT_CBBGT_8_regs (CBBGT)
-                        Instruction result(Mnemonic::CBBGT, insn);
+                        Instruction result(Mnemonic::CBBGT, insn, 26);
                         ControlEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.cbbgt8regs.Rt, false));
@@ -6276,7 +6276,7 @@ std::optional<Instruction> decode_control(uint32_t insn) {
         }
         case 0x7400C000u: { // CBHGT_16_regs
             // Also matches: CBHLT_CBHGT_16_regs (CBHGT)
-                        Instruction result(Mnemonic::CBHGT, insn);
+                        Instruction result(Mnemonic::CBHGT, insn, 62);
                         ControlEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.cbhgt16regs.Rt, false));
@@ -6290,7 +6290,7 @@ std::optional<Instruction> decode_control(uint32_t insn) {
         }
         case 0x74200000u: { // CBGE_32_regs
             // Also matches: CBLE_CBGE_32_regs (CBGE)
-                        Instruction result(Mnemonic::CBGE, insn);
+                        Instruction result(Mnemonic::CBGE, insn, 49);
                         ControlEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.cbge32regs.Rt, false));
@@ -6304,7 +6304,7 @@ std::optional<Instruction> decode_control(uint32_t insn) {
         }
         case 0x74208000u: { // CBBGE_8_regs
             // Also matches: CBBLE_CBBGE_8_regs (CBBGE)
-                        Instruction result(Mnemonic::CBBGE, insn);
+                        Instruction result(Mnemonic::CBBGE, insn, 27);
                         ControlEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.cbbge8regs.Rt, false));
@@ -6318,7 +6318,7 @@ std::optional<Instruction> decode_control(uint32_t insn) {
         }
         case 0x7420C000u: { // CBHGE_16_regs
             // Also matches: CBHLE_CBHGE_16_regs (CBHGE)
-                        Instruction result(Mnemonic::CBHGE, insn);
+                        Instruction result(Mnemonic::CBHGE, insn, 63);
                         ControlEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.cbhge16regs.Rt, false));
@@ -6332,7 +6332,7 @@ std::optional<Instruction> decode_control(uint32_t insn) {
         }
         case 0x74400000u: { // CBHI_32_regs
             // Also matches: CBLO_CBHI_32_regs (CBHI)
-                        Instruction result(Mnemonic::CBHI, insn);
+                        Instruction result(Mnemonic::CBHI, insn, 50);
                         ControlEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.cbhi32regs.Rt, false));
@@ -6346,7 +6346,7 @@ std::optional<Instruction> decode_control(uint32_t insn) {
         }
         case 0x74408000u: { // CBBHI_8_regs
             // Also matches: CBBLO_CBBHI_8_regs (CBBHI)
-                        Instruction result(Mnemonic::CBBHI, insn);
+                        Instruction result(Mnemonic::CBBHI, insn, 28);
                         ControlEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.cbbhi8regs.Rt, false));
@@ -6360,7 +6360,7 @@ std::optional<Instruction> decode_control(uint32_t insn) {
         }
         case 0x7440C000u: { // CBHHI_16_regs
             // Also matches: CBHLO_CBHHI_16_regs (CBHHI)
-                        Instruction result(Mnemonic::CBHHI, insn);
+                        Instruction result(Mnemonic::CBHHI, insn, 64);
                         ControlEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.cbhhi16regs.Rt, false));
@@ -6374,7 +6374,7 @@ std::optional<Instruction> decode_control(uint32_t insn) {
         }
         case 0x74600000u: { // CBHS_32_regs
             // Also matches: CBLS_CBHS_32_regs (CBHS)
-                        Instruction result(Mnemonic::CBHS, insn);
+                        Instruction result(Mnemonic::CBHS, insn, 51);
                         ControlEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.cbhs32regs.Rt, false));
@@ -6388,7 +6388,7 @@ std::optional<Instruction> decode_control(uint32_t insn) {
         }
         case 0x74608000u: { // CBBHS_8_regs
             // Also matches: CBBLS_CBBHS_8_regs (CBBHS)
-                        Instruction result(Mnemonic::CBBHS, insn);
+                        Instruction result(Mnemonic::CBBHS, insn, 29);
                         ControlEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.cbbhs8regs.Rt, false));
@@ -6402,7 +6402,7 @@ std::optional<Instruction> decode_control(uint32_t insn) {
         }
         case 0x7460C000u: { // CBHHS_16_regs
             // Also matches: CBHLS_CBHHS_16_regs (CBHHS)
-                        Instruction result(Mnemonic::CBHHS, insn);
+                        Instruction result(Mnemonic::CBHHS, insn, 65);
                         ControlEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.cbhhs16regs.Rt, false));
@@ -6415,7 +6415,7 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         return result;
         }
         case 0x74C00000u: { // CBEQ_32_regs
-                        Instruction result(Mnemonic::CBEQ, insn);
+                        Instruction result(Mnemonic::CBEQ, insn, 52);
                         ControlEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.cbeq32regs.Rt, false));
@@ -6428,7 +6428,7 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         return result;
         }
         case 0x74C08000u: { // CBBEQ_8_regs
-                        Instruction result(Mnemonic::CBBEQ, insn);
+                        Instruction result(Mnemonic::CBBEQ, insn, 30);
                         ControlEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.cbbeq8regs.Rt, false));
@@ -6441,7 +6441,7 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         return result;
         }
         case 0x74C0C000u: { // CBHEQ_16_regs
-                        Instruction result(Mnemonic::CBHEQ, insn);
+                        Instruction result(Mnemonic::CBHEQ, insn, 66);
                         ControlEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.cbheq16regs.Rt, false));
@@ -6454,7 +6454,7 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         return result;
         }
         case 0x74E00000u: { // CBNE_32_regs
-                        Instruction result(Mnemonic::CBNE, insn);
+                        Instruction result(Mnemonic::CBNE, insn, 53);
                         ControlEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.cbne32regs.Rt, false));
@@ -6467,7 +6467,7 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         return result;
         }
         case 0x74E08000u: { // CBBNE_8_regs
-                        Instruction result(Mnemonic::CBBNE, insn);
+                        Instruction result(Mnemonic::CBBNE, insn, 31);
                         ControlEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.cbbne8regs.Rt, false));
@@ -6480,7 +6480,7 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         return result;
         }
         case 0x74E0C000u: { // CBHNE_16_regs
-                        Instruction result(Mnemonic::CBHNE, insn);
+                        Instruction result(Mnemonic::CBHNE, insn, 67);
                         ControlEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.cbhne16regs.Rt, false));
@@ -6494,7 +6494,7 @@ std::optional<Instruction> decode_control(uint32_t insn) {
         }
         case 0xF4000000u: { // CBGT_64_regs
             // Also matches: CBLT_CBGT_64_regs (CBGT)
-                        Instruction result(Mnemonic::CBGT, insn);
+                        Instruction result(Mnemonic::CBGT, insn, 54);
                         ControlEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.cbgt64regs.Rt, true));
@@ -6508,7 +6508,7 @@ std::optional<Instruction> decode_control(uint32_t insn) {
         }
         case 0xF4200000u: { // CBGE_64_regs
             // Also matches: CBLE_CBGE_64_regs (CBGE)
-                        Instruction result(Mnemonic::CBGE, insn);
+                        Instruction result(Mnemonic::CBGE, insn, 55);
                         ControlEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.cbge64regs.Rt, true));
@@ -6522,7 +6522,7 @@ std::optional<Instruction> decode_control(uint32_t insn) {
         }
         case 0xF4400000u: { // CBHI_64_regs
             // Also matches: CBLO_CBHI_64_regs (CBHI)
-                        Instruction result(Mnemonic::CBHI, insn);
+                        Instruction result(Mnemonic::CBHI, insn, 56);
                         ControlEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.cbhi64regs.Rt, true));
@@ -6536,7 +6536,7 @@ std::optional<Instruction> decode_control(uint32_t insn) {
         }
         case 0xF4600000u: { // CBHS_64_regs
             // Also matches: CBLS_CBHS_64_regs (CBHS)
-                        Instruction result(Mnemonic::CBHS, insn);
+                        Instruction result(Mnemonic::CBHS, insn, 57);
                         ControlEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.cbhs64regs.Rt, true));
@@ -6549,7 +6549,7 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         return result;
         }
         case 0xF4C00000u: { // CBEQ_64_regs
-                        Instruction result(Mnemonic::CBEQ, insn);
+                        Instruction result(Mnemonic::CBEQ, insn, 58);
                         ControlEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.cbeq64regs.Rt, true));
@@ -6562,7 +6562,7 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         return result;
         }
         case 0xF4E00000u: { // CBNE_64_regs
-                        Instruction result(Mnemonic::CBNE, insn);
+                        Instruction result(Mnemonic::CBNE, insn, 59);
                         ControlEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.cbne64regs.Rt, true));
@@ -6581,7 +6581,7 @@ std::optional<Instruction> decode_control(uint32_t insn) {
     switch (insn & 0xFFE04000u) {
         case 0x75000000u: { // CBGT_32_imm
             // Also matches: CBGE_CBGT_32_imm (CBGT)
-                        Instruction result(Mnemonic::CBGT, insn);
+                        Instruction result(Mnemonic::CBGT, insn, 36);
                         ControlEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.cbgt32imm.Rt, false));
@@ -6595,7 +6595,7 @@ std::optional<Instruction> decode_control(uint32_t insn) {
         }
         case 0x75200000u: { // CBLT_32_imm
             // Also matches: CBLE_CBLT_32_imm (CBLT)
-                        Instruction result(Mnemonic::CBLT, insn);
+                        Instruction result(Mnemonic::CBLT, insn, 37);
                         ControlEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.cblt32imm.Rt, false));
@@ -6609,7 +6609,7 @@ std::optional<Instruction> decode_control(uint32_t insn) {
         }
         case 0x75400000u: { // CBHI_32_imm
             // Also matches: CBHS_CBHI_32_imm (CBHI)
-                        Instruction result(Mnemonic::CBHI, insn);
+                        Instruction result(Mnemonic::CBHI, insn, 38);
                         ControlEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.cbhi32imm.Rt, false));
@@ -6623,7 +6623,7 @@ std::optional<Instruction> decode_control(uint32_t insn) {
         }
         case 0x75600000u: { // CBLO_32_imm
             // Also matches: CBLS_CBLO_32_imm (CBLO)
-                        Instruction result(Mnemonic::CBLO, insn);
+                        Instruction result(Mnemonic::CBLO, insn, 39);
                         ControlEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.cblo32imm.Rt, false));
@@ -6636,7 +6636,7 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         return result;
         }
         case 0x75C00000u: { // CBEQ_32_imm
-                        Instruction result(Mnemonic::CBEQ, insn);
+                        Instruction result(Mnemonic::CBEQ, insn, 40);
                         ControlEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.cbeq32imm.Rt, false));
@@ -6649,7 +6649,7 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         return result;
         }
         case 0x75E00000u: { // CBNE_32_imm
-                        Instruction result(Mnemonic::CBNE, insn);
+                        Instruction result(Mnemonic::CBNE, insn, 41);
                         ControlEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.cbne32imm.Rt, false));
@@ -6663,7 +6663,7 @@ std::optional<Instruction> decode_control(uint32_t insn) {
         }
         case 0xF5000000u: { // CBGT_64_imm
             // Also matches: CBGE_CBGT_64_imm (CBGT)
-                        Instruction result(Mnemonic::CBGT, insn);
+                        Instruction result(Mnemonic::CBGT, insn, 42);
                         ControlEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.cbgt64imm.Rt, true));
@@ -6677,7 +6677,7 @@ std::optional<Instruction> decode_control(uint32_t insn) {
         }
         case 0xF5200000u: { // CBLT_64_imm
             // Also matches: CBLE_CBLT_64_imm (CBLT)
-                        Instruction result(Mnemonic::CBLT, insn);
+                        Instruction result(Mnemonic::CBLT, insn, 43);
                         ControlEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.cblt64imm.Rt, true));
@@ -6691,7 +6691,7 @@ std::optional<Instruction> decode_control(uint32_t insn) {
         }
         case 0xF5400000u: { // CBHI_64_imm
             // Also matches: CBHS_CBHI_64_imm (CBHI)
-                        Instruction result(Mnemonic::CBHI, insn);
+                        Instruction result(Mnemonic::CBHI, insn, 44);
                         ControlEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.cbhi64imm.Rt, true));
@@ -6705,7 +6705,7 @@ std::optional<Instruction> decode_control(uint32_t insn) {
         }
         case 0xF5600000u: { // CBLO_64_imm
             // Also matches: CBLS_CBLO_64_imm (CBLO)
-                        Instruction result(Mnemonic::CBLO, insn);
+                        Instruction result(Mnemonic::CBLO, insn, 45);
                         ControlEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.cblo64imm.Rt, true));
@@ -6718,7 +6718,7 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         return result;
         }
         case 0xF5C00000u: { // CBEQ_64_imm
-                        Instruction result(Mnemonic::CBEQ, insn);
+                        Instruction result(Mnemonic::CBEQ, insn, 46);
                         ControlEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.cbeq64imm.Rt, true));
@@ -6731,7 +6731,7 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         return result;
         }
         case 0xF5E00000u: { // CBNE_64_imm
-                        Instruction result(Mnemonic::CBNE, insn);
+                        Instruction result(Mnemonic::CBNE, insn, 47);
                         ControlEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.cbne64imm.Rt, true));
@@ -6749,7 +6749,7 @@ std::optional<Instruction> decode_control(uint32_t insn) {
     // Switch for mask 0xFFE0001Fu (10 patterns, 10 encodings)
     switch (insn & 0xFFE0001Fu) {
         case 0x5500001Fu: { // RETAASPPC_only_miscbranch
-                        Instruction result(Mnemonic::RETAASPPC, insn);
+                        Instruction result(Mnemonic::RETAASPPC, insn, 147);
                         ControlEncoding enc = {};
                         enc.raw = insn;
                         int32_t offset = -(int32_t)(enc.retaasppc_only_miscbranch.imm16 * 4u);
@@ -6757,7 +6757,7 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         return result;
         }
         case 0x5520001Fu: { // RETABSPPC_only_miscbranch
-                        Instruction result(Mnemonic::RETABSPPC, insn);
+                        Instruction result(Mnemonic::RETABSPPC, insn, 148);
                         ControlEncoding enc = {};
                         enc.raw = insn;
                         int32_t offset = -(int32_t)(enc.retabsppc_only_miscbranch.imm16 * 4u);
@@ -6765,56 +6765,56 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         return result;
         }
         case 0xD4000001u: { // SVC_EX_exception
-                        Instruction result(Mnemonic::SVC, insn);
+                        Instruction result(Mnemonic::SVC, insn, 161);
                         ControlEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::imm(enc.svc_ex_exception.imm16));
                         return result;
         }
         case 0xD4000002u: { // HVC_EX_exception
-                        Instruction result(Mnemonic::HVC, insn);
+                        Instruction result(Mnemonic::HVC, insn, 125);
                         ControlEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::imm(enc.hvc_ex_exception.imm16));
                         return result;
         }
         case 0xD4000003u: { // SMC_EX_exception
-                        Instruction result(Mnemonic::SMC, insn);
+                        Instruction result(Mnemonic::SMC, insn, 155);
                         ControlEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::imm(enc.smc_ex_exception.imm16));
                         return result;
         }
         case 0xD4200000u: { // BRK_EX_exception
-                        Instruction result(Mnemonic::BRK, insn);
+                        Instruction result(Mnemonic::BRK, insn, 24);
                         ControlEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::imm(enc.brk_ex_exception.imm16));
                         return result;
         }
         case 0xD4400000u: { // HLT_EX_exception
-                        Instruction result(Mnemonic::HLT, insn);
+                        Instruction result(Mnemonic::HLT, insn, 124);
                         ControlEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::imm(enc.hlt_ex_exception.imm16));
                         return result;
         }
         case 0xD4A00001u: { // DCPS1_DC_exception
-                        Instruction result(Mnemonic::DCPS1, insn);
+                        Instruction result(Mnemonic::DCPS1, insn, 99);
                         ControlEncoding enc = {};
                         enc.raw = insn;
                         if (enc.dcps1dc_exception.imm16 != 0) result.operands.push_back(Operand::imm(enc.dcps1dc_exception.imm16));
                         return result;
         }
         case 0xD4A00002u: { // DCPS2_DC_exception
-                        Instruction result(Mnemonic::DCPS2, insn);
+                        Instruction result(Mnemonic::DCPS2, insn, 100);
                         ControlEncoding enc = {};
                         enc.raw = insn;
                         if (enc.dcps2dc_exception.imm16 != 0) result.operands.push_back(Operand::imm(enc.dcps2dc_exception.imm16));
                         return result;
         }
         case 0xD4A00003u: { // DCPS3_DC_exception
-                        Instruction result(Mnemonic::DCPS3, insn);
+                        Instruction result(Mnemonic::DCPS3, insn, 101);
                         ControlEncoding enc = {};
                         enc.raw = insn;
                         if (enc.dcps3dc_exception.imm16 != 0) result.operands.push_back(Operand::imm(enc.dcps3dc_exception.imm16));
@@ -6826,7 +6826,7 @@ std::optional<Instruction> decode_control(uint32_t insn) {
     // Switch for mask 0xFF000010u (2 patterns, 2 encodings)
     switch (insn & 0xFF000010u) {
         case 0x54000000u: { // B_only_condbranch
-                        Instruction result(Mnemonic::B, insn);
+                        Instruction result(Mnemonic::B, insn, 9);
                         ControlEncoding enc = {};
                         enc.raw = insn;
                         result.condition = static_cast<Condition>(enc.bonly_condbranch.cond);
@@ -6838,7 +6838,7 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         return result;
         }
         case 0x54000010u: { // BC_only_condbranch
-                        Instruction result(Mnemonic::BC, insn);
+                        Instruction result(Mnemonic::BC, insn, 11);
                         ControlEncoding enc = {};
                         enc.raw = insn;
                         result.condition = static_cast<Condition>(enc.bc_only_condbranch.cond);
@@ -6855,7 +6855,7 @@ std::optional<Instruction> decode_control(uint32_t insn) {
     // Switch for mask 0xFF000000u (4 patterns, 4 encodings)
     switch (insn & 0xFF000000u) {
         case 0x34000000u: { // CBZ_32_compbranch
-                        Instruction result(Mnemonic::CBZ, insn);
+                        Instruction result(Mnemonic::CBZ, insn, 88);
                         ControlEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.cbz32compbranch.Rt, false));
@@ -6867,7 +6867,7 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         return result;
         }
         case 0x35000000u: { // CBNZ_32_compbranch
-                        Instruction result(Mnemonic::CBNZ, insn);
+                        Instruction result(Mnemonic::CBNZ, insn, 86);
                         ControlEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.cbnz32compbranch.Rt, false));
@@ -6879,7 +6879,7 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         return result;
         }
         case 0xB4000000u: { // CBZ_64_compbranch
-                        Instruction result(Mnemonic::CBZ, insn);
+                        Instruction result(Mnemonic::CBZ, insn, 89);
                         ControlEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.cbz64compbranch.Rt, true));
@@ -6891,7 +6891,7 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         return result;
         }
         case 0xB5000000u: { // CBNZ_64_compbranch
-                        Instruction result(Mnemonic::CBNZ, insn);
+                        Instruction result(Mnemonic::CBNZ, insn, 87);
                         ControlEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.cbnz64compbranch.Rt, true));
@@ -6908,7 +6908,7 @@ std::optional<Instruction> decode_control(uint32_t insn) {
     // Switch for mask 0xFC000000u (2 patterns, 2 encodings)
     switch (insn & 0xFC000000u) {
         case 0x14000000u: { // B_only_branch_imm
-                        Instruction result(Mnemonic::B, insn);
+                        Instruction result(Mnemonic::B, insn, 10);
                         ControlEncoding enc = {};
                         enc.raw = insn;
                         {
@@ -6919,7 +6919,7 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         return result;
         }
         case 0x94000000u: { // BL_only_branch_imm
-                        Instruction result(Mnemonic::BL, insn);
+                        Instruction result(Mnemonic::BL, insn, 12);
                         ControlEncoding enc = {};
                         enc.raw = insn;
                         {
@@ -6935,7 +6935,7 @@ std::optional<Instruction> decode_control(uint32_t insn) {
     // Switch for mask 0x7F000000u (2 patterns, 2 encodings)
     switch (insn & 0x7F000000u) {
         case 0x36000000u: { // TBZ_only_testbranch
-                        Instruction result(Mnemonic::TBZ, insn);
+                        Instruction result(Mnemonic::TBZ, insn, 166);
                         ControlEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.tbz_only_testbranch.Rt, static_cast<bool>(enc.tbz_only_testbranch.b5)));
@@ -6946,7 +6946,7 @@ std::optional<Instruction> decode_control(uint32_t insn) {
                         return result;
         }
         case 0x37000000u: { // TBNZ_only_testbranch
-                        Instruction result(Mnemonic::TBNZ, insn);
+                        Instruction result(Mnemonic::TBNZ, insn, 165);
                         ControlEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.tbnz_only_testbranch.Rt, static_cast<bool>(enc.tbnz_only_testbranch.b5)));

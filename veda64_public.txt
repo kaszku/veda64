@@ -13,6 +13,7 @@ include/format/sme.hpp
 include/format/sve.hpp
 include/veda64.hpp
 include/veda64/hook.hpp
+include/veda64/encoding_id.hpp
 include/veda64/instruction.hpp
 include/veda64/mnemonic.hpp
 include/veda64/operand.hpp

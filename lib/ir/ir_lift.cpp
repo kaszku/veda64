@@ -7,7 +7,6 @@
 #include "ir_internal.hpp"
 #include "veda64/types.hpp"
 #include "veda64/operand.hpp"
-#include <unordered_map>
 
 namespace veda64::ir {
 
@@ -806,33 +805,18 @@ static Interpreter get_interpreter(IrTemplate tpl) {
     return nullptr;
 }
 
-// Mnemonic-indexed lookup table (built on first call)
-static std::unordered_map<uint16_t, std::vector<size_t>> mnemonic_index;
-static bool mnemonic_index_built = false;
-
-static void build_mnemonic_index() {
-    for (size_t i = 0; i < ir_table_size; ++i)
-        mnemonic_index[static_cast<uint16_t>(ir_table[i].mnemonic)].push_back(i);
-    mnemonic_index_built = true;
-}
-
 std::optional<Lifted> lift_from_instruction(const Instruction& insn, IrDetail detail) {
     temp_idx = 0;
 
-    if (!mnemonic_index_built) build_mnemonic_index();
+    if (insn.encoding_id == 0xFFFF || insn.encoding_id >= ir_table_size)
+        return std::nullopt;
 
-    auto it = mnemonic_index.find(static_cast<uint16_t>(insn.mnemonic));
-    if (it == mnemonic_index.end()) return std::nullopt;
+    const auto& e = ir_table[insn.encoding_id];
+    if (e.tpl == IrTemplate::None_)
+        return std::nullopt;  // unclassified encoding
 
-    uint32_t raw = insn.raw_value;
-    for (size_t idx : it->second) {
-        const auto& e = ir_table[idx];
-        if ((raw & e.mask) == e.match) {
-            auto interp = get_interpreter(e.tpl);
-            if (interp) return interp(insn, e, detail);
-            return std::nullopt;
-        }
-    }
+    auto interp = get_interpreter(e.tpl);
+    if (interp) return interp(insn, e, detail);
     return std::nullopt;
 }
 

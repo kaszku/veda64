@@ -102,6 +102,8 @@ class ARM64XMLParser:
     def __init__(self, xml_dir: Path):
         self.xml_dir = xml_dir
         self.instructions: List[Instruction] = []
+        self._encoding_id_counter = 0
+        self._encoding_id_map: Dict[str, int] = {}  # encoding_name -> encoding_id
 
     @staticmethod
     def _license_header() -> List[str]:
@@ -1041,6 +1043,10 @@ class ARM64XMLParser:
         - Encode functions for each instruction variant
         - A decode function with proper operand extraction
         """
+        # Reset encoding ID counter before generating
+        self._encoding_id_counter = 0
+        self._encoding_id_map = {}
+
         # Clean output directories of stale files before generating
         for d in (include_format_dir, lib_format_dir):
             for f in d.iterdir():
@@ -1064,6 +1070,29 @@ class ARM64XMLParser:
         format_header = include_format_dir / "format.hpp"
         self._generate_format_main_header_v2(by_group, format_header)
         print(f"Generated format.hpp")
+        print(f"Assigned {self._encoding_id_counter} encoding IDs")
+
+    def generate_encoding_id_header(self, include_dir: Path):
+        """Generate include/veda64/encoding_id.hpp with per-encoding constants."""
+        code = self._license_header()
+        code.append("#pragma once")
+        code.append("")
+        code.append("#include <cstdint>")
+        code.append("")
+        code.append("namespace veda64 {")
+        code.append("")
+        code.append(f"static constexpr uint16_t ENCODING_COUNT = {self._encoding_id_counter};")
+        code.append("")
+        # Emit constants sorted by ID
+        for enc_name, enc_id in sorted(self._encoding_id_map.items(), key=lambda x: x[1]):
+            const_name = f"ENC_{enc_name.upper()}"
+            code.append(f"static constexpr uint16_t {const_name} = {enc_id};")
+        code.append("")
+        code.append("} // namespace veda64")
+        code.append("")
+        output_file = include_dir / "veda64" / "encoding_id.hpp"
+        self._write_file(output_file, code)
+        print(f"Generated encoding_id.hpp ({self._encoding_id_counter} constants)")
 
     def _classify_by_arm64_decode_group(self) -> Dict:
         """Classify all instructions by ARM64 top-level decode group.
@@ -1269,9 +1298,14 @@ class ARM64XMLParser:
 
             mnemonic = encoding.docvars.get('mnemonic', instr.mnemonic)
 
+            enc_id = self._encoding_id_counter
+            self._encoding_id_counter += 1
+            self._encoding_id_map[encoding.name] = enc_id
+
             encoding_info.append({
                 'struct_name': struct_name,
                 'encoding_name': encoding.name,
+                'encoding_id': enc_id,
                 'field_list': field_list,
                 'struct_code': struct_code,
                 'fixed_bits': fixed_bits,
@@ -1672,11 +1706,12 @@ class ARM64XMLParser:
         code.append("class Instruction {")
         code.append("public:")
         code.append("    Instruction() = default;")
-        code.append("    Instruction(Mnemonic mnem, uint32_t raw)")
-        code.append("        : mnemonic(mnem), raw_value(raw) {}")
+        code.append("    Instruction(Mnemonic mnem, uint32_t raw, uint16_t enc_id = 0xFFFF)")
+        code.append("        : mnemonic(mnem), raw_value(raw), encoding_id(enc_id) {}")
         code.append("")
         code.append("    Mnemonic mnemonic = Mnemonic::UNKNOWN;")
         code.append("    uint32_t raw_value = 0;")
+        code.append("    uint16_t encoding_id = 0xFFFF;  // 0xFFFF = unknown/unclassified")
         code.append("    std::vector<Operand> operands;")
         code.append("")
         code.append("#ifdef VEDA64_STRINGS")
@@ -4315,12 +4350,13 @@ class ARM64XMLParser:
         code.append("class Instruction {")
         code.append("public:")
         code.append("    Instruction() = default;")
-        code.append("    Instruction(Mnemonic mnem, uint32_t raw)")
-        code.append("        : mnemonic(mnem), raw_value(raw) {}")
+        code.append("    Instruction(Mnemonic mnem, uint32_t raw, uint16_t enc_id = 0xFFFF)")
+        code.append("        : mnemonic(mnem), raw_value(raw), encoding_id(enc_id) {}")
         code.append("")
         code.append("    Mnemonic mnemonic = Mnemonic::UNKNOWN;")
         code.append("    Condition condition = Condition::None;")
         code.append("    uint32_t raw_value = 0;")
+        code.append("    uint16_t encoding_id = 0xFFFF;  // 0xFFFF = unknown/unclassified")
         code.append("    std::vector<Operand> operands;")
         code.append("")
         code.append("#ifdef VEDA64_STRINGS")
@@ -5924,7 +5960,7 @@ class ARM64XMLParser:
         # Build the code
         ind = "    " * indent
         code = []
-        code.append(f"{ind}Instruction result(Mnemonic::{mnemonic}, insn);")
+        code.append(f"{ind}Instruction result(Mnemonic::{mnemonic}, insn, {encoding_info.get('encoding_id', 0xFFFF)});")
         code.append(f"{ind}{union_name} enc = {{}};")
         code.append(f"{ind}enc.raw = insn;")
         code.extend(self._generate_undef_checks(encoding_info, member_name, indent))
@@ -6092,7 +6128,7 @@ class ARM64XMLParser:
         union_name = f"{self._sanitize_struct_name(class_name)}Encoding"
 
         # Create Instruction object
-        code.append(f"{ind}Instruction result(Mnemonic::{mnemonic}, insn);")
+        code.append(f"{ind}Instruction result(Mnemonic::{mnemonic}, insn, {encoding_info.get('encoding_id', 0xFFFF)});")
 
         # Build field map
         field_map = {}
@@ -16103,7 +16139,6 @@ class ARM64XMLParser:
         code.append("#ifdef VEDA64_IR")
         code.append("")
         code.append('#include "veda64/ir.hpp"')
-        code.append('#include "veda64/mnemonic.hpp"')
         code.append("")
         code.append("namespace veda64::ir {")
         code.append("")
@@ -16136,18 +16171,16 @@ class ARM64XMLParser:
         code.append("    Atomic,         // LDADD, CAS, SWP, etc.")
         code.append("    System,         // MSR, MRS, SYS")
         code.append("    Nop,            // NOP, HINT")
+        code.append("    None_,          // Sentinel for unclassified encodings")
         code.append("};")
         code.append("")
         code.append("struct IrEntry {")
-        code.append("    uint32_t mask;")
-        code.append("    uint32_t match;")
-        code.append("    Mnemonic mnemonic;")
         code.append("    IrTemplate tpl;")
         code.append("    Opcode opcode;")
         code.append("    uint8_t extra;")
         code.append("};")
         code.append("")
-        code.append("// Defined in ir_tables.cpp (generated)")
+        code.append("// Defined in ir_tables.cpp (generated), indexed by encoding_id")
         code.append("extern const IrEntry ir_table[];")
         code.append("extern const size_t ir_table_size;")
         code.append("")
@@ -16820,7 +16853,6 @@ class ARM64XMLParser:
         code.append('#include "ir_internal.hpp"')
         code.append('#include "veda64/types.hpp"')
         code.append('#include "veda64/operand.hpp"')
-        code.append("#include <unordered_map>")
         code.append("")
         code.append("namespace veda64::ir {")
         code.append("")
@@ -17655,33 +17687,18 @@ class ARM64XMLParser:
         code.append("}")
         code.append("")
 
-        code.append("// Mnemonic-indexed lookup table (built on first call)")
-        code.append("static std::unordered_map<uint16_t, std::vector<size_t>> mnemonic_index;")
-        code.append("static bool mnemonic_index_built = false;")
-        code.append("")
-        code.append("static void build_mnemonic_index() {")
-        code.append("    for (size_t i = 0; i < ir_table_size; ++i)")
-        code.append("        mnemonic_index[static_cast<uint16_t>(ir_table[i].mnemonic)].push_back(i);")
-        code.append("    mnemonic_index_built = true;")
-        code.append("}")
-        code.append("")
         code.append("std::optional<Lifted> lift_from_instruction(const Instruction& insn, IrDetail detail) {")
         code.append("    temp_idx = 0;")
         code.append("")
-        code.append("    if (!mnemonic_index_built) build_mnemonic_index();")
+        code.append("    if (insn.encoding_id == 0xFFFF || insn.encoding_id >= ir_table_size)")
+        code.append("        return std::nullopt;")
         code.append("")
-        code.append("    auto it = mnemonic_index.find(static_cast<uint16_t>(insn.mnemonic));")
-        code.append("    if (it == mnemonic_index.end()) return std::nullopt;")
+        code.append("    const auto& e = ir_table[insn.encoding_id];")
+        code.append("    if (e.tpl == IrTemplate::None_)")
+        code.append("        return std::nullopt;  // unclassified encoding")
         code.append("")
-        code.append("    uint32_t raw = insn.raw_value;")
-        code.append("    for (size_t idx : it->second) {")
-        code.append("        const auto& e = ir_table[idx];")
-        code.append("        if ((raw & e.mask) == e.match) {")
-        code.append("            auto interp = get_interpreter(e.tpl);")
-        code.append("            if (interp) return interp(insn, e, detail);")
-        code.append("            return std::nullopt;")
-        code.append("        }")
-        code.append("    }")
+        code.append("    auto interp = get_interpreter(e.tpl);")
+        code.append("    if (interp) return interp(insn, e, detail);")
         code.append("    return std::nullopt;")
         code.append("}")
         code.append("")
@@ -17694,7 +17711,7 @@ class ARM64XMLParser:
         print(f"Generated ir_lift.cpp")
 
     def _generate_ir_tables(self, lib_ir_dir: Path, ir_entries: list):
-        """Generate lib/ir/ir_tables.cpp with the data table."""
+        """Generate lib/ir/ir_tables.cpp — array indexed by encoding_id."""
         code = self._license_header()
         code.append("#ifdef VEDA64_IR")
         code.append("")
@@ -17702,25 +17719,33 @@ class ARM64XMLParser:
         code.append("")
         code.append("namespace veda64::ir {")
         code.append("")
-        code.append("// Auto-generated IR classification table")
-        code.append(f"// {len(ir_entries)} entries covering classified encodings")
+
+        # Build a full array indexed by encoding_id (sentinel for unclassified)
+        total = self._encoding_id_counter
+        table = [None] * total
+        classified = 0
+        for entry in ir_entries:
+            enc_name = entry['encoding_name']
+            enc_id = self._encoding_id_map.get(enc_name)
+            if enc_id is not None:
+                table[enc_id] = entry
+                classified += 1
+
+        code.append(f"// IR table indexed by encoding_id ({classified} classified, {total} total)")
         code.append("")
-
-        # Sort by mask popcount descending (most specific first)
-        ir_entries_sorted = sorted(ir_entries, key=lambda e: -bin(e['mask']).count('1'))
-
         code.append(f"const IrEntry ir_table[] = {{")
-        for entry in ir_entries_sorted:
-            mask = f"0x{entry['mask']:08X}U"
-            match = f"0x{entry['match']:08X}U"
-            mnem = entry.get('mnemonic', 'UNKNOWN').upper()
-            tpl = f"IrTemplate::{entry['template']}"
-            opc = f"Opcode::{entry['opcode']}"
-            ex = str(entry['extra'])
-            code.append(f"    {{ {mask}, {match}, Mnemonic::{mnem}, {tpl}, {opc}, {ex} }}, // {mnem}")
+        for i, entry in enumerate(table):
+            if entry is not None:
+                tpl = f"IrTemplate::{entry['template']}"
+                opc = f"Opcode::{entry['opcode']}"
+                ex = str(entry['extra'])
+                enc_name = entry['encoding_name']
+                code.append(f"    /* [{i}] {enc_name} */ {{ {tpl}, {opc}, {ex} }},")
+            else:
+                code.append(f"    /* [{i}] */ {{ IrTemplate::None_, Opcode::NOP, 0 }},")
         code.append("};")
         code.append("")
-        code.append(f"const size_t ir_table_size = {len(ir_entries_sorted)};")
+        code.append(f"const size_t ir_table_size = {total};")
         code.append("")
         code.append("} // namespace veda64::ir")
         code.append("")
@@ -17728,7 +17753,7 @@ class ARM64XMLParser:
         code.append("")
 
         self._write_file(lib_ir_dir / "ir_tables.cpp", code)
-        print(f"Generated ir_tables.cpp ({len(ir_entries_sorted)} entries)")
+        print(f"Generated ir_tables.cpp ({classified} classified / {total} total entries)")
 
     def _generate_ir_test(self, test_dir: Path, ir_entries: list):
         """Generate test/test_ir.cpp that validates lift() on sample encodings."""
@@ -18823,6 +18848,9 @@ def main():
 
     # Generate format-based files (organized by encoding format)
     parser.generate_format_files(include_format_dir, lib_format_dir)
+
+    # Generate encoding ID constants header (must be after format files assign IDs)
+    parser.generate_encoding_id_header(include_dir)
 
     # Generate hook files (Windows ARM64 API hooking)
     print(f"\n=== Generating Hook Files ===")

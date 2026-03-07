@@ -9,7 +9,6 @@
 #ifdef VEDA64_IR
 
 #include "veda64/ir.hpp"
-#include "veda64/mnemonic.hpp"
 
 namespace veda64::ir {
 
@@ -42,18 +41,16 @@ enum class IrTemplate : uint8_t {
     Atomic,         // LDADD, CAS, SWP, etc.
     System,         // MSR, MRS, SYS
     Nop,            // NOP, HINT
+    None_,          // Sentinel for unclassified encodings
 };
 
 struct IrEntry {
-    uint32_t mask;
-    uint32_t match;
-    Mnemonic mnemonic;
     IrTemplate tpl;
     Opcode opcode;
     uint8_t extra;
 };
 
-// Defined in ir_tables.cpp (generated)
+// Defined in ir_tables.cpp (generated), indexed by encoding_id
 extern const IrEntry ir_table[];
 extern const size_t ir_table_size;
 
