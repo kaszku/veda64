@@ -11374,6 +11374,7 @@ class ARM64XMLParser:
         code.append("option(VEDA64_STRINGS \"Enable string functions (to_string, mnemonic_to_string, etc.)\" OFF)")
         code.append("option(VEDA64_IR \"Enable IR lifting and interpreter support\" OFF)")
         code.append("option(VEDA64_HOOK \"Enable inline hooking support (Windows only)\" OFF)")
+        code.append("option(VEDA64_CODEGEN \"Enable JIT code generator / assembler API\" OFF)")
         code.append("option(VEDA64_BUILD_TESTS \"Build test executables\" OFF)")
         code.append("option(VEDA64_PYTHON \"Build Python bindings via nanobind (requires vcpkg toolchain)\" OFF)")
         code.append("")
@@ -11394,6 +11395,9 @@ class ARM64XMLParser:
         code.append("if(VEDA64_HOOK)")
         code.append("    add_compile_definitions(VEDA64_HOOK)")
         code.append("endif()")
+        code.append("if(VEDA64_CODEGEN)")
+        code.append("    add_compile_definitions(VEDA64_CODEGEN)")
+        code.append("endif()")
         code.append("")
         code.append("# Collect all source and header files")
         code.append("file(GLOB_RECURSE VEDA64_SOURCES \"lib/*.cpp\")")
@@ -11402,6 +11406,14 @@ class ARM64XMLParser:
         code.append("# Hook support")
         code.append("if(NOT VEDA64_HOOK)")
         code.append("    list(REMOVE_ITEM VEDA64_SOURCES \"${CMAKE_CURRENT_SOURCE_DIR}/lib/hook.cpp\")")
+        code.append("endif()")
+        code.append("")
+        code.append("# CodeGen support")
+        code.append("if(NOT VEDA64_CODEGEN)")
+        code.append("    file(GLOB_RECURSE CODEGEN_SOURCES \"lib/codegen/*.cpp\")")
+        code.append("    if(CODEGEN_SOURCES)")
+        code.append("        list(REMOVE_ITEM VEDA64_SOURCES ${CODEGEN_SOURCES})")
+        code.append("    endif()")
         code.append("endif()")
         code.append("")
         code.append("# Create library")
@@ -11434,6 +11446,12 @@ class ARM64XMLParser:
         code.append("if(VEDA64_BUILD_TESTS)")
         code.append("    enable_testing()")
         code.append("    add_subdirectory(test)")
+        code.append("endif()")
+        code.append("")
+        code.append("# Examples")
+        code.append("option(VEDA64_BUILD_EXAMPLES \"Build example programs\" OFF)")
+        code.append("if(VEDA64_BUILD_EXAMPLES)")
+        code.append("    add_subdirectory(examples)")
         code.append("endif()")
         code.append("")
         code.append("# Python bindings via nanobind (use vcpkg toolchain to satisfy dependency)")
@@ -18829,6 +18847,1825 @@ class ARM64XMLParser:
         self._write_file(test_dir / "test_ir.cpp", code)
         print(f"Generated test_ir.cpp ({len(test_cases) + 2} tests)")
 
+    # =========================================================================
+    # CodeGen API generation
+    # =========================================================================
+
+    def generate_codegen_files(self, include_dir: Path, lib_dir: Path, test_dir: Path):
+        """Generate the codegen JIT assembler API files."""
+        codegen_inc = include_dir / "codegen"
+        codegen_lib = lib_dir / "codegen"
+        codegen_inc.mkdir(parents=True, exist_ok=True)
+        codegen_lib.mkdir(parents=True, exist_ok=True)
+
+        print(f"\n=== Generating CodeGen API ===")
+        self._generate_codegen_registers(codegen_inc)
+        self._generate_codegen_memory(codegen_inc)
+        self._generate_codegen_label(codegen_inc)
+        self._generate_codegen_emitter_header(codegen_inc)
+        self._generate_codegen_umbrella(codegen_inc)
+        self._generate_codegen_infrastructure(codegen_lib)
+        self._generate_codegen_emitter_impl(codegen_lib)
+        self._generate_codegen_test(test_dir)
+        self._generate_codegen_run_test(test_dir)
+        print(f"Generated codegen files")
+
+    def _generate_codegen_registers(self, out_dir: Path):
+        """Generate registers.hpp with typed register types and predeclared instances."""
+        code = self._license_header()
+        code.append("#pragma once")
+        code.append("")
+        code.append("#include <cstdint>")
+        code.append("")
+        code.append("namespace veda64 {")
+        code.append("namespace codegen {")
+        code.append("")
+        # Register types
+        for name, doc in [('XReg', '64-bit GP register'), ('WReg', '32-bit GP register'),
+                          ('VReg', '128-bit SIMD register'), ('BReg', '8-bit SIMD scalar'),
+                          ('HReg', '16-bit SIMD scalar'), ('SReg', '32-bit SIMD scalar'),
+                          ('DReg', '64-bit SIMD scalar'), ('QReg', '128-bit SIMD scalar')]:
+            code.append(f"/// {doc}")
+            code.append(f"struct {name} {{")
+            code.append(f"    uint8_t idx;")
+            if name in ('XReg', 'WReg'):
+                code.append(f"    constexpr bool is_sp() const {{ return idx == 31; }}")
+                code.append(f"    constexpr bool is_zr() const {{ return idx == 31; }}")
+            code.append(f"}};")
+            code.append("")
+
+        # Predeclared register instances
+        code.append("// Predeclared GP registers")
+        for i in range(31):
+            if i == 30:
+                code.append(f"inline constexpr XReg x{i}{{{i}}};  // LR")
+            else:
+                code.append(f"inline constexpr XReg x{i}{{{i}}};")
+        code.append("inline constexpr XReg xzr{31};")
+        code.append("inline constexpr XReg sp{31};")  # sp and xzr share idx 31
+        code.append("")
+        for i in range(31):
+            code.append(f"inline constexpr WReg w{i}{{{i}}};")
+        code.append("inline constexpr WReg wzr{31};")
+        code.append("inline constexpr WReg wsp{31};")
+        code.append("")
+
+        # SIMD registers
+        code.append("// Predeclared SIMD registers")
+        for prefix, rtype in [('v', 'VReg'), ('b', 'BReg'), ('h', 'HReg'),
+                                ('s', 'SReg'), ('d', 'DReg'), ('q', 'QReg')]:
+            for i in range(32):
+                code.append(f"inline constexpr {rtype} {prefix}{i}{{{i}}};")
+            code.append("")
+
+        code.append("} // namespace codegen")
+        code.append("} // namespace veda64")
+        code.append("")
+        self._write_file(out_dir / "registers.hpp", code)
+
+    def _generate_codegen_memory(self, out_dir: Path):
+        """Generate memory.hpp with Mem struct and ptr/pre/post helpers."""
+        code = self._license_header()
+        code.append("#pragma once")
+        code.append("")
+        code.append("#include <cstdint>")
+        code.append('#include "registers.hpp"')
+        code.append("")
+        code.append("namespace veda64 {")
+        code.append("namespace codegen {")
+        code.append("")
+        code.append("/// Memory operand modes")
+        code.append("enum class MemMode : uint8_t { Offset = 0, Pre = 1, Post = 2, RegOffset = 3 };")
+        code.append("")
+        code.append("/// Memory operand for load/store instructions")
+        code.append("struct Mem {")
+        code.append("    uint8_t base_idx;")
+        code.append("    int32_t offset;")
+        code.append("    MemMode mode;")
+        code.append("    uint8_t index_idx;     // 0xFF = no index register")
+        code.append("    uint8_t extend_type;   // ExtendType for reg-offset mode")
+        code.append("    uint8_t shift_amount;")
+        code.append("};")
+        code.append("")
+        # Free functions
+        code.append("/// [base, #offset]")
+        code.append("inline Mem ptr(XReg base, int32_t off = 0) {")
+        code.append("    return {base.idx, off, MemMode::Offset, 0xFF, 0, 0};")
+        code.append("}")
+        code.append("")
+        code.append("/// [base, #offset]!")
+        code.append("inline Mem pre(XReg base, int32_t off) {")
+        code.append("    return {base.idx, off, MemMode::Pre, 0xFF, 0, 0};")
+        code.append("}")
+        code.append("")
+        code.append("/// [base], #offset")
+        code.append("inline Mem post(XReg base, int32_t off) {")
+        code.append("    return {base.idx, off, MemMode::Post, 0xFF, 0, 0};")
+        code.append("}")
+        code.append("")
+        code.append("/// [base, Xm{, LSL #shift}]")
+        code.append("inline Mem ptr(XReg base, XReg index, uint8_t shift = 0) {")
+        code.append("    return {base.idx, 0, MemMode::RegOffset, index.idx, 3 /*UXTX=LSL*/, shift};")
+        code.append("}")
+        code.append("")
+        code.append("} // namespace codegen")
+        code.append("} // namespace veda64")
+        code.append("")
+        self._write_file(out_dir / "memory.hpp", code)
+
+    def _generate_codegen_label(self, out_dir: Path):
+        """Generate label.hpp with Label class for branch resolution."""
+        code = self._license_header()
+        code.append("#pragma once")
+        code.append("")
+        code.append("#include <cstdint>")
+        code.append("#include <vector>")
+        code.append("")
+        code.append("namespace veda64 {")
+        code.append("namespace codegen {")
+        code.append("")
+        code.append("/// Patch types for label resolution")
+        code.append("enum class PatchType : uint8_t {")
+        code.append("    Imm26 = 0,  // B/BL: bits [25:0], offset >>2")
+        code.append("    Imm19 = 1,  // B.cond/CBZ/CBNZ: bits [23:5], offset >>2")
+        code.append("    Imm14 = 2,  // TBZ/TBNZ: bits [18:5], offset >>2")
+        code.append("    Adr21 = 3,  // ADR: immhi:immlo split")
+        code.append("};")
+        code.append("")
+        code.append("/// Label for forward/backward branch references")
+        code.append("class Label {")
+        code.append("    friend class CodeGenerator;")
+        code.append("    struct Patch { size_t insn_offset; PatchType type; };")
+        code.append("    size_t bound_offset_ = SIZE_MAX;")
+        code.append("    std::vector<Patch> patches_;")
+        code.append("public:")
+        code.append("    Label() = default;")
+        code.append("    bool is_bound() const { return bound_offset_ != SIZE_MAX; }")
+        code.append("};")
+        code.append("")
+        code.append("} // namespace codegen")
+        code.append("} // namespace veda64")
+        code.append("")
+        self._write_file(out_dir / "label.hpp", code)
+
+    def _generate_codegen_umbrella(self, out_dir: Path):
+        """Generate codegen.hpp umbrella header."""
+        code = self._license_header()
+        code.append("#pragma once")
+        code.append("")
+        code.append('#include "registers.hpp"')
+        code.append('#include "memory.hpp"')
+        code.append('#include "label.hpp"')
+        code.append('#include "emitter.hpp"')
+        code.append("")
+        self._write_file(out_dir / "codegen.hpp", code)
+
+    def _generate_codegen_emitter_header(self, out_dir: Path):
+        """Generate emitter.hpp with CodeGenerator class and all instruction method declarations."""
+        code = self._license_header()
+        code.append("#pragma once")
+        code.append("")
+        code.append("#include <cstdint>")
+        code.append("#include <cstddef>")
+        code.append('#include "registers.hpp"')
+        code.append('#include "memory.hpp"')
+        code.append('#include "label.hpp"')
+        code.append('#include <veda64/types.hpp>')
+        code.append("")
+        code.append("// Windows ARM64 SDK may define ARM intrinsic macros that clash")
+        code.append("#ifdef mvn")
+        code.append("#undef mvn")
+        code.append("#endif")
+        code.append("")
+        code.append("namespace veda64 {")
+        code.append("namespace codegen {")
+        code.append("")
+        code.append("/// Shift specifier for register operands")
+        code.append("struct Shift {")
+        code.append("    ShiftType type = ShiftType::LSL;")
+        code.append("    uint8_t amount = 0;")
+        code.append("    constexpr Shift() = default;")
+        code.append("    constexpr Shift(ShiftType t, uint8_t a) : type(t), amount(a) {}")
+        code.append("};")
+        code.append("")
+        code.append("/// Extend specifier for register operands")
+        code.append("struct Extend {")
+        code.append("    ExtendType type;")
+        code.append("    uint8_t amount = 0;")
+        code.append("    constexpr Extend(ExtendType t, uint8_t a = 0) : type(t), amount(a) {}")
+        code.append("};")
+        code.append("")
+        code.append("/// JIT code generator / assembler")
+        code.append("class CodeGenerator {")
+        code.append("public:")
+        code.append("    explicit CodeGenerator(size_t capacity = 4096);")
+        code.append("    CodeGenerator(void* write_ptr, void* exec_ptr, size_t capacity);")
+        code.append("    ~CodeGenerator();")
+        code.append("")
+        code.append("    /// Get pointer to generated code (cast to function pointer)")
+        code.append("    template<typename T> T getCode() const { return reinterpret_cast<T>(exec_ptr_); }")
+        code.append("    size_t size() const { return offset_; }")
+        code.append("    const uint8_t* data() const { return write_ptr_; }")
+        code.append("")
+        code.append("    /// Flush I-cache and resolve any pending labels")
+        code.append("    void ready();")
+        code.append("")
+        code.append("    /// Bind a label at the current position")
+        code.append("    void bind(Label& label);")
+        code.append("")
+
+        # Generate all instruction method declarations
+        self._emit_codegen_method_decls(code)
+
+        code.append("")
+        code.append("private:")
+        code.append("    void emit(uint32_t insn);")
+        code.append("    void patch(size_t offset, uint32_t insn);")
+        code.append("    int32_t label_offset(Label& label, PatchType type);")
+        code.append("")
+        code.append("    uint8_t* write_ptr_;")
+        code.append("    uint8_t* exec_ptr_;")
+        code.append("    size_t capacity_;")
+        code.append("    size_t offset_;")
+        code.append("    bool owns_buffer_;")
+        code.append("};")
+        code.append("")
+        code.append("} // namespace codegen")
+        code.append("} // namespace veda64")
+        code.append("")
+        self._write_file(out_dir / "emitter.hpp", code)
+
+    def _emit_codegen_method_decls(self, code: list):
+        """Emit all instruction method declarations for the CodeGenerator class."""
+        code.append("    // === Data Processing - Immediate ===")
+        # ADD/SUB immediate
+        for op in ['add', 'sub']:
+            for (rt, doc) in [('XReg', '64'), ('WReg', '32')]:
+                code.append(f"    void {op}({rt} rd, {rt} rn, uint32_t imm12, bool lsl12 = false);")
+        # ADDS/SUBS immediate
+        for op in ['adds', 'subs']:
+            for rt in ['XReg', 'WReg']:
+                code.append(f"    void {op}({rt} rd, {rt} rn, uint32_t imm12, bool lsl12 = false);")
+        # AND/ORR/EOR immediate (bitmask)
+        for op in ['and_', 'orr', 'eor']:
+            for rt in ['XReg', 'WReg']:
+                code.append(f"    void {op}({rt} rd, {rt} rn, uint64_t imm);")
+        # ANDS immediate
+        for rt in ['XReg', 'WReg']:
+            code.append(f"    void ands({rt} rd, {rt} rn, uint64_t imm);")
+        # MOVZ/MOVN/MOVK
+        for op in ['movz', 'movn', 'movk']:
+            for rt in ['XReg', 'WReg']:
+                code.append(f"    void {op}({rt} rd, uint16_t imm16, uint8_t hw = 0);")
+        # ADR/ADRP
+        code.append("    void adr(XReg rd, Label& label);")
+        code.append("    void adrp(XReg rd, int64_t imm);")
+        code.append("")
+
+        code.append("    // === Data Processing - Register ===")
+        # ADD/SUB shifted register
+        for op in ['add', 'sub']:
+            for rt in ['XReg', 'WReg']:
+                code.append(f"    void {op}({rt} rd, {rt} rn, {rt} rm, Shift sh = {{}});")
+        # ADD/SUB extended register
+        for op in ['add', 'sub']:
+            code.append(f"    void {op}(XReg rd, XReg rn, WReg rm, Extend ext);")
+        # ADDS/SUBS shifted register
+        for op in ['adds', 'subs']:
+            for rt in ['XReg', 'WReg']:
+                code.append(f"    void {op}({rt} rd, {rt} rn, {rt} rm, Shift sh = {{}});")
+        # Logical shifted register
+        for op in ['and_', 'orr', 'eor', 'orn', 'bic']:
+            for rt in ['XReg', 'WReg']:
+                code.append(f"    void {op}({rt} rd, {rt} rn, {rt} rm, Shift sh = {{}});")
+        # ANDS shifted register
+        for rt in ['XReg', 'WReg']:
+            code.append(f"    void ands({rt} rd, {rt} rn, {rt} rm, Shift sh = {{}});")
+        # Shift variable (register)
+        for op in ['lsl', 'lsr', 'asr']:
+            for rt in ['XReg', 'WReg']:
+                code.append(f"    void {op}({rt} rd, {rt} rn, {rt} rm);")
+        # MUL/MADD/SDIV/UDIV
+        for op in ['mul', 'sdiv', 'udiv']:
+            for rt in ['XReg', 'WReg']:
+                code.append(f"    void {op}({rt} rd, {rt} rn, {rt} rm);")
+        for rt in ['XReg', 'WReg']:
+            code.append(f"    void madd({rt} rd, {rt} rn, {rt} rm, {rt} ra);")
+        # CSEL
+        for rt in ['XReg', 'WReg']:
+            code.append(f"    void csel({rt} rd, {rt} rn, {rt} rm, Condition cc);")
+        code.append("")
+
+        code.append("    // === Aliases ===")
+        # CMP/CMN/TST
+        for op, doc in [('cmp', 'subs(zr,rn,rm)'), ('cmn', 'adds(zr,rn,rm)')]:
+            for rt in ['XReg', 'WReg']:
+                code.append(f"    void {op}({rt} rn, {rt} rm, Shift sh = {{}});")
+                code.append(f"    void {op}({rt} rn, uint32_t imm12, bool lsl12 = false);")
+        for rt in ['XReg', 'WReg']:
+            code.append(f"    void tst({rt} rn, {rt} rm, Shift sh = {{}});")
+        # NEG/MVN
+        for rt in ['XReg', 'WReg']:
+            code.append(f"    void neg({rt} rd, {rt} rm, Shift sh = {{}});")
+            code.append(f"    void mvn({rt} rd, {rt} rm, Shift sh = {{}});")
+        # MOV convenience
+        code.append("    void mov(XReg rd, uint64_t imm);")
+        code.append("    void mov(WReg rd, uint32_t imm);")
+        for rt in ['XReg', 'WReg']:
+            code.append(f"    void mov({rt} rd, {rt} rm);")
+        # CSET
+        for rt in ['XReg', 'WReg']:
+            code.append(f"    void cset({rt} rd, Condition cc);")
+        code.append("")
+
+        code.append("    // === Branches ===")
+        code.append("    void b(Label& label);")
+        code.append("    void b(Condition cc, Label& label);")
+        code.append("    void bl(Label& label);")
+        code.append("    void br(XReg rn);")
+        code.append("    void blr(XReg rn);")
+        code.append("    void ret(XReg rn = XReg{30});")
+        for op in ['cbz', 'cbnz']:
+            for rt in ['XReg', 'WReg']:
+                code.append(f"    void {op}({rt} rt, Label& label);")
+        for op in ['tbz', 'tbnz']:
+            code.append(f"    void {op}(XReg rt, uint8_t bit, Label& label);")
+            code.append(f"    void {op}(WReg rt, uint8_t bit, Label& label);")
+        code.append("    void svc(uint16_t imm);")
+        code.append("    void brk(uint16_t imm);")
+        code.append("    void nop();")
+        code.append("")
+
+        code.append("    // === Loads and Stores ===")
+        # LDR/STR GP
+        for op in ['ldr', 'str']:
+            for rt in ['XReg', 'WReg']:
+                code.append(f"    void {op}({rt} rt, Mem mem);")
+        # LDR/STR FP scalar
+        for op in ['ldr', 'str']:
+            for rt in ['SReg', 'DReg', 'QReg']:
+                code.append(f"    void {op}({rt} rt, Mem mem);")
+        # LDRB/LDRH/STRB/STRH
+        for op in ['ldrb', 'ldrh', 'strb', 'strh']:
+            code.append(f"    void {op}(WReg rt, Mem mem);")
+        # LDRSB/LDRSH (to 32 and 64)
+        for op in ['ldrsb', 'ldrsh']:
+            for rt in ['XReg', 'WReg']:
+                code.append(f"    void {op}({rt} rt, Mem mem);")
+        # LDRSW
+        code.append("    void ldrsw(XReg rt, Mem mem);")
+        # LDR literal
+        code.append("    void ldr(XReg rt, Label& label);")
+        code.append("    void ldr(WReg rt, Label& label);")
+        # LDP/STP GP
+        for op in ['ldp', 'stp']:
+            for rt in ['XReg', 'WReg']:
+                code.append(f"    void {op}({rt} rt1, {rt} rt2, Mem mem);")
+        code.append("")
+
+        code.append("    // === Scalar FP ===")
+        for op in ['fadd', 'fsub', 'fmul', 'fdiv']:
+            for rt in ['SReg', 'DReg']:
+                code.append(f"    void {op}({rt} rd, {rt} rn, {rt} rm);")
+        for op in ['fmov']:
+            for rt in ['SReg', 'DReg']:
+                code.append(f"    void {op}({rt} rd, {rt} rn);")
+        for op in ['fcmp']:
+            for rt in ['SReg', 'DReg']:
+                code.append(f"    void {op}({rt} rn, {rt} rm);")
+                code.append(f"    void {op}({rt} rn);  // compare with 0.0")
+
+    def _generate_codegen_infrastructure(self, out_dir: Path):
+        """Generate codegen.cpp with buffer management, ready(), and label resolution."""
+        code = self._license_header()
+        code.append('#include <codegen/emitter.hpp>')
+        code.append("")
+        code.append("#include <cstring>")
+        code.append("#include <stdexcept>")
+        code.append("")
+        code.append("#ifdef _WIN32")
+        code.append("#define WIN32_LEAN_AND_MEAN")
+        code.append("#define NOMINMAX")
+        code.append("#include <windows.h>")
+        code.append("#else")
+        code.append("#include <sys/mman.h>")
+        code.append("#include <unistd.h>")
+        code.append("#endif")
+        code.append("")
+        code.append("namespace veda64 {")
+        code.append("namespace codegen {")
+        code.append("")
+        # Constructor (allocating)
+        code.append("CodeGenerator::CodeGenerator(size_t capacity)")
+        code.append("    : capacity_(capacity), offset_(0), owns_buffer_(true) {")
+        code.append("#ifdef _WIN32")
+        code.append("    write_ptr_ = static_cast<uint8_t*>(VirtualAlloc(nullptr, capacity,")
+        code.append("        MEM_COMMIT | MEM_RESERVE, PAGE_READWRITE));")
+        code.append("    if (!write_ptr_) throw std::runtime_error(\"VirtualAlloc failed\");")
+        code.append("    exec_ptr_ = write_ptr_;")
+        code.append("#else")
+        code.append("    write_ptr_ = static_cast<uint8_t*>(mmap(nullptr, capacity,")
+        code.append("        PROT_READ | PROT_WRITE, MAP_PRIVATE | MAP_ANONYMOUS, -1, 0));")
+        code.append("    if (write_ptr_ == MAP_FAILED) throw std::runtime_error(\"mmap failed\");")
+        code.append("    exec_ptr_ = write_ptr_;")
+        code.append("#endif")
+        code.append("}")
+        code.append("")
+        # Constructor (W^X)
+        code.append("CodeGenerator::CodeGenerator(void* write_ptr, void* exec_ptr, size_t capacity)")
+        code.append("    : write_ptr_(static_cast<uint8_t*>(write_ptr)),")
+        code.append("      exec_ptr_(static_cast<uint8_t*>(exec_ptr)),")
+        code.append("      capacity_(capacity), offset_(0), owns_buffer_(false) {}")
+        code.append("")
+        # Destructor
+        code.append("CodeGenerator::~CodeGenerator() {")
+        code.append("    if (owns_buffer_ && write_ptr_) {")
+        code.append("#ifdef _WIN32")
+        code.append("        VirtualFree(write_ptr_, 0, MEM_RELEASE);")
+        code.append("#else")
+        code.append("        munmap(write_ptr_, capacity_);")
+        code.append("#endif")
+        code.append("    }")
+        code.append("}")
+        code.append("")
+        # ready()
+        code.append("void CodeGenerator::ready() {")
+        code.append("#ifdef _WIN32")
+        code.append("    if (owns_buffer_) {")
+        code.append("        DWORD old_protect;")
+        code.append("        VirtualProtect(exec_ptr_, offset_, PAGE_EXECUTE_READ, &old_protect);")
+        code.append("    }")
+        code.append("    FlushInstructionCache(GetCurrentProcess(), exec_ptr_, offset_);")
+        code.append("#else")
+        code.append("    if (owns_buffer_) {")
+        code.append("        mprotect(exec_ptr_, capacity_, PROT_READ | PROT_EXEC);")
+        code.append("    }")
+        code.append("    __builtin___clear_cache(reinterpret_cast<char*>(exec_ptr_),")
+        code.append("        reinterpret_cast<char*>(exec_ptr_ + offset_));")
+        code.append("#endif")
+        code.append("}")
+        code.append("")
+        # emit()
+        code.append("void CodeGenerator::emit(uint32_t insn) {")
+        code.append("    if (offset_ + 4 > capacity_) throw std::runtime_error(\"codegen buffer overflow\");")
+        code.append("    std::memcpy(write_ptr_ + offset_, &insn, 4);")
+        code.append("    offset_ += 4;")
+        code.append("}")
+        code.append("")
+        # patch()
+        code.append("void CodeGenerator::patch(size_t offset, uint32_t insn) {")
+        code.append("    std::memcpy(write_ptr_ + offset, &insn, 4);")
+        code.append("}")
+        code.append("")
+        # bind()
+        code.append("void CodeGenerator::bind(Label& label) {")
+        code.append("    label.bound_offset_ = offset_;")
+        code.append("    // Back-patch all pending references")
+        code.append("    for (auto& p : label.patches_) {")
+        code.append("        int32_t diff = static_cast<int32_t>(label.bound_offset_ - p.insn_offset);")
+        code.append("        uint32_t insn;")
+        code.append("        std::memcpy(&insn, write_ptr_ + p.insn_offset, 4);")
+        code.append("        switch (p.type) {")
+        code.append("        case PatchType::Imm26:")
+        code.append("            insn = (insn & 0xFC000000U) | ((diff >> 2) & 0x03FFFFFFU);")
+        code.append("            break;")
+        code.append("        case PatchType::Imm19:")
+        code.append("            insn = (insn & 0xFF00001FU) | (((diff >> 2) & 0x7FFFF) << 5);")
+        code.append("            break;")
+        code.append("        case PatchType::Imm14:")
+        code.append("            insn = (insn & 0xFFF8001FU) | (((diff >> 2) & 0x3FFF) << 5);")
+        code.append("            break;")
+        code.append("        case PatchType::Adr21: {")
+        code.append("            uint32_t immlo = diff & 0x3;")
+        code.append("            uint32_t immhi = (diff >> 2) & 0x7FFFF;")
+        code.append("            insn = (insn & 0x9F00001FU) | (immlo << 29) | (immhi << 5);")
+        code.append("            break;")
+        code.append("        }")
+        code.append("        }")
+        code.append("        std::memcpy(write_ptr_ + p.insn_offset, &insn, 4);")
+        code.append("    }")
+        code.append("    label.patches_.clear();")
+        code.append("}")
+        code.append("")
+        # label_offset()
+        code.append("int32_t CodeGenerator::label_offset(Label& label, PatchType type) {")
+        code.append("    if (label.is_bound()) {")
+        code.append("        return static_cast<int32_t>(label.bound_offset_ - offset_);")
+        code.append("    }")
+        code.append("    label.patches_.push_back({offset_, type});")
+        code.append("    return 0;  // placeholder")
+        code.append("}")
+        code.append("")
+        code.append("} // namespace codegen")
+        code.append("} // namespace veda64")
+        code.append("")
+        self._write_file(out_dir / "codegen.cpp", code)
+
+    def _generate_codegen_emitter_impl(self, out_dir: Path):
+        """Generate emitter.cpp with all instruction method bodies."""
+        code = self._license_header()
+        code.append('#include <codegen/emitter.hpp>')
+        code.append('#include <format/format.hpp>')
+        code.append("")
+        code.append("// Windows ARM64 SDK defines 'mvn' as a macro (ARM intrinsic)")
+        code.append("#ifdef mvn")
+        code.append("#undef mvn")
+        code.append("#endif")
+        code.append("")
+        code.append("namespace veda64 {")
+        code.append("namespace codegen {")
+        code.append("")
+        code.append("using namespace veda64::format;")
+        code.append("")
+
+        # Helper: encode logical immediate
+        code.append("namespace {")
+        code.append("// Encode a bitmask immediate for logical instructions.")
+        code.append("// Returns true on success, filling N/immr/imms.")
+        code.append("bool encode_logical_imm(uint64_t imm, bool is64, uint32_t& N, uint32_t& immr, uint32_t& imms) {")
+        code.append("    if (imm == 0 || imm == ~0ULL) return false;")
+        code.append("    if (!is64) {")
+        code.append("        imm = (imm & 0xFFFFFFFFULL) | ((imm & 0xFFFFFFFFULL) << 32);")
+        code.append("    }")
+        code.append("    // Find the smallest repeating element")
+        code.append("    unsigned size = 64;")
+        code.append("    uint64_t mask = ~0ULL;")
+        code.append("    for (unsigned s = 32; s >= 2; s >>= 1) {")
+        code.append("        uint64_t lo = imm & ((1ULL << s) - 1);")
+        code.append("        uint64_t hi = (imm >> s) & ((1ULL << s) - 1);")
+        code.append("        if (lo == hi) { size = s; mask = (1ULL << s) - 1; }")
+        code.append("        else break;")
+        code.append("    }")
+        code.append("    uint64_t pattern = imm & mask;")
+        code.append("    // Pattern must be a rotated run of 1s")
+        code.append("    // Rotate until pattern starts with a 0 bit")
+        code.append("    unsigned rotation = 0;")
+        code.append("    uint64_t normalized = pattern;")
+        code.append("    for (unsigned i = 0; i < size; i++) {")
+        code.append("        if ((normalized & 1) == 0) break;")
+        code.append("        normalized = ((normalized >> 1) | ((normalized & 1) << (size - 1))) & mask;")
+        code.append("        rotation++;")
+        code.append("    }")
+        code.append("    // Count the run of 1s")
+        code.append("    unsigned ones = 0;")
+        code.append("    uint64_t tmp = normalized >> 0;")
+        code.append("    // Skip leading zeros")
+        code.append("    if (normalized == 0) return false;")
+        code.append("    unsigned leading_zeros = 0;")
+        code.append("    for (unsigned i = 0; i < size; i++) {")
+        code.append("        if ((normalized >> i) & 1) { leading_zeros = i; break; }")
+        code.append("    }")
+        code.append("    for (unsigned i = leading_zeros; i < size; i++) {")
+        code.append("        if ((normalized >> i) & 1) ones++;")
+        code.append("        else break;")
+        code.append("    }")
+        code.append("    // Verify it's a contiguous run")
+        code.append("    uint64_t expected = (((1ULL << ones) - 1) << leading_zeros) & mask;")
+        code.append("    if (normalized != expected) return false;")
+        code.append("    immr = (size - rotation - leading_zeros) % size;")
+        code.append("    imms = ((~(size * 2 - 1)) & 0x3F) | (ones - 1);")
+        code.append("    N = (size == 64) ? 1 : 0;")
+        code.append("    return true;")
+        code.append("}")
+        code.append("} // anonymous namespace")
+        code.append("")
+
+        # === Data Processing - Immediate ===
+        code.append("// === Data Processing - Immediate ===")
+        for op, enc_name_32, enc_name_64 in [
+            ('add', 'add_32_addsub_imm', 'add_64_addsub_imm'),
+            ('sub', 'sub_32_addsub_imm', 'sub_64_addsub_imm'),
+            ('adds', 'adds_32s_addsub_imm', 'adds_64s_addsub_imm'),
+            ('subs', 'subs_32s_addsub_imm', 'subs_64s_addsub_imm'),
+        ]:
+            for rt, enc in [('XReg', enc_name_64), ('WReg', enc_name_32)]:
+                code.append(f"void CodeGenerator::{op}({rt} rd, {rt} rn, uint32_t imm12, bool lsl12) {{")
+                code.append(f"    emit(dpimm::encode_{enc}(rd.idx, rn.idx, imm12, lsl12 ? 1 : 0));")
+                code.append("}")
+                code.append("")
+
+        # AND/ORR/EOR immediate (bitmask)
+        for op, enc32, enc64 in [
+            ('and_', 'and_32_log_imm', 'and_64_log_imm'),
+            ('orr', 'orr_32_log_imm', 'orr_64_log_imm'),
+            ('eor', 'eor_32_log_imm', 'eor_64_log_imm'),
+            ('ands', 'ands_32s_log_imm', 'ands_64s_log_imm'),
+        ]:
+            for rt, enc, is64 in [('XReg', enc64, True), ('WReg', enc32, False)]:
+                code.append(f"void CodeGenerator::{op}({rt} rd, {rt} rn, uint64_t imm) {{")
+                code.append(f"    uint32_t N, immr, imms;")
+                code.append(f"    encode_logical_imm(imm, {'true' if is64 else 'false'}, N, immr, imms);")
+                if is64:
+                    code.append(f"    emit(dpimm::encode_{enc}(rd.idx, rn.idx, imms, immr, N));")
+                else:
+                    code.append(f"    emit(dpimm::encode_{enc}(rd.idx, rn.idx, imms, immr));")
+                code.append("}")
+                code.append("")
+
+        # MOVZ/MOVN/MOVK
+        for op, enc32, enc64 in [
+            ('movz', 'movz_32_movewide', 'movz_64_movewide'),
+            ('movn', 'movn_32_movewide', 'movn_64_movewide'),
+            ('movk', 'movk_32_movewide', 'movk_64_movewide'),
+        ]:
+            for rt, enc in [('XReg', enc64), ('WReg', enc32)]:
+                code.append(f"void CodeGenerator::{op}({rt} rd, uint16_t imm16, uint8_t hw) {{")
+                code.append(f"    emit(dpimm::encode_{enc}(rd.idx, imm16, hw));")
+                code.append("}")
+                code.append("")
+
+        # ADR (label)
+        code.append("void CodeGenerator::adr(XReg rd, Label& label) {")
+        code.append("    int32_t off = label_offset(label, PatchType::Adr21);")
+        code.append("    int32_t immhi = (off >> 2) & 0x7FFFF;")
+        code.append("    int32_t immlo = off & 0x3;")
+        code.append("    emit(dpimm::encode_adr_only_pcreladdr(rd.idx, immhi, immlo));")
+        code.append("}")
+        code.append("")
+        # ADRP (page-relative, not label-based for now)
+        code.append("void CodeGenerator::adrp(XReg rd, int64_t imm) {")
+        code.append("    int32_t immhi = static_cast<int32_t>((imm >> 14) & 0x7FFFF);")
+        code.append("    int32_t immlo = static_cast<int32_t>((imm >> 12) & 0x3);")
+        code.append("    emit(dpimm::encode_adrp_only_pcreladdr(rd.idx, immhi, immlo));")
+        code.append("}")
+        code.append("")
+
+        # === Data Processing - Register ===
+        code.append("// === Data Processing - Register ===")
+        # ADD/SUB shifted register
+        for op, enc32, enc64 in [
+            ('add', 'add_32_addsub_shift', 'add_64_addsub_shift'),
+            ('sub', 'sub_32_addsub_shift', 'sub_64_addsub_shift'),
+            ('adds', 'adds_32_addsub_shift', 'adds_64_addsub_shift'),
+            ('subs', 'subs_32_addsub_shift', 'subs_64_addsub_shift'),
+        ]:
+            for rt, enc in [('XReg', enc64), ('WReg', enc32)]:
+                code.append(f"void CodeGenerator::{op}({rt} rd, {rt} rn, {rt} rm, Shift sh) {{")
+                code.append(f"    emit(dpreg::encode_{enc}(rd.idx, rn.idx, sh.amount, rm.idx, static_cast<uint32_t>(sh.type)));")
+                code.append("}")
+                code.append("")
+
+        # ADD/SUB extended register
+        for op, enc in [('add', 'add_64_addsub_ext'), ('sub', 'sub_64_addsub_ext')]:
+            code.append(f"void CodeGenerator::{op}(XReg rd, XReg rn, WReg rm, Extend ext) {{")
+            code.append(f"    emit(dpreg::encode_{enc}(rd.idx, rn.idx, ext.amount, static_cast<uint32_t>(ext.type), rm.idx));")
+            code.append("}")
+            code.append("")
+
+        # Logical shifted register
+        for op, enc32, enc64 in [
+            ('and_', 'and_32_log_shift', 'and_64_log_shift'),
+            ('orr', 'orr_32_log_shift', 'orr_64_log_shift'),
+            ('eor', 'eor_32_log_shift', 'eor_64_log_shift'),
+            ('orn', 'orn_32_log_shift', 'orn_64_log_shift'),
+            ('bic', 'bic_32_log_shift', 'bic_64_log_shift'),
+            ('ands', 'ands_32_log_shift', 'ands_64_log_shift'),
+        ]:
+            for rt, enc in [('XReg', enc64), ('WReg', enc32)]:
+                code.append(f"void CodeGenerator::{op}({rt} rd, {rt} rn, {rt} rm, Shift sh) {{")
+                code.append(f"    emit(dpreg::encode_{enc}(rd.idx, rn.idx, sh.amount, rm.idx, static_cast<uint32_t>(sh.type)));")
+                code.append("}")
+                code.append("")
+
+        # Shift variable
+        for op, enc32, enc64 in [
+            ('lsl', 'lsl_lslv_32_dp_2src', 'lsl_lslv_64_dp_2src'),
+            ('lsr', 'lsr_lsrv_32_dp_2src', 'lsr_lsrv_64_dp_2src'),
+            ('asr', 'asr_asrv_32_dp_2src', 'asr_asrv_64_dp_2src'),
+        ]:
+            for rt, enc in [('XReg', enc64), ('WReg', enc32)]:
+                code.append(f"void CodeGenerator::{op}({rt} rd, {rt} rn, {rt} rm) {{")
+                code.append(f"    emit(dpreg::encode_{enc}(rd.idx, rn.idx, rm.idx));")
+                code.append("}")
+                code.append("")
+
+        # MUL/SDIV/UDIV
+        for op, enc32, enc64 in [
+            ('mul', 'mul_madd_32a_dp_3src', 'mul_madd_64a_dp_3src'),
+            ('sdiv', 'sdiv_32_dp_2src', 'sdiv_64_dp_2src'),
+            ('udiv', 'udiv_32_dp_2src', 'udiv_64_dp_2src'),
+        ]:
+            for rt, enc in [('XReg', enc64), ('WReg', enc32)]:
+                code.append(f"void CodeGenerator::{op}({rt} rd, {rt} rn, {rt} rm) {{")
+                code.append(f"    emit(dpreg::encode_{enc}(rd.idx, rn.idx, rm.idx));")
+                code.append("}")
+                code.append("")
+
+        # MADD
+        for rt, enc in [('XReg', 'madd_64a_dp_3src'), ('WReg', 'madd_32a_dp_3src')]:
+            code.append(f"void CodeGenerator::madd({rt} rd, {rt} rn, {rt} rm, {rt} ra) {{")
+            code.append(f"    emit(dpreg::encode_{enc}(rd.idx, rn.idx, ra.idx, rm.idx));")
+            code.append("}")
+            code.append("")
+
+        # CSEL
+        for rt, enc in [('XReg', 'csel_64_condsel'), ('WReg', 'csel_32_condsel')]:
+            code.append(f"void CodeGenerator::csel({rt} rd, {rt} rn, {rt} rm, Condition cc) {{")
+            code.append(f"    emit(dpreg::encode_{enc}(rd.idx, rn.idx, static_cast<uint32_t>(cc), rm.idx));")
+            code.append("}")
+            code.append("")
+
+        # === Aliases ===
+        code.append("// === Aliases ===")
+        # CMP (shifted register)
+        for rt, zr in [('XReg', 'xzr'), ('WReg', 'wzr')]:
+            code.append(f"void CodeGenerator::cmp({rt} rn, {rt} rm, Shift sh) {{ subs({rt}{{31}}, rn, rm, sh); }}")
+            code.append(f"void CodeGenerator::cmp({rt} rn, uint32_t imm12, bool lsl12) {{ subs({rt}{{31}}, rn, imm12, lsl12); }}")
+        # CMN
+        for rt in ['XReg', 'WReg']:
+            code.append(f"void CodeGenerator::cmn({rt} rn, {rt} rm, Shift sh) {{ adds({rt}{{31}}, rn, rm, sh); }}")
+            code.append(f"void CodeGenerator::cmn({rt} rn, uint32_t imm12, bool lsl12) {{ adds({rt}{{31}}, rn, imm12, lsl12); }}")
+        # TST
+        for rt in ['XReg', 'WReg']:
+            code.append(f"void CodeGenerator::tst({rt} rn, {rt} rm, Shift sh) {{ ands({rt}{{31}}, rn, rm, sh); }}")
+        # NEG
+        for rt in ['XReg', 'WReg']:
+            code.append(f"void CodeGenerator::neg({rt} rd, {rt} rm, Shift sh) {{ sub(rd, {rt}{{31}}, rm, sh); }}")
+        # MVN
+        for rt in ['XReg', 'WReg']:
+            code.append(f"void CodeGenerator::mvn({rt} rd, {rt} rm, Shift sh) {{ orn(rd, {rt}{{31}}, rm, sh); }}")
+        code.append("")
+
+        # MOV convenience (reg)
+        for rt, enc in [('XReg', 'mov_add_64_addsub_imm'), ('WReg', 'mov_add_32_addsub_imm')]:
+            code.append(f"void CodeGenerator::mov({rt} rd, {rt} rm) {{")
+            code.append(f"    emit(dpimm::encode_{enc}(rd.idx, rm.idx));")
+            code.append("}")
+            code.append("")
+
+        # MOV immediate (synthesize MOVZ + MOVK sequence)
+        code.append("void CodeGenerator::mov(XReg rd, uint64_t imm) {")
+        code.append("    if (imm == 0) { movz(rd, 0, 0); return; }")
+        code.append("    // Try MOVZ/MOVN for simple cases")
+        code.append("    bool first = true;")
+        code.append("    for (int hw = 0; hw < 4; hw++) {")
+        code.append("        uint16_t chunk = static_cast<uint16_t>((imm >> (hw * 16)) & 0xFFFF);")
+        code.append("        if (chunk != 0) {")
+        code.append("            if (first) { movz(rd, chunk, hw); first = false; }")
+        code.append("            else { movk(rd, chunk, hw); }")
+        code.append("        }")
+        code.append("    }")
+        code.append("}")
+        code.append("")
+        code.append("void CodeGenerator::mov(WReg rd, uint32_t imm) {")
+        code.append("    if (imm == 0) { movz(rd, 0, 0); return; }")
+        code.append("    bool first = true;")
+        code.append("    for (int hw = 0; hw < 2; hw++) {")
+        code.append("        uint16_t chunk = static_cast<uint16_t>((imm >> (hw * 16)) & 0xFFFF);")
+        code.append("        if (chunk != 0) {")
+        code.append("            if (first) { movz(rd, chunk, hw); first = false; }")
+        code.append("            else { movk(rd, chunk, hw); }")
+        code.append("        }")
+        code.append("    }")
+        code.append("}")
+        code.append("")
+
+        # CSET
+        for rt, enc in [('XReg', 'cset_csinc_64_condsel'), ('WReg', 'cset_csinc_32_condsel')]:
+            code.append(f"void CodeGenerator::cset({rt} rd, Condition cc) {{")
+            code.append(f"    emit(dpreg::encode_{enc}(rd.idx, static_cast<uint32_t>(cc) ^ 1));")
+            code.append("}")
+            code.append("")
+
+        # === Branches ===
+        code.append("// === Branches ===")
+        code.append("void CodeGenerator::b(Label& label) {")
+        code.append("    int32_t off = label_offset(label, PatchType::Imm26);")
+        code.append("    emit(control::encode_b_only_branch_imm(off >> 2));")
+        code.append("}")
+        code.append("")
+        code.append("void CodeGenerator::b(Condition cc, Label& label) {")
+        code.append("    int32_t off = label_offset(label, PatchType::Imm19);")
+        code.append("    emit(control::encode_b_only_condbranch(static_cast<uint32_t>(cc), off >> 2));")
+        code.append("}")
+        code.append("")
+        code.append("void CodeGenerator::bl(Label& label) {")
+        code.append("    int32_t off = label_offset(label, PatchType::Imm26);")
+        code.append("    emit(control::encode_bl_only_branch_imm(off >> 2));")
+        code.append("}")
+        code.append("")
+        code.append("void CodeGenerator::br(XReg rn) { emit(control::encode_br_64_branch_reg(rn.idx)); }")
+        code.append("void CodeGenerator::blr(XReg rn) { emit(control::encode_blr_64_branch_reg(rn.idx)); }")
+        code.append("void CodeGenerator::ret(XReg rn) { emit(control::encode_ret_64r_branch_reg(rn.idx)); }")
+        code.append("")
+
+        # CBZ/CBNZ
+        for op, enc32, enc64 in [
+            ('cbz', 'cbz_32_compbranch', 'cbz_64_compbranch'),
+            ('cbnz', 'cbnz_32_compbranch', 'cbnz_64_compbranch'),
+        ]:
+            for rt, enc in [('XReg', enc64), ('WReg', enc32)]:
+                code.append(f"void CodeGenerator::{op}({rt} rt, Label& label) {{")
+                code.append(f"    int32_t off = label_offset(label, PatchType::Imm19);")
+                code.append(f"    emit(control::encode_{enc}(rt.idx, off >> 2));")
+                code.append("}")
+                code.append("")
+
+        # TBZ/TBNZ
+        for op, enc in [('tbz', 'tbz_only_testbranch'), ('tbnz', 'tbnz_only_testbranch')]:
+            for rt in ['XReg', 'WReg']:
+                code.append(f"void CodeGenerator::{op}({rt} rt, uint8_t bit, Label& label) {{")
+                code.append(f"    int32_t off = label_offset(label, PatchType::Imm14);")
+                code.append(f"    emit(control::encode_{enc}(rt.idx, off >> 2, bit & 0x1F, (bit >> 5) & 1));")
+                code.append("}")
+                code.append("")
+
+        code.append("void CodeGenerator::svc(uint16_t imm) { emit(control::encode_svc_ex_exception(imm)); }")
+        code.append("void CodeGenerator::brk(uint16_t imm) { emit(control::encode_brk_ex_exception(imm)); }")
+        code.append("void CodeGenerator::nop() { emit(control::encode_nop_hi_hints()); }")
+        code.append("")
+
+        # === Loads and Stores ===
+        code.append("// === Loads and Stores ===")
+
+        # Helper function for GP LDR/STR with all addressing modes
+        ldst_gp = [
+            # (method, type, size_bits, pos_enc, immpost_enc, immpre_enc, regoff_enc, scale_shift)
+            ('ldr', 'XReg', 64, 'ldr_64_ldst_pos', 'ldr_64_ldst_immpost', 'ldr_64_ldst_immpre', 'ldr_64_ldst_regoff', 3),
+            ('ldr', 'WReg', 32, 'ldr_32_ldst_pos', 'ldr_32_ldst_immpost', 'ldr_32_ldst_immpre', 'ldr_32_ldst_regoff', 2),
+            ('str', 'XReg', 64, 'str_64_ldst_pos', 'str_64_ldst_immpost', 'str_64_ldst_immpre', 'str_64_ldst_regoff', 3),
+            ('str', 'WReg', 32, 'str_32_ldst_pos', 'str_32_ldst_immpost', 'str_32_ldst_immpre', 'str_32_ldst_regoff', 2),
+        ]
+        for method, rt, bits, pos, immpost, immpre, regoff, scale in ldst_gp:
+            code.append(f"void CodeGenerator::{method}({rt} rt, Mem mem) {{")
+            code.append(f"    switch (mem.mode) {{")
+            code.append(f"    case MemMode::Offset:")
+            code.append(f"        emit(ldst::encode_{pos}(rt.idx, mem.base_idx, static_cast<uint32_t>(mem.offset) >> {scale}));")
+            code.append(f"        break;")
+            code.append(f"    case MemMode::Pre:")
+            code.append(f"        emit(ldst::encode_{immpre}(rt.idx, mem.base_idx, mem.offset));")
+            code.append(f"        break;")
+            code.append(f"    case MemMode::Post:")
+            code.append(f"        emit(ldst::encode_{immpost}(rt.idx, mem.base_idx, mem.offset));")
+            code.append(f"        break;")
+            code.append(f"    case MemMode::RegOffset:")
+            code.append(f"        emit(ldst::encode_{regoff}(rt.idx, mem.base_idx, mem.shift_amount ? 1 : 0, mem.extend_type, mem.index_idx));")
+            code.append(f"        break;")
+            code.append(f"    }}")
+            code.append("}")
+            code.append("")
+
+        # FP scalar LDR/STR
+        fp_ldst = [
+            ('ldr', 'SReg', 'ldr_s_ldst_pos', 'ldr_s_ldst_immpost', 'ldr_s_ldst_immpre', 2),
+            ('ldr', 'DReg', 'ldr_d_ldst_pos', 'ldr_d_ldst_immpost', 'ldr_d_ldst_immpre', 3),
+            ('ldr', 'QReg', 'ldr_q_ldst_pos', 'ldr_q_ldst_immpost', 'ldr_q_ldst_immpre', 4),
+            ('str', 'SReg', 'str_s_ldst_pos', 'str_s_ldst_immpost', 'str_s_ldst_immpre', 2),
+            ('str', 'DReg', 'str_d_ldst_pos', 'str_d_ldst_immpost', 'str_d_ldst_immpre', 3),
+            ('str', 'QReg', 'str_q_ldst_pos', 'str_q_ldst_immpost', 'str_q_ldst_immpre', 4),
+        ]
+        for method, rt, pos, immpost, immpre, scale in fp_ldst:
+            code.append(f"void CodeGenerator::{method}({rt} rt, Mem mem) {{")
+            code.append(f"    switch (mem.mode) {{")
+            code.append(f"    case MemMode::Offset:")
+            code.append(f"        emit(ldst::encode_{pos}(rt.idx, mem.base_idx, static_cast<uint32_t>(mem.offset) >> {scale}));")
+            code.append(f"        break;")
+            code.append(f"    case MemMode::Pre:")
+            code.append(f"        emit(ldst::encode_{immpre}(rt.idx, mem.base_idx, mem.offset));")
+            code.append(f"        break;")
+            code.append(f"    case MemMode::Post:")
+            code.append(f"        emit(ldst::encode_{immpost}(rt.idx, mem.base_idx, mem.offset));")
+            code.append(f"        break;")
+            code.append(f"    default: break;")
+            code.append(f"    }}")
+            code.append("}")
+            code.append("")
+
+        # LDRB/LDRH/STRB/STRH (byte/half, always WReg, scale=0 or 1)
+        byte_half = [
+            ('ldrb', 'ldrb_32_ldst_pos', 'ldrb_32_ldst_immpost', 'ldrb_32_ldst_immpre', 0),
+            ('ldrh', 'ldrh_32_ldst_pos', 'ldrh_32_ldst_immpost', 'ldrh_32_ldst_immpre', 1),
+            ('strb', 'strb_32_ldst_pos', 'strb_32_ldst_immpost', 'strb_32_ldst_immpre', 0),
+            ('strh', 'strh_32_ldst_pos', 'strh_32_ldst_immpost', 'strh_32_ldst_immpre', 1),
+        ]
+        for method, pos, immpost, immpre, scale in byte_half:
+            code.append(f"void CodeGenerator::{method}(WReg rt, Mem mem) {{")
+            code.append(f"    switch (mem.mode) {{")
+            code.append(f"    case MemMode::Offset:")
+            if scale > 0:
+                code.append(f"        emit(ldst::encode_{pos}(rt.idx, mem.base_idx, static_cast<uint32_t>(mem.offset) >> {scale}));")
+            else:
+                code.append(f"        emit(ldst::encode_{pos}(rt.idx, mem.base_idx, static_cast<uint32_t>(mem.offset)));")
+            code.append(f"        break;")
+            code.append(f"    case MemMode::Pre:")
+            code.append(f"        emit(ldst::encode_{immpre}(rt.idx, mem.base_idx, mem.offset));")
+            code.append(f"        break;")
+            code.append(f"    case MemMode::Post:")
+            code.append(f"        emit(ldst::encode_{immpost}(rt.idx, mem.base_idx, mem.offset));")
+            code.append(f"        break;")
+            code.append(f"    default: break;")
+            code.append(f"    }}")
+            code.append("}")
+            code.append("")
+
+        # LDRSB/LDRSH (32 and 64 bit destination)
+        for op, sign_encs in [
+            ('ldrsb', [('XReg', 'ldrsb_64_ldst_pos', 'ldrsb_64_ldst_immpost', 'ldrsb_64_ldst_immpre', 0),
+                       ('WReg', 'ldrsb_32_ldst_pos', 'ldrsb_32_ldst_immpost', 'ldrsb_32_ldst_immpre', 0)]),
+            ('ldrsh', [('XReg', 'ldrsh_64_ldst_pos', 'ldrsh_64_ldst_immpost', 'ldrsh_64_ldst_immpre', 1),
+                       ('WReg', 'ldrsh_32_ldst_pos', 'ldrsh_32_ldst_immpost', 'ldrsh_32_ldst_immpre', 1)]),
+        ]:
+            for rt, pos, immpost, immpre, scale in sign_encs:
+                code.append(f"void CodeGenerator::{op}({rt} rt, Mem mem) {{")
+                code.append(f"    switch (mem.mode) {{")
+                code.append(f"    case MemMode::Offset:")
+                if scale > 0:
+                    code.append(f"        emit(ldst::encode_{pos}(rt.idx, mem.base_idx, static_cast<uint32_t>(mem.offset) >> {scale}));")
+                else:
+                    code.append(f"        emit(ldst::encode_{pos}(rt.idx, mem.base_idx, static_cast<uint32_t>(mem.offset)));")
+                code.append(f"        break;")
+                code.append(f"    case MemMode::Pre:")
+                code.append(f"        emit(ldst::encode_{immpre}(rt.idx, mem.base_idx, mem.offset));")
+                code.append(f"        break;")
+                code.append(f"    case MemMode::Post:")
+                code.append(f"        emit(ldst::encode_{immpost}(rt.idx, mem.base_idx, mem.offset));")
+                code.append(f"        break;")
+                code.append(f"    default: break;")
+                code.append(f"    }}")
+                code.append("}")
+                code.append("")
+
+        # LDRSW
+        code.append("void CodeGenerator::ldrsw(XReg rt, Mem mem) {")
+        code.append("    switch (mem.mode) {")
+        code.append("    case MemMode::Offset:")
+        code.append("        emit(ldst::encode_ldrsw_64_ldst_pos(rt.idx, mem.base_idx, static_cast<uint32_t>(mem.offset) >> 2));")
+        code.append("        break;")
+        code.append("    case MemMode::Pre:")
+        code.append("        emit(ldst::encode_ldrsw_64_ldst_immpre(rt.idx, mem.base_idx, mem.offset));")
+        code.append("        break;")
+        code.append("    case MemMode::Post:")
+        code.append("        emit(ldst::encode_ldrsw_64_ldst_immpost(rt.idx, mem.base_idx, mem.offset));")
+        code.append("        break;")
+        code.append("    default: break;")
+        code.append("    }")
+        code.append("}")
+        code.append("")
+
+        # LDR literal (PC-relative)
+        for rt, enc in [('XReg', 'ldr_64_loadlit'), ('WReg', 'ldr_32_loadlit')]:
+            code.append(f"void CodeGenerator::ldr({rt} rt, Label& label) {{")
+            code.append(f"    int32_t off = label_offset(label, PatchType::Imm19);")
+            code.append(f"    emit(ldst::encode_{enc}(rt.idx, off >> 2));")
+            code.append("}")
+            code.append("")
+
+        # LDP/STP
+        for op, enc32_off, enc64_off, enc32_post, enc64_post, enc32_pre, enc64_pre, scale32, scale64 in [
+            ('ldp', 'ldp_32_ldstpair_off', 'ldp_64_ldstpair_off',
+             'ldp_32_ldstpair_post', 'ldp_64_ldstpair_post',
+             'ldp_32_ldstpair_pre', 'ldp_64_ldstpair_pre', 2, 3),
+            ('stp', 'stp_32_ldstpair_off', 'stp_64_ldstpair_off',
+             'stp_32_ldstpair_post', 'stp_64_ldstpair_post',
+             'stp_32_ldstpair_pre', 'stp_64_ldstpair_pre', 2, 3),
+        ]:
+            for rt, enc_off, enc_post, enc_pre, scale in [
+                ('XReg', enc64_off, enc64_post, enc64_pre, scale64),
+                ('WReg', enc32_off, enc32_post, enc32_pre, scale32),
+            ]:
+                # Note: LDP/STP encode the second register as Rt2, and imm7 is the scaled offset
+                # The encode functions have params: (Rt, Rn, Rt2, imm7)
+                code.append(f"void CodeGenerator::{op}({rt} rt1, {rt} rt2, Mem mem) {{")
+                code.append(f"    int32_t imm7 = mem.offset >> {scale};")
+                code.append(f"    switch (mem.mode) {{")
+                code.append(f"    case MemMode::Offset:")
+                code.append(f"        emit(ldst::encode_{enc_off}(rt1.idx, mem.base_idx, rt2.idx, static_cast<uint32_t>(imm7)));")
+                code.append(f"        break;")
+                code.append(f"    case MemMode::Pre:")
+                code.append(f"        emit(ldst::encode_{enc_pre}(rt1.idx, mem.base_idx, rt2.idx, static_cast<uint32_t>(imm7)));")
+                code.append(f"        break;")
+                code.append(f"    case MemMode::Post:")
+                code.append(f"        emit(ldst::encode_{enc_post}(rt1.idx, mem.base_idx, rt2.idx, static_cast<uint32_t>(imm7)));")
+                code.append(f"        break;")
+                code.append(f"    default: break;")
+                code.append(f"    }}")
+                code.append("}")
+                code.append("")
+
+        # === Scalar FP ===
+        code.append("// === Scalar FP ===")
+        for op, enc_s, enc_d in [
+            ('fadd', 'fadd_s_floatdp2', 'fadd_d_floatdp2'),
+            ('fsub', 'fsub_s_floatdp2', 'fsub_d_floatdp2'),
+            ('fmul', 'fmul_s_floatdp2', 'fmul_d_floatdp2'),
+            ('fdiv', 'fdiv_s_floatdp2', 'fdiv_d_floatdp2'),
+        ]:
+            for rt, enc in [('SReg', enc_s), ('DReg', enc_d)]:
+                code.append(f"void CodeGenerator::{op}({rt} rd, {rt} rn, {rt} rm) {{")
+                code.append(f"    emit(simd_dp::encode_{enc}(rd.idx, rn.idx, rm.idx));")
+                code.append("}")
+                code.append("")
+
+        # FMOV scalar
+        for rt, enc in [('SReg', 'fmov_s_floatdp1'), ('DReg', 'fmov_d_floatdp1')]:
+            code.append(f"void CodeGenerator::fmov({rt} rd, {rt} rn) {{")
+            code.append(f"    emit(simd_dp::encode_{enc}(rd.idx, rn.idx));")
+            code.append("}")
+            code.append("")
+
+        # FCMP
+        for rt, enc, enc_z in [('SReg', 'fcmp_s_floatcmp', 'fcmp_sz_floatcmp'),
+                                 ('DReg', 'fcmp_d_floatcmp', 'fcmp_dz_floatcmp')]:
+            code.append(f"void CodeGenerator::fcmp({rt} rn, {rt} rm) {{")
+            code.append(f"    emit(simd_dp::encode_{enc}(rn.idx, rm.idx));")
+            code.append("}")
+            code.append("")
+            code.append(f"void CodeGenerator::fcmp({rt} rn) {{")
+            code.append(f"    emit(simd_dp::encode_{enc_z}(rn.idx, 0));")
+            code.append("}")
+            code.append("")
+
+        code.append("} // namespace codegen")
+        code.append("} // namespace veda64")
+        code.append("")
+        self._write_file(out_dir / "emitter.cpp", code)
+
+    def _generate_codegen_test(self, test_dir: Path):
+        """Generate test_codegen.cpp."""
+        code = self._license_header()
+        code.append("#ifdef VEDA64_CODEGEN")
+        code.append("")
+        code.append("#include <codegen/codegen.hpp>")
+        code.append("#include <veda64.hpp>")
+        code.append("#include <iostream>")
+        code.append("#include <cassert>")
+        code.append("#include <cstring>")
+        code.append("")
+        code.append("using namespace veda64;")
+        code.append("using namespace veda64::codegen;")
+        code.append("")
+        code.append("static uint32_t get_insn(const CodeGenerator& cg, size_t idx) {")
+        code.append("    uint32_t val;")
+        code.append("    std::memcpy(&val, cg.data() + idx * 4, 4);")
+        code.append("    return val;")
+        code.append("}")
+        code.append("")
+
+        # Test: roundtrip encode-decode for various instructions
+        code.append("static int test_arithmetic() {")
+        code.append("    CodeGenerator cg(4096);")
+        code.append("    cg.add(x0, x1, x2);")
+        code.append("    cg.sub(w3, w4, w5);")
+        code.append("    cg.adds(x6, x7, uint32_t(42));")
+        code.append("    cg.mul(x10, x11, x12);")
+        code.append("    cg.sdiv(w20, w21, w22);")
+        code.append("    cg.cmp(x0, x1);")
+        code.append("    cg.neg(x0, x1);")
+        code.append("")
+        code.append("    // Verify via decode")
+        code.append("    auto r = decode(get_insn(cg, 0));")
+        code.append("    assert(r && r->mnemonic() == Mnemonic::ADD);")
+        code.append("    r = decode(get_insn(cg, 1));")
+        code.append("    assert(r && r->mnemonic() == Mnemonic::SUB);")
+        code.append("    r = decode(get_insn(cg, 2));")
+        code.append("    assert(r && r->mnemonic() == Mnemonic::ADDS);")
+        code.append("    r = decode(get_insn(cg, 3));")
+        code.append("    assert(r && r->mnemonic() == Mnemonic::MUL);")
+        code.append("    r = decode(get_insn(cg, 4));")
+        code.append("    assert(r && r->mnemonic() == Mnemonic::SDIV);")
+        code.append("    r = decode(get_insn(cg, 5));")
+        code.append("    assert(r && r->mnemonic() == Mnemonic::SUBS);  // CMP -> SUBS")
+        code.append("    r = decode(get_insn(cg, 6));")
+        code.append("    assert(r && r->mnemonic() == Mnemonic::SUB);   // NEG -> SUB")
+        code.append("    std::cout << \"  arithmetic: OK\" << std::endl;")
+        code.append("    return 0;")
+        code.append("}")
+        code.append("")
+
+        code.append("static int test_branches() {")
+        code.append("    CodeGenerator cg(4096);")
+        code.append("    Label loop;")
+        code.append("    cg.bind(loop);")
+        code.append("    cg.nop();")
+        code.append("    cg.b(loop);")
+        code.append("")
+        code.append("    auto r = decode(get_insn(cg, 0));")
+        code.append("    assert(r && r->mnemonic() == Mnemonic::NOP);")
+        code.append("    r = decode(get_insn(cg, 1));")
+        code.append("    assert(r && r->mnemonic() == Mnemonic::B);")
+        code.append("    std::cout << \"  branches: OK\" << std::endl;")
+        code.append("    return 0;")
+        code.append("}")
+        code.append("")
+
+        code.append("static int test_forward_branch() {")
+        code.append("    CodeGenerator cg(4096);")
+        code.append("    Label skip;")
+        code.append("    cg.b(skip);")
+        code.append("    cg.nop();")
+        code.append("    cg.bind(skip);")
+        code.append("    cg.ret();")
+        code.append("")
+        code.append("    // B should jump forward by +8 bytes (2 instructions)")
+        code.append("    uint32_t b_insn = get_insn(cg, 0);")
+        code.append("    int32_t imm26 = static_cast<int32_t>(b_insn << 6) >> 6;  // sign extend")
+        code.append("    assert(imm26 == 2);  // 2 instructions = 8 bytes")
+        code.append("    std::cout << \"  forward branch: OK\" << std::endl;")
+        code.append("    return 0;")
+        code.append("}")
+        code.append("")
+
+        code.append("static int test_ldst() {")
+        code.append("    CodeGenerator cg(4096);")
+        code.append("    cg.ldr(x0, ptr(x1, 8));")
+        code.append("    cg.str(w2, pre(x3, -16));")
+        code.append("    cg.ldrb(w4, ptr(x5));")
+        code.append("    cg.stp(x6, x7, ptr(sp, 16));")
+        code.append("")
+        code.append("    auto r = decode(get_insn(cg, 0));")
+        code.append("    assert(r && r->mnemonic() == Mnemonic::LDR);")
+        code.append("    r = decode(get_insn(cg, 1));")
+        code.append("    assert(r && r->mnemonic() == Mnemonic::STR);")
+        code.append("    r = decode(get_insn(cg, 2));")
+        code.append("    assert(r && r->mnemonic() == Mnemonic::LDRB);")
+        code.append("    r = decode(get_insn(cg, 3));")
+        code.append("    assert(r && r->mnemonic() == Mnemonic::STP);")
+        code.append("    std::cout << \"  ldst: OK\" << std::endl;")
+        code.append("    return 0;")
+        code.append("}")
+        code.append("")
+
+        code.append("static int test_fp() {")
+        code.append("    CodeGenerator cg(4096);")
+        code.append("    cg.fadd(s0, s1, s2);")
+        code.append("    cg.fmul(d3, d4, d5);")
+        code.append("    cg.fcmp(s0, s1);")
+        code.append("")
+        code.append("    auto r = decode(get_insn(cg, 0));")
+        code.append("    assert(r && r->mnemonic() == Mnemonic::FADD);")
+        code.append("    r = decode(get_insn(cg, 1));")
+        code.append("    assert(r && r->mnemonic() == Mnemonic::FMUL);")
+        code.append("    r = decode(get_insn(cg, 2));")
+        code.append("    assert(r && r->mnemonic() == Mnemonic::FCMP);")
+        code.append("    std::cout << \"  fp: OK\" << std::endl;")
+        code.append("    return 0;")
+        code.append("}")
+        code.append("")
+
+        code.append("static int test_mov() {")
+        code.append("    CodeGenerator cg(4096);")
+        code.append("    cg.mov(x0, x1);")
+        code.append("    cg.mov(w2, uint32_t(42));")
+        code.append("    cg.mov(x3, uint64_t(0xDEADBEEF));")
+        code.append("")
+        code.append("    auto r = decode(get_insn(cg, 0));")
+        code.append("    assert(r && (r->mnemonic() == Mnemonic::ADD || r->mnemonic() == Mnemonic::MOV));")
+        code.append("    r = decode(get_insn(cg, 1));")
+        code.append("    assert(r && (r->mnemonic() == Mnemonic::MOVZ || r->mnemonic() == Mnemonic::MOV));")
+        code.append("    std::cout << \"  mov: OK\" << std::endl;")
+        code.append("    return 0;")
+        code.append("}")
+        code.append("")
+
+        # Execute test (only on ARM64)
+        code.append("#if defined(__aarch64__) || defined(_M_ARM64)")
+        code.append("static int test_execute() {")
+        code.append("    CodeGenerator cg(4096);")
+        code.append("    // Generate: return arg0 + 1")
+        code.append("    cg.add(w0, w0, uint32_t(1));")
+        code.append("    cg.ret();")
+        code.append("    cg.ready();")
+        code.append("")
+        code.append("    auto fn = cg.getCode<int(*)(int)>();")
+        code.append("    assert(fn(41) == 42);")
+        code.append("    std::cout << \"  execute: OK\" << std::endl;")
+        code.append("    return 0;")
+        code.append("}")
+        code.append("")
+        code.append("static int test_execute_loop() {")
+        code.append("    CodeGenerator cg(4096);")
+        code.append("    Label loop;")
+        code.append("    // sum 1..N: w1=0, loop: w1+=1, cmp w1,w0, b.lt loop, mov w0,w1, ret")
+        code.append("    cg.mov(w1, uint32_t(0));")
+        code.append("    cg.bind(loop);")
+        code.append("    cg.add(w1, w1, uint32_t(1));")
+        code.append("    cg.cmp(w1, w0);")
+        code.append("    cg.b(Condition::LT, loop);")
+        code.append("    cg.mov(w0, w1);")
+        code.append("    cg.ret();")
+        code.append("    cg.ready();")
+        code.append("")
+        code.append("    auto fn = cg.getCode<int(*)(int)>();")
+        code.append("    assert(fn(10) == 10);")
+        code.append("    assert(fn(1) == 1);")
+        code.append("    std::cout << \"  execute loop: OK\" << std::endl;")
+        code.append("    return 0;")
+        code.append("}")
+        code.append("#endif")
+        code.append("")
+
+        code.append("int main() {")
+        code.append("    std::cout << \"Running codegen tests...\" << std::endl;")
+        code.append("    int err = 0;")
+        code.append("    err |= test_arithmetic();")
+        code.append("    err |= test_branches();")
+        code.append("    err |= test_forward_branch();")
+        code.append("    err |= test_ldst();")
+        code.append("    err |= test_fp();")
+        code.append("    err |= test_mov();")
+        code.append("#if defined(__aarch64__) || defined(_M_ARM64)")
+        code.append("    err |= test_execute();")
+        code.append("    err |= test_execute_loop();")
+        code.append("#endif")
+        code.append("    std::cout << \"All codegen tests passed!\" << std::endl;")
+        code.append("    return err;")
+        code.append("}")
+        code.append("")
+        code.append("#else // !VEDA64_CODEGEN")
+        code.append("")
+        code.append("#include <cstdio>")
+        code.append("int main() {")
+        code.append('    printf("Codegen tests skipped (VEDA64_CODEGEN not set)\\n");')
+        code.append("    return 0;")
+        code.append("}")
+        code.append("")
+        code.append("#endif")
+        code.append("")
+
+        self._write_file(test_dir / "test_codegen.cpp", code)
+        print(f"Generated test_codegen.cpp")
+
+    def _generate_codegen_run_test(self, test_dir: Path):
+        """Generate test_codegen_run.cpp — end-to-end execution tests for the codegen API."""
+        code = self._license_header()
+        code.append("#if defined(VEDA64_CODEGEN) && (defined(__aarch64__) || defined(_M_ARM64))")
+        code.append("")
+        code.append("#include <codegen/codegen.hpp>")
+        code.append("#include <veda64.hpp>")
+        code.append("#include <iostream>")
+        code.append("#include <cassert>")
+        code.append("#include <cstring>")
+        code.append("#include <cstdint>")
+        code.append("#include <cmath>")
+        code.append("")
+        code.append("using namespace veda64;")
+        code.append("using namespace veda64::codegen;")
+        code.append("")
+        code.append("static int failures = 0;")
+        code.append("")
+        code.append("#define CHECK(expr, name) do { \\")
+        code.append("    if (!(expr)) { \\")
+        code.append('        std::cerr << "  FAIL: " << (name) << " (" #expr ")" << std::endl; \\')
+        code.append("        failures++; \\")
+        code.append("    } \\")
+        code.append("} while(0)")
+        code.append("")
+
+        # --- Test: identity function ---
+        code.append("static void test_identity() {")
+        code.append("    CodeGenerator cg(4096);")
+        code.append("    cg.ret();")
+        code.append("    cg.ready();")
+        code.append("    auto fn = cg.getCode<int(*)(int)>();")
+        code.append("    CHECK(fn(0) == 0, \"identity(0)\");")
+        code.append("    CHECK(fn(123) == 123, \"identity(123)\");")
+        code.append("    CHECK(fn(-1) == -1, \"identity(-1)\");")
+        code.append('    std::cout << "  identity: OK" << std::endl;')
+        code.append("}")
+        code.append("")
+
+        # --- Test: add immediate ---
+        code.append("static void test_add_imm() {")
+        code.append("    CodeGenerator cg(4096);")
+        code.append("    cg.add(w0, w0, uint32_t(7));")
+        code.append("    cg.ret();")
+        code.append("    cg.ready();")
+        code.append("    auto fn = cg.getCode<int(*)(int)>();")
+        code.append("    CHECK(fn(0) == 7, \"add_imm(0)\");")
+        code.append("    CHECK(fn(35) == 42, \"add_imm(35)\");")
+        code.append("    CHECK(fn(-10) == -3, \"add_imm(-10)\");")
+        code.append('    std::cout << "  add_imm: OK" << std::endl;')
+        code.append("}")
+        code.append("")
+
+        # --- Test: sub register ---
+        code.append("// int sub_reg(int a, int b) { return a - b; }")
+        code.append("static void test_sub_reg() {")
+        code.append("    CodeGenerator cg(4096);")
+        code.append("    cg.sub(w0, w0, w1);")
+        code.append("    cg.ret();")
+        code.append("    cg.ready();")
+        code.append("    auto fn = cg.getCode<int(*)(int, int)>();")
+        code.append("    CHECK(fn(10, 3) == 7, \"sub_reg(10,3)\");")
+        code.append("    CHECK(fn(0, 0) == 0, \"sub_reg(0,0)\");")
+        code.append("    CHECK(fn(1, 5) == -4, \"sub_reg(1,5)\");")
+        code.append('    std::cout << "  sub_reg: OK" << std::endl;')
+        code.append("}")
+        code.append("")
+
+        # --- Test: multiply ---
+        code.append("// int mul(int a, int b) { return a * b; }")
+        code.append("static void test_multiply() {")
+        code.append("    CodeGenerator cg(4096);")
+        code.append("    cg.mul(w0, w0, w1);")
+        code.append("    cg.ret();")
+        code.append("    cg.ready();")
+        code.append("    auto fn = cg.getCode<int(*)(int, int)>();")
+        code.append("    CHECK(fn(6, 7) == 42, \"mul(6,7)\");")
+        code.append("    CHECK(fn(0, 999) == 0, \"mul(0,999)\");")
+        code.append("    CHECK(fn(-3, 4) == -12, \"mul(-3,4)\");")
+        code.append('    std::cout << "  multiply: OK" << std::endl;')
+        code.append("}")
+        code.append("")
+
+        # --- Test: 64-bit multiply ---
+        code.append("// int64_t mul64(int64_t a, int64_t b) { return a * b; }")
+        code.append("static void test_multiply64() {")
+        code.append("    CodeGenerator cg(4096);")
+        code.append("    cg.mul(x0, x0, x1);")
+        code.append("    cg.ret();")
+        code.append("    cg.ready();")
+        code.append("    auto fn = cg.getCode<int64_t(*)(int64_t, int64_t)>();")
+        code.append("    CHECK(fn(100000LL, 100000LL) == 10000000000LL, \"mul64 large\");")
+        code.append("    CHECK(fn(-1LL, 42LL) == -42LL, \"mul64 neg\");")
+        code.append('    std::cout << "  multiply64: OK" << std::endl;')
+        code.append("}")
+        code.append("")
+
+        # --- Test: count-up loop ---
+        code.append("// int count_up(int n) { int i=0; while(i<n) i++; return i; }")
+        code.append("static void test_count_loop() {")
+        code.append("    CodeGenerator cg(4096);")
+        code.append("    Label loop;")
+        code.append("    cg.mov(w1, uint32_t(0));")
+        code.append("    cg.bind(loop);")
+        code.append("    cg.add(w1, w1, uint32_t(1));")
+        code.append("    cg.cmp(w1, w0);")
+        code.append("    cg.b(Condition::LT, loop);")
+        code.append("    cg.mov(w0, w1);")
+        code.append("    cg.ret();")
+        code.append("    cg.ready();")
+        code.append("    auto fn = cg.getCode<int(*)(int)>();")
+        code.append("    CHECK(fn(1) == 1, \"count(1)\");")
+        code.append("    CHECK(fn(10) == 10, \"count(10)\");")
+        code.append("    CHECK(fn(100) == 100, \"count(100)\");")
+        code.append('    std::cout << "  count_loop: OK" << std::endl;')
+        code.append("}")
+        code.append("")
+
+        # --- Test: sum 1..N ---
+        code.append("// int sum(int n) { int s=0; for(int i=1; i<=n; i++) s+=i; return s; }")
+        code.append("static void test_sum() {")
+        code.append("    CodeGenerator cg(4096);")
+        code.append("    Label loop, done;")
+        code.append("    cg.mov(w1, uint32_t(0));       // s = 0")
+        code.append("    cg.mov(w2, uint32_t(1));       // i = 1")
+        code.append("    cg.bind(loop);")
+        code.append("    cg.cmp(w2, w0);")
+        code.append("    cg.b(Condition::GT, done);      // if i > n, break")
+        code.append("    cg.add(w1, w1, w2);             // s += i")
+        code.append("    cg.add(w2, w2, uint32_t(1));    // i++")
+        code.append("    cg.b(loop);")
+        code.append("    cg.bind(done);")
+        code.append("    cg.mov(w0, w1);")
+        code.append("    cg.ret();")
+        code.append("    cg.ready();")
+        code.append("    auto fn = cg.getCode<int(*)(int)>();")
+        code.append("    CHECK(fn(0) == 0, \"sum(0)\");")
+        code.append("    CHECK(fn(1) == 1, \"sum(1)\");")
+        code.append("    CHECK(fn(10) == 55, \"sum(10)\");")
+        code.append("    CHECK(fn(100) == 5050, \"sum(100)\");")
+        code.append('    std::cout << "  sum: OK" << std::endl;')
+        code.append("}")
+        code.append("")
+
+        # --- Test: factorial ---
+        code.append("// int fact(int n) { int r=1; while(n>1) { r*=n; n--; } return r; }")
+        code.append("static void test_factorial() {")
+        code.append("    CodeGenerator cg(4096);")
+        code.append("    Label loop, done;")
+        code.append("    cg.mov(w1, uint32_t(1));       // r = 1")
+        code.append("    cg.bind(loop);")
+        code.append("    cg.cmp(w0, uint32_t(1));")
+        code.append("    cg.b(Condition::LE, done);      // if n <= 1, done")
+        code.append("    cg.mul(w1, w1, w0);             // r *= n")
+        code.append("    cg.sub(w0, w0, uint32_t(1));    // n--")
+        code.append("    cg.b(loop);")
+        code.append("    cg.bind(done);")
+        code.append("    cg.mov(w0, w1);")
+        code.append("    cg.ret();")
+        code.append("    cg.ready();")
+        code.append("    auto fn = cg.getCode<int(*)(int)>();")
+        code.append("    CHECK(fn(0) == 1, \"fact(0)\");")
+        code.append("    CHECK(fn(1) == 1, \"fact(1)\");")
+        code.append("    CHECK(fn(5) == 120, \"fact(5)\");")
+        code.append("    CHECK(fn(10) == 3628800, \"fact(10)\");")
+        code.append('    std::cout << "  factorial: OK" << std::endl;')
+        code.append("}")
+        code.append("")
+
+        # --- Test: fibonacci ---
+        code.append("// int fib(int n) { int a=0,b=1; for(int i=0;i<n;i++) { int t=a+b; a=b; b=t; } return a; }")
+        code.append("static void test_fibonacci() {")
+        code.append("    CodeGenerator cg(4096);")
+        code.append("    Label loop, done;")
+        code.append("    cg.mov(w1, uint32_t(0));       // a = 0")
+        code.append("    cg.mov(w2, uint32_t(1));       // b = 1")
+        code.append("    cg.mov(w3, uint32_t(0));       // i = 0")
+        code.append("    cg.bind(loop);")
+        code.append("    cg.cmp(w3, w0);")
+        code.append("    cg.b(Condition::GE, done);      // if i >= n, done")
+        code.append("    cg.add(w4, w1, w2);             // t = a + b")
+        code.append("    cg.mov(w1, w2);                 // a = b")
+        code.append("    cg.mov(w2, w4);                 // b = t")
+        code.append("    cg.add(w3, w3, uint32_t(1));    // i++")
+        code.append("    cg.b(loop);")
+        code.append("    cg.bind(done);")
+        code.append("    cg.mov(w0, w1);")
+        code.append("    cg.ret();")
+        code.append("    cg.ready();")
+        code.append("    auto fn = cg.getCode<int(*)(int)>();")
+        code.append("    CHECK(fn(0) == 0, \"fib(0)\");")
+        code.append("    CHECK(fn(1) == 1, \"fib(1)\");")
+        code.append("    CHECK(fn(2) == 1, \"fib(2)\");")
+        code.append("    CHECK(fn(10) == 55, \"fib(10)\");")
+        code.append("    CHECK(fn(20) == 6765, \"fib(20)\");")
+        code.append('    std::cout << "  fibonacci: OK" << std::endl;')
+        code.append("}")
+        code.append("")
+
+        # --- Test: max(a, b) using csel ---
+        code.append("// int max(int a, int b) { return a > b ? a : b; }")
+        code.append("static void test_max_csel() {")
+        code.append("    CodeGenerator cg(4096);")
+        code.append("    cg.cmp(w0, w1);")
+        code.append("    cg.csel(w0, w0, w1, Condition::GT);")
+        code.append("    cg.ret();")
+        code.append("    cg.ready();")
+        code.append("    auto fn = cg.getCode<int(*)(int, int)>();")
+        code.append("    CHECK(fn(5, 3) == 5, \"max(5,3)\");")
+        code.append("    CHECK(fn(3, 5) == 5, \"max(3,5)\");")
+        code.append("    CHECK(fn(7, 7) == 7, \"max(7,7)\");")
+        code.append("    CHECK(fn(-1, -5) == -1, \"max(-1,-5)\");")
+        code.append('    std::cout << "  max_csel: OK" << std::endl;')
+        code.append("}")
+        code.append("")
+
+        # --- Test: abs(a) using csel ---
+        code.append("// int abs(int a) { return a >= 0 ? a : -a; }")
+        code.append("static void test_abs() {")
+        code.append("    CodeGenerator cg(4096);")
+        code.append("    cg.cmp(w0, uint32_t(0));")
+        code.append("    cg.neg(w1, w0);")
+        code.append("    cg.csel(w0, w0, w1, Condition::GE);")
+        code.append("    cg.ret();")
+        code.append("    cg.ready();")
+        code.append("    auto fn = cg.getCode<int(*)(int)>();")
+        code.append("    CHECK(fn(42) == 42, \"abs(42)\");")
+        code.append("    CHECK(fn(-42) == 42, \"abs(-42)\");")
+        code.append("    CHECK(fn(0) == 0, \"abs(0)\");")
+        code.append('    std::cout << "  abs: OK" << std::endl;')
+        code.append("}")
+        code.append("")
+
+        # --- Test: logical ops ---
+        code.append("// int bitops(int a, int b) { return (a & b) | (~a & 0xFF); }")
+        code.append("static void test_logical() {")
+        code.append("    CodeGenerator cg(4096);")
+        code.append("    cg.and_(w2, w0, w1);           // w2 = a & b")
+        code.append("    cg.mvn(w3, w0);                // w3 = ~a")
+        code.append("    cg.and_(w3, w3, w1);           // w3 = ~a & b  (approximate)")
+        code.append("    cg.orr(w0, w2, w3);            // w0 = (a & b) | (~a & b) = b")
+        code.append("    cg.ret();")
+        code.append("    cg.ready();")
+        code.append("    auto fn = cg.getCode<int(*)(int, int)>();")
+        code.append("    CHECK(fn(0xFF, 0x0F) == 0x0F, \"logical(0xFF,0x0F)\");")
+        code.append("    CHECK(fn(0x00, 0xFF) == 0xFF, \"logical(0x00,0xFF)\");")
+        code.append("    CHECK(fn(0xAA, 0x55) == 0x55, \"logical identity\");")
+        code.append('    std::cout << "  logical: OK" << std::endl;')
+        code.append("}")
+        code.append("")
+
+        # --- Test: shifts ---
+        code.append("// int shl(int a, int b) { return a << b; }")
+        code.append("static void test_shifts() {")
+        code.append("    CodeGenerator cg(4096);")
+        code.append("    cg.lsl(w0, w0, w1);")
+        code.append("    cg.ret();")
+        code.append("    cg.ready();")
+        code.append("    auto fn = cg.getCode<int(*)(int, int)>();")
+        code.append("    CHECK(fn(1, 0) == 1, \"shl(1,0)\");")
+        code.append("    CHECK(fn(1, 4) == 16, \"shl(1,4)\");")
+        code.append("    CHECK(fn(3, 8) == 768, \"shl(3,8)\");")
+        code.append('    std::cout << "  shifts: OK" << std::endl;')
+        code.append("}")
+        code.append("")
+
+        # --- Test: load/store via stack ---
+        code.append("// int stack_spill(int a, int b) { store a & b to stack, reload, return sum }")
+        code.append("static void test_stack_spill() {")
+        code.append("    CodeGenerator cg(4096);")
+        code.append("    // Allocate 16 bytes on stack")
+        code.append("    cg.sub(sp, sp, uint32_t(16));")
+        code.append("    cg.str(w0, ptr(sp, 0));         // [sp] = a")
+        code.append("    cg.str(w1, ptr(sp, 4));         // [sp+4] = b")
+        code.append("    cg.ldr(w2, ptr(sp, 0));         // w2 = a")
+        code.append("    cg.ldr(w3, ptr(sp, 4));         // w3 = b")
+        code.append("    cg.add(w0, w2, w3);             // return a + b")
+        code.append("    cg.add(sp, sp, uint32_t(16));")
+        code.append("    cg.ret();")
+        code.append("    cg.ready();")
+        code.append("    auto fn = cg.getCode<int(*)(int, int)>();")
+        code.append("    CHECK(fn(10, 20) == 30, \"stack(10,20)\");")
+        code.append("    CHECK(fn(-5, 5) == 0, \"stack(-5,5)\");")
+        code.append('    std::cout << "  stack_spill: OK" << std::endl;')
+        code.append("}")
+        code.append("")
+
+        # --- Test: stp/ldp pair ---
+        code.append("// Spill/reload a pair of 64-bit registers")
+        code.append("static void test_pair_ldst() {")
+        code.append("    CodeGenerator cg(4096);")
+        code.append("    cg.stp(x0, x1, pre(sp, -16));  // push x0, x1")
+        code.append("    cg.mov(x0, uint64_t(0));")
+        code.append("    cg.mov(x1, uint64_t(0));")
+        code.append("    cg.ldp(x0, x1, post(sp, 16));  // pop x0, x1")
+        code.append("    cg.add(x0, x0, x1);")
+        code.append("    cg.ret();")
+        code.append("    cg.ready();")
+        code.append("    auto fn = cg.getCode<int64_t(*)(int64_t, int64_t)>();")
+        code.append("    CHECK(fn(100, 200) == 300, \"pair(100,200)\");")
+        code.append("    CHECK(fn(-1, 1) == 0, \"pair(-1,1)\");")
+        code.append('    std::cout << "  pair_ldst: OK" << std::endl;')
+        code.append("}")
+        code.append("")
+
+        # --- Test: mov large immediate ---
+        code.append("// int64_t mov_large() { return 0xDEADBEEFCAFE; }")
+        code.append("static void test_mov_large() {")
+        code.append("    CodeGenerator cg(4096);")
+        code.append("    cg.mov(x0, uint64_t(0xDEADBEEFCAFEULL));")
+        code.append("    cg.ret();")
+        code.append("    cg.ready();")
+        code.append("    auto fn = cg.getCode<uint64_t(*)()>();")
+        code.append("    CHECK(fn() == 0xDEADBEEFCAFEULL, \"mov_large\");")
+        code.append('    std::cout << "  mov_large: OK" << std::endl;')
+        code.append("}")
+        code.append("")
+
+        # --- Test: nested forward branches ---
+        code.append("// int clamp(int x, int lo, int hi) { if(x<lo) return lo; if(x>hi) return hi; return x; }")
+        code.append("static void test_nested_branches() {")
+        code.append("    CodeGenerator cg(4096);")
+        code.append("    Label clamp_lo, clamp_hi, done;")
+        code.append("    cg.cmp(w0, w1);")
+        code.append("    cg.b(Condition::LT, clamp_lo);")
+        code.append("    cg.cmp(w0, w2);")
+        code.append("    cg.b(Condition::GT, clamp_hi);")
+        code.append("    cg.b(done);")
+        code.append("    cg.bind(clamp_lo);")
+        code.append("    cg.mov(w0, w1);")
+        code.append("    cg.b(done);")
+        code.append("    cg.bind(clamp_hi);")
+        code.append("    cg.mov(w0, w2);")
+        code.append("    cg.bind(done);")
+        code.append("    cg.ret();")
+        code.append("    cg.ready();")
+        code.append("    auto fn = cg.getCode<int(*)(int, int, int)>();")
+        code.append("    CHECK(fn(5, 0, 10) == 5, \"clamp mid\");")
+        code.append("    CHECK(fn(-5, 0, 10) == 0, \"clamp lo\");")
+        code.append("    CHECK(fn(15, 0, 10) == 10, \"clamp hi\");")
+        code.append("    CHECK(fn(0, 0, 10) == 0, \"clamp edge lo\");")
+        code.append("    CHECK(fn(10, 0, 10) == 10, \"clamp edge hi\");")
+        code.append('    std::cout << "  nested_branches: OK" << std::endl;')
+        code.append("}")
+        code.append("")
+
+        # --- Test: cbz/cbnz ---
+        code.append("// int is_zero(int x) { return x == 0 ? 1 : 0; }")
+        code.append("static void test_cbz() {")
+        code.append("    CodeGenerator cg(4096);")
+        code.append("    Label not_zero;")
+        code.append("    cg.cbnz(w0, not_zero);")
+        code.append("    cg.mov(w0, uint32_t(1));")
+        code.append("    cg.ret();")
+        code.append("    cg.bind(not_zero);")
+        code.append("    cg.mov(w0, uint32_t(0));")
+        code.append("    cg.ret();")
+        code.append("    cg.ready();")
+        code.append("    auto fn = cg.getCode<int(*)(int)>();")
+        code.append("    CHECK(fn(0) == 1, \"cbz(0)\");")
+        code.append("    CHECK(fn(1) == 0, \"cbz(1)\");")
+        code.append("    CHECK(fn(-99) == 0, \"cbz(-99)\");")
+        code.append('    std::cout << "  cbz: OK" << std::endl;')
+        code.append("}")
+        code.append("")
+
+        # --- Test: tbz/tbnz (test bit) ---
+        code.append("// int is_odd(int x) { return x & 1; }")
+        code.append("static void test_tbz() {")
+        code.append("    CodeGenerator cg(4096);")
+        code.append("    Label odd;")
+        code.append("    cg.tbnz(w0, 0, odd);           // if bit 0 set, jump")
+        code.append("    cg.mov(w0, uint32_t(0));        // even")
+        code.append("    cg.ret();")
+        code.append("    cg.bind(odd);")
+        code.append("    cg.mov(w0, uint32_t(1));        // odd")
+        code.append("    cg.ret();")
+        code.append("    cg.ready();")
+        code.append("    auto fn = cg.getCode<int(*)(int)>();")
+        code.append("    CHECK(fn(0) == 0, \"tbz even 0\");")
+        code.append("    CHECK(fn(1) == 1, \"tbz odd 1\");")
+        code.append("    CHECK(fn(42) == 0, \"tbz even 42\");")
+        code.append("    CHECK(fn(43) == 1, \"tbz odd 43\");")
+        code.append('    std::cout << "  tbz: OK" << std::endl;')
+        code.append("}")
+        code.append("")
+
+        # --- Test: scalar FP double ---
+        code.append("// double fp_arith(double a, double b) { return (a + b) * (a - b); }")
+        code.append("static void test_fp_double() {")
+        code.append("    CodeGenerator cg(4096);")
+        code.append("    cg.fadd(d2, d0, d1);            // d2 = a + b")
+        code.append("    cg.fsub(d3, d0, d1);            // d3 = a - b")
+        code.append("    cg.fmul(d0, d2, d3);            // d0 = (a+b)*(a-b)")
+        code.append("    cg.ret();")
+        code.append("    cg.ready();")
+        code.append("    auto fn = cg.getCode<double(*)(double, double)>();")
+        code.append("    // (5+3)*(5-3) = 8*2 = 16")
+        code.append("    CHECK(fn(5.0, 3.0) == 16.0, \"fp_double(5,3)\");")
+        code.append("    // (10+0)*(10-0) = 100")
+        code.append("    CHECK(fn(10.0, 0.0) == 100.0, \"fp_double(10,0)\");")
+        code.append("    // (1+1)*(1-1) = 0")
+        code.append("    CHECK(fn(1.0, 1.0) == 0.0, \"fp_double(1,1)\");")
+        code.append('    std::cout << "  fp_double: OK" << std::endl;')
+        code.append("}")
+        code.append("")
+
+        # --- Test: scalar FP single ---
+        code.append("// float fp_div(float a, float b) { return a / b; }")
+        code.append("static void test_fp_single() {")
+        code.append("    CodeGenerator cg(4096);")
+        code.append("    cg.fdiv(s0, s0, s1);")
+        code.append("    cg.ret();")
+        code.append("    cg.ready();")
+        code.append("    auto fn = cg.getCode<float(*)(float, float)>();")
+        code.append("    CHECK(fn(10.0f, 2.0f) == 5.0f, \"fp_single(10/2)\");")
+        code.append("    CHECK(fn(7.0f, 2.0f) == 3.5f, \"fp_single(7/2)\");")
+        code.append('    std::cout << "  fp_single: OK" << std::endl;')
+        code.append("}")
+        code.append("")
+
+        # --- Test: madd (multiply-add) ---
+        code.append("// int madd(int a, int b, int c) { return a + b * c; }")
+        code.append("static void test_madd() {")
+        code.append("    CodeGenerator cg(4096);")
+        code.append("    cg.madd(w0, w1, w2, w0);       // w0 = w0 + w1 * w2")
+        code.append("    cg.ret();")
+        code.append("    cg.ready();")
+        code.append("    auto fn = cg.getCode<int(*)(int, int, int)>();")
+        code.append("    CHECK(fn(10, 3, 4) == 22, \"madd(10,3,4)\");")
+        code.append("    CHECK(fn(0, 5, 6) == 30, \"madd(0,5,6)\");")
+        code.append("    CHECK(fn(100, 0, 99) == 100, \"madd(100,0,99)\");")
+        code.append('    std::cout << "  madd: OK" << std::endl;')
+        code.append("}")
+        code.append("")
+
+        # --- Test: cset (conditional set) ---
+        code.append("// int is_positive(int x) { return x > 0 ? 1 : 0; }")
+        code.append("static void test_cset() {")
+        code.append("    CodeGenerator cg(4096);")
+        code.append("    cg.cmp(w0, uint32_t(0));")
+        code.append("    cg.cset(w0, Condition::GT);")
+        code.append("    cg.ret();")
+        code.append("    cg.ready();")
+        code.append("    auto fn = cg.getCode<int(*)(int)>();")
+        code.append("    CHECK(fn(5) == 1, \"cset(5)\");")
+        code.append("    CHECK(fn(0) == 0, \"cset(0)\");")
+        code.append("    CHECK(fn(-1) == 0, \"cset(-1)\");")
+        code.append('    std::cout << "  cset: OK" << std::endl;')
+        code.append("}")
+        code.append("")
+
+        # --- Test: shifted register ---
+        code.append("// int shl_add(int a, int b) { return a + (b << 2); }")
+        code.append("static void test_shifted_reg() {")
+        code.append("    CodeGenerator cg(4096);")
+        code.append("    cg.add(w0, w0, w1, Shift(ShiftType::LSL, 2));")
+        code.append("    cg.ret();")
+        code.append("    cg.ready();")
+        code.append("    auto fn = cg.getCode<int(*)(int, int)>();")
+        code.append("    CHECK(fn(1, 3) == 13, \"shl_add(1,3)\");     // 1 + 3*4 = 13")
+        code.append("    CHECK(fn(0, 1) == 4, \"shl_add(0,1)\");      // 0 + 1*4 = 4")
+        code.append("    CHECK(fn(10, 0) == 10, \"shl_add(10,0)\");   // 10 + 0 = 10")
+        code.append('    std::cout << "  shifted_reg: OK" << std::endl;')
+        code.append("}")
+        code.append("")
+
+        # --- Test: GCD (Euclidean algorithm) ---
+        code.append("// int gcd(int a, int b) { while(b) { int t=b; b=a%b; a=t; } return a; }")
+        code.append("// ARM64 has no mod instruction, so: a%b = a - (a/b)*b")
+        code.append("static void test_gcd() {")
+        code.append("    CodeGenerator cg(4096);")
+        code.append("    Label loop, done;")
+        code.append("    cg.bind(loop);")
+        code.append("    cg.cbz(w1, done);               // if b == 0, done")
+        code.append("    cg.udiv(w2, w0, w1);            // w2 = a / b")
+        code.append("    cg.mul(w2, w2, w1);             // w2 = (a/b) * b")
+        code.append("    cg.sub(w2, w0, w2);             // w2 = a - (a/b)*b = a % b")
+        code.append("    cg.mov(w0, w1);                 // a = b")
+        code.append("    cg.mov(w1, w2);                 // b = a % b")
+        code.append("    cg.b(loop);")
+        code.append("    cg.bind(done);")
+        code.append("    cg.ret();")
+        code.append("    cg.ready();")
+        code.append("    auto fn = cg.getCode<int(*)(int, int)>();")
+        code.append("    CHECK(fn(12, 8) == 4, \"gcd(12,8)\");")
+        code.append("    CHECK(fn(100, 75) == 25, \"gcd(100,75)\");")
+        code.append("    CHECK(fn(7, 13) == 1, \"gcd(7,13)\");")
+        code.append("    CHECK(fn(0, 5) == 5, \"gcd(0,5)\");")
+        code.append("    CHECK(fn(42, 42) == 42, \"gcd(42,42)\");")
+        code.append('    std::cout << "  gcd: OK" << std::endl;')
+        code.append("}")
+        code.append("")
+
+        # --- Test: multiple CodeGenerators independently ---
+        code.append("static void test_multiple_generators() {")
+        code.append("    CodeGenerator cg1(4096);")
+        code.append("    cg1.add(w0, w0, uint32_t(1));")
+        code.append("    cg1.ret();")
+        code.append("    cg1.ready();")
+        code.append("")
+        code.append("    CodeGenerator cg2(4096);")
+        code.append("    cg2.add(w0, w0, uint32_t(100));")
+        code.append("    cg2.ret();")
+        code.append("    cg2.ready();")
+        code.append("")
+        code.append("    auto fn1 = cg1.getCode<int(*)(int)>();")
+        code.append("    auto fn2 = cg2.getCode<int(*)(int)>();")
+        code.append("    CHECK(fn1(0) == 1, \"multi gen1\");")
+        code.append("    CHECK(fn2(0) == 100, \"multi gen2\");")
+        code.append("    CHECK(fn1(fn2(0)) == 101, \"multi chain\");")
+        code.append('    std::cout << "  multiple_generators: OK" << std::endl;')
+        code.append("}")
+        code.append("")
+
+        # --- Test: nop sled ---
+        code.append("static void test_nop_sled() {")
+        code.append("    CodeGenerator cg(4096);")
+        code.append("    for (int i = 0; i < 100; i++) cg.nop();")
+        code.append("    cg.mov(w0, uint32_t(99));")
+        code.append("    cg.ret();")
+        code.append("    cg.ready();")
+        code.append("    auto fn = cg.getCode<int(*)()>();")
+        code.append("    CHECK(fn() == 99, \"nop_sled\");")
+        code.append("    CHECK(cg.size() == (100 + 2) * 4, \"nop_sled size\");")
+        code.append('    std::cout << "  nop_sled: OK" << std::endl;')
+        code.append("}")
+        code.append("")
+
+        # --- main ---
+        code.append("int main() {")
+        code.append('    std::cout << "Running codegen execution tests..." << std::endl;')
+        code.append("    test_identity();")
+        code.append("    test_add_imm();")
+        code.append("    test_sub_reg();")
+        code.append("    test_multiply();")
+        code.append("    test_multiply64();")
+        code.append("    test_count_loop();")
+        code.append("    test_sum();")
+        code.append("    test_factorial();")
+        code.append("    test_fibonacci();")
+        code.append("    test_max_csel();")
+        code.append("    test_abs();")
+        code.append("    test_logical();")
+        code.append("    test_shifts();")
+        code.append("    test_stack_spill();")
+        code.append("    test_pair_ldst();")
+        code.append("    test_mov_large();")
+        code.append("    test_nested_branches();")
+        code.append("    test_cbz();")
+        code.append("    test_tbz();")
+        code.append("    test_fp_double();")
+        code.append("    test_fp_single();")
+        code.append("    test_madd();")
+        code.append("    test_cset();")
+        code.append("    test_shifted_reg();")
+        code.append("    test_gcd();")
+        code.append("    test_multiple_generators();")
+        code.append("    test_nop_sled();")
+        code.append("    if (failures) {")
+        code.append('        std::cerr << failures << " test(s) FAILED" << std::endl;')
+        code.append("        return 1;")
+        code.append("    }")
+        code.append('    std::cout << "All codegen execution tests passed! (27 tests)" << std::endl;')
+        code.append("    return 0;")
+        code.append("}")
+        code.append("")
+        code.append("#else // !VEDA64_CODEGEN || !ARM64")
+        code.append("")
+        code.append("#include <cstdio>")
+        code.append("int main() {")
+        code.append('    printf("Codegen execution tests skipped (VEDA64_CODEGEN not set or not ARM64)\\n");')
+        code.append("    return 0;")
+        code.append("}")
+        code.append("")
+        code.append("#endif")
+        code.append("")
+
+        self._write_file(test_dir / "test_codegen_run.cpp", code)
+        print(f"Generated test_codegen_run.cpp")
+
 def main():
     """Main entry point."""
     # Use the 2025-12 version (latest)
@@ -18906,6 +20743,9 @@ def main():
     tools_dir = base_dir / "tools"
     parser.generate_disasm_tool(tools_dir)
     parser.generate_interp_tool(tools_dir)
+
+    # Generate CodeGen API
+    parser.generate_codegen_files(include_dir, lib_dir, test_dir)
 
     # Generate Python bindings
     print(f"\n=== Generating Python Bindings ===")
