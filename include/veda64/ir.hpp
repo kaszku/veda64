@@ -117,18 +117,18 @@ enum class Space : uint8_t {
 // Variable node -- identifies a storage location or constant
 struct VarNode {
     Space space = Space::Const;
-    uint16_t offset = 0;    // Register number or temp index
+    uint32_t offset = 0;    // Register number or temp index
     uint8_t size = 0;       // Size in bytes (1,2,4,8,16,32)
     int64_t value = 0;      // Used only when space == Const
 
     // Factory helpers
-    static VarNode gpr(uint16_t reg, uint8_t sz = 8) {
+    static VarNode gpr(uint32_t reg, uint8_t sz = 8) {
         return {Space::GPR, reg, sz, 0};
     }
-    static VarNode simd(uint16_t reg, uint8_t sz = 16) {
+    static VarNode simd(uint32_t reg, uint8_t sz = 16) {
         return {Space::SIMD, reg, sz, 0};
     }
-    static VarNode temp(uint16_t idx, uint8_t sz = 8) {
+    static VarNode temp(uint32_t idx, uint8_t sz = 8) {
         return {Space::Temp, idx, sz, 0};
     }
     static VarNode constant(int64_t val, uint8_t sz = 8) {

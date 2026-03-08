@@ -29,10 +29,6 @@ std::optional<Lifted> lift(const Instruction& insn, IrDetail detail) {
 
 static bool is_temp(const VarNode& v) { return v.space == Space::Temp; }
 
-static bool varnode_eq(const VarNode& a, const VarNode& b) {
-    return a.space == b.space && a.offset == b.offset && a.size == b.size && a.value == b.value;
-}
-
 static void replace_input(VarNode& v, const std::unordered_map<uint16_t, VarNode>& subs) {
     if (is_temp(v)) {
         auto it = subs.find(v.offset);

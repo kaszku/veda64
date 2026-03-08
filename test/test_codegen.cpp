@@ -75,6 +75,7 @@ static int test_forward_branch() {
     uint32_t b_insn = get_insn(cg, 0);
     int32_t imm26 = static_cast<int32_t>(b_insn << 6) >> 6;  // sign extend
     assert(imm26 == 2);  // 2 instructions = 8 bytes
+    (void)imm26;
     std::cout << "  forward branch: OK" << std::endl;
     return 0;
 }
@@ -138,6 +139,7 @@ static int test_execute() {
 
     auto fn = cg.get_code<int(*)(int)>();
     assert(fn(41) == 42);
+    (void)fn;
     std::cout << "  execute: OK" << std::endl;
     return 0;
 }
@@ -158,6 +160,7 @@ static int test_execute_loop() {
     auto fn = cg.get_code<int(*)(int)>();
     assert(fn(10) == 10);
     assert(fn(1) == 1);
+    (void)fn;
     std::cout << "  execute loop: OK" << std::endl;
     return 0;
 }

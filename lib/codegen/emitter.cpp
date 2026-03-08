@@ -44,7 +44,6 @@ bool encode_logical_imm(uint64_t imm, bool is64, uint32_t& N, uint32_t& immr, ui
     }
     // Count the run of 1s
     unsigned ones = 0;
-    uint64_t tmp = normalized >> 0;
     // Skip leading zeros
     if (normalized == 0) return false;
     unsigned leading_zeros = 0;
@@ -364,7 +363,7 @@ void CodeGenerator::mov(XReg rd, uint64_t imm) {
     if (imm == 0) { movz(rd, 0, 0); return; }
     // Try MOVZ/MOVN for simple cases
     bool first = true;
-    for (int hw = 0; hw < 4; hw++) {
+    for (uint8_t hw = 0; hw < 4; hw++) {
         uint16_t chunk = static_cast<uint16_t>((imm >> (hw * 16)) & 0xFFFF);
         if (chunk != 0) {
             if (first) { movz(rd, chunk, hw); first = false; }
@@ -376,7 +375,7 @@ void CodeGenerator::mov(XReg rd, uint64_t imm) {
 void CodeGenerator::mov(WReg rd, uint32_t imm) {
     if (imm == 0) { movz(rd, 0, 0); return; }
     bool first = true;
-    for (int hw = 0; hw < 2; hw++) {
+    for (uint8_t hw = 0; hw < 2; hw++) {
         uint16_t chunk = static_cast<uint16_t>((imm >> (hw * 16)) & 0xFFFF);
         if (chunk != 0) {
             if (first) { movz(rd, chunk, hw); first = false; }

@@ -14,7 +14,7 @@ option(VEDA64_STRINGS "Enable string functions (to_string, mnemonic_to_string, e
 option(VEDA64_IR "Enable IR lifting and interpreter support" OFF)
 option(VEDA64_HOOK "Enable inline hooking support (Windows only)" OFF)
 option(VEDA64_CODEGEN "Enable JIT code generator / assembler API" OFF)
-option(VEDA64_BUILD_TESTS "Build test executables" OFF)
+option(VEDA64_TESTS "Build test executables" OFF)
 option(VEDA64_PYTHON "Build Python bindings via nanobind (requires vcpkg toolchain)" OFF)
 
 # Compiler warnings
@@ -82,14 +82,14 @@ if(VEDA64_IR)
 endif()
 
 # Enable testing
-if(VEDA64_BUILD_TESTS)
+if(VEDA64_TESTS)
     enable_testing()
     add_subdirectory(test)
 endif()
 
 # Examples
-option(VEDA64_BUILD_EXAMPLES "Build example programs" OFF)
-if(VEDA64_BUILD_EXAMPLES)
+option(VEDA64_EXAMPLES "Build example programs" OFF)
+if(VEDA64_EXAMPLES)
     add_subdirectory(examples)
 endif()
 

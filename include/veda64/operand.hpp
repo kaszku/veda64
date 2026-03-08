@@ -158,7 +158,7 @@ public:
         // Register (GP, V, Z, P, PN, ZT0)
         struct { PredQual qual; uint8_t _r0; Register reg; Register idx_reg; uint32_t index; } r;
         // SMETileRegister
-        struct { uint8_t mode; uint8_t start; Register tile; uint16_t wv; int32_t detail; } sme;
+        struct { uint8_t mode; uint8_t start; Register tile; uint32_t wv; int32_t detail; } sme;
         // Immediate (unsigned 64-bit)
         struct { uint8_t _i0[6]; uint64_t value; } iv;
         // SignedImmediate / Label
