@@ -38723,7 +38723,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
     // Switch for mask 0xFFFFFC00u (11 patterns, 11 encodings)
     switch (insn & 0xFFFFFC00u) {
         case 0x99800800u: { // STLR_32S_ldapstl_writeback
-                        Instruction result(Mnemonic::STLR, insn, 1346);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::STLR, insn, EncodingId::STLR_32S_ldapstl_writeback);
+            #else
+                        Instruction result(Mnemonic::STLR, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.stlr32s_ldapstl_writeback.Rt, false));
@@ -38731,7 +38735,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x99C00800u: { // LDAPR_32L_ldapstl_writeback
-                        Instruction result(Mnemonic::LDAPR, insn, 697);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDAPR, insn, EncodingId::LDAPR_32L_ldapstl_writeback);
+            #else
+                        Instruction result(Mnemonic::LDAPR, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldapr32l_ldapstl_writeback.Rt, false));
@@ -38739,7 +38747,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0xD91F0C00u: { // GCSSTR_64_ldst_gcs
-                        Instruction result(Mnemonic::GCSSTR, insn, 594);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::GCSSTR, insn, EncodingId::GCSSTR_64_ldst_gcs);
+            #else
+                        Instruction result(Mnemonic::GCSSTR, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.gcsstr64ldst_gcs.Rt, true));
@@ -38747,7 +38759,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0xD91F1C00u: { // GCSSTTR_64_ldst_gcs
-                        Instruction result(Mnemonic::GCSSTTR, insn, 595);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::GCSSTTR, insn, EncodingId::GCSSTTR_64_ldst_gcs);
+            #else
+                        Instruction result(Mnemonic::GCSSTTR, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.gcssttr64ldst_gcs.Rt, true));
@@ -38755,7 +38771,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0xD9200000u: { // STZGM_64bulk_ldsttags
-                        Instruction result(Mnemonic::STZGM, insn, 1512);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::STZGM, insn, EncodingId::STZGM_64bulk_ldsttags);
+            #else
+                        Instruction result(Mnemonic::STZGM, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.stzgm64bulk_ldsttags.Rt, true));
@@ -38764,7 +38784,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0xD9800800u: { // STLR_64S_ldapstl_writeback
-                        Instruction result(Mnemonic::STLR, insn, 1347);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::STLR, insn, EncodingId::STLR_64S_ldapstl_writeback);
+            #else
+                        Instruction result(Mnemonic::STLR, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.stlr64s_ldapstl_writeback.Rt, true));
@@ -38772,7 +38796,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0xD9A00000u: { // STGM_64bulk_ldsttags
-                        Instruction result(Mnemonic::STGM, insn, 1330);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::STGM, insn, EncodingId::STGM_64bulk_ldsttags);
+            #else
+                        Instruction result(Mnemonic::STGM, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.stgm64bulk_ldsttags.Rt, true));
@@ -38781,7 +38809,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0xD9C00800u: { // LDAPR_64L_ldapstl_writeback
-                        Instruction result(Mnemonic::LDAPR, insn, 698);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDAPR, insn, EncodingId::LDAPR_64L_ldapstl_writeback);
+            #else
+                        Instruction result(Mnemonic::LDAPR, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldapr64l_ldapstl_writeback.Rt, true));
@@ -38789,7 +38821,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0xD9E00000u: { // LDGM_64bulk_ldsttags
-                        Instruction result(Mnemonic::LDGM, insn, 846);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDGM, insn, EncodingId::LDGM_64bulk_ldsttags);
+            #else
+                        Instruction result(Mnemonic::LDGM, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldgm64bulk_ldsttags.Rt, true));
@@ -38798,7 +38834,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0xF83F9000u: { // ST64B_64L_memop
-                        Instruction result(Mnemonic::ST64B, insn, 1260);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::ST64B, insn, EncodingId::ST64B_64L_memop);
+            #else
+                        Instruction result(Mnemonic::ST64B, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.st64b64l_memop.Rt, true));
@@ -38806,7 +38846,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0xF83FD000u: { // LD64B_64L_memop
-                        Instruction result(Mnemonic::LD64B, insn, 677);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LD64B, insn, EncodingId::LD64B_64L_memop);
+            #else
+                        Instruction result(Mnemonic::LD64B, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ld64b64l_memop.Rt, true));
@@ -38819,7 +38863,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
     // Switch for mask 0xFFE0FC1Fu (116 patterns, 116 encodings)
     switch (insn & 0xFFE0FC1Fu) {
         case 0x1920041Fu: { // STTADD_LDTADD_32_memop_unpriv
-                        Instruction result(Mnemonic::LDTADD, insn, 1449);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDTADD, insn, EncodingId::STTADD_LDTADD_32_memop_unpriv);
+            #else
+                        Instruction result(Mnemonic::LDTADD, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.sttadd_ldtadd32memop_unpriv.Rs, false));
@@ -38827,7 +38875,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x1920141Fu: { // STTCLR_LDTCLR_32_memop_unpriv
-                        Instruction result(Mnemonic::LDTCLR, insn, 1453);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDTCLR, insn, EncodingId::STTCLR_LDTCLR_32_memop_unpriv);
+            #else
+                        Instruction result(Mnemonic::LDTCLR, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.sttclr_ldtclr32memop_unpriv.Rs, false));
@@ -38835,7 +38887,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x1920341Fu: { // STTSET_LDTSET_32_memop_unpriv
-                        Instruction result(Mnemonic::LDTSET, insn, 1469);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDTSET, insn, EncodingId::STTSET_LDTSET_32_memop_unpriv);
+            #else
+                        Instruction result(Mnemonic::LDTSET, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.sttset_ldtset32memop_unpriv.Rs, false));
@@ -38843,7 +38899,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x1960041Fu: { // STTADDL_LDTADDL_32_memop_unpriv
-                        Instruction result(Mnemonic::LDTADDL, insn, 1450);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDTADDL, insn, EncodingId::STTADDL_LDTADDL_32_memop_unpriv);
+            #else
+                        Instruction result(Mnemonic::LDTADDL, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.sttaddl_ldtaddl32memop_unpriv.Rs, false));
@@ -38851,7 +38911,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x1960141Fu: { // STTCLRL_LDTCLRL_32_memop_unpriv
-                        Instruction result(Mnemonic::LDTCLRL, insn, 1454);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDTCLRL, insn, EncodingId::STTCLRL_LDTCLRL_32_memop_unpriv);
+            #else
+                        Instruction result(Mnemonic::LDTCLRL, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.sttclrl_ldtclrl32memop_unpriv.Rs, false));
@@ -38859,7 +38923,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x1960341Fu: { // STTSETL_LDTSETL_32_memop_unpriv
-                        Instruction result(Mnemonic::LDTSETL, insn, 1470);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDTSETL, insn, EncodingId::STTSETL_LDTSETL_32_memop_unpriv);
+            #else
+                        Instruction result(Mnemonic::LDTSETL, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.sttsetl_ldtsetl32memop_unpriv.Rs, false));
@@ -38867,7 +38935,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x3820001Fu: { // STADDB_LDADDB_32_memop
-                        Instruction result(Mnemonic::LDADDB, insn, 1267);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDADDB, insn, EncodingId::STADDB_LDADDB_32_memop);
+            #else
+                        Instruction result(Mnemonic::LDADDB, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.staddb_ldaddb32memop.Rs, false));
@@ -38875,7 +38947,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x3820101Fu: { // STCLRB_LDCLRB_32_memop
-                        Instruction result(Mnemonic::LDCLRB, insn, 1285);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDCLRB, insn, EncodingId::STCLRB_LDCLRB_32_memop);
+            #else
+                        Instruction result(Mnemonic::LDCLRB, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.stclrb_ldclrb32memop.Rs, false));
@@ -38883,7 +38959,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x3820201Fu: { // STEORB_LDEORB_32_memop
-                        Instruction result(Mnemonic::LDEORB, insn, 1293);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDEORB, insn, EncodingId::STEORB_LDEORB_32_memop);
+            #else
+                        Instruction result(Mnemonic::LDEORB, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.steorb_ldeorb32memop.Rs, false));
@@ -38891,7 +38971,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x3820301Fu: { // STSETB_LDSETB_32_memop
-                        Instruction result(Mnemonic::LDSETB, insn, 1429);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDSETB, insn, EncodingId::STSETB_LDSETB_32_memop);
+            #else
+                        Instruction result(Mnemonic::LDSETB, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.stsetb_ldsetb32memop.Rs, false));
@@ -38899,7 +38983,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x3820401Fu: { // STSMAXB_LDSMAXB_32_memop
-                        Instruction result(Mnemonic::LDSMAXB, insn, 1437);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDSMAXB, insn, EncodingId::STSMAXB_LDSMAXB_32_memop);
+            #else
+                        Instruction result(Mnemonic::LDSMAXB, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.stsmaxb_ldsmaxb32memop.Rs, false));
@@ -38907,7 +38995,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x3820501Fu: { // STSMINB_LDSMINB_32_memop
-                        Instruction result(Mnemonic::LDSMINB, insn, 1445);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDSMINB, insn, EncodingId::STSMINB_LDSMINB_32_memop);
+            #else
+                        Instruction result(Mnemonic::LDSMINB, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.stsminb_ldsminb32memop.Rs, false));
@@ -38915,7 +39007,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x3820601Fu: { // STUMAXB_LDUMAXB_32_memop
-                        Instruction result(Mnemonic::LDUMAXB, insn, 1479);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDUMAXB, insn, EncodingId::STUMAXB_LDUMAXB_32_memop);
+            #else
+                        Instruction result(Mnemonic::LDUMAXB, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.stumaxb_ldumaxb32memop.Rs, false));
@@ -38923,7 +39019,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x3820701Fu: { // STUMINB_LDUMINB_32_memop
-                        Instruction result(Mnemonic::LDUMINB, insn, 1487);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDUMINB, insn, EncodingId::STUMINB_LDUMINB_32_memop);
+            #else
+                        Instruction result(Mnemonic::LDUMINB, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.stuminb_lduminb32memop.Rs, false));
@@ -38931,7 +39031,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x3860001Fu: { // STADDLB_LDADDLB_32_memop
-                        Instruction result(Mnemonic::LDADDLB, insn, 1268);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDADDLB, insn, EncodingId::STADDLB_LDADDLB_32_memop);
+            #else
+                        Instruction result(Mnemonic::LDADDLB, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.staddlb_ldaddlb32memop.Rs, false));
@@ -38939,7 +39043,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x3860101Fu: { // STCLRLB_LDCLRLB_32_memop
-                        Instruction result(Mnemonic::LDCLRLB, insn, 1286);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDCLRLB, insn, EncodingId::STCLRLB_LDCLRLB_32_memop);
+            #else
+                        Instruction result(Mnemonic::LDCLRLB, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.stclrlb_ldclrlb32memop.Rs, false));
@@ -38947,7 +39055,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x3860201Fu: { // STEORLB_LDEORLB_32_memop
-                        Instruction result(Mnemonic::LDEORLB, insn, 1294);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDEORLB, insn, EncodingId::STEORLB_LDEORLB_32_memop);
+            #else
+                        Instruction result(Mnemonic::LDEORLB, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.steorlb_ldeorlb32memop.Rs, false));
@@ -38955,7 +39067,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x3860301Fu: { // STSETLB_LDSETLB_32_memop
-                        Instruction result(Mnemonic::LDSETLB, insn, 1430);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDSETLB, insn, EncodingId::STSETLB_LDSETLB_32_memop);
+            #else
+                        Instruction result(Mnemonic::LDSETLB, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.stsetlb_ldsetlb32memop.Rs, false));
@@ -38963,7 +39079,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x3860401Fu: { // STSMAXLB_LDSMAXLB_32_memop
-                        Instruction result(Mnemonic::LDSMAXLB, insn, 1438);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDSMAXLB, insn, EncodingId::STSMAXLB_LDSMAXLB_32_memop);
+            #else
+                        Instruction result(Mnemonic::LDSMAXLB, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.stsmaxlb_ldsmaxlb32memop.Rs, false));
@@ -38971,7 +39091,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x3860501Fu: { // STSMINLB_LDSMINLB_32_memop
-                        Instruction result(Mnemonic::LDSMINLB, insn, 1446);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDSMINLB, insn, EncodingId::STSMINLB_LDSMINLB_32_memop);
+            #else
+                        Instruction result(Mnemonic::LDSMINLB, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.stsminlb_ldsminlb32memop.Rs, false));
@@ -38979,7 +39103,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x3860601Fu: { // STUMAXLB_LDUMAXLB_32_memop
-                        Instruction result(Mnemonic::LDUMAXLB, insn, 1480);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDUMAXLB, insn, EncodingId::STUMAXLB_LDUMAXLB_32_memop);
+            #else
+                        Instruction result(Mnemonic::LDUMAXLB, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.stumaxlb_ldumaxlb32memop.Rs, false));
@@ -38987,7 +39115,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x3860701Fu: { // STUMINLB_LDUMINLB_32_memop
-                        Instruction result(Mnemonic::LDUMINLB, insn, 1488);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDUMINLB, insn, EncodingId::STUMINLB_LDUMINLB_32_memop);
+            #else
+                        Instruction result(Mnemonic::LDUMINLB, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.stuminlb_lduminlb32memop.Rs, false));
@@ -38995,7 +39127,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x3C20801Fu: { // STBFADD_16
-                        Instruction result(Mnemonic::STBFADD, insn, 1271);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::STBFADD, insn, EncodingId::STBFADD_16);
+            #else
+                        Instruction result(Mnemonic::STBFADD, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -39004,7 +39140,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x3C20C01Fu: { // STBFMAX_16
-                        Instruction result(Mnemonic::STBFMAX, insn, 1273);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::STBFMAX, insn, EncodingId::STBFMAX_16);
+            #else
+                        Instruction result(Mnemonic::STBFMAX, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -39013,7 +39153,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x3C20D01Fu: { // STBFMIN_16
-                        Instruction result(Mnemonic::STBFMIN, insn, 1277);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::STBFMIN, insn, EncodingId::STBFMIN_16);
+            #else
+                        Instruction result(Mnemonic::STBFMIN, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -39022,7 +39166,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x3C20E01Fu: { // STBFMAXNM_16
-                        Instruction result(Mnemonic::STBFMAXNM, insn, 1275);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::STBFMAXNM, insn, EncodingId::STBFMAXNM_16);
+            #else
+                        Instruction result(Mnemonic::STBFMAXNM, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -39031,7 +39179,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x3C20F01Fu: { // STBFMINNM_16
-                        Instruction result(Mnemonic::STBFMINNM, insn, 1279);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::STBFMINNM, insn, EncodingId::STBFMINNM_16);
+            #else
+                        Instruction result(Mnemonic::STBFMINNM, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -39040,7 +39192,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x3C60801Fu: { // STBFADDL_16
-                        Instruction result(Mnemonic::STBFADDL, insn, 1272);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::STBFADDL, insn, EncodingId::STBFADDL_16);
+            #else
+                        Instruction result(Mnemonic::STBFADDL, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -39049,7 +39205,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x3C60C01Fu: { // STBFMAXL_16
-                        Instruction result(Mnemonic::STBFMAXL, insn, 1274);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::STBFMAXL, insn, EncodingId::STBFMAXL_16);
+            #else
+                        Instruction result(Mnemonic::STBFMAXL, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -39058,7 +39218,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x3C60D01Fu: { // STBFMINL_16
-                        Instruction result(Mnemonic::STBFMINL, insn, 1278);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::STBFMINL, insn, EncodingId::STBFMINL_16);
+            #else
+                        Instruction result(Mnemonic::STBFMINL, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -39067,7 +39231,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x3C60E01Fu: { // STBFMAXNML_16
-                        Instruction result(Mnemonic::STBFMAXNML, insn, 1276);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::STBFMAXNML, insn, EncodingId::STBFMAXNML_16);
+            #else
+                        Instruction result(Mnemonic::STBFMAXNML, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -39076,7 +39244,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x3C60F01Fu: { // STBFMINNML_16
-                        Instruction result(Mnemonic::STBFMINNML, insn, 1280);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::STBFMINNML, insn, EncodingId::STBFMINNML_16);
+            #else
+                        Instruction result(Mnemonic::STBFMINNML, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -39085,7 +39257,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x5920041Fu: { // STTADD_LDTADD_64_memop_unpriv
-                        Instruction result(Mnemonic::LDTADD, insn, 1451);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDTADD, insn, EncodingId::STTADD_LDTADD_64_memop_unpriv);
+            #else
+                        Instruction result(Mnemonic::LDTADD, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.sttadd_ldtadd64memop_unpriv.Rs, true));
@@ -39093,7 +39269,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x5920141Fu: { // STTCLR_LDTCLR_64_memop_unpriv
-                        Instruction result(Mnemonic::LDTCLR, insn, 1455);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDTCLR, insn, EncodingId::STTCLR_LDTCLR_64_memop_unpriv);
+            #else
+                        Instruction result(Mnemonic::LDTCLR, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.sttclr_ldtclr64memop_unpriv.Rs, true));
@@ -39101,7 +39281,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x5920341Fu: { // STTSET_LDTSET_64_memop_unpriv
-                        Instruction result(Mnemonic::LDTSET, insn, 1471);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDTSET, insn, EncodingId::STTSET_LDTSET_64_memop_unpriv);
+            #else
+                        Instruction result(Mnemonic::LDTSET, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.sttset_ldtset64memop_unpriv.Rs, true));
@@ -39109,7 +39293,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x5960041Fu: { // STTADDL_LDTADDL_64_memop_unpriv
-                        Instruction result(Mnemonic::LDTADDL, insn, 1452);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDTADDL, insn, EncodingId::STTADDL_LDTADDL_64_memop_unpriv);
+            #else
+                        Instruction result(Mnemonic::LDTADDL, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.sttaddl_ldtaddl64memop_unpriv.Rs, true));
@@ -39117,7 +39305,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x5960141Fu: { // STTCLRL_LDTCLRL_64_memop_unpriv
-                        Instruction result(Mnemonic::LDTCLRL, insn, 1456);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDTCLRL, insn, EncodingId::STTCLRL_LDTCLRL_64_memop_unpriv);
+            #else
+                        Instruction result(Mnemonic::LDTCLRL, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.sttclrl_ldtclrl64memop_unpriv.Rs, true));
@@ -39125,7 +39317,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x5960341Fu: { // STTSETL_LDTSETL_64_memop_unpriv
-                        Instruction result(Mnemonic::LDTSETL, insn, 1472);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDTSETL, insn, EncodingId::STTSETL_LDTSETL_64_memop_unpriv);
+            #else
+                        Instruction result(Mnemonic::LDTSETL, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.sttsetl_ldtsetl64memop_unpriv.Rs, true));
@@ -39133,7 +39329,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x7820001Fu: { // STADDH_LDADDH_32_memop
-                        Instruction result(Mnemonic::LDADDH, insn, 1269);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDADDH, insn, EncodingId::STADDH_LDADDH_32_memop);
+            #else
+                        Instruction result(Mnemonic::LDADDH, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.staddh_ldaddh32memop.Rs, false));
@@ -39141,7 +39341,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x7820101Fu: { // STCLRH_LDCLRH_32_memop
-                        Instruction result(Mnemonic::LDCLRH, insn, 1287);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDCLRH, insn, EncodingId::STCLRH_LDCLRH_32_memop);
+            #else
+                        Instruction result(Mnemonic::LDCLRH, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.stclrh_ldclrh32memop.Rs, false));
@@ -39149,7 +39353,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x7820201Fu: { // STEORH_LDEORH_32_memop
-                        Instruction result(Mnemonic::LDEORH, insn, 1295);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDEORH, insn, EncodingId::STEORH_LDEORH_32_memop);
+            #else
+                        Instruction result(Mnemonic::LDEORH, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.steorh_ldeorh32memop.Rs, false));
@@ -39157,7 +39365,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x7820301Fu: { // STSETH_LDSETH_32_memop
-                        Instruction result(Mnemonic::LDSETH, insn, 1431);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDSETH, insn, EncodingId::STSETH_LDSETH_32_memop);
+            #else
+                        Instruction result(Mnemonic::LDSETH, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.stseth_ldseth32memop.Rs, false));
@@ -39165,7 +39377,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x7820401Fu: { // STSMAXH_LDSMAXH_32_memop
-                        Instruction result(Mnemonic::LDSMAXH, insn, 1439);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDSMAXH, insn, EncodingId::STSMAXH_LDSMAXH_32_memop);
+            #else
+                        Instruction result(Mnemonic::LDSMAXH, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.stsmaxh_ldsmaxh32memop.Rs, false));
@@ -39173,7 +39389,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x7820501Fu: { // STSMINH_LDSMINH_32_memop
-                        Instruction result(Mnemonic::LDSMINH, insn, 1447);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDSMINH, insn, EncodingId::STSMINH_LDSMINH_32_memop);
+            #else
+                        Instruction result(Mnemonic::LDSMINH, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.stsminh_ldsminh32memop.Rs, false));
@@ -39181,7 +39401,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x7820601Fu: { // STUMAXH_LDUMAXH_32_memop
-                        Instruction result(Mnemonic::LDUMAXH, insn, 1481);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDUMAXH, insn, EncodingId::STUMAXH_LDUMAXH_32_memop);
+            #else
+                        Instruction result(Mnemonic::LDUMAXH, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.stumaxh_ldumaxh32memop.Rs, false));
@@ -39189,7 +39413,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x7820701Fu: { // STUMINH_LDUMINH_32_memop
-                        Instruction result(Mnemonic::LDUMINH, insn, 1489);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDUMINH, insn, EncodingId::STUMINH_LDUMINH_32_memop);
+            #else
+                        Instruction result(Mnemonic::LDUMINH, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.stuminh_lduminh32memop.Rs, false));
@@ -39197,7 +39425,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x7860001Fu: { // STADDLH_LDADDLH_32_memop
-                        Instruction result(Mnemonic::LDADDLH, insn, 1270);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDADDLH, insn, EncodingId::STADDLH_LDADDLH_32_memop);
+            #else
+                        Instruction result(Mnemonic::LDADDLH, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.staddlh_ldaddlh32memop.Rs, false));
@@ -39205,7 +39437,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x7860101Fu: { // STCLRLH_LDCLRLH_32_memop
-                        Instruction result(Mnemonic::LDCLRLH, insn, 1288);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDCLRLH, insn, EncodingId::STCLRLH_LDCLRLH_32_memop);
+            #else
+                        Instruction result(Mnemonic::LDCLRLH, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.stclrlh_ldclrlh32memop.Rs, false));
@@ -39213,7 +39449,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x7860201Fu: { // STEORLH_LDEORLH_32_memop
-                        Instruction result(Mnemonic::LDEORLH, insn, 1296);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDEORLH, insn, EncodingId::STEORLH_LDEORLH_32_memop);
+            #else
+                        Instruction result(Mnemonic::LDEORLH, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.steorlh_ldeorlh32memop.Rs, false));
@@ -39221,7 +39461,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x7860301Fu: { // STSETLH_LDSETLH_32_memop
-                        Instruction result(Mnemonic::LDSETLH, insn, 1432);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDSETLH, insn, EncodingId::STSETLH_LDSETLH_32_memop);
+            #else
+                        Instruction result(Mnemonic::LDSETLH, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.stsetlh_ldsetlh32memop.Rs, false));
@@ -39229,7 +39473,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x7860401Fu: { // STSMAXLH_LDSMAXLH_32_memop
-                        Instruction result(Mnemonic::LDSMAXLH, insn, 1440);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDSMAXLH, insn, EncodingId::STSMAXLH_LDSMAXLH_32_memop);
+            #else
+                        Instruction result(Mnemonic::LDSMAXLH, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.stsmaxlh_ldsmaxlh32memop.Rs, false));
@@ -39237,7 +39485,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x7860501Fu: { // STSMINLH_LDSMINLH_32_memop
-                        Instruction result(Mnemonic::LDSMINLH, insn, 1448);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDSMINLH, insn, EncodingId::STSMINLH_LDSMINLH_32_memop);
+            #else
+                        Instruction result(Mnemonic::LDSMINLH, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.stsminlh_ldsminlh32memop.Rs, false));
@@ -39245,7 +39497,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x7860601Fu: { // STUMAXLH_LDUMAXLH_32_memop
-                        Instruction result(Mnemonic::LDUMAXLH, insn, 1482);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDUMAXLH, insn, EncodingId::STUMAXLH_LDUMAXLH_32_memop);
+            #else
+                        Instruction result(Mnemonic::LDUMAXLH, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.stumaxlh_ldumaxlh32memop.Rs, false));
@@ -39253,7 +39509,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x7860701Fu: { // STUMINLH_LDUMINLH_32_memop
-                        Instruction result(Mnemonic::LDUMINLH, insn, 1490);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDUMINLH, insn, EncodingId::STUMINLH_LDUMINLH_32_memop);
+            #else
+                        Instruction result(Mnemonic::LDUMINLH, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.stuminlh_lduminlh32memop.Rs, false));
@@ -39261,7 +39521,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x7C20801Fu: { // STFADD_16
-                        Instruction result(Mnemonic::STFADD, insn, 1297);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::STFADD, insn, EncodingId::STFADD_16);
+            #else
+                        Instruction result(Mnemonic::STFADD, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -39270,7 +39534,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x7C20C01Fu: { // STFMAX_16
-                        Instruction result(Mnemonic::STFMAX, insn, 1303);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::STFMAX, insn, EncodingId::STFMAX_16);
+            #else
+                        Instruction result(Mnemonic::STFMAX, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -39279,7 +39547,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x7C20D01Fu: { // STFMIN_16
-                        Instruction result(Mnemonic::STFMIN, insn, 1315);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::STFMIN, insn, EncodingId::STFMIN_16);
+            #else
+                        Instruction result(Mnemonic::STFMIN, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -39288,7 +39560,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x7C20E01Fu: { // STFMAXNM_16
-                        Instruction result(Mnemonic::STFMAXNM, insn, 1309);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::STFMAXNM, insn, EncodingId::STFMAXNM_16);
+            #else
+                        Instruction result(Mnemonic::STFMAXNM, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -39297,7 +39573,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x7C20F01Fu: { // STFMINNM_16
-                        Instruction result(Mnemonic::STFMINNM, insn, 1321);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::STFMINNM, insn, EncodingId::STFMINNM_16);
+            #else
+                        Instruction result(Mnemonic::STFMINNM, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -39306,7 +39586,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x7C60801Fu: { // STFADDL_16
-                        Instruction result(Mnemonic::STFADDL, insn, 1298);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::STFADDL, insn, EncodingId::STFADDL_16);
+            #else
+                        Instruction result(Mnemonic::STFADDL, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -39315,7 +39599,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x7C60C01Fu: { // STFMAXL_16
-                        Instruction result(Mnemonic::STFMAXL, insn, 1304);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::STFMAXL, insn, EncodingId::STFMAXL_16);
+            #else
+                        Instruction result(Mnemonic::STFMAXL, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -39324,7 +39612,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x7C60D01Fu: { // STFMINL_16
-                        Instruction result(Mnemonic::STFMINL, insn, 1316);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::STFMINL, insn, EncodingId::STFMINL_16);
+            #else
+                        Instruction result(Mnemonic::STFMINL, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -39333,7 +39625,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x7C60E01Fu: { // STFMAXNML_16
-                        Instruction result(Mnemonic::STFMAXNML, insn, 1310);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::STFMAXNML, insn, EncodingId::STFMAXNML_16);
+            #else
+                        Instruction result(Mnemonic::STFMAXNML, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -39342,7 +39638,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x7C60F01Fu: { // STFMINNML_16
-                        Instruction result(Mnemonic::STFMINNML, insn, 1322);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::STFMINNML, insn, EncodingId::STFMINNML_16);
+            #else
+                        Instruction result(Mnemonic::STFMINNML, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -39351,7 +39651,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0xB820001Fu: { // STADD_LDADD_32_memop
-                        Instruction result(Mnemonic::LDADD, insn, 1263);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDADD, insn, EncodingId::STADD_LDADD_32_memop);
+            #else
+                        Instruction result(Mnemonic::LDADD, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.stadd_ldadd32memop.Rs, false));
@@ -39359,7 +39663,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0xB820101Fu: { // STCLR_LDCLR_32_memop
-                        Instruction result(Mnemonic::LDCLR, insn, 1281);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDCLR, insn, EncodingId::STCLR_LDCLR_32_memop);
+            #else
+                        Instruction result(Mnemonic::LDCLR, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.stclr_ldclr32memop.Rs, false));
@@ -39367,7 +39675,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0xB820201Fu: { // STEOR_LDEOR_32_memop
-                        Instruction result(Mnemonic::LDEOR, insn, 1289);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDEOR, insn, EncodingId::STEOR_LDEOR_32_memop);
+            #else
+                        Instruction result(Mnemonic::LDEOR, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.steor_ldeor32memop.Rs, false));
@@ -39375,7 +39687,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0xB820301Fu: { // STSET_LDSET_32_memop
-                        Instruction result(Mnemonic::LDSET, insn, 1425);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDSET, insn, EncodingId::STSET_LDSET_32_memop);
+            #else
+                        Instruction result(Mnemonic::LDSET, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.stset_ldset32memop.Rs, false));
@@ -39383,7 +39699,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0xB820401Fu: { // STSMAX_LDSMAX_32_memop
-                        Instruction result(Mnemonic::LDSMAX, insn, 1433);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDSMAX, insn, EncodingId::STSMAX_LDSMAX_32_memop);
+            #else
+                        Instruction result(Mnemonic::LDSMAX, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.stsmax_ldsmax32memop.Rs, false));
@@ -39391,7 +39711,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0xB820501Fu: { // STSMIN_LDSMIN_32_memop
-                        Instruction result(Mnemonic::LDSMIN, insn, 1441);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDSMIN, insn, EncodingId::STSMIN_LDSMIN_32_memop);
+            #else
+                        Instruction result(Mnemonic::LDSMIN, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.stsmin_ldsmin32memop.Rs, false));
@@ -39399,7 +39723,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0xB820601Fu: { // STUMAX_LDUMAX_32_memop
-                        Instruction result(Mnemonic::LDUMAX, insn, 1475);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDUMAX, insn, EncodingId::STUMAX_LDUMAX_32_memop);
+            #else
+                        Instruction result(Mnemonic::LDUMAX, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.stumax_ldumax32memop.Rs, false));
@@ -39407,7 +39735,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0xB820701Fu: { // STUMIN_LDUMIN_32_memop
-                        Instruction result(Mnemonic::LDUMIN, insn, 1483);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDUMIN, insn, EncodingId::STUMIN_LDUMIN_32_memop);
+            #else
+                        Instruction result(Mnemonic::LDUMIN, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.stumin_ldumin32memop.Rs, false));
@@ -39415,7 +39747,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0xB860001Fu: { // STADDL_LDADDL_32_memop
-                        Instruction result(Mnemonic::LDADDL, insn, 1264);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDADDL, insn, EncodingId::STADDL_LDADDL_32_memop);
+            #else
+                        Instruction result(Mnemonic::LDADDL, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.staddl_ldaddl32memop.Rs, false));
@@ -39423,7 +39759,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0xB860101Fu: { // STCLRL_LDCLRL_32_memop
-                        Instruction result(Mnemonic::LDCLRL, insn, 1282);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDCLRL, insn, EncodingId::STCLRL_LDCLRL_32_memop);
+            #else
+                        Instruction result(Mnemonic::LDCLRL, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.stclrl_ldclrl32memop.Rs, false));
@@ -39431,7 +39771,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0xB860201Fu: { // STEORL_LDEORL_32_memop
-                        Instruction result(Mnemonic::LDEORL, insn, 1290);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDEORL, insn, EncodingId::STEORL_LDEORL_32_memop);
+            #else
+                        Instruction result(Mnemonic::LDEORL, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.steorl_ldeorl32memop.Rs, false));
@@ -39439,7 +39783,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0xB860301Fu: { // STSETL_LDSETL_32_memop
-                        Instruction result(Mnemonic::LDSETL, insn, 1426);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDSETL, insn, EncodingId::STSETL_LDSETL_32_memop);
+            #else
+                        Instruction result(Mnemonic::LDSETL, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.stsetl_ldsetl32memop.Rs, false));
@@ -39447,7 +39795,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0xB860401Fu: { // STSMAXL_LDSMAXL_32_memop
-                        Instruction result(Mnemonic::LDSMAXL, insn, 1434);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDSMAXL, insn, EncodingId::STSMAXL_LDSMAXL_32_memop);
+            #else
+                        Instruction result(Mnemonic::LDSMAXL, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.stsmaxl_ldsmaxl32memop.Rs, false));
@@ -39455,7 +39807,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0xB860501Fu: { // STSMINL_LDSMINL_32_memop
-                        Instruction result(Mnemonic::LDSMINL, insn, 1442);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDSMINL, insn, EncodingId::STSMINL_LDSMINL_32_memop);
+            #else
+                        Instruction result(Mnemonic::LDSMINL, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.stsminl_ldsminl32memop.Rs, false));
@@ -39463,7 +39819,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0xB860601Fu: { // STUMAXL_LDUMAXL_32_memop
-                        Instruction result(Mnemonic::LDUMAXL, insn, 1476);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDUMAXL, insn, EncodingId::STUMAXL_LDUMAXL_32_memop);
+            #else
+                        Instruction result(Mnemonic::LDUMAXL, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.stumaxl_ldumaxl32memop.Rs, false));
@@ -39471,7 +39831,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0xB860701Fu: { // STUMINL_LDUMINL_32_memop
-                        Instruction result(Mnemonic::LDUMINL, insn, 1484);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDUMINL, insn, EncodingId::STUMINL_LDUMINL_32_memop);
+            #else
+                        Instruction result(Mnemonic::LDUMINL, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.stuminl_lduminl32memop.Rs, false));
@@ -39479,7 +39843,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0xBC20801Fu: { // STFADD_32
-                        Instruction result(Mnemonic::STFADD, insn, 1299);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::STFADD, insn, EncodingId::STFADD_32);
+            #else
+                        Instruction result(Mnemonic::STFADD, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -39488,7 +39856,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0xBC20C01Fu: { // STFMAX_32
-                        Instruction result(Mnemonic::STFMAX, insn, 1305);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::STFMAX, insn, EncodingId::STFMAX_32);
+            #else
+                        Instruction result(Mnemonic::STFMAX, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -39497,7 +39869,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0xBC20D01Fu: { // STFMIN_32
-                        Instruction result(Mnemonic::STFMIN, insn, 1317);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::STFMIN, insn, EncodingId::STFMIN_32);
+            #else
+                        Instruction result(Mnemonic::STFMIN, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -39506,7 +39882,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0xBC20E01Fu: { // STFMAXNM_32
-                        Instruction result(Mnemonic::STFMAXNM, insn, 1311);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::STFMAXNM, insn, EncodingId::STFMAXNM_32);
+            #else
+                        Instruction result(Mnemonic::STFMAXNM, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -39515,7 +39895,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0xBC20F01Fu: { // STFMINNM_32
-                        Instruction result(Mnemonic::STFMINNM, insn, 1323);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::STFMINNM, insn, EncodingId::STFMINNM_32);
+            #else
+                        Instruction result(Mnemonic::STFMINNM, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -39524,7 +39908,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0xBC60801Fu: { // STFADDL_32
-                        Instruction result(Mnemonic::STFADDL, insn, 1300);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::STFADDL, insn, EncodingId::STFADDL_32);
+            #else
+                        Instruction result(Mnemonic::STFADDL, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -39533,7 +39921,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0xBC60C01Fu: { // STFMAXL_32
-                        Instruction result(Mnemonic::STFMAXL, insn, 1306);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::STFMAXL, insn, EncodingId::STFMAXL_32);
+            #else
+                        Instruction result(Mnemonic::STFMAXL, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -39542,7 +39934,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0xBC60D01Fu: { // STFMINL_32
-                        Instruction result(Mnemonic::STFMINL, insn, 1318);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::STFMINL, insn, EncodingId::STFMINL_32);
+            #else
+                        Instruction result(Mnemonic::STFMINL, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -39551,7 +39947,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0xBC60E01Fu: { // STFMAXNML_32
-                        Instruction result(Mnemonic::STFMAXNML, insn, 1312);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::STFMAXNML, insn, EncodingId::STFMAXNML_32);
+            #else
+                        Instruction result(Mnemonic::STFMAXNML, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -39560,7 +39960,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0xBC60F01Fu: { // STFMINNML_32
-                        Instruction result(Mnemonic::STFMINNML, insn, 1324);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::STFMINNML, insn, EncodingId::STFMINNML_32);
+            #else
+                        Instruction result(Mnemonic::STFMINNML, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -39569,7 +39973,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0xF820001Fu: { // STADD_LDADD_64_memop
-                        Instruction result(Mnemonic::LDADD, insn, 1265);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDADD, insn, EncodingId::STADD_LDADD_64_memop);
+            #else
+                        Instruction result(Mnemonic::LDADD, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.stadd_ldadd64memop.Rs, true));
@@ -39577,7 +39985,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0xF820101Fu: { // STCLR_LDCLR_64_memop
-                        Instruction result(Mnemonic::LDCLR, insn, 1283);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDCLR, insn, EncodingId::STCLR_LDCLR_64_memop);
+            #else
+                        Instruction result(Mnemonic::LDCLR, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.stclr_ldclr64memop.Rs, true));
@@ -39585,7 +39997,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0xF820201Fu: { // STEOR_LDEOR_64_memop
-                        Instruction result(Mnemonic::LDEOR, insn, 1291);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDEOR, insn, EncodingId::STEOR_LDEOR_64_memop);
+            #else
+                        Instruction result(Mnemonic::LDEOR, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.steor_ldeor64memop.Rs, true));
@@ -39593,7 +40009,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0xF820301Fu: { // STSET_LDSET_64_memop
-                        Instruction result(Mnemonic::LDSET, insn, 1427);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDSET, insn, EncodingId::STSET_LDSET_64_memop);
+            #else
+                        Instruction result(Mnemonic::LDSET, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.stset_ldset64memop.Rs, true));
@@ -39601,7 +40021,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0xF820401Fu: { // STSMAX_LDSMAX_64_memop
-                        Instruction result(Mnemonic::LDSMAX, insn, 1435);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDSMAX, insn, EncodingId::STSMAX_LDSMAX_64_memop);
+            #else
+                        Instruction result(Mnemonic::LDSMAX, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.stsmax_ldsmax64memop.Rs, true));
@@ -39609,7 +40033,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0xF820501Fu: { // STSMIN_LDSMIN_64_memop
-                        Instruction result(Mnemonic::LDSMIN, insn, 1443);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDSMIN, insn, EncodingId::STSMIN_LDSMIN_64_memop);
+            #else
+                        Instruction result(Mnemonic::LDSMIN, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.stsmin_ldsmin64memop.Rs, true));
@@ -39617,7 +40045,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0xF820601Fu: { // STUMAX_LDUMAX_64_memop
-                        Instruction result(Mnemonic::LDUMAX, insn, 1477);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDUMAX, insn, EncodingId::STUMAX_LDUMAX_64_memop);
+            #else
+                        Instruction result(Mnemonic::LDUMAX, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.stumax_ldumax64memop.Rs, true));
@@ -39625,7 +40057,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0xF820701Fu: { // STUMIN_LDUMIN_64_memop
-                        Instruction result(Mnemonic::LDUMIN, insn, 1485);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDUMIN, insn, EncodingId::STUMIN_LDUMIN_64_memop);
+            #else
+                        Instruction result(Mnemonic::LDUMIN, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.stumin_ldumin64memop.Rs, true));
@@ -39633,7 +40069,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0xF860001Fu: { // STADDL_LDADDL_64_memop
-                        Instruction result(Mnemonic::LDADDL, insn, 1266);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDADDL, insn, EncodingId::STADDL_LDADDL_64_memop);
+            #else
+                        Instruction result(Mnemonic::LDADDL, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.staddl_ldaddl64memop.Rs, true));
@@ -39641,7 +40081,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0xF860101Fu: { // STCLRL_LDCLRL_64_memop
-                        Instruction result(Mnemonic::LDCLRL, insn, 1284);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDCLRL, insn, EncodingId::STCLRL_LDCLRL_64_memop);
+            #else
+                        Instruction result(Mnemonic::LDCLRL, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.stclrl_ldclrl64memop.Rs, true));
@@ -39649,7 +40093,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0xF860201Fu: { // STEORL_LDEORL_64_memop
-                        Instruction result(Mnemonic::LDEORL, insn, 1292);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDEORL, insn, EncodingId::STEORL_LDEORL_64_memop);
+            #else
+                        Instruction result(Mnemonic::LDEORL, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.steorl_ldeorl64memop.Rs, true));
@@ -39657,7 +40105,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0xF860301Fu: { // STSETL_LDSETL_64_memop
-                        Instruction result(Mnemonic::LDSETL, insn, 1428);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDSETL, insn, EncodingId::STSETL_LDSETL_64_memop);
+            #else
+                        Instruction result(Mnemonic::LDSETL, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.stsetl_ldsetl64memop.Rs, true));
@@ -39665,7 +40117,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0xF860401Fu: { // STSMAXL_LDSMAXL_64_memop
-                        Instruction result(Mnemonic::LDSMAXL, insn, 1436);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDSMAXL, insn, EncodingId::STSMAXL_LDSMAXL_64_memop);
+            #else
+                        Instruction result(Mnemonic::LDSMAXL, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.stsmaxl_ldsmaxl64memop.Rs, true));
@@ -39673,7 +40129,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0xF860501Fu: { // STSMINL_LDSMINL_64_memop
-                        Instruction result(Mnemonic::LDSMINL, insn, 1444);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDSMINL, insn, EncodingId::STSMINL_LDSMINL_64_memop);
+            #else
+                        Instruction result(Mnemonic::LDSMINL, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.stsminl_ldsminl64memop.Rs, true));
@@ -39681,7 +40141,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0xF860601Fu: { // STUMAXL_LDUMAXL_64_memop
-                        Instruction result(Mnemonic::LDUMAXL, insn, 1478);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDUMAXL, insn, EncodingId::STUMAXL_LDUMAXL_64_memop);
+            #else
+                        Instruction result(Mnemonic::LDUMAXL, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.stumaxl_ldumaxl64memop.Rs, true));
@@ -39689,7 +40153,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0xF860701Fu: { // STUMINL_LDUMINL_64_memop
-                        Instruction result(Mnemonic::LDUMINL, insn, 1486);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDUMINL, insn, EncodingId::STUMINL_LDUMINL_64_memop);
+            #else
+                        Instruction result(Mnemonic::LDUMINL, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.stuminl_lduminl64memop.Rs, true));
@@ -39697,7 +40165,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0xFC20801Fu: { // STFADD_64
-                        Instruction result(Mnemonic::STFADD, insn, 1301);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::STFADD, insn, EncodingId::STFADD_64);
+            #else
+                        Instruction result(Mnemonic::STFADD, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -39706,7 +40178,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0xFC20C01Fu: { // STFMAX_64
-                        Instruction result(Mnemonic::STFMAX, insn, 1307);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::STFMAX, insn, EncodingId::STFMAX_64);
+            #else
+                        Instruction result(Mnemonic::STFMAX, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -39715,7 +40191,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0xFC20D01Fu: { // STFMIN_64
-                        Instruction result(Mnemonic::STFMIN, insn, 1319);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::STFMIN, insn, EncodingId::STFMIN_64);
+            #else
+                        Instruction result(Mnemonic::STFMIN, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -39724,7 +40204,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0xFC20E01Fu: { // STFMAXNM_64
-                        Instruction result(Mnemonic::STFMAXNM, insn, 1313);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::STFMAXNM, insn, EncodingId::STFMAXNM_64);
+            #else
+                        Instruction result(Mnemonic::STFMAXNM, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -39733,7 +40217,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0xFC20F01Fu: { // STFMINNM_64
-                        Instruction result(Mnemonic::STFMINNM, insn, 1325);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::STFMINNM, insn, EncodingId::STFMINNM_64);
+            #else
+                        Instruction result(Mnemonic::STFMINNM, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -39742,7 +40230,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0xFC60801Fu: { // STFADDL_64
-                        Instruction result(Mnemonic::STFADDL, insn, 1302);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::STFADDL, insn, EncodingId::STFADDL_64);
+            #else
+                        Instruction result(Mnemonic::STFADDL, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -39751,7 +40243,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0xFC60C01Fu: { // STFMAXL_64
-                        Instruction result(Mnemonic::STFMAXL, insn, 1308);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::STFMAXL, insn, EncodingId::STFMAXL_64);
+            #else
+                        Instruction result(Mnemonic::STFMAXL, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -39760,7 +40256,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0xFC60D01Fu: { // STFMINL_64
-                        Instruction result(Mnemonic::STFMINL, insn, 1320);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::STFMINL, insn, EncodingId::STFMINL_64);
+            #else
+                        Instruction result(Mnemonic::STFMINL, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -39769,7 +40269,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0xFC60E01Fu: { // STFMAXNML_64
-                        Instruction result(Mnemonic::STFMAXNML, insn, 1314);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::STFMAXNML, insn, EncodingId::STFMAXNML_64);
+            #else
+                        Instruction result(Mnemonic::STFMAXNML, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -39778,7 +40282,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0xFC60F01Fu: { // STFMINNML_64
-                        Instruction result(Mnemonic::STFMINNML, insn, 1326);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::STFMINNML, insn, EncodingId::STFMINNML_64);
+            #else
+                        Instruction result(Mnemonic::STFMINNML, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -39792,7 +40300,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
     // Switch for mask 0xFFE0FC00u (381 patterns, 381 encodings)
     switch (insn & 0xFFE0FC00u) {
         case 0x08207C00u: { // CASP_CP32_comswappr
-                        Instruction result(Mnemonic::CASP, insn, 482);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::CASP, insn, EncodingId::CASP_CP32_comswappr);
+            #else
+                        Instruction result(Mnemonic::CASP, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -39804,7 +40316,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x0820FC00u: { // CASPL_CP32_comswappr
-                        Instruction result(Mnemonic::CASPL, insn, 485);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::CASPL, insn, EncodingId::CASPL_CP32_comswappr);
+            #else
+                        Instruction result(Mnemonic::CASPL, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -39816,7 +40332,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x08607C00u: { // CASPA_CP32_comswappr
-                        Instruction result(Mnemonic::CASPA, insn, 483);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::CASPA, insn, EncodingId::CASPA_CP32_comswappr);
+            #else
+                        Instruction result(Mnemonic::CASPA, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -39828,7 +40348,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x0860FC00u: { // CASPAL_CP32_comswappr
-                        Instruction result(Mnemonic::CASPAL, insn, 484);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::CASPAL, insn, EncodingId::CASPAL_CP32_comswappr);
+            #else
+                        Instruction result(Mnemonic::CASPAL, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -39840,7 +40364,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x08A07C00u: { // CASB_C32_comswap
-                        Instruction result(Mnemonic::CASB, insn, 474);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::CASB, insn, EncodingId::CASB_C32_comswap);
+            #else
+                        Instruction result(Mnemonic::CASB, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.casb_c32comswap.Rs, false));
@@ -39849,7 +40377,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x08A0FC00u: { // CASLB_C32_comswap
-                        Instruction result(Mnemonic::CASLB, insn, 477);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::CASLB, insn, EncodingId::CASLB_C32_comswap);
+            #else
+                        Instruction result(Mnemonic::CASLB, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.caslb_c32comswap.Rs, false));
@@ -39858,7 +40390,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x08E07C00u: { // CASAB_C32_comswap
-                        Instruction result(Mnemonic::CASAB, insn, 475);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::CASAB, insn, EncodingId::CASAB_C32_comswap);
+            #else
+                        Instruction result(Mnemonic::CASAB, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.casab_c32comswap.Rs, false));
@@ -39867,7 +40403,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x08E0FC00u: { // CASALB_C32_comswap
-                        Instruction result(Mnemonic::CASALB, insn, 476);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::CASALB, insn, EncodingId::CASALB_C32_comswap);
+            #else
+                        Instruction result(Mnemonic::CASALB, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.casalb_c32comswap.Rs, false));
@@ -39876,7 +40416,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x19200400u: { // LDTADD_32_memop_unpriv
-                        Instruction result(Mnemonic::LDTADD, insn, 1000);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDTADD, insn, EncodingId::LDTADD_32_memop_unpriv);
+            #else
+                        Instruction result(Mnemonic::LDTADD, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldtadd32memop_unpriv.Rs, false));
@@ -39885,7 +40429,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x19200800u: { // RCWCAS_C64_rcwcomswap
-                        Instruction result(Mnemonic::RCWCAS, insn, 1099);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::RCWCAS, insn, EncodingId::RCWCAS_C64_rcwcomswap);
+            #else
+                        Instruction result(Mnemonic::RCWCAS, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.rcwcas_c64rcwcomswap.Rs, true));
@@ -39894,7 +40442,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x19200C00u: { // RCWCASP_C64_rcwcomswappr
-                        Instruction result(Mnemonic::RCWCASP, insn, 1103);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::RCWCASP, insn, EncodingId::RCWCASP_C64_rcwcomswappr);
+            #else
+                        Instruction result(Mnemonic::RCWCASP, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -39904,7 +40456,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x19201000u: { // LDCLRP_128_memop_128
-                        Instruction result(Mnemonic::LDCLRP, insn, 765);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDCLRP, insn, EncodingId::LDCLRP_128_memop_128);
+            #else
+                        Instruction result(Mnemonic::LDCLRP, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         if (enc.ldclrp128memop128.Rt == 31u) return std::nullopt;
@@ -39915,7 +40471,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x19201400u: { // LDTCLR_32_memop_unpriv
-                        Instruction result(Mnemonic::LDTCLR, insn, 1008);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDTCLR, insn, EncodingId::LDTCLR_32_memop_unpriv);
+            #else
+                        Instruction result(Mnemonic::LDTCLR, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldtclr32memop_unpriv.Rs, false));
@@ -39924,7 +40484,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x19203000u: { // LDSETP_128_memop_128
-                        Instruction result(Mnemonic::LDSETP, insn, 964);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDSETP, insn, EncodingId::LDSETP_128_memop_128);
+            #else
+                        Instruction result(Mnemonic::LDSETP, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         if (enc.ldsetp128memop128.Rt == 31u) return std::nullopt;
@@ -39935,7 +40499,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x19203400u: { // LDTSET_32_memop_unpriv
-                        Instruction result(Mnemonic::LDTSET, insn, 1033);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDTSET, insn, EncodingId::LDTSET_32_memop_unpriv);
+            #else
+                        Instruction result(Mnemonic::LDTSET, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldtset32memop_unpriv.Rs, false));
@@ -39944,7 +40512,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x19208000u: { // SWPP_128_memop_128
-                        Instruction result(Mnemonic::SWPP, insn, 1529);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SWPP, insn, EncodingId::SWPP_128_memop_128);
+            #else
+                        Instruction result(Mnemonic::SWPP, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         if (enc.swpp128memop128.Rt == 31u) return std::nullopt;
@@ -39955,7 +40527,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x19208400u: { // SWPT_32_memop_unpriv
-                        Instruction result(Mnemonic::SWPT, insn, 1533);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SWPT, insn, EncodingId::SWPT_32_memop_unpriv);
+            #else
+                        Instruction result(Mnemonic::SWPT, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.swpt32memop_unpriv.Rs, false));
@@ -39964,7 +40540,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x19209000u: { // RCWCLRP_128_memop_128
-                        Instruction result(Mnemonic::RCWCLRP, insn, 1111);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::RCWCLRP, insn, EncodingId::RCWCLRP_128_memop_128);
+            #else
+                        Instruction result(Mnemonic::RCWCLRP, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         if (enc.rcwclrp128memop128.Rt == 31u) return std::nullopt;
@@ -39975,7 +40555,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x1920A000u: { // RCWSWPP_128_memop_128
-                        Instruction result(Mnemonic::RCWSWPP, insn, 1159);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::RCWSWPP, insn, EncodingId::RCWSWPP_128_memop_128);
+            #else
+                        Instruction result(Mnemonic::RCWSWPP, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         if (enc.rcwswpp128memop128.Rt == 31u) return std::nullopt;
@@ -39986,7 +40570,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x1920B000u: { // RCWSETP_128_memop_128
-                        Instruction result(Mnemonic::RCWSETP, insn, 1135);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::RCWSETP, insn, EncodingId::RCWSETP_128_memop_128);
+            #else
+                        Instruction result(Mnemonic::RCWSETP, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         if (enc.rcwsetp128memop128.Rt == 31u) return std::nullopt;
@@ -39997,7 +40585,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x19600400u: { // LDTADDL_32_memop_unpriv
-                        Instruction result(Mnemonic::LDTADDL, insn, 1003);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDTADDL, insn, EncodingId::LDTADDL_32_memop_unpriv);
+            #else
+                        Instruction result(Mnemonic::LDTADDL, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldtaddl32memop_unpriv.Rs, false));
@@ -40006,7 +40598,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x19600800u: { // RCWCASL_C64_rcwcomswap
-                        Instruction result(Mnemonic::RCWCASL, insn, 1102);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::RCWCASL, insn, EncodingId::RCWCASL_C64_rcwcomswap);
+            #else
+                        Instruction result(Mnemonic::RCWCASL, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.rcwcasl_c64rcwcomswap.Rs, true));
@@ -40015,7 +40611,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x19600C00u: { // RCWCASPL_C64_rcwcomswappr
-                        Instruction result(Mnemonic::RCWCASPL, insn, 1106);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::RCWCASPL, insn, EncodingId::RCWCASPL_C64_rcwcomswappr);
+            #else
+                        Instruction result(Mnemonic::RCWCASPL, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -40025,7 +40625,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x19601000u: { // LDCLRPL_128_memop_128
-                        Instruction result(Mnemonic::LDCLRPL, insn, 768);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDCLRPL, insn, EncodingId::LDCLRPL_128_memop_128);
+            #else
+                        Instruction result(Mnemonic::LDCLRPL, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         if (enc.ldclrpl128memop128.Rt == 31u) return std::nullopt;
@@ -40036,7 +40640,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x19601400u: { // LDTCLRL_32_memop_unpriv
-                        Instruction result(Mnemonic::LDTCLRL, insn, 1011);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDTCLRL, insn, EncodingId::LDTCLRL_32_memop_unpriv);
+            #else
+                        Instruction result(Mnemonic::LDTCLRL, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldtclrl32memop_unpriv.Rs, false));
@@ -40045,7 +40653,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x19603000u: { // LDSETPL_128_memop_128
-                        Instruction result(Mnemonic::LDSETPL, insn, 967);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDSETPL, insn, EncodingId::LDSETPL_128_memop_128);
+            #else
+                        Instruction result(Mnemonic::LDSETPL, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         if (enc.ldsetpl128memop128.Rt == 31u) return std::nullopt;
@@ -40056,7 +40668,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x19603400u: { // LDTSETL_32_memop_unpriv
-                        Instruction result(Mnemonic::LDTSETL, insn, 1036);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDTSETL, insn, EncodingId::LDTSETL_32_memop_unpriv);
+            #else
+                        Instruction result(Mnemonic::LDTSETL, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldtsetl32memop_unpriv.Rs, false));
@@ -40065,7 +40681,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x19608000u: { // SWPPL_128_memop_128
-                        Instruction result(Mnemonic::SWPPL, insn, 1532);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SWPPL, insn, EncodingId::SWPPL_128_memop_128);
+            #else
+                        Instruction result(Mnemonic::SWPPL, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         if (enc.swppl128memop128.Rt == 31u) return std::nullopt;
@@ -40076,7 +40696,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x19608400u: { // SWPTL_32_memop_unpriv
-                        Instruction result(Mnemonic::SWPTL, insn, 1536);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SWPTL, insn, EncodingId::SWPTL_32_memop_unpriv);
+            #else
+                        Instruction result(Mnemonic::SWPTL, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.swptl32memop_unpriv.Rs, false));
@@ -40085,7 +40709,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x19609000u: { // RCWCLRPL_128_memop_128
-                        Instruction result(Mnemonic::RCWCLRPL, insn, 1114);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::RCWCLRPL, insn, EncodingId::RCWCLRPL_128_memop_128);
+            #else
+                        Instruction result(Mnemonic::RCWCLRPL, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         if (enc.rcwclrpl128memop128.Rt == 31u) return std::nullopt;
@@ -40096,7 +40724,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x1960A000u: { // RCWSWPPL_128_memop_128
-                        Instruction result(Mnemonic::RCWSWPPL, insn, 1162);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::RCWSWPPL, insn, EncodingId::RCWSWPPL_128_memop_128);
+            #else
+                        Instruction result(Mnemonic::RCWSWPPL, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         if (enc.rcwswppl128memop128.Rt == 31u) return std::nullopt;
@@ -40107,7 +40739,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x1960B000u: { // RCWSETPL_128_memop_128
-                        Instruction result(Mnemonic::RCWSETPL, insn, 1138);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::RCWSETPL, insn, EncodingId::RCWSETPL_128_memop_128);
+            #else
+                        Instruction result(Mnemonic::RCWSETPL, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         if (enc.rcwsetpl128memop128.Rt == 31u) return std::nullopt;
@@ -40118,7 +40754,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x19A00400u: { // LDTADDA_32_memop_unpriv
-                        Instruction result(Mnemonic::LDTADDA, insn, 1001);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDTADDA, insn, EncodingId::LDTADDA_32_memop_unpriv);
+            #else
+                        Instruction result(Mnemonic::LDTADDA, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldtadda32memop_unpriv.Rs, false));
@@ -40127,7 +40767,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x19A00800u: { // RCWCASA_C64_rcwcomswap
-                        Instruction result(Mnemonic::RCWCASA, insn, 1100);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::RCWCASA, insn, EncodingId::RCWCASA_C64_rcwcomswap);
+            #else
+                        Instruction result(Mnemonic::RCWCASA, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.rcwcasa_c64rcwcomswap.Rs, true));
@@ -40136,7 +40780,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x19A00C00u: { // RCWCASPA_C64_rcwcomswappr
-                        Instruction result(Mnemonic::RCWCASPA, insn, 1104);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::RCWCASPA, insn, EncodingId::RCWCASPA_C64_rcwcomswappr);
+            #else
+                        Instruction result(Mnemonic::RCWCASPA, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -40146,7 +40794,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x19A01000u: { // LDCLRPA_128_memop_128
-                        Instruction result(Mnemonic::LDCLRPA, insn, 766);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDCLRPA, insn, EncodingId::LDCLRPA_128_memop_128);
+            #else
+                        Instruction result(Mnemonic::LDCLRPA, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         if (enc.ldclrpa128memop128.Rt == 31u) return std::nullopt;
@@ -40157,7 +40809,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x19A01400u: { // LDTCLRA_32_memop_unpriv
-                        Instruction result(Mnemonic::LDTCLRA, insn, 1009);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDTCLRA, insn, EncodingId::LDTCLRA_32_memop_unpriv);
+            #else
+                        Instruction result(Mnemonic::LDTCLRA, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldtclra32memop_unpriv.Rs, false));
@@ -40166,7 +40822,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x19A03000u: { // LDSETPA_128_memop_128
-                        Instruction result(Mnemonic::LDSETPA, insn, 965);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDSETPA, insn, EncodingId::LDSETPA_128_memop_128);
+            #else
+                        Instruction result(Mnemonic::LDSETPA, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         if (enc.ldsetpa128memop128.Rt == 31u) return std::nullopt;
@@ -40177,7 +40837,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x19A03400u: { // LDTSETA_32_memop_unpriv
-                        Instruction result(Mnemonic::LDTSETA, insn, 1034);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDTSETA, insn, EncodingId::LDTSETA_32_memop_unpriv);
+            #else
+                        Instruction result(Mnemonic::LDTSETA, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldtseta32memop_unpriv.Rs, false));
@@ -40186,7 +40850,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x19A08000u: { // SWPPA_128_memop_128
-                        Instruction result(Mnemonic::SWPPA, insn, 1530);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SWPPA, insn, EncodingId::SWPPA_128_memop_128);
+            #else
+                        Instruction result(Mnemonic::SWPPA, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         if (enc.swppa128memop128.Rt == 31u) return std::nullopt;
@@ -40197,7 +40865,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x19A08400u: { // SWPTA_32_memop_unpriv
-                        Instruction result(Mnemonic::SWPTA, insn, 1534);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SWPTA, insn, EncodingId::SWPTA_32_memop_unpriv);
+            #else
+                        Instruction result(Mnemonic::SWPTA, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.swpta32memop_unpriv.Rs, false));
@@ -40206,7 +40878,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x19A09000u: { // RCWCLRPA_128_memop_128
-                        Instruction result(Mnemonic::RCWCLRPA, insn, 1112);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::RCWCLRPA, insn, EncodingId::RCWCLRPA_128_memop_128);
+            #else
+                        Instruction result(Mnemonic::RCWCLRPA, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         if (enc.rcwclrpa128memop128.Rt == 31u) return std::nullopt;
@@ -40217,7 +40893,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x19A0A000u: { // RCWSWPPA_128_memop_128
-                        Instruction result(Mnemonic::RCWSWPPA, insn, 1160);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::RCWSWPPA, insn, EncodingId::RCWSWPPA_128_memop_128);
+            #else
+                        Instruction result(Mnemonic::RCWSWPPA, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         if (enc.rcwswppa128memop128.Rt == 31u) return std::nullopt;
@@ -40228,7 +40908,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x19A0B000u: { // RCWSETPA_128_memop_128
-                        Instruction result(Mnemonic::RCWSETPA, insn, 1136);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::RCWSETPA, insn, EncodingId::RCWSETPA_128_memop_128);
+            #else
+                        Instruction result(Mnemonic::RCWSETPA, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         if (enc.rcwsetpa128memop128.Rt == 31u) return std::nullopt;
@@ -40239,7 +40923,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x19E00400u: { // LDTADDAL_32_memop_unpriv
-                        Instruction result(Mnemonic::LDTADDAL, insn, 1002);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDTADDAL, insn, EncodingId::LDTADDAL_32_memop_unpriv);
+            #else
+                        Instruction result(Mnemonic::LDTADDAL, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldtaddal32memop_unpriv.Rs, false));
@@ -40248,7 +40936,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x19E00800u: { // RCWCASAL_C64_rcwcomswap
-                        Instruction result(Mnemonic::RCWCASAL, insn, 1101);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::RCWCASAL, insn, EncodingId::RCWCASAL_C64_rcwcomswap);
+            #else
+                        Instruction result(Mnemonic::RCWCASAL, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.rcwcasal_c64rcwcomswap.Rs, true));
@@ -40257,7 +40949,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x19E00C00u: { // RCWCASPAL_C64_rcwcomswappr
-                        Instruction result(Mnemonic::RCWCASPAL, insn, 1105);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::RCWCASPAL, insn, EncodingId::RCWCASPAL_C64_rcwcomswappr);
+            #else
+                        Instruction result(Mnemonic::RCWCASPAL, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -40267,7 +40963,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x19E01000u: { // LDCLRPAL_128_memop_128
-                        Instruction result(Mnemonic::LDCLRPAL, insn, 767);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDCLRPAL, insn, EncodingId::LDCLRPAL_128_memop_128);
+            #else
+                        Instruction result(Mnemonic::LDCLRPAL, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         if (enc.ldclrpal128memop128.Rt == 31u) return std::nullopt;
@@ -40278,7 +40978,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x19E01400u: { // LDTCLRAL_32_memop_unpriv
-                        Instruction result(Mnemonic::LDTCLRAL, insn, 1010);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDTCLRAL, insn, EncodingId::LDTCLRAL_32_memop_unpriv);
+            #else
+                        Instruction result(Mnemonic::LDTCLRAL, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldtclral32memop_unpriv.Rs, false));
@@ -40287,7 +40991,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x19E03000u: { // LDSETPAL_128_memop_128
-                        Instruction result(Mnemonic::LDSETPAL, insn, 966);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDSETPAL, insn, EncodingId::LDSETPAL_128_memop_128);
+            #else
+                        Instruction result(Mnemonic::LDSETPAL, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         if (enc.ldsetpal128memop128.Rt == 31u) return std::nullopt;
@@ -40298,7 +41006,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x19E03400u: { // LDTSETAL_32_memop_unpriv
-                        Instruction result(Mnemonic::LDTSETAL, insn, 1035);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDTSETAL, insn, EncodingId::LDTSETAL_32_memop_unpriv);
+            #else
+                        Instruction result(Mnemonic::LDTSETAL, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldtsetal32memop_unpriv.Rs, false));
@@ -40307,7 +41019,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x19E08000u: { // SWPPAL_128_memop_128
-                        Instruction result(Mnemonic::SWPPAL, insn, 1531);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SWPPAL, insn, EncodingId::SWPPAL_128_memop_128);
+            #else
+                        Instruction result(Mnemonic::SWPPAL, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         if (enc.swppal128memop128.Rt == 31u) return std::nullopt;
@@ -40318,7 +41034,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x19E08400u: { // SWPTAL_32_memop_unpriv
-                        Instruction result(Mnemonic::SWPTAL, insn, 1535);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SWPTAL, insn, EncodingId::SWPTAL_32_memop_unpriv);
+            #else
+                        Instruction result(Mnemonic::SWPTAL, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.swptal32memop_unpriv.Rs, false));
@@ -40327,7 +41047,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x19E09000u: { // RCWCLRPAL_128_memop_128
-                        Instruction result(Mnemonic::RCWCLRPAL, insn, 1113);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::RCWCLRPAL, insn, EncodingId::RCWCLRPAL_128_memop_128);
+            #else
+                        Instruction result(Mnemonic::RCWCLRPAL, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         if (enc.rcwclrpal128memop128.Rt == 31u) return std::nullopt;
@@ -40338,7 +41062,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x19E0A000u: { // RCWSWPPAL_128_memop_128
-                        Instruction result(Mnemonic::RCWSWPPAL, insn, 1161);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::RCWSWPPAL, insn, EncodingId::RCWSWPPAL_128_memop_128);
+            #else
+                        Instruction result(Mnemonic::RCWSWPPAL, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         if (enc.rcwswppal128memop128.Rt == 31u) return std::nullopt;
@@ -40349,7 +41077,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x19E0B000u: { // RCWSETPAL_128_memop_128
-                        Instruction result(Mnemonic::RCWSETPAL, insn, 1137);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::RCWSETPAL, insn, EncodingId::RCWSETPAL_128_memop_128);
+            #else
+                        Instruction result(Mnemonic::RCWSETPAL, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         if (enc.rcwsetpal128memop128.Rt == 31u) return std::nullopt;
@@ -40360,7 +41092,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x38200000u: { // LDADDB_32_memop
-                        Instruction result(Mnemonic::LDADDB, insn, 686);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDADDB, insn, EncodingId::LDADDB_32_memop);
+            #else
+                        Instruction result(Mnemonic::LDADDB, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldaddb32memop.Rs, false));
@@ -40369,7 +41105,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x38201000u: { // LDCLRB_32_memop
-                        Instruction result(Mnemonic::LDCLRB, insn, 757);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDCLRB, insn, EncodingId::LDCLRB_32_memop);
+            #else
+                        Instruction result(Mnemonic::LDCLRB, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldclrb32memop.Rs, false));
@@ -40378,7 +41118,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x38202000u: { // LDEORB_32_memop
-                        Instruction result(Mnemonic::LDEORB, insn, 777);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDEORB, insn, EncodingId::LDEORB_32_memop);
+            #else
+                        Instruction result(Mnemonic::LDEORB, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldeorb32memop.Rs, false));
@@ -40387,7 +41131,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x38203000u: { // LDSETB_32_memop
-                        Instruction result(Mnemonic::LDSETB, insn, 956);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDSETB, insn, EncodingId::LDSETB_32_memop);
+            #else
+                        Instruction result(Mnemonic::LDSETB, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldsetb32memop.Rs, false));
@@ -40396,7 +41144,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x38204000u: { // LDSMAXB_32_memop
-                        Instruction result(Mnemonic::LDSMAXB, insn, 976);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDSMAXB, insn, EncodingId::LDSMAXB_32_memop);
+            #else
+                        Instruction result(Mnemonic::LDSMAXB, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldsmaxb32memop.Rs, false));
@@ -40405,7 +41157,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x38205000u: { // LDSMINB_32_memop
-                        Instruction result(Mnemonic::LDSMINB, insn, 992);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDSMINB, insn, EncodingId::LDSMINB_32_memop);
+            #else
+                        Instruction result(Mnemonic::LDSMINB, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldsminb32memop.Rs, false));
@@ -40414,7 +41170,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x38206000u: { // LDUMAXB_32_memop
-                        Instruction result(Mnemonic::LDUMAXB, insn, 1051);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDUMAXB, insn, EncodingId::LDUMAXB_32_memop);
+            #else
+                        Instruction result(Mnemonic::LDUMAXB, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldumaxb32memop.Rs, false));
@@ -40423,7 +41183,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x38207000u: { // LDUMINB_32_memop
-                        Instruction result(Mnemonic::LDUMINB, insn, 1067);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDUMINB, insn, EncodingId::LDUMINB_32_memop);
+            #else
+                        Instruction result(Mnemonic::LDUMINB, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.lduminb32memop.Rs, false));
@@ -40432,7 +41196,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x38208000u: { // SWPB_32_memop
-                        Instruction result(Mnemonic::SWPB, insn, 1521);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SWPB, insn, EncodingId::SWPB_32_memop);
+            #else
+                        Instruction result(Mnemonic::SWPB, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.swpb32memop.Rs, false));
@@ -40441,7 +41209,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x38209000u: { // RCWCLR_64_memop
-                        Instruction result(Mnemonic::RCWCLR, insn, 1107);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::RCWCLR, insn, EncodingId::RCWCLR_64_memop);
+            #else
+                        Instruction result(Mnemonic::RCWCLR, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.rcwclr64memop.Rs, true));
@@ -40450,7 +41222,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x3820A000u: { // RCWSWP_64_memop
-                        Instruction result(Mnemonic::RCWSWP, insn, 1155);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::RCWSWP, insn, EncodingId::RCWSWP_64_memop);
+            #else
+                        Instruction result(Mnemonic::RCWSWP, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.rcwswp64memop.Rs, true));
@@ -40459,7 +41235,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x3820B000u: { // RCWSET_64_memop
-                        Instruction result(Mnemonic::RCWSET, insn, 1131);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::RCWSET, insn, EncodingId::RCWSET_64_memop);
+            #else
+                        Instruction result(Mnemonic::RCWSET, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.rcwset64memop.Rs, true));
@@ -40468,7 +41248,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x38600000u: { // LDADDLB_32_memop
-                        Instruction result(Mnemonic::LDADDLB, insn, 689);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDADDLB, insn, EncodingId::LDADDLB_32_memop);
+            #else
+                        Instruction result(Mnemonic::LDADDLB, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldaddlb32memop.Rs, false));
@@ -40477,7 +41261,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x38601000u: { // LDCLRLB_32_memop
-                        Instruction result(Mnemonic::LDCLRLB, insn, 760);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDCLRLB, insn, EncodingId::LDCLRLB_32_memop);
+            #else
+                        Instruction result(Mnemonic::LDCLRLB, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldclrlb32memop.Rs, false));
@@ -40486,7 +41274,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x38602000u: { // LDEORLB_32_memop
-                        Instruction result(Mnemonic::LDEORLB, insn, 780);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDEORLB, insn, EncodingId::LDEORLB_32_memop);
+            #else
+                        Instruction result(Mnemonic::LDEORLB, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldeorlb32memop.Rs, false));
@@ -40495,7 +41287,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x38603000u: { // LDSETLB_32_memop
-                        Instruction result(Mnemonic::LDSETLB, insn, 959);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDSETLB, insn, EncodingId::LDSETLB_32_memop);
+            #else
+                        Instruction result(Mnemonic::LDSETLB, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldsetlb32memop.Rs, false));
@@ -40504,7 +41300,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x38604000u: { // LDSMAXLB_32_memop
-                        Instruction result(Mnemonic::LDSMAXLB, insn, 979);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDSMAXLB, insn, EncodingId::LDSMAXLB_32_memop);
+            #else
+                        Instruction result(Mnemonic::LDSMAXLB, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldsmaxlb32memop.Rs, false));
@@ -40513,7 +41313,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x38605000u: { // LDSMINLB_32_memop
-                        Instruction result(Mnemonic::LDSMINLB, insn, 995);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDSMINLB, insn, EncodingId::LDSMINLB_32_memop);
+            #else
+                        Instruction result(Mnemonic::LDSMINLB, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldsminlb32memop.Rs, false));
@@ -40522,7 +41326,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x38606000u: { // LDUMAXLB_32_memop
-                        Instruction result(Mnemonic::LDUMAXLB, insn, 1054);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDUMAXLB, insn, EncodingId::LDUMAXLB_32_memop);
+            #else
+                        Instruction result(Mnemonic::LDUMAXLB, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldumaxlb32memop.Rs, false));
@@ -40531,7 +41339,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x38607000u: { // LDUMINLB_32_memop
-                        Instruction result(Mnemonic::LDUMINLB, insn, 1070);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDUMINLB, insn, EncodingId::LDUMINLB_32_memop);
+            #else
+                        Instruction result(Mnemonic::LDUMINLB, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.lduminlb32memop.Rs, false));
@@ -40540,7 +41352,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x38608000u: { // SWPLB_32_memop
-                        Instruction result(Mnemonic::SWPLB, insn, 1524);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SWPLB, insn, EncodingId::SWPLB_32_memop);
+            #else
+                        Instruction result(Mnemonic::SWPLB, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.swplb32memop.Rs, false));
@@ -40549,7 +41365,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x38609000u: { // RCWCLRL_64_memop
-                        Instruction result(Mnemonic::RCWCLRL, insn, 1110);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::RCWCLRL, insn, EncodingId::RCWCLRL_64_memop);
+            #else
+                        Instruction result(Mnemonic::RCWCLRL, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.rcwclrl64memop.Rs, true));
@@ -40558,7 +41378,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x3860A000u: { // RCWSWPL_64_memop
-                        Instruction result(Mnemonic::RCWSWPL, insn, 1158);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::RCWSWPL, insn, EncodingId::RCWSWPL_64_memop);
+            #else
+                        Instruction result(Mnemonic::RCWSWPL, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.rcwswpl64memop.Rs, true));
@@ -40567,7 +41391,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x3860B000u: { // RCWSETL_64_memop
-                        Instruction result(Mnemonic::RCWSETL, insn, 1134);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::RCWSETL, insn, EncodingId::RCWSETL_64_memop);
+            #else
+                        Instruction result(Mnemonic::RCWSETL, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.rcwsetl64memop.Rs, true));
@@ -40576,7 +41404,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x38A00000u: { // LDADDAB_32_memop
-                        Instruction result(Mnemonic::LDADDAB, insn, 687);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDADDAB, insn, EncodingId::LDADDAB_32_memop);
+            #else
+                        Instruction result(Mnemonic::LDADDAB, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldaddab32memop.Rs, false));
@@ -40585,7 +41417,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x38A01000u: { // LDCLRAB_32_memop
-                        Instruction result(Mnemonic::LDCLRAB, insn, 758);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDCLRAB, insn, EncodingId::LDCLRAB_32_memop);
+            #else
+                        Instruction result(Mnemonic::LDCLRAB, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldclrab32memop.Rs, false));
@@ -40594,7 +41430,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x38A02000u: { // LDEORAB_32_memop
-                        Instruction result(Mnemonic::LDEORAB, insn, 778);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDEORAB, insn, EncodingId::LDEORAB_32_memop);
+            #else
+                        Instruction result(Mnemonic::LDEORAB, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldeorab32memop.Rs, false));
@@ -40603,7 +41443,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x38A03000u: { // LDSETAB_32_memop
-                        Instruction result(Mnemonic::LDSETAB, insn, 957);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDSETAB, insn, EncodingId::LDSETAB_32_memop);
+            #else
+                        Instruction result(Mnemonic::LDSETAB, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldsetab32memop.Rs, false));
@@ -40612,7 +41456,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x38A04000u: { // LDSMAXAB_32_memop
-                        Instruction result(Mnemonic::LDSMAXAB, insn, 977);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDSMAXAB, insn, EncodingId::LDSMAXAB_32_memop);
+            #else
+                        Instruction result(Mnemonic::LDSMAXAB, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldsmaxab32memop.Rs, false));
@@ -40621,7 +41469,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x38A05000u: { // LDSMINAB_32_memop
-                        Instruction result(Mnemonic::LDSMINAB, insn, 993);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDSMINAB, insn, EncodingId::LDSMINAB_32_memop);
+            #else
+                        Instruction result(Mnemonic::LDSMINAB, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldsminab32memop.Rs, false));
@@ -40630,7 +41482,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x38A06000u: { // LDUMAXAB_32_memop
-                        Instruction result(Mnemonic::LDUMAXAB, insn, 1052);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDUMAXAB, insn, EncodingId::LDUMAXAB_32_memop);
+            #else
+                        Instruction result(Mnemonic::LDUMAXAB, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldumaxab32memop.Rs, false));
@@ -40639,7 +41495,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x38A07000u: { // LDUMINAB_32_memop
-                        Instruction result(Mnemonic::LDUMINAB, insn, 1068);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDUMINAB, insn, EncodingId::LDUMINAB_32_memop);
+            #else
+                        Instruction result(Mnemonic::LDUMINAB, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.lduminab32memop.Rs, false));
@@ -40648,7 +41508,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x38A08000u: { // SWPAB_32_memop
-                        Instruction result(Mnemonic::SWPAB, insn, 1522);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SWPAB, insn, EncodingId::SWPAB_32_memop);
+            #else
+                        Instruction result(Mnemonic::SWPAB, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.swpab32memop.Rs, false));
@@ -40657,7 +41521,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x38A09000u: { // RCWCLRA_64_memop
-                        Instruction result(Mnemonic::RCWCLRA, insn, 1108);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::RCWCLRA, insn, EncodingId::RCWCLRA_64_memop);
+            #else
+                        Instruction result(Mnemonic::RCWCLRA, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.rcwclra64memop.Rs, true));
@@ -40666,7 +41534,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x38A0A000u: { // RCWSWPA_64_memop
-                        Instruction result(Mnemonic::RCWSWPA, insn, 1156);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::RCWSWPA, insn, EncodingId::RCWSWPA_64_memop);
+            #else
+                        Instruction result(Mnemonic::RCWSWPA, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.rcwswpa64memop.Rs, true));
@@ -40675,7 +41547,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x38A0B000u: { // RCWSETA_64_memop
-                        Instruction result(Mnemonic::RCWSETA, insn, 1132);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::RCWSETA, insn, EncodingId::RCWSETA_64_memop);
+            #else
+                        Instruction result(Mnemonic::RCWSETA, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.rcwseta64memop.Rs, true));
@@ -40684,7 +41560,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x38A0C000u: { // LDAPRB_32L_memop
-                        Instruction result(Mnemonic::LDAPRB, insn, 701);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDAPRB, insn, EncodingId::LDAPRB_32L_memop);
+            #else
+                        Instruction result(Mnemonic::LDAPRB, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldaprb32l_memop.Rt, false));
@@ -40692,7 +41572,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x38E00000u: { // LDADDALB_32_memop
-                        Instruction result(Mnemonic::LDADDALB, insn, 688);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDADDALB, insn, EncodingId::LDADDALB_32_memop);
+            #else
+                        Instruction result(Mnemonic::LDADDALB, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldaddalb32memop.Rs, false));
@@ -40701,7 +41585,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x38E01000u: { // LDCLRALB_32_memop
-                        Instruction result(Mnemonic::LDCLRALB, insn, 759);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDCLRALB, insn, EncodingId::LDCLRALB_32_memop);
+            #else
+                        Instruction result(Mnemonic::LDCLRALB, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldclralb32memop.Rs, false));
@@ -40710,7 +41598,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x38E02000u: { // LDEORALB_32_memop
-                        Instruction result(Mnemonic::LDEORALB, insn, 779);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDEORALB, insn, EncodingId::LDEORALB_32_memop);
+            #else
+                        Instruction result(Mnemonic::LDEORALB, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldeoralb32memop.Rs, false));
@@ -40719,7 +41611,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x38E03000u: { // LDSETALB_32_memop
-                        Instruction result(Mnemonic::LDSETALB, insn, 958);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDSETALB, insn, EncodingId::LDSETALB_32_memop);
+            #else
+                        Instruction result(Mnemonic::LDSETALB, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldsetalb32memop.Rs, false));
@@ -40728,7 +41624,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x38E04000u: { // LDSMAXALB_32_memop
-                        Instruction result(Mnemonic::LDSMAXALB, insn, 978);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDSMAXALB, insn, EncodingId::LDSMAXALB_32_memop);
+            #else
+                        Instruction result(Mnemonic::LDSMAXALB, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldsmaxalb32memop.Rs, false));
@@ -40737,7 +41637,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x38E05000u: { // LDSMINALB_32_memop
-                        Instruction result(Mnemonic::LDSMINALB, insn, 994);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDSMINALB, insn, EncodingId::LDSMINALB_32_memop);
+            #else
+                        Instruction result(Mnemonic::LDSMINALB, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldsminalb32memop.Rs, false));
@@ -40746,7 +41650,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x38E06000u: { // LDUMAXALB_32_memop
-                        Instruction result(Mnemonic::LDUMAXALB, insn, 1053);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDUMAXALB, insn, EncodingId::LDUMAXALB_32_memop);
+            #else
+                        Instruction result(Mnemonic::LDUMAXALB, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldumaxalb32memop.Rs, false));
@@ -40755,7 +41663,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x38E07000u: { // LDUMINALB_32_memop
-                        Instruction result(Mnemonic::LDUMINALB, insn, 1069);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDUMINALB, insn, EncodingId::LDUMINALB_32_memop);
+            #else
+                        Instruction result(Mnemonic::LDUMINALB, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.lduminalb32memop.Rs, false));
@@ -40764,7 +41676,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x38E08000u: { // SWPALB_32_memop
-                        Instruction result(Mnemonic::SWPALB, insn, 1523);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SWPALB, insn, EncodingId::SWPALB_32_memop);
+            #else
+                        Instruction result(Mnemonic::SWPALB, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.swpalb32memop.Rs, false));
@@ -40773,7 +41689,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x38E09000u: { // RCWCLRAL_64_memop
-                        Instruction result(Mnemonic::RCWCLRAL, insn, 1109);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::RCWCLRAL, insn, EncodingId::RCWCLRAL_64_memop);
+            #else
+                        Instruction result(Mnemonic::RCWCLRAL, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.rcwclral64memop.Rs, true));
@@ -40782,7 +41702,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x38E0A000u: { // RCWSWPAL_64_memop
-                        Instruction result(Mnemonic::RCWSWPAL, insn, 1157);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::RCWSWPAL, insn, EncodingId::RCWSWPAL_64_memop);
+            #else
+                        Instruction result(Mnemonic::RCWSWPAL, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.rcwswpal64memop.Rs, true));
@@ -40791,7 +41715,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x38E0B000u: { // RCWSETAL_64_memop
-                        Instruction result(Mnemonic::RCWSETAL, insn, 1133);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::RCWSETAL, insn, EncodingId::RCWSETAL_64_memop);
+            #else
+                        Instruction result(Mnemonic::RCWSETAL, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.rcwsetal64memop.Rs, true));
@@ -40800,7 +41728,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x3C200000u: { // LDBFADD_16
-                        Instruction result(Mnemonic::LDBFADD, insn, 729);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDBFADD, insn, EncodingId::LDBFADD_16);
+            #else
+                        Instruction result(Mnemonic::LDBFADD, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -40810,7 +41742,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x3C204000u: { // LDBFMAX_16
-                        Instruction result(Mnemonic::LDBFMAX, insn, 733);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDBFMAX, insn, EncodingId::LDBFMAX_16);
+            #else
+                        Instruction result(Mnemonic::LDBFMAX, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -40820,7 +41756,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x3C205000u: { // LDBFMIN_16
-                        Instruction result(Mnemonic::LDBFMIN, insn, 741);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDBFMIN, insn, EncodingId::LDBFMIN_16);
+            #else
+                        Instruction result(Mnemonic::LDBFMIN, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -40830,7 +41770,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x3C206000u: { // LDBFMAXNM_16
-                        Instruction result(Mnemonic::LDBFMAXNM, insn, 737);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDBFMAXNM, insn, EncodingId::LDBFMAXNM_16);
+            #else
+                        Instruction result(Mnemonic::LDBFMAXNM, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -40840,7 +41784,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x3C207000u: { // LDBFMINNM_16
-                        Instruction result(Mnemonic::LDBFMINNM, insn, 745);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDBFMINNM, insn, EncodingId::LDBFMINNM_16);
+            #else
+                        Instruction result(Mnemonic::LDBFMINNM, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -40850,7 +41798,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x3C600000u: { // LDBFADDL_16
-                        Instruction result(Mnemonic::LDBFADDL, insn, 732);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDBFADDL, insn, EncodingId::LDBFADDL_16);
+            #else
+                        Instruction result(Mnemonic::LDBFADDL, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -40860,7 +41812,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x3C604000u: { // LDBFMAXL_16
-                        Instruction result(Mnemonic::LDBFMAXL, insn, 736);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDBFMAXL, insn, EncodingId::LDBFMAXL_16);
+            #else
+                        Instruction result(Mnemonic::LDBFMAXL, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -40870,7 +41826,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x3C605000u: { // LDBFMINL_16
-                        Instruction result(Mnemonic::LDBFMINL, insn, 744);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDBFMINL, insn, EncodingId::LDBFMINL_16);
+            #else
+                        Instruction result(Mnemonic::LDBFMINL, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -40880,7 +41840,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x3C606000u: { // LDBFMAXNML_16
-                        Instruction result(Mnemonic::LDBFMAXNML, insn, 740);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDBFMAXNML, insn, EncodingId::LDBFMAXNML_16);
+            #else
+                        Instruction result(Mnemonic::LDBFMAXNML, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -40890,7 +41854,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x3C607000u: { // LDBFMINNML_16
-                        Instruction result(Mnemonic::LDBFMINNML, insn, 748);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDBFMINNML, insn, EncodingId::LDBFMINNML_16);
+            #else
+                        Instruction result(Mnemonic::LDBFMINNML, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -40900,7 +41868,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x3CA00000u: { // LDBFADDA_16
-                        Instruction result(Mnemonic::LDBFADDA, insn, 730);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDBFADDA, insn, EncodingId::LDBFADDA_16);
+            #else
+                        Instruction result(Mnemonic::LDBFADDA, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -40910,7 +41882,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x3CA04000u: { // LDBFMAXA_16
-                        Instruction result(Mnemonic::LDBFMAXA, insn, 734);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDBFMAXA, insn, EncodingId::LDBFMAXA_16);
+            #else
+                        Instruction result(Mnemonic::LDBFMAXA, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -40920,7 +41896,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x3CA05000u: { // LDBFMINA_16
-                        Instruction result(Mnemonic::LDBFMINA, insn, 742);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDBFMINA, insn, EncodingId::LDBFMINA_16);
+            #else
+                        Instruction result(Mnemonic::LDBFMINA, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -40930,7 +41910,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x3CA06000u: { // LDBFMAXNMA_16
-                        Instruction result(Mnemonic::LDBFMAXNMA, insn, 738);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDBFMAXNMA, insn, EncodingId::LDBFMAXNMA_16);
+            #else
+                        Instruction result(Mnemonic::LDBFMAXNMA, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -40940,7 +41924,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x3CA07000u: { // LDBFMINNMA_16
-                        Instruction result(Mnemonic::LDBFMINNMA, insn, 746);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDBFMINNMA, insn, EncodingId::LDBFMINNMA_16);
+            #else
+                        Instruction result(Mnemonic::LDBFMINNMA, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -40950,7 +41938,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x3CE00000u: { // LDBFADDAL_16
-                        Instruction result(Mnemonic::LDBFADDAL, insn, 731);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDBFADDAL, insn, EncodingId::LDBFADDAL_16);
+            #else
+                        Instruction result(Mnemonic::LDBFADDAL, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -40960,7 +41952,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x3CE04000u: { // LDBFMAXAL_16
-                        Instruction result(Mnemonic::LDBFMAXAL, insn, 735);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDBFMAXAL, insn, EncodingId::LDBFMAXAL_16);
+            #else
+                        Instruction result(Mnemonic::LDBFMAXAL, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -40970,7 +41966,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x3CE05000u: { // LDBFMINAL_16
-                        Instruction result(Mnemonic::LDBFMINAL, insn, 743);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDBFMINAL, insn, EncodingId::LDBFMINAL_16);
+            #else
+                        Instruction result(Mnemonic::LDBFMINAL, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -40980,7 +41980,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x3CE06000u: { // LDBFMAXNMAL_16
-                        Instruction result(Mnemonic::LDBFMAXNMAL, insn, 739);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDBFMAXNMAL, insn, EncodingId::LDBFMAXNMAL_16);
+            #else
+                        Instruction result(Mnemonic::LDBFMAXNMAL, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -40990,7 +41994,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x3CE07000u: { // LDBFMINNMAL_16
-                        Instruction result(Mnemonic::LDBFMINNMAL, insn, 747);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDBFMINNMAL, insn, EncodingId::LDBFMINNMAL_16);
+            #else
+                        Instruction result(Mnemonic::LDBFMINNMAL, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -41000,7 +42008,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x48207C00u: { // CASP_CP64_comswappr
-                        Instruction result(Mnemonic::CASP, insn, 486);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::CASP, insn, EncodingId::CASP_CP64_comswappr);
+            #else
+                        Instruction result(Mnemonic::CASP, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -41012,7 +42024,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x4820FC00u: { // CASPL_CP64_comswappr
-                        Instruction result(Mnemonic::CASPL, insn, 489);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::CASPL, insn, EncodingId::CASPL_CP64_comswappr);
+            #else
+                        Instruction result(Mnemonic::CASPL, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -41024,7 +42040,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x48607C00u: { // CASPA_CP64_comswappr
-                        Instruction result(Mnemonic::CASPA, insn, 487);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::CASPA, insn, EncodingId::CASPA_CP64_comswappr);
+            #else
+                        Instruction result(Mnemonic::CASPA, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -41036,7 +42056,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x4860FC00u: { // CASPAL_CP64_comswappr
-                        Instruction result(Mnemonic::CASPAL, insn, 488);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::CASPAL, insn, EncodingId::CASPAL_CP64_comswappr);
+            #else
+                        Instruction result(Mnemonic::CASPAL, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -41048,7 +42072,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x48A07C00u: { // CASH_C32_comswap
-                        Instruction result(Mnemonic::CASH, insn, 478);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::CASH, insn, EncodingId::CASH_C32_comswap);
+            #else
+                        Instruction result(Mnemonic::CASH, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.cash_c32comswap.Rs, false));
@@ -41057,7 +42085,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x48A0FC00u: { // CASLH_C32_comswap
-                        Instruction result(Mnemonic::CASLH, insn, 481);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::CASLH, insn, EncodingId::CASLH_C32_comswap);
+            #else
+                        Instruction result(Mnemonic::CASLH, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.caslh_c32comswap.Rs, false));
@@ -41066,7 +42098,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x48E07C00u: { // CASAH_C32_comswap
-                        Instruction result(Mnemonic::CASAH, insn, 479);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::CASAH, insn, EncodingId::CASAH_C32_comswap);
+            #else
+                        Instruction result(Mnemonic::CASAH, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.casah_c32comswap.Rs, false));
@@ -41075,7 +42111,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x48E0FC00u: { // CASALH_C32_comswap
-                        Instruction result(Mnemonic::CASALH, insn, 480);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::CASALH, insn, EncodingId::CASALH_C32_comswap);
+            #else
+                        Instruction result(Mnemonic::CASALH, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.casalh_c32comswap.Rs, false));
@@ -41084,7 +42124,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x49807C00u: { // CASPT_CP64_comswappr_unpriv
-                        Instruction result(Mnemonic::CASPT, insn, 490);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::CASPT, insn, EncodingId::CASPT_CP64_comswappr_unpriv);
+            #else
+                        Instruction result(Mnemonic::CASPT, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -41096,7 +42140,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x4980FC00u: { // CASPLT_CP64_comswappr_unpriv
-                        Instruction result(Mnemonic::CASPLT, insn, 493);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::CASPLT, insn, EncodingId::CASPLT_CP64_comswappr_unpriv);
+            #else
+                        Instruction result(Mnemonic::CASPLT, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -41108,7 +42156,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x49C07C00u: { // CASPAT_CP64_comswappr_unpriv
-                        Instruction result(Mnemonic::CASPAT, insn, 491);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::CASPAT, insn, EncodingId::CASPAT_CP64_comswappr_unpriv);
+            #else
+                        Instruction result(Mnemonic::CASPAT, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -41120,7 +42172,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x49C0FC00u: { // CASPALT_CP64_comswappr_unpriv
-                        Instruction result(Mnemonic::CASPALT, insn, 492);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::CASPALT, insn, EncodingId::CASPALT_CP64_comswappr_unpriv);
+            #else
+                        Instruction result(Mnemonic::CASPALT, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -41132,7 +42188,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x59200400u: { // LDTADD_64_memop_unpriv
-                        Instruction result(Mnemonic::LDTADD, insn, 1004);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDTADD, insn, EncodingId::LDTADD_64_memop_unpriv);
+            #else
+                        Instruction result(Mnemonic::LDTADD, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldtadd64memop_unpriv.Rs, true));
@@ -41141,7 +42201,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x59200800u: { // RCWSCAS_C64_rcwcomswap
-                        Instruction result(Mnemonic::RCWSCAS, insn, 1115);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::RCWSCAS, insn, EncodingId::RCWSCAS_C64_rcwcomswap);
+            #else
+                        Instruction result(Mnemonic::RCWSCAS, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.rcwscas_c64rcwcomswap.Rs, true));
@@ -41150,7 +42214,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x59200C00u: { // RCWSCASP_C64_rcwcomswappr
-                        Instruction result(Mnemonic::RCWSCASP, insn, 1119);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::RCWSCASP, insn, EncodingId::RCWSCASP_C64_rcwcomswappr);
+            #else
+                        Instruction result(Mnemonic::RCWSCASP, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -41160,7 +42228,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x59201400u: { // LDTCLR_64_memop_unpriv
-                        Instruction result(Mnemonic::LDTCLR, insn, 1012);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDTCLR, insn, EncodingId::LDTCLR_64_memop_unpriv);
+            #else
+                        Instruction result(Mnemonic::LDTCLR, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldtclr64memop_unpriv.Rs, true));
@@ -41169,7 +42241,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x59203400u: { // LDTSET_64_memop_unpriv
-                        Instruction result(Mnemonic::LDTSET, insn, 1037);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDTSET, insn, EncodingId::LDTSET_64_memop_unpriv);
+            #else
+                        Instruction result(Mnemonic::LDTSET, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldtset64memop_unpriv.Rs, true));
@@ -41178,7 +42254,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x59208400u: { // SWPT_64_memop_unpriv
-                        Instruction result(Mnemonic::SWPT, insn, 1537);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SWPT, insn, EncodingId::SWPT_64_memop_unpriv);
+            #else
+                        Instruction result(Mnemonic::SWPT, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.swpt64memop_unpriv.Rs, true));
@@ -41187,7 +42267,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x59209000u: { // RCWSCLRP_128_memop_128
-                        Instruction result(Mnemonic::RCWSCLRP, insn, 1127);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::RCWSCLRP, insn, EncodingId::RCWSCLRP_128_memop_128);
+            #else
+                        Instruction result(Mnemonic::RCWSCLRP, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         if (enc.rcwsclrp128memop128.Rt == 31u) return std::nullopt;
@@ -41198,7 +42282,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x5920A000u: { // RCWSSWPP_128_memop_128
-                        Instruction result(Mnemonic::RCWSSWPP, insn, 1151);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::RCWSSWPP, insn, EncodingId::RCWSSWPP_128_memop_128);
+            #else
+                        Instruction result(Mnemonic::RCWSSWPP, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         if (enc.rcwsswpp128memop128.Rt == 31u) return std::nullopt;
@@ -41209,7 +42297,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x5920B000u: { // RCWSSETP_128_memop_128
-                        Instruction result(Mnemonic::RCWSSETP, insn, 1143);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::RCWSSETP, insn, EncodingId::RCWSSETP_128_memop_128);
+            #else
+                        Instruction result(Mnemonic::RCWSSETP, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         if (enc.rcwssetp128memop128.Rt == 31u) return std::nullopt;
@@ -41220,7 +42312,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x59600400u: { // LDTADDL_64_memop_unpriv
-                        Instruction result(Mnemonic::LDTADDL, insn, 1007);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDTADDL, insn, EncodingId::LDTADDL_64_memop_unpriv);
+            #else
+                        Instruction result(Mnemonic::LDTADDL, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldtaddl64memop_unpriv.Rs, true));
@@ -41229,7 +42325,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x59600800u: { // RCWSCASL_C64_rcwcomswap
-                        Instruction result(Mnemonic::RCWSCASL, insn, 1118);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::RCWSCASL, insn, EncodingId::RCWSCASL_C64_rcwcomswap);
+            #else
+                        Instruction result(Mnemonic::RCWSCASL, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.rcwscasl_c64rcwcomswap.Rs, true));
@@ -41238,7 +42338,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x59600C00u: { // RCWSCASPL_C64_rcwcomswappr
-                        Instruction result(Mnemonic::RCWSCASPL, insn, 1122);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::RCWSCASPL, insn, EncodingId::RCWSCASPL_C64_rcwcomswappr);
+            #else
+                        Instruction result(Mnemonic::RCWSCASPL, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -41248,7 +42352,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x59601400u: { // LDTCLRL_64_memop_unpriv
-                        Instruction result(Mnemonic::LDTCLRL, insn, 1015);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDTCLRL, insn, EncodingId::LDTCLRL_64_memop_unpriv);
+            #else
+                        Instruction result(Mnemonic::LDTCLRL, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldtclrl64memop_unpriv.Rs, true));
@@ -41257,7 +42365,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x59603400u: { // LDTSETL_64_memop_unpriv
-                        Instruction result(Mnemonic::LDTSETL, insn, 1040);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDTSETL, insn, EncodingId::LDTSETL_64_memop_unpriv);
+            #else
+                        Instruction result(Mnemonic::LDTSETL, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldtsetl64memop_unpriv.Rs, true));
@@ -41266,7 +42378,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x59608400u: { // SWPTL_64_memop_unpriv
-                        Instruction result(Mnemonic::SWPTL, insn, 1540);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SWPTL, insn, EncodingId::SWPTL_64_memop_unpriv);
+            #else
+                        Instruction result(Mnemonic::SWPTL, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.swptl64memop_unpriv.Rs, true));
@@ -41275,7 +42391,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x59609000u: { // RCWSCLRPL_128_memop_128
-                        Instruction result(Mnemonic::RCWSCLRPL, insn, 1130);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::RCWSCLRPL, insn, EncodingId::RCWSCLRPL_128_memop_128);
+            #else
+                        Instruction result(Mnemonic::RCWSCLRPL, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         if (enc.rcwsclrpl128memop128.Rt == 31u) return std::nullopt;
@@ -41286,7 +42406,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x5960A000u: { // RCWSSWPPL_128_memop_128
-                        Instruction result(Mnemonic::RCWSSWPPL, insn, 1154);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::RCWSSWPPL, insn, EncodingId::RCWSSWPPL_128_memop_128);
+            #else
+                        Instruction result(Mnemonic::RCWSSWPPL, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         if (enc.rcwsswppl128memop128.Rt == 31u) return std::nullopt;
@@ -41297,7 +42421,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x5960B000u: { // RCWSSETPL_128_memop_128
-                        Instruction result(Mnemonic::RCWSSETPL, insn, 1146);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::RCWSSETPL, insn, EncodingId::RCWSSETPL_128_memop_128);
+            #else
+                        Instruction result(Mnemonic::RCWSSETPL, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         if (enc.rcwssetpl128memop128.Rt == 31u) return std::nullopt;
@@ -41308,7 +42436,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x59A00400u: { // LDTADDA_64_memop_unpriv
-                        Instruction result(Mnemonic::LDTADDA, insn, 1005);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDTADDA, insn, EncodingId::LDTADDA_64_memop_unpriv);
+            #else
+                        Instruction result(Mnemonic::LDTADDA, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldtadda64memop_unpriv.Rs, true));
@@ -41317,7 +42449,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x59A00800u: { // RCWSCASA_C64_rcwcomswap
-                        Instruction result(Mnemonic::RCWSCASA, insn, 1116);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::RCWSCASA, insn, EncodingId::RCWSCASA_C64_rcwcomswap);
+            #else
+                        Instruction result(Mnemonic::RCWSCASA, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.rcwscasa_c64rcwcomswap.Rs, true));
@@ -41326,7 +42462,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x59A00C00u: { // RCWSCASPA_C64_rcwcomswappr
-                        Instruction result(Mnemonic::RCWSCASPA, insn, 1120);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::RCWSCASPA, insn, EncodingId::RCWSCASPA_C64_rcwcomswappr);
+            #else
+                        Instruction result(Mnemonic::RCWSCASPA, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -41336,7 +42476,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x59A01400u: { // LDTCLRA_64_memop_unpriv
-                        Instruction result(Mnemonic::LDTCLRA, insn, 1013);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDTCLRA, insn, EncodingId::LDTCLRA_64_memop_unpriv);
+            #else
+                        Instruction result(Mnemonic::LDTCLRA, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldtclra64memop_unpriv.Rs, true));
@@ -41345,7 +42489,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x59A03400u: { // LDTSETA_64_memop_unpriv
-                        Instruction result(Mnemonic::LDTSETA, insn, 1038);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDTSETA, insn, EncodingId::LDTSETA_64_memop_unpriv);
+            #else
+                        Instruction result(Mnemonic::LDTSETA, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldtseta64memop_unpriv.Rs, true));
@@ -41354,7 +42502,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x59A08400u: { // SWPTA_64_memop_unpriv
-                        Instruction result(Mnemonic::SWPTA, insn, 1538);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SWPTA, insn, EncodingId::SWPTA_64_memop_unpriv);
+            #else
+                        Instruction result(Mnemonic::SWPTA, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.swpta64memop_unpriv.Rs, true));
@@ -41363,7 +42515,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x59A09000u: { // RCWSCLRPA_128_memop_128
-                        Instruction result(Mnemonic::RCWSCLRPA, insn, 1128);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::RCWSCLRPA, insn, EncodingId::RCWSCLRPA_128_memop_128);
+            #else
+                        Instruction result(Mnemonic::RCWSCLRPA, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         if (enc.rcwsclrpa128memop128.Rt == 31u) return std::nullopt;
@@ -41374,7 +42530,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x59A0A000u: { // RCWSSWPPA_128_memop_128
-                        Instruction result(Mnemonic::RCWSSWPPA, insn, 1152);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::RCWSSWPPA, insn, EncodingId::RCWSSWPPA_128_memop_128);
+            #else
+                        Instruction result(Mnemonic::RCWSSWPPA, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         if (enc.rcwsswppa128memop128.Rt == 31u) return std::nullopt;
@@ -41385,7 +42545,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x59A0B000u: { // RCWSSETPA_128_memop_128
-                        Instruction result(Mnemonic::RCWSSETPA, insn, 1144);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::RCWSSETPA, insn, EncodingId::RCWSSETPA_128_memop_128);
+            #else
+                        Instruction result(Mnemonic::RCWSSETPA, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         if (enc.rcwssetpa128memop128.Rt == 31u) return std::nullopt;
@@ -41396,7 +42560,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x59E00400u: { // LDTADDAL_64_memop_unpriv
-                        Instruction result(Mnemonic::LDTADDAL, insn, 1006);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDTADDAL, insn, EncodingId::LDTADDAL_64_memop_unpriv);
+            #else
+                        Instruction result(Mnemonic::LDTADDAL, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldtaddal64memop_unpriv.Rs, true));
@@ -41405,7 +42573,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x59E00800u: { // RCWSCASAL_C64_rcwcomswap
-                        Instruction result(Mnemonic::RCWSCASAL, insn, 1117);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::RCWSCASAL, insn, EncodingId::RCWSCASAL_C64_rcwcomswap);
+            #else
+                        Instruction result(Mnemonic::RCWSCASAL, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.rcwscasal_c64rcwcomswap.Rs, true));
@@ -41414,7 +42586,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x59E00C00u: { // RCWSCASPAL_C64_rcwcomswappr
-                        Instruction result(Mnemonic::RCWSCASPAL, insn, 1121);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::RCWSCASPAL, insn, EncodingId::RCWSCASPAL_C64_rcwcomswappr);
+            #else
+                        Instruction result(Mnemonic::RCWSCASPAL, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -41424,7 +42600,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x59E01400u: { // LDTCLRAL_64_memop_unpriv
-                        Instruction result(Mnemonic::LDTCLRAL, insn, 1014);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDTCLRAL, insn, EncodingId::LDTCLRAL_64_memop_unpriv);
+            #else
+                        Instruction result(Mnemonic::LDTCLRAL, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldtclral64memop_unpriv.Rs, true));
@@ -41433,7 +42613,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x59E03400u: { // LDTSETAL_64_memop_unpriv
-                        Instruction result(Mnemonic::LDTSETAL, insn, 1039);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDTSETAL, insn, EncodingId::LDTSETAL_64_memop_unpriv);
+            #else
+                        Instruction result(Mnemonic::LDTSETAL, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldtsetal64memop_unpriv.Rs, true));
@@ -41442,7 +42626,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x59E08400u: { // SWPTAL_64_memop_unpriv
-                        Instruction result(Mnemonic::SWPTAL, insn, 1539);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SWPTAL, insn, EncodingId::SWPTAL_64_memop_unpriv);
+            #else
+                        Instruction result(Mnemonic::SWPTAL, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.swptal64memop_unpriv.Rs, true));
@@ -41451,7 +42639,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x59E09000u: { // RCWSCLRPAL_128_memop_128
-                        Instruction result(Mnemonic::RCWSCLRPAL, insn, 1129);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::RCWSCLRPAL, insn, EncodingId::RCWSCLRPAL_128_memop_128);
+            #else
+                        Instruction result(Mnemonic::RCWSCLRPAL, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         if (enc.rcwsclrpal128memop128.Rt == 31u) return std::nullopt;
@@ -41462,7 +42654,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x59E0A000u: { // RCWSSWPPAL_128_memop_128
-                        Instruction result(Mnemonic::RCWSSWPPAL, insn, 1153);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::RCWSSWPPAL, insn, EncodingId::RCWSSWPPAL_128_memop_128);
+            #else
+                        Instruction result(Mnemonic::RCWSSWPPAL, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         if (enc.rcwsswppal128memop128.Rt == 31u) return std::nullopt;
@@ -41473,7 +42669,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x59E0B000u: { // RCWSSETPAL_128_memop_128
-                        Instruction result(Mnemonic::RCWSSETPAL, insn, 1145);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::RCWSSETPAL, insn, EncodingId::RCWSSETPAL_128_memop_128);
+            #else
+                        Instruction result(Mnemonic::RCWSSETPAL, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         if (enc.rcwssetpal128memop128.Rt == 31u) return std::nullopt;
@@ -41484,7 +42684,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x78200000u: { // LDADDH_32_memop
-                        Instruction result(Mnemonic::LDADDH, insn, 690);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDADDH, insn, EncodingId::LDADDH_32_memop);
+            #else
+                        Instruction result(Mnemonic::LDADDH, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldaddh32memop.Rs, false));
@@ -41493,7 +42697,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x78201000u: { // LDCLRH_32_memop
-                        Instruction result(Mnemonic::LDCLRH, insn, 761);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDCLRH, insn, EncodingId::LDCLRH_32_memop);
+            #else
+                        Instruction result(Mnemonic::LDCLRH, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldclrh32memop.Rs, false));
@@ -41502,7 +42710,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x78202000u: { // LDEORH_32_memop
-                        Instruction result(Mnemonic::LDEORH, insn, 781);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDEORH, insn, EncodingId::LDEORH_32_memop);
+            #else
+                        Instruction result(Mnemonic::LDEORH, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldeorh32memop.Rs, false));
@@ -41511,7 +42723,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x78203000u: { // LDSETH_32_memop
-                        Instruction result(Mnemonic::LDSETH, insn, 960);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDSETH, insn, EncodingId::LDSETH_32_memop);
+            #else
+                        Instruction result(Mnemonic::LDSETH, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldseth32memop.Rs, false));
@@ -41520,7 +42736,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x78204000u: { // LDSMAXH_32_memop
-                        Instruction result(Mnemonic::LDSMAXH, insn, 980);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDSMAXH, insn, EncodingId::LDSMAXH_32_memop);
+            #else
+                        Instruction result(Mnemonic::LDSMAXH, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldsmaxh32memop.Rs, false));
@@ -41529,7 +42749,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x78205000u: { // LDSMINH_32_memop
-                        Instruction result(Mnemonic::LDSMINH, insn, 996);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDSMINH, insn, EncodingId::LDSMINH_32_memop);
+            #else
+                        Instruction result(Mnemonic::LDSMINH, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldsminh32memop.Rs, false));
@@ -41538,7 +42762,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x78206000u: { // LDUMAXH_32_memop
-                        Instruction result(Mnemonic::LDUMAXH, insn, 1055);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDUMAXH, insn, EncodingId::LDUMAXH_32_memop);
+            #else
+                        Instruction result(Mnemonic::LDUMAXH, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldumaxh32memop.Rs, false));
@@ -41547,7 +42775,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x78207000u: { // LDUMINH_32_memop
-                        Instruction result(Mnemonic::LDUMINH, insn, 1071);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDUMINH, insn, EncodingId::LDUMINH_32_memop);
+            #else
+                        Instruction result(Mnemonic::LDUMINH, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.lduminh32memop.Rs, false));
@@ -41556,7 +42788,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x78208000u: { // SWPH_32_memop
-                        Instruction result(Mnemonic::SWPH, insn, 1525);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SWPH, insn, EncodingId::SWPH_32_memop);
+            #else
+                        Instruction result(Mnemonic::SWPH, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.swph32memop.Rs, false));
@@ -41565,7 +42801,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x78209000u: { // RCWSCLR_64_memop
-                        Instruction result(Mnemonic::RCWSCLR, insn, 1123);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::RCWSCLR, insn, EncodingId::RCWSCLR_64_memop);
+            #else
+                        Instruction result(Mnemonic::RCWSCLR, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.rcwsclr64memop.Rs, true));
@@ -41574,7 +42814,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x7820A000u: { // RCWSSWP_64_memop
-                        Instruction result(Mnemonic::RCWSSWP, insn, 1147);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::RCWSSWP, insn, EncodingId::RCWSSWP_64_memop);
+            #else
+                        Instruction result(Mnemonic::RCWSSWP, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.rcwsswp64memop.Rs, true));
@@ -41583,7 +42827,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x7820B000u: { // RCWSSET_64_memop
-                        Instruction result(Mnemonic::RCWSSET, insn, 1139);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::RCWSSET, insn, EncodingId::RCWSSET_64_memop);
+            #else
+                        Instruction result(Mnemonic::RCWSSET, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.rcwsset64memop.Rs, true));
@@ -41592,7 +42840,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x78600000u: { // LDADDLH_32_memop
-                        Instruction result(Mnemonic::LDADDLH, insn, 693);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDADDLH, insn, EncodingId::LDADDLH_32_memop);
+            #else
+                        Instruction result(Mnemonic::LDADDLH, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldaddlh32memop.Rs, false));
@@ -41601,7 +42853,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x78601000u: { // LDCLRLH_32_memop
-                        Instruction result(Mnemonic::LDCLRLH, insn, 764);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDCLRLH, insn, EncodingId::LDCLRLH_32_memop);
+            #else
+                        Instruction result(Mnemonic::LDCLRLH, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldclrlh32memop.Rs, false));
@@ -41610,7 +42866,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x78602000u: { // LDEORLH_32_memop
-                        Instruction result(Mnemonic::LDEORLH, insn, 784);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDEORLH, insn, EncodingId::LDEORLH_32_memop);
+            #else
+                        Instruction result(Mnemonic::LDEORLH, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldeorlh32memop.Rs, false));
@@ -41619,7 +42879,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x78603000u: { // LDSETLH_32_memop
-                        Instruction result(Mnemonic::LDSETLH, insn, 963);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDSETLH, insn, EncodingId::LDSETLH_32_memop);
+            #else
+                        Instruction result(Mnemonic::LDSETLH, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldsetlh32memop.Rs, false));
@@ -41628,7 +42892,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x78604000u: { // LDSMAXLH_32_memop
-                        Instruction result(Mnemonic::LDSMAXLH, insn, 983);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDSMAXLH, insn, EncodingId::LDSMAXLH_32_memop);
+            #else
+                        Instruction result(Mnemonic::LDSMAXLH, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldsmaxlh32memop.Rs, false));
@@ -41637,7 +42905,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x78605000u: { // LDSMINLH_32_memop
-                        Instruction result(Mnemonic::LDSMINLH, insn, 999);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDSMINLH, insn, EncodingId::LDSMINLH_32_memop);
+            #else
+                        Instruction result(Mnemonic::LDSMINLH, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldsminlh32memop.Rs, false));
@@ -41646,7 +42918,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x78606000u: { // LDUMAXLH_32_memop
-                        Instruction result(Mnemonic::LDUMAXLH, insn, 1058);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDUMAXLH, insn, EncodingId::LDUMAXLH_32_memop);
+            #else
+                        Instruction result(Mnemonic::LDUMAXLH, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldumaxlh32memop.Rs, false));
@@ -41655,7 +42931,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x78607000u: { // LDUMINLH_32_memop
-                        Instruction result(Mnemonic::LDUMINLH, insn, 1074);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDUMINLH, insn, EncodingId::LDUMINLH_32_memop);
+            #else
+                        Instruction result(Mnemonic::LDUMINLH, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.lduminlh32memop.Rs, false));
@@ -41664,7 +42944,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x78608000u: { // SWPLH_32_memop
-                        Instruction result(Mnemonic::SWPLH, insn, 1528);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SWPLH, insn, EncodingId::SWPLH_32_memop);
+            #else
+                        Instruction result(Mnemonic::SWPLH, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.swplh32memop.Rs, false));
@@ -41673,7 +42957,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x78609000u: { // RCWSCLRL_64_memop
-                        Instruction result(Mnemonic::RCWSCLRL, insn, 1126);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::RCWSCLRL, insn, EncodingId::RCWSCLRL_64_memop);
+            #else
+                        Instruction result(Mnemonic::RCWSCLRL, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.rcwsclrl64memop.Rs, true));
@@ -41682,7 +42970,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x7860A000u: { // RCWSSWPL_64_memop
-                        Instruction result(Mnemonic::RCWSSWPL, insn, 1150);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::RCWSSWPL, insn, EncodingId::RCWSSWPL_64_memop);
+            #else
+                        Instruction result(Mnemonic::RCWSSWPL, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.rcwsswpl64memop.Rs, true));
@@ -41691,7 +42983,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x7860B000u: { // RCWSSETL_64_memop
-                        Instruction result(Mnemonic::RCWSSETL, insn, 1142);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::RCWSSETL, insn, EncodingId::RCWSSETL_64_memop);
+            #else
+                        Instruction result(Mnemonic::RCWSSETL, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.rcwssetl64memop.Rs, true));
@@ -41700,7 +42996,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x78A00000u: { // LDADDAH_32_memop
-                        Instruction result(Mnemonic::LDADDAH, insn, 691);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDADDAH, insn, EncodingId::LDADDAH_32_memop);
+            #else
+                        Instruction result(Mnemonic::LDADDAH, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldaddah32memop.Rs, false));
@@ -41709,7 +43009,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x78A01000u: { // LDCLRAH_32_memop
-                        Instruction result(Mnemonic::LDCLRAH, insn, 762);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDCLRAH, insn, EncodingId::LDCLRAH_32_memop);
+            #else
+                        Instruction result(Mnemonic::LDCLRAH, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldclrah32memop.Rs, false));
@@ -41718,7 +43022,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x78A02000u: { // LDEORAH_32_memop
-                        Instruction result(Mnemonic::LDEORAH, insn, 782);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDEORAH, insn, EncodingId::LDEORAH_32_memop);
+            #else
+                        Instruction result(Mnemonic::LDEORAH, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldeorah32memop.Rs, false));
@@ -41727,7 +43035,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x78A03000u: { // LDSETAH_32_memop
-                        Instruction result(Mnemonic::LDSETAH, insn, 961);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDSETAH, insn, EncodingId::LDSETAH_32_memop);
+            #else
+                        Instruction result(Mnemonic::LDSETAH, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldsetah32memop.Rs, false));
@@ -41736,7 +43048,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x78A04000u: { // LDSMAXAH_32_memop
-                        Instruction result(Mnemonic::LDSMAXAH, insn, 981);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDSMAXAH, insn, EncodingId::LDSMAXAH_32_memop);
+            #else
+                        Instruction result(Mnemonic::LDSMAXAH, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldsmaxah32memop.Rs, false));
@@ -41745,7 +43061,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x78A05000u: { // LDSMINAH_32_memop
-                        Instruction result(Mnemonic::LDSMINAH, insn, 997);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDSMINAH, insn, EncodingId::LDSMINAH_32_memop);
+            #else
+                        Instruction result(Mnemonic::LDSMINAH, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldsminah32memop.Rs, false));
@@ -41754,7 +43074,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x78A06000u: { // LDUMAXAH_32_memop
-                        Instruction result(Mnemonic::LDUMAXAH, insn, 1056);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDUMAXAH, insn, EncodingId::LDUMAXAH_32_memop);
+            #else
+                        Instruction result(Mnemonic::LDUMAXAH, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldumaxah32memop.Rs, false));
@@ -41763,7 +43087,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x78A07000u: { // LDUMINAH_32_memop
-                        Instruction result(Mnemonic::LDUMINAH, insn, 1072);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDUMINAH, insn, EncodingId::LDUMINAH_32_memop);
+            #else
+                        Instruction result(Mnemonic::LDUMINAH, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.lduminah32memop.Rs, false));
@@ -41772,7 +43100,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x78A08000u: { // SWPAH_32_memop
-                        Instruction result(Mnemonic::SWPAH, insn, 1526);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SWPAH, insn, EncodingId::SWPAH_32_memop);
+            #else
+                        Instruction result(Mnemonic::SWPAH, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.swpah32memop.Rs, false));
@@ -41781,7 +43113,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x78A09000u: { // RCWSCLRA_64_memop
-                        Instruction result(Mnemonic::RCWSCLRA, insn, 1124);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::RCWSCLRA, insn, EncodingId::RCWSCLRA_64_memop);
+            #else
+                        Instruction result(Mnemonic::RCWSCLRA, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.rcwsclra64memop.Rs, true));
@@ -41790,7 +43126,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x78A0A000u: { // RCWSSWPA_64_memop
-                        Instruction result(Mnemonic::RCWSSWPA, insn, 1148);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::RCWSSWPA, insn, EncodingId::RCWSSWPA_64_memop);
+            #else
+                        Instruction result(Mnemonic::RCWSSWPA, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.rcwsswpa64memop.Rs, true));
@@ -41799,7 +43139,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x78A0B000u: { // RCWSSETA_64_memop
-                        Instruction result(Mnemonic::RCWSSETA, insn, 1140);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::RCWSSETA, insn, EncodingId::RCWSSETA_64_memop);
+            #else
+                        Instruction result(Mnemonic::RCWSSETA, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.rcwsseta64memop.Rs, true));
@@ -41808,7 +43152,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x78A0C000u: { // LDAPRH_32L_memop
-                        Instruction result(Mnemonic::LDAPRH, insn, 702);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDAPRH, insn, EncodingId::LDAPRH_32L_memop);
+            #else
+                        Instruction result(Mnemonic::LDAPRH, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldaprh32l_memop.Rt, false));
@@ -41816,7 +43164,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x78E00000u: { // LDADDALH_32_memop
-                        Instruction result(Mnemonic::LDADDALH, insn, 692);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDADDALH, insn, EncodingId::LDADDALH_32_memop);
+            #else
+                        Instruction result(Mnemonic::LDADDALH, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldaddalh32memop.Rs, false));
@@ -41825,7 +43177,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x78E01000u: { // LDCLRALH_32_memop
-                        Instruction result(Mnemonic::LDCLRALH, insn, 763);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDCLRALH, insn, EncodingId::LDCLRALH_32_memop);
+            #else
+                        Instruction result(Mnemonic::LDCLRALH, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldclralh32memop.Rs, false));
@@ -41834,7 +43190,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x78E02000u: { // LDEORALH_32_memop
-                        Instruction result(Mnemonic::LDEORALH, insn, 783);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDEORALH, insn, EncodingId::LDEORALH_32_memop);
+            #else
+                        Instruction result(Mnemonic::LDEORALH, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldeoralh32memop.Rs, false));
@@ -41843,7 +43203,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x78E03000u: { // LDSETALH_32_memop
-                        Instruction result(Mnemonic::LDSETALH, insn, 962);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDSETALH, insn, EncodingId::LDSETALH_32_memop);
+            #else
+                        Instruction result(Mnemonic::LDSETALH, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldsetalh32memop.Rs, false));
@@ -41852,7 +43216,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x78E04000u: { // LDSMAXALH_32_memop
-                        Instruction result(Mnemonic::LDSMAXALH, insn, 982);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDSMAXALH, insn, EncodingId::LDSMAXALH_32_memop);
+            #else
+                        Instruction result(Mnemonic::LDSMAXALH, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldsmaxalh32memop.Rs, false));
@@ -41861,7 +43229,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x78E05000u: { // LDSMINALH_32_memop
-                        Instruction result(Mnemonic::LDSMINALH, insn, 998);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDSMINALH, insn, EncodingId::LDSMINALH_32_memop);
+            #else
+                        Instruction result(Mnemonic::LDSMINALH, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldsminalh32memop.Rs, false));
@@ -41870,7 +43242,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x78E06000u: { // LDUMAXALH_32_memop
-                        Instruction result(Mnemonic::LDUMAXALH, insn, 1057);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDUMAXALH, insn, EncodingId::LDUMAXALH_32_memop);
+            #else
+                        Instruction result(Mnemonic::LDUMAXALH, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldumaxalh32memop.Rs, false));
@@ -41879,7 +43255,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x78E07000u: { // LDUMINALH_32_memop
-                        Instruction result(Mnemonic::LDUMINALH, insn, 1073);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDUMINALH, insn, EncodingId::LDUMINALH_32_memop);
+            #else
+                        Instruction result(Mnemonic::LDUMINALH, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.lduminalh32memop.Rs, false));
@@ -41888,7 +43268,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x78E08000u: { // SWPALH_32_memop
-                        Instruction result(Mnemonic::SWPALH, insn, 1527);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SWPALH, insn, EncodingId::SWPALH_32_memop);
+            #else
+                        Instruction result(Mnemonic::SWPALH, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.swpalh32memop.Rs, false));
@@ -41897,7 +43281,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x78E09000u: { // RCWSCLRAL_64_memop
-                        Instruction result(Mnemonic::RCWSCLRAL, insn, 1125);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::RCWSCLRAL, insn, EncodingId::RCWSCLRAL_64_memop);
+            #else
+                        Instruction result(Mnemonic::RCWSCLRAL, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.rcwsclral64memop.Rs, true));
@@ -41906,7 +43294,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x78E0A000u: { // RCWSSWPAL_64_memop
-                        Instruction result(Mnemonic::RCWSSWPAL, insn, 1149);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::RCWSSWPAL, insn, EncodingId::RCWSSWPAL_64_memop);
+            #else
+                        Instruction result(Mnemonic::RCWSSWPAL, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.rcwsswpal64memop.Rs, true));
@@ -41915,7 +43307,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x78E0B000u: { // RCWSSETAL_64_memop
-                        Instruction result(Mnemonic::RCWSSETAL, insn, 1141);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::RCWSSETAL, insn, EncodingId::RCWSSETAL_64_memop);
+            #else
+                        Instruction result(Mnemonic::RCWSSETAL, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.rcwssetal64memop.Rs, true));
@@ -41924,7 +43320,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x7C200000u: { // LDFADD_16
-                        Instruction result(Mnemonic::LDFADD, insn, 785);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDFADD, insn, EncodingId::LDFADD_16);
+            #else
+                        Instruction result(Mnemonic::LDFADD, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -41934,7 +43334,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x7C204000u: { // LDFMAX_16
-                        Instruction result(Mnemonic::LDFMAX, insn, 797);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDFMAX, insn, EncodingId::LDFMAX_16);
+            #else
+                        Instruction result(Mnemonic::LDFMAX, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -41944,7 +43348,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x7C205000u: { // LDFMIN_16
-                        Instruction result(Mnemonic::LDFMIN, insn, 821);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDFMIN, insn, EncodingId::LDFMIN_16);
+            #else
+                        Instruction result(Mnemonic::LDFMIN, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -41954,7 +43362,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x7C206000u: { // LDFMAXNM_16
-                        Instruction result(Mnemonic::LDFMAXNM, insn, 809);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDFMAXNM, insn, EncodingId::LDFMAXNM_16);
+            #else
+                        Instruction result(Mnemonic::LDFMAXNM, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -41964,7 +43376,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x7C207000u: { // LDFMINNM_16
-                        Instruction result(Mnemonic::LDFMINNM, insn, 833);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDFMINNM, insn, EncodingId::LDFMINNM_16);
+            #else
+                        Instruction result(Mnemonic::LDFMINNM, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -41974,7 +43390,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x7C600000u: { // LDFADDL_16
-                        Instruction result(Mnemonic::LDFADDL, insn, 788);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDFADDL, insn, EncodingId::LDFADDL_16);
+            #else
+                        Instruction result(Mnemonic::LDFADDL, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -41984,7 +43404,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x7C604000u: { // LDFMAXL_16
-                        Instruction result(Mnemonic::LDFMAXL, insn, 800);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDFMAXL, insn, EncodingId::LDFMAXL_16);
+            #else
+                        Instruction result(Mnemonic::LDFMAXL, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -41994,7 +43418,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x7C605000u: { // LDFMINL_16
-                        Instruction result(Mnemonic::LDFMINL, insn, 824);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDFMINL, insn, EncodingId::LDFMINL_16);
+            #else
+                        Instruction result(Mnemonic::LDFMINL, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -42004,7 +43432,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x7C606000u: { // LDFMAXNML_16
-                        Instruction result(Mnemonic::LDFMAXNML, insn, 812);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDFMAXNML, insn, EncodingId::LDFMAXNML_16);
+            #else
+                        Instruction result(Mnemonic::LDFMAXNML, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -42014,7 +43446,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x7C607000u: { // LDFMINNML_16
-                        Instruction result(Mnemonic::LDFMINNML, insn, 836);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDFMINNML, insn, EncodingId::LDFMINNML_16);
+            #else
+                        Instruction result(Mnemonic::LDFMINNML, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -42024,7 +43460,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x7CA00000u: { // LDFADDA_16
-                        Instruction result(Mnemonic::LDFADDA, insn, 786);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDFADDA, insn, EncodingId::LDFADDA_16);
+            #else
+                        Instruction result(Mnemonic::LDFADDA, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -42034,7 +43474,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x7CA04000u: { // LDFMAXA_16
-                        Instruction result(Mnemonic::LDFMAXA, insn, 798);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDFMAXA, insn, EncodingId::LDFMAXA_16);
+            #else
+                        Instruction result(Mnemonic::LDFMAXA, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -42044,7 +43488,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x7CA05000u: { // LDFMINA_16
-                        Instruction result(Mnemonic::LDFMINA, insn, 822);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDFMINA, insn, EncodingId::LDFMINA_16);
+            #else
+                        Instruction result(Mnemonic::LDFMINA, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -42054,7 +43502,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x7CA06000u: { // LDFMAXNMA_16
-                        Instruction result(Mnemonic::LDFMAXNMA, insn, 810);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDFMAXNMA, insn, EncodingId::LDFMAXNMA_16);
+            #else
+                        Instruction result(Mnemonic::LDFMAXNMA, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -42064,7 +43516,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x7CA07000u: { // LDFMINNMA_16
-                        Instruction result(Mnemonic::LDFMINNMA, insn, 834);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDFMINNMA, insn, EncodingId::LDFMINNMA_16);
+            #else
+                        Instruction result(Mnemonic::LDFMINNMA, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -42074,7 +43530,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x7CE00000u: { // LDFADDAL_16
-                        Instruction result(Mnemonic::LDFADDAL, insn, 787);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDFADDAL, insn, EncodingId::LDFADDAL_16);
+            #else
+                        Instruction result(Mnemonic::LDFADDAL, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -42084,7 +43544,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x7CE04000u: { // LDFMAXAL_16
-                        Instruction result(Mnemonic::LDFMAXAL, insn, 799);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDFMAXAL, insn, EncodingId::LDFMAXAL_16);
+            #else
+                        Instruction result(Mnemonic::LDFMAXAL, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -42094,7 +43558,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x7CE05000u: { // LDFMINAL_16
-                        Instruction result(Mnemonic::LDFMINAL, insn, 823);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDFMINAL, insn, EncodingId::LDFMINAL_16);
+            #else
+                        Instruction result(Mnemonic::LDFMINAL, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -42104,7 +43572,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x7CE06000u: { // LDFMAXNMAL_16
-                        Instruction result(Mnemonic::LDFMAXNMAL, insn, 811);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDFMAXNMAL, insn, EncodingId::LDFMAXNMAL_16);
+            #else
+                        Instruction result(Mnemonic::LDFMAXNMAL, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -42114,7 +43586,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x7CE07000u: { // LDFMINNMAL_16
-                        Instruction result(Mnemonic::LDFMINNMAL, insn, 835);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDFMINNMAL, insn, EncodingId::LDFMINNMAL_16);
+            #else
+                        Instruction result(Mnemonic::LDFMINNMAL, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -42124,7 +43600,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x88A07C00u: { // CAS_C32_comswap
-                        Instruction result(Mnemonic::CAS, insn, 466);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::CAS, insn, EncodingId::CAS_C32_comswap);
+            #else
+                        Instruction result(Mnemonic::CAS, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.cas_c32comswap.Rs, false));
@@ -42133,7 +43613,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x88A0FC00u: { // CASL_C32_comswap
-                        Instruction result(Mnemonic::CASL, insn, 469);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::CASL, insn, EncodingId::CASL_C32_comswap);
+            #else
+                        Instruction result(Mnemonic::CASL, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.casl_c32comswap.Rs, false));
@@ -42142,7 +43626,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x88E07C00u: { // CASA_C32_comswap
-                        Instruction result(Mnemonic::CASA, insn, 467);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::CASA, insn, EncodingId::CASA_C32_comswap);
+            #else
+                        Instruction result(Mnemonic::CASA, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.casa_c32comswap.Rs, false));
@@ -42151,7 +43639,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x88E0FC00u: { // CASAL_C32_comswap
-                        Instruction result(Mnemonic::CASAL, insn, 468);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::CASAL, insn, EncodingId::CASAL_C32_comswap);
+            #else
+                        Instruction result(Mnemonic::CASAL, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.casal_c32comswap.Rs, false));
@@ -42160,7 +43652,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x99000800u: { // STILP_32SE_ldiappstilp
-                        Instruction result(Mnemonic::STILP, insn, 1334);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::STILP, insn, EncodingId::STILP_32SE_ldiappstilp);
+            #else
+                        Instruction result(Mnemonic::STILP, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.stilp32se_ldiappstilp.Rt, false));
@@ -42169,7 +43665,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x99001800u: { // STILP_32S_ldiappstilp
-                        Instruction result(Mnemonic::STILP, insn, 1335);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::STILP, insn, EncodingId::STILP_32S_ldiappstilp);
+            #else
+                        Instruction result(Mnemonic::STILP, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.stilp32s_ldiappstilp.Rt, false));
@@ -42178,7 +43678,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x99400800u: { // LDIAPP_32LE_ldiappstilp
-                        Instruction result(Mnemonic::LDIAPP, insn, 847);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDIAPP, insn, EncodingId::LDIAPP_32LE_ldiappstilp);
+            #else
+                        Instruction result(Mnemonic::LDIAPP, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldiapp32le_ldiappstilp.Rt, false));
@@ -42187,7 +43691,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x99401800u: { // LDIAPP_32L_ldiappstilp
-                        Instruction result(Mnemonic::LDIAPP, insn, 848);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDIAPP, insn, EncodingId::LDIAPP_32L_ldiappstilp);
+            #else
+                        Instruction result(Mnemonic::LDIAPP, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldiapp32l_ldiappstilp.Rt, false));
@@ -42196,7 +43704,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0xB8200000u: { // LDADD_32_memop
-                        Instruction result(Mnemonic::LDADD, insn, 678);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDADD, insn, EncodingId::LDADD_32_memop);
+            #else
+                        Instruction result(Mnemonic::LDADD, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldadd32memop.Rs, false));
@@ -42205,7 +43717,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0xB8201000u: { // LDCLR_32_memop
-                        Instruction result(Mnemonic::LDCLR, insn, 749);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDCLR, insn, EncodingId::LDCLR_32_memop);
+            #else
+                        Instruction result(Mnemonic::LDCLR, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldclr32memop.Rs, false));
@@ -42214,7 +43730,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0xB8202000u: { // LDEOR_32_memop
-                        Instruction result(Mnemonic::LDEOR, insn, 769);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDEOR, insn, EncodingId::LDEOR_32_memop);
+            #else
+                        Instruction result(Mnemonic::LDEOR, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldeor32memop.Rs, false));
@@ -42223,7 +43743,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0xB8203000u: { // LDSET_32_memop
-                        Instruction result(Mnemonic::LDSET, insn, 948);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDSET, insn, EncodingId::LDSET_32_memop);
+            #else
+                        Instruction result(Mnemonic::LDSET, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldset32memop.Rs, false));
@@ -42232,7 +43756,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0xB8204000u: { // LDSMAX_32_memop
-                        Instruction result(Mnemonic::LDSMAX, insn, 968);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDSMAX, insn, EncodingId::LDSMAX_32_memop);
+            #else
+                        Instruction result(Mnemonic::LDSMAX, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldsmax32memop.Rs, false));
@@ -42241,7 +43769,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0xB8205000u: { // LDSMIN_32_memop
-                        Instruction result(Mnemonic::LDSMIN, insn, 984);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDSMIN, insn, EncodingId::LDSMIN_32_memop);
+            #else
+                        Instruction result(Mnemonic::LDSMIN, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldsmin32memop.Rs, false));
@@ -42250,7 +43782,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0xB8206000u: { // LDUMAX_32_memop
-                        Instruction result(Mnemonic::LDUMAX, insn, 1043);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDUMAX, insn, EncodingId::LDUMAX_32_memop);
+            #else
+                        Instruction result(Mnemonic::LDUMAX, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldumax32memop.Rs, false));
@@ -42259,7 +43795,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0xB8207000u: { // LDUMIN_32_memop
-                        Instruction result(Mnemonic::LDUMIN, insn, 1059);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDUMIN, insn, EncodingId::LDUMIN_32_memop);
+            #else
+                        Instruction result(Mnemonic::LDUMIN, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldumin32memop.Rs, false));
@@ -42268,7 +43808,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0xB8208000u: { // SWP_32_memop
-                        Instruction result(Mnemonic::SWP, insn, 1513);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SWP, insn, EncodingId::SWP_32_memop);
+            #else
+                        Instruction result(Mnemonic::SWP, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.swp32memop.Rs, false));
@@ -42277,7 +43821,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0xB8600000u: { // LDADDL_32_memop
-                        Instruction result(Mnemonic::LDADDL, insn, 681);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDADDL, insn, EncodingId::LDADDL_32_memop);
+            #else
+                        Instruction result(Mnemonic::LDADDL, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldaddl32memop.Rs, false));
@@ -42286,7 +43834,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0xB8601000u: { // LDCLRL_32_memop
-                        Instruction result(Mnemonic::LDCLRL, insn, 752);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDCLRL, insn, EncodingId::LDCLRL_32_memop);
+            #else
+                        Instruction result(Mnemonic::LDCLRL, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldclrl32memop.Rs, false));
@@ -42295,7 +43847,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0xB8602000u: { // LDEORL_32_memop
-                        Instruction result(Mnemonic::LDEORL, insn, 772);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDEORL, insn, EncodingId::LDEORL_32_memop);
+            #else
+                        Instruction result(Mnemonic::LDEORL, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldeorl32memop.Rs, false));
@@ -42304,7 +43860,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0xB8603000u: { // LDSETL_32_memop
-                        Instruction result(Mnemonic::LDSETL, insn, 951);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDSETL, insn, EncodingId::LDSETL_32_memop);
+            #else
+                        Instruction result(Mnemonic::LDSETL, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldsetl32memop.Rs, false));
@@ -42313,7 +43873,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0xB8604000u: { // LDSMAXL_32_memop
-                        Instruction result(Mnemonic::LDSMAXL, insn, 971);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDSMAXL, insn, EncodingId::LDSMAXL_32_memop);
+            #else
+                        Instruction result(Mnemonic::LDSMAXL, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldsmaxl32memop.Rs, false));
@@ -42322,7 +43886,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0xB8605000u: { // LDSMINL_32_memop
-                        Instruction result(Mnemonic::LDSMINL, insn, 987);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDSMINL, insn, EncodingId::LDSMINL_32_memop);
+            #else
+                        Instruction result(Mnemonic::LDSMINL, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldsminl32memop.Rs, false));
@@ -42331,7 +43899,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0xB8606000u: { // LDUMAXL_32_memop
-                        Instruction result(Mnemonic::LDUMAXL, insn, 1046);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDUMAXL, insn, EncodingId::LDUMAXL_32_memop);
+            #else
+                        Instruction result(Mnemonic::LDUMAXL, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldumaxl32memop.Rs, false));
@@ -42340,7 +43912,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0xB8607000u: { // LDUMINL_32_memop
-                        Instruction result(Mnemonic::LDUMINL, insn, 1062);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDUMINL, insn, EncodingId::LDUMINL_32_memop);
+            #else
+                        Instruction result(Mnemonic::LDUMINL, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.lduminl32memop.Rs, false));
@@ -42349,7 +43925,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0xB8608000u: { // SWPL_32_memop
-                        Instruction result(Mnemonic::SWPL, insn, 1516);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SWPL, insn, EncodingId::SWPL_32_memop);
+            #else
+                        Instruction result(Mnemonic::SWPL, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.swpl32memop.Rs, false));
@@ -42358,7 +43938,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0xB8A00000u: { // LDADDA_32_memop
-                        Instruction result(Mnemonic::LDADDA, insn, 679);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDADDA, insn, EncodingId::LDADDA_32_memop);
+            #else
+                        Instruction result(Mnemonic::LDADDA, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldadda32memop.Rs, false));
@@ -42367,7 +43951,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0xB8A01000u: { // LDCLRA_32_memop
-                        Instruction result(Mnemonic::LDCLRA, insn, 750);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDCLRA, insn, EncodingId::LDCLRA_32_memop);
+            #else
+                        Instruction result(Mnemonic::LDCLRA, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldclra32memop.Rs, false));
@@ -42376,7 +43964,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0xB8A02000u: { // LDEORA_32_memop
-                        Instruction result(Mnemonic::LDEORA, insn, 770);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDEORA, insn, EncodingId::LDEORA_32_memop);
+            #else
+                        Instruction result(Mnemonic::LDEORA, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldeora32memop.Rs, false));
@@ -42385,7 +43977,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0xB8A03000u: { // LDSETA_32_memop
-                        Instruction result(Mnemonic::LDSETA, insn, 949);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDSETA, insn, EncodingId::LDSETA_32_memop);
+            #else
+                        Instruction result(Mnemonic::LDSETA, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldseta32memop.Rs, false));
@@ -42394,7 +43990,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0xB8A04000u: { // LDSMAXA_32_memop
-                        Instruction result(Mnemonic::LDSMAXA, insn, 969);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDSMAXA, insn, EncodingId::LDSMAXA_32_memop);
+            #else
+                        Instruction result(Mnemonic::LDSMAXA, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldsmaxa32memop.Rs, false));
@@ -42403,7 +44003,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0xB8A05000u: { // LDSMINA_32_memop
-                        Instruction result(Mnemonic::LDSMINA, insn, 985);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDSMINA, insn, EncodingId::LDSMINA_32_memop);
+            #else
+                        Instruction result(Mnemonic::LDSMINA, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldsmina32memop.Rs, false));
@@ -42412,7 +44016,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0xB8A06000u: { // LDUMAXA_32_memop
-                        Instruction result(Mnemonic::LDUMAXA, insn, 1044);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDUMAXA, insn, EncodingId::LDUMAXA_32_memop);
+            #else
+                        Instruction result(Mnemonic::LDUMAXA, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldumaxa32memop.Rs, false));
@@ -42421,7 +44029,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0xB8A07000u: { // LDUMINA_32_memop
-                        Instruction result(Mnemonic::LDUMINA, insn, 1060);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDUMINA, insn, EncodingId::LDUMINA_32_memop);
+            #else
+                        Instruction result(Mnemonic::LDUMINA, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldumina32memop.Rs, false));
@@ -42430,7 +44042,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0xB8A08000u: { // SWPA_32_memop
-                        Instruction result(Mnemonic::SWPA, insn, 1514);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SWPA, insn, EncodingId::SWPA_32_memop);
+            #else
+                        Instruction result(Mnemonic::SWPA, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.swpa32memop.Rs, false));
@@ -42439,7 +44055,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0xB8A0C000u: { // LDAPR_32L_memop
-                        Instruction result(Mnemonic::LDAPR, insn, 699);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDAPR, insn, EncodingId::LDAPR_32L_memop);
+            #else
+                        Instruction result(Mnemonic::LDAPR, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldapr32l_memop.Rt, false));
@@ -42447,7 +44067,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0xB8E00000u: { // LDADDAL_32_memop
-                        Instruction result(Mnemonic::LDADDAL, insn, 680);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDADDAL, insn, EncodingId::LDADDAL_32_memop);
+            #else
+                        Instruction result(Mnemonic::LDADDAL, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldaddal32memop.Rs, false));
@@ -42456,7 +44080,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0xB8E01000u: { // LDCLRAL_32_memop
-                        Instruction result(Mnemonic::LDCLRAL, insn, 751);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDCLRAL, insn, EncodingId::LDCLRAL_32_memop);
+            #else
+                        Instruction result(Mnemonic::LDCLRAL, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldclral32memop.Rs, false));
@@ -42465,7 +44093,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0xB8E02000u: { // LDEORAL_32_memop
-                        Instruction result(Mnemonic::LDEORAL, insn, 771);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDEORAL, insn, EncodingId::LDEORAL_32_memop);
+            #else
+                        Instruction result(Mnemonic::LDEORAL, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldeoral32memop.Rs, false));
@@ -42474,7 +44106,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0xB8E03000u: { // LDSETAL_32_memop
-                        Instruction result(Mnemonic::LDSETAL, insn, 950);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDSETAL, insn, EncodingId::LDSETAL_32_memop);
+            #else
+                        Instruction result(Mnemonic::LDSETAL, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldsetal32memop.Rs, false));
@@ -42483,7 +44119,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0xB8E04000u: { // LDSMAXAL_32_memop
-                        Instruction result(Mnemonic::LDSMAXAL, insn, 970);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDSMAXAL, insn, EncodingId::LDSMAXAL_32_memop);
+            #else
+                        Instruction result(Mnemonic::LDSMAXAL, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldsmaxal32memop.Rs, false));
@@ -42492,7 +44132,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0xB8E05000u: { // LDSMINAL_32_memop
-                        Instruction result(Mnemonic::LDSMINAL, insn, 986);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDSMINAL, insn, EncodingId::LDSMINAL_32_memop);
+            #else
+                        Instruction result(Mnemonic::LDSMINAL, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldsminal32memop.Rs, false));
@@ -42501,7 +44145,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0xB8E06000u: { // LDUMAXAL_32_memop
-                        Instruction result(Mnemonic::LDUMAXAL, insn, 1045);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDUMAXAL, insn, EncodingId::LDUMAXAL_32_memop);
+            #else
+                        Instruction result(Mnemonic::LDUMAXAL, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldumaxal32memop.Rs, false));
@@ -42510,7 +44158,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0xB8E07000u: { // LDUMINAL_32_memop
-                        Instruction result(Mnemonic::LDUMINAL, insn, 1061);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDUMINAL, insn, EncodingId::LDUMINAL_32_memop);
+            #else
+                        Instruction result(Mnemonic::LDUMINAL, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.lduminal32memop.Rs, false));
@@ -42519,7 +44171,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0xB8E08000u: { // SWPAL_32_memop
-                        Instruction result(Mnemonic::SWPAL, insn, 1515);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SWPAL, insn, EncodingId::SWPAL_32_memop);
+            #else
+                        Instruction result(Mnemonic::SWPAL, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.swpal32memop.Rs, false));
@@ -42528,7 +44184,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0xBC200000u: { // LDFADD_32
-                        Instruction result(Mnemonic::LDFADD, insn, 789);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDFADD, insn, EncodingId::LDFADD_32);
+            #else
+                        Instruction result(Mnemonic::LDFADD, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -42538,7 +44198,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0xBC204000u: { // LDFMAX_32
-                        Instruction result(Mnemonic::LDFMAX, insn, 801);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDFMAX, insn, EncodingId::LDFMAX_32);
+            #else
+                        Instruction result(Mnemonic::LDFMAX, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -42548,7 +44212,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0xBC205000u: { // LDFMIN_32
-                        Instruction result(Mnemonic::LDFMIN, insn, 825);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDFMIN, insn, EncodingId::LDFMIN_32);
+            #else
+                        Instruction result(Mnemonic::LDFMIN, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -42558,7 +44226,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0xBC206000u: { // LDFMAXNM_32
-                        Instruction result(Mnemonic::LDFMAXNM, insn, 813);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDFMAXNM, insn, EncodingId::LDFMAXNM_32);
+            #else
+                        Instruction result(Mnemonic::LDFMAXNM, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -42568,7 +44240,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0xBC207000u: { // LDFMINNM_32
-                        Instruction result(Mnemonic::LDFMINNM, insn, 837);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDFMINNM, insn, EncodingId::LDFMINNM_32);
+            #else
+                        Instruction result(Mnemonic::LDFMINNM, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -42578,7 +44254,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0xBC600000u: { // LDFADDL_32
-                        Instruction result(Mnemonic::LDFADDL, insn, 792);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDFADDL, insn, EncodingId::LDFADDL_32);
+            #else
+                        Instruction result(Mnemonic::LDFADDL, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -42588,7 +44268,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0xBC604000u: { // LDFMAXL_32
-                        Instruction result(Mnemonic::LDFMAXL, insn, 804);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDFMAXL, insn, EncodingId::LDFMAXL_32);
+            #else
+                        Instruction result(Mnemonic::LDFMAXL, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -42598,7 +44282,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0xBC605000u: { // LDFMINL_32
-                        Instruction result(Mnemonic::LDFMINL, insn, 828);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDFMINL, insn, EncodingId::LDFMINL_32);
+            #else
+                        Instruction result(Mnemonic::LDFMINL, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -42608,7 +44296,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0xBC606000u: { // LDFMAXNML_32
-                        Instruction result(Mnemonic::LDFMAXNML, insn, 816);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDFMAXNML, insn, EncodingId::LDFMAXNML_32);
+            #else
+                        Instruction result(Mnemonic::LDFMAXNML, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -42618,7 +44310,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0xBC607000u: { // LDFMINNML_32
-                        Instruction result(Mnemonic::LDFMINNML, insn, 840);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDFMINNML, insn, EncodingId::LDFMINNML_32);
+            #else
+                        Instruction result(Mnemonic::LDFMINNML, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -42628,7 +44324,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0xBCA00000u: { // LDFADDA_32
-                        Instruction result(Mnemonic::LDFADDA, insn, 790);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDFADDA, insn, EncodingId::LDFADDA_32);
+            #else
+                        Instruction result(Mnemonic::LDFADDA, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -42638,7 +44338,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0xBCA04000u: { // LDFMAXA_32
-                        Instruction result(Mnemonic::LDFMAXA, insn, 802);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDFMAXA, insn, EncodingId::LDFMAXA_32);
+            #else
+                        Instruction result(Mnemonic::LDFMAXA, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -42648,7 +44352,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0xBCA05000u: { // LDFMINA_32
-                        Instruction result(Mnemonic::LDFMINA, insn, 826);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDFMINA, insn, EncodingId::LDFMINA_32);
+            #else
+                        Instruction result(Mnemonic::LDFMINA, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -42658,7 +44366,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0xBCA06000u: { // LDFMAXNMA_32
-                        Instruction result(Mnemonic::LDFMAXNMA, insn, 814);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDFMAXNMA, insn, EncodingId::LDFMAXNMA_32);
+            #else
+                        Instruction result(Mnemonic::LDFMAXNMA, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -42668,7 +44380,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0xBCA07000u: { // LDFMINNMA_32
-                        Instruction result(Mnemonic::LDFMINNMA, insn, 838);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDFMINNMA, insn, EncodingId::LDFMINNMA_32);
+            #else
+                        Instruction result(Mnemonic::LDFMINNMA, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -42678,7 +44394,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0xBCE00000u: { // LDFADDAL_32
-                        Instruction result(Mnemonic::LDFADDAL, insn, 791);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDFADDAL, insn, EncodingId::LDFADDAL_32);
+            #else
+                        Instruction result(Mnemonic::LDFADDAL, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -42688,7 +44408,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0xBCE04000u: { // LDFMAXAL_32
-                        Instruction result(Mnemonic::LDFMAXAL, insn, 803);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDFMAXAL, insn, EncodingId::LDFMAXAL_32);
+            #else
+                        Instruction result(Mnemonic::LDFMAXAL, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -42698,7 +44422,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0xBCE05000u: { // LDFMINAL_32
-                        Instruction result(Mnemonic::LDFMINAL, insn, 827);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDFMINAL, insn, EncodingId::LDFMINAL_32);
+            #else
+                        Instruction result(Mnemonic::LDFMINAL, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -42708,7 +44436,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0xBCE06000u: { // LDFMAXNMAL_32
-                        Instruction result(Mnemonic::LDFMAXNMAL, insn, 815);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDFMAXNMAL, insn, EncodingId::LDFMAXNMAL_32);
+            #else
+                        Instruction result(Mnemonic::LDFMAXNMAL, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -42718,7 +44450,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0xBCE07000u: { // LDFMINNMAL_32
-                        Instruction result(Mnemonic::LDFMINNMAL, insn, 839);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDFMINNMAL, insn, EncodingId::LDFMINNMAL_32);
+            #else
+                        Instruction result(Mnemonic::LDFMINNMAL, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -42728,7 +44464,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0xC8A07C00u: { // CAS_C64_comswap
-                        Instruction result(Mnemonic::CAS, insn, 470);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::CAS, insn, EncodingId::CAS_C64_comswap);
+            #else
+                        Instruction result(Mnemonic::CAS, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.cas_c64comswap.Rs, true));
@@ -42737,7 +44477,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0xC8A0FC00u: { // CASL_C64_comswap
-                        Instruction result(Mnemonic::CASL, insn, 473);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::CASL, insn, EncodingId::CASL_C64_comswap);
+            #else
+                        Instruction result(Mnemonic::CASL, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.casl_c64comswap.Rs, true));
@@ -42746,7 +44490,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0xC8E07C00u: { // CASA_C64_comswap
-                        Instruction result(Mnemonic::CASA, insn, 471);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::CASA, insn, EncodingId::CASA_C64_comswap);
+            #else
+                        Instruction result(Mnemonic::CASA, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.casa_c64comswap.Rs, true));
@@ -42755,7 +44503,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0xC8E0FC00u: { // CASAL_C64_comswap
-                        Instruction result(Mnemonic::CASAL, insn, 472);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::CASAL, insn, EncodingId::CASAL_C64_comswap);
+            #else
+                        Instruction result(Mnemonic::CASAL, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.casal_c64comswap.Rs, true));
@@ -42764,7 +44516,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0xC9807C00u: { // CAST_C64_comswap_unpriv
-                        Instruction result(Mnemonic::CAST, insn, 494);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::CAST, insn, EncodingId::CAST_C64_comswap_unpriv);
+            #else
+                        Instruction result(Mnemonic::CAST, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.cast_c64comswap_unpriv.Rs, true));
@@ -42773,7 +44529,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0xC980FC00u: { // CASLT_C64_comswap_unpriv
-                        Instruction result(Mnemonic::CASLT, insn, 497);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::CASLT, insn, EncodingId::CASLT_C64_comswap_unpriv);
+            #else
+                        Instruction result(Mnemonic::CASLT, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.caslt_c64comswap_unpriv.Rs, true));
@@ -42782,7 +44542,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0xC9C07C00u: { // CASAT_C64_comswap_unpriv
-                        Instruction result(Mnemonic::CASAT, insn, 495);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::CASAT, insn, EncodingId::CASAT_C64_comswap_unpriv);
+            #else
+                        Instruction result(Mnemonic::CASAT, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.casat_c64comswap_unpriv.Rs, true));
@@ -42791,7 +44555,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0xC9C0FC00u: { // CASALT_C64_comswap_unpriv
-                        Instruction result(Mnemonic::CASALT, insn, 496);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::CASALT, insn, EncodingId::CASALT_C64_comswap_unpriv);
+            #else
+                        Instruction result(Mnemonic::CASALT, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.casalt_c64comswap_unpriv.Rs, true));
@@ -42800,7 +44568,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0xD9000800u: { // STILP_64SS_ldiappstilp
-                        Instruction result(Mnemonic::STILP, insn, 1336);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::STILP, insn, EncodingId::STILP_64SS_ldiappstilp);
+            #else
+                        Instruction result(Mnemonic::STILP, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.stilp64ss_ldiappstilp.Rt, true));
@@ -42809,7 +44581,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0xD9001800u: { // STILP_64S_ldiappstilp
-                        Instruction result(Mnemonic::STILP, insn, 1337);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::STILP, insn, EncodingId::STILP_64S_ldiappstilp);
+            #else
+                        Instruction result(Mnemonic::STILP, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.stilp64s_ldiappstilp.Rt, true));
@@ -42818,7 +44594,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0xD9005800u: { // STLP_64_ldiappstilp
-                        Instruction result(Mnemonic::STLP, insn, 1343);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::STLP, insn, EncodingId::STLP_64_ldiappstilp);
+            #else
+                        Instruction result(Mnemonic::STLP, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.stlp64ldiappstilp.Rt, true));
@@ -42827,7 +44607,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0xD9400800u: { // LDIAPP_64LS_ldiappstilp
-                        Instruction result(Mnemonic::LDIAPP, insn, 849);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDIAPP, insn, EncodingId::LDIAPP_64LS_ldiappstilp);
+            #else
+                        Instruction result(Mnemonic::LDIAPP, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldiapp64ls_ldiappstilp.Rt, true));
@@ -42836,7 +44620,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0xD9401800u: { // LDIAPP_64L_ldiappstilp
-                        Instruction result(Mnemonic::LDIAPP, insn, 850);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDIAPP, insn, EncodingId::LDIAPP_64L_ldiappstilp);
+            #else
+                        Instruction result(Mnemonic::LDIAPP, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldiapp64l_ldiappstilp.Rt, true));
@@ -42845,7 +44633,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0xD9405800u: { // LDAP_64_ldiappstilp
-                        Instruction result(Mnemonic::LDAP, insn, 695);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDAP, insn, EncodingId::LDAP_64_ldiappstilp);
+            #else
+                        Instruction result(Mnemonic::LDAP, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldap64ldiappstilp.Rt, true));
@@ -42854,7 +44646,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0xD9407800u: { // LDAPP_64_ldiappstilp
-                        Instruction result(Mnemonic::LDAPP, insn, 696);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDAPP, insn, EncodingId::LDAPP_64_ldiappstilp);
+            #else
+                        Instruction result(Mnemonic::LDAPP, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldapp64ldiappstilp.Rt, true));
@@ -42863,7 +44659,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0xF8200000u: { // LDADD_64_memop
-                        Instruction result(Mnemonic::LDADD, insn, 682);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDADD, insn, EncodingId::LDADD_64_memop);
+            #else
+                        Instruction result(Mnemonic::LDADD, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldadd64memop.Rs, true));
@@ -42872,7 +44672,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0xF8201000u: { // LDCLR_64_memop
-                        Instruction result(Mnemonic::LDCLR, insn, 753);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDCLR, insn, EncodingId::LDCLR_64_memop);
+            #else
+                        Instruction result(Mnemonic::LDCLR, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldclr64memop.Rs, true));
@@ -42881,7 +44685,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0xF8202000u: { // LDEOR_64_memop
-                        Instruction result(Mnemonic::LDEOR, insn, 773);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDEOR, insn, EncodingId::LDEOR_64_memop);
+            #else
+                        Instruction result(Mnemonic::LDEOR, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldeor64memop.Rs, true));
@@ -42890,7 +44698,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0xF8203000u: { // LDSET_64_memop
-                        Instruction result(Mnemonic::LDSET, insn, 952);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDSET, insn, EncodingId::LDSET_64_memop);
+            #else
+                        Instruction result(Mnemonic::LDSET, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldset64memop.Rs, true));
@@ -42899,7 +44711,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0xF8204000u: { // LDSMAX_64_memop
-                        Instruction result(Mnemonic::LDSMAX, insn, 972);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDSMAX, insn, EncodingId::LDSMAX_64_memop);
+            #else
+                        Instruction result(Mnemonic::LDSMAX, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldsmax64memop.Rs, true));
@@ -42908,7 +44724,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0xF8205000u: { // LDSMIN_64_memop
-                        Instruction result(Mnemonic::LDSMIN, insn, 988);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDSMIN, insn, EncodingId::LDSMIN_64_memop);
+            #else
+                        Instruction result(Mnemonic::LDSMIN, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldsmin64memop.Rs, true));
@@ -42917,7 +44737,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0xF8206000u: { // LDUMAX_64_memop
-                        Instruction result(Mnemonic::LDUMAX, insn, 1047);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDUMAX, insn, EncodingId::LDUMAX_64_memop);
+            #else
+                        Instruction result(Mnemonic::LDUMAX, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldumax64memop.Rs, true));
@@ -42926,7 +44750,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0xF8207000u: { // LDUMIN_64_memop
-                        Instruction result(Mnemonic::LDUMIN, insn, 1063);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDUMIN, insn, EncodingId::LDUMIN_64_memop);
+            #else
+                        Instruction result(Mnemonic::LDUMIN, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldumin64memop.Rs, true));
@@ -42935,7 +44763,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0xF8208000u: { // SWP_64_memop
-                        Instruction result(Mnemonic::SWP, insn, 1517);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SWP, insn, EncodingId::SWP_64_memop);
+            #else
+                        Instruction result(Mnemonic::SWP, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.swp64memop.Rs, true));
@@ -42944,7 +44776,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0xF820A000u: { // ST64BV0_64_memop
-                        Instruction result(Mnemonic::ST64BV0, insn, 1262);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::ST64BV0, insn, EncodingId::ST64BV0_64_memop);
+            #else
+                        Instruction result(Mnemonic::ST64BV0, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.st64bv064memop.Rs, true));
@@ -42953,7 +44789,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0xF820B000u: { // ST64BV_64_memop
-                        Instruction result(Mnemonic::ST64BV, insn, 1261);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::ST64BV, insn, EncodingId::ST64BV_64_memop);
+            #else
+                        Instruction result(Mnemonic::ST64BV, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.st64bv64memop.Rs, true));
@@ -42962,7 +44802,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0xF8600000u: { // LDADDL_64_memop
-                        Instruction result(Mnemonic::LDADDL, insn, 685);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDADDL, insn, EncodingId::LDADDL_64_memop);
+            #else
+                        Instruction result(Mnemonic::LDADDL, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldaddl64memop.Rs, true));
@@ -42971,7 +44815,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0xF8601000u: { // LDCLRL_64_memop
-                        Instruction result(Mnemonic::LDCLRL, insn, 756);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDCLRL, insn, EncodingId::LDCLRL_64_memop);
+            #else
+                        Instruction result(Mnemonic::LDCLRL, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldclrl64memop.Rs, true));
@@ -42980,7 +44828,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0xF8602000u: { // LDEORL_64_memop
-                        Instruction result(Mnemonic::LDEORL, insn, 776);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDEORL, insn, EncodingId::LDEORL_64_memop);
+            #else
+                        Instruction result(Mnemonic::LDEORL, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldeorl64memop.Rs, true));
@@ -42989,7 +44841,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0xF8603000u: { // LDSETL_64_memop
-                        Instruction result(Mnemonic::LDSETL, insn, 955);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDSETL, insn, EncodingId::LDSETL_64_memop);
+            #else
+                        Instruction result(Mnemonic::LDSETL, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldsetl64memop.Rs, true));
@@ -42998,7 +44854,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0xF8604000u: { // LDSMAXL_64_memop
-                        Instruction result(Mnemonic::LDSMAXL, insn, 975);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDSMAXL, insn, EncodingId::LDSMAXL_64_memop);
+            #else
+                        Instruction result(Mnemonic::LDSMAXL, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldsmaxl64memop.Rs, true));
@@ -43007,7 +44867,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0xF8605000u: { // LDSMINL_64_memop
-                        Instruction result(Mnemonic::LDSMINL, insn, 991);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDSMINL, insn, EncodingId::LDSMINL_64_memop);
+            #else
+                        Instruction result(Mnemonic::LDSMINL, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldsminl64memop.Rs, true));
@@ -43016,7 +44880,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0xF8606000u: { // LDUMAXL_64_memop
-                        Instruction result(Mnemonic::LDUMAXL, insn, 1050);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDUMAXL, insn, EncodingId::LDUMAXL_64_memop);
+            #else
+                        Instruction result(Mnemonic::LDUMAXL, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldumaxl64memop.Rs, true));
@@ -43025,7 +44893,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0xF8607000u: { // LDUMINL_64_memop
-                        Instruction result(Mnemonic::LDUMINL, insn, 1066);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDUMINL, insn, EncodingId::LDUMINL_64_memop);
+            #else
+                        Instruction result(Mnemonic::LDUMINL, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.lduminl64memop.Rs, true));
@@ -43034,7 +44906,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0xF8608000u: { // SWPL_64_memop
-                        Instruction result(Mnemonic::SWPL, insn, 1520);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SWPL, insn, EncodingId::SWPL_64_memop);
+            #else
+                        Instruction result(Mnemonic::SWPL, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.swpl64memop.Rs, true));
@@ -43043,7 +44919,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0xF8A00000u: { // LDADDA_64_memop
-                        Instruction result(Mnemonic::LDADDA, insn, 683);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDADDA, insn, EncodingId::LDADDA_64_memop);
+            #else
+                        Instruction result(Mnemonic::LDADDA, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldadda64memop.Rs, true));
@@ -43052,7 +44932,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0xF8A01000u: { // LDCLRA_64_memop
-                        Instruction result(Mnemonic::LDCLRA, insn, 754);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDCLRA, insn, EncodingId::LDCLRA_64_memop);
+            #else
+                        Instruction result(Mnemonic::LDCLRA, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldclra64memop.Rs, true));
@@ -43061,7 +44945,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0xF8A02000u: { // LDEORA_64_memop
-                        Instruction result(Mnemonic::LDEORA, insn, 774);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDEORA, insn, EncodingId::LDEORA_64_memop);
+            #else
+                        Instruction result(Mnemonic::LDEORA, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldeora64memop.Rs, true));
@@ -43070,7 +44958,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0xF8A03000u: { // LDSETA_64_memop
-                        Instruction result(Mnemonic::LDSETA, insn, 953);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDSETA, insn, EncodingId::LDSETA_64_memop);
+            #else
+                        Instruction result(Mnemonic::LDSETA, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldseta64memop.Rs, true));
@@ -43079,7 +44971,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0xF8A04000u: { // LDSMAXA_64_memop
-                        Instruction result(Mnemonic::LDSMAXA, insn, 973);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDSMAXA, insn, EncodingId::LDSMAXA_64_memop);
+            #else
+                        Instruction result(Mnemonic::LDSMAXA, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldsmaxa64memop.Rs, true));
@@ -43088,7 +44984,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0xF8A05000u: { // LDSMINA_64_memop
-                        Instruction result(Mnemonic::LDSMINA, insn, 989);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDSMINA, insn, EncodingId::LDSMINA_64_memop);
+            #else
+                        Instruction result(Mnemonic::LDSMINA, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldsmina64memop.Rs, true));
@@ -43097,7 +44997,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0xF8A06000u: { // LDUMAXA_64_memop
-                        Instruction result(Mnemonic::LDUMAXA, insn, 1048);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDUMAXA, insn, EncodingId::LDUMAXA_64_memop);
+            #else
+                        Instruction result(Mnemonic::LDUMAXA, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldumaxa64memop.Rs, true));
@@ -43106,7 +45010,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0xF8A07000u: { // LDUMINA_64_memop
-                        Instruction result(Mnemonic::LDUMINA, insn, 1064);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDUMINA, insn, EncodingId::LDUMINA_64_memop);
+            #else
+                        Instruction result(Mnemonic::LDUMINA, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldumina64memop.Rs, true));
@@ -43115,7 +45023,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0xF8A08000u: { // SWPA_64_memop
-                        Instruction result(Mnemonic::SWPA, insn, 1518);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SWPA, insn, EncodingId::SWPA_64_memop);
+            #else
+                        Instruction result(Mnemonic::SWPA, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.swpa64memop.Rs, true));
@@ -43124,7 +45036,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0xF8A0C000u: { // LDAPR_64L_memop
-                        Instruction result(Mnemonic::LDAPR, insn, 700);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDAPR, insn, EncodingId::LDAPR_64L_memop);
+            #else
+                        Instruction result(Mnemonic::LDAPR, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldapr64l_memop.Rt, true));
@@ -43132,7 +45048,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0xF8E00000u: { // LDADDAL_64_memop
-                        Instruction result(Mnemonic::LDADDAL, insn, 684);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDADDAL, insn, EncodingId::LDADDAL_64_memop);
+            #else
+                        Instruction result(Mnemonic::LDADDAL, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldaddal64memop.Rs, true));
@@ -43141,7 +45061,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0xF8E01000u: { // LDCLRAL_64_memop
-                        Instruction result(Mnemonic::LDCLRAL, insn, 755);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDCLRAL, insn, EncodingId::LDCLRAL_64_memop);
+            #else
+                        Instruction result(Mnemonic::LDCLRAL, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldclral64memop.Rs, true));
@@ -43150,7 +45074,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0xF8E02000u: { // LDEORAL_64_memop
-                        Instruction result(Mnemonic::LDEORAL, insn, 775);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDEORAL, insn, EncodingId::LDEORAL_64_memop);
+            #else
+                        Instruction result(Mnemonic::LDEORAL, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldeoral64memop.Rs, true));
@@ -43159,7 +45087,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0xF8E03000u: { // LDSETAL_64_memop
-                        Instruction result(Mnemonic::LDSETAL, insn, 954);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDSETAL, insn, EncodingId::LDSETAL_64_memop);
+            #else
+                        Instruction result(Mnemonic::LDSETAL, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldsetal64memop.Rs, true));
@@ -43168,7 +45100,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0xF8E04000u: { // LDSMAXAL_64_memop
-                        Instruction result(Mnemonic::LDSMAXAL, insn, 974);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDSMAXAL, insn, EncodingId::LDSMAXAL_64_memop);
+            #else
+                        Instruction result(Mnemonic::LDSMAXAL, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldsmaxal64memop.Rs, true));
@@ -43177,7 +45113,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0xF8E05000u: { // LDSMINAL_64_memop
-                        Instruction result(Mnemonic::LDSMINAL, insn, 990);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDSMINAL, insn, EncodingId::LDSMINAL_64_memop);
+            #else
+                        Instruction result(Mnemonic::LDSMINAL, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldsminal64memop.Rs, true));
@@ -43186,7 +45126,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0xF8E06000u: { // LDUMAXAL_64_memop
-                        Instruction result(Mnemonic::LDUMAXAL, insn, 1049);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDUMAXAL, insn, EncodingId::LDUMAXAL_64_memop);
+            #else
+                        Instruction result(Mnemonic::LDUMAXAL, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldumaxal64memop.Rs, true));
@@ -43195,7 +45139,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0xF8E07000u: { // LDUMINAL_64_memop
-                        Instruction result(Mnemonic::LDUMINAL, insn, 1065);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDUMINAL, insn, EncodingId::LDUMINAL_64_memop);
+            #else
+                        Instruction result(Mnemonic::LDUMINAL, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.lduminal64memop.Rs, true));
@@ -43204,7 +45152,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0xF8E08000u: { // SWPAL_64_memop
-                        Instruction result(Mnemonic::SWPAL, insn, 1519);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SWPAL, insn, EncodingId::SWPAL_64_memop);
+            #else
+                        Instruction result(Mnemonic::SWPAL, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.swpal64memop.Rs, true));
@@ -43213,7 +45165,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0xFC200000u: { // LDFADD_64
-                        Instruction result(Mnemonic::LDFADD, insn, 793);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDFADD, insn, EncodingId::LDFADD_64);
+            #else
+                        Instruction result(Mnemonic::LDFADD, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -43223,7 +45179,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0xFC204000u: { // LDFMAX_64
-                        Instruction result(Mnemonic::LDFMAX, insn, 805);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDFMAX, insn, EncodingId::LDFMAX_64);
+            #else
+                        Instruction result(Mnemonic::LDFMAX, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -43233,7 +45193,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0xFC205000u: { // LDFMIN_64
-                        Instruction result(Mnemonic::LDFMIN, insn, 829);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDFMIN, insn, EncodingId::LDFMIN_64);
+            #else
+                        Instruction result(Mnemonic::LDFMIN, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -43243,7 +45207,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0xFC206000u: { // LDFMAXNM_64
-                        Instruction result(Mnemonic::LDFMAXNM, insn, 817);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDFMAXNM, insn, EncodingId::LDFMAXNM_64);
+            #else
+                        Instruction result(Mnemonic::LDFMAXNM, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -43253,7 +45221,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0xFC207000u: { // LDFMINNM_64
-                        Instruction result(Mnemonic::LDFMINNM, insn, 841);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDFMINNM, insn, EncodingId::LDFMINNM_64);
+            #else
+                        Instruction result(Mnemonic::LDFMINNM, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -43263,7 +45235,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0xFC600000u: { // LDFADDL_64
-                        Instruction result(Mnemonic::LDFADDL, insn, 796);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDFADDL, insn, EncodingId::LDFADDL_64);
+            #else
+                        Instruction result(Mnemonic::LDFADDL, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -43273,7 +45249,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0xFC604000u: { // LDFMAXL_64
-                        Instruction result(Mnemonic::LDFMAXL, insn, 808);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDFMAXL, insn, EncodingId::LDFMAXL_64);
+            #else
+                        Instruction result(Mnemonic::LDFMAXL, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -43283,7 +45263,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0xFC605000u: { // LDFMINL_64
-                        Instruction result(Mnemonic::LDFMINL, insn, 832);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDFMINL, insn, EncodingId::LDFMINL_64);
+            #else
+                        Instruction result(Mnemonic::LDFMINL, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -43293,7 +45277,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0xFC606000u: { // LDFMAXNML_64
-                        Instruction result(Mnemonic::LDFMAXNML, insn, 820);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDFMAXNML, insn, EncodingId::LDFMAXNML_64);
+            #else
+                        Instruction result(Mnemonic::LDFMAXNML, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -43303,7 +45291,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0xFC607000u: { // LDFMINNML_64
-                        Instruction result(Mnemonic::LDFMINNML, insn, 844);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDFMINNML, insn, EncodingId::LDFMINNML_64);
+            #else
+                        Instruction result(Mnemonic::LDFMINNML, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -43313,7 +45305,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0xFCA00000u: { // LDFADDA_64
-                        Instruction result(Mnemonic::LDFADDA, insn, 794);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDFADDA, insn, EncodingId::LDFADDA_64);
+            #else
+                        Instruction result(Mnemonic::LDFADDA, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -43323,7 +45319,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0xFCA04000u: { // LDFMAXA_64
-                        Instruction result(Mnemonic::LDFMAXA, insn, 806);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDFMAXA, insn, EncodingId::LDFMAXA_64);
+            #else
+                        Instruction result(Mnemonic::LDFMAXA, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -43333,7 +45333,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0xFCA05000u: { // LDFMINA_64
-                        Instruction result(Mnemonic::LDFMINA, insn, 830);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDFMINA, insn, EncodingId::LDFMINA_64);
+            #else
+                        Instruction result(Mnemonic::LDFMINA, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -43343,7 +45347,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0xFCA06000u: { // LDFMAXNMA_64
-                        Instruction result(Mnemonic::LDFMAXNMA, insn, 818);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDFMAXNMA, insn, EncodingId::LDFMAXNMA_64);
+            #else
+                        Instruction result(Mnemonic::LDFMAXNMA, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -43353,7 +45361,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0xFCA07000u: { // LDFMINNMA_64
-                        Instruction result(Mnemonic::LDFMINNMA, insn, 842);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDFMINNMA, insn, EncodingId::LDFMINNMA_64);
+            #else
+                        Instruction result(Mnemonic::LDFMINNMA, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -43363,7 +45375,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0xFCE00000u: { // LDFADDAL_64
-                        Instruction result(Mnemonic::LDFADDAL, insn, 795);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDFADDAL, insn, EncodingId::LDFADDAL_64);
+            #else
+                        Instruction result(Mnemonic::LDFADDAL, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -43373,7 +45389,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0xFCE04000u: { // LDFMAXAL_64
-                        Instruction result(Mnemonic::LDFMAXAL, insn, 807);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDFMAXAL, insn, EncodingId::LDFMAXAL_64);
+            #else
+                        Instruction result(Mnemonic::LDFMAXAL, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -43383,7 +45403,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0xFCE05000u: { // LDFMINAL_64
-                        Instruction result(Mnemonic::LDFMINAL, insn, 831);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDFMINAL, insn, EncodingId::LDFMINAL_64);
+            #else
+                        Instruction result(Mnemonic::LDFMINAL, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -43393,7 +45417,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0xFCE06000u: { // LDFMAXNMAL_64
-                        Instruction result(Mnemonic::LDFMAXNMAL, insn, 819);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDFMAXNMAL, insn, EncodingId::LDFMAXNMAL_64);
+            #else
+                        Instruction result(Mnemonic::LDFMAXNMAL, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -43403,7 +45431,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0xFCE07000u: { // LDFMINNMAL_64
-                        Instruction result(Mnemonic::LDFMINNMAL, insn, 843);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDFMINNMAL, insn, EncodingId::LDFMINNMAL_64);
+            #else
+                        Instruction result(Mnemonic::LDFMINNMAL, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -43418,7 +45450,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
     // Switch for mask 0xFFE0EC00u (6 patterns, 6 encodings)
     switch (insn & 0xFFE0EC00u) {
         case 0x38206800u: { // STRB_32BL_ldst_regoff
-                        Instruction result(Mnemonic::STRB, insn, 1420);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::STRB, insn, EncodingId::STRB_32BL_ldst_regoff);
+            #else
+                        Instruction result(Mnemonic::STRB, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.strb32bl_ldst_regoff.Rt, false));
@@ -43426,7 +45462,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x38606800u: { // LDRB_32BL_ldst_regoff
-                        Instruction result(Mnemonic::LDRB, insn, 920);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDRB, insn, EncodingId::LDRB_32BL_ldst_regoff);
+            #else
+                        Instruction result(Mnemonic::LDRB, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldrb32bl_ldst_regoff.Rt, false));
@@ -43434,7 +45474,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x38A06800u: { // LDRSB_64BL_ldst_regoff
-                        Instruction result(Mnemonic::LDRSB, insn, 934);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDRSB, insn, EncodingId::LDRSB_64BL_ldst_regoff);
+            #else
+                        Instruction result(Mnemonic::LDRSB, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldrsb64bl_ldst_regoff.Rt, true));
@@ -43442,7 +45486,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x38E06800u: { // LDRSB_32BL_ldst_regoff
-                        Instruction result(Mnemonic::LDRSB, insn, 932);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDRSB, insn, EncodingId::LDRSB_32BL_ldst_regoff);
+            #else
+                        Instruction result(Mnemonic::LDRSB, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldrsb32bl_ldst_regoff.Rt, false));
@@ -43450,7 +45498,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x3C206800u: { // STR_BL_ldst_regoff
-                        Instruction result(Mnemonic::STR, insn, 1409);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::STR, insn, EncodingId::STR_BL_ldst_regoff);
+            #else
+                        Instruction result(Mnemonic::STR, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -43459,7 +45511,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x3C606800u: { // LDR_BL_ldst_regoff
-                        Instruction result(Mnemonic::LDR, insn, 905);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDR, insn, EncodingId::LDR_BL_ldst_regoff);
+            #else
+                        Instruction result(Mnemonic::LDR, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -43473,7 +45529,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
     // Switch for mask 0xFFE08000u (48 patterns, 48 encodings)
     switch (insn & 0xFFE08000u) {
         case 0x08000000u: { // STXRB_SR32_ldstexclr
-                        Instruction result(Mnemonic::STXRB, insn, 1504);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::STXRB, insn, EncodingId::STXRB_SR32_ldstexclr);
+            #else
+                        Instruction result(Mnemonic::STXRB, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.stxrb_sr32ldstexclr.Rs, false));
@@ -43482,7 +45542,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x08008000u: { // STLXRB_SR32_ldstexclr
-                        Instruction result(Mnemonic::STLXRB, insn, 1365);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::STLXRB, insn, EncodingId::STLXRB_SR32_ldstexclr);
+            #else
+                        Instruction result(Mnemonic::STLXRB, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.stlxrb_sr32ldstexclr.Rs, false));
@@ -43491,7 +45555,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x08400000u: { // LDXRB_LR32_ldstexclr
-                        Instruction result(Mnemonic::LDXRB, insn, 1093);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDXRB, insn, EncodingId::LDXRB_LR32_ldstexclr);
+            #else
+                        Instruction result(Mnemonic::LDXRB, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldxrb_lr32ldstexclr.Rt, false));
@@ -43499,7 +45567,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x08408000u: { // LDAXRB_LR32_ldstexclr
-                        Instruction result(Mnemonic::LDAXRB, insn, 727);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDAXRB, insn, EncodingId::LDAXRB_LR32_ldstexclr);
+            #else
+                        Instruction result(Mnemonic::LDAXRB, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldaxrb_lr32ldstexclr.Rt, false));
@@ -43507,7 +45579,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x08800000u: { // STLLRB_SL32_ldstord
-                        Instruction result(Mnemonic::STLLRB, insn, 1341);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::STLLRB, insn, EncodingId::STLLRB_SL32_ldstord);
+            #else
+                        Instruction result(Mnemonic::STLLRB, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.stllrb_sl32ldstord.Rt, false));
@@ -43515,7 +45591,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x08808000u: { // STLRB_SL32_ldstord
-                        Instruction result(Mnemonic::STLRB, insn, 1348);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::STLRB, insn, EncodingId::STLRB_SL32_ldstord);
+            #else
+                        Instruction result(Mnemonic::STLRB, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.stlrb_sl32ldstord.Rt, false));
@@ -43523,7 +45603,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x08C00000u: { // LDLARB_LR32_ldstord
-                        Instruction result(Mnemonic::LDLARB, insn, 853);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDLARB, insn, EncodingId::LDLARB_LR32_ldstord);
+            #else
+                        Instruction result(Mnemonic::LDLARB, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldlarb_lr32ldstord.Rt, false));
@@ -43531,7 +45615,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x08C08000u: { // LDARB_LR32_ldstord
-                        Instruction result(Mnemonic::LDARB, insn, 719);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDARB, insn, EncodingId::LDARB_LR32_ldstord);
+            #else
+                        Instruction result(Mnemonic::LDARB, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldarb_lr32ldstord.Rt, false));
@@ -43539,7 +45627,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x48000000u: { // STXRH_SR32_ldstexclr
-                        Instruction result(Mnemonic::STXRH, insn, 1505);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::STXRH, insn, EncodingId::STXRH_SR32_ldstexclr);
+            #else
+                        Instruction result(Mnemonic::STXRH, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.stxrh_sr32ldstexclr.Rs, false));
@@ -43548,7 +45640,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x48008000u: { // STLXRH_SR32_ldstexclr
-                        Instruction result(Mnemonic::STLXRH, insn, 1366);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::STLXRH, insn, EncodingId::STLXRH_SR32_ldstexclr);
+            #else
+                        Instruction result(Mnemonic::STLXRH, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.stlxrh_sr32ldstexclr.Rs, false));
@@ -43557,7 +45653,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x48400000u: { // LDXRH_LR32_ldstexclr
-                        Instruction result(Mnemonic::LDXRH, insn, 1094);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDXRH, insn, EncodingId::LDXRH_LR32_ldstexclr);
+            #else
+                        Instruction result(Mnemonic::LDXRH, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldxrh_lr32ldstexclr.Rt, false));
@@ -43565,7 +45665,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x48408000u: { // LDAXRH_LR32_ldstexclr
-                        Instruction result(Mnemonic::LDAXRH, insn, 728);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDAXRH, insn, EncodingId::LDAXRH_LR32_ldstexclr);
+            #else
+                        Instruction result(Mnemonic::LDAXRH, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldaxrh_lr32ldstexclr.Rt, false));
@@ -43573,7 +45677,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x48800000u: { // STLLRH_SL32_ldstord
-                        Instruction result(Mnemonic::STLLRH, insn, 1342);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::STLLRH, insn, EncodingId::STLLRH_SL32_ldstord);
+            #else
+                        Instruction result(Mnemonic::STLLRH, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.stllrh_sl32ldstord.Rt, false));
@@ -43581,7 +45689,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x48808000u: { // STLRH_SL32_ldstord
-                        Instruction result(Mnemonic::STLRH, insn, 1349);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::STLRH, insn, EncodingId::STLRH_SL32_ldstord);
+            #else
+                        Instruction result(Mnemonic::STLRH, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.stlrh_sl32ldstord.Rt, false));
@@ -43589,7 +45701,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x48C00000u: { // LDLARH_LR32_ldstord
-                        Instruction result(Mnemonic::LDLARH, insn, 854);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDLARH, insn, EncodingId::LDLARH_LR32_ldstord);
+            #else
+                        Instruction result(Mnemonic::LDLARH, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldlarh_lr32ldstord.Rt, false));
@@ -43597,7 +45713,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x48C08000u: { // LDARH_LR32_ldstord
-                        Instruction result(Mnemonic::LDARH, insn, 720);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDARH, insn, EncodingId::LDARH_LR32_ldstord);
+            #else
+                        Instruction result(Mnemonic::LDARH, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldarh_lr32ldstord.Rt, false));
@@ -43605,7 +45725,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x88000000u: { // STXR_SR32_ldstexclr
-                        Instruction result(Mnemonic::STXR, insn, 1502);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::STXR, insn, EncodingId::STXR_SR32_ldstexclr);
+            #else
+                        Instruction result(Mnemonic::STXR, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.stxr_sr32ldstexclr.Rs, false));
@@ -43614,7 +45738,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x88008000u: { // STLXR_SR32_ldstexclr
-                        Instruction result(Mnemonic::STLXR, insn, 1363);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::STLXR, insn, EncodingId::STLXR_SR32_ldstexclr);
+            #else
+                        Instruction result(Mnemonic::STLXR, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.stlxr_sr32ldstexclr.Rs, false));
@@ -43623,7 +45751,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x88200000u: { // STXP_SP32_ldstexclp
-                        Instruction result(Mnemonic::STXP, insn, 1500);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::STXP, insn, EncodingId::STXP_SP32_ldstexclp);
+            #else
+                        Instruction result(Mnemonic::STXP, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.stxp_sp32ldstexclp.Rs, false));
@@ -43633,7 +45765,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x88208000u: { // STLXP_SP32_ldstexclp
-                        Instruction result(Mnemonic::STLXP, insn, 1361);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::STLXP, insn, EncodingId::STLXP_SP32_ldstexclp);
+            #else
+                        Instruction result(Mnemonic::STLXP, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.stlxp_sp32ldstexclp.Rs, false));
@@ -43643,7 +45779,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x88400000u: { // LDXR_LR32_ldstexclr
-                        Instruction result(Mnemonic::LDXR, insn, 1091);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDXR, insn, EncodingId::LDXR_LR32_ldstexclr);
+            #else
+                        Instruction result(Mnemonic::LDXR, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldxr_lr32ldstexclr.Rt, false));
@@ -43651,7 +45791,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x88408000u: { // LDAXR_LR32_ldstexclr
-                        Instruction result(Mnemonic::LDAXR, insn, 725);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDAXR, insn, EncodingId::LDAXR_LR32_ldstexclr);
+            #else
+                        Instruction result(Mnemonic::LDAXR, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldaxr_lr32ldstexclr.Rt, false));
@@ -43659,7 +45803,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x88600000u: { // LDXP_LP32_ldstexclp
-                        Instruction result(Mnemonic::LDXP, insn, 1089);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDXP, insn, EncodingId::LDXP_LP32_ldstexclp);
+            #else
+                        Instruction result(Mnemonic::LDXP, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldxp_lp32ldstexclp.Rt, false));
@@ -43668,7 +45816,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x88608000u: { // LDAXP_LP32_ldstexclp
-                        Instruction result(Mnemonic::LDAXP, insn, 723);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDAXP, insn, EncodingId::LDAXP_LP32_ldstexclp);
+            #else
+                        Instruction result(Mnemonic::LDAXP, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldaxp_lp32ldstexclp.Rt, false));
@@ -43677,7 +45829,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x88800000u: { // STLLR_SL32_ldstord
-                        Instruction result(Mnemonic::STLLR, insn, 1339);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::STLLR, insn, EncodingId::STLLR_SL32_ldstord);
+            #else
+                        Instruction result(Mnemonic::STLLR, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.stllr_sl32ldstord.Rt, false));
@@ -43685,7 +45841,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x88808000u: { // STLR_SL32_ldstord
-                        Instruction result(Mnemonic::STLR, insn, 1344);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::STLR, insn, EncodingId::STLR_SL32_ldstord);
+            #else
+                        Instruction result(Mnemonic::STLR, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.stlr_sl32ldstord.Rt, false));
@@ -43693,7 +45853,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x88C00000u: { // LDLAR_LR32_ldstord
-                        Instruction result(Mnemonic::LDLAR, insn, 851);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDLAR, insn, EncodingId::LDLAR_LR32_ldstord);
+            #else
+                        Instruction result(Mnemonic::LDLAR, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldlar_lr32ldstord.Rt, false));
@@ -43701,7 +45865,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x88C08000u: { // LDAR_LR32_ldstord
-                        Instruction result(Mnemonic::LDAR, insn, 717);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDAR, insn, EncodingId::LDAR_LR32_ldstord);
+            #else
+                        Instruction result(Mnemonic::LDAR, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldar_lr32ldstord.Rt, false));
@@ -43709,7 +45877,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x89000000u: { // STTXR_SR32_ldstexclr_unpriv
-                        Instruction result(Mnemonic::STTXR, insn, 1473);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::STTXR, insn, EncodingId::STTXR_SR32_ldstexclr_unpriv);
+            #else
+                        Instruction result(Mnemonic::STTXR, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.sttxr_sr32ldstexclr_unpriv.Rs, false));
@@ -43718,7 +45890,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x89008000u: { // STLTXR_SR32_ldstexclr_unpriv
-                        Instruction result(Mnemonic::STLTXR, insn, 1350);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::STLTXR, insn, EncodingId::STLTXR_SR32_ldstexclr_unpriv);
+            #else
+                        Instruction result(Mnemonic::STLTXR, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.stltxr_sr32ldstexclr_unpriv.Rs, false));
@@ -43727,7 +45903,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x89400000u: { // LDTXR_LR32_ldstexclr_unpriv
-                        Instruction result(Mnemonic::LDTXR, insn, 1041);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDTXR, insn, EncodingId::LDTXR_LR32_ldstexclr_unpriv);
+            #else
+                        Instruction result(Mnemonic::LDTXR, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldtxr_lr32ldstexclr_unpriv.Rt, false));
@@ -43735,7 +45915,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x89408000u: { // LDATXR_LR32_ldstexclr_unpriv
-                        Instruction result(Mnemonic::LDATXR, insn, 721);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDATXR, insn, EncodingId::LDATXR_LR32_ldstexclr_unpriv);
+            #else
+                        Instruction result(Mnemonic::LDATXR, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldatxr_lr32ldstexclr_unpriv.Rt, false));
@@ -43743,7 +45927,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0xC8000000u: { // STXR_SR64_ldstexclr
-                        Instruction result(Mnemonic::STXR, insn, 1503);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::STXR, insn, EncodingId::STXR_SR64_ldstexclr);
+            #else
+                        Instruction result(Mnemonic::STXR, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.stxr_sr64ldstexclr.Rs, false));
@@ -43752,7 +45940,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0xC8008000u: { // STLXR_SR64_ldstexclr
-                        Instruction result(Mnemonic::STLXR, insn, 1364);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::STLXR, insn, EncodingId::STLXR_SR64_ldstexclr);
+            #else
+                        Instruction result(Mnemonic::STLXR, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.stlxr_sr64ldstexclr.Rs, false));
@@ -43761,7 +45953,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0xC8200000u: { // STXP_SP64_ldstexclp
-                        Instruction result(Mnemonic::STXP, insn, 1501);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::STXP, insn, EncodingId::STXP_SP64_ldstexclp);
+            #else
+                        Instruction result(Mnemonic::STXP, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.stxp_sp64ldstexclp.Rs, false));
@@ -43771,7 +45967,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0xC8208000u: { // STLXP_SP64_ldstexclp
-                        Instruction result(Mnemonic::STLXP, insn, 1362);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::STLXP, insn, EncodingId::STLXP_SP64_ldstexclp);
+            #else
+                        Instruction result(Mnemonic::STLXP, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.stlxp_sp64ldstexclp.Rs, false));
@@ -43781,7 +45981,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0xC8400000u: { // LDXR_LR64_ldstexclr
-                        Instruction result(Mnemonic::LDXR, insn, 1092);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDXR, insn, EncodingId::LDXR_LR64_ldstexclr);
+            #else
+                        Instruction result(Mnemonic::LDXR, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldxr_lr64ldstexclr.Rt, true));
@@ -43789,7 +45993,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0xC8408000u: { // LDAXR_LR64_ldstexclr
-                        Instruction result(Mnemonic::LDAXR, insn, 726);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDAXR, insn, EncodingId::LDAXR_LR64_ldstexclr);
+            #else
+                        Instruction result(Mnemonic::LDAXR, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldaxr_lr64ldstexclr.Rt, true));
@@ -43797,7 +46005,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0xC8600000u: { // LDXP_LP64_ldstexclp
-                        Instruction result(Mnemonic::LDXP, insn, 1090);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDXP, insn, EncodingId::LDXP_LP64_ldstexclp);
+            #else
+                        Instruction result(Mnemonic::LDXP, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldxp_lp64ldstexclp.Rt, true));
@@ -43806,7 +46018,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0xC8608000u: { // LDAXP_LP64_ldstexclp
-                        Instruction result(Mnemonic::LDAXP, insn, 724);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDAXP, insn, EncodingId::LDAXP_LP64_ldstexclp);
+            #else
+                        Instruction result(Mnemonic::LDAXP, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldaxp_lp64ldstexclp.Rt, true));
@@ -43815,7 +46031,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0xC8800000u: { // STLLR_SL64_ldstord
-                        Instruction result(Mnemonic::STLLR, insn, 1340);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::STLLR, insn, EncodingId::STLLR_SL64_ldstord);
+            #else
+                        Instruction result(Mnemonic::STLLR, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.stllr_sl64ldstord.Rt, true));
@@ -43823,7 +46043,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0xC8808000u: { // STLR_SL64_ldstord
-                        Instruction result(Mnemonic::STLR, insn, 1345);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::STLR, insn, EncodingId::STLR_SL64_ldstord);
+            #else
+                        Instruction result(Mnemonic::STLR, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.stlr_sl64ldstord.Rt, true));
@@ -43831,7 +46055,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0xC8C00000u: { // LDLAR_LR64_ldstord
-                        Instruction result(Mnemonic::LDLAR, insn, 852);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDLAR, insn, EncodingId::LDLAR_LR64_ldstord);
+            #else
+                        Instruction result(Mnemonic::LDLAR, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldlar_lr64ldstord.Rt, true));
@@ -43839,7 +46067,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0xC8C08000u: { // LDAR_LR64_ldstord
-                        Instruction result(Mnemonic::LDAR, insn, 718);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDAR, insn, EncodingId::LDAR_LR64_ldstord);
+            #else
+                        Instruction result(Mnemonic::LDAR, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldar_lr64ldstord.Rt, true));
@@ -43847,7 +46079,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0xC9000000u: { // STTXR_SR64_ldstexclr_unpriv
-                        Instruction result(Mnemonic::STTXR, insn, 1474);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::STTXR, insn, EncodingId::STTXR_SR64_ldstexclr_unpriv);
+            #else
+                        Instruction result(Mnemonic::STTXR, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.sttxr_sr64ldstexclr_unpriv.Rs, false));
@@ -43856,7 +46092,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0xC9008000u: { // STLTXR_SR64_ldstexclr_unpriv
-                        Instruction result(Mnemonic::STLTXR, insn, 1351);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::STLTXR, insn, EncodingId::STLTXR_SR64_ldstexclr_unpriv);
+            #else
+                        Instruction result(Mnemonic::STLTXR, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.stltxr_sr64ldstexclr_unpriv.Rs, false));
@@ -43865,7 +46105,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0xC9400000u: { // LDTXR_LR64_ldstexclr_unpriv
-                        Instruction result(Mnemonic::LDTXR, insn, 1042);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDTXR, insn, EncodingId::LDTXR_LR64_ldstexclr_unpriv);
+            #else
+                        Instruction result(Mnemonic::LDTXR, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldtxr_lr64ldstexclr_unpriv.Rt, true));
@@ -43873,7 +46117,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0xC9408000u: { // LDATXR_LR64_ldstexclr_unpriv
-                        Instruction result(Mnemonic::LDATXR, insn, 722);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDATXR, insn, EncodingId::LDATXR_LR64_ldstexclr_unpriv);
+            #else
+                        Instruction result(Mnemonic::LDATXR, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldatxr_lr64ldstexclr_unpriv.Rt, true));
@@ -43886,7 +46134,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
     // Switch for mask 0xFFE04C18u (1 pattern, 1 encoding)
     switch (insn & 0xFFE04C18u) {
         case 0xF8A04818u: { // RPRFM_R_ldst_regoff
-                        Instruction result(Mnemonic::RPRFM, insn, 1163);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::RPRFM, insn, EncodingId::RPRFM_R_ldst_regoff);
+            #else
+                        Instruction result(Mnemonic::RPRFM, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -43902,7 +46154,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
     // Switch for mask 0xFFE04C00u (1 pattern, 1 encoding)
     switch (insn & 0xFFE04C00u) {
         case 0xF8A04800u: { // PRFM_P_ldst_regoff
-                        Instruction result(Mnemonic::PRFM, insn, 1097);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::PRFM, insn, EncodingId::PRFM_P_ldst_regoff);
+            #else
+                        Instruction result(Mnemonic::PRFM, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::prefetch_op(static_cast<PrefetchOp>(enc.prfm_pldst_regoff.Rt)));
@@ -43916,7 +46172,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
     // Switch for mask 0xFFE00C00u (142 patterns, 142 encodings)
     switch (insn & 0xFFE00C00u) {
         case 0x19000000u: { // STLURB_32_ldapstl_unscaled
-                        Instruction result(Mnemonic::STLURB, insn, 1359);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::STLURB, insn, EncodingId::STLURB_32_ldapstl_unscaled);
+            #else
+                        Instruction result(Mnemonic::STLURB, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.stlurb32ldapstl_unscaled.Rt, false));
@@ -43924,7 +46184,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x19400000u: { // LDAPURB_32_ldapstl_unscaled
-                        Instruction result(Mnemonic::LDAPURB, insn, 710);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDAPURB, insn, EncodingId::LDAPURB_32_ldapstl_unscaled);
+            #else
+                        Instruction result(Mnemonic::LDAPURB, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldapurb32ldapstl_unscaled.Rt, false));
@@ -43932,7 +46196,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x19800000u: { // LDAPURSB_64_ldapstl_unscaled
-                        Instruction result(Mnemonic::LDAPURSB, insn, 713);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDAPURSB, insn, EncodingId::LDAPURSB_64_ldapstl_unscaled);
+            #else
+                        Instruction result(Mnemonic::LDAPURSB, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldapursb64ldapstl_unscaled.Rt, true));
@@ -43940,7 +46208,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x19C00000u: { // LDAPURSB_32_ldapstl_unscaled
-                        Instruction result(Mnemonic::LDAPURSB, insn, 712);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDAPURSB, insn, EncodingId::LDAPURSB_32_ldapstl_unscaled);
+            #else
+                        Instruction result(Mnemonic::LDAPURSB, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldapursb32ldapstl_unscaled.Rt, false));
@@ -43948,7 +46220,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x1D000800u: { // STLUR_B_ldapstl_simd
-                        Instruction result(Mnemonic::STLUR, insn, 1352);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::STLUR, insn, EncodingId::STLUR_B_ldapstl_simd);
+            #else
+                        Instruction result(Mnemonic::STLUR, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::vec(enc.stlur_bldapstl_simd.Rt, Arrangement::B));
@@ -43957,7 +46233,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x1D400800u: { // LDAPUR_B_ldapstl_simd
-                        Instruction result(Mnemonic::LDAPUR, insn, 703);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDAPUR, insn, EncodingId::LDAPUR_B_ldapstl_simd);
+            #else
+                        Instruction result(Mnemonic::LDAPUR, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::vec(enc.ldapur_bldapstl_simd.Rt, Arrangement::B));
@@ -43966,7 +46246,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x1D800800u: { // STLUR_Q_ldapstl_simd
-                        Instruction result(Mnemonic::STLUR, insn, 1356);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::STLUR, insn, EncodingId::STLUR_Q_ldapstl_simd);
+            #else
+                        Instruction result(Mnemonic::STLUR, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::vec(enc.stlur_qldapstl_simd.Rt, Arrangement::Q));
@@ -43975,7 +46259,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x1DC00800u: { // LDAPUR_Q_ldapstl_simd
-                        Instruction result(Mnemonic::LDAPUR, insn, 707);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDAPUR, insn, EncodingId::LDAPUR_Q_ldapstl_simd);
+            #else
+                        Instruction result(Mnemonic::LDAPUR, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::vec(enc.ldapur_qldapstl_simd.Rt, Arrangement::Q));
@@ -43984,7 +46272,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x38000000u: { // STURB_32_ldst_unscaled
-                        Instruction result(Mnemonic::STURB, insn, 1498);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::STURB, insn, EncodingId::STURB_32_ldst_unscaled);
+            #else
+                        Instruction result(Mnemonic::STURB, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.sturb32ldst_unscaled.Rt, false));
@@ -43992,7 +46284,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x38000400u: { // STRB_32_ldst_immpost
-                        Instruction result(Mnemonic::STRB, insn, 1416);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::STRB, insn, EncodingId::STRB_32_ldst_immpost);
+            #else
+                        Instruction result(Mnemonic::STRB, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.strb32ldst_immpost.Rt, false));
@@ -44004,7 +46300,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x38000800u: { // STTRB_32_ldst_unpriv
-                        Instruction result(Mnemonic::STTRB, insn, 1467);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::STTRB, insn, EncodingId::STTRB_32_ldst_unpriv);
+            #else
+                        Instruction result(Mnemonic::STTRB, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.sttrb32ldst_unpriv.Rt, false));
@@ -44012,7 +46312,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x38000C00u: { // STRB_32_ldst_immpre
-                        Instruction result(Mnemonic::STRB, insn, 1417);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::STRB, insn, EncodingId::STRB_32_ldst_immpre);
+            #else
+                        Instruction result(Mnemonic::STRB, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.strb32ldst_immpre.Rt, false));
@@ -44020,7 +46324,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x38200800u: { // STRB_32B_ldst_regoff
-                        Instruction result(Mnemonic::STRB, insn, 1419);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::STRB, insn, EncodingId::STRB_32B_ldst_regoff);
+            #else
+                        Instruction result(Mnemonic::STRB, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.strb32b_ldst_regoff.Rt, false));
@@ -44028,7 +46336,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x38400000u: { // LDURB_32_ldst_unscaled
-                        Instruction result(Mnemonic::LDURB, insn, 1082);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDURB, insn, EncodingId::LDURB_32_ldst_unscaled);
+            #else
+                        Instruction result(Mnemonic::LDURB, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldurb32ldst_unscaled.Rt, false));
@@ -44036,7 +46348,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x38400400u: { // LDRB_32_ldst_immpost
-                        Instruction result(Mnemonic::LDRB, insn, 916);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDRB, insn, EncodingId::LDRB_32_ldst_immpost);
+            #else
+                        Instruction result(Mnemonic::LDRB, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldrb32ldst_immpost.Rt, false));
@@ -44048,7 +46364,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x38400800u: { // LDTRB_32_ldst_unpriv
-                        Instruction result(Mnemonic::LDTRB, insn, 1026);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDTRB, insn, EncodingId::LDTRB_32_ldst_unpriv);
+            #else
+                        Instruction result(Mnemonic::LDTRB, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldtrb32ldst_unpriv.Rt, false));
@@ -44056,7 +46376,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x38400C00u: { // LDRB_32_ldst_immpre
-                        Instruction result(Mnemonic::LDRB, insn, 917);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDRB, insn, EncodingId::LDRB_32_ldst_immpre);
+            #else
+                        Instruction result(Mnemonic::LDRB, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldrb32ldst_immpre.Rt, false));
@@ -44064,7 +46388,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x38600800u: { // LDRB_32B_ldst_regoff
-                        Instruction result(Mnemonic::LDRB, insn, 919);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDRB, insn, EncodingId::LDRB_32B_ldst_regoff);
+            #else
+                        Instruction result(Mnemonic::LDRB, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldrb32b_ldst_regoff.Rt, false));
@@ -44072,7 +46400,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x38800000u: { // LDURSB_64_ldst_unscaled
-                        Instruction result(Mnemonic::LDURSB, insn, 1085);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDURSB, insn, EncodingId::LDURSB_64_ldst_unscaled);
+            #else
+                        Instruction result(Mnemonic::LDURSB, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldursb64ldst_unscaled.Rt, true));
@@ -44080,7 +46412,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x38800400u: { // LDRSB_64_ldst_immpost
-                        Instruction result(Mnemonic::LDRSB, insn, 926);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDRSB, insn, EncodingId::LDRSB_64_ldst_immpost);
+            #else
+                        Instruction result(Mnemonic::LDRSB, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldrsb64ldst_immpost.Rt, true));
@@ -44092,7 +46428,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x38800800u: { // LDTRSB_64_ldst_unpriv
-                        Instruction result(Mnemonic::LDTRSB, insn, 1029);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDTRSB, insn, EncodingId::LDTRSB_64_ldst_unpriv);
+            #else
+                        Instruction result(Mnemonic::LDTRSB, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldtrsb64ldst_unpriv.Rt, true));
@@ -44100,7 +46440,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x38800C00u: { // LDRSB_64_ldst_immpre
-                        Instruction result(Mnemonic::LDRSB, insn, 928);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDRSB, insn, EncodingId::LDRSB_64_ldst_immpre);
+            #else
+                        Instruction result(Mnemonic::LDRSB, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldrsb64ldst_immpre.Rt, true));
@@ -44108,7 +46452,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x38A00800u: { // LDRSB_64B_ldst_regoff
-                        Instruction result(Mnemonic::LDRSB, insn, 933);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDRSB, insn, EncodingId::LDRSB_64B_ldst_regoff);
+            #else
+                        Instruction result(Mnemonic::LDRSB, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldrsb64b_ldst_regoff.Rt, true));
@@ -44116,7 +46464,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x38C00000u: { // LDURSB_32_ldst_unscaled
-                        Instruction result(Mnemonic::LDURSB, insn, 1084);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDURSB, insn, EncodingId::LDURSB_32_ldst_unscaled);
+            #else
+                        Instruction result(Mnemonic::LDURSB, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldursb32ldst_unscaled.Rt, false));
@@ -44124,7 +46476,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x38C00400u: { // LDRSB_32_ldst_immpost
-                        Instruction result(Mnemonic::LDRSB, insn, 925);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDRSB, insn, EncodingId::LDRSB_32_ldst_immpost);
+            #else
+                        Instruction result(Mnemonic::LDRSB, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldrsb32ldst_immpost.Rt, false));
@@ -44136,7 +46492,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x38C00800u: { // LDTRSB_32_ldst_unpriv
-                        Instruction result(Mnemonic::LDTRSB, insn, 1028);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDTRSB, insn, EncodingId::LDTRSB_32_ldst_unpriv);
+            #else
+                        Instruction result(Mnemonic::LDTRSB, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldtrsb32ldst_unpriv.Rt, false));
@@ -44144,7 +46504,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x38C00C00u: { // LDRSB_32_ldst_immpre
-                        Instruction result(Mnemonic::LDRSB, insn, 927);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDRSB, insn, EncodingId::LDRSB_32_ldst_immpre);
+            #else
+                        Instruction result(Mnemonic::LDRSB, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldrsb32ldst_immpre.Rt, false));
@@ -44152,7 +46516,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x38E00800u: { // LDRSB_32B_ldst_regoff
-                        Instruction result(Mnemonic::LDRSB, insn, 931);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDRSB, insn, EncodingId::LDRSB_32B_ldst_regoff);
+            #else
+                        Instruction result(Mnemonic::LDRSB, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldrsb32b_ldst_regoff.Rt, false));
@@ -44160,7 +46528,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x3C000000u: { // STUR_B_ldst_unscaled
-                        Instruction result(Mnemonic::STUR, insn, 1491);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::STUR, insn, EncodingId::STUR_B_ldst_unscaled);
+            #else
+                        Instruction result(Mnemonic::STUR, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         // SIMD/FP B register variant (scale=1)
@@ -44171,7 +46543,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x3C000400u: { // STR_B_ldst_immpost
-                        Instruction result(Mnemonic::STR, insn, 1387);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::STR, insn, EncodingId::STR_B_ldst_immpost);
+            #else
+                        Instruction result(Mnemonic::STR, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         // SIMD/FP B register variant (scale=1)
@@ -44181,7 +46557,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x3C000C00u: { // STR_B_ldst_immpre
-                        Instruction result(Mnemonic::STR, insn, 1392);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::STR, insn, EncodingId::STR_B_ldst_immpre);
+            #else
+                        Instruction result(Mnemonic::STR, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         // SIMD/FP B register variant (scale=1)
@@ -44191,7 +46571,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x3C200800u: { // STR_B_ldst_regoff
-                        Instruction result(Mnemonic::STR, insn, 1408);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::STR, insn, EncodingId::STR_B_ldst_regoff);
+            #else
+                        Instruction result(Mnemonic::STR, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         // SIMD/FP B register variant (scale=1)
@@ -44200,7 +46584,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x3C400000u: { // LDUR_B_ldst_unscaled
-                        Instruction result(Mnemonic::LDUR, insn, 1075);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDUR, insn, EncodingId::LDUR_B_ldst_unscaled);
+            #else
+                        Instruction result(Mnemonic::LDUR, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         // SIMD/FP B register variant (scale=1)
@@ -44211,7 +46599,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x3C400400u: { // LDR_B_ldst_immpost
-                        Instruction result(Mnemonic::LDR, insn, 878);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDR, insn, EncodingId::LDR_B_ldst_immpost);
+            #else
+                        Instruction result(Mnemonic::LDR, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         // SIMD/FP B register variant (scale=1)
@@ -44221,7 +46613,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x3C400C00u: { // LDR_B_ldst_immpre
-                        Instruction result(Mnemonic::LDR, insn, 883);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDR, insn, EncodingId::LDR_B_ldst_immpre);
+            #else
+                        Instruction result(Mnemonic::LDR, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         // SIMD/FP B register variant (scale=1)
@@ -44231,7 +46627,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x3C600800u: { // LDR_B_ldst_regoff
-                        Instruction result(Mnemonic::LDR, insn, 904);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDR, insn, EncodingId::LDR_B_ldst_regoff);
+            #else
+                        Instruction result(Mnemonic::LDR, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         // SIMD/FP B register variant (scale=1)
@@ -44240,7 +46640,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x3C800000u: { // STUR_Q_ldst_unscaled
-                        Instruction result(Mnemonic::STUR, insn, 1495);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::STUR, insn, EncodingId::STUR_Q_ldst_unscaled);
+            #else
+                        Instruction result(Mnemonic::STUR, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         // SIMD/FP Q register variant (scale=16)
@@ -44251,7 +46655,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x3C800400u: { // STR_Q_ldst_immpost
-                        Instruction result(Mnemonic::STR, insn, 1391);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::STR, insn, EncodingId::STR_Q_ldst_immpost);
+            #else
+                        Instruction result(Mnemonic::STR, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         // SIMD/FP Q register variant (scale=16)
@@ -44261,7 +46669,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x3C800C00u: { // STR_Q_ldst_immpre
-                        Instruction result(Mnemonic::STR, insn, 1396);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::STR, insn, EncodingId::STR_Q_ldst_immpre);
+            #else
+                        Instruction result(Mnemonic::STR, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         // SIMD/FP Q register variant (scale=16)
@@ -44271,7 +46683,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x3CA00800u: { // STR_Q_ldst_regoff
-                        Instruction result(Mnemonic::STR, insn, 1413);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::STR, insn, EncodingId::STR_Q_ldst_regoff);
+            #else
+                        Instruction result(Mnemonic::STR, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         // SIMD/FP Q register variant (scale=16)
@@ -44280,7 +46696,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x3CC00000u: { // LDUR_Q_ldst_unscaled
-                        Instruction result(Mnemonic::LDUR, insn, 1079);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDUR, insn, EncodingId::LDUR_Q_ldst_unscaled);
+            #else
+                        Instruction result(Mnemonic::LDUR, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         // SIMD/FP Q register variant (scale=16)
@@ -44291,7 +46711,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x3CC00400u: { // LDR_Q_ldst_immpost
-                        Instruction result(Mnemonic::LDR, insn, 882);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDR, insn, EncodingId::LDR_Q_ldst_immpost);
+            #else
+                        Instruction result(Mnemonic::LDR, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         // SIMD/FP Q register variant (scale=16)
@@ -44301,7 +46725,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x3CC00C00u: { // LDR_Q_ldst_immpre
-                        Instruction result(Mnemonic::LDR, insn, 887);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDR, insn, EncodingId::LDR_Q_ldst_immpre);
+            #else
+                        Instruction result(Mnemonic::LDR, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         // SIMD/FP Q register variant (scale=16)
@@ -44311,7 +46739,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x3CE00800u: { // LDR_Q_ldst_regoff
-                        Instruction result(Mnemonic::LDR, insn, 909);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDR, insn, EncodingId::LDR_Q_ldst_regoff);
+            #else
+                        Instruction result(Mnemonic::LDR, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         // SIMD/FP Q register variant (scale=16)
@@ -44320,7 +46752,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x59000000u: { // STLURH_32_ldapstl_unscaled
-                        Instruction result(Mnemonic::STLURH, insn, 1360);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::STLURH, insn, EncodingId::STLURH_32_ldapstl_unscaled);
+            #else
+                        Instruction result(Mnemonic::STLURH, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.stlurh32ldapstl_unscaled.Rt, false));
@@ -44328,7 +46764,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x59400000u: { // LDAPURH_32_ldapstl_unscaled
-                        Instruction result(Mnemonic::LDAPURH, insn, 711);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDAPURH, insn, EncodingId::LDAPURH_32_ldapstl_unscaled);
+            #else
+                        Instruction result(Mnemonic::LDAPURH, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldapurh32ldapstl_unscaled.Rt, false));
@@ -44336,7 +46776,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x59800000u: { // LDAPURSH_64_ldapstl_unscaled
-                        Instruction result(Mnemonic::LDAPURSH, insn, 715);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDAPURSH, insn, EncodingId::LDAPURSH_64_ldapstl_unscaled);
+            #else
+                        Instruction result(Mnemonic::LDAPURSH, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldapursh64ldapstl_unscaled.Rt, true));
@@ -44344,7 +46788,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x59C00000u: { // LDAPURSH_32_ldapstl_unscaled
-                        Instruction result(Mnemonic::LDAPURSH, insn, 714);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDAPURSH, insn, EncodingId::LDAPURSH_32_ldapstl_unscaled);
+            #else
+                        Instruction result(Mnemonic::LDAPURSH, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldapursh32ldapstl_unscaled.Rt, false));
@@ -44352,7 +46800,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x5D000800u: { // STLUR_H_ldapstl_simd
-                        Instruction result(Mnemonic::STLUR, insn, 1353);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::STLUR, insn, EncodingId::STLUR_H_ldapstl_simd);
+            #else
+                        Instruction result(Mnemonic::STLUR, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::vec(enc.stlur_hldapstl_simd.Rt, Arrangement::H));
@@ -44361,7 +46813,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x5D400800u: { // LDAPUR_H_ldapstl_simd
-                        Instruction result(Mnemonic::LDAPUR, insn, 704);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDAPUR, insn, EncodingId::LDAPUR_H_ldapstl_simd);
+            #else
+                        Instruction result(Mnemonic::LDAPUR, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::vec(enc.ldapur_hldapstl_simd.Rt, Arrangement::H));
@@ -44370,7 +46826,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x78000000u: { // STURH_32_ldst_unscaled
-                        Instruction result(Mnemonic::STURH, insn, 1499);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::STURH, insn, EncodingId::STURH_32_ldst_unscaled);
+            #else
+                        Instruction result(Mnemonic::STURH, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.sturh32ldst_unscaled.Rt, false));
@@ -44378,7 +46838,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x78000400u: { // STRH_32_ldst_immpost
-                        Instruction result(Mnemonic::STRH, insn, 1421);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::STRH, insn, EncodingId::STRH_32_ldst_immpost);
+            #else
+                        Instruction result(Mnemonic::STRH, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.strh32ldst_immpost.Rt, false));
@@ -44390,7 +46854,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x78000800u: { // STTRH_32_ldst_unpriv
-                        Instruction result(Mnemonic::STTRH, insn, 1468);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::STTRH, insn, EncodingId::STTRH_32_ldst_unpriv);
+            #else
+                        Instruction result(Mnemonic::STTRH, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.sttrh32ldst_unpriv.Rt, false));
@@ -44398,7 +46866,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x78000C00u: { // STRH_32_ldst_immpre
-                        Instruction result(Mnemonic::STRH, insn, 1422);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::STRH, insn, EncodingId::STRH_32_ldst_immpre);
+            #else
+                        Instruction result(Mnemonic::STRH, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.strh32ldst_immpre.Rt, false));
@@ -44406,7 +46878,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x78200800u: { // STRH_32_ldst_regoff
-                        Instruction result(Mnemonic::STRH, insn, 1424);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::STRH, insn, EncodingId::STRH_32_ldst_regoff);
+            #else
+                        Instruction result(Mnemonic::STRH, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.strh32ldst_regoff.Rt, false));
@@ -44414,7 +46890,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x78400000u: { // LDURH_32_ldst_unscaled
-                        Instruction result(Mnemonic::LDURH, insn, 1083);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDURH, insn, EncodingId::LDURH_32_ldst_unscaled);
+            #else
+                        Instruction result(Mnemonic::LDURH, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldurh32ldst_unscaled.Rt, false));
@@ -44422,7 +46902,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x78400400u: { // LDRH_32_ldst_immpost
-                        Instruction result(Mnemonic::LDRH, insn, 921);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDRH, insn, EncodingId::LDRH_32_ldst_immpost);
+            #else
+                        Instruction result(Mnemonic::LDRH, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldrh32ldst_immpost.Rt, false));
@@ -44434,7 +46918,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x78400800u: { // LDTRH_32_ldst_unpriv
-                        Instruction result(Mnemonic::LDTRH, insn, 1027);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDTRH, insn, EncodingId::LDTRH_32_ldst_unpriv);
+            #else
+                        Instruction result(Mnemonic::LDTRH, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldtrh32ldst_unpriv.Rt, false));
@@ -44442,7 +46930,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x78400C00u: { // LDRH_32_ldst_immpre
-                        Instruction result(Mnemonic::LDRH, insn, 922);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDRH, insn, EncodingId::LDRH_32_ldst_immpre);
+            #else
+                        Instruction result(Mnemonic::LDRH, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldrh32ldst_immpre.Rt, false));
@@ -44450,7 +46942,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x78600800u: { // LDRH_32_ldst_regoff
-                        Instruction result(Mnemonic::LDRH, insn, 924);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDRH, insn, EncodingId::LDRH_32_ldst_regoff);
+            #else
+                        Instruction result(Mnemonic::LDRH, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldrh32ldst_regoff.Rt, false));
@@ -44458,7 +46954,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x78800000u: { // LDURSH_64_ldst_unscaled
-                        Instruction result(Mnemonic::LDURSH, insn, 1087);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDURSH, insn, EncodingId::LDURSH_64_ldst_unscaled);
+            #else
+                        Instruction result(Mnemonic::LDURSH, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldursh64ldst_unscaled.Rt, true));
@@ -44466,7 +46966,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x78800400u: { // LDRSH_64_ldst_immpost
-                        Instruction result(Mnemonic::LDRSH, insn, 936);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDRSH, insn, EncodingId::LDRSH_64_ldst_immpost);
+            #else
+                        Instruction result(Mnemonic::LDRSH, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldrsh64ldst_immpost.Rt, true));
@@ -44478,7 +46982,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x78800800u: { // LDTRSH_64_ldst_unpriv
-                        Instruction result(Mnemonic::LDTRSH, insn, 1031);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDTRSH, insn, EncodingId::LDTRSH_64_ldst_unpriv);
+            #else
+                        Instruction result(Mnemonic::LDTRSH, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldtrsh64ldst_unpriv.Rt, true));
@@ -44486,7 +46994,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x78800C00u: { // LDRSH_64_ldst_immpre
-                        Instruction result(Mnemonic::LDRSH, insn, 938);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDRSH, insn, EncodingId::LDRSH_64_ldst_immpre);
+            #else
+                        Instruction result(Mnemonic::LDRSH, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldrsh64ldst_immpre.Rt, true));
@@ -44494,7 +47006,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x78A00800u: { // LDRSH_64_ldst_regoff
-                        Instruction result(Mnemonic::LDRSH, insn, 942);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDRSH, insn, EncodingId::LDRSH_64_ldst_regoff);
+            #else
+                        Instruction result(Mnemonic::LDRSH, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldrsh64ldst_regoff.Rt, true));
@@ -44502,7 +47018,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x78C00000u: { // LDURSH_32_ldst_unscaled
-                        Instruction result(Mnemonic::LDURSH, insn, 1086);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDURSH, insn, EncodingId::LDURSH_32_ldst_unscaled);
+            #else
+                        Instruction result(Mnemonic::LDURSH, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldursh32ldst_unscaled.Rt, false));
@@ -44510,7 +47030,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x78C00400u: { // LDRSH_32_ldst_immpost
-                        Instruction result(Mnemonic::LDRSH, insn, 935);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDRSH, insn, EncodingId::LDRSH_32_ldst_immpost);
+            #else
+                        Instruction result(Mnemonic::LDRSH, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldrsh32ldst_immpost.Rt, false));
@@ -44522,7 +47046,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x78C00800u: { // LDTRSH_32_ldst_unpriv
-                        Instruction result(Mnemonic::LDTRSH, insn, 1030);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDTRSH, insn, EncodingId::LDTRSH_32_ldst_unpriv);
+            #else
+                        Instruction result(Mnemonic::LDTRSH, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldtrsh32ldst_unpriv.Rt, false));
@@ -44530,7 +47058,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x78C00C00u: { // LDRSH_32_ldst_immpre
-                        Instruction result(Mnemonic::LDRSH, insn, 937);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDRSH, insn, EncodingId::LDRSH_32_ldst_immpre);
+            #else
+                        Instruction result(Mnemonic::LDRSH, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldrsh32ldst_immpre.Rt, false));
@@ -44538,7 +47070,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x78E00800u: { // LDRSH_32_ldst_regoff
-                        Instruction result(Mnemonic::LDRSH, insn, 941);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDRSH, insn, EncodingId::LDRSH_32_ldst_regoff);
+            #else
+                        Instruction result(Mnemonic::LDRSH, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldrsh32ldst_regoff.Rt, false));
@@ -44546,7 +47082,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x7C000000u: { // STUR_H_ldst_unscaled
-                        Instruction result(Mnemonic::STUR, insn, 1492);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::STUR, insn, EncodingId::STUR_H_ldst_unscaled);
+            #else
+                        Instruction result(Mnemonic::STUR, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         // SIMD/FP H register variant (scale=2)
@@ -44557,7 +47097,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x7C000400u: { // STR_H_ldst_immpost
-                        Instruction result(Mnemonic::STR, insn, 1388);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::STR, insn, EncodingId::STR_H_ldst_immpost);
+            #else
+                        Instruction result(Mnemonic::STR, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         // SIMD/FP H register variant (scale=2)
@@ -44567,7 +47111,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x7C000C00u: { // STR_H_ldst_immpre
-                        Instruction result(Mnemonic::STR, insn, 1393);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::STR, insn, EncodingId::STR_H_ldst_immpre);
+            #else
+                        Instruction result(Mnemonic::STR, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         // SIMD/FP H register variant (scale=2)
@@ -44577,7 +47125,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x7C200800u: { // STR_H_ldst_regoff
-                        Instruction result(Mnemonic::STR, insn, 1410);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::STR, insn, EncodingId::STR_H_ldst_regoff);
+            #else
+                        Instruction result(Mnemonic::STR, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         // SIMD/FP H register variant (scale=2)
@@ -44586,7 +47138,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x7C400000u: { // LDUR_H_ldst_unscaled
-                        Instruction result(Mnemonic::LDUR, insn, 1076);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDUR, insn, EncodingId::LDUR_H_ldst_unscaled);
+            #else
+                        Instruction result(Mnemonic::LDUR, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         // SIMD/FP H register variant (scale=2)
@@ -44597,7 +47153,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x7C400400u: { // LDR_H_ldst_immpost
-                        Instruction result(Mnemonic::LDR, insn, 879);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDR, insn, EncodingId::LDR_H_ldst_immpost);
+            #else
+                        Instruction result(Mnemonic::LDR, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         // SIMD/FP H register variant (scale=2)
@@ -44607,7 +47167,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x7C400C00u: { // LDR_H_ldst_immpre
-                        Instruction result(Mnemonic::LDR, insn, 884);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDR, insn, EncodingId::LDR_H_ldst_immpre);
+            #else
+                        Instruction result(Mnemonic::LDR, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         // SIMD/FP H register variant (scale=2)
@@ -44617,7 +47181,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x7C600800u: { // LDR_H_ldst_regoff
-                        Instruction result(Mnemonic::LDR, insn, 906);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDR, insn, EncodingId::LDR_H_ldst_regoff);
+            #else
+                        Instruction result(Mnemonic::LDR, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         // SIMD/FP H register variant (scale=2)
@@ -44626,7 +47194,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x99000000u: { // STLUR_32_ldapstl_unscaled
-                        Instruction result(Mnemonic::STLUR, insn, 1357);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::STLUR, insn, EncodingId::STLUR_32_ldapstl_unscaled);
+            #else
+                        Instruction result(Mnemonic::STLUR, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.stlur32ldapstl_unscaled.Rt, false));
@@ -44634,7 +47206,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x99400000u: { // LDAPUR_32_ldapstl_unscaled
-                        Instruction result(Mnemonic::LDAPUR, insn, 708);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDAPUR, insn, EncodingId::LDAPUR_32_ldapstl_unscaled);
+            #else
+                        Instruction result(Mnemonic::LDAPUR, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldapur32ldapstl_unscaled.Rt, false));
@@ -44642,7 +47218,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x99800000u: { // LDAPURSW_64_ldapstl_unscaled
-                        Instruction result(Mnemonic::LDAPURSW, insn, 716);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDAPURSW, insn, EncodingId::LDAPURSW_64_ldapstl_unscaled);
+            #else
+                        Instruction result(Mnemonic::LDAPURSW, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldapursw64ldapstl_unscaled.Rt, true));
@@ -44650,7 +47230,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x9D000800u: { // STLUR_S_ldapstl_simd
-                        Instruction result(Mnemonic::STLUR, insn, 1354);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::STLUR, insn, EncodingId::STLUR_S_ldapstl_simd);
+            #else
+                        Instruction result(Mnemonic::STLUR, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::vec(enc.stlur_sldapstl_simd.Rt, Arrangement::S));
@@ -44659,7 +47243,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x9D400800u: { // LDAPUR_S_ldapstl_simd
-                        Instruction result(Mnemonic::LDAPUR, insn, 705);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDAPUR, insn, EncodingId::LDAPUR_S_ldapstl_simd);
+            #else
+                        Instruction result(Mnemonic::LDAPUR, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::vec(enc.ldapur_sldapstl_simd.Rt, Arrangement::S));
@@ -44668,7 +47256,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0xB8000000u: { // STUR_32_ldst_unscaled
-                        Instruction result(Mnemonic::STUR, insn, 1496);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::STUR, insn, EncodingId::STUR_32_ldst_unscaled);
+            #else
+                        Instruction result(Mnemonic::STUR, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.stur32ldst_unscaled.Rt, false));
@@ -44676,7 +47268,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0xB8000400u: { // STR_32_ldst_immpost
-                        Instruction result(Mnemonic::STR, insn, 1402);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::STR, insn, EncodingId::STR_32_ldst_immpost);
+            #else
+                        Instruction result(Mnemonic::STR, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.str32ldst_immpost.Rt, false));
@@ -44688,7 +47284,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0xB8000800u: { // STTR_32_ldst_unpriv
-                        Instruction result(Mnemonic::STTR, insn, 1465);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::STTR, insn, EncodingId::STTR_32_ldst_unpriv);
+            #else
+                        Instruction result(Mnemonic::STTR, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.sttr32ldst_unpriv.Rt, false));
@@ -44696,7 +47296,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0xB8000C00u: { // STR_32_ldst_immpre
-                        Instruction result(Mnemonic::STR, insn, 1404);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::STR, insn, EncodingId::STR_32_ldst_immpre);
+            #else
+                        Instruction result(Mnemonic::STR, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.str32ldst_immpre.Rt, false));
@@ -44704,7 +47308,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0xB8200800u: { // STR_32_ldst_regoff
-                        Instruction result(Mnemonic::STR, insn, 1414);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::STR, insn, EncodingId::STR_32_ldst_regoff);
+            #else
+                        Instruction result(Mnemonic::STR, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -44713,7 +47321,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0xB8400000u: { // LDUR_32_ldst_unscaled
-                        Instruction result(Mnemonic::LDUR, insn, 1080);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDUR, insn, EncodingId::LDUR_32_ldst_unscaled);
+            #else
+                        Instruction result(Mnemonic::LDUR, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldur32ldst_unscaled.Rt, false));
@@ -44721,7 +47333,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0xB8400400u: { // LDR_32_ldst_immpost
-                        Instruction result(Mnemonic::LDR, insn, 893);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDR, insn, EncodingId::LDR_32_ldst_immpost);
+            #else
+                        Instruction result(Mnemonic::LDR, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldr32ldst_immpost.Rt, false));
@@ -44733,7 +47349,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0xB8400800u: { // LDTR_32_ldst_unpriv
-                        Instruction result(Mnemonic::LDTR, insn, 1024);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDTR, insn, EncodingId::LDTR_32_ldst_unpriv);
+            #else
+                        Instruction result(Mnemonic::LDTR, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldtr32ldst_unpriv.Rt, false));
@@ -44741,7 +47361,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0xB8400C00u: { // LDR_32_ldst_immpre
-                        Instruction result(Mnemonic::LDR, insn, 895);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDR, insn, EncodingId::LDR_32_ldst_immpre);
+            #else
+                        Instruction result(Mnemonic::LDR, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldr32ldst_immpre.Rt, false));
@@ -44749,7 +47373,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0xB8600800u: { // LDR_32_ldst_regoff
-                        Instruction result(Mnemonic::LDR, insn, 910);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDR, insn, EncodingId::LDR_32_ldst_regoff);
+            #else
+                        Instruction result(Mnemonic::LDR, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -44758,7 +47386,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0xB8800000u: { // LDURSW_64_ldst_unscaled
-                        Instruction result(Mnemonic::LDURSW, insn, 1088);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDURSW, insn, EncodingId::LDURSW_64_ldst_unscaled);
+            #else
+                        Instruction result(Mnemonic::LDURSW, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldursw64ldst_unscaled.Rt, true));
@@ -44766,7 +47398,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0xB8800400u: { // LDRSW_64_ldst_immpost
-                        Instruction result(Mnemonic::LDRSW, insn, 943);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDRSW, insn, EncodingId::LDRSW_64_ldst_immpost);
+            #else
+                        Instruction result(Mnemonic::LDRSW, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldrsw64ldst_immpost.Rt, true));
@@ -44778,7 +47414,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0xB8800800u: { // LDTRSW_64_ldst_unpriv
-                        Instruction result(Mnemonic::LDTRSW, insn, 1032);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDTRSW, insn, EncodingId::LDTRSW_64_ldst_unpriv);
+            #else
+                        Instruction result(Mnemonic::LDTRSW, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldtrsw64ldst_unpriv.Rt, true));
@@ -44786,7 +47426,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0xB8800C00u: { // LDRSW_64_ldst_immpre
-                        Instruction result(Mnemonic::LDRSW, insn, 944);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDRSW, insn, EncodingId::LDRSW_64_ldst_immpre);
+            #else
+                        Instruction result(Mnemonic::LDRSW, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldrsw64ldst_immpre.Rt, true));
@@ -44794,7 +47438,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0xB8A00800u: { // LDRSW_64_ldst_regoff
-                        Instruction result(Mnemonic::LDRSW, insn, 947);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDRSW, insn, EncodingId::LDRSW_64_ldst_regoff);
+            #else
+                        Instruction result(Mnemonic::LDRSW, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -44803,7 +47451,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0xBC000000u: { // STUR_S_ldst_unscaled
-                        Instruction result(Mnemonic::STUR, insn, 1493);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::STUR, insn, EncodingId::STUR_S_ldst_unscaled);
+            #else
+                        Instruction result(Mnemonic::STUR, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         // SIMD/FP S register variant (scale=4)
@@ -44814,7 +47466,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0xBC000400u: { // STR_S_ldst_immpost
-                        Instruction result(Mnemonic::STR, insn, 1389);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::STR, insn, EncodingId::STR_S_ldst_immpost);
+            #else
+                        Instruction result(Mnemonic::STR, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         // SIMD/FP S register variant (scale=4)
@@ -44824,7 +47480,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0xBC000C00u: { // STR_S_ldst_immpre
-                        Instruction result(Mnemonic::STR, insn, 1394);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::STR, insn, EncodingId::STR_S_ldst_immpre);
+            #else
+                        Instruction result(Mnemonic::STR, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         // SIMD/FP S register variant (scale=4)
@@ -44834,7 +47494,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0xBC200800u: { // STR_S_ldst_regoff
-                        Instruction result(Mnemonic::STR, insn, 1411);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::STR, insn, EncodingId::STR_S_ldst_regoff);
+            #else
+                        Instruction result(Mnemonic::STR, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         // SIMD/FP S register variant (scale=4)
@@ -44843,7 +47507,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0xBC400000u: { // LDUR_S_ldst_unscaled
-                        Instruction result(Mnemonic::LDUR, insn, 1077);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDUR, insn, EncodingId::LDUR_S_ldst_unscaled);
+            #else
+                        Instruction result(Mnemonic::LDUR, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         // SIMD/FP S register variant (scale=4)
@@ -44854,7 +47522,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0xBC400400u: { // LDR_S_ldst_immpost
-                        Instruction result(Mnemonic::LDR, insn, 880);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDR, insn, EncodingId::LDR_S_ldst_immpost);
+            #else
+                        Instruction result(Mnemonic::LDR, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         // SIMD/FP S register variant (scale=4)
@@ -44864,7 +47536,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0xBC400C00u: { // LDR_S_ldst_immpre
-                        Instruction result(Mnemonic::LDR, insn, 885);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDR, insn, EncodingId::LDR_S_ldst_immpre);
+            #else
+                        Instruction result(Mnemonic::LDR, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         // SIMD/FP S register variant (scale=4)
@@ -44874,7 +47550,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0xBC600800u: { // LDR_S_ldst_regoff
-                        Instruction result(Mnemonic::LDR, insn, 907);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDR, insn, EncodingId::LDR_S_ldst_regoff);
+            #else
+                        Instruction result(Mnemonic::LDR, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         // SIMD/FP S register variant (scale=4)
@@ -44883,7 +47563,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0xD9000000u: { // STLUR_64_ldapstl_unscaled
-                        Instruction result(Mnemonic::STLUR, insn, 1358);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::STLUR, insn, EncodingId::STLUR_64_ldapstl_unscaled);
+            #else
+                        Instruction result(Mnemonic::STLUR, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.stlur64ldapstl_unscaled.Rt, true));
@@ -44891,7 +47575,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0xD9200400u: { // STG_64Spost_ldsttags
-                        Instruction result(Mnemonic::STG, insn, 1327);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::STG, insn, EncodingId::STG_64Spost_ldsttags);
+            #else
+                        Instruction result(Mnemonic::STG, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         { result.operands.push_back(Operand::gp(enc.stg64spost_ldsttags.Rt, true, true)); }
@@ -44900,7 +47588,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0xD9200800u: { // STG_64Soffset_ldsttags
-                        Instruction result(Mnemonic::STG, insn, 1329);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::STG, insn, EncodingId::STG_64Soffset_ldsttags);
+            #else
+                        Instruction result(Mnemonic::STG, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         { result.operands.push_back(Operand::gp(enc.stg64soffset_ldsttags.Rt, true, true)); }
@@ -44909,7 +47601,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0xD9200C00u: { // STG_64Spre_ldsttags
-                        Instruction result(Mnemonic::STG, insn, 1328);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::STG, insn, EncodingId::STG_64Spre_ldsttags);
+            #else
+                        Instruction result(Mnemonic::STG, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         { result.operands.push_back(Operand::gp(enc.stg64spre_ldsttags.Rt, true, true)); }
@@ -44918,7 +47614,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0xD9400000u: { // LDAPUR_64_ldapstl_unscaled
-                        Instruction result(Mnemonic::LDAPUR, insn, 709);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDAPUR, insn, EncodingId::LDAPUR_64_ldapstl_unscaled);
+            #else
+                        Instruction result(Mnemonic::LDAPUR, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldapur64ldapstl_unscaled.Rt, true));
@@ -44926,7 +47626,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0xD9600000u: { // LDG_64Loffset_ldsttags
-                        Instruction result(Mnemonic::LDG, insn, 845);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDG, insn, EncodingId::LDG_64Loffset_ldsttags);
+            #else
+                        Instruction result(Mnemonic::LDG, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldg64loffset_ldsttags.Rt, true));
@@ -44935,7 +47639,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0xD9600400u: { // STZG_64Spost_ldsttags
-                        Instruction result(Mnemonic::STZG, insn, 1509);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::STZG, insn, EncodingId::STZG_64Spost_ldsttags);
+            #else
+                        Instruction result(Mnemonic::STZG, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         { result.operands.push_back(Operand::gp(enc.stzg64spost_ldsttags.Rt, true, true)); }
@@ -44944,7 +47652,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0xD9600800u: { // STZG_64Soffset_ldsttags
-                        Instruction result(Mnemonic::STZG, insn, 1511);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::STZG, insn, EncodingId::STZG_64Soffset_ldsttags);
+            #else
+                        Instruction result(Mnemonic::STZG, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         { result.operands.push_back(Operand::gp(enc.stzg64soffset_ldsttags.Rt, true, true)); }
@@ -44953,7 +47665,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0xD9600C00u: { // STZG_64Spre_ldsttags
-                        Instruction result(Mnemonic::STZG, insn, 1510);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::STZG, insn, EncodingId::STZG_64Spre_ldsttags);
+            #else
+                        Instruction result(Mnemonic::STZG, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         { result.operands.push_back(Operand::gp(enc.stzg64spre_ldsttags.Rt, true, true)); }
@@ -44962,7 +47678,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0xD9A00400u: { // ST2G_64Spost_ldsttags
-                        Instruction result(Mnemonic::ST2G, insn, 1227);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::ST2G, insn, EncodingId::ST2G_64Spost_ldsttags);
+            #else
+                        Instruction result(Mnemonic::ST2G, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         { result.operands.push_back(Operand::gp(enc.st2g64spost_ldsttags.Rt, true, true)); }
@@ -44971,7 +47691,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0xD9A00800u: { // ST2G_64Soffset_ldsttags
-                        Instruction result(Mnemonic::ST2G, insn, 1229);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::ST2G, insn, EncodingId::ST2G_64Soffset_ldsttags);
+            #else
+                        Instruction result(Mnemonic::ST2G, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         { result.operands.push_back(Operand::gp(enc.st2g64soffset_ldsttags.Rt, true, true)); }
@@ -44980,7 +47704,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0xD9A00C00u: { // ST2G_64Spre_ldsttags
-                        Instruction result(Mnemonic::ST2G, insn, 1228);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::ST2G, insn, EncodingId::ST2G_64Spre_ldsttags);
+            #else
+                        Instruction result(Mnemonic::ST2G, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         { result.operands.push_back(Operand::gp(enc.st2g64spre_ldsttags.Rt, true, true)); }
@@ -44989,7 +47717,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0xD9E00400u: { // STZ2G_64Spost_ldsttags
-                        Instruction result(Mnemonic::STZ2G, insn, 1506);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::STZ2G, insn, EncodingId::STZ2G_64Spost_ldsttags);
+            #else
+                        Instruction result(Mnemonic::STZ2G, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         { result.operands.push_back(Operand::gp(enc.stz2g64spost_ldsttags.Rt, true, true)); }
@@ -44998,7 +47730,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0xD9E00800u: { // STZ2G_64Soffset_ldsttags
-                        Instruction result(Mnemonic::STZ2G, insn, 1508);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::STZ2G, insn, EncodingId::STZ2G_64Soffset_ldsttags);
+            #else
+                        Instruction result(Mnemonic::STZ2G, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         { result.operands.push_back(Operand::gp(enc.stz2g64soffset_ldsttags.Rt, true, true)); }
@@ -45007,7 +47743,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0xD9E00C00u: { // STZ2G_64Spre_ldsttags
-                        Instruction result(Mnemonic::STZ2G, insn, 1507);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::STZ2G, insn, EncodingId::STZ2G_64Spre_ldsttags);
+            #else
+                        Instruction result(Mnemonic::STZ2G, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         { result.operands.push_back(Operand::gp(enc.stz2g64spre_ldsttags.Rt, true, true)); }
@@ -45016,7 +47756,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0xDD000800u: { // STLUR_D_ldapstl_simd
-                        Instruction result(Mnemonic::STLUR, insn, 1355);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::STLUR, insn, EncodingId::STLUR_D_ldapstl_simd);
+            #else
+                        Instruction result(Mnemonic::STLUR, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::vec(enc.stlur_dldapstl_simd.Rt, Arrangement::D));
@@ -45025,7 +47769,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0xDD400800u: { // LDAPUR_D_ldapstl_simd
-                        Instruction result(Mnemonic::LDAPUR, insn, 706);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDAPUR, insn, EncodingId::LDAPUR_D_ldapstl_simd);
+            #else
+                        Instruction result(Mnemonic::LDAPUR, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::vec(enc.ldapur_dldapstl_simd.Rt, Arrangement::D));
@@ -45034,7 +47782,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0xF8000000u: { // STUR_64_ldst_unscaled
-                        Instruction result(Mnemonic::STUR, insn, 1497);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::STUR, insn, EncodingId::STUR_64_ldst_unscaled);
+            #else
+                        Instruction result(Mnemonic::STUR, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.stur64ldst_unscaled.Rt, true));
@@ -45042,7 +47794,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0xF8000400u: { // STR_64_ldst_immpost
-                        Instruction result(Mnemonic::STR, insn, 1403);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::STR, insn, EncodingId::STR_64_ldst_immpost);
+            #else
+                        Instruction result(Mnemonic::STR, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.str64ldst_immpost.Rt, true));
@@ -45054,7 +47810,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0xF8000800u: { // STTR_64_ldst_unpriv
-                        Instruction result(Mnemonic::STTR, insn, 1466);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::STTR, insn, EncodingId::STTR_64_ldst_unpriv);
+            #else
+                        Instruction result(Mnemonic::STTR, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.sttr64ldst_unpriv.Rt, true));
@@ -45062,7 +47822,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0xF8000C00u: { // STR_64_ldst_immpre
-                        Instruction result(Mnemonic::STR, insn, 1405);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::STR, insn, EncodingId::STR_64_ldst_immpre);
+            #else
+                        Instruction result(Mnemonic::STR, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.str64ldst_immpre.Rt, true));
@@ -45070,7 +47834,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0xF8200800u: { // STR_64_ldst_regoff
-                        Instruction result(Mnemonic::STR, insn, 1415);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::STR, insn, EncodingId::STR_64_ldst_regoff);
+            #else
+                        Instruction result(Mnemonic::STR, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -45079,7 +47847,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0xF8400000u: { // LDUR_64_ldst_unscaled
-                        Instruction result(Mnemonic::LDUR, insn, 1081);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDUR, insn, EncodingId::LDUR_64_ldst_unscaled);
+            #else
+                        Instruction result(Mnemonic::LDUR, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldur64ldst_unscaled.Rt, true));
@@ -45087,7 +47859,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0xF8400400u: { // LDR_64_ldst_immpost
-                        Instruction result(Mnemonic::LDR, insn, 894);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDR, insn, EncodingId::LDR_64_ldst_immpost);
+            #else
+                        Instruction result(Mnemonic::LDR, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldr64ldst_immpost.Rt, true));
@@ -45099,7 +47875,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0xF8400800u: { // LDTR_64_ldst_unpriv
-                        Instruction result(Mnemonic::LDTR, insn, 1025);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDTR, insn, EncodingId::LDTR_64_ldst_unpriv);
+            #else
+                        Instruction result(Mnemonic::LDTR, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldtr64ldst_unpriv.Rt, true));
@@ -45107,7 +47887,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0xF8400C00u: { // LDR_64_ldst_immpre
-                        Instruction result(Mnemonic::LDR, insn, 896);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDR, insn, EncodingId::LDR_64_ldst_immpre);
+            #else
+                        Instruction result(Mnemonic::LDR, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldr64ldst_immpre.Rt, true));
@@ -45115,7 +47899,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0xF8600800u: { // LDR_64_ldst_regoff
-                        Instruction result(Mnemonic::LDR, insn, 911);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDR, insn, EncodingId::LDR_64_ldst_regoff);
+            #else
+                        Instruction result(Mnemonic::LDR, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -45124,7 +47912,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0xF8800000u: { // PRFUM_P_ldst_unscaled
-                        Instruction result(Mnemonic::PRFUM, insn, 1098);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::PRFUM, insn, EncodingId::PRFUM_P_ldst_unscaled);
+            #else
+                        Instruction result(Mnemonic::PRFUM, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::prefetch_op(static_cast<PrefetchOp>(enc.prfum_pldst_unscaled.Rt)));
@@ -45134,7 +47926,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0xFC000000u: { // STUR_D_ldst_unscaled
-                        Instruction result(Mnemonic::STUR, insn, 1494);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::STUR, insn, EncodingId::STUR_D_ldst_unscaled);
+            #else
+                        Instruction result(Mnemonic::STUR, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         // SIMD/FP D register variant (scale=8)
@@ -45145,7 +47941,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0xFC000400u: { // STR_D_ldst_immpost
-                        Instruction result(Mnemonic::STR, insn, 1390);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::STR, insn, EncodingId::STR_D_ldst_immpost);
+            #else
+                        Instruction result(Mnemonic::STR, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         // SIMD/FP D register variant (scale=8)
@@ -45155,7 +47955,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0xFC000C00u: { // STR_D_ldst_immpre
-                        Instruction result(Mnemonic::STR, insn, 1395);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::STR, insn, EncodingId::STR_D_ldst_immpre);
+            #else
+                        Instruction result(Mnemonic::STR, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         // SIMD/FP D register variant (scale=8)
@@ -45165,7 +47969,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0xFC200800u: { // STR_D_ldst_regoff
-                        Instruction result(Mnemonic::STR, insn, 1412);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::STR, insn, EncodingId::STR_D_ldst_regoff);
+            #else
+                        Instruction result(Mnemonic::STR, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         // SIMD/FP D register variant (scale=8)
@@ -45174,7 +47982,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0xFC400000u: { // LDUR_D_ldst_unscaled
-                        Instruction result(Mnemonic::LDUR, insn, 1078);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDUR, insn, EncodingId::LDUR_D_ldst_unscaled);
+            #else
+                        Instruction result(Mnemonic::LDUR, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         // SIMD/FP D register variant (scale=8)
@@ -45185,7 +47997,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0xFC400400u: { // LDR_D_ldst_immpost
-                        Instruction result(Mnemonic::LDR, insn, 881);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDR, insn, EncodingId::LDR_D_ldst_immpost);
+            #else
+                        Instruction result(Mnemonic::LDR, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         // SIMD/FP D register variant (scale=8)
@@ -45195,7 +48011,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0xFC400C00u: { // LDR_D_ldst_immpre
-                        Instruction result(Mnemonic::LDR, insn, 886);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDR, insn, EncodingId::LDR_D_ldst_immpre);
+            #else
+                        Instruction result(Mnemonic::LDR, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         // SIMD/FP D register variant (scale=8)
@@ -45205,7 +48025,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0xFC600800u: { // LDR_D_ldst_regoff
-                        Instruction result(Mnemonic::LDR, insn, 908);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDR, insn, EncodingId::LDR_D_ldst_regoff);
+            #else
+                        Instruction result(Mnemonic::LDR, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         // SIMD/FP D register variant (scale=8)
@@ -45219,7 +48043,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
     // Switch for mask 0xFFC00000u (86 patterns, 86 encodings)
     switch (insn & 0xFFC00000u) {
         case 0x28000000u: { // STNP_32_ldstnapair_offs
-                        Instruction result(Mnemonic::STNP, insn, 1370);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::STNP, insn, EncodingId::STNP_32_ldstnapair_offs);
+            #else
+                        Instruction result(Mnemonic::STNP, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         int scale = 4;
@@ -45230,7 +48058,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x28400000u: { // LDNP_32_ldstnapair_offs
-                        Instruction result(Mnemonic::LDNP, insn, 858);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDNP, insn, EncodingId::LDNP_32_ldstnapair_offs);
+            #else
+                        Instruction result(Mnemonic::LDNP, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         int scale = 4;
@@ -45241,7 +48073,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x28800000u: { // STP_32_ldstpair_post
-                        Instruction result(Mnemonic::STP, insn, 1381);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::STP, insn, EncodingId::STP_32_ldstpair_post);
+            #else
+                        Instruction result(Mnemonic::STP, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         int scale = 4;
@@ -45252,7 +48088,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x28C00000u: { // LDP_32_ldstpair_post
-                        Instruction result(Mnemonic::LDP, insn, 869);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDP, insn, EncodingId::LDP_32_ldstpair_post);
+            #else
+                        Instruction result(Mnemonic::LDP, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         int scale = 4;
@@ -45263,7 +48103,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x29000000u: { // STP_32_ldstpair_off
-                        Instruction result(Mnemonic::STP, insn, 1385);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::STP, insn, EncodingId::STP_32_ldstpair_off);
+            #else
+                        Instruction result(Mnemonic::STP, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         int scale = 4;
@@ -45274,7 +48118,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x29400000u: { // LDP_32_ldstpair_off
-                        Instruction result(Mnemonic::LDP, insn, 873);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDP, insn, EncodingId::LDP_32_ldstpair_off);
+            #else
+                        Instruction result(Mnemonic::LDP, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         int scale = 4;
@@ -45285,7 +48133,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x29800000u: { // STP_32_ldstpair_pre
-                        Instruction result(Mnemonic::STP, insn, 1383);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::STP, insn, EncodingId::STP_32_ldstpair_pre);
+            #else
+                        Instruction result(Mnemonic::STP, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         int scale = 4;
@@ -45296,7 +48148,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x29C00000u: { // LDP_32_ldstpair_pre
-                        Instruction result(Mnemonic::LDP, insn, 871);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDP, insn, EncodingId::LDP_32_ldstpair_pre);
+            #else
+                        Instruction result(Mnemonic::LDP, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         int scale = 4;
@@ -45307,7 +48163,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x2C000000u: { // STNP_S_ldstnapair_offs
-                        Instruction result(Mnemonic::STNP, insn, 1367);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::STNP, insn, EncodingId::STNP_S_ldstnapair_offs);
+            #else
+                        Instruction result(Mnemonic::STNP, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         int scale = 4;
@@ -45318,7 +48178,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x2C400000u: { // LDNP_S_ldstnapair_offs
-                        Instruction result(Mnemonic::LDNP, insn, 855);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDNP, insn, EncodingId::LDNP_S_ldstnapair_offs);
+            #else
+                        Instruction result(Mnemonic::LDNP, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         int scale = 4;
@@ -45329,7 +48193,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x2C800000u: { // STP_S_ldstpair_post
-                        Instruction result(Mnemonic::STP, insn, 1372);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::STP, insn, EncodingId::STP_S_ldstpair_post);
+            #else
+                        Instruction result(Mnemonic::STP, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         int scale = 4;
@@ -45340,7 +48208,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x2CC00000u: { // LDP_S_ldstpair_post
-                        Instruction result(Mnemonic::LDP, insn, 860);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDP, insn, EncodingId::LDP_S_ldstpair_post);
+            #else
+                        Instruction result(Mnemonic::LDP, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         int scale = 4;
@@ -45351,7 +48223,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x2D000000u: { // STP_S_ldstpair_off
-                        Instruction result(Mnemonic::STP, insn, 1378);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::STP, insn, EncodingId::STP_S_ldstpair_off);
+            #else
+                        Instruction result(Mnemonic::STP, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         int scale = 4;
@@ -45362,7 +48238,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x2D400000u: { // LDP_S_ldstpair_off
-                        Instruction result(Mnemonic::LDP, insn, 866);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDP, insn, EncodingId::LDP_S_ldstpair_off);
+            #else
+                        Instruction result(Mnemonic::LDP, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         int scale = 4;
@@ -45373,7 +48253,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x2D800000u: { // STP_S_ldstpair_pre
-                        Instruction result(Mnemonic::STP, insn, 1375);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::STP, insn, EncodingId::STP_S_ldstpair_pre);
+            #else
+                        Instruction result(Mnemonic::STP, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         int scale = 4;
@@ -45384,7 +48268,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x2DC00000u: { // LDP_S_ldstpair_pre
-                        Instruction result(Mnemonic::LDP, insn, 863);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDP, insn, EncodingId::LDP_S_ldstpair_pre);
+            #else
+                        Instruction result(Mnemonic::LDP, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         int scale = 4;
@@ -45395,7 +48283,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x39000000u: { // STRB_32_ldst_pos
-                        Instruction result(Mnemonic::STRB, insn, 1418);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::STRB, insn, EncodingId::STRB_32_ldst_pos);
+            #else
+                        Instruction result(Mnemonic::STRB, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.strb32ldst_pos.Rt, false));
@@ -45404,7 +48296,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x39400000u: { // LDRB_32_ldst_pos
-                        Instruction result(Mnemonic::LDRB, insn, 918);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDRB, insn, EncodingId::LDRB_32_ldst_pos);
+            #else
+                        Instruction result(Mnemonic::LDRB, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldrb32ldst_pos.Rt, false));
@@ -45413,7 +48309,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x39800000u: { // LDRSB_64_ldst_pos
-                        Instruction result(Mnemonic::LDRSB, insn, 930);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDRSB, insn, EncodingId::LDRSB_64_ldst_pos);
+            #else
+                        Instruction result(Mnemonic::LDRSB, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldrsb64ldst_pos.Rt, true));
@@ -45422,7 +48322,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x39C00000u: { // LDRSB_32_ldst_pos
-                        Instruction result(Mnemonic::LDRSB, insn, 929);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDRSB, insn, EncodingId::LDRSB_32_ldst_pos);
+            #else
+                        Instruction result(Mnemonic::LDRSB, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldrsb32ldst_pos.Rt, false));
@@ -45431,7 +48335,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x3D000000u: { // STR_B_ldst_pos
-                        Instruction result(Mnemonic::STR, insn, 1397);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::STR, insn, EncodingId::STR_B_ldst_pos);
+            #else
+                        Instruction result(Mnemonic::STR, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         // SIMD/FP B register variant (scale=1)
@@ -45441,7 +48349,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x3D400000u: { // LDR_B_ldst_pos
-                        Instruction result(Mnemonic::LDR, insn, 888);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDR, insn, EncodingId::LDR_B_ldst_pos);
+            #else
+                        Instruction result(Mnemonic::LDR, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         // SIMD/FP B register variant (scale=1)
@@ -45451,7 +48363,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x3D800000u: { // STR_Q_ldst_pos
-                        Instruction result(Mnemonic::STR, insn, 1401);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::STR, insn, EncodingId::STR_Q_ldst_pos);
+            #else
+                        Instruction result(Mnemonic::STR, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         // SIMD/FP Q register variant (scale=16)
@@ -45461,7 +48377,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x3DC00000u: { // LDR_Q_ldst_pos
-                        Instruction result(Mnemonic::LDR, insn, 892);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDR, insn, EncodingId::LDR_Q_ldst_pos);
+            #else
+                        Instruction result(Mnemonic::LDR, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         // SIMD/FP Q register variant (scale=16)
@@ -45471,7 +48391,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x68800000u: { // STGP_64_ldstpair_post
-                        Instruction result(Mnemonic::STGP, insn, 1331);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::STGP, insn, EncodingId::STGP_64_ldstpair_post);
+            #else
+                        Instruction result(Mnemonic::STGP, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         int scale = 16;
@@ -45482,7 +48406,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x68C00000u: { // LDPSW_64_ldstpair_post
-                        Instruction result(Mnemonic::LDPSW, insn, 875);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDPSW, insn, EncodingId::LDPSW_64_ldstpair_post);
+            #else
+                        Instruction result(Mnemonic::LDPSW, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         int scale = 4;
@@ -45493,7 +48421,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x69000000u: { // STGP_64_ldstpair_off
-                        Instruction result(Mnemonic::STGP, insn, 1333);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::STGP, insn, EncodingId::STGP_64_ldstpair_off);
+            #else
+                        Instruction result(Mnemonic::STGP, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         int scale = 16;
@@ -45504,7 +48436,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x69400000u: { // LDPSW_64_ldstpair_off
-                        Instruction result(Mnemonic::LDPSW, insn, 877);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDPSW, insn, EncodingId::LDPSW_64_ldstpair_off);
+            #else
+                        Instruction result(Mnemonic::LDPSW, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         int scale = 4;
@@ -45515,7 +48451,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x69800000u: { // STGP_64_ldstpair_pre
-                        Instruction result(Mnemonic::STGP, insn, 1332);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::STGP, insn, EncodingId::STGP_64_ldstpair_pre);
+            #else
+                        Instruction result(Mnemonic::STGP, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         int scale = 16;
@@ -45526,7 +48466,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x69C00000u: { // LDPSW_64_ldstpair_pre
-                        Instruction result(Mnemonic::LDPSW, insn, 876);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDPSW, insn, EncodingId::LDPSW_64_ldstpair_pre);
+            #else
+                        Instruction result(Mnemonic::LDPSW, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         int scale = 4;
@@ -45537,7 +48481,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x6C000000u: { // STNP_D_ldstnapair_offs
-                        Instruction result(Mnemonic::STNP, insn, 1368);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::STNP, insn, EncodingId::STNP_D_ldstnapair_offs);
+            #else
+                        Instruction result(Mnemonic::STNP, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         int scale = 8;
@@ -45548,7 +48496,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x6C400000u: { // LDNP_D_ldstnapair_offs
-                        Instruction result(Mnemonic::LDNP, insn, 856);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDNP, insn, EncodingId::LDNP_D_ldstnapair_offs);
+            #else
+                        Instruction result(Mnemonic::LDNP, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         int scale = 8;
@@ -45559,7 +48511,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x6C800000u: { // STP_D_ldstpair_post
-                        Instruction result(Mnemonic::STP, insn, 1373);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::STP, insn, EncodingId::STP_D_ldstpair_post);
+            #else
+                        Instruction result(Mnemonic::STP, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         int scale = 8;
@@ -45570,7 +48526,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x6CC00000u: { // LDP_D_ldstpair_post
-                        Instruction result(Mnemonic::LDP, insn, 861);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDP, insn, EncodingId::LDP_D_ldstpair_post);
+            #else
+                        Instruction result(Mnemonic::LDP, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         int scale = 8;
@@ -45581,7 +48541,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x6D000000u: { // STP_D_ldstpair_off
-                        Instruction result(Mnemonic::STP, insn, 1379);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::STP, insn, EncodingId::STP_D_ldstpair_off);
+            #else
+                        Instruction result(Mnemonic::STP, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         int scale = 8;
@@ -45592,7 +48556,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x6D400000u: { // LDP_D_ldstpair_off
-                        Instruction result(Mnemonic::LDP, insn, 867);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDP, insn, EncodingId::LDP_D_ldstpair_off);
+            #else
+                        Instruction result(Mnemonic::LDP, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         int scale = 8;
@@ -45603,7 +48571,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x6D800000u: { // STP_D_ldstpair_pre
-                        Instruction result(Mnemonic::STP, insn, 1376);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::STP, insn, EncodingId::STP_D_ldstpair_pre);
+            #else
+                        Instruction result(Mnemonic::STP, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         int scale = 8;
@@ -45614,7 +48586,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x6DC00000u: { // LDP_D_ldstpair_pre
-                        Instruction result(Mnemonic::LDP, insn, 864);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDP, insn, EncodingId::LDP_D_ldstpair_pre);
+            #else
+                        Instruction result(Mnemonic::LDP, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         int scale = 8;
@@ -45625,7 +48601,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x79000000u: { // STRH_32_ldst_pos
-                        Instruction result(Mnemonic::STRH, insn, 1423);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::STRH, insn, EncodingId::STRH_32_ldst_pos);
+            #else
+                        Instruction result(Mnemonic::STRH, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.strh32ldst_pos.Rt, false));
@@ -45634,7 +48614,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x79400000u: { // LDRH_32_ldst_pos
-                        Instruction result(Mnemonic::LDRH, insn, 923);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDRH, insn, EncodingId::LDRH_32_ldst_pos);
+            #else
+                        Instruction result(Mnemonic::LDRH, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldrh32ldst_pos.Rt, false));
@@ -45643,7 +48627,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x79800000u: { // LDRSH_64_ldst_pos
-                        Instruction result(Mnemonic::LDRSH, insn, 940);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDRSH, insn, EncodingId::LDRSH_64_ldst_pos);
+            #else
+                        Instruction result(Mnemonic::LDRSH, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldrsh64ldst_pos.Rt, true));
@@ -45652,7 +48640,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x79C00000u: { // LDRSH_32_ldst_pos
-                        Instruction result(Mnemonic::LDRSH, insn, 939);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDRSH, insn, EncodingId::LDRSH_32_ldst_pos);
+            #else
+                        Instruction result(Mnemonic::LDRSH, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldrsh32ldst_pos.Rt, false));
@@ -45661,7 +48653,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x7D000000u: { // STR_H_ldst_pos
-                        Instruction result(Mnemonic::STR, insn, 1398);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::STR, insn, EncodingId::STR_H_ldst_pos);
+            #else
+                        Instruction result(Mnemonic::STR, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         // SIMD/FP H register variant (scale=2)
@@ -45671,7 +48667,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x7D400000u: { // LDR_H_ldst_pos
-                        Instruction result(Mnemonic::LDR, insn, 889);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDR, insn, EncodingId::LDR_H_ldst_pos);
+            #else
+                        Instruction result(Mnemonic::LDR, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         // SIMD/FP H register variant (scale=2)
@@ -45681,7 +48681,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0xA8000000u: { // STNP_64_ldstnapair_offs
-                        Instruction result(Mnemonic::STNP, insn, 1371);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::STNP, insn, EncodingId::STNP_64_ldstnapair_offs);
+            #else
+                        Instruction result(Mnemonic::STNP, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         int scale = 8;
@@ -45692,7 +48696,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0xA8400000u: { // LDNP_64_ldstnapair_offs
-                        Instruction result(Mnemonic::LDNP, insn, 859);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDNP, insn, EncodingId::LDNP_64_ldstnapair_offs);
+            #else
+                        Instruction result(Mnemonic::LDNP, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         int scale = 8;
@@ -45703,7 +48711,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0xA8800000u: { // STP_64_ldstpair_post
-                        Instruction result(Mnemonic::STP, insn, 1382);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::STP, insn, EncodingId::STP_64_ldstpair_post);
+            #else
+                        Instruction result(Mnemonic::STP, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         int scale = 8;
@@ -45714,7 +48726,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0xA8C00000u: { // LDP_64_ldstpair_post
-                        Instruction result(Mnemonic::LDP, insn, 870);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDP, insn, EncodingId::LDP_64_ldstpair_post);
+            #else
+                        Instruction result(Mnemonic::LDP, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         int scale = 8;
@@ -45725,7 +48741,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0xA9000000u: { // STP_64_ldstpair_off
-                        Instruction result(Mnemonic::STP, insn, 1386);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::STP, insn, EncodingId::STP_64_ldstpair_off);
+            #else
+                        Instruction result(Mnemonic::STP, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         int scale = 8;
@@ -45736,7 +48756,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0xA9400000u: { // LDP_64_ldstpair_off
-                        Instruction result(Mnemonic::LDP, insn, 874);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDP, insn, EncodingId::LDP_64_ldstpair_off);
+            #else
+                        Instruction result(Mnemonic::LDP, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         int scale = 8;
@@ -45747,7 +48771,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0xA9800000u: { // STP_64_ldstpair_pre
-                        Instruction result(Mnemonic::STP, insn, 1384);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::STP, insn, EncodingId::STP_64_ldstpair_pre);
+            #else
+                        Instruction result(Mnemonic::STP, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         int scale = 8;
@@ -45758,7 +48786,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0xA9C00000u: { // LDP_64_ldstpair_pre
-                        Instruction result(Mnemonic::LDP, insn, 872);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDP, insn, EncodingId::LDP_64_ldstpair_pre);
+            #else
+                        Instruction result(Mnemonic::LDP, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         int scale = 8;
@@ -45769,7 +48801,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0xAC000000u: { // STNP_Q_ldstnapair_offs
-                        Instruction result(Mnemonic::STNP, insn, 1369);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::STNP, insn, EncodingId::STNP_Q_ldstnapair_offs);
+            #else
+                        Instruction result(Mnemonic::STNP, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         int scale = 16;
@@ -45780,7 +48816,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0xAC400000u: { // LDNP_Q_ldstnapair_offs
-                        Instruction result(Mnemonic::LDNP, insn, 857);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDNP, insn, EncodingId::LDNP_Q_ldstnapair_offs);
+            #else
+                        Instruction result(Mnemonic::LDNP, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         int scale = 16;
@@ -45791,7 +48831,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0xAC800000u: { // STP_Q_ldstpair_post
-                        Instruction result(Mnemonic::STP, insn, 1374);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::STP, insn, EncodingId::STP_Q_ldstpair_post);
+            #else
+                        Instruction result(Mnemonic::STP, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         int scale = 16;
@@ -45802,7 +48846,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0xACC00000u: { // LDP_Q_ldstpair_post
-                        Instruction result(Mnemonic::LDP, insn, 862);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDP, insn, EncodingId::LDP_Q_ldstpair_post);
+            #else
+                        Instruction result(Mnemonic::LDP, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         int scale = 16;
@@ -45813,7 +48861,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0xAD000000u: { // STP_Q_ldstpair_off
-                        Instruction result(Mnemonic::STP, insn, 1380);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::STP, insn, EncodingId::STP_Q_ldstpair_off);
+            #else
+                        Instruction result(Mnemonic::STP, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         int scale = 16;
@@ -45824,7 +48876,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0xAD400000u: { // LDP_Q_ldstpair_off
-                        Instruction result(Mnemonic::LDP, insn, 868);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDP, insn, EncodingId::LDP_Q_ldstpair_off);
+            #else
+                        Instruction result(Mnemonic::LDP, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         int scale = 16;
@@ -45835,7 +48891,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0xAD800000u: { // STP_Q_ldstpair_pre
-                        Instruction result(Mnemonic::STP, insn, 1377);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::STP, insn, EncodingId::STP_Q_ldstpair_pre);
+            #else
+                        Instruction result(Mnemonic::STP, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         int scale = 16;
@@ -45846,7 +48906,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0xADC00000u: { // LDP_Q_ldstpair_pre
-                        Instruction result(Mnemonic::LDP, insn, 865);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDP, insn, EncodingId::LDP_Q_ldstpair_pre);
+            #else
+                        Instruction result(Mnemonic::LDP, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         int scale = 16;
@@ -45857,7 +48921,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0xB9000000u: { // STR_32_ldst_pos
-                        Instruction result(Mnemonic::STR, insn, 1406);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::STR, insn, EncodingId::STR_32_ldst_pos);
+            #else
+                        Instruction result(Mnemonic::STR, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.str32ldst_pos.Rt, false));
@@ -45866,7 +48934,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0xB9400000u: { // LDR_32_ldst_pos
-                        Instruction result(Mnemonic::LDR, insn, 897);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDR, insn, EncodingId::LDR_32_ldst_pos);
+            #else
+                        Instruction result(Mnemonic::LDR, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldr32ldst_pos.Rt, false));
@@ -45875,7 +48947,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0xB9800000u: { // LDRSW_64_ldst_pos
-                        Instruction result(Mnemonic::LDRSW, insn, 945);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDRSW, insn, EncodingId::LDRSW_64_ldst_pos);
+            #else
+                        Instruction result(Mnemonic::LDRSW, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldrsw64ldst_pos.Rt, true));
@@ -45884,7 +48960,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0xBD000000u: { // STR_S_ldst_pos
-                        Instruction result(Mnemonic::STR, insn, 1399);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::STR, insn, EncodingId::STR_S_ldst_pos);
+            #else
+                        Instruction result(Mnemonic::STR, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         // SIMD/FP S register variant (scale=4)
@@ -45894,7 +48974,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0xBD400000u: { // LDR_S_ldst_pos
-                        Instruction result(Mnemonic::LDR, insn, 890);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDR, insn, EncodingId::LDR_S_ldst_pos);
+            #else
+                        Instruction result(Mnemonic::LDR, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         // SIMD/FP S register variant (scale=4)
@@ -45904,7 +48988,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0xE8000000u: { // STTNP_64_ldstnapair_offs
-                        Instruction result(Mnemonic::STTNP, insn, 1458);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::STTNP, insn, EncodingId::STTNP_64_ldstnapair_offs);
+            #else
+                        Instruction result(Mnemonic::STTNP, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         int scale = 8;
@@ -45915,7 +49003,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0xE8400000u: { // LDTNP_64_ldstnapair_offs
-                        Instruction result(Mnemonic::LDTNP, insn, 1017);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDTNP, insn, EncodingId::LDTNP_64_ldstnapair_offs);
+            #else
+                        Instruction result(Mnemonic::LDTNP, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         int scale = 8;
@@ -45926,7 +49018,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0xE8800000u: { // STTP_64_ldstpair_post
-                        Instruction result(Mnemonic::STTP, insn, 1462);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::STTP, insn, EncodingId::STTP_64_ldstpair_post);
+            #else
+                        Instruction result(Mnemonic::STTP, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         int scale = 8;
@@ -45937,7 +49033,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0xE8C00000u: { // LDTP_64_ldstpair_post
-                        Instruction result(Mnemonic::LDTP, insn, 1021);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDTP, insn, EncodingId::LDTP_64_ldstpair_post);
+            #else
+                        Instruction result(Mnemonic::LDTP, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         int scale = 8;
@@ -45948,7 +49048,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0xE9000000u: { // STTP_64_ldstpair_off
-                        Instruction result(Mnemonic::STTP, insn, 1464);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::STTP, insn, EncodingId::STTP_64_ldstpair_off);
+            #else
+                        Instruction result(Mnemonic::STTP, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         int scale = 8;
@@ -45959,7 +49063,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0xE9400000u: { // LDTP_64_ldstpair_off
-                        Instruction result(Mnemonic::LDTP, insn, 1023);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDTP, insn, EncodingId::LDTP_64_ldstpair_off);
+            #else
+                        Instruction result(Mnemonic::LDTP, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         int scale = 8;
@@ -45970,7 +49078,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0xE9800000u: { // STTP_64_ldstpair_pre
-                        Instruction result(Mnemonic::STTP, insn, 1463);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::STTP, insn, EncodingId::STTP_64_ldstpair_pre);
+            #else
+                        Instruction result(Mnemonic::STTP, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         int scale = 8;
@@ -45981,7 +49093,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0xE9C00000u: { // LDTP_64_ldstpair_pre
-                        Instruction result(Mnemonic::LDTP, insn, 1022);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDTP, insn, EncodingId::LDTP_64_ldstpair_pre);
+            #else
+                        Instruction result(Mnemonic::LDTP, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         int scale = 8;
@@ -45992,7 +49108,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0xEC000000u: { // STTNP_Q_ldstnapair_offs
-                        Instruction result(Mnemonic::STTNP, insn, 1457);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::STTNP, insn, EncodingId::STTNP_Q_ldstnapair_offs);
+            #else
+                        Instruction result(Mnemonic::STTNP, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         int scale = 16;
@@ -46003,7 +49123,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0xEC400000u: { // LDTNP_Q_ldstnapair_offs
-                        Instruction result(Mnemonic::LDTNP, insn, 1016);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDTNP, insn, EncodingId::LDTNP_Q_ldstnapair_offs);
+            #else
+                        Instruction result(Mnemonic::LDTNP, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         int scale = 16;
@@ -46014,7 +49138,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0xEC800000u: { // STTP_Q_ldstpair_post
-                        Instruction result(Mnemonic::STTP, insn, 1459);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::STTP, insn, EncodingId::STTP_Q_ldstpair_post);
+            #else
+                        Instruction result(Mnemonic::STTP, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         int scale = 16;
@@ -46025,7 +49153,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0xECC00000u: { // LDTP_Q_ldstpair_post
-                        Instruction result(Mnemonic::LDTP, insn, 1018);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDTP, insn, EncodingId::LDTP_Q_ldstpair_post);
+            #else
+                        Instruction result(Mnemonic::LDTP, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         int scale = 16;
@@ -46036,7 +49168,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0xED000000u: { // STTP_Q_ldstpair_off
-                        Instruction result(Mnemonic::STTP, insn, 1461);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::STTP, insn, EncodingId::STTP_Q_ldstpair_off);
+            #else
+                        Instruction result(Mnemonic::STTP, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         int scale = 16;
@@ -46047,7 +49183,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0xED400000u: { // LDTP_Q_ldstpair_off
-                        Instruction result(Mnemonic::LDTP, insn, 1020);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDTP, insn, EncodingId::LDTP_Q_ldstpair_off);
+            #else
+                        Instruction result(Mnemonic::LDTP, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         int scale = 16;
@@ -46058,7 +49198,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0xED800000u: { // STTP_Q_ldstpair_pre
-                        Instruction result(Mnemonic::STTP, insn, 1460);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::STTP, insn, EncodingId::STTP_Q_ldstpair_pre);
+            #else
+                        Instruction result(Mnemonic::STTP, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         int scale = 16;
@@ -46069,7 +49213,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0xEDC00000u: { // LDTP_Q_ldstpair_pre
-                        Instruction result(Mnemonic::LDTP, insn, 1019);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDTP, insn, EncodingId::LDTP_Q_ldstpair_pre);
+            #else
+                        Instruction result(Mnemonic::LDTP, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         int scale = 16;
@@ -46080,7 +49228,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0xF9000000u: { // STR_64_ldst_pos
-                        Instruction result(Mnemonic::STR, insn, 1407);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::STR, insn, EncodingId::STR_64_ldst_pos);
+            #else
+                        Instruction result(Mnemonic::STR, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.str64ldst_pos.Rt, true));
@@ -46089,7 +49241,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0xF9400000u: { // LDR_64_ldst_pos
-                        Instruction result(Mnemonic::LDR, insn, 898);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDR, insn, EncodingId::LDR_64_ldst_pos);
+            #else
+                        Instruction result(Mnemonic::LDR, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldr64ldst_pos.Rt, true));
@@ -46098,7 +49254,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0xF9800000u: { // PRFM_P_ldst_pos
-                        Instruction result(Mnemonic::PRFM, insn, 1095);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::PRFM, insn, EncodingId::PRFM_P_ldst_pos);
+            #else
+                        Instruction result(Mnemonic::PRFM, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::prefetch_op(static_cast<PrefetchOp>(enc.prfm_pldst_pos.Rt)));
@@ -46108,7 +49268,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0xFD000000u: { // STR_D_ldst_pos
-                        Instruction result(Mnemonic::STR, insn, 1400);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::STR, insn, EncodingId::STR_D_ldst_pos);
+            #else
+                        Instruction result(Mnemonic::STR, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         // SIMD/FP D register variant (scale=8)
@@ -46118,7 +49282,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0xFD400000u: { // LDR_D_ldst_pos
-                        Instruction result(Mnemonic::LDR, insn, 891);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDR, insn, EncodingId::LDR_D_ldst_pos);
+            #else
+                        Instruction result(Mnemonic::LDR, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         // SIMD/FP D register variant (scale=8)
@@ -46133,7 +49301,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
     // Switch for mask 0xFFA00C00u (4 patterns, 4 encodings)
     switch (insn & 0xFFA00C00u) {
         case 0xF8200400u: { // LDRAA_64_ldst_pac
-                        Instruction result(Mnemonic::LDRAA, insn, 912);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDRAA, insn, EncodingId::LDRAA_64_ldst_pac);
+            #else
+                        Instruction result(Mnemonic::LDRAA, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldraa64ldst_pac.Rt, true));
@@ -46144,7 +49316,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0xF8200C00u: { // LDRAA_64W_ldst_pac
-                        Instruction result(Mnemonic::LDRAA, insn, 913);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDRAA, insn, EncodingId::LDRAA_64W_ldst_pac);
+            #else
+                        Instruction result(Mnemonic::LDRAA, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldraa64w_ldst_pac.Rt, true));
@@ -46154,7 +49330,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0xF8A00400u: { // LDRAB_64_ldst_pac
-                        Instruction result(Mnemonic::LDRAB, insn, 914);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDRAB, insn, EncodingId::LDRAB_64_ldst_pac);
+            #else
+                        Instruction result(Mnemonic::LDRAB, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldrab64ldst_pac.Rt, true));
@@ -46165,7 +49345,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0xF8A00C00u: { // LDRAB_64W_ldst_pac
-                        Instruction result(Mnemonic::LDRAB, insn, 915);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDRAB, insn, EncodingId::LDRAB_64W_ldst_pac);
+            #else
+                        Instruction result(Mnemonic::LDRAB, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldrab64w_ldst_pac.Rt, true));
@@ -46180,7 +49364,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
     // Switch for mask 0xFF000000u (7 patterns, 7 encodings)
     switch (insn & 0xFF000000u) {
         case 0x18000000u: { // LDR_32_loadlit
-                        Instruction result(Mnemonic::LDR, insn, 902);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDR, insn, EncodingId::LDR_32_loadlit);
+            #else
+                        Instruction result(Mnemonic::LDR, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldr32loadlit.Rt, false));
@@ -46192,7 +49380,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x1C000000u: { // LDR_S_loadlit
-                        Instruction result(Mnemonic::LDR, insn, 899);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDR, insn, EncodingId::LDR_S_loadlit);
+            #else
+                        Instruction result(Mnemonic::LDR, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::scalar(enc.ldr_sloadlit.Rt, Arrangement::S));
@@ -46202,7 +49394,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x58000000u: { // LDR_64_loadlit
-                        Instruction result(Mnemonic::LDR, insn, 903);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDR, insn, EncodingId::LDR_64_loadlit);
+            #else
+                        Instruction result(Mnemonic::LDR, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldr64loadlit.Rt, true));
@@ -46214,7 +49410,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x5C000000u: { // LDR_D_loadlit
-                        Instruction result(Mnemonic::LDR, insn, 900);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDR, insn, EncodingId::LDR_D_loadlit);
+            #else
+                        Instruction result(Mnemonic::LDR, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::scalar(enc.ldr_dloadlit.Rt, Arrangement::D));
@@ -46224,7 +49424,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x98000000u: { // LDRSW_64_loadlit
-                        Instruction result(Mnemonic::LDRSW, insn, 946);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDRSW, insn, EncodingId::LDRSW_64_loadlit);
+            #else
+                        Instruction result(Mnemonic::LDRSW, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldrsw64loadlit.Rt, true));
@@ -46236,7 +49440,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x9C000000u: { // LDR_Q_loadlit
-                        Instruction result(Mnemonic::LDR, insn, 901);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDR, insn, EncodingId::LDR_Q_loadlit);
+            #else
+                        Instruction result(Mnemonic::LDR, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::scalar(enc.ldr_qloadlit.Rt, Arrangement::Q));
@@ -46246,7 +49454,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0xD8000000u: { // PRFM_P_loadlit
-                        Instruction result(Mnemonic::PRFM, insn, 1096);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::PRFM, insn, EncodingId::PRFM_P_loadlit);
+            #else
+                        Instruction result(Mnemonic::PRFM, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::prefetch_op(static_cast<PrefetchOp>(enc.prfm_ploadlit.Rt)));
@@ -46262,7 +49474,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
     // Switch for mask 0xBFFFFC00u (18 patterns, 18 encodings)
     switch (insn & 0xBFFFFC00u) {
         case 0x0D008400u: { // ST1_asisdlso_D1_1d
-                        Instruction result(Mnemonic::ST1, insn, 1203);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::ST1, insn, EncodingId::ST1_asisdlso_D1_1d);
+            #else
+                        Instruction result(Mnemonic::ST1, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -46280,7 +49496,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x0D00A400u: { // ST3_asisdlso_D3_3d
-                        Instruction result(Mnemonic::ST3, insn, 1236);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::ST3, insn, EncodingId::ST3_asisdlso_D3_3d);
+            #else
+                        Instruction result(Mnemonic::ST3, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -46298,7 +49518,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x0D018400u: { // STL1_asisdlso_D1
-                        Instruction result(Mnemonic::STL1, insn, 1338);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::STL1, insn, EncodingId::STL1_asisdlso_D1);
+            #else
+                        Instruction result(Mnemonic::STL1, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -46315,7 +49539,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x0D208400u: { // ST2_asisdlso_D2_2d
-                        Instruction result(Mnemonic::ST2, insn, 1218);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::ST2, insn, EncodingId::ST2_asisdlso_D2_2d);
+            #else
+                        Instruction result(Mnemonic::ST2, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -46333,7 +49561,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x0D20A400u: { // ST4_asisdlso_D4_4d
-                        Instruction result(Mnemonic::ST4, insn, 1251);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::ST4, insn, EncodingId::ST4_asisdlso_D4_4d);
+            #else
+                        Instruction result(Mnemonic::ST4, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -46351,7 +49583,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x0D408400u: { // LD1_asisdlso_D1_1d
-                        Instruction result(Mnemonic::LD1, insn, 611);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LD1, insn, EncodingId::LD1_asisdlso_D1_1d);
+            #else
+                        Instruction result(Mnemonic::LD1, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -46369,7 +49605,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x0D40A400u: { // LD3_asisdlso_D3_3d
-                        Instruction result(Mnemonic::LD3, insn, 647);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LD3, insn, EncodingId::LD3_asisdlso_D3_3d);
+            #else
+                        Instruction result(Mnemonic::LD3, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -46387,7 +49627,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x0D418400u: { // LDAP1_asisdlso_D1
-                        Instruction result(Mnemonic::LDAP1, insn, 694);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDAP1, insn, EncodingId::LDAP1_asisdlso_D1);
+            #else
+                        Instruction result(Mnemonic::LDAP1, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -46404,7 +49648,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x0D608400u: { // LD2_asisdlso_D2_2d
-                        Instruction result(Mnemonic::LD2, insn, 629);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LD2, insn, EncodingId::LD2_asisdlso_D2_2d);
+            #else
+                        Instruction result(Mnemonic::LD2, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -46422,7 +49670,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x0D60A400u: { // LD4_asisdlso_D4_4d
-                        Instruction result(Mnemonic::LD4, insn, 665);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LD4, insn, EncodingId::LD4_asisdlso_D4_4d);
+            #else
+                        Instruction result(Mnemonic::LD4, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -46440,7 +49692,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x0D9F8400u: { // ST1_asisdlsop_D1_i1d
-                        Instruction result(Mnemonic::ST1, insn, 1210);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::ST1, insn, EncodingId::ST1_asisdlsop_D1_i1d);
+            #else
+                        Instruction result(Mnemonic::ST1, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -46458,7 +49714,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x0D9FA400u: { // ST3_asisdlsop_D3_i3d
-                        Instruction result(Mnemonic::ST3, insn, 1243);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::ST3, insn, EncodingId::ST3_asisdlsop_D3_i3d);
+            #else
+                        Instruction result(Mnemonic::ST3, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -46476,7 +49736,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x0DBF8400u: { // ST2_asisdlsop_D2_i2d
-                        Instruction result(Mnemonic::ST2, insn, 1225);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::ST2, insn, EncodingId::ST2_asisdlsop_D2_i2d);
+            #else
+                        Instruction result(Mnemonic::ST2, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -46494,7 +49758,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x0DBFA400u: { // ST4_asisdlsop_D4_i4d
-                        Instruction result(Mnemonic::ST4, insn, 1258);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::ST4, insn, EncodingId::ST4_asisdlsop_D4_i4d);
+            #else
+                        Instruction result(Mnemonic::ST4, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -46512,7 +49780,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x0DDF8400u: { // LD1_asisdlsop_D1_i1d
-                        Instruction result(Mnemonic::LD1, insn, 614);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LD1, insn, EncodingId::LD1_asisdlsop_D1_i1d);
+            #else
+                        Instruction result(Mnemonic::LD1, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -46530,7 +49802,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x0DDFA400u: { // LD3_asisdlsop_D3_i3d
-                        Instruction result(Mnemonic::LD3, insn, 654);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LD3, insn, EncodingId::LD3_asisdlsop_D3_i3d);
+            #else
+                        Instruction result(Mnemonic::LD3, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -46548,7 +49824,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x0DFF8400u: { // LD2_asisdlsop_D2_i2d
-                        Instruction result(Mnemonic::LD2, insn, 636);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LD2, insn, EncodingId::LD2_asisdlsop_D2_i2d);
+            #else
+                        Instruction result(Mnemonic::LD2, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -46566,7 +49846,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x0DFFA400u: { // LD4_asisdlsop_D4_i4d
-                        Instruction result(Mnemonic::LD4, insn, 672);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LD4, insn, EncodingId::LD4_asisdlsop_D4_i4d);
+            #else
+                        Instruction result(Mnemonic::LD4, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -46589,7 +49873,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
     // Switch for mask 0xBFFFF000u (36 patterns, 36 encodings)
     switch (insn & 0xBFFFF000u) {
         case 0x0C000000u: { // ST4_asisdlse_R4
-                        Instruction result(Mnemonic::ST4, insn, 1245);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::ST4, insn, EncodingId::ST4_asisdlse_R4);
+            #else
+                        Instruction result(Mnemonic::ST4, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -46607,7 +49895,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x0C002000u: { // ST1_asisdlse_R4_4v
-                        Instruction result(Mnemonic::ST1, insn, 1191);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::ST1, insn, EncodingId::ST1_asisdlse_R4_4v);
+            #else
+                        Instruction result(Mnemonic::ST1, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -46625,7 +49917,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x0C004000u: { // ST3_asisdlse_R3
-                        Instruction result(Mnemonic::ST3, insn, 1230);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::ST3, insn, EncodingId::ST3_asisdlse_R3);
+            #else
+                        Instruction result(Mnemonic::ST3, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -46643,7 +49939,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x0C006000u: { // ST1_asisdlse_R3_3v
-                        Instruction result(Mnemonic::ST1, insn, 1190);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::ST1, insn, EncodingId::ST1_asisdlse_R3_3v);
+            #else
+                        Instruction result(Mnemonic::ST1, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -46661,7 +49961,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x0C007000u: { // ST1_asisdlse_R1_1v
-                        Instruction result(Mnemonic::ST1, insn, 1188);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::ST1, insn, EncodingId::ST1_asisdlse_R1_1v);
+            #else
+                        Instruction result(Mnemonic::ST1, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -46679,7 +49983,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x0C008000u: { // ST2_asisdlse_R2
-                        Instruction result(Mnemonic::ST2, insn, 1212);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::ST2, insn, EncodingId::ST2_asisdlse_R2);
+            #else
+                        Instruction result(Mnemonic::ST2, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -46697,7 +50005,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x0C00A000u: { // ST1_asisdlse_R2_2v
-                        Instruction result(Mnemonic::ST1, insn, 1189);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::ST1, insn, EncodingId::ST1_asisdlse_R2_2v);
+            #else
+                        Instruction result(Mnemonic::ST1, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -46715,7 +50027,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x0C400000u: { // LD4_asisdlse_R4
-                        Instruction result(Mnemonic::LD4, insn, 659);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LD4, insn, EncodingId::LD4_asisdlse_R4);
+            #else
+                        Instruction result(Mnemonic::LD4, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -46733,7 +50049,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x0C402000u: { // LD1_asisdlse_R4_4v
-                        Instruction result(Mnemonic::LD1, insn, 599);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LD1, insn, EncodingId::LD1_asisdlse_R4_4v);
+            #else
+                        Instruction result(Mnemonic::LD1, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -46751,7 +50071,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x0C404000u: { // LD3_asisdlse_R3
-                        Instruction result(Mnemonic::LD3, insn, 641);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LD3, insn, EncodingId::LD3_asisdlse_R3);
+            #else
+                        Instruction result(Mnemonic::LD3, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -46769,7 +50093,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x0C406000u: { // LD1_asisdlse_R3_3v
-                        Instruction result(Mnemonic::LD1, insn, 598);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LD1, insn, EncodingId::LD1_asisdlse_R3_3v);
+            #else
+                        Instruction result(Mnemonic::LD1, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -46787,7 +50115,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x0C407000u: { // LD1_asisdlse_R1_1v
-                        Instruction result(Mnemonic::LD1, insn, 596);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LD1, insn, EncodingId::LD1_asisdlse_R1_1v);
+            #else
+                        Instruction result(Mnemonic::LD1, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -46805,7 +50137,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x0C408000u: { // LD2_asisdlse_R2
-                        Instruction result(Mnemonic::LD2, insn, 623);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LD2, insn, EncodingId::LD2_asisdlse_R2);
+            #else
+                        Instruction result(Mnemonic::LD2, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -46823,7 +50159,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x0C40A000u: { // LD1_asisdlse_R2_2v
-                        Instruction result(Mnemonic::LD1, insn, 597);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LD1, insn, EncodingId::LD1_asisdlse_R2_2v);
+            #else
+                        Instruction result(Mnemonic::LD1, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -46841,7 +50181,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x0C9F0000u: { // ST4_asisdlsep_I4_i
-                        Instruction result(Mnemonic::ST4, insn, 1246);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::ST4, insn, EncodingId::ST4_asisdlsep_I4_i);
+            #else
+                        Instruction result(Mnemonic::ST4, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -46860,7 +50204,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x0C9F2000u: { // ST1_asisdlsep_I4_i4
-                        Instruction result(Mnemonic::ST1, insn, 1198);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::ST1, insn, EncodingId::ST1_asisdlsep_I4_i4);
+            #else
+                        Instruction result(Mnemonic::ST1, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -46879,7 +50227,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x0C9F4000u: { // ST3_asisdlsep_I3_i
-                        Instruction result(Mnemonic::ST3, insn, 1231);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::ST3, insn, EncodingId::ST3_asisdlsep_I3_i);
+            #else
+                        Instruction result(Mnemonic::ST3, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -46898,7 +50250,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x0C9F6000u: { // ST1_asisdlsep_I3_i3
-                        Instruction result(Mnemonic::ST1, insn, 1196);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::ST1, insn, EncodingId::ST1_asisdlsep_I3_i3);
+            #else
+                        Instruction result(Mnemonic::ST1, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -46917,7 +50273,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x0C9F7000u: { // ST1_asisdlsep_I1_i1
-                        Instruction result(Mnemonic::ST1, insn, 1192);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::ST1, insn, EncodingId::ST1_asisdlsep_I1_i1);
+            #else
+                        Instruction result(Mnemonic::ST1, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -46936,7 +50296,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x0C9F8000u: { // ST2_asisdlsep_I2_i
-                        Instruction result(Mnemonic::ST2, insn, 1213);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::ST2, insn, EncodingId::ST2_asisdlsep_I2_i);
+            #else
+                        Instruction result(Mnemonic::ST2, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -46955,7 +50319,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x0C9FA000u: { // ST1_asisdlsep_I2_i2
-                        Instruction result(Mnemonic::ST1, insn, 1194);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::ST1, insn, EncodingId::ST1_asisdlsep_I2_i2);
+            #else
+                        Instruction result(Mnemonic::ST1, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -46974,7 +50342,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x0CDF0000u: { // LD4_asisdlsep_I4_i
-                        Instruction result(Mnemonic::LD4, insn, 660);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LD4, insn, EncodingId::LD4_asisdlsep_I4_i);
+            #else
+                        Instruction result(Mnemonic::LD4, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -46993,7 +50365,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x0CDF2000u: { // LD1_asisdlsep_I4_i4
-                        Instruction result(Mnemonic::LD1, insn, 606);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LD1, insn, EncodingId::LD1_asisdlsep_I4_i4);
+            #else
+                        Instruction result(Mnemonic::LD1, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -47012,7 +50388,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x0CDF4000u: { // LD3_asisdlsep_I3_i
-                        Instruction result(Mnemonic::LD3, insn, 642);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LD3, insn, EncodingId::LD3_asisdlsep_I3_i);
+            #else
+                        Instruction result(Mnemonic::LD3, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -47031,7 +50411,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x0CDF6000u: { // LD1_asisdlsep_I3_i3
-                        Instruction result(Mnemonic::LD1, insn, 604);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LD1, insn, EncodingId::LD1_asisdlsep_I3_i3);
+            #else
+                        Instruction result(Mnemonic::LD1, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -47050,7 +50434,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x0CDF7000u: { // LD1_asisdlsep_I1_i1
-                        Instruction result(Mnemonic::LD1, insn, 600);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LD1, insn, EncodingId::LD1_asisdlsep_I1_i1);
+            #else
+                        Instruction result(Mnemonic::LD1, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -47069,7 +50457,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x0CDF8000u: { // LD2_asisdlsep_I2_i
-                        Instruction result(Mnemonic::LD2, insn, 624);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LD2, insn, EncodingId::LD2_asisdlsep_I2_i);
+            #else
+                        Instruction result(Mnemonic::LD2, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -47088,7 +50480,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x0CDFA000u: { // LD1_asisdlsep_I2_i2
-                        Instruction result(Mnemonic::LD1, insn, 602);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LD1, insn, EncodingId::LD1_asisdlsep_I2_i2);
+            #else
+                        Instruction result(Mnemonic::LD1, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -47107,7 +50503,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x0D40C000u: { // LD1R_asisdlso_R1
-                        Instruction result(Mnemonic::LD1R, insn, 620);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LD1R, insn, EncodingId::LD1R_asisdlso_R1);
+            #else
+                        Instruction result(Mnemonic::LD1R, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -47126,7 +50526,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x0D40E000u: { // LD3R_asisdlso_R3
-                        Instruction result(Mnemonic::LD3R, insn, 656);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LD3R, insn, EncodingId::LD3R_asisdlso_R3);
+            #else
+                        Instruction result(Mnemonic::LD3R, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -47145,7 +50549,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x0D60C000u: { // LD2R_asisdlso_R2
-                        Instruction result(Mnemonic::LD2R, insn, 638);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LD2R, insn, EncodingId::LD2R_asisdlso_R2);
+            #else
+                        Instruction result(Mnemonic::LD2R, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -47164,7 +50572,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x0D60E000u: { // LD4R_asisdlso_R4
-                        Instruction result(Mnemonic::LD4R, insn, 674);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LD4R, insn, EncodingId::LD4R_asisdlso_R4);
+            #else
+                        Instruction result(Mnemonic::LD4R, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -47183,7 +50595,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x0DDFC000u: { // LD1R_asisdlsop_R1_i
-                        Instruction result(Mnemonic::LD1R, insn, 621);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LD1R, insn, EncodingId::LD1R_asisdlsop_R1_i);
+            #else
+                        Instruction result(Mnemonic::LD1R, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -47206,7 +50622,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x0DDFE000u: { // LD3R_asisdlsop_R3_i
-                        Instruction result(Mnemonic::LD3R, insn, 657);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LD3R, insn, EncodingId::LD3R_asisdlsop_R3_i);
+            #else
+                        Instruction result(Mnemonic::LD3R, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -47229,7 +50649,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x0DFFC000u: { // LD2R_asisdlsop_R2_i
-                        Instruction result(Mnemonic::LD2R, insn, 639);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LD2R, insn, EncodingId::LD2R_asisdlsop_R2_i);
+            #else
+                        Instruction result(Mnemonic::LD2R, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -47252,7 +50676,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x0DFFE000u: { // LD4R_asisdlsop_R4_i
-                        Instruction result(Mnemonic::LD4R, insn, 675);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LD4R, insn, EncodingId::LD4R_asisdlsop_R4_i);
+            #else
+                        Instruction result(Mnemonic::LD4R, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -47280,7 +50708,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
     // Switch for mask 0xBFFFEC00u (16 patterns, 16 encodings)
     switch (insn & 0xBFFFEC00u) {
         case 0x0D008000u: { // ST1_asisdlso_S1_1s
-                        Instruction result(Mnemonic::ST1, insn, 1202);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::ST1, insn, EncodingId::ST1_asisdlso_S1_1s);
+            #else
+                        Instruction result(Mnemonic::ST1, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -47298,7 +50730,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x0D00A000u: { // ST3_asisdlso_S3_3s
-                        Instruction result(Mnemonic::ST3, insn, 1235);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::ST3, insn, EncodingId::ST3_asisdlso_S3_3s);
+            #else
+                        Instruction result(Mnemonic::ST3, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -47316,7 +50752,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x0D208000u: { // ST2_asisdlso_S2_2s
-                        Instruction result(Mnemonic::ST2, insn, 1217);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::ST2, insn, EncodingId::ST2_asisdlso_S2_2s);
+            #else
+                        Instruction result(Mnemonic::ST2, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -47334,7 +50774,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x0D20A000u: { // ST4_asisdlso_S4_4s
-                        Instruction result(Mnemonic::ST4, insn, 1250);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::ST4, insn, EncodingId::ST4_asisdlso_S4_4s);
+            #else
+                        Instruction result(Mnemonic::ST4, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -47352,7 +50796,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x0D408000u: { // LD1_asisdlso_S1_1s
-                        Instruction result(Mnemonic::LD1, insn, 610);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LD1, insn, EncodingId::LD1_asisdlso_S1_1s);
+            #else
+                        Instruction result(Mnemonic::LD1, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -47370,7 +50818,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x0D40A000u: { // LD3_asisdlso_S3_3s
-                        Instruction result(Mnemonic::LD3, insn, 646);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LD3, insn, EncodingId::LD3_asisdlso_S3_3s);
+            #else
+                        Instruction result(Mnemonic::LD3, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -47388,7 +50840,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x0D608000u: { // LD2_asisdlso_S2_2s
-                        Instruction result(Mnemonic::LD2, insn, 628);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LD2, insn, EncodingId::LD2_asisdlso_S2_2s);
+            #else
+                        Instruction result(Mnemonic::LD2, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -47406,7 +50862,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x0D60A000u: { // LD4_asisdlso_S4_4s
-                        Instruction result(Mnemonic::LD4, insn, 664);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LD4, insn, EncodingId::LD4_asisdlso_S4_4s);
+            #else
+                        Instruction result(Mnemonic::LD4, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -47424,7 +50884,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x0D9F8000u: { // ST1_asisdlsop_S1_i1s
-                        Instruction result(Mnemonic::ST1, insn, 1208);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::ST1, insn, EncodingId::ST1_asisdlsop_S1_i1s);
+            #else
+                        Instruction result(Mnemonic::ST1, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -47442,7 +50906,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x0D9FA000u: { // ST3_asisdlsop_S3_i3s
-                        Instruction result(Mnemonic::ST3, insn, 1241);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::ST3, insn, EncodingId::ST3_asisdlsop_S3_i3s);
+            #else
+                        Instruction result(Mnemonic::ST3, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -47460,7 +50928,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x0DBF8000u: { // ST2_asisdlsop_S2_i2s
-                        Instruction result(Mnemonic::ST2, insn, 1223);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::ST2, insn, EncodingId::ST2_asisdlsop_S2_i2s);
+            #else
+                        Instruction result(Mnemonic::ST2, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -47478,7 +50950,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x0DBFA000u: { // ST4_asisdlsop_S4_i4s
-                        Instruction result(Mnemonic::ST4, insn, 1256);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::ST4, insn, EncodingId::ST4_asisdlsop_S4_i4s);
+            #else
+                        Instruction result(Mnemonic::ST4, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -47496,7 +50972,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x0DDF8000u: { // LD1_asisdlsop_S1_i1s
-                        Instruction result(Mnemonic::LD1, insn, 618);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LD1, insn, EncodingId::LD1_asisdlsop_S1_i1s);
+            #else
+                        Instruction result(Mnemonic::LD1, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -47514,7 +50994,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x0DDFA000u: { // LD3_asisdlsop_S3_i3s
-                        Instruction result(Mnemonic::LD3, insn, 652);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LD3, insn, EncodingId::LD3_asisdlsop_S3_i3s);
+            #else
+                        Instruction result(Mnemonic::LD3, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -47532,7 +51016,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x0DFF8000u: { // LD2_asisdlsop_S2_i2s
-                        Instruction result(Mnemonic::LD2, insn, 634);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LD2, insn, EncodingId::LD2_asisdlsop_S2_i2s);
+            #else
+                        Instruction result(Mnemonic::LD2, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -47550,7 +51038,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x0DFFA000u: { // LD4_asisdlsop_S4_i4s
-                        Instruction result(Mnemonic::LD4, insn, 670);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LD4, insn, EncodingId::LD4_asisdlsop_S4_i4s);
+            #else
+                        Instruction result(Mnemonic::LD4, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -47573,7 +51065,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
     // Switch for mask 0xBFFFE400u (16 patterns, 16 encodings)
     switch (insn & 0xBFFFE400u) {
         case 0x0D004000u: { // ST1_asisdlso_H1_1h
-                        Instruction result(Mnemonic::ST1, insn, 1201);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::ST1, insn, EncodingId::ST1_asisdlso_H1_1h);
+            #else
+                        Instruction result(Mnemonic::ST1, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -47591,7 +51087,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x0D006000u: { // ST3_asisdlso_H3_3h
-                        Instruction result(Mnemonic::ST3, insn, 1234);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::ST3, insn, EncodingId::ST3_asisdlso_H3_3h);
+            #else
+                        Instruction result(Mnemonic::ST3, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -47609,7 +51109,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x0D204000u: { // ST2_asisdlso_H2_2h
-                        Instruction result(Mnemonic::ST2, insn, 1216);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::ST2, insn, EncodingId::ST2_asisdlso_H2_2h);
+            #else
+                        Instruction result(Mnemonic::ST2, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -47627,7 +51131,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x0D206000u: { // ST4_asisdlso_H4_4h
-                        Instruction result(Mnemonic::ST4, insn, 1249);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::ST4, insn, EncodingId::ST4_asisdlso_H4_4h);
+            #else
+                        Instruction result(Mnemonic::ST4, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -47645,7 +51153,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x0D404000u: { // LD1_asisdlso_H1_1h
-                        Instruction result(Mnemonic::LD1, insn, 609);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LD1, insn, EncodingId::LD1_asisdlso_H1_1h);
+            #else
+                        Instruction result(Mnemonic::LD1, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -47663,7 +51175,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x0D406000u: { // LD3_asisdlso_H3_3h
-                        Instruction result(Mnemonic::LD3, insn, 645);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LD3, insn, EncodingId::LD3_asisdlso_H3_3h);
+            #else
+                        Instruction result(Mnemonic::LD3, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -47681,7 +51197,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x0D604000u: { // LD2_asisdlso_H2_2h
-                        Instruction result(Mnemonic::LD2, insn, 627);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LD2, insn, EncodingId::LD2_asisdlso_H2_2h);
+            #else
+                        Instruction result(Mnemonic::LD2, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -47699,7 +51219,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x0D606000u: { // LD4_asisdlso_H4_4h
-                        Instruction result(Mnemonic::LD4, insn, 663);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LD4, insn, EncodingId::LD4_asisdlso_H4_4h);
+            #else
+                        Instruction result(Mnemonic::LD4, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -47717,7 +51241,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x0D9F4000u: { // ST1_asisdlsop_H1_i1h
-                        Instruction result(Mnemonic::ST1, insn, 1206);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::ST1, insn, EncodingId::ST1_asisdlsop_H1_i1h);
+            #else
+                        Instruction result(Mnemonic::ST1, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -47735,7 +51263,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x0D9F6000u: { // ST3_asisdlsop_H3_i3h
-                        Instruction result(Mnemonic::ST3, insn, 1239);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::ST3, insn, EncodingId::ST3_asisdlsop_H3_i3h);
+            #else
+                        Instruction result(Mnemonic::ST3, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -47753,7 +51285,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x0DBF4000u: { // ST2_asisdlsop_H2_i2h
-                        Instruction result(Mnemonic::ST2, insn, 1221);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::ST2, insn, EncodingId::ST2_asisdlsop_H2_i2h);
+            #else
+                        Instruction result(Mnemonic::ST2, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -47771,7 +51307,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x0DBF6000u: { // ST4_asisdlsop_H4_i4h
-                        Instruction result(Mnemonic::ST4, insn, 1254);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::ST4, insn, EncodingId::ST4_asisdlsop_H4_i4h);
+            #else
+                        Instruction result(Mnemonic::ST4, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -47789,7 +51329,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x0DDF4000u: { // LD1_asisdlsop_H1_i1h
-                        Instruction result(Mnemonic::LD1, insn, 616);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LD1, insn, EncodingId::LD1_asisdlsop_H1_i1h);
+            #else
+                        Instruction result(Mnemonic::LD1, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -47807,7 +51351,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x0DDF6000u: { // LD3_asisdlsop_H3_i3h
-                        Instruction result(Mnemonic::LD3, insn, 650);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LD3, insn, EncodingId::LD3_asisdlsop_H3_i3h);
+            #else
+                        Instruction result(Mnemonic::LD3, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -47825,7 +51373,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x0DFF4000u: { // LD2_asisdlsop_H2_i2h
-                        Instruction result(Mnemonic::LD2, insn, 632);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LD2, insn, EncodingId::LD2_asisdlsop_H2_i2h);
+            #else
+                        Instruction result(Mnemonic::LD2, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -47843,7 +51395,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x0DFF6000u: { // LD4_asisdlsop_H4_i4h
-                        Instruction result(Mnemonic::LD4, insn, 668);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LD4, insn, EncodingId::LD4_asisdlsop_H4_i4h);
+            #else
+                        Instruction result(Mnemonic::LD4, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -47866,7 +51422,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
     // Switch for mask 0xBFFFE000u (16 patterns, 16 encodings)
     switch (insn & 0xBFFFE000u) {
         case 0x0D000000u: { // ST1_asisdlso_B1_1b
-                        Instruction result(Mnemonic::ST1, insn, 1200);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::ST1, insn, EncodingId::ST1_asisdlso_B1_1b);
+            #else
+                        Instruction result(Mnemonic::ST1, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -47884,7 +51444,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x0D002000u: { // ST3_asisdlso_B3_3b
-                        Instruction result(Mnemonic::ST3, insn, 1233);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::ST3, insn, EncodingId::ST3_asisdlso_B3_3b);
+            #else
+                        Instruction result(Mnemonic::ST3, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -47902,7 +51466,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x0D200000u: { // ST2_asisdlso_B2_2b
-                        Instruction result(Mnemonic::ST2, insn, 1215);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::ST2, insn, EncodingId::ST2_asisdlso_B2_2b);
+            #else
+                        Instruction result(Mnemonic::ST2, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -47920,7 +51488,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x0D202000u: { // ST4_asisdlso_B4_4b
-                        Instruction result(Mnemonic::ST4, insn, 1248);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::ST4, insn, EncodingId::ST4_asisdlso_B4_4b);
+            #else
+                        Instruction result(Mnemonic::ST4, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -47938,7 +51510,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x0D400000u: { // LD1_asisdlso_B1_1b
-                        Instruction result(Mnemonic::LD1, insn, 608);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LD1, insn, EncodingId::LD1_asisdlso_B1_1b);
+            #else
+                        Instruction result(Mnemonic::LD1, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -47956,7 +51532,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x0D402000u: { // LD3_asisdlso_B3_3b
-                        Instruction result(Mnemonic::LD3, insn, 644);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LD3, insn, EncodingId::LD3_asisdlso_B3_3b);
+            #else
+                        Instruction result(Mnemonic::LD3, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -47974,7 +51554,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x0D600000u: { // LD2_asisdlso_B2_2b
-                        Instruction result(Mnemonic::LD2, insn, 626);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LD2, insn, EncodingId::LD2_asisdlso_B2_2b);
+            #else
+                        Instruction result(Mnemonic::LD2, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -47992,7 +51576,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x0D602000u: { // LD4_asisdlso_B4_4b
-                        Instruction result(Mnemonic::LD4, insn, 662);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LD4, insn, EncodingId::LD4_asisdlso_B4_4b);
+            #else
+                        Instruction result(Mnemonic::LD4, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -48010,7 +51598,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x0D9F0000u: { // ST1_asisdlsop_B1_i1b
-                        Instruction result(Mnemonic::ST1, insn, 1204);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::ST1, insn, EncodingId::ST1_asisdlsop_B1_i1b);
+            #else
+                        Instruction result(Mnemonic::ST1, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -48028,7 +51620,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x0D9F2000u: { // ST3_asisdlsop_B3_i3b
-                        Instruction result(Mnemonic::ST3, insn, 1237);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::ST3, insn, EncodingId::ST3_asisdlsop_B3_i3b);
+            #else
+                        Instruction result(Mnemonic::ST3, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -48046,7 +51642,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x0DBF0000u: { // ST2_asisdlsop_B2_i2b
-                        Instruction result(Mnemonic::ST2, insn, 1219);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::ST2, insn, EncodingId::ST2_asisdlsop_B2_i2b);
+            #else
+                        Instruction result(Mnemonic::ST2, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -48064,7 +51664,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x0DBF2000u: { // ST4_asisdlsop_B4_i4b
-                        Instruction result(Mnemonic::ST4, insn, 1252);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::ST4, insn, EncodingId::ST4_asisdlsop_B4_i4b);
+            #else
+                        Instruction result(Mnemonic::ST4, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -48082,7 +51686,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x0DDF0000u: { // LD1_asisdlsop_B1_i1b
-                        Instruction result(Mnemonic::LD1, insn, 612);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LD1, insn, EncodingId::LD1_asisdlsop_B1_i1b);
+            #else
+                        Instruction result(Mnemonic::LD1, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -48100,7 +51708,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x0DDF2000u: { // LD3_asisdlsop_B3_i3b
-                        Instruction result(Mnemonic::LD3, insn, 648);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LD3, insn, EncodingId::LD3_asisdlsop_B3_i3b);
+            #else
+                        Instruction result(Mnemonic::LD3, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -48118,7 +51730,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x0DFF0000u: { // LD2_asisdlsop_B2_i2b
-                        Instruction result(Mnemonic::LD2, insn, 630);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LD2, insn, EncodingId::LD2_asisdlsop_B2_i2b);
+            #else
+                        Instruction result(Mnemonic::LD2, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -48136,7 +51752,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x0DFF2000u: { // LD4_asisdlsop_B4_i4b
-                        Instruction result(Mnemonic::LD4, insn, 666);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LD4, insn, EncodingId::LD4_asisdlsop_B4_i4b);
+            #else
+                        Instruction result(Mnemonic::LD4, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -48159,7 +51779,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
     // Switch for mask 0xBFE0FC00u (8 patterns, 8 encodings)
     switch (insn & 0xBFE0FC00u) {
         case 0x0D808400u: { // ST1_asisdlsop_DX1_r1d
-                        Instruction result(Mnemonic::ST1, insn, 1211);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::ST1, insn, EncodingId::ST1_asisdlsop_DX1_r1d);
+            #else
+                        Instruction result(Mnemonic::ST1, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -48178,7 +51802,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x0D80A400u: { // ST3_asisdlsop_DX3_r3d
-                        Instruction result(Mnemonic::ST3, insn, 1244);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::ST3, insn, EncodingId::ST3_asisdlsop_DX3_r3d);
+            #else
+                        Instruction result(Mnemonic::ST3, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -48197,7 +51825,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x0DA08400u: { // ST2_asisdlsop_DX2_r2d
-                        Instruction result(Mnemonic::ST2, insn, 1226);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::ST2, insn, EncodingId::ST2_asisdlsop_DX2_r2d);
+            #else
+                        Instruction result(Mnemonic::ST2, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -48216,7 +51848,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x0DA0A400u: { // ST4_asisdlsop_DX4_r4d
-                        Instruction result(Mnemonic::ST4, insn, 1259);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::ST4, insn, EncodingId::ST4_asisdlsop_DX4_r4d);
+            #else
+                        Instruction result(Mnemonic::ST4, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -48235,7 +51871,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x0DC08400u: { // LD1_asisdlsop_DX1_r1d
-                        Instruction result(Mnemonic::LD1, insn, 615);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LD1, insn, EncodingId::LD1_asisdlsop_DX1_r1d);
+            #else
+                        Instruction result(Mnemonic::LD1, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -48254,7 +51894,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x0DC0A400u: { // LD3_asisdlsop_DX3_r3d
-                        Instruction result(Mnemonic::LD3, insn, 655);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LD3, insn, EncodingId::LD3_asisdlsop_DX3_r3d);
+            #else
+                        Instruction result(Mnemonic::LD3, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -48273,7 +51917,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x0DE08400u: { // LD2_asisdlsop_DX2_r2d
-                        Instruction result(Mnemonic::LD2, insn, 637);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LD2, insn, EncodingId::LD2_asisdlsop_DX2_r2d);
+            #else
+                        Instruction result(Mnemonic::LD2, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -48292,7 +51940,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x0DE0A400u: { // LD4_asisdlsop_DX4_r4d
-                        Instruction result(Mnemonic::LD4, insn, 673);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LD4, insn, EncodingId::LD4_asisdlsop_DX4_r4d);
+            #else
+                        Instruction result(Mnemonic::LD4, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -48316,7 +51968,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
     // Switch for mask 0xBFE0F000u (18 patterns, 18 encodings)
     switch (insn & 0xBFE0F000u) {
         case 0x0C800000u: { // ST4_asisdlsep_R4_r
-                        Instruction result(Mnemonic::ST4, insn, 1247);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::ST4, insn, EncodingId::ST4_asisdlsep_R4_r);
+            #else
+                        Instruction result(Mnemonic::ST4, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -48335,7 +51991,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x0C802000u: { // ST1_asisdlsep_R4_r4
-                        Instruction result(Mnemonic::ST1, insn, 1199);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::ST1, insn, EncodingId::ST1_asisdlsep_R4_r4);
+            #else
+                        Instruction result(Mnemonic::ST1, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -48354,7 +52014,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x0C804000u: { // ST3_asisdlsep_R3_r
-                        Instruction result(Mnemonic::ST3, insn, 1232);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::ST3, insn, EncodingId::ST3_asisdlsep_R3_r);
+            #else
+                        Instruction result(Mnemonic::ST3, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -48373,7 +52037,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x0C806000u: { // ST1_asisdlsep_R3_r3
-                        Instruction result(Mnemonic::ST1, insn, 1197);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::ST1, insn, EncodingId::ST1_asisdlsep_R3_r3);
+            #else
+                        Instruction result(Mnemonic::ST1, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -48392,7 +52060,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x0C807000u: { // ST1_asisdlsep_R1_r1
-                        Instruction result(Mnemonic::ST1, insn, 1193);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::ST1, insn, EncodingId::ST1_asisdlsep_R1_r1);
+            #else
+                        Instruction result(Mnemonic::ST1, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -48411,7 +52083,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x0C808000u: { // ST2_asisdlsep_R2_r
-                        Instruction result(Mnemonic::ST2, insn, 1214);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::ST2, insn, EncodingId::ST2_asisdlsep_R2_r);
+            #else
+                        Instruction result(Mnemonic::ST2, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -48430,7 +52106,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x0C80A000u: { // ST1_asisdlsep_R2_r2
-                        Instruction result(Mnemonic::ST1, insn, 1195);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::ST1, insn, EncodingId::ST1_asisdlsep_R2_r2);
+            #else
+                        Instruction result(Mnemonic::ST1, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -48449,7 +52129,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x0CC00000u: { // LD4_asisdlsep_R4_r
-                        Instruction result(Mnemonic::LD4, insn, 661);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LD4, insn, EncodingId::LD4_asisdlsep_R4_r);
+            #else
+                        Instruction result(Mnemonic::LD4, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -48468,7 +52152,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x0CC02000u: { // LD1_asisdlsep_R4_r4
-                        Instruction result(Mnemonic::LD1, insn, 607);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LD1, insn, EncodingId::LD1_asisdlsep_R4_r4);
+            #else
+                        Instruction result(Mnemonic::LD1, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -48487,7 +52175,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x0CC04000u: { // LD3_asisdlsep_R3_r
-                        Instruction result(Mnemonic::LD3, insn, 643);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LD3, insn, EncodingId::LD3_asisdlsep_R3_r);
+            #else
+                        Instruction result(Mnemonic::LD3, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -48506,7 +52198,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x0CC06000u: { // LD1_asisdlsep_R3_r3
-                        Instruction result(Mnemonic::LD1, insn, 605);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LD1, insn, EncodingId::LD1_asisdlsep_R3_r3);
+            #else
+                        Instruction result(Mnemonic::LD1, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -48525,7 +52221,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x0CC07000u: { // LD1_asisdlsep_R1_r1
-                        Instruction result(Mnemonic::LD1, insn, 601);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LD1, insn, EncodingId::LD1_asisdlsep_R1_r1);
+            #else
+                        Instruction result(Mnemonic::LD1, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -48544,7 +52244,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x0CC08000u: { // LD2_asisdlsep_R2_r
-                        Instruction result(Mnemonic::LD2, insn, 625);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LD2, insn, EncodingId::LD2_asisdlsep_R2_r);
+            #else
+                        Instruction result(Mnemonic::LD2, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -48563,7 +52267,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x0CC0A000u: { // LD1_asisdlsep_R2_r2
-                        Instruction result(Mnemonic::LD1, insn, 603);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LD1, insn, EncodingId::LD1_asisdlsep_R2_r2);
+            #else
+                        Instruction result(Mnemonic::LD1, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -48582,7 +52290,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x0DC0C000u: { // LD1R_asisdlsop_RX1_r
-                        Instruction result(Mnemonic::LD1R, insn, 622);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LD1R, insn, EncodingId::LD1R_asisdlsop_RX1_r);
+            #else
+                        Instruction result(Mnemonic::LD1R, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -48602,7 +52314,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x0DC0E000u: { // LD3R_asisdlsop_RX3_r
-                        Instruction result(Mnemonic::LD3R, insn, 658);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LD3R, insn, EncodingId::LD3R_asisdlsop_RX3_r);
+            #else
+                        Instruction result(Mnemonic::LD3R, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -48622,7 +52338,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x0DE0C000u: { // LD2R_asisdlsop_RX2_r
-                        Instruction result(Mnemonic::LD2R, insn, 640);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LD2R, insn, EncodingId::LD2R_asisdlsop_RX2_r);
+            #else
+                        Instruction result(Mnemonic::LD2R, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -48642,7 +52362,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x0DE0E000u: { // LD4R_asisdlsop_RX4_r
-                        Instruction result(Mnemonic::LD4R, insn, 676);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LD4R, insn, EncodingId::LD4R_asisdlsop_RX4_r);
+            #else
+                        Instruction result(Mnemonic::LD4R, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -48667,7 +52391,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
     // Switch for mask 0xBFE0EC00u (8 patterns, 8 encodings)
     switch (insn & 0xBFE0EC00u) {
         case 0x0D808000u: { // ST1_asisdlsop_SX1_r1s
-                        Instruction result(Mnemonic::ST1, insn, 1209);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::ST1, insn, EncodingId::ST1_asisdlsop_SX1_r1s);
+            #else
+                        Instruction result(Mnemonic::ST1, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -48686,7 +52414,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x0D80A000u: { // ST3_asisdlsop_SX3_r3s
-                        Instruction result(Mnemonic::ST3, insn, 1242);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::ST3, insn, EncodingId::ST3_asisdlsop_SX3_r3s);
+            #else
+                        Instruction result(Mnemonic::ST3, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -48705,7 +52437,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x0DA08000u: { // ST2_asisdlsop_SX2_r2s
-                        Instruction result(Mnemonic::ST2, insn, 1224);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::ST2, insn, EncodingId::ST2_asisdlsop_SX2_r2s);
+            #else
+                        Instruction result(Mnemonic::ST2, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -48724,7 +52460,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x0DA0A000u: { // ST4_asisdlsop_SX4_r4s
-                        Instruction result(Mnemonic::ST4, insn, 1257);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::ST4, insn, EncodingId::ST4_asisdlsop_SX4_r4s);
+            #else
+                        Instruction result(Mnemonic::ST4, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -48743,7 +52483,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x0DC08000u: { // LD1_asisdlsop_SX1_r1s
-                        Instruction result(Mnemonic::LD1, insn, 619);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LD1, insn, EncodingId::LD1_asisdlsop_SX1_r1s);
+            #else
+                        Instruction result(Mnemonic::LD1, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -48762,7 +52506,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x0DC0A000u: { // LD3_asisdlsop_SX3_r3s
-                        Instruction result(Mnemonic::LD3, insn, 653);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LD3, insn, EncodingId::LD3_asisdlsop_SX3_r3s);
+            #else
+                        Instruction result(Mnemonic::LD3, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -48781,7 +52529,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x0DE08000u: { // LD2_asisdlsop_SX2_r2s
-                        Instruction result(Mnemonic::LD2, insn, 635);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LD2, insn, EncodingId::LD2_asisdlsop_SX2_r2s);
+            #else
+                        Instruction result(Mnemonic::LD2, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -48800,7 +52552,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x0DE0A000u: { // LD4_asisdlsop_SX4_r4s
-                        Instruction result(Mnemonic::LD4, insn, 671);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LD4, insn, EncodingId::LD4_asisdlsop_SX4_r4s);
+            #else
+                        Instruction result(Mnemonic::LD4, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -48824,7 +52580,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
     // Switch for mask 0xBFE0E400u (8 patterns, 8 encodings)
     switch (insn & 0xBFE0E400u) {
         case 0x0D804000u: { // ST1_asisdlsop_HX1_r1h
-                        Instruction result(Mnemonic::ST1, insn, 1207);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::ST1, insn, EncodingId::ST1_asisdlsop_HX1_r1h);
+            #else
+                        Instruction result(Mnemonic::ST1, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -48843,7 +52603,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x0D806000u: { // ST3_asisdlsop_HX3_r3h
-                        Instruction result(Mnemonic::ST3, insn, 1240);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::ST3, insn, EncodingId::ST3_asisdlsop_HX3_r3h);
+            #else
+                        Instruction result(Mnemonic::ST3, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -48862,7 +52626,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x0DA04000u: { // ST2_asisdlsop_HX2_r2h
-                        Instruction result(Mnemonic::ST2, insn, 1222);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::ST2, insn, EncodingId::ST2_asisdlsop_HX2_r2h);
+            #else
+                        Instruction result(Mnemonic::ST2, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -48881,7 +52649,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x0DA06000u: { // ST4_asisdlsop_HX4_r4h
-                        Instruction result(Mnemonic::ST4, insn, 1255);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::ST4, insn, EncodingId::ST4_asisdlsop_HX4_r4h);
+            #else
+                        Instruction result(Mnemonic::ST4, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -48900,7 +52672,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x0DC04000u: { // LD1_asisdlsop_HX1_r1h
-                        Instruction result(Mnemonic::LD1, insn, 617);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LD1, insn, EncodingId::LD1_asisdlsop_HX1_r1h);
+            #else
+                        Instruction result(Mnemonic::LD1, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -48919,7 +52695,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x0DC06000u: { // LD3_asisdlsop_HX3_r3h
-                        Instruction result(Mnemonic::LD3, insn, 651);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LD3, insn, EncodingId::LD3_asisdlsop_HX3_r3h);
+            #else
+                        Instruction result(Mnemonic::LD3, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -48938,7 +52718,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x0DE04000u: { // LD2_asisdlsop_HX2_r2h
-                        Instruction result(Mnemonic::LD2, insn, 633);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LD2, insn, EncodingId::LD2_asisdlsop_HX2_r2h);
+            #else
+                        Instruction result(Mnemonic::LD2, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -48957,7 +52741,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x0DE06000u: { // LD4_asisdlsop_HX4_r4h
-                        Instruction result(Mnemonic::LD4, insn, 669);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LD4, insn, EncodingId::LD4_asisdlsop_HX4_r4h);
+            #else
+                        Instruction result(Mnemonic::LD4, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -48981,7 +52769,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
     // Switch for mask 0xBFE0E000u (8 patterns, 8 encodings)
     switch (insn & 0xBFE0E000u) {
         case 0x0D800000u: { // ST1_asisdlsop_BX1_r1b
-                        Instruction result(Mnemonic::ST1, insn, 1205);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::ST1, insn, EncodingId::ST1_asisdlsop_BX1_r1b);
+            #else
+                        Instruction result(Mnemonic::ST1, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -49000,7 +52792,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x0D802000u: { // ST3_asisdlsop_BX3_r3b
-                        Instruction result(Mnemonic::ST3, insn, 1238);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::ST3, insn, EncodingId::ST3_asisdlsop_BX3_r3b);
+            #else
+                        Instruction result(Mnemonic::ST3, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -49019,7 +52815,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x0DA00000u: { // ST2_asisdlsop_BX2_r2b
-                        Instruction result(Mnemonic::ST2, insn, 1220);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::ST2, insn, EncodingId::ST2_asisdlsop_BX2_r2b);
+            #else
+                        Instruction result(Mnemonic::ST2, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -49038,7 +52838,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x0DA02000u: { // ST4_asisdlsop_BX4_r4b
-                        Instruction result(Mnemonic::ST4, insn, 1253);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::ST4, insn, EncodingId::ST4_asisdlsop_BX4_r4b);
+            #else
+                        Instruction result(Mnemonic::ST4, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -49057,7 +52861,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x0DC00000u: { // LD1_asisdlsop_BX1_r1b
-                        Instruction result(Mnemonic::LD1, insn, 613);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LD1, insn, EncodingId::LD1_asisdlsop_BX1_r1b);
+            #else
+                        Instruction result(Mnemonic::LD1, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -49076,7 +52884,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x0DC02000u: { // LD3_asisdlsop_BX3_r3b
-                        Instruction result(Mnemonic::LD3, insn, 649);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LD3, insn, EncodingId::LD3_asisdlsop_BX3_r3b);
+            #else
+                        Instruction result(Mnemonic::LD3, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -49095,7 +52907,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x0DE00000u: { // LD2_asisdlsop_BX2_r2b
-                        Instruction result(Mnemonic::LD2, insn, 631);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LD2, insn, EncodingId::LD2_asisdlsop_BX2_r2b);
+            #else
+                        Instruction result(Mnemonic::LD2, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -49114,7 +52930,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x0DE02000u: { // LD4_asisdlsop_BX4_r4b
-                        Instruction result(Mnemonic::LD4, insn, 667);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LD4, insn, EncodingId::LD4_asisdlsop_BX4_r4b);
+            #else
+                        Instruction result(Mnemonic::LD4, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -49138,7 +52958,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
     // Switch for mask 0x3FE0FC00u (120 patterns, 120 encodings)
     switch (insn & 0x3FE0FC00u) {
         case 0x19000400u: { // CPYFP_CPY_memcms
-                        Instruction result(Mnemonic::CPYFP, insn, 498);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::CPYFP, insn, EncodingId::CPYFP_CPY_memcms);
+            #else
+                        Instruction result(Mnemonic::CPYFP, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -49148,7 +52972,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x19001400u: { // CPYFPWT_CPY_memcms
-                        Instruction result(Mnemonic::CPYFPWT, insn, 534);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::CPYFPWT, insn, EncodingId::CPYFPWT_CPY_memcms);
+            #else
+                        Instruction result(Mnemonic::CPYFPWT, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -49158,7 +52986,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x19002400u: { // CPYFPRT_CPY_memcms
-                        Instruction result(Mnemonic::CPYFPRT, insn, 507);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::CPYFPRT, insn, EncodingId::CPYFPRT_CPY_memcms);
+            #else
+                        Instruction result(Mnemonic::CPYFPRT, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -49168,7 +53000,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x19003400u: { // CPYFPT_CPY_memcms
-                        Instruction result(Mnemonic::CPYFPT, insn, 519);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::CPYFPT, insn, EncodingId::CPYFPT_CPY_memcms);
+            #else
+                        Instruction result(Mnemonic::CPYFPT, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -49178,7 +53014,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x19004400u: { // CPYFPWN_CPY_memcms
-                        Instruction result(Mnemonic::CPYFPWN, insn, 531);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::CPYFPWN, insn, EncodingId::CPYFPWN_CPY_memcms);
+            #else
+                        Instruction result(Mnemonic::CPYFPWN, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -49188,7 +53028,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x19005400u: { // CPYFPWTWN_CPY_memcms
-                        Instruction result(Mnemonic::CPYFPWTWN, insn, 543);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::CPYFPWTWN, insn, EncodingId::CPYFPWTWN_CPY_memcms);
+            #else
+                        Instruction result(Mnemonic::CPYFPWTWN, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -49198,7 +53042,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x19006400u: { // CPYFPRTWN_CPY_memcms
-                        Instruction result(Mnemonic::CPYFPRTWN, insn, 516);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::CPYFPRTWN, insn, EncodingId::CPYFPRTWN_CPY_memcms);
+            #else
+                        Instruction result(Mnemonic::CPYFPRTWN, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -49208,7 +53056,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x19007400u: { // CPYFPTWN_CPY_memcms
-                        Instruction result(Mnemonic::CPYFPTWN, insn, 528);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::CPYFPTWN, insn, EncodingId::CPYFPTWN_CPY_memcms);
+            #else
+                        Instruction result(Mnemonic::CPYFPTWN, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -49218,7 +53070,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x19008400u: { // CPYFPRN_CPY_memcms
-                        Instruction result(Mnemonic::CPYFPRN, insn, 504);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::CPYFPRN, insn, EncodingId::CPYFPRN_CPY_memcms);
+            #else
+                        Instruction result(Mnemonic::CPYFPRN, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -49228,7 +53084,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x19009400u: { // CPYFPWTRN_CPY_memcms
-                        Instruction result(Mnemonic::CPYFPWTRN, insn, 540);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::CPYFPWTRN, insn, EncodingId::CPYFPWTRN_CPY_memcms);
+            #else
+                        Instruction result(Mnemonic::CPYFPWTRN, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -49238,7 +53098,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x1900A400u: { // CPYFPRTRN_CPY_memcms
-                        Instruction result(Mnemonic::CPYFPRTRN, insn, 513);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::CPYFPRTRN, insn, EncodingId::CPYFPRTRN_CPY_memcms);
+            #else
+                        Instruction result(Mnemonic::CPYFPRTRN, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -49248,7 +53112,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x1900B400u: { // CPYFPTRN_CPY_memcms
-                        Instruction result(Mnemonic::CPYFPTRN, insn, 525);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::CPYFPTRN, insn, EncodingId::CPYFPTRN_CPY_memcms);
+            #else
+                        Instruction result(Mnemonic::CPYFPTRN, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -49258,7 +53126,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x1900C400u: { // CPYFPN_CPY_memcms
-                        Instruction result(Mnemonic::CPYFPN, insn, 501);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::CPYFPN, insn, EncodingId::CPYFPN_CPY_memcms);
+            #else
+                        Instruction result(Mnemonic::CPYFPN, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -49268,7 +53140,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x1900D400u: { // CPYFPWTN_CPY_memcms
-                        Instruction result(Mnemonic::CPYFPWTN, insn, 537);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::CPYFPWTN, insn, EncodingId::CPYFPWTN_CPY_memcms);
+            #else
+                        Instruction result(Mnemonic::CPYFPWTN, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -49278,7 +53154,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x1900E400u: { // CPYFPRTN_CPY_memcms
-                        Instruction result(Mnemonic::CPYFPRTN, insn, 510);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::CPYFPRTN, insn, EncodingId::CPYFPRTN_CPY_memcms);
+            #else
+                        Instruction result(Mnemonic::CPYFPRTN, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -49288,7 +53168,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x1900F400u: { // CPYFPTN_CPY_memcms
-                        Instruction result(Mnemonic::CPYFPTN, insn, 522);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::CPYFPTN, insn, EncodingId::CPYFPTN_CPY_memcms);
+            #else
+                        Instruction result(Mnemonic::CPYFPTN, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -49298,7 +53182,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x19400400u: { // CPYFM_CPY_memcms
-                        Instruction result(Mnemonic::CPYFM, insn, 499);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::CPYFM, insn, EncodingId::CPYFM_CPY_memcms);
+            #else
+                        Instruction result(Mnemonic::CPYFM, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -49308,7 +53196,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x19401400u: { // CPYFMWT_CPY_memcms
-                        Instruction result(Mnemonic::CPYFMWT, insn, 535);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::CPYFMWT, insn, EncodingId::CPYFMWT_CPY_memcms);
+            #else
+                        Instruction result(Mnemonic::CPYFMWT, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -49318,7 +53210,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x19402400u: { // CPYFMRT_CPY_memcms
-                        Instruction result(Mnemonic::CPYFMRT, insn, 508);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::CPYFMRT, insn, EncodingId::CPYFMRT_CPY_memcms);
+            #else
+                        Instruction result(Mnemonic::CPYFMRT, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -49328,7 +53224,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x19403400u: { // CPYFMT_CPY_memcms
-                        Instruction result(Mnemonic::CPYFMT, insn, 520);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::CPYFMT, insn, EncodingId::CPYFMT_CPY_memcms);
+            #else
+                        Instruction result(Mnemonic::CPYFMT, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -49338,7 +53238,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x19404400u: { // CPYFMWN_CPY_memcms
-                        Instruction result(Mnemonic::CPYFMWN, insn, 532);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::CPYFMWN, insn, EncodingId::CPYFMWN_CPY_memcms);
+            #else
+                        Instruction result(Mnemonic::CPYFMWN, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -49348,7 +53252,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x19405400u: { // CPYFMWTWN_CPY_memcms
-                        Instruction result(Mnemonic::CPYFMWTWN, insn, 544);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::CPYFMWTWN, insn, EncodingId::CPYFMWTWN_CPY_memcms);
+            #else
+                        Instruction result(Mnemonic::CPYFMWTWN, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -49358,7 +53266,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x19406400u: { // CPYFMRTWN_CPY_memcms
-                        Instruction result(Mnemonic::CPYFMRTWN, insn, 517);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::CPYFMRTWN, insn, EncodingId::CPYFMRTWN_CPY_memcms);
+            #else
+                        Instruction result(Mnemonic::CPYFMRTWN, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -49368,7 +53280,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x19407400u: { // CPYFMTWN_CPY_memcms
-                        Instruction result(Mnemonic::CPYFMTWN, insn, 529);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::CPYFMTWN, insn, EncodingId::CPYFMTWN_CPY_memcms);
+            #else
+                        Instruction result(Mnemonic::CPYFMTWN, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -49378,7 +53294,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x19408400u: { // CPYFMRN_CPY_memcms
-                        Instruction result(Mnemonic::CPYFMRN, insn, 505);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::CPYFMRN, insn, EncodingId::CPYFMRN_CPY_memcms);
+            #else
+                        Instruction result(Mnemonic::CPYFMRN, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -49388,7 +53308,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x19409400u: { // CPYFMWTRN_CPY_memcms
-                        Instruction result(Mnemonic::CPYFMWTRN, insn, 541);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::CPYFMWTRN, insn, EncodingId::CPYFMWTRN_CPY_memcms);
+            #else
+                        Instruction result(Mnemonic::CPYFMWTRN, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -49398,7 +53322,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x1940A400u: { // CPYFMRTRN_CPY_memcms
-                        Instruction result(Mnemonic::CPYFMRTRN, insn, 514);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::CPYFMRTRN, insn, EncodingId::CPYFMRTRN_CPY_memcms);
+            #else
+                        Instruction result(Mnemonic::CPYFMRTRN, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -49408,7 +53336,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x1940B400u: { // CPYFMTRN_CPY_memcms
-                        Instruction result(Mnemonic::CPYFMTRN, insn, 526);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::CPYFMTRN, insn, EncodingId::CPYFMTRN_CPY_memcms);
+            #else
+                        Instruction result(Mnemonic::CPYFMTRN, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -49418,7 +53350,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x1940C400u: { // CPYFMN_CPY_memcms
-                        Instruction result(Mnemonic::CPYFMN, insn, 502);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::CPYFMN, insn, EncodingId::CPYFMN_CPY_memcms);
+            #else
+                        Instruction result(Mnemonic::CPYFMN, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -49428,7 +53364,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x1940D400u: { // CPYFMWTN_CPY_memcms
-                        Instruction result(Mnemonic::CPYFMWTN, insn, 538);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::CPYFMWTN, insn, EncodingId::CPYFMWTN_CPY_memcms);
+            #else
+                        Instruction result(Mnemonic::CPYFMWTN, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -49438,7 +53378,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x1940E400u: { // CPYFMRTN_CPY_memcms
-                        Instruction result(Mnemonic::CPYFMRTN, insn, 511);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::CPYFMRTN, insn, EncodingId::CPYFMRTN_CPY_memcms);
+            #else
+                        Instruction result(Mnemonic::CPYFMRTN, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -49448,7 +53392,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x1940F400u: { // CPYFMTN_CPY_memcms
-                        Instruction result(Mnemonic::CPYFMTN, insn, 523);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::CPYFMTN, insn, EncodingId::CPYFMTN_CPY_memcms);
+            #else
+                        Instruction result(Mnemonic::CPYFMTN, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -49458,7 +53406,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x19800400u: { // CPYFE_CPY_memcms
-                        Instruction result(Mnemonic::CPYFE, insn, 500);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::CPYFE, insn, EncodingId::CPYFE_CPY_memcms);
+            #else
+                        Instruction result(Mnemonic::CPYFE, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -49468,7 +53420,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x19801400u: { // CPYFEWT_CPY_memcms
-                        Instruction result(Mnemonic::CPYFEWT, insn, 536);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::CPYFEWT, insn, EncodingId::CPYFEWT_CPY_memcms);
+            #else
+                        Instruction result(Mnemonic::CPYFEWT, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -49478,7 +53434,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x19802400u: { // CPYFERT_CPY_memcms
-                        Instruction result(Mnemonic::CPYFERT, insn, 509);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::CPYFERT, insn, EncodingId::CPYFERT_CPY_memcms);
+            #else
+                        Instruction result(Mnemonic::CPYFERT, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -49488,7 +53448,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x19803400u: { // CPYFET_CPY_memcms
-                        Instruction result(Mnemonic::CPYFET, insn, 521);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::CPYFET, insn, EncodingId::CPYFET_CPY_memcms);
+            #else
+                        Instruction result(Mnemonic::CPYFET, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -49498,7 +53462,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x19804400u: { // CPYFEWN_CPY_memcms
-                        Instruction result(Mnemonic::CPYFEWN, insn, 533);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::CPYFEWN, insn, EncodingId::CPYFEWN_CPY_memcms);
+            #else
+                        Instruction result(Mnemonic::CPYFEWN, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -49508,7 +53476,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x19805400u: { // CPYFEWTWN_CPY_memcms
-                        Instruction result(Mnemonic::CPYFEWTWN, insn, 545);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::CPYFEWTWN, insn, EncodingId::CPYFEWTWN_CPY_memcms);
+            #else
+                        Instruction result(Mnemonic::CPYFEWTWN, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -49518,7 +53490,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x19806400u: { // CPYFERTWN_CPY_memcms
-                        Instruction result(Mnemonic::CPYFERTWN, insn, 518);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::CPYFERTWN, insn, EncodingId::CPYFERTWN_CPY_memcms);
+            #else
+                        Instruction result(Mnemonic::CPYFERTWN, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -49528,7 +53504,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x19807400u: { // CPYFETWN_CPY_memcms
-                        Instruction result(Mnemonic::CPYFETWN, insn, 530);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::CPYFETWN, insn, EncodingId::CPYFETWN_CPY_memcms);
+            #else
+                        Instruction result(Mnemonic::CPYFETWN, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -49538,7 +53518,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x19808400u: { // CPYFERN_CPY_memcms
-                        Instruction result(Mnemonic::CPYFERN, insn, 506);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::CPYFERN, insn, EncodingId::CPYFERN_CPY_memcms);
+            #else
+                        Instruction result(Mnemonic::CPYFERN, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -49548,7 +53532,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x19809400u: { // CPYFEWTRN_CPY_memcms
-                        Instruction result(Mnemonic::CPYFEWTRN, insn, 542);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::CPYFEWTRN, insn, EncodingId::CPYFEWTRN_CPY_memcms);
+            #else
+                        Instruction result(Mnemonic::CPYFEWTRN, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -49558,7 +53546,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x1980A400u: { // CPYFERTRN_CPY_memcms
-                        Instruction result(Mnemonic::CPYFERTRN, insn, 515);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::CPYFERTRN, insn, EncodingId::CPYFERTRN_CPY_memcms);
+            #else
+                        Instruction result(Mnemonic::CPYFERTRN, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -49568,7 +53560,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x1980B400u: { // CPYFETRN_CPY_memcms
-                        Instruction result(Mnemonic::CPYFETRN, insn, 527);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::CPYFETRN, insn, EncodingId::CPYFETRN_CPY_memcms);
+            #else
+                        Instruction result(Mnemonic::CPYFETRN, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -49578,7 +53574,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x1980C400u: { // CPYFEN_CPY_memcms
-                        Instruction result(Mnemonic::CPYFEN, insn, 503);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::CPYFEN, insn, EncodingId::CPYFEN_CPY_memcms);
+            #else
+                        Instruction result(Mnemonic::CPYFEN, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -49588,7 +53588,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x1980D400u: { // CPYFEWTN_CPY_memcms
-                        Instruction result(Mnemonic::CPYFEWTN, insn, 539);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::CPYFEWTN, insn, EncodingId::CPYFEWTN_CPY_memcms);
+            #else
+                        Instruction result(Mnemonic::CPYFEWTN, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -49598,7 +53602,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x1980E400u: { // CPYFERTN_CPY_memcms
-                        Instruction result(Mnemonic::CPYFERTN, insn, 512);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::CPYFERTN, insn, EncodingId::CPYFERTN_CPY_memcms);
+            #else
+                        Instruction result(Mnemonic::CPYFERTN, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -49608,7 +53616,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x1980F400u: { // CPYFETN_CPY_memcms
-                        Instruction result(Mnemonic::CPYFETN, insn, 524);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::CPYFETN, insn, EncodingId::CPYFETN_CPY_memcms);
+            #else
+                        Instruction result(Mnemonic::CPYFETN, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -49618,7 +53630,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x19C00400u: { // SETP_SET_memcms
-                        Instruction result(Mnemonic::SETP, insn, 1176);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SETP, insn, EncodingId::SETP_SET_memcms);
+            #else
+                        Instruction result(Mnemonic::SETP, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.setp_set_memcms.Rd, true, true)), (int32_t)0));
@@ -49627,7 +53643,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x19C01400u: { // SETPT_SET_memcms
-                        Instruction result(Mnemonic::SETPT, insn, 1182);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SETPT, insn, EncodingId::SETPT_SET_memcms);
+            #else
+                        Instruction result(Mnemonic::SETPT, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.setpt_set_memcms.Rd, true, true)), (int32_t)0));
@@ -49636,7 +53656,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x19C02400u: { // SETPN_SET_memcms
-                        Instruction result(Mnemonic::SETPN, insn, 1179);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SETPN, insn, EncodingId::SETPN_SET_memcms);
+            #else
+                        Instruction result(Mnemonic::SETPN, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.setpn_set_memcms.Rd, true, true)), (int32_t)0));
@@ -49645,7 +53669,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x19C03400u: { // SETPTN_SET_memcms
-                        Instruction result(Mnemonic::SETPTN, insn, 1185);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SETPTN, insn, EncodingId::SETPTN_SET_memcms);
+            #else
+                        Instruction result(Mnemonic::SETPTN, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.setptn_set_memcms.Rd, true, true)), (int32_t)0));
@@ -49654,7 +53682,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x19C04400u: { // SETM_SET_memcms
-                        Instruction result(Mnemonic::SETM, insn, 1177);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SETM, insn, EncodingId::SETM_SET_memcms);
+            #else
+                        Instruction result(Mnemonic::SETM, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.setm_set_memcms.Rd, true, true)), (int32_t)0));
@@ -49663,7 +53695,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x19C05400u: { // SETMT_SET_memcms
-                        Instruction result(Mnemonic::SETMT, insn, 1183);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SETMT, insn, EncodingId::SETMT_SET_memcms);
+            #else
+                        Instruction result(Mnemonic::SETMT, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.setmt_set_memcms.Rd, true, true)), (int32_t)0));
@@ -49672,7 +53708,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x19C06400u: { // SETMN_SET_memcms
-                        Instruction result(Mnemonic::SETMN, insn, 1180);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SETMN, insn, EncodingId::SETMN_SET_memcms);
+            #else
+                        Instruction result(Mnemonic::SETMN, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.setmn_set_memcms.Rd, true, true)), (int32_t)0));
@@ -49681,7 +53721,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x19C07400u: { // SETMTN_SET_memcms
-                        Instruction result(Mnemonic::SETMTN, insn, 1186);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SETMTN, insn, EncodingId::SETMTN_SET_memcms);
+            #else
+                        Instruction result(Mnemonic::SETMTN, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.setmtn_set_memcms.Rd, true, true)), (int32_t)0));
@@ -49690,7 +53734,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x19C08400u: { // SETE_SET_memcms
-                        Instruction result(Mnemonic::SETE, insn, 1178);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SETE, insn, EncodingId::SETE_SET_memcms);
+            #else
+                        Instruction result(Mnemonic::SETE, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.sete_set_memcms.Rd, true, true)), (int32_t)0));
@@ -49699,7 +53747,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x19C09400u: { // SETET_SET_memcms
-                        Instruction result(Mnemonic::SETET, insn, 1184);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SETET, insn, EncodingId::SETET_SET_memcms);
+            #else
+                        Instruction result(Mnemonic::SETET, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.setet_set_memcms.Rd, true, true)), (int32_t)0));
@@ -49708,7 +53760,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x19C0A400u: { // SETEN_SET_memcms
-                        Instruction result(Mnemonic::SETEN, insn, 1181);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SETEN, insn, EncodingId::SETEN_SET_memcms);
+            #else
+                        Instruction result(Mnemonic::SETEN, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.seten_set_memcms.Rd, true, true)), (int32_t)0));
@@ -49717,7 +53773,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x19C0B400u: { // SETETN_SET_memcms
-                        Instruction result(Mnemonic::SETETN, insn, 1187);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SETETN, insn, EncodingId::SETETN_SET_memcms);
+            #else
+                        Instruction result(Mnemonic::SETETN, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.setetn_set_memcms.Rd, true, true)), (int32_t)0));
@@ -49726,7 +53786,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x1D000400u: { // CPYP_CPY_memcms
-                        Instruction result(Mnemonic::CPYP, insn, 546);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::CPYP, insn, EncodingId::CPYP_CPY_memcms);
+            #else
+                        Instruction result(Mnemonic::CPYP, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -49736,7 +53800,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x1D001400u: { // CPYPWT_CPY_memcms
-                        Instruction result(Mnemonic::CPYPWT, insn, 582);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::CPYPWT, insn, EncodingId::CPYPWT_CPY_memcms);
+            #else
+                        Instruction result(Mnemonic::CPYPWT, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -49746,7 +53814,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x1D002400u: { // CPYPRT_CPY_memcms
-                        Instruction result(Mnemonic::CPYPRT, insn, 555);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::CPYPRT, insn, EncodingId::CPYPRT_CPY_memcms);
+            #else
+                        Instruction result(Mnemonic::CPYPRT, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -49756,7 +53828,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x1D003400u: { // CPYPT_CPY_memcms
-                        Instruction result(Mnemonic::CPYPT, insn, 567);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::CPYPT, insn, EncodingId::CPYPT_CPY_memcms);
+            #else
+                        Instruction result(Mnemonic::CPYPT, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -49766,7 +53842,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x1D004400u: { // CPYPWN_CPY_memcms
-                        Instruction result(Mnemonic::CPYPWN, insn, 579);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::CPYPWN, insn, EncodingId::CPYPWN_CPY_memcms);
+            #else
+                        Instruction result(Mnemonic::CPYPWN, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -49776,7 +53856,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x1D005400u: { // CPYPWTWN_CPY_memcms
-                        Instruction result(Mnemonic::CPYPWTWN, insn, 591);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::CPYPWTWN, insn, EncodingId::CPYPWTWN_CPY_memcms);
+            #else
+                        Instruction result(Mnemonic::CPYPWTWN, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -49786,7 +53870,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x1D006400u: { // CPYPRTWN_CPY_memcms
-                        Instruction result(Mnemonic::CPYPRTWN, insn, 564);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::CPYPRTWN, insn, EncodingId::CPYPRTWN_CPY_memcms);
+            #else
+                        Instruction result(Mnemonic::CPYPRTWN, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -49796,7 +53884,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x1D007400u: { // CPYPTWN_CPY_memcms
-                        Instruction result(Mnemonic::CPYPTWN, insn, 576);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::CPYPTWN, insn, EncodingId::CPYPTWN_CPY_memcms);
+            #else
+                        Instruction result(Mnemonic::CPYPTWN, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -49806,7 +53898,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x1D008400u: { // CPYPRN_CPY_memcms
-                        Instruction result(Mnemonic::CPYPRN, insn, 552);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::CPYPRN, insn, EncodingId::CPYPRN_CPY_memcms);
+            #else
+                        Instruction result(Mnemonic::CPYPRN, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -49816,7 +53912,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x1D009400u: { // CPYPWTRN_CPY_memcms
-                        Instruction result(Mnemonic::CPYPWTRN, insn, 588);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::CPYPWTRN, insn, EncodingId::CPYPWTRN_CPY_memcms);
+            #else
+                        Instruction result(Mnemonic::CPYPWTRN, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -49826,7 +53926,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x1D00A400u: { // CPYPRTRN_CPY_memcms
-                        Instruction result(Mnemonic::CPYPRTRN, insn, 561);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::CPYPRTRN, insn, EncodingId::CPYPRTRN_CPY_memcms);
+            #else
+                        Instruction result(Mnemonic::CPYPRTRN, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -49836,7 +53940,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x1D00B400u: { // CPYPTRN_CPY_memcms
-                        Instruction result(Mnemonic::CPYPTRN, insn, 573);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::CPYPTRN, insn, EncodingId::CPYPTRN_CPY_memcms);
+            #else
+                        Instruction result(Mnemonic::CPYPTRN, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -49846,7 +53954,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x1D00C400u: { // CPYPN_CPY_memcms
-                        Instruction result(Mnemonic::CPYPN, insn, 549);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::CPYPN, insn, EncodingId::CPYPN_CPY_memcms);
+            #else
+                        Instruction result(Mnemonic::CPYPN, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -49856,7 +53968,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x1D00D400u: { // CPYPWTN_CPY_memcms
-                        Instruction result(Mnemonic::CPYPWTN, insn, 585);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::CPYPWTN, insn, EncodingId::CPYPWTN_CPY_memcms);
+            #else
+                        Instruction result(Mnemonic::CPYPWTN, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -49866,7 +53982,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x1D00E400u: { // CPYPRTN_CPY_memcms
-                        Instruction result(Mnemonic::CPYPRTN, insn, 558);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::CPYPRTN, insn, EncodingId::CPYPRTN_CPY_memcms);
+            #else
+                        Instruction result(Mnemonic::CPYPRTN, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -49876,7 +53996,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x1D00F400u: { // CPYPTN_CPY_memcms
-                        Instruction result(Mnemonic::CPYPTN, insn, 570);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::CPYPTN, insn, EncodingId::CPYPTN_CPY_memcms);
+            #else
+                        Instruction result(Mnemonic::CPYPTN, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -49886,7 +54010,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x1D400400u: { // CPYM_CPY_memcms
-                        Instruction result(Mnemonic::CPYM, insn, 547);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::CPYM, insn, EncodingId::CPYM_CPY_memcms);
+            #else
+                        Instruction result(Mnemonic::CPYM, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -49896,7 +54024,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x1D401400u: { // CPYMWT_CPY_memcms
-                        Instruction result(Mnemonic::CPYMWT, insn, 583);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::CPYMWT, insn, EncodingId::CPYMWT_CPY_memcms);
+            #else
+                        Instruction result(Mnemonic::CPYMWT, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -49906,7 +54038,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x1D402400u: { // CPYMRT_CPY_memcms
-                        Instruction result(Mnemonic::CPYMRT, insn, 556);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::CPYMRT, insn, EncodingId::CPYMRT_CPY_memcms);
+            #else
+                        Instruction result(Mnemonic::CPYMRT, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -49916,7 +54052,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x1D403400u: { // CPYMT_CPY_memcms
-                        Instruction result(Mnemonic::CPYMT, insn, 568);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::CPYMT, insn, EncodingId::CPYMT_CPY_memcms);
+            #else
+                        Instruction result(Mnemonic::CPYMT, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -49926,7 +54066,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x1D404400u: { // CPYMWN_CPY_memcms
-                        Instruction result(Mnemonic::CPYMWN, insn, 580);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::CPYMWN, insn, EncodingId::CPYMWN_CPY_memcms);
+            #else
+                        Instruction result(Mnemonic::CPYMWN, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -49936,7 +54080,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x1D405400u: { // CPYMWTWN_CPY_memcms
-                        Instruction result(Mnemonic::CPYMWTWN, insn, 592);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::CPYMWTWN, insn, EncodingId::CPYMWTWN_CPY_memcms);
+            #else
+                        Instruction result(Mnemonic::CPYMWTWN, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -49946,7 +54094,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x1D406400u: { // CPYMRTWN_CPY_memcms
-                        Instruction result(Mnemonic::CPYMRTWN, insn, 565);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::CPYMRTWN, insn, EncodingId::CPYMRTWN_CPY_memcms);
+            #else
+                        Instruction result(Mnemonic::CPYMRTWN, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -49956,7 +54108,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x1D407400u: { // CPYMTWN_CPY_memcms
-                        Instruction result(Mnemonic::CPYMTWN, insn, 577);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::CPYMTWN, insn, EncodingId::CPYMTWN_CPY_memcms);
+            #else
+                        Instruction result(Mnemonic::CPYMTWN, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -49966,7 +54122,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x1D408400u: { // CPYMRN_CPY_memcms
-                        Instruction result(Mnemonic::CPYMRN, insn, 553);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::CPYMRN, insn, EncodingId::CPYMRN_CPY_memcms);
+            #else
+                        Instruction result(Mnemonic::CPYMRN, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -49976,7 +54136,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x1D409400u: { // CPYMWTRN_CPY_memcms
-                        Instruction result(Mnemonic::CPYMWTRN, insn, 589);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::CPYMWTRN, insn, EncodingId::CPYMWTRN_CPY_memcms);
+            #else
+                        Instruction result(Mnemonic::CPYMWTRN, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -49986,7 +54150,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x1D40A400u: { // CPYMRTRN_CPY_memcms
-                        Instruction result(Mnemonic::CPYMRTRN, insn, 562);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::CPYMRTRN, insn, EncodingId::CPYMRTRN_CPY_memcms);
+            #else
+                        Instruction result(Mnemonic::CPYMRTRN, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -49996,7 +54164,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x1D40B400u: { // CPYMTRN_CPY_memcms
-                        Instruction result(Mnemonic::CPYMTRN, insn, 574);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::CPYMTRN, insn, EncodingId::CPYMTRN_CPY_memcms);
+            #else
+                        Instruction result(Mnemonic::CPYMTRN, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -50006,7 +54178,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x1D40C400u: { // CPYMN_CPY_memcms
-                        Instruction result(Mnemonic::CPYMN, insn, 550);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::CPYMN, insn, EncodingId::CPYMN_CPY_memcms);
+            #else
+                        Instruction result(Mnemonic::CPYMN, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -50016,7 +54192,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x1D40D400u: { // CPYMWTN_CPY_memcms
-                        Instruction result(Mnemonic::CPYMWTN, insn, 586);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::CPYMWTN, insn, EncodingId::CPYMWTN_CPY_memcms);
+            #else
+                        Instruction result(Mnemonic::CPYMWTN, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -50026,7 +54206,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x1D40E400u: { // CPYMRTN_CPY_memcms
-                        Instruction result(Mnemonic::CPYMRTN, insn, 559);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::CPYMRTN, insn, EncodingId::CPYMRTN_CPY_memcms);
+            #else
+                        Instruction result(Mnemonic::CPYMRTN, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -50036,7 +54220,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x1D40F400u: { // CPYMTN_CPY_memcms
-                        Instruction result(Mnemonic::CPYMTN, insn, 571);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::CPYMTN, insn, EncodingId::CPYMTN_CPY_memcms);
+            #else
+                        Instruction result(Mnemonic::CPYMTN, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -50046,7 +54234,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x1D800400u: { // CPYE_CPY_memcms
-                        Instruction result(Mnemonic::CPYE, insn, 548);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::CPYE, insn, EncodingId::CPYE_CPY_memcms);
+            #else
+                        Instruction result(Mnemonic::CPYE, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -50056,7 +54248,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x1D801400u: { // CPYEWT_CPY_memcms
-                        Instruction result(Mnemonic::CPYEWT, insn, 584);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::CPYEWT, insn, EncodingId::CPYEWT_CPY_memcms);
+            #else
+                        Instruction result(Mnemonic::CPYEWT, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -50066,7 +54262,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x1D802400u: { // CPYERT_CPY_memcms
-                        Instruction result(Mnemonic::CPYERT, insn, 557);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::CPYERT, insn, EncodingId::CPYERT_CPY_memcms);
+            #else
+                        Instruction result(Mnemonic::CPYERT, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -50076,7 +54276,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x1D803400u: { // CPYET_CPY_memcms
-                        Instruction result(Mnemonic::CPYET, insn, 569);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::CPYET, insn, EncodingId::CPYET_CPY_memcms);
+            #else
+                        Instruction result(Mnemonic::CPYET, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -50086,7 +54290,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x1D804400u: { // CPYEWN_CPY_memcms
-                        Instruction result(Mnemonic::CPYEWN, insn, 581);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::CPYEWN, insn, EncodingId::CPYEWN_CPY_memcms);
+            #else
+                        Instruction result(Mnemonic::CPYEWN, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -50096,7 +54304,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x1D805400u: { // CPYEWTWN_CPY_memcms
-                        Instruction result(Mnemonic::CPYEWTWN, insn, 593);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::CPYEWTWN, insn, EncodingId::CPYEWTWN_CPY_memcms);
+            #else
+                        Instruction result(Mnemonic::CPYEWTWN, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -50106,7 +54318,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x1D806400u: { // CPYERTWN_CPY_memcms
-                        Instruction result(Mnemonic::CPYERTWN, insn, 566);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::CPYERTWN, insn, EncodingId::CPYERTWN_CPY_memcms);
+            #else
+                        Instruction result(Mnemonic::CPYERTWN, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -50116,7 +54332,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x1D807400u: { // CPYETWN_CPY_memcms
-                        Instruction result(Mnemonic::CPYETWN, insn, 578);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::CPYETWN, insn, EncodingId::CPYETWN_CPY_memcms);
+            #else
+                        Instruction result(Mnemonic::CPYETWN, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -50126,7 +54346,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x1D808400u: { // CPYERN_CPY_memcms
-                        Instruction result(Mnemonic::CPYERN, insn, 554);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::CPYERN, insn, EncodingId::CPYERN_CPY_memcms);
+            #else
+                        Instruction result(Mnemonic::CPYERN, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -50136,7 +54360,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x1D809400u: { // CPYEWTRN_CPY_memcms
-                        Instruction result(Mnemonic::CPYEWTRN, insn, 590);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::CPYEWTRN, insn, EncodingId::CPYEWTRN_CPY_memcms);
+            #else
+                        Instruction result(Mnemonic::CPYEWTRN, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -50146,7 +54374,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x1D80A400u: { // CPYERTRN_CPY_memcms
-                        Instruction result(Mnemonic::CPYERTRN, insn, 563);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::CPYERTRN, insn, EncodingId::CPYERTRN_CPY_memcms);
+            #else
+                        Instruction result(Mnemonic::CPYERTRN, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -50156,7 +54388,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x1D80B400u: { // CPYETRN_CPY_memcms
-                        Instruction result(Mnemonic::CPYETRN, insn, 575);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::CPYETRN, insn, EncodingId::CPYETRN_CPY_memcms);
+            #else
+                        Instruction result(Mnemonic::CPYETRN, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -50166,7 +54402,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x1D80C400u: { // CPYEN_CPY_memcms
-                        Instruction result(Mnemonic::CPYEN, insn, 551);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::CPYEN, insn, EncodingId::CPYEN_CPY_memcms);
+            #else
+                        Instruction result(Mnemonic::CPYEN, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -50176,7 +54416,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x1D80D400u: { // CPYEWTN_CPY_memcms
-                        Instruction result(Mnemonic::CPYEWTN, insn, 587);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::CPYEWTN, insn, EncodingId::CPYEWTN_CPY_memcms);
+            #else
+                        Instruction result(Mnemonic::CPYEWTN, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -50186,7 +54430,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x1D80E400u: { // CPYERTN_CPY_memcms
-                        Instruction result(Mnemonic::CPYERTN, insn, 560);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::CPYERTN, insn, EncodingId::CPYERTN_CPY_memcms);
+            #else
+                        Instruction result(Mnemonic::CPYERTN, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -50196,7 +54444,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x1D80F400u: { // CPYETN_CPY_memcms
-                        Instruction result(Mnemonic::CPYETN, insn, 572);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::CPYETN, insn, EncodingId::CPYETN_CPY_memcms);
+            #else
+                        Instruction result(Mnemonic::CPYETN, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -50206,7 +54458,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x1DC00400u: { // SETGP_SET_memcms
-                        Instruction result(Mnemonic::SETGP, insn, 1164);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SETGP, insn, EncodingId::SETGP_SET_memcms);
+            #else
+                        Instruction result(Mnemonic::SETGP, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.setgp_set_memcms.Rd, true, true)), (int32_t)0));
@@ -50215,7 +54471,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x1DC01400u: { // SETGPT_SET_memcms
-                        Instruction result(Mnemonic::SETGPT, insn, 1170);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SETGPT, insn, EncodingId::SETGPT_SET_memcms);
+            #else
+                        Instruction result(Mnemonic::SETGPT, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.setgpt_set_memcms.Rd, true, true)), (int32_t)0));
@@ -50224,7 +54484,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x1DC02400u: { // SETGPN_SET_memcms
-                        Instruction result(Mnemonic::SETGPN, insn, 1167);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SETGPN, insn, EncodingId::SETGPN_SET_memcms);
+            #else
+                        Instruction result(Mnemonic::SETGPN, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.setgpn_set_memcms.Rd, true, true)), (int32_t)0));
@@ -50233,7 +54497,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x1DC03400u: { // SETGPTN_SET_memcms
-                        Instruction result(Mnemonic::SETGPTN, insn, 1173);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SETGPTN, insn, EncodingId::SETGPTN_SET_memcms);
+            #else
+                        Instruction result(Mnemonic::SETGPTN, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.setgptn_set_memcms.Rd, true, true)), (int32_t)0));
@@ -50242,7 +54510,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x1DC04400u: { // SETGM_SET_memcms
-                        Instruction result(Mnemonic::SETGM, insn, 1165);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SETGM, insn, EncodingId::SETGM_SET_memcms);
+            #else
+                        Instruction result(Mnemonic::SETGM, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.setgm_set_memcms.Rd, true, true)), (int32_t)0));
@@ -50251,7 +54523,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x1DC05400u: { // SETGMT_SET_memcms
-                        Instruction result(Mnemonic::SETGMT, insn, 1171);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SETGMT, insn, EncodingId::SETGMT_SET_memcms);
+            #else
+                        Instruction result(Mnemonic::SETGMT, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.setgmt_set_memcms.Rd, true, true)), (int32_t)0));
@@ -50260,7 +54536,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x1DC06400u: { // SETGMN_SET_memcms
-                        Instruction result(Mnemonic::SETGMN, insn, 1168);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SETGMN, insn, EncodingId::SETGMN_SET_memcms);
+            #else
+                        Instruction result(Mnemonic::SETGMN, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.setgmn_set_memcms.Rd, true, true)), (int32_t)0));
@@ -50269,7 +54549,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x1DC07400u: { // SETGMTN_SET_memcms
-                        Instruction result(Mnemonic::SETGMTN, insn, 1174);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SETGMTN, insn, EncodingId::SETGMTN_SET_memcms);
+            #else
+                        Instruction result(Mnemonic::SETGMTN, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.setgmtn_set_memcms.Rd, true, true)), (int32_t)0));
@@ -50278,7 +54562,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x1DC08400u: { // SETGE_SET_memcms
-                        Instruction result(Mnemonic::SETGE, insn, 1166);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SETGE, insn, EncodingId::SETGE_SET_memcms);
+            #else
+                        Instruction result(Mnemonic::SETGE, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.setge_set_memcms.Rd, true, true)), (int32_t)0));
@@ -50287,7 +54575,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x1DC09400u: { // SETGET_SET_memcms
-                        Instruction result(Mnemonic::SETGET, insn, 1172);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SETGET, insn, EncodingId::SETGET_SET_memcms);
+            #else
+                        Instruction result(Mnemonic::SETGET, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.setget_set_memcms.Rd, true, true)), (int32_t)0));
@@ -50296,7 +54588,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x1DC0A400u: { // SETGEN_SET_memcms
-                        Instruction result(Mnemonic::SETGEN, insn, 1169);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SETGEN, insn, EncodingId::SETGEN_SET_memcms);
+            #else
+                        Instruction result(Mnemonic::SETGEN, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.setgen_set_memcms.Rd, true, true)), (int32_t)0));
@@ -50305,7 +54601,11 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         return result;
         }
         case 0x1DC0B400u: { // SETGETN_SET_memcms
-                        Instruction result(Mnemonic::SETGETN, insn, 1175);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SETGETN, insn, EncodingId::SETGETN_SET_memcms);
+            #else
+                        Instruction result(Mnemonic::SETGETN, insn);
+            #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.setgetn_set_memcms.Rd, true, true)), (int32_t)0));

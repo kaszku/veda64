@@ -37184,7 +37184,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
     // Switch for mask 0xFFFFFFFFu (1 pattern, 1 encoding)
     switch (insn & 0xFFFFFFFFu) {
         case 0xC0480001u: { // zero_zt_i_
-                        Instruction result(Mnemonic::ZERO, insn, 3257);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::ZERO, insn, EncodingId::zero_zt_i_);
+            #else
+                        Instruction result(Mnemonic::ZERO, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::zt0());
@@ -37196,7 +37200,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
     // Switch for mask 0xFFFFFF00u (1 pattern, 1 encoding)
     switch (insn & 0xFFFFFF00u) {
         case 0xC0080000u: { // zero_za_i_
-                        Instruction result(Mnemonic::ZERO, insn, 3256);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::ZERO, insn, EncodingId::zero_za_i_);
+            #else
+                        Instruction result(Mnemonic::ZERO, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::imm(enc.zero_za_i.imm8));
@@ -37208,7 +37216,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
     // Switch for mask 0xFFFFFC6Cu (1 pattern, 1 encoding)
     switch (insn & 0xFFFFFC6Cu) {
         case 0xC09A0000u: { // luti6_mz4_ztmz3_4
-                        Instruction result(Mnemonic::LUTI6, insn, 2786);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LUTI6, insn, EncodingId::luti6_mz4_ztmz3_4);
+            #else
+                        Instruction result(Mnemonic::LUTI6, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         { auto op = Operand::reg_list(static_cast<uint32_t>(make_sve_reg(enc.luti6mz4ztmz34.Zd))); op.set_arrangement(Arrangement::B); op.rl.count = 4; op.rl.stride = 4; result.operands.push_back(op); }
@@ -37222,7 +37234,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
     // Switch for mask 0xFFFFFC63u (11 patterns, 11 encodings)
     switch (insn & 0xFFFFFC63u) {
         case 0xC08A0000u: { // luti6_mz4_ztmz3_1
-                        Instruction result(Mnemonic::LUTI6, insn, 2785);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LUTI6, insn, EncodingId::luti6_mz4_ztmz3_1);
+            #else
+                        Instruction result(Mnemonic::LUTI6, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         { auto op = Operand::reg_list(static_cast<uint32_t>(make_sve_reg(enc.luti6mz4ztmz31.Zd * 4))); op.set_arrangement(Arrangement::B); op.rl.count = 4; result.operands.push_back(op); }
@@ -37231,7 +37247,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC131E000u: { // fcvtzs_mz_z_4
-                        Instruction result(Mnemonic::FCVTZS, insn, 2524);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FCVTZS, insn, EncodingId::fcvtzs_mz_z_4);
+            #else
+                        Instruction result(Mnemonic::FCVTZS, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         { auto op = Operand::reg_list(static_cast<uint32_t>(make_sve_reg(enc.fcvtzs_mz_z4.Zd * 4))); op.set_arrangement(Arrangement::S); op.rl.count = 4; result.operands.push_back(op); }
@@ -37239,7 +37259,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC131E020u: { // fcvtzu_mz_z_4
-                        Instruction result(Mnemonic::FCVTZU, insn, 2526);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FCVTZU, insn, EncodingId::fcvtzu_mz_z_4);
+            #else
+                        Instruction result(Mnemonic::FCVTZU, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         { auto op = Operand::reg_list(static_cast<uint32_t>(make_sve_reg(enc.fcvtzu_mz_z4.Zd * 4))); op.set_arrangement(Arrangement::S); op.rl.count = 4; result.operands.push_back(op); }
@@ -37247,7 +37271,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC132E000u: { // scvtf_mz_z_4
-                        Instruction result(Mnemonic::SCVTF, insn, 2869);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SCVTF, insn, EncodingId::scvtf_mz_z_4);
+            #else
+                        Instruction result(Mnemonic::SCVTF, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         { auto op = Operand::reg_list(static_cast<uint32_t>(make_sve_reg(enc.scvtf_mz_z4.Zd * 4))); op.set_arrangement(Arrangement::S); op.rl.count = 4; result.operands.push_back(op); }
@@ -37255,7 +37283,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC132E020u: { // ucvtf_mz_z_4
-                        Instruction result(Mnemonic::UCVTF, insn, 3100);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::UCVTF, insn, EncodingId::ucvtf_mz_z_4);
+            #else
+                        Instruction result(Mnemonic::UCVTF, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         { auto op = Operand::reg_list(static_cast<uint32_t>(make_sve_reg(enc.ucvtf_mz_z4.Zd * 4))); op.set_arrangement(Arrangement::S); op.rl.count = 4; result.operands.push_back(op); }
@@ -37263,7 +37295,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC137E000u: { // zip_mz_z_4q
-                        Instruction result(Mnemonic::ZIP, insn, 3259);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::ZIP, insn, EncodingId::zip_mz_z_4q);
+            #else
+                        Instruction result(Mnemonic::ZIP, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         { auto op = Operand::reg_list(static_cast<uint32_t>(make_sve_reg(enc.zip_mz_z4q.Zd * 4))); op.set_arrangement(Arrangement::Q); op.rl.count = 4; result.operands.push_back(op); }
@@ -37271,7 +37307,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC137E002u: { // uzp_mz_z_4q
-                        Instruction result(Mnemonic::UZP, insn, 3245);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::UZP, insn, EncodingId::uzp_mz_z_4q);
+            #else
+                        Instruction result(Mnemonic::UZP, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         { auto op = Operand::reg_list(static_cast<uint32_t>(make_sve_reg(enc.uzp_mz_z4q.Zd * 4))); op.set_arrangement(Arrangement::Q); op.rl.count = 4; result.operands.push_back(op); }
@@ -37279,7 +37319,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC1B8E000u: { // frintn_mz_z_4
-                        Instruction result(Mnemonic::FRINTN, insn, 2680);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FRINTN, insn, EncodingId::frintn_mz_z_4);
+            #else
+                        Instruction result(Mnemonic::FRINTN, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         { auto op = Operand::reg_list(static_cast<uint32_t>(make_sve_reg(enc.frintn_mz_z4.Zd * 4))); op.set_arrangement(Arrangement::S); op.rl.count = 4; result.operands.push_back(op); }
@@ -37287,7 +37331,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC1B9E000u: { // frintp_mz_z_4
-                        Instruction result(Mnemonic::FRINTP, insn, 2682);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FRINTP, insn, EncodingId::frintp_mz_z_4);
+            #else
+                        Instruction result(Mnemonic::FRINTP, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         { auto op = Operand::reg_list(static_cast<uint32_t>(make_sve_reg(enc.frintp_mz_z4.Zd * 4))); op.set_arrangement(Arrangement::S); op.rl.count = 4; result.operands.push_back(op); }
@@ -37295,7 +37343,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC1BAE000u: { // frintm_mz_z_4
-                        Instruction result(Mnemonic::FRINTM, insn, 2678);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FRINTM, insn, EncodingId::frintm_mz_z_4);
+            #else
+                        Instruction result(Mnemonic::FRINTM, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         { auto op = Operand::reg_list(static_cast<uint32_t>(make_sve_reg(enc.frintm_mz_z4.Zd * 4))); op.set_arrangement(Arrangement::S); op.rl.count = 4; result.operands.push_back(op); }
@@ -37303,7 +37355,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC1BCE000u: { // frinta_mz_z_4
-                        Instruction result(Mnemonic::FRINTA, insn, 2676);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FRINTA, insn, EncodingId::frinta_mz_z_4);
+            #else
+                        Instruction result(Mnemonic::FRINTA, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         { auto op = Operand::reg_list(static_cast<uint32_t>(make_sve_reg(enc.frinta_mz_z4.Zd * 4))); op.set_arrangement(Arrangement::S); op.rl.count = 4; result.operands.push_back(op); }
@@ -37316,7 +37372,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
     // Switch for mask 0xFFFFFC60u (2 patterns, 2 encodings)
     switch (insn & 0xFFFFFC60u) {
         case 0xC134E000u: { // fcvt_z8_mz4_
-                        Instruction result(Mnemonic::FCVT, insn, 2518);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FCVT, insn, EncodingId::fcvt_z8_mz4_);
+            #else
+                        Instruction result(Mnemonic::FCVT, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::sve(enc.fcvt_z8mz4.Zd, Arrangement::B));
@@ -37324,7 +37384,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC134E020u: { // fcvtn_z8_mz4_
-                        Instruction result(Mnemonic::FCVTN, insn, 2521);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FCVTN, insn, EncodingId::fcvtn_z8_mz4_);
+            #else
+                        Instruction result(Mnemonic::FCVTN, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::sve(enc.fcvtn_z8mz4.Zd, Arrangement::B));
@@ -37337,7 +37401,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
     // Switch for mask 0xFFFFFC21u (8 patterns, 8 encodings)
     switch (insn & 0xFFFFFC21u) {
         case 0xC121E000u: { // fcvtzs_mz_z_2
-                        Instruction result(Mnemonic::FCVTZS, insn, 2523);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FCVTZS, insn, EncodingId::fcvtzs_mz_z_2);
+            #else
+                        Instruction result(Mnemonic::FCVTZS, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         { auto op = Operand::reg_list(static_cast<uint32_t>(make_sve_reg(enc.fcvtzs_mz_z2.Zd * 2))); op.set_arrangement(Arrangement::S); op.rl.count = 2; result.operands.push_back(op); }
@@ -37345,7 +37413,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC121E020u: { // fcvtzu_mz_z_2
-                        Instruction result(Mnemonic::FCVTZU, insn, 2525);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FCVTZU, insn, EncodingId::fcvtzu_mz_z_2);
+            #else
+                        Instruction result(Mnemonic::FCVTZU, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         { auto op = Operand::reg_list(static_cast<uint32_t>(make_sve_reg(enc.fcvtzu_mz_z2.Zd * 2))); op.set_arrangement(Arrangement::S); op.rl.count = 2; result.operands.push_back(op); }
@@ -37353,7 +37425,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC122E000u: { // scvtf_mz_z_2
-                        Instruction result(Mnemonic::SCVTF, insn, 2868);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SCVTF, insn, EncodingId::scvtf_mz_z_2);
+            #else
+                        Instruction result(Mnemonic::SCVTF, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         { auto op = Operand::reg_list(static_cast<uint32_t>(make_sve_reg(enc.scvtf_mz_z2.Zd * 2))); op.set_arrangement(Arrangement::S); op.rl.count = 2; result.operands.push_back(op); }
@@ -37361,7 +37437,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC122E020u: { // ucvtf_mz_z_2
-                        Instruction result(Mnemonic::UCVTF, insn, 3099);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::UCVTF, insn, EncodingId::ucvtf_mz_z_2);
+            #else
+                        Instruction result(Mnemonic::UCVTF, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         { auto op = Operand::reg_list(static_cast<uint32_t>(make_sve_reg(enc.ucvtf_mz_z2.Zd * 2))); op.set_arrangement(Arrangement::S); op.rl.count = 2; result.operands.push_back(op); }
@@ -37369,7 +37449,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC1A8E000u: { // frintn_mz_z_2
-                        Instruction result(Mnemonic::FRINTN, insn, 2679);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FRINTN, insn, EncodingId::frintn_mz_z_2);
+            #else
+                        Instruction result(Mnemonic::FRINTN, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         { auto op = Operand::reg_list(static_cast<uint32_t>(make_sve_reg(enc.frintn_mz_z2.Zd * 2))); op.set_arrangement(Arrangement::S); op.rl.count = 2; result.operands.push_back(op); }
@@ -37377,7 +37461,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC1A9E000u: { // frintp_mz_z_2
-                        Instruction result(Mnemonic::FRINTP, insn, 2681);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FRINTP, insn, EncodingId::frintp_mz_z_2);
+            #else
+                        Instruction result(Mnemonic::FRINTP, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         { auto op = Operand::reg_list(static_cast<uint32_t>(make_sve_reg(enc.frintp_mz_z2.Zd * 2))); op.set_arrangement(Arrangement::S); op.rl.count = 2; result.operands.push_back(op); }
@@ -37385,7 +37473,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC1AAE000u: { // frintm_mz_z_2
-                        Instruction result(Mnemonic::FRINTM, insn, 2677);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FRINTM, insn, EncodingId::frintm_mz_z_2);
+            #else
+                        Instruction result(Mnemonic::FRINTM, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         { auto op = Operand::reg_list(static_cast<uint32_t>(make_sve_reg(enc.frintm_mz_z2.Zd * 2))); op.set_arrangement(Arrangement::S); op.rl.count = 2; result.operands.push_back(op); }
@@ -37393,7 +37485,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC1ACE000u: { // frinta_mz_z_2
-                        Instruction result(Mnemonic::FRINTA, insn, 2675);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FRINTA, insn, EncodingId::frinta_mz_z_2);
+            #else
+                        Instruction result(Mnemonic::FRINTA, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         { auto op = Operand::reg_list(static_cast<uint32_t>(make_sve_reg(enc.frinta_mz_z2.Zd * 2))); op.set_arrangement(Arrangement::S); op.rl.count = 2; result.operands.push_back(op); }
@@ -37406,7 +37502,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
     // Switch for mask 0xFFFFFC20u (9 patterns, 9 encodings)
     switch (insn & 0xFFFFFC20u) {
         case 0xC120E000u: { // fcvt_z_mz2_
-                        Instruction result(Mnemonic::FCVT, insn, 2519);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FCVT, insn, EncodingId::fcvt_z_mz2_);
+            #else
+                        Instruction result(Mnemonic::FCVT, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::sve(enc.fcvt_zmz2.Zd, Arrangement::H));
@@ -37414,7 +37514,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC120E020u: { // fcvtn_z_mz2_
-                        Instruction result(Mnemonic::FCVTN, insn, 2522);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FCVTN, insn, EncodingId::fcvtn_z_mz2_);
+            #else
+                        Instruction result(Mnemonic::FCVTN, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::sve(enc.fcvtn_zmz2.Zd, Arrangement::H));
@@ -37422,7 +37526,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC123E000u: { // sqcvt_z_mz2_
-                        Instruction result(Mnemonic::SQCVT, insn, 2962);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SQCVT, insn, EncodingId::sqcvt_z_mz2_);
+            #else
+                        Instruction result(Mnemonic::SQCVT, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _dst_arr = Arrangement::B;
@@ -37432,7 +37540,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC123E020u: { // uqcvt_z_mz2_
-                        Instruction result(Mnemonic::UQCVT, insn, 3191);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::UQCVT, insn, EncodingId::uqcvt_z_mz2_);
+            #else
+                        Instruction result(Mnemonic::UQCVT, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _dst_arr = Arrangement::B;
@@ -37442,7 +37554,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC124E000u: { // fcvt_z8_mz2_
-                        Instruction result(Mnemonic::FCVT, insn, 2517);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FCVT, insn, EncodingId::fcvt_z8_mz2_);
+            #else
+                        Instruction result(Mnemonic::FCVT, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::sve(enc.fcvt_z8mz2.Zd, Arrangement::B));
@@ -37450,7 +37566,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC160E000u: { // bfcvt_z_mz2_
-                        Instruction result(Mnemonic::BFCVT, insn, 2415);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::BFCVT, insn, EncodingId::bfcvt_z_mz2_);
+            #else
+                        Instruction result(Mnemonic::BFCVT, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::sve(enc.bfcvt_zmz2.Zd, Arrangement::H));
@@ -37458,7 +37578,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC160E020u: { // bfcvtn_z_mz2_
-                        Instruction result(Mnemonic::BFCVTN, insn, 2416);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::BFCVTN, insn, EncodingId::bfcvtn_z_mz2_);
+            #else
+                        Instruction result(Mnemonic::BFCVTN, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::sve(enc.bfcvtn_zmz2.Zd, Arrangement::H));
@@ -37466,7 +37590,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC163E000u: { // sqcvtu_z_mz2_
-                        Instruction result(Mnemonic::SQCVTU, insn, 2965);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SQCVTU, insn, EncodingId::sqcvtu_z_mz2_);
+            #else
+                        Instruction result(Mnemonic::SQCVTU, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _dst_arr = Arrangement::B;
@@ -37476,7 +37604,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC164E000u: { // bfcvt_z8_mz2_
-                        Instruction result(Mnemonic::BFCVT, insn, 2414);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::BFCVT, insn, EncodingId::bfcvt_z8_mz2_);
+            #else
+                        Instruction result(Mnemonic::BFCVT, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::sve(enc.bfcvt_z8mz2.Zd, Arrangement::B));
@@ -37489,7 +37621,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
     // Switch for mask 0xFFFFFC1Fu (2 patterns, 2 encodings)
     switch (insn & 0xFFFFFC1Fu) {
         case 0xE11F8000u: { // ldr_zt_br_
-                        Instruction result(Mnemonic::LDR, insn, 2770);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDR, insn, EncodingId::ldr_zt_br_);
+            #else
+                        Instruction result(Mnemonic::LDR, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -37500,7 +37636,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xE13F8000u: { // str_zt_br_
-                        Instruction result(Mnemonic::STR, insn, 3054);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::STR, insn, EncodingId::str_zt_br_);
+            #else
+                        Instruction result(Mnemonic::STR, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -37516,7 +37656,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
     // Switch for mask 0xFFFFFC01u (10 patterns, 10 encodings)
     switch (insn & 0xFFFFFC01u) {
         case 0xC126E000u: { // f1cvt_mz2_z8_
-                        Instruction result(Mnemonic::F1CVT, insn, 2502);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::F1CVT, insn, EncodingId::f1cvt_mz2_z8_);
+            #else
+                        Instruction result(Mnemonic::F1CVT, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         { auto op = Operand::reg_list(static_cast<uint32_t>(make_sve_reg(enc.f1cvt_mz2z8.Zd * 2))); op.set_arrangement(Arrangement::H); op.rl.count = 2; result.operands.push_back(op); }
@@ -37524,7 +37668,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC126E001u: { // f1cvtl_mz2_z8_
-                        Instruction result(Mnemonic::F1CVTL, insn, 2504);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::F1CVTL, insn, EncodingId::f1cvtl_mz2_z8_);
+            #else
+                        Instruction result(Mnemonic::F1CVTL, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         { auto op = Operand::reg_list(static_cast<uint32_t>(make_sve_reg(enc.f1cvtl_mz2z8.Zd * 2))); op.set_arrangement(Arrangement::H); op.rl.count = 2; result.operands.push_back(op); }
@@ -37532,7 +37680,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC166E000u: { // bf1cvt_mz2_z8_
-                        Instruction result(Mnemonic::BF1CVT, insn, 2406);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::BF1CVT, insn, EncodingId::bf1cvt_mz2_z8_);
+            #else
+                        Instruction result(Mnemonic::BF1CVT, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         { auto op = Operand::reg_list(static_cast<uint32_t>(make_sve_reg(enc.bf1cvt_mz2z8.Zd * 2))); op.set_arrangement(Arrangement::H); op.rl.count = 2; result.operands.push_back(op); }
@@ -37540,7 +37692,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC166E001u: { // bf1cvtl_mz2_z8_
-                        Instruction result(Mnemonic::BF1CVTL, insn, 2408);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::BF1CVTL, insn, EncodingId::bf1cvtl_mz2_z8_);
+            #else
+                        Instruction result(Mnemonic::BF1CVTL, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         { auto op = Operand::reg_list(static_cast<uint32_t>(make_sve_reg(enc.bf1cvtl_mz2z8.Zd * 2))); op.set_arrangement(Arrangement::H); op.rl.count = 2; result.operands.push_back(op); }
@@ -37548,7 +37704,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC1A0E000u: { // fcvt_mz2_z_
-                        Instruction result(Mnemonic::FCVT, insn, 2516);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FCVT, insn, EncodingId::fcvt_mz2_z_);
+            #else
+                        Instruction result(Mnemonic::FCVT, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         { auto op = Operand::reg_list(static_cast<uint32_t>(make_sve_reg(enc.fcvt_mz2z.Zd * 2))); op.set_arrangement(Arrangement::S); op.rl.count = 2; result.operands.push_back(op); }
@@ -37556,7 +37716,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC1A0E001u: { // fcvtl_mz2_z_
-                        Instruction result(Mnemonic::FCVTL, insn, 2520);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FCVTL, insn, EncodingId::fcvtl_mz2_z_);
+            #else
+                        Instruction result(Mnemonic::FCVTL, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         { auto op = Operand::reg_list(static_cast<uint32_t>(make_sve_reg(enc.fcvtl_mz2z.Zd * 2))); op.set_arrangement(Arrangement::S); op.rl.count = 2; result.operands.push_back(op); }
@@ -37564,7 +37728,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC1A6E000u: { // f2cvt_mz2_z8_
-                        Instruction result(Mnemonic::F2CVT, insn, 2503);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::F2CVT, insn, EncodingId::f2cvt_mz2_z8_);
+            #else
+                        Instruction result(Mnemonic::F2CVT, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         { auto op = Operand::reg_list(static_cast<uint32_t>(make_sve_reg(enc.f2cvt_mz2z8.Zd * 2))); op.set_arrangement(Arrangement::H); op.rl.count = 2; result.operands.push_back(op); }
@@ -37572,7 +37740,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC1A6E001u: { // f2cvtl_mz2_z8_
-                        Instruction result(Mnemonic::F2CVTL, insn, 2505);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::F2CVTL, insn, EncodingId::f2cvtl_mz2_z8_);
+            #else
+                        Instruction result(Mnemonic::F2CVTL, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         { auto op = Operand::reg_list(static_cast<uint32_t>(make_sve_reg(enc.f2cvtl_mz2z8.Zd * 2))); op.set_arrangement(Arrangement::H); op.rl.count = 2; result.operands.push_back(op); }
@@ -37580,7 +37752,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC1E6E000u: { // bf2cvt_mz2_z8_
-                        Instruction result(Mnemonic::BF2CVT, insn, 2407);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::BF2CVT, insn, EncodingId::bf2cvt_mz2_z8_);
+            #else
+                        Instruction result(Mnemonic::BF2CVT, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         { auto op = Operand::reg_list(static_cast<uint32_t>(make_sve_reg(enc.bf2cvt_mz2z8.Zd * 2))); op.set_arrangement(Arrangement::H); op.rl.count = 2; result.operands.push_back(op); }
@@ -37588,7 +37764,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC1E6E001u: { // bf2cvtl_mz2_z8_
-                        Instruction result(Mnemonic::BF2CVTL, insn, 2409);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::BF2CVTL, insn, EncodingId::bf2cvtl_mz2_z8_);
+            #else
+                        Instruction result(Mnemonic::BF2CVTL, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         { auto op = Operand::reg_list(static_cast<uint32_t>(make_sve_reg(enc.bf2cvtl_mz2z8.Zd * 2))); op.set_arrangement(Arrangement::H); op.rl.count = 2; result.operands.push_back(op); }
@@ -37601,7 +37781,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
     // Switch for mask 0xFFFFFC00u (1 pattern, 1 encoding)
     switch (insn & 0xFFFFFC00u) {
         case 0xC0C84000u: { // luti6_z_ztz_
-                        Instruction result(Mnemonic::LUTI6, insn, 2787);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LUTI6, insn, EncodingId::luti6_z_ztz_);
+            #else
+                        Instruction result(Mnemonic::LUTI6, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::sve(enc.luti6zztz.Zd, Arrangement::B));
@@ -37615,7 +37799,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
     // Switch for mask 0xFFFFCFE0u (1 pattern, 1 encoding)
     switch (insn & 0xFFFFCFE0u) {
         case 0xC04F03E0u: { // movt_zt_z_
-                        Instruction result(Mnemonic::MOVT, insn, 2865);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::MOVT, insn, EncodingId::movt_zt_z_);
+            #else
+                        Instruction result(Mnemonic::MOVT, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::sve(enc.movt_zt_z.Zt, Arrangement::None));
@@ -37628,7 +37816,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
     // Switch for mask 0xFFFFCC2Cu (1 pattern, 1 encoding)
     switch (insn & 0xFFFFCC2Cu) {
         case 0xC09B0000u: { // luti4_mz4_ztmz2_4
-                        Instruction result(Mnemonic::LUTI4, insn, 2779);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LUTI4, insn, EncodingId::luti4_mz4_ztmz2_4);
+            #else
+                        Instruction result(Mnemonic::LUTI4, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         if (enc.luti4mz4ztmz24.size != 0u) return std::nullopt;
@@ -37650,7 +37842,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
     // Switch for mask 0xFFFFCC23u (1 pattern, 1 encoding)
     switch (insn & 0xFFFFCC23u) {
         case 0xC08B0000u: { // luti4_mz4_ztmz2_1
-                        Instruction result(Mnemonic::LUTI4, insn, 2778);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LUTI4, insn, EncodingId::luti4_mz4_ztmz2_1);
+            #else
+                        Instruction result(Mnemonic::LUTI4, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         if (enc.luti4mz4ztmz21.size != 0u) return std::nullopt;
@@ -37672,7 +37868,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
     // Switch for mask 0xFFFF9FFEu (2 patterns, 2 encodings)
     switch (insn & 0xFFFF9FFEu) {
         case 0xC00F0000u: { // zero_za4_ri_2
-                        Instruction result(Mnemonic::ZERO, insn, 3254);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::ZERO, insn, EncodingId::zero_za4_ri_2);
+            #else
+                        Instruction result(Mnemonic::ZERO, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         {
@@ -37691,7 +37891,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC00F8000u: { // zero_za4_ri_4
-                        Instruction result(Mnemonic::ZERO, insn, 3255);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::ZERO, insn, EncodingId::zero_za4_ri_4);
+            #else
+                        Instruction result(Mnemonic::ZERO, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         {
@@ -37715,7 +37919,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
     // Switch for mask 0xFFFF9FFCu (3 patterns, 3 encodings)
     switch (insn & 0xFFFF9FFCu) {
         case 0xC00D0000u: { // zero_za2_ri_2
-                        Instruction result(Mnemonic::ZERO, insn, 3251);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::ZERO, insn, EncodingId::zero_za2_ri_2);
+            #else
+                        Instruction result(Mnemonic::ZERO, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         {
@@ -37734,7 +37942,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC00D8000u: { // zero_za2_ri_4
-                        Instruction result(Mnemonic::ZERO, insn, 3252);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::ZERO, insn, EncodingId::zero_za2_ri_4);
+            #else
+                        Instruction result(Mnemonic::ZERO, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         {
@@ -37753,7 +37965,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC00E8000u: { // zero_za4_ri_1
-                        Instruction result(Mnemonic::ZERO, insn, 3253);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::ZERO, insn, EncodingId::zero_za4_ri_1);
+            #else
+                        Instruction result(Mnemonic::ZERO, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         {
@@ -37777,7 +37993,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
     // Switch for mask 0xFFFF9FF8u (3 patterns, 3 encodings)
     switch (insn & 0xFFFF9FF8u) {
         case 0xC00C0000u: { // zero_za1_ri_2
-                        Instruction result(Mnemonic::ZERO, insn, 3248);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::ZERO, insn, EncodingId::zero_za1_ri_2);
+            #else
+                        Instruction result(Mnemonic::ZERO, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         result.operands.clear();  // MOVA/MOVAZ/ZERO ZA tile access
@@ -37793,7 +38013,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC00C8000u: { // zero_za2_ri_1
-                        Instruction result(Mnemonic::ZERO, insn, 3250);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::ZERO, insn, EncodingId::zero_za2_ri_1);
+            #else
+                        Instruction result(Mnemonic::ZERO, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         {
@@ -37812,7 +38036,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC00E0000u: { // zero_za1_ri_4
-                        Instruction result(Mnemonic::ZERO, insn, 3249);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::ZERO, insn, EncodingId::zero_za1_ri_4);
+            #else
+                        Instruction result(Mnemonic::ZERO, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         result.operands.clear();  // MOVA/MOVAZ/ZERO ZA tile access
@@ -37834,7 +38062,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
     switch (insn & 0xFFFF9F03u) {
         case 0xC0060C00u: { // mov_mz_za4_1_mova_mz_za4_1
             // Also matches: mova_mz_za4_1 (MOVA)
-                        Instruction result(Mnemonic::MOVA, insn, 2797);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::MOVA, insn, EncodingId::mov_mz_za4_1_mova_mz_za4_1);
+            #else
+                        Instruction result(Mnemonic::MOVA, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         result.operands.clear();  // MOVA/MOVAZ/ZERO ZA tile access
@@ -37851,7 +38083,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC0060E00u: { // movaz_mz_za4_1
-                        Instruction result(Mnemonic::MOVAZ, insn, 2857);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::MOVAZ, insn, EncodingId::movaz_mz_za4_1);
+            #else
+                        Instruction result(Mnemonic::MOVAZ, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         result.operands.clear();  // MOVA/MOVAZ/ZERO ZA tile access
@@ -37874,7 +38110,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
     switch (insn & 0xFFFF9F01u) {
         case 0xC0060800u: { // mov_mz_za2_1_mova_mz_za2_1
             // Also matches: mova_mz_za2_1 (MOVA)
-                        Instruction result(Mnemonic::MOVA, insn, 2796);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::MOVA, insn, EncodingId::mov_mz_za2_1_mova_mz_za2_1);
+            #else
+                        Instruction result(Mnemonic::MOVA, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         result.operands.clear();  // MOVA/MOVAZ/ZERO ZA tile access
@@ -37891,7 +38131,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC0060A00u: { // movaz_mz_za2_1
-                        Instruction result(Mnemonic::MOVAZ, insn, 2856);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::MOVAZ, insn, EncodingId::movaz_mz_za2_1);
+            #else
+                        Instruction result(Mnemonic::MOVAZ, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         result.operands.clear();  // MOVA/MOVAZ/ZERO ZA tile access
@@ -37914,7 +38158,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
     switch (insn & 0xFFFF9C78u) {
         case 0xC0040C00u: { // mov_za_mz4_1_mova_za_mz4_1
             // Also matches: mova_za_mz4_1 (MOVA)
-                        Instruction result(Mnemonic::MOVA, insn, 2812);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::MOVA, insn, EncodingId::mov_za_mz4_1_mova_za_mz4_1);
+            #else
+                        Instruction result(Mnemonic::MOVA, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         {
@@ -37931,7 +38179,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC1A51C00u: { // fadd_za_zw_4x4_16
-                        Instruction result(Mnemonic::FADD, insn, 2509);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FADD, insn, EncodingId::fadd_za_zw_4x4_16);
+            #else
+                        Instruction result(Mnemonic::FADD, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         {
@@ -37948,7 +38200,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC1A51C08u: { // fsub_za_zw_4x4_16
-                        Instruction result(Mnemonic::FSUB, insn, 2690);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FSUB, insn, EncodingId::fsub_za_zw_4x4_16);
+            #else
+                        Instruction result(Mnemonic::FSUB, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         {
@@ -37965,7 +38221,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC1E51C00u: { // bfadd_za_zw_4x4_16
-                        Instruction result(Mnemonic::BFADD, insn, 2411);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::BFADD, insn, EncodingId::bfadd_za_zw_4x4_16);
+            #else
+                        Instruction result(Mnemonic::BFADD, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         {
@@ -37982,7 +38242,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC1E51C08u: { // bfsub_za_zw_4x4_16
-                        Instruction result(Mnemonic::BFSUB, insn, 2496);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::BFSUB, insn, EncodingId::bfsub_za_zw_4x4_16);
+            #else
+                        Instruction result(Mnemonic::BFSUB, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         {
@@ -38005,7 +38269,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
     switch (insn & 0xFFFF9C38u) {
         case 0xC0040800u: { // mov_za_mz2_1_mova_za_mz2_1
             // Also matches: mova_za_mz2_1 (MOVA)
-                        Instruction result(Mnemonic::MOVA, insn, 2811);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::MOVA, insn, EncodingId::mov_za_mz2_1_mova_za_mz2_1);
+            #else
+                        Instruction result(Mnemonic::MOVA, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         {
@@ -38022,7 +38290,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC1A41C00u: { // fadd_za_zw_2x2_16
-                        Instruction result(Mnemonic::FADD, insn, 2507);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FADD, insn, EncodingId::fadd_za_zw_2x2_16);
+            #else
+                        Instruction result(Mnemonic::FADD, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         {
@@ -38039,7 +38311,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC1A41C08u: { // fsub_za_zw_2x2_16
-                        Instruction result(Mnemonic::FSUB, insn, 2688);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FSUB, insn, EncodingId::fsub_za_zw_2x2_16);
+            #else
+                        Instruction result(Mnemonic::FSUB, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         {
@@ -38056,7 +38332,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC1E41C00u: { // bfadd_za_zw_2x2_16
-                        Instruction result(Mnemonic::BFADD, insn, 2410);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::BFADD, insn, EncodingId::bfadd_za_zw_2x2_16);
+            #else
+                        Instruction result(Mnemonic::BFADD, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         {
@@ -38073,7 +38353,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC1E41C08u: { // bfsub_za_zw_2x2_16
-                        Instruction result(Mnemonic::BFSUB, insn, 2495);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::BFSUB, insn, EncodingId::bfsub_za_zw_2x2_16);
+            #else
+                        Instruction result(Mnemonic::BFSUB, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         {
@@ -38095,7 +38379,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
     // Switch for mask 0xFFFF9C10u (2 patterns, 2 encodings)
     switch (insn & 0xFFFF9C10u) {
         case 0xE1000000u: { // ldr_za_ri_
-                        Instruction result(Mnemonic::LDR, insn, 2769);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDR, insn, EncodingId::ldr_za_ri_);
+            #else
+                        Instruction result(Mnemonic::LDR, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -38112,7 +38400,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xE1200000u: { // str_za_ri_
-                        Instruction result(Mnemonic::STR, insn, 3053);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::STR, insn, EncodingId::str_za_ri_);
+            #else
+                        Instruction result(Mnemonic::STR, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -38134,7 +38426,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
     // Switch for mask 0xFFFF8FE0u (2 patterns, 2 encodings)
     switch (insn & 0xFFFF8FE0u) {
         case 0xC04C03E0u: { // movt_r_zt_
-                        Instruction result(Mnemonic::MOVT, insn, 2863);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::MOVT, insn, EncodingId::movt_r_zt_);
+            #else
+                        Instruction result(Mnemonic::MOVT, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -38145,7 +38441,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC04E03E0u: { // movt_zt_r_
-                        Instruction result(Mnemonic::MOVT, insn, 2864);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::MOVT, insn, EncodingId::movt_zt_r_);
+            #else
+                        Instruction result(Mnemonic::MOVT, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -38162,7 +38462,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
     switch (insn & 0xFFFF1F83u) {
         case 0xC0060400u: { // mov_mz4_za_b1_mova_mz4_za_b1
             // Also matches: mova_mz4_za_b1 (MOVA)
-                        Instruction result(Mnemonic::MOVA, insn, 2792);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::MOVA, insn, EncodingId::mov_mz4_za_b1_mova_mz4_za_b1);
+            #else
+                        Instruction result(Mnemonic::MOVA, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -38181,7 +38485,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC0060600u: { // movaz_mz4_za_b1
-                        Instruction result(Mnemonic::MOVAZ, insn, 2852);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::MOVAZ, insn, EncodingId::movaz_mz4_za_b1);
+            #else
+                        Instruction result(Mnemonic::MOVAZ, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -38201,7 +38509,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
         }
         case 0xC0460400u: { // mov_mz4_za_h1_mova_mz4_za_h1
             // Also matches: mova_mz4_za_h1 (MOVA)
-                        Instruction result(Mnemonic::MOVA, insn, 2793);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::MOVA, insn, EncodingId::mov_mz4_za_h1_mova_mz4_za_h1);
+            #else
+                        Instruction result(Mnemonic::MOVA, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -38220,7 +38532,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC0460600u: { // movaz_mz4_za_h1
-                        Instruction result(Mnemonic::MOVAZ, insn, 2853);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::MOVAZ, insn, EncodingId::movaz_mz4_za_h1);
+            #else
+                        Instruction result(Mnemonic::MOVAZ, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -38240,7 +38556,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
         }
         case 0xC0860400u: { // mov_mz4_za_w1_mova_mz4_za_w1
             // Also matches: mova_mz4_za_w1 (MOVA)
-                        Instruction result(Mnemonic::MOVA, insn, 2794);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::MOVA, insn, EncodingId::mov_mz4_za_w1_mova_mz4_za_w1);
+            #else
+                        Instruction result(Mnemonic::MOVA, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -38259,7 +38579,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC0860600u: { // movaz_mz4_za_w1
-                        Instruction result(Mnemonic::MOVAZ, insn, 2854);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::MOVAZ, insn, EncodingId::movaz_mz4_za_w1);
+            #else
+                        Instruction result(Mnemonic::MOVAZ, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -38284,7 +38608,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
     switch (insn & 0xFFFF1F03u) {
         case 0xC0C60400u: { // mov_mz4_za_d1_mova_mz4_za_d1
             // Also matches: mova_mz4_za_d1 (MOVA)
-                        Instruction result(Mnemonic::MOVA, insn, 2795);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::MOVA, insn, EncodingId::mov_mz4_za_d1_mova_mz4_za_d1);
+            #else
+                        Instruction result(Mnemonic::MOVA, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -38303,7 +38631,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC0C60600u: { // movaz_mz4_za_d1
-                        Instruction result(Mnemonic::MOVAZ, insn, 2855);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::MOVAZ, insn, EncodingId::movaz_mz4_za_d1);
+            #else
+                        Instruction result(Mnemonic::MOVAZ, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -38328,7 +38660,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
     switch (insn & 0xFFFF1F01u) {
         case 0xC0060000u: { // mov_mz2_za_b1_mova_mz2_za_b1
             // Also matches: mova_mz2_za_b1 (MOVA)
-                        Instruction result(Mnemonic::MOVA, insn, 2788);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::MOVA, insn, EncodingId::mov_mz2_za_b1_mova_mz2_za_b1);
+            #else
+                        Instruction result(Mnemonic::MOVA, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -38347,7 +38683,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC0060200u: { // movaz_mz2_za_b1
-                        Instruction result(Mnemonic::MOVAZ, insn, 2848);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::MOVAZ, insn, EncodingId::movaz_mz2_za_b1);
+            #else
+                        Instruction result(Mnemonic::MOVAZ, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -38367,7 +38707,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
         }
         case 0xC0460000u: { // mov_mz2_za_h1_mova_mz2_za_h1
             // Also matches: mova_mz2_za_h1 (MOVA)
-                        Instruction result(Mnemonic::MOVA, insn, 2789);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::MOVA, insn, EncodingId::mov_mz2_za_h1_mova_mz2_za_h1);
+            #else
+                        Instruction result(Mnemonic::MOVA, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -38386,7 +38730,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC0460200u: { // movaz_mz2_za_h1
-                        Instruction result(Mnemonic::MOVAZ, insn, 2849);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::MOVAZ, insn, EncodingId::movaz_mz2_za_h1);
+            #else
+                        Instruction result(Mnemonic::MOVAZ, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -38406,7 +38754,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
         }
         case 0xC0860000u: { // mov_mz2_za_w1_mova_mz2_za_w1
             // Also matches: mova_mz2_za_w1 (MOVA)
-                        Instruction result(Mnemonic::MOVA, insn, 2790);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::MOVA, insn, EncodingId::mov_mz2_za_w1_mova_mz2_za_w1);
+            #else
+                        Instruction result(Mnemonic::MOVA, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -38425,7 +38777,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC0860200u: { // movaz_mz2_za_w1
-                        Instruction result(Mnemonic::MOVAZ, insn, 2850);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::MOVAZ, insn, EncodingId::movaz_mz2_za_w1);
+            #else
+                        Instruction result(Mnemonic::MOVAZ, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -38445,7 +38801,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
         }
         case 0xC0C60000u: { // mov_mz2_za_d1_mova_mz2_za_d1
             // Also matches: mova_mz2_za_d1 (MOVA)
-                        Instruction result(Mnemonic::MOVA, insn, 2791);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::MOVA, insn, EncodingId::mov_mz2_za_d1_mova_mz2_za_d1);
+            #else
+                        Instruction result(Mnemonic::MOVA, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -38464,7 +38824,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC0C60200u: { // movaz_mz2_za_d1
-                        Instruction result(Mnemonic::MOVAZ, insn, 2851);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::MOVAZ, insn, EncodingId::movaz_mz2_za_d1);
+            #else
+                        Instruction result(Mnemonic::MOVAZ, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -38488,7 +38852,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
     // Switch for mask 0xFFFF1E00u (5 patterns, 5 encodings)
     switch (insn & 0xFFFF1E00u) {
         case 0xC0020200u: { // movaz_z_rza_b
-                        Instruction result(Mnemonic::MOVAZ, insn, 2858);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::MOVAZ, insn, EncodingId::movaz_z_rza_b);
+            #else
+                        Instruction result(Mnemonic::MOVAZ, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -38507,7 +38875,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC0420200u: { // movaz_z_rza_h
-                        Instruction result(Mnemonic::MOVAZ, insn, 2859);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::MOVAZ, insn, EncodingId::movaz_z_rza_h);
+            #else
+                        Instruction result(Mnemonic::MOVAZ, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -38526,7 +38898,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC0820200u: { // movaz_z_rza_w
-                        Instruction result(Mnemonic::MOVAZ, insn, 2860);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::MOVAZ, insn, EncodingId::movaz_z_rza_w);
+            #else
+                        Instruction result(Mnemonic::MOVAZ, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -38545,7 +38921,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC0C20200u: { // movaz_z_rza_d
-                        Instruction result(Mnemonic::MOVAZ, insn, 2861);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::MOVAZ, insn, EncodingId::movaz_z_rza_d);
+            #else
+                        Instruction result(Mnemonic::MOVAZ, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -38564,7 +38944,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC0C30200u: { // movaz_z_rza_q
-                        Instruction result(Mnemonic::MOVAZ, insn, 2862);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::MOVAZ, insn, EncodingId::movaz_z_rza_q);
+            #else
+                        Instruction result(Mnemonic::MOVAZ, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -38589,7 +38973,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
     switch (insn & 0xFFFF1C7Cu) {
         case 0xC0040400u: { // mov_za4_z_b1_mova_za4_z_b1
             // Also matches: mova_za4_z_b1 (MOVA)
-                        Instruction result(Mnemonic::MOVA, insn, 2807);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::MOVA, insn, EncodingId::mov_za4_z_b1_mova_za4_z_b1);
+            #else
+                        Instruction result(Mnemonic::MOVA, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -38609,7 +38997,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
         }
         case 0xC0440400u: { // mov_za4_z_h1_mova_za4_z_h1
             // Also matches: mova_za4_z_h1 (MOVA)
-                        Instruction result(Mnemonic::MOVA, insn, 2808);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::MOVA, insn, EncodingId::mov_za4_z_h1_mova_za4_z_h1);
+            #else
+                        Instruction result(Mnemonic::MOVA, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -38630,7 +39022,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
         }
         case 0xC0840400u: { // mov_za4_z_w1_mova_za4_z_w1
             // Also matches: mova_za4_z_w1 (MOVA)
-                        Instruction result(Mnemonic::MOVA, insn, 2809);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::MOVA, insn, EncodingId::mov_za4_z_w1_mova_za4_z_w1);
+            #else
+                        Instruction result(Mnemonic::MOVA, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -38656,7 +39052,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
     switch (insn & 0xFFFF1C78u) {
         case 0xC0C40400u: { // mov_za4_z_d1_mova_za4_z_d1
             // Also matches: mova_za4_z_d1 (MOVA)
-                        Instruction result(Mnemonic::MOVA, insn, 2810);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::MOVA, insn, EncodingId::mov_za4_z_d1_mova_za4_z_d1);
+            #else
+                        Instruction result(Mnemonic::MOVA, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -38682,7 +39082,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
     switch (insn & 0xFFFF1C38u) {
         case 0xC0040000u: { // mov_za2_z_b1_mova_za2_z_b1
             // Also matches: mova_za2_z_b1 (MOVA)
-                        Instruction result(Mnemonic::MOVA, insn, 2803);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::MOVA, insn, EncodingId::mov_za2_z_b1_mova_za2_z_b1);
+            #else
+                        Instruction result(Mnemonic::MOVA, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -38702,7 +39106,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
         }
         case 0xC0440000u: { // mov_za2_z_h1_mova_za2_z_h1
             // Also matches: mova_za2_z_h1 (MOVA)
-                        Instruction result(Mnemonic::MOVA, insn, 2804);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::MOVA, insn, EncodingId::mov_za2_z_h1_mova_za2_z_h1);
+            #else
+                        Instruction result(Mnemonic::MOVA, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -38723,7 +39131,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
         }
         case 0xC0840000u: { // mov_za2_z_w1_mova_za2_z_w1
             // Also matches: mova_za2_z_w1 (MOVA)
-                        Instruction result(Mnemonic::MOVA, insn, 2805);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::MOVA, insn, EncodingId::mov_za2_z_w1_mova_za2_z_w1);
+            #else
+                        Instruction result(Mnemonic::MOVA, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -38744,7 +39156,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
         }
         case 0xC0C40000u: { // mov_za2_z_d1_mova_za2_z_d1
             // Also matches: mova_za2_z_d1 (MOVA)
-                        Instruction result(Mnemonic::MOVA, insn, 2806);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::MOVA, insn, EncodingId::mov_za2_z_d1_mova_za2_z_d1);
+            #else
+                        Instruction result(Mnemonic::MOVA, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -38770,7 +39186,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
     switch (insn & 0xFFFF0200u) {
         case 0xC0020000u: { // mov_z_p_rza_b_mova_z_p_rza_b
             // Also matches: mova_z_p_rza_b (MOVA)
-                        Instruction result(Mnemonic::MOVA, insn, 2798);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::MOVA, insn, EncodingId::mov_z_p_rza_b_mova_z_p_rza_b);
+            #else
+                        Instruction result(Mnemonic::MOVA, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -38790,7 +39210,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
         }
         case 0xC0420000u: { // mov_z_p_rza_h_mova_z_p_rza_h
             // Also matches: mova_z_p_rza_h (MOVA)
-                        Instruction result(Mnemonic::MOVA, insn, 2799);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::MOVA, insn, EncodingId::mov_z_p_rza_h_mova_z_p_rza_h);
+            #else
+                        Instruction result(Mnemonic::MOVA, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -38810,7 +39234,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
         }
         case 0xC0820000u: { // mov_z_p_rza_w_mova_z_p_rza_w
             // Also matches: mova_z_p_rza_w (MOVA)
-                        Instruction result(Mnemonic::MOVA, insn, 2800);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::MOVA, insn, EncodingId::mov_z_p_rza_w_mova_z_p_rza_w);
+            #else
+                        Instruction result(Mnemonic::MOVA, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -38830,7 +39258,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
         }
         case 0xC0C20000u: { // mov_z_p_rza_d_mova_z_p_rza_d
             // Also matches: mova_z_p_rza_d (MOVA)
-                        Instruction result(Mnemonic::MOVA, insn, 2801);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::MOVA, insn, EncodingId::mov_z_p_rza_d_mova_z_p_rza_d);
+            #else
+                        Instruction result(Mnemonic::MOVA, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -38850,7 +39282,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
         }
         case 0xC0C30000u: { // mov_z_p_rza_q_mova_z_p_rza_q
             // Also matches: mova_z_p_rza_q (MOVA)
-                        Instruction result(Mnemonic::MOVA, insn, 2802);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::MOVA, insn, EncodingId::mov_z_p_rza_q_mova_z_p_rza_q);
+            #else
+                        Instruction result(Mnemonic::MOVA, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -38874,7 +39310,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
     // Switch for mask 0xFFFF001Cu (2 patterns, 2 encodings)
     switch (insn & 0xFFFF001Cu) {
         case 0xC0900000u: { // addha_za_pp_z_32
-                        Instruction result(Mnemonic::ADDHA, insn, 2402);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::ADDHA, insn, EncodingId::addha_za_pp_z_32);
+            #else
+                        Instruction result(Mnemonic::ADDHA, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         { auto op = Operand::sme_tile(enc.addha_za_pp_z32.ZAda); op.set_arrangement(Arrangement::S); result.operands.push_back(op); }
@@ -38884,7 +39324,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC0910000u: { // addva_za_pp_z_32
-                        Instruction result(Mnemonic::ADDVA, insn, 2404);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::ADDVA, insn, EncodingId::addva_za_pp_z_32);
+            #else
+                        Instruction result(Mnemonic::ADDVA, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         { auto op = Operand::sme_tile(enc.addva_za_pp_z32.ZAda); op.set_arrangement(Arrangement::S); result.operands.push_back(op); }
@@ -38899,7 +39343,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
     // Switch for mask 0xFFFF0018u (2 patterns, 2 encodings)
     switch (insn & 0xFFFF0018u) {
         case 0xC0D00000u: { // addha_za_pp_z_64
-                        Instruction result(Mnemonic::ADDHA, insn, 2403);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::ADDHA, insn, EncodingId::addha_za_pp_z_64);
+            #else
+                        Instruction result(Mnemonic::ADDHA, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         { auto op = Operand::sme_tile(enc.addha_za_pp_z64.ZAda); op.set_arrangement(Arrangement::D); result.operands.push_back(op); }
@@ -38909,7 +39357,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC0D10000u: { // addva_za_pp_z_64
-                        Instruction result(Mnemonic::ADDVA, insn, 2405);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::ADDVA, insn, EncodingId::addva_za_pp_z_64);
+            #else
+                        Instruction result(Mnemonic::ADDVA, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         { auto op = Operand::sme_tile(enc.addva_za_pp_z64.ZAda); op.set_arrangement(Arrangement::D); result.operands.push_back(op); }
@@ -38925,7 +39377,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
     switch (insn & 0xFFFF0010u) {
         case 0xC0000000u: { // mov_za_p_rz_b_mova_za_p_rz_b
             // Also matches: mova_za_p_rz_b (MOVA)
-                        Instruction result(Mnemonic::MOVA, insn, 2813);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::MOVA, insn, EncodingId::mov_za_p_rz_b_mova_za_p_rz_b);
+            #else
+                        Instruction result(Mnemonic::MOVA, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -38945,7 +39401,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
         }
         case 0xC0400000u: { // mov_za_p_rz_h_mova_za_p_rz_h
             // Also matches: mova_za_p_rz_h (MOVA)
-                        Instruction result(Mnemonic::MOVA, insn, 2814);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::MOVA, insn, EncodingId::mov_za_p_rz_h_mova_za_p_rz_h);
+            #else
+                        Instruction result(Mnemonic::MOVA, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -38965,7 +39425,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
         }
         case 0xC0800000u: { // mov_za_p_rz_w_mova_za_p_rz_w
             // Also matches: mova_za_p_rz_w (MOVA)
-                        Instruction result(Mnemonic::MOVA, insn, 2815);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::MOVA, insn, EncodingId::mov_za_p_rz_w_mova_za_p_rz_w);
+            #else
+                        Instruction result(Mnemonic::MOVA, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -38985,7 +39449,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
         }
         case 0xC0C00000u: { // mov_za_p_rz_d_mova_za_p_rz_d
             // Also matches: mova_za_p_rz_d (MOVA)
-                        Instruction result(Mnemonic::MOVA, insn, 2816);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::MOVA, insn, EncodingId::mov_za_p_rz_d_mova_za_p_rz_d);
+            #else
+                        Instruction result(Mnemonic::MOVA, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -39005,7 +39473,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
         }
         case 0xC0C10000u: { // mov_za_p_rz_q_mova_za_p_rz_q
             // Also matches: mova_za_p_rz_q (MOVA)
-                        Instruction result(Mnemonic::MOVA, insn, 2817);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::MOVA, insn, EncodingId::mov_za_p_rz_q_mova_za_p_rz_q);
+            #else
+                        Instruction result(Mnemonic::MOVA, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -39029,7 +39501,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
     // Switch for mask 0xFFFECC0Cu (1 pattern, 1 encoding)
     switch (insn & 0xFFFECC0Cu) {
         case 0xC09A8000u: { // luti4_mz4_ztz_4
-                        Instruction result(Mnemonic::LUTI4, insn, 2781);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LUTI4, insn, EncodingId::luti4_mz4_ztz_4);
+            #else
+                        Instruction result(Mnemonic::LUTI4, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         if (enc.luti4mz4ztz4.size != 1u) return std::nullopt;
@@ -39051,7 +39527,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
     // Switch for mask 0xFFFECC03u (1 pattern, 1 encoding)
     switch (insn & 0xFFFECC03u) {
         case 0xC08A8000u: { // luti4_mz4_ztz_1
-                        Instruction result(Mnemonic::LUTI4, insn, 2780);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LUTI4, insn, EncodingId::luti4_mz4_ztz_1);
+            #else
+                        Instruction result(Mnemonic::LUTI4, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = Arrangement::None;
@@ -39072,7 +39552,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
     // Switch for mask 0xFFFE4C08u (1 pattern, 1 encoding)
     switch (insn & 0xFFFE4C08u) {
         case 0xC09A4000u: { // luti4_mz2_ztz_8
-                        Instruction result(Mnemonic::LUTI4, insn, 2777);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LUTI4, insn, EncodingId::luti4_mz2_ztz_8);
+            #else
+                        Instruction result(Mnemonic::LUTI4, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = Arrangement::None;
@@ -39093,7 +39577,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
     // Switch for mask 0xFFFE4C01u (1 pattern, 1 encoding)
     switch (insn & 0xFFFE4C01u) {
         case 0xC08A4000u: { // luti4_mz2_ztz_1
-                        Instruction result(Mnemonic::LUTI4, insn, 2776);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LUTI4, insn, EncodingId::luti4_mz2_ztz_1);
+            #else
+                        Instruction result(Mnemonic::LUTI4, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         if (enc.luti4mz2ztz1.size == 3u) return std::nullopt;
@@ -39115,7 +39603,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
     // Switch for mask 0xFFFE0C00u (1 pattern, 1 encoding)
     switch (insn & 0xFFFE0C00u) {
         case 0xC0CA0000u: { // luti4_z_ztz_
-                        Instruction result(Mnemonic::LUTI4, insn, 2782);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LUTI4, insn, EncodingId::luti4_z_ztz_);
+            #else
+                        Instruction result(Mnemonic::LUTI4, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         if (enc.luti4zztz.size == 3u) return std::nullopt;
@@ -39137,7 +39629,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
     // Switch for mask 0xFFFCCC0Cu (1 pattern, 1 encoding)
     switch (insn & 0xFFFCCC0Cu) {
         case 0xC09C8000u: { // luti2_mz4_ztz_4
-                        Instruction result(Mnemonic::LUTI2, insn, 2774);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LUTI2, insn, EncodingId::luti2_mz4_ztz_4);
+            #else
+                        Instruction result(Mnemonic::LUTI2, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = Arrangement::None;
@@ -39158,7 +39654,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
     // Switch for mask 0xFFFCCC03u (1 pattern, 1 encoding)
     switch (insn & 0xFFFCCC03u) {
         case 0xC08C8000u: { // luti2_mz4_ztz_1
-                        Instruction result(Mnemonic::LUTI2, insn, 2773);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LUTI2, insn, EncodingId::luti2_mz4_ztz_1);
+            #else
+                        Instruction result(Mnemonic::LUTI2, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         if (enc.luti2mz4ztz1.size == 3u) return std::nullopt;
@@ -39180,7 +39680,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
     // Switch for mask 0xFFFC4C08u (1 pattern, 1 encoding)
     switch (insn & 0xFFFC4C08u) {
         case 0xC09C4000u: { // luti2_mz2_ztz_8
-                        Instruction result(Mnemonic::LUTI2, insn, 2772);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LUTI2, insn, EncodingId::luti2_mz2_ztz_8);
+            #else
+                        Instruction result(Mnemonic::LUTI2, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = Arrangement::None;
@@ -39201,7 +39705,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
     // Switch for mask 0xFFFC4C01u (1 pattern, 1 encoding)
     switch (insn & 0xFFFC4C01u) {
         case 0xC08C4000u: { // luti2_mz2_ztz_1
-                        Instruction result(Mnemonic::LUTI2, insn, 2771);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LUTI2, insn, EncodingId::luti2_mz2_ztz_1);
+            #else
+                        Instruction result(Mnemonic::LUTI2, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         if (enc.luti2mz2ztz1.size == 3u) return std::nullopt;
@@ -39223,7 +39731,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
     // Switch for mask 0xFFFC0C00u (1 pattern, 1 encoding)
     switch (insn & 0xFFFC0C00u) {
         case 0xC0CC0000u: { // luti2_z_ztz_
-                        Instruction result(Mnemonic::LUTI2, insn, 2775);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LUTI2, insn, EncodingId::luti2_z_ztz_);
+            #else
+                        Instruction result(Mnemonic::LUTI2, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         if (enc.luti2zztz.size == 3u) return std::nullopt;
@@ -39245,7 +39757,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
     // Switch for mask 0xFFF1FE3Eu (20 patterns, 20 encodings)
     switch (insn & 0xFFF1FE3Eu) {
         case 0x80200008u: { // fmop4a_za16_z8z8_b1x1
-                        Instruction result(Mnemonic::FMOP4A, insn, 2622);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FMOP4A, insn, EncodingId::fmop4a_za16_z8z8_b1x1);
+            #else
+                        Instruction result(Mnemonic::FMOP4A, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         { auto op = Operand::sme_tile(enc.fmop4a_za16z8z8b1x1.ZAda); op.set_arrangement(Arrangement::H); result.operands.push_back(op); }
@@ -39254,7 +39770,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0x80200208u: { // fmop4a_za16_z8z8_b2x1
-                        Instruction result(Mnemonic::FMOP4A, insn, 2623);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FMOP4A, insn, EncodingId::fmop4a_za16_z8z8_b2x1);
+            #else
+                        Instruction result(Mnemonic::FMOP4A, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         { auto op = Operand::sme_tile(enc.fmop4a_za16z8z8b2x1.ZAda); op.set_arrangement(Arrangement::H); result.operands.push_back(op); }
@@ -39263,7 +39783,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0x80300008u: { // fmop4a_za16_z8z8_b1x2
-                        Instruction result(Mnemonic::FMOP4A, insn, 2621);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FMOP4A, insn, EncodingId::fmop4a_za16_z8z8_b1x2);
+            #else
+                        Instruction result(Mnemonic::FMOP4A, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         { auto op = Operand::sme_tile(enc.fmop4a_za16z8z8b1x2.ZAda); op.set_arrangement(Arrangement::H); result.operands.push_back(op); }
@@ -39272,7 +39796,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0x80300208u: { // fmop4a_za16_z8z8_b2x2
-                        Instruction result(Mnemonic::FMOP4A, insn, 2624);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FMOP4A, insn, EncodingId::fmop4a_za16_z8z8_b2x2);
+            #else
+                        Instruction result(Mnemonic::FMOP4A, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         { auto op = Operand::sme_tile(enc.fmop4a_za16z8z8b2x2.ZAda); op.set_arrangement(Arrangement::H); result.operands.push_back(op); }
@@ -39281,7 +39809,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0x81000008u: { // fmop4a_za_zz_h1x1
-                        Instruction result(Mnemonic::FMOP4A, insn, 2634);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FMOP4A, insn, EncodingId::fmop4a_za_zz_h1x1);
+            #else
+                        Instruction result(Mnemonic::FMOP4A, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         { auto op = Operand::sme_tile(enc.fmop4a_za_zz_h1x1.ZAda); op.set_arrangement(Arrangement::H); result.operands.push_back(op); }
@@ -39290,7 +39822,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0x81000018u: { // fmop4s_za_zz_h1x1
-                        Instruction result(Mnemonic::FMOP4S, insn, 2650);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FMOP4S, insn, EncodingId::fmop4s_za_zz_h1x1);
+            #else
+                        Instruction result(Mnemonic::FMOP4S, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         { auto op = Operand::sme_tile(enc.fmop4s_za_zz_h1x1.ZAda); op.set_arrangement(Arrangement::H); result.operands.push_back(op); }
@@ -39299,7 +39835,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0x81000208u: { // fmop4a_za_zz_h2x1
-                        Instruction result(Mnemonic::FMOP4A, insn, 2635);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FMOP4A, insn, EncodingId::fmop4a_za_zz_h2x1);
+            #else
+                        Instruction result(Mnemonic::FMOP4A, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         { auto op = Operand::sme_tile(enc.fmop4a_za_zz_h2x1.ZAda); op.set_arrangement(Arrangement::H); result.operands.push_back(op); }
@@ -39308,7 +39848,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0x81000218u: { // fmop4s_za_zz_h2x1
-                        Instruction result(Mnemonic::FMOP4S, insn, 2651);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FMOP4S, insn, EncodingId::fmop4s_za_zz_h2x1);
+            #else
+                        Instruction result(Mnemonic::FMOP4S, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         { auto op = Operand::sme_tile(enc.fmop4s_za_zz_h2x1.ZAda); op.set_arrangement(Arrangement::H); result.operands.push_back(op); }
@@ -39317,7 +39861,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0x81100008u: { // fmop4a_za_zz_h1x2
-                        Instruction result(Mnemonic::FMOP4A, insn, 2633);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FMOP4A, insn, EncodingId::fmop4a_za_zz_h1x2);
+            #else
+                        Instruction result(Mnemonic::FMOP4A, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         { auto op = Operand::sme_tile(enc.fmop4a_za_zz_h1x2.ZAda); op.set_arrangement(Arrangement::H); result.operands.push_back(op); }
@@ -39326,7 +39874,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0x81100018u: { // fmop4s_za_zz_h1x2
-                        Instruction result(Mnemonic::FMOP4S, insn, 2649);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FMOP4S, insn, EncodingId::fmop4s_za_zz_h1x2);
+            #else
+                        Instruction result(Mnemonic::FMOP4S, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         { auto op = Operand::sme_tile(enc.fmop4s_za_zz_h1x2.ZAda); op.set_arrangement(Arrangement::H); result.operands.push_back(op); }
@@ -39335,7 +39887,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0x81100208u: { // fmop4a_za_zz_h2x2
-                        Instruction result(Mnemonic::FMOP4A, insn, 2636);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FMOP4A, insn, EncodingId::fmop4a_za_zz_h2x2);
+            #else
+                        Instruction result(Mnemonic::FMOP4A, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         { auto op = Operand::sme_tile(enc.fmop4a_za_zz_h2x2.ZAda); op.set_arrangement(Arrangement::H); result.operands.push_back(op); }
@@ -39344,7 +39900,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0x81100218u: { // fmop4s_za_zz_h2x2
-                        Instruction result(Mnemonic::FMOP4S, insn, 2652);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FMOP4S, insn, EncodingId::fmop4s_za_zz_h2x2);
+            #else
+                        Instruction result(Mnemonic::FMOP4S, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         { auto op = Operand::sme_tile(enc.fmop4s_za_zz_h2x2.ZAda); op.set_arrangement(Arrangement::H); result.operands.push_back(op); }
@@ -39353,7 +39913,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0x81200008u: { // bfmop4a_za_zz_h1x1
-                        Instruction result(Mnemonic::BFMOP4A, insn, 2472);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::BFMOP4A, insn, EncodingId::bfmop4a_za_zz_h1x1);
+            #else
+                        Instruction result(Mnemonic::BFMOP4A, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         { auto op = Operand::sme_tile(enc.bfmop4a_za_zz_h1x1.ZAda); op.set_arrangement(Arrangement::H); result.operands.push_back(op); }
@@ -39362,7 +39926,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0x81200018u: { // bfmop4s_za_zz_h1x1
-                        Instruction result(Mnemonic::BFMOP4S, insn, 2480);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::BFMOP4S, insn, EncodingId::bfmop4s_za_zz_h1x1);
+            #else
+                        Instruction result(Mnemonic::BFMOP4S, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         { auto op = Operand::sme_tile(enc.bfmop4s_za_zz_h1x1.ZAda); op.set_arrangement(Arrangement::H); result.operands.push_back(op); }
@@ -39371,7 +39939,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0x81200208u: { // bfmop4a_za_zz_h2x1
-                        Instruction result(Mnemonic::BFMOP4A, insn, 2473);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::BFMOP4A, insn, EncodingId::bfmop4a_za_zz_h2x1);
+            #else
+                        Instruction result(Mnemonic::BFMOP4A, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         { auto op = Operand::sme_tile(enc.bfmop4a_za_zz_h2x1.ZAda); op.set_arrangement(Arrangement::H); result.operands.push_back(op); }
@@ -39380,7 +39952,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0x81200218u: { // bfmop4s_za_zz_h2x1
-                        Instruction result(Mnemonic::BFMOP4S, insn, 2481);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::BFMOP4S, insn, EncodingId::bfmop4s_za_zz_h2x1);
+            #else
+                        Instruction result(Mnemonic::BFMOP4S, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         { auto op = Operand::sme_tile(enc.bfmop4s_za_zz_h2x1.ZAda); op.set_arrangement(Arrangement::H); result.operands.push_back(op); }
@@ -39389,7 +39965,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0x81300008u: { // bfmop4a_za_zz_h1x2
-                        Instruction result(Mnemonic::BFMOP4A, insn, 2471);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::BFMOP4A, insn, EncodingId::bfmop4a_za_zz_h1x2);
+            #else
+                        Instruction result(Mnemonic::BFMOP4A, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         { auto op = Operand::sme_tile(enc.bfmop4a_za_zz_h1x2.ZAda); op.set_arrangement(Arrangement::H); result.operands.push_back(op); }
@@ -39398,7 +39978,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0x81300018u: { // bfmop4s_za_zz_h1x2
-                        Instruction result(Mnemonic::BFMOP4S, insn, 2479);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::BFMOP4S, insn, EncodingId::bfmop4s_za_zz_h1x2);
+            #else
+                        Instruction result(Mnemonic::BFMOP4S, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         { auto op = Operand::sme_tile(enc.bfmop4s_za_zz_h1x2.ZAda); op.set_arrangement(Arrangement::H); result.operands.push_back(op); }
@@ -39407,7 +39991,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0x81300208u: { // bfmop4a_za_zz_h2x2
-                        Instruction result(Mnemonic::BFMOP4A, insn, 2474);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::BFMOP4A, insn, EncodingId::bfmop4a_za_zz_h2x2);
+            #else
+                        Instruction result(Mnemonic::BFMOP4A, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         { auto op = Operand::sme_tile(enc.bfmop4a_za_zz_h2x2.ZAda); op.set_arrangement(Arrangement::H); result.operands.push_back(op); }
@@ -39416,7 +40004,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0x81300218u: { // bfmop4s_za_zz_h2x2
-                        Instruction result(Mnemonic::BFMOP4S, insn, 2482);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::BFMOP4S, insn, EncodingId::bfmop4s_za_zz_h2x2);
+            #else
+                        Instruction result(Mnemonic::BFMOP4S, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         { auto op = Operand::sme_tile(enc.bfmop4s_za_zz_h2x2.ZAda); op.set_arrangement(Arrangement::H); result.operands.push_back(op); }
@@ -39430,7 +40022,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
     // Switch for mask 0xFFF1FE3Cu (76 patterns, 76 encodings)
     switch (insn & 0xFFF1FE3Cu) {
         case 0x80000000u: { // fmop4a_za_zz_s1x1
-                        Instruction result(Mnemonic::FMOP4A, insn, 2638);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FMOP4A, insn, EncodingId::fmop4a_za_zz_s1x1);
+            #else
+                        Instruction result(Mnemonic::FMOP4A, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         { auto op = Operand::sme_tile(enc.fmop4a_za_zz_s1x1.ZAda); op.set_arrangement(Arrangement::S); result.operands.push_back(op); }
@@ -39439,7 +40035,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0x80000010u: { // fmop4s_za_zz_s1x1
-                        Instruction result(Mnemonic::FMOP4S, insn, 2654);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FMOP4S, insn, EncodingId::fmop4s_za_zz_s1x1);
+            #else
+                        Instruction result(Mnemonic::FMOP4S, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         { auto op = Operand::sme_tile(enc.fmop4s_za_zz_s1x1.ZAda); op.set_arrangement(Arrangement::S); result.operands.push_back(op); }
@@ -39448,7 +40048,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0x80000200u: { // fmop4a_za_zz_s2x1
-                        Instruction result(Mnemonic::FMOP4A, insn, 2639);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FMOP4A, insn, EncodingId::fmop4a_za_zz_s2x1);
+            #else
+                        Instruction result(Mnemonic::FMOP4A, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         { auto op = Operand::sme_tile(enc.fmop4a_za_zz_s2x1.ZAda); op.set_arrangement(Arrangement::S); result.operands.push_back(op); }
@@ -39457,7 +40061,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0x80000210u: { // fmop4s_za_zz_s2x1
-                        Instruction result(Mnemonic::FMOP4S, insn, 2655);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FMOP4S, insn, EncodingId::fmop4s_za_zz_s2x1);
+            #else
+                        Instruction result(Mnemonic::FMOP4S, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         { auto op = Operand::sme_tile(enc.fmop4s_za_zz_s2x1.ZAda); op.set_arrangement(Arrangement::S); result.operands.push_back(op); }
@@ -39466,7 +40074,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0x80008000u: { // smop4a_za_zz_b1x1
-                        Instruction result(Mnemonic::SMOP4A, insn, 2937);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SMOP4A, insn, EncodingId::smop4a_za_zz_b1x1);
+            #else
+                        Instruction result(Mnemonic::SMOP4A, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         { auto op = Operand::sme_tile(enc.smop4a_za_zz_b1x1.ZAda); op.set_arrangement(Arrangement::S); result.operands.push_back(op); }
@@ -39475,7 +40087,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0x80008008u: { // smop4a_za32_zz_h1x1
-                        Instruction result(Mnemonic::SMOP4A, insn, 2933);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SMOP4A, insn, EncodingId::smop4a_za32_zz_h1x1);
+            #else
+                        Instruction result(Mnemonic::SMOP4A, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         { auto op = Operand::sme_tile(enc.smop4a_za32zz_h1x1.ZAda); op.set_arrangement(Arrangement::S); result.operands.push_back(op); }
@@ -39484,7 +40100,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0x80008010u: { // smop4s_za_zz_b1x1
-                        Instruction result(Mnemonic::SMOP4S, insn, 2949);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SMOP4S, insn, EncodingId::smop4s_za_zz_b1x1);
+            #else
+                        Instruction result(Mnemonic::SMOP4S, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         { auto op = Operand::sme_tile(enc.smop4s_za_zz_b1x1.ZAda); op.set_arrangement(Arrangement::S); result.operands.push_back(op); }
@@ -39493,7 +40113,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0x80008018u: { // smop4s_za32_zz_h1x1
-                        Instruction result(Mnemonic::SMOP4S, insn, 2945);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SMOP4S, insn, EncodingId::smop4s_za32_zz_h1x1);
+            #else
+                        Instruction result(Mnemonic::SMOP4S, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         { auto op = Operand::sme_tile(enc.smop4s_za32zz_h1x1.ZAda); op.set_arrangement(Arrangement::S); result.operands.push_back(op); }
@@ -39502,7 +40126,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0x80008200u: { // smop4a_za_zz_b2x1
-                        Instruction result(Mnemonic::SMOP4A, insn, 2938);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SMOP4A, insn, EncodingId::smop4a_za_zz_b2x1);
+            #else
+                        Instruction result(Mnemonic::SMOP4A, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         { auto op = Operand::sme_tile(enc.smop4a_za_zz_b2x1.ZAda); op.set_arrangement(Arrangement::S); result.operands.push_back(op); }
@@ -39511,7 +40139,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0x80008208u: { // smop4a_za32_zz_h2x1
-                        Instruction result(Mnemonic::SMOP4A, insn, 2934);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SMOP4A, insn, EncodingId::smop4a_za32_zz_h2x1);
+            #else
+                        Instruction result(Mnemonic::SMOP4A, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         { auto op = Operand::sme_tile(enc.smop4a_za32zz_h2x1.ZAda); op.set_arrangement(Arrangement::S); result.operands.push_back(op); }
@@ -39520,7 +40152,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0x80008210u: { // smop4s_za_zz_b2x1
-                        Instruction result(Mnemonic::SMOP4S, insn, 2950);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SMOP4S, insn, EncodingId::smop4s_za_zz_b2x1);
+            #else
+                        Instruction result(Mnemonic::SMOP4S, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         { auto op = Operand::sme_tile(enc.smop4s_za_zz_b2x1.ZAda); op.set_arrangement(Arrangement::S); result.operands.push_back(op); }
@@ -39529,7 +40165,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0x80008218u: { // smop4s_za32_zz_h2x1
-                        Instruction result(Mnemonic::SMOP4S, insn, 2946);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SMOP4S, insn, EncodingId::smop4s_za32_zz_h2x1);
+            #else
+                        Instruction result(Mnemonic::SMOP4S, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         { auto op = Operand::sme_tile(enc.smop4s_za32zz_h2x1.ZAda); op.set_arrangement(Arrangement::S); result.operands.push_back(op); }
@@ -39538,7 +40178,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0x80100000u: { // fmop4a_za_zz_s1x2
-                        Instruction result(Mnemonic::FMOP4A, insn, 2637);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FMOP4A, insn, EncodingId::fmop4a_za_zz_s1x2);
+            #else
+                        Instruction result(Mnemonic::FMOP4A, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         { auto op = Operand::sme_tile(enc.fmop4a_za_zz_s1x2.ZAda); op.set_arrangement(Arrangement::S); result.operands.push_back(op); }
@@ -39547,7 +40191,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0x80100010u: { // fmop4s_za_zz_s1x2
-                        Instruction result(Mnemonic::FMOP4S, insn, 2653);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FMOP4S, insn, EncodingId::fmop4s_za_zz_s1x2);
+            #else
+                        Instruction result(Mnemonic::FMOP4S, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         { auto op = Operand::sme_tile(enc.fmop4s_za_zz_s1x2.ZAda); op.set_arrangement(Arrangement::S); result.operands.push_back(op); }
@@ -39556,7 +40204,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0x80100200u: { // fmop4a_za_zz_s2x2
-                        Instruction result(Mnemonic::FMOP4A, insn, 2640);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FMOP4A, insn, EncodingId::fmop4a_za_zz_s2x2);
+            #else
+                        Instruction result(Mnemonic::FMOP4A, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         { auto op = Operand::sme_tile(enc.fmop4a_za_zz_s2x2.ZAda); op.set_arrangement(Arrangement::S); result.operands.push_back(op); }
@@ -39565,7 +40217,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0x80100210u: { // fmop4s_za_zz_s2x2
-                        Instruction result(Mnemonic::FMOP4S, insn, 2656);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FMOP4S, insn, EncodingId::fmop4s_za_zz_s2x2);
+            #else
+                        Instruction result(Mnemonic::FMOP4S, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         { auto op = Operand::sme_tile(enc.fmop4s_za_zz_s2x2.ZAda); op.set_arrangement(Arrangement::S); result.operands.push_back(op); }
@@ -39574,7 +40230,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0x80108000u: { // smop4a_za_zz_b1x2
-                        Instruction result(Mnemonic::SMOP4A, insn, 2936);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SMOP4A, insn, EncodingId::smop4a_za_zz_b1x2);
+            #else
+                        Instruction result(Mnemonic::SMOP4A, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         { auto op = Operand::sme_tile(enc.smop4a_za_zz_b1x2.ZAda); op.set_arrangement(Arrangement::S); result.operands.push_back(op); }
@@ -39583,7 +40243,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0x80108008u: { // smop4a_za32_zz_h1x2
-                        Instruction result(Mnemonic::SMOP4A, insn, 2932);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SMOP4A, insn, EncodingId::smop4a_za32_zz_h1x2);
+            #else
+                        Instruction result(Mnemonic::SMOP4A, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         { auto op = Operand::sme_tile(enc.smop4a_za32zz_h1x2.ZAda); op.set_arrangement(Arrangement::S); result.operands.push_back(op); }
@@ -39592,7 +40256,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0x80108010u: { // smop4s_za_zz_b1x2
-                        Instruction result(Mnemonic::SMOP4S, insn, 2948);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SMOP4S, insn, EncodingId::smop4s_za_zz_b1x2);
+            #else
+                        Instruction result(Mnemonic::SMOP4S, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         { auto op = Operand::sme_tile(enc.smop4s_za_zz_b1x2.ZAda); op.set_arrangement(Arrangement::S); result.operands.push_back(op); }
@@ -39601,7 +40269,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0x80108018u: { // smop4s_za32_zz_h1x2
-                        Instruction result(Mnemonic::SMOP4S, insn, 2944);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SMOP4S, insn, EncodingId::smop4s_za32_zz_h1x2);
+            #else
+                        Instruction result(Mnemonic::SMOP4S, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         { auto op = Operand::sme_tile(enc.smop4s_za32zz_h1x2.ZAda); op.set_arrangement(Arrangement::S); result.operands.push_back(op); }
@@ -39610,7 +40282,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0x80108200u: { // smop4a_za_zz_b2x2
-                        Instruction result(Mnemonic::SMOP4A, insn, 2939);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SMOP4A, insn, EncodingId::smop4a_za_zz_b2x2);
+            #else
+                        Instruction result(Mnemonic::SMOP4A, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         { auto op = Operand::sme_tile(enc.smop4a_za_zz_b2x2.ZAda); op.set_arrangement(Arrangement::S); result.operands.push_back(op); }
@@ -39619,7 +40295,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0x80108208u: { // smop4a_za32_zz_h2x2
-                        Instruction result(Mnemonic::SMOP4A, insn, 2935);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SMOP4A, insn, EncodingId::smop4a_za32_zz_h2x2);
+            #else
+                        Instruction result(Mnemonic::SMOP4A, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         { auto op = Operand::sme_tile(enc.smop4a_za32zz_h2x2.ZAda); op.set_arrangement(Arrangement::S); result.operands.push_back(op); }
@@ -39628,7 +40308,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0x80108210u: { // smop4s_za_zz_b2x2
-                        Instruction result(Mnemonic::SMOP4S, insn, 2951);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SMOP4S, insn, EncodingId::smop4s_za_zz_b2x2);
+            #else
+                        Instruction result(Mnemonic::SMOP4S, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         { auto op = Operand::sme_tile(enc.smop4s_za_zz_b2x2.ZAda); op.set_arrangement(Arrangement::S); result.operands.push_back(op); }
@@ -39637,7 +40321,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0x80108218u: { // smop4s_za32_zz_h2x2
-                        Instruction result(Mnemonic::SMOP4S, insn, 2947);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SMOP4S, insn, EncodingId::smop4s_za32_zz_h2x2);
+            #else
+                        Instruction result(Mnemonic::SMOP4S, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         { auto op = Operand::sme_tile(enc.smop4s_za32zz_h2x2.ZAda); op.set_arrangement(Arrangement::S); result.operands.push_back(op); }
@@ -39646,7 +40334,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0x80200000u: { // fmop4a_za32_z8z8_b1x1
-                        Instruction result(Mnemonic::FMOP4A, insn, 2626);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FMOP4A, insn, EncodingId::fmop4a_za32_z8z8_b1x1);
+            #else
+                        Instruction result(Mnemonic::FMOP4A, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         { auto op = Operand::sme_tile(enc.fmop4a_za32z8z8b1x1.ZAda); op.set_arrangement(Arrangement::S); result.operands.push_back(op); }
@@ -39655,7 +40347,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0x80200200u: { // fmop4a_za32_z8z8_b2x1
-                        Instruction result(Mnemonic::FMOP4A, insn, 2627);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FMOP4A, insn, EncodingId::fmop4a_za32_z8z8_b2x1);
+            #else
+                        Instruction result(Mnemonic::FMOP4A, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         { auto op = Operand::sme_tile(enc.fmop4a_za32z8z8b2x1.ZAda); op.set_arrangement(Arrangement::S); result.operands.push_back(op); }
@@ -39664,7 +40360,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0x80208000u: { // sumop4a_za_zz_b1x1
-                        Instruction result(Mnemonic::SUMOP4A, insn, 3071);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SUMOP4A, insn, EncodingId::sumop4a_za_zz_b1x1);
+            #else
+                        Instruction result(Mnemonic::SUMOP4A, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         { auto op = Operand::sme_tile(enc.sumop4a_za_zz_b1x1.ZAda); op.set_arrangement(Arrangement::S); result.operands.push_back(op); }
@@ -39673,7 +40373,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0x80208010u: { // sumop4s_za_zz_b1x1
-                        Instruction result(Mnemonic::SUMOP4S, insn, 3079);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SUMOP4S, insn, EncodingId::sumop4s_za_zz_b1x1);
+            #else
+                        Instruction result(Mnemonic::SUMOP4S, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         { auto op = Operand::sme_tile(enc.sumop4s_za_zz_b1x1.ZAda); op.set_arrangement(Arrangement::S); result.operands.push_back(op); }
@@ -39682,7 +40386,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0x80208200u: { // sumop4a_za_zz_b2x1
-                        Instruction result(Mnemonic::SUMOP4A, insn, 3072);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SUMOP4A, insn, EncodingId::sumop4a_za_zz_b2x1);
+            #else
+                        Instruction result(Mnemonic::SUMOP4A, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         { auto op = Operand::sme_tile(enc.sumop4a_za_zz_b2x1.ZAda); op.set_arrangement(Arrangement::S); result.operands.push_back(op); }
@@ -39691,7 +40399,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0x80208210u: { // sumop4s_za_zz_b2x1
-                        Instruction result(Mnemonic::SUMOP4S, insn, 3080);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SUMOP4S, insn, EncodingId::sumop4s_za_zz_b2x1);
+            #else
+                        Instruction result(Mnemonic::SUMOP4S, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         { auto op = Operand::sme_tile(enc.sumop4s_za_zz_b2x1.ZAda); op.set_arrangement(Arrangement::S); result.operands.push_back(op); }
@@ -39700,7 +40412,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0x80300000u: { // fmop4a_za32_z8z8_b1x2
-                        Instruction result(Mnemonic::FMOP4A, insn, 2625);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FMOP4A, insn, EncodingId::fmop4a_za32_z8z8_b1x2);
+            #else
+                        Instruction result(Mnemonic::FMOP4A, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         { auto op = Operand::sme_tile(enc.fmop4a_za32z8z8b1x2.ZAda); op.set_arrangement(Arrangement::S); result.operands.push_back(op); }
@@ -39709,7 +40425,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0x80300200u: { // fmop4a_za32_z8z8_b2x2
-                        Instruction result(Mnemonic::FMOP4A, insn, 2628);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FMOP4A, insn, EncodingId::fmop4a_za32_z8z8_b2x2);
+            #else
+                        Instruction result(Mnemonic::FMOP4A, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         { auto op = Operand::sme_tile(enc.fmop4a_za32z8z8b2x2.ZAda); op.set_arrangement(Arrangement::S); result.operands.push_back(op); }
@@ -39718,7 +40438,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0x80308000u: { // sumop4a_za_zz_b1x2
-                        Instruction result(Mnemonic::SUMOP4A, insn, 3070);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SUMOP4A, insn, EncodingId::sumop4a_za_zz_b1x2);
+            #else
+                        Instruction result(Mnemonic::SUMOP4A, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         { auto op = Operand::sme_tile(enc.sumop4a_za_zz_b1x2.ZAda); op.set_arrangement(Arrangement::S); result.operands.push_back(op); }
@@ -39727,7 +40451,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0x80308010u: { // sumop4s_za_zz_b1x2
-                        Instruction result(Mnemonic::SUMOP4S, insn, 3078);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SUMOP4S, insn, EncodingId::sumop4s_za_zz_b1x2);
+            #else
+                        Instruction result(Mnemonic::SUMOP4S, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         { auto op = Operand::sme_tile(enc.sumop4s_za_zz_b1x2.ZAda); op.set_arrangement(Arrangement::S); result.operands.push_back(op); }
@@ -39736,7 +40464,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0x80308200u: { // sumop4a_za_zz_b2x2
-                        Instruction result(Mnemonic::SUMOP4A, insn, 3073);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SUMOP4A, insn, EncodingId::sumop4a_za_zz_b2x2);
+            #else
+                        Instruction result(Mnemonic::SUMOP4A, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         { auto op = Operand::sme_tile(enc.sumop4a_za_zz_b2x2.ZAda); op.set_arrangement(Arrangement::S); result.operands.push_back(op); }
@@ -39745,7 +40477,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0x80308210u: { // sumop4s_za_zz_b2x2
-                        Instruction result(Mnemonic::SUMOP4S, insn, 3081);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SUMOP4S, insn, EncodingId::sumop4s_za_zz_b2x2);
+            #else
+                        Instruction result(Mnemonic::SUMOP4S, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         { auto op = Operand::sme_tile(enc.sumop4s_za_zz_b2x2.ZAda); op.set_arrangement(Arrangement::S); result.operands.push_back(op); }
@@ -39754,7 +40490,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0x81000000u: { // bfmop4a_za32_zz_h1x1
-                        Instruction result(Mnemonic::BFMOP4A, insn, 2468);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::BFMOP4A, insn, EncodingId::bfmop4a_za32_zz_h1x1);
+            #else
+                        Instruction result(Mnemonic::BFMOP4A, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         { auto op = Operand::sme_tile(enc.bfmop4a_za32zz_h1x1.ZAda); op.set_arrangement(Arrangement::S); result.operands.push_back(op); }
@@ -39763,7 +40503,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0x81000010u: { // bfmop4s_za32_zz_h1x1
-                        Instruction result(Mnemonic::BFMOP4S, insn, 2476);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::BFMOP4S, insn, EncodingId::bfmop4s_za32_zz_h1x1);
+            #else
+                        Instruction result(Mnemonic::BFMOP4S, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         { auto op = Operand::sme_tile(enc.bfmop4s_za32zz_h1x1.ZAda); op.set_arrangement(Arrangement::S); result.operands.push_back(op); }
@@ -39772,7 +40516,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0x81000200u: { // bfmop4a_za32_zz_h2x1
-                        Instruction result(Mnemonic::BFMOP4A, insn, 2469);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::BFMOP4A, insn, EncodingId::bfmop4a_za32_zz_h2x1);
+            #else
+                        Instruction result(Mnemonic::BFMOP4A, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         { auto op = Operand::sme_tile(enc.bfmop4a_za32zz_h2x1.ZAda); op.set_arrangement(Arrangement::S); result.operands.push_back(op); }
@@ -39781,7 +40529,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0x81000210u: { // bfmop4s_za32_zz_h2x1
-                        Instruction result(Mnemonic::BFMOP4S, insn, 2477);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::BFMOP4S, insn, EncodingId::bfmop4s_za32_zz_h2x1);
+            #else
+                        Instruction result(Mnemonic::BFMOP4S, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         { auto op = Operand::sme_tile(enc.bfmop4s_za32zz_h2x1.ZAda); op.set_arrangement(Arrangement::S); result.operands.push_back(op); }
@@ -39790,7 +40542,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0x81008000u: { // usmop4a_za_zz_b1x1
-                        Instruction result(Mnemonic::USMOP4A, insn, 3216);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::USMOP4A, insn, EncodingId::usmop4a_za_zz_b1x1);
+            #else
+                        Instruction result(Mnemonic::USMOP4A, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         { auto op = Operand::sme_tile(enc.usmop4a_za_zz_b1x1.ZAda); op.set_arrangement(Arrangement::S); result.operands.push_back(op); }
@@ -39799,7 +40555,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0x81008008u: { // umop4a_za32_zz_h1x1
-                        Instruction result(Mnemonic::UMOP4A, insn, 3162);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::UMOP4A, insn, EncodingId::umop4a_za32_zz_h1x1);
+            #else
+                        Instruction result(Mnemonic::UMOP4A, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         { auto op = Operand::sme_tile(enc.umop4a_za32zz_h1x1.ZAda); op.set_arrangement(Arrangement::S); result.operands.push_back(op); }
@@ -39808,7 +40568,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0x81008010u: { // usmop4s_za_zz_b1x1
-                        Instruction result(Mnemonic::USMOP4S, insn, 3224);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::USMOP4S, insn, EncodingId::usmop4s_za_zz_b1x1);
+            #else
+                        Instruction result(Mnemonic::USMOP4S, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         { auto op = Operand::sme_tile(enc.usmop4s_za_zz_b1x1.ZAda); op.set_arrangement(Arrangement::S); result.operands.push_back(op); }
@@ -39817,7 +40581,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0x81008018u: { // umop4s_za32_zz_h1x1
-                        Instruction result(Mnemonic::UMOP4S, insn, 3174);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::UMOP4S, insn, EncodingId::umop4s_za32_zz_h1x1);
+            #else
+                        Instruction result(Mnemonic::UMOP4S, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         { auto op = Operand::sme_tile(enc.umop4s_za32zz_h1x1.ZAda); op.set_arrangement(Arrangement::S); result.operands.push_back(op); }
@@ -39826,7 +40594,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0x81008200u: { // usmop4a_za_zz_b2x1
-                        Instruction result(Mnemonic::USMOP4A, insn, 3217);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::USMOP4A, insn, EncodingId::usmop4a_za_zz_b2x1);
+            #else
+                        Instruction result(Mnemonic::USMOP4A, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         { auto op = Operand::sme_tile(enc.usmop4a_za_zz_b2x1.ZAda); op.set_arrangement(Arrangement::S); result.operands.push_back(op); }
@@ -39835,7 +40607,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0x81008208u: { // umop4a_za32_zz_h2x1
-                        Instruction result(Mnemonic::UMOP4A, insn, 3163);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::UMOP4A, insn, EncodingId::umop4a_za32_zz_h2x1);
+            #else
+                        Instruction result(Mnemonic::UMOP4A, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         { auto op = Operand::sme_tile(enc.umop4a_za32zz_h2x1.ZAda); op.set_arrangement(Arrangement::S); result.operands.push_back(op); }
@@ -39844,7 +40620,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0x81008210u: { // usmop4s_za_zz_b2x1
-                        Instruction result(Mnemonic::USMOP4S, insn, 3225);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::USMOP4S, insn, EncodingId::usmop4s_za_zz_b2x1);
+            #else
+                        Instruction result(Mnemonic::USMOP4S, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         { auto op = Operand::sme_tile(enc.usmop4s_za_zz_b2x1.ZAda); op.set_arrangement(Arrangement::S); result.operands.push_back(op); }
@@ -39853,7 +40633,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0x81008218u: { // umop4s_za32_zz_h2x1
-                        Instruction result(Mnemonic::UMOP4S, insn, 3175);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::UMOP4S, insn, EncodingId::umop4s_za32_zz_h2x1);
+            #else
+                        Instruction result(Mnemonic::UMOP4S, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         { auto op = Operand::sme_tile(enc.umop4s_za32zz_h2x1.ZAda); op.set_arrangement(Arrangement::S); result.operands.push_back(op); }
@@ -39862,7 +40646,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0x81100000u: { // bfmop4a_za32_zz_h1x2
-                        Instruction result(Mnemonic::BFMOP4A, insn, 2467);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::BFMOP4A, insn, EncodingId::bfmop4a_za32_zz_h1x2);
+            #else
+                        Instruction result(Mnemonic::BFMOP4A, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         { auto op = Operand::sme_tile(enc.bfmop4a_za32zz_h1x2.ZAda); op.set_arrangement(Arrangement::S); result.operands.push_back(op); }
@@ -39871,7 +40659,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0x81100010u: { // bfmop4s_za32_zz_h1x2
-                        Instruction result(Mnemonic::BFMOP4S, insn, 2475);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::BFMOP4S, insn, EncodingId::bfmop4s_za32_zz_h1x2);
+            #else
+                        Instruction result(Mnemonic::BFMOP4S, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         { auto op = Operand::sme_tile(enc.bfmop4s_za32zz_h1x2.ZAda); op.set_arrangement(Arrangement::S); result.operands.push_back(op); }
@@ -39880,7 +40672,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0x81100200u: { // bfmop4a_za32_zz_h2x2
-                        Instruction result(Mnemonic::BFMOP4A, insn, 2470);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::BFMOP4A, insn, EncodingId::bfmop4a_za32_zz_h2x2);
+            #else
+                        Instruction result(Mnemonic::BFMOP4A, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         { auto op = Operand::sme_tile(enc.bfmop4a_za32zz_h2x2.ZAda); op.set_arrangement(Arrangement::S); result.operands.push_back(op); }
@@ -39889,7 +40685,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0x81100210u: { // bfmop4s_za32_zz_h2x2
-                        Instruction result(Mnemonic::BFMOP4S, insn, 2478);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::BFMOP4S, insn, EncodingId::bfmop4s_za32_zz_h2x2);
+            #else
+                        Instruction result(Mnemonic::BFMOP4S, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         { auto op = Operand::sme_tile(enc.bfmop4s_za32zz_h2x2.ZAda); op.set_arrangement(Arrangement::S); result.operands.push_back(op); }
@@ -39898,7 +40698,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0x81108000u: { // usmop4a_za_zz_b1x2
-                        Instruction result(Mnemonic::USMOP4A, insn, 3215);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::USMOP4A, insn, EncodingId::usmop4a_za_zz_b1x2);
+            #else
+                        Instruction result(Mnemonic::USMOP4A, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         { auto op = Operand::sme_tile(enc.usmop4a_za_zz_b1x2.ZAda); op.set_arrangement(Arrangement::S); result.operands.push_back(op); }
@@ -39907,7 +40711,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0x81108008u: { // umop4a_za32_zz_h1x2
-                        Instruction result(Mnemonic::UMOP4A, insn, 3161);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::UMOP4A, insn, EncodingId::umop4a_za32_zz_h1x2);
+            #else
+                        Instruction result(Mnemonic::UMOP4A, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         { auto op = Operand::sme_tile(enc.umop4a_za32zz_h1x2.ZAda); op.set_arrangement(Arrangement::S); result.operands.push_back(op); }
@@ -39916,7 +40724,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0x81108010u: { // usmop4s_za_zz_b1x2
-                        Instruction result(Mnemonic::USMOP4S, insn, 3223);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::USMOP4S, insn, EncodingId::usmop4s_za_zz_b1x2);
+            #else
+                        Instruction result(Mnemonic::USMOP4S, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         { auto op = Operand::sme_tile(enc.usmop4s_za_zz_b1x2.ZAda); op.set_arrangement(Arrangement::S); result.operands.push_back(op); }
@@ -39925,7 +40737,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0x81108018u: { // umop4s_za32_zz_h1x2
-                        Instruction result(Mnemonic::UMOP4S, insn, 3173);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::UMOP4S, insn, EncodingId::umop4s_za32_zz_h1x2);
+            #else
+                        Instruction result(Mnemonic::UMOP4S, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         { auto op = Operand::sme_tile(enc.umop4s_za32zz_h1x2.ZAda); op.set_arrangement(Arrangement::S); result.operands.push_back(op); }
@@ -39934,7 +40750,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0x81108200u: { // usmop4a_za_zz_b2x2
-                        Instruction result(Mnemonic::USMOP4A, insn, 3218);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::USMOP4A, insn, EncodingId::usmop4a_za_zz_b2x2);
+            #else
+                        Instruction result(Mnemonic::USMOP4A, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         { auto op = Operand::sme_tile(enc.usmop4a_za_zz_b2x2.ZAda); op.set_arrangement(Arrangement::S); result.operands.push_back(op); }
@@ -39943,7 +40763,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0x81108208u: { // umop4a_za32_zz_h2x2
-                        Instruction result(Mnemonic::UMOP4A, insn, 3164);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::UMOP4A, insn, EncodingId::umop4a_za32_zz_h2x2);
+            #else
+                        Instruction result(Mnemonic::UMOP4A, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         { auto op = Operand::sme_tile(enc.umop4a_za32zz_h2x2.ZAda); op.set_arrangement(Arrangement::S); result.operands.push_back(op); }
@@ -39952,7 +40776,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0x81108210u: { // usmop4s_za_zz_b2x2
-                        Instruction result(Mnemonic::USMOP4S, insn, 3226);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::USMOP4S, insn, EncodingId::usmop4s_za_zz_b2x2);
+            #else
+                        Instruction result(Mnemonic::USMOP4S, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         { auto op = Operand::sme_tile(enc.usmop4s_za_zz_b2x2.ZAda); op.set_arrangement(Arrangement::S); result.operands.push_back(op); }
@@ -39961,7 +40789,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0x81108218u: { // umop4s_za32_zz_h2x2
-                        Instruction result(Mnemonic::UMOP4S, insn, 3176);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::UMOP4S, insn, EncodingId::umop4s_za32_zz_h2x2);
+            #else
+                        Instruction result(Mnemonic::UMOP4S, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         { auto op = Operand::sme_tile(enc.umop4s_za32zz_h2x2.ZAda); op.set_arrangement(Arrangement::S); result.operands.push_back(op); }
@@ -39970,7 +40802,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0x81200000u: { // fmop4a_za32_zz_h1x1
-                        Instruction result(Mnemonic::FMOP4A, insn, 2630);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FMOP4A, insn, EncodingId::fmop4a_za32_zz_h1x1);
+            #else
+                        Instruction result(Mnemonic::FMOP4A, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         { auto op = Operand::sme_tile(enc.fmop4a_za32zz_h1x1.ZAda); op.set_arrangement(Arrangement::S); result.operands.push_back(op); }
@@ -39979,7 +40815,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0x81200010u: { // fmop4s_za32_zz_h1x1
-                        Instruction result(Mnemonic::FMOP4S, insn, 2646);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FMOP4S, insn, EncodingId::fmop4s_za32_zz_h1x1);
+            #else
+                        Instruction result(Mnemonic::FMOP4S, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         { auto op = Operand::sme_tile(enc.fmop4s_za32zz_h1x1.ZAda); op.set_arrangement(Arrangement::S); result.operands.push_back(op); }
@@ -39988,7 +40828,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0x81200200u: { // fmop4a_za32_zz_h2x1
-                        Instruction result(Mnemonic::FMOP4A, insn, 2631);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FMOP4A, insn, EncodingId::fmop4a_za32_zz_h2x1);
+            #else
+                        Instruction result(Mnemonic::FMOP4A, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         { auto op = Operand::sme_tile(enc.fmop4a_za32zz_h2x1.ZAda); op.set_arrangement(Arrangement::S); result.operands.push_back(op); }
@@ -39997,7 +40841,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0x81200210u: { // fmop4s_za32_zz_h2x1
-                        Instruction result(Mnemonic::FMOP4S, insn, 2647);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FMOP4S, insn, EncodingId::fmop4s_za32_zz_h2x1);
+            #else
+                        Instruction result(Mnemonic::FMOP4S, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         { auto op = Operand::sme_tile(enc.fmop4s_za32zz_h2x1.ZAda); op.set_arrangement(Arrangement::S); result.operands.push_back(op); }
@@ -40006,7 +40854,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0x81208000u: { // umop4a_za_zz_b1x1
-                        Instruction result(Mnemonic::UMOP4A, insn, 3166);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::UMOP4A, insn, EncodingId::umop4a_za_zz_b1x1);
+            #else
+                        Instruction result(Mnemonic::UMOP4A, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         { auto op = Operand::sme_tile(enc.umop4a_za_zz_b1x1.ZAda); op.set_arrangement(Arrangement::S); result.operands.push_back(op); }
@@ -40015,7 +40867,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0x81208010u: { // umop4s_za_zz_b1x1
-                        Instruction result(Mnemonic::UMOP4S, insn, 3178);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::UMOP4S, insn, EncodingId::umop4s_za_zz_b1x1);
+            #else
+                        Instruction result(Mnemonic::UMOP4S, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         { auto op = Operand::sme_tile(enc.umop4s_za_zz_b1x1.ZAda); op.set_arrangement(Arrangement::S); result.operands.push_back(op); }
@@ -40024,7 +40880,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0x81208200u: { // umop4a_za_zz_b2x1
-                        Instruction result(Mnemonic::UMOP4A, insn, 3167);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::UMOP4A, insn, EncodingId::umop4a_za_zz_b2x1);
+            #else
+                        Instruction result(Mnemonic::UMOP4A, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         { auto op = Operand::sme_tile(enc.umop4a_za_zz_b2x1.ZAda); op.set_arrangement(Arrangement::S); result.operands.push_back(op); }
@@ -40033,7 +40893,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0x81208210u: { // umop4s_za_zz_b2x1
-                        Instruction result(Mnemonic::UMOP4S, insn, 3179);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::UMOP4S, insn, EncodingId::umop4s_za_zz_b2x1);
+            #else
+                        Instruction result(Mnemonic::UMOP4S, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         { auto op = Operand::sme_tile(enc.umop4s_za_zz_b2x1.ZAda); op.set_arrangement(Arrangement::S); result.operands.push_back(op); }
@@ -40042,7 +40906,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0x81300000u: { // fmop4a_za32_zz_h1x2
-                        Instruction result(Mnemonic::FMOP4A, insn, 2629);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FMOP4A, insn, EncodingId::fmop4a_za32_zz_h1x2);
+            #else
+                        Instruction result(Mnemonic::FMOP4A, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         { auto op = Operand::sme_tile(enc.fmop4a_za32zz_h1x2.ZAda); op.set_arrangement(Arrangement::S); result.operands.push_back(op); }
@@ -40051,7 +40919,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0x81300010u: { // fmop4s_za32_zz_h1x2
-                        Instruction result(Mnemonic::FMOP4S, insn, 2645);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FMOP4S, insn, EncodingId::fmop4s_za32_zz_h1x2);
+            #else
+                        Instruction result(Mnemonic::FMOP4S, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         { auto op = Operand::sme_tile(enc.fmop4s_za32zz_h1x2.ZAda); op.set_arrangement(Arrangement::S); result.operands.push_back(op); }
@@ -40060,7 +40932,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0x81300200u: { // fmop4a_za32_zz_h2x2
-                        Instruction result(Mnemonic::FMOP4A, insn, 2632);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FMOP4A, insn, EncodingId::fmop4a_za32_zz_h2x2);
+            #else
+                        Instruction result(Mnemonic::FMOP4A, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         { auto op = Operand::sme_tile(enc.fmop4a_za32zz_h2x2.ZAda); op.set_arrangement(Arrangement::S); result.operands.push_back(op); }
@@ -40069,7 +40945,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0x81300210u: { // fmop4s_za32_zz_h2x2
-                        Instruction result(Mnemonic::FMOP4S, insn, 2648);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FMOP4S, insn, EncodingId::fmop4s_za32_zz_h2x2);
+            #else
+                        Instruction result(Mnemonic::FMOP4S, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         { auto op = Operand::sme_tile(enc.fmop4s_za32zz_h2x2.ZAda); op.set_arrangement(Arrangement::S); result.operands.push_back(op); }
@@ -40078,7 +40958,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0x81308000u: { // umop4a_za_zz_b1x2
-                        Instruction result(Mnemonic::UMOP4A, insn, 3165);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::UMOP4A, insn, EncodingId::umop4a_za_zz_b1x2);
+            #else
+                        Instruction result(Mnemonic::UMOP4A, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         { auto op = Operand::sme_tile(enc.umop4a_za_zz_b1x2.ZAda); op.set_arrangement(Arrangement::S); result.operands.push_back(op); }
@@ -40087,7 +40971,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0x81308010u: { // umop4s_za_zz_b1x2
-                        Instruction result(Mnemonic::UMOP4S, insn, 3177);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::UMOP4S, insn, EncodingId::umop4s_za_zz_b1x2);
+            #else
+                        Instruction result(Mnemonic::UMOP4S, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         { auto op = Operand::sme_tile(enc.umop4s_za_zz_b1x2.ZAda); op.set_arrangement(Arrangement::S); result.operands.push_back(op); }
@@ -40096,7 +40984,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0x81308200u: { // umop4a_za_zz_b2x2
-                        Instruction result(Mnemonic::UMOP4A, insn, 3168);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::UMOP4A, insn, EncodingId::umop4a_za_zz_b2x2);
+            #else
+                        Instruction result(Mnemonic::UMOP4A, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         { auto op = Operand::sme_tile(enc.umop4a_za_zz_b2x2.ZAda); op.set_arrangement(Arrangement::S); result.operands.push_back(op); }
@@ -40105,7 +40997,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0x81308210u: { // umop4s_za_zz_b2x2
-                        Instruction result(Mnemonic::UMOP4S, insn, 3180);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::UMOP4S, insn, EncodingId::umop4s_za_zz_b2x2);
+            #else
+                        Instruction result(Mnemonic::UMOP4S, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         { auto op = Operand::sme_tile(enc.umop4s_za_zz_b2x2.ZAda); op.set_arrangement(Arrangement::S); result.operands.push_back(op); }
@@ -40119,7 +41015,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
     // Switch for mask 0xFFF1FE38u (40 patterns, 40 encodings)
     switch (insn & 0xFFF1FE38u) {
         case 0x80C00008u: { // fmop4a_za_zz_d1x1
-                        Instruction result(Mnemonic::FMOP4A, insn, 2642);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FMOP4A, insn, EncodingId::fmop4a_za_zz_d1x1);
+            #else
+                        Instruction result(Mnemonic::FMOP4A, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         { auto op = Operand::sme_tile(enc.fmop4a_za_zz_d1x1.ZAda); op.set_arrangement(Arrangement::D); result.operands.push_back(op); }
@@ -40128,7 +41028,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0x80C00018u: { // fmop4s_za_zz_d1x1
-                        Instruction result(Mnemonic::FMOP4S, insn, 2658);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FMOP4S, insn, EncodingId::fmop4s_za_zz_d1x1);
+            #else
+                        Instruction result(Mnemonic::FMOP4S, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         { auto op = Operand::sme_tile(enc.fmop4s_za_zz_d1x1.ZAda); op.set_arrangement(Arrangement::D); result.operands.push_back(op); }
@@ -40137,7 +41041,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0x80C00208u: { // fmop4a_za_zz_d2x1
-                        Instruction result(Mnemonic::FMOP4A, insn, 2643);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FMOP4A, insn, EncodingId::fmop4a_za_zz_d2x1);
+            #else
+                        Instruction result(Mnemonic::FMOP4A, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         { auto op = Operand::sme_tile(enc.fmop4a_za_zz_d2x1.ZAda); op.set_arrangement(Arrangement::D); result.operands.push_back(op); }
@@ -40146,7 +41054,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0x80C00218u: { // fmop4s_za_zz_d2x1
-                        Instruction result(Mnemonic::FMOP4S, insn, 2659);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FMOP4S, insn, EncodingId::fmop4s_za_zz_d2x1);
+            #else
+                        Instruction result(Mnemonic::FMOP4S, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         { auto op = Operand::sme_tile(enc.fmop4s_za_zz_d2x1.ZAda); op.set_arrangement(Arrangement::D); result.operands.push_back(op); }
@@ -40155,7 +41067,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0x80D00008u: { // fmop4a_za_zz_d1x2
-                        Instruction result(Mnemonic::FMOP4A, insn, 2641);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FMOP4A, insn, EncodingId::fmop4a_za_zz_d1x2);
+            #else
+                        Instruction result(Mnemonic::FMOP4A, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         { auto op = Operand::sme_tile(enc.fmop4a_za_zz_d1x2.ZAda); op.set_arrangement(Arrangement::D); result.operands.push_back(op); }
@@ -40164,7 +41080,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0x80D00018u: { // fmop4s_za_zz_d1x2
-                        Instruction result(Mnemonic::FMOP4S, insn, 2657);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FMOP4S, insn, EncodingId::fmop4s_za_zz_d1x2);
+            #else
+                        Instruction result(Mnemonic::FMOP4S, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         { auto op = Operand::sme_tile(enc.fmop4s_za_zz_d1x2.ZAda); op.set_arrangement(Arrangement::D); result.operands.push_back(op); }
@@ -40173,7 +41093,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0x80D00208u: { // fmop4a_za_zz_d2x2
-                        Instruction result(Mnemonic::FMOP4A, insn, 2644);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FMOP4A, insn, EncodingId::fmop4a_za_zz_d2x2);
+            #else
+                        Instruction result(Mnemonic::FMOP4A, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         { auto op = Operand::sme_tile(enc.fmop4a_za_zz_d2x2.ZAda); op.set_arrangement(Arrangement::D); result.operands.push_back(op); }
@@ -40182,7 +41106,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0x80D00218u: { // fmop4s_za_zz_d2x2
-                        Instruction result(Mnemonic::FMOP4S, insn, 2660);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FMOP4S, insn, EncodingId::fmop4s_za_zz_d2x2);
+            #else
+                        Instruction result(Mnemonic::FMOP4S, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         { auto op = Operand::sme_tile(enc.fmop4s_za_zz_d2x2.ZAda); op.set_arrangement(Arrangement::D); result.operands.push_back(op); }
@@ -40191,7 +41119,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xA0C00008u: { // smop4a_za_zz_h1x1
-                        Instruction result(Mnemonic::SMOP4A, insn, 2941);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SMOP4A, insn, EncodingId::smop4a_za_zz_h1x1);
+            #else
+                        Instruction result(Mnemonic::SMOP4A, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         { auto op = Operand::sme_tile(enc.smop4a_za_zz_h1x1.ZAda); op.set_arrangement(Arrangement::D); result.operands.push_back(op); }
@@ -40200,7 +41132,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xA0C00018u: { // smop4s_za_zz_h1x1
-                        Instruction result(Mnemonic::SMOP4S, insn, 2953);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SMOP4S, insn, EncodingId::smop4s_za_zz_h1x1);
+            #else
+                        Instruction result(Mnemonic::SMOP4S, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         { auto op = Operand::sme_tile(enc.smop4s_za_zz_h1x1.ZAda); op.set_arrangement(Arrangement::D); result.operands.push_back(op); }
@@ -40209,7 +41145,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xA0C00208u: { // smop4a_za_zz_h2x1
-                        Instruction result(Mnemonic::SMOP4A, insn, 2942);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SMOP4A, insn, EncodingId::smop4a_za_zz_h2x1);
+            #else
+                        Instruction result(Mnemonic::SMOP4A, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         { auto op = Operand::sme_tile(enc.smop4a_za_zz_h2x1.ZAda); op.set_arrangement(Arrangement::D); result.operands.push_back(op); }
@@ -40218,7 +41158,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xA0C00218u: { // smop4s_za_zz_h2x1
-                        Instruction result(Mnemonic::SMOP4S, insn, 2954);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SMOP4S, insn, EncodingId::smop4s_za_zz_h2x1);
+            #else
+                        Instruction result(Mnemonic::SMOP4S, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         { auto op = Operand::sme_tile(enc.smop4s_za_zz_h2x1.ZAda); op.set_arrangement(Arrangement::D); result.operands.push_back(op); }
@@ -40227,7 +41171,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xA0D00008u: { // smop4a_za_zz_h1x2
-                        Instruction result(Mnemonic::SMOP4A, insn, 2940);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SMOP4A, insn, EncodingId::smop4a_za_zz_h1x2);
+            #else
+                        Instruction result(Mnemonic::SMOP4A, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         { auto op = Operand::sme_tile(enc.smop4a_za_zz_h1x2.ZAda); op.set_arrangement(Arrangement::D); result.operands.push_back(op); }
@@ -40236,7 +41184,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xA0D00018u: { // smop4s_za_zz_h1x2
-                        Instruction result(Mnemonic::SMOP4S, insn, 2952);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SMOP4S, insn, EncodingId::smop4s_za_zz_h1x2);
+            #else
+                        Instruction result(Mnemonic::SMOP4S, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         { auto op = Operand::sme_tile(enc.smop4s_za_zz_h1x2.ZAda); op.set_arrangement(Arrangement::D); result.operands.push_back(op); }
@@ -40245,7 +41197,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xA0D00208u: { // smop4a_za_zz_h2x2
-                        Instruction result(Mnemonic::SMOP4A, insn, 2943);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SMOP4A, insn, EncodingId::smop4a_za_zz_h2x2);
+            #else
+                        Instruction result(Mnemonic::SMOP4A, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         { auto op = Operand::sme_tile(enc.smop4a_za_zz_h2x2.ZAda); op.set_arrangement(Arrangement::D); result.operands.push_back(op); }
@@ -40254,7 +41210,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xA0D00218u: { // smop4s_za_zz_h2x2
-                        Instruction result(Mnemonic::SMOP4S, insn, 2955);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SMOP4S, insn, EncodingId::smop4s_za_zz_h2x2);
+            #else
+                        Instruction result(Mnemonic::SMOP4S, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         { auto op = Operand::sme_tile(enc.smop4s_za_zz_h2x2.ZAda); op.set_arrangement(Arrangement::D); result.operands.push_back(op); }
@@ -40263,7 +41223,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xA0E00008u: { // sumop4a_za_zz_h1x1
-                        Instruction result(Mnemonic::SUMOP4A, insn, 3075);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SUMOP4A, insn, EncodingId::sumop4a_za_zz_h1x1);
+            #else
+                        Instruction result(Mnemonic::SUMOP4A, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         { auto op = Operand::sme_tile(enc.sumop4a_za_zz_h1x1.ZAda); op.set_arrangement(Arrangement::D); result.operands.push_back(op); }
@@ -40272,7 +41236,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xA0E00018u: { // sumop4s_za_zz_h1x1
-                        Instruction result(Mnemonic::SUMOP4S, insn, 3083);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SUMOP4S, insn, EncodingId::sumop4s_za_zz_h1x1);
+            #else
+                        Instruction result(Mnemonic::SUMOP4S, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         { auto op = Operand::sme_tile(enc.sumop4s_za_zz_h1x1.ZAda); op.set_arrangement(Arrangement::D); result.operands.push_back(op); }
@@ -40281,7 +41249,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xA0E00208u: { // sumop4a_za_zz_h2x1
-                        Instruction result(Mnemonic::SUMOP4A, insn, 3076);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SUMOP4A, insn, EncodingId::sumop4a_za_zz_h2x1);
+            #else
+                        Instruction result(Mnemonic::SUMOP4A, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         { auto op = Operand::sme_tile(enc.sumop4a_za_zz_h2x1.ZAda); op.set_arrangement(Arrangement::D); result.operands.push_back(op); }
@@ -40290,7 +41262,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xA0E00218u: { // sumop4s_za_zz_h2x1
-                        Instruction result(Mnemonic::SUMOP4S, insn, 3084);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SUMOP4S, insn, EncodingId::sumop4s_za_zz_h2x1);
+            #else
+                        Instruction result(Mnemonic::SUMOP4S, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         { auto op = Operand::sme_tile(enc.sumop4s_za_zz_h2x1.ZAda); op.set_arrangement(Arrangement::D); result.operands.push_back(op); }
@@ -40299,7 +41275,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xA0F00008u: { // sumop4a_za_zz_h1x2
-                        Instruction result(Mnemonic::SUMOP4A, insn, 3074);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SUMOP4A, insn, EncodingId::sumop4a_za_zz_h1x2);
+            #else
+                        Instruction result(Mnemonic::SUMOP4A, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         { auto op = Operand::sme_tile(enc.sumop4a_za_zz_h1x2.ZAda); op.set_arrangement(Arrangement::D); result.operands.push_back(op); }
@@ -40308,7 +41288,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xA0F00018u: { // sumop4s_za_zz_h1x2
-                        Instruction result(Mnemonic::SUMOP4S, insn, 3082);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SUMOP4S, insn, EncodingId::sumop4s_za_zz_h1x2);
+            #else
+                        Instruction result(Mnemonic::SUMOP4S, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         { auto op = Operand::sme_tile(enc.sumop4s_za_zz_h1x2.ZAda); op.set_arrangement(Arrangement::D); result.operands.push_back(op); }
@@ -40317,7 +41301,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xA0F00208u: { // sumop4a_za_zz_h2x2
-                        Instruction result(Mnemonic::SUMOP4A, insn, 3077);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SUMOP4A, insn, EncodingId::sumop4a_za_zz_h2x2);
+            #else
+                        Instruction result(Mnemonic::SUMOP4A, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         { auto op = Operand::sme_tile(enc.sumop4a_za_zz_h2x2.ZAda); op.set_arrangement(Arrangement::D); result.operands.push_back(op); }
@@ -40326,7 +41314,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xA0F00218u: { // sumop4s_za_zz_h2x2
-                        Instruction result(Mnemonic::SUMOP4S, insn, 3085);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SUMOP4S, insn, EncodingId::sumop4s_za_zz_h2x2);
+            #else
+                        Instruction result(Mnemonic::SUMOP4S, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         { auto op = Operand::sme_tile(enc.sumop4s_za_zz_h2x2.ZAda); op.set_arrangement(Arrangement::D); result.operands.push_back(op); }
@@ -40335,7 +41327,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xA1C00008u: { // usmop4a_za_zz_h1x1
-                        Instruction result(Mnemonic::USMOP4A, insn, 3220);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::USMOP4A, insn, EncodingId::usmop4a_za_zz_h1x1);
+            #else
+                        Instruction result(Mnemonic::USMOP4A, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         { auto op = Operand::sme_tile(enc.usmop4a_za_zz_h1x1.ZAda); op.set_arrangement(Arrangement::D); result.operands.push_back(op); }
@@ -40344,7 +41340,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xA1C00018u: { // usmop4s_za_zz_h1x1
-                        Instruction result(Mnemonic::USMOP4S, insn, 3228);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::USMOP4S, insn, EncodingId::usmop4s_za_zz_h1x1);
+            #else
+                        Instruction result(Mnemonic::USMOP4S, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         { auto op = Operand::sme_tile(enc.usmop4s_za_zz_h1x1.ZAda); op.set_arrangement(Arrangement::D); result.operands.push_back(op); }
@@ -40353,7 +41353,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xA1C00208u: { // usmop4a_za_zz_h2x1
-                        Instruction result(Mnemonic::USMOP4A, insn, 3221);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::USMOP4A, insn, EncodingId::usmop4a_za_zz_h2x1);
+            #else
+                        Instruction result(Mnemonic::USMOP4A, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         { auto op = Operand::sme_tile(enc.usmop4a_za_zz_h2x1.ZAda); op.set_arrangement(Arrangement::D); result.operands.push_back(op); }
@@ -40362,7 +41366,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xA1C00218u: { // usmop4s_za_zz_h2x1
-                        Instruction result(Mnemonic::USMOP4S, insn, 3229);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::USMOP4S, insn, EncodingId::usmop4s_za_zz_h2x1);
+            #else
+                        Instruction result(Mnemonic::USMOP4S, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         { auto op = Operand::sme_tile(enc.usmop4s_za_zz_h2x1.ZAda); op.set_arrangement(Arrangement::D); result.operands.push_back(op); }
@@ -40371,7 +41379,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xA1D00008u: { // usmop4a_za_zz_h1x2
-                        Instruction result(Mnemonic::USMOP4A, insn, 3219);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::USMOP4A, insn, EncodingId::usmop4a_za_zz_h1x2);
+            #else
+                        Instruction result(Mnemonic::USMOP4A, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         { auto op = Operand::sme_tile(enc.usmop4a_za_zz_h1x2.ZAda); op.set_arrangement(Arrangement::D); result.operands.push_back(op); }
@@ -40380,7 +41392,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xA1D00018u: { // usmop4s_za_zz_h1x2
-                        Instruction result(Mnemonic::USMOP4S, insn, 3227);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::USMOP4S, insn, EncodingId::usmop4s_za_zz_h1x2);
+            #else
+                        Instruction result(Mnemonic::USMOP4S, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         { auto op = Operand::sme_tile(enc.usmop4s_za_zz_h1x2.ZAda); op.set_arrangement(Arrangement::D); result.operands.push_back(op); }
@@ -40389,7 +41405,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xA1D00208u: { // usmop4a_za_zz_h2x2
-                        Instruction result(Mnemonic::USMOP4A, insn, 3222);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::USMOP4A, insn, EncodingId::usmop4a_za_zz_h2x2);
+            #else
+                        Instruction result(Mnemonic::USMOP4A, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         { auto op = Operand::sme_tile(enc.usmop4a_za_zz_h2x2.ZAda); op.set_arrangement(Arrangement::D); result.operands.push_back(op); }
@@ -40398,7 +41418,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xA1D00218u: { // usmop4s_za_zz_h2x2
-                        Instruction result(Mnemonic::USMOP4S, insn, 3230);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::USMOP4S, insn, EncodingId::usmop4s_za_zz_h2x2);
+            #else
+                        Instruction result(Mnemonic::USMOP4S, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         { auto op = Operand::sme_tile(enc.usmop4s_za_zz_h2x2.ZAda); op.set_arrangement(Arrangement::D); result.operands.push_back(op); }
@@ -40407,7 +41431,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xA1E00008u: { // umop4a_za_zz_h1x1
-                        Instruction result(Mnemonic::UMOP4A, insn, 3170);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::UMOP4A, insn, EncodingId::umop4a_za_zz_h1x1);
+            #else
+                        Instruction result(Mnemonic::UMOP4A, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         { auto op = Operand::sme_tile(enc.umop4a_za_zz_h1x1.ZAda); op.set_arrangement(Arrangement::D); result.operands.push_back(op); }
@@ -40416,7 +41444,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xA1E00018u: { // umop4s_za_zz_h1x1
-                        Instruction result(Mnemonic::UMOP4S, insn, 3182);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::UMOP4S, insn, EncodingId::umop4s_za_zz_h1x1);
+            #else
+                        Instruction result(Mnemonic::UMOP4S, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         { auto op = Operand::sme_tile(enc.umop4s_za_zz_h1x1.ZAda); op.set_arrangement(Arrangement::D); result.operands.push_back(op); }
@@ -40425,7 +41457,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xA1E00208u: { // umop4a_za_zz_h2x1
-                        Instruction result(Mnemonic::UMOP4A, insn, 3171);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::UMOP4A, insn, EncodingId::umop4a_za_zz_h2x1);
+            #else
+                        Instruction result(Mnemonic::UMOP4A, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         { auto op = Operand::sme_tile(enc.umop4a_za_zz_h2x1.ZAda); op.set_arrangement(Arrangement::D); result.operands.push_back(op); }
@@ -40434,7 +41470,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xA1E00218u: { // umop4s_za_zz_h2x1
-                        Instruction result(Mnemonic::UMOP4S, insn, 3183);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::UMOP4S, insn, EncodingId::umop4s_za_zz_h2x1);
+            #else
+                        Instruction result(Mnemonic::UMOP4S, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         { auto op = Operand::sme_tile(enc.umop4s_za_zz_h2x1.ZAda); op.set_arrangement(Arrangement::D); result.operands.push_back(op); }
@@ -40443,7 +41483,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xA1F00008u: { // umop4a_za_zz_h1x2
-                        Instruction result(Mnemonic::UMOP4A, insn, 3169);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::UMOP4A, insn, EncodingId::umop4a_za_zz_h1x2);
+            #else
+                        Instruction result(Mnemonic::UMOP4A, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         { auto op = Operand::sme_tile(enc.umop4a_za_zz_h1x2.ZAda); op.set_arrangement(Arrangement::D); result.operands.push_back(op); }
@@ -40452,7 +41496,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xA1F00018u: { // umop4s_za_zz_h1x2
-                        Instruction result(Mnemonic::UMOP4S, insn, 3181);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::UMOP4S, insn, EncodingId::umop4s_za_zz_h1x2);
+            #else
+                        Instruction result(Mnemonic::UMOP4S, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         { auto op = Operand::sme_tile(enc.umop4s_za_zz_h1x2.ZAda); op.set_arrangement(Arrangement::D); result.operands.push_back(op); }
@@ -40461,7 +41509,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xA1F00208u: { // umop4a_za_zz_h2x2
-                        Instruction result(Mnemonic::UMOP4A, insn, 3172);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::UMOP4A, insn, EncodingId::umop4a_za_zz_h2x2);
+            #else
+                        Instruction result(Mnemonic::UMOP4A, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         { auto op = Operand::sme_tile(enc.umop4a_za_zz_h2x2.ZAda); op.set_arrangement(Arrangement::D); result.operands.push_back(op); }
@@ -40470,7 +41522,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xA1F00218u: { // umop4s_za_zz_h2x2
-                        Instruction result(Mnemonic::UMOP4S, insn, 3184);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::UMOP4S, insn, EncodingId::umop4s_za_zz_h2x2);
+            #else
+                        Instruction result(Mnemonic::UMOP4S, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         { auto op = Operand::sme_tile(enc.umop4s_za_zz_h2x2.ZAda); op.set_arrangement(Arrangement::D); result.operands.push_back(op); }
@@ -40484,7 +41540,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
     // Switch for mask 0xFFF0FFE3u (5 patterns, 5 encodings)
     switch (insn & 0xFFF0FFE3u) {
         case 0xC120A900u: { // bfmax_mz_zzv_4x1
-                        Instruction result(Mnemonic::BFMAX, insn, 2424);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::BFMAX, insn, EncodingId::bfmax_mz_zzv_4x1);
+            #else
+                        Instruction result(Mnemonic::BFMAX, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         { auto op = Operand::reg_list(static_cast<uint32_t>(make_sve_reg(enc.bfmax_mz_zzv4x1.Zdn * 4))); op.set_arrangement(Arrangement::H); op.rl.count = 4; result.operands.push_back(op); }
@@ -40493,7 +41553,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC120A901u: { // bfmin_mz_zzv_4x1
-                        Instruction result(Mnemonic::BFMIN, insn, 2432);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::BFMIN, insn, EncodingId::bfmin_mz_zzv_4x1);
+            #else
+                        Instruction result(Mnemonic::BFMIN, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         { auto op = Operand::reg_list(static_cast<uint32_t>(make_sve_reg(enc.bfmin_mz_zzv4x1.Zdn * 4))); op.set_arrangement(Arrangement::H); op.rl.count = 4; result.operands.push_back(op); }
@@ -40502,7 +41566,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC120A920u: { // bfmaxnm_mz_zzv_4x1
-                        Instruction result(Mnemonic::BFMAXNM, insn, 2428);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::BFMAXNM, insn, EncodingId::bfmaxnm_mz_zzv_4x1);
+            #else
+                        Instruction result(Mnemonic::BFMAXNM, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         { auto op = Operand::reg_list(static_cast<uint32_t>(make_sve_reg(enc.bfmaxnm_mz_zzv4x1.Zdn * 4))); op.set_arrangement(Arrangement::H); op.rl.count = 4; result.operands.push_back(op); }
@@ -40511,7 +41579,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC120A921u: { // bfminnm_mz_zzv_4x1
-                        Instruction result(Mnemonic::BFMINNM, insn, 2436);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::BFMINNM, insn, EncodingId::bfminnm_mz_zzv_4x1);
+            #else
+                        Instruction result(Mnemonic::BFMINNM, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         { auto op = Operand::reg_list(static_cast<uint32_t>(make_sve_reg(enc.bfminnm_mz_zzv4x1.Zdn * 4))); op.set_arrangement(Arrangement::H); op.rl.count = 4; result.operands.push_back(op); }
@@ -40520,7 +41592,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC120A980u: { // bfscale_mz_zzv_4x1
-                        Instruction result(Mnemonic::BFSCALE, insn, 2492);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::BFSCALE, insn, EncodingId::bfscale_mz_zzv_4x1);
+            #else
+                        Instruction result(Mnemonic::BFSCALE, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         { auto op = Operand::reg_list(static_cast<uint32_t>(make_sve_reg(enc.bfscale_mz_zzv4x1.Zdn * 4))); op.set_arrangement(Arrangement::H); op.rl.count = 4; result.operands.push_back(op); }
@@ -40534,7 +41610,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
     // Switch for mask 0xFFF0FFE1u (5 patterns, 5 encodings)
     switch (insn & 0xFFF0FFE1u) {
         case 0xC120A100u: { // bfmax_mz_zzv_2x1
-                        Instruction result(Mnemonic::BFMAX, insn, 2423);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::BFMAX, insn, EncodingId::bfmax_mz_zzv_2x1);
+            #else
+                        Instruction result(Mnemonic::BFMAX, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         { auto op = Operand::reg_list(static_cast<uint32_t>(make_sve_reg(enc.bfmax_mz_zzv2x1.Zdn * 2))); op.set_arrangement(Arrangement::H); op.rl.count = 2; result.operands.push_back(op); }
@@ -40543,7 +41623,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC120A101u: { // bfmin_mz_zzv_2x1
-                        Instruction result(Mnemonic::BFMIN, insn, 2431);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::BFMIN, insn, EncodingId::bfmin_mz_zzv_2x1);
+            #else
+                        Instruction result(Mnemonic::BFMIN, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         { auto op = Operand::reg_list(static_cast<uint32_t>(make_sve_reg(enc.bfmin_mz_zzv2x1.Zdn * 2))); op.set_arrangement(Arrangement::H); op.rl.count = 2; result.operands.push_back(op); }
@@ -40552,7 +41636,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC120A120u: { // bfmaxnm_mz_zzv_2x1
-                        Instruction result(Mnemonic::BFMAXNM, insn, 2427);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::BFMAXNM, insn, EncodingId::bfmaxnm_mz_zzv_2x1);
+            #else
+                        Instruction result(Mnemonic::BFMAXNM, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         { auto op = Operand::reg_list(static_cast<uint32_t>(make_sve_reg(enc.bfmaxnm_mz_zzv2x1.Zdn * 2))); op.set_arrangement(Arrangement::H); op.rl.count = 2; result.operands.push_back(op); }
@@ -40561,7 +41649,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC120A121u: { // bfminnm_mz_zzv_2x1
-                        Instruction result(Mnemonic::BFMINNM, insn, 2435);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::BFMINNM, insn, EncodingId::bfminnm_mz_zzv_2x1);
+            #else
+                        Instruction result(Mnemonic::BFMINNM, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         { auto op = Operand::reg_list(static_cast<uint32_t>(make_sve_reg(enc.bfminnm_mz_zzv2x1.Zdn * 2))); op.set_arrangement(Arrangement::H); op.rl.count = 2; result.operands.push_back(op); }
@@ -40570,7 +41662,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC120A180u: { // bfscale_mz_zzv_2x1
-                        Instruction result(Mnemonic::BFSCALE, insn, 2491);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::BFSCALE, insn, EncodingId::bfscale_mz_zzv_2x1);
+            #else
+                        Instruction result(Mnemonic::BFSCALE, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         { auto op = Operand::reg_list(static_cast<uint32_t>(make_sve_reg(enc.bfscale_mz_zzv2x1.Zdn * 2))); op.set_arrangement(Arrangement::H); op.rl.count = 2; result.operands.push_back(op); }
@@ -40584,7 +41680,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
     // Switch for mask 0xFFF0FC20u (3 patterns, 3 encodings)
     switch (insn & 0xFFF0FC20u) {
         case 0xC1E0D400u: { // sqrshr_z_mz2_
-                        Instruction result(Mnemonic::SQRSHR, insn, 2972);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SQRSHR, insn, EncodingId::sqrshr_z_mz2_);
+            #else
+                        Instruction result(Mnemonic::SQRSHR, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::sve(enc.sqrshr_zmz2.Zd, Arrangement::H));
@@ -40593,7 +41693,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC1E0D420u: { // uqrshr_z_mz2_
-                        Instruction result(Mnemonic::UQRSHR, insn, 3194);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::UQRSHR, insn, EncodingId::uqrshr_z_mz2_);
+            #else
+                        Instruction result(Mnemonic::UQRSHR, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::sve(enc.uqrshr_zmz2.Zd, Arrangement::H));
@@ -40602,7 +41706,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC1F0D400u: { // sqrshru_z_mz2_
-                        Instruction result(Mnemonic::SQRSHRU, insn, 2975);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SQRSHRU, insn, EncodingId::sqrshru_z_mz2_);
+            #else
+                        Instruction result(Mnemonic::SQRSHRU, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::sve(enc.sqrshru_zmz2.Zd, Arrangement::H));
@@ -40616,7 +41724,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
     // Switch for mask 0xFFF0E01Cu (4 patterns, 4 encodings)
     switch (insn & 0xFFF0E01Cu) {
         case 0xA1408000u: { // ld1b_mzx_p_bi_4x4
-                        Instruction result(Mnemonic::LD1B, insn, 2705);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LD1B, insn, EncodingId::ld1b_mzx_p_bi_4x4);
+            #else
+                        Instruction result(Mnemonic::LD1B, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -40631,7 +41743,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xA1408008u: { // ldnt1b_mzx_p_bi_4x4
-                        Instruction result(Mnemonic::LDNT1B, insn, 2742);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDNT1B, insn, EncodingId::ldnt1b_mzx_p_bi_4x4);
+            #else
+                        Instruction result(Mnemonic::LDNT1B, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -40646,7 +41762,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xA1608000u: { // st1b_mzx_p_bi_4x4
-                        Instruction result(Mnemonic::ST1B, insn, 2987);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::ST1B, insn, EncodingId::st1b_mzx_p_bi_4x4);
+            #else
+                        Instruction result(Mnemonic::ST1B, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -40661,7 +41781,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xA1608008u: { // stnt1b_mzx_p_bi_4x4
-                        Instruction result(Mnemonic::STNT1B, insn, 3026);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::STNT1B, insn, EncodingId::stnt1b_mzx_p_bi_4x4);
+            #else
+                        Instruction result(Mnemonic::STNT1B, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -40681,7 +41805,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
     // Switch for mask 0xFFF0E018u (4 patterns, 4 encodings)
     switch (insn & 0xFFF0E018u) {
         case 0xA1400000u: { // ld1b_mzx_p_bi_2x8
-                        Instruction result(Mnemonic::LD1B, insn, 2704);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LD1B, insn, EncodingId::ld1b_mzx_p_bi_2x8);
+            #else
+                        Instruction result(Mnemonic::LD1B, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -40696,7 +41824,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xA1400008u: { // ldnt1b_mzx_p_bi_2x8
-                        Instruction result(Mnemonic::LDNT1B, insn, 2741);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDNT1B, insn, EncodingId::ldnt1b_mzx_p_bi_2x8);
+            #else
+                        Instruction result(Mnemonic::LDNT1B, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -40711,7 +41843,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xA1600000u: { // st1b_mzx_p_bi_2x8
-                        Instruction result(Mnemonic::ST1B, insn, 2986);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::ST1B, insn, EncodingId::st1b_mzx_p_bi_2x8);
+            #else
+                        Instruction result(Mnemonic::ST1B, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -40726,7 +41862,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xA1600008u: { // stnt1b_mzx_p_bi_2x8
-                        Instruction result(Mnemonic::STNT1B, insn, 3025);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::STNT1B, insn, EncodingId::stnt1b_mzx_p_bi_2x8);
+            #else
+                        Instruction result(Mnemonic::STNT1B, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -40746,7 +41886,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
     // Switch for mask 0xFFF0E00Cu (12 patterns, 12 encodings)
     switch (insn & 0xFFF0E00Cu) {
         case 0xA140A000u: { // ld1h_mzx_p_bi_4x4
-                        Instruction result(Mnemonic::LD1H, insn, 2723);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LD1H, insn, EncodingId::ld1h_mzx_p_bi_4x4);
+            #else
+                        Instruction result(Mnemonic::LD1H, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -40761,7 +41905,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xA140A008u: { // ldnt1h_mzx_p_bi_4x4
-                        Instruction result(Mnemonic::LDNT1H, insn, 2758);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDNT1H, insn, EncodingId::ldnt1h_mzx_p_bi_4x4);
+            #else
+                        Instruction result(Mnemonic::LDNT1H, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -40776,7 +41924,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xA140C000u: { // ld1w_mzx_p_bi_4x4
-                        Instruction result(Mnemonic::LD1W, insn, 2733);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LD1W, insn, EncodingId::ld1w_mzx_p_bi_4x4);
+            #else
+                        Instruction result(Mnemonic::LD1W, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -40791,7 +41943,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xA140C008u: { // ldnt1w_mzx_p_bi_4x4
-                        Instruction result(Mnemonic::LDNT1W, insn, 2766);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDNT1W, insn, EncodingId::ldnt1w_mzx_p_bi_4x4);
+            #else
+                        Instruction result(Mnemonic::LDNT1W, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -40806,7 +41962,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xA140E000u: { // ld1d_mzx_p_bi_4x4
-                        Instruction result(Mnemonic::LD1D, insn, 2714);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LD1D, insn, EncodingId::ld1d_mzx_p_bi_4x4);
+            #else
+                        Instruction result(Mnemonic::LD1D, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -40821,7 +41981,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xA140E008u: { // ldnt1d_mzx_p_bi_4x4
-                        Instruction result(Mnemonic::LDNT1D, insn, 2750);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDNT1D, insn, EncodingId::ldnt1d_mzx_p_bi_4x4);
+            #else
+                        Instruction result(Mnemonic::LDNT1D, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -40836,7 +42000,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xA160A000u: { // st1h_mzx_p_bi_4x4
-                        Instruction result(Mnemonic::ST1H, insn, 3005);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::ST1H, insn, EncodingId::st1h_mzx_p_bi_4x4);
+            #else
+                        Instruction result(Mnemonic::ST1H, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -40851,7 +42019,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xA160A008u: { // stnt1h_mzx_p_bi_4x4
-                        Instruction result(Mnemonic::STNT1H, insn, 3042);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::STNT1H, insn, EncodingId::stnt1h_mzx_p_bi_4x4);
+            #else
+                        Instruction result(Mnemonic::STNT1H, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -40866,7 +42038,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xA160C000u: { // st1w_mzx_p_bi_4x4
-                        Instruction result(Mnemonic::ST1W, insn, 3015);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::ST1W, insn, EncodingId::st1w_mzx_p_bi_4x4);
+            #else
+                        Instruction result(Mnemonic::ST1W, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -40881,7 +42057,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xA160C008u: { // stnt1w_mzx_p_bi_4x4
-                        Instruction result(Mnemonic::STNT1W, insn, 3050);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::STNT1W, insn, EncodingId::stnt1w_mzx_p_bi_4x4);
+            #else
+                        Instruction result(Mnemonic::STNT1W, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -40896,7 +42076,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xA160E000u: { // st1d_mzx_p_bi_4x4
-                        Instruction result(Mnemonic::ST1D, insn, 2996);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::ST1D, insn, EncodingId::st1d_mzx_p_bi_4x4);
+            #else
+                        Instruction result(Mnemonic::ST1D, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -40911,7 +42095,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xA160E008u: { // stnt1d_mzx_p_bi_4x4
-                        Instruction result(Mnemonic::STNT1D, insn, 3034);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::STNT1D, insn, EncodingId::stnt1d_mzx_p_bi_4x4);
+            #else
+                        Instruction result(Mnemonic::STNT1D, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -40931,7 +42119,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
     // Switch for mask 0xFFF0E008u (12 patterns, 12 encodings)
     switch (insn & 0xFFF0E008u) {
         case 0xA1402000u: { // ld1h_mzx_p_bi_2x8
-                        Instruction result(Mnemonic::LD1H, insn, 2722);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LD1H, insn, EncodingId::ld1h_mzx_p_bi_2x8);
+            #else
+                        Instruction result(Mnemonic::LD1H, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -40946,7 +42138,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xA1402008u: { // ldnt1h_mzx_p_bi_2x8
-                        Instruction result(Mnemonic::LDNT1H, insn, 2757);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDNT1H, insn, EncodingId::ldnt1h_mzx_p_bi_2x8);
+            #else
+                        Instruction result(Mnemonic::LDNT1H, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -40961,7 +42157,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xA1404000u: { // ld1w_mzx_p_bi_2x8
-                        Instruction result(Mnemonic::LD1W, insn, 2732);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LD1W, insn, EncodingId::ld1w_mzx_p_bi_2x8);
+            #else
+                        Instruction result(Mnemonic::LD1W, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -40976,7 +42176,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xA1404008u: { // ldnt1w_mzx_p_bi_2x8
-                        Instruction result(Mnemonic::LDNT1W, insn, 2765);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDNT1W, insn, EncodingId::ldnt1w_mzx_p_bi_2x8);
+            #else
+                        Instruction result(Mnemonic::LDNT1W, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -40991,7 +42195,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xA1406000u: { // ld1d_mzx_p_bi_2x8
-                        Instruction result(Mnemonic::LD1D, insn, 2713);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LD1D, insn, EncodingId::ld1d_mzx_p_bi_2x8);
+            #else
+                        Instruction result(Mnemonic::LD1D, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -41006,7 +42214,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xA1406008u: { // ldnt1d_mzx_p_bi_2x8
-                        Instruction result(Mnemonic::LDNT1D, insn, 2749);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDNT1D, insn, EncodingId::ldnt1d_mzx_p_bi_2x8);
+            #else
+                        Instruction result(Mnemonic::LDNT1D, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -41021,7 +42233,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xA1602000u: { // st1h_mzx_p_bi_2x8
-                        Instruction result(Mnemonic::ST1H, insn, 3004);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::ST1H, insn, EncodingId::st1h_mzx_p_bi_2x8);
+            #else
+                        Instruction result(Mnemonic::ST1H, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -41036,7 +42252,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xA1602008u: { // stnt1h_mzx_p_bi_2x8
-                        Instruction result(Mnemonic::STNT1H, insn, 3041);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::STNT1H, insn, EncodingId::stnt1h_mzx_p_bi_2x8);
+            #else
+                        Instruction result(Mnemonic::STNT1H, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -41051,7 +42271,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xA1604000u: { // st1w_mzx_p_bi_2x8
-                        Instruction result(Mnemonic::ST1W, insn, 3014);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::ST1W, insn, EncodingId::st1w_mzx_p_bi_2x8);
+            #else
+                        Instruction result(Mnemonic::ST1W, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -41066,7 +42290,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xA1604008u: { // stnt1w_mzx_p_bi_2x8
-                        Instruction result(Mnemonic::STNT1W, insn, 3049);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::STNT1W, insn, EncodingId::stnt1w_mzx_p_bi_2x8);
+            #else
+                        Instruction result(Mnemonic::STNT1W, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -41081,7 +42309,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xA1606000u: { // st1d_mzx_p_bi_2x8
-                        Instruction result(Mnemonic::ST1D, insn, 2995);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::ST1D, insn, EncodingId::st1d_mzx_p_bi_2x8);
+            #else
+                        Instruction result(Mnemonic::ST1D, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -41096,7 +42328,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xA1606008u: { // stnt1d_mzx_p_bi_2x8
-                        Instruction result(Mnemonic::STNT1D, insn, 3033);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::STNT1D, insn, EncodingId::stnt1d_mzx_p_bi_2x8);
+            #else
+                        Instruction result(Mnemonic::STNT1D, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -41116,7 +42352,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
     // Switch for mask 0xFFF0E003u (16 patterns, 16 encodings)
     switch (insn & 0xFFF0E003u) {
         case 0xA0408000u: { // ld1b_mz_p_bi_4
-                        Instruction result(Mnemonic::LD1B, insn, 2701);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LD1B, insn, EncodingId::ld1b_mz_p_bi_4);
+            #else
+                        Instruction result(Mnemonic::LD1B, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -41131,7 +42371,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xA0408001u: { // ldnt1b_mz_p_bi_4
-                        Instruction result(Mnemonic::LDNT1B, insn, 2738);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDNT1B, insn, EncodingId::ldnt1b_mz_p_bi_4);
+            #else
+                        Instruction result(Mnemonic::LDNT1B, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -41146,7 +42390,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xA040A000u: { // ld1h_mz_p_bi_4
-                        Instruction result(Mnemonic::LD1H, insn, 2719);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LD1H, insn, EncodingId::ld1h_mz_p_bi_4);
+            #else
+                        Instruction result(Mnemonic::LD1H, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -41161,7 +42409,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xA040A001u: { // ldnt1h_mz_p_bi_4
-                        Instruction result(Mnemonic::LDNT1H, insn, 2754);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDNT1H, insn, EncodingId::ldnt1h_mz_p_bi_4);
+            #else
+                        Instruction result(Mnemonic::LDNT1H, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -41176,7 +42428,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xA040C000u: { // ld1w_mz_p_bi_4
-                        Instruction result(Mnemonic::LD1W, insn, 2729);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LD1W, insn, EncodingId::ld1w_mz_p_bi_4);
+            #else
+                        Instruction result(Mnemonic::LD1W, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -41191,7 +42447,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xA040C001u: { // ldnt1w_mz_p_bi_4
-                        Instruction result(Mnemonic::LDNT1W, insn, 2762);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDNT1W, insn, EncodingId::ldnt1w_mz_p_bi_4);
+            #else
+                        Instruction result(Mnemonic::LDNT1W, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -41206,7 +42466,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xA040E000u: { // ld1d_mz_p_bi_4
-                        Instruction result(Mnemonic::LD1D, insn, 2710);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LD1D, insn, EncodingId::ld1d_mz_p_bi_4);
+            #else
+                        Instruction result(Mnemonic::LD1D, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -41221,7 +42485,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xA040E001u: { // ldnt1d_mz_p_bi_4
-                        Instruction result(Mnemonic::LDNT1D, insn, 2746);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDNT1D, insn, EncodingId::ldnt1d_mz_p_bi_4);
+            #else
+                        Instruction result(Mnemonic::LDNT1D, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -41236,7 +42504,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xA0608000u: { // st1b_mz_p_bi_4
-                        Instruction result(Mnemonic::ST1B, insn, 2983);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::ST1B, insn, EncodingId::st1b_mz_p_bi_4);
+            #else
+                        Instruction result(Mnemonic::ST1B, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -41251,7 +42523,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xA0608001u: { // stnt1b_mz_p_bi_4
-                        Instruction result(Mnemonic::STNT1B, insn, 3022);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::STNT1B, insn, EncodingId::stnt1b_mz_p_bi_4);
+            #else
+                        Instruction result(Mnemonic::STNT1B, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -41266,7 +42542,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xA060A000u: { // st1h_mz_p_bi_4
-                        Instruction result(Mnemonic::ST1H, insn, 3001);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::ST1H, insn, EncodingId::st1h_mz_p_bi_4);
+            #else
+                        Instruction result(Mnemonic::ST1H, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -41281,7 +42561,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xA060A001u: { // stnt1h_mz_p_bi_4
-                        Instruction result(Mnemonic::STNT1H, insn, 3038);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::STNT1H, insn, EncodingId::stnt1h_mz_p_bi_4);
+            #else
+                        Instruction result(Mnemonic::STNT1H, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -41296,7 +42580,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xA060C000u: { // st1w_mz_p_bi_4
-                        Instruction result(Mnemonic::ST1W, insn, 3011);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::ST1W, insn, EncodingId::st1w_mz_p_bi_4);
+            #else
+                        Instruction result(Mnemonic::ST1W, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -41311,7 +42599,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xA060C001u: { // stnt1w_mz_p_bi_4
-                        Instruction result(Mnemonic::STNT1W, insn, 3046);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::STNT1W, insn, EncodingId::stnt1w_mz_p_bi_4);
+            #else
+                        Instruction result(Mnemonic::STNT1W, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -41326,7 +42618,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xA060E000u: { // st1d_mz_p_bi_4
-                        Instruction result(Mnemonic::ST1D, insn, 2992);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::ST1D, insn, EncodingId::st1d_mz_p_bi_4);
+            #else
+                        Instruction result(Mnemonic::ST1D, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -41341,7 +42637,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xA060E001u: { // stnt1d_mz_p_bi_4
-                        Instruction result(Mnemonic::STNT1D, insn, 3030);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::STNT1D, insn, EncodingId::stnt1d_mz_p_bi_4);
+            #else
+                        Instruction result(Mnemonic::STNT1D, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -41361,7 +42661,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
     // Switch for mask 0xFFF0E001u (16 patterns, 16 encodings)
     switch (insn & 0xFFF0E001u) {
         case 0xA0400000u: { // ld1b_mz_p_bi_2
-                        Instruction result(Mnemonic::LD1B, insn, 2700);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LD1B, insn, EncodingId::ld1b_mz_p_bi_2);
+            #else
+                        Instruction result(Mnemonic::LD1B, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -41376,7 +42680,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xA0400001u: { // ldnt1b_mz_p_bi_2
-                        Instruction result(Mnemonic::LDNT1B, insn, 2737);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDNT1B, insn, EncodingId::ldnt1b_mz_p_bi_2);
+            #else
+                        Instruction result(Mnemonic::LDNT1B, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -41391,7 +42699,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xA0402000u: { // ld1h_mz_p_bi_2
-                        Instruction result(Mnemonic::LD1H, insn, 2718);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LD1H, insn, EncodingId::ld1h_mz_p_bi_2);
+            #else
+                        Instruction result(Mnemonic::LD1H, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -41406,7 +42718,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xA0402001u: { // ldnt1h_mz_p_bi_2
-                        Instruction result(Mnemonic::LDNT1H, insn, 2753);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDNT1H, insn, EncodingId::ldnt1h_mz_p_bi_2);
+            #else
+                        Instruction result(Mnemonic::LDNT1H, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -41421,7 +42737,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xA0404000u: { // ld1w_mz_p_bi_2
-                        Instruction result(Mnemonic::LD1W, insn, 2728);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LD1W, insn, EncodingId::ld1w_mz_p_bi_2);
+            #else
+                        Instruction result(Mnemonic::LD1W, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -41436,7 +42756,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xA0404001u: { // ldnt1w_mz_p_bi_2
-                        Instruction result(Mnemonic::LDNT1W, insn, 2761);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDNT1W, insn, EncodingId::ldnt1w_mz_p_bi_2);
+            #else
+                        Instruction result(Mnemonic::LDNT1W, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -41451,7 +42775,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xA0406000u: { // ld1d_mz_p_bi_2
-                        Instruction result(Mnemonic::LD1D, insn, 2709);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LD1D, insn, EncodingId::ld1d_mz_p_bi_2);
+            #else
+                        Instruction result(Mnemonic::LD1D, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -41466,7 +42794,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xA0406001u: { // ldnt1d_mz_p_bi_2
-                        Instruction result(Mnemonic::LDNT1D, insn, 2745);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDNT1D, insn, EncodingId::ldnt1d_mz_p_bi_2);
+            #else
+                        Instruction result(Mnemonic::LDNT1D, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -41481,7 +42813,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xA0600000u: { // st1b_mz_p_bi_2
-                        Instruction result(Mnemonic::ST1B, insn, 2982);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::ST1B, insn, EncodingId::st1b_mz_p_bi_2);
+            #else
+                        Instruction result(Mnemonic::ST1B, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -41496,7 +42832,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xA0600001u: { // stnt1b_mz_p_bi_2
-                        Instruction result(Mnemonic::STNT1B, insn, 3021);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::STNT1B, insn, EncodingId::stnt1b_mz_p_bi_2);
+            #else
+                        Instruction result(Mnemonic::STNT1B, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -41511,7 +42851,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xA0602000u: { // st1h_mz_p_bi_2
-                        Instruction result(Mnemonic::ST1H, insn, 3000);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::ST1H, insn, EncodingId::st1h_mz_p_bi_2);
+            #else
+                        Instruction result(Mnemonic::ST1H, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -41526,7 +42870,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xA0602001u: { // stnt1h_mz_p_bi_2
-                        Instruction result(Mnemonic::STNT1H, insn, 3037);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::STNT1H, insn, EncodingId::stnt1h_mz_p_bi_2);
+            #else
+                        Instruction result(Mnemonic::STNT1H, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -41541,7 +42889,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xA0604000u: { // st1w_mz_p_bi_2
-                        Instruction result(Mnemonic::ST1W, insn, 3010);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::ST1W, insn, EncodingId::st1w_mz_p_bi_2);
+            #else
+                        Instruction result(Mnemonic::ST1W, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -41556,7 +42908,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xA0604001u: { // stnt1w_mz_p_bi_2
-                        Instruction result(Mnemonic::STNT1W, insn, 3045);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::STNT1W, insn, EncodingId::stnt1w_mz_p_bi_2);
+            #else
+                        Instruction result(Mnemonic::STNT1W, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -41571,7 +42927,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xA0606000u: { // st1d_mz_p_bi_2
-                        Instruction result(Mnemonic::ST1D, insn, 2991);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::ST1D, insn, EncodingId::st1d_mz_p_bi_2);
+            #else
+                        Instruction result(Mnemonic::ST1D, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -41586,7 +42946,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xA0606001u: { // stnt1d_mz_p_bi_2
-                        Instruction result(Mnemonic::STNT1D, insn, 3029);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::STNT1D, insn, EncodingId::stnt1d_mz_p_bi_2);
+            #else
+                        Instruction result(Mnemonic::STNT1D, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -41606,7 +42970,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
     // Switch for mask 0xFFF09C1Eu (6 patterns, 6 encodings)
     switch (insn & 0xFFF09C1Eu) {
         case 0xC1200002u: { // fmlall_za32_z8z8v_2x1
-                        Instruction result(Mnemonic::FMLALL, insn, 2595);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FMLALL, insn, EncodingId::fmlall_za32_z8z8v_2x1);
+            #else
+                        Instruction result(Mnemonic::FMLALL, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         {
@@ -41627,7 +42995,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC1200004u: { // usmlall_za_zzv_s2x1
-                        Instruction result(Mnemonic::USMLALL, insn, 3211);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::USMLALL, insn, EncodingId::usmlall_za_zzv_s2x1);
+            #else
+                        Instruction result(Mnemonic::USMLALL, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         {
@@ -41648,7 +43020,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC1200014u: { // sumlall_za_zzv_s2x1
-                        Instruction result(Mnemonic::SUMLALL, insn, 3068);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SUMLALL, insn, EncodingId::sumlall_za_zzv_s2x1);
+            #else
+                        Instruction result(Mnemonic::SUMLALL, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         {
@@ -41669,7 +43045,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC1300002u: { // fmlall_za32_z8z8v_4x1
-                        Instruction result(Mnemonic::FMLALL, insn, 2596);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FMLALL, insn, EncodingId::fmlall_za32_z8z8v_4x1);
+            #else
+                        Instruction result(Mnemonic::FMLALL, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         {
@@ -41690,7 +43070,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC1300004u: { // usmlall_za_zzv_s4x1
-                        Instruction result(Mnemonic::USMLALL, insn, 3212);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::USMLALL, insn, EncodingId::usmlall_za_zzv_s4x1);
+            #else
+                        Instruction result(Mnemonic::USMLALL, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         {
@@ -41711,7 +43095,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC1300014u: { // sumlall_za_zzv_s4x1
-                        Instruction result(Mnemonic::SUMLALL, insn, 3069);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SUMLALL, insn, EncodingId::sumlall_za_zzv_s4x1);
+            #else
+                        Instruction result(Mnemonic::SUMLALL, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         {
@@ -41737,7 +43125,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
     // Switch for mask 0xFFF09C1Cu (20 patterns, 20 encodings)
     switch (insn & 0xFFF09C1Cu) {
         case 0xC1200404u: { // usmlall_za_zzv_s
-                        Instruction result(Mnemonic::USMLALL, insn, 3210);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::USMLALL, insn, EncodingId::usmlall_za_zzv_s);
+            #else
+                        Instruction result(Mnemonic::USMLALL, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         {
@@ -41758,7 +43150,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC1200800u: { // fmlal_za_zzv_2x1
-                        Instruction result(Mnemonic::FMLAL, insn, 2587);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FMLAL, insn, EncodingId::fmlal_za_zzv_2x1);
+            #else
+                        Instruction result(Mnemonic::FMLAL, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         {
@@ -41779,7 +43175,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC1200804u: { // fmlal_za_z8z8v_2x1
-                        Instruction result(Mnemonic::FMLAL, insn, 2579);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FMLAL, insn, EncodingId::fmlal_za_z8z8v_2x1);
+            #else
+                        Instruction result(Mnemonic::FMLAL, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         {
@@ -41800,7 +43200,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC1200808u: { // fmlsl_za_zzv_2x1
-                        Instruction result(Mnemonic::FMLSL, insn, 2617);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FMLSL, insn, EncodingId::fmlsl_za_zzv_2x1);
+            #else
+                        Instruction result(Mnemonic::FMLSL, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         {
@@ -41821,7 +43225,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC1200810u: { // bfmlal_za_zzv_2x1
-                        Instruction result(Mnemonic::BFMLAL, insn, 2449);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::BFMLAL, insn, EncodingId::bfmlal_za_zzv_2x1);
+            #else
+                        Instruction result(Mnemonic::BFMLAL, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         {
@@ -41842,7 +43250,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC1200818u: { // bfmlsl_za_zzv_2x1
-                        Instruction result(Mnemonic::BFMLSL, insn, 2463);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::BFMLSL, insn, EncodingId::bfmlsl_za_zzv_2x1);
+            #else
+                        Instruction result(Mnemonic::BFMLSL, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         {
@@ -41863,7 +43275,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC1300400u: { // fmlall_za32_z8z8v_1
-                        Instruction result(Mnemonic::FMLALL, insn, 2594);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FMLALL, insn, EncodingId::fmlall_za32_z8z8v_1);
+            #else
+                        Instruction result(Mnemonic::FMLALL, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         {
@@ -41884,7 +43300,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC1300800u: { // fmlal_za_zzv_4x1
-                        Instruction result(Mnemonic::FMLAL, insn, 2588);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FMLAL, insn, EncodingId::fmlal_za_zzv_4x1);
+            #else
+                        Instruction result(Mnemonic::FMLAL, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         {
@@ -41905,7 +43325,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC1300804u: { // fmlal_za_z8z8v_4x1
-                        Instruction result(Mnemonic::FMLAL, insn, 2580);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FMLAL, insn, EncodingId::fmlal_za_z8z8v_4x1);
+            #else
+                        Instruction result(Mnemonic::FMLAL, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         {
@@ -41926,7 +43350,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC1300808u: { // fmlsl_za_zzv_4x1
-                        Instruction result(Mnemonic::FMLSL, insn, 2618);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FMLSL, insn, EncodingId::fmlsl_za_zzv_4x1);
+            #else
+                        Instruction result(Mnemonic::FMLSL, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         {
@@ -41947,7 +43375,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC1300810u: { // bfmlal_za_zzv_4x1
-                        Instruction result(Mnemonic::BFMLAL, insn, 2450);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::BFMLAL, insn, EncodingId::bfmlal_za_zzv_4x1);
+            #else
+                        Instruction result(Mnemonic::BFMLAL, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         {
@@ -41968,7 +43400,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC1300818u: { // bfmlsl_za_zzv_4x1
-                        Instruction result(Mnemonic::BFMLSL, insn, 2464);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::BFMLSL, insn, EncodingId::bfmlsl_za_zzv_4x1);
+            #else
+                        Instruction result(Mnemonic::BFMLSL, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         {
@@ -41989,7 +43425,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC1600800u: { // smlal_za_zzv_2x1
-                        Instruction result(Mnemonic::SMLAL, insn, 2898);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SMLAL, insn, EncodingId::smlal_za_zzv_2x1);
+            #else
+                        Instruction result(Mnemonic::SMLAL, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         {
@@ -42010,7 +43450,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC1600808u: { // smlsl_za_zzv_2x1
-                        Instruction result(Mnemonic::SMLSL, insn, 2917);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SMLSL, insn, EncodingId::smlsl_za_zzv_2x1);
+            #else
+                        Instruction result(Mnemonic::SMLSL, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         {
@@ -42031,7 +43475,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC1600810u: { // umlal_za_zzv_2x1
-                        Instruction result(Mnemonic::UMLAL, insn, 3127);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::UMLAL, insn, EncodingId::umlal_za_zzv_2x1);
+            #else
+                        Instruction result(Mnemonic::UMLAL, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         {
@@ -42052,7 +43500,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC1600818u: { // umlsl_za_zzv_2x1
-                        Instruction result(Mnemonic::UMLSL, insn, 3146);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::UMLSL, insn, EncodingId::umlsl_za_zzv_2x1);
+            #else
+                        Instruction result(Mnemonic::UMLSL, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         {
@@ -42073,7 +43525,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC1700800u: { // smlal_za_zzv_4x1
-                        Instruction result(Mnemonic::SMLAL, insn, 2899);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SMLAL, insn, EncodingId::smlal_za_zzv_4x1);
+            #else
+                        Instruction result(Mnemonic::SMLAL, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         {
@@ -42094,7 +43550,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC1700808u: { // smlsl_za_zzv_4x1
-                        Instruction result(Mnemonic::SMLSL, insn, 2918);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SMLSL, insn, EncodingId::smlsl_za_zzv_4x1);
+            #else
+                        Instruction result(Mnemonic::SMLSL, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         {
@@ -42115,7 +43575,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC1700810u: { // umlal_za_zzv_4x1
-                        Instruction result(Mnemonic::UMLAL, insn, 3128);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::UMLAL, insn, EncodingId::umlal_za_zzv_4x1);
+            #else
+                        Instruction result(Mnemonic::UMLAL, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         {
@@ -42136,7 +43600,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC1700818u: { // umlsl_za_zzv_4x1
-                        Instruction result(Mnemonic::UMLSL, insn, 3147);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::UMLSL, insn, EncodingId::umlsl_za_zzv_4x1);
+            #else
+                        Instruction result(Mnemonic::UMLSL, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         {
@@ -42162,7 +43630,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
     // Switch for mask 0xFFF09C18u (33 patterns, 33 encodings)
     switch (insn & 0xFFF09C18u) {
         case 0xC1200C00u: { // fmlal_za_zzv_1
-                        Instruction result(Mnemonic::FMLAL, insn, 2586);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FMLAL, insn, EncodingId::fmlal_za_zzv_1);
+            #else
+                        Instruction result(Mnemonic::FMLAL, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         {
@@ -42183,7 +43655,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC1200C08u: { // fmlsl_za_zzv_1
-                        Instruction result(Mnemonic::FMLSL, insn, 2616);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FMLSL, insn, EncodingId::fmlsl_za_zzv_1);
+            #else
+                        Instruction result(Mnemonic::FMLSL, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         {
@@ -42204,7 +43680,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC1200C10u: { // bfmlal_za_zzv_1
-                        Instruction result(Mnemonic::BFMLAL, insn, 2448);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::BFMLAL, insn, EncodingId::bfmlal_za_zzv_1);
+            #else
+                        Instruction result(Mnemonic::BFMLAL, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         {
@@ -42225,7 +43705,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC1200C18u: { // bfmlsl_za_zzv_1
-                        Instruction result(Mnemonic::BFMLSL, insn, 2462);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::BFMLSL, insn, EncodingId::bfmlsl_za_zzv_1);
+            #else
+                        Instruction result(Mnemonic::BFMLSL, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         {
@@ -42246,7 +43730,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC1201000u: { // fdot_za_zzv_2x1
-                        Instruction result(Mnemonic::FDOT, insn, 2541);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FDOT, insn, EncodingId::fdot_za_zzv_2x1);
+            #else
+                        Instruction result(Mnemonic::FDOT, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         {
@@ -42264,7 +43752,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC1201008u: { // fdot_za_z8z8v_2x1
-                        Instruction result(Mnemonic::FDOT, insn, 2535);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FDOT, insn, EncodingId::fdot_za_z8z8v_2x1);
+            #else
+                        Instruction result(Mnemonic::FDOT, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         {
@@ -42282,7 +43774,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC1201010u: { // bfdot_za_zzv_2x1
-                        Instruction result(Mnemonic::BFDOT, insn, 2419);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::BFDOT, insn, EncodingId::bfdot_za_zzv_2x1);
+            #else
+                        Instruction result(Mnemonic::BFDOT, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         {
@@ -42300,7 +43796,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC1201018u: { // fdot_za32_z8z8v_2x1
-                        Instruction result(Mnemonic::FDOT, insn, 2529);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FDOT, insn, EncodingId::fdot_za32_z8z8v_2x1);
+            #else
+                        Instruction result(Mnemonic::FDOT, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         {
@@ -42318,7 +43818,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC1201408u: { // usdot_za_zzv_s2x1
-                        Instruction result(Mnemonic::USDOT, insn, 3203);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::USDOT, insn, EncodingId::usdot_za_zzv_s2x1);
+            #else
+                        Instruction result(Mnemonic::USDOT, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         {
@@ -42336,7 +43840,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC1201418u: { // sudot_za_zzv_s2x1
-                        Instruction result(Mnemonic::SUDOT, insn, 3063);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SUDOT, insn, EncodingId::sudot_za_zzv_s2x1);
+            #else
+                        Instruction result(Mnemonic::SUDOT, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         {
@@ -42354,7 +43862,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC1201C00u: { // fmla_za_zzv_2x1_16
-                        Instruction result(Mnemonic::FMLA, insn, 2568);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FMLA, insn, EncodingId::fmla_za_zzv_2x1_16);
+            #else
+                        Instruction result(Mnemonic::FMLA, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         {
@@ -42372,7 +43884,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC1201C08u: { // fmls_za_zzv_2x1_16
-                        Instruction result(Mnemonic::FMLS, insn, 2606);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FMLS, insn, EncodingId::fmls_za_zzv_2x1_16);
+            #else
+                        Instruction result(Mnemonic::FMLS, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         {
@@ -42390,7 +43906,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC1300C00u: { // fmlal_za_z8z8v_1
-                        Instruction result(Mnemonic::FMLAL, insn, 2578);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FMLAL, insn, EncodingId::fmlal_za_z8z8v_1);
+            #else
+                        Instruction result(Mnemonic::FMLAL, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         {
@@ -42411,7 +43931,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC1301000u: { // fdot_za_zzv_4x1
-                        Instruction result(Mnemonic::FDOT, insn, 2542);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FDOT, insn, EncodingId::fdot_za_zzv_4x1);
+            #else
+                        Instruction result(Mnemonic::FDOT, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         {
@@ -42429,7 +43953,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC1301008u: { // fdot_za_z8z8v_4x1
-                        Instruction result(Mnemonic::FDOT, insn, 2536);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FDOT, insn, EncodingId::fdot_za_z8z8v_4x1);
+            #else
+                        Instruction result(Mnemonic::FDOT, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         {
@@ -42447,7 +43975,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC1301010u: { // bfdot_za_zzv_4x1
-                        Instruction result(Mnemonic::BFDOT, insn, 2420);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::BFDOT, insn, EncodingId::bfdot_za_zzv_4x1);
+            #else
+                        Instruction result(Mnemonic::BFDOT, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         {
@@ -42465,7 +43997,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC1301018u: { // fdot_za32_z8z8v_4x1
-                        Instruction result(Mnemonic::FDOT, insn, 2530);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FDOT, insn, EncodingId::fdot_za32_z8z8v_4x1);
+            #else
+                        Instruction result(Mnemonic::FDOT, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         {
@@ -42483,7 +44019,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC1301408u: { // usdot_za_zzv_s4x1
-                        Instruction result(Mnemonic::USDOT, insn, 3204);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::USDOT, insn, EncodingId::usdot_za_zzv_s4x1);
+            #else
+                        Instruction result(Mnemonic::USDOT, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         {
@@ -42501,7 +44041,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC1301418u: { // sudot_za_zzv_s4x1
-                        Instruction result(Mnemonic::SUDOT, insn, 3064);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SUDOT, insn, EncodingId::sudot_za_zzv_s4x1);
+            #else
+                        Instruction result(Mnemonic::SUDOT, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         {
@@ -42519,7 +44063,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC1301C00u: { // fmla_za_zzv_4x1_16
-                        Instruction result(Mnemonic::FMLA, insn, 2570);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FMLA, insn, EncodingId::fmla_za_zzv_4x1_16);
+            #else
+                        Instruction result(Mnemonic::FMLA, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         {
@@ -42537,7 +44085,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC1301C08u: { // fmls_za_zzv_4x1_16
-                        Instruction result(Mnemonic::FMLS, insn, 2608);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FMLS, insn, EncodingId::fmls_za_zzv_4x1_16);
+            #else
+                        Instruction result(Mnemonic::FMLS, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         {
@@ -42555,7 +44107,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC1600C00u: { // smlal_za_zzv_1
-                        Instruction result(Mnemonic::SMLAL, insn, 2897);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SMLAL, insn, EncodingId::smlal_za_zzv_1);
+            #else
+                        Instruction result(Mnemonic::SMLAL, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         {
@@ -42576,7 +44132,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC1600C08u: { // smlsl_za_zzv_1
-                        Instruction result(Mnemonic::SMLSL, insn, 2916);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SMLSL, insn, EncodingId::smlsl_za_zzv_1);
+            #else
+                        Instruction result(Mnemonic::SMLSL, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         {
@@ -42597,7 +44157,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC1600C10u: { // umlal_za_zzv_1
-                        Instruction result(Mnemonic::UMLAL, insn, 3126);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::UMLAL, insn, EncodingId::umlal_za_zzv_1);
+            #else
+                        Instruction result(Mnemonic::UMLAL, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         {
@@ -42618,7 +44182,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC1600C18u: { // umlsl_za_zzv_1
-                        Instruction result(Mnemonic::UMLSL, insn, 3145);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::UMLSL, insn, EncodingId::umlsl_za_zzv_1);
+            #else
+                        Instruction result(Mnemonic::UMLSL, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         {
@@ -42639,7 +44207,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC1601408u: { // sdot_za32_zzv_2x1
-                        Instruction result(Mnemonic::SDOT, insn, 2872);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SDOT, insn, EncodingId::sdot_za32_zzv_2x1);
+            #else
+                        Instruction result(Mnemonic::SDOT, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         {
@@ -42657,7 +44229,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC1601418u: { // udot_za32_zzv_2x1
-                        Instruction result(Mnemonic::UDOT, insn, 3103);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::UDOT, insn, EncodingId::udot_za32_zzv_2x1);
+            #else
+                        Instruction result(Mnemonic::UDOT, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         {
@@ -42675,7 +44251,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC1601C00u: { // bfmla_za_zzv_2x1_16
-                        Instruction result(Mnemonic::BFMLA, insn, 2441);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::BFMLA, insn, EncodingId::bfmla_za_zzv_2x1_16);
+            #else
+                        Instruction result(Mnemonic::BFMLA, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         {
@@ -42693,7 +44273,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC1601C08u: { // bfmls_za_zzv_2x1_16
-                        Instruction result(Mnemonic::BFMLS, insn, 2455);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::BFMLS, insn, EncodingId::bfmls_za_zzv_2x1_16);
+            #else
+                        Instruction result(Mnemonic::BFMLS, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         {
@@ -42711,7 +44295,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC1701408u: { // sdot_za32_zzv_4x1
-                        Instruction result(Mnemonic::SDOT, insn, 2873);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SDOT, insn, EncodingId::sdot_za32_zzv_4x1);
+            #else
+                        Instruction result(Mnemonic::SDOT, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         {
@@ -42729,7 +44317,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC1701418u: { // udot_za32_zzv_4x1
-                        Instruction result(Mnemonic::UDOT, insn, 3104);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::UDOT, insn, EncodingId::udot_za32_zzv_4x1);
+            #else
+                        Instruction result(Mnemonic::UDOT, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         {
@@ -42747,7 +44339,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC1701C00u: { // bfmla_za_zzv_4x1_16
-                        Instruction result(Mnemonic::BFMLA, insn, 2442);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::BFMLA, insn, EncodingId::bfmla_za_zzv_4x1_16);
+            #else
+                        Instruction result(Mnemonic::BFMLA, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         {
@@ -42765,7 +44361,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC1701C08u: { // bfmls_za_zzv_4x1_16
-                        Instruction result(Mnemonic::BFMLS, insn, 2456);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::BFMLS, insn, EncodingId::bfmls_za_zzv_4x1_16);
+            #else
+                        Instruction result(Mnemonic::BFMLS, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         {
@@ -42788,7 +44388,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
     // Switch for mask 0xFFF09878u (10 patterns, 10 encodings)
     switch (insn & 0xFFF09878u) {
         case 0xC1908000u: { // smlall_za_zzi_d4xi
-                        Instruction result(Mnemonic::SMLALL, insn, 2907);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SMLALL, insn, EncodingId::smlall_za_zzi_d4xi);
+            #else
+                        Instruction result(Mnemonic::SMLALL, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         {
@@ -42809,7 +44413,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC1908008u: { // smlsll_za_zzi_d4xi
-                        Instruction result(Mnemonic::SMLSLL, insn, 2926);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SMLSLL, insn, EncodingId::smlsll_za_zzi_d4xi);
+            #else
+                        Instruction result(Mnemonic::SMLSLL, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         {
@@ -42830,7 +44438,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC1908010u: { // umlall_za_zzi_d4xi
-                        Instruction result(Mnemonic::UMLALL, insn, 3136);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::UMLALL, insn, EncodingId::umlall_za_zzi_d4xi);
+            #else
+                        Instruction result(Mnemonic::UMLALL, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         {
@@ -42851,7 +44463,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC1908018u: { // umlsll_za_zzi_d4xi
-                        Instruction result(Mnemonic::UMLSLL, insn, 3155);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::UMLSLL, insn, EncodingId::umlsll_za_zzi_d4xi);
+            #else
+                        Instruction result(Mnemonic::UMLSLL, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         {
@@ -42872,7 +44488,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC1D08000u: { // fmla_za_zzi_d4xi
-                        Instruction result(Mnemonic::FMLA, insn, 2566);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FMLA, insn, EncodingId::fmla_za_zzi_d4xi);
+            #else
+                        Instruction result(Mnemonic::FMLA, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         {
@@ -42890,7 +44510,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC1D08008u: { // sdot_za_zzi_d4xi
-                        Instruction result(Mnemonic::SDOT, insn, 2879);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SDOT, insn, EncodingId::sdot_za_zzi_d4xi);
+            #else
+                        Instruction result(Mnemonic::SDOT, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         {
@@ -42908,7 +44532,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC1D08010u: { // fmls_za_zzi_d4xi
-                        Instruction result(Mnemonic::FMLS, insn, 2604);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FMLS, insn, EncodingId::fmls_za_zzi_d4xi);
+            #else
+                        Instruction result(Mnemonic::FMLS, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         {
@@ -42926,7 +44554,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC1D08018u: { // udot_za_zzi_d4xi
-                        Instruction result(Mnemonic::UDOT, insn, 3110);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::UDOT, insn, EncodingId::udot_za_zzi_d4xi);
+            #else
+                        Instruction result(Mnemonic::UDOT, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         {
@@ -42944,7 +44576,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC1D08808u: { // svdot_za_zzi_d4xi
-                        Instruction result(Mnemonic::SVDOT, insn, 3096);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SVDOT, insn, EncodingId::svdot_za_zzi_d4xi);
+            #else
+                        Instruction result(Mnemonic::SVDOT, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         {
@@ -42962,7 +44598,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC1D08818u: { // uvdot_za_zzi_d4xi
-                        Instruction result(Mnemonic::UVDOT, insn, 3243);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::UVDOT, insn, EncodingId::uvdot_za_zzi_d4xi);
+            #else
+                        Instruction result(Mnemonic::UVDOT, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         {
@@ -42985,7 +44625,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
     // Switch for mask 0xFFF09838u (8 patterns, 8 encodings)
     switch (insn & 0xFFF09838u) {
         case 0xC1900000u: { // smlall_za_zzi_d2xi
-                        Instruction result(Mnemonic::SMLALL, insn, 2905);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SMLALL, insn, EncodingId::smlall_za_zzi_d2xi);
+            #else
+                        Instruction result(Mnemonic::SMLALL, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         {
@@ -43006,7 +44650,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC1900008u: { // smlsll_za_zzi_d2xi
-                        Instruction result(Mnemonic::SMLSLL, insn, 2924);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SMLSLL, insn, EncodingId::smlsll_za_zzi_d2xi);
+            #else
+                        Instruction result(Mnemonic::SMLSLL, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         {
@@ -43027,7 +44675,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC1900010u: { // umlall_za_zzi_d2xi
-                        Instruction result(Mnemonic::UMLALL, insn, 3134);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::UMLALL, insn, EncodingId::umlall_za_zzi_d2xi);
+            #else
+                        Instruction result(Mnemonic::UMLALL, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         {
@@ -43048,7 +44700,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC1900018u: { // umlsll_za_zzi_d2xi
-                        Instruction result(Mnemonic::UMLSLL, insn, 3153);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::UMLSLL, insn, EncodingId::umlsll_za_zzi_d2xi);
+            #else
+                        Instruction result(Mnemonic::UMLSLL, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         {
@@ -43069,7 +44725,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC1D00000u: { // fmla_za_zzi_d2xi
-                        Instruction result(Mnemonic::FMLA, insn, 2563);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FMLA, insn, EncodingId::fmla_za_zzi_d2xi);
+            #else
+                        Instruction result(Mnemonic::FMLA, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         {
@@ -43087,7 +44747,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC1D00008u: { // sdot_za_zzi_d2xi
-                        Instruction result(Mnemonic::SDOT, insn, 2877);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SDOT, insn, EncodingId::sdot_za_zzi_d2xi);
+            #else
+                        Instruction result(Mnemonic::SDOT, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         {
@@ -43105,7 +44769,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC1D00010u: { // fmls_za_zzi_d2xi
-                        Instruction result(Mnemonic::FMLS, insn, 2601);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FMLS, insn, EncodingId::fmls_za_zzi_d2xi);
+            #else
+                        Instruction result(Mnemonic::FMLS, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         {
@@ -43123,7 +44791,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC1D00018u: { // udot_za_zzi_d2xi
-                        Instruction result(Mnemonic::UDOT, insn, 3108);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::UDOT, insn, EncodingId::udot_za_zzi_d2xi);
+            #else
+                        Instruction result(Mnemonic::UDOT, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         {
@@ -43146,7 +44818,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
     // Switch for mask 0xFFF09830u (2 patterns, 2 encodings)
     switch (insn & 0xFFF09830u) {
         case 0xC1D00800u: { // fvdotb_za32_z8z8i_2xi
-                        Instruction result(Mnemonic::FVDOTB, insn, 2698);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FVDOTB, insn, EncodingId::fvdotb_za32_z8z8i_2xi);
+            #else
+                        Instruction result(Mnemonic::FVDOTB, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         {
@@ -43164,7 +44840,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC1D00810u: { // fvdott_za32_z8z8i_2xi
-                        Instruction result(Mnemonic::FVDOTT, insn, 2699);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FVDOTT, insn, EncodingId::fvdott_za32_z8z8i_2xi);
+            #else
+                        Instruction result(Mnemonic::FVDOTT, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         {
@@ -43187,7 +44867,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
     // Switch for mask 0xFFF09078u (30 patterns, 30 encodings)
     switch (insn & 0xFFF09078u) {
         case 0xC1108000u: { // smlall_za_zzi_s4xi
-                        Instruction result(Mnemonic::SMLALL, insn, 2906);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SMLALL, insn, EncodingId::smlall_za_zzi_s4xi);
+            #else
+                        Instruction result(Mnemonic::SMLALL, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         {
@@ -43208,7 +44892,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC1108008u: { // smlsll_za_zzi_s4xi
-                        Instruction result(Mnemonic::SMLSLL, insn, 2925);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SMLSLL, insn, EncodingId::smlsll_za_zzi_s4xi);
+            #else
+                        Instruction result(Mnemonic::SMLSLL, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         {
@@ -43229,7 +44917,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC1108010u: { // umlall_za_zzi_s4xi
-                        Instruction result(Mnemonic::UMLALL, insn, 3135);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::UMLALL, insn, EncodingId::umlall_za_zzi_s4xi);
+            #else
+                        Instruction result(Mnemonic::UMLALL, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         {
@@ -43250,7 +44942,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC1108018u: { // umlsll_za_zzi_s4xi
-                        Instruction result(Mnemonic::UMLSLL, insn, 3154);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::UMLSLL, insn, EncodingId::umlsll_za_zzi_s4xi);
+            #else
+                        Instruction result(Mnemonic::UMLSLL, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         {
@@ -43271,7 +44967,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC1108020u: { // usmlall_za_zzi_s4xi
-                        Instruction result(Mnemonic::USMLALL, insn, 3209);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::USMLALL, insn, EncodingId::usmlall_za_zzi_s4xi);
+            #else
+                        Instruction result(Mnemonic::USMLALL, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         {
@@ -43292,7 +44992,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC1108030u: { // sumlall_za_zzi_s4xi
-                        Instruction result(Mnemonic::SUMLALL, insn, 3067);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SUMLALL, insn, EncodingId::sumlall_za_zzi_s4xi);
+            #else
+                        Instruction result(Mnemonic::SUMLALL, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         {
@@ -43313,7 +45017,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC1108040u: { // fmlall_za32_z8z8i_4xi
-                        Instruction result(Mnemonic::FMLALL, insn, 2593);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FMLALL, insn, EncodingId::fmlall_za32_z8z8i_4xi);
+            #else
+                        Instruction result(Mnemonic::FMLALL, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         {
@@ -43334,7 +45042,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC1508000u: { // fmla_za_zzi_s4xi
-                        Instruction result(Mnemonic::FMLA, insn, 2565);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FMLA, insn, EncodingId::fmla_za_zzi_s4xi);
+            #else
+                        Instruction result(Mnemonic::FMLA, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         {
@@ -43352,7 +45064,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC1508008u: { // fdot_za32_z8z8i_4xi
-                        Instruction result(Mnemonic::FDOT, insn, 2528);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FDOT, insn, EncodingId::fdot_za32_z8z8i_4xi);
+            #else
+                        Instruction result(Mnemonic::FDOT, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         {
@@ -43370,7 +45086,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC1508010u: { // fmls_za_zzi_s4xi
-                        Instruction result(Mnemonic::FMLS, insn, 2603);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FMLS, insn, EncodingId::fmls_za_zzi_s4xi);
+            #else
+                        Instruction result(Mnemonic::FMLS, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         {
@@ -43388,7 +45108,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC1508020u: { // svdot_za_zzi_s4xi
-                        Instruction result(Mnemonic::SVDOT, insn, 3095);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SVDOT, insn, EncodingId::svdot_za_zzi_s4xi);
+            #else
+                        Instruction result(Mnemonic::SVDOT, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         {
@@ -43406,7 +45130,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC1508028u: { // usvdot_za_zzi_s4xi
-                        Instruction result(Mnemonic::USVDOT, insn, 3236);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::USVDOT, insn, EncodingId::usvdot_za_zzi_s4xi);
+            #else
+                        Instruction result(Mnemonic::USVDOT, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         {
@@ -43424,7 +45152,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC1508030u: { // uvdot_za_zzi_s4xi
-                        Instruction result(Mnemonic::UVDOT, insn, 3242);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::UVDOT, insn, EncodingId::uvdot_za_zzi_s4xi);
+            #else
+                        Instruction result(Mnemonic::UVDOT, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         {
@@ -43442,7 +45174,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC1508038u: { // suvdot_za_zzi_s4xi
-                        Instruction result(Mnemonic::SUVDOT, insn, 3093);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SUVDOT, insn, EncodingId::suvdot_za_zzi_s4xi);
+            #else
+                        Instruction result(Mnemonic::SUVDOT, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         {
@@ -43460,7 +45196,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC1509000u: { // sdot_za32_zzi_4xi
-                        Instruction result(Mnemonic::SDOT, insn, 2871);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SDOT, insn, EncodingId::sdot_za32_zzi_4xi);
+            #else
+                        Instruction result(Mnemonic::SDOT, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         {
@@ -43478,7 +45218,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC1509008u: { // fdot_za_zzi_4xi
-                        Instruction result(Mnemonic::FDOT, insn, 2540);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FDOT, insn, EncodingId::fdot_za_zzi_4xi);
+            #else
+                        Instruction result(Mnemonic::FDOT, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         {
@@ -43496,7 +45240,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC1509010u: { // udot_za32_zzi_4xi
-                        Instruction result(Mnemonic::UDOT, insn, 3102);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::UDOT, insn, EncodingId::udot_za32_zzi_4xi);
+            #else
+                        Instruction result(Mnemonic::UDOT, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         {
@@ -43514,7 +45262,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC1509018u: { // bfdot_za_zzi_4xi
-                        Instruction result(Mnemonic::BFDOT, insn, 2418);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::BFDOT, insn, EncodingId::bfdot_za_zzi_4xi);
+            #else
+                        Instruction result(Mnemonic::BFDOT, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         {
@@ -43532,7 +45284,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC1509020u: { // sdot_za_zzi_s4xi
-                        Instruction result(Mnemonic::SDOT, insn, 2878);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SDOT, insn, EncodingId::sdot_za_zzi_s4xi);
+            #else
+                        Instruction result(Mnemonic::SDOT, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         {
@@ -43550,7 +45306,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC1509028u: { // usdot_za_zzi_s4xi
-                        Instruction result(Mnemonic::USDOT, insn, 3202);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::USDOT, insn, EncodingId::usdot_za_zzi_s4xi);
+            #else
+                        Instruction result(Mnemonic::USDOT, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         {
@@ -43568,7 +45328,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC1509030u: { // udot_za_zzi_s4xi
-                        Instruction result(Mnemonic::UDOT, insn, 3109);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::UDOT, insn, EncodingId::udot_za_zzi_s4xi);
+            #else
+                        Instruction result(Mnemonic::UDOT, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         {
@@ -43586,7 +45350,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC1509038u: { // sudot_za_zzi_s4xi
-                        Instruction result(Mnemonic::SUDOT, insn, 3062);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SUDOT, insn, EncodingId::sudot_za_zzi_s4xi);
+            #else
+                        Instruction result(Mnemonic::SUDOT, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         {
@@ -43604,7 +45372,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC1909000u: { // fmlal_za_zzi_4xi
-                        Instruction result(Mnemonic::FMLAL, insn, 2585);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FMLAL, insn, EncodingId::fmlal_za_zzi_4xi);
+            #else
+                        Instruction result(Mnemonic::FMLAL, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         {
@@ -43625,7 +45397,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC1909008u: { // fmlsl_za_zzi_4xi
-                        Instruction result(Mnemonic::FMLSL, insn, 2615);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FMLSL, insn, EncodingId::fmlsl_za_zzi_4xi);
+            #else
+                        Instruction result(Mnemonic::FMLSL, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         {
@@ -43646,7 +45422,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC1909010u: { // bfmlal_za_zzi_4xi
-                        Instruction result(Mnemonic::BFMLAL, insn, 2447);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::BFMLAL, insn, EncodingId::bfmlal_za_zzi_4xi);
+            #else
+                        Instruction result(Mnemonic::BFMLAL, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         {
@@ -43667,7 +45447,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC1909018u: { // bfmlsl_za_zzi_4xi
-                        Instruction result(Mnemonic::BFMLSL, insn, 2461);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::BFMLSL, insn, EncodingId::bfmlsl_za_zzi_4xi);
+            #else
+                        Instruction result(Mnemonic::BFMLSL, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         {
@@ -43688,7 +45472,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC1D09000u: { // smlal_za_zzi_4xi
-                        Instruction result(Mnemonic::SMLAL, insn, 2896);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SMLAL, insn, EncodingId::smlal_za_zzi_4xi);
+            #else
+                        Instruction result(Mnemonic::SMLAL, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         {
@@ -43709,7 +45497,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC1D09008u: { // smlsl_za_zzi_4xi
-                        Instruction result(Mnemonic::SMLSL, insn, 2915);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SMLSL, insn, EncodingId::smlsl_za_zzi_4xi);
+            #else
+                        Instruction result(Mnemonic::SMLSL, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         {
@@ -43730,7 +45522,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC1D09010u: { // umlal_za_zzi_4xi
-                        Instruction result(Mnemonic::UMLAL, insn, 3125);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::UMLAL, insn, EncodingId::umlal_za_zzi_4xi);
+            #else
+                        Instruction result(Mnemonic::UMLAL, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         {
@@ -43751,7 +45547,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC1D09018u: { // umlsl_za_zzi_4xi
-                        Instruction result(Mnemonic::UMLSL, insn, 3144);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::UMLSL, insn, EncodingId::umlsl_za_zzi_4xi);
+            #else
+                        Instruction result(Mnemonic::UMLSL, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         {
@@ -43777,7 +45577,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
     // Switch for mask 0xFFF09070u (6 patterns, 6 encodings)
     switch (insn & 0xFFF09070u) {
         case 0xC1109000u: { // fmla_za_zzi_h4xi
-                        Instruction result(Mnemonic::FMLA, insn, 2564);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FMLA, insn, EncodingId::fmla_za_zzi_h4xi);
+            #else
+                        Instruction result(Mnemonic::FMLA, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         {
@@ -43795,7 +45599,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC1109010u: { // fmls_za_zzi_h4xi
-                        Instruction result(Mnemonic::FMLS, insn, 2602);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FMLS, insn, EncodingId::fmls_za_zzi_h4xi);
+            #else
+                        Instruction result(Mnemonic::FMLS, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         {
@@ -43813,7 +45621,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC1109020u: { // bfmla_za_zzi_h4xi
-                        Instruction result(Mnemonic::BFMLA, insn, 2440);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::BFMLA, insn, EncodingId::bfmla_za_zzi_h4xi);
+            #else
+                        Instruction result(Mnemonic::BFMLA, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         {
@@ -43831,7 +45643,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC1109030u: { // bfmls_za_zzi_h4xi
-                        Instruction result(Mnemonic::BFMLS, insn, 2454);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::BFMLS, insn, EncodingId::bfmls_za_zzi_h4xi);
+            #else
+                        Instruction result(Mnemonic::BFMLS, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         {
@@ -43849,7 +45665,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC1109040u: { // fdot_za_z8z8i_4xi
-                        Instruction result(Mnemonic::FDOT, insn, 2534);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FDOT, insn, EncodingId::fdot_za_z8z8i_4xi);
+            #else
+                        Instruction result(Mnemonic::FDOT, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         {
@@ -43867,7 +45687,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC1909020u: { // fmlal_za_z8z8i_4xi
-                        Instruction result(Mnemonic::FMLAL, insn, 2577);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FMLAL, insn, EncodingId::fmlal_za_z8z8i_4xi);
+            #else
+                        Instruction result(Mnemonic::FMLAL, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         {
@@ -43893,7 +45717,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
     // Switch for mask 0xFFF09038u (30 patterns, 30 encodings)
     switch (insn & 0xFFF09038u) {
         case 0xC1100000u: { // smlall_za_zzi_s2xi
-                        Instruction result(Mnemonic::SMLALL, insn, 2904);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SMLALL, insn, EncodingId::smlall_za_zzi_s2xi);
+            #else
+                        Instruction result(Mnemonic::SMLALL, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         {
@@ -43914,7 +45742,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC1100008u: { // smlsll_za_zzi_s2xi
-                        Instruction result(Mnemonic::SMLSLL, insn, 2923);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SMLSLL, insn, EncodingId::smlsll_za_zzi_s2xi);
+            #else
+                        Instruction result(Mnemonic::SMLSLL, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         {
@@ -43935,7 +45767,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC1100010u: { // umlall_za_zzi_s2xi
-                        Instruction result(Mnemonic::UMLALL, insn, 3133);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::UMLALL, insn, EncodingId::umlall_za_zzi_s2xi);
+            #else
+                        Instruction result(Mnemonic::UMLALL, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         {
@@ -43956,7 +45792,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC1100018u: { // umlsll_za_zzi_s2xi
-                        Instruction result(Mnemonic::UMLSLL, insn, 3152);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::UMLSLL, insn, EncodingId::umlsll_za_zzi_s2xi);
+            #else
+                        Instruction result(Mnemonic::UMLSLL, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         {
@@ -43977,7 +45817,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC1100020u: { // usmlall_za_zzi_s2xi
-                        Instruction result(Mnemonic::USMLALL, insn, 3208);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::USMLALL, insn, EncodingId::usmlall_za_zzi_s2xi);
+            #else
+                        Instruction result(Mnemonic::USMLALL, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         {
@@ -43998,7 +45842,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC1100030u: { // sumlall_za_zzi_s2xi
-                        Instruction result(Mnemonic::SUMLALL, insn, 3066);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SUMLALL, insn, EncodingId::sumlall_za_zzi_s2xi);
+            #else
+                        Instruction result(Mnemonic::SUMLALL, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         {
@@ -44019,7 +45867,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC1500000u: { // fmla_za_zzi_s2xi
-                        Instruction result(Mnemonic::FMLA, insn, 2562);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FMLA, insn, EncodingId::fmla_za_zzi_s2xi);
+            #else
+                        Instruction result(Mnemonic::FMLA, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         {
@@ -44037,7 +45889,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC1500008u: { // fvdot_za_zzi_2xi
-                        Instruction result(Mnemonic::FVDOT, insn, 2697);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FVDOT, insn, EncodingId::fvdot_za_zzi_2xi);
+            #else
+                        Instruction result(Mnemonic::FVDOT, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         {
@@ -44055,7 +45911,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC1500010u: { // fmls_za_zzi_s2xi
-                        Instruction result(Mnemonic::FMLS, insn, 2600);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FMLS, insn, EncodingId::fmls_za_zzi_s2xi);
+            #else
+                        Instruction result(Mnemonic::FMLS, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         {
@@ -44073,7 +45933,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC1500018u: { // bfvdot_za_zzi_2xi
-                        Instruction result(Mnemonic::BFVDOT, insn, 2499);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::BFVDOT, insn, EncodingId::bfvdot_za_zzi_2xi);
+            #else
+                        Instruction result(Mnemonic::BFVDOT, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         {
@@ -44091,7 +45955,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC1500020u: { // svdot_za32_zzi_2xi
-                        Instruction result(Mnemonic::SVDOT, insn, 3094);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SVDOT, insn, EncodingId::svdot_za32_zzi_2xi);
+            #else
+                        Instruction result(Mnemonic::SVDOT, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         {
@@ -44109,7 +45977,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC1500030u: { // uvdot_za32_zzi_2xi
-                        Instruction result(Mnemonic::UVDOT, insn, 3241);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::UVDOT, insn, EncodingId::uvdot_za32_zzi_2xi);
+            #else
+                        Instruction result(Mnemonic::UVDOT, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         {
@@ -44127,7 +45999,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC1500038u: { // fdot_za32_z8z8i_2xi
-                        Instruction result(Mnemonic::FDOT, insn, 2527);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FDOT, insn, EncodingId::fdot_za32_z8z8i_2xi);
+            #else
+                        Instruction result(Mnemonic::FDOT, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         {
@@ -44145,7 +46021,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC1501000u: { // sdot_za32_zzi_2xi
-                        Instruction result(Mnemonic::SDOT, insn, 2870);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SDOT, insn, EncodingId::sdot_za32_zzi_2xi);
+            #else
+                        Instruction result(Mnemonic::SDOT, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         {
@@ -44163,7 +46043,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC1501008u: { // fdot_za_zzi_2xi
-                        Instruction result(Mnemonic::FDOT, insn, 2539);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FDOT, insn, EncodingId::fdot_za_zzi_2xi);
+            #else
+                        Instruction result(Mnemonic::FDOT, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         {
@@ -44181,7 +46065,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC1501010u: { // udot_za32_zzi_2xi
-                        Instruction result(Mnemonic::UDOT, insn, 3101);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::UDOT, insn, EncodingId::udot_za32_zzi_2xi);
+            #else
+                        Instruction result(Mnemonic::UDOT, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         {
@@ -44199,7 +46087,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC1501018u: { // bfdot_za_zzi_2xi
-                        Instruction result(Mnemonic::BFDOT, insn, 2417);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::BFDOT, insn, EncodingId::bfdot_za_zzi_2xi);
+            #else
+                        Instruction result(Mnemonic::BFDOT, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         {
@@ -44217,7 +46109,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC1501020u: { // sdot_za_zzi_s2xi
-                        Instruction result(Mnemonic::SDOT, insn, 2876);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SDOT, insn, EncodingId::sdot_za_zzi_s2xi);
+            #else
+                        Instruction result(Mnemonic::SDOT, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         {
@@ -44235,7 +46131,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC1501028u: { // usdot_za_zzi_s2xi
-                        Instruction result(Mnemonic::USDOT, insn, 3201);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::USDOT, insn, EncodingId::usdot_za_zzi_s2xi);
+            #else
+                        Instruction result(Mnemonic::USDOT, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         {
@@ -44253,7 +46153,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC1501030u: { // udot_za_zzi_s2xi
-                        Instruction result(Mnemonic::UDOT, insn, 3107);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::UDOT, insn, EncodingId::udot_za_zzi_s2xi);
+            #else
+                        Instruction result(Mnemonic::UDOT, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         {
@@ -44271,7 +46175,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC1501038u: { // sudot_za_zzi_s2xi
-                        Instruction result(Mnemonic::SUDOT, insn, 3061);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SUDOT, insn, EncodingId::sudot_za_zzi_s2xi);
+            #else
+                        Instruction result(Mnemonic::SUDOT, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         {
@@ -44289,7 +46197,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC1900020u: { // fmlall_za32_z8z8i_2xi
-                        Instruction result(Mnemonic::FMLALL, insn, 2592);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FMLALL, insn, EncodingId::fmlall_za32_z8z8i_2xi);
+            #else
+                        Instruction result(Mnemonic::FMLALL, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         {
@@ -44310,7 +46222,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC1901000u: { // fmlal_za_zzi_2xi
-                        Instruction result(Mnemonic::FMLAL, insn, 2584);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FMLAL, insn, EncodingId::fmlal_za_zzi_2xi);
+            #else
+                        Instruction result(Mnemonic::FMLAL, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         {
@@ -44331,7 +46247,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC1901008u: { // fmlsl_za_zzi_2xi
-                        Instruction result(Mnemonic::FMLSL, insn, 2614);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FMLSL, insn, EncodingId::fmlsl_za_zzi_2xi);
+            #else
+                        Instruction result(Mnemonic::FMLSL, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         {
@@ -44352,7 +46272,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC1901010u: { // bfmlal_za_zzi_2xi
-                        Instruction result(Mnemonic::BFMLAL, insn, 2446);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::BFMLAL, insn, EncodingId::bfmlal_za_zzi_2xi);
+            #else
+                        Instruction result(Mnemonic::BFMLAL, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         {
@@ -44373,7 +46297,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC1901018u: { // bfmlsl_za_zzi_2xi
-                        Instruction result(Mnemonic::BFMLSL, insn, 2460);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::BFMLSL, insn, EncodingId::bfmlsl_za_zzi_2xi);
+            #else
+                        Instruction result(Mnemonic::BFMLSL, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         {
@@ -44394,7 +46322,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC1D01000u: { // smlal_za_zzi_2xi
-                        Instruction result(Mnemonic::SMLAL, insn, 2895);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SMLAL, insn, EncodingId::smlal_za_zzi_2xi);
+            #else
+                        Instruction result(Mnemonic::SMLAL, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         {
@@ -44415,7 +46347,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC1D01008u: { // smlsl_za_zzi_2xi
-                        Instruction result(Mnemonic::SMLSL, insn, 2914);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SMLSL, insn, EncodingId::smlsl_za_zzi_2xi);
+            #else
+                        Instruction result(Mnemonic::SMLSL, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         {
@@ -44436,7 +46372,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC1D01010u: { // umlal_za_zzi_2xi
-                        Instruction result(Mnemonic::UMLAL, insn, 3124);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::UMLAL, insn, EncodingId::umlal_za_zzi_2xi);
+            #else
+                        Instruction result(Mnemonic::UMLAL, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         {
@@ -44457,7 +46397,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC1D01018u: { // umlsl_za_zzi_2xi
-                        Instruction result(Mnemonic::UMLSL, insn, 3143);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::UMLSL, insn, EncodingId::umlsl_za_zzi_2xi);
+            #else
+                        Instruction result(Mnemonic::UMLSL, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         {
@@ -44483,7 +46427,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
     // Switch for mask 0xFFF09030u (7 patterns, 7 encodings)
     switch (insn & 0xFFF09030u) {
         case 0xC1101000u: { // fmla_za_zzi_h2xi
-                        Instruction result(Mnemonic::FMLA, insn, 2561);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FMLA, insn, EncodingId::fmla_za_zzi_h2xi);
+            #else
+                        Instruction result(Mnemonic::FMLA, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         {
@@ -44501,7 +46449,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC1101010u: { // fmls_za_zzi_h2xi
-                        Instruction result(Mnemonic::FMLS, insn, 2599);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FMLS, insn, EncodingId::fmls_za_zzi_h2xi);
+            #else
+                        Instruction result(Mnemonic::FMLS, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         {
@@ -44519,7 +46471,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC1101020u: { // bfmla_za_zzi_h2xi
-                        Instruction result(Mnemonic::BFMLA, insn, 2439);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::BFMLA, insn, EncodingId::bfmla_za_zzi_h2xi);
+            #else
+                        Instruction result(Mnemonic::BFMLA, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         {
@@ -44537,7 +46493,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC1101030u: { // bfmls_za_zzi_h2xi
-                        Instruction result(Mnemonic::BFMLS, insn, 2453);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::BFMLS, insn, EncodingId::bfmls_za_zzi_h2xi);
+            #else
+                        Instruction result(Mnemonic::BFMLS, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         {
@@ -44555,7 +46515,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC1901030u: { // fmlal_za_z8z8i_2xi
-                        Instruction result(Mnemonic::FMLAL, insn, 2576);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FMLAL, insn, EncodingId::fmlal_za_z8z8i_2xi);
+            #else
+                        Instruction result(Mnemonic::FMLAL, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         {
@@ -44576,7 +46540,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC1D00020u: { // fdot_za_z8z8i_2xi
-                        Instruction result(Mnemonic::FDOT, insn, 2533);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FDOT, insn, EncodingId::fdot_za_z8z8i_2xi);
+            #else
+                        Instruction result(Mnemonic::FDOT, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         {
@@ -44594,7 +46562,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC1D01020u: { // fvdot_za_z8z8i_2xi
-                        Instruction result(Mnemonic::FVDOT, insn, 2696);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FVDOT, insn, EncodingId::fvdot_za_z8z8i_2xi);
+            #else
+                        Instruction result(Mnemonic::FVDOT, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         {
@@ -44617,7 +46589,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
     // Switch for mask 0xFFF0101Cu (4 patterns, 4 encodings)
     switch (insn & 0xFFF0101Cu) {
         case 0xC1800000u: { // smlall_za_zzi_d
-                        Instruction result(Mnemonic::SMLALL, insn, 2903);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SMLALL, insn, EncodingId::smlall_za_zzi_d);
+            #else
+                        Instruction result(Mnemonic::SMLALL, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         {
@@ -44638,7 +46614,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC1800008u: { // smlsll_za_zzi_d
-                        Instruction result(Mnemonic::SMLSLL, insn, 2922);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SMLSLL, insn, EncodingId::smlsll_za_zzi_d);
+            #else
+                        Instruction result(Mnemonic::SMLSLL, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         {
@@ -44659,7 +46639,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC1800010u: { // umlall_za_zzi_d
-                        Instruction result(Mnemonic::UMLALL, insn, 3132);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::UMLALL, insn, EncodingId::umlall_za_zzi_d);
+            #else
+                        Instruction result(Mnemonic::UMLALL, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         {
@@ -44680,7 +46664,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC1800018u: { // umlsll_za_zzi_d
-                        Instruction result(Mnemonic::UMLSLL, insn, 3151);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::UMLSLL, insn, EncodingId::umlsll_za_zzi_d);
+            #else
+                        Instruction result(Mnemonic::UMLSLL, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         {
@@ -44706,7 +46694,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
     // Switch for mask 0xFFF01018u (8 patterns, 8 encodings)
     switch (insn & 0xFFF01018u) {
         case 0xC1801000u: { // fmlal_za_zzi_1
-                        Instruction result(Mnemonic::FMLAL, insn, 2583);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FMLAL, insn, EncodingId::fmlal_za_zzi_1);
+            #else
+                        Instruction result(Mnemonic::FMLAL, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         {
@@ -44727,7 +46719,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC1801008u: { // fmlsl_za_zzi_1
-                        Instruction result(Mnemonic::FMLSL, insn, 2613);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FMLSL, insn, EncodingId::fmlsl_za_zzi_1);
+            #else
+                        Instruction result(Mnemonic::FMLSL, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         {
@@ -44748,7 +46744,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC1801010u: { // bfmlal_za_zzi_1
-                        Instruction result(Mnemonic::BFMLAL, insn, 2445);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::BFMLAL, insn, EncodingId::bfmlal_za_zzi_1);
+            #else
+                        Instruction result(Mnemonic::BFMLAL, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         {
@@ -44769,7 +46769,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC1801018u: { // bfmlsl_za_zzi_1
-                        Instruction result(Mnemonic::BFMLSL, insn, 2459);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::BFMLSL, insn, EncodingId::bfmlsl_za_zzi_1);
+            #else
+                        Instruction result(Mnemonic::BFMLSL, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         {
@@ -44790,7 +46794,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC1C01000u: { // smlal_za_zzi_1
-                        Instruction result(Mnemonic::SMLAL, insn, 2894);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SMLAL, insn, EncodingId::smlal_za_zzi_1);
+            #else
+                        Instruction result(Mnemonic::SMLAL, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         {
@@ -44811,7 +46819,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC1C01008u: { // smlsl_za_zzi_1
-                        Instruction result(Mnemonic::SMLSL, insn, 2913);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SMLSL, insn, EncodingId::smlsl_za_zzi_1);
+            #else
+                        Instruction result(Mnemonic::SMLSL, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         {
@@ -44832,7 +46844,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC1C01010u: { // umlal_za_zzi_1
-                        Instruction result(Mnemonic::UMLAL, insn, 3123);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::UMLAL, insn, EncodingId::umlal_za_zzi_1);
+            #else
+                        Instruction result(Mnemonic::UMLAL, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         {
@@ -44853,7 +46869,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC1C01018u: { // umlsl_za_zzi_1
-                        Instruction result(Mnemonic::UMLSL, insn, 3142);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::UMLSL, insn, EncodingId::umlsl_za_zzi_1);
+            #else
+                        Instruction result(Mnemonic::UMLSL, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         {
@@ -44879,7 +46899,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
     // Switch for mask 0xFFF01010u (1 pattern, 1 encoding)
     switch (insn & 0xFFF01010u) {
         case 0xC1C00000u: { // fmlal_za_z8z8i_1
-                        Instruction result(Mnemonic::FMLAL, insn, 2575);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FMLAL, insn, EncodingId::fmlal_za_z8z8i_1);
+            #else
+                        Instruction result(Mnemonic::FMLAL, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         {
@@ -44905,7 +46929,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
     // Switch for mask 0xFFF0001Cu (7 patterns, 7 encodings)
     switch (insn & 0xFFF0001Cu) {
         case 0xC1000000u: { // smlall_za_zzi_s
-                        Instruction result(Mnemonic::SMLALL, insn, 2902);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SMLALL, insn, EncodingId::smlall_za_zzi_s);
+            #else
+                        Instruction result(Mnemonic::SMLALL, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         {
@@ -44926,7 +46954,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC1000004u: { // usmlall_za_zzi_s
-                        Instruction result(Mnemonic::USMLALL, insn, 3207);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::USMLALL, insn, EncodingId::usmlall_za_zzi_s);
+            #else
+                        Instruction result(Mnemonic::USMLALL, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         {
@@ -44947,7 +46979,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC1000008u: { // smlsll_za_zzi_s
-                        Instruction result(Mnemonic::SMLSLL, insn, 2921);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SMLSLL, insn, EncodingId::smlsll_za_zzi_s);
+            #else
+                        Instruction result(Mnemonic::SMLSLL, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         {
@@ -44968,7 +47004,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC1000010u: { // umlall_za_zzi_s
-                        Instruction result(Mnemonic::UMLALL, insn, 3131);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::UMLALL, insn, EncodingId::umlall_za_zzi_s);
+            #else
+                        Instruction result(Mnemonic::UMLALL, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         {
@@ -44989,7 +47029,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC1000014u: { // sumlall_za_zzi_s
-                        Instruction result(Mnemonic::SUMLALL, insn, 3065);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SUMLALL, insn, EncodingId::sumlall_za_zzi_s);
+            #else
+                        Instruction result(Mnemonic::SUMLALL, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         {
@@ -45010,7 +47054,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC1000018u: { // umlsll_za_zzi_s
-                        Instruction result(Mnemonic::UMLSLL, insn, 3150);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::UMLSLL, insn, EncodingId::umlsll_za_zzi_s);
+            #else
+                        Instruction result(Mnemonic::UMLSLL, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         {
@@ -45031,7 +47079,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC1400000u: { // fmlall_za32_z8z8i_1
-                        Instruction result(Mnemonic::FMLALL, insn, 2591);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FMLALL, insn, EncodingId::fmlall_za32_z8z8i_1);
+            #else
+                        Instruction result(Mnemonic::FMLALL, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         {
@@ -45057,7 +47109,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
     // Switch for mask 0xFFE3FFE3u (5 patterns, 5 encodings)
     switch (insn & 0xFFE3FFE3u) {
         case 0xC120B900u: { // bfmax_mz_zzw_4x4
-                        Instruction result(Mnemonic::BFMAX, insn, 2426);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::BFMAX, insn, EncodingId::bfmax_mz_zzw_4x4);
+            #else
+                        Instruction result(Mnemonic::BFMAX, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         { auto op = Operand::reg_list(static_cast<uint32_t>(make_sve_reg(enc.bfmax_mz_zzw4x4.Zdn * 4))); op.set_arrangement(Arrangement::H); op.rl.count = 4; result.operands.push_back(op); }
@@ -45066,7 +47122,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC120B901u: { // bfmin_mz_zzw_4x4
-                        Instruction result(Mnemonic::BFMIN, insn, 2434);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::BFMIN, insn, EncodingId::bfmin_mz_zzw_4x4);
+            #else
+                        Instruction result(Mnemonic::BFMIN, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         { auto op = Operand::reg_list(static_cast<uint32_t>(make_sve_reg(enc.bfmin_mz_zzw4x4.Zdn * 4))); op.set_arrangement(Arrangement::H); op.rl.count = 4; result.operands.push_back(op); }
@@ -45075,7 +47135,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC120B920u: { // bfmaxnm_mz_zzw_4x4
-                        Instruction result(Mnemonic::BFMAXNM, insn, 2430);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::BFMAXNM, insn, EncodingId::bfmaxnm_mz_zzw_4x4);
+            #else
+                        Instruction result(Mnemonic::BFMAXNM, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         { auto op = Operand::reg_list(static_cast<uint32_t>(make_sve_reg(enc.bfmaxnm_mz_zzw4x4.Zdn * 4))); op.set_arrangement(Arrangement::H); op.rl.count = 4; result.operands.push_back(op); }
@@ -45084,7 +47148,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC120B921u: { // bfminnm_mz_zzw_4x4
-                        Instruction result(Mnemonic::BFMINNM, insn, 2438);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::BFMINNM, insn, EncodingId::bfminnm_mz_zzw_4x4);
+            #else
+                        Instruction result(Mnemonic::BFMINNM, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         { auto op = Operand::reg_list(static_cast<uint32_t>(make_sve_reg(enc.bfminnm_mz_zzw4x4.Zdn * 4))); op.set_arrangement(Arrangement::H); op.rl.count = 4; result.operands.push_back(op); }
@@ -45093,7 +47161,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC120B980u: { // bfscale_mz_zzw_4x4
-                        Instruction result(Mnemonic::BFSCALE, insn, 2494);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::BFSCALE, insn, EncodingId::bfscale_mz_zzw_4x4);
+            #else
+                        Instruction result(Mnemonic::BFSCALE, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         { auto op = Operand::reg_list(static_cast<uint32_t>(make_sve_reg(enc.bfscale_mz_zzw4x4.Zdn * 4))); op.set_arrangement(Arrangement::H); op.rl.count = 4; result.operands.push_back(op); }
@@ -45107,7 +47179,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
     // Switch for mask 0xFFE3FC63u (1 pattern, 1 encoding)
     switch (insn & 0xFFE3FC63u) {
         case 0xC121E400u: { // bfmul_mz_zzw_4x4
-                        Instruction result(Mnemonic::BFMUL, insn, 2490);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::BFMUL, insn, EncodingId::bfmul_mz_zzw_4x4);
+            #else
+                        Instruction result(Mnemonic::BFMUL, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         { auto op = Operand::reg_list(static_cast<uint32_t>(make_sve_reg(enc.bfmul_mz_zzw4x4.Zd * 4))); op.set_arrangement(Arrangement::H); op.rl.count = 4; result.operands.push_back(op); }
@@ -45121,7 +47197,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
     // Switch for mask 0xFFE39C7Eu (2 patterns, 2 encodings)
     switch (insn & 0xFFE39C7Eu) {
         case 0xC1A10004u: { // usmlall_za_zzw_s4x4
-                        Instruction result(Mnemonic::USMLALL, insn, 3214);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::USMLALL, insn, EncodingId::usmlall_za_zzw_s4x4);
+            #else
+                        Instruction result(Mnemonic::USMLALL, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         {
@@ -45142,7 +47222,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC1A10020u: { // fmlall_za32_z8z8w_4x4
-                        Instruction result(Mnemonic::FMLALL, insn, 2598);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FMLALL, insn, EncodingId::fmlall_za32_z8z8w_4x4);
+            #else
+                        Instruction result(Mnemonic::FMLALL, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         {
@@ -45168,7 +47252,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
     // Switch for mask 0xFFE39C7Cu (9 patterns, 9 encodings)
     switch (insn & 0xFFE39C7Cu) {
         case 0xC1A10800u: { // fmlal_za_zzw_4x4
-                        Instruction result(Mnemonic::FMLAL, insn, 2590);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FMLAL, insn, EncodingId::fmlal_za_zzw_4x4);
+            #else
+                        Instruction result(Mnemonic::FMLAL, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         {
@@ -45189,7 +47277,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC1A10808u: { // fmlsl_za_zzw_4x4
-                        Instruction result(Mnemonic::FMLSL, insn, 2620);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FMLSL, insn, EncodingId::fmlsl_za_zzw_4x4);
+            #else
+                        Instruction result(Mnemonic::FMLSL, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         {
@@ -45210,7 +47302,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC1A10810u: { // bfmlal_za_zzw_4x4
-                        Instruction result(Mnemonic::BFMLAL, insn, 2452);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::BFMLAL, insn, EncodingId::bfmlal_za_zzw_4x4);
+            #else
+                        Instruction result(Mnemonic::BFMLAL, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         {
@@ -45231,7 +47327,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC1A10818u: { // bfmlsl_za_zzw_4x4
-                        Instruction result(Mnemonic::BFMLSL, insn, 2466);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::BFMLSL, insn, EncodingId::bfmlsl_za_zzw_4x4);
+            #else
+                        Instruction result(Mnemonic::BFMLSL, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         {
@@ -45252,7 +47352,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC1A10820u: { // fmlal_za_z8z8w_4x4
-                        Instruction result(Mnemonic::FMLAL, insn, 2582);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FMLAL, insn, EncodingId::fmlal_za_z8z8w_4x4);
+            #else
+                        Instruction result(Mnemonic::FMLAL, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         {
@@ -45273,7 +47377,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC1E10800u: { // smlal_za_zzw_4x4
-                        Instruction result(Mnemonic::SMLAL, insn, 2901);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SMLAL, insn, EncodingId::smlal_za_zzw_4x4);
+            #else
+                        Instruction result(Mnemonic::SMLAL, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         {
@@ -45294,7 +47402,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC1E10808u: { // smlsl_za_zzw_4x4
-                        Instruction result(Mnemonic::SMLSL, insn, 2920);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SMLSL, insn, EncodingId::smlsl_za_zzw_4x4);
+            #else
+                        Instruction result(Mnemonic::SMLSL, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         {
@@ -45315,7 +47427,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC1E10810u: { // umlal_za_zzw_4x4
-                        Instruction result(Mnemonic::UMLAL, insn, 3130);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::UMLAL, insn, EncodingId::umlal_za_zzw_4x4);
+            #else
+                        Instruction result(Mnemonic::UMLAL, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         {
@@ -45336,7 +47452,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC1E10818u: { // umlsl_za_zzw_4x4
-                        Instruction result(Mnemonic::UMLSL, insn, 3149);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::UMLSL, insn, EncodingId::umlsl_za_zzw_4x4);
+            #else
+                        Instruction result(Mnemonic::UMLSL, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         {
@@ -45362,7 +47482,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
     // Switch for mask 0xFFE39C78u (11 patterns, 11 encodings)
     switch (insn & 0xFFE39C78u) {
         case 0xC1A11000u: { // fdot_za_zzw_4x4
-                        Instruction result(Mnemonic::FDOT, insn, 2544);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FDOT, insn, EncodingId::fdot_za_zzw_4x4);
+            #else
+                        Instruction result(Mnemonic::FDOT, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         {
@@ -45380,7 +47504,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC1A11008u: { // fmla_za_zzw_4x4_16
-                        Instruction result(Mnemonic::FMLA, insn, 2574);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FMLA, insn, EncodingId::fmla_za_zzw_4x4_16);
+            #else
+                        Instruction result(Mnemonic::FMLA, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         {
@@ -45398,7 +47526,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC1A11010u: { // bfdot_za_zzw_4x4
-                        Instruction result(Mnemonic::BFDOT, insn, 2422);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::BFDOT, insn, EncodingId::bfdot_za_zzw_4x4);
+            #else
+                        Instruction result(Mnemonic::BFDOT, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         {
@@ -45416,7 +47548,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC1A11018u: { // fmls_za_zzw_4x4_16
-                        Instruction result(Mnemonic::FMLS, insn, 2612);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FMLS, insn, EncodingId::fmls_za_zzw_4x4_16);
+            #else
+                        Instruction result(Mnemonic::FMLS, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         {
@@ -45434,7 +47570,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC1A11020u: { // fdot_za_z8z8w_4x4
-                        Instruction result(Mnemonic::FDOT, insn, 2538);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FDOT, insn, EncodingId::fdot_za_z8z8w_4x4);
+            #else
+                        Instruction result(Mnemonic::FDOT, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         {
@@ -45452,7 +47592,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC1A11030u: { // fdot_za32_z8z8w_4x4
-                        Instruction result(Mnemonic::FDOT, insn, 2532);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FDOT, insn, EncodingId::fdot_za32_z8z8w_4x4);
+            #else
+                        Instruction result(Mnemonic::FDOT, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         {
@@ -45470,7 +47614,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC1A11408u: { // usdot_za_zzw_s4x4
-                        Instruction result(Mnemonic::USDOT, insn, 3206);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::USDOT, insn, EncodingId::usdot_za_zzw_s4x4);
+            #else
+                        Instruction result(Mnemonic::USDOT, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         {
@@ -45488,7 +47636,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC1E11008u: { // bfmla_za_zzw_4x4_16
-                        Instruction result(Mnemonic::BFMLA, insn, 2444);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::BFMLA, insn, EncodingId::bfmla_za_zzw_4x4_16);
+            #else
+                        Instruction result(Mnemonic::BFMLA, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         {
@@ -45506,7 +47658,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC1E11018u: { // bfmls_za_zzw_4x4_16
-                        Instruction result(Mnemonic::BFMLS, insn, 2458);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::BFMLS, insn, EncodingId::bfmls_za_zzw_4x4_16);
+            #else
+                        Instruction result(Mnemonic::BFMLS, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         {
@@ -45524,7 +47680,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC1E11408u: { // sdot_za32_zzw_4x4
-                        Instruction result(Mnemonic::SDOT, insn, 2875);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SDOT, insn, EncodingId::sdot_za32_zzw_4x4);
+            #else
+                        Instruction result(Mnemonic::SDOT, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         {
@@ -45542,7 +47702,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC1E11418u: { // udot_za32_zzw_4x4
-                        Instruction result(Mnemonic::UDOT, insn, 3106);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::UDOT, insn, EncodingId::udot_za32_zzw_4x4);
+            #else
+                        Instruction result(Mnemonic::UDOT, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         {
@@ -45565,7 +47729,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
     // Switch for mask 0xFFE1FFE1u (5 patterns, 5 encodings)
     switch (insn & 0xFFE1FFE1u) {
         case 0xC120B100u: { // bfmax_mz_zzw_2x2
-                        Instruction result(Mnemonic::BFMAX, insn, 2425);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::BFMAX, insn, EncodingId::bfmax_mz_zzw_2x2);
+            #else
+                        Instruction result(Mnemonic::BFMAX, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         { auto op = Operand::reg_list(static_cast<uint32_t>(make_sve_reg(enc.bfmax_mz_zzw2x2.Zdn * 2))); op.set_arrangement(Arrangement::H); op.rl.count = 2; result.operands.push_back(op); }
@@ -45574,7 +47742,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC120B101u: { // bfmin_mz_zzw_2x2
-                        Instruction result(Mnemonic::BFMIN, insn, 2433);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::BFMIN, insn, EncodingId::bfmin_mz_zzw_2x2);
+            #else
+                        Instruction result(Mnemonic::BFMIN, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         { auto op = Operand::reg_list(static_cast<uint32_t>(make_sve_reg(enc.bfmin_mz_zzw2x2.Zdn * 2))); op.set_arrangement(Arrangement::H); op.rl.count = 2; result.operands.push_back(op); }
@@ -45583,7 +47755,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC120B120u: { // bfmaxnm_mz_zzw_2x2
-                        Instruction result(Mnemonic::BFMAXNM, insn, 2429);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::BFMAXNM, insn, EncodingId::bfmaxnm_mz_zzw_2x2);
+            #else
+                        Instruction result(Mnemonic::BFMAXNM, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         { auto op = Operand::reg_list(static_cast<uint32_t>(make_sve_reg(enc.bfmaxnm_mz_zzw2x2.Zdn * 2))); op.set_arrangement(Arrangement::H); op.rl.count = 2; result.operands.push_back(op); }
@@ -45592,7 +47768,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC120B121u: { // bfminnm_mz_zzw_2x2
-                        Instruction result(Mnemonic::BFMINNM, insn, 2437);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::BFMINNM, insn, EncodingId::bfminnm_mz_zzw_2x2);
+            #else
+                        Instruction result(Mnemonic::BFMINNM, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         { auto op = Operand::reg_list(static_cast<uint32_t>(make_sve_reg(enc.bfminnm_mz_zzw2x2.Zdn * 2))); op.set_arrangement(Arrangement::H); op.rl.count = 2; result.operands.push_back(op); }
@@ -45601,7 +47781,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC120B180u: { // bfscale_mz_zzw_2x2
-                        Instruction result(Mnemonic::BFSCALE, insn, 2493);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::BFSCALE, insn, EncodingId::bfscale_mz_zzw_2x2);
+            #else
+                        Instruction result(Mnemonic::BFSCALE, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         { auto op = Operand::reg_list(static_cast<uint32_t>(make_sve_reg(enc.bfscale_mz_zzw2x2.Zdn * 2))); op.set_arrangement(Arrangement::H); op.rl.count = 2; result.operands.push_back(op); }
@@ -45615,7 +47799,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
     // Switch for mask 0xFFE1FC63u (1 pattern, 1 encoding)
     switch (insn & 0xFFE1FC63u) {
         case 0xC121E800u: { // bfmul_mz_zzv_4x1
-                        Instruction result(Mnemonic::BFMUL, insn, 2488);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::BFMUL, insn, EncodingId::bfmul_mz_zzv_4x1);
+            #else
+                        Instruction result(Mnemonic::BFMUL, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         { auto op = Operand::reg_list(static_cast<uint32_t>(make_sve_reg(enc.bfmul_mz_zzv4x1.Zd * 4))); op.set_arrangement(Arrangement::H); op.rl.count = 4; result.operands.push_back(op); }
@@ -45629,7 +47817,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
     // Switch for mask 0xFFE1FC21u (2 patterns, 2 encodings)
     switch (insn & 0xFFE1FC21u) {
         case 0xC120E400u: { // bfmul_mz_zzw_2x2
-                        Instruction result(Mnemonic::BFMUL, insn, 2489);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::BFMUL, insn, EncodingId::bfmul_mz_zzw_2x2);
+            #else
+                        Instruction result(Mnemonic::BFMUL, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         { auto op = Operand::reg_list(static_cast<uint32_t>(make_sve_reg(enc.bfmul_mz_zzw2x2.Zd * 2))); op.set_arrangement(Arrangement::H); op.rl.count = 2; result.operands.push_back(op); }
@@ -45638,7 +47830,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC120E800u: { // bfmul_mz_zzv_2x1
-                        Instruction result(Mnemonic::BFMUL, insn, 2487);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::BFMUL, insn, EncodingId::bfmul_mz_zzv_2x1);
+            #else
+                        Instruction result(Mnemonic::BFMUL, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         { auto op = Operand::reg_list(static_cast<uint32_t>(make_sve_reg(enc.bfmul_mz_zzv2x1.Zd * 2))); op.set_arrangement(Arrangement::H); op.rl.count = 2; result.operands.push_back(op); }
@@ -45652,7 +47848,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
     // Switch for mask 0xFFE19C3Eu (2 patterns, 2 encodings)
     switch (insn & 0xFFE19C3Eu) {
         case 0xC1A00004u: { // usmlall_za_zzw_s2x2
-                        Instruction result(Mnemonic::USMLALL, insn, 3213);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::USMLALL, insn, EncodingId::usmlall_za_zzw_s2x2);
+            #else
+                        Instruction result(Mnemonic::USMLALL, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         {
@@ -45673,7 +47873,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC1A00020u: { // fmlall_za32_z8z8w_2x2
-                        Instruction result(Mnemonic::FMLALL, insn, 2597);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FMLALL, insn, EncodingId::fmlall_za32_z8z8w_2x2);
+            #else
+                        Instruction result(Mnemonic::FMLALL, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         {
@@ -45699,7 +47903,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
     // Switch for mask 0xFFE19C3Cu (9 patterns, 9 encodings)
     switch (insn & 0xFFE19C3Cu) {
         case 0xC1A00800u: { // fmlal_za_zzw_2x2
-                        Instruction result(Mnemonic::FMLAL, insn, 2589);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FMLAL, insn, EncodingId::fmlal_za_zzw_2x2);
+            #else
+                        Instruction result(Mnemonic::FMLAL, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         {
@@ -45720,7 +47928,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC1A00808u: { // fmlsl_za_zzw_2x2
-                        Instruction result(Mnemonic::FMLSL, insn, 2619);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FMLSL, insn, EncodingId::fmlsl_za_zzw_2x2);
+            #else
+                        Instruction result(Mnemonic::FMLSL, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         {
@@ -45741,7 +47953,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC1A00810u: { // bfmlal_za_zzw_2x2
-                        Instruction result(Mnemonic::BFMLAL, insn, 2451);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::BFMLAL, insn, EncodingId::bfmlal_za_zzw_2x2);
+            #else
+                        Instruction result(Mnemonic::BFMLAL, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         {
@@ -45762,7 +47978,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC1A00818u: { // bfmlsl_za_zzw_2x2
-                        Instruction result(Mnemonic::BFMLSL, insn, 2465);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::BFMLSL, insn, EncodingId::bfmlsl_za_zzw_2x2);
+            #else
+                        Instruction result(Mnemonic::BFMLSL, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         {
@@ -45783,7 +48003,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC1A00820u: { // fmlal_za_z8z8w_2x2
-                        Instruction result(Mnemonic::FMLAL, insn, 2581);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FMLAL, insn, EncodingId::fmlal_za_z8z8w_2x2);
+            #else
+                        Instruction result(Mnemonic::FMLAL, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         {
@@ -45804,7 +48028,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC1E00800u: { // smlal_za_zzw_2x2
-                        Instruction result(Mnemonic::SMLAL, insn, 2900);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SMLAL, insn, EncodingId::smlal_za_zzw_2x2);
+            #else
+                        Instruction result(Mnemonic::SMLAL, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         {
@@ -45825,7 +48053,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC1E00808u: { // smlsl_za_zzw_2x2
-                        Instruction result(Mnemonic::SMLSL, insn, 2919);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SMLSL, insn, EncodingId::smlsl_za_zzw_2x2);
+            #else
+                        Instruction result(Mnemonic::SMLSL, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         {
@@ -45846,7 +48078,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC1E00810u: { // umlal_za_zzw_2x2
-                        Instruction result(Mnemonic::UMLAL, insn, 3129);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::UMLAL, insn, EncodingId::umlal_za_zzw_2x2);
+            #else
+                        Instruction result(Mnemonic::UMLAL, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         {
@@ -45867,7 +48103,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC1E00818u: { // umlsl_za_zzw_2x2
-                        Instruction result(Mnemonic::UMLSL, insn, 3148);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::UMLSL, insn, EncodingId::umlsl_za_zzw_2x2);
+            #else
+                        Instruction result(Mnemonic::UMLSL, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         {
@@ -45893,7 +48133,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
     // Switch for mask 0xFFE19C38u (11 patterns, 11 encodings)
     switch (insn & 0xFFE19C38u) {
         case 0xC1A01000u: { // fdot_za_zzw_2x2
-                        Instruction result(Mnemonic::FDOT, insn, 2543);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FDOT, insn, EncodingId::fdot_za_zzw_2x2);
+            #else
+                        Instruction result(Mnemonic::FDOT, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         {
@@ -45911,7 +48155,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC1A01008u: { // fmla_za_zzw_2x2_16
-                        Instruction result(Mnemonic::FMLA, insn, 2572);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FMLA, insn, EncodingId::fmla_za_zzw_2x2_16);
+            #else
+                        Instruction result(Mnemonic::FMLA, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         {
@@ -45929,7 +48177,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC1A01010u: { // bfdot_za_zzw_2x2
-                        Instruction result(Mnemonic::BFDOT, insn, 2421);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::BFDOT, insn, EncodingId::bfdot_za_zzw_2x2);
+            #else
+                        Instruction result(Mnemonic::BFDOT, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         {
@@ -45947,7 +48199,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC1A01018u: { // fmls_za_zzw_2x2_16
-                        Instruction result(Mnemonic::FMLS, insn, 2610);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FMLS, insn, EncodingId::fmls_za_zzw_2x2_16);
+            #else
+                        Instruction result(Mnemonic::FMLS, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         {
@@ -45965,7 +48221,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC1A01020u: { // fdot_za_z8z8w_2x2
-                        Instruction result(Mnemonic::FDOT, insn, 2537);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FDOT, insn, EncodingId::fdot_za_z8z8w_2x2);
+            #else
+                        Instruction result(Mnemonic::FDOT, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         {
@@ -45983,7 +48243,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC1A01030u: { // fdot_za32_z8z8w_2x2
-                        Instruction result(Mnemonic::FDOT, insn, 2531);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FDOT, insn, EncodingId::fdot_za32_z8z8w_2x2);
+            #else
+                        Instruction result(Mnemonic::FDOT, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         {
@@ -46001,7 +48265,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC1A01408u: { // usdot_za_zzw_s2x2
-                        Instruction result(Mnemonic::USDOT, insn, 3205);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::USDOT, insn, EncodingId::usdot_za_zzw_s2x2);
+            #else
+                        Instruction result(Mnemonic::USDOT, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         {
@@ -46019,7 +48287,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC1E01008u: { // bfmla_za_zzw_2x2_16
-                        Instruction result(Mnemonic::BFMLA, insn, 2443);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::BFMLA, insn, EncodingId::bfmla_za_zzw_2x2_16);
+            #else
+                        Instruction result(Mnemonic::BFMLA, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         {
@@ -46037,7 +48309,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC1E01018u: { // bfmls_za_zzw_2x2_16
-                        Instruction result(Mnemonic::BFMLS, insn, 2457);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::BFMLS, insn, EncodingId::bfmls_za_zzw_2x2_16);
+            #else
+                        Instruction result(Mnemonic::BFMLS, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         {
@@ -46055,7 +48331,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC1E01408u: { // sdot_za32_zzw_2x2
-                        Instruction result(Mnemonic::SDOT, insn, 2874);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SDOT, insn, EncodingId::sdot_za32_zzw_2x2);
+            #else
+                        Instruction result(Mnemonic::SDOT, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         {
@@ -46073,7 +48353,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC1E01418u: { // udot_za32_zzw_2x2
-                        Instruction result(Mnemonic::UDOT, insn, 3105);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::UDOT, insn, EncodingId::udot_za32_zzw_2x2);
+            #else
+                        Instruction result(Mnemonic::UDOT, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         {
@@ -46096,7 +48380,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
     // Switch for mask 0xFFE0FC03u (1 pattern, 1 encoding)
     switch (insn & 0xFFE0FC03u) {
         case 0xC120C800u: { // bfclamp_mz_zz_4
-                        Instruction result(Mnemonic::BFCLAMP, insn, 2413);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::BFCLAMP, insn, EncodingId::bfclamp_mz_zz_4);
+            #else
+                        Instruction result(Mnemonic::BFCLAMP, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         { auto op = Operand::reg_list(static_cast<uint32_t>(make_sve_reg(enc.bfclamp_mz_zz4.Zd * 4))); op.set_arrangement(Arrangement::H); op.rl.count = 4; result.operands.push_back(op); }
@@ -46110,7 +48398,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
     // Switch for mask 0xFFE0FC01u (3 patterns, 3 encodings)
     switch (insn & 0xFFE0FC01u) {
         case 0xC120C000u: { // bfclamp_mz_zz_2
-                        Instruction result(Mnemonic::BFCLAMP, insn, 2412);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::BFCLAMP, insn, EncodingId::bfclamp_mz_zz_2);
+            #else
+                        Instruction result(Mnemonic::BFCLAMP, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         { auto op = Operand::reg_list(static_cast<uint32_t>(make_sve_reg(enc.bfclamp_mz_zz2.Zd * 2))); op.set_arrangement(Arrangement::H); op.rl.count = 2; result.operands.push_back(op); }
@@ -46119,7 +48411,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC120D400u: { // zip_mz_zz_2q
-                        Instruction result(Mnemonic::ZIP, insn, 3261);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::ZIP, insn, EncodingId::zip_mz_zz_2q);
+            #else
+                        Instruction result(Mnemonic::ZIP, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         { auto op = Operand::reg_list(static_cast<uint32_t>(make_sve_reg(enc.zip_mz_zz2q.Zd * 2))); op.set_arrangement(Arrangement::Q); op.rl.count = 2; result.operands.push_back(op); }
@@ -46128,7 +48424,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC120D401u: { // uzp_mz_zz_2q
-                        Instruction result(Mnemonic::UZP, insn, 3247);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::UZP, insn, EncodingId::uzp_mz_zz_2q);
+            #else
+                        Instruction result(Mnemonic::UZP, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         { auto op = Operand::reg_list(static_cast<uint32_t>(make_sve_reg(enc.uzp_mz_zz2q.Zd * 2))); op.set_arrangement(Arrangement::Q); op.rl.count = 2; result.operands.push_back(op); }
@@ -46142,7 +48442,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
     // Switch for mask 0xFFE0E01Cu (4 patterns, 4 encodings)
     switch (insn & 0xFFE0E01Cu) {
         case 0xA1008000u: { // ld1b_mzx_p_br_4x4
-                        Instruction result(Mnemonic::LD1B, insn, 2707);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LD1B, insn, EncodingId::ld1b_mzx_p_br_4x4);
+            #else
+                        Instruction result(Mnemonic::LD1B, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -46152,7 +48456,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xA1008008u: { // ldnt1b_mzx_p_br_4x4
-                        Instruction result(Mnemonic::LDNT1B, insn, 2744);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDNT1B, insn, EncodingId::ldnt1b_mzx_p_br_4x4);
+            #else
+                        Instruction result(Mnemonic::LDNT1B, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -46162,7 +48470,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xA1208000u: { // st1b_mzx_p_br_4x4
-                        Instruction result(Mnemonic::ST1B, insn, 2989);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::ST1B, insn, EncodingId::st1b_mzx_p_br_4x4);
+            #else
+                        Instruction result(Mnemonic::ST1B, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -46172,7 +48484,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xA1208008u: { // stnt1b_mzx_p_br_4x4
-                        Instruction result(Mnemonic::STNT1B, insn, 3028);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::STNT1B, insn, EncodingId::stnt1b_mzx_p_br_4x4);
+            #else
+                        Instruction result(Mnemonic::STNT1B, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -46187,7 +48503,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
     // Switch for mask 0xFFE0E018u (4 patterns, 4 encodings)
     switch (insn & 0xFFE0E018u) {
         case 0xA1000000u: { // ld1b_mzx_p_br_2x8
-                        Instruction result(Mnemonic::LD1B, insn, 2706);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LD1B, insn, EncodingId::ld1b_mzx_p_br_2x8);
+            #else
+                        Instruction result(Mnemonic::LD1B, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -46197,7 +48517,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xA1000008u: { // ldnt1b_mzx_p_br_2x8
-                        Instruction result(Mnemonic::LDNT1B, insn, 2743);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDNT1B, insn, EncodingId::ldnt1b_mzx_p_br_2x8);
+            #else
+                        Instruction result(Mnemonic::LDNT1B, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -46207,7 +48531,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xA1200000u: { // st1b_mzx_p_br_2x8
-                        Instruction result(Mnemonic::ST1B, insn, 2988);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::ST1B, insn, EncodingId::st1b_mzx_p_br_2x8);
+            #else
+                        Instruction result(Mnemonic::ST1B, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -46217,7 +48545,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xA1200008u: { // stnt1b_mzx_p_br_2x8
-                        Instruction result(Mnemonic::STNT1B, insn, 3027);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::STNT1B, insn, EncodingId::stnt1b_mzx_p_br_2x8);
+            #else
+                        Instruction result(Mnemonic::STNT1B, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -46232,7 +48564,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
     // Switch for mask 0xFFE0E00Eu (3 patterns, 3 encodings)
     switch (insn & 0xFFE0E00Eu) {
         case 0x80600008u: { // ftmopa_za16_z8z8zi_b2x1
-                        Instruction result(Mnemonic::FTMOPA, insn, 2691);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FTMOPA, insn, EncodingId::ftmopa_za16_z8z8zi_b2x1);
+            #else
+                        Instruction result(Mnemonic::FTMOPA, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         { auto op = Operand::sme_tile(enc.ftmopa_za16z8z8zi_b2x1.ZAda); op.set_arrangement(Arrangement::H); result.operands.push_back(op); }
@@ -46242,7 +48578,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0x81400008u: { // ftmopa_za_zzzi_h2x1
-                        Instruction result(Mnemonic::FTMOPA, insn, 2694);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FTMOPA, insn, EncodingId::ftmopa_za_zzzi_h2x1);
+            #else
+                        Instruction result(Mnemonic::FTMOPA, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         { auto op = Operand::sme_tile(enc.ftmopa_za_zzzi_h2x1.ZAda); op.set_arrangement(Arrangement::H); result.operands.push_back(op); }
@@ -46252,7 +48592,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0x81600008u: { // bftmopa_za_zzzi_h2x1
-                        Instruction result(Mnemonic::BFTMOPA, insn, 2498);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::BFTMOPA, insn, EncodingId::bftmopa_za_zzzi_h2x1);
+            #else
+                        Instruction result(Mnemonic::BFTMOPA, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         { auto op = Operand::sme_tile(enc.bftmopa_za_zzzi_h2x1.ZAda); op.set_arrangement(Arrangement::H); result.operands.push_back(op); }
@@ -46267,7 +48611,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
     // Switch for mask 0xFFE0E00Cu (22 patterns, 22 encodings)
     switch (insn & 0xFFE0E00Cu) {
         case 0x80400000u: { // ftmopa_za_zzzi_s2x1
-                        Instruction result(Mnemonic::FTMOPA, insn, 2695);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FTMOPA, insn, EncodingId::ftmopa_za_zzzi_s2x1);
+            #else
+                        Instruction result(Mnemonic::FTMOPA, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         { auto op = Operand::sme_tile(enc.ftmopa_za_zzzi_s2x1.ZAda); op.set_arrangement(Arrangement::S); result.operands.push_back(op); }
@@ -46277,7 +48625,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0x80408000u: { // stmopa_za_zzzi_b2x1
-                        Instruction result(Mnemonic::STMOPA, insn, 3020);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::STMOPA, insn, EncodingId::stmopa_za_zzzi_b2x1);
+            #else
+                        Instruction result(Mnemonic::STMOPA, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         { auto op = Operand::sme_tile(enc.stmopa_za_zzzi_b2x1.ZAda); op.set_arrangement(Arrangement::S); result.operands.push_back(op); }
@@ -46287,7 +48639,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0x80408008u: { // stmopa_za32_zzzi_h2x1
-                        Instruction result(Mnemonic::STMOPA, insn, 3019);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::STMOPA, insn, EncodingId::stmopa_za32_zzzi_h2x1);
+            #else
+                        Instruction result(Mnemonic::STMOPA, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         { auto op = Operand::sme_tile(enc.stmopa_za32zzzi_h2x1.ZAda); op.set_arrangement(Arrangement::S); result.operands.push_back(op); }
@@ -46297,7 +48653,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0x80600000u: { // ftmopa_za32_z8z8zi_b2x1
-                        Instruction result(Mnemonic::FTMOPA, insn, 2692);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FTMOPA, insn, EncodingId::ftmopa_za32_z8z8zi_b2x1);
+            #else
+                        Instruction result(Mnemonic::FTMOPA, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         { auto op = Operand::sme_tile(enc.ftmopa_za32z8z8zi_b2x1.ZAda); op.set_arrangement(Arrangement::S); result.operands.push_back(op); }
@@ -46307,7 +48667,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0x80608000u: { // sutmopa_za_zzzi_b2x1
-                        Instruction result(Mnemonic::SUTMOPA, insn, 3092);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SUTMOPA, insn, EncodingId::sutmopa_za_zzzi_b2x1);
+            #else
+                        Instruction result(Mnemonic::SUTMOPA, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         { auto op = Operand::sme_tile(enc.sutmopa_za_zzzi_b2x1.ZAda); op.set_arrangement(Arrangement::S); result.operands.push_back(op); }
@@ -46317,7 +48681,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0x81400000u: { // bftmopa_za32_zzzi_h2x1
-                        Instruction result(Mnemonic::BFTMOPA, insn, 2497);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::BFTMOPA, insn, EncodingId::bftmopa_za32_zzzi_h2x1);
+            #else
+                        Instruction result(Mnemonic::BFTMOPA, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         { auto op = Operand::sme_tile(enc.bftmopa_za32zzzi_h2x1.ZAda); op.set_arrangement(Arrangement::S); result.operands.push_back(op); }
@@ -46327,7 +48695,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0x81408000u: { // ustmopa_za_zzzi_b2x1
-                        Instruction result(Mnemonic::USTMOPA, insn, 3235);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::USTMOPA, insn, EncodingId::ustmopa_za_zzzi_b2x1);
+            #else
+                        Instruction result(Mnemonic::USTMOPA, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         { auto op = Operand::sme_tile(enc.ustmopa_za_zzzi_b2x1.ZAda); op.set_arrangement(Arrangement::S); result.operands.push_back(op); }
@@ -46337,7 +48709,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0x81408008u: { // utmopa_za32_zzzi_h2x1
-                        Instruction result(Mnemonic::UTMOPA, insn, 3237);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::UTMOPA, insn, EncodingId::utmopa_za32_zzzi_h2x1);
+            #else
+                        Instruction result(Mnemonic::UTMOPA, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         { auto op = Operand::sme_tile(enc.utmopa_za32zzzi_h2x1.ZAda); op.set_arrangement(Arrangement::S); result.operands.push_back(op); }
@@ -46347,7 +48723,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0x81600000u: { // ftmopa_za32_zzzi_h2x1
-                        Instruction result(Mnemonic::FTMOPA, insn, 2693);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FTMOPA, insn, EncodingId::ftmopa_za32_zzzi_h2x1);
+            #else
+                        Instruction result(Mnemonic::FTMOPA, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         { auto op = Operand::sme_tile(enc.ftmopa_za32zzzi_h2x1.ZAda); op.set_arrangement(Arrangement::S); result.operands.push_back(op); }
@@ -46357,7 +48737,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0x81608000u: { // utmopa_za_zzzi_b2x1
-                        Instruction result(Mnemonic::UTMOPA, insn, 3238);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::UTMOPA, insn, EncodingId::utmopa_za_zzzi_b2x1);
+            #else
+                        Instruction result(Mnemonic::UTMOPA, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         { auto op = Operand::sme_tile(enc.utmopa_za_zzzi_b2x1.ZAda); op.set_arrangement(Arrangement::S); result.operands.push_back(op); }
@@ -46367,7 +48751,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xA100A000u: { // ld1h_mzx_p_br_4x4
-                        Instruction result(Mnemonic::LD1H, insn, 2725);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LD1H, insn, EncodingId::ld1h_mzx_p_br_4x4);
+            #else
+                        Instruction result(Mnemonic::LD1H, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -46377,7 +48765,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xA100A008u: { // ldnt1h_mzx_p_br_4x4
-                        Instruction result(Mnemonic::LDNT1H, insn, 2760);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDNT1H, insn, EncodingId::ldnt1h_mzx_p_br_4x4);
+            #else
+                        Instruction result(Mnemonic::LDNT1H, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -46387,7 +48779,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xA100C000u: { // ld1w_mzx_p_br_4x4
-                        Instruction result(Mnemonic::LD1W, insn, 2735);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LD1W, insn, EncodingId::ld1w_mzx_p_br_4x4);
+            #else
+                        Instruction result(Mnemonic::LD1W, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -46397,7 +48793,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xA100C008u: { // ldnt1w_mzx_p_br_4x4
-                        Instruction result(Mnemonic::LDNT1W, insn, 2768);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDNT1W, insn, EncodingId::ldnt1w_mzx_p_br_4x4);
+            #else
+                        Instruction result(Mnemonic::LDNT1W, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -46407,7 +48807,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xA100E000u: { // ld1d_mzx_p_br_4x4
-                        Instruction result(Mnemonic::LD1D, insn, 2716);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LD1D, insn, EncodingId::ld1d_mzx_p_br_4x4);
+            #else
+                        Instruction result(Mnemonic::LD1D, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -46417,7 +48821,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xA100E008u: { // ldnt1d_mzx_p_br_4x4
-                        Instruction result(Mnemonic::LDNT1D, insn, 2752);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDNT1D, insn, EncodingId::ldnt1d_mzx_p_br_4x4);
+            #else
+                        Instruction result(Mnemonic::LDNT1D, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -46427,7 +48835,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xA120A000u: { // st1h_mzx_p_br_4x4
-                        Instruction result(Mnemonic::ST1H, insn, 3007);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::ST1H, insn, EncodingId::st1h_mzx_p_br_4x4);
+            #else
+                        Instruction result(Mnemonic::ST1H, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -46437,7 +48849,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xA120A008u: { // stnt1h_mzx_p_br_4x4
-                        Instruction result(Mnemonic::STNT1H, insn, 3044);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::STNT1H, insn, EncodingId::stnt1h_mzx_p_br_4x4);
+            #else
+                        Instruction result(Mnemonic::STNT1H, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -46447,7 +48863,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xA120C000u: { // st1w_mzx_p_br_4x4
-                        Instruction result(Mnemonic::ST1W, insn, 3017);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::ST1W, insn, EncodingId::st1w_mzx_p_br_4x4);
+            #else
+                        Instruction result(Mnemonic::ST1W, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -46457,7 +48877,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xA120C008u: { // stnt1w_mzx_p_br_4x4
-                        Instruction result(Mnemonic::STNT1W, insn, 3052);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::STNT1W, insn, EncodingId::stnt1w_mzx_p_br_4x4);
+            #else
+                        Instruction result(Mnemonic::STNT1W, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -46467,7 +48891,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xA120E000u: { // st1d_mzx_p_br_4x4
-                        Instruction result(Mnemonic::ST1D, insn, 2998);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::ST1D, insn, EncodingId::st1d_mzx_p_br_4x4);
+            #else
+                        Instruction result(Mnemonic::ST1D, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -46477,7 +48905,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xA120E008u: { // stnt1d_mzx_p_br_4x4
-                        Instruction result(Mnemonic::STNT1D, insn, 3036);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::STNT1D, insn, EncodingId::stnt1d_mzx_p_br_4x4);
+            #else
+                        Instruction result(Mnemonic::STNT1D, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -46492,7 +48924,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
     // Switch for mask 0xFFE0E008u (12 patterns, 12 encodings)
     switch (insn & 0xFFE0E008u) {
         case 0xA1002000u: { // ld1h_mzx_p_br_2x8
-                        Instruction result(Mnemonic::LD1H, insn, 2724);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LD1H, insn, EncodingId::ld1h_mzx_p_br_2x8);
+            #else
+                        Instruction result(Mnemonic::LD1H, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -46502,7 +48938,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xA1002008u: { // ldnt1h_mzx_p_br_2x8
-                        Instruction result(Mnemonic::LDNT1H, insn, 2759);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDNT1H, insn, EncodingId::ldnt1h_mzx_p_br_2x8);
+            #else
+                        Instruction result(Mnemonic::LDNT1H, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -46512,7 +48952,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xA1004000u: { // ld1w_mzx_p_br_2x8
-                        Instruction result(Mnemonic::LD1W, insn, 2734);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LD1W, insn, EncodingId::ld1w_mzx_p_br_2x8);
+            #else
+                        Instruction result(Mnemonic::LD1W, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -46522,7 +48966,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xA1004008u: { // ldnt1w_mzx_p_br_2x8
-                        Instruction result(Mnemonic::LDNT1W, insn, 2767);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDNT1W, insn, EncodingId::ldnt1w_mzx_p_br_2x8);
+            #else
+                        Instruction result(Mnemonic::LDNT1W, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -46532,7 +48980,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xA1006000u: { // ld1d_mzx_p_br_2x8
-                        Instruction result(Mnemonic::LD1D, insn, 2715);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LD1D, insn, EncodingId::ld1d_mzx_p_br_2x8);
+            #else
+                        Instruction result(Mnemonic::LD1D, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -46542,7 +48994,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xA1006008u: { // ldnt1d_mzx_p_br_2x8
-                        Instruction result(Mnemonic::LDNT1D, insn, 2751);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDNT1D, insn, EncodingId::ldnt1d_mzx_p_br_2x8);
+            #else
+                        Instruction result(Mnemonic::LDNT1D, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -46552,7 +49008,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xA1202000u: { // st1h_mzx_p_br_2x8
-                        Instruction result(Mnemonic::ST1H, insn, 3006);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::ST1H, insn, EncodingId::st1h_mzx_p_br_2x8);
+            #else
+                        Instruction result(Mnemonic::ST1H, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -46562,7 +49022,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xA1202008u: { // stnt1h_mzx_p_br_2x8
-                        Instruction result(Mnemonic::STNT1H, insn, 3043);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::STNT1H, insn, EncodingId::stnt1h_mzx_p_br_2x8);
+            #else
+                        Instruction result(Mnemonic::STNT1H, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -46572,7 +49036,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xA1204000u: { // st1w_mzx_p_br_2x8
-                        Instruction result(Mnemonic::ST1W, insn, 3016);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::ST1W, insn, EncodingId::st1w_mzx_p_br_2x8);
+            #else
+                        Instruction result(Mnemonic::ST1W, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -46582,7 +49050,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xA1204008u: { // stnt1w_mzx_p_br_2x8
-                        Instruction result(Mnemonic::STNT1W, insn, 3051);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::STNT1W, insn, EncodingId::stnt1w_mzx_p_br_2x8);
+            #else
+                        Instruction result(Mnemonic::STNT1W, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -46592,7 +49064,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xA1206000u: { // st1d_mzx_p_br_2x8
-                        Instruction result(Mnemonic::ST1D, insn, 2997);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::ST1D, insn, EncodingId::st1d_mzx_p_br_2x8);
+            #else
+                        Instruction result(Mnemonic::ST1D, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -46602,7 +49078,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xA1206008u: { // stnt1d_mzx_p_br_2x8
-                        Instruction result(Mnemonic::STNT1D, insn, 3035);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::STNT1D, insn, EncodingId::stnt1d_mzx_p_br_2x8);
+            #else
+                        Instruction result(Mnemonic::STNT1D, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -46617,7 +49097,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
     // Switch for mask 0xFFE0E003u (16 patterns, 16 encodings)
     switch (insn & 0xFFE0E003u) {
         case 0xA0008000u: { // ld1b_mz_p_br_4
-                        Instruction result(Mnemonic::LD1B, insn, 2703);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LD1B, insn, EncodingId::ld1b_mz_p_br_4);
+            #else
+                        Instruction result(Mnemonic::LD1B, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -46627,7 +49111,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xA0008001u: { // ldnt1b_mz_p_br_4
-                        Instruction result(Mnemonic::LDNT1B, insn, 2740);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDNT1B, insn, EncodingId::ldnt1b_mz_p_br_4);
+            #else
+                        Instruction result(Mnemonic::LDNT1B, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -46637,7 +49125,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xA000A000u: { // ld1h_mz_p_br_4
-                        Instruction result(Mnemonic::LD1H, insn, 2721);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LD1H, insn, EncodingId::ld1h_mz_p_br_4);
+            #else
+                        Instruction result(Mnemonic::LD1H, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -46647,7 +49139,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xA000A001u: { // ldnt1h_mz_p_br_4
-                        Instruction result(Mnemonic::LDNT1H, insn, 2756);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDNT1H, insn, EncodingId::ldnt1h_mz_p_br_4);
+            #else
+                        Instruction result(Mnemonic::LDNT1H, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -46657,7 +49153,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xA000C000u: { // ld1w_mz_p_br_4
-                        Instruction result(Mnemonic::LD1W, insn, 2731);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LD1W, insn, EncodingId::ld1w_mz_p_br_4);
+            #else
+                        Instruction result(Mnemonic::LD1W, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -46667,7 +49167,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xA000C001u: { // ldnt1w_mz_p_br_4
-                        Instruction result(Mnemonic::LDNT1W, insn, 2764);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDNT1W, insn, EncodingId::ldnt1w_mz_p_br_4);
+            #else
+                        Instruction result(Mnemonic::LDNT1W, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -46677,7 +49181,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xA000E000u: { // ld1d_mz_p_br_4
-                        Instruction result(Mnemonic::LD1D, insn, 2712);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LD1D, insn, EncodingId::ld1d_mz_p_br_4);
+            #else
+                        Instruction result(Mnemonic::LD1D, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -46687,7 +49195,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xA000E001u: { // ldnt1d_mz_p_br_4
-                        Instruction result(Mnemonic::LDNT1D, insn, 2748);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDNT1D, insn, EncodingId::ldnt1d_mz_p_br_4);
+            #else
+                        Instruction result(Mnemonic::LDNT1D, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -46697,7 +49209,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xA0208000u: { // st1b_mz_p_br_4
-                        Instruction result(Mnemonic::ST1B, insn, 2985);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::ST1B, insn, EncodingId::st1b_mz_p_br_4);
+            #else
+                        Instruction result(Mnemonic::ST1B, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -46707,7 +49223,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xA0208001u: { // stnt1b_mz_p_br_4
-                        Instruction result(Mnemonic::STNT1B, insn, 3024);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::STNT1B, insn, EncodingId::stnt1b_mz_p_br_4);
+            #else
+                        Instruction result(Mnemonic::STNT1B, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -46717,7 +49237,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xA020A000u: { // st1h_mz_p_br_4
-                        Instruction result(Mnemonic::ST1H, insn, 3003);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::ST1H, insn, EncodingId::st1h_mz_p_br_4);
+            #else
+                        Instruction result(Mnemonic::ST1H, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -46727,7 +49251,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xA020A001u: { // stnt1h_mz_p_br_4
-                        Instruction result(Mnemonic::STNT1H, insn, 3040);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::STNT1H, insn, EncodingId::stnt1h_mz_p_br_4);
+            #else
+                        Instruction result(Mnemonic::STNT1H, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -46737,7 +49265,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xA020C000u: { // st1w_mz_p_br_4
-                        Instruction result(Mnemonic::ST1W, insn, 3013);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::ST1W, insn, EncodingId::st1w_mz_p_br_4);
+            #else
+                        Instruction result(Mnemonic::ST1W, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -46747,7 +49279,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xA020C001u: { // stnt1w_mz_p_br_4
-                        Instruction result(Mnemonic::STNT1W, insn, 3048);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::STNT1W, insn, EncodingId::stnt1w_mz_p_br_4);
+            #else
+                        Instruction result(Mnemonic::STNT1W, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -46757,7 +49293,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xA020E000u: { // st1d_mz_p_br_4
-                        Instruction result(Mnemonic::ST1D, insn, 2994);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::ST1D, insn, EncodingId::st1d_mz_p_br_4);
+            #else
+                        Instruction result(Mnemonic::ST1D, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -46767,7 +49307,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xA020E001u: { // stnt1d_mz_p_br_4
-                        Instruction result(Mnemonic::STNT1D, insn, 3032);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::STNT1D, insn, EncodingId::stnt1d_mz_p_br_4);
+            #else
+                        Instruction result(Mnemonic::STNT1D, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -46782,7 +49326,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
     // Switch for mask 0xFFE0E001u (16 patterns, 16 encodings)
     switch (insn & 0xFFE0E001u) {
         case 0xA0000000u: { // ld1b_mz_p_br_2
-                        Instruction result(Mnemonic::LD1B, insn, 2702);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LD1B, insn, EncodingId::ld1b_mz_p_br_2);
+            #else
+                        Instruction result(Mnemonic::LD1B, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -46792,7 +49340,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xA0000001u: { // ldnt1b_mz_p_br_2
-                        Instruction result(Mnemonic::LDNT1B, insn, 2739);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDNT1B, insn, EncodingId::ldnt1b_mz_p_br_2);
+            #else
+                        Instruction result(Mnemonic::LDNT1B, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -46802,7 +49354,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xA0002000u: { // ld1h_mz_p_br_2
-                        Instruction result(Mnemonic::LD1H, insn, 2720);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LD1H, insn, EncodingId::ld1h_mz_p_br_2);
+            #else
+                        Instruction result(Mnemonic::LD1H, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -46812,7 +49368,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xA0002001u: { // ldnt1h_mz_p_br_2
-                        Instruction result(Mnemonic::LDNT1H, insn, 2755);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDNT1H, insn, EncodingId::ldnt1h_mz_p_br_2);
+            #else
+                        Instruction result(Mnemonic::LDNT1H, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -46822,7 +49382,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xA0004000u: { // ld1w_mz_p_br_2
-                        Instruction result(Mnemonic::LD1W, insn, 2730);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LD1W, insn, EncodingId::ld1w_mz_p_br_2);
+            #else
+                        Instruction result(Mnemonic::LD1W, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -46832,7 +49396,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xA0004001u: { // ldnt1w_mz_p_br_2
-                        Instruction result(Mnemonic::LDNT1W, insn, 2763);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDNT1W, insn, EncodingId::ldnt1w_mz_p_br_2);
+            #else
+                        Instruction result(Mnemonic::LDNT1W, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -46842,7 +49410,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xA0006000u: { // ld1d_mz_p_br_2
-                        Instruction result(Mnemonic::LD1D, insn, 2711);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LD1D, insn, EncodingId::ld1d_mz_p_br_2);
+            #else
+                        Instruction result(Mnemonic::LD1D, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -46852,7 +49424,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xA0006001u: { // ldnt1d_mz_p_br_2
-                        Instruction result(Mnemonic::LDNT1D, insn, 2747);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDNT1D, insn, EncodingId::ldnt1d_mz_p_br_2);
+            #else
+                        Instruction result(Mnemonic::LDNT1D, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -46862,7 +49438,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xA0200000u: { // st1b_mz_p_br_2
-                        Instruction result(Mnemonic::ST1B, insn, 2984);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::ST1B, insn, EncodingId::st1b_mz_p_br_2);
+            #else
+                        Instruction result(Mnemonic::ST1B, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -46872,7 +49452,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xA0200001u: { // stnt1b_mz_p_br_2
-                        Instruction result(Mnemonic::STNT1B, insn, 3023);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::STNT1B, insn, EncodingId::stnt1b_mz_p_br_2);
+            #else
+                        Instruction result(Mnemonic::STNT1B, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -46882,7 +49466,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xA0202000u: { // st1h_mz_p_br_2
-                        Instruction result(Mnemonic::ST1H, insn, 3002);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::ST1H, insn, EncodingId::st1h_mz_p_br_2);
+            #else
+                        Instruction result(Mnemonic::ST1H, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -46892,7 +49480,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xA0202001u: { // stnt1h_mz_p_br_2
-                        Instruction result(Mnemonic::STNT1H, insn, 3039);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::STNT1H, insn, EncodingId::stnt1h_mz_p_br_2);
+            #else
+                        Instruction result(Mnemonic::STNT1H, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -46902,7 +49494,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xA0204000u: { // st1w_mz_p_br_2
-                        Instruction result(Mnemonic::ST1W, insn, 3012);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::ST1W, insn, EncodingId::st1w_mz_p_br_2);
+            #else
+                        Instruction result(Mnemonic::ST1W, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -46912,7 +49508,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xA0204001u: { // stnt1w_mz_p_br_2
-                        Instruction result(Mnemonic::STNT1W, insn, 3047);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::STNT1W, insn, EncodingId::stnt1w_mz_p_br_2);
+            #else
+                        Instruction result(Mnemonic::STNT1W, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -46922,7 +49522,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xA0206000u: { // st1d_mz_p_br_2
-                        Instruction result(Mnemonic::ST1D, insn, 2993);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::ST1D, insn, EncodingId::st1d_mz_p_br_2);
+            #else
+                        Instruction result(Mnemonic::ST1D, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -46932,7 +49536,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xA0206001u: { // stnt1d_mz_p_br_2
-                        Instruction result(Mnemonic::STNT1D, insn, 3031);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::STNT1D, insn, EncodingId::stnt1d_mz_p_br_2);
+            #else
+                        Instruction result(Mnemonic::STNT1D, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -46947,7 +49555,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
     // Switch for mask 0xFFE0001Eu (5 patterns, 5 encodings)
     switch (insn & 0xFFE0001Eu) {
         case 0x80A00008u: { // fmopa_za16_pp_z8z8_8
-                        Instruction result(Mnemonic::FMOPA, insn, 2661);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FMOPA, insn, EncodingId::fmopa_za16_pp_z8z8_8);
+            #else
+                        Instruction result(Mnemonic::FMOPA, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         { auto op = Operand::sme_tile(enc.fmopa_za16pp_z8z88.ZAda); op.set_arrangement(Arrangement::H); result.operands.push_back(op); }
@@ -46958,7 +49570,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0x81800008u: { // fmopa_za_pp_zz_16
-                        Instruction result(Mnemonic::FMOPA, insn, 2664);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FMOPA, insn, EncodingId::fmopa_za_pp_zz_16);
+            #else
+                        Instruction result(Mnemonic::FMOPA, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         { auto op = Operand::sme_tile(enc.fmopa_za_pp_zz16.ZAda); op.set_arrangement(Arrangement::H); result.operands.push_back(op); }
@@ -46969,7 +49585,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0x81800018u: { // fmops_za_pp_zz_16
-                        Instruction result(Mnemonic::FMOPS, insn, 2668);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FMOPS, insn, EncodingId::fmops_za_pp_zz_16);
+            #else
+                        Instruction result(Mnemonic::FMOPS, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         { auto op = Operand::sme_tile(enc.fmops_za_pp_zz16.ZAda); op.set_arrangement(Arrangement::H); result.operands.push_back(op); }
@@ -46980,7 +49600,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0x81A00008u: { // bfmopa_za_pp_zz_16
-                        Instruction result(Mnemonic::BFMOPA, insn, 2484);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::BFMOPA, insn, EncodingId::bfmopa_za_pp_zz_16);
+            #else
+                        Instruction result(Mnemonic::BFMOPA, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         { auto op = Operand::sme_tile(enc.bfmopa_za_pp_zz16.ZAda); op.set_arrangement(Arrangement::H); result.operands.push_back(op); }
@@ -46991,7 +49615,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0x81A00018u: { // bfmops_za_pp_zz_16
-                        Instruction result(Mnemonic::BFMOPS, insn, 2486);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::BFMOPS, insn, EncodingId::bfmops_za_pp_zz_16);
+            #else
+                        Instruction result(Mnemonic::BFMOPS, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         { auto op = Operand::sme_tile(enc.bfmops_za_pp_zz16.ZAda); op.set_arrangement(Arrangement::H); result.operands.push_back(op); }
@@ -47007,7 +49635,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
     // Switch for mask 0xFFE0001Cu (21 patterns, 21 encodings)
     switch (insn & 0xFFE0001Cu) {
         case 0x80800000u: { // fmopa_za_pp_zz_32
-                        Instruction result(Mnemonic::FMOPA, insn, 2665);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FMOPA, insn, EncodingId::fmopa_za_pp_zz_32);
+            #else
+                        Instruction result(Mnemonic::FMOPA, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         { auto op = Operand::sme_tile(enc.fmopa_za_pp_zz32.ZAda); op.set_arrangement(Arrangement::S); result.operands.push_back(op); }
@@ -47018,7 +49650,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0x80800008u: { // bmopa_za_pp_zz_32
-                        Instruction result(Mnemonic::BMOPA, insn, 2500);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::BMOPA, insn, EncodingId::bmopa_za_pp_zz_32);
+            #else
+                        Instruction result(Mnemonic::BMOPA, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         { auto op = Operand::sme_tile(enc.bmopa_za_pp_zz32.ZAda); op.set_arrangement(Arrangement::S); result.operands.push_back(op); }
@@ -47029,7 +49665,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0x80800010u: { // fmops_za_pp_zz_32
-                        Instruction result(Mnemonic::FMOPS, insn, 2669);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FMOPS, insn, EncodingId::fmops_za_pp_zz_32);
+            #else
+                        Instruction result(Mnemonic::FMOPS, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         { auto op = Operand::sme_tile(enc.fmops_za_pp_zz32.ZAda); op.set_arrangement(Arrangement::S); result.operands.push_back(op); }
@@ -47040,7 +49680,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0x80800018u: { // bmops_za_pp_zz_32
-                        Instruction result(Mnemonic::BMOPS, insn, 2501);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::BMOPS, insn, EncodingId::bmops_za_pp_zz_32);
+            #else
+                        Instruction result(Mnemonic::BMOPS, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         { auto op = Operand::sme_tile(enc.bmops_za_pp_zz32.ZAda); op.set_arrangement(Arrangement::S); result.operands.push_back(op); }
@@ -47051,7 +49695,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0x80A00000u: { // fmopa_za32_pp_z8z8_8
-                        Instruction result(Mnemonic::FMOPA, insn, 2662);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FMOPA, insn, EncodingId::fmopa_za32_pp_z8z8_8);
+            #else
+                        Instruction result(Mnemonic::FMOPA, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         { auto op = Operand::sme_tile(enc.fmopa_za32pp_z8z88.ZAda); op.set_arrangement(Arrangement::S); result.operands.push_back(op); }
@@ -47062,7 +49710,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0x81800000u: { // bfmopa_za32_pp_zz_
-                        Instruction result(Mnemonic::BFMOPA, insn, 2483);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::BFMOPA, insn, EncodingId::bfmopa_za32_pp_zz_);
+            #else
+                        Instruction result(Mnemonic::BFMOPA, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         { auto op = Operand::sme_tile(enc.bfmopa_za32pp_zz.ZAda); op.set_arrangement(Arrangement::S); result.operands.push_back(op); }
@@ -47073,7 +49725,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0x81800010u: { // bfmops_za32_pp_zz_
-                        Instruction result(Mnemonic::BFMOPS, insn, 2485);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::BFMOPS, insn, EncodingId::bfmops_za32_pp_zz_);
+            #else
+                        Instruction result(Mnemonic::BFMOPS, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         { auto op = Operand::sme_tile(enc.bfmops_za32pp_zz.ZAda); op.set_arrangement(Arrangement::S); result.operands.push_back(op); }
@@ -47084,7 +49740,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0x81A00000u: { // fmopa_za32_pp_zz_16
-                        Instruction result(Mnemonic::FMOPA, insn, 2663);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FMOPA, insn, EncodingId::fmopa_za32_pp_zz_16);
+            #else
+                        Instruction result(Mnemonic::FMOPA, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         { auto op = Operand::sme_tile(enc.fmopa_za32pp_zz16.ZAda); op.set_arrangement(Arrangement::S); result.operands.push_back(op); }
@@ -47095,7 +49755,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0x81A00010u: { // fmops_za32_pp_zz_16
-                        Instruction result(Mnemonic::FMOPS, insn, 2667);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FMOPS, insn, EncodingId::fmops_za32_pp_zz_16);
+            #else
+                        Instruction result(Mnemonic::FMOPS, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         { auto op = Operand::sme_tile(enc.fmops_za32pp_zz16.ZAda); op.set_arrangement(Arrangement::S); result.operands.push_back(op); }
@@ -47106,7 +49770,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xA0800000u: { // smopa_za_pp_zz_32
-                        Instruction result(Mnemonic::SMOPA, insn, 2957);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SMOPA, insn, EncodingId::smopa_za_pp_zz_32);
+            #else
+                        Instruction result(Mnemonic::SMOPA, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         { auto op = Operand::sme_tile(enc.smopa_za_pp_zz32.ZAda); op.set_arrangement(Arrangement::S); result.operands.push_back(op); }
@@ -47117,7 +49785,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xA0800008u: { // smopa_za32_pp_zz_16
-                        Instruction result(Mnemonic::SMOPA, insn, 2956);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SMOPA, insn, EncodingId::smopa_za32_pp_zz_16);
+            #else
+                        Instruction result(Mnemonic::SMOPA, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         { auto op = Operand::sme_tile(enc.smopa_za32pp_zz16.ZAda); op.set_arrangement(Arrangement::S); result.operands.push_back(op); }
@@ -47128,7 +49800,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xA0800010u: { // smops_za_pp_zz_32
-                        Instruction result(Mnemonic::SMOPS, insn, 2960);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SMOPS, insn, EncodingId::smops_za_pp_zz_32);
+            #else
+                        Instruction result(Mnemonic::SMOPS, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         { auto op = Operand::sme_tile(enc.smops_za_pp_zz32.ZAda); op.set_arrangement(Arrangement::S); result.operands.push_back(op); }
@@ -47139,7 +49815,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xA0800018u: { // smops_za32_pp_zz_16
-                        Instruction result(Mnemonic::SMOPS, insn, 2959);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SMOPS, insn, EncodingId::smops_za32_pp_zz_16);
+            #else
+                        Instruction result(Mnemonic::SMOPS, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         { auto op = Operand::sme_tile(enc.smops_za32pp_zz16.ZAda); op.set_arrangement(Arrangement::S); result.operands.push_back(op); }
@@ -47150,7 +49830,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xA0A00000u: { // sumopa_za_pp_zz_32
-                        Instruction result(Mnemonic::SUMOPA, insn, 3086);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SUMOPA, insn, EncodingId::sumopa_za_pp_zz_32);
+            #else
+                        Instruction result(Mnemonic::SUMOPA, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         { auto op = Operand::sme_tile(enc.sumopa_za_pp_zz32.ZAda); op.set_arrangement(Arrangement::S); result.operands.push_back(op); }
@@ -47161,7 +49845,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xA0A00010u: { // sumops_za_pp_zz_32
-                        Instruction result(Mnemonic::SUMOPS, insn, 3088);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SUMOPS, insn, EncodingId::sumops_za_pp_zz_32);
+            #else
+                        Instruction result(Mnemonic::SUMOPS, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         { auto op = Operand::sme_tile(enc.sumops_za_pp_zz32.ZAda); op.set_arrangement(Arrangement::S); result.operands.push_back(op); }
@@ -47172,7 +49860,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xA1800000u: { // usmopa_za_pp_zz_32
-                        Instruction result(Mnemonic::USMOPA, insn, 3231);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::USMOPA, insn, EncodingId::usmopa_za_pp_zz_32);
+            #else
+                        Instruction result(Mnemonic::USMOPA, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         { auto op = Operand::sme_tile(enc.usmopa_za_pp_zz32.ZAda); op.set_arrangement(Arrangement::S); result.operands.push_back(op); }
@@ -47183,7 +49875,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xA1800008u: { // umopa_za32_pp_zz_16
-                        Instruction result(Mnemonic::UMOPA, insn, 3185);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::UMOPA, insn, EncodingId::umopa_za32_pp_zz_16);
+            #else
+                        Instruction result(Mnemonic::UMOPA, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         { auto op = Operand::sme_tile(enc.umopa_za32pp_zz16.ZAda); op.set_arrangement(Arrangement::S); result.operands.push_back(op); }
@@ -47194,7 +49890,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xA1800010u: { // usmops_za_pp_zz_32
-                        Instruction result(Mnemonic::USMOPS, insn, 3233);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::USMOPS, insn, EncodingId::usmops_za_pp_zz_32);
+            #else
+                        Instruction result(Mnemonic::USMOPS, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         { auto op = Operand::sme_tile(enc.usmops_za_pp_zz32.ZAda); op.set_arrangement(Arrangement::S); result.operands.push_back(op); }
@@ -47205,7 +49905,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xA1800018u: { // umops_za32_pp_zz_16
-                        Instruction result(Mnemonic::UMOPS, insn, 3188);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::UMOPS, insn, EncodingId::umops_za32_pp_zz_16);
+            #else
+                        Instruction result(Mnemonic::UMOPS, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         { auto op = Operand::sme_tile(enc.umops_za32pp_zz16.ZAda); op.set_arrangement(Arrangement::S); result.operands.push_back(op); }
@@ -47216,7 +49920,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xA1A00000u: { // umopa_za_pp_zz_32
-                        Instruction result(Mnemonic::UMOPA, insn, 3186);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::UMOPA, insn, EncodingId::umopa_za_pp_zz_32);
+            #else
+                        Instruction result(Mnemonic::UMOPA, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         { auto op = Operand::sme_tile(enc.umopa_za_pp_zz32.ZAda); op.set_arrangement(Arrangement::S); result.operands.push_back(op); }
@@ -47227,7 +49935,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xA1A00010u: { // umops_za_pp_zz_32
-                        Instruction result(Mnemonic::UMOPS, insn, 3189);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::UMOPS, insn, EncodingId::umops_za_pp_zz_32);
+            #else
+                        Instruction result(Mnemonic::UMOPS, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         { auto op = Operand::sme_tile(enc.umops_za_pp_zz32.ZAda); op.set_arrangement(Arrangement::S); result.operands.push_back(op); }
@@ -47243,7 +49955,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
     // Switch for mask 0xFFE00018u (10 patterns, 10 encodings)
     switch (insn & 0xFFE00018u) {
         case 0x80C00000u: { // fmopa_za_pp_zz_64
-                        Instruction result(Mnemonic::FMOPA, insn, 2666);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FMOPA, insn, EncodingId::fmopa_za_pp_zz_64);
+            #else
+                        Instruction result(Mnemonic::FMOPA, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         { auto op = Operand::sme_tile(enc.fmopa_za_pp_zz64.ZAda); op.set_arrangement(Arrangement::D); result.operands.push_back(op); }
@@ -47254,7 +49970,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0x80C00010u: { // fmops_za_pp_zz_64
-                        Instruction result(Mnemonic::FMOPS, insn, 2670);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FMOPS, insn, EncodingId::fmops_za_pp_zz_64);
+            #else
+                        Instruction result(Mnemonic::FMOPS, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         { auto op = Operand::sme_tile(enc.fmops_za_pp_zz64.ZAda); op.set_arrangement(Arrangement::D); result.operands.push_back(op); }
@@ -47265,7 +49985,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xA0C00000u: { // smopa_za_pp_zz_64
-                        Instruction result(Mnemonic::SMOPA, insn, 2958);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SMOPA, insn, EncodingId::smopa_za_pp_zz_64);
+            #else
+                        Instruction result(Mnemonic::SMOPA, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         { auto op = Operand::sme_tile(enc.smopa_za_pp_zz64.ZAda); op.set_arrangement(Arrangement::D); result.operands.push_back(op); }
@@ -47276,7 +50000,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xA0C00010u: { // smops_za_pp_zz_64
-                        Instruction result(Mnemonic::SMOPS, insn, 2961);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SMOPS, insn, EncodingId::smops_za_pp_zz_64);
+            #else
+                        Instruction result(Mnemonic::SMOPS, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         { auto op = Operand::sme_tile(enc.smops_za_pp_zz64.ZAda); op.set_arrangement(Arrangement::D); result.operands.push_back(op); }
@@ -47287,7 +50015,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xA0E00000u: { // sumopa_za_pp_zz_64
-                        Instruction result(Mnemonic::SUMOPA, insn, 3087);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SUMOPA, insn, EncodingId::sumopa_za_pp_zz_64);
+            #else
+                        Instruction result(Mnemonic::SUMOPA, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         { auto op = Operand::sme_tile(enc.sumopa_za_pp_zz64.ZAda); op.set_arrangement(Arrangement::D); result.operands.push_back(op); }
@@ -47298,7 +50030,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xA0E00010u: { // sumops_za_pp_zz_64
-                        Instruction result(Mnemonic::SUMOPS, insn, 3089);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SUMOPS, insn, EncodingId::sumops_za_pp_zz_64);
+            #else
+                        Instruction result(Mnemonic::SUMOPS, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         { auto op = Operand::sme_tile(enc.sumops_za_pp_zz64.ZAda); op.set_arrangement(Arrangement::D); result.operands.push_back(op); }
@@ -47309,7 +50045,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xA1C00000u: { // usmopa_za_pp_zz_64
-                        Instruction result(Mnemonic::USMOPA, insn, 3232);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::USMOPA, insn, EncodingId::usmopa_za_pp_zz_64);
+            #else
+                        Instruction result(Mnemonic::USMOPA, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         { auto op = Operand::sme_tile(enc.usmopa_za_pp_zz64.ZAda); op.set_arrangement(Arrangement::D); result.operands.push_back(op); }
@@ -47320,7 +50060,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xA1C00010u: { // usmops_za_pp_zz_64
-                        Instruction result(Mnemonic::USMOPS, insn, 3234);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::USMOPS, insn, EncodingId::usmops_za_pp_zz_64);
+            #else
+                        Instruction result(Mnemonic::USMOPS, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         { auto op = Operand::sme_tile(enc.usmops_za_pp_zz64.ZAda); op.set_arrangement(Arrangement::D); result.operands.push_back(op); }
@@ -47331,7 +50075,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xA1E00000u: { // umopa_za_pp_zz_64
-                        Instruction result(Mnemonic::UMOPA, insn, 3187);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::UMOPA, insn, EncodingId::umopa_za_pp_zz_64);
+            #else
+                        Instruction result(Mnemonic::UMOPA, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         { auto op = Operand::sme_tile(enc.umopa_za_pp_zz64.ZAda); op.set_arrangement(Arrangement::D); result.operands.push_back(op); }
@@ -47342,7 +50090,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xA1E00010u: { // umops_za_pp_zz_64
-                        Instruction result(Mnemonic::UMOPS, insn, 3190);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::UMOPS, insn, EncodingId::umops_za_pp_zz_64);
+            #else
+                        Instruction result(Mnemonic::UMOPS, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         { auto op = Operand::sme_tile(enc.umops_za_pp_zz64.ZAda); op.set_arrangement(Arrangement::D); result.operands.push_back(op); }
@@ -47358,7 +50110,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
     // Switch for mask 0xFFE00010u (10 patterns, 10 encodings)
     switch (insn & 0xFFE00010u) {
         case 0xE0000000u: { // ld1b_za_p_rrr_
-                        Instruction result(Mnemonic::LD1B, insn, 2708);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LD1B, insn, EncodingId::ld1b_za_p_rrr_);
+            #else
+                        Instruction result(Mnemonic::LD1B, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -47380,7 +50136,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xE0200000u: { // st1b_za_p_rrr_
-                        Instruction result(Mnemonic::ST1B, insn, 2990);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::ST1B, insn, EncodingId::st1b_za_p_rrr_);
+            #else
+                        Instruction result(Mnemonic::ST1B, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -47402,7 +50162,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xE0400000u: { // ld1h_za_p_rrr_
-                        Instruction result(Mnemonic::LD1H, insn, 2726);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LD1H, insn, EncodingId::ld1h_za_p_rrr_);
+            #else
+                        Instruction result(Mnemonic::LD1H, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -47424,7 +50188,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xE0600000u: { // st1h_za_p_rrr_
-                        Instruction result(Mnemonic::ST1H, insn, 3008);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::ST1H, insn, EncodingId::st1h_za_p_rrr_);
+            #else
+                        Instruction result(Mnemonic::ST1H, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -47446,7 +50214,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xE0800000u: { // ld1w_za_p_rrr_
-                        Instruction result(Mnemonic::LD1W, insn, 2736);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LD1W, insn, EncodingId::ld1w_za_p_rrr_);
+            #else
+                        Instruction result(Mnemonic::LD1W, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -47468,7 +50240,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xE0A00000u: { // st1w_za_p_rrr_
-                        Instruction result(Mnemonic::ST1W, insn, 3018);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::ST1W, insn, EncodingId::st1w_za_p_rrr_);
+            #else
+                        Instruction result(Mnemonic::ST1W, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -47490,7 +50266,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xE0C00000u: { // ld1d_za_p_rrr_
-                        Instruction result(Mnemonic::LD1D, insn, 2717);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LD1D, insn, EncodingId::ld1d_za_p_rrr_);
+            #else
+                        Instruction result(Mnemonic::LD1D, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -47512,7 +50292,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xE0E00000u: { // st1d_za_p_rrr_
-                        Instruction result(Mnemonic::ST1D, insn, 2999);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::ST1D, insn, EncodingId::st1d_za_p_rrr_);
+            #else
+                        Instruction result(Mnemonic::ST1D, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -47534,7 +50318,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xE1C00000u: { // ld1q_za_p_rrr_
-                        Instruction result(Mnemonic::LD1Q, insn, 2727);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LD1Q, insn, EncodingId::ld1q_za_p_rrr_);
+            #else
+                        Instruction result(Mnemonic::LD1Q, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -47556,7 +50344,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xE1E00000u: { // st1q_za_p_rrr_
-                        Instruction result(Mnemonic::ST1Q, insn, 3009);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::ST1Q, insn, EncodingId::st1q_za_p_rrr_);
+            #else
+                        Instruction result(Mnemonic::ST1Q, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -47583,7 +50375,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
     // Switch for mask 0xFFBF9C78u (4 patterns, 4 encodings)
     switch (insn & 0xFFBF9C78u) {
         case 0xC1A11C00u: { // fadd_za_zw_4x4
-                        Instruction result(Mnemonic::FADD, insn, 2508);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FADD, insn, EncodingId::fadd_za_zw_4x4);
+            #else
+                        Instruction result(Mnemonic::FADD, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = enc.fadd_za_zw4x4.sz ? Arrangement::D : Arrangement::S;
@@ -47602,7 +50398,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC1A11C08u: { // fsub_za_zw_4x4
-                        Instruction result(Mnemonic::FSUB, insn, 2689);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FSUB, insn, EncodingId::fsub_za_zw_4x4);
+            #else
+                        Instruction result(Mnemonic::FSUB, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = enc.fsub_za_zw4x4.sz ? Arrangement::D : Arrangement::S;
@@ -47621,7 +50421,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC1A11C10u: { // add_za_zw_4x4
-                        Instruction result(Mnemonic::ADD, insn, 2397);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::ADD, insn, EncodingId::add_za_zw_4x4);
+            #else
+                        Instruction result(Mnemonic::ADD, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = enc.add_za_zw4x4.sz ? Arrangement::D : Arrangement::S;
@@ -47640,7 +50444,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC1A11C18u: { // sub_za_zw_4x4
-                        Instruction result(Mnemonic::SUB, insn, 3056);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SUB, insn, EncodingId::sub_za_zw_4x4);
+            #else
+                        Instruction result(Mnemonic::SUB, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = enc.sub_za_zw4x4.sz ? Arrangement::D : Arrangement::S;
@@ -47664,7 +50472,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
     // Switch for mask 0xFFBF9C38u (4 patterns, 4 encodings)
     switch (insn & 0xFFBF9C38u) {
         case 0xC1A01C00u: { // fadd_za_zw_2x2
-                        Instruction result(Mnemonic::FADD, insn, 2506);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FADD, insn, EncodingId::fadd_za_zw_2x2);
+            #else
+                        Instruction result(Mnemonic::FADD, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = enc.fadd_za_zw2x2.sz ? Arrangement::D : Arrangement::S;
@@ -47683,7 +50495,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC1A01C08u: { // fsub_za_zw_2x2
-                        Instruction result(Mnemonic::FSUB, insn, 2687);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FSUB, insn, EncodingId::fsub_za_zw_2x2);
+            #else
+                        Instruction result(Mnemonic::FSUB, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = enc.fsub_za_zw2x2.sz ? Arrangement::D : Arrangement::S;
@@ -47702,7 +50518,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC1A01C10u: { // add_za_zw_2x2
-                        Instruction result(Mnemonic::ADD, insn, 2396);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::ADD, insn, EncodingId::add_za_zw_2x2);
+            #else
+                        Instruction result(Mnemonic::ADD, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = enc.add_za_zw2x2.sz ? Arrangement::D : Arrangement::S;
@@ -47721,7 +50541,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC1A01C18u: { // sub_za_zw_2x2
-                        Instruction result(Mnemonic::SUB, insn, 3055);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SUB, insn, EncodingId::sub_za_zw_2x2);
+            #else
+                        Instruction result(Mnemonic::SUB, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = enc.sub_za_zw2x2.sz ? Arrangement::D : Arrangement::S;
@@ -47745,7 +50569,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
     // Switch for mask 0xFFB09C1Eu (8 patterns, 8 encodings)
     switch (insn & 0xFFB09C1Eu) {
         case 0xC1200000u: { // smlall_za_zzv_2x1
-                        Instruction result(Mnemonic::SMLALL, insn, 2909);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SMLALL, insn, EncodingId::smlall_za_zzv_2x1);
+            #else
+                        Instruction result(Mnemonic::SMLALL, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = enc.smlall_za_zzv2x1.sz ? Arrangement::D : Arrangement::S;
@@ -47768,7 +50596,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC1200008u: { // smlsll_za_zzv_2x1
-                        Instruction result(Mnemonic::SMLSLL, insn, 2928);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SMLSLL, insn, EncodingId::smlsll_za_zzv_2x1);
+            #else
+                        Instruction result(Mnemonic::SMLSLL, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = enc.smlsll_za_zzv2x1.sz ? Arrangement::D : Arrangement::S;
@@ -47791,7 +50623,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC1200010u: { // umlall_za_zzv_2x1
-                        Instruction result(Mnemonic::UMLALL, insn, 3138);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::UMLALL, insn, EncodingId::umlall_za_zzv_2x1);
+            #else
+                        Instruction result(Mnemonic::UMLALL, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = enc.umlall_za_zzv2x1.sz ? Arrangement::D : Arrangement::S;
@@ -47814,7 +50650,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC1200018u: { // umlsll_za_zzv_2x1
-                        Instruction result(Mnemonic::UMLSLL, insn, 3157);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::UMLSLL, insn, EncodingId::umlsll_za_zzv_2x1);
+            #else
+                        Instruction result(Mnemonic::UMLSLL, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = enc.umlsll_za_zzv2x1.sz ? Arrangement::D : Arrangement::S;
@@ -47837,7 +50677,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC1300000u: { // smlall_za_zzv_4x1
-                        Instruction result(Mnemonic::SMLALL, insn, 2910);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SMLALL, insn, EncodingId::smlall_za_zzv_4x1);
+            #else
+                        Instruction result(Mnemonic::SMLALL, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = enc.smlall_za_zzv4x1.sz ? Arrangement::D : Arrangement::S;
@@ -47860,7 +50704,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC1300008u: { // smlsll_za_zzv_4x1
-                        Instruction result(Mnemonic::SMLSLL, insn, 2929);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SMLSLL, insn, EncodingId::smlsll_za_zzv_4x1);
+            #else
+                        Instruction result(Mnemonic::SMLSLL, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = enc.smlsll_za_zzv4x1.sz ? Arrangement::D : Arrangement::S;
@@ -47883,7 +50731,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC1300010u: { // umlall_za_zzv_4x1
-                        Instruction result(Mnemonic::UMLALL, insn, 3139);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::UMLALL, insn, EncodingId::umlall_za_zzv_4x1);
+            #else
+                        Instruction result(Mnemonic::UMLALL, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = enc.umlall_za_zzv4x1.sz ? Arrangement::D : Arrangement::S;
@@ -47906,7 +50758,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC1300018u: { // umlsll_za_zzv_4x1
-                        Instruction result(Mnemonic::UMLSLL, insn, 3158);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::UMLSLL, insn, EncodingId::umlsll_za_zzv_4x1);
+            #else
+                        Instruction result(Mnemonic::UMLSLL, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = enc.umlsll_za_zzv4x1.sz ? Arrangement::D : Arrangement::S;
@@ -47934,7 +50790,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
     // Switch for mask 0xFFB09C1Cu (4 patterns, 4 encodings)
     switch (insn & 0xFFB09C1Cu) {
         case 0xC1200400u: { // smlall_za_zzv_1
-                        Instruction result(Mnemonic::SMLALL, insn, 2908);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SMLALL, insn, EncodingId::smlall_za_zzv_1);
+            #else
+                        Instruction result(Mnemonic::SMLALL, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = enc.smlall_za_zzv1.sz ? Arrangement::D : Arrangement::S;
@@ -47957,7 +50817,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC1200408u: { // smlsll_za_zzv_1
-                        Instruction result(Mnemonic::SMLSLL, insn, 2927);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SMLSLL, insn, EncodingId::smlsll_za_zzv_1);
+            #else
+                        Instruction result(Mnemonic::SMLSLL, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = enc.smlsll_za_zzv1.sz ? Arrangement::D : Arrangement::S;
@@ -47980,7 +50844,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC1200410u: { // umlall_za_zzv_1
-                        Instruction result(Mnemonic::UMLALL, insn, 3137);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::UMLALL, insn, EncodingId::umlall_za_zzv_1);
+            #else
+                        Instruction result(Mnemonic::UMLALL, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = enc.umlall_za_zzv1.sz ? Arrangement::D : Arrangement::S;
@@ -48003,7 +50871,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC1200418u: { // umlsll_za_zzv_1
-                        Instruction result(Mnemonic::UMLSLL, insn, 3156);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::UMLSLL, insn, EncodingId::umlsll_za_zzv_1);
+            #else
+                        Instruction result(Mnemonic::UMLSLL, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = enc.umlsll_za_zzv1.sz ? Arrangement::D : Arrangement::S;
@@ -48031,7 +50903,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
     // Switch for mask 0xFFB09C18u (12 patterns, 12 encodings)
     switch (insn & 0xFFB09C18u) {
         case 0xC1201400u: { // sdot_za_zzv_2x1
-                        Instruction result(Mnemonic::SDOT, insn, 2880);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SDOT, insn, EncodingId::sdot_za_zzv_2x1);
+            #else
+                        Instruction result(Mnemonic::SDOT, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = enc.sdot_za_zzv2x1.sz ? Arrangement::D : Arrangement::S;
@@ -48051,7 +50927,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC1201410u: { // udot_za_zzv_2x1
-                        Instruction result(Mnemonic::UDOT, insn, 3111);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::UDOT, insn, EncodingId::udot_za_zzv_2x1);
+            #else
+                        Instruction result(Mnemonic::UDOT, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = enc.udot_za_zzv2x1.sz ? Arrangement::D : Arrangement::S;
@@ -48071,7 +50951,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC1201800u: { // fmla_za_zzv_2x1
-                        Instruction result(Mnemonic::FMLA, insn, 2567);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FMLA, insn, EncodingId::fmla_za_zzv_2x1);
+            #else
+                        Instruction result(Mnemonic::FMLA, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = enc.fmla_za_zzv2x1.sz ? Arrangement::D : Arrangement::S;
@@ -48091,7 +50975,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC1201808u: { // fmls_za_zzv_2x1
-                        Instruction result(Mnemonic::FMLS, insn, 2605);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FMLS, insn, EncodingId::fmls_za_zzv_2x1);
+            #else
+                        Instruction result(Mnemonic::FMLS, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = enc.fmls_za_zzv2x1.sz ? Arrangement::D : Arrangement::S;
@@ -48111,7 +50999,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC1201810u: { // add_za_zzv_2x1
-                        Instruction result(Mnemonic::ADD, insn, 2398);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::ADD, insn, EncodingId::add_za_zzv_2x1);
+            #else
+                        Instruction result(Mnemonic::ADD, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = enc.add_za_zzv2x1.sz ? Arrangement::D : Arrangement::S;
@@ -48131,7 +51023,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC1201818u: { // sub_za_zzv_2x1
-                        Instruction result(Mnemonic::SUB, insn, 3057);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SUB, insn, EncodingId::sub_za_zzv_2x1);
+            #else
+                        Instruction result(Mnemonic::SUB, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = enc.sub_za_zzv2x1.sz ? Arrangement::D : Arrangement::S;
@@ -48151,7 +51047,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC1301400u: { // sdot_za_zzv_4x1
-                        Instruction result(Mnemonic::SDOT, insn, 2881);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SDOT, insn, EncodingId::sdot_za_zzv_4x1);
+            #else
+                        Instruction result(Mnemonic::SDOT, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = enc.sdot_za_zzv4x1.sz ? Arrangement::D : Arrangement::S;
@@ -48171,7 +51071,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC1301410u: { // udot_za_zzv_4x1
-                        Instruction result(Mnemonic::UDOT, insn, 3112);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::UDOT, insn, EncodingId::udot_za_zzv_4x1);
+            #else
+                        Instruction result(Mnemonic::UDOT, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = enc.udot_za_zzv4x1.sz ? Arrangement::D : Arrangement::S;
@@ -48191,7 +51095,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC1301800u: { // fmla_za_zzv_4x1
-                        Instruction result(Mnemonic::FMLA, insn, 2569);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FMLA, insn, EncodingId::fmla_za_zzv_4x1);
+            #else
+                        Instruction result(Mnemonic::FMLA, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = enc.fmla_za_zzv4x1.sz ? Arrangement::D : Arrangement::S;
@@ -48211,7 +51119,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC1301808u: { // fmls_za_zzv_4x1
-                        Instruction result(Mnemonic::FMLS, insn, 2607);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FMLS, insn, EncodingId::fmls_za_zzv_4x1);
+            #else
+                        Instruction result(Mnemonic::FMLS, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = enc.fmls_za_zzv4x1.sz ? Arrangement::D : Arrangement::S;
@@ -48231,7 +51143,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC1301810u: { // add_za_zzv_4x1
-                        Instruction result(Mnemonic::ADD, insn, 2399);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::ADD, insn, EncodingId::add_za_zzv_4x1);
+            #else
+                        Instruction result(Mnemonic::ADD, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = enc.add_za_zzv4x1.sz ? Arrangement::D : Arrangement::S;
@@ -48251,7 +51167,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC1301818u: { // sub_za_zzv_4x1
-                        Instruction result(Mnemonic::SUB, insn, 3058);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SUB, insn, EncodingId::sub_za_zzv_4x1);
+            #else
+                        Instruction result(Mnemonic::SUB, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = enc.sub_za_zzv4x1.sz ? Arrangement::D : Arrangement::S;
@@ -48276,7 +51196,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
     // Switch for mask 0xFFA39C7Eu (4 patterns, 4 encodings)
     switch (insn & 0xFFA39C7Eu) {
         case 0xC1A10000u: { // smlall_za_zzw_4x4
-                        Instruction result(Mnemonic::SMLALL, insn, 2912);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SMLALL, insn, EncodingId::smlall_za_zzw_4x4);
+            #else
+                        Instruction result(Mnemonic::SMLALL, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = enc.smlall_za_zzw4x4.sz ? Arrangement::D : Arrangement::S;
@@ -48299,7 +51223,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC1A10008u: { // smlsll_za_zzw_4x4
-                        Instruction result(Mnemonic::SMLSLL, insn, 2931);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SMLSLL, insn, EncodingId::smlsll_za_zzw_4x4);
+            #else
+                        Instruction result(Mnemonic::SMLSLL, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = enc.smlsll_za_zzw4x4.sz ? Arrangement::D : Arrangement::S;
@@ -48322,7 +51250,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC1A10010u: { // umlall_za_zzw_4x4
-                        Instruction result(Mnemonic::UMLALL, insn, 3141);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::UMLALL, insn, EncodingId::umlall_za_zzw_4x4);
+            #else
+                        Instruction result(Mnemonic::UMLALL, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = enc.umlall_za_zzw4x4.sz ? Arrangement::D : Arrangement::S;
@@ -48345,7 +51277,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC1A10018u: { // umlsll_za_zzw_4x4
-                        Instruction result(Mnemonic::UMLSLL, insn, 3160);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::UMLSLL, insn, EncodingId::umlsll_za_zzw_4x4);
+            #else
+                        Instruction result(Mnemonic::UMLSLL, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = enc.umlsll_za_zzw4x4.sz ? Arrangement::D : Arrangement::S;
@@ -48373,7 +51309,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
     // Switch for mask 0xFFA39C78u (6 patterns, 6 encodings)
     switch (insn & 0xFFA39C78u) {
         case 0xC1A11400u: { // sdot_za_zzw_4x4
-                        Instruction result(Mnemonic::SDOT, insn, 2883);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SDOT, insn, EncodingId::sdot_za_zzw_4x4);
+            #else
+                        Instruction result(Mnemonic::SDOT, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = enc.sdot_za_zzw4x4.sz ? Arrangement::D : Arrangement::S;
@@ -48393,7 +51333,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC1A11410u: { // udot_za_zzw_4x4
-                        Instruction result(Mnemonic::UDOT, insn, 3114);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::UDOT, insn, EncodingId::udot_za_zzw_4x4);
+            #else
+                        Instruction result(Mnemonic::UDOT, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = enc.udot_za_zzw4x4.sz ? Arrangement::D : Arrangement::S;
@@ -48413,7 +51357,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC1A11800u: { // fmla_za_zzw_4x4
-                        Instruction result(Mnemonic::FMLA, insn, 2573);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FMLA, insn, EncodingId::fmla_za_zzw_4x4);
+            #else
+                        Instruction result(Mnemonic::FMLA, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = enc.fmla_za_zzw4x4.sz ? Arrangement::D : Arrangement::S;
@@ -48433,7 +51381,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC1A11808u: { // fmls_za_zzw_4x4
-                        Instruction result(Mnemonic::FMLS, insn, 2611);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FMLS, insn, EncodingId::fmls_za_zzw_4x4);
+            #else
+                        Instruction result(Mnemonic::FMLS, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = enc.fmls_za_zzw4x4.sz ? Arrangement::D : Arrangement::S;
@@ -48453,7 +51405,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC1A11810u: { // add_za_zzw_4x4
-                        Instruction result(Mnemonic::ADD, insn, 2401);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::ADD, insn, EncodingId::add_za_zzw_4x4);
+            #else
+                        Instruction result(Mnemonic::ADD, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = enc.add_za_zzw4x4.sz ? Arrangement::D : Arrangement::S;
@@ -48473,7 +51429,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC1A11818u: { // sub_za_zzw_4x4
-                        Instruction result(Mnemonic::SUB, insn, 3060);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SUB, insn, EncodingId::sub_za_zzw_4x4);
+            #else
+                        Instruction result(Mnemonic::SUB, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = enc.sub_za_zzw4x4.sz ? Arrangement::D : Arrangement::S;
@@ -48498,7 +51458,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
     // Switch for mask 0xFFA19C3Eu (4 patterns, 4 encodings)
     switch (insn & 0xFFA19C3Eu) {
         case 0xC1A00000u: { // smlall_za_zzw_2x2
-                        Instruction result(Mnemonic::SMLALL, insn, 2911);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SMLALL, insn, EncodingId::smlall_za_zzw_2x2);
+            #else
+                        Instruction result(Mnemonic::SMLALL, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = enc.smlall_za_zzw2x2.sz ? Arrangement::D : Arrangement::S;
@@ -48521,7 +51485,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC1A00008u: { // smlsll_za_zzw_2x2
-                        Instruction result(Mnemonic::SMLSLL, insn, 2930);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SMLSLL, insn, EncodingId::smlsll_za_zzw_2x2);
+            #else
+                        Instruction result(Mnemonic::SMLSLL, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = enc.smlsll_za_zzw2x2.sz ? Arrangement::D : Arrangement::S;
@@ -48544,7 +51512,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC1A00010u: { // umlall_za_zzw_2x2
-                        Instruction result(Mnemonic::UMLALL, insn, 3140);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::UMLALL, insn, EncodingId::umlall_za_zzw_2x2);
+            #else
+                        Instruction result(Mnemonic::UMLALL, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = enc.umlall_za_zzw2x2.sz ? Arrangement::D : Arrangement::S;
@@ -48567,7 +51539,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC1A00018u: { // umlsll_za_zzw_2x2
-                        Instruction result(Mnemonic::UMLSLL, insn, 3159);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::UMLSLL, insn, EncodingId::umlsll_za_zzw_2x2);
+            #else
+                        Instruction result(Mnemonic::UMLSLL, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = enc.umlsll_za_zzw2x2.sz ? Arrangement::D : Arrangement::S;
@@ -48595,7 +51571,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
     // Switch for mask 0xFFA19C38u (6 patterns, 6 encodings)
     switch (insn & 0xFFA19C38u) {
         case 0xC1A01400u: { // sdot_za_zzw_2x2
-                        Instruction result(Mnemonic::SDOT, insn, 2882);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SDOT, insn, EncodingId::sdot_za_zzw_2x2);
+            #else
+                        Instruction result(Mnemonic::SDOT, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = enc.sdot_za_zzw2x2.sz ? Arrangement::D : Arrangement::S;
@@ -48615,7 +51595,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC1A01410u: { // udot_za_zzw_2x2
-                        Instruction result(Mnemonic::UDOT, insn, 3113);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::UDOT, insn, EncodingId::udot_za_zzw_2x2);
+            #else
+                        Instruction result(Mnemonic::UDOT, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = enc.udot_za_zzw2x2.sz ? Arrangement::D : Arrangement::S;
@@ -48635,7 +51619,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC1A01800u: { // fmla_za_zzw_2x2
-                        Instruction result(Mnemonic::FMLA, insn, 2571);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FMLA, insn, EncodingId::fmla_za_zzw_2x2);
+            #else
+                        Instruction result(Mnemonic::FMLA, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = enc.fmla_za_zzw2x2.sz ? Arrangement::D : Arrangement::S;
@@ -48655,7 +51643,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC1A01808u: { // fmls_za_zzw_2x2
-                        Instruction result(Mnemonic::FMLS, insn, 2609);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FMLS, insn, EncodingId::fmls_za_zzw_2x2);
+            #else
+                        Instruction result(Mnemonic::FMLS, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = enc.fmls_za_zzw2x2.sz ? Arrangement::D : Arrangement::S;
@@ -48675,7 +51667,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC1A01810u: { // add_za_zzw_2x2
-                        Instruction result(Mnemonic::ADD, insn, 2400);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::ADD, insn, EncodingId::add_za_zzw_2x2);
+            #else
+                        Instruction result(Mnemonic::ADD, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = enc.add_za_zzw2x2.sz ? Arrangement::D : Arrangement::S;
@@ -48695,7 +51691,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC1A01818u: { // sub_za_zzw_2x2
-                        Instruction result(Mnemonic::SUB, insn, 3059);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SUB, insn, EncodingId::sub_za_zzw_2x2);
+            #else
+                        Instruction result(Mnemonic::SUB, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = enc.sub_za_zzw2x2.sz ? Arrangement::D : Arrangement::S;
@@ -48720,7 +51720,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
     // Switch for mask 0xFFA0FC0Cu (1 pattern, 1 encoding)
     switch (insn & 0xFFA0FC0Cu) {
         case 0xC120FC00u: { // luti6_mz4_zmz2_4
-                        Instruction result(Mnemonic::LUTI6, insn, 2784);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LUTI6, insn, EncodingId::luti6_mz4_zmz2_4);
+            #else
+                        Instruction result(Mnemonic::LUTI6, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         { auto op = Operand::reg_list(static_cast<uint32_t>(make_sve_reg(enc.luti6mz4zmz24.Zd))); op.set_arrangement(Arrangement::H); op.rl.count = 4; op.rl.stride = 4; result.operands.push_back(op); }
@@ -48735,7 +51739,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
     // Switch for mask 0xFFA0FC03u (1 pattern, 1 encoding)
     switch (insn & 0xFFA0FC03u) {
         case 0xC120F400u: { // luti6_mz4_zmz2_1
-                        Instruction result(Mnemonic::LUTI6, insn, 2783);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LUTI6, insn, EncodingId::luti6_mz4_zmz2_1);
+            #else
+                        Instruction result(Mnemonic::LUTI6, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         { auto op = Operand::reg_list(static_cast<uint32_t>(make_sve_reg(enc.luti6mz4zmz21.Zd * 4))); op.set_arrangement(Arrangement::H); op.rl.count = 4; result.operands.push_back(op); }
@@ -48750,7 +51758,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
     // Switch for mask 0xFF7FFC60u (6 patterns, 6 encodings)
     switch (insn & 0xFF7FFC60u) {
         case 0xC133E000u: { // sqcvt_z_mz4_
-                        Instruction result(Mnemonic::SQCVT, insn, 2963);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SQCVT, insn, EncodingId::sqcvt_z_mz4_);
+            #else
+                        Instruction result(Mnemonic::SQCVT, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _dst_arr = enc.sqcvt_zmz4.sz ? Arrangement::H : Arrangement::B;
@@ -48760,7 +51772,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC133E020u: { // uqcvt_z_mz4_
-                        Instruction result(Mnemonic::UQCVT, insn, 3192);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::UQCVT, insn, EncodingId::uqcvt_z_mz4_);
+            #else
+                        Instruction result(Mnemonic::UQCVT, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _dst_arr = enc.uqcvt_zmz4.sz ? Arrangement::H : Arrangement::B;
@@ -48770,7 +51786,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC133E040u: { // sqcvtn_z_mz4_
-                        Instruction result(Mnemonic::SQCVTN, insn, 2964);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SQCVTN, insn, EncodingId::sqcvtn_z_mz4_);
+            #else
+                        Instruction result(Mnemonic::SQCVTN, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _dst_arr = enc.sqcvtn_zmz4.sz ? Arrangement::H : Arrangement::B;
@@ -48780,7 +51800,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC133E060u: { // uqcvtn_z_mz4_
-                        Instruction result(Mnemonic::UQCVTN, insn, 3193);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::UQCVTN, insn, EncodingId::uqcvtn_z_mz4_);
+            #else
+                        Instruction result(Mnemonic::UQCVTN, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _dst_arr = enc.uqcvtn_zmz4.sz ? Arrangement::H : Arrangement::B;
@@ -48790,7 +51814,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC173E000u: { // sqcvtu_z_mz4_
-                        Instruction result(Mnemonic::SQCVTU, insn, 2966);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SQCVTU, insn, EncodingId::sqcvtu_z_mz4_);
+            #else
+                        Instruction result(Mnemonic::SQCVTU, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _dst_arr = enc.sqcvtu_zmz4.sz ? Arrangement::H : Arrangement::B;
@@ -48800,7 +51828,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC173E040u: { // sqcvtun_z_mz4_
-                        Instruction result(Mnemonic::SQCVTUN, insn, 2967);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SQCVTUN, insn, EncodingId::sqcvtun_z_mz4_);
+            #else
+                        Instruction result(Mnemonic::SQCVTUN, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _dst_arr = enc.sqcvtun_zmz4.sz ? Arrangement::H : Arrangement::B;
@@ -48815,7 +51847,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
     // Switch for mask 0xFF3FFC63u (2 patterns, 2 encodings)
     switch (insn & 0xFF3FFC63u) {
         case 0xC136E000u: { // zip_mz_z_4
-                        Instruction result(Mnemonic::ZIP, insn, 3258);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::ZIP, insn, EncodingId::zip_mz_z_4);
+            #else
+                        Instruction result(Mnemonic::ZIP, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = Arrangement::None;
@@ -48830,7 +51866,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC136E002u: { // uzp_mz_z_4
-                        Instruction result(Mnemonic::UZP, insn, 3244);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::UZP, insn, EncodingId::uzp_mz_z_4);
+            #else
+                        Instruction result(Mnemonic::UZP, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = Arrangement::None;
@@ -48850,7 +51890,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
     // Switch for mask 0xFF3FFC23u (2 patterns, 2 encodings)
     switch (insn & 0xFF3FFC23u) {
         case 0xC135E000u: { // sunpk_mz_z_4
-                        Instruction result(Mnemonic::SUNPK, insn, 3091);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SUNPK, insn, EncodingId::sunpk_mz_z_4);
+            #else
+                        Instruction result(Mnemonic::SUNPK, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         if (enc.sunpk_mz_z4.size == 0u) return std::nullopt;
@@ -48873,7 +51917,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC135E001u: { // uunpk_mz_z_4
-                        Instruction result(Mnemonic::UUNPK, insn, 3240);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::UUNPK, insn, EncodingId::uunpk_mz_z_4);
+            #else
+                        Instruction result(Mnemonic::UUNPK, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         if (enc.uunpk_mz_z4.size == 0u) return std::nullopt;
@@ -48901,7 +51949,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
     // Switch for mask 0xFF3FFC01u (2 patterns, 2 encodings)
     switch (insn & 0xFF3FFC01u) {
         case 0xC125E000u: { // sunpk_mz_z_2
-                        Instruction result(Mnemonic::SUNPK, insn, 3090);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SUNPK, insn, EncodingId::sunpk_mz_z_2);
+            #else
+                        Instruction result(Mnemonic::SUNPK, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         if (enc.sunpk_mz_z2.size == 0u) return std::nullopt;
@@ -48924,7 +51976,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC125E001u: { // uunpk_mz_z_2
-                        Instruction result(Mnemonic::UUNPK, insn, 3239);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::UUNPK, insn, EncodingId::uunpk_mz_z_2);
+            #else
+                        Instruction result(Mnemonic::UUNPK, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         if (enc.uunpk_mz_z2.size == 0u) return std::nullopt;
@@ -48952,7 +52008,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
     // Switch for mask 0xFF30FFE3u (13 patterns, 13 encodings)
     switch (insn & 0xFF30FFE3u) {
         case 0xC120A800u: { // smax_mz_zzv_4x1
-                        Instruction result(Mnemonic::SMAX, insn, 2887);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SMAX, insn, EncodingId::smax_mz_zzv_4x1);
+            #else
+                        Instruction result(Mnemonic::SMAX, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = Arrangement::None;
@@ -48968,7 +52028,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC120A801u: { // umax_mz_zzv_4x1
-                        Instruction result(Mnemonic::UMAX, insn, 3116);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::UMAX, insn, EncodingId::umax_mz_zzv_4x1);
+            #else
+                        Instruction result(Mnemonic::UMAX, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = Arrangement::None;
@@ -48984,7 +52048,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC120A820u: { // smin_mz_zzv_4x1
-                        Instruction result(Mnemonic::SMIN, insn, 2891);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SMIN, insn, EncodingId::smin_mz_zzv_4x1);
+            #else
+                        Instruction result(Mnemonic::SMIN, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = Arrangement::None;
@@ -49000,7 +52068,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC120A821u: { // umin_mz_zzv_4x1
-                        Instruction result(Mnemonic::UMIN, insn, 3120);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::UMIN, insn, EncodingId::umin_mz_zzv_4x1);
+            #else
+                        Instruction result(Mnemonic::UMIN, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = Arrangement::None;
@@ -49017,7 +52089,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
         }
         case 0xC120A900u: { // fmax_mz_zzv_4x1
             if (((insn >> 22) & 0x3) == 0x0) break;
-                        Instruction result(Mnemonic::FMAX, insn, 2546);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FMAX, insn, EncodingId::fmax_mz_zzv_4x1);
+            #else
+                        Instruction result(Mnemonic::FMAX, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = Arrangement::None;
@@ -49034,7 +52110,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
         }
         case 0xC120A901u: { // fmin_mz_zzv_4x1
             if (((insn >> 22) & 0x3) == 0x0) break;
-                        Instruction result(Mnemonic::FMIN, insn, 2554);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FMIN, insn, EncodingId::fmin_mz_zzv_4x1);
+            #else
+                        Instruction result(Mnemonic::FMIN, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = Arrangement::None;
@@ -49051,7 +52131,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
         }
         case 0xC120A920u: { // fmaxnm_mz_zzv_4x1
             if (((insn >> 22) & 0x3) == 0x0) break;
-                        Instruction result(Mnemonic::FMAXNM, insn, 2550);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FMAXNM, insn, EncodingId::fmaxnm_mz_zzv_4x1);
+            #else
+                        Instruction result(Mnemonic::FMAXNM, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = Arrangement::None;
@@ -49068,7 +52152,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
         }
         case 0xC120A921u: { // fminnm_mz_zzv_4x1
             if (((insn >> 22) & 0x3) == 0x0) break;
-                        Instruction result(Mnemonic::FMINNM, insn, 2558);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FMINNM, insn, EncodingId::fminnm_mz_zzv_4x1);
+            #else
+                        Instruction result(Mnemonic::FMINNM, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = Arrangement::None;
@@ -49085,7 +52173,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
         }
         case 0xC120A980u: { // fscale_mz_zzv_4x1
             if (((insn >> 22) & 0x3) == 0x0) break;
-                        Instruction result(Mnemonic::FSCALE, insn, 2684);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FSCALE, insn, EncodingId::fscale_mz_zzv_4x1);
+            #else
+                        Instruction result(Mnemonic::FSCALE, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = Arrangement::None;
@@ -49101,7 +52193,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC120AA20u: { // srshl_mz_zzv_4x1
-                        Instruction result(Mnemonic::SRSHL, insn, 2979);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SRSHL, insn, EncodingId::srshl_mz_zzv_4x1);
+            #else
+                        Instruction result(Mnemonic::SRSHL, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = Arrangement::None;
@@ -49117,7 +52213,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC120AA21u: { // urshl_mz_zzv_4x1
-                        Instruction result(Mnemonic::URSHL, insn, 3198);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::URSHL, insn, EncodingId::urshl_mz_zzv_4x1);
+            #else
+                        Instruction result(Mnemonic::URSHL, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = Arrangement::None;
@@ -49133,7 +52233,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC120AB00u: { // add_mz_zzv_4x1
-                        Instruction result(Mnemonic::ADD, insn, 2395);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::ADD, insn, EncodingId::add_mz_zzv_4x1);
+            #else
+                        Instruction result(Mnemonic::ADD, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = Arrangement::None;
@@ -49149,7 +52253,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC120AC00u: { // sqdmulh_mz_zzv_4x1
-                        Instruction result(Mnemonic::SQDMULH, insn, 2969);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SQDMULH, insn, EncodingId::sqdmulh_mz_zzv_4x1);
+            #else
+                        Instruction result(Mnemonic::SQDMULH, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = Arrangement::None;
@@ -49170,7 +52278,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
     // Switch for mask 0xFF30FFE1u (13 patterns, 13 encodings)
     switch (insn & 0xFF30FFE1u) {
         case 0xC120A000u: { // smax_mz_zzv_2x1
-                        Instruction result(Mnemonic::SMAX, insn, 2886);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SMAX, insn, EncodingId::smax_mz_zzv_2x1);
+            #else
+                        Instruction result(Mnemonic::SMAX, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = Arrangement::None;
@@ -49186,7 +52298,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC120A001u: { // umax_mz_zzv_2x1
-                        Instruction result(Mnemonic::UMAX, insn, 3115);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::UMAX, insn, EncodingId::umax_mz_zzv_2x1);
+            #else
+                        Instruction result(Mnemonic::UMAX, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = Arrangement::None;
@@ -49202,7 +52318,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC120A020u: { // smin_mz_zzv_2x1
-                        Instruction result(Mnemonic::SMIN, insn, 2890);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SMIN, insn, EncodingId::smin_mz_zzv_2x1);
+            #else
+                        Instruction result(Mnemonic::SMIN, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = Arrangement::None;
@@ -49218,7 +52338,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC120A021u: { // umin_mz_zzv_2x1
-                        Instruction result(Mnemonic::UMIN, insn, 3119);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::UMIN, insn, EncodingId::umin_mz_zzv_2x1);
+            #else
+                        Instruction result(Mnemonic::UMIN, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = Arrangement::None;
@@ -49235,7 +52359,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
         }
         case 0xC120A100u: { // fmax_mz_zzv_2x1
             if (((insn >> 22) & 0x3) == 0x0) break;
-                        Instruction result(Mnemonic::FMAX, insn, 2545);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FMAX, insn, EncodingId::fmax_mz_zzv_2x1);
+            #else
+                        Instruction result(Mnemonic::FMAX, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = Arrangement::None;
@@ -49252,7 +52380,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
         }
         case 0xC120A101u: { // fmin_mz_zzv_2x1
             if (((insn >> 22) & 0x3) == 0x0) break;
-                        Instruction result(Mnemonic::FMIN, insn, 2553);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FMIN, insn, EncodingId::fmin_mz_zzv_2x1);
+            #else
+                        Instruction result(Mnemonic::FMIN, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = Arrangement::None;
@@ -49269,7 +52401,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
         }
         case 0xC120A120u: { // fmaxnm_mz_zzv_2x1
             if (((insn >> 22) & 0x3) == 0x0) break;
-                        Instruction result(Mnemonic::FMAXNM, insn, 2549);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FMAXNM, insn, EncodingId::fmaxnm_mz_zzv_2x1);
+            #else
+                        Instruction result(Mnemonic::FMAXNM, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = Arrangement::None;
@@ -49286,7 +52422,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
         }
         case 0xC120A121u: { // fminnm_mz_zzv_2x1
             if (((insn >> 22) & 0x3) == 0x0) break;
-                        Instruction result(Mnemonic::FMINNM, insn, 2557);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FMINNM, insn, EncodingId::fminnm_mz_zzv_2x1);
+            #else
+                        Instruction result(Mnemonic::FMINNM, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = Arrangement::None;
@@ -49303,7 +52443,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
         }
         case 0xC120A180u: { // fscale_mz_zzv_2x1
             if (((insn >> 22) & 0x3) == 0x0) break;
-                        Instruction result(Mnemonic::FSCALE, insn, 2683);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FSCALE, insn, EncodingId::fscale_mz_zzv_2x1);
+            #else
+                        Instruction result(Mnemonic::FSCALE, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = Arrangement::None;
@@ -49319,7 +52463,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC120A220u: { // srshl_mz_zzv_2x1
-                        Instruction result(Mnemonic::SRSHL, insn, 2978);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SRSHL, insn, EncodingId::srshl_mz_zzv_2x1);
+            #else
+                        Instruction result(Mnemonic::SRSHL, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = Arrangement::None;
@@ -49335,7 +52483,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC120A221u: { // urshl_mz_zzv_2x1
-                        Instruction result(Mnemonic::URSHL, insn, 3197);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::URSHL, insn, EncodingId::urshl_mz_zzv_2x1);
+            #else
+                        Instruction result(Mnemonic::URSHL, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = Arrangement::None;
@@ -49351,7 +52503,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC120A300u: { // add_mz_zzv_2x1
-                        Instruction result(Mnemonic::ADD, insn, 2394);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::ADD, insn, EncodingId::add_mz_zzv_2x1);
+            #else
+                        Instruction result(Mnemonic::ADD, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = Arrangement::None;
@@ -49367,7 +52523,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC120A400u: { // sqdmulh_mz_zzv_2x1
-                        Instruction result(Mnemonic::SQDMULH, insn, 2968);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SQDMULH, insn, EncodingId::sqdmulh_mz_zzv_2x1);
+            #else
+                        Instruction result(Mnemonic::SQDMULH, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = Arrangement::None;
@@ -49388,7 +52548,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
     // Switch for mask 0xFF23FFE3u (14 patterns, 14 encodings)
     switch (insn & 0xFF23FFE3u) {
         case 0xC120B800u: { // smax_mz_zzw_4x4
-                        Instruction result(Mnemonic::SMAX, insn, 2889);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SMAX, insn, EncodingId::smax_mz_zzw_4x4);
+            #else
+                        Instruction result(Mnemonic::SMAX, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = Arrangement::None;
@@ -49404,7 +52568,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC120B801u: { // umax_mz_zzw_4x4
-                        Instruction result(Mnemonic::UMAX, insn, 3118);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::UMAX, insn, EncodingId::umax_mz_zzw_4x4);
+            #else
+                        Instruction result(Mnemonic::UMAX, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = Arrangement::None;
@@ -49420,7 +52588,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC120B820u: { // smin_mz_zzw_4x4
-                        Instruction result(Mnemonic::SMIN, insn, 2893);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SMIN, insn, EncodingId::smin_mz_zzw_4x4);
+            #else
+                        Instruction result(Mnemonic::SMIN, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = Arrangement::None;
@@ -49436,7 +52608,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC120B821u: { // umin_mz_zzw_4x4
-                        Instruction result(Mnemonic::UMIN, insn, 3122);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::UMIN, insn, EncodingId::umin_mz_zzw_4x4);
+            #else
+                        Instruction result(Mnemonic::UMIN, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = Arrangement::None;
@@ -49453,7 +52629,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
         }
         case 0xC120B900u: { // fmax_mz_zzw_4x4
             if (((insn >> 22) & 0x3) == 0x0) break;
-                        Instruction result(Mnemonic::FMAX, insn, 2548);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FMAX, insn, EncodingId::fmax_mz_zzw_4x4);
+            #else
+                        Instruction result(Mnemonic::FMAX, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = Arrangement::None;
@@ -49470,7 +52650,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
         }
         case 0xC120B901u: { // fmin_mz_zzw_4x4
             if (((insn >> 22) & 0x3) == 0x0) break;
-                        Instruction result(Mnemonic::FMIN, insn, 2556);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FMIN, insn, EncodingId::fmin_mz_zzw_4x4);
+            #else
+                        Instruction result(Mnemonic::FMIN, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = Arrangement::None;
@@ -49487,7 +52671,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
         }
         case 0xC120B920u: { // fmaxnm_mz_zzw_4x4
             if (((insn >> 22) & 0x3) == 0x0) break;
-                        Instruction result(Mnemonic::FMAXNM, insn, 2552);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FMAXNM, insn, EncodingId::fmaxnm_mz_zzw_4x4);
+            #else
+                        Instruction result(Mnemonic::FMAXNM, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = Arrangement::None;
@@ -49504,7 +52692,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
         }
         case 0xC120B921u: { // fminnm_mz_zzw_4x4
             if (((insn >> 22) & 0x3) == 0x0) break;
-                        Instruction result(Mnemonic::FMINNM, insn, 2560);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FMINNM, insn, EncodingId::fminnm_mz_zzw_4x4);
+            #else
+                        Instruction result(Mnemonic::FMINNM, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = Arrangement::None;
@@ -49520,7 +52712,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC120B940u: { // famax_mz_zzw_4x4
-                        Instruction result(Mnemonic::FAMAX, insn, 2511);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FAMAX, insn, EncodingId::famax_mz_zzw_4x4);
+            #else
+                        Instruction result(Mnemonic::FAMAX, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         if (enc.famax_mz_zzw4x4.size == 0u) return std::nullopt;
@@ -49537,7 +52733,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC120B941u: { // famin_mz_zzw_4x4
-                        Instruction result(Mnemonic::FAMIN, insn, 2513);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FAMIN, insn, EncodingId::famin_mz_zzw_4x4);
+            #else
+                        Instruction result(Mnemonic::FAMIN, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         if (enc.famin_mz_zzw4x4.size == 0u) return std::nullopt;
@@ -49555,7 +52755,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
         }
         case 0xC120B980u: { // fscale_mz_zzw_4x4
             if (((insn >> 22) & 0x3) == 0x0) break;
-                        Instruction result(Mnemonic::FSCALE, insn, 2686);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FSCALE, insn, EncodingId::fscale_mz_zzw_4x4);
+            #else
+                        Instruction result(Mnemonic::FSCALE, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = Arrangement::None;
@@ -49571,7 +52775,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC120BA20u: { // srshl_mz_zzw_4x4
-                        Instruction result(Mnemonic::SRSHL, insn, 2981);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SRSHL, insn, EncodingId::srshl_mz_zzw_4x4);
+            #else
+                        Instruction result(Mnemonic::SRSHL, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = Arrangement::None;
@@ -49587,7 +52795,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC120BA21u: { // urshl_mz_zzw_4x4
-                        Instruction result(Mnemonic::URSHL, insn, 3200);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::URSHL, insn, EncodingId::urshl_mz_zzw_4x4);
+            #else
+                        Instruction result(Mnemonic::URSHL, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = Arrangement::None;
@@ -49603,7 +52815,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC120BC00u: { // sqdmulh_mz_zzw_4x4
-                        Instruction result(Mnemonic::SQDMULH, insn, 2971);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SQDMULH, insn, EncodingId::sqdmulh_mz_zzw_4x4);
+            #else
+                        Instruction result(Mnemonic::SQDMULH, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = Arrangement::None;
@@ -49625,7 +52841,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
     switch (insn & 0xFF23FC63u) {
         case 0xC121E400u: { // fmul_mz_zzw_4x4
             if (((insn >> 22) & 0x3) == 0x0) break;
-                        Instruction result(Mnemonic::FMUL, insn, 2674);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FMUL, insn, EncodingId::fmul_mz_zzw_4x4);
+            #else
+                        Instruction result(Mnemonic::FMUL, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = Arrangement::None;
@@ -49646,7 +52866,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
     // Switch for mask 0xFF23E063u (1 pattern, 1 encoding)
     switch (insn & 0xFF23E063u) {
         case 0xC1218000u: { // sel_mz_p_zz_4
-                        Instruction result(Mnemonic::SEL, insn, 2885);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SEL, insn, EncodingId::sel_mz_p_zz_4);
+            #else
+                        Instruction result(Mnemonic::SEL, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = Arrangement::None;
@@ -49668,7 +52892,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
     // Switch for mask 0xFF21FFE1u (14 patterns, 14 encodings)
     switch (insn & 0xFF21FFE1u) {
         case 0xC120B000u: { // smax_mz_zzw_2x2
-                        Instruction result(Mnemonic::SMAX, insn, 2888);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SMAX, insn, EncodingId::smax_mz_zzw_2x2);
+            #else
+                        Instruction result(Mnemonic::SMAX, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = Arrangement::None;
@@ -49684,7 +52912,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC120B001u: { // umax_mz_zzw_2x2
-                        Instruction result(Mnemonic::UMAX, insn, 3117);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::UMAX, insn, EncodingId::umax_mz_zzw_2x2);
+            #else
+                        Instruction result(Mnemonic::UMAX, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = Arrangement::None;
@@ -49700,7 +52932,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC120B020u: { // smin_mz_zzw_2x2
-                        Instruction result(Mnemonic::SMIN, insn, 2892);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SMIN, insn, EncodingId::smin_mz_zzw_2x2);
+            #else
+                        Instruction result(Mnemonic::SMIN, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = Arrangement::None;
@@ -49716,7 +52952,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC120B021u: { // umin_mz_zzw_2x2
-                        Instruction result(Mnemonic::UMIN, insn, 3121);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::UMIN, insn, EncodingId::umin_mz_zzw_2x2);
+            #else
+                        Instruction result(Mnemonic::UMIN, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = Arrangement::None;
@@ -49733,7 +52973,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
         }
         case 0xC120B100u: { // fmax_mz_zzw_2x2
             if (((insn >> 22) & 0x3) == 0x0) break;
-                        Instruction result(Mnemonic::FMAX, insn, 2547);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FMAX, insn, EncodingId::fmax_mz_zzw_2x2);
+            #else
+                        Instruction result(Mnemonic::FMAX, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = Arrangement::None;
@@ -49750,7 +52994,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
         }
         case 0xC120B101u: { // fmin_mz_zzw_2x2
             if (((insn >> 22) & 0x3) == 0x0) break;
-                        Instruction result(Mnemonic::FMIN, insn, 2555);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FMIN, insn, EncodingId::fmin_mz_zzw_2x2);
+            #else
+                        Instruction result(Mnemonic::FMIN, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = Arrangement::None;
@@ -49767,7 +53015,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
         }
         case 0xC120B120u: { // fmaxnm_mz_zzw_2x2
             if (((insn >> 22) & 0x3) == 0x0) break;
-                        Instruction result(Mnemonic::FMAXNM, insn, 2551);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FMAXNM, insn, EncodingId::fmaxnm_mz_zzw_2x2);
+            #else
+                        Instruction result(Mnemonic::FMAXNM, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = Arrangement::None;
@@ -49784,7 +53036,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
         }
         case 0xC120B121u: { // fminnm_mz_zzw_2x2
             if (((insn >> 22) & 0x3) == 0x0) break;
-                        Instruction result(Mnemonic::FMINNM, insn, 2559);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FMINNM, insn, EncodingId::fminnm_mz_zzw_2x2);
+            #else
+                        Instruction result(Mnemonic::FMINNM, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = Arrangement::None;
@@ -49800,7 +53056,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC120B140u: { // famax_mz_zzw_2x2
-                        Instruction result(Mnemonic::FAMAX, insn, 2510);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FAMAX, insn, EncodingId::famax_mz_zzw_2x2);
+            #else
+                        Instruction result(Mnemonic::FAMAX, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         if (enc.famax_mz_zzw2x2.size == 0u) return std::nullopt;
@@ -49817,7 +53077,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC120B141u: { // famin_mz_zzw_2x2
-                        Instruction result(Mnemonic::FAMIN, insn, 2512);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FAMIN, insn, EncodingId::famin_mz_zzw_2x2);
+            #else
+                        Instruction result(Mnemonic::FAMIN, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         if (enc.famin_mz_zzw2x2.size == 0u) return std::nullopt;
@@ -49835,7 +53099,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
         }
         case 0xC120B180u: { // fscale_mz_zzw_2x2
             if (((insn >> 22) & 0x3) == 0x0) break;
-                        Instruction result(Mnemonic::FSCALE, insn, 2685);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FSCALE, insn, EncodingId::fscale_mz_zzw_2x2);
+            #else
+                        Instruction result(Mnemonic::FSCALE, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = Arrangement::None;
@@ -49851,7 +53119,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC120B220u: { // srshl_mz_zzw_2x2
-                        Instruction result(Mnemonic::SRSHL, insn, 2980);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SRSHL, insn, EncodingId::srshl_mz_zzw_2x2);
+            #else
+                        Instruction result(Mnemonic::SRSHL, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = Arrangement::None;
@@ -49867,7 +53139,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC120B221u: { // urshl_mz_zzw_2x2
-                        Instruction result(Mnemonic::URSHL, insn, 3199);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::URSHL, insn, EncodingId::urshl_mz_zzw_2x2);
+            #else
+                        Instruction result(Mnemonic::URSHL, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = Arrangement::None;
@@ -49883,7 +53159,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC120B400u: { // sqdmulh_mz_zzw_2x2
-                        Instruction result(Mnemonic::SQDMULH, insn, 2970);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SQDMULH, insn, EncodingId::sqdmulh_mz_zzw_2x2);
+            #else
+                        Instruction result(Mnemonic::SQDMULH, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = Arrangement::None;
@@ -49905,7 +53185,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
     switch (insn & 0xFF21FC63u) {
         case 0xC121E800u: { // fmul_mz_zzv_4x1
             if (((insn >> 22) & 0x3) == 0x0) break;
-                        Instruction result(Mnemonic::FMUL, insn, 2672);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FMUL, insn, EncodingId::fmul_mz_zzv_4x1);
+            #else
+                        Instruction result(Mnemonic::FMUL, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = Arrangement::None;
@@ -49927,7 +53211,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
     switch (insn & 0xFF21FC21u) {
         case 0xC120E400u: { // fmul_mz_zzw_2x2
             if (((insn >> 22) & 0x3) == 0x0) break;
-                        Instruction result(Mnemonic::FMUL, insn, 2673);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FMUL, insn, EncodingId::fmul_mz_zzw_2x2);
+            #else
+                        Instruction result(Mnemonic::FMUL, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = Arrangement::None;
@@ -49944,7 +53232,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
         }
         case 0xC120E800u: { // fmul_mz_zzv_2x1
             if (((insn >> 22) & 0x3) == 0x0) break;
-                        Instruction result(Mnemonic::FMUL, insn, 2671);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FMUL, insn, EncodingId::fmul_mz_zzv_2x1);
+            #else
+                        Instruction result(Mnemonic::FMUL, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = Arrangement::None;
@@ -49965,7 +53257,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
     // Switch for mask 0xFF21E021u (1 pattern, 1 encoding)
     switch (insn & 0xFF21E021u) {
         case 0xC1208000u: { // sel_mz_p_zz_2
-                        Instruction result(Mnemonic::SEL, insn, 2884);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SEL, insn, EncodingId::sel_mz_p_zz_2);
+            #else
+                        Instruction result(Mnemonic::SEL, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = Arrangement::None;
@@ -49987,7 +53283,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
     // Switch for mask 0xFF20FC60u (6 patterns, 6 encodings)
     switch (insn & 0xFF20FC60u) {
         case 0xC120D800u: { // sqrshr_z_mz4_
-                        Instruction result(Mnemonic::SQRSHR, insn, 2973);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SQRSHR, insn, EncodingId::sqrshr_z_mz4_);
+            #else
+                        Instruction result(Mnemonic::SQRSHR, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         if (enc.sqrshr_zmz4.tsize == 0u) return std::nullopt;
@@ -49997,7 +53297,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC120D820u: { // uqrshr_z_mz4_
-                        Instruction result(Mnemonic::UQRSHR, insn, 3195);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::UQRSHR, insn, EncodingId::uqrshr_z_mz4_);
+            #else
+                        Instruction result(Mnemonic::UQRSHR, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         if (enc.uqrshr_zmz4.tsize == 0u) return std::nullopt;
@@ -50007,7 +53311,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC120D840u: { // sqrshru_z_mz4_
-                        Instruction result(Mnemonic::SQRSHRU, insn, 2976);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SQRSHRU, insn, EncodingId::sqrshru_z_mz4_);
+            #else
+                        Instruction result(Mnemonic::SQRSHRU, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         if (enc.sqrshru_zmz4.tsize == 0u) return std::nullopt;
@@ -50017,7 +53325,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC120DC00u: { // sqrshrn_z_mz4_
-                        Instruction result(Mnemonic::SQRSHRN, insn, 2974);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SQRSHRN, insn, EncodingId::sqrshrn_z_mz4_);
+            #else
+                        Instruction result(Mnemonic::SQRSHRN, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         if (enc.sqrshrn_zmz4.tsize == 0u) return std::nullopt;
@@ -50027,7 +53339,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC120DC20u: { // uqrshrn_z_mz4_
-                        Instruction result(Mnemonic::UQRSHRN, insn, 3196);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::UQRSHRN, insn, EncodingId::uqrshrn_z_mz4_);
+            #else
+                        Instruction result(Mnemonic::UQRSHRN, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         if (enc.uqrshrn_zmz4.tsize == 0u) return std::nullopt;
@@ -50037,7 +53353,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC120DC40u: { // sqrshrun_z_mz4_
-                        Instruction result(Mnemonic::SQRSHRUN, insn, 2977);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SQRSHRUN, insn, EncodingId::sqrshrun_z_mz4_);
+            #else
+                        Instruction result(Mnemonic::SQRSHRUN, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         if (enc.sqrshrun_zmz4.tsize == 0u) return std::nullopt;
@@ -50053,7 +53373,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
     switch (insn & 0xFF20FC03u) {
         case 0xC120C800u: { // fclamp_mz_zz_4
             if (((insn >> 22) & 0x3) == 0x0) break;
-                        Instruction result(Mnemonic::FCLAMP, insn, 2515);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FCLAMP, insn, EncodingId::fclamp_mz_zz_4);
+            #else
+                        Instruction result(Mnemonic::FCLAMP, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = Arrangement::None;
@@ -50069,7 +53393,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC120CC00u: { // sclamp_mz_zz_4
-                        Instruction result(Mnemonic::SCLAMP, insn, 2867);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SCLAMP, insn, EncodingId::sclamp_mz_zz_4);
+            #else
+                        Instruction result(Mnemonic::SCLAMP, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = Arrangement::None;
@@ -50085,7 +53413,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC120CC01u: { // uclamp_mz_zz_4
-                        Instruction result(Mnemonic::UCLAMP, insn, 3098);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::UCLAMP, insn, EncodingId::uclamp_mz_zz_4);
+            #else
+                        Instruction result(Mnemonic::UCLAMP, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = Arrangement::None;
@@ -50107,7 +53439,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
     switch (insn & 0xFF20FC01u) {
         case 0xC120C000u: { // fclamp_mz_zz_2
             if (((insn >> 22) & 0x3) == 0x0) break;
-                        Instruction result(Mnemonic::FCLAMP, insn, 2514);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FCLAMP, insn, EncodingId::fclamp_mz_zz_2);
+            #else
+                        Instruction result(Mnemonic::FCLAMP, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = Arrangement::None;
@@ -50123,7 +53459,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC120C400u: { // sclamp_mz_zz_2
-                        Instruction result(Mnemonic::SCLAMP, insn, 2866);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SCLAMP, insn, EncodingId::sclamp_mz_zz_2);
+            #else
+                        Instruction result(Mnemonic::SCLAMP, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = Arrangement::None;
@@ -50139,7 +53479,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC120C401u: { // uclamp_mz_zz_2
-                        Instruction result(Mnemonic::UCLAMP, insn, 3097);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::UCLAMP, insn, EncodingId::uclamp_mz_zz_2);
+            #else
+                        Instruction result(Mnemonic::UCLAMP, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = Arrangement::None;
@@ -50155,7 +53499,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC120D000u: { // zip_mz_zz_2
-                        Instruction result(Mnemonic::ZIP, insn, 3260);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::ZIP, insn, EncodingId::zip_mz_zz_2);
+            #else
+                        Instruction result(Mnemonic::ZIP, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = Arrangement::None;
@@ -50171,7 +53519,11 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                         return result;
         }
         case 0xC120D001u: { // uzp_mz_zz_2
-                        Instruction result(Mnemonic::UZP, insn, 3246);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::UZP, insn, EncodingId::uzp_mz_zz_2);
+            #else
+                        Instruction result(Mnemonic::UZP, insn);
+            #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = Arrangement::None;

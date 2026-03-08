@@ -808,10 +808,11 @@ static Interpreter get_interpreter(IrTemplate tpl) {
 std::optional<Lifted> lift_from_instruction(const Instruction& insn, IrDetail detail) {
     temp_idx = 0;
 
-    if (insn.encoding_id == 0xFFFF || insn.encoding_id >= ir_table_size)
+    auto eid = static_cast<uint16_t>(insn.encoding_id);
+    if (eid == 0xFFFF || eid >= ir_table_size)
         return std::nullopt;
 
-    const auto& e = ir_table[insn.encoding_id];
+    const auto& e = ir_table[eid];
     if (e.tpl == IrTemplate::None_)
         return std::nullopt;  // unclassified encoding
 

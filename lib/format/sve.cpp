@@ -49619,7 +49619,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
     // Switch for mask 0xFFFFFFFFu (1 pattern, 1 encoding)
     switch (insn & 0xFFFFFFFFu) {
         case 0x252C9000u: { // setffr_f_
-                        Instruction result(Mnemonic::SETFFR, insn, 4149);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SETFFR, insn, EncodingId::setffr_f_);
+            #else
+                        Instruction result(Mnemonic::SETFFR, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         return result;
@@ -49630,14 +49634,22 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
     // Switch for mask 0xFFFFFFF0u (2 patterns, 2 encodings)
     switch (insn & 0xFFFFFFF0u) {
         case 0x2518E400u: { // pfalse_p_
-                        Instruction result(Mnemonic::PFALSE, insn, 4028);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::PFALSE, insn, EncodingId::pfalse_p_);
+            #else
+                        Instruction result(Mnemonic::PFALSE, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         { Operand op = Operand::pred(enc.pfalse_p.Pd); op.set_arrangement(Arrangement::B); result.operands.push_back(op); }
                         return result;
         }
         case 0x2519F000u: { // rdffr_p_f_
-                        Instruction result(Mnemonic::RDFFR, insn, 4086);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::RDFFR, insn, EncodingId::rdffr_p_f_);
+            #else
+                        Instruction result(Mnemonic::RDFFR, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         { Operand op = Operand::pred(enc.rdffr_pf.Pd); op.set_arrangement(Arrangement::B); result.operands.push_back(op); }
@@ -49649,7 +49661,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
     // Switch for mask 0xFFFFFFE0u (2 patterns, 2 encodings)
     switch (insn & 0xFFFFFFE0u) {
         case 0x4520E000u: { // aesmc_z_z_
-                        Instruction result(Mnemonic::AESMC, insn, 3295);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::AESMC, insn, EncodingId::aesmc_z_z_);
+            #else
+                        Instruction result(Mnemonic::AESMC, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::sve(enc.aesmc_zz.Zdn, Arrangement::B));
@@ -49657,7 +49673,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x4520E400u: { // aesimc_z_z_
-                        Instruction result(Mnemonic::AESIMC, insn, 3294);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::AESIMC, insn, EncodingId::aesimc_z_z_);
+            #else
+                        Instruction result(Mnemonic::AESIMC, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::sve(enc.aesimc_zz.Zdn, Arrangement::B));
@@ -49670,7 +49690,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
     // Switch for mask 0xFFFFFE1Fu (1 pattern, 1 encoding)
     switch (insn & 0xFFFFFE1Fu) {
         case 0x25289000u: { // wrffr_f_p_
-                        Instruction result(Mnemonic::WRFFR, insn, 4613);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::WRFFR, insn, EncodingId::wrffr_f_p_);
+            #else
+                        Instruction result(Mnemonic::WRFFR, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         { Operand op = Operand::pred(enc.wrffr_fp.Pn); op.set_arrangement(Arrangement::B); result.operands.push_back(op); }
@@ -49682,7 +49706,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
     // Switch for mask 0xFFFFFE10u (5 patterns, 5 encodings)
     switch (insn & 0xFFFFFE10u) {
         case 0x05304000u: { // punpklo_p_p_
-                        Instruction result(Mnemonic::PUNPKLO, insn, 4080);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::PUNPKLO, insn, EncodingId::punpklo_p_p_);
+            #else
+                        Instruction result(Mnemonic::PUNPKLO, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         { Operand op = Operand::pred(enc.punpklo_pp.Pd); op.set_arrangement(Arrangement::H); result.operands.push_back(op); }
@@ -49690,7 +49718,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x05314000u: { // punpkhi_p_p_
-                        Instruction result(Mnemonic::PUNPKHI, insn, 4079);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::PUNPKHI, insn, EncodingId::punpkhi_p_p_);
+            #else
+                        Instruction result(Mnemonic::PUNPKHI, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         { Operand op = Operand::pred(enc.punpkhi_pp.Pd); op.set_arrangement(Arrangement::H); result.operands.push_back(op); }
@@ -49698,7 +49730,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x2518F000u: { // rdffr_p_p_f_
-                        Instruction result(Mnemonic::RDFFR, insn, 4087);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::RDFFR, insn, EncodingId::rdffr_p_p_f_);
+            #else
+                        Instruction result(Mnemonic::RDFFR, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         { Operand op = Operand::pred(enc.rdffr_ppf.Pd); op.set_arrangement(Arrangement::B); result.operands.push_back(op); }
@@ -49706,7 +49742,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x2558C000u: { // pfirst_p_p_p_
-                        Instruction result(Mnemonic::PFIRST, insn, 4029);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::PFIRST, insn, EncodingId::pfirst_p_p_p_);
+            #else
+                        Instruction result(Mnemonic::PFIRST, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         { Operand op = Operand::pred(enc.pfirst_ppp.Pdn); op.set_arrangement(Arrangement::B); result.operands.push_back(op); }
@@ -49715,7 +49755,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x2558F000u: { // rdffrs_p_p_f_
-                        Instruction result(Mnemonic::RDFFRS, insn, 4088);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::RDFFRS, insn, EncodingId::rdffrs_p_p_f_);
+            #else
+                        Instruction result(Mnemonic::RDFFRS, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         { Operand op = Operand::pred(enc.rdffrs_ppf.Pd); op.set_arrangement(Arrangement::B); result.operands.push_back(op); }
@@ -49728,7 +49772,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
     // Switch for mask 0xFFFFFE00u (1 pattern, 1 encoding)
     switch (insn & 0xFFFFFE00u) {
         case 0x052B3800u: { // pmov_z_pi_b
-                        Instruction result(Mnemonic::PMOV, insn, 4035);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::PMOV, insn, EncodingId::pmov_z_pi_b);
+            #else
+                        Instruction result(Mnemonic::PMOV, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         result.operands.clear();  // PMOV special case
@@ -49742,7 +49790,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
     // Switch for mask 0xFFFFFC20u (7 patterns, 7 encodings)
     switch (insn & 0xFFFFFC20u) {
         case 0x45314000u: { // sqcvtn_z_mz2_
-                        Instruction result(Mnemonic::SQCVTN, insn, 4197);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SQCVTN, insn, EncodingId::sqcvtn_z_mz2_);
+            #else
+                        Instruction result(Mnemonic::SQCVTN, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _dst_arr = Arrangement::B;
@@ -49752,7 +49804,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x45314800u: { // uqcvtn_z_mz2_
-                        Instruction result(Mnemonic::UQCVTN, insn, 4504);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::UQCVTN, insn, EncodingId::uqcvtn_z_mz2_);
+            #else
+                        Instruction result(Mnemonic::UQCVTN, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _dst_arr = Arrangement::B;
@@ -49762,7 +49818,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x45315000u: { // sqcvtun_z_mz2_
-                        Instruction result(Mnemonic::SQCVTUN, insn, 4198);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SQCVTUN, insn, EncodingId::sqcvtun_z_mz2_);
+            #else
+                        Instruction result(Mnemonic::SQCVTUN, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _dst_arr = Arrangement::B;
@@ -49772,7 +49832,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x650A3000u: { // fcvtn_z8_mz2_h2b
-                        Instruction result(Mnemonic::FCVTN, insn, 3519);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FCVTN, insn, EncodingId::fcvtn_z8_mz2_h2b);
+            #else
+                        Instruction result(Mnemonic::FCVTN, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::sve(enc.fcvtn_z8mz2h2b.Zd, Arrangement::B));
@@ -49780,7 +49844,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x650A3400u: { // fcvtnb_z8_mz2_s2b
-                        Instruction result(Mnemonic::FCVTNB, insn, 3520);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FCVTNB, insn, EncodingId::fcvtnb_z8_mz2_s2b);
+            #else
+                        Instruction result(Mnemonic::FCVTNB, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::sve(enc.fcvtnb_z8mz2s2b.Zd, Arrangement::B));
@@ -49788,7 +49856,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x650A3800u: { // bfcvtn_z8_mz2_bf2b
-                        Instruction result(Mnemonic::BFCVTN, insn, 3322);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::BFCVTN, insn, EncodingId::bfcvtn_z8_mz2_bf2b);
+            #else
+                        Instruction result(Mnemonic::BFCVTN, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::sve(enc.bfcvtn_z8mz2bf2b.Zd, Arrangement::B));
@@ -49796,7 +49868,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x650A3C00u: { // fcvtnt_z8_mz2_s2b
-                        Instruction result(Mnemonic::FCVTNT, insn, 3521);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FCVTNT, insn, EncodingId::fcvtnt_z8_mz2_s2b);
+            #else
+                        Instruction result(Mnemonic::FCVTNT, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::sve(enc.fcvtnt_z8mz2s2b.Zd, Arrangement::B));
@@ -49809,7 +49885,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
     // Switch for mask 0xFFFFFC10u (1 pattern, 1 encoding)
     switch (insn & 0xFFFFFC10u) {
         case 0x052A3800u: { // pmov_p_zi_b
-                        Instruction result(Mnemonic::PMOV, insn, 4031);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::PMOV, insn, EncodingId::pmov_p_zi_b);
+            #else
+                        Instruction result(Mnemonic::PMOV, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         result.operands.clear();  // PMOV special case
@@ -49823,7 +49903,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
     // Switch for mask 0xFFFFFC00u (12 patterns, 12 encodings)
     switch (insn & 0xFFFFFC00u) {
         case 0x0420BC00u: { // movprfx_z_z_
-                        Instruction result(Mnemonic::MOVPRFX, insn, 3994);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::MOVPRFX, insn, EncodingId::movprfx_z_z_);
+            #else
+                        Instruction result(Mnemonic::MOVPRFX, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::sve(enc.movprfx_zz.Zd, Arrangement::None));
@@ -49831,7 +49915,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x4522E000u: { // aese_z_zz_
-                        Instruction result(Mnemonic::AESE, insn, 3291);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::AESE, insn, EncodingId::aese_z_zz_);
+            #else
+                        Instruction result(Mnemonic::AESE, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::sve(enc.aese_zzz.Zdn, Arrangement::B));
@@ -49840,7 +49928,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x4522E400u: { // aesd_z_zz_
-                        Instruction result(Mnemonic::AESD, insn, 3286);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::AESD, insn, EncodingId::aesd_z_zz_);
+            #else
+                        Instruction result(Mnemonic::AESD, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::sve(enc.aesd_zzz.Zdn, Arrangement::B));
@@ -49849,7 +49941,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x4523E000u: { // sm4e_z_zz_
-                        Instruction result(Mnemonic::SM4E, insn, 4156);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SM4E, insn, EncodingId::sm4e_z_zz_);
+            #else
+                        Instruction result(Mnemonic::SM4E, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::sve(enc.sm4e_zzz.Zdn, Arrangement::S));
@@ -49858,7 +49954,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x65083000u: { // f1cvt_z_z8_b2h
-                        Instruction result(Mnemonic::F1CVT, insn, 3464);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::F1CVT, insn, EncodingId::f1cvt_z_z8_b2h);
+            #else
+                        Instruction result(Mnemonic::F1CVT, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::sve(enc.f1cvt_zz8b2h.Zd, Arrangement::H));
@@ -49866,7 +49966,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x65083400u: { // f2cvt_z_z8_b2h
-                        Instruction result(Mnemonic::F2CVT, insn, 3465);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::F2CVT, insn, EncodingId::f2cvt_z_z8_b2h);
+            #else
+                        Instruction result(Mnemonic::F2CVT, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::sve(enc.f2cvt_zz8b2h.Zd, Arrangement::H));
@@ -49874,7 +49978,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x65083800u: { // bf1cvt_z_z8_b2bf
-                        Instruction result(Mnemonic::BF1CVT, insn, 3313);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::BF1CVT, insn, EncodingId::bf1cvt_z_z8_b2bf);
+            #else
+                        Instruction result(Mnemonic::BF1CVT, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::sve(enc.bf1cvt_zz8b2bf.Zd, Arrangement::H));
@@ -49882,7 +49990,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x65083C00u: { // bf2cvt_z_z8_b2bf
-                        Instruction result(Mnemonic::BF2CVT, insn, 3314);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::BF2CVT, insn, EncodingId::bf2cvt_z_z8_b2bf);
+            #else
+                        Instruction result(Mnemonic::BF2CVT, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::sve(enc.bf2cvt_zz8b2bf.Zd, Arrangement::H));
@@ -49890,7 +50002,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x65093000u: { // f1cvtlt_z_z8_b2h
-                        Instruction result(Mnemonic::F1CVTLT, insn, 3466);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::F1CVTLT, insn, EncodingId::f1cvtlt_z_z8_b2h);
+            #else
+                        Instruction result(Mnemonic::F1CVTLT, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::sve(enc.f1cvtlt_zz8b2h.Zd, Arrangement::H));
@@ -49898,7 +50014,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x65093400u: { // f2cvtlt_z_z8_b2h
-                        Instruction result(Mnemonic::F2CVTLT, insn, 3467);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::F2CVTLT, insn, EncodingId::f2cvtlt_z_z8_b2h);
+            #else
+                        Instruction result(Mnemonic::F2CVTLT, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::sve(enc.f2cvtlt_zz8b2h.Zd, Arrangement::H));
@@ -49906,7 +50026,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x65093800u: { // bf1cvtlt_z_z8_b2bf
-                        Instruction result(Mnemonic::BF1CVTLT, insn, 3315);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::BF1CVTLT, insn, EncodingId::bf1cvtlt_z_z8_b2bf);
+            #else
+                        Instruction result(Mnemonic::BF1CVTLT, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::sve(enc.bf1cvtlt_zz8b2bf.Zd, Arrangement::H));
@@ -49914,7 +50038,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x65093C00u: { // bf2cvtlt_z_z8_b2bf
-                        Instruction result(Mnemonic::BF2CVTLT, insn, 3316);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::BF2CVTLT, insn, EncodingId::bf2cvtlt_z_z8_b2bf);
+            #else
+                        Instruction result(Mnemonic::BF2CVTLT, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::sve(enc.bf2cvtlt_zz8b2bf.Zd, Arrangement::H));
@@ -49927,7 +50055,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
     // Switch for mask 0xFFFFF800u (2 patterns, 2 encodings)
     switch (insn & 0xFFFFF800u) {
         case 0x04BF5000u: { // rdvl_r_i_
-                        Instruction result(Mnemonic::RDVL, insn, 4090);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::RDVL, insn, EncodingId::rdvl_r_i_);
+            #else
+                        Instruction result(Mnemonic::RDVL, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.rdvl_ri.Rd, true));
@@ -49935,7 +50067,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x04BF5800u: { // rdsvl_r_i_
-                        Instruction result(Mnemonic::RDSVL, insn, 4089);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::RDSVL, insn, EncodingId::rdsvl_r_i_);
+            #else
+                        Instruction result(Mnemonic::RDSVL, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.rdsvl_ri.Rd, true));
@@ -49948,7 +50084,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
     // Switch for mask 0xFFFFE000u (96 patterns, 96 encodings)
     switch (insn & 0xFFFFE000u) {
         case 0x04C40000u: { // addpt_z_p_zz_
-                        Instruction result(Mnemonic::ADDPT, insn, 3273);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::ADDPT, insn, EncodingId::addpt_z_p_zz_);
+            #else
+                        Instruction result(Mnemonic::ADDPT, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::sve(enc.addpt_zpzz.Zdn, Arrangement::D));
@@ -49958,7 +50098,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x04C50000u: { // subpt_z_p_zz_
-                        Instruction result(Mnemonic::SUBPT, insn, 4403);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SUBPT, insn, EncodingId::subpt_z_p_zz_);
+            #else
+                        Instruction result(Mnemonic::SUBPT, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::sve(enc.subpt_zpzz.Zdn, Arrangement::D));
@@ -49968,7 +50112,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x052E8000u: { // revd_z_p_z_m
-                        Instruction result(Mnemonic::REVD, insn, 4099);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::REVD, insn, EncodingId::revd_z_p_z_m);
+            #else
+                        Instruction result(Mnemonic::REVD, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::sve(enc.revd_zpzm.Zd, Arrangement::Q));
@@ -49977,7 +50125,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x052EA000u: { // revd_z_p_z_z
-                        Instruction result(Mnemonic::REVD, insn, 4100);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::REVD, insn, EncodingId::revd_z_p_z_z);
+            #else
+                        Instruction result(Mnemonic::REVD, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::sve(enc.revd_zpzz.Zd, Arrangement::Q));
@@ -49986,7 +50138,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x6402A000u: { // fcvtxnt_z_p_z_d2sz
-                        Instruction result(Mnemonic::FCVTXNT, insn, 3529);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FCVTXNT, insn, EncodingId::fcvtxnt_z_p_z_d2sz);
+            #else
+                        Instruction result(Mnemonic::FCVTXNT, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::sve(enc.fcvtxnt_zpzd2sz.Zd, Arrangement::S));
@@ -49995,7 +50151,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x640AA000u: { // fcvtxnt_z_p_z_d2s
-                        Instruction result(Mnemonic::FCVTXNT, insn, 3528);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FCVTXNT, insn, EncodingId::fcvtxnt_z_p_z_d2s);
+            #else
+                        Instruction result(Mnemonic::FCVTXNT, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::sve(enc.fcvtxnt_zpzd2s.Zd, Arrangement::S));
@@ -50004,7 +50164,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x641AC000u: { // fcvtx_z_p_z_d2sz
-                        Instruction result(Mnemonic::FCVTX, insn, 3527);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FCVTX, insn, EncodingId::fcvtx_z_p_z_d2sz);
+            #else
+                        Instruction result(Mnemonic::FCVTX, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::sve(enc.fcvtx_zpzd2sz.Zd, Arrangement::S));
@@ -50013,7 +50177,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x645CC000u: { // scvtf_z_p_z_h2fp16z
-                        Instruction result(Mnemonic::SCVTF, insn, 4123);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SCVTF, insn, EncodingId::scvtf_z_p_z_h2fp16z);
+            #else
+                        Instruction result(Mnemonic::SCVTF, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::sve(enc.scvtf_zpzh2fp16z.Zd, Arrangement::H));
@@ -50022,7 +50190,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x645CE000u: { // ucvtf_z_p_z_h2fp16z
-                        Instruction result(Mnemonic::UCVTF, insn, 4443);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::UCVTF, insn, EncodingId::ucvtf_z_p_z_h2fp16z);
+            #else
+                        Instruction result(Mnemonic::UCVTF, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::sve(enc.ucvtf_zpzh2fp16z.Zd, Arrangement::H));
@@ -50031,7 +50203,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x645D8000u: { // scvtf_z_p_z_w2fp16z
-                        Instruction result(Mnemonic::SCVTF, insn, 4125);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SCVTF, insn, EncodingId::scvtf_z_p_z_w2fp16z);
+            #else
+                        Instruction result(Mnemonic::SCVTF, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::sve(enc.scvtf_zpzw2fp16z.Zd, Arrangement::H));
@@ -50040,7 +50216,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x645DA000u: { // ucvtf_z_p_z_w2fp16z
-                        Instruction result(Mnemonic::UCVTF, insn, 4445);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::UCVTF, insn, EncodingId::ucvtf_z_p_z_w2fp16z);
+            #else
+                        Instruction result(Mnemonic::UCVTF, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::sve(enc.ucvtf_zpzw2fp16z.Zd, Arrangement::H));
@@ -50049,7 +50229,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x645DC000u: { // scvtf_z_p_z_x2fp16z
-                        Instruction result(Mnemonic::SCVTF, insn, 4131);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SCVTF, insn, EncodingId::scvtf_z_p_z_x2fp16z);
+            #else
+                        Instruction result(Mnemonic::SCVTF, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::sve(enc.scvtf_zpzx2fp16z.Zd, Arrangement::H));
@@ -50058,7 +50242,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x645DE000u: { // ucvtf_z_p_z_x2fp16z
-                        Instruction result(Mnemonic::UCVTF, insn, 4451);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::UCVTF, insn, EncodingId::ucvtf_z_p_z_x2fp16z);
+            #else
+                        Instruction result(Mnemonic::UCVTF, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::sve(enc.ucvtf_zpzx2fp16z.Zd, Arrangement::H));
@@ -50067,7 +50255,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x645EC000u: { // fcvtzs_z_p_z_fp162hz
-                        Instruction result(Mnemonic::FCVTZS, insn, 3531);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FCVTZS, insn, EncodingId::fcvtzs_z_p_z_fp162hz);
+            #else
+                        Instruction result(Mnemonic::FCVTZS, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::sve(enc.fcvtzs_zpzfp162hz.Zd, Arrangement::H));
@@ -50076,7 +50268,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x645EE000u: { // fcvtzu_z_p_z_fp162hz
-                        Instruction result(Mnemonic::FCVTZU, insn, 3546);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FCVTZU, insn, EncodingId::fcvtzu_z_p_z_fp162hz);
+            #else
+                        Instruction result(Mnemonic::FCVTZU, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::sve(enc.fcvtzu_zpzfp162hz.Zd, Arrangement::H));
@@ -50085,7 +50281,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x645F8000u: { // fcvtzs_z_p_z_fp162wz
-                        Instruction result(Mnemonic::FCVTZS, insn, 3533);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FCVTZS, insn, EncodingId::fcvtzs_z_p_z_fp162wz);
+            #else
+                        Instruction result(Mnemonic::FCVTZS, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::sve(enc.fcvtzs_zpzfp162wz.Zd, Arrangement::S));
@@ -50094,7 +50294,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x645FA000u: { // fcvtzu_z_p_z_fp162wz
-                        Instruction result(Mnemonic::FCVTZU, insn, 3548);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FCVTZU, insn, EncodingId::fcvtzu_z_p_z_fp162wz);
+            #else
+                        Instruction result(Mnemonic::FCVTZU, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::sve(enc.fcvtzu_zpzfp162wz.Zd, Arrangement::S));
@@ -50103,7 +50307,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x645FC000u: { // fcvtzs_z_p_z_fp162xz
-                        Instruction result(Mnemonic::FCVTZS, insn, 3535);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FCVTZS, insn, EncodingId::fcvtzs_z_p_z_fp162xz);
+            #else
+                        Instruction result(Mnemonic::FCVTZS, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::sve(enc.fcvtzs_zpzfp162xz.Zd, Arrangement::D));
@@ -50112,7 +50320,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x645FE000u: { // fcvtzu_z_p_z_fp162xz
-                        Instruction result(Mnemonic::FCVTZU, insn, 3550);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FCVTZU, insn, EncodingId::fcvtzu_z_p_z_fp162xz);
+            #else
+                        Instruction result(Mnemonic::FCVTZU, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::sve(enc.fcvtzu_zpzfp162xz.Zd, Arrangement::D));
@@ -50121,7 +50333,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x6480A000u: { // fcvtnt_z_p_z_s2hz
-                        Instruction result(Mnemonic::FCVTNT, insn, 3523);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FCVTNT, insn, EncodingId::fcvtnt_z_p_z_s2hz);
+            #else
+                        Instruction result(Mnemonic::FCVTNT, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::sve(enc.fcvtnt_zpzs2hz.Zd, Arrangement::H));
@@ -50130,7 +50346,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x6481A000u: { // fcvtlt_z_p_z_h2sz
-                        Instruction result(Mnemonic::FCVTLT, insn, 3516);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FCVTLT, insn, EncodingId::fcvtlt_z_p_z_h2sz);
+            #else
+                        Instruction result(Mnemonic::FCVTLT, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::sve(enc.fcvtlt_zpzh2sz.Zd, Arrangement::S));
@@ -50139,7 +50359,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x6482A000u: { // bfcvtnt_z_p_z_s2bfz
-                        Instruction result(Mnemonic::BFCVTNT, insn, 3324);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::BFCVTNT, insn, EncodingId::bfcvtnt_z_p_z_s2bfz);
+            #else
+                        Instruction result(Mnemonic::BFCVTNT, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::sve(enc.bfcvtnt_zpzs2bfz.Zd, Arrangement::H));
@@ -50148,7 +50372,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x6488A000u: { // fcvtnt_z_p_z_s2h
-                        Instruction result(Mnemonic::FCVTNT, insn, 3522);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FCVTNT, insn, EncodingId::fcvtnt_z_p_z_s2h);
+            #else
+                        Instruction result(Mnemonic::FCVTNT, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::sve(enc.fcvtnt_zpzs2h.Zd, Arrangement::H));
@@ -50157,7 +50385,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x6489A000u: { // fcvtlt_z_p_z_h2s
-                        Instruction result(Mnemonic::FCVTLT, insn, 3515);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FCVTLT, insn, EncodingId::fcvtlt_z_p_z_h2s);
+            #else
+                        Instruction result(Mnemonic::FCVTLT, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::sve(enc.fcvtlt_zpzh2s.Zd, Arrangement::S));
@@ -50166,7 +50398,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x648AA000u: { // bfcvtnt_z_p_z_s2bf
-                        Instruction result(Mnemonic::BFCVTNT, insn, 3323);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::BFCVTNT, insn, EncodingId::bfcvtnt_z_p_z_s2bf);
+            #else
+                        Instruction result(Mnemonic::BFCVTNT, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::sve(enc.bfcvtnt_zpzs2bf.Zd, Arrangement::H));
@@ -50175,7 +50411,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x649A8000u: { // fcvt_z_p_z_s2hz
-                        Instruction result(Mnemonic::FCVT, insn, 3508);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FCVT, insn, EncodingId::fcvt_z_p_z_s2hz);
+            #else
+                        Instruction result(Mnemonic::FCVT, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::sve(enc.fcvt_zpzs2hz.Zd, Arrangement::H));
@@ -50184,7 +50424,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x649AA000u: { // fcvt_z_p_z_h2sz
-                        Instruction result(Mnemonic::FCVT, insn, 3504);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FCVT, insn, EncodingId::fcvt_z_p_z_h2sz);
+            #else
+                        Instruction result(Mnemonic::FCVT, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::sve(enc.fcvt_zpzh2sz.Zd, Arrangement::S));
@@ -50193,7 +50437,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x649AC000u: { // bfcvt_z_p_z_s2bfz
-                        Instruction result(Mnemonic::BFCVT, insn, 3321);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::BFCVT, insn, EncodingId::bfcvt_z_p_z_s2bfz);
+            #else
+                        Instruction result(Mnemonic::BFCVT, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::sve(enc.bfcvt_zpzs2bfz.Zd, Arrangement::H));
@@ -50202,7 +50450,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x649D8000u: { // scvtf_z_p_z_w2sz
-                        Instruction result(Mnemonic::SCVTF, insn, 4127);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SCVTF, insn, EncodingId::scvtf_z_p_z_w2sz);
+            #else
+                        Instruction result(Mnemonic::SCVTF, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::sve(enc.scvtf_zpzw2sz.Zd, Arrangement::S));
@@ -50211,7 +50463,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x649DA000u: { // ucvtf_z_p_z_w2sz
-                        Instruction result(Mnemonic::UCVTF, insn, 4447);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::UCVTF, insn, EncodingId::ucvtf_z_p_z_w2sz);
+            #else
+                        Instruction result(Mnemonic::UCVTF, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::sve(enc.ucvtf_zpzw2sz.Zd, Arrangement::S));
@@ -50220,7 +50476,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x649F8000u: { // fcvtzs_z_p_z_s2wz
-                        Instruction result(Mnemonic::FCVTZS, insn, 3537);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FCVTZS, insn, EncodingId::fcvtzs_z_p_z_s2wz);
+            #else
+                        Instruction result(Mnemonic::FCVTZS, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::sve(enc.fcvtzs_zpzs2wz.Zd, Arrangement::S));
@@ -50229,7 +50489,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x649FA000u: { // fcvtzu_z_p_z_s2wz
-                        Instruction result(Mnemonic::FCVTZU, insn, 3552);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FCVTZU, insn, EncodingId::fcvtzu_z_p_z_s2wz);
+            #else
+                        Instruction result(Mnemonic::FCVTZU, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::sve(enc.fcvtzu_zpzs2wz.Zd, Arrangement::S));
@@ -50238,7 +50502,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x64C2A000u: { // fcvtnt_z_p_z_d2sz
-                        Instruction result(Mnemonic::FCVTNT, insn, 3525);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FCVTNT, insn, EncodingId::fcvtnt_z_p_z_d2sz);
+            #else
+                        Instruction result(Mnemonic::FCVTNT, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::sve(enc.fcvtnt_zpzd2sz.Zd, Arrangement::S));
@@ -50247,7 +50515,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x64C3A000u: { // fcvtlt_z_p_z_s2dz
-                        Instruction result(Mnemonic::FCVTLT, insn, 3518);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FCVTLT, insn, EncodingId::fcvtlt_z_p_z_s2dz);
+            #else
+                        Instruction result(Mnemonic::FCVTLT, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::sve(enc.fcvtlt_zpzs2dz.Zd, Arrangement::D));
@@ -50256,7 +50528,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x64CAA000u: { // fcvtnt_z_p_z_d2s
-                        Instruction result(Mnemonic::FCVTNT, insn, 3524);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FCVTNT, insn, EncodingId::fcvtnt_z_p_z_d2s);
+            #else
+                        Instruction result(Mnemonic::FCVTNT, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::sve(enc.fcvtnt_zpzd2s.Zd, Arrangement::S));
@@ -50265,7 +50541,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x64CBA000u: { // fcvtlt_z_p_z_s2d
-                        Instruction result(Mnemonic::FCVTLT, insn, 3517);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FCVTLT, insn, EncodingId::fcvtlt_z_p_z_s2d);
+            #else
+                        Instruction result(Mnemonic::FCVTLT, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::sve(enc.fcvtlt_zpzs2d.Zd, Arrangement::D));
@@ -50274,7 +50554,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x64DA8000u: { // fcvt_z_p_z_d2hz
-                        Instruction result(Mnemonic::FCVT, insn, 3512);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FCVT, insn, EncodingId::fcvt_z_p_z_d2hz);
+            #else
+                        Instruction result(Mnemonic::FCVT, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::sve(enc.fcvt_zpzd2hz.Zd, Arrangement::H));
@@ -50283,7 +50567,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x64DAA000u: { // fcvt_z_p_z_h2dz
-                        Instruction result(Mnemonic::FCVT, insn, 3506);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FCVT, insn, EncodingId::fcvt_z_p_z_h2dz);
+            #else
+                        Instruction result(Mnemonic::FCVT, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::sve(enc.fcvt_zpzh2dz.Zd, Arrangement::D));
@@ -50292,7 +50580,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x64DAC000u: { // fcvt_z_p_z_d2sz
-                        Instruction result(Mnemonic::FCVT, insn, 3514);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FCVT, insn, EncodingId::fcvt_z_p_z_d2sz);
+            #else
+                        Instruction result(Mnemonic::FCVT, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::sve(enc.fcvt_zpzd2sz.Zd, Arrangement::S));
@@ -50301,7 +50593,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x64DAE000u: { // fcvt_z_p_z_s2dz
-                        Instruction result(Mnemonic::FCVT, insn, 3510);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FCVT, insn, EncodingId::fcvt_z_p_z_s2dz);
+            #else
+                        Instruction result(Mnemonic::FCVT, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::sve(enc.fcvt_zpzs2dz.Zd, Arrangement::D));
@@ -50310,7 +50606,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x64DC8000u: { // scvtf_z_p_z_w2dz
-                        Instruction result(Mnemonic::SCVTF, insn, 4129);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SCVTF, insn, EncodingId::scvtf_z_p_z_w2dz);
+            #else
+                        Instruction result(Mnemonic::SCVTF, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::sve(enc.scvtf_zpzw2dz.Zd, Arrangement::D));
@@ -50319,7 +50619,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x64DCA000u: { // ucvtf_z_p_z_w2dz
-                        Instruction result(Mnemonic::UCVTF, insn, 4449);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::UCVTF, insn, EncodingId::ucvtf_z_p_z_w2dz);
+            #else
+                        Instruction result(Mnemonic::UCVTF, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::sve(enc.ucvtf_zpzw2dz.Zd, Arrangement::D));
@@ -50328,7 +50632,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x64DD8000u: { // scvtf_z_p_z_x2sz
-                        Instruction result(Mnemonic::SCVTF, insn, 4133);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SCVTF, insn, EncodingId::scvtf_z_p_z_x2sz);
+            #else
+                        Instruction result(Mnemonic::SCVTF, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::sve(enc.scvtf_zpzx2sz.Zd, Arrangement::S));
@@ -50337,7 +50645,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x64DDA000u: { // ucvtf_z_p_z_x2sz
-                        Instruction result(Mnemonic::UCVTF, insn, 4453);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::UCVTF, insn, EncodingId::ucvtf_z_p_z_x2sz);
+            #else
+                        Instruction result(Mnemonic::UCVTF, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::sve(enc.ucvtf_zpzx2sz.Zd, Arrangement::S));
@@ -50346,7 +50658,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x64DDC000u: { // scvtf_z_p_z_x2dz
-                        Instruction result(Mnemonic::SCVTF, insn, 4135);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SCVTF, insn, EncodingId::scvtf_z_p_z_x2dz);
+            #else
+                        Instruction result(Mnemonic::SCVTF, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::sve(enc.scvtf_zpzx2dz.Zd, Arrangement::D));
@@ -50355,7 +50671,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x64DDE000u: { // ucvtf_z_p_z_x2dz
-                        Instruction result(Mnemonic::UCVTF, insn, 4455);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::UCVTF, insn, EncodingId::ucvtf_z_p_z_x2dz);
+            #else
+                        Instruction result(Mnemonic::UCVTF, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::sve(enc.ucvtf_zpzx2dz.Zd, Arrangement::D));
@@ -50364,7 +50684,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x64DE8000u: { // fcvtzs_z_p_z_d2wz
-                        Instruction result(Mnemonic::FCVTZS, insn, 3541);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FCVTZS, insn, EncodingId::fcvtzs_z_p_z_d2wz);
+            #else
+                        Instruction result(Mnemonic::FCVTZS, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::sve(enc.fcvtzs_zpzd2wz.Zd, Arrangement::S));
@@ -50373,7 +50697,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x64DEA000u: { // fcvtzu_z_p_z_d2wz
-                        Instruction result(Mnemonic::FCVTZU, insn, 3556);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FCVTZU, insn, EncodingId::fcvtzu_z_p_z_d2wz);
+            #else
+                        Instruction result(Mnemonic::FCVTZU, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::sve(enc.fcvtzu_zpzd2wz.Zd, Arrangement::S));
@@ -50382,7 +50710,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x64DF8000u: { // fcvtzs_z_p_z_s2xz
-                        Instruction result(Mnemonic::FCVTZS, insn, 3539);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FCVTZS, insn, EncodingId::fcvtzs_z_p_z_s2xz);
+            #else
+                        Instruction result(Mnemonic::FCVTZS, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::sve(enc.fcvtzs_zpzs2xz.Zd, Arrangement::D));
@@ -50391,7 +50723,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x64DFA000u: { // fcvtzu_z_p_z_s2xz
-                        Instruction result(Mnemonic::FCVTZU, insn, 3554);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FCVTZU, insn, EncodingId::fcvtzu_z_p_z_s2xz);
+            #else
+                        Instruction result(Mnemonic::FCVTZU, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::sve(enc.fcvtzu_zpzs2xz.Zd, Arrangement::D));
@@ -50400,7 +50736,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x64DFC000u: { // fcvtzs_z_p_z_d2xz
-                        Instruction result(Mnemonic::FCVTZS, insn, 3543);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FCVTZS, insn, EncodingId::fcvtzs_z_p_z_d2xz);
+            #else
+                        Instruction result(Mnemonic::FCVTZS, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::sve(enc.fcvtzs_zpzd2xz.Zd, Arrangement::D));
@@ -50409,7 +50749,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x64DFE000u: { // fcvtzu_z_p_z_d2xz
-                        Instruction result(Mnemonic::FCVTZU, insn, 3558);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FCVTZU, insn, EncodingId::fcvtzu_z_p_z_d2xz);
+            #else
+                        Instruction result(Mnemonic::FCVTZU, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::sve(enc.fcvtzu_zpzd2xz.Zd, Arrangement::D));
@@ -50418,7 +50762,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x65008000u: { // bfadd_z_p_zz_
-                        Instruction result(Mnemonic::BFADD, insn, 3317);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::BFADD, insn, EncodingId::bfadd_z_p_zz_);
+            #else
+                        Instruction result(Mnemonic::BFADD, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::sve(enc.bfadd_zpzz.Zdn, Arrangement::H));
@@ -50428,7 +50776,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x65018000u: { // bfsub_z_p_zz_
-                        Instruction result(Mnemonic::BFSUB, insn, 3349);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::BFSUB, insn, EncodingId::bfsub_z_p_zz_);
+            #else
+                        Instruction result(Mnemonic::BFSUB, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::sve(enc.bfsub_zpzz.Zdn, Arrangement::H));
@@ -50438,7 +50790,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x65028000u: { // bfmul_z_p_zz_
-                        Instruction result(Mnemonic::BFMUL, insn, 3345);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::BFMUL, insn, EncodingId::bfmul_z_p_zz_);
+            #else
+                        Instruction result(Mnemonic::BFMUL, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::sve(enc.bfmul_zpzz.Zdn, Arrangement::H));
@@ -50448,7 +50804,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x65048000u: { // bfmaxnm_z_p_zz_
-                        Instruction result(Mnemonic::BFMAXNM, insn, 3328);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::BFMAXNM, insn, EncodingId::bfmaxnm_z_p_zz_);
+            #else
+                        Instruction result(Mnemonic::BFMAXNM, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::sve(enc.bfmaxnm_zpzz.Zdn, Arrangement::H));
@@ -50458,7 +50818,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x65058000u: { // bfminnm_z_p_zz_
-                        Instruction result(Mnemonic::BFMINNM, insn, 3330);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::BFMINNM, insn, EncodingId::bfminnm_z_p_zz_);
+            #else
+                        Instruction result(Mnemonic::BFMINNM, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::sve(enc.bfminnm_zpzz.Zdn, Arrangement::H));
@@ -50468,7 +50832,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x65068000u: { // bfmax_z_p_zz_
-                        Instruction result(Mnemonic::BFMAX, insn, 3327);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::BFMAX, insn, EncodingId::bfmax_z_p_zz_);
+            #else
+                        Instruction result(Mnemonic::BFMAX, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::sve(enc.bfmax_zpzz.Zdn, Arrangement::H));
@@ -50478,7 +50846,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x65078000u: { // bfmin_z_p_zz_
-                        Instruction result(Mnemonic::BFMIN, insn, 3329);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::BFMIN, insn, EncodingId::bfmin_z_p_zz_);
+            #else
+                        Instruction result(Mnemonic::BFMIN, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::sve(enc.bfmin_zpzz.Zdn, Arrangement::H));
@@ -50488,7 +50860,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x65098000u: { // bfscale_z_p_zz_
-                        Instruction result(Mnemonic::BFSCALE, insn, 3348);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::BFSCALE, insn, EncodingId::bfscale_z_p_zz_);
+            #else
+                        Instruction result(Mnemonic::BFSCALE, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::sve(enc.bfscale_zpzz.Zdn, Arrangement::H));
@@ -50498,7 +50874,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x650AA000u: { // fcvtx_z_p_z_d2s
-                        Instruction result(Mnemonic::FCVTX, insn, 3526);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FCVTX, insn, EncodingId::fcvtx_z_p_z_d2s);
+            #else
+                        Instruction result(Mnemonic::FCVTX, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::sve(enc.fcvtx_zpzd2s.Zd, Arrangement::S));
@@ -50507,7 +50887,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x6552A000u: { // scvtf_z_p_z_h2fp16
-                        Instruction result(Mnemonic::SCVTF, insn, 4122);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SCVTF, insn, EncodingId::scvtf_z_p_z_h2fp16);
+            #else
+                        Instruction result(Mnemonic::SCVTF, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::sve(enc.scvtf_zpzh2fp16.Zd, Arrangement::H));
@@ -50516,7 +50900,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x6553A000u: { // ucvtf_z_p_z_h2fp16
-                        Instruction result(Mnemonic::UCVTF, insn, 4442);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::UCVTF, insn, EncodingId::ucvtf_z_p_z_h2fp16);
+            #else
+                        Instruction result(Mnemonic::UCVTF, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::sve(enc.ucvtf_zpzh2fp16.Zd, Arrangement::H));
@@ -50525,7 +50913,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x6554A000u: { // scvtf_z_p_z_w2fp16
-                        Instruction result(Mnemonic::SCVTF, insn, 4124);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SCVTF, insn, EncodingId::scvtf_z_p_z_w2fp16);
+            #else
+                        Instruction result(Mnemonic::SCVTF, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::sve(enc.scvtf_zpzw2fp16.Zd, Arrangement::H));
@@ -50534,7 +50926,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x6555A000u: { // ucvtf_z_p_z_w2fp16
-                        Instruction result(Mnemonic::UCVTF, insn, 4444);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::UCVTF, insn, EncodingId::ucvtf_z_p_z_w2fp16);
+            #else
+                        Instruction result(Mnemonic::UCVTF, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::sve(enc.ucvtf_zpzw2fp16.Zd, Arrangement::H));
@@ -50543,7 +50939,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x6556A000u: { // scvtf_z_p_z_x2fp16
-                        Instruction result(Mnemonic::SCVTF, insn, 4130);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SCVTF, insn, EncodingId::scvtf_z_p_z_x2fp16);
+            #else
+                        Instruction result(Mnemonic::SCVTF, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::sve(enc.scvtf_zpzx2fp16.Zd, Arrangement::H));
@@ -50552,7 +50952,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x6557A000u: { // ucvtf_z_p_z_x2fp16
-                        Instruction result(Mnemonic::UCVTF, insn, 4450);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::UCVTF, insn, EncodingId::ucvtf_z_p_z_x2fp16);
+            #else
+                        Instruction result(Mnemonic::UCVTF, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::sve(enc.ucvtf_zpzx2fp16.Zd, Arrangement::H));
@@ -50561,7 +50965,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x655AA000u: { // fcvtzs_z_p_z_fp162h
-                        Instruction result(Mnemonic::FCVTZS, insn, 3530);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FCVTZS, insn, EncodingId::fcvtzs_z_p_z_fp162h);
+            #else
+                        Instruction result(Mnemonic::FCVTZS, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::sve(enc.fcvtzs_zpzfp162h.Zd, Arrangement::H));
@@ -50570,7 +50978,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x655BA000u: { // fcvtzu_z_p_z_fp162h
-                        Instruction result(Mnemonic::FCVTZU, insn, 3545);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FCVTZU, insn, EncodingId::fcvtzu_z_p_z_fp162h);
+            #else
+                        Instruction result(Mnemonic::FCVTZU, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::sve(enc.fcvtzu_zpzfp162h.Zd, Arrangement::H));
@@ -50579,7 +50991,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x655CA000u: { // fcvtzs_z_p_z_fp162w
-                        Instruction result(Mnemonic::FCVTZS, insn, 3532);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FCVTZS, insn, EncodingId::fcvtzs_z_p_z_fp162w);
+            #else
+                        Instruction result(Mnemonic::FCVTZS, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::sve(enc.fcvtzs_zpzfp162w.Zd, Arrangement::S));
@@ -50588,7 +51004,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x655DA000u: { // fcvtzu_z_p_z_fp162w
-                        Instruction result(Mnemonic::FCVTZU, insn, 3547);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FCVTZU, insn, EncodingId::fcvtzu_z_p_z_fp162w);
+            #else
+                        Instruction result(Mnemonic::FCVTZU, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::sve(enc.fcvtzu_zpzfp162w.Zd, Arrangement::S));
@@ -50597,7 +51017,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x655EA000u: { // fcvtzs_z_p_z_fp162x
-                        Instruction result(Mnemonic::FCVTZS, insn, 3534);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FCVTZS, insn, EncodingId::fcvtzs_z_p_z_fp162x);
+            #else
+                        Instruction result(Mnemonic::FCVTZS, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::sve(enc.fcvtzs_zpzfp162x.Zd, Arrangement::D));
@@ -50606,7 +51030,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x655FA000u: { // fcvtzu_z_p_z_fp162x
-                        Instruction result(Mnemonic::FCVTZU, insn, 3549);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FCVTZU, insn, EncodingId::fcvtzu_z_p_z_fp162x);
+            #else
+                        Instruction result(Mnemonic::FCVTZU, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::sve(enc.fcvtzu_zpzfp162x.Zd, Arrangement::D));
@@ -50615,7 +51043,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x6588A000u: { // fcvt_z_p_z_s2h
-                        Instruction result(Mnemonic::FCVT, insn, 3507);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FCVT, insn, EncodingId::fcvt_z_p_z_s2h);
+            #else
+                        Instruction result(Mnemonic::FCVT, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::sve(enc.fcvt_zpzs2h.Zd, Arrangement::H));
@@ -50624,7 +51056,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x6589A000u: { // fcvt_z_p_z_h2s
-                        Instruction result(Mnemonic::FCVT, insn, 3503);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FCVT, insn, EncodingId::fcvt_z_p_z_h2s);
+            #else
+                        Instruction result(Mnemonic::FCVT, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::sve(enc.fcvt_zpzh2s.Zd, Arrangement::S));
@@ -50633,7 +51069,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x658AA000u: { // bfcvt_z_p_z_s2bf
-                        Instruction result(Mnemonic::BFCVT, insn, 3320);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::BFCVT, insn, EncodingId::bfcvt_z_p_z_s2bf);
+            #else
+                        Instruction result(Mnemonic::BFCVT, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::sve(enc.bfcvt_zpzs2bf.Zd, Arrangement::H));
@@ -50642,7 +51082,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x6594A000u: { // scvtf_z_p_z_w2s
-                        Instruction result(Mnemonic::SCVTF, insn, 4126);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SCVTF, insn, EncodingId::scvtf_z_p_z_w2s);
+            #else
+                        Instruction result(Mnemonic::SCVTF, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::sve(enc.scvtf_zpzw2s.Zd, Arrangement::S));
@@ -50651,7 +51095,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x6595A000u: { // ucvtf_z_p_z_w2s
-                        Instruction result(Mnemonic::UCVTF, insn, 4446);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::UCVTF, insn, EncodingId::ucvtf_z_p_z_w2s);
+            #else
+                        Instruction result(Mnemonic::UCVTF, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::sve(enc.ucvtf_zpzw2s.Zd, Arrangement::S));
@@ -50660,7 +51108,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x659CA000u: { // fcvtzs_z_p_z_s2w
-                        Instruction result(Mnemonic::FCVTZS, insn, 3536);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FCVTZS, insn, EncodingId::fcvtzs_z_p_z_s2w);
+            #else
+                        Instruction result(Mnemonic::FCVTZS, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::sve(enc.fcvtzs_zpzs2w.Zd, Arrangement::S));
@@ -50669,7 +51121,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x659DA000u: { // fcvtzu_z_p_z_s2w
-                        Instruction result(Mnemonic::FCVTZU, insn, 3551);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FCVTZU, insn, EncodingId::fcvtzu_z_p_z_s2w);
+            #else
+                        Instruction result(Mnemonic::FCVTZU, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::sve(enc.fcvtzu_zpzs2w.Zd, Arrangement::S));
@@ -50678,7 +51134,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x65C8A000u: { // fcvt_z_p_z_d2h
-                        Instruction result(Mnemonic::FCVT, insn, 3511);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FCVT, insn, EncodingId::fcvt_z_p_z_d2h);
+            #else
+                        Instruction result(Mnemonic::FCVT, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::sve(enc.fcvt_zpzd2h.Zd, Arrangement::H));
@@ -50687,7 +51147,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x65C9A000u: { // fcvt_z_p_z_h2d
-                        Instruction result(Mnemonic::FCVT, insn, 3505);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FCVT, insn, EncodingId::fcvt_z_p_z_h2d);
+            #else
+                        Instruction result(Mnemonic::FCVT, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::sve(enc.fcvt_zpzh2d.Zd, Arrangement::D));
@@ -50696,7 +51160,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x65CAA000u: { // fcvt_z_p_z_d2s
-                        Instruction result(Mnemonic::FCVT, insn, 3513);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FCVT, insn, EncodingId::fcvt_z_p_z_d2s);
+            #else
+                        Instruction result(Mnemonic::FCVT, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::sve(enc.fcvt_zpzd2s.Zd, Arrangement::S));
@@ -50705,7 +51173,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x65CBA000u: { // fcvt_z_p_z_s2d
-                        Instruction result(Mnemonic::FCVT, insn, 3509);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FCVT, insn, EncodingId::fcvt_z_p_z_s2d);
+            #else
+                        Instruction result(Mnemonic::FCVT, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::sve(enc.fcvt_zpzs2d.Zd, Arrangement::D));
@@ -50714,7 +51186,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x65D0A000u: { // scvtf_z_p_z_w2d
-                        Instruction result(Mnemonic::SCVTF, insn, 4128);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SCVTF, insn, EncodingId::scvtf_z_p_z_w2d);
+            #else
+                        Instruction result(Mnemonic::SCVTF, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::sve(enc.scvtf_zpzw2d.Zd, Arrangement::D));
@@ -50723,7 +51199,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x65D1A000u: { // ucvtf_z_p_z_w2d
-                        Instruction result(Mnemonic::UCVTF, insn, 4448);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::UCVTF, insn, EncodingId::ucvtf_z_p_z_w2d);
+            #else
+                        Instruction result(Mnemonic::UCVTF, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::sve(enc.ucvtf_zpzw2d.Zd, Arrangement::D));
@@ -50732,7 +51212,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x65D4A000u: { // scvtf_z_p_z_x2s
-                        Instruction result(Mnemonic::SCVTF, insn, 4132);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SCVTF, insn, EncodingId::scvtf_z_p_z_x2s);
+            #else
+                        Instruction result(Mnemonic::SCVTF, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::sve(enc.scvtf_zpzx2s.Zd, Arrangement::S));
@@ -50741,7 +51225,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x65D5A000u: { // ucvtf_z_p_z_x2s
-                        Instruction result(Mnemonic::UCVTF, insn, 4452);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::UCVTF, insn, EncodingId::ucvtf_z_p_z_x2s);
+            #else
+                        Instruction result(Mnemonic::UCVTF, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::sve(enc.ucvtf_zpzx2s.Zd, Arrangement::S));
@@ -50750,7 +51238,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x65D6A000u: { // scvtf_z_p_z_x2d
-                        Instruction result(Mnemonic::SCVTF, insn, 4134);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SCVTF, insn, EncodingId::scvtf_z_p_z_x2d);
+            #else
+                        Instruction result(Mnemonic::SCVTF, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::sve(enc.scvtf_zpzx2d.Zd, Arrangement::D));
@@ -50759,7 +51251,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x65D7A000u: { // ucvtf_z_p_z_x2d
-                        Instruction result(Mnemonic::UCVTF, insn, 4454);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::UCVTF, insn, EncodingId::ucvtf_z_p_z_x2d);
+            #else
+                        Instruction result(Mnemonic::UCVTF, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::sve(enc.ucvtf_zpzx2d.Zd, Arrangement::D));
@@ -50768,7 +51264,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x65D8A000u: { // fcvtzs_z_p_z_d2w
-                        Instruction result(Mnemonic::FCVTZS, insn, 3540);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FCVTZS, insn, EncodingId::fcvtzs_z_p_z_d2w);
+            #else
+                        Instruction result(Mnemonic::FCVTZS, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::sve(enc.fcvtzs_zpzd2w.Zd, Arrangement::S));
@@ -50777,7 +51277,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x65D9A000u: { // fcvtzu_z_p_z_d2w
-                        Instruction result(Mnemonic::FCVTZU, insn, 3555);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FCVTZU, insn, EncodingId::fcvtzu_z_p_z_d2w);
+            #else
+                        Instruction result(Mnemonic::FCVTZU, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::sve(enc.fcvtzu_zpzd2w.Zd, Arrangement::S));
@@ -50786,7 +51290,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x65DCA000u: { // fcvtzs_z_p_z_s2x
-                        Instruction result(Mnemonic::FCVTZS, insn, 3538);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FCVTZS, insn, EncodingId::fcvtzs_z_p_z_s2x);
+            #else
+                        Instruction result(Mnemonic::FCVTZS, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::sve(enc.fcvtzs_zpzs2x.Zd, Arrangement::D));
@@ -50795,7 +51303,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x65DDA000u: { // fcvtzu_z_p_z_s2x
-                        Instruction result(Mnemonic::FCVTZU, insn, 3553);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FCVTZU, insn, EncodingId::fcvtzu_z_p_z_s2x);
+            #else
+                        Instruction result(Mnemonic::FCVTZU, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::sve(enc.fcvtzu_zpzs2x.Zd, Arrangement::D));
@@ -50804,7 +51316,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x65DEA000u: { // fcvtzs_z_p_z_d2x
-                        Instruction result(Mnemonic::FCVTZS, insn, 3542);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FCVTZS, insn, EncodingId::fcvtzs_z_p_z_d2x);
+            #else
+                        Instruction result(Mnemonic::FCVTZS, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::sve(enc.fcvtzs_zpzd2x.Zd, Arrangement::D));
@@ -50813,7 +51329,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x65DFA000u: { // fcvtzu_z_p_z_d2x
-                        Instruction result(Mnemonic::FCVTZU, insn, 3557);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FCVTZU, insn, EncodingId::fcvtzu_z_p_z_d2x);
+            #else
+                        Instruction result(Mnemonic::FCVTZU, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::sve(enc.fcvtzu_zpzd2x.Zd, Arrangement::D));
@@ -50827,7 +51347,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
     // Switch for mask 0xFFFFC21Fu (1 pattern, 1 encoding)
     switch (insn & 0xFFFFC21Fu) {
         case 0x2550C000u: { // ptest__p_p_
-                        Instruction result(Mnemonic::PTEST, insn, 4075);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::PTEST, insn, EncodingId::ptest__p_p_);
+            #else
+                        Instruction result(Mnemonic::PTEST, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         { Operand op = Operand::pred(enc.ptest_pp.Pg); op.set_arrangement(Arrangement::None); result.operands.push_back(op); }
@@ -50840,7 +51364,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
     // Switch for mask 0xFFFFC210u (4 patterns, 4 encodings)
     switch (insn & 0xFFFFC210u) {
         case 0x25184000u: { // brkn_p_p_pp_
-                        Instruction result(Mnemonic::BRKN, insn, 3361);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::BRKN, insn, EncodingId::brkn_p_p_pp_);
+            #else
+                        Instruction result(Mnemonic::BRKN, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         { Operand op = Operand::pred(enc.brkn_pppp.Pdm); op.set_arrangement(Arrangement::B); result.operands.push_back(op); }
@@ -50850,7 +51378,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x25504000u: { // brkas_p_p_p_z
-                        Instruction result(Mnemonic::BRKAS, insn, 3358);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::BRKAS, insn, EncodingId::brkas_p_p_p_z);
+            #else
+                        Instruction result(Mnemonic::BRKAS, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         { Operand op = Operand::pred(enc.brkas_pppz.Pd); op.set_arrangement(Arrangement::B); result.operands.push_back(op); }
@@ -50859,7 +51391,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x25584000u: { // brkns_p_p_pp_
-                        Instruction result(Mnemonic::BRKNS, insn, 3362);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::BRKNS, insn, EncodingId::brkns_p_p_pp_);
+            #else
+                        Instruction result(Mnemonic::BRKNS, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         { Operand op = Operand::pred(enc.brkns_pppp.Pdm); op.set_arrangement(Arrangement::B); result.operands.push_back(op); }
@@ -50869,7 +51405,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x25D04000u: { // brkbs_p_p_p_z
-                        Instruction result(Mnemonic::BRKBS, insn, 3360);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::BRKBS, insn, EncodingId::brkbs_p_p_p_z);
+            #else
+                        Instruction result(Mnemonic::BRKBS, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         { Operand op = Operand::pred(enc.brkbs_pppz.Pd); op.set_arrangement(Arrangement::B); result.operands.push_back(op); }
@@ -50883,7 +51423,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
     // Switch for mask 0xFFFFC200u (2 patterns, 2 encodings)
     switch (insn & 0xFFFFC200u) {
         case 0x25104000u: { // brka_p_p_p_
-                        Instruction result(Mnemonic::BRKA, insn, 3357);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::BRKA, insn, EncodingId::brka_p_p_p_);
+            #else
+                        Instruction result(Mnemonic::BRKA, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         { Operand op = Operand::pred(enc.brka_ppp.Pd); op.set_arrangement(Arrangement::B); result.operands.push_back(op); }
@@ -50892,7 +51436,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x25904000u: { // brkb_p_p_p_
-                        Instruction result(Mnemonic::BRKB, insn, 3359);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::BRKB, insn, EncodingId::brkb_p_p_p_);
+            #else
+                        Instruction result(Mnemonic::BRKB, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         { Operand op = Operand::pred(enc.brkb_ppp.Pd); op.set_arrangement(Arrangement::B); result.operands.push_back(op); }
@@ -50906,7 +51454,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
     // Switch for mask 0xFFFFA000u (4 patterns, 4 encodings)
     switch (insn & 0xFFFFA000u) {
         case 0x641C8000u: { // frint32z_z_p_z_z
-                        Instruction result(Mnemonic::FRINT32Z, insn, 3653);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FRINT32Z, insn, EncodingId::frint32z_z_p_z_z);
+            #else
+                        Instruction result(Mnemonic::FRINT32Z, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = enc.frint32z_zpzz.sz ? Arrangement::D : Arrangement::S;
@@ -50916,7 +51468,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x641CA000u: { // frint32x_z_p_z_z
-                        Instruction result(Mnemonic::FRINT32X, insn, 3651);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FRINT32X, insn, EncodingId::frint32x_z_p_z_z);
+            #else
+                        Instruction result(Mnemonic::FRINT32X, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = enc.frint32x_zpzz.sz ? Arrangement::D : Arrangement::S;
@@ -50926,7 +51482,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x641D8000u: { // frint64z_z_p_z_z
-                        Instruction result(Mnemonic::FRINT64Z, insn, 3657);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FRINT64Z, insn, EncodingId::frint64z_z_p_z_z);
+            #else
+                        Instruction result(Mnemonic::FRINT64Z, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = enc.frint64z_zpzz.sz ? Arrangement::D : Arrangement::S;
@@ -50936,7 +51496,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x641DA000u: { // frint64x_z_p_z_z
-                        Instruction result(Mnemonic::FRINT64X, insn, 3655);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FRINT64X, insn, EncodingId::frint64x_z_p_z_z);
+            #else
+                        Instruction result(Mnemonic::FRINT64X, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = enc.frint64x_zpzz.sz ? Arrangement::D : Arrangement::S;
@@ -50951,7 +51515,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
     // Switch for mask 0xFFFF8000u (1 pattern, 1 encoding)
     switch (insn & 0xFFFF8000u) {
         case 0x641E8000u: { // flogb_z_p_z_z
-                        Instruction result(Mnemonic::FLOGB, insn, 3572);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FLOGB, insn, EncodingId::flogb_z_p_z_z);
+            #else
+                        Instruction result(Mnemonic::FLOGB, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         if (enc.flogb_zpzz.size == 0u) return std::nullopt;
@@ -50973,7 +51541,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
     // Switch for mask 0xFFFDFE00u (1 pattern, 1 encoding)
     switch (insn & 0xFFFDFE00u) {
         case 0x052D3800u: { // pmov_z_pi_h
-                        Instruction result(Mnemonic::PMOV, insn, 4037);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::PMOV, insn, EncodingId::pmov_z_pi_h);
+            #else
+                        Instruction result(Mnemonic::PMOV, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         result.operands.clear();  // PMOV special case
@@ -50987,7 +51559,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
     // Switch for mask 0xFFFDFC10u (1 pattern, 1 encoding)
     switch (insn & 0xFFFDFC10u) {
         case 0x052C3800u: { // pmov_p_zi_h
-                        Instruction result(Mnemonic::PMOV, insn, 4033);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::PMOV, insn, EncodingId::pmov_p_zi_h);
+            #else
+                        Instruction result(Mnemonic::PMOV, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         result.operands.clear();  // PMOV special case
@@ -51001,7 +51577,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
     // Switch for mask 0xFFFDE000u (4 patterns, 4 encodings)
     switch (insn & 0xFFFDE000u) {
         case 0x6510A000u: { // frint32z_z_p_z_m
-                        Instruction result(Mnemonic::FRINT32Z, insn, 3652);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FRINT32Z, insn, EncodingId::frint32z_z_p_z_m);
+            #else
+                        Instruction result(Mnemonic::FRINT32Z, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = enc.frint32z_zpzm.sz ? Arrangement::D : Arrangement::S;
@@ -51011,7 +51591,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x6511A000u: { // frint32x_z_p_z_m
-                        Instruction result(Mnemonic::FRINT32X, insn, 3650);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FRINT32X, insn, EncodingId::frint32x_z_p_z_m);
+            #else
+                        Instruction result(Mnemonic::FRINT32X, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = enc.frint32x_zpzm.sz ? Arrangement::D : Arrangement::S;
@@ -51021,7 +51605,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x6514A000u: { // frint64z_z_p_z_m
-                        Instruction result(Mnemonic::FRINT64Z, insn, 3656);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FRINT64Z, insn, EncodingId::frint64z_z_p_z_m);
+            #else
+                        Instruction result(Mnemonic::FRINT64Z, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = enc.frint64z_zpzm.sz ? Arrangement::D : Arrangement::S;
@@ -51031,7 +51619,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x6515A000u: { // frint64x_z_p_z_m
-                        Instruction result(Mnemonic::FRINT64X, insn, 3654);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FRINT64X, insn, EncodingId::frint64x_z_p_z_m);
+            #else
+                        Instruction result(Mnemonic::FRINT64X, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = enc.frint64x_zpzm.sz ? Arrangement::D : Arrangement::S;
@@ -51047,7 +51639,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
     switch (insn & 0xFFFC0000u) {
         case 0x05000000u: { // orn_z_zi__orr_z_zi_
             // Also matches: orr_z_zi_ (ORR)
-                        Instruction result(Mnemonic::ORR, insn, 4016);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::ORR, insn, EncodingId::orn_z_zi__orr_z_zi_);
+            #else
+                        Instruction result(Mnemonic::ORR, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::sve(enc.orn_zzi_orr_zzi.Zdn, Arrangement::None));
@@ -51072,7 +51668,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
         }
         case 0x05400000u: { // eon_z_zi__eor_z_zi_
             // Also matches: eor_z_zi_ (EOR)
-                        Instruction result(Mnemonic::EOR, insn, 3449);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::EOR, insn, EncodingId::eon_z_zi__eor_z_zi_);
+            #else
+                        Instruction result(Mnemonic::EOR, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::sve(enc.eon_zzi_eor_zzi.Zdn, Arrangement::None));
@@ -51097,7 +51697,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
         }
         case 0x05800000u: { // and_z_zi_
             // Also matches: bic_z_zi__and_z_zi_ (AND)
-                        Instruction result(Mnemonic::AND, insn, 3298);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::AND, insn, EncodingId::and_z_zi_);
+            #else
+                        Instruction result(Mnemonic::AND, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::sve(enc.and_zzi.Zdn, Arrangement::None));
@@ -51122,7 +51726,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
         }
         case 0x05C00000u: { // dupm_z_i_
             // Also matches: mov_z_m__dupm_z_i_ (DUPM)
-                        Instruction result(Mnemonic::DUPM, insn, 3447);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::DUPM, insn, EncodingId::dupm_z_i_);
+            #else
+                        Instruction result(Mnemonic::DUPM, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::sve(enc.dupm_zi.Zd, Arrangement::None));
@@ -51150,7 +51758,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
     // Switch for mask 0xFFF9FE00u (1 pattern, 1 encoding)
     switch (insn & 0xFFF9FE00u) {
         case 0x05693800u: { // pmov_z_pi_s
-                        Instruction result(Mnemonic::PMOV, insn, 4038);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::PMOV, insn, EncodingId::pmov_z_pi_s);
+            #else
+                        Instruction result(Mnemonic::PMOV, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         result.operands.clear();  // PMOV special case
@@ -51164,7 +51776,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
     // Switch for mask 0xFFF9FC10u (1 pattern, 1 encoding)
     switch (insn & 0xFFF9FC10u) {
         case 0x05683800u: { // pmov_p_zi_s
-                        Instruction result(Mnemonic::PMOV, insn, 4034);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::PMOV, insn, EncodingId::pmov_p_zi_s);
+            #else
+                        Instruction result(Mnemonic::PMOV, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         result.operands.clear();  // PMOV special case
@@ -51178,7 +51794,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
     // Switch for mask 0xFFF9E000u (1 pattern, 1 encoding)
     switch (insn & 0xFFF9E000u) {
         case 0x6518A000u: { // flogb_z_p_z_m
-                        Instruction result(Mnemonic::FLOGB, insn, 3571);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FLOGB, insn, EncodingId::flogb_z_p_z_m);
+            #else
+                        Instruction result(Mnemonic::FLOGB, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         if (enc.flogb_zpzm.size == 0u) return std::nullopt;
@@ -51200,7 +51820,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
     // Switch for mask 0xFFF8FC20u (3 patterns, 3 encodings)
     switch (insn & 0xFFF8FC20u) {
         case 0x45A80800u: { // sqrshrun_z_mz2_b
-                        Instruction result(Mnemonic::SQRSHRUN, insn, 4274);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SQRSHRUN, insn, EncodingId::sqrshrun_z_mz2_b);
+            #else
+                        Instruction result(Mnemonic::SQRSHRUN, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::sve(enc.sqrshrun_zmz2b.Zd, Arrangement::B));
@@ -51209,7 +51833,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x45A82800u: { // sqrshrn_z_mz2_b
-                        Instruction result(Mnemonic::SQRSHRN, insn, 4270);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SQRSHRN, insn, EncodingId::sqrshrn_z_mz2_b);
+            #else
+                        Instruction result(Mnemonic::SQRSHRN, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::sve(enc.sqrshrn_zmz2b.Zd, Arrangement::B));
@@ -51218,7 +51846,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x45A83800u: { // uqrshrn_z_mz2_b
-                        Instruction result(Mnemonic::UQRSHRN, insn, 4535);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::UQRSHRN, insn, EncodingId::uqrshrn_z_mz2_b);
+            #else
+                        Instruction result(Mnemonic::UQRSHRN, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::sve(enc.uqrshrn_zmz2b.Zd, Arrangement::B));
@@ -51232,7 +51864,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
     // Switch for mask 0xFFF0FC20u (3 patterns, 3 encodings)
     switch (insn & 0xFFF0FC20u) {
         case 0x45B00800u: { // sqrshrun_z_mz2_
-                        Instruction result(Mnemonic::SQRSHRUN, insn, 4275);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SQRSHRUN, insn, EncodingId::sqrshrun_z_mz2_);
+            #else
+                        Instruction result(Mnemonic::SQRSHRUN, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::sve(enc.sqrshrun_zmz2.Zd, Arrangement::H));
@@ -51241,7 +51877,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x45B02800u: { // sqrshrn_z_mz2_
-                        Instruction result(Mnemonic::SQRSHRN, insn, 4271);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SQRSHRN, insn, EncodingId::sqrshrn_z_mz2_);
+            #else
+                        Instruction result(Mnemonic::SQRSHRN, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::sve(enc.sqrshrn_zmz2.Zd, Arrangement::H));
@@ -51250,7 +51890,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x45B03800u: { // uqrshrn_z_mz2_
-                        Instruction result(Mnemonic::UQRSHRN, insn, 4536);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::UQRSHRN, insn, EncodingId::uqrshrn_z_mz2_);
+            #else
+                        Instruction result(Mnemonic::UQRSHRN, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::sve(enc.uqrshrn_zmz2.Zd, Arrangement::H));
@@ -51264,7 +51908,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
     // Switch for mask 0xFFF0FC00u (63 patterns, 63 encodings)
     switch (insn & 0xFFF0FC00u) {
         case 0x0420E000u: { // cntb_r_s_
-                        Instruction result(Mnemonic::CNTB, insn, 3421);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::CNTB, insn, EncodingId::cntb_r_s_);
+            #else
+                        Instruction result(Mnemonic::CNTB, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.cntb_rs.Rd, true));
@@ -51275,7 +51923,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x0420F000u: { // sqincb_r_rs_sx
-                        Instruction result(Mnemonic::SQINCB, insn, 4237);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SQINCB, insn, EncodingId::sqincb_r_rs_sx);
+            #else
+                        Instruction result(Mnemonic::SQINCB, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -51290,7 +51942,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x0420F400u: { // uqincb_r_rs_uw
-                        Instruction result(Mnemonic::UQINCB, insn, 4519);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::UQINCB, insn, EncodingId::uqincb_r_rs_uw);
+            #else
+                        Instruction result(Mnemonic::UQINCB, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -51304,7 +51960,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x0420F800u: { // sqdecb_r_rs_sx
-                        Instruction result(Mnemonic::SQDECB, insn, 4199);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SQDECB, insn, EncodingId::sqdecb_r_rs_sx);
+            #else
+                        Instruction result(Mnemonic::SQDECB, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -51319,7 +51979,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x0420FC00u: { // uqdecb_r_rs_uw
-                        Instruction result(Mnemonic::UQDECB, insn, 4505);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::UQDECB, insn, EncodingId::uqdecb_r_rs_uw);
+            #else
+                        Instruction result(Mnemonic::UQDECB, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -51333,7 +51997,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x0430E000u: { // incb_r_rs_
-                        Instruction result(Mnemonic::INCB, insn, 3687);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::INCB, insn, EncodingId::incb_r_rs_);
+            #else
+                        Instruction result(Mnemonic::INCB, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -51347,7 +52015,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x0430E400u: { // decb_r_rs_
-                        Instruction result(Mnemonic::DECB, insn, 3435);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::DECB, insn, EncodingId::decb_r_rs_);
+            #else
+                        Instruction result(Mnemonic::DECB, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -51361,7 +52033,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x0430F000u: { // sqincb_r_rs_x
-                        Instruction result(Mnemonic::SQINCB, insn, 4238);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SQINCB, insn, EncodingId::sqincb_r_rs_x);
+            #else
+                        Instruction result(Mnemonic::SQINCB, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -51375,7 +52051,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x0430F400u: { // uqincb_r_rs_x
-                        Instruction result(Mnemonic::UQINCB, insn, 4520);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::UQINCB, insn, EncodingId::uqincb_r_rs_x);
+            #else
+                        Instruction result(Mnemonic::UQINCB, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -51389,7 +52069,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x0430F800u: { // sqdecb_r_rs_x
-                        Instruction result(Mnemonic::SQDECB, insn, 4200);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SQDECB, insn, EncodingId::sqdecb_r_rs_x);
+            #else
+                        Instruction result(Mnemonic::SQDECB, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -51403,7 +52087,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x0430FC00u: { // uqdecb_r_rs_x
-                        Instruction result(Mnemonic::UQDECB, insn, 4506);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::UQDECB, insn, EncodingId::uqdecb_r_rs_x);
+            #else
+                        Instruction result(Mnemonic::UQDECB, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -51417,7 +52105,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x0460C000u: { // sqinch_z_zs_
-                        Instruction result(Mnemonic::SQINCH, insn, 4244);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SQINCH, insn, EncodingId::sqinch_z_zs_);
+            #else
+                        Instruction result(Mnemonic::SQINCH, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         { auto op = Operand::reg_list(static_cast<uint32_t>(make_sve_reg(enc.sqinch_zzs.Zdn))); op.set_arrangement(Arrangement::H); op.rl.count = 1; result.operands.push_back(op); }
@@ -51430,7 +52122,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x0460C400u: { // uqinch_z_zs_
-                        Instruction result(Mnemonic::UQINCH, insn, 4526);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::UQINCH, insn, EncodingId::uqinch_z_zs_);
+            #else
+                        Instruction result(Mnemonic::UQINCH, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         { auto op = Operand::reg_list(static_cast<uint32_t>(make_sve_reg(enc.uqinch_zzs.Zdn))); op.set_arrangement(Arrangement::H); op.rl.count = 1; result.operands.push_back(op); }
@@ -51443,7 +52139,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x0460C800u: { // sqdech_z_zs_
-                        Instruction result(Mnemonic::SQDECH, insn, 4206);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SQDECH, insn, EncodingId::sqdech_z_zs_);
+            #else
+                        Instruction result(Mnemonic::SQDECH, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         { auto op = Operand::reg_list(static_cast<uint32_t>(make_sve_reg(enc.sqdech_zzs.Zdn))); op.set_arrangement(Arrangement::H); op.rl.count = 1; result.operands.push_back(op); }
@@ -51456,7 +52156,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x0460CC00u: { // uqdech_z_zs_
-                        Instruction result(Mnemonic::UQDECH, insn, 4512);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::UQDECH, insn, EncodingId::uqdech_z_zs_);
+            #else
+                        Instruction result(Mnemonic::UQDECH, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         { auto op = Operand::reg_list(static_cast<uint32_t>(make_sve_reg(enc.uqdech_zzs.Zdn))); op.set_arrangement(Arrangement::H); op.rl.count = 1; result.operands.push_back(op); }
@@ -51469,7 +52173,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x0460E000u: { // cnth_r_s_
-                        Instruction result(Mnemonic::CNTH, insn, 3423);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::CNTH, insn, EncodingId::cnth_r_s_);
+            #else
+                        Instruction result(Mnemonic::CNTH, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.cnth_rs.Rd, true));
@@ -51480,7 +52188,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x0460F000u: { // sqinch_r_rs_sx
-                        Instruction result(Mnemonic::SQINCH, insn, 4242);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SQINCH, insn, EncodingId::sqinch_r_rs_sx);
+            #else
+                        Instruction result(Mnemonic::SQINCH, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -51495,7 +52207,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x0460F400u: { // uqinch_r_rs_uw
-                        Instruction result(Mnemonic::UQINCH, insn, 4524);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::UQINCH, insn, EncodingId::uqinch_r_rs_uw);
+            #else
+                        Instruction result(Mnemonic::UQINCH, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -51509,7 +52225,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x0460F800u: { // sqdech_r_rs_sx
-                        Instruction result(Mnemonic::SQDECH, insn, 4204);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SQDECH, insn, EncodingId::sqdech_r_rs_sx);
+            #else
+                        Instruction result(Mnemonic::SQDECH, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -51524,7 +52244,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x0460FC00u: { // uqdech_r_rs_uw
-                        Instruction result(Mnemonic::UQDECH, insn, 4510);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::UQDECH, insn, EncodingId::uqdech_r_rs_uw);
+            #else
+                        Instruction result(Mnemonic::UQDECH, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -51538,7 +52262,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x0470C000u: { // inch_z_zs_
-                        Instruction result(Mnemonic::INCH, insn, 3692);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::INCH, insn, EncodingId::inch_z_zs_);
+            #else
+                        Instruction result(Mnemonic::INCH, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         { auto op = Operand::reg_list(static_cast<uint32_t>(make_sve_reg(enc.inch_zzs.Zdn))); op.set_arrangement(Arrangement::H); op.rl.count = 1; result.operands.push_back(op); }
@@ -51551,7 +52279,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x0470C400u: { // dech_z_zs_
-                        Instruction result(Mnemonic::DECH, insn, 3440);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::DECH, insn, EncodingId::dech_z_zs_);
+            #else
+                        Instruction result(Mnemonic::DECH, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         { auto op = Operand::reg_list(static_cast<uint32_t>(make_sve_reg(enc.dech_zzs.Zdn))); op.set_arrangement(Arrangement::H); op.rl.count = 1; result.operands.push_back(op); }
@@ -51564,7 +52296,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x0470E000u: { // inch_r_rs_
-                        Instruction result(Mnemonic::INCH, insn, 3689);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::INCH, insn, EncodingId::inch_r_rs_);
+            #else
+                        Instruction result(Mnemonic::INCH, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -51578,7 +52314,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x0470E400u: { // dech_r_rs_
-                        Instruction result(Mnemonic::DECH, insn, 3437);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::DECH, insn, EncodingId::dech_r_rs_);
+            #else
+                        Instruction result(Mnemonic::DECH, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -51592,7 +52332,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x0470F000u: { // sqinch_r_rs_x
-                        Instruction result(Mnemonic::SQINCH, insn, 4243);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SQINCH, insn, EncodingId::sqinch_r_rs_x);
+            #else
+                        Instruction result(Mnemonic::SQINCH, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -51606,7 +52350,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x0470F400u: { // uqinch_r_rs_x
-                        Instruction result(Mnemonic::UQINCH, insn, 4525);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::UQINCH, insn, EncodingId::uqinch_r_rs_x);
+            #else
+                        Instruction result(Mnemonic::UQINCH, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -51620,7 +52368,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x0470F800u: { // sqdech_r_rs_x
-                        Instruction result(Mnemonic::SQDECH, insn, 4205);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SQDECH, insn, EncodingId::sqdech_r_rs_x);
+            #else
+                        Instruction result(Mnemonic::SQDECH, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -51634,7 +52386,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x0470FC00u: { // uqdech_r_rs_x
-                        Instruction result(Mnemonic::UQDECH, insn, 4511);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::UQDECH, insn, EncodingId::uqdech_r_rs_x);
+            #else
+                        Instruction result(Mnemonic::UQDECH, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -51648,7 +52404,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x04A0C000u: { // sqincw_z_zs_
-                        Instruction result(Mnemonic::SQINCW, insn, 4250);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SQINCW, insn, EncodingId::sqincw_z_zs_);
+            #else
+                        Instruction result(Mnemonic::SQINCW, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         { auto op = Operand::reg_list(static_cast<uint32_t>(make_sve_reg(enc.sqincw_zzs.Zdn))); op.set_arrangement(Arrangement::S); op.rl.count = 1; result.operands.push_back(op); }
@@ -51661,7 +52421,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x04A0C400u: { // uqincw_z_zs_
-                        Instruction result(Mnemonic::UQINCW, insn, 4532);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::UQINCW, insn, EncodingId::uqincw_z_zs_);
+            #else
+                        Instruction result(Mnemonic::UQINCW, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         { auto op = Operand::reg_list(static_cast<uint32_t>(make_sve_reg(enc.uqincw_zzs.Zdn))); op.set_arrangement(Arrangement::S); op.rl.count = 1; result.operands.push_back(op); }
@@ -51674,7 +52438,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x04A0C800u: { // sqdecw_z_zs_
-                        Instruction result(Mnemonic::SQDECW, insn, 4212);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SQDECW, insn, EncodingId::sqdecw_z_zs_);
+            #else
+                        Instruction result(Mnemonic::SQDECW, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         { auto op = Operand::reg_list(static_cast<uint32_t>(make_sve_reg(enc.sqdecw_zzs.Zdn))); op.set_arrangement(Arrangement::S); op.rl.count = 1; result.operands.push_back(op); }
@@ -51687,7 +52455,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x04A0CC00u: { // uqdecw_z_zs_
-                        Instruction result(Mnemonic::UQDECW, insn, 4518);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::UQDECW, insn, EncodingId::uqdecw_z_zs_);
+            #else
+                        Instruction result(Mnemonic::UQDECW, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         { auto op = Operand::reg_list(static_cast<uint32_t>(make_sve_reg(enc.uqdecw_zzs.Zdn))); op.set_arrangement(Arrangement::S); op.rl.count = 1; result.operands.push_back(op); }
@@ -51700,7 +52472,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x04A0E000u: { // cntw_r_s_
-                        Instruction result(Mnemonic::CNTW, insn, 3424);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::CNTW, insn, EncodingId::cntw_r_s_);
+            #else
+                        Instruction result(Mnemonic::CNTW, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.cntw_rs.Rd, true));
@@ -51711,7 +52487,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x04A0F000u: { // sqincw_r_rs_sx
-                        Instruction result(Mnemonic::SQINCW, insn, 4248);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SQINCW, insn, EncodingId::sqincw_r_rs_sx);
+            #else
+                        Instruction result(Mnemonic::SQINCW, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -51726,7 +52506,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x04A0F400u: { // uqincw_r_rs_uw
-                        Instruction result(Mnemonic::UQINCW, insn, 4530);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::UQINCW, insn, EncodingId::uqincw_r_rs_uw);
+            #else
+                        Instruction result(Mnemonic::UQINCW, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -51740,7 +52524,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x04A0F800u: { // sqdecw_r_rs_sx
-                        Instruction result(Mnemonic::SQDECW, insn, 4210);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SQDECW, insn, EncodingId::sqdecw_r_rs_sx);
+            #else
+                        Instruction result(Mnemonic::SQDECW, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -51755,7 +52543,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x04A0FC00u: { // uqdecw_r_rs_uw
-                        Instruction result(Mnemonic::UQDECW, insn, 4516);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::UQDECW, insn, EncodingId::uqdecw_r_rs_uw);
+            #else
+                        Instruction result(Mnemonic::UQDECW, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -51769,7 +52561,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x04B0C000u: { // incw_z_zs_
-                        Instruction result(Mnemonic::INCW, insn, 3693);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::INCW, insn, EncodingId::incw_z_zs_);
+            #else
+                        Instruction result(Mnemonic::INCW, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         { auto op = Operand::reg_list(static_cast<uint32_t>(make_sve_reg(enc.incw_zzs.Zdn))); op.set_arrangement(Arrangement::S); op.rl.count = 1; result.operands.push_back(op); }
@@ -51782,7 +52578,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x04B0C400u: { // decw_z_zs_
-                        Instruction result(Mnemonic::DECW, insn, 3441);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::DECW, insn, EncodingId::decw_z_zs_);
+            #else
+                        Instruction result(Mnemonic::DECW, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         { auto op = Operand::reg_list(static_cast<uint32_t>(make_sve_reg(enc.decw_zzs.Zdn))); op.set_arrangement(Arrangement::S); op.rl.count = 1; result.operands.push_back(op); }
@@ -51795,7 +52595,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x04B0E000u: { // incw_r_rs_
-                        Instruction result(Mnemonic::INCW, insn, 3690);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::INCW, insn, EncodingId::incw_r_rs_);
+            #else
+                        Instruction result(Mnemonic::INCW, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -51809,7 +52613,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x04B0E400u: { // decw_r_rs_
-                        Instruction result(Mnemonic::DECW, insn, 3438);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::DECW, insn, EncodingId::decw_r_rs_);
+            #else
+                        Instruction result(Mnemonic::DECW, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -51823,7 +52631,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x04B0F000u: { // sqincw_r_rs_x
-                        Instruction result(Mnemonic::SQINCW, insn, 4249);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SQINCW, insn, EncodingId::sqincw_r_rs_x);
+            #else
+                        Instruction result(Mnemonic::SQINCW, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -51837,7 +52649,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x04B0F400u: { // uqincw_r_rs_x
-                        Instruction result(Mnemonic::UQINCW, insn, 4531);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::UQINCW, insn, EncodingId::uqincw_r_rs_x);
+            #else
+                        Instruction result(Mnemonic::UQINCW, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -51851,7 +52667,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x04B0F800u: { // sqdecw_r_rs_x
-                        Instruction result(Mnemonic::SQDECW, insn, 4211);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SQDECW, insn, EncodingId::sqdecw_r_rs_x);
+            #else
+                        Instruction result(Mnemonic::SQDECW, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -51865,7 +52685,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x04B0FC00u: { // uqdecw_r_rs_x
-                        Instruction result(Mnemonic::UQDECW, insn, 4517);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::UQDECW, insn, EncodingId::uqdecw_r_rs_x);
+            #else
+                        Instruction result(Mnemonic::UQDECW, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -51879,7 +52703,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x04E0C000u: { // sqincd_z_zs_
-                        Instruction result(Mnemonic::SQINCD, insn, 4241);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SQINCD, insn, EncodingId::sqincd_z_zs_);
+            #else
+                        Instruction result(Mnemonic::SQINCD, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         { auto op = Operand::reg_list(static_cast<uint32_t>(make_sve_reg(enc.sqincd_zzs.Zdn))); op.set_arrangement(Arrangement::D); op.rl.count = 1; result.operands.push_back(op); }
@@ -51892,7 +52720,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x04E0C400u: { // uqincd_z_zs_
-                        Instruction result(Mnemonic::UQINCD, insn, 4523);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::UQINCD, insn, EncodingId::uqincd_z_zs_);
+            #else
+                        Instruction result(Mnemonic::UQINCD, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         { auto op = Operand::reg_list(static_cast<uint32_t>(make_sve_reg(enc.uqincd_zzs.Zdn))); op.set_arrangement(Arrangement::D); op.rl.count = 1; result.operands.push_back(op); }
@@ -51905,7 +52737,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x04E0C800u: { // sqdecd_z_zs_
-                        Instruction result(Mnemonic::SQDECD, insn, 4203);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SQDECD, insn, EncodingId::sqdecd_z_zs_);
+            #else
+                        Instruction result(Mnemonic::SQDECD, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         { auto op = Operand::reg_list(static_cast<uint32_t>(make_sve_reg(enc.sqdecd_zzs.Zdn))); op.set_arrangement(Arrangement::D); op.rl.count = 1; result.operands.push_back(op); }
@@ -51918,7 +52754,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x04E0CC00u: { // uqdecd_z_zs_
-                        Instruction result(Mnemonic::UQDECD, insn, 4509);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::UQDECD, insn, EncodingId::uqdecd_z_zs_);
+            #else
+                        Instruction result(Mnemonic::UQDECD, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         { auto op = Operand::reg_list(static_cast<uint32_t>(make_sve_reg(enc.uqdecd_zzs.Zdn))); op.set_arrangement(Arrangement::D); op.rl.count = 1; result.operands.push_back(op); }
@@ -51931,7 +52771,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x04E0E000u: { // cntd_r_s_
-                        Instruction result(Mnemonic::CNTD, insn, 3422);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::CNTD, insn, EncodingId::cntd_r_s_);
+            #else
+                        Instruction result(Mnemonic::CNTD, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.cntd_rs.Rd, true));
@@ -51942,7 +52786,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x04E0F000u: { // sqincd_r_rs_sx
-                        Instruction result(Mnemonic::SQINCD, insn, 4239);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SQINCD, insn, EncodingId::sqincd_r_rs_sx);
+            #else
+                        Instruction result(Mnemonic::SQINCD, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -51957,7 +52805,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x04E0F400u: { // uqincd_r_rs_uw
-                        Instruction result(Mnemonic::UQINCD, insn, 4521);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::UQINCD, insn, EncodingId::uqincd_r_rs_uw);
+            #else
+                        Instruction result(Mnemonic::UQINCD, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -51971,7 +52823,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x04E0F800u: { // sqdecd_r_rs_sx
-                        Instruction result(Mnemonic::SQDECD, insn, 4201);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SQDECD, insn, EncodingId::sqdecd_r_rs_sx);
+            #else
+                        Instruction result(Mnemonic::SQDECD, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -51986,7 +52842,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x04E0FC00u: { // uqdecd_r_rs_uw
-                        Instruction result(Mnemonic::UQDECD, insn, 4507);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::UQDECD, insn, EncodingId::uqdecd_r_rs_uw);
+            #else
+                        Instruction result(Mnemonic::UQDECD, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -52000,7 +52860,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x04F0C000u: { // incd_z_zs_
-                        Instruction result(Mnemonic::INCD, insn, 3691);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::INCD, insn, EncodingId::incd_z_zs_);
+            #else
+                        Instruction result(Mnemonic::INCD, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         { auto op = Operand::reg_list(static_cast<uint32_t>(make_sve_reg(enc.incd_zzs.Zdn))); op.set_arrangement(Arrangement::D); op.rl.count = 1; result.operands.push_back(op); }
@@ -52013,7 +52877,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x04F0C400u: { // decd_z_zs_
-                        Instruction result(Mnemonic::DECD, insn, 3439);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::DECD, insn, EncodingId::decd_z_zs_);
+            #else
+                        Instruction result(Mnemonic::DECD, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         { auto op = Operand::reg_list(static_cast<uint32_t>(make_sve_reg(enc.decd_zzs.Zdn))); op.set_arrangement(Arrangement::D); op.rl.count = 1; result.operands.push_back(op); }
@@ -52026,7 +52894,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x04F0E000u: { // incd_r_rs_
-                        Instruction result(Mnemonic::INCD, insn, 3688);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::INCD, insn, EncodingId::incd_r_rs_);
+            #else
+                        Instruction result(Mnemonic::INCD, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -52040,7 +52912,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x04F0E400u: { // decd_r_rs_
-                        Instruction result(Mnemonic::DECD, insn, 3436);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::DECD, insn, EncodingId::decd_r_rs_);
+            #else
+                        Instruction result(Mnemonic::DECD, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -52054,7 +52930,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x04F0F000u: { // sqincd_r_rs_x
-                        Instruction result(Mnemonic::SQINCD, insn, 4240);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SQINCD, insn, EncodingId::sqincd_r_rs_x);
+            #else
+                        Instruction result(Mnemonic::SQINCD, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -52068,7 +52948,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x04F0F400u: { // uqincd_r_rs_x
-                        Instruction result(Mnemonic::UQINCD, insn, 4522);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::UQINCD, insn, EncodingId::uqincd_r_rs_x);
+            #else
+                        Instruction result(Mnemonic::UQINCD, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -52082,7 +52966,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x04F0F800u: { // sqdecd_r_rs_x
-                        Instruction result(Mnemonic::SQDECD, insn, 4202);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SQDECD, insn, EncodingId::sqdecd_r_rs_x);
+            #else
+                        Instruction result(Mnemonic::SQDECD, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -52096,7 +52984,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x04F0FC00u: { // uqdecd_r_rs_x
-                        Instruction result(Mnemonic::UQDECD, insn, 4508);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::UQDECD, insn, EncodingId::uqdecd_r_rs_x);
+            #else
+                        Instruction result(Mnemonic::UQDECD, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -52110,7 +53002,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x05602400u: { // extq_z_zi_des
-                        Instruction result(Mnemonic::EXTQ, insn, 3463);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::EXTQ, insn, EncodingId::extq_z_zi_des);
+            #else
+                        Instruction result(Mnemonic::EXTQ, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::sve(enc.extq_zzi_des.Zdn, Arrangement::B));
@@ -52125,7 +53021,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
     // Switch for mask 0xFFF0E000u (83 patterns, 83 encodings)
     switch (insn & 0xFFF0E000u) {
         case 0xA4002000u: { // ld1rqb_z_p_bi_u8
-                        Instruction result(Mnemonic::LD1RQB, insn, 3760);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LD1RQB, insn, EncodingId::ld1rqb_z_p_bi_u8);
+            #else
+                        Instruction result(Mnemonic::LD1RQB, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -52139,7 +53039,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0xA400A000u: { // ld1b_z_p_bi_u8
-                        Instruction result(Mnemonic::LD1B, insn, 3709);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LD1B, insn, EncodingId::ld1b_z_p_bi_u8);
+            #else
+                        Instruction result(Mnemonic::LD1B, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -52154,7 +53058,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0xA400E000u: { // ldnt1b_z_p_bi_contiguous
-                        Instruction result(Mnemonic::LDNT1B, insn, 3928);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDNT1B, insn, EncodingId::ldnt1b_z_p_bi_contiguous);
+            #else
+                        Instruction result(Mnemonic::LDNT1B, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -52169,7 +53077,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0xA410A000u: { // ldnf1b_z_p_bi_u8
-                        Instruction result(Mnemonic::LDNF1B, insn, 3910);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDNF1B, insn, EncodingId::ldnf1b_z_p_bi_u8);
+            #else
+                        Instruction result(Mnemonic::LDNF1B, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -52184,7 +53096,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0xA4202000u: { // ld1rob_z_p_bi_u8
-                        Instruction result(Mnemonic::LD1ROB, insn, 3752);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LD1ROB, insn, EncodingId::ld1rob_z_p_bi_u8);
+            #else
+                        Instruction result(Mnemonic::LD1ROB, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -52198,7 +53114,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0xA420A000u: { // ld1b_z_p_bi_u16
-                        Instruction result(Mnemonic::LD1B, insn, 3710);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LD1B, insn, EncodingId::ld1b_z_p_bi_u16);
+            #else
+                        Instruction result(Mnemonic::LD1B, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -52213,7 +53133,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0xA420E000u: { // ld2b_z_p_bi_contiguous
-                        Instruction result(Mnemonic::LD2B, insn, 3820);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LD2B, insn, EncodingId::ld2b_z_p_bi_contiguous);
+            #else
+                        Instruction result(Mnemonic::LD2B, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -52228,7 +53152,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0xA430A000u: { // ldnf1b_z_p_bi_u16
-                        Instruction result(Mnemonic::LDNF1B, insn, 3911);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDNF1B, insn, EncodingId::ldnf1b_z_p_bi_u16);
+            #else
+                        Instruction result(Mnemonic::LDNF1B, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -52243,7 +53171,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0xA440A000u: { // ld1b_z_p_bi_u32
-                        Instruction result(Mnemonic::LD1B, insn, 3711);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LD1B, insn, EncodingId::ld1b_z_p_bi_u32);
+            #else
+                        Instruction result(Mnemonic::LD1B, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -52258,7 +53190,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0xA440E000u: { // ld3b_z_p_bi_contiguous
-                        Instruction result(Mnemonic::LD3B, insn, 3830);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LD3B, insn, EncodingId::ld3b_z_p_bi_contiguous);
+            #else
+                        Instruction result(Mnemonic::LD3B, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -52273,7 +53209,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0xA450A000u: { // ldnf1b_z_p_bi_u32
-                        Instruction result(Mnemonic::LDNF1B, insn, 3912);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDNF1B, insn, EncodingId::ldnf1b_z_p_bi_u32);
+            #else
+                        Instruction result(Mnemonic::LDNF1B, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -52288,7 +53228,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0xA460A000u: { // ld1b_z_p_bi_u64
-                        Instruction result(Mnemonic::LD1B, insn, 3712);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LD1B, insn, EncodingId::ld1b_z_p_bi_u64);
+            #else
+                        Instruction result(Mnemonic::LD1B, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -52303,7 +53247,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0xA460E000u: { // ld4b_z_p_bi_contiguous
-                        Instruction result(Mnemonic::LD4B, insn, 3840);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LD4B, insn, EncodingId::ld4b_z_p_bi_contiguous);
+            #else
+                        Instruction result(Mnemonic::LD4B, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -52318,7 +53266,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0xA470A000u: { // ldnf1b_z_p_bi_u64
-                        Instruction result(Mnemonic::LDNF1B, insn, 3913);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDNF1B, insn, EncodingId::ldnf1b_z_p_bi_u64);
+            #else
+                        Instruction result(Mnemonic::LDNF1B, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -52333,7 +53285,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0xA4802000u: { // ld1rqh_z_p_bi_u16
-                        Instruction result(Mnemonic::LD1RQH, insn, 3764);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LD1RQH, insn, EncodingId::ld1rqh_z_p_bi_u16);
+            #else
+                        Instruction result(Mnemonic::LD1RQH, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -52347,7 +53303,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0xA480A000u: { // ld1sw_z_p_bi_s64
-                        Instruction result(Mnemonic::LD1SW, insn, 3800);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LD1SW, insn, EncodingId::ld1sw_z_p_bi_s64);
+            #else
+                        Instruction result(Mnemonic::LD1SW, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -52362,7 +53322,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0xA480E000u: { // ldnt1h_z_p_bi_contiguous
-                        Instruction result(Mnemonic::LDNT1H, insn, 3935);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDNT1H, insn, EncodingId::ldnt1h_z_p_bi_contiguous);
+            #else
+                        Instruction result(Mnemonic::LDNT1H, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -52377,7 +53341,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0xA490A000u: { // ldnf1sw_z_p_bi_s64
-                        Instruction result(Mnemonic::LDNF1SW, insn, 3923);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDNF1SW, insn, EncodingId::ldnf1sw_z_p_bi_s64);
+            #else
+                        Instruction result(Mnemonic::LDNF1SW, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -52392,7 +53360,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0xA490E000u: { // ld2q_z_p_bi_contiguous
-                        Instruction result(Mnemonic::LD2Q, insn, 3826);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LD2Q, insn, EncodingId::ld2q_z_p_bi_contiguous);
+            #else
+                        Instruction result(Mnemonic::LD2Q, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -52407,7 +53379,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0xA4A02000u: { // ld1roh_z_p_bi_u16
-                        Instruction result(Mnemonic::LD1ROH, insn, 3756);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LD1ROH, insn, EncodingId::ld1roh_z_p_bi_u16);
+            #else
+                        Instruction result(Mnemonic::LD1ROH, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -52421,7 +53397,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0xA4A0A000u: { // ld1h_z_p_bi_u16
-                        Instruction result(Mnemonic::LD1H, insn, 3731);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LD1H, insn, EncodingId::ld1h_z_p_bi_u16);
+            #else
+                        Instruction result(Mnemonic::LD1H, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -52436,7 +53416,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0xA4A0E000u: { // ld2h_z_p_bi_contiguous
-                        Instruction result(Mnemonic::LD2H, insn, 3824);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LD2H, insn, EncodingId::ld2h_z_p_bi_contiguous);
+            #else
+                        Instruction result(Mnemonic::LD2H, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -52451,7 +53435,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0xA4B0A000u: { // ldnf1h_z_p_bi_u16
-                        Instruction result(Mnemonic::LDNF1H, insn, 3915);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDNF1H, insn, EncodingId::ldnf1h_z_p_bi_u16);
+            #else
+                        Instruction result(Mnemonic::LDNF1H, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -52466,7 +53454,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0xA4C0A000u: { // ld1h_z_p_bi_u32
-                        Instruction result(Mnemonic::LD1H, insn, 3732);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LD1H, insn, EncodingId::ld1h_z_p_bi_u32);
+            #else
+                        Instruction result(Mnemonic::LD1H, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -52481,7 +53473,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0xA4C0E000u: { // ld3h_z_p_bi_contiguous
-                        Instruction result(Mnemonic::LD3H, insn, 3834);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LD3H, insn, EncodingId::ld3h_z_p_bi_contiguous);
+            #else
+                        Instruction result(Mnemonic::LD3H, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -52496,7 +53492,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0xA4D0A000u: { // ldnf1h_z_p_bi_u32
-                        Instruction result(Mnemonic::LDNF1H, insn, 3916);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDNF1H, insn, EncodingId::ldnf1h_z_p_bi_u32);
+            #else
+                        Instruction result(Mnemonic::LDNF1H, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -52511,7 +53511,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0xA4E0A000u: { // ld1h_z_p_bi_u64
-                        Instruction result(Mnemonic::LD1H, insn, 3733);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LD1H, insn, EncodingId::ld1h_z_p_bi_u64);
+            #else
+                        Instruction result(Mnemonic::LD1H, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -52526,7 +53530,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0xA4E0E000u: { // ld4h_z_p_bi_contiguous
-                        Instruction result(Mnemonic::LD4H, insn, 3844);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LD4H, insn, EncodingId::ld4h_z_p_bi_contiguous);
+            #else
+                        Instruction result(Mnemonic::LD4H, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -52541,7 +53549,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0xA4F0A000u: { // ldnf1h_z_p_bi_u64
-                        Instruction result(Mnemonic::LDNF1H, insn, 3917);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDNF1H, insn, EncodingId::ldnf1h_z_p_bi_u64);
+            #else
+                        Instruction result(Mnemonic::LDNF1H, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -52556,7 +53568,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0xA5002000u: { // ld1rqw_z_p_bi_u32
-                        Instruction result(Mnemonic::LD1RQW, insn, 3766);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LD1RQW, insn, EncodingId::ld1rqw_z_p_bi_u32);
+            #else
+                        Instruction result(Mnemonic::LD1RQW, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -52570,7 +53586,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0xA500A000u: { // ld1sh_z_p_bi_s64
-                        Instruction result(Mnemonic::LD1SH, insn, 3790);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LD1SH, insn, EncodingId::ld1sh_z_p_bi_s64);
+            #else
+                        Instruction result(Mnemonic::LD1SH, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -52585,7 +53605,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0xA500E000u: { // ldnt1w_z_p_bi_contiguous
-                        Instruction result(Mnemonic::LDNT1W, insn, 3944);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDNT1W, insn, EncodingId::ldnt1w_z_p_bi_contiguous);
+            #else
+                        Instruction result(Mnemonic::LDNT1W, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -52600,7 +53624,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0xA5102000u: { // ld1w_z_p_bi_u128
-                        Instruction result(Mnemonic::LD1W, insn, 3810);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LD1W, insn, EncodingId::ld1w_z_p_bi_u128);
+            #else
+                        Instruction result(Mnemonic::LD1W, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -52615,7 +53643,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0xA510A000u: { // ldnf1sh_z_p_bi_s64
-                        Instruction result(Mnemonic::LDNF1SH, insn, 3922);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDNF1SH, insn, EncodingId::ldnf1sh_z_p_bi_s64);
+            #else
+                        Instruction result(Mnemonic::LDNF1SH, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -52630,7 +53662,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0xA510E000u: { // ld3q_z_p_bi_contiguous
-                        Instruction result(Mnemonic::LD3Q, insn, 3836);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LD3Q, insn, EncodingId::ld3q_z_p_bi_contiguous);
+            #else
+                        Instruction result(Mnemonic::LD3Q, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -52645,7 +53681,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0xA5202000u: { // ld1row_z_p_bi_u32
-                        Instruction result(Mnemonic::LD1ROW, insn, 3758);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LD1ROW, insn, EncodingId::ld1row_z_p_bi_u32);
+            #else
+                        Instruction result(Mnemonic::LD1ROW, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -52659,7 +53699,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0xA520A000u: { // ld1sh_z_p_bi_s32
-                        Instruction result(Mnemonic::LD1SH, insn, 3789);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LD1SH, insn, EncodingId::ld1sh_z_p_bi_s32);
+            #else
+                        Instruction result(Mnemonic::LD1SH, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -52674,7 +53718,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0xA520E000u: { // ld2w_z_p_bi_contiguous
-                        Instruction result(Mnemonic::LD2W, insn, 3828);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LD2W, insn, EncodingId::ld2w_z_p_bi_contiguous);
+            #else
+                        Instruction result(Mnemonic::LD2W, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -52689,7 +53737,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0xA530A000u: { // ldnf1sh_z_p_bi_s32
-                        Instruction result(Mnemonic::LDNF1SH, insn, 3921);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDNF1SH, insn, EncodingId::ldnf1sh_z_p_bi_s32);
+            #else
+                        Instruction result(Mnemonic::LDNF1SH, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -52704,7 +53756,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0xA540A000u: { // ld1w_z_p_bi_u32
-                        Instruction result(Mnemonic::LD1W, insn, 3808);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LD1W, insn, EncodingId::ld1w_z_p_bi_u32);
+            #else
+                        Instruction result(Mnemonic::LD1W, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -52719,7 +53775,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0xA540E000u: { // ld3w_z_p_bi_contiguous
-                        Instruction result(Mnemonic::LD3W, insn, 3838);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LD3W, insn, EncodingId::ld3w_z_p_bi_contiguous);
+            #else
+                        Instruction result(Mnemonic::LD3W, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -52734,7 +53794,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0xA550A000u: { // ldnf1w_z_p_bi_u32
-                        Instruction result(Mnemonic::LDNF1W, insn, 3924);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDNF1W, insn, EncodingId::ldnf1w_z_p_bi_u32);
+            #else
+                        Instruction result(Mnemonic::LDNF1W, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -52749,7 +53813,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0xA560A000u: { // ld1w_z_p_bi_u64
-                        Instruction result(Mnemonic::LD1W, insn, 3809);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LD1W, insn, EncodingId::ld1w_z_p_bi_u64);
+            #else
+                        Instruction result(Mnemonic::LD1W, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -52764,7 +53832,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0xA560E000u: { // ld4w_z_p_bi_contiguous
-                        Instruction result(Mnemonic::LD4W, insn, 3848);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LD4W, insn, EncodingId::ld4w_z_p_bi_contiguous);
+            #else
+                        Instruction result(Mnemonic::LD4W, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -52779,7 +53851,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0xA570A000u: { // ldnf1w_z_p_bi_u64
-                        Instruction result(Mnemonic::LDNF1W, insn, 3925);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDNF1W, insn, EncodingId::ldnf1w_z_p_bi_u64);
+            #else
+                        Instruction result(Mnemonic::LDNF1W, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -52794,7 +53870,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0xA5802000u: { // ld1rqd_z_p_bi_u64
-                        Instruction result(Mnemonic::LD1RQD, insn, 3762);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LD1RQD, insn, EncodingId::ld1rqd_z_p_bi_u64);
+            #else
+                        Instruction result(Mnemonic::LD1RQD, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -52808,7 +53888,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0xA580A000u: { // ld1sb_z_p_bi_s64
-                        Instruction result(Mnemonic::LD1SB, insn, 3780);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LD1SB, insn, EncodingId::ld1sb_z_p_bi_s64);
+            #else
+                        Instruction result(Mnemonic::LD1SB, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -52823,7 +53907,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0xA580E000u: { // ldnt1d_z_p_bi_contiguous
-                        Instruction result(Mnemonic::LDNT1D, insn, 3931);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDNT1D, insn, EncodingId::ldnt1d_z_p_bi_contiguous);
+            #else
+                        Instruction result(Mnemonic::LDNT1D, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -52838,7 +53926,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0xA5902000u: { // ld1d_z_p_bi_u128
-                        Instruction result(Mnemonic::LD1D, insn, 3722);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LD1D, insn, EncodingId::ld1d_z_p_bi_u128);
+            #else
+                        Instruction result(Mnemonic::LD1D, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -52853,7 +53945,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0xA590A000u: { // ldnf1sb_z_p_bi_s64
-                        Instruction result(Mnemonic::LDNF1SB, insn, 3920);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDNF1SB, insn, EncodingId::ldnf1sb_z_p_bi_s64);
+            #else
+                        Instruction result(Mnemonic::LDNF1SB, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -52868,7 +53964,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0xA590E000u: { // ld4q_z_p_bi_contiguous
-                        Instruction result(Mnemonic::LD4Q, insn, 3846);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LD4Q, insn, EncodingId::ld4q_z_p_bi_contiguous);
+            #else
+                        Instruction result(Mnemonic::LD4Q, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -52883,7 +53983,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0xA5A02000u: { // ld1rod_z_p_bi_u64
-                        Instruction result(Mnemonic::LD1ROD, insn, 3754);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LD1ROD, insn, EncodingId::ld1rod_z_p_bi_u64);
+            #else
+                        Instruction result(Mnemonic::LD1ROD, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -52897,7 +54001,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0xA5A0A000u: { // ld1sb_z_p_bi_s32
-                        Instruction result(Mnemonic::LD1SB, insn, 3779);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LD1SB, insn, EncodingId::ld1sb_z_p_bi_s32);
+            #else
+                        Instruction result(Mnemonic::LD1SB, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -52912,7 +54020,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0xA5A0E000u: { // ld2d_z_p_bi_contiguous
-                        Instruction result(Mnemonic::LD2D, insn, 3822);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LD2D, insn, EncodingId::ld2d_z_p_bi_contiguous);
+            #else
+                        Instruction result(Mnemonic::LD2D, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -52927,7 +54039,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0xA5B0A000u: { // ldnf1sb_z_p_bi_s32
-                        Instruction result(Mnemonic::LDNF1SB, insn, 3919);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDNF1SB, insn, EncodingId::ldnf1sb_z_p_bi_s32);
+            #else
+                        Instruction result(Mnemonic::LDNF1SB, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -52942,7 +54058,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0xA5C0A000u: { // ld1sb_z_p_bi_s16
-                        Instruction result(Mnemonic::LD1SB, insn, 3778);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LD1SB, insn, EncodingId::ld1sb_z_p_bi_s16);
+            #else
+                        Instruction result(Mnemonic::LD1SB, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -52957,7 +54077,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0xA5C0E000u: { // ld3d_z_p_bi_contiguous
-                        Instruction result(Mnemonic::LD3D, insn, 3832);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LD3D, insn, EncodingId::ld3d_z_p_bi_contiguous);
+            #else
+                        Instruction result(Mnemonic::LD3D, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -52972,7 +54096,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0xA5D0A000u: { // ldnf1sb_z_p_bi_s16
-                        Instruction result(Mnemonic::LDNF1SB, insn, 3918);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDNF1SB, insn, EncodingId::ldnf1sb_z_p_bi_s16);
+            #else
+                        Instruction result(Mnemonic::LDNF1SB, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -52987,7 +54115,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0xA5E0A000u: { // ld1d_z_p_bi_u64
-                        Instruction result(Mnemonic::LD1D, insn, 3721);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LD1D, insn, EncodingId::ld1d_z_p_bi_u64);
+            #else
+                        Instruction result(Mnemonic::LD1D, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -53002,7 +54134,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0xA5E0E000u: { // ld4d_z_p_bi_contiguous
-                        Instruction result(Mnemonic::LD4D, insn, 3842);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LD4D, insn, EncodingId::ld4d_z_p_bi_contiguous);
+            #else
+                        Instruction result(Mnemonic::LD4D, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -53017,7 +54153,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0xA5F0A000u: { // ldnf1d_z_p_bi_u64
-                        Instruction result(Mnemonic::LDNF1D, insn, 3914);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDNF1D, insn, EncodingId::ldnf1d_z_p_bi_u64);
+            #else
+                        Instruction result(Mnemonic::LDNF1D, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -53032,7 +54172,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0xE410E000u: { // stnt1b_z_p_bi_contiguous
-                        Instruction result(Mnemonic::STNT1B, insn, 4382);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::STNT1B, insn, EncodingId::stnt1b_z_p_bi_contiguous);
+            #else
+                        Instruction result(Mnemonic::STNT1B, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -53047,7 +54191,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0xE430E000u: { // st2b_z_p_bi_contiguous
-                        Instruction result(Mnemonic::ST2B, insn, 4350);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::ST2B, insn, EncodingId::st2b_z_p_bi_contiguous);
+            #else
+                        Instruction result(Mnemonic::ST2B, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -53062,7 +54210,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0xE4400000u: { // st2q_z_p_bi_contiguous
-                        Instruction result(Mnemonic::ST2Q, insn, 4356);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::ST2Q, insn, EncodingId::st2q_z_p_bi_contiguous);
+            #else
+                        Instruction result(Mnemonic::ST2Q, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -53077,7 +54229,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0xE450E000u: { // st3b_z_p_bi_contiguous
-                        Instruction result(Mnemonic::ST3B, insn, 4360);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::ST3B, insn, EncodingId::st3b_z_p_bi_contiguous);
+            #else
+                        Instruction result(Mnemonic::ST3B, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -53092,7 +54248,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0xE470E000u: { // st4b_z_p_bi_contiguous
-                        Instruction result(Mnemonic::ST4B, insn, 4370);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::ST4B, insn, EncodingId::st4b_z_p_bi_contiguous);
+            #else
+                        Instruction result(Mnemonic::ST4B, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -53107,7 +54267,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0xE4800000u: { // st3q_z_p_bi_contiguous
-                        Instruction result(Mnemonic::ST3Q, insn, 4366);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::ST3Q, insn, EncodingId::st3q_z_p_bi_contiguous);
+            #else
+                        Instruction result(Mnemonic::ST3Q, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -53122,7 +54286,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0xE490E000u: { // stnt1h_z_p_bi_contiguous
-                        Instruction result(Mnemonic::STNT1H, insn, 4389);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::STNT1H, insn, EncodingId::stnt1h_z_p_bi_contiguous);
+            #else
+                        Instruction result(Mnemonic::STNT1H, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -53137,7 +54305,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0xE4B0E000u: { // st2h_z_p_bi_contiguous
-                        Instruction result(Mnemonic::ST2H, insn, 4354);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::ST2H, insn, EncodingId::st2h_z_p_bi_contiguous);
+            #else
+                        Instruction result(Mnemonic::ST2H, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -53152,7 +54324,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0xE4C00000u: { // st4q_z_p_bi_contiguous
-                        Instruction result(Mnemonic::ST4Q, insn, 4376);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::ST4Q, insn, EncodingId::st4q_z_p_bi_contiguous);
+            #else
+                        Instruction result(Mnemonic::ST4Q, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -53167,7 +54343,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0xE4D0E000u: { // st3h_z_p_bi_contiguous
-                        Instruction result(Mnemonic::ST3H, insn, 4364);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::ST3H, insn, EncodingId::st3h_z_p_bi_contiguous);
+            #else
+                        Instruction result(Mnemonic::ST3H, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -53182,7 +54362,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0xE4F0E000u: { // st4h_z_p_bi_contiguous
-                        Instruction result(Mnemonic::ST4H, insn, 4374);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::ST4H, insn, EncodingId::st4h_z_p_bi_contiguous);
+            #else
+                        Instruction result(Mnemonic::ST4H, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -53197,7 +54381,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0xE500E000u: { // st1w_z_p_bi_u128
-                        Instruction result(Mnemonic::ST1W, insn, 4341);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::ST1W, insn, EncodingId::st1w_z_p_bi_u128);
+            #else
+                        Instruction result(Mnemonic::ST1W, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -53212,7 +54400,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0xE510E000u: { // stnt1w_z_p_bi_contiguous
-                        Instruction result(Mnemonic::STNT1W, insn, 4393);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::STNT1W, insn, EncodingId::stnt1w_z_p_bi_contiguous);
+            #else
+                        Instruction result(Mnemonic::STNT1W, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -53227,7 +54419,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0xE530E000u: { // st2w_z_p_bi_contiguous
-                        Instruction result(Mnemonic::ST2W, insn, 4358);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::ST2W, insn, EncodingId::st2w_z_p_bi_contiguous);
+            #else
+                        Instruction result(Mnemonic::ST2W, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -53242,7 +54438,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0xE550E000u: { // st3w_z_p_bi_contiguous
-                        Instruction result(Mnemonic::ST3W, insn, 4368);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::ST3W, insn, EncodingId::st3w_z_p_bi_contiguous);
+            #else
+                        Instruction result(Mnemonic::ST3W, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -53257,7 +54457,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0xE570E000u: { // st4w_z_p_bi_contiguous
-                        Instruction result(Mnemonic::ST4W, insn, 4378);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::ST4W, insn, EncodingId::st4w_z_p_bi_contiguous);
+            #else
+                        Instruction result(Mnemonic::ST4W, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -53272,7 +54476,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0xE590E000u: { // stnt1d_z_p_bi_contiguous
-                        Instruction result(Mnemonic::STNT1D, insn, 4385);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::STNT1D, insn, EncodingId::stnt1d_z_p_bi_contiguous);
+            #else
+                        Instruction result(Mnemonic::STNT1D, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -53287,7 +54495,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0xE5B0E000u: { // st2d_z_p_bi_contiguous
-                        Instruction result(Mnemonic::ST2D, insn, 4352);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::ST2D, insn, EncodingId::st2d_z_p_bi_contiguous);
+            #else
+                        Instruction result(Mnemonic::ST2D, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -53302,7 +54514,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0xE5C0E000u: { // st1d_z_p_bi_u128
-                        Instruction result(Mnemonic::ST1D, insn, 4320);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::ST1D, insn, EncodingId::st1d_z_p_bi_u128);
+            #else
+                        Instruction result(Mnemonic::ST1D, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -53317,7 +54533,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0xE5D0E000u: { // st3d_z_p_bi_contiguous
-                        Instruction result(Mnemonic::ST3D, insn, 4362);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::ST3D, insn, EncodingId::st3d_z_p_bi_contiguous);
+            #else
+                        Instruction result(Mnemonic::ST3D, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -53332,7 +54552,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0xE5E0E000u: { // st1d_z_p_bi_
-                        Instruction result(Mnemonic::ST1D, insn, 4319);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::ST1D, insn, EncodingId::st1d_z_p_bi_);
+            #else
+                        Instruction result(Mnemonic::ST1D, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -53347,7 +54571,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0xE5F0E000u: { // st4d_z_p_bi_contiguous
-                        Instruction result(Mnemonic::ST4D, insn, 4372);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::ST4D, insn, EncodingId::st4d_z_p_bi_contiguous);
+            #else
+                        Instruction result(Mnemonic::ST4D, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -53368,7 +54596,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
     switch (insn & 0xFFF0C210u) {
         case 0x25004000u: { // and_p_p_pp_z
             // Also matches: movz_p_p_p__and_p_p_pp_z (AND)
-                        Instruction result(Mnemonic::AND, insn, 3296);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::AND, insn, EncodingId::and_p_p_pp_z);
+            #else
+                        Instruction result(Mnemonic::AND, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         { Operand op = Operand::pred(enc.and_pppp_z.Pd); op.set_arrangement(Arrangement::B); result.operands.push_back(op); }
@@ -53378,7 +54610,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x25004010u: { // bic_p_p_pp_z
-                        Instruction result(Mnemonic::BIC, insn, 3353);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::BIC, insn, EncodingId::bic_p_p_pp_z);
+            #else
+                        Instruction result(Mnemonic::BIC, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         { Operand op = Operand::pred(enc.bic_pppp_z.Pd); op.set_arrangement(Arrangement::B); result.operands.push_back(op); }
@@ -53389,7 +54625,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
         }
         case 0x25004200u: { // eor_p_p_pp_z
             // Also matches: not_p_p_p_z_eor_p_p_pp_z (EOR)
-                        Instruction result(Mnemonic::EOR, insn, 3451);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::EOR, insn, EncodingId::eor_p_p_pp_z);
+            #else
+                        Instruction result(Mnemonic::EOR, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         { Operand op = Operand::pred(enc.eor_pppp_z.Pd); op.set_arrangement(Arrangement::B); result.operands.push_back(op); }
@@ -53400,7 +54640,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
         }
         case 0x25004210u: { // movm_p_p_p__sel_p_p_pp_
             // Also matches: sel_p_p_pp_ (SEL)
-                        Instruction result(Mnemonic::SEL, insn, 3991);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SEL, insn, EncodingId::movm_p_p_p__sel_p_p_pp_);
+            #else
+                        Instruction result(Mnemonic::SEL, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         { Operand op = Operand::pred(enc.movm_pppsel_pppp.Pd); op.set_arrangement(Arrangement::B); result.operands.push_back(op); }
@@ -53410,7 +54654,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x2500C000u: { // brkpa_p_p_pp_
-                        Instruction result(Mnemonic::BRKPA, insn, 3363);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::BRKPA, insn, EncodingId::brkpa_p_p_pp_);
+            #else
+                        Instruction result(Mnemonic::BRKPA, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         { Operand op = Operand::pred(enc.brkpa_pppp.Pd); op.set_arrangement(Arrangement::B); result.operands.push_back(op); }
@@ -53420,7 +54668,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x2500C010u: { // brkpb_p_p_pp_
-                        Instruction result(Mnemonic::BRKPB, insn, 3365);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::BRKPB, insn, EncodingId::brkpb_p_p_pp_);
+            #else
+                        Instruction result(Mnemonic::BRKPB, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         { Operand op = Operand::pred(enc.brkpb_pppp.Pd); op.set_arrangement(Arrangement::B); result.operands.push_back(op); }
@@ -53431,7 +54683,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
         }
         case 0x25404000u: { // ands_p_p_pp_z
             // Also matches: movzs_p_p_p__ands_p_p_pp_z (ANDS)
-                        Instruction result(Mnemonic::ANDS, insn, 3301);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::ANDS, insn, EncodingId::ands_p_p_pp_z);
+            #else
+                        Instruction result(Mnemonic::ANDS, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         { Operand op = Operand::pred(enc.ands_pppp_z.Pd); op.set_arrangement(Arrangement::B); result.operands.push_back(op); }
@@ -53441,7 +54697,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x25404010u: { // bics_p_p_pp_z
-                        Instruction result(Mnemonic::BICS, insn, 3356);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::BICS, insn, EncodingId::bics_p_p_pp_z);
+            #else
+                        Instruction result(Mnemonic::BICS, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         { Operand op = Operand::pred(enc.bics_pppp_z.Pd); op.set_arrangement(Arrangement::B); result.operands.push_back(op); }
@@ -53452,7 +54712,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
         }
         case 0x25404200u: { // eors_p_p_pp_z
             // Also matches: nots_p_p_p_z_eors_p_p_pp_z (EORS)
-                        Instruction result(Mnemonic::EORS, insn, 3457);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::EORS, insn, EncodingId::eors_p_p_pp_z);
+            #else
+                        Instruction result(Mnemonic::EORS, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         { Operand op = Operand::pred(enc.eors_pppp_z.Pd); op.set_arrangement(Arrangement::B); result.operands.push_back(op); }
@@ -53462,7 +54726,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x2540C000u: { // brkpas_p_p_pp_
-                        Instruction result(Mnemonic::BRKPAS, insn, 3364);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::BRKPAS, insn, EncodingId::brkpas_p_p_pp_);
+            #else
+                        Instruction result(Mnemonic::BRKPAS, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         { Operand op = Operand::pred(enc.brkpas_pppp.Pd); op.set_arrangement(Arrangement::B); result.operands.push_back(op); }
@@ -53472,7 +54740,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x2540C010u: { // brkpbs_p_p_pp_
-                        Instruction result(Mnemonic::BRKPBS, insn, 3366);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::BRKPBS, insn, EncodingId::brkpbs_p_p_pp_);
+            #else
+                        Instruction result(Mnemonic::BRKPBS, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         { Operand op = Operand::pred(enc.brkpbs_pppp.Pd); op.set_arrangement(Arrangement::B); result.operands.push_back(op); }
@@ -53483,7 +54755,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
         }
         case 0x25804000u: { // mov_p_p__orr_p_p_pp_z
             // Also matches: orr_p_p_pp_z (ORR)
-                        Instruction result(Mnemonic::ORR, insn, 3989);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::ORR, insn, EncodingId::mov_p_p__orr_p_p_pp_z);
+            #else
+                        Instruction result(Mnemonic::ORR, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         { Operand op = Operand::pred(enc.mov_pporr_pppp_z.Pd); op.set_arrangement(Arrangement::B); result.operands.push_back(op); }
@@ -53493,7 +54769,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x25804010u: { // orn_p_p_pp_z
-                        Instruction result(Mnemonic::ORN, insn, 4017);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::ORN, insn, EncodingId::orn_p_p_pp_z);
+            #else
+                        Instruction result(Mnemonic::ORN, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         { Operand op = Operand::pred(enc.orn_pppp_z.Pd); op.set_arrangement(Arrangement::B); result.operands.push_back(op); }
@@ -53503,7 +54783,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x25804200u: { // nor_p_p_pp_z
-                        Instruction result(Mnemonic::NOR, insn, 4010);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::NOR, insn, EncodingId::nor_p_p_pp_z);
+            #else
+                        Instruction result(Mnemonic::NOR, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         { Operand op = Operand::pred(enc.nor_pppp_z.Pd); op.set_arrangement(Arrangement::B); result.operands.push_back(op); }
@@ -53513,7 +54797,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x25804210u: { // nand_p_p_pp_z
-                        Instruction result(Mnemonic::NAND, insn, 4004);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::NAND, insn, EncodingId::nand_p_p_pp_z);
+            #else
+                        Instruction result(Mnemonic::NAND, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         { Operand op = Operand::pred(enc.nand_pppp_z.Pd); op.set_arrangement(Arrangement::B); result.operands.push_back(op); }
@@ -53524,7 +54812,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
         }
         case 0x25C04000u: { // movs_p_p__orrs_p_p_pp_z
             // Also matches: orrs_p_p_pp_z (ORRS)
-                        Instruction result(Mnemonic::ORRS, insn, 3996);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::ORRS, insn, EncodingId::movs_p_p__orrs_p_p_pp_z);
+            #else
+                        Instruction result(Mnemonic::ORRS, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         { Operand op = Operand::pred(enc.movs_pporrs_pppp_z.Pd); op.set_arrangement(Arrangement::B); result.operands.push_back(op); }
@@ -53534,7 +54826,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x25C04010u: { // orns_p_p_pp_z
-                        Instruction result(Mnemonic::ORNS, insn, 4018);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::ORNS, insn, EncodingId::orns_p_p_pp_z);
+            #else
+                        Instruction result(Mnemonic::ORNS, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         { Operand op = Operand::pred(enc.orns_pppp_z.Pd); op.set_arrangement(Arrangement::B); result.operands.push_back(op); }
@@ -53544,7 +54840,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x25C04200u: { // nors_p_p_pp_z
-                        Instruction result(Mnemonic::NORS, insn, 4011);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::NORS, insn, EncodingId::nors_p_p_pp_z);
+            #else
+                        Instruction result(Mnemonic::NORS, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         { Operand op = Operand::pred(enc.nors_pppp_z.Pd); op.set_arrangement(Arrangement::B); result.operands.push_back(op); }
@@ -53554,7 +54854,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x25C04210u: { // nands_p_p_pp_z
-                        Instruction result(Mnemonic::NANDS, insn, 4005);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::NANDS, insn, EncodingId::nands_p_p_pp_z);
+            #else
+                        Instruction result(Mnemonic::NANDS, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         { Operand op = Operand::pred(enc.nands_pppp_z.Pd); op.set_arrangement(Arrangement::B); result.operands.push_back(op); }
@@ -53569,7 +54873,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
     // Switch for mask 0xFFE7FC03u (4 patterns, 4 encodings)
     switch (insn & 0xFFE7FC03u) {
         case 0x4526E800u: { // aese_mz_zzi_4x1
-                        Instruction result(Mnemonic::AESE, insn, 3290);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::AESE, insn, EncodingId::aese_mz_zzi_4x1);
+            #else
+                        Instruction result(Mnemonic::AESE, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         { auto op = Operand::reg_list(static_cast<uint32_t>(make_sve_reg(enc.aese_mz_zzi4x1.Zdn * 4))); op.set_arrangement(Arrangement::B); op.rl.count = 4; result.operands.push_back(op); }
@@ -53578,7 +54886,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x4526EC00u: { // aesd_mz_zzi_4x1
-                        Instruction result(Mnemonic::AESD, insn, 3285);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::AESD, insn, EncodingId::aesd_mz_zzi_4x1);
+            #else
+                        Instruction result(Mnemonic::AESD, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         { auto op = Operand::reg_list(static_cast<uint32_t>(make_sve_reg(enc.aesd_mz_zzi4x1.Zdn * 4))); op.set_arrangement(Arrangement::B); op.rl.count = 4; result.operands.push_back(op); }
@@ -53587,7 +54899,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x4527E800u: { // aesemc_mz_zzi_4x1
-                        Instruction result(Mnemonic::AESEMC, insn, 3293);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::AESEMC, insn, EncodingId::aesemc_mz_zzi_4x1);
+            #else
+                        Instruction result(Mnemonic::AESEMC, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         { auto op = Operand::reg_list(static_cast<uint32_t>(make_sve_reg(enc.aesemc_mz_zzi4x1.Zdn * 4))); op.set_arrangement(Arrangement::B); op.rl.count = 4; result.operands.push_back(op); }
@@ -53596,7 +54912,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x4527EC00u: { // aesdimc_mz_zzi_4x1
-                        Instruction result(Mnemonic::AESDIMC, insn, 3288);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::AESDIMC, insn, EncodingId::aesdimc_mz_zzi_4x1);
+            #else
+                        Instruction result(Mnemonic::AESDIMC, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         { auto op = Operand::reg_list(static_cast<uint32_t>(make_sve_reg(enc.aesdimc_mz_zzi4x1.Zdn * 4))); op.set_arrangement(Arrangement::B); op.rl.count = 4; result.operands.push_back(op); }
@@ -53610,7 +54930,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
     // Switch for mask 0xFFE7FC01u (4 patterns, 4 encodings)
     switch (insn & 0xFFE7FC01u) {
         case 0x4522E800u: { // aese_mz_zzi_2x1
-                        Instruction result(Mnemonic::AESE, insn, 3289);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::AESE, insn, EncodingId::aese_mz_zzi_2x1);
+            #else
+                        Instruction result(Mnemonic::AESE, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         { auto op = Operand::reg_list(static_cast<uint32_t>(make_sve_reg(enc.aese_mz_zzi2x1.Zdn * 2))); op.set_arrangement(Arrangement::B); op.rl.count = 2; result.operands.push_back(op); }
@@ -53619,7 +54943,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x4522EC00u: { // aesd_mz_zzi_2x1
-                        Instruction result(Mnemonic::AESD, insn, 3284);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::AESD, insn, EncodingId::aesd_mz_zzi_2x1);
+            #else
+                        Instruction result(Mnemonic::AESD, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         { auto op = Operand::reg_list(static_cast<uint32_t>(make_sve_reg(enc.aesd_mz_zzi2x1.Zdn * 2))); op.set_arrangement(Arrangement::B); op.rl.count = 2; result.operands.push_back(op); }
@@ -53628,7 +54956,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x4523E800u: { // aesemc_mz_zzi_2x1
-                        Instruction result(Mnemonic::AESEMC, insn, 3292);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::AESEMC, insn, EncodingId::aesemc_mz_zzi_2x1);
+            #else
+                        Instruction result(Mnemonic::AESEMC, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         { auto op = Operand::reg_list(static_cast<uint32_t>(make_sve_reg(enc.aesemc_mz_zzi2x1.Zdn * 2))); op.set_arrangement(Arrangement::B); op.rl.count = 2; result.operands.push_back(op); }
@@ -53637,7 +54969,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x4523EC00u: { // aesdimc_mz_zzi_2x1
-                        Instruction result(Mnemonic::AESDIMC, insn, 3287);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::AESDIMC, insn, EncodingId::aesdimc_mz_zzi_2x1);
+            #else
+                        Instruction result(Mnemonic::AESDIMC, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         { auto op = Operand::reg_list(static_cast<uint32_t>(make_sve_reg(enc.aesdimc_mz_zzi2x1.Zdn * 2))); op.set_arrangement(Arrangement::B); op.rl.count = 2; result.operands.push_back(op); }
@@ -53651,7 +54987,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
     // Switch for mask 0xFFE0FC20u (3 patterns, 3 encodings)
     switch (insn & 0xFFE0FC20u) {
         case 0x45A00000u: { // sqshrn_z_mz2_
-                        Instruction result(Mnemonic::SQSHRN, insn, 4282);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SQSHRN, insn, EncodingId::sqshrn_z_mz2_);
+            #else
+                        Instruction result(Mnemonic::SQSHRN, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         if (enc.sqshrn_zmz2.tsize == 0u) return std::nullopt;
@@ -53661,7 +55001,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x45A01000u: { // uqshrn_z_mz2_
-                        Instruction result(Mnemonic::UQSHRN, insn, 4542);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::UQSHRN, insn, EncodingId::uqshrn_z_mz2_);
+            #else
+                        Instruction result(Mnemonic::UQSHRN, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         if (enc.uqshrn_zmz2.tsize == 0u) return std::nullopt;
@@ -53671,7 +55015,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x45A02000u: { // sqshrun_z_mz2_
-                        Instruction result(Mnemonic::SQSHRUN, insn, 4285);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SQSHRUN, insn, EncodingId::sqshrun_z_mz2_);
+            #else
+                        Instruction result(Mnemonic::SQSHRUN, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         if (enc.sqshrun_zmz2.tsize == 0u) return std::nullopt;
@@ -53686,7 +55034,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
     // Switch for mask 0xFFE0FC01u (2 patterns, 2 encodings)
     switch (insn & 0xFFE0FC01u) {
         case 0x4520F800u: { // pmull_mz_zzw_1x2
-                        Instruction result(Mnemonic::PMULL, insn, 4040);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::PMULL, insn, EncodingId::pmull_mz_zzw_1x2);
+            #else
+                        Instruction result(Mnemonic::PMULL, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         { auto op = Operand::reg_list(static_cast<uint32_t>(make_sve_reg(enc.pmull_mz_zzw1x2.Zd * 2))); op.set_arrangement(Arrangement::Q); op.rl.count = 2; result.operands.push_back(op); }
@@ -53695,7 +55047,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x4520FC00u: { // pmlal_mz_zzzw_1x2
-                        Instruction result(Mnemonic::PMLAL, insn, 4030);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::PMLAL, insn, EncodingId::pmlal_mz_zzzw_1x2);
+            #else
+                        Instruction result(Mnemonic::PMLAL, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         { auto op = Operand::reg_list(static_cast<uint32_t>(make_sve_reg(enc.pmlal_mz_zzzw1x2.Zda * 2))); op.set_arrangement(Arrangement::Q); op.rl.count = 2; result.operands.push_back(op); }
@@ -53709,7 +55065,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
     // Switch for mask 0xFFE0FC00u (96 patterns, 97 encodings)
     switch (insn & 0xFFE0FC00u) {
         case 0x04203000u: { // and_z_zz_
-                        Instruction result(Mnemonic::AND, insn, 3299);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::AND, insn, EncodingId::and_z_zz_);
+            #else
+                        Instruction result(Mnemonic::AND, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::sve(enc.and_zzz.Zd, Arrangement::D));
@@ -53718,7 +55078,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x04203800u: { // eor3_z_zzz_
-                        Instruction result(Mnemonic::EOR3, insn, 3450);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::EOR3, insn, EncodingId::eor3_z_zzz_);
+            #else
+                        Instruction result(Mnemonic::EOR3, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::sve(enc.eor3zzzz.Zdn, Arrangement::D));
@@ -53728,7 +55092,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x04203C00u: { // bsl_z_zzz_
-                        Instruction result(Mnemonic::BSL, insn, 3369);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::BSL, insn, EncodingId::bsl_z_zzz_);
+            #else
+                        Instruction result(Mnemonic::BSL, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::sve(enc.bsl_zzzz.Zdn, Arrangement::D));
@@ -53738,7 +55106,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x04206400u: { // pmul_z_zz_
-                        Instruction result(Mnemonic::PMUL, insn, 4039);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::PMUL, insn, EncodingId::pmul_z_zz_);
+            #else
+                        Instruction result(Mnemonic::PMUL, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::sve(enc.pmul_zzz.Zd, Arrangement::B));
@@ -53748,7 +55120,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
         }
         case 0x04603000u: { // mov_z_z__orr_z_zz_
             // Also matches: orr_z_zz_ (ORR)
-                        Instruction result(Mnemonic::ORR, insn, 3990);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::ORR, insn, EncodingId::mov_z_z__orr_z_zz_);
+            #else
+                        Instruction result(Mnemonic::ORR, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::sve(enc.mov_zzorr_zzz.Zd, Arrangement::D));
@@ -53757,7 +55133,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x04603800u: { // bcax_z_zzz_
-                        Instruction result(Mnemonic::BCAX, insn, 3310);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::BCAX, insn, EncodingId::bcax_z_zzz_);
+            #else
+                        Instruction result(Mnemonic::BCAX, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::sve(enc.bcax_zzzz.Zdn, Arrangement::D));
@@ -53767,7 +55147,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x04603C00u: { // bsl1n_z_zzz_
-                        Instruction result(Mnemonic::BSL1N, insn, 3367);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::BSL1N, insn, EncodingId::bsl1n_z_zzz_);
+            #else
+                        Instruction result(Mnemonic::BSL1N, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::sve(enc.bsl1n_zzzz.Zdn, Arrangement::D));
@@ -53777,7 +55161,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x04A03000u: { // eor_z_zz_
-                        Instruction result(Mnemonic::EOR, insn, 3454);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::EOR, insn, EncodingId::eor_z_zz_);
+            #else
+                        Instruction result(Mnemonic::EOR, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::sve(enc.eor_zzz.Zd, Arrangement::D));
@@ -53786,7 +55174,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x04A03C00u: { // bsl2n_z_zzz_
-                        Instruction result(Mnemonic::BSL2N, insn, 3368);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::BSL2N, insn, EncodingId::bsl2n_z_zzz_);
+            #else
+                        Instruction result(Mnemonic::BSL2N, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::sve(enc.bsl2n_zzzz.Zdn, Arrangement::D));
@@ -53796,7 +55188,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x04E00800u: { // addpt_z_zz_
-                        Instruction result(Mnemonic::ADDPT, insn, 3274);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::ADDPT, insn, EncodingId::addpt_z_zz_);
+            #else
+                        Instruction result(Mnemonic::ADDPT, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::sve(enc.addpt_zzz.Zd, Arrangement::D));
@@ -53805,7 +55201,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x04E00C00u: { // subpt_z_zz_
-                        Instruction result(Mnemonic::SUBPT, insn, 4404);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SUBPT, insn, EncodingId::subpt_z_zz_);
+            #else
+                        Instruction result(Mnemonic::SUBPT, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::sve(enc.subpt_zzz.Zd, Arrangement::D));
@@ -53814,7 +55214,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x04E03000u: { // bic_z_zz_
-                        Instruction result(Mnemonic::BIC, insn, 3355);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::BIC, insn, EncodingId::bic_z_zz_);
+            #else
+                        Instruction result(Mnemonic::BIC, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::sve(enc.bic_zzz.Zd, Arrangement::D));
@@ -53823,7 +55227,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x04E03C00u: { // nbsl_z_zzz_
-                        Instruction result(Mnemonic::NBSL, insn, 4006);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::NBSL, insn, EncodingId::nbsl_z_zzz_);
+            #else
+                        Instruction result(Mnemonic::NBSL, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::sve(enc.nbsl_zzzz.Zdn, Arrangement::D));
@@ -53833,7 +55241,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x05202400u: { // dupq_z_zi_
-                        Instruction result(Mnemonic::DUPQ, insn, 3448);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::DUPQ, insn, EncodingId::dupq_z_zi_);
+            #else
+                        Instruction result(Mnemonic::DUPQ, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         if (enc.dupq_zzi.tsz == 0u) return std::nullopt;
@@ -53842,7 +55254,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x05A00000u: { // zip1_z_zz_q
-                        Instruction result(Mnemonic::ZIP1, insn, 4620);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::ZIP1, insn, EncodingId::zip1_z_zz_q);
+            #else
+                        Instruction result(Mnemonic::ZIP1, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::sve(enc.zip1zzz_q.Zd, Arrangement::Q));
@@ -53851,7 +55267,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x05A00400u: { // zip2_z_zz_q
-                        Instruction result(Mnemonic::ZIP2, insn, 4618);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::ZIP2, insn, EncodingId::zip2_z_zz_q);
+            #else
+                        Instruction result(Mnemonic::ZIP2, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::sve(enc.zip2zzz_q.Zd, Arrangement::Q));
@@ -53860,7 +55280,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x05A00800u: { // uzp1_z_zz_q
-                        Instruction result(Mnemonic::UZP1, insn, 4582);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::UZP1, insn, EncodingId::uzp1_z_zz_q);
+            #else
+                        Instruction result(Mnemonic::UZP1, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::sve(enc.uzp1zzz_q.Zd, Arrangement::Q));
@@ -53869,7 +55293,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x05A00C00u: { // uzp2_z_zz_q
-                        Instruction result(Mnemonic::UZP2, insn, 4584);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::UZP2, insn, EncodingId::uzp2_z_zz_q);
+            #else
+                        Instruction result(Mnemonic::UZP2, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::sve(enc.uzp2zzz_q.Zd, Arrangement::Q));
@@ -53878,7 +55306,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x05A01800u: { // trn1_z_zz_q
-                        Instruction result(Mnemonic::TRN1, insn, 4425);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::TRN1, insn, EncodingId::trn1_z_zz_q);
+            #else
+                        Instruction result(Mnemonic::TRN1, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::sve(enc.trn1zzz_q.Zd, Arrangement::Q));
@@ -53887,7 +55319,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x05A01C00u: { // trn2_z_zz_q
-                        Instruction result(Mnemonic::TRN2, insn, 4427);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::TRN2, insn, EncodingId::trn2_z_zz_q);
+            #else
+                        Instruction result(Mnemonic::TRN2, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::sve(enc.trn2zzz_q.Zd, Arrangement::Q));
@@ -53896,7 +55332,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x4400C800u: { // sdot_z32_zzz_
-                        Instruction result(Mnemonic::SDOT, insn, 4141);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SDOT, insn, EncodingId::sdot_z32_zzz_);
+            #else
+                        Instruction result(Mnemonic::SDOT, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::sve(enc.sdot_z32zzz.Zda, Arrangement::S));
@@ -53905,7 +55345,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x4400CC00u: { // udot_z32_zzz_
-                        Instruction result(Mnemonic::UDOT, insn, 4461);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::UDOT, insn, EncodingId::udot_z32_zzz_);
+            #else
+                        Instruction result(Mnemonic::UDOT, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::sve(enc.udot_z32zzz.Zda, Arrangement::S));
@@ -53914,7 +55358,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x44400000u: { // sdot_z16_zzz_h
-                        Instruction result(Mnemonic::SDOT, insn, 4140);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SDOT, insn, EncodingId::sdot_z16_zzz_h);
+            #else
+                        Instruction result(Mnemonic::SDOT, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::sve(enc.sdot_z16zzz_h.Zda, Arrangement::H));
@@ -53923,7 +55371,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x44400400u: { // udot_z16_zzz_h
-                        Instruction result(Mnemonic::UDOT, insn, 4460);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::UDOT, insn, EncodingId::udot_z16_zzz_h);
+            #else
+                        Instruction result(Mnemonic::UDOT, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::sve(enc.udot_z16zzz_h.Zda, Arrangement::H));
@@ -53932,7 +55384,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x44807800u: { // usdot_z_zzz_s
-                        Instruction result(Mnemonic::USDOT, insn, 4560);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::USDOT, insn, EncodingId::usdot_z_zzz_s);
+            #else
+                        Instruction result(Mnemonic::USDOT, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::sve(enc.usdot_zzzz_s.Zda, Arrangement::S));
@@ -53941,7 +55397,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x4480C800u: { // sdot_z32_zzzi_
-                        Instruction result(Mnemonic::SDOT, insn, 4143);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SDOT, insn, EncodingId::sdot_z32_zzzi_);
+            #else
+                        Instruction result(Mnemonic::SDOT, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::sve(enc.sdot_z32zzzi.Zda, Arrangement::S));
@@ -53950,7 +55410,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x4480CC00u: { // udot_z32_zzzi_
-                        Instruction result(Mnemonic::UDOT, insn, 4463);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::UDOT, insn, EncodingId::udot_z32_zzzi_);
+            #else
+                        Instruction result(Mnemonic::UDOT, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::sve(enc.udot_z32zzzi.Zda, Arrangement::S));
@@ -53959,7 +55423,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x44A00000u: { // sdot_z_zzzi_s
-                        Instruction result(Mnemonic::SDOT, insn, 4145);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SDOT, insn, EncodingId::sdot_z_zzzi_s);
+            #else
+                        Instruction result(Mnemonic::SDOT, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::sve(enc.sdot_zzzzi_s.Zda, Arrangement::S));
@@ -53968,7 +55436,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x44A00400u: { // udot_z_zzzi_s
-                        Instruction result(Mnemonic::UDOT, insn, 4465);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::UDOT, insn, EncodingId::udot_z_zzzi_s);
+            #else
+                        Instruction result(Mnemonic::UDOT, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::sve(enc.udot_zzzzi_s.Zda, Arrangement::S));
@@ -53977,7 +55449,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x44A00800u: { // mla_z_zzzi_s
-                        Instruction result(Mnemonic::MLA, insn, 3972);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::MLA, insn, EncodingId::mla_z_zzzi_s);
+            #else
+                        Instruction result(Mnemonic::MLA, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::sve(enc.mla_zzzzi_s.Zda, Arrangement::S));
@@ -53986,7 +55462,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x44A00C00u: { // mls_z_zzzi_s
-                        Instruction result(Mnemonic::MLS, insn, 3977);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::MLS, insn, EncodingId::mls_z_zzzi_s);
+            #else
+                        Instruction result(Mnemonic::MLS, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::sve(enc.mls_zzzzi_s.Zda, Arrangement::S));
@@ -53995,7 +55475,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x44A01000u: { // sqrdmlah_z_zzzi_s
-                        Instruction result(Mnemonic::SQRDMLAH, insn, 4258);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SQRDMLAH, insn, EncodingId::sqrdmlah_z_zzzi_s);
+            #else
+                        Instruction result(Mnemonic::SQRDMLAH, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::sve(enc.sqrdmlah_zzzzi_s.Zda, Arrangement::S));
@@ -54004,7 +55488,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x44A01400u: { // sqrdmlsh_z_zzzi_s
-                        Instruction result(Mnemonic::SQRDMLSH, insn, 4262);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SQRDMLSH, insn, EncodingId::sqrdmlsh_z_zzzi_s);
+            #else
+                        Instruction result(Mnemonic::SQRDMLSH, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::sve(enc.sqrdmlsh_zzzzi_s.Zda, Arrangement::S));
@@ -54013,7 +55501,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x44A01800u: { // usdot_z_zzzi_s
-                        Instruction result(Mnemonic::USDOT, insn, 4561);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::USDOT, insn, EncodingId::usdot_z_zzzi_s);
+            #else
+                        Instruction result(Mnemonic::USDOT, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::sve(enc.usdot_zzzzi_s.Zda, Arrangement::S));
@@ -54022,7 +55514,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x44A01C00u: { // sudot_z_zzzi_s
-                        Instruction result(Mnemonic::SUDOT, insn, 4407);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SUDOT, insn, EncodingId::sudot_z_zzzi_s);
+            #else
+                        Instruction result(Mnemonic::SUDOT, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::sve(enc.sudot_zzzzi_s.Zda, Arrangement::S));
@@ -54031,7 +55527,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x44A0F000u: { // sqdmulh_z_zzi_s
-                        Instruction result(Mnemonic::SQDMULH, insn, 4229);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SQDMULH, insn, EncodingId::sqdmulh_z_zzi_s);
+            #else
+                        Instruction result(Mnemonic::SQDMULH, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::sve(enc.sqdmulh_zzzi_s.Zd, Arrangement::S));
@@ -54040,7 +55540,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x44A0F400u: { // sqrdmulh_z_zzi_s
-                        Instruction result(Mnemonic::SQRDMULH, insn, 4266);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SQRDMULH, insn, EncodingId::sqrdmulh_z_zzi_s);
+            #else
+                        Instruction result(Mnemonic::SQRDMULH, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::sve(enc.sqrdmulh_zzzi_s.Zd, Arrangement::S));
@@ -54049,7 +55553,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x44A0F800u: { // mul_z_zzi_s
-                        Instruction result(Mnemonic::MUL, insn, 4002);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::MUL, insn, EncodingId::mul_z_zzi_s);
+            #else
+                        Instruction result(Mnemonic::MUL, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::sve(enc.mul_zzzi_s.Zd, Arrangement::S));
@@ -54058,7 +55566,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x44C0D000u: { // mlapt_z_zzz_
-                        Instruction result(Mnemonic::MLAPT, insn, 3974);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::MLAPT, insn, EncodingId::mlapt_z_zzz_);
+            #else
+                        Instruction result(Mnemonic::MLAPT, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::sve(enc.mlapt_zzzz.Zda, Arrangement::D));
@@ -54067,7 +55579,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x44C0D800u: { // madpt_z_zzz_
-                        Instruction result(Mnemonic::MADPT, insn, 3968);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::MADPT, insn, EncodingId::madpt_z_zzz_);
+            #else
+                        Instruction result(Mnemonic::MADPT, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::sve(enc.madpt_zzzz.Zdn, Arrangement::D));
@@ -54076,7 +55592,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x44E00000u: { // sdot_z_zzzi_d
-                        Instruction result(Mnemonic::SDOT, insn, 4146);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SDOT, insn, EncodingId::sdot_z_zzzi_d);
+            #else
+                        Instruction result(Mnemonic::SDOT, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::sve(enc.sdot_zzzzi_d.Zda, Arrangement::D));
@@ -54085,7 +55605,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x44E00400u: { // udot_z_zzzi_d
-                        Instruction result(Mnemonic::UDOT, insn, 4466);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::UDOT, insn, EncodingId::udot_z_zzzi_d);
+            #else
+                        Instruction result(Mnemonic::UDOT, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::sve(enc.udot_zzzzi_d.Zda, Arrangement::D));
@@ -54094,7 +55618,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x44E00800u: { // mla_z_zzzi_d
-                        Instruction result(Mnemonic::MLA, insn, 3973);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::MLA, insn, EncodingId::mla_z_zzzi_d);
+            #else
+                        Instruction result(Mnemonic::MLA, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::sve(enc.mla_zzzzi_d.Zda, Arrangement::D));
@@ -54103,7 +55631,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x44E00C00u: { // mls_z_zzzi_d
-                        Instruction result(Mnemonic::MLS, insn, 3978);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::MLS, insn, EncodingId::mls_z_zzzi_d);
+            #else
+                        Instruction result(Mnemonic::MLS, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::sve(enc.mls_zzzzi_d.Zda, Arrangement::D));
@@ -54112,7 +55644,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x44E01000u: { // sqrdmlah_z_zzzi_d
-                        Instruction result(Mnemonic::SQRDMLAH, insn, 4259);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SQRDMLAH, insn, EncodingId::sqrdmlah_z_zzzi_d);
+            #else
+                        Instruction result(Mnemonic::SQRDMLAH, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::sve(enc.sqrdmlah_zzzzi_d.Zda, Arrangement::D));
@@ -54121,7 +55657,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x44E01400u: { // sqrdmlsh_z_zzzi_d
-                        Instruction result(Mnemonic::SQRDMLSH, insn, 4263);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SQRDMLSH, insn, EncodingId::sqrdmlsh_z_zzzi_d);
+            #else
+                        Instruction result(Mnemonic::SQRDMLSH, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::sve(enc.sqrdmlsh_zzzzi_d.Zda, Arrangement::D));
@@ -54130,7 +55670,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x44E0F000u: { // sqdmulh_z_zzi_d
-                        Instruction result(Mnemonic::SQDMULH, insn, 4230);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SQDMULH, insn, EncodingId::sqdmulh_z_zzi_d);
+            #else
+                        Instruction result(Mnemonic::SQDMULH, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::sve(enc.sqdmulh_zzzi_d.Zd, Arrangement::D));
@@ -54139,7 +55683,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x44E0F400u: { // sqrdmulh_z_zzi_d
-                        Instruction result(Mnemonic::SQRDMULH, insn, 4267);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SQRDMULH, insn, EncodingId::sqrdmulh_z_zzi_d);
+            #else
+                        Instruction result(Mnemonic::SQRDMULH, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::sve(enc.sqrdmulh_zzzi_d.Zd, Arrangement::D));
@@ -54148,7 +55696,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x44E0F800u: { // mul_z_zzi_d
-                        Instruction result(Mnemonic::MUL, insn, 4003);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::MUL, insn, EncodingId::mul_z_zzi_d);
+            #else
+                        Instruction result(Mnemonic::MUL, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::sve(enc.mul_zzzi_d.Zd, Arrangement::D));
@@ -54157,7 +55709,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x45006800u: { // pmullb_z_zz_q
-                        Instruction result(Mnemonic::PMULLB, insn, 4042);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::PMULLB, insn, EncodingId::pmullb_z_zz_q);
+            #else
+                        Instruction result(Mnemonic::PMULLB, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::sve(enc.pmullb_zzz_q.Zd, Arrangement::Q));
@@ -54166,7 +55722,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x45006C00u: { // pmullt_z_zz_q
-                        Instruction result(Mnemonic::PMULLT, insn, 4044);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::PMULLT, insn, EncodingId::pmullt_z_zz_q);
+            #else
+                        Instruction result(Mnemonic::PMULLT, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::sve(enc.pmullt_zzz_q.Zd, Arrangement::Q));
@@ -54175,7 +55735,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x45009800u: { // smmla_z_zzz_
-                        Instruction result(Mnemonic::SMMLA, insn, 4180);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SMMLA, insn, EncodingId::smmla_z_zzz_);
+            #else
+                        Instruction result(Mnemonic::SMMLA, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::sve(enc.smmla_zzzz.Zda, Arrangement::S));
@@ -54184,7 +55748,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x4520AC00u: { // luti6_z_zzz_8
-                        Instruction result(Mnemonic::LUTI6, insn, 3966);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LUTI6, insn, EncodingId::luti6_z_zzz_8);
+            #else
+                        Instruction result(Mnemonic::LUTI6, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::sve(enc.luti6zzzz8.Zd, Arrangement::B));
@@ -54193,7 +55761,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x4520F000u: { // sm4ekey_z_zz_
-                        Instruction result(Mnemonic::SM4EKEY, insn, 4157);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SM4EKEY, insn, EncodingId::sm4ekey_z_zz_);
+            #else
+                        Instruction result(Mnemonic::SM4EKEY, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::sve(enc.sm4ekey_zzz.Zd, Arrangement::S));
@@ -54202,7 +55774,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x4520F400u: { // rax1_z_zz_
-                        Instruction result(Mnemonic::RAX1, insn, 4083);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::RAX1, insn, EncodingId::rax1_z_zz_);
+            #else
+                        Instruction result(Mnemonic::RAX1, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::sve(enc.rax1zzz.Zd, Arrangement::D));
@@ -54211,7 +55787,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x45809800u: { // usmmla_z_zzz_
-                        Instruction result(Mnemonic::USMMLA, insn, 4564);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::USMMLA, insn, EncodingId::usmmla_z_zzz_);
+            #else
+                        Instruction result(Mnemonic::USMMLA, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::sve(enc.usmmla_zzzz.Zda, Arrangement::S));
@@ -54220,7 +55800,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x45C09800u: { // ummla_z_zzz_
-                        Instruction result(Mnemonic::UMMLA, insn, 4492);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::UMMLA, insn, EncodingId::ummla_z_zzz_);
+            #else
+                        Instruction result(Mnemonic::UMMLA, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::sve(enc.ummla_zzzz.Zda, Arrangement::S));
@@ -54229,7 +55813,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x64202400u: { // bfclamp_z_zz_
-                        Instruction result(Mnemonic::BFCLAMP, insn, 3319);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::BFCLAMP, insn, EncodingId::bfclamp_z_zz_);
+            #else
+                        Instruction result(Mnemonic::BFCLAMP, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::sve(enc.bfclamp_zzz.Zd, Arrangement::H));
@@ -54238,7 +55826,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x64204000u: { // fdot_z_zzzi_
-                        Instruction result(Mnemonic::FDOT, insn, 3567);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FDOT, insn, EncodingId::fdot_z_zzzi_);
+            #else
+                        Instruction result(Mnemonic::FDOT, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::sve(enc.fdot_zzzzi.Zda, Arrangement::S));
@@ -54247,7 +55839,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x64208000u: { // fdot_z_zzz_
-                        Instruction result(Mnemonic::FDOT, insn, 3566);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FDOT, insn, EncodingId::fdot_z_zzz_);
+            #else
+                        Instruction result(Mnemonic::FDOT, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::sve(enc.fdot_zzzz.Zda, Arrangement::S));
@@ -54256,7 +55852,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x64208400u: { // fdot_z_zz8z8_
-                        Instruction result(Mnemonic::FDOT, insn, 3564);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FDOT, insn, EncodingId::fdot_z_zz8z8_);
+            #else
+                        Instruction result(Mnemonic::FDOT, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::sve(enc.fdot_zzz8z8.Zda, Arrangement::H));
@@ -54265,7 +55865,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x64208800u: { // fmlallbb_z32_z8z8z8_
-                        Instruction result(Mnemonic::FMLALLBB, insn, 3602);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FMLALLBB, insn, EncodingId::fmlallbb_z32_z8z8z8_);
+            #else
+                        Instruction result(Mnemonic::FMLALLBB, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::sve(enc.fmlallbb_z32z8z8z8.Zda, Arrangement::S));
@@ -54274,7 +55878,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x64209800u: { // fmlallbt_z32_z8z8z8_
-                        Instruction result(Mnemonic::FMLALLBT, insn, 3604);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FMLALLBT, insn, EncodingId::fmlallbt_z32_z8z8z8_);
+            #else
+                        Instruction result(Mnemonic::FMLALLBT, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::sve(enc.fmlallbt_z32z8z8z8.Zda, Arrangement::S));
@@ -54283,7 +55891,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x6420A800u: { // fmlalltb_z32_z8z8z8_
-                        Instruction result(Mnemonic::FMLALLTB, insn, 3606);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FMLALLTB, insn, EncodingId::fmlalltb_z32_z8z8z8_);
+            #else
+                        Instruction result(Mnemonic::FMLALLTB, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::sve(enc.fmlalltb_z32z8z8z8.Zda, Arrangement::S));
@@ -54292,7 +55904,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x6420B800u: { // fmlalltt_z32_z8z8z8_
-                        Instruction result(Mnemonic::FMLALLTT, insn, 3608);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FMLALLTT, insn, EncodingId::fmlalltt_z32_z8z8z8_);
+            #else
+                        Instruction result(Mnemonic::FMLALLTT, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::sve(enc.fmlalltt_z32z8z8z8.Zda, Arrangement::S));
@@ -54301,7 +55917,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x6420E000u: { // fmmla_z32_zz8z8_
-                        Instruction result(Mnemonic::FMMLA, insn, 3623);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FMMLA, insn, EncodingId::fmmla_z32_zz8z8_);
+            #else
+                        Instruction result(Mnemonic::FMMLA, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::sve(enc.fmmla_z32zz8z8.Zda, Arrangement::S));
@@ -54310,7 +55930,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x6420E400u: { // fmmla_z32_zzz_h
-                        Instruction result(Mnemonic::FMMLA, insn, 3624);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FMMLA, insn, EncodingId::fmmla_z32_zzz_h);
+            #else
+                        Instruction result(Mnemonic::FMMLA, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::sve(enc.fmmla_z32zzz_h.Zda, Arrangement::S));
@@ -54319,7 +55943,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x64604000u: { // bfdot_z_zzzi_
-                        Instruction result(Mnemonic::BFDOT, insn, 3326);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::BFDOT, insn, EncodingId::bfdot_z_zzzi_);
+            #else
+                        Instruction result(Mnemonic::BFDOT, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::sve(enc.bfdot_zzzzi.Zda, Arrangement::S));
@@ -54328,7 +55956,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x64604400u: { // fdot_z32_zz8z8i_
-                        Instruction result(Mnemonic::FDOT, insn, 3563);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FDOT, insn, EncodingId::fdot_z32_zz8z8i_);
+            #else
+                        Instruction result(Mnemonic::FDOT, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::sve(enc.fdot_z32zz8z8i.Zda, Arrangement::S));
@@ -54337,7 +55969,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x64608000u: { // bfdot_z_zzz_
-                        Instruction result(Mnemonic::BFDOT, insn, 3325);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::BFDOT, insn, EncodingId::bfdot_z_zzz_);
+            #else
+                        Instruction result(Mnemonic::BFDOT, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::sve(enc.bfdot_zzzz.Zda, Arrangement::S));
@@ -54346,7 +55982,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x64608400u: { // fdot_z32_zz8z8_
-                        Instruction result(Mnemonic::FDOT, insn, 3562);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FDOT, insn, EncodingId::fdot_z32_zz8z8_);
+            #else
+                        Instruction result(Mnemonic::FDOT, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::sve(enc.fdot_z32zz8z8.Zda, Arrangement::S));
@@ -54355,7 +55995,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x6460E000u: { // fmmla_z16_zz8z8_
-                        Instruction result(Mnemonic::FMMLA, insn, 3622);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FMMLA, insn, EncodingId::fmmla_z16_zz8z8_);
+            #else
+                        Instruction result(Mnemonic::FMMLA, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::sve(enc.fmmla_z16zz8z8.Zda, Arrangement::H));
@@ -54364,7 +56008,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x6460E400u: { // bfmmla_z_zzz_
-                        Instruction result(Mnemonic::BFMMLA, insn, 3344);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::BFMMLA, insn, EncodingId::bfmmla_z_zzz_);
+            #else
+                        Instruction result(Mnemonic::BFMMLA, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::sve(enc.bfmmla_zzzz.Zda, Arrangement::S));
@@ -54373,7 +56021,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x64A00000u: { // fmla_z_zzzi_s
-                        Instruction result(Mnemonic::FMLA, insn, 3596);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FMLA, insn, EncodingId::fmla_z_zzzi_s);
+            #else
+                        Instruction result(Mnemonic::FMLA, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::sve(enc.fmla_zzzzi_s.Zda, Arrangement::S));
@@ -54382,7 +56034,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x64A00400u: { // fmls_z_zzzi_s
-                        Instruction result(Mnemonic::FMLS, insn, 3616);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FMLS, insn, EncodingId::fmls_z_zzzi_s);
+            #else
+                        Instruction result(Mnemonic::FMLS, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::sve(enc.fmls_zzzzi_s.Zda, Arrangement::S));
@@ -54391,7 +56047,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x64A02000u: { // fmul_z_zzi_s
-                        Instruction result(Mnemonic::FMUL, insn, 3637);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FMUL, insn, EncodingId::fmul_z_zzi_s);
+            #else
+                        Instruction result(Mnemonic::FMUL, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::sve(enc.fmul_zzzi_s.Zd, Arrangement::S));
@@ -54400,7 +56060,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x64A08000u: { // fmlalb_z_zzz_
-                        Instruction result(Mnemonic::FMLALB, insn, 3600);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FMLALB, insn, EncodingId::fmlalb_z_zzz_);
+            #else
+                        Instruction result(Mnemonic::FMLALB, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::sve(enc.fmlalb_zzzz.Zda, Arrangement::S));
@@ -54409,7 +56073,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x64A08400u: { // fmlalt_z_zzz_
-                        Instruction result(Mnemonic::FMLALT, insn, 3612);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FMLALT, insn, EncodingId::fmlalt_z_zzz_);
+            #else
+                        Instruction result(Mnemonic::FMLALT, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::sve(enc.fmlalt_zzzz.Zda, Arrangement::S));
@@ -54418,7 +56086,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x64A08800u: { // fmlalb_z_z8z8z8_
-                        Instruction result(Mnemonic::FMLALB, insn, 3598);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FMLALB, insn, EncodingId::fmlalb_z_z8z8z8_);
+            #else
+                        Instruction result(Mnemonic::FMLALB, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::sve(enc.fmlalb_zz8z8z8.Zda, Arrangement::H));
@@ -54427,7 +56099,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x64A09800u: { // fmlalt_z_z8z8z8_
-                        Instruction result(Mnemonic::FMLALT, insn, 3610);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FMLALT, insn, EncodingId::fmlalt_z_z8z8z8_);
+            #else
+                        Instruction result(Mnemonic::FMLALT, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::sve(enc.fmlalt_zz8z8z8.Zda, Arrangement::H));
@@ -54436,7 +56112,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x64A0A000u: { // fmlslb_z_zzz_
-                        Instruction result(Mnemonic::FMLSLB, insn, 3618);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FMLSLB, insn, EncodingId::fmlslb_z_zzz_);
+            #else
+                        Instruction result(Mnemonic::FMLSLB, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::sve(enc.fmlslb_zzzz.Zda, Arrangement::S));
@@ -54445,7 +56125,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x64A0A400u: { // fmlslt_z_zzz_
-                        Instruction result(Mnemonic::FMLSLT, insn, 3620);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FMLSLT, insn, EncodingId::fmlslt_z_zzz_);
+            #else
+                        Instruction result(Mnemonic::FMLSLT, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::sve(enc.fmlslt_zzzz.Zda, Arrangement::S));
@@ -54454,7 +56138,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x64A0E000u: { // fmmla_z_zzz_h
-                        Instruction result(Mnemonic::FMMLA, insn, 3625);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FMMLA, insn, EncodingId::fmmla_z_zzz_h);
+            #else
+                        Instruction result(Mnemonic::FMMLA, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::sve(enc.fmmla_zzzz_h.Zda, Arrangement::H));
@@ -54463,7 +56151,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x64A0E400u: { // fmmla_z_zzz_s
-                        Instruction result(Mnemonic::FMMLA, insn, 3626);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FMMLA, insn, EncodingId::fmmla_z_zzz_s);
+            #else
+                        Instruction result(Mnemonic::FMMLA, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::sve(enc.fmmla_zzzz_s.Zda, Arrangement::S));
@@ -54472,7 +56164,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x64E00000u: { // fmla_z_zzzi_d
-                        Instruction result(Mnemonic::FMLA, insn, 3597);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FMLA, insn, EncodingId::fmla_z_zzzi_d);
+            #else
+                        Instruction result(Mnemonic::FMLA, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::sve(enc.fmla_zzzzi_d.Zda, Arrangement::D));
@@ -54481,7 +56177,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x64E00400u: { // fmls_z_zzzi_d
-                        Instruction result(Mnemonic::FMLS, insn, 3617);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FMLS, insn, EncodingId::fmls_z_zzzi_d);
+            #else
+                        Instruction result(Mnemonic::FMLS, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::sve(enc.fmls_zzzzi_d.Zda, Arrangement::D));
@@ -54490,7 +56190,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x64E02000u: { // fmul_z_zzi_d
-                        Instruction result(Mnemonic::FMUL, insn, 3638);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FMUL, insn, EncodingId::fmul_z_zzi_d);
+            #else
+                        Instruction result(Mnemonic::FMUL, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::sve(enc.fmul_zzzi_d.Zd, Arrangement::D));
@@ -54499,7 +56203,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x64E08000u: { // bfmlalb_z_zzz_
-                        Instruction result(Mnemonic::BFMLALB, insn, 3333);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::BFMLALB, insn, EncodingId::bfmlalb_z_zzz_);
+            #else
+                        Instruction result(Mnemonic::BFMLALB, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::sve(enc.bfmlalb_zzzz.Zda, Arrangement::S));
@@ -54508,7 +56216,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x64E08400u: { // bfmlalt_z_zzz_
-                        Instruction result(Mnemonic::BFMLALT, insn, 3335);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::BFMLALT, insn, EncodingId::bfmlalt_z_zzz_);
+            #else
+                        Instruction result(Mnemonic::BFMLALT, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::sve(enc.bfmlalt_zzzz.Zda, Arrangement::S));
@@ -54517,7 +56229,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x64E0A000u: { // bfmlslb_z_zzz_
-                        Instruction result(Mnemonic::BFMLSLB, insn, 3339);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::BFMLSLB, insn, EncodingId::bfmlslb_z_zzz_);
+            #else
+                        Instruction result(Mnemonic::BFMLSLB, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::sve(enc.bfmlslb_zzzz.Zda, Arrangement::S));
@@ -54526,7 +56242,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x64E0A400u: { // bfmlslt_z_zzz_
-                        Instruction result(Mnemonic::BFMLSLT, insn, 3341);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::BFMLSLT, insn, EncodingId::bfmlslt_z_zzz_);
+            #else
+                        Instruction result(Mnemonic::BFMLSLT, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::sve(enc.bfmlslt_zzzz.Zda, Arrangement::S));
@@ -54535,7 +56255,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x64E0E000u: { // bfmmla_z_zzz_h
-                        Instruction result(Mnemonic::BFMMLA, insn, 3343);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::BFMMLA, insn, EncodingId::bfmmla_z_zzz_h);
+            #else
+                        Instruction result(Mnemonic::BFMMLA, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::sve(enc.bfmmla_zzzz_h.Zda, Arrangement::H));
@@ -54544,7 +56268,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x64E0E400u: { // fmmla_z_zzz_d
-                        Instruction result(Mnemonic::FMMLA, insn, 3627);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FMMLA, insn, EncodingId::fmmla_z_zzz_d);
+            #else
+                        Instruction result(Mnemonic::FMMLA, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::sve(enc.fmmla_zzzz_d.Zda, Arrangement::D));
@@ -54553,7 +56281,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x65000000u: { // bfadd_z_zz_
-                        Instruction result(Mnemonic::BFADD, insn, 3318);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::BFADD, insn, EncodingId::bfadd_z_zz_);
+            #else
+                        Instruction result(Mnemonic::BFADD, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::sve(enc.bfadd_zzz.Zd, Arrangement::H));
@@ -54562,7 +56294,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x65000400u: { // bfsub_z_zz_
-                        Instruction result(Mnemonic::BFSUB, insn, 3350);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::BFSUB, insn, EncodingId::bfsub_z_zz_);
+            #else
+                        Instruction result(Mnemonic::BFSUB, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::sve(enc.bfsub_zzz.Zd, Arrangement::H));
@@ -54571,7 +56307,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x65000800u: { // bfmul_z_zz_
-                        Instruction result(Mnemonic::BFMUL, insn, 3346);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::BFMUL, insn, EncodingId::bfmul_z_zz_);
+            #else
+                        Instruction result(Mnemonic::BFMUL, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::sve(enc.bfmul_zzz.Zd, Arrangement::H));
@@ -54585,7 +56325,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
     // Switch for mask 0xFFE0F800u (4 patterns, 4 encodings)
     switch (insn & 0xFFE0F800u) {
         case 0x04205000u: { // addvl_r_ri_
-                        Instruction result(Mnemonic::ADDVL, insn, 3280);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::ADDVL, insn, EncodingId::addvl_r_ri_);
+            #else
+                        Instruction result(Mnemonic::ADDVL, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         { result.operands.push_back(Operand::gp(enc.addvl_rri.Rd, true, true)); }
@@ -54594,7 +56338,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x04205800u: { // addsvl_r_ri_
-                        Instruction result(Mnemonic::ADDSVL, insn, 3279);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::ADDSVL, insn, EncodingId::addsvl_r_ri_);
+            #else
+                        Instruction result(Mnemonic::ADDSVL, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         { result.operands.push_back(Operand::gp(enc.addsvl_rri.Rd, true, true)); }
@@ -54603,7 +56351,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x04605000u: { // addpl_r_ri_
-                        Instruction result(Mnemonic::ADDPL, insn, 3272);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::ADDPL, insn, EncodingId::addpl_r_ri_);
+            #else
+                        Instruction result(Mnemonic::ADDPL, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         { result.operands.push_back(Operand::gp(enc.addpl_rri.Rd, true, true)); }
@@ -54612,7 +56364,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x04605800u: { // addspl_r_ri_
-                        Instruction result(Mnemonic::ADDSPL, insn, 3277);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::ADDSPL, insn, EncodingId::addspl_r_ri_);
+            #else
+                        Instruction result(Mnemonic::ADDSPL, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         { result.operands.push_back(Operand::gp(enc.addspl_rri.Rd, true, true)); }
@@ -54626,7 +56382,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
     // Switch for mask 0xFFE0F400u (45 patterns, 45 encodings)
     switch (insn & 0xFFE0F400u) {
         case 0x44A02000u: { // sqdmlalb_z_zzzi_s
-                        Instruction result(Mnemonic::SQDMLALB, insn, 4214);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SQDMLALB, insn, EncodingId::sqdmlalb_z_zzzi_s);
+            #else
+                        Instruction result(Mnemonic::SQDMLALB, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::sve(enc.sqdmlalb_zzzzi_s.Zda, Arrangement::S));
@@ -54635,7 +56395,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x44A02400u: { // sqdmlalt_z_zzzi_s
-                        Instruction result(Mnemonic::SQDMLALT, insn, 4218);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SQDMLALT, insn, EncodingId::sqdmlalt_z_zzzi_s);
+            #else
+                        Instruction result(Mnemonic::SQDMLALT, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::sve(enc.sqdmlalt_zzzzi_s.Zda, Arrangement::S));
@@ -54644,7 +56408,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x44A03000u: { // sqdmlslb_z_zzzi_s
-                        Instruction result(Mnemonic::SQDMLSLB, insn, 4221);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SQDMLSLB, insn, EncodingId::sqdmlslb_z_zzzi_s);
+            #else
+                        Instruction result(Mnemonic::SQDMLSLB, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::sve(enc.sqdmlslb_zzzzi_s.Zda, Arrangement::S));
@@ -54653,7 +56421,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x44A03400u: { // sqdmlslt_z_zzzi_s
-                        Instruction result(Mnemonic::SQDMLSLT, insn, 4225);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SQDMLSLT, insn, EncodingId::sqdmlslt_z_zzzi_s);
+            #else
+                        Instruction result(Mnemonic::SQDMLSLT, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::sve(enc.sqdmlslt_zzzzi_s.Zda, Arrangement::S));
@@ -54662,7 +56434,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x44A08000u: { // smlalb_z_zzzi_s
-                        Instruction result(Mnemonic::SMLALB, insn, 4169);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SMLALB, insn, EncodingId::smlalb_z_zzzi_s);
+            #else
+                        Instruction result(Mnemonic::SMLALB, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::sve(enc.smlalb_zzzzi_s.Zda, Arrangement::S));
@@ -54671,7 +56447,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x44A08400u: { // smlalt_z_zzzi_s
-                        Instruction result(Mnemonic::SMLALT, insn, 4172);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SMLALT, insn, EncodingId::smlalt_z_zzzi_s);
+            #else
+                        Instruction result(Mnemonic::SMLALT, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::sve(enc.smlalt_zzzzi_s.Zda, Arrangement::S));
@@ -54680,7 +56460,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x44A09000u: { // umlalb_z_zzzi_s
-                        Instruction result(Mnemonic::UMLALB, insn, 4481);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::UMLALB, insn, EncodingId::umlalb_z_zzzi_s);
+            #else
+                        Instruction result(Mnemonic::UMLALB, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::sve(enc.umlalb_zzzzi_s.Zda, Arrangement::S));
@@ -54689,7 +56473,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x44A09400u: { // umlalt_z_zzzi_s
-                        Instruction result(Mnemonic::UMLALT, insn, 4484);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::UMLALT, insn, EncodingId::umlalt_z_zzzi_s);
+            #else
+                        Instruction result(Mnemonic::UMLALT, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::sve(enc.umlalt_zzzzi_s.Zda, Arrangement::S));
@@ -54698,7 +56486,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x44A0A000u: { // smlslb_z_zzzi_s
-                        Instruction result(Mnemonic::SMLSLB, insn, 4175);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SMLSLB, insn, EncodingId::smlslb_z_zzzi_s);
+            #else
+                        Instruction result(Mnemonic::SMLSLB, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::sve(enc.smlslb_zzzzi_s.Zda, Arrangement::S));
@@ -54707,7 +56499,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x44A0A400u: { // smlslt_z_zzzi_s
-                        Instruction result(Mnemonic::SMLSLT, insn, 4178);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SMLSLT, insn, EncodingId::smlslt_z_zzzi_s);
+            #else
+                        Instruction result(Mnemonic::SMLSLT, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::sve(enc.smlslt_zzzzi_s.Zda, Arrangement::S));
@@ -54716,7 +56512,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x44A0B000u: { // umlslb_z_zzzi_s
-                        Instruction result(Mnemonic::UMLSLB, insn, 4487);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::UMLSLB, insn, EncodingId::umlslb_z_zzzi_s);
+            #else
+                        Instruction result(Mnemonic::UMLSLB, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::sve(enc.umlslb_zzzzi_s.Zda, Arrangement::S));
@@ -54725,7 +56525,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x44A0B400u: { // umlslt_z_zzzi_s
-                        Instruction result(Mnemonic::UMLSLT, insn, 4490);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::UMLSLT, insn, EncodingId::umlslt_z_zzzi_s);
+            #else
+                        Instruction result(Mnemonic::UMLSLT, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::sve(enc.umlslt_zzzzi_s.Zda, Arrangement::S));
@@ -54734,7 +56538,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x44A0C000u: { // smullb_z_zzi_s
-                        Instruction result(Mnemonic::SMULLB, insn, 4184);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SMULLB, insn, EncodingId::smullb_z_zzi_s);
+            #else
+                        Instruction result(Mnemonic::SMULLB, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::sve(enc.smullb_zzzi_s.Zd, Arrangement::S));
@@ -54743,7 +56551,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x44A0C400u: { // smullt_z_zzi_s
-                        Instruction result(Mnemonic::SMULLT, insn, 4187);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SMULLT, insn, EncodingId::smullt_z_zzi_s);
+            #else
+                        Instruction result(Mnemonic::SMULLT, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::sve(enc.smullt_zzzi_s.Zd, Arrangement::S));
@@ -54752,7 +56564,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x44A0D000u: { // umullb_z_zzi_s
-                        Instruction result(Mnemonic::UMULLB, insn, 4496);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::UMULLB, insn, EncodingId::umullb_z_zzi_s);
+            #else
+                        Instruction result(Mnemonic::UMULLB, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::sve(enc.umullb_zzzi_s.Zd, Arrangement::S));
@@ -54761,7 +56577,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x44A0D400u: { // umullt_z_zzi_s
-                        Instruction result(Mnemonic::UMULLT, insn, 4499);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::UMULLT, insn, EncodingId::umullt_z_zzi_s);
+            #else
+                        Instruction result(Mnemonic::UMULLT, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::sve(enc.umullt_zzzi_s.Zd, Arrangement::S));
@@ -54770,7 +56590,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x44A0E000u: { // sqdmullb_z_zzi_s
-                        Instruction result(Mnemonic::SQDMULLB, insn, 4232);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SQDMULLB, insn, EncodingId::sqdmullb_z_zzi_s);
+            #else
+                        Instruction result(Mnemonic::SQDMULLB, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::sve(enc.sqdmullb_zzzi_s.Zd, Arrangement::S));
@@ -54779,7 +56603,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x44A0E400u: { // sqdmullt_z_zzi_s
-                        Instruction result(Mnemonic::SQDMULLT, insn, 4235);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SQDMULLT, insn, EncodingId::sqdmullt_z_zzi_s);
+            #else
+                        Instruction result(Mnemonic::SQDMULLT, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::sve(enc.sqdmullt_zzzi_s.Zd, Arrangement::S));
@@ -54788,7 +56616,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x44E02000u: { // sqdmlalb_z_zzzi_d
-                        Instruction result(Mnemonic::SQDMLALB, insn, 4215);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SQDMLALB, insn, EncodingId::sqdmlalb_z_zzzi_d);
+            #else
+                        Instruction result(Mnemonic::SQDMLALB, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::sve(enc.sqdmlalb_zzzzi_d.Zda, Arrangement::D));
@@ -54797,7 +56629,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x44E02400u: { // sqdmlalt_z_zzzi_d
-                        Instruction result(Mnemonic::SQDMLALT, insn, 4219);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SQDMLALT, insn, EncodingId::sqdmlalt_z_zzzi_d);
+            #else
+                        Instruction result(Mnemonic::SQDMLALT, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::sve(enc.sqdmlalt_zzzzi_d.Zda, Arrangement::D));
@@ -54806,7 +56642,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x44E03000u: { // sqdmlslb_z_zzzi_d
-                        Instruction result(Mnemonic::SQDMLSLB, insn, 4222);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SQDMLSLB, insn, EncodingId::sqdmlslb_z_zzzi_d);
+            #else
+                        Instruction result(Mnemonic::SQDMLSLB, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::sve(enc.sqdmlslb_zzzzi_d.Zda, Arrangement::D));
@@ -54815,7 +56655,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x44E03400u: { // sqdmlslt_z_zzzi_d
-                        Instruction result(Mnemonic::SQDMLSLT, insn, 4226);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SQDMLSLT, insn, EncodingId::sqdmlslt_z_zzzi_d);
+            #else
+                        Instruction result(Mnemonic::SQDMLSLT, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::sve(enc.sqdmlslt_zzzzi_d.Zda, Arrangement::D));
@@ -54824,7 +56668,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x44E08000u: { // smlalb_z_zzzi_d
-                        Instruction result(Mnemonic::SMLALB, insn, 4170);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SMLALB, insn, EncodingId::smlalb_z_zzzi_d);
+            #else
+                        Instruction result(Mnemonic::SMLALB, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::sve(enc.smlalb_zzzzi_d.Zda, Arrangement::D));
@@ -54833,7 +56681,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x44E08400u: { // smlalt_z_zzzi_d
-                        Instruction result(Mnemonic::SMLALT, insn, 4173);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SMLALT, insn, EncodingId::smlalt_z_zzzi_d);
+            #else
+                        Instruction result(Mnemonic::SMLALT, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::sve(enc.smlalt_zzzzi_d.Zda, Arrangement::D));
@@ -54842,7 +56694,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x44E09000u: { // umlalb_z_zzzi_d
-                        Instruction result(Mnemonic::UMLALB, insn, 4482);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::UMLALB, insn, EncodingId::umlalb_z_zzzi_d);
+            #else
+                        Instruction result(Mnemonic::UMLALB, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::sve(enc.umlalb_zzzzi_d.Zda, Arrangement::D));
@@ -54851,7 +56707,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x44E09400u: { // umlalt_z_zzzi_d
-                        Instruction result(Mnemonic::UMLALT, insn, 4485);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::UMLALT, insn, EncodingId::umlalt_z_zzzi_d);
+            #else
+                        Instruction result(Mnemonic::UMLALT, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::sve(enc.umlalt_zzzzi_d.Zda, Arrangement::D));
@@ -54860,7 +56720,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x44E0A000u: { // smlslb_z_zzzi_d
-                        Instruction result(Mnemonic::SMLSLB, insn, 4176);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SMLSLB, insn, EncodingId::smlslb_z_zzzi_d);
+            #else
+                        Instruction result(Mnemonic::SMLSLB, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::sve(enc.smlslb_zzzzi_d.Zda, Arrangement::D));
@@ -54869,7 +56733,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x44E0A400u: { // smlslt_z_zzzi_d
-                        Instruction result(Mnemonic::SMLSLT, insn, 4179);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SMLSLT, insn, EncodingId::smlslt_z_zzzi_d);
+            #else
+                        Instruction result(Mnemonic::SMLSLT, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::sve(enc.smlslt_zzzzi_d.Zda, Arrangement::D));
@@ -54878,7 +56746,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x44E0B000u: { // umlslb_z_zzzi_d
-                        Instruction result(Mnemonic::UMLSLB, insn, 4488);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::UMLSLB, insn, EncodingId::umlslb_z_zzzi_d);
+            #else
+                        Instruction result(Mnemonic::UMLSLB, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::sve(enc.umlslb_zzzzi_d.Zda, Arrangement::D));
@@ -54887,7 +56759,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x44E0B400u: { // umlslt_z_zzzi_d
-                        Instruction result(Mnemonic::UMLSLT, insn, 4491);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::UMLSLT, insn, EncodingId::umlslt_z_zzzi_d);
+            #else
+                        Instruction result(Mnemonic::UMLSLT, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::sve(enc.umlslt_zzzzi_d.Zda, Arrangement::D));
@@ -54896,7 +56772,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x44E0C000u: { // smullb_z_zzi_d
-                        Instruction result(Mnemonic::SMULLB, insn, 4185);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SMULLB, insn, EncodingId::smullb_z_zzi_d);
+            #else
+                        Instruction result(Mnemonic::SMULLB, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::sve(enc.smullb_zzzi_d.Zd, Arrangement::D));
@@ -54905,7 +56785,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x44E0C400u: { // smullt_z_zzi_d
-                        Instruction result(Mnemonic::SMULLT, insn, 4188);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SMULLT, insn, EncodingId::smullt_z_zzi_d);
+            #else
+                        Instruction result(Mnemonic::SMULLT, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::sve(enc.smullt_zzzi_d.Zd, Arrangement::D));
@@ -54914,7 +56798,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x44E0D000u: { // umullb_z_zzi_d
-                        Instruction result(Mnemonic::UMULLB, insn, 4497);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::UMULLB, insn, EncodingId::umullb_z_zzi_d);
+            #else
+                        Instruction result(Mnemonic::UMULLB, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::sve(enc.umullb_zzzi_d.Zd, Arrangement::D));
@@ -54923,7 +56811,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x44E0D400u: { // umullt_z_zzi_d
-                        Instruction result(Mnemonic::UMULLT, insn, 4500);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::UMULLT, insn, EncodingId::umullt_z_zzi_d);
+            #else
+                        Instruction result(Mnemonic::UMULLT, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::sve(enc.umullt_zzzi_d.Zd, Arrangement::D));
@@ -54932,7 +56824,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x44E0E000u: { // sqdmullb_z_zzi_d
-                        Instruction result(Mnemonic::SQDMULLB, insn, 4233);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SQDMULLB, insn, EncodingId::sqdmullb_z_zzi_d);
+            #else
+                        Instruction result(Mnemonic::SQDMULLB, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::sve(enc.sqdmullb_zzzi_d.Zd, Arrangement::D));
@@ -54941,7 +56837,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x44E0E400u: { // sqdmullt_z_zzi_d
-                        Instruction result(Mnemonic::SQDMULLT, insn, 4236);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SQDMULLT, insn, EncodingId::sqdmullt_z_zzi_d);
+            #else
+                        Instruction result(Mnemonic::SQDMULLT, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::sve(enc.sqdmullt_zzzi_d.Zd, Arrangement::D));
@@ -54950,7 +56850,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x64204400u: { // fdot_z_zz8z8i_
-                        Instruction result(Mnemonic::FDOT, insn, 3565);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FDOT, insn, EncodingId::fdot_z_zz8z8i_);
+            #else
+                        Instruction result(Mnemonic::FDOT, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::sve(enc.fdot_zzz8z8i.Zda, Arrangement::H));
@@ -54959,7 +56863,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x64A04000u: { // fmlalb_z_zzzi_s
-                        Instruction result(Mnemonic::FMLALB, insn, 3601);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FMLALB, insn, EncodingId::fmlalb_z_zzzi_s);
+            #else
+                        Instruction result(Mnemonic::FMLALB, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::sve(enc.fmlalb_zzzzi_s.Zda, Arrangement::S));
@@ -54968,7 +56876,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x64A04400u: { // fmlalt_z_zzzi_s
-                        Instruction result(Mnemonic::FMLALT, insn, 3613);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FMLALT, insn, EncodingId::fmlalt_z_zzzi_s);
+            #else
+                        Instruction result(Mnemonic::FMLALT, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::sve(enc.fmlalt_zzzzi_s.Zda, Arrangement::S));
@@ -54977,7 +56889,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x64A06000u: { // fmlslb_z_zzzi_s
-                        Instruction result(Mnemonic::FMLSLB, insn, 3619);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FMLSLB, insn, EncodingId::fmlslb_z_zzzi_s);
+            #else
+                        Instruction result(Mnemonic::FMLSLB, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::sve(enc.fmlslb_zzzzi_s.Zda, Arrangement::S));
@@ -54986,7 +56902,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x64A06400u: { // fmlslt_z_zzzi_s
-                        Instruction result(Mnemonic::FMLSLT, insn, 3621);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FMLSLT, insn, EncodingId::fmlslt_z_zzzi_s);
+            #else
+                        Instruction result(Mnemonic::FMLSLT, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::sve(enc.fmlslt_zzzzi_s.Zda, Arrangement::S));
@@ -54995,7 +56915,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x64E04000u: { // bfmlalb_z_zzzi_
-                        Instruction result(Mnemonic::BFMLALB, insn, 3334);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::BFMLALB, insn, EncodingId::bfmlalb_z_zzzi_);
+            #else
+                        Instruction result(Mnemonic::BFMLALB, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::sve(enc.bfmlalb_zzzzi.Zda, Arrangement::S));
@@ -55004,7 +56928,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x64E04400u: { // bfmlalt_z_zzzi_
-                        Instruction result(Mnemonic::BFMLALT, insn, 3336);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::BFMLALT, insn, EncodingId::bfmlalt_z_zzzi_);
+            #else
+                        Instruction result(Mnemonic::BFMLALT, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::sve(enc.bfmlalt_zzzzi.Zda, Arrangement::S));
@@ -55013,7 +56941,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x64E06000u: { // bfmlslb_z_zzzi_
-                        Instruction result(Mnemonic::BFMLSLB, insn, 3340);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::BFMLSLB, insn, EncodingId::bfmlslb_z_zzzi_);
+            #else
+                        Instruction result(Mnemonic::BFMLSLB, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::sve(enc.bfmlslb_zzzzi.Zda, Arrangement::S));
@@ -55022,7 +56954,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x64E06400u: { // bfmlslt_z_zzzi_
-                        Instruction result(Mnemonic::BFMLSLT, insn, 3342);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::BFMLSLT, insn, EncodingId::bfmlslt_z_zzzi_);
+            #else
+                        Instruction result(Mnemonic::BFMLSLT, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::sve(enc.bfmlslt_zzzzi.Zda, Arrangement::S));
@@ -55036,7 +56972,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
     // Switch for mask 0xFFE0F000u (16 patterns, 16 encodings)
     switch (insn & 0xFFE0F000u) {
         case 0x0420A000u: { // adr_z_az_d_s32_scaled
-                        Instruction result(Mnemonic::ADR, insn, 3282);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::ADR, insn, EncodingId::adr_z_az_d_s32_scaled);
+            #else
+                        Instruction result(Mnemonic::ADR, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::sve(enc.adr_zaz_ds32scaled.Zd, Arrangement::D));
@@ -55045,7 +56985,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x0460A000u: { // adr_z_az_d_u32_scaled
-                        Instruction result(Mnemonic::ADR, insn, 3283);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::ADR, insn, EncodingId::adr_z_az_d_u32_scaled);
+            #else
+                        Instruction result(Mnemonic::ADR, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::sve(enc.adr_zaz_du32scaled.Zd, Arrangement::D));
@@ -55054,7 +56998,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x44A04000u: { // cdot_z_zzzi_s
-                        Instruction result(Mnemonic::CDOT, insn, 3372);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::CDOT, insn, EncodingId::cdot_z_zzzi_s);
+            #else
+                        Instruction result(Mnemonic::CDOT, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::sve(enc.cdot_zzzzi_s.Zda, Arrangement::S));
@@ -55064,7 +57012,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x44A06000u: { // cmla_z_zzzi_h
-                        Instruction result(Mnemonic::CMLA, insn, 3385);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::CMLA, insn, EncodingId::cmla_z_zzzi_h);
+            #else
+                        Instruction result(Mnemonic::CMLA, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::sve(enc.cmla_zzzzi_h.Zda, Arrangement::H));
@@ -55074,7 +57026,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x44A07000u: { // sqrdcmlah_z_zzzi_h
-                        Instruction result(Mnemonic::SQRDCMLAH, insn, 4254);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SQRDCMLAH, insn, EncodingId::sqrdcmlah_z_zzzi_h);
+            #else
+                        Instruction result(Mnemonic::SQRDCMLAH, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::sve(enc.sqrdcmlah_zzzzi_h.Zda, Arrangement::H));
@@ -55084,7 +57040,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x44E04000u: { // cdot_z_zzzi_d
-                        Instruction result(Mnemonic::CDOT, insn, 3373);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::CDOT, insn, EncodingId::cdot_z_zzzi_d);
+            #else
+                        Instruction result(Mnemonic::CDOT, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::sve(enc.cdot_zzzzi_d.Zda, Arrangement::D));
@@ -55094,7 +57054,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x44E06000u: { // cmla_z_zzzi_s
-                        Instruction result(Mnemonic::CMLA, insn, 3386);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::CMLA, insn, EncodingId::cmla_z_zzzi_s);
+            #else
+                        Instruction result(Mnemonic::CMLA, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::sve(enc.cmla_zzzzi_s.Zda, Arrangement::S));
@@ -55104,7 +57068,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x44E07000u: { // sqrdcmlah_z_zzzi_s
-                        Instruction result(Mnemonic::SQRDCMLAH, insn, 4255);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SQRDCMLAH, insn, EncodingId::sqrdcmlah_z_zzzi_s);
+            #else
+                        Instruction result(Mnemonic::SQRDCMLAH, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::sve(enc.sqrdcmlah_zzzzi_s.Zda, Arrangement::S));
@@ -55114,7 +57082,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x64205000u: { // fmlalb_z_z8z8z8i_
-                        Instruction result(Mnemonic::FMLALB, insn, 3599);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FMLALB, insn, EncodingId::fmlalb_z_z8z8z8i_);
+            #else
+                        Instruction result(Mnemonic::FMLALB, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::sve(enc.fmlalb_zz8z8z8i.Zda, Arrangement::H));
@@ -55123,7 +57095,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x6420C000u: { // fmlallbb_z32_z8z8z8i_
-                        Instruction result(Mnemonic::FMLALLBB, insn, 3603);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FMLALLBB, insn, EncodingId::fmlallbb_z32_z8z8z8i_);
+            #else
+                        Instruction result(Mnemonic::FMLALLBB, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::sve(enc.fmlallbb_z32z8z8z8i.Zda, Arrangement::S));
@@ -55132,7 +57108,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x6460C000u: { // fmlallbt_z32_z8z8z8i_
-                        Instruction result(Mnemonic::FMLALLBT, insn, 3605);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FMLALLBT, insn, EncodingId::fmlallbt_z32_z8z8z8i_);
+            #else
+                        Instruction result(Mnemonic::FMLALLBT, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::sve(enc.fmlallbt_z32z8z8z8i.Zda, Arrangement::S));
@@ -55141,7 +57121,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x64A01000u: { // fcmla_z_zzzi_h
-                        Instruction result(Mnemonic::FCMLA, insn, 3498);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FCMLA, insn, EncodingId::fcmla_z_zzzi_h);
+            #else
+                        Instruction result(Mnemonic::FCMLA, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::sve(enc.fcmla_zzzzi_h.Zda, Arrangement::H));
@@ -55151,7 +57135,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x64A05000u: { // fmlalt_z_z8z8z8i_
-                        Instruction result(Mnemonic::FMLALT, insn, 3611);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FMLALT, insn, EncodingId::fmlalt_z_z8z8z8i_);
+            #else
+                        Instruction result(Mnemonic::FMLALT, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::sve(enc.fmlalt_zz8z8z8i.Zda, Arrangement::H));
@@ -55160,7 +57148,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x64A0C000u: { // fmlalltb_z32_z8z8z8i_
-                        Instruction result(Mnemonic::FMLALLTB, insn, 3607);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FMLALLTB, insn, EncodingId::fmlalltb_z32_z8z8z8i_);
+            #else
+                        Instruction result(Mnemonic::FMLALLTB, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::sve(enc.fmlalltb_z32z8z8z8i.Zda, Arrangement::S));
@@ -55169,7 +57161,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x64E01000u: { // fcmla_z_zzzi_s
-                        Instruction result(Mnemonic::FCMLA, insn, 3499);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FCMLA, insn, EncodingId::fcmla_z_zzzi_s);
+            #else
+                        Instruction result(Mnemonic::FCMLA, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::sve(enc.fcmla_zzzzi_s.Zda, Arrangement::S));
@@ -55179,7 +57175,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x64E0C000u: { // fmlalltt_z32_z8z8z8i_
-                        Instruction result(Mnemonic::FMLALLTT, insn, 3609);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FMLALLTT, insn, EncodingId::fmlalltt_z32_z8z8z8i_);
+            #else
+                        Instruction result(Mnemonic::FMLALLTT, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::sve(enc.fmlalltt_z32z8z8z8i.Zda, Arrangement::S));
@@ -55194,7 +57194,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
     switch (insn & 0xFFE0E010u) {
         case 0x8400C000u: { // prfb_i_p_br_s
             if (((insn >> 16) & 0x1F) == 0x1F) break;
-                        Instruction result(Mnemonic::PRFB, insn, 4049);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::PRFB, insn, EncodingId::prfb_i_p_br_s);
+            #else
+                        Instruction result(Mnemonic::PRFB, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         if (enc.prfb_ipbr_s.Rm == 31u) return std::nullopt;
@@ -55206,7 +57210,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x8400E000u: { // prfb_i_p_ai_s
-                        Instruction result(Mnemonic::PRFB, insn, 4046);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::PRFB, insn, EncodingId::prfb_i_p_ai_s);
+            #else
+                        Instruction result(Mnemonic::PRFB, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::prefetch_op(static_cast<PrefetchOp>((enc.prfb_ipai_s.prfop < 8 ? enc.prfb_ipai_s.prfop : (enc.prfb_ipai_s.prfop & 7u) | 16u))));
@@ -55220,7 +57228,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
         }
         case 0x8480C000u: { // prfh_i_p_br_s
             if (((insn >> 16) & 0x1F) == 0x1F) break;
-                        Instruction result(Mnemonic::PRFH, insn, 4063);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::PRFH, insn, EncodingId::prfh_i_p_br_s);
+            #else
+                        Instruction result(Mnemonic::PRFH, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         if (enc.prfh_ipbr_s.Rm == 31u) return std::nullopt;
@@ -55232,7 +57244,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x8480E000u: { // prfh_i_p_ai_s
-                        Instruction result(Mnemonic::PRFH, insn, 4060);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::PRFH, insn, EncodingId::prfh_i_p_ai_s);
+            #else
+                        Instruction result(Mnemonic::PRFH, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::prefetch_op(static_cast<PrefetchOp>((enc.prfh_ipai_s.prfop < 8 ? enc.prfh_ipai_s.prfop : (enc.prfh_ipai_s.prfop & 7u) | 16u))));
@@ -55246,7 +57262,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
         }
         case 0x8500C000u: { // prfw_i_p_br_s
             if (((insn >> 16) & 0x1F) == 0x1F) break;
-                        Instruction result(Mnemonic::PRFW, insn, 4070);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::PRFW, insn, EncodingId::prfw_i_p_br_s);
+            #else
+                        Instruction result(Mnemonic::PRFW, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         if (enc.prfw_ipbr_s.Rm == 31u) return std::nullopt;
@@ -55258,7 +57278,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x8500E000u: { // prfw_i_p_ai_s
-                        Instruction result(Mnemonic::PRFW, insn, 4067);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::PRFW, insn, EncodingId::prfw_i_p_ai_s);
+            #else
+                        Instruction result(Mnemonic::PRFW, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::prefetch_op(static_cast<PrefetchOp>((enc.prfw_ipai_s.prfop < 8 ? enc.prfw_ipai_s.prfop : (enc.prfw_ipai_s.prfop & 7u) | 16u))));
@@ -55272,7 +57296,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
         }
         case 0x8580C000u: { // prfd_i_p_br_s
             if (((insn >> 16) & 0x1F) == 0x1F) break;
-                        Instruction result(Mnemonic::PRFD, insn, 4056);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::PRFD, insn, EncodingId::prfd_i_p_br_s);
+            #else
+                        Instruction result(Mnemonic::PRFD, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         if (enc.prfd_ipbr_s.Rm == 31u) return std::nullopt;
@@ -55284,7 +57312,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x8580E000u: { // prfd_i_p_ai_s
-                        Instruction result(Mnemonic::PRFD, insn, 4053);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::PRFD, insn, EncodingId::prfd_i_p_ai_s);
+            #else
+                        Instruction result(Mnemonic::PRFD, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::prefetch_op(static_cast<PrefetchOp>((enc.prfd_ipai_s.prfop < 8 ? enc.prfd_ipai_s.prfop : (enc.prfd_ipai_s.prfop & 7u) | 16u))));
@@ -55297,7 +57329,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0xC400E000u: { // prfb_i_p_ai_d
-                        Instruction result(Mnemonic::PRFB, insn, 4047);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::PRFB, insn, EncodingId::prfb_i_p_ai_d);
+            #else
+                        Instruction result(Mnemonic::PRFB, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::prefetch_op(static_cast<PrefetchOp>((enc.prfb_ipai_d.prfop < 8 ? enc.prfb_ipai_d.prfop : (enc.prfb_ipai_d.prfop & 7u) | 16u))));
@@ -55310,7 +57346,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0xC4608000u: { // prfb_i_p_bz_d_64_scaled
-                        Instruction result(Mnemonic::PRFB, insn, 4052);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::PRFB, insn, EncodingId::prfb_i_p_bz_d_64_scaled);
+            #else
+                        Instruction result(Mnemonic::PRFB, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -55321,7 +57361,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0xC460A000u: { // prfh_i_p_bz_d_64_scaled
-                        Instruction result(Mnemonic::PRFH, insn, 4066);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::PRFH, insn, EncodingId::prfh_i_p_bz_d_64_scaled);
+            #else
+                        Instruction result(Mnemonic::PRFH, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -55332,7 +57376,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0xC460C000u: { // prfw_i_p_bz_d_64_scaled
-                        Instruction result(Mnemonic::PRFW, insn, 4073);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::PRFW, insn, EncodingId::prfw_i_p_bz_d_64_scaled);
+            #else
+                        Instruction result(Mnemonic::PRFW, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -55343,7 +57391,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0xC460E000u: { // prfd_i_p_bz_d_64_scaled
-                        Instruction result(Mnemonic::PRFD, insn, 4059);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::PRFD, insn, EncodingId::prfd_i_p_bz_d_64_scaled);
+            #else
+                        Instruction result(Mnemonic::PRFD, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -55354,7 +57406,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0xC480E000u: { // prfh_i_p_ai_d
-                        Instruction result(Mnemonic::PRFH, insn, 4061);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::PRFH, insn, EncodingId::prfh_i_p_ai_d);
+            #else
+                        Instruction result(Mnemonic::PRFH, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::prefetch_op(static_cast<PrefetchOp>((enc.prfh_ipai_d.prfop < 8 ? enc.prfh_ipai_d.prfop : (enc.prfh_ipai_d.prfop & 7u) | 16u))));
@@ -55367,7 +57423,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0xC500E000u: { // prfw_i_p_ai_d
-                        Instruction result(Mnemonic::PRFW, insn, 4068);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::PRFW, insn, EncodingId::prfw_i_p_ai_d);
+            #else
+                        Instruction result(Mnemonic::PRFW, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::prefetch_op(static_cast<PrefetchOp>((enc.prfw_ipai_d.prfop < 8 ? enc.prfw_ipai_d.prfop : (enc.prfw_ipai_d.prfop & 7u) | 16u))));
@@ -55380,7 +57440,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0xC580E000u: { // prfd_i_p_ai_d
-                        Instruction result(Mnemonic::PRFD, insn, 4054);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::PRFD, insn, EncodingId::prfd_i_p_ai_d);
+            #else
+                        Instruction result(Mnemonic::PRFD, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::prefetch_op(static_cast<PrefetchOp>((enc.prfd_ipai_d.prfop < 8 ? enc.prfd_ipai_d.prfop : (enc.prfd_ipai_d.prfop & 7u) | 16u))));
@@ -55398,7 +57462,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
     // Switch for mask 0xFFE0E000u (170 patterns, 170 encodings)
     switch (insn & 0xFFE0E000u) {
         case 0x05200000u: { // ext_z_zi_des
-                        Instruction result(Mnemonic::EXT, insn, 3462);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::EXT, insn, EncodingId::ext_z_zi_des);
+            #else
+                        Instruction result(Mnemonic::EXT, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::sve(enc.ext_zzi_des.Zdn, Arrangement::B));
@@ -55408,7 +57476,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x05600000u: { // ext_z_zi_con
-                        Instruction result(Mnemonic::EXT, insn, 3461);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::EXT, insn, EncodingId::ext_z_zi_con);
+            #else
+                        Instruction result(Mnemonic::EXT, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::sve(enc.ext_zzi_con.Zd, Arrangement::B));
@@ -55417,7 +57489,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x65200000u: { // bfmla_z_p_zzz_
-                        Instruction result(Mnemonic::BFMLA, insn, 3331);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::BFMLA, insn, EncodingId::bfmla_z_p_zzz_);
+            #else
+                        Instruction result(Mnemonic::BFMLA, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::sve(enc.bfmla_zpzzz.Zda, Arrangement::H));
@@ -55427,7 +57503,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x65202000u: { // bfmls_z_p_zzz_
-                        Instruction result(Mnemonic::BFMLS, insn, 3337);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::BFMLS, insn, EncodingId::bfmls_z_p_zzz_);
+            #else
+                        Instruction result(Mnemonic::BFMLS, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::sve(enc.bfmls_zpzzz.Zda, Arrangement::H));
@@ -55437,7 +57517,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x84008000u: { // ldnt1sb_z_p_ar_s_x32_unscaled
-                        Instruction result(Mnemonic::LDNT1SB, insn, 3937);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDNT1SB, insn, EncodingId::ldnt1sb_z_p_ar_s_x32_unscaled);
+            #else
+                        Instruction result(Mnemonic::LDNT1SB, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -55448,7 +57532,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x8400A000u: { // ldnt1b_z_p_ar_s_x32_unscaled
-                        Instruction result(Mnemonic::LDNT1B, insn, 3926);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDNT1B, insn, EncodingId::ldnt1b_z_p_ar_s_x32_unscaled);
+            #else
+                        Instruction result(Mnemonic::LDNT1B, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -55459,7 +57547,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x84208000u: { // ld1sb_z_p_ai_s
-                        Instruction result(Mnemonic::LD1SB, insn, 3776);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LD1SB, insn, EncodingId::ld1sb_z_p_ai_s);
+            #else
+                        Instruction result(Mnemonic::LD1SB, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         { auto op = Operand::reg_list(static_cast<uint32_t>(make_sve_reg(enc.ld1sb_zpai_s.Zt))); op.set_arrangement(Arrangement::S); op.rl.count = 1; result.operands.push_back(op); }
@@ -55471,7 +57563,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x8420A000u: { // ldff1sb_z_p_ai_s
-                        Instruction result(Mnemonic::LDFF1SB, insn, 3876);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDFF1SB, insn, EncodingId::ldff1sb_z_p_ai_s);
+            #else
+                        Instruction result(Mnemonic::LDFF1SB, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         { auto op = Operand::reg_list(static_cast<uint32_t>(make_sve_reg(enc.ldff1sb_zpai_s.Zt))); op.set_arrangement(Arrangement::S); op.rl.count = 1; result.operands.push_back(op); }
@@ -55483,7 +57579,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x8420C000u: { // ld1b_z_p_ai_s
-                        Instruction result(Mnemonic::LD1B, insn, 3707);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LD1B, insn, EncodingId::ld1b_z_p_ai_s);
+            #else
+                        Instruction result(Mnemonic::LD1B, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         { auto op = Operand::reg_list(static_cast<uint32_t>(make_sve_reg(enc.ld1b_zpai_s.Zt))); op.set_arrangement(Arrangement::S); op.rl.count = 1; result.operands.push_back(op); }
@@ -55495,7 +57595,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x8420E000u: { // ldff1b_z_p_ai_s
-                        Instruction result(Mnemonic::LDFF1B, insn, 3850);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDFF1B, insn, EncodingId::ldff1b_z_p_ai_s);
+            #else
+                        Instruction result(Mnemonic::LDFF1B, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         { auto op = Operand::reg_list(static_cast<uint32_t>(make_sve_reg(enc.ldff1b_zpai_s.Zt))); op.set_arrangement(Arrangement::S); op.rl.count = 1; result.operands.push_back(op); }
@@ -55507,7 +57611,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x84808000u: { // ldnt1sh_z_p_ar_s_x32_unscaled
-                        Instruction result(Mnemonic::LDNT1SH, insn, 3939);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDNT1SH, insn, EncodingId::ldnt1sh_z_p_ar_s_x32_unscaled);
+            #else
+                        Instruction result(Mnemonic::LDNT1SH, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -55518,7 +57626,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x8480A000u: { // ldnt1h_z_p_ar_s_x32_unscaled
-                        Instruction result(Mnemonic::LDNT1H, insn, 3933);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDNT1H, insn, EncodingId::ldnt1h_z_p_ar_s_x32_unscaled);
+            #else
+                        Instruction result(Mnemonic::LDNT1H, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -55529,7 +57641,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x84A08000u: { // ld1sh_z_p_ai_s
-                        Instruction result(Mnemonic::LD1SH, insn, 3787);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LD1SH, insn, EncodingId::ld1sh_z_p_ai_s);
+            #else
+                        Instruction result(Mnemonic::LD1SH, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         { auto op = Operand::reg_list(static_cast<uint32_t>(make_sve_reg(enc.ld1sh_zpai_s.Zt))); op.set_arrangement(Arrangement::S); op.rl.count = 1; result.operands.push_back(op); }
@@ -55541,7 +57657,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x84A0A000u: { // ldff1sh_z_p_ai_s
-                        Instruction result(Mnemonic::LDFF1SH, insn, 3884);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDFF1SH, insn, EncodingId::ldff1sh_z_p_ai_s);
+            #else
+                        Instruction result(Mnemonic::LDFF1SH, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         { auto op = Operand::reg_list(static_cast<uint32_t>(make_sve_reg(enc.ldff1sh_zpai_s.Zt))); op.set_arrangement(Arrangement::S); op.rl.count = 1; result.operands.push_back(op); }
@@ -55553,7 +57673,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x84A0C000u: { // ld1h_z_p_ai_s
-                        Instruction result(Mnemonic::LD1H, insn, 3729);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LD1H, insn, EncodingId::ld1h_z_p_ai_s);
+            #else
+                        Instruction result(Mnemonic::LD1H, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         { auto op = Operand::reg_list(static_cast<uint32_t>(make_sve_reg(enc.ld1h_zpai_s.Zt))); op.set_arrangement(Arrangement::S); op.rl.count = 1; result.operands.push_back(op); }
@@ -55565,7 +57689,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x84A0E000u: { // ldff1h_z_p_ai_s
-                        Instruction result(Mnemonic::LDFF1H, insn, 3865);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDFF1H, insn, EncodingId::ldff1h_z_p_ai_s);
+            #else
+                        Instruction result(Mnemonic::LDFF1H, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         { auto op = Operand::reg_list(static_cast<uint32_t>(make_sve_reg(enc.ldff1h_zpai_s.Zt))); op.set_arrangement(Arrangement::S); op.rl.count = 1; result.operands.push_back(op); }
@@ -55577,7 +57705,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x8500A000u: { // ldnt1w_z_p_ar_s_x32_unscaled
-                        Instruction result(Mnemonic::LDNT1W, insn, 3942);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDNT1W, insn, EncodingId::ldnt1w_z_p_ar_s_x32_unscaled);
+            #else
+                        Instruction result(Mnemonic::LDNT1W, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -55588,7 +57720,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x8520C000u: { // ld1w_z_p_ai_s
-                        Instruction result(Mnemonic::LD1W, insn, 3806);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LD1W, insn, EncodingId::ld1w_z_p_ai_s);
+            #else
+                        Instruction result(Mnemonic::LD1W, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         { auto op = Operand::reg_list(static_cast<uint32_t>(make_sve_reg(enc.ld1w_zpai_s.Zt))); op.set_arrangement(Arrangement::S); op.rl.count = 1; result.operands.push_back(op); }
@@ -55600,7 +57736,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x8520E000u: { // ldff1w_z_p_ai_s
-                        Instruction result(Mnemonic::LDFF1W, insn, 3900);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDFF1W, insn, EncodingId::ldff1w_z_p_ai_s);
+            #else
+                        Instruction result(Mnemonic::LDFF1W, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         { auto op = Operand::reg_list(static_cast<uint32_t>(make_sve_reg(enc.ldff1w_zpai_s.Zt))); op.set_arrangement(Arrangement::S); op.rl.count = 1; result.operands.push_back(op); }
@@ -55613,7 +57753,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
         }
         case 0xA4000000u: { // ld1rqb_z_p_br_contiguous
             if (((insn >> 16) & 0x1F) == 0x1F) break;
-                        Instruction result(Mnemonic::LD1RQB, insn, 3761);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LD1RQB, insn, EncodingId::ld1rqb_z_p_br_contiguous);
+            #else
+                        Instruction result(Mnemonic::LD1RQB, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         if (enc.ld1rqb_zpbr_contiguous.Rm == 31u) return std::nullopt;
@@ -55625,7 +57769,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
         }
         case 0xA4004000u: { // ld1b_z_p_br_u8
             if (((insn >> 16) & 0x1F) == 0x1F) break;
-                        Instruction result(Mnemonic::LD1B, insn, 3713);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LD1B, insn, EncodingId::ld1b_z_p_br_u8);
+            #else
+                        Instruction result(Mnemonic::LD1B, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         if (enc.ld1b_zpbr_u8.Rm == 31u) return std::nullopt;
@@ -55636,7 +57784,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0xA4006000u: { // ldff1b_z_p_br_u8
-                        Instruction result(Mnemonic::LDFF1B, insn, 3852);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDFF1B, insn, EncodingId::ldff1b_z_p_br_u8);
+            #else
+                        Instruction result(Mnemonic::LDFF1B, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -55647,7 +57799,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
         }
         case 0xA400C000u: { // ldnt1b_z_p_br_contiguous
             if (((insn >> 16) & 0x1F) == 0x1F) break;
-                        Instruction result(Mnemonic::LDNT1B, insn, 3929);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDNT1B, insn, EncodingId::ldnt1b_z_p_br_contiguous);
+            #else
+                        Instruction result(Mnemonic::LDNT1B, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         if (enc.ldnt1b_zpbr_contiguous.Rm == 31u) return std::nullopt;
@@ -55659,7 +57815,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
         }
         case 0xA4200000u: { // ld1rob_z_p_br_contiguous
             if (((insn >> 16) & 0x1F) == 0x1F) break;
-                        Instruction result(Mnemonic::LD1ROB, insn, 3753);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LD1ROB, insn, EncodingId::ld1rob_z_p_br_contiguous);
+            #else
+                        Instruction result(Mnemonic::LD1ROB, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         if (enc.ld1rob_zpbr_contiguous.Rm == 31u) return std::nullopt;
@@ -55671,7 +57831,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
         }
         case 0xA4204000u: { // ld1b_z_p_br_u16
             if (((insn >> 16) & 0x1F) == 0x1F) break;
-                        Instruction result(Mnemonic::LD1B, insn, 3714);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LD1B, insn, EncodingId::ld1b_z_p_br_u16);
+            #else
+                        Instruction result(Mnemonic::LD1B, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         if (enc.ld1b_zpbr_u16.Rm == 31u) return std::nullopt;
@@ -55682,7 +57846,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0xA4206000u: { // ldff1b_z_p_br_u16
-                        Instruction result(Mnemonic::LDFF1B, insn, 3853);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDFF1B, insn, EncodingId::ldff1b_z_p_br_u16);
+            #else
+                        Instruction result(Mnemonic::LDFF1B, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -55693,7 +57861,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
         }
         case 0xA420C000u: { // ld2b_z_p_br_contiguous
             if (((insn >> 16) & 0x1F) == 0x1F) break;
-                        Instruction result(Mnemonic::LD2B, insn, 3821);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LD2B, insn, EncodingId::ld2b_z_p_br_contiguous);
+            #else
+                        Instruction result(Mnemonic::LD2B, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         if (enc.ld2b_zpbr_contiguous.Rm == 31u) return std::nullopt;
@@ -55705,7 +57877,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
         }
         case 0xA4404000u: { // ld1b_z_p_br_u32
             if (((insn >> 16) & 0x1F) == 0x1F) break;
-                        Instruction result(Mnemonic::LD1B, insn, 3715);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LD1B, insn, EncodingId::ld1b_z_p_br_u32);
+            #else
+                        Instruction result(Mnemonic::LD1B, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         if (enc.ld1b_zpbr_u32.Rm == 31u) return std::nullopt;
@@ -55716,7 +57892,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0xA4406000u: { // ldff1b_z_p_br_u32
-                        Instruction result(Mnemonic::LDFF1B, insn, 3854);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDFF1B, insn, EncodingId::ldff1b_z_p_br_u32);
+            #else
+                        Instruction result(Mnemonic::LDFF1B, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -55727,7 +57907,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
         }
         case 0xA440C000u: { // ld3b_z_p_br_contiguous
             if (((insn >> 16) & 0x1F) == 0x1F) break;
-                        Instruction result(Mnemonic::LD3B, insn, 3831);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LD3B, insn, EncodingId::ld3b_z_p_br_contiguous);
+            #else
+                        Instruction result(Mnemonic::LD3B, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         if (enc.ld3b_zpbr_contiguous.Rm == 31u) return std::nullopt;
@@ -55739,7 +57923,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
         }
         case 0xA4604000u: { // ld1b_z_p_br_u64
             if (((insn >> 16) & 0x1F) == 0x1F) break;
-                        Instruction result(Mnemonic::LD1B, insn, 3716);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LD1B, insn, EncodingId::ld1b_z_p_br_u64);
+            #else
+                        Instruction result(Mnemonic::LD1B, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         if (enc.ld1b_zpbr_u64.Rm == 31u) return std::nullopt;
@@ -55750,7 +57938,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0xA4606000u: { // ldff1b_z_p_br_u64
-                        Instruction result(Mnemonic::LDFF1B, insn, 3855);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDFF1B, insn, EncodingId::ldff1b_z_p_br_u64);
+            #else
+                        Instruction result(Mnemonic::LDFF1B, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -55761,7 +57953,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
         }
         case 0xA460C000u: { // ld4b_z_p_br_contiguous
             if (((insn >> 16) & 0x1F) == 0x1F) break;
-                        Instruction result(Mnemonic::LD4B, insn, 3841);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LD4B, insn, EncodingId::ld4b_z_p_br_contiguous);
+            #else
+                        Instruction result(Mnemonic::LD4B, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         if (enc.ld4b_zpbr_contiguous.Rm == 31u) return std::nullopt;
@@ -55773,7 +57969,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
         }
         case 0xA4800000u: { // ld1rqh_z_p_br_contiguous
             if (((insn >> 16) & 0x1F) == 0x1F) break;
-                        Instruction result(Mnemonic::LD1RQH, insn, 3765);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LD1RQH, insn, EncodingId::ld1rqh_z_p_br_contiguous);
+            #else
+                        Instruction result(Mnemonic::LD1RQH, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         if (enc.ld1rqh_zpbr_contiguous.Rm == 31u) return std::nullopt;
@@ -55785,7 +57985,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
         }
         case 0xA4804000u: { // ld1sw_z_p_br_s64
             if (((insn >> 16) & 0x1F) == 0x1F) break;
-                        Instruction result(Mnemonic::LD1SW, insn, 3801);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LD1SW, insn, EncodingId::ld1sw_z_p_br_s64);
+            #else
+                        Instruction result(Mnemonic::LD1SW, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         if (enc.ld1sw_zpbr_s64.Rm == 31u) return std::nullopt;
@@ -55796,7 +58000,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0xA4806000u: { // ldff1sw_z_p_br_s64
-                        Instruction result(Mnemonic::LDFF1SW, insn, 3895);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDFF1SW, insn, EncodingId::ldff1sw_z_p_br_s64);
+            #else
+                        Instruction result(Mnemonic::LDFF1SW, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -55807,7 +58015,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
         }
         case 0xA480C000u: { // ldnt1h_z_p_br_contiguous
             if (((insn >> 16) & 0x1F) == 0x1F) break;
-                        Instruction result(Mnemonic::LDNT1H, insn, 3936);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDNT1H, insn, EncodingId::ldnt1h_z_p_br_contiguous);
+            #else
+                        Instruction result(Mnemonic::LDNT1H, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         if (enc.ldnt1h_zpbr_contiguous.Rm == 31u) return std::nullopt;
@@ -55819,7 +58031,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
         }
         case 0xA4A00000u: { // ld1roh_z_p_br_contiguous
             if (((insn >> 16) & 0x1F) == 0x1F) break;
-                        Instruction result(Mnemonic::LD1ROH, insn, 3757);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LD1ROH, insn, EncodingId::ld1roh_z_p_br_contiguous);
+            #else
+                        Instruction result(Mnemonic::LD1ROH, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         if (enc.ld1roh_zpbr_contiguous.Rm == 31u) return std::nullopt;
@@ -55831,7 +58047,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
         }
         case 0xA4A04000u: { // ld1h_z_p_br_u16
             if (((insn >> 16) & 0x1F) == 0x1F) break;
-                        Instruction result(Mnemonic::LD1H, insn, 3734);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LD1H, insn, EncodingId::ld1h_z_p_br_u16);
+            #else
+                        Instruction result(Mnemonic::LD1H, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         if (enc.ld1h_zpbr_u16.Rm == 31u) return std::nullopt;
@@ -55842,7 +58062,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0xA4A06000u: { // ldff1h_z_p_br_u16
-                        Instruction result(Mnemonic::LDFF1H, insn, 3867);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDFF1H, insn, EncodingId::ldff1h_z_p_br_u16);
+            #else
+                        Instruction result(Mnemonic::LDFF1H, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -55853,7 +58077,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
         }
         case 0xA4A08000u: { // ld2q_z_p_br_contiguous
             if (((insn >> 16) & 0x1F) == 0x1F) break;
-                        Instruction result(Mnemonic::LD2Q, insn, 3827);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LD2Q, insn, EncodingId::ld2q_z_p_br_contiguous);
+            #else
+                        Instruction result(Mnemonic::LD2Q, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         if (enc.ld2q_zpbr_contiguous.Rm == 31u) return std::nullopt;
@@ -55865,7 +58093,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
         }
         case 0xA4A0C000u: { // ld2h_z_p_br_contiguous
             if (((insn >> 16) & 0x1F) == 0x1F) break;
-                        Instruction result(Mnemonic::LD2H, insn, 3825);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LD2H, insn, EncodingId::ld2h_z_p_br_contiguous);
+            #else
+                        Instruction result(Mnemonic::LD2H, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         if (enc.ld2h_zpbr_contiguous.Rm == 31u) return std::nullopt;
@@ -55877,7 +58109,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
         }
         case 0xA4C04000u: { // ld1h_z_p_br_u32
             if (((insn >> 16) & 0x1F) == 0x1F) break;
-                        Instruction result(Mnemonic::LD1H, insn, 3735);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LD1H, insn, EncodingId::ld1h_z_p_br_u32);
+            #else
+                        Instruction result(Mnemonic::LD1H, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         if (enc.ld1h_zpbr_u32.Rm == 31u) return std::nullopt;
@@ -55888,7 +58124,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0xA4C06000u: { // ldff1h_z_p_br_u32
-                        Instruction result(Mnemonic::LDFF1H, insn, 3868);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDFF1H, insn, EncodingId::ldff1h_z_p_br_u32);
+            #else
+                        Instruction result(Mnemonic::LDFF1H, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -55899,7 +58139,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
         }
         case 0xA4C0C000u: { // ld3h_z_p_br_contiguous
             if (((insn >> 16) & 0x1F) == 0x1F) break;
-                        Instruction result(Mnemonic::LD3H, insn, 3835);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LD3H, insn, EncodingId::ld3h_z_p_br_contiguous);
+            #else
+                        Instruction result(Mnemonic::LD3H, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         if (enc.ld3h_zpbr_contiguous.Rm == 31u) return std::nullopt;
@@ -55911,7 +58155,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
         }
         case 0xA4E04000u: { // ld1h_z_p_br_u64
             if (((insn >> 16) & 0x1F) == 0x1F) break;
-                        Instruction result(Mnemonic::LD1H, insn, 3736);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LD1H, insn, EncodingId::ld1h_z_p_br_u64);
+            #else
+                        Instruction result(Mnemonic::LD1H, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         if (enc.ld1h_zpbr_u64.Rm == 31u) return std::nullopt;
@@ -55922,7 +58170,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0xA4E06000u: { // ldff1h_z_p_br_u64
-                        Instruction result(Mnemonic::LDFF1H, insn, 3869);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDFF1H, insn, EncodingId::ldff1h_z_p_br_u64);
+            #else
+                        Instruction result(Mnemonic::LDFF1H, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -55933,7 +58185,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
         }
         case 0xA4E0C000u: { // ld4h_z_p_br_contiguous
             if (((insn >> 16) & 0x1F) == 0x1F) break;
-                        Instruction result(Mnemonic::LD4H, insn, 3845);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LD4H, insn, EncodingId::ld4h_z_p_br_contiguous);
+            #else
+                        Instruction result(Mnemonic::LD4H, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         if (enc.ld4h_zpbr_contiguous.Rm == 31u) return std::nullopt;
@@ -55945,7 +58201,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
         }
         case 0xA5000000u: { // ld1rqw_z_p_br_contiguous
             if (((insn >> 16) & 0x1F) == 0x1F) break;
-                        Instruction result(Mnemonic::LD1RQW, insn, 3767);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LD1RQW, insn, EncodingId::ld1rqw_z_p_br_contiguous);
+            #else
+                        Instruction result(Mnemonic::LD1RQW, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         if (enc.ld1rqw_zpbr_contiguous.Rm == 31u) return std::nullopt;
@@ -55957,7 +58217,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
         }
         case 0xA5004000u: { // ld1sh_z_p_br_s64
             if (((insn >> 16) & 0x1F) == 0x1F) break;
-                        Instruction result(Mnemonic::LD1SH, insn, 3792);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LD1SH, insn, EncodingId::ld1sh_z_p_br_s64);
+            #else
+                        Instruction result(Mnemonic::LD1SH, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         if (enc.ld1sh_zpbr_s64.Rm == 31u) return std::nullopt;
@@ -55968,7 +58232,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0xA5006000u: { // ldff1sh_z_p_br_s64
-                        Instruction result(Mnemonic::LDFF1SH, insn, 3887);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDFF1SH, insn, EncodingId::ldff1sh_z_p_br_s64);
+            #else
+                        Instruction result(Mnemonic::LDFF1SH, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -55979,7 +58247,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
         }
         case 0xA5008000u: { // ld1w_z_p_br_u128
             if (((insn >> 16) & 0x1F) == 0x1F) break;
-                        Instruction result(Mnemonic::LD1W, insn, 3813);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LD1W, insn, EncodingId::ld1w_z_p_br_u128);
+            #else
+                        Instruction result(Mnemonic::LD1W, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         if (enc.ld1w_zpbr_u128.Rm == 31u) return std::nullopt;
@@ -55991,7 +58263,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
         }
         case 0xA500C000u: { // ldnt1w_z_p_br_contiguous
             if (((insn >> 16) & 0x1F) == 0x1F) break;
-                        Instruction result(Mnemonic::LDNT1W, insn, 3945);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDNT1W, insn, EncodingId::ldnt1w_z_p_br_contiguous);
+            #else
+                        Instruction result(Mnemonic::LDNT1W, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         if (enc.ldnt1w_zpbr_contiguous.Rm == 31u) return std::nullopt;
@@ -56003,7 +58279,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
         }
         case 0xA5200000u: { // ld1row_z_p_br_contiguous
             if (((insn >> 16) & 0x1F) == 0x1F) break;
-                        Instruction result(Mnemonic::LD1ROW, insn, 3759);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LD1ROW, insn, EncodingId::ld1row_z_p_br_contiguous);
+            #else
+                        Instruction result(Mnemonic::LD1ROW, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         if (enc.ld1row_zpbr_contiguous.Rm == 31u) return std::nullopt;
@@ -56015,7 +58295,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
         }
         case 0xA5204000u: { // ld1sh_z_p_br_s32
             if (((insn >> 16) & 0x1F) == 0x1F) break;
-                        Instruction result(Mnemonic::LD1SH, insn, 3791);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LD1SH, insn, EncodingId::ld1sh_z_p_br_s32);
+            #else
+                        Instruction result(Mnemonic::LD1SH, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         if (enc.ld1sh_zpbr_s32.Rm == 31u) return std::nullopt;
@@ -56026,7 +58310,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0xA5206000u: { // ldff1sh_z_p_br_s32
-                        Instruction result(Mnemonic::LDFF1SH, insn, 3886);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDFF1SH, insn, EncodingId::ldff1sh_z_p_br_s32);
+            #else
+                        Instruction result(Mnemonic::LDFF1SH, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -56037,7 +58325,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
         }
         case 0xA5208000u: { // ld3q_z_p_br_contiguous
             if (((insn >> 16) & 0x1F) == 0x1F) break;
-                        Instruction result(Mnemonic::LD3Q, insn, 3837);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LD3Q, insn, EncodingId::ld3q_z_p_br_contiguous);
+            #else
+                        Instruction result(Mnemonic::LD3Q, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         if (enc.ld3q_zpbr_contiguous.Rm == 31u) return std::nullopt;
@@ -56049,7 +58341,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
         }
         case 0xA520C000u: { // ld2w_z_p_br_contiguous
             if (((insn >> 16) & 0x1F) == 0x1F) break;
-                        Instruction result(Mnemonic::LD2W, insn, 3829);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LD2W, insn, EncodingId::ld2w_z_p_br_contiguous);
+            #else
+                        Instruction result(Mnemonic::LD2W, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         if (enc.ld2w_zpbr_contiguous.Rm == 31u) return std::nullopt;
@@ -56061,7 +58357,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
         }
         case 0xA5404000u: { // ld1w_z_p_br_u32
             if (((insn >> 16) & 0x1F) == 0x1F) break;
-                        Instruction result(Mnemonic::LD1W, insn, 3811);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LD1W, insn, EncodingId::ld1w_z_p_br_u32);
+            #else
+                        Instruction result(Mnemonic::LD1W, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         if (enc.ld1w_zpbr_u32.Rm == 31u) return std::nullopt;
@@ -56072,7 +58372,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0xA5406000u: { // ldff1w_z_p_br_u32
-                        Instruction result(Mnemonic::LDFF1W, insn, 3902);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDFF1W, insn, EncodingId::ldff1w_z_p_br_u32);
+            #else
+                        Instruction result(Mnemonic::LDFF1W, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -56083,7 +58387,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
         }
         case 0xA540C000u: { // ld3w_z_p_br_contiguous
             if (((insn >> 16) & 0x1F) == 0x1F) break;
-                        Instruction result(Mnemonic::LD3W, insn, 3839);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LD3W, insn, EncodingId::ld3w_z_p_br_contiguous);
+            #else
+                        Instruction result(Mnemonic::LD3W, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         if (enc.ld3w_zpbr_contiguous.Rm == 31u) return std::nullopt;
@@ -56095,7 +58403,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
         }
         case 0xA5604000u: { // ld1w_z_p_br_u64
             if (((insn >> 16) & 0x1F) == 0x1F) break;
-                        Instruction result(Mnemonic::LD1W, insn, 3812);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LD1W, insn, EncodingId::ld1w_z_p_br_u64);
+            #else
+                        Instruction result(Mnemonic::LD1W, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         if (enc.ld1w_zpbr_u64.Rm == 31u) return std::nullopt;
@@ -56106,7 +58418,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0xA5606000u: { // ldff1w_z_p_br_u64
-                        Instruction result(Mnemonic::LDFF1W, insn, 3903);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDFF1W, insn, EncodingId::ldff1w_z_p_br_u64);
+            #else
+                        Instruction result(Mnemonic::LDFF1W, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -56117,7 +58433,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
         }
         case 0xA560C000u: { // ld4w_z_p_br_contiguous
             if (((insn >> 16) & 0x1F) == 0x1F) break;
-                        Instruction result(Mnemonic::LD4W, insn, 3849);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LD4W, insn, EncodingId::ld4w_z_p_br_contiguous);
+            #else
+                        Instruction result(Mnemonic::LD4W, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         if (enc.ld4w_zpbr_contiguous.Rm == 31u) return std::nullopt;
@@ -56129,7 +58449,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
         }
         case 0xA5800000u: { // ld1rqd_z_p_br_contiguous
             if (((insn >> 16) & 0x1F) == 0x1F) break;
-                        Instruction result(Mnemonic::LD1RQD, insn, 3763);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LD1RQD, insn, EncodingId::ld1rqd_z_p_br_contiguous);
+            #else
+                        Instruction result(Mnemonic::LD1RQD, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         if (enc.ld1rqd_zpbr_contiguous.Rm == 31u) return std::nullopt;
@@ -56141,7 +58465,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
         }
         case 0xA5804000u: { // ld1sb_z_p_br_s64
             if (((insn >> 16) & 0x1F) == 0x1F) break;
-                        Instruction result(Mnemonic::LD1SB, insn, 3783);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LD1SB, insn, EncodingId::ld1sb_z_p_br_s64);
+            #else
+                        Instruction result(Mnemonic::LD1SB, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         if (enc.ld1sb_zpbr_s64.Rm == 31u) return std::nullopt;
@@ -56152,7 +58480,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0xA5806000u: { // ldff1sb_z_p_br_s64
-                        Instruction result(Mnemonic::LDFF1SB, insn, 3880);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDFF1SB, insn, EncodingId::ldff1sb_z_p_br_s64);
+            #else
+                        Instruction result(Mnemonic::LDFF1SB, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -56163,7 +58495,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
         }
         case 0xA5808000u: { // ld1d_z_p_br_u128
             if (((insn >> 16) & 0x1F) == 0x1F) break;
-                        Instruction result(Mnemonic::LD1D, insn, 3724);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LD1D, insn, EncodingId::ld1d_z_p_br_u128);
+            #else
+                        Instruction result(Mnemonic::LD1D, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         if (enc.ld1d_zpbr_u128.Rm == 31u) return std::nullopt;
@@ -56175,7 +58511,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
         }
         case 0xA580C000u: { // ldnt1d_z_p_br_contiguous
             if (((insn >> 16) & 0x1F) == 0x1F) break;
-                        Instruction result(Mnemonic::LDNT1D, insn, 3932);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDNT1D, insn, EncodingId::ldnt1d_z_p_br_contiguous);
+            #else
+                        Instruction result(Mnemonic::LDNT1D, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         if (enc.ldnt1d_zpbr_contiguous.Rm == 31u) return std::nullopt;
@@ -56187,7 +58527,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
         }
         case 0xA5A00000u: { // ld1rod_z_p_br_contiguous
             if (((insn >> 16) & 0x1F) == 0x1F) break;
-                        Instruction result(Mnemonic::LD1ROD, insn, 3755);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LD1ROD, insn, EncodingId::ld1rod_z_p_br_contiguous);
+            #else
+                        Instruction result(Mnemonic::LD1ROD, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         if (enc.ld1rod_zpbr_contiguous.Rm == 31u) return std::nullopt;
@@ -56199,7 +58543,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
         }
         case 0xA5A04000u: { // ld1sb_z_p_br_s32
             if (((insn >> 16) & 0x1F) == 0x1F) break;
-                        Instruction result(Mnemonic::LD1SB, insn, 3782);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LD1SB, insn, EncodingId::ld1sb_z_p_br_s32);
+            #else
+                        Instruction result(Mnemonic::LD1SB, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         if (enc.ld1sb_zpbr_s32.Rm == 31u) return std::nullopt;
@@ -56210,7 +58558,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0xA5A06000u: { // ldff1sb_z_p_br_s32
-                        Instruction result(Mnemonic::LDFF1SB, insn, 3879);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDFF1SB, insn, EncodingId::ldff1sb_z_p_br_s32);
+            #else
+                        Instruction result(Mnemonic::LDFF1SB, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -56221,7 +58573,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
         }
         case 0xA5A08000u: { // ld4q_z_p_br_contiguous
             if (((insn >> 16) & 0x1F) == 0x1F) break;
-                        Instruction result(Mnemonic::LD4Q, insn, 3847);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LD4Q, insn, EncodingId::ld4q_z_p_br_contiguous);
+            #else
+                        Instruction result(Mnemonic::LD4Q, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         if (enc.ld4q_zpbr_contiguous.Rm == 31u) return std::nullopt;
@@ -56233,7 +58589,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
         }
         case 0xA5A0C000u: { // ld2d_z_p_br_contiguous
             if (((insn >> 16) & 0x1F) == 0x1F) break;
-                        Instruction result(Mnemonic::LD2D, insn, 3823);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LD2D, insn, EncodingId::ld2d_z_p_br_contiguous);
+            #else
+                        Instruction result(Mnemonic::LD2D, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         if (enc.ld2d_zpbr_contiguous.Rm == 31u) return std::nullopt;
@@ -56245,7 +58605,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
         }
         case 0xA5C04000u: { // ld1sb_z_p_br_s16
             if (((insn >> 16) & 0x1F) == 0x1F) break;
-                        Instruction result(Mnemonic::LD1SB, insn, 3781);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LD1SB, insn, EncodingId::ld1sb_z_p_br_s16);
+            #else
+                        Instruction result(Mnemonic::LD1SB, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         if (enc.ld1sb_zpbr_s16.Rm == 31u) return std::nullopt;
@@ -56256,7 +58620,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0xA5C06000u: { // ldff1sb_z_p_br_s16
-                        Instruction result(Mnemonic::LDFF1SB, insn, 3878);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDFF1SB, insn, EncodingId::ldff1sb_z_p_br_s16);
+            #else
+                        Instruction result(Mnemonic::LDFF1SB, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -56267,7 +58635,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
         }
         case 0xA5C0C000u: { // ld3d_z_p_br_contiguous
             if (((insn >> 16) & 0x1F) == 0x1F) break;
-                        Instruction result(Mnemonic::LD3D, insn, 3833);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LD3D, insn, EncodingId::ld3d_z_p_br_contiguous);
+            #else
+                        Instruction result(Mnemonic::LD3D, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         if (enc.ld3d_zpbr_contiguous.Rm == 31u) return std::nullopt;
@@ -56279,7 +58651,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
         }
         case 0xA5E04000u: { // ld1d_z_p_br_u64
             if (((insn >> 16) & 0x1F) == 0x1F) break;
-                        Instruction result(Mnemonic::LD1D, insn, 3723);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LD1D, insn, EncodingId::ld1d_z_p_br_u64);
+            #else
+                        Instruction result(Mnemonic::LD1D, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         if (enc.ld1d_zpbr_u64.Rm == 31u) return std::nullopt;
@@ -56290,7 +58666,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0xA5E06000u: { // ldff1d_z_p_br_u64
-                        Instruction result(Mnemonic::LDFF1D, insn, 3860);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDFF1D, insn, EncodingId::ldff1d_z_p_br_u64);
+            #else
+                        Instruction result(Mnemonic::LDFF1D, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -56301,7 +58681,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
         }
         case 0xA5E0C000u: { // ld4d_z_p_br_contiguous
             if (((insn >> 16) & 0x1F) == 0x1F) break;
-                        Instruction result(Mnemonic::LD4D, insn, 3843);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LD4D, insn, EncodingId::ld4d_z_p_br_contiguous);
+            #else
+                        Instruction result(Mnemonic::LD4D, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         if (enc.ld4d_zpbr_contiguous.Rm == 31u) return std::nullopt;
@@ -56312,7 +58696,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0xC4008000u: { // ldnt1sb_z_p_ar_d_64_unscaled
-                        Instruction result(Mnemonic::LDNT1SB, insn, 3938);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDNT1SB, insn, EncodingId::ldnt1sb_z_p_ar_d_64_unscaled);
+            #else
+                        Instruction result(Mnemonic::LDNT1SB, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -56323,7 +58711,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0xC400A000u: { // ld1q_z_p_ar_d_64_unscaled
-                        Instruction result(Mnemonic::LD1Q, insn, 3743);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LD1Q, insn, EncodingId::ld1q_z_p_ar_d_64_unscaled);
+            #else
+                        Instruction result(Mnemonic::LD1Q, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -56334,7 +58726,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0xC400C000u: { // ldnt1b_z_p_ar_d_64_unscaled
-                        Instruction result(Mnemonic::LDNT1B, insn, 3927);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDNT1B, insn, EncodingId::ldnt1b_z_p_ar_d_64_unscaled);
+            #else
+                        Instruction result(Mnemonic::LDNT1B, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -56345,7 +58741,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0xC4208000u: { // ld1sb_z_p_ai_d
-                        Instruction result(Mnemonic::LD1SB, insn, 3777);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LD1SB, insn, EncodingId::ld1sb_z_p_ai_d);
+            #else
+                        Instruction result(Mnemonic::LD1SB, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         { auto op = Operand::reg_list(static_cast<uint32_t>(make_sve_reg(enc.ld1sb_zpai_d.Zt))); op.set_arrangement(Arrangement::D); op.rl.count = 1; result.operands.push_back(op); }
@@ -56357,7 +58757,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0xC420A000u: { // ldff1sb_z_p_ai_d
-                        Instruction result(Mnemonic::LDFF1SB, insn, 3877);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDFF1SB, insn, EncodingId::ldff1sb_z_p_ai_d);
+            #else
+                        Instruction result(Mnemonic::LDFF1SB, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         { auto op = Operand::reg_list(static_cast<uint32_t>(make_sve_reg(enc.ldff1sb_zpai_d.Zt))); op.set_arrangement(Arrangement::D); op.rl.count = 1; result.operands.push_back(op); }
@@ -56369,7 +58773,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0xC420C000u: { // ld1b_z_p_ai_d
-                        Instruction result(Mnemonic::LD1B, insn, 3708);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LD1B, insn, EncodingId::ld1b_z_p_ai_d);
+            #else
+                        Instruction result(Mnemonic::LD1B, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         { auto op = Operand::reg_list(static_cast<uint32_t>(make_sve_reg(enc.ld1b_zpai_d.Zt))); op.set_arrangement(Arrangement::D); op.rl.count = 1; result.operands.push_back(op); }
@@ -56381,7 +58789,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0xC420E000u: { // ldff1b_z_p_ai_d
-                        Instruction result(Mnemonic::LDFF1B, insn, 3851);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDFF1B, insn, EncodingId::ldff1b_z_p_ai_d);
+            #else
+                        Instruction result(Mnemonic::LDFF1B, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         { auto op = Operand::reg_list(static_cast<uint32_t>(make_sve_reg(enc.ldff1b_zpai_d.Zt))); op.set_arrangement(Arrangement::D); op.rl.count = 1; result.operands.push_back(op); }
@@ -56393,7 +58805,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0xC4408000u: { // ld1sb_z_p_bz_d_64_unscaled
-                        Instruction result(Mnemonic::LD1SB, insn, 3786);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LD1SB, insn, EncodingId::ld1sb_z_p_bz_d_64_unscaled);
+            #else
+                        Instruction result(Mnemonic::LD1SB, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -56403,7 +58819,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0xC440A000u: { // ldff1sb_z_p_bz_d_64_unscaled
-                        Instruction result(Mnemonic::LDFF1SB, insn, 3883);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDFF1SB, insn, EncodingId::ldff1sb_z_p_bz_d_64_unscaled);
+            #else
+                        Instruction result(Mnemonic::LDFF1SB, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -56413,7 +58833,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0xC440C000u: { // ld1b_z_p_bz_d_64_unscaled
-                        Instruction result(Mnemonic::LD1B, insn, 3719);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LD1B, insn, EncodingId::ld1b_z_p_bz_d_64_unscaled);
+            #else
+                        Instruction result(Mnemonic::LD1B, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -56423,7 +58847,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0xC440E000u: { // ldff1b_z_p_bz_d_64_unscaled
-                        Instruction result(Mnemonic::LDFF1B, insn, 3858);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDFF1B, insn, EncodingId::ldff1b_z_p_bz_d_64_unscaled);
+            #else
+                        Instruction result(Mnemonic::LDFF1B, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -56433,7 +58861,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0xC4808000u: { // ldnt1sh_z_p_ar_d_64_unscaled
-                        Instruction result(Mnemonic::LDNT1SH, insn, 3940);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDNT1SH, insn, EncodingId::ldnt1sh_z_p_ar_d_64_unscaled);
+            #else
+                        Instruction result(Mnemonic::LDNT1SH, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -56444,7 +58876,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0xC480C000u: { // ldnt1h_z_p_ar_d_64_unscaled
-                        Instruction result(Mnemonic::LDNT1H, insn, 3934);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDNT1H, insn, EncodingId::ldnt1h_z_p_ar_d_64_unscaled);
+            #else
+                        Instruction result(Mnemonic::LDNT1H, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -56455,7 +58891,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0xC4A08000u: { // ld1sh_z_p_ai_d
-                        Instruction result(Mnemonic::LD1SH, insn, 3788);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LD1SH, insn, EncodingId::ld1sh_z_p_ai_d);
+            #else
+                        Instruction result(Mnemonic::LD1SH, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         { auto op = Operand::reg_list(static_cast<uint32_t>(make_sve_reg(enc.ld1sh_zpai_d.Zt))); op.set_arrangement(Arrangement::D); op.rl.count = 1; result.operands.push_back(op); }
@@ -56467,7 +58907,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0xC4A0A000u: { // ldff1sh_z_p_ai_d
-                        Instruction result(Mnemonic::LDFF1SH, insn, 3885);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDFF1SH, insn, EncodingId::ldff1sh_z_p_ai_d);
+            #else
+                        Instruction result(Mnemonic::LDFF1SH, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         { auto op = Operand::reg_list(static_cast<uint32_t>(make_sve_reg(enc.ldff1sh_zpai_d.Zt))); op.set_arrangement(Arrangement::D); op.rl.count = 1; result.operands.push_back(op); }
@@ -56479,7 +58923,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0xC4A0C000u: { // ld1h_z_p_ai_d
-                        Instruction result(Mnemonic::LD1H, insn, 3730);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LD1H, insn, EncodingId::ld1h_z_p_ai_d);
+            #else
+                        Instruction result(Mnemonic::LD1H, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         { auto op = Operand::reg_list(static_cast<uint32_t>(make_sve_reg(enc.ld1h_zpai_d.Zt))); op.set_arrangement(Arrangement::D); op.rl.count = 1; result.operands.push_back(op); }
@@ -56491,7 +58939,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0xC4A0E000u: { // ldff1h_z_p_ai_d
-                        Instruction result(Mnemonic::LDFF1H, insn, 3866);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDFF1H, insn, EncodingId::ldff1h_z_p_ai_d);
+            #else
+                        Instruction result(Mnemonic::LDFF1H, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         { auto op = Operand::reg_list(static_cast<uint32_t>(make_sve_reg(enc.ldff1h_zpai_d.Zt))); op.set_arrangement(Arrangement::D); op.rl.count = 1; result.operands.push_back(op); }
@@ -56503,7 +58955,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0xC4C08000u: { // ld1sh_z_p_bz_d_64_unscaled
-                        Instruction result(Mnemonic::LD1SH, insn, 3798);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LD1SH, insn, EncodingId::ld1sh_z_p_bz_d_64_unscaled);
+            #else
+                        Instruction result(Mnemonic::LD1SH, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -56513,7 +58969,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0xC4C0A000u: { // ldff1sh_z_p_bz_d_64_unscaled
-                        Instruction result(Mnemonic::LDFF1SH, insn, 3893);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDFF1SH, insn, EncodingId::ldff1sh_z_p_bz_d_64_unscaled);
+            #else
+                        Instruction result(Mnemonic::LDFF1SH, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -56523,7 +58983,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0xC4C0C000u: { // ld1h_z_p_bz_d_64_unscaled
-                        Instruction result(Mnemonic::LD1H, insn, 3742);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LD1H, insn, EncodingId::ld1h_z_p_bz_d_64_unscaled);
+            #else
+                        Instruction result(Mnemonic::LD1H, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -56533,7 +58997,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0xC4C0E000u: { // ldff1h_z_p_bz_d_64_unscaled
-                        Instruction result(Mnemonic::LDFF1H, insn, 3875);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDFF1H, insn, EncodingId::ldff1h_z_p_bz_d_64_unscaled);
+            #else
+                        Instruction result(Mnemonic::LDFF1H, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -56543,7 +59011,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0xC4E08000u: { // ld1sh_z_p_bz_d_64_scaled
-                        Instruction result(Mnemonic::LD1SH, insn, 3797);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LD1SH, insn, EncodingId::ld1sh_z_p_bz_d_64_scaled);
+            #else
+                        Instruction result(Mnemonic::LD1SH, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -56553,7 +59025,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0xC4E0A000u: { // ldff1sh_z_p_bz_d_64_scaled
-                        Instruction result(Mnemonic::LDFF1SH, insn, 3892);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDFF1SH, insn, EncodingId::ldff1sh_z_p_bz_d_64_scaled);
+            #else
+                        Instruction result(Mnemonic::LDFF1SH, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -56563,7 +59039,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0xC4E0C000u: { // ld1h_z_p_bz_d_64_scaled
-                        Instruction result(Mnemonic::LD1H, insn, 3741);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LD1H, insn, EncodingId::ld1h_z_p_bz_d_64_scaled);
+            #else
+                        Instruction result(Mnemonic::LD1H, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -56573,7 +59053,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0xC4E0E000u: { // ldff1h_z_p_bz_d_64_scaled
-                        Instruction result(Mnemonic::LDFF1H, insn, 3874);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDFF1H, insn, EncodingId::ldff1h_z_p_bz_d_64_scaled);
+            #else
+                        Instruction result(Mnemonic::LDFF1H, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -56583,7 +59067,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0xC5008000u: { // ldnt1sw_z_p_ar_d_64_unscaled
-                        Instruction result(Mnemonic::LDNT1SW, insn, 3941);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDNT1SW, insn, EncodingId::ldnt1sw_z_p_ar_d_64_unscaled);
+            #else
+                        Instruction result(Mnemonic::LDNT1SW, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -56594,7 +59082,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0xC500C000u: { // ldnt1w_z_p_ar_d_64_unscaled
-                        Instruction result(Mnemonic::LDNT1W, insn, 3943);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDNT1W, insn, EncodingId::ldnt1w_z_p_ar_d_64_unscaled);
+            #else
+                        Instruction result(Mnemonic::LDNT1W, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -56605,7 +59097,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0xC5208000u: { // ld1sw_z_p_ai_d
-                        Instruction result(Mnemonic::LD1SW, insn, 3799);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LD1SW, insn, EncodingId::ld1sw_z_p_ai_d);
+            #else
+                        Instruction result(Mnemonic::LD1SW, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         { auto op = Operand::reg_list(static_cast<uint32_t>(make_sve_reg(enc.ld1sw_zpai_d.Zt))); op.set_arrangement(Arrangement::D); op.rl.count = 1; result.operands.push_back(op); }
@@ -56617,7 +59113,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0xC520A000u: { // ldff1sw_z_p_ai_d
-                        Instruction result(Mnemonic::LDFF1SW, insn, 3894);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDFF1SW, insn, EncodingId::ldff1sw_z_p_ai_d);
+            #else
+                        Instruction result(Mnemonic::LDFF1SW, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         { auto op = Operand::reg_list(static_cast<uint32_t>(make_sve_reg(enc.ldff1sw_zpai_d.Zt))); op.set_arrangement(Arrangement::D); op.rl.count = 1; result.operands.push_back(op); }
@@ -56629,7 +59129,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0xC520C000u: { // ld1w_z_p_ai_d
-                        Instruction result(Mnemonic::LD1W, insn, 3807);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LD1W, insn, EncodingId::ld1w_z_p_ai_d);
+            #else
+                        Instruction result(Mnemonic::LD1W, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         { auto op = Operand::reg_list(static_cast<uint32_t>(make_sve_reg(enc.ld1w_zpai_d.Zt))); op.set_arrangement(Arrangement::D); op.rl.count = 1; result.operands.push_back(op); }
@@ -56641,7 +59145,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0xC520E000u: { // ldff1w_z_p_ai_d
-                        Instruction result(Mnemonic::LDFF1W, insn, 3901);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDFF1W, insn, EncodingId::ldff1w_z_p_ai_d);
+            #else
+                        Instruction result(Mnemonic::LDFF1W, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         { auto op = Operand::reg_list(static_cast<uint32_t>(make_sve_reg(enc.ldff1w_zpai_d.Zt))); op.set_arrangement(Arrangement::D); op.rl.count = 1; result.operands.push_back(op); }
@@ -56653,7 +59161,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0xC5408000u: { // ld1sw_z_p_bz_d_64_unscaled
-                        Instruction result(Mnemonic::LD1SW, insn, 3805);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LD1SW, insn, EncodingId::ld1sw_z_p_bz_d_64_unscaled);
+            #else
+                        Instruction result(Mnemonic::LD1SW, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -56663,7 +59175,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0xC540A000u: { // ldff1sw_z_p_bz_d_64_unscaled
-                        Instruction result(Mnemonic::LDFF1SW, insn, 3899);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDFF1SW, insn, EncodingId::ldff1sw_z_p_bz_d_64_unscaled);
+            #else
+                        Instruction result(Mnemonic::LDFF1SW, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -56673,7 +59189,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0xC540C000u: { // ld1w_z_p_bz_d_64_unscaled
-                        Instruction result(Mnemonic::LD1W, insn, 3819);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LD1W, insn, EncodingId::ld1w_z_p_bz_d_64_unscaled);
+            #else
+                        Instruction result(Mnemonic::LD1W, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -56683,7 +59203,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0xC540E000u: { // ldff1w_z_p_bz_d_64_unscaled
-                        Instruction result(Mnemonic::LDFF1W, insn, 3909);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDFF1W, insn, EncodingId::ldff1w_z_p_bz_d_64_unscaled);
+            #else
+                        Instruction result(Mnemonic::LDFF1W, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -56693,7 +59217,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0xC5608000u: { // ld1sw_z_p_bz_d_64_scaled
-                        Instruction result(Mnemonic::LD1SW, insn, 3804);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LD1SW, insn, EncodingId::ld1sw_z_p_bz_d_64_scaled);
+            #else
+                        Instruction result(Mnemonic::LD1SW, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -56703,7 +59231,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0xC560A000u: { // ldff1sw_z_p_bz_d_64_scaled
-                        Instruction result(Mnemonic::LDFF1SW, insn, 3898);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDFF1SW, insn, EncodingId::ldff1sw_z_p_bz_d_64_scaled);
+            #else
+                        Instruction result(Mnemonic::LDFF1SW, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -56713,7 +59245,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0xC560C000u: { // ld1w_z_p_bz_d_64_scaled
-                        Instruction result(Mnemonic::LD1W, insn, 3818);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LD1W, insn, EncodingId::ld1w_z_p_bz_d_64_scaled);
+            #else
+                        Instruction result(Mnemonic::LD1W, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -56723,7 +59259,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0xC560E000u: { // ldff1w_z_p_bz_d_64_scaled
-                        Instruction result(Mnemonic::LDFF1W, insn, 3908);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDFF1W, insn, EncodingId::ldff1w_z_p_bz_d_64_scaled);
+            #else
+                        Instruction result(Mnemonic::LDFF1W, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -56733,7 +59273,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0xC580C000u: { // ldnt1d_z_p_ar_d_64_unscaled
-                        Instruction result(Mnemonic::LDNT1D, insn, 3930);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDNT1D, insn, EncodingId::ldnt1d_z_p_ar_d_64_unscaled);
+            #else
+                        Instruction result(Mnemonic::LDNT1D, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -56744,7 +59288,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0xC5A0C000u: { // ld1d_z_p_ai_d
-                        Instruction result(Mnemonic::LD1D, insn, 3720);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LD1D, insn, EncodingId::ld1d_z_p_ai_d);
+            #else
+                        Instruction result(Mnemonic::LD1D, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         { auto op = Operand::reg_list(static_cast<uint32_t>(make_sve_reg(enc.ld1d_zpai_d.Zt))); op.set_arrangement(Arrangement::D); op.rl.count = 1; result.operands.push_back(op); }
@@ -56756,7 +59304,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0xC5A0E000u: { // ldff1d_z_p_ai_d
-                        Instruction result(Mnemonic::LDFF1D, insn, 3859);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDFF1D, insn, EncodingId::ldff1d_z_p_ai_d);
+            #else
+                        Instruction result(Mnemonic::LDFF1D, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         { auto op = Operand::reg_list(static_cast<uint32_t>(make_sve_reg(enc.ldff1d_zpai_d.Zt))); op.set_arrangement(Arrangement::D); op.rl.count = 1; result.operands.push_back(op); }
@@ -56768,7 +59320,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0xC5C0C000u: { // ld1d_z_p_bz_d_64_unscaled
-                        Instruction result(Mnemonic::LD1D, insn, 3728);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LD1D, insn, EncodingId::ld1d_z_p_bz_d_64_unscaled);
+            #else
+                        Instruction result(Mnemonic::LD1D, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -56778,7 +59334,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0xC5C0E000u: { // ldff1d_z_p_bz_d_64_unscaled
-                        Instruction result(Mnemonic::LDFF1D, insn, 3864);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDFF1D, insn, EncodingId::ldff1d_z_p_bz_d_64_unscaled);
+            #else
+                        Instruction result(Mnemonic::LDFF1D, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -56788,7 +59348,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0xC5E0C000u: { // ld1d_z_p_bz_d_64_scaled
-                        Instruction result(Mnemonic::LD1D, insn, 3727);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LD1D, insn, EncodingId::ld1d_z_p_bz_d_64_scaled);
+            #else
+                        Instruction result(Mnemonic::LD1D, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -56798,7 +59362,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0xC5E0E000u: { // ldff1d_z_p_bz_d_64_scaled
-                        Instruction result(Mnemonic::LDFF1D, insn, 3863);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDFF1D, insn, EncodingId::ldff1d_z_p_bz_d_64_scaled);
+            #else
+                        Instruction result(Mnemonic::LDFF1D, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -56808,7 +59376,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0xE4002000u: { // stnt1b_z_p_ar_d_64_unscaled
-                        Instruction result(Mnemonic::STNT1B, insn, 4381);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::STNT1B, insn, EncodingId::stnt1b_z_p_ar_d_64_unscaled);
+            #else
+                        Instruction result(Mnemonic::STNT1B, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -56820,7 +59392,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
         }
         case 0xE4006000u: { // stnt1b_z_p_br_contiguous
             if (((insn >> 16) & 0x1F) == 0x1F) break;
-                        Instruction result(Mnemonic::STNT1B, insn, 4383);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::STNT1B, insn, EncodingId::stnt1b_z_p_br_contiguous);
+            #else
+                        Instruction result(Mnemonic::STNT1B, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         if (enc.stnt1b_zpbr_contiguous.Rm == 31u) return std::nullopt;
@@ -56831,7 +59407,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0xE400A000u: { // st1b_z_p_bz_d_64_unscaled
-                        Instruction result(Mnemonic::ST1B, insn, 4317);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::ST1B, insn, EncodingId::st1b_z_p_bz_d_64_unscaled);
+            #else
+                        Instruction result(Mnemonic::ST1B, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -56841,7 +59421,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0xE4202000u: { // st1q_z_p_ar_d_64_unscaled
-                        Instruction result(Mnemonic::ST1Q, insn, 4337);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::ST1Q, insn, EncodingId::st1q_z_p_ar_d_64_unscaled);
+            #else
+                        Instruction result(Mnemonic::ST1Q, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -56853,7 +59437,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
         }
         case 0xE4206000u: { // st2b_z_p_br_contiguous
             if (((insn >> 16) & 0x1F) == 0x1F) break;
-                        Instruction result(Mnemonic::ST2B, insn, 4351);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::ST2B, insn, EncodingId::st2b_z_p_br_contiguous);
+            #else
+                        Instruction result(Mnemonic::ST2B, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         if (enc.st2b_zpbr_contiguous.Rm == 31u) return std::nullopt;
@@ -56864,7 +59452,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0xE4402000u: { // stnt1b_z_p_ar_s_x32_unscaled
-                        Instruction result(Mnemonic::STNT1B, insn, 4380);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::STNT1B, insn, EncodingId::stnt1b_z_p_ar_s_x32_unscaled);
+            #else
+                        Instruction result(Mnemonic::STNT1B, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -56876,7 +59468,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
         }
         case 0xE4406000u: { // st3b_z_p_br_contiguous
             if (((insn >> 16) & 0x1F) == 0x1F) break;
-                        Instruction result(Mnemonic::ST3B, insn, 4361);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::ST3B, insn, EncodingId::st3b_z_p_br_contiguous);
+            #else
+                        Instruction result(Mnemonic::ST3B, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         if (enc.st3b_zpbr_contiguous.Rm == 31u) return std::nullopt;
@@ -56887,7 +59483,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0xE440A000u: { // st1b_z_p_ai_d
-                        Instruction result(Mnemonic::ST1B, insn, 4312);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::ST1B, insn, EncodingId::st1b_z_p_ai_d);
+            #else
+                        Instruction result(Mnemonic::ST1B, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         { auto op = Operand::reg_list(static_cast<uint32_t>(make_sve_reg(enc.st1b_zpai_d.Zt))); op.set_arrangement(Arrangement::D); op.rl.count = 1; result.operands.push_back(op); }
@@ -56900,7 +59500,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
         }
         case 0xE4600000u: { // st2q_z_p_br_contiguous
             if (((insn >> 16) & 0x1F) == 0x1F) break;
-                        Instruction result(Mnemonic::ST2Q, insn, 4357);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::ST2Q, insn, EncodingId::st2q_z_p_br_contiguous);
+            #else
+                        Instruction result(Mnemonic::ST2Q, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         if (enc.st2q_zpbr_contiguous.Rm == 31u) return std::nullopt;
@@ -56912,7 +59516,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
         }
         case 0xE4606000u: { // st4b_z_p_br_contiguous
             if (((insn >> 16) & 0x1F) == 0x1F) break;
-                        Instruction result(Mnemonic::ST4B, insn, 4371);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::ST4B, insn, EncodingId::st4b_z_p_br_contiguous);
+            #else
+                        Instruction result(Mnemonic::ST4B, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         if (enc.st4b_zpbr_contiguous.Rm == 31u) return std::nullopt;
@@ -56923,7 +59531,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0xE460A000u: { // st1b_z_p_ai_s
-                        Instruction result(Mnemonic::ST1B, insn, 4311);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::ST1B, insn, EncodingId::st1b_z_p_ai_s);
+            #else
+                        Instruction result(Mnemonic::ST1B, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         { auto op = Operand::reg_list(static_cast<uint32_t>(make_sve_reg(enc.st1b_zpai_s.Zt))); op.set_arrangement(Arrangement::S); op.rl.count = 1; result.operands.push_back(op); }
@@ -56935,7 +59547,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0xE4802000u: { // stnt1h_z_p_ar_d_64_unscaled
-                        Instruction result(Mnemonic::STNT1H, insn, 4388);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::STNT1H, insn, EncodingId::stnt1h_z_p_ar_d_64_unscaled);
+            #else
+                        Instruction result(Mnemonic::STNT1H, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -56947,7 +59563,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
         }
         case 0xE4806000u: { // stnt1h_z_p_br_contiguous
             if (((insn >> 16) & 0x1F) == 0x1F) break;
-                        Instruction result(Mnemonic::STNT1H, insn, 4390);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::STNT1H, insn, EncodingId::stnt1h_z_p_br_contiguous);
+            #else
+                        Instruction result(Mnemonic::STNT1H, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         if (enc.stnt1h_zpbr_contiguous.Rm == 31u) return std::nullopt;
@@ -56958,7 +59578,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0xE480A000u: { // st1h_z_p_bz_d_64_unscaled
-                        Instruction result(Mnemonic::ST1H, insn, 4336);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::ST1H, insn, EncodingId::st1h_z_p_bz_d_64_unscaled);
+            #else
+                        Instruction result(Mnemonic::ST1H, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -56969,7 +59593,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
         }
         case 0xE4A00000u: { // st3q_z_p_br_contiguous
             if (((insn >> 16) & 0x1F) == 0x1F) break;
-                        Instruction result(Mnemonic::ST3Q, insn, 4367);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::ST3Q, insn, EncodingId::st3q_z_p_br_contiguous);
+            #else
+                        Instruction result(Mnemonic::ST3Q, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         if (enc.st3q_zpbr_contiguous.Rm == 31u) return std::nullopt;
@@ -56981,7 +59609,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
         }
         case 0xE4A06000u: { // st2h_z_p_br_contiguous
             if (((insn >> 16) & 0x1F) == 0x1F) break;
-                        Instruction result(Mnemonic::ST2H, insn, 4355);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::ST2H, insn, EncodingId::st2h_z_p_br_contiguous);
+            #else
+                        Instruction result(Mnemonic::ST2H, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         if (enc.st2h_zpbr_contiguous.Rm == 31u) return std::nullopt;
@@ -56992,7 +59624,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0xE4A0A000u: { // st1h_z_p_bz_d_64_scaled
-                        Instruction result(Mnemonic::ST1H, insn, 4335);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::ST1H, insn, EncodingId::st1h_z_p_bz_d_64_scaled);
+            #else
+                        Instruction result(Mnemonic::ST1H, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -57002,7 +59638,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0xE4C02000u: { // stnt1h_z_p_ar_s_x32_unscaled
-                        Instruction result(Mnemonic::STNT1H, insn, 4387);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::STNT1H, insn, EncodingId::stnt1h_z_p_ar_s_x32_unscaled);
+            #else
+                        Instruction result(Mnemonic::STNT1H, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -57014,7 +59654,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
         }
         case 0xE4C06000u: { // st3h_z_p_br_contiguous
             if (((insn >> 16) & 0x1F) == 0x1F) break;
-                        Instruction result(Mnemonic::ST3H, insn, 4365);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::ST3H, insn, EncodingId::st3h_z_p_br_contiguous);
+            #else
+                        Instruction result(Mnemonic::ST3H, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         if (enc.st3h_zpbr_contiguous.Rm == 31u) return std::nullopt;
@@ -57025,7 +59669,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0xE4C0A000u: { // st1h_z_p_ai_d
-                        Instruction result(Mnemonic::ST1H, insn, 4328);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::ST1H, insn, EncodingId::st1h_z_p_ai_d);
+            #else
+                        Instruction result(Mnemonic::ST1H, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         { auto op = Operand::reg_list(static_cast<uint32_t>(make_sve_reg(enc.st1h_zpai_d.Zt))); op.set_arrangement(Arrangement::D); op.rl.count = 1; result.operands.push_back(op); }
@@ -57038,7 +59686,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
         }
         case 0xE4E00000u: { // st4q_z_p_br_contiguous
             if (((insn >> 16) & 0x1F) == 0x1F) break;
-                        Instruction result(Mnemonic::ST4Q, insn, 4377);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::ST4Q, insn, EncodingId::st4q_z_p_br_contiguous);
+            #else
+                        Instruction result(Mnemonic::ST4Q, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         if (enc.st4q_zpbr_contiguous.Rm == 31u) return std::nullopt;
@@ -57050,7 +59702,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
         }
         case 0xE4E06000u: { // st4h_z_p_br_contiguous
             if (((insn >> 16) & 0x1F) == 0x1F) break;
-                        Instruction result(Mnemonic::ST4H, insn, 4375);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::ST4H, insn, EncodingId::st4h_z_p_br_contiguous);
+            #else
+                        Instruction result(Mnemonic::ST4H, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         if (enc.st4h_zpbr_contiguous.Rm == 31u) return std::nullopt;
@@ -57061,7 +59717,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0xE4E0A000u: { // st1h_z_p_ai_s
-                        Instruction result(Mnemonic::ST1H, insn, 4327);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::ST1H, insn, EncodingId::st1h_z_p_ai_s);
+            #else
+                        Instruction result(Mnemonic::ST1H, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         { auto op = Operand::reg_list(static_cast<uint32_t>(make_sve_reg(enc.st1h_zpai_s.Zt))); op.set_arrangement(Arrangement::S); op.rl.count = 1; result.operands.push_back(op); }
@@ -57073,7 +59733,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0xE5002000u: { // stnt1w_z_p_ar_d_64_unscaled
-                        Instruction result(Mnemonic::STNT1W, insn, 4392);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::STNT1W, insn, EncodingId::stnt1w_z_p_ar_d_64_unscaled);
+            #else
+                        Instruction result(Mnemonic::STNT1W, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -57085,7 +59749,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
         }
         case 0xE5004000u: { // st1w_z_p_br_u128
             if (((insn >> 16) & 0x1F) == 0x1F) break;
-                        Instruction result(Mnemonic::ST1W, insn, 4343);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::ST1W, insn, EncodingId::st1w_z_p_br_u128);
+            #else
+                        Instruction result(Mnemonic::ST1W, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         if (enc.st1w_zpbr_u128.Rm == 31u) return std::nullopt;
@@ -57097,7 +59765,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
         }
         case 0xE5006000u: { // stnt1w_z_p_br_contiguous
             if (((insn >> 16) & 0x1F) == 0x1F) break;
-                        Instruction result(Mnemonic::STNT1W, insn, 4394);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::STNT1W, insn, EncodingId::stnt1w_z_p_br_contiguous);
+            #else
+                        Instruction result(Mnemonic::STNT1W, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         if (enc.stnt1w_zpbr_contiguous.Rm == 31u) return std::nullopt;
@@ -57108,7 +59780,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0xE500A000u: { // st1w_z_p_bz_d_64_unscaled
-                        Instruction result(Mnemonic::ST1W, insn, 4349);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::ST1W, insn, EncodingId::st1w_z_p_bz_d_64_unscaled);
+            #else
+                        Instruction result(Mnemonic::ST1W, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -57119,7 +59795,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
         }
         case 0xE5206000u: { // st2w_z_p_br_contiguous
             if (((insn >> 16) & 0x1F) == 0x1F) break;
-                        Instruction result(Mnemonic::ST2W, insn, 4359);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::ST2W, insn, EncodingId::st2w_z_p_br_contiguous);
+            #else
+                        Instruction result(Mnemonic::ST2W, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         if (enc.st2w_zpbr_contiguous.Rm == 31u) return std::nullopt;
@@ -57130,7 +59810,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0xE520A000u: { // st1w_z_p_bz_d_64_scaled
-                        Instruction result(Mnemonic::ST1W, insn, 4348);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::ST1W, insn, EncodingId::st1w_z_p_bz_d_64_scaled);
+            #else
+                        Instruction result(Mnemonic::ST1W, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -57140,7 +59824,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0xE5402000u: { // stnt1w_z_p_ar_s_x32_unscaled
-                        Instruction result(Mnemonic::STNT1W, insn, 4391);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::STNT1W, insn, EncodingId::stnt1w_z_p_ar_s_x32_unscaled);
+            #else
+                        Instruction result(Mnemonic::STNT1W, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -57152,7 +59840,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
         }
         case 0xE5406000u: { // st3w_z_p_br_contiguous
             if (((insn >> 16) & 0x1F) == 0x1F) break;
-                        Instruction result(Mnemonic::ST3W, insn, 4369);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::ST3W, insn, EncodingId::st3w_z_p_br_contiguous);
+            #else
+                        Instruction result(Mnemonic::ST3W, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         if (enc.st3w_zpbr_contiguous.Rm == 31u) return std::nullopt;
@@ -57163,7 +59855,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0xE540A000u: { // st1w_z_p_ai_d
-                        Instruction result(Mnemonic::ST1W, insn, 4339);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::ST1W, insn, EncodingId::st1w_z_p_ai_d);
+            #else
+                        Instruction result(Mnemonic::ST1W, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         { auto op = Operand::reg_list(static_cast<uint32_t>(make_sve_reg(enc.st1w_zpai_d.Zt))); op.set_arrangement(Arrangement::D); op.rl.count = 1; result.operands.push_back(op); }
@@ -57176,7 +59872,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
         }
         case 0xE5606000u: { // st4w_z_p_br_contiguous
             if (((insn >> 16) & 0x1F) == 0x1F) break;
-                        Instruction result(Mnemonic::ST4W, insn, 4379);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::ST4W, insn, EncodingId::st4w_z_p_br_contiguous);
+            #else
+                        Instruction result(Mnemonic::ST4W, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         if (enc.st4w_zpbr_contiguous.Rm == 31u) return std::nullopt;
@@ -57187,7 +59887,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0xE560A000u: { // st1w_z_p_ai_s
-                        Instruction result(Mnemonic::ST1W, insn, 4338);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::ST1W, insn, EncodingId::st1w_z_p_ai_s);
+            #else
+                        Instruction result(Mnemonic::ST1W, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         { auto op = Operand::reg_list(static_cast<uint32_t>(make_sve_reg(enc.st1w_zpai_s.Zt))); op.set_arrangement(Arrangement::S); op.rl.count = 1; result.operands.push_back(op); }
@@ -57199,7 +59903,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0xE5802000u: { // stnt1d_z_p_ar_d_64_unscaled
-                        Instruction result(Mnemonic::STNT1D, insn, 4384);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::STNT1D, insn, EncodingId::stnt1d_z_p_ar_d_64_unscaled);
+            #else
+                        Instruction result(Mnemonic::STNT1D, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -57211,7 +59919,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
         }
         case 0xE5806000u: { // stnt1d_z_p_br_contiguous
             if (((insn >> 16) & 0x1F) == 0x1F) break;
-                        Instruction result(Mnemonic::STNT1D, insn, 4386);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::STNT1D, insn, EncodingId::stnt1d_z_p_br_contiguous);
+            #else
+                        Instruction result(Mnemonic::STNT1D, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         if (enc.stnt1d_zpbr_contiguous.Rm == 31u) return std::nullopt;
@@ -57222,7 +59934,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0xE580A000u: { // st1d_z_p_bz_d_64_unscaled
-                        Instruction result(Mnemonic::ST1D, insn, 4326);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::ST1D, insn, EncodingId::st1d_z_p_bz_d_64_unscaled);
+            #else
+                        Instruction result(Mnemonic::ST1D, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -57233,7 +59949,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
         }
         case 0xE5A06000u: { // st2d_z_p_br_contiguous
             if (((insn >> 16) & 0x1F) == 0x1F) break;
-                        Instruction result(Mnemonic::ST2D, insn, 4353);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::ST2D, insn, EncodingId::st2d_z_p_br_contiguous);
+            #else
+                        Instruction result(Mnemonic::ST2D, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         if (enc.st2d_zpbr_contiguous.Rm == 31u) return std::nullopt;
@@ -57244,7 +59964,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0xE5A0A000u: { // st1d_z_p_bz_d_64_scaled
-                        Instruction result(Mnemonic::ST1D, insn, 4325);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::ST1D, insn, EncodingId::st1d_z_p_bz_d_64_scaled);
+            #else
+                        Instruction result(Mnemonic::ST1D, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -57255,7 +59979,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
         }
         case 0xE5C04000u: { // st1d_z_p_br_u128
             if (((insn >> 16) & 0x1F) == 0x1F) break;
-                        Instruction result(Mnemonic::ST1D, insn, 4322);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::ST1D, insn, EncodingId::st1d_z_p_br_u128);
+            #else
+                        Instruction result(Mnemonic::ST1D, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         if (enc.st1d_zpbr_u128.Rm == 31u) return std::nullopt;
@@ -57267,7 +59995,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
         }
         case 0xE5C06000u: { // st3d_z_p_br_contiguous
             if (((insn >> 16) & 0x1F) == 0x1F) break;
-                        Instruction result(Mnemonic::ST3D, insn, 4363);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::ST3D, insn, EncodingId::st3d_z_p_br_contiguous);
+            #else
+                        Instruction result(Mnemonic::ST3D, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         if (enc.st3d_zpbr_contiguous.Rm == 31u) return std::nullopt;
@@ -57278,7 +60010,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0xE5C0A000u: { // st1d_z_p_ai_d
-                        Instruction result(Mnemonic::ST1D, insn, 4318);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::ST1D, insn, EncodingId::st1d_z_p_ai_d);
+            #else
+                        Instruction result(Mnemonic::ST1D, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         { auto op = Operand::reg_list(static_cast<uint32_t>(make_sve_reg(enc.st1d_zpai_d.Zt))); op.set_arrangement(Arrangement::D); op.rl.count = 1; result.operands.push_back(op); }
@@ -57291,7 +60027,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
         }
         case 0xE5E04000u: { // st1d_z_p_br_
             if (((insn >> 16) & 0x1F) == 0x1F) break;
-                        Instruction result(Mnemonic::ST1D, insn, 4321);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::ST1D, insn, EncodingId::st1d_z_p_br_);
+            #else
+                        Instruction result(Mnemonic::ST1D, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         if (enc.st1d_zpbr.Rm == 31u) return std::nullopt;
@@ -57303,7 +60043,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
         }
         case 0xE5E06000u: { // st4d_z_p_br_contiguous
             if (((insn >> 16) & 0x1F) == 0x1F) break;
-                        Instruction result(Mnemonic::ST4D, insn, 4373);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::ST4D, insn, EncodingId::st4d_z_p_br_contiguous);
+            #else
+                        Instruction result(Mnemonic::ST4D, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         if (enc.st4d_zpbr_contiguous.Rm == 31u) return std::nullopt;
@@ -57319,7 +60063,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
     // Switch for mask 0xFFE0A000u (12 patterns, 12 encodings)
     switch (insn & 0xFFE0A000u) {
         case 0xE4008000u: { // st1b_z_p_bz_d_x32_unscaled
-                        Instruction result(Mnemonic::ST1B, insn, 4315);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::ST1B, insn, EncodingId::st1b_z_p_bz_d_x32_unscaled);
+            #else
+                        Instruction result(Mnemonic::ST1B, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -57329,7 +60077,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0xE4408000u: { // st1b_z_p_bz_s_x32_unscaled
-                        Instruction result(Mnemonic::ST1B, insn, 4316);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::ST1B, insn, EncodingId::st1b_z_p_bz_s_x32_unscaled);
+            #else
+                        Instruction result(Mnemonic::ST1B, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -57339,7 +60091,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0xE4808000u: { // st1h_z_p_bz_d_x32_unscaled
-                        Instruction result(Mnemonic::ST1H, insn, 4333);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::ST1H, insn, EncodingId::st1h_z_p_bz_d_x32_unscaled);
+            #else
+                        Instruction result(Mnemonic::ST1H, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -57349,7 +60105,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0xE4A08000u: { // st1h_z_p_bz_d_x32_scaled
-                        Instruction result(Mnemonic::ST1H, insn, 4332);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::ST1H, insn, EncodingId::st1h_z_p_bz_d_x32_scaled);
+            #else
+                        Instruction result(Mnemonic::ST1H, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -57359,7 +60119,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0xE4C08000u: { // st1h_z_p_bz_s_x32_unscaled
-                        Instruction result(Mnemonic::ST1H, insn, 4334);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::ST1H, insn, EncodingId::st1h_z_p_bz_s_x32_unscaled);
+            #else
+                        Instruction result(Mnemonic::ST1H, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -57369,7 +60133,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0xE4E08000u: { // st1h_z_p_bz_s_x32_scaled
-                        Instruction result(Mnemonic::ST1H, insn, 4331);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::ST1H, insn, EncodingId::st1h_z_p_bz_s_x32_scaled);
+            #else
+                        Instruction result(Mnemonic::ST1H, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -57379,7 +60147,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0xE5008000u: { // st1w_z_p_bz_d_x32_unscaled
-                        Instruction result(Mnemonic::ST1W, insn, 4346);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::ST1W, insn, EncodingId::st1w_z_p_bz_d_x32_unscaled);
+            #else
+                        Instruction result(Mnemonic::ST1W, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -57389,7 +60161,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0xE5208000u: { // st1w_z_p_bz_d_x32_scaled
-                        Instruction result(Mnemonic::ST1W, insn, 4345);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::ST1W, insn, EncodingId::st1w_z_p_bz_d_x32_scaled);
+            #else
+                        Instruction result(Mnemonic::ST1W, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -57399,7 +60175,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0xE5408000u: { // st1w_z_p_bz_s_x32_unscaled
-                        Instruction result(Mnemonic::ST1W, insn, 4347);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::ST1W, insn, EncodingId::st1w_z_p_bz_s_x32_unscaled);
+            #else
+                        Instruction result(Mnemonic::ST1W, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -57409,7 +60189,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0xE5608000u: { // st1w_z_p_bz_s_x32_scaled
-                        Instruction result(Mnemonic::ST1W, insn, 4344);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::ST1W, insn, EncodingId::st1w_z_p_bz_s_x32_scaled);
+            #else
+                        Instruction result(Mnemonic::ST1W, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -57419,7 +60203,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0xE5808000u: { // st1d_z_p_bz_d_x32_unscaled
-                        Instruction result(Mnemonic::ST1D, insn, 4324);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::ST1D, insn, EncodingId::st1d_z_p_bz_d_x32_unscaled);
+            #else
+                        Instruction result(Mnemonic::ST1D, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -57429,7 +60217,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0xE5A08000u: { // st1d_z_p_bz_d_x32_scaled
-                        Instruction result(Mnemonic::ST1D, insn, 4323);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::ST1D, insn, EncodingId::st1d_z_p_bz_d_x32_scaled);
+            #else
+                        Instruction result(Mnemonic::ST1D, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -57444,7 +60236,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
     // Switch for mask 0xFFD0E000u (1 pattern, 1 encoding)
     switch (insn & 0xFFD0E000u) {
         case 0xE540E000u: { // st1w_z_p_bi_
-                        Instruction result(Mnemonic::ST1W, insn, 4340);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::ST1W, insn, EncodingId::st1w_z_p_bi_);
+            #else
+                        Instruction result(Mnemonic::ST1W, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -57465,7 +60261,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
     // Switch for mask 0xFFC0E010u (6 patterns, 6 encodings)
     switch (insn & 0xFFC0E010u) {
         case 0x85800000u: { // ldr_p_bi_
-                        Instruction result(Mnemonic::LDR, insn, 3946);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDR, insn, EncodingId::ldr_p_bi_);
+            #else
+                        Instruction result(Mnemonic::LDR, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -57480,7 +60280,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x85C00000u: { // prfb_i_p_bi_s
-                        Instruction result(Mnemonic::PRFB, insn, 4048);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::PRFB, insn, EncodingId::prfb_i_p_bi_s);
+            #else
+                        Instruction result(Mnemonic::PRFB, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -57496,7 +60300,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x85C02000u: { // prfh_i_p_bi_s
-                        Instruction result(Mnemonic::PRFH, insn, 4062);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::PRFH, insn, EncodingId::prfh_i_p_bi_s);
+            #else
+                        Instruction result(Mnemonic::PRFH, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -57512,7 +60320,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x85C04000u: { // prfw_i_p_bi_s
-                        Instruction result(Mnemonic::PRFW, insn, 4069);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::PRFW, insn, EncodingId::prfw_i_p_bi_s);
+            #else
+                        Instruction result(Mnemonic::PRFW, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -57528,7 +60340,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x85C06000u: { // prfd_i_p_bi_s
-                        Instruction result(Mnemonic::PRFD, insn, 4055);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::PRFD, insn, EncodingId::prfd_i_p_bi_s);
+            #else
+                        Instruction result(Mnemonic::PRFD, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -57544,7 +60360,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0xE5800000u: { // str_p_bi_
-                        Instruction result(Mnemonic::STR, insn, 4395);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::STR, insn, EncodingId::str_p_bi_);
+            #else
+                        Instruction result(Mnemonic::STR, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -57564,7 +60384,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
     // Switch for mask 0xFFC0E000u (19 patterns, 19 encodings)
     switch (insn & 0xFFC0E000u) {
         case 0x84408000u: { // ld1rb_z_p_bi_u8
-                        Instruction result(Mnemonic::LD1RB, insn, 3744);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LD1RB, insn, EncodingId::ld1rb_z_p_bi_u8);
+            #else
+                        Instruction result(Mnemonic::LD1RB, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -57578,7 +60402,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x8440A000u: { // ld1rb_z_p_bi_u16
-                        Instruction result(Mnemonic::LD1RB, insn, 3745);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LD1RB, insn, EncodingId::ld1rb_z_p_bi_u16);
+            #else
+                        Instruction result(Mnemonic::LD1RB, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -57592,7 +60420,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x8440C000u: { // ld1rb_z_p_bi_u32
-                        Instruction result(Mnemonic::LD1RB, insn, 3746);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LD1RB, insn, EncodingId::ld1rb_z_p_bi_u32);
+            #else
+                        Instruction result(Mnemonic::LD1RB, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -57606,7 +60438,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x8440E000u: { // ld1rb_z_p_bi_u64
-                        Instruction result(Mnemonic::LD1RB, insn, 3747);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LD1RB, insn, EncodingId::ld1rb_z_p_bi_u64);
+            #else
+                        Instruction result(Mnemonic::LD1RB, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -57620,7 +60456,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x84C08000u: { // ld1rsw_z_p_bi_s64
-                        Instruction result(Mnemonic::LD1RSW, insn, 3773);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LD1RSW, insn, EncodingId::ld1rsw_z_p_bi_s64);
+            #else
+                        Instruction result(Mnemonic::LD1RSW, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -57634,7 +60474,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x84C0A000u: { // ld1rh_z_p_bi_u16
-                        Instruction result(Mnemonic::LD1RH, insn, 3749);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LD1RH, insn, EncodingId::ld1rh_z_p_bi_u16);
+            #else
+                        Instruction result(Mnemonic::LD1RH, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -57648,7 +60492,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x84C0C000u: { // ld1rh_z_p_bi_u32
-                        Instruction result(Mnemonic::LD1RH, insn, 3750);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LD1RH, insn, EncodingId::ld1rh_z_p_bi_u32);
+            #else
+                        Instruction result(Mnemonic::LD1RH, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -57662,7 +60510,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x84C0E000u: { // ld1rh_z_p_bi_u64
-                        Instruction result(Mnemonic::LD1RH, insn, 3751);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LD1RH, insn, EncodingId::ld1rh_z_p_bi_u64);
+            #else
+                        Instruction result(Mnemonic::LD1RH, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -57676,7 +60528,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x85408000u: { // ld1rsh_z_p_bi_s64
-                        Instruction result(Mnemonic::LD1RSH, insn, 3772);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LD1RSH, insn, EncodingId::ld1rsh_z_p_bi_s64);
+            #else
+                        Instruction result(Mnemonic::LD1RSH, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -57690,7 +60546,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x8540A000u: { // ld1rsh_z_p_bi_s32
-                        Instruction result(Mnemonic::LD1RSH, insn, 3771);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LD1RSH, insn, EncodingId::ld1rsh_z_p_bi_s32);
+            #else
+                        Instruction result(Mnemonic::LD1RSH, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -57704,7 +60564,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x8540C000u: { // ld1rw_z_p_bi_u32
-                        Instruction result(Mnemonic::LD1RW, insn, 3774);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LD1RW, insn, EncodingId::ld1rw_z_p_bi_u32);
+            #else
+                        Instruction result(Mnemonic::LD1RW, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -57718,7 +60582,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x8540E000u: { // ld1rw_z_p_bi_u64
-                        Instruction result(Mnemonic::LD1RW, insn, 3775);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LD1RW, insn, EncodingId::ld1rw_z_p_bi_u64);
+            #else
+                        Instruction result(Mnemonic::LD1RW, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -57732,7 +60600,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x85804000u: { // ldr_z_bi_
-                        Instruction result(Mnemonic::LDR, insn, 3947);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDR, insn, EncodingId::ldr_z_bi_);
+            #else
+                        Instruction result(Mnemonic::LDR, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -57747,7 +60619,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x85C08000u: { // ld1rsb_z_p_bi_s64
-                        Instruction result(Mnemonic::LD1RSB, insn, 3770);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LD1RSB, insn, EncodingId::ld1rsb_z_p_bi_s64);
+            #else
+                        Instruction result(Mnemonic::LD1RSB, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -57761,7 +60637,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x85C0A000u: { // ld1rsb_z_p_bi_s32
-                        Instruction result(Mnemonic::LD1RSB, insn, 3769);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LD1RSB, insn, EncodingId::ld1rsb_z_p_bi_s32);
+            #else
+                        Instruction result(Mnemonic::LD1RSB, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -57775,7 +60655,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x85C0C000u: { // ld1rsb_z_p_bi_s16
-                        Instruction result(Mnemonic::LD1RSB, insn, 3768);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LD1RSB, insn, EncodingId::ld1rsb_z_p_bi_s16);
+            #else
+                        Instruction result(Mnemonic::LD1RSB, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -57789,7 +60673,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x85C0E000u: { // ld1rd_z_p_bi_u64
-                        Instruction result(Mnemonic::LD1RD, insn, 3748);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LD1RD, insn, EncodingId::ld1rd_z_p_bi_u64);
+            #else
+                        Instruction result(Mnemonic::LD1RD, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -57804,7 +60692,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
         }
         case 0xE5404000u: { // st1w_z_p_br_
             if (((insn >> 16) & 0x1F) == 0x1F) break;
-                        Instruction result(Mnemonic::ST1W, insn, 4342);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::ST1W, insn, EncodingId::st1w_z_p_br_);
+            #else
+                        Instruction result(Mnemonic::ST1W, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         if (enc.st1w_zpbr.Rm == 31u) return std::nullopt;
@@ -57816,7 +60708,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0xE5804000u: { // str_z_bi_
-                        Instruction result(Mnemonic::STR, insn, 4396);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::STR, insn, EncodingId::str_z_bi_);
+            #else
+                        Instruction result(Mnemonic::STR, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -57836,7 +60732,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
     // Switch for mask 0xFFBFE000u (2 patterns, 2 encodings)
     switch (insn & 0xFFBFE000u) {
         case 0x05218000u: { // compact_z_p_z_s
-                        Instruction result(Mnemonic::COMPACT, insn, 3427);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::COMPACT, insn, EncodingId::compact_z_p_z_s);
+            #else
+                        Instruction result(Mnemonic::COMPACT, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = enc.compact_zpzs.sz ? Arrangement::D : Arrangement::S;
@@ -57846,7 +60746,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x05A18000u: { // compact_z_p_z_
-                        Instruction result(Mnemonic::COMPACT, insn, 3428);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::COMPACT, insn, EncodingId::compact_z_p_z_);
+            #else
+                        Instruction result(Mnemonic::COMPACT, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = enc.compact_zpz.sz ? Arrangement::D : Arrangement::S;
@@ -57861,7 +60765,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
     // Switch for mask 0xFFB9FE00u (1 pattern, 1 encoding)
     switch (insn & 0xFFB9FE00u) {
         case 0x05A93800u: { // pmov_z_pi_d
-                        Instruction result(Mnemonic::PMOV, insn, 4036);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::PMOV, insn, EncodingId::pmov_z_pi_d);
+            #else
+                        Instruction result(Mnemonic::PMOV, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         result.operands.clear();  // PMOV special case
@@ -57875,7 +60783,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
     // Switch for mask 0xFFB9FC10u (1 pattern, 1 encoding)
     switch (insn & 0xFFB9FC10u) {
         case 0x05A83800u: { // pmov_p_zi_d
-                        Instruction result(Mnemonic::PMOV, insn, 4032);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::PMOV, insn, EncodingId::pmov_p_zi_d);
+            #else
+                        Instruction result(Mnemonic::PMOV, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         result.operands.clear();  // PMOV special case
@@ -57889,7 +60801,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
     // Switch for mask 0xFFA7FC00u (6 patterns, 6 encodings)
     switch (insn & 0xFFA7FC00u) {
         case 0x45204000u: { // sqxtnb_z_zz_
-                        Instruction result(Mnemonic::SQXTNB, insn, 4292);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SQXTNB, insn, EncodingId::sqxtnb_z_zz_);
+            #else
+                        Instruction result(Mnemonic::SQXTNB, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         uint32_t _tsize = (enc.sqxtnb_zzz.tszh << 2) | enc.sqxtnb_zzz.tszl;
@@ -57908,7 +60824,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x45204400u: { // sqxtnt_z_zz_
-                        Instruction result(Mnemonic::SQXTNT, insn, 4293);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SQXTNT, insn, EncodingId::sqxtnt_z_zz_);
+            #else
+                        Instruction result(Mnemonic::SQXTNT, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         uint32_t _tsize = (enc.sqxtnt_zzz.tszh << 2) | enc.sqxtnt_zzz.tszl;
@@ -57927,7 +60847,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x45204800u: { // uqxtnb_z_zz_
-                        Instruction result(Mnemonic::UQXTNB, insn, 4549);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::UQXTNB, insn, EncodingId::uqxtnb_z_zz_);
+            #else
+                        Instruction result(Mnemonic::UQXTNB, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         uint32_t _tsize = (enc.uqxtnb_zzz.tszh << 2) | enc.uqxtnb_zzz.tszl;
@@ -57946,7 +60870,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x45204C00u: { // uqxtnt_z_zz_
-                        Instruction result(Mnemonic::UQXTNT, insn, 4550);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::UQXTNT, insn, EncodingId::uqxtnt_z_zz_);
+            #else
+                        Instruction result(Mnemonic::UQXTNT, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         uint32_t _tsize = (enc.uqxtnt_zzz.tszh << 2) | enc.uqxtnt_zzz.tszl;
@@ -57965,7 +60893,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x45205000u: { // sqxtunb_z_zz_
-                        Instruction result(Mnemonic::SQXTUNB, insn, 4294);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SQXTUNB, insn, EncodingId::sqxtunb_z_zz_);
+            #else
+                        Instruction result(Mnemonic::SQXTUNB, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         uint32_t _tsize = (enc.sqxtunb_zzz.tszh << 2) | enc.sqxtunb_zzz.tszl;
@@ -57984,7 +60916,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x45205400u: { // sqxtunt_z_zz_
-                        Instruction result(Mnemonic::SQXTUNT, insn, 4295);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SQXTUNT, insn, EncodingId::sqxtunt_z_zz_);
+            #else
+                        Instruction result(Mnemonic::SQXTUNT, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         uint32_t _tsize = (enc.sqxtunt_zzz.tszh << 2) | enc.sqxtunt_zzz.tszl;
@@ -58008,7 +60944,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
     // Switch for mask 0xFFA0FC1Fu (2 patterns, 2 encodings)
     switch (insn & 0xFFA0FC1Fu) {
         case 0x25A02000u: { // ctermeq_rr_
-                        Instruction result(Mnemonic::CTERMEQ, insn, 3433);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::CTERMEQ, insn, EncodingId::ctermeq_rr_);
+            #else
+                        Instruction result(Mnemonic::CTERMEQ, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -58017,7 +60957,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x25A02010u: { // ctermne_rr_
-                        Instruction result(Mnemonic::CTERMNE, insn, 3434);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::CTERMNE, insn, EncodingId::ctermne_rr_);
+            #else
+                        Instruction result(Mnemonic::CTERMNE, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -58031,7 +60975,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
     // Switch for mask 0xFFA0FC00u (41 patterns, 41 encodings)
     switch (insn & 0xFFA0FC00u) {
         case 0x44200000u: { // sdot_z16_zzzi_h
-                        Instruction result(Mnemonic::SDOT, insn, 4142);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SDOT, insn, EncodingId::sdot_z16_zzzi_h);
+            #else
+                        Instruction result(Mnemonic::SDOT, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::sve(enc.sdot_z16zzzi_h.Zda, Arrangement::H));
@@ -58040,7 +60988,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x44200400u: { // udot_z16_zzzi_h
-                        Instruction result(Mnemonic::UDOT, insn, 4462);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::UDOT, insn, EncodingId::udot_z16_zzzi_h);
+            #else
+                        Instruction result(Mnemonic::UDOT, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::sve(enc.udot_z16zzzi_h.Zda, Arrangement::H));
@@ -58049,7 +61001,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x44200800u: { // mla_z_zzzi_h
-                        Instruction result(Mnemonic::MLA, insn, 3971);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::MLA, insn, EncodingId::mla_z_zzzi_h);
+            #else
+                        Instruction result(Mnemonic::MLA, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::sve(enc.mla_zzzzi_h.Zda, Arrangement::H));
@@ -58058,7 +61014,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x44200C00u: { // mls_z_zzzi_h
-                        Instruction result(Mnemonic::MLS, insn, 3976);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::MLS, insn, EncodingId::mls_z_zzzi_h);
+            #else
+                        Instruction result(Mnemonic::MLS, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::sve(enc.mls_zzzzi_h.Zda, Arrangement::H));
@@ -58067,7 +61027,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x44201000u: { // sqrdmlah_z_zzzi_h
-                        Instruction result(Mnemonic::SQRDMLAH, insn, 4257);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SQRDMLAH, insn, EncodingId::sqrdmlah_z_zzzi_h);
+            #else
+                        Instruction result(Mnemonic::SQRDMLAH, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::sve(enc.sqrdmlah_zzzzi_h.Zda, Arrangement::H));
@@ -58076,7 +61040,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x44201400u: { // sqrdmlsh_z_zzzi_h
-                        Instruction result(Mnemonic::SQRDMLSH, insn, 4261);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SQRDMLSH, insn, EncodingId::sqrdmlsh_z_zzzi_h);
+            #else
+                        Instruction result(Mnemonic::SQRDMLSH, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::sve(enc.sqrdmlsh_zzzzi_h.Zda, Arrangement::H));
@@ -58085,7 +61053,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x4420F000u: { // sqdmulh_z_zzi_h
-                        Instruction result(Mnemonic::SQDMULH, insn, 4228);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SQDMULH, insn, EncodingId::sqdmulh_z_zzi_h);
+            #else
+                        Instruction result(Mnemonic::SQDMULH, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::sve(enc.sqdmulh_zzzi_h.Zd, Arrangement::H));
@@ -58094,7 +61066,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x4420F400u: { // sqrdmulh_z_zzi_h
-                        Instruction result(Mnemonic::SQRDMULH, insn, 4265);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SQRDMULH, insn, EncodingId::sqrdmulh_z_zzi_h);
+            #else
+                        Instruction result(Mnemonic::SQRDMULH, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::sve(enc.sqrdmulh_zzzi_h.Zd, Arrangement::H));
@@ -58103,7 +61079,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x4420F800u: { // mul_z_zzi_h
-                        Instruction result(Mnemonic::MUL, insn, 4001);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::MUL, insn, EncodingId::mul_z_zzi_h);
+            #else
+                        Instruction result(Mnemonic::MUL, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::sve(enc.mul_zzzi_h.Zd, Arrangement::H));
@@ -58112,7 +61092,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x44800000u: { // sdot_z_zzz_
-                        Instruction result(Mnemonic::SDOT, insn, 4144);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SDOT, insn, EncodingId::sdot_z_zzz_);
+            #else
+                        Instruction result(Mnemonic::SDOT, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = Arrangement::None;
@@ -58129,7 +61113,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x44800400u: { // udot_z_zzz_
-                        Instruction result(Mnemonic::UDOT, insn, 4464);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::UDOT, insn, EncodingId::udot_z_zzz_);
+            #else
+                        Instruction result(Mnemonic::UDOT, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = Arrangement::None;
@@ -58146,7 +61134,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x4500A000u: { // sshllb_z_zi_
-                        Instruction result(Mnemonic::SSHLLB, insn, 4302);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SSHLLB, insn, EncodingId::sshllb_z_zi_);
+            #else
+                        Instruction result(Mnemonic::SSHLLB, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         uint32_t _tsize = (enc.sshllb_zzi.tszh << 2) | enc.sshllb_zzi.tszl;
@@ -58169,7 +61161,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x4500A400u: { // sshllt_z_zi_
-                        Instruction result(Mnemonic::SSHLLT, insn, 4303);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SSHLLT, insn, EncodingId::sshllt_z_zi_);
+            #else
+                        Instruction result(Mnemonic::SSHLLT, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         uint32_t _tsize = (enc.sshllt_zzi.tszh << 2) | enc.sshllt_zzi.tszl;
@@ -58192,7 +61188,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x4500A800u: { // ushllb_z_zi_
-                        Instruction result(Mnemonic::USHLLB, insn, 4562);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::USHLLB, insn, EncodingId::ushllb_z_zi_);
+            #else
+                        Instruction result(Mnemonic::USHLLB, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         uint32_t _tsize = (enc.ushllb_zzi.tszh << 2) | enc.ushllb_zzi.tszl;
@@ -58215,7 +61215,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x4500AC00u: { // ushllt_z_zi_
-                        Instruction result(Mnemonic::USHLLT, insn, 4563);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::USHLLT, insn, EncodingId::ushllt_z_zi_);
+            #else
+                        Instruction result(Mnemonic::USHLLT, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         uint32_t _tsize = (enc.ushllt_zzi.tszh << 2) | enc.ushllt_zzi.tszl;
@@ -58238,7 +61242,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x4500D000u: { // adclb_z_zzz_
-                        Instruction result(Mnemonic::ADCLB, insn, 3264);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::ADCLB, insn, EncodingId::adclb_z_zzz_);
+            #else
+                        Instruction result(Mnemonic::ADCLB, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = enc.adclb_zzzz.sz ? Arrangement::D : Arrangement::S;
@@ -58248,7 +61256,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x4500D400u: { // adclt_z_zzz_
-                        Instruction result(Mnemonic::ADCLT, insn, 3265);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::ADCLT, insn, EncodingId::adclt_z_zzz_);
+            #else
+                        Instruction result(Mnemonic::ADCLT, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = enc.adclt_zzzz.sz ? Arrangement::D : Arrangement::S;
@@ -58258,7 +61270,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x45200000u: { // sqshrunb_z_zi_
-                        Instruction result(Mnemonic::SQSHRUNB, insn, 4286);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SQSHRUNB, insn, EncodingId::sqshrunb_z_zi_);
+            #else
+                        Instruction result(Mnemonic::SQSHRUNB, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         uint32_t _tsize = (enc.sqshrunb_zzi.tszh << 2) | enc.sqshrunb_zzi.tszl;
@@ -58281,7 +61297,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x45200400u: { // sqshrunt_z_zi_
-                        Instruction result(Mnemonic::SQSHRUNT, insn, 4287);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SQSHRUNT, insn, EncodingId::sqshrunt_z_zi_);
+            #else
+                        Instruction result(Mnemonic::SQSHRUNT, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         uint32_t _tsize = (enc.sqshrunt_zzi.tszh << 2) | enc.sqshrunt_zzi.tszl;
@@ -58304,7 +61324,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x45200800u: { // sqrshrunb_z_zi_
-                        Instruction result(Mnemonic::SQRSHRUNB, insn, 4276);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SQRSHRUNB, insn, EncodingId::sqrshrunb_z_zi_);
+            #else
+                        Instruction result(Mnemonic::SQRSHRUNB, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         uint32_t _tsize = (enc.sqrshrunb_zzi.tszh << 2) | enc.sqrshrunb_zzi.tszl;
@@ -58327,7 +61351,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x45200C00u: { // sqrshrunt_z_zi_
-                        Instruction result(Mnemonic::SQRSHRUNT, insn, 4277);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SQRSHRUNT, insn, EncodingId::sqrshrunt_z_zi_);
+            #else
+                        Instruction result(Mnemonic::SQRSHRUNT, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         uint32_t _tsize = (enc.sqrshrunt_zzi.tszh << 2) | enc.sqrshrunt_zzi.tszl;
@@ -58350,7 +61378,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x45201000u: { // shrnb_z_zi_
-                        Instruction result(Mnemonic::SHRNB, insn, 4151);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SHRNB, insn, EncodingId::shrnb_z_zi_);
+            #else
+                        Instruction result(Mnemonic::SHRNB, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         uint32_t _tsize = (enc.shrnb_zzi.tszh << 2) | enc.shrnb_zzi.tszl;
@@ -58373,7 +61405,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x45201400u: { // shrnt_z_zi_
-                        Instruction result(Mnemonic::SHRNT, insn, 4152);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SHRNT, insn, EncodingId::shrnt_z_zi_);
+            #else
+                        Instruction result(Mnemonic::SHRNT, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         uint32_t _tsize = (enc.shrnt_zzi.tszh << 2) | enc.shrnt_zzi.tszl;
@@ -58396,7 +61432,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x45201800u: { // rshrnb_z_zi_
-                        Instruction result(Mnemonic::RSHRNB, insn, 4101);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::RSHRNB, insn, EncodingId::rshrnb_z_zi_);
+            #else
+                        Instruction result(Mnemonic::RSHRNB, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         uint32_t _tsize = (enc.rshrnb_zzi.tszh << 2) | enc.rshrnb_zzi.tszl;
@@ -58419,7 +61459,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x45201C00u: { // rshrnt_z_zi_
-                        Instruction result(Mnemonic::RSHRNT, insn, 4102);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::RSHRNT, insn, EncodingId::rshrnt_z_zi_);
+            #else
+                        Instruction result(Mnemonic::RSHRNT, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         uint32_t _tsize = (enc.rshrnt_zzi.tszh << 2) | enc.rshrnt_zzi.tszl;
@@ -58442,7 +61486,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x45202000u: { // sqshrnb_z_zi_
-                        Instruction result(Mnemonic::SQSHRNB, insn, 4283);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SQSHRNB, insn, EncodingId::sqshrnb_z_zi_);
+            #else
+                        Instruction result(Mnemonic::SQSHRNB, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         uint32_t _tsize = (enc.sqshrnb_zzi.tszh << 2) | enc.sqshrnb_zzi.tszl;
@@ -58465,7 +61513,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x45202400u: { // sqshrnt_z_zi_
-                        Instruction result(Mnemonic::SQSHRNT, insn, 4284);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SQSHRNT, insn, EncodingId::sqshrnt_z_zi_);
+            #else
+                        Instruction result(Mnemonic::SQSHRNT, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         uint32_t _tsize = (enc.sqshrnt_zzi.tszh << 2) | enc.sqshrnt_zzi.tszl;
@@ -58488,7 +61540,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x45202800u: { // sqrshrnb_z_zi_
-                        Instruction result(Mnemonic::SQRSHRNB, insn, 4272);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SQRSHRNB, insn, EncodingId::sqrshrnb_z_zi_);
+            #else
+                        Instruction result(Mnemonic::SQRSHRNB, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         uint32_t _tsize = (enc.sqrshrnb_zzi.tszh << 2) | enc.sqrshrnb_zzi.tszl;
@@ -58511,7 +61567,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x45202C00u: { // sqrshrnt_z_zi_
-                        Instruction result(Mnemonic::SQRSHRNT, insn, 4273);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SQRSHRNT, insn, EncodingId::sqrshrnt_z_zi_);
+            #else
+                        Instruction result(Mnemonic::SQRSHRNT, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         uint32_t _tsize = (enc.sqrshrnt_zzi.tszh << 2) | enc.sqrshrnt_zzi.tszl;
@@ -58534,7 +61594,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x45203000u: { // uqshrnb_z_zi_
-                        Instruction result(Mnemonic::UQSHRNB, insn, 4543);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::UQSHRNB, insn, EncodingId::uqshrnb_z_zi_);
+            #else
+                        Instruction result(Mnemonic::UQSHRNB, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         uint32_t _tsize = (enc.uqshrnb_zzi.tszh << 2) | enc.uqshrnb_zzi.tszl;
@@ -58557,7 +61621,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x45203400u: { // uqshrnt_z_zi_
-                        Instruction result(Mnemonic::UQSHRNT, insn, 4544);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::UQSHRNT, insn, EncodingId::uqshrnt_z_zi_);
+            #else
+                        Instruction result(Mnemonic::UQSHRNT, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         uint32_t _tsize = (enc.uqshrnt_zzi.tszh << 2) | enc.uqshrnt_zzi.tszl;
@@ -58580,7 +61648,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x45203800u: { // uqrshrnb_z_zi_
-                        Instruction result(Mnemonic::UQRSHRNB, insn, 4537);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::UQRSHRNB, insn, EncodingId::uqrshrnb_z_zi_);
+            #else
+                        Instruction result(Mnemonic::UQRSHRNB, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         uint32_t _tsize = (enc.uqrshrnb_zzi.tszh << 2) | enc.uqrshrnb_zzi.tszl;
@@ -58603,7 +61675,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x45203C00u: { // uqrshrnt_z_zi_
-                        Instruction result(Mnemonic::UQRSHRNT, insn, 4538);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::UQRSHRNT, insn, EncodingId::uqrshrnt_z_zi_);
+            #else
+                        Instruction result(Mnemonic::UQRSHRNT, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         uint32_t _tsize = (enc.uqrshrnt_zzi.tszh << 2) | enc.uqrshrnt_zzi.tszl;
@@ -58626,7 +61702,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x4580D000u: { // sbclb_z_zzz_
-                        Instruction result(Mnemonic::SBCLB, insn, 4119);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SBCLB, insn, EncodingId::sbclb_z_zzz_);
+            #else
+                        Instruction result(Mnemonic::SBCLB, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = enc.sbclb_zzzz.sz ? Arrangement::D : Arrangement::S;
@@ -58636,7 +61716,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x4580D400u: { // sbclt_z_zzz_
-                        Instruction result(Mnemonic::SBCLT, insn, 4120);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SBCLT, insn, EncodingId::sbclt_z_zzz_);
+            #else
+                        Instruction result(Mnemonic::SBCLT, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = enc.sbclt_zzzz.sz ? Arrangement::D : Arrangement::S;
@@ -58646,7 +61730,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x64200000u: { // fmla_z_zzzi_h
-                        Instruction result(Mnemonic::FMLA, insn, 3595);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FMLA, insn, EncodingId::fmla_z_zzzi_h);
+            #else
+                        Instruction result(Mnemonic::FMLA, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::sve(enc.fmla_zzzzi_h.Zda, Arrangement::H));
@@ -58655,7 +61743,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x64200400u: { // fmls_z_zzzi_h
-                        Instruction result(Mnemonic::FMLS, insn, 3615);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FMLS, insn, EncodingId::fmls_z_zzzi_h);
+            #else
+                        Instruction result(Mnemonic::FMLS, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::sve(enc.fmls_zzzzi_h.Zda, Arrangement::H));
@@ -58664,7 +61756,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x64200800u: { // bfmla_z_zzzi_h
-                        Instruction result(Mnemonic::BFMLA, insn, 3332);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::BFMLA, insn, EncodingId::bfmla_z_zzzi_h);
+            #else
+                        Instruction result(Mnemonic::BFMLA, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::sve(enc.bfmla_zzzzi_h.Zda, Arrangement::H));
@@ -58673,7 +61769,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x64200C00u: { // bfmls_z_zzzi_h
-                        Instruction result(Mnemonic::BFMLS, insn, 3338);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::BFMLS, insn, EncodingId::bfmls_z_zzzi_h);
+            #else
+                        Instruction result(Mnemonic::BFMLS, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::sve(enc.bfmls_zzzzi_h.Zda, Arrangement::H));
@@ -58682,7 +61782,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x64202000u: { // fmul_z_zzi_h
-                        Instruction result(Mnemonic::FMUL, insn, 3636);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FMUL, insn, EncodingId::fmul_z_zzi_h);
+            #else
+                        Instruction result(Mnemonic::FMUL, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::sve(enc.fmul_zzzi_h.Zd, Arrangement::H));
@@ -58691,7 +61795,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x64202800u: { // bfmul_z_zzi_h
-                        Instruction result(Mnemonic::BFMUL, insn, 3347);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::BFMUL, insn, EncodingId::bfmul_z_zzi_h);
+            #else
+                        Instruction result(Mnemonic::BFMUL, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::sve(enc.bfmul_zzzi_h.Zd, Arrangement::H));
@@ -58705,7 +61813,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
     // Switch for mask 0xFFA0F000u (1 pattern, 1 encoding)
     switch (insn & 0xFFA0F000u) {
         case 0x04A0A000u: { // adr_z_az_sd_same_scaled
-                        Instruction result(Mnemonic::ADR, insn, 3281);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::ADR, insn, EncodingId::adr_z_az_sd_same_scaled);
+            #else
+                        Instruction result(Mnemonic::ADR, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = enc.adr_zaz_sd_same_scaled.sz ? Arrangement::D : Arrangement::S;
@@ -58720,7 +61832,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
     // Switch for mask 0xFFA0E010u (8 patterns, 8 encodings)
     switch (insn & 0xFFA0E010u) {
         case 0x84200000u: { // prfb_i_p_bz_s_x32_scaled
-                        Instruction result(Mnemonic::PRFB, insn, 4050);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::PRFB, insn, EncodingId::prfb_i_p_bz_s_x32_scaled);
+            #else
+                        Instruction result(Mnemonic::PRFB, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -58731,7 +61847,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x84202000u: { // prfh_i_p_bz_s_x32_scaled
-                        Instruction result(Mnemonic::PRFH, insn, 4064);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::PRFH, insn, EncodingId::prfh_i_p_bz_s_x32_scaled);
+            #else
+                        Instruction result(Mnemonic::PRFH, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -58742,7 +61862,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x84204000u: { // prfw_i_p_bz_s_x32_scaled
-                        Instruction result(Mnemonic::PRFW, insn, 4071);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::PRFW, insn, EncodingId::prfw_i_p_bz_s_x32_scaled);
+            #else
+                        Instruction result(Mnemonic::PRFW, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -58753,7 +61877,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x84206000u: { // prfd_i_p_bz_s_x32_scaled
-                        Instruction result(Mnemonic::PRFD, insn, 4057);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::PRFD, insn, EncodingId::prfd_i_p_bz_s_x32_scaled);
+            #else
+                        Instruction result(Mnemonic::PRFD, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -58764,7 +61892,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0xC4200000u: { // prfb_i_p_bz_d_x32_scaled
-                        Instruction result(Mnemonic::PRFB, insn, 4051);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::PRFB, insn, EncodingId::prfb_i_p_bz_d_x32_scaled);
+            #else
+                        Instruction result(Mnemonic::PRFB, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -58775,7 +61907,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0xC4202000u: { // prfh_i_p_bz_d_x32_scaled
-                        Instruction result(Mnemonic::PRFH, insn, 4065);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::PRFH, insn, EncodingId::prfh_i_p_bz_d_x32_scaled);
+            #else
+                        Instruction result(Mnemonic::PRFH, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -58786,7 +61922,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0xC4204000u: { // prfw_i_p_bz_d_x32_scaled
-                        Instruction result(Mnemonic::PRFW, insn, 4072);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::PRFW, insn, EncodingId::prfw_i_p_bz_d_x32_scaled);
+            #else
+                        Instruction result(Mnemonic::PRFW, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -58797,7 +61937,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0xC4206000u: { // prfd_i_p_bz_d_x32_scaled
-                        Instruction result(Mnemonic::PRFD, insn, 4058);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::PRFD, insn, EncodingId::prfd_i_p_bz_d_x32_scaled);
+            #else
+                        Instruction result(Mnemonic::PRFD, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -58813,7 +61957,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
     // Switch for mask 0xFFA0E000u (40 patterns, 40 encodings)
     switch (insn & 0xFFA0E000u) {
         case 0x84000000u: { // ld1sb_z_p_bz_s_x32_unscaled
-                        Instruction result(Mnemonic::LD1SB, insn, 3785);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LD1SB, insn, EncodingId::ld1sb_z_p_bz_s_x32_unscaled);
+            #else
+                        Instruction result(Mnemonic::LD1SB, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -58823,7 +61971,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x84002000u: { // ldff1sb_z_p_bz_s_x32_unscaled
-                        Instruction result(Mnemonic::LDFF1SB, insn, 3882);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDFF1SB, insn, EncodingId::ldff1sb_z_p_bz_s_x32_unscaled);
+            #else
+                        Instruction result(Mnemonic::LDFF1SB, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -58833,7 +61985,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x84004000u: { // ld1b_z_p_bz_s_x32_unscaled
-                        Instruction result(Mnemonic::LD1B, insn, 3718);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LD1B, insn, EncodingId::ld1b_z_p_bz_s_x32_unscaled);
+            #else
+                        Instruction result(Mnemonic::LD1B, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -58843,7 +61999,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x84006000u: { // ldff1b_z_p_bz_s_x32_unscaled
-                        Instruction result(Mnemonic::LDFF1B, insn, 3857);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDFF1B, insn, EncodingId::ldff1b_z_p_bz_s_x32_unscaled);
+            #else
+                        Instruction result(Mnemonic::LDFF1B, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -58853,7 +62013,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x84800000u: { // ld1sh_z_p_bz_s_x32_unscaled
-                        Instruction result(Mnemonic::LD1SH, insn, 3796);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LD1SH, insn, EncodingId::ld1sh_z_p_bz_s_x32_unscaled);
+            #else
+                        Instruction result(Mnemonic::LD1SH, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -58863,7 +62027,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x84802000u: { // ldff1sh_z_p_bz_s_x32_unscaled
-                        Instruction result(Mnemonic::LDFF1SH, insn, 3891);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDFF1SH, insn, EncodingId::ldff1sh_z_p_bz_s_x32_unscaled);
+            #else
+                        Instruction result(Mnemonic::LDFF1SH, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -58873,7 +62041,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x84804000u: { // ld1h_z_p_bz_s_x32_unscaled
-                        Instruction result(Mnemonic::LD1H, insn, 3740);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LD1H, insn, EncodingId::ld1h_z_p_bz_s_x32_unscaled);
+            #else
+                        Instruction result(Mnemonic::LD1H, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -58883,7 +62055,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x84806000u: { // ldff1h_z_p_bz_s_x32_unscaled
-                        Instruction result(Mnemonic::LDFF1H, insn, 3873);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDFF1H, insn, EncodingId::ldff1h_z_p_bz_s_x32_unscaled);
+            #else
+                        Instruction result(Mnemonic::LDFF1H, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -58893,7 +62069,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x84A00000u: { // ld1sh_z_p_bz_s_x32_scaled
-                        Instruction result(Mnemonic::LD1SH, insn, 3793);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LD1SH, insn, EncodingId::ld1sh_z_p_bz_s_x32_scaled);
+            #else
+                        Instruction result(Mnemonic::LD1SH, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -58903,7 +62083,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x84A02000u: { // ldff1sh_z_p_bz_s_x32_scaled
-                        Instruction result(Mnemonic::LDFF1SH, insn, 3888);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDFF1SH, insn, EncodingId::ldff1sh_z_p_bz_s_x32_scaled);
+            #else
+                        Instruction result(Mnemonic::LDFF1SH, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -58913,7 +62097,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x84A04000u: { // ld1h_z_p_bz_s_x32_scaled
-                        Instruction result(Mnemonic::LD1H, insn, 3737);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LD1H, insn, EncodingId::ld1h_z_p_bz_s_x32_scaled);
+            #else
+                        Instruction result(Mnemonic::LD1H, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -58923,7 +62111,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x84A06000u: { // ldff1h_z_p_bz_s_x32_scaled
-                        Instruction result(Mnemonic::LDFF1H, insn, 3870);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDFF1H, insn, EncodingId::ldff1h_z_p_bz_s_x32_scaled);
+            #else
+                        Instruction result(Mnemonic::LDFF1H, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -58933,7 +62125,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x85004000u: { // ld1w_z_p_bz_s_x32_unscaled
-                        Instruction result(Mnemonic::LD1W, insn, 3817);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LD1W, insn, EncodingId::ld1w_z_p_bz_s_x32_unscaled);
+            #else
+                        Instruction result(Mnemonic::LD1W, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -58943,7 +62139,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x85006000u: { // ldff1w_z_p_bz_s_x32_unscaled
-                        Instruction result(Mnemonic::LDFF1W, insn, 3907);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDFF1W, insn, EncodingId::ldff1w_z_p_bz_s_x32_unscaled);
+            #else
+                        Instruction result(Mnemonic::LDFF1W, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -58953,7 +62153,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x85204000u: { // ld1w_z_p_bz_s_x32_scaled
-                        Instruction result(Mnemonic::LD1W, insn, 3814);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LD1W, insn, EncodingId::ld1w_z_p_bz_s_x32_scaled);
+            #else
+                        Instruction result(Mnemonic::LD1W, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -58963,7 +62167,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x85206000u: { // ldff1w_z_p_bz_s_x32_scaled
-                        Instruction result(Mnemonic::LDFF1W, insn, 3904);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDFF1W, insn, EncodingId::ldff1w_z_p_bz_s_x32_scaled);
+            #else
+                        Instruction result(Mnemonic::LDFF1W, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -58973,7 +62181,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0xC4000000u: { // ld1sb_z_p_bz_d_x32_unscaled
-                        Instruction result(Mnemonic::LD1SB, insn, 3784);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LD1SB, insn, EncodingId::ld1sb_z_p_bz_d_x32_unscaled);
+            #else
+                        Instruction result(Mnemonic::LD1SB, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -58983,7 +62195,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0xC4002000u: { // ldff1sb_z_p_bz_d_x32_unscaled
-                        Instruction result(Mnemonic::LDFF1SB, insn, 3881);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDFF1SB, insn, EncodingId::ldff1sb_z_p_bz_d_x32_unscaled);
+            #else
+                        Instruction result(Mnemonic::LDFF1SB, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -58993,7 +62209,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0xC4004000u: { // ld1b_z_p_bz_d_x32_unscaled
-                        Instruction result(Mnemonic::LD1B, insn, 3717);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LD1B, insn, EncodingId::ld1b_z_p_bz_d_x32_unscaled);
+            #else
+                        Instruction result(Mnemonic::LD1B, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -59003,7 +62223,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0xC4006000u: { // ldff1b_z_p_bz_d_x32_unscaled
-                        Instruction result(Mnemonic::LDFF1B, insn, 3856);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDFF1B, insn, EncodingId::ldff1b_z_p_bz_d_x32_unscaled);
+            #else
+                        Instruction result(Mnemonic::LDFF1B, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -59013,7 +62237,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0xC4800000u: { // ld1sh_z_p_bz_d_x32_unscaled
-                        Instruction result(Mnemonic::LD1SH, insn, 3795);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LD1SH, insn, EncodingId::ld1sh_z_p_bz_d_x32_unscaled);
+            #else
+                        Instruction result(Mnemonic::LD1SH, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -59023,7 +62251,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0xC4802000u: { // ldff1sh_z_p_bz_d_x32_unscaled
-                        Instruction result(Mnemonic::LDFF1SH, insn, 3890);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDFF1SH, insn, EncodingId::ldff1sh_z_p_bz_d_x32_unscaled);
+            #else
+                        Instruction result(Mnemonic::LDFF1SH, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -59033,7 +62265,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0xC4804000u: { // ld1h_z_p_bz_d_x32_unscaled
-                        Instruction result(Mnemonic::LD1H, insn, 3739);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LD1H, insn, EncodingId::ld1h_z_p_bz_d_x32_unscaled);
+            #else
+                        Instruction result(Mnemonic::LD1H, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -59043,7 +62279,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0xC4806000u: { // ldff1h_z_p_bz_d_x32_unscaled
-                        Instruction result(Mnemonic::LDFF1H, insn, 3872);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDFF1H, insn, EncodingId::ldff1h_z_p_bz_d_x32_unscaled);
+            #else
+                        Instruction result(Mnemonic::LDFF1H, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -59053,7 +62293,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0xC4A00000u: { // ld1sh_z_p_bz_d_x32_scaled
-                        Instruction result(Mnemonic::LD1SH, insn, 3794);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LD1SH, insn, EncodingId::ld1sh_z_p_bz_d_x32_scaled);
+            #else
+                        Instruction result(Mnemonic::LD1SH, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -59063,7 +62307,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0xC4A02000u: { // ldff1sh_z_p_bz_d_x32_scaled
-                        Instruction result(Mnemonic::LDFF1SH, insn, 3889);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDFF1SH, insn, EncodingId::ldff1sh_z_p_bz_d_x32_scaled);
+            #else
+                        Instruction result(Mnemonic::LDFF1SH, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -59073,7 +62321,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0xC4A04000u: { // ld1h_z_p_bz_d_x32_scaled
-                        Instruction result(Mnemonic::LD1H, insn, 3738);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LD1H, insn, EncodingId::ld1h_z_p_bz_d_x32_scaled);
+            #else
+                        Instruction result(Mnemonic::LD1H, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -59083,7 +62335,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0xC4A06000u: { // ldff1h_z_p_bz_d_x32_scaled
-                        Instruction result(Mnemonic::LDFF1H, insn, 3871);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDFF1H, insn, EncodingId::ldff1h_z_p_bz_d_x32_scaled);
+            #else
+                        Instruction result(Mnemonic::LDFF1H, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -59093,7 +62349,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0xC5000000u: { // ld1sw_z_p_bz_d_x32_unscaled
-                        Instruction result(Mnemonic::LD1SW, insn, 3803);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LD1SW, insn, EncodingId::ld1sw_z_p_bz_d_x32_unscaled);
+            #else
+                        Instruction result(Mnemonic::LD1SW, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -59103,7 +62363,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0xC5002000u: { // ldff1sw_z_p_bz_d_x32_unscaled
-                        Instruction result(Mnemonic::LDFF1SW, insn, 3897);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDFF1SW, insn, EncodingId::ldff1sw_z_p_bz_d_x32_unscaled);
+            #else
+                        Instruction result(Mnemonic::LDFF1SW, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -59113,7 +62377,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0xC5004000u: { // ld1w_z_p_bz_d_x32_unscaled
-                        Instruction result(Mnemonic::LD1W, insn, 3816);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LD1W, insn, EncodingId::ld1w_z_p_bz_d_x32_unscaled);
+            #else
+                        Instruction result(Mnemonic::LD1W, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -59123,7 +62391,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0xC5006000u: { // ldff1w_z_p_bz_d_x32_unscaled
-                        Instruction result(Mnemonic::LDFF1W, insn, 3906);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDFF1W, insn, EncodingId::ldff1w_z_p_bz_d_x32_unscaled);
+            #else
+                        Instruction result(Mnemonic::LDFF1W, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -59133,7 +62405,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0xC5200000u: { // ld1sw_z_p_bz_d_x32_scaled
-                        Instruction result(Mnemonic::LD1SW, insn, 3802);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LD1SW, insn, EncodingId::ld1sw_z_p_bz_d_x32_scaled);
+            #else
+                        Instruction result(Mnemonic::LD1SW, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -59143,7 +62419,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0xC5202000u: { // ldff1sw_z_p_bz_d_x32_scaled
-                        Instruction result(Mnemonic::LDFF1SW, insn, 3896);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDFF1SW, insn, EncodingId::ldff1sw_z_p_bz_d_x32_scaled);
+            #else
+                        Instruction result(Mnemonic::LDFF1SW, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -59153,7 +62433,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0xC5204000u: { // ld1w_z_p_bz_d_x32_scaled
-                        Instruction result(Mnemonic::LD1W, insn, 3815);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LD1W, insn, EncodingId::ld1w_z_p_bz_d_x32_scaled);
+            #else
+                        Instruction result(Mnemonic::LD1W, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -59163,7 +62447,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0xC5206000u: { // ldff1w_z_p_bz_d_x32_scaled
-                        Instruction result(Mnemonic::LDFF1W, insn, 3905);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDFF1W, insn, EncodingId::ldff1w_z_p_bz_d_x32_scaled);
+            #else
+                        Instruction result(Mnemonic::LDFF1W, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -59173,7 +62461,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0xC5804000u: { // ld1d_z_p_bz_d_x32_unscaled
-                        Instruction result(Mnemonic::LD1D, insn, 3726);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LD1D, insn, EncodingId::ld1d_z_p_bz_d_x32_unscaled);
+            #else
+                        Instruction result(Mnemonic::LD1D, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -59183,7 +62475,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0xC5806000u: { // ldff1d_z_p_bz_d_x32_unscaled
-                        Instruction result(Mnemonic::LDFF1D, insn, 3862);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDFF1D, insn, EncodingId::ldff1d_z_p_bz_d_x32_unscaled);
+            #else
+                        Instruction result(Mnemonic::LDFF1D, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -59193,7 +62489,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0xC5A04000u: { // ld1d_z_p_bz_d_x32_scaled
-                        Instruction result(Mnemonic::LD1D, insn, 3725);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LD1D, insn, EncodingId::ld1d_z_p_bz_d_x32_scaled);
+            #else
+                        Instruction result(Mnemonic::LD1D, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -59203,7 +62503,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0xC5A06000u: { // ldff1d_z_p_bz_d_x32_scaled
-                        Instruction result(Mnemonic::LDFF1D, insn, 3861);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LDFF1D, insn, EncodingId::ldff1d_z_p_bz_d_x32_scaled);
+            #else
+                        Instruction result(Mnemonic::LDFF1D, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -59218,7 +62522,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
     // Switch for mask 0xFF90E000u (2 patterns, 2 encodings)
     switch (insn & 0xFF90E000u) {
         case 0xE400E000u: { // st1b_z_p_bi_
-                        Instruction result(Mnemonic::ST1B, insn, 4313);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::ST1B, insn, EncodingId::st1b_z_p_bi_);
+            #else
+                        Instruction result(Mnemonic::ST1B, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -59240,7 +62548,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0xE480E000u: { // st1h_z_p_bi_
-                        Instruction result(Mnemonic::ST1H, insn, 4329);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::ST1H, insn, EncodingId::st1h_z_p_bi_);
+            #else
+                        Instruction result(Mnemonic::ST1H, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         if (enc.st1h_zpbi.size == 0u) return std::nullopt;
@@ -59269,7 +62581,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
     switch (insn & 0xFF80E000u) {
         case 0xE4004000u: { // st1b_z_p_br_
             if (((insn >> 16) & 0x1F) == 0x1F) break;
-                        Instruction result(Mnemonic::ST1B, insn, 4314);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::ST1B, insn, EncodingId::st1b_z_p_br_);
+            #else
+                        Instruction result(Mnemonic::ST1B, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         if (enc.st1b_zpbr.Rm == 31u) return std::nullopt;
@@ -59288,7 +62604,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
         }
         case 0xE4804000u: { // st1h_z_p_br_
             if (((insn >> 16) & 0x1F) == 0x1F) break;
-                        Instruction result(Mnemonic::ST1H, insn, 4330);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::ST1H, insn, EncodingId::st1h_z_p_br_);
+            #else
+                        Instruction result(Mnemonic::ST1H, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         if (enc.st1h_zpbr.size == 0u) return std::nullopt;
@@ -59312,7 +62632,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
     // Switch for mask 0xFF60FC00u (2 patterns, 2 encodings)
     switch (insn & 0xFF60FC00u) {
         case 0x4560A400u: { // luti4_z_zz_8
-                        Instruction result(Mnemonic::LUTI4, insn, 3962);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LUTI4, insn, EncodingId::luti4_z_zz_8);
+            #else
+                        Instruction result(Mnemonic::LUTI4, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::sve(enc.luti4zzz8.Zd, Arrangement::B));
@@ -59321,7 +62645,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x4560AC00u: { // luti6_z_zzz_16
-                        Instruction result(Mnemonic::LUTI6, insn, 3965);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LUTI6, insn, EncodingId::luti6_z_zzz_16);
+            #else
+                        Instruction result(Mnemonic::LUTI6, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::sve(enc.luti6zzzz16.Zd, Arrangement::H));
@@ -59335,7 +62663,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
     // Switch for mask 0xFF3FFFF8u (1 pattern, 1 encoding)
     switch (insn & 0xFF3FFFF8u) {
         case 0x25207810u: { // ptrue_pn_i_
-                        Instruction result(Mnemonic::PTRUE, insn, 4077);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::PTRUE, insn, EncodingId::ptrue_pn_i_);
+            #else
+                        Instruction result(Mnemonic::PTRUE, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = Arrangement::None;
@@ -59354,7 +62686,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
     // Switch for mask 0xFF3FFFE0u (1 pattern, 1 encoding)
     switch (insn & 0xFF3FFFE0u) {
         case 0x2538C000u: { // fmov_z_0__dup_z_i_
-                        Instruction result(Mnemonic::DUP, insn, 3629);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::DUP, insn, EncodingId::fmov_z_0__dup_z_i_);
+            #else
+                        Instruction result(Mnemonic::DUP, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = Arrangement::None;
@@ -59373,7 +62709,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
     // Switch for mask 0xFF3FFE10u (3 patterns, 3 encodings)
     switch (insn & 0xFF3FFE10u) {
         case 0x05344000u: { // rev_p_p_
-                        Instruction result(Mnemonic::REV, insn, 4091);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::REV, insn, EncodingId::rev_p_p_);
+            #else
+                        Instruction result(Mnemonic::REV, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = Arrangement::None;
@@ -59388,7 +62728,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x2519C400u: { // pnext_p_p_p_
-                        Instruction result(Mnemonic::PNEXT, insn, 4045);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::PNEXT, insn, EncodingId::pnext_p_p_p_);
+            #else
+                        Instruction result(Mnemonic::PNEXT, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = Arrangement::None;
@@ -59404,7 +62748,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x25207410u: { // pext_pp_rr_
-                        Instruction result(Mnemonic::PEXT, insn, 4027);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::PEXT, insn, EncodingId::pext_pp_rr_);
+            #else
+                        Instruction result(Mnemonic::PEXT, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         result.operands.clear();  // PEXT pp_rr special case
@@ -59424,7 +62772,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
     // Switch for mask 0xFF3FFE00u (16 patterns, 16 encodings)
     switch (insn & 0xFF3FFE00u) {
         case 0x25288000u: { // sqincp_z_p_z_
-                        Instruction result(Mnemonic::SQINCP, insn, 4247);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SQINCP, insn, EncodingId::sqincp_z_p_z_);
+            #else
+                        Instruction result(Mnemonic::SQINCP, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         if (enc.sqincp_zpz.size == 0u) return std::nullopt;
@@ -59440,7 +62792,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x25288800u: { // sqincp_r_p_r_sx
-                        Instruction result(Mnemonic::SQINCP, insn, 4245);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SQINCP, insn, EncodingId::sqincp_r_p_r_sx);
+            #else
+                        Instruction result(Mnemonic::SQINCP, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -59457,7 +62813,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x25288C00u: { // sqincp_r_p_r_x
-                        Instruction result(Mnemonic::SQINCP, insn, 4246);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SQINCP, insn, EncodingId::sqincp_r_p_r_x);
+            #else
+                        Instruction result(Mnemonic::SQINCP, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -59473,7 +62833,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x25298000u: { // uqincp_z_p_z_
-                        Instruction result(Mnemonic::UQINCP, insn, 4529);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::UQINCP, insn, EncodingId::uqincp_z_p_z_);
+            #else
+                        Instruction result(Mnemonic::UQINCP, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         if (enc.uqincp_zpz.size == 0u) return std::nullopt;
@@ -59489,7 +62853,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x25298800u: { // uqincp_r_p_r_uw
-                        Instruction result(Mnemonic::UQINCP, insn, 4527);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::UQINCP, insn, EncodingId::uqincp_r_p_r_uw);
+            #else
+                        Instruction result(Mnemonic::UQINCP, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -59505,7 +62873,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x25298C00u: { // uqincp_r_p_r_x
-                        Instruction result(Mnemonic::UQINCP, insn, 4528);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::UQINCP, insn, EncodingId::uqincp_r_p_r_x);
+            #else
+                        Instruction result(Mnemonic::UQINCP, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -59521,7 +62893,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x252A8000u: { // sqdecp_z_p_z_
-                        Instruction result(Mnemonic::SQDECP, insn, 4209);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SQDECP, insn, EncodingId::sqdecp_z_p_z_);
+            #else
+                        Instruction result(Mnemonic::SQDECP, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         if (enc.sqdecp_zpz.size == 0u) return std::nullopt;
@@ -59537,7 +62913,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x252A8800u: { // sqdecp_r_p_r_sx
-                        Instruction result(Mnemonic::SQDECP, insn, 4207);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SQDECP, insn, EncodingId::sqdecp_r_p_r_sx);
+            #else
+                        Instruction result(Mnemonic::SQDECP, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -59554,7 +62934,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x252A8C00u: { // sqdecp_r_p_r_x
-                        Instruction result(Mnemonic::SQDECP, insn, 4208);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SQDECP, insn, EncodingId::sqdecp_r_p_r_x);
+            #else
+                        Instruction result(Mnemonic::SQDECP, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -59570,7 +62954,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x252B8000u: { // uqdecp_z_p_z_
-                        Instruction result(Mnemonic::UQDECP, insn, 4515);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::UQDECP, insn, EncodingId::uqdecp_z_p_z_);
+            #else
+                        Instruction result(Mnemonic::UQDECP, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         if (enc.uqdecp_zpz.size == 0u) return std::nullopt;
@@ -59586,7 +62974,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x252B8800u: { // uqdecp_r_p_r_uw
-                        Instruction result(Mnemonic::UQDECP, insn, 4513);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::UQDECP, insn, EncodingId::uqdecp_r_p_r_uw);
+            #else
+                        Instruction result(Mnemonic::UQDECP, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -59602,7 +62994,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x252B8C00u: { // uqdecp_r_p_r_x
-                        Instruction result(Mnemonic::UQDECP, insn, 4514);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::UQDECP, insn, EncodingId::uqdecp_r_p_r_x);
+            #else
+                        Instruction result(Mnemonic::UQDECP, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -59618,7 +63014,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x252C8000u: { // incp_z_p_z_
-                        Instruction result(Mnemonic::INCP, insn, 3695);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::INCP, insn, EncodingId::incp_z_p_z_);
+            #else
+                        Instruction result(Mnemonic::INCP, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         if (enc.incp_zpz.size == 0u) return std::nullopt;
@@ -59634,7 +63034,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x252C8800u: { // incp_r_p_r_
-                        Instruction result(Mnemonic::INCP, insn, 3694);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::INCP, insn, EncodingId::incp_r_p_r_);
+            #else
+                        Instruction result(Mnemonic::INCP, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -59650,7 +63054,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x252D8000u: { // decp_z_p_z_
-                        Instruction result(Mnemonic::DECP, insn, 3443);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::DECP, insn, EncodingId::decp_z_p_z_);
+            #else
+                        Instruction result(Mnemonic::DECP, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         if (enc.decp_zpz.size == 0u) return std::nullopt;
@@ -59666,7 +63074,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x252D8800u: { // decp_r_p_r_
-                        Instruction result(Mnemonic::DECP, insn, 3442);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::DECP, insn, EncodingId::decp_r_p_r_);
+            #else
+                        Instruction result(Mnemonic::DECP, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -59687,7 +63099,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
     // Switch for mask 0xFF3FFC20u (2 patterns, 2 encodings)
     switch (insn & 0xFF3FFC20u) {
         case 0x650D3000u: { // fcvtzsn_z_mz2_
-                        Instruction result(Mnemonic::FCVTZSN, insn, 3544);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FCVTZSN, insn, EncodingId::fcvtzsn_z_mz2_);
+            #else
+                        Instruction result(Mnemonic::FCVTZSN, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         if (enc.fcvtzsn_zmz2.size == 0u) return std::nullopt;
@@ -59710,7 +63126,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x650D3400u: { // fcvtzun_z_mz2_
-                        Instruction result(Mnemonic::FCVTZUN, insn, 3559);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FCVTZUN, insn, EncodingId::fcvtzun_z_mz2_);
+            #else
+                        Instruction result(Mnemonic::FCVTZUN, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         if (enc.fcvtzun_zmz2.size == 0u) return std::nullopt;
@@ -59738,7 +63158,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
     // Switch for mask 0xFF3FFC10u (3 patterns, 3 encodings)
     switch (insn & 0xFF3FFC10u) {
         case 0x2518E000u: { // ptrue_p_s_
-                        Instruction result(Mnemonic::PTRUE, insn, 4076);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::PTRUE, insn, EncodingId::ptrue_p_s_);
+            #else
+                        Instruction result(Mnemonic::PTRUE, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = Arrangement::None;
@@ -59756,7 +63180,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x2519E000u: { // ptrues_p_s_
-                        Instruction result(Mnemonic::PTRUES, insn, 4078);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::PTRUES, insn, EncodingId::ptrues_p_s_);
+            #else
+                        Instruction result(Mnemonic::PTRUES, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = Arrangement::None;
@@ -59774,7 +63202,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x25207010u: { // pext_pn_rr_
-                        Instruction result(Mnemonic::PEXT, insn, 4026);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::PEXT, insn, EncodingId::pext_pn_rr_);
+            #else
+                        Instruction result(Mnemonic::PEXT, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         result.operands.clear();  // PEXT pn_rr special case
@@ -59793,7 +63225,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
     // Switch for mask 0xFF3FFC00u (15 patterns, 16 encodings)
     switch (insn & 0xFF3FFC00u) {
         case 0x0420B800u: { // fexpa_z_z_
-                        Instruction result(Mnemonic::FEXPA, insn, 3569);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FEXPA, insn, EncodingId::fexpa_z_z_);
+            #else
+                        Instruction result(Mnemonic::FEXPA, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         if (enc.fexpa_zz.size == 0u) return std::nullopt;
@@ -59810,7 +63246,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
         }
         case 0x05203800u: { // dup_z_r_
             // Also matches: mov_z_r__dup_z_r_ (DUP)
-                        Instruction result(Mnemonic::DUP, insn, 3445);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::DUP, insn, EncodingId::dup_z_r_);
+            #else
+                        Instruction result(Mnemonic::DUP, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -59826,7 +63266,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x05243800u: { // insr_z_r_
-                        Instruction result(Mnemonic::INSR, insn, 3700);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::INSR, insn, EncodingId::insr_z_r_);
+            #else
+                        Instruction result(Mnemonic::INSR, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -59842,7 +63286,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x05303800u: { // sunpklo_z_z_
-                        Instruction result(Mnemonic::SUNPKLO, insn, 4409);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SUNPKLO, insn, EncodingId::sunpklo_z_z_);
+            #else
+                        Instruction result(Mnemonic::SUNPKLO, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         if (enc.sunpklo_zz.size == 0u) return std::nullopt;
@@ -59865,7 +63313,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x05313800u: { // sunpkhi_z_z_
-                        Instruction result(Mnemonic::SUNPKHI, insn, 4408);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SUNPKHI, insn, EncodingId::sunpkhi_z_z_);
+            #else
+                        Instruction result(Mnemonic::SUNPKHI, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         if (enc.sunpkhi_zz.size == 0u) return std::nullopt;
@@ -59888,7 +63340,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x05323800u: { // uunpklo_z_z_
-                        Instruction result(Mnemonic::UUNPKLO, insn, 4572);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::UUNPKLO, insn, EncodingId::uunpklo_z_z_);
+            #else
+                        Instruction result(Mnemonic::UUNPKLO, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         if (enc.uunpklo_zz.size == 0u) return std::nullopt;
@@ -59911,7 +63367,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x05333800u: { // uunpkhi_z_z_
-                        Instruction result(Mnemonic::UUNPKHI, insn, 4571);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::UUNPKHI, insn, EncodingId::uunpkhi_z_z_);
+            #else
+                        Instruction result(Mnemonic::UUNPKHI, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         if (enc.uunpkhi_zz.size == 0u) return std::nullopt;
@@ -59934,7 +63394,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x05343800u: { // insr_z_v_
-                        Instruction result(Mnemonic::INSR, insn, 3701);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::INSR, insn, EncodingId::insr_z_v_);
+            #else
+                        Instruction result(Mnemonic::INSR, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = Arrangement::None;
@@ -59949,7 +63413,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x05383800u: { // rev_z_z_
-                        Instruction result(Mnemonic::REV, insn, 4092);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::REV, insn, EncodingId::rev_z_z_);
+            #else
+                        Instruction result(Mnemonic::REV, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = Arrangement::None;
@@ -59964,7 +63432,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x650C3000u: { // scvtf_z_z_
-                        Instruction result(Mnemonic::SCVTF, insn, 4136);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SCVTF, insn, EncodingId::scvtf_z_z_);
+            #else
+                        Instruction result(Mnemonic::SCVTF, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         if (enc.scvtf_zz.size == 0u) return std::nullopt;
@@ -59987,7 +63459,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x650C3400u: { // ucvtf_z_z_
-                        Instruction result(Mnemonic::UCVTF, insn, 4456);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::UCVTF, insn, EncodingId::ucvtf_z_z_);
+            #else
+                        Instruction result(Mnemonic::UCVTF, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         if (enc.ucvtf_zz.size == 0u) return std::nullopt;
@@ -60010,7 +63486,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x650C3800u: { // scvtflt_z_z_
-                        Instruction result(Mnemonic::SCVTFLT, insn, 4137);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SCVTFLT, insn, EncodingId::scvtflt_z_z_);
+            #else
+                        Instruction result(Mnemonic::SCVTFLT, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         if (enc.scvtflt_zz.size == 0u) return std::nullopt;
@@ -60033,7 +63513,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x650C3C00u: { // ucvtflt_z_z_
-                        Instruction result(Mnemonic::UCVTFLT, insn, 4457);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::UCVTFLT, insn, EncodingId::ucvtflt_z_z_);
+            #else
+                        Instruction result(Mnemonic::UCVTFLT, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         if (enc.ucvtflt_zz.size == 0u) return std::nullopt;
@@ -60056,7 +63540,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x650E3000u: { // frecpe_z_z_
-                        Instruction result(Mnemonic::FRECPE, insn, 3646);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FRECPE, insn, EncodingId::frecpe_z_z_);
+            #else
+                        Instruction result(Mnemonic::FRECPE, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         if (enc.frecpe_zz.size == 0u) return std::nullopt;
@@ -60072,7 +63560,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x650F3000u: { // frsqrte_z_z_
-                        Instruction result(Mnemonic::FRSQRTE, insn, 3672);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FRSQRTE, insn, EncodingId::frsqrte_z_z_);
+            #else
+                        Instruction result(Mnemonic::FRSQRTE, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         if (enc.frsqrte_zz.size == 0u) return std::nullopt;
@@ -60093,7 +63585,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
     // Switch for mask 0xFF3FFA00u (1 pattern, 1 encoding)
     switch (insn & 0xFF3FFA00u) {
         case 0x25208200u: { // cntp_r_pn_
-                        Instruction result(Mnemonic::CNTP, insn, 3426);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::CNTP, insn, EncodingId::cntp_r_pn_);
+            #else
+                        Instruction result(Mnemonic::CNTP, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -60115,7 +63611,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
     // Switch for mask 0xFF3FF800u (2 patterns, 2 encodings)
     switch (insn & 0xFF3FF800u) {
         case 0x4500D800u: { // cadd_z_zz_
-                        Instruction result(Mnemonic::CADD, insn, 3370);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::CADD, insn, EncodingId::cadd_z_zz_);
+            #else
+                        Instruction result(Mnemonic::CADD, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = Arrangement::None;
@@ -60132,7 +63632,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x4501D800u: { // sqcadd_z_zz_
-                        Instruction result(Mnemonic::SQCADD, insn, 4196);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SQCADD, insn, EncodingId::sqcadd_z_zz_);
+            #else
+                        Instruction result(Mnemonic::SQCADD, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = Arrangement::None;
@@ -60154,7 +63658,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
     // Switch for mask 0xFF3FE3C0u (8 patterns, 8 encodings)
     switch (insn & 0xFF3FE3C0u) {
         case 0x65188000u: { // fadd_z_p_zs_
-                        Instruction result(Mnemonic::FADD, insn, 3475);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FADD, insn, EncodingId::fadd_z_p_zs_);
+            #else
+                        Instruction result(Mnemonic::FADD, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         if (enc.fadd_zpzs.size == 0u) return std::nullopt;
@@ -60172,7 +63680,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x65198000u: { // fsub_z_p_zs_
-                        Instruction result(Mnemonic::FSUB, insn, 3677);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FSUB, insn, EncodingId::fsub_z_p_zs_);
+            #else
+                        Instruction result(Mnemonic::FSUB, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         if (enc.fsub_zpzs.size == 0u) return std::nullopt;
@@ -60190,7 +63702,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x651A8000u: { // fmul_z_p_zs_
-                        Instruction result(Mnemonic::FMUL, insn, 3633);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FMUL, insn, EncodingId::fmul_z_p_zs_);
+            #else
+                        Instruction result(Mnemonic::FMUL, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         if (enc.fmul_zpzs.size == 0u) return std::nullopt;
@@ -60208,7 +63724,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x651B8000u: { // fsubr_z_p_zs_
-                        Instruction result(Mnemonic::FSUBR, insn, 3680);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FSUBR, insn, EncodingId::fsubr_z_p_zs_);
+            #else
+                        Instruction result(Mnemonic::FSUBR, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         if (enc.fsubr_zpzs.size == 0u) return std::nullopt;
@@ -60226,7 +63746,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x651C8000u: { // fmaxnm_z_p_zs_
-                        Instruction result(Mnemonic::FMAXNM, insn, 3576);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FMAXNM, insn, EncodingId::fmaxnm_z_p_zs_);
+            #else
+                        Instruction result(Mnemonic::FMAXNM, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         if (enc.fmaxnm_zpzs.size == 0u) return std::nullopt;
@@ -60244,7 +63768,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x651D8000u: { // fminnm_z_p_zs_
-                        Instruction result(Mnemonic::FMINNM, insn, 3586);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FMINNM, insn, EncodingId::fminnm_z_p_zs_);
+            #else
+                        Instruction result(Mnemonic::FMINNM, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         if (enc.fminnm_zpzs.size == 0u) return std::nullopt;
@@ -60262,7 +63790,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x651E8000u: { // fmax_z_p_zs_
-                        Instruction result(Mnemonic::FMAX, insn, 3574);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FMAX, insn, EncodingId::fmax_z_p_zs_);
+            #else
+                        Instruction result(Mnemonic::FMAX, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         if (enc.fmax_zpzs.size == 0u) return std::nullopt;
@@ -60280,7 +63812,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x651F8000u: { // fmin_z_p_zs_
-                        Instruction result(Mnemonic::FMIN, insn, 3584);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FMIN, insn, EncodingId::fmin_z_p_zs_);
+            #else
+                        Instruction result(Mnemonic::FMIN, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         if (enc.fmin_zpzs.size == 0u) return std::nullopt;
@@ -60303,7 +63839,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
     // Switch for mask 0xFF3FE010u (6 patterns, 6 encodings)
     switch (insn & 0xFF3FE010u) {
         case 0x65102000u: { // fcmge_p_p_z0_
-                        Instruction result(Mnemonic::FCMGE, insn, 3488);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FCMGE, insn, EncodingId::fcmge_p_p_z0_);
+            #else
+                        Instruction result(Mnemonic::FCMGE, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         if (enc.fcmge_ppz0.size == 0u) return std::nullopt;
@@ -60321,7 +63861,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x65102010u: { // fcmgt_p_p_z0_
-                        Instruction result(Mnemonic::FCMGT, insn, 3487);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FCMGT, insn, EncodingId::fcmgt_p_p_z0_);
+            #else
+                        Instruction result(Mnemonic::FCMGT, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         if (enc.fcmgt_ppz0.size == 0u) return std::nullopt;
@@ -60339,7 +63883,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x65112000u: { // fcmlt_p_p_z0_
-                        Instruction result(Mnemonic::FCMLT, insn, 3489);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FCMLT, insn, EncodingId::fcmlt_p_p_z0_);
+            #else
+                        Instruction result(Mnemonic::FCMLT, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         if (enc.fcmlt_ppz0.size == 0u) return std::nullopt;
@@ -60357,7 +63905,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x65112010u: { // fcmle_p_p_z0_
-                        Instruction result(Mnemonic::FCMLE, insn, 3490);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FCMLE, insn, EncodingId::fcmle_p_p_z0_);
+            #else
+                        Instruction result(Mnemonic::FCMLE, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         if (enc.fcmle_ppz0.size == 0u) return std::nullopt;
@@ -60375,7 +63927,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x65122000u: { // fcmeq_p_p_z0_
-                        Instruction result(Mnemonic::FCMEQ, insn, 3486);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FCMEQ, insn, EncodingId::fcmeq_p_p_z0_);
+            #else
+                        Instruction result(Mnemonic::FCMEQ, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         if (enc.fcmeq_ppz0.size == 0u) return std::nullopt;
@@ -60393,7 +63949,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x65132000u: { // fcmne_p_p_z0_
-                        Instruction result(Mnemonic::FCMNE, insn, 3491);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FCMNE, insn, EncodingId::fcmne_p_p_z0_);
+            #else
+                        Instruction result(Mnemonic::FCMNE, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         if (enc.fcmne_ppz0.size == 0u) return std::nullopt;
@@ -60415,7 +63975,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
     // Switch for mask 0xFF3FE000u (207 patterns, 210 encodings)
     switch (insn & 0xFF3FE000u) {
         case 0x04000000u: { // add_z_p_zz_
-                        Instruction result(Mnemonic::ADD, insn, 3266);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::ADD, insn, EncodingId::add_z_p_zz_);
+            #else
+                        Instruction result(Mnemonic::ADD, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = Arrangement::None;
@@ -60432,7 +63996,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x04002000u: { // saddv_r_p_z_
-                        Instruction result(Mnemonic::SADDV, insn, 4116);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SADDV, insn, EncodingId::saddv_r_p_z_);
+            #else
+                        Instruction result(Mnemonic::SADDV, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         if (enc.saddv_rpz.size == 3u) return std::nullopt;
@@ -60449,7 +64017,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x04008000u: { // asr_z_p_zi_
-                        Instruction result(Mnemonic::ASR, insn, 3303);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::ASR, insn, EncodingId::asr_z_p_zi_);
+            #else
+                        Instruction result(Mnemonic::ASR, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         uint32_t _tsize = (enc.asr_zpzi.tszh << 2) | enc.asr_zpzi.tszl;
@@ -60469,7 +64041,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x0400A000u: { // sxtb_z_p_z_z
-                        Instruction result(Mnemonic::SXTB, insn, 4412);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SXTB, insn, EncodingId::sxtb_z_p_z_z);
+            #else
+                        Instruction result(Mnemonic::SXTB, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         if (enc.sxtb_zpzz.size == 0u) return std::nullopt;
@@ -60486,7 +64062,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x04010000u: { // sub_z_p_zz_
-                        Instruction result(Mnemonic::SUB, insn, 4397);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SUB, insn, EncodingId::sub_z_p_zz_);
+            #else
+                        Instruction result(Mnemonic::SUB, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = Arrangement::None;
@@ -60503,7 +64083,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x04012000u: { // uaddv_r_p_z_
-                        Instruction result(Mnemonic::UADDV, insn, 4438);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::UADDV, insn, EncodingId::uaddv_r_p_z_);
+            #else
+                        Instruction result(Mnemonic::UADDV, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = Arrangement::None;
@@ -60519,7 +64103,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x04018000u: { // lsr_z_p_zi_
-                        Instruction result(Mnemonic::LSR, insn, 3954);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LSR, insn, EncodingId::lsr_z_p_zi_);
+            #else
+                        Instruction result(Mnemonic::LSR, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         uint32_t _tsize = (enc.lsr_zpzi.tszh << 2) | enc.lsr_zpzi.tszl;
@@ -60539,7 +64127,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x0401A000u: { // uxtb_z_p_z_z
-                        Instruction result(Mnemonic::UXTB, insn, 4574);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::UXTB, insn, EncodingId::uxtb_z_p_z_z);
+            #else
+                        Instruction result(Mnemonic::UXTB, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         if (enc.uxtb_zpzz.size == 0u) return std::nullopt;
@@ -60556,7 +64148,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x0402A000u: { // sxth_z_p_z_z
-                        Instruction result(Mnemonic::SXTH, insn, 4414);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SXTH, insn, EncodingId::sxth_z_p_z_z);
+            #else
+                        Instruction result(Mnemonic::SXTH, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = Arrangement::None;
@@ -60572,7 +64168,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x04030000u: { // subr_z_p_zz_
-                        Instruction result(Mnemonic::SUBR, insn, 4405);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SUBR, insn, EncodingId::subr_z_p_zz_);
+            #else
+                        Instruction result(Mnemonic::SUBR, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = Arrangement::None;
@@ -60589,7 +64189,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x04038000u: { // lsl_z_p_zi_
-                        Instruction result(Mnemonic::LSL, insn, 3948);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LSL, insn, EncodingId::lsl_z_p_zi_);
+            #else
+                        Instruction result(Mnemonic::LSL, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         uint32_t _tsize = (enc.lsl_zpzi.tszh << 2) | enc.lsl_zpzi.tszl;
@@ -60609,7 +64213,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x0403A000u: { // uxth_z_p_z_z
-                        Instruction result(Mnemonic::UXTH, insn, 4576);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::UXTH, insn, EncodingId::uxth_z_p_z_z);
+            #else
+                        Instruction result(Mnemonic::UXTH, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = Arrangement::None;
@@ -60625,7 +64233,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x04048000u: { // asrd_z_p_zi_
-                        Instruction result(Mnemonic::ASRD, insn, 3308);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::ASRD, insn, EncodingId::asrd_z_p_zi_);
+            #else
+                        Instruction result(Mnemonic::ASRD, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         uint32_t _tsize = (enc.asrd_zpzi.tszh << 2) | enc.asrd_zpzi.tszl;
@@ -60645,7 +64257,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x0404A000u: { // sxtw_z_p_z_z
-                        Instruction result(Mnemonic::SXTW, insn, 4416);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SXTW, insn, EncodingId::sxtw_z_p_z_z);
+            #else
+                        Instruction result(Mnemonic::SXTW, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         if (enc.sxtw_zpzz.size != 3u) return std::nullopt;
@@ -60662,7 +64278,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x04052000u: { // addqv_z_p_z_
-                        Instruction result(Mnemonic::ADDQV, insn, 3276);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::ADDQV, insn, EncodingId::addqv_z_p_z_);
+            #else
+                        Instruction result(Mnemonic::ADDQV, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = Arrangement::None;
@@ -60687,7 +64307,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x0405A000u: { // uxtw_z_p_z_z
-                        Instruction result(Mnemonic::UXTW, insn, 4578);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::UXTW, insn, EncodingId::uxtw_z_p_z_z);
+            #else
+                        Instruction result(Mnemonic::UXTW, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         if (enc.uxtw_zpzz.size != 3u) return std::nullopt;
@@ -60704,7 +64328,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x04068000u: { // sqshl_z_p_zi_
-                        Instruction result(Mnemonic::SQSHL, insn, 4278);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SQSHL, insn, EncodingId::sqshl_z_p_zi_);
+            #else
+                        Instruction result(Mnemonic::SQSHL, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         uint32_t _tsize = (enc.sqshl_zpzi.tszh << 2) | enc.sqshl_zpzi.tszl;
@@ -60724,7 +64352,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x0406A000u: { // abs_z_p_z_z
-                        Instruction result(Mnemonic::ABS, insn, 3263);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::ABS, insn, EncodingId::abs_z_p_z_z);
+            #else
+                        Instruction result(Mnemonic::ABS, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = Arrangement::None;
@@ -60740,7 +64372,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x04078000u: { // uqshl_z_p_zi_
-                        Instruction result(Mnemonic::UQSHL, insn, 4539);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::UQSHL, insn, EncodingId::uqshl_z_p_zi_);
+            #else
+                        Instruction result(Mnemonic::UQSHL, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         uint32_t _tsize = (enc.uqshl_zpzi.tszh << 2) | enc.uqshl_zpzi.tszl;
@@ -60760,7 +64396,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x0407A000u: { // neg_z_p_z_z
-                        Instruction result(Mnemonic::NEG, insn, 4008);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::NEG, insn, EncodingId::neg_z_p_z_z);
+            #else
+                        Instruction result(Mnemonic::NEG, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = Arrangement::None;
@@ -60776,7 +64416,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x04080000u: { // smax_z_p_zz_
-                        Instruction result(Mnemonic::SMAX, insn, 4158);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SMAX, insn, EncodingId::smax_z_p_zz_);
+            #else
+                        Instruction result(Mnemonic::SMAX, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = Arrangement::None;
@@ -60793,7 +64437,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x04082000u: { // smaxv_r_p_z_
-                        Instruction result(Mnemonic::SMAXV, insn, 4162);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SMAXV, insn, EncodingId::smaxv_r_p_z_);
+            #else
+                        Instruction result(Mnemonic::SMAXV, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = Arrangement::None;
@@ -60809,7 +64457,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x0408A000u: { // cls_z_p_z_z
-                        Instruction result(Mnemonic::CLS, insn, 3381);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::CLS, insn, EncodingId::cls_z_p_z_z);
+            #else
+                        Instruction result(Mnemonic::CLS, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = Arrangement::None;
@@ -60825,7 +64477,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x04090000u: { // umax_z_p_zz_
-                        Instruction result(Mnemonic::UMAX, insn, 4470);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::UMAX, insn, EncodingId::umax_z_p_zz_);
+            #else
+                        Instruction result(Mnemonic::UMAX, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = Arrangement::None;
@@ -60842,7 +64498,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x04092000u: { // umaxv_r_p_z_
-                        Instruction result(Mnemonic::UMAXV, insn, 4474);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::UMAXV, insn, EncodingId::umaxv_r_p_z_);
+            #else
+                        Instruction result(Mnemonic::UMAXV, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = Arrangement::None;
@@ -60858,7 +64518,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x0409A000u: { // clz_z_p_z_z
-                        Instruction result(Mnemonic::CLZ, insn, 3383);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::CLZ, insn, EncodingId::clz_z_p_z_z);
+            #else
+                        Instruction result(Mnemonic::CLZ, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = Arrangement::None;
@@ -60874,7 +64538,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x040A0000u: { // smin_z_p_zz_
-                        Instruction result(Mnemonic::SMIN, insn, 4163);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SMIN, insn, EncodingId::smin_z_p_zz_);
+            #else
+                        Instruction result(Mnemonic::SMIN, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = Arrangement::None;
@@ -60891,7 +64559,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x040A2000u: { // sminv_r_p_z_
-                        Instruction result(Mnemonic::SMINV, insn, 4167);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SMINV, insn, EncodingId::sminv_r_p_z_);
+            #else
+                        Instruction result(Mnemonic::SMINV, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = Arrangement::None;
@@ -60907,7 +64579,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x040AA000u: { // cnt_z_p_z_z
-                        Instruction result(Mnemonic::CNT, insn, 3420);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::CNT, insn, EncodingId::cnt_z_p_z_z);
+            #else
+                        Instruction result(Mnemonic::CNT, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = Arrangement::None;
@@ -60923,7 +64599,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x040B0000u: { // umin_z_p_zz_
-                        Instruction result(Mnemonic::UMIN, insn, 4475);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::UMIN, insn, EncodingId::umin_z_p_zz_);
+            #else
+                        Instruction result(Mnemonic::UMIN, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = Arrangement::None;
@@ -60940,7 +64620,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x040B2000u: { // uminv_r_p_z_
-                        Instruction result(Mnemonic::UMINV, insn, 4479);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::UMINV, insn, EncodingId::uminv_r_p_z_);
+            #else
+                        Instruction result(Mnemonic::UMINV, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = Arrangement::None;
@@ -60956,7 +64640,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x040BA000u: { // cnot_z_p_z_z
-                        Instruction result(Mnemonic::CNOT, insn, 3418);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::CNOT, insn, EncodingId::cnot_z_p_z_z);
+            #else
+                        Instruction result(Mnemonic::CNOT, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = Arrangement::None;
@@ -60972,7 +64660,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x040C0000u: { // sabd_z_p_zz_
-                        Instruction result(Mnemonic::SABD, insn, 4109);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SABD, insn, EncodingId::sabd_z_p_zz_);
+            #else
+                        Instruction result(Mnemonic::SABD, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = Arrangement::None;
@@ -60989,7 +64681,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x040C2000u: { // smaxqv_z_p_z_
-                        Instruction result(Mnemonic::SMAXQV, insn, 4161);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SMAXQV, insn, EncodingId::smaxqv_z_p_z_);
+            #else
+                        Instruction result(Mnemonic::SMAXQV, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = Arrangement::None;
@@ -61014,7 +64710,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x040C8000u: { // srshr_z_p_zi_
-                        Instruction result(Mnemonic::SRSHR, insn, 4300);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SRSHR, insn, EncodingId::srshr_z_p_zi_);
+            #else
+                        Instruction result(Mnemonic::SRSHR, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         uint32_t _tsize = (enc.srshr_zpzi.tszh << 2) | enc.srshr_zpzi.tszl;
@@ -61034,7 +64734,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x040CA000u: { // fabs_z_p_z_z
-                        Instruction result(Mnemonic::FABS, insn, 3470);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FABS, insn, EncodingId::fabs_z_p_z_z);
+            #else
+                        Instruction result(Mnemonic::FABS, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         if (enc.fabs_zpzz.size == 0u) return std::nullopt;
@@ -61051,7 +64755,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x040D0000u: { // uabd_z_p_zz_
-                        Instruction result(Mnemonic::UABD, insn, 4432);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::UABD, insn, EncodingId::uabd_z_p_zz_);
+            #else
+                        Instruction result(Mnemonic::UABD, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = Arrangement::None;
@@ -61068,7 +64776,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x040D2000u: { // umaxqv_z_p_z_
-                        Instruction result(Mnemonic::UMAXQV, insn, 4473);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::UMAXQV, insn, EncodingId::umaxqv_z_p_z_);
+            #else
+                        Instruction result(Mnemonic::UMAXQV, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = Arrangement::None;
@@ -61093,7 +64805,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x040D8000u: { // urshr_z_p_zi_
-                        Instruction result(Mnemonic::URSHR, insn, 4556);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::URSHR, insn, EncodingId::urshr_z_p_zi_);
+            #else
+                        Instruction result(Mnemonic::URSHR, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         uint32_t _tsize = (enc.urshr_zpzi.tszh << 2) | enc.urshr_zpzi.tszl;
@@ -61113,7 +64829,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x040DA000u: { // fneg_z_p_z_z
-                        Instruction result(Mnemonic::FNEG, insn, 3641);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FNEG, insn, EncodingId::fneg_z_p_z_z);
+            #else
+                        Instruction result(Mnemonic::FNEG, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         if (enc.fneg_zpzz.size == 0u) return std::nullopt;
@@ -61130,7 +64850,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x040E2000u: { // sminqv_z_p_z_
-                        Instruction result(Mnemonic::SMINQV, insn, 4166);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SMINQV, insn, EncodingId::sminqv_z_p_z_);
+            #else
+                        Instruction result(Mnemonic::SMINQV, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = Arrangement::None;
@@ -61155,7 +64879,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x040EA000u: { // not_z_p_z_z
-                        Instruction result(Mnemonic::NOT, insn, 4014);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::NOT, insn, EncodingId::not_z_p_z_z);
+            #else
+                        Instruction result(Mnemonic::NOT, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = Arrangement::None;
@@ -61171,7 +64899,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x040F2000u: { // uminqv_z_p_z_
-                        Instruction result(Mnemonic::UMINQV, insn, 4478);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::UMINQV, insn, EncodingId::uminqv_z_p_z_);
+            #else
+                        Instruction result(Mnemonic::UMINQV, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = Arrangement::None;
@@ -61196,7 +64928,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x040F8000u: { // sqshlu_z_p_zi_
-                        Instruction result(Mnemonic::SQSHLU, insn, 4281);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SQSHLU, insn, EncodingId::sqshlu_z_p_zi_);
+            #else
+                        Instruction result(Mnemonic::SQSHLU, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         uint32_t _tsize = (enc.sqshlu_zpzi.tszh << 2) | enc.sqshlu_zpzi.tszl;
@@ -61216,7 +64952,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x04100000u: { // mul_z_p_zz_
-                        Instruction result(Mnemonic::MUL, insn, 3998);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::MUL, insn, EncodingId::mul_z_p_zz_);
+            #else
+                        Instruction result(Mnemonic::MUL, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = Arrangement::None;
@@ -61233,7 +64973,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x04108000u: { // asr_z_p_zz_
-                        Instruction result(Mnemonic::ASR, insn, 3305);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::ASR, insn, EncodingId::asr_z_p_zz_);
+            #else
+                        Instruction result(Mnemonic::ASR, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = Arrangement::None;
@@ -61250,7 +64994,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x0410A000u: { // sxtb_z_p_z_m
-                        Instruction result(Mnemonic::SXTB, insn, 4411);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SXTB, insn, EncodingId::sxtb_z_p_z_m);
+            #else
+                        Instruction result(Mnemonic::SXTB, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         if (enc.sxtb_zpzm.size == 0u) return std::nullopt;
@@ -61267,7 +65015,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x04118000u: { // lsr_z_p_zz_
-                        Instruction result(Mnemonic::LSR, insn, 3956);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LSR, insn, EncodingId::lsr_z_p_zz_);
+            #else
+                        Instruction result(Mnemonic::LSR, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = Arrangement::None;
@@ -61284,7 +65036,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x0411A000u: { // uxtb_z_p_z_m
-                        Instruction result(Mnemonic::UXTB, insn, 4573);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::UXTB, insn, EncodingId::uxtb_z_p_z_m);
+            #else
+                        Instruction result(Mnemonic::UXTB, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         if (enc.uxtb_zpzm.size == 0u) return std::nullopt;
@@ -61301,7 +65057,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x04120000u: { // smulh_z_p_zz_
-                        Instruction result(Mnemonic::SMULH, insn, 4181);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SMULH, insn, EncodingId::smulh_z_p_zz_);
+            #else
+                        Instruction result(Mnemonic::SMULH, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = Arrangement::None;
@@ -61318,7 +65078,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x0412A000u: { // sxth_z_p_z_m
-                        Instruction result(Mnemonic::SXTH, insn, 4413);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SXTH, insn, EncodingId::sxth_z_p_z_m);
+            #else
+                        Instruction result(Mnemonic::SXTH, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = Arrangement::None;
@@ -61334,7 +65098,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x04130000u: { // umulh_z_p_zz_
-                        Instruction result(Mnemonic::UMULH, insn, 4493);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::UMULH, insn, EncodingId::umulh_z_p_zz_);
+            #else
+                        Instruction result(Mnemonic::UMULH, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = Arrangement::None;
@@ -61351,7 +65119,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x04138000u: { // lsl_z_p_zz_
-                        Instruction result(Mnemonic::LSL, insn, 3950);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LSL, insn, EncodingId::lsl_z_p_zz_);
+            #else
+                        Instruction result(Mnemonic::LSL, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = Arrangement::None;
@@ -61368,7 +65140,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x0413A000u: { // uxth_z_p_z_m
-                        Instruction result(Mnemonic::UXTH, insn, 4575);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::UXTH, insn, EncodingId::uxth_z_p_z_m);
+            #else
+                        Instruction result(Mnemonic::UXTH, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = Arrangement::None;
@@ -61384,7 +65160,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x04140000u: { // sdiv_z_p_zz_
-                        Instruction result(Mnemonic::SDIV, insn, 4138);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SDIV, insn, EncodingId::sdiv_z_p_zz_);
+            #else
+                        Instruction result(Mnemonic::SDIV, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = Arrangement::None;
@@ -61401,7 +65181,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x04148000u: { // asrr_z_p_zz_
-                        Instruction result(Mnemonic::ASRR, insn, 3309);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::ASRR, insn, EncodingId::asrr_z_p_zz_);
+            #else
+                        Instruction result(Mnemonic::ASRR, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = Arrangement::None;
@@ -61418,7 +65202,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x0414A000u: { // sxtw_z_p_z_m
-                        Instruction result(Mnemonic::SXTW, insn, 4415);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SXTW, insn, EncodingId::sxtw_z_p_z_m);
+            #else
+                        Instruction result(Mnemonic::SXTW, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         if (enc.sxtw_zpzm.size != 3u) return std::nullopt;
@@ -61435,7 +65223,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x04150000u: { // udiv_z_p_zz_
-                        Instruction result(Mnemonic::UDIV, insn, 4458);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::UDIV, insn, EncodingId::udiv_z_p_zz_);
+            #else
+                        Instruction result(Mnemonic::UDIV, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = Arrangement::None;
@@ -61452,7 +65244,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x04158000u: { // lsrr_z_p_zz_
-                        Instruction result(Mnemonic::LSRR, insn, 3959);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LSRR, insn, EncodingId::lsrr_z_p_zz_);
+            #else
+                        Instruction result(Mnemonic::LSRR, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = Arrangement::None;
@@ -61469,7 +65265,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x0415A000u: { // uxtw_z_p_z_m
-                        Instruction result(Mnemonic::UXTW, insn, 4577);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::UXTW, insn, EncodingId::uxtw_z_p_z_m);
+            #else
+                        Instruction result(Mnemonic::UXTW, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         if (enc.uxtw_zpzm.size != 3u) return std::nullopt;
@@ -61486,7 +65286,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x04160000u: { // sdivr_z_p_zz_
-                        Instruction result(Mnemonic::SDIVR, insn, 4139);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SDIVR, insn, EncodingId::sdivr_z_p_zz_);
+            #else
+                        Instruction result(Mnemonic::SDIVR, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = Arrangement::None;
@@ -61503,7 +65307,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x0416A000u: { // abs_z_p_z_m
-                        Instruction result(Mnemonic::ABS, insn, 3262);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::ABS, insn, EncodingId::abs_z_p_z_m);
+            #else
+                        Instruction result(Mnemonic::ABS, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = Arrangement::None;
@@ -61519,7 +65327,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x04170000u: { // udivr_z_p_zz_
-                        Instruction result(Mnemonic::UDIVR, insn, 4459);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::UDIVR, insn, EncodingId::udivr_z_p_zz_);
+            #else
+                        Instruction result(Mnemonic::UDIVR, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = Arrangement::None;
@@ -61536,7 +65348,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x04178000u: { // lslr_z_p_zz_
-                        Instruction result(Mnemonic::LSLR, insn, 3953);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LSLR, insn, EncodingId::lslr_z_p_zz_);
+            #else
+                        Instruction result(Mnemonic::LSLR, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = Arrangement::None;
@@ -61553,7 +65369,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x0417A000u: { // neg_z_p_z_m
-                        Instruction result(Mnemonic::NEG, insn, 4007);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::NEG, insn, EncodingId::neg_z_p_z_m);
+            #else
+                        Instruction result(Mnemonic::NEG, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = Arrangement::None;
@@ -61569,7 +65389,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x04180000u: { // orr_z_p_zz_
-                        Instruction result(Mnemonic::ORR, insn, 4021);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::ORR, insn, EncodingId::orr_z_p_zz_);
+            #else
+                        Instruction result(Mnemonic::ORR, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = Arrangement::None;
@@ -61586,7 +65410,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x04182000u: { // orv_r_p_z_
-                        Instruction result(Mnemonic::ORV, insn, 4025);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::ORV, insn, EncodingId::orv_r_p_z_);
+            #else
+                        Instruction result(Mnemonic::ORV, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = Arrangement::None;
@@ -61602,7 +65430,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x04188000u: { // asr_z_p_zw_
-                        Instruction result(Mnemonic::ASR, insn, 3304);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::ASR, insn, EncodingId::asr_z_p_zw_);
+            #else
+                        Instruction result(Mnemonic::ASR, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         if (enc.asr_zpzw.size == 3u) return std::nullopt;
@@ -61620,7 +65452,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x0418A000u: { // cls_z_p_z_m
-                        Instruction result(Mnemonic::CLS, insn, 3380);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::CLS, insn, EncodingId::cls_z_p_z_m);
+            #else
+                        Instruction result(Mnemonic::CLS, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = Arrangement::None;
@@ -61636,7 +65472,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x04190000u: { // eor_z_p_zz_
-                        Instruction result(Mnemonic::EOR, insn, 3452);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::EOR, insn, EncodingId::eor_z_p_zz_);
+            #else
+                        Instruction result(Mnemonic::EOR, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = Arrangement::None;
@@ -61653,7 +65493,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x04192000u: { // eorv_r_p_z_
-                        Instruction result(Mnemonic::EORV, insn, 3459);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::EORV, insn, EncodingId::eorv_r_p_z_);
+            #else
+                        Instruction result(Mnemonic::EORV, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = Arrangement::None;
@@ -61669,7 +65513,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x04198000u: { // lsr_z_p_zw_
-                        Instruction result(Mnemonic::LSR, insn, 3955);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LSR, insn, EncodingId::lsr_z_p_zw_);
+            #else
+                        Instruction result(Mnemonic::LSR, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         if (enc.lsr_zpzw.size == 3u) return std::nullopt;
@@ -61687,7 +65535,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x0419A000u: { // clz_z_p_z_m
-                        Instruction result(Mnemonic::CLZ, insn, 3382);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::CLZ, insn, EncodingId::clz_z_p_z_m);
+            #else
+                        Instruction result(Mnemonic::CLZ, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = Arrangement::None;
@@ -61703,7 +65555,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x041A0000u: { // and_z_p_zz_
-                        Instruction result(Mnemonic::AND, insn, 3297);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::AND, insn, EncodingId::and_z_p_zz_);
+            #else
+                        Instruction result(Mnemonic::AND, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = Arrangement::None;
@@ -61720,7 +65576,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x041A2000u: { // andv_r_p_z_
-                        Instruction result(Mnemonic::ANDV, insn, 3302);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::ANDV, insn, EncodingId::andv_r_p_z_);
+            #else
+                        Instruction result(Mnemonic::ANDV, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = Arrangement::None;
@@ -61736,7 +65596,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x041AA000u: { // cnt_z_p_z_m
-                        Instruction result(Mnemonic::CNT, insn, 3419);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::CNT, insn, EncodingId::cnt_z_p_z_m);
+            #else
+                        Instruction result(Mnemonic::CNT, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = Arrangement::None;
@@ -61752,7 +65616,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x041B0000u: { // bic_z_p_zz_
-                        Instruction result(Mnemonic::BIC, insn, 3354);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::BIC, insn, EncodingId::bic_z_p_zz_);
+            #else
+                        Instruction result(Mnemonic::BIC, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = Arrangement::None;
@@ -61769,7 +65637,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x041B8000u: { // lsl_z_p_zw_
-                        Instruction result(Mnemonic::LSL, insn, 3949);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LSL, insn, EncodingId::lsl_z_p_zw_);
+            #else
+                        Instruction result(Mnemonic::LSL, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         if (enc.lsl_zpzw.size == 3u) return std::nullopt;
@@ -61787,7 +65659,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x041BA000u: { // cnot_z_p_z_m
-                        Instruction result(Mnemonic::CNOT, insn, 3417);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::CNOT, insn, EncodingId::cnot_z_p_z_m);
+            #else
+                        Instruction result(Mnemonic::CNOT, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = Arrangement::None;
@@ -61803,7 +65679,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x041C2000u: { // orqv_z_p_z_
-                        Instruction result(Mnemonic::ORQV, insn, 4019);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::ORQV, insn, EncodingId::orqv_z_p_z_);
+            #else
+                        Instruction result(Mnemonic::ORQV, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = Arrangement::None;
@@ -61828,7 +65708,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x041CA000u: { // fabs_z_p_z_m
-                        Instruction result(Mnemonic::FABS, insn, 3469);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FABS, insn, EncodingId::fabs_z_p_z_m);
+            #else
+                        Instruction result(Mnemonic::FABS, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         if (enc.fabs_zpzm.size == 0u) return std::nullopt;
@@ -61845,7 +65729,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x041D2000u: { // eorqv_z_p_z_
-                        Instruction result(Mnemonic::EORQV, insn, 3456);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::EORQV, insn, EncodingId::eorqv_z_p_z_);
+            #else
+                        Instruction result(Mnemonic::EORQV, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = Arrangement::None;
@@ -61870,7 +65758,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x041DA000u: { // fneg_z_p_z_m
-                        Instruction result(Mnemonic::FNEG, insn, 3640);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FNEG, insn, EncodingId::fneg_z_p_z_m);
+            #else
+                        Instruction result(Mnemonic::FNEG, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         if (enc.fneg_zpzm.size == 0u) return std::nullopt;
@@ -61887,7 +65779,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x041E2000u: { // andqv_z_p_z_
-                        Instruction result(Mnemonic::ANDQV, insn, 3300);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::ANDQV, insn, EncodingId::andqv_z_p_z_);
+            #else
+                        Instruction result(Mnemonic::ANDQV, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = Arrangement::None;
@@ -61912,7 +65808,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x041EA000u: { // not_z_p_z_m
-                        Instruction result(Mnemonic::NOT, insn, 4013);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::NOT, insn, EncodingId::not_z_p_z_m);
+            #else
+                        Instruction result(Mnemonic::NOT, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = Arrangement::None;
@@ -61929,7 +65829,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
         }
         case 0x05208000u: { // cpy_z_p_v_
             // Also matches: mov_z_p_v__cpy_z_p_v_ (CPY)
-                        Instruction result(Mnemonic::CPY, insn, 3432);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::CPY, insn, EncodingId::cpy_z_p_v_);
+            #else
+                        Instruction result(Mnemonic::CPY, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = Arrangement::None;
@@ -61945,7 +65849,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x0520A000u: { // lasta_r_p_z_
-                        Instruction result(Mnemonic::LASTA, insn, 3702);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LASTA, insn, EncodingId::lasta_r_p_z_);
+            #else
+                        Instruction result(Mnemonic::LASTA, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -61962,7 +65870,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x0521A000u: { // lastb_r_p_z_
-                        Instruction result(Mnemonic::LASTB, insn, 3704);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LASTB, insn, EncodingId::lastb_r_p_z_);
+            #else
+                        Instruction result(Mnemonic::LASTB, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -61979,7 +65891,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x05228000u: { // lasta_v_p_z_
-                        Instruction result(Mnemonic::LASTA, insn, 3703);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LASTA, insn, EncodingId::lasta_v_p_z_);
+            #else
+                        Instruction result(Mnemonic::LASTA, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = Arrangement::None;
@@ -61995,7 +65911,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x05238000u: { // lastb_v_p_z_
-                        Instruction result(Mnemonic::LASTB, insn, 3705);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LASTB, insn, EncodingId::lastb_v_p_z_);
+            #else
+                        Instruction result(Mnemonic::LASTB, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = Arrangement::None;
@@ -62011,7 +65931,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x05248000u: { // revb_z_z_m
-                        Instruction result(Mnemonic::REVB, insn, 4093);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::REVB, insn, EncodingId::revb_z_z_m);
+            #else
+                        Instruction result(Mnemonic::REVB, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         if (enc.revb_zzm.size == 0u) return std::nullopt;
@@ -62028,7 +65952,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x0524A000u: { // revb_z_z_z
-                        Instruction result(Mnemonic::REVB, insn, 4094);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::REVB, insn, EncodingId::revb_z_z_z);
+            #else
+                        Instruction result(Mnemonic::REVB, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         if (enc.revb_zzz.size == 0u) return std::nullopt;
@@ -62045,7 +65973,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x05258000u: { // revh_z_z_m
-                        Instruction result(Mnemonic::REVH, insn, 4095);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::REVH, insn, EncodingId::revh_z_z_m);
+            #else
+                        Instruction result(Mnemonic::REVH, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = Arrangement::None;
@@ -62061,7 +65993,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x0525A000u: { // revh_z_z_z
-                        Instruction result(Mnemonic::REVH, insn, 4096);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::REVH, insn, EncodingId::revh_z_z_z);
+            #else
+                        Instruction result(Mnemonic::REVH, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = Arrangement::None;
@@ -62077,7 +66013,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x05268000u: { // revw_z_z_m
-                        Instruction result(Mnemonic::REVW, insn, 4097);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::REVW, insn, EncodingId::revw_z_z_m);
+            #else
+                        Instruction result(Mnemonic::REVW, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         if (enc.revw_zzm.size != 3u) return std::nullopt;
@@ -62094,7 +66034,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x0526A000u: { // revw_z_z_z
-                        Instruction result(Mnemonic::REVW, insn, 4098);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::REVW, insn, EncodingId::revw_z_z_z);
+            #else
+                        Instruction result(Mnemonic::REVW, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         if (enc.revw_zzz.size != 3u) return std::nullopt;
@@ -62111,7 +66055,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x05278000u: { // rbit_z_p_z_m
-                        Instruction result(Mnemonic::RBIT, insn, 4084);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::RBIT, insn, EncodingId::rbit_z_p_z_m);
+            #else
+                        Instruction result(Mnemonic::RBIT, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = Arrangement::None;
@@ -62127,7 +66075,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x0527A000u: { // rbit_z_p_z_z
-                        Instruction result(Mnemonic::RBIT, insn, 4085);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::RBIT, insn, EncodingId::rbit_z_p_z_z);
+            #else
+                        Instruction result(Mnemonic::RBIT, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = Arrangement::None;
@@ -62143,7 +66095,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x05288000u: { // clasta_z_p_zz_
-                        Instruction result(Mnemonic::CLASTA, insn, 3376);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::CLASTA, insn, EncodingId::clasta_z_p_zz_);
+            #else
+                        Instruction result(Mnemonic::CLASTA, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = Arrangement::None;
@@ -62161,7 +66117,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
         }
         case 0x0528A000u: { // cpy_z_p_r_
             // Also matches: mov_z_p_r__cpy_z_p_r_ (CPY)
-                        Instruction result(Mnemonic::CPY, insn, 3431);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::CPY, insn, EncodingId::cpy_z_p_r_);
+            #else
+                        Instruction result(Mnemonic::CPY, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -62178,7 +66138,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x05298000u: { // clastb_z_p_zz_
-                        Instruction result(Mnemonic::CLASTB, insn, 3379);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::CLASTB, insn, EncodingId::clastb_z_p_zz_);
+            #else
+                        Instruction result(Mnemonic::CLASTB, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = Arrangement::None;
@@ -62195,7 +66159,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x052A8000u: { // clasta_v_p_z_
-                        Instruction result(Mnemonic::CLASTA, insn, 3375);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::CLASTA, insn, EncodingId::clasta_v_p_z_);
+            #else
+                        Instruction result(Mnemonic::CLASTA, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = Arrangement::None;
@@ -62215,7 +66183,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x052B8000u: { // clastb_v_p_z_
-                        Instruction result(Mnemonic::CLASTB, insn, 3378);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::CLASTB, insn, EncodingId::clastb_v_p_z_);
+            #else
+                        Instruction result(Mnemonic::CLASTB, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = Arrangement::None;
@@ -62235,7 +66207,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x052C8000u: { // splice_z_p_zz_des
-                        Instruction result(Mnemonic::SPLICE, insn, 4190);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SPLICE, insn, EncodingId::splice_z_p_zz_des);
+            #else
+                        Instruction result(Mnemonic::SPLICE, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = Arrangement::None;
@@ -62252,7 +66228,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x052D8000u: { // splice_z_p_zz_con
-                        Instruction result(Mnemonic::SPLICE, insn, 4189);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SPLICE, insn, EncodingId::splice_z_p_zz_con);
+            #else
+                        Instruction result(Mnemonic::SPLICE, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = Arrangement::None;
@@ -62268,7 +66248,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x0530A000u: { // clasta_r_p_z_
-                        Instruction result(Mnemonic::CLASTA, insn, 3374);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::CLASTA, insn, EncodingId::clasta_r_p_z_);
+            #else
+                        Instruction result(Mnemonic::CLASTA, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -62286,7 +66270,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x05318000u: { // expand_z_p_z_
-                        Instruction result(Mnemonic::EXPAND, insn, 3460);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::EXPAND, insn, EncodingId::expand_z_p_z_);
+            #else
+                        Instruction result(Mnemonic::EXPAND, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = Arrangement::None;
@@ -62302,7 +66290,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x0531A000u: { // clastb_r_p_z_
-                        Instruction result(Mnemonic::CLASTB, insn, 3377);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::CLASTB, insn, EncodingId::clastb_r_p_z_);
+            #else
+                        Instruction result(Mnemonic::CLASTB, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -62320,7 +66312,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x2528C000u: { // smax_z_zi_
-                        Instruction result(Mnemonic::SMAX, insn, 4159);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SMAX, insn, EncodingId::smax_z_zi_);
+            #else
+                        Instruction result(Mnemonic::SMAX, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = Arrangement::None;
@@ -62336,7 +66332,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x2529C000u: { // umax_z_zi_
-                        Instruction result(Mnemonic::UMAX, insn, 4471);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::UMAX, insn, EncodingId::umax_z_zi_);
+            #else
+                        Instruction result(Mnemonic::UMAX, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = Arrangement::None;
@@ -62352,7 +66352,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x252AC000u: { // smin_z_zi_
-                        Instruction result(Mnemonic::SMIN, insn, 4164);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SMIN, insn, EncodingId::smin_z_zi_);
+            #else
+                        Instruction result(Mnemonic::SMIN, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = Arrangement::None;
@@ -62368,7 +66372,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x252BC000u: { // umin_z_zi_
-                        Instruction result(Mnemonic::UMIN, insn, 4476);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::UMIN, insn, EncodingId::umin_z_zi_);
+            #else
+                        Instruction result(Mnemonic::UMIN, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = Arrangement::None;
@@ -62384,7 +66392,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x2530C000u: { // mul_z_zi_
-                        Instruction result(Mnemonic::MUL, insn, 3999);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::MUL, insn, EncodingId::mul_z_zi_);
+            #else
+                        Instruction result(Mnemonic::MUL, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = Arrangement::None;
@@ -62401,7 +66413,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
         }
         case 0x2539C000u: { // fdup_z_i_
             // Also matches: fmov_z_i__fdup_z_i_ (FDUP)
-                        Instruction result(Mnemonic::FDUP, insn, 3568);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FDUP, insn, EncodingId::fdup_z_i_);
+            #else
+                        Instruction result(Mnemonic::FDUP, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         if (enc.fdup_zi.size == 0u) return std::nullopt;
@@ -62417,7 +66433,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x4400A000u: { // urecpe_z_p_z_m
-                        Instruction result(Mnemonic::URECPE, insn, 4551);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::URECPE, insn, EncodingId::urecpe_z_p_z_m);
+            #else
+                        Instruction result(Mnemonic::URECPE, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         if (enc.urecpe_zpzm.size != 2u) return std::nullopt;
@@ -62434,7 +66454,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x4401A000u: { // ursqrte_z_p_z_m
-                        Instruction result(Mnemonic::URSQRTE, insn, 4557);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::URSQRTE, insn, EncodingId::ursqrte_z_p_z_m);
+            #else
+                        Instruction result(Mnemonic::URSQRTE, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         if (enc.ursqrte_zpzm.size != 2u) return std::nullopt;
@@ -62451,7 +66475,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x44028000u: { // srshl_z_p_zz_
-                        Instruction result(Mnemonic::SRSHL, insn, 4298);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SRSHL, insn, EncodingId::srshl_z_p_zz_);
+            #else
+                        Instruction result(Mnemonic::SRSHL, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = Arrangement::None;
@@ -62468,7 +66496,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x4402A000u: { // urecpe_z_p_z_z
-                        Instruction result(Mnemonic::URECPE, insn, 4552);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::URECPE, insn, EncodingId::urecpe_z_p_z_z);
+            #else
+                        Instruction result(Mnemonic::URECPE, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         if (enc.urecpe_zpzz.size != 2u) return std::nullopt;
@@ -62485,7 +66517,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x44038000u: { // urshl_z_p_zz_
-                        Instruction result(Mnemonic::URSHL, insn, 4554);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::URSHL, insn, EncodingId::urshl_z_p_zz_);
+            #else
+                        Instruction result(Mnemonic::URSHL, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = Arrangement::None;
@@ -62502,7 +66538,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x4403A000u: { // ursqrte_z_p_z_z
-                        Instruction result(Mnemonic::URSQRTE, insn, 4558);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::URSQRTE, insn, EncodingId::ursqrte_z_p_z_z);
+            #else
+                        Instruction result(Mnemonic::URSQRTE, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         if (enc.ursqrte_zpzz.size != 2u) return std::nullopt;
@@ -62519,7 +66559,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x4404A000u: { // sadalp_z_p_z_
-                        Instruction result(Mnemonic::SADALP, insn, 4112);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SADALP, insn, EncodingId::sadalp_z_p_z_);
+            #else
+                        Instruction result(Mnemonic::SADALP, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         if (enc.sadalp_zpz.size == 0u) return std::nullopt;
@@ -62543,7 +66587,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x4405A000u: { // uadalp_z_p_z_
-                        Instruction result(Mnemonic::UADALP, insn, 4435);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::UADALP, insn, EncodingId::uadalp_z_p_z_);
+            #else
+                        Instruction result(Mnemonic::UADALP, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         if (enc.uadalp_zpz.size == 0u) return std::nullopt;
@@ -62567,7 +66615,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x44068000u: { // srshlr_z_p_zz_
-                        Instruction result(Mnemonic::SRSHLR, insn, 4299);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SRSHLR, insn, EncodingId::srshlr_z_p_zz_);
+            #else
+                        Instruction result(Mnemonic::SRSHLR, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = Arrangement::None;
@@ -62584,7 +66636,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x44078000u: { // urshlr_z_p_zz_
-                        Instruction result(Mnemonic::URSHLR, insn, 4555);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::URSHLR, insn, EncodingId::urshlr_z_p_zz_);
+            #else
+                        Instruction result(Mnemonic::URSHLR, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = Arrangement::None;
@@ -62601,7 +66657,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x44088000u: { // sqshl_z_p_zz_
-                        Instruction result(Mnemonic::SQSHL, insn, 4279);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SQSHL, insn, EncodingId::sqshl_z_p_zz_);
+            #else
+                        Instruction result(Mnemonic::SQSHL, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = Arrangement::None;
@@ -62618,7 +66678,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x4408A000u: { // sqabs_z_p_z_m
-                        Instruction result(Mnemonic::SQABS, insn, 4191);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SQABS, insn, EncodingId::sqabs_z_p_z_m);
+            #else
+                        Instruction result(Mnemonic::SQABS, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = Arrangement::None;
@@ -62634,7 +66698,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x44098000u: { // uqshl_z_p_zz_
-                        Instruction result(Mnemonic::UQSHL, insn, 4540);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::UQSHL, insn, EncodingId::uqshl_z_p_zz_);
+            #else
+                        Instruction result(Mnemonic::UQSHL, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = Arrangement::None;
@@ -62651,7 +66719,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x4409A000u: { // sqneg_z_p_z_m
-                        Instruction result(Mnemonic::SQNEG, insn, 4251);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SQNEG, insn, EncodingId::sqneg_z_p_z_m);
+            #else
+                        Instruction result(Mnemonic::SQNEG, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = Arrangement::None;
@@ -62667,7 +66739,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x440A8000u: { // sqrshl_z_p_zz_
-                        Instruction result(Mnemonic::SQRSHL, insn, 4268);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SQRSHL, insn, EncodingId::sqrshl_z_p_zz_);
+            #else
+                        Instruction result(Mnemonic::SQRSHL, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = Arrangement::None;
@@ -62684,7 +66760,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x440AA000u: { // sqabs_z_p_z_z
-                        Instruction result(Mnemonic::SQABS, insn, 4192);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SQABS, insn, EncodingId::sqabs_z_p_z_z);
+            #else
+                        Instruction result(Mnemonic::SQABS, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = Arrangement::None;
@@ -62700,7 +66780,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x440B8000u: { // uqrshl_z_p_zz_
-                        Instruction result(Mnemonic::UQRSHL, insn, 4533);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::UQRSHL, insn, EncodingId::uqrshl_z_p_zz_);
+            #else
+                        Instruction result(Mnemonic::UQRSHL, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = Arrangement::None;
@@ -62717,7 +66801,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x440BA000u: { // sqneg_z_p_z_z
-                        Instruction result(Mnemonic::SQNEG, insn, 4252);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SQNEG, insn, EncodingId::sqneg_z_p_z_z);
+            #else
+                        Instruction result(Mnemonic::SQNEG, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = Arrangement::None;
@@ -62733,7 +66821,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x440C8000u: { // sqshlr_z_p_zz_
-                        Instruction result(Mnemonic::SQSHLR, insn, 4280);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SQSHLR, insn, EncodingId::sqshlr_z_p_zz_);
+            #else
+                        Instruction result(Mnemonic::SQSHLR, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = Arrangement::None;
@@ -62750,7 +66842,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x440D8000u: { // uqshlr_z_p_zz_
-                        Instruction result(Mnemonic::UQSHLR, insn, 4541);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::UQSHLR, insn, EncodingId::uqshlr_z_p_zz_);
+            #else
+                        Instruction result(Mnemonic::UQSHLR, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = Arrangement::None;
@@ -62767,7 +66863,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x440E8000u: { // sqrshlr_z_p_zz_
-                        Instruction result(Mnemonic::SQRSHLR, insn, 4269);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SQRSHLR, insn, EncodingId::sqrshlr_z_p_zz_);
+            #else
+                        Instruction result(Mnemonic::SQRSHLR, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = Arrangement::None;
@@ -62784,7 +66884,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x440F8000u: { // uqrshlr_z_p_zz_
-                        Instruction result(Mnemonic::UQRSHLR, insn, 4534);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::UQRSHLR, insn, EncodingId::uqrshlr_z_p_zz_);
+            #else
+                        Instruction result(Mnemonic::UQRSHLR, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = Arrangement::None;
@@ -62801,7 +66905,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x44108000u: { // shadd_z_p_zz_
-                        Instruction result(Mnemonic::SHADD, insn, 4150);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SHADD, insn, EncodingId::shadd_z_p_zz_);
+            #else
+                        Instruction result(Mnemonic::SHADD, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = Arrangement::None;
@@ -62818,7 +66926,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x4410A000u: { // subp_z_p_zz_
-                        Instruction result(Mnemonic::SUBP, insn, 4402);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SUBP, insn, EncodingId::subp_z_p_zz_);
+            #else
+                        Instruction result(Mnemonic::SUBP, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = Arrangement::None;
@@ -62835,7 +66947,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x44118000u: { // uhadd_z_p_zz_
-                        Instruction result(Mnemonic::UHADD, insn, 4467);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::UHADD, insn, EncodingId::uhadd_z_p_zz_);
+            #else
+                        Instruction result(Mnemonic::UHADD, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = Arrangement::None;
@@ -62852,7 +66968,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x4411A000u: { // addp_z_p_zz_
-                        Instruction result(Mnemonic::ADDP, insn, 3271);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::ADDP, insn, EncodingId::addp_z_p_zz_);
+            #else
+                        Instruction result(Mnemonic::ADDP, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = Arrangement::None;
@@ -62869,7 +66989,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x44128000u: { // shsub_z_p_zz_
-                        Instruction result(Mnemonic::SHSUB, insn, 4153);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SHSUB, insn, EncodingId::shsub_z_p_zz_);
+            #else
+                        Instruction result(Mnemonic::SHSUB, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = Arrangement::None;
@@ -62886,7 +67010,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x44138000u: { // uhsub_z_p_zz_
-                        Instruction result(Mnemonic::UHSUB, insn, 4468);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::UHSUB, insn, EncodingId::uhsub_z_p_zz_);
+            #else
+                        Instruction result(Mnemonic::UHSUB, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = Arrangement::None;
@@ -62903,7 +67031,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x44148000u: { // srhadd_z_p_zz_
-                        Instruction result(Mnemonic::SRHADD, insn, 4296);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SRHADD, insn, EncodingId::srhadd_z_p_zz_);
+            #else
+                        Instruction result(Mnemonic::SRHADD, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = Arrangement::None;
@@ -62920,7 +67052,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x4414A000u: { // smaxp_z_p_zz_
-                        Instruction result(Mnemonic::SMAXP, insn, 4160);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SMAXP, insn, EncodingId::smaxp_z_p_zz_);
+            #else
+                        Instruction result(Mnemonic::SMAXP, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = Arrangement::None;
@@ -62937,7 +67073,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x44158000u: { // urhadd_z_p_zz_
-                        Instruction result(Mnemonic::URHADD, insn, 4553);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::URHADD, insn, EncodingId::urhadd_z_p_zz_);
+            #else
+                        Instruction result(Mnemonic::URHADD, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = Arrangement::None;
@@ -62954,7 +67094,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x4415A000u: { // umaxp_z_p_zz_
-                        Instruction result(Mnemonic::UMAXP, insn, 4472);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::UMAXP, insn, EncodingId::umaxp_z_p_zz_);
+            #else
+                        Instruction result(Mnemonic::UMAXP, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = Arrangement::None;
@@ -62971,7 +67115,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x44168000u: { // shsubr_z_p_zz_
-                        Instruction result(Mnemonic::SHSUBR, insn, 4154);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SHSUBR, insn, EncodingId::shsubr_z_p_zz_);
+            #else
+                        Instruction result(Mnemonic::SHSUBR, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = Arrangement::None;
@@ -62988,7 +67136,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x4416A000u: { // sminp_z_p_zz_
-                        Instruction result(Mnemonic::SMINP, insn, 4165);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SMINP, insn, EncodingId::sminp_z_p_zz_);
+            #else
+                        Instruction result(Mnemonic::SMINP, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = Arrangement::None;
@@ -63005,7 +67157,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x44178000u: { // uhsubr_z_p_zz_
-                        Instruction result(Mnemonic::UHSUBR, insn, 4469);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::UHSUBR, insn, EncodingId::uhsubr_z_p_zz_);
+            #else
+                        Instruction result(Mnemonic::UHSUBR, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = Arrangement::None;
@@ -63022,7 +67178,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x4417A000u: { // uminp_z_p_zz_
-                        Instruction result(Mnemonic::UMINP, insn, 4477);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::UMINP, insn, EncodingId::uminp_z_p_zz_);
+            #else
+                        Instruction result(Mnemonic::UMINP, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = Arrangement::None;
@@ -63039,7 +67199,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x44188000u: { // sqadd_z_p_zz_
-                        Instruction result(Mnemonic::SQADD, insn, 4193);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SQADD, insn, EncodingId::sqadd_z_p_zz_);
+            #else
+                        Instruction result(Mnemonic::SQADD, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = Arrangement::None;
@@ -63056,7 +67220,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x44198000u: { // uqadd_z_p_zz_
-                        Instruction result(Mnemonic::UQADD, insn, 4501);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::UQADD, insn, EncodingId::uqadd_z_p_zz_);
+            #else
+                        Instruction result(Mnemonic::UQADD, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = Arrangement::None;
@@ -63073,7 +67241,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x441A8000u: { // sqsub_z_p_zz_
-                        Instruction result(Mnemonic::SQSUB, insn, 4288);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SQSUB, insn, EncodingId::sqsub_z_p_zz_);
+            #else
+                        Instruction result(Mnemonic::SQSUB, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = Arrangement::None;
@@ -63090,7 +67262,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x441B8000u: { // uqsub_z_p_zz_
-                        Instruction result(Mnemonic::UQSUB, insn, 4545);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::UQSUB, insn, EncodingId::uqsub_z_p_zz_);
+            #else
+                        Instruction result(Mnemonic::UQSUB, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = Arrangement::None;
@@ -63107,7 +67283,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x441C8000u: { // suqadd_z_p_zz_
-                        Instruction result(Mnemonic::SUQADD, insn, 4410);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SUQADD, insn, EncodingId::suqadd_z_p_zz_);
+            #else
+                        Instruction result(Mnemonic::SUQADD, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = Arrangement::None;
@@ -63124,7 +67304,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x441D8000u: { // usqadd_z_p_zz_
-                        Instruction result(Mnemonic::USQADD, insn, 4565);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::USQADD, insn, EncodingId::usqadd_z_p_zz_);
+            #else
+                        Instruction result(Mnemonic::USQADD, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = Arrangement::None;
@@ -63141,7 +67325,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x441E8000u: { // sqsubr_z_p_zz_
-                        Instruction result(Mnemonic::SQSUBR, insn, 4291);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SQSUBR, insn, EncodingId::sqsubr_z_p_zz_);
+            #else
+                        Instruction result(Mnemonic::SQSUBR, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = Arrangement::None;
@@ -63158,7 +67346,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x441F8000u: { // uqsubr_z_p_zz_
-                        Instruction result(Mnemonic::UQSUBR, insn, 4548);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::UQSUBR, insn, EncodingId::uqsubr_z_p_zz_);
+            #else
+                        Instruction result(Mnemonic::UQSUBR, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = Arrangement::None;
@@ -63175,7 +67367,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x64108000u: { // faddp_z_p_zz_
-                        Instruction result(Mnemonic::FADDP, insn, 3479);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FADDP, insn, EncodingId::faddp_z_p_zz_);
+            #else
+                        Instruction result(Mnemonic::FADDP, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         if (enc.faddp_zpzz.size == 0u) return std::nullopt;
@@ -63193,7 +67389,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x6410A000u: { // faddqv_z_p_z_
-                        Instruction result(Mnemonic::FADDQV, insn, 3480);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FADDQV, insn, EncodingId::faddqv_z_p_z_);
+            #else
+                        Instruction result(Mnemonic::FADDQV, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         if (enc.faddqv_zpz.size == 0u) return std::nullopt;
@@ -63219,7 +67419,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x64148000u: { // fmaxnmp_z_p_zz_
-                        Instruction result(Mnemonic::FMAXNMP, insn, 3578);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FMAXNMP, insn, EncodingId::fmaxnmp_z_p_zz_);
+            #else
+                        Instruction result(Mnemonic::FMAXNMP, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         if (enc.fmaxnmp_zpzz.size == 0u) return std::nullopt;
@@ -63237,7 +67441,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x6414A000u: { // fmaxnmqv_z_p_z_
-                        Instruction result(Mnemonic::FMAXNMQV, insn, 3579);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FMAXNMQV, insn, EncodingId::fmaxnmqv_z_p_z_);
+            #else
+                        Instruction result(Mnemonic::FMAXNMQV, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         if (enc.fmaxnmqv_zpz.size == 0u) return std::nullopt;
@@ -63263,7 +67471,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x64158000u: { // fminnmp_z_p_zz_
-                        Instruction result(Mnemonic::FMINNMP, insn, 3588);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FMINNMP, insn, EncodingId::fminnmp_z_p_zz_);
+            #else
+                        Instruction result(Mnemonic::FMINNMP, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         if (enc.fminnmp_zpzz.size == 0u) return std::nullopt;
@@ -63281,7 +67493,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x6415A000u: { // fminnmqv_z_p_z_
-                        Instruction result(Mnemonic::FMINNMQV, insn, 3589);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FMINNMQV, insn, EncodingId::fminnmqv_z_p_z_);
+            #else
+                        Instruction result(Mnemonic::FMINNMQV, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         if (enc.fminnmqv_zpz.size == 0u) return std::nullopt;
@@ -63307,7 +67523,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x64168000u: { // fmaxp_z_p_zz_
-                        Instruction result(Mnemonic::FMAXP, insn, 3581);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FMAXP, insn, EncodingId::fmaxp_z_p_zz_);
+            #else
+                        Instruction result(Mnemonic::FMAXP, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         if (enc.fmaxp_zpzz.size == 0u) return std::nullopt;
@@ -63325,7 +67545,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x6416A000u: { // fmaxqv_z_p_z_
-                        Instruction result(Mnemonic::FMAXQV, insn, 3582);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FMAXQV, insn, EncodingId::fmaxqv_z_p_z_);
+            #else
+                        Instruction result(Mnemonic::FMAXQV, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         if (enc.fmaxqv_zpz.size == 0u) return std::nullopt;
@@ -63351,7 +67575,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x64178000u: { // fminp_z_p_zz_
-                        Instruction result(Mnemonic::FMINP, insn, 3591);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FMINP, insn, EncodingId::fminp_z_p_zz_);
+            #else
+                        Instruction result(Mnemonic::FMINP, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         if (enc.fminp_zpzz.size == 0u) return std::nullopt;
@@ -63369,7 +67597,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x6417A000u: { // fminqv_z_p_z_
-                        Instruction result(Mnemonic::FMINQV, insn, 3592);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FMINQV, insn, EncodingId::fminqv_z_p_z_);
+            #else
+                        Instruction result(Mnemonic::FMINQV, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         if (enc.fminqv_zpz.size == 0u) return std::nullopt;
@@ -63395,7 +67627,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x64188000u: { // frintn_z_p_z_z
-                        Instruction result(Mnemonic::FRINTN, insn, 3665);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FRINTN, insn, EncodingId::frintn_z_p_z_z);
+            #else
+                        Instruction result(Mnemonic::FRINTN, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         if (enc.frintn_zpzz.size == 0u) return std::nullopt;
@@ -63412,7 +67648,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x6418A000u: { // frintp_z_p_z_z
-                        Instruction result(Mnemonic::FRINTP, insn, 3671);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FRINTP, insn, EncodingId::frintp_z_p_z_z);
+            #else
+                        Instruction result(Mnemonic::FRINTP, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         if (enc.frintp_zpzz.size == 0u) return std::nullopt;
@@ -63429,7 +67669,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x6418C000u: { // frintm_z_p_z_z
-                        Instruction result(Mnemonic::FRINTM, insn, 3669);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FRINTM, insn, EncodingId::frintm_z_p_z_z);
+            #else
+                        Instruction result(Mnemonic::FRINTM, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         if (enc.frintm_zpzz.size == 0u) return std::nullopt;
@@ -63446,7 +67690,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x6418E000u: { // frintz_z_p_z_z
-                        Instruction result(Mnemonic::FRINTZ, insn, 3667);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FRINTZ, insn, EncodingId::frintz_z_p_z_z);
+            #else
+                        Instruction result(Mnemonic::FRINTZ, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         if (enc.frintz_zpzz.size == 0u) return std::nullopt;
@@ -63463,7 +67711,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x64198000u: { // frinta_z_p_z_z
-                        Instruction result(Mnemonic::FRINTA, insn, 3663);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FRINTA, insn, EncodingId::frinta_z_p_z_z);
+            #else
+                        Instruction result(Mnemonic::FRINTA, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         if (enc.frinta_zpzz.size == 0u) return std::nullopt;
@@ -63480,7 +67732,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x6419C000u: { // frintx_z_p_z_z
-                        Instruction result(Mnemonic::FRINTX, insn, 3659);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FRINTX, insn, EncodingId::frintx_z_p_z_z);
+            #else
+                        Instruction result(Mnemonic::FRINTX, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         if (enc.frintx_zpzz.size == 0u) return std::nullopt;
@@ -63497,7 +67753,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x6419E000u: { // frinti_z_p_z_z
-                        Instruction result(Mnemonic::FRINTI, insn, 3661);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FRINTI, insn, EncodingId::frinti_z_p_z_z);
+            #else
+                        Instruction result(Mnemonic::FRINTI, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         if (enc.frinti_zpzz.size == 0u) return std::nullopt;
@@ -63514,7 +67774,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x641B8000u: { // frecpx_z_p_z_z
-                        Instruction result(Mnemonic::FRECPX, insn, 3649);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FRECPX, insn, EncodingId::frecpx_z_p_z_z);
+            #else
+                        Instruction result(Mnemonic::FRECPX, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         if (enc.frecpx_zpzz.size == 0u) return std::nullopt;
@@ -63531,7 +67795,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x641BA000u: { // fsqrt_z_p_z_z
-                        Instruction result(Mnemonic::FSQRT, insn, 3676);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FSQRT, insn, EncodingId::fsqrt_z_p_z_z);
+            #else
+                        Instruction result(Mnemonic::FSQRT, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         if (enc.fsqrt_zpzz.size == 0u) return std::nullopt;
@@ -63548,7 +67816,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x65002000u: { // faddv_v_p_z_
-                        Instruction result(Mnemonic::FADDV, insn, 3481);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FADDV, insn, EncodingId::faddv_v_p_z_);
+            #else
+                        Instruction result(Mnemonic::FADDV, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         if (enc.faddv_vpz.size == 0u) return std::nullopt;
@@ -63566,7 +67838,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
         }
         case 0x65008000u: { // fadd_z_p_zz_
             if (((insn >> 22) & 0x3) == 0x0) break;
-                        Instruction result(Mnemonic::FADD, insn, 3476);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FADD, insn, EncodingId::fadd_z_p_zz_);
+            #else
+                        Instruction result(Mnemonic::FADD, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = Arrangement::None;
@@ -63583,7 +67859,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x6500A000u: { // frintn_z_p_z_m
-                        Instruction result(Mnemonic::FRINTN, insn, 3664);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FRINTN, insn, EncodingId::frintn_z_p_z_m);
+            #else
+                        Instruction result(Mnemonic::FRINTN, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         if (enc.frintn_zpzm.size == 0u) return std::nullopt;
@@ -63601,7 +67881,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
         }
         case 0x65018000u: { // fsub_z_p_zz_
             if (((insn >> 22) & 0x3) == 0x0) break;
-                        Instruction result(Mnemonic::FSUB, insn, 3678);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FSUB, insn, EncodingId::fsub_z_p_zz_);
+            #else
+                        Instruction result(Mnemonic::FSUB, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = Arrangement::None;
@@ -63618,7 +67902,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x6501A000u: { // frintp_z_p_z_m
-                        Instruction result(Mnemonic::FRINTP, insn, 3670);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FRINTP, insn, EncodingId::frintp_z_p_z_m);
+            #else
+                        Instruction result(Mnemonic::FRINTP, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         if (enc.frintp_zpzm.size == 0u) return std::nullopt;
@@ -63636,7 +67924,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
         }
         case 0x65028000u: { // fmul_z_p_zz_
             if (((insn >> 22) & 0x3) == 0x0) break;
-                        Instruction result(Mnemonic::FMUL, insn, 3634);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FMUL, insn, EncodingId::fmul_z_p_zz_);
+            #else
+                        Instruction result(Mnemonic::FMUL, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = Arrangement::None;
@@ -63653,7 +67945,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x6502A000u: { // frintm_z_p_z_m
-                        Instruction result(Mnemonic::FRINTM, insn, 3668);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FRINTM, insn, EncodingId::frintm_z_p_z_m);
+            #else
+                        Instruction result(Mnemonic::FRINTM, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         if (enc.frintm_zpzm.size == 0u) return std::nullopt;
@@ -63670,7 +67966,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x65038000u: { // fsubr_z_p_zz_
-                        Instruction result(Mnemonic::FSUBR, insn, 3681);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FSUBR, insn, EncodingId::fsubr_z_p_zz_);
+            #else
+                        Instruction result(Mnemonic::FSUBR, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         if (enc.fsubr_zpzz.size == 0u) return std::nullopt;
@@ -63688,7 +67988,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x6503A000u: { // frintz_z_p_z_m
-                        Instruction result(Mnemonic::FRINTZ, insn, 3666);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FRINTZ, insn, EncodingId::frintz_z_p_z_m);
+            #else
+                        Instruction result(Mnemonic::FRINTZ, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         if (enc.frintz_zpzm.size == 0u) return std::nullopt;
@@ -63705,7 +68009,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x65042000u: { // fmaxnmv_v_p_z_
-                        Instruction result(Mnemonic::FMAXNMV, insn, 3580);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FMAXNMV, insn, EncodingId::fmaxnmv_v_p_z_);
+            #else
+                        Instruction result(Mnemonic::FMAXNMV, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         if (enc.fmaxnmv_vpz.size == 0u) return std::nullopt;
@@ -63723,7 +68031,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
         }
         case 0x65048000u: { // fmaxnm_z_p_zz_
             if (((insn >> 22) & 0x3) == 0x0) break;
-                        Instruction result(Mnemonic::FMAXNM, insn, 3577);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FMAXNM, insn, EncodingId::fmaxnm_z_p_zz_);
+            #else
+                        Instruction result(Mnemonic::FMAXNM, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = Arrangement::None;
@@ -63740,7 +68052,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x6504A000u: { // frinta_z_p_z_m
-                        Instruction result(Mnemonic::FRINTA, insn, 3662);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FRINTA, insn, EncodingId::frinta_z_p_z_m);
+            #else
+                        Instruction result(Mnemonic::FRINTA, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         if (enc.frinta_zpzm.size == 0u) return std::nullopt;
@@ -63757,7 +68073,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x65052000u: { // fminnmv_v_p_z_
-                        Instruction result(Mnemonic::FMINNMV, insn, 3590);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FMINNMV, insn, EncodingId::fminnmv_v_p_z_);
+            #else
+                        Instruction result(Mnemonic::FMINNMV, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         if (enc.fminnmv_vpz.size == 0u) return std::nullopt;
@@ -63775,7 +68095,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
         }
         case 0x65058000u: { // fminnm_z_p_zz_
             if (((insn >> 22) & 0x3) == 0x0) break;
-                        Instruction result(Mnemonic::FMINNM, insn, 3587);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FMINNM, insn, EncodingId::fminnm_z_p_zz_);
+            #else
+                        Instruction result(Mnemonic::FMINNM, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = Arrangement::None;
@@ -63792,7 +68116,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x65062000u: { // fmaxv_v_p_z_
-                        Instruction result(Mnemonic::FMAXV, insn, 3583);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FMAXV, insn, EncodingId::fmaxv_v_p_z_);
+            #else
+                        Instruction result(Mnemonic::FMAXV, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         if (enc.fmaxv_vpz.size == 0u) return std::nullopt;
@@ -63810,7 +68138,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
         }
         case 0x65068000u: { // fmax_z_p_zz_
             if (((insn >> 22) & 0x3) == 0x0) break;
-                        Instruction result(Mnemonic::FMAX, insn, 3575);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FMAX, insn, EncodingId::fmax_z_p_zz_);
+            #else
+                        Instruction result(Mnemonic::FMAX, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = Arrangement::None;
@@ -63827,7 +68159,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x6506A000u: { // frintx_z_p_z_m
-                        Instruction result(Mnemonic::FRINTX, insn, 3658);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FRINTX, insn, EncodingId::frintx_z_p_z_m);
+            #else
+                        Instruction result(Mnemonic::FRINTX, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         if (enc.frintx_zpzm.size == 0u) return std::nullopt;
@@ -63844,7 +68180,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x65072000u: { // fminv_v_p_z_
-                        Instruction result(Mnemonic::FMINV, insn, 3593);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FMINV, insn, EncodingId::fminv_v_p_z_);
+            #else
+                        Instruction result(Mnemonic::FMINV, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         if (enc.fminv_vpz.size == 0u) return std::nullopt;
@@ -63862,7 +68202,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
         }
         case 0x65078000u: { // fmin_z_p_zz_
             if (((insn >> 22) & 0x3) == 0x0) break;
-                        Instruction result(Mnemonic::FMIN, insn, 3585);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FMIN, insn, EncodingId::fmin_z_p_zz_);
+            #else
+                        Instruction result(Mnemonic::FMIN, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = Arrangement::None;
@@ -63879,7 +68223,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x6507A000u: { // frinti_z_p_z_m
-                        Instruction result(Mnemonic::FRINTI, insn, 3660);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FRINTI, insn, EncodingId::frinti_z_p_z_m);
+            #else
+                        Instruction result(Mnemonic::FRINTI, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         if (enc.frinti_zpzm.size == 0u) return std::nullopt;
@@ -63896,7 +68244,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x65088000u: { // fabd_z_p_zz_
-                        Instruction result(Mnemonic::FABD, insn, 3468);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FABD, insn, EncodingId::fabd_z_p_zz_);
+            #else
+                        Instruction result(Mnemonic::FABD, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         if (enc.fabd_zpzz.size == 0u) return std::nullopt;
@@ -63915,7 +68267,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
         }
         case 0x65098000u: { // fscale_z_p_zz_
             if (((insn >> 22) & 0x3) == 0x0) break;
-                        Instruction result(Mnemonic::FSCALE, insn, 3674);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FSCALE, insn, EncodingId::fscale_z_p_zz_);
+            #else
+                        Instruction result(Mnemonic::FSCALE, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = Arrangement::None;
@@ -63932,7 +68288,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x650A8000u: { // fmulx_z_p_zz_
-                        Instruction result(Mnemonic::FMULX, insn, 3639);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FMULX, insn, EncodingId::fmulx_z_p_zz_);
+            #else
+                        Instruction result(Mnemonic::FMULX, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         if (enc.fmulx_zpzz.size == 0u) return std::nullopt;
@@ -63950,7 +68310,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x650C8000u: { // fdivr_z_p_zz_
-                        Instruction result(Mnemonic::FDIVR, insn, 3561);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FDIVR, insn, EncodingId::fdivr_z_p_zz_);
+            #else
+                        Instruction result(Mnemonic::FDIVR, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         if (enc.fdivr_zpzz.size == 0u) return std::nullopt;
@@ -63968,7 +68332,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x650CA000u: { // frecpx_z_p_z_m
-                        Instruction result(Mnemonic::FRECPX, insn, 3648);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FRECPX, insn, EncodingId::frecpx_z_p_z_m);
+            #else
+                        Instruction result(Mnemonic::FRECPX, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         if (enc.frecpx_zpzm.size == 0u) return std::nullopt;
@@ -63985,7 +68353,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x650D8000u: { // fdiv_z_p_zz_
-                        Instruction result(Mnemonic::FDIV, insn, 3560);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FDIV, insn, EncodingId::fdiv_z_p_zz_);
+            #else
+                        Instruction result(Mnemonic::FDIV, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         if (enc.fdiv_zpzz.size == 0u) return std::nullopt;
@@ -64003,7 +68375,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x650DA000u: { // fsqrt_z_p_z_m
-                        Instruction result(Mnemonic::FSQRT, insn, 3675);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FSQRT, insn, EncodingId::fsqrt_z_p_z_m);
+            #else
+                        Instruction result(Mnemonic::FSQRT, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         if (enc.fsqrt_zpzm.size == 0u) return std::nullopt;
@@ -64020,7 +68396,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x650E8000u: { // famax_z_p_zz_
-                        Instruction result(Mnemonic::FAMAX, insn, 3482);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FAMAX, insn, EncodingId::famax_z_p_zz_);
+            #else
+                        Instruction result(Mnemonic::FAMAX, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         if (enc.famax_zpzz.size == 0u) return std::nullopt;
@@ -64038,7 +68418,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x650F8000u: { // famin_z_p_zz_
-                        Instruction result(Mnemonic::FAMIN, insn, 3483);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FAMIN, insn, EncodingId::famin_z_p_zz_);
+            #else
+                        Instruction result(Mnemonic::FAMIN, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         if (enc.famin_zpzz.size == 0u) return std::nullopt;
@@ -64056,7 +68440,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x65182000u: { // fadda_v_p_z_
-                        Instruction result(Mnemonic::FADDA, insn, 3478);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FADDA, insn, EncodingId::fadda_v_p_z_);
+            #else
+                        Instruction result(Mnemonic::FADDA, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         if (enc.fadda_vpz.size == 0u) return std::nullopt;
@@ -64078,7 +68466,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
     // Switch for mask 0xFF3FC200u (3 patterns, 3 encodings)
     switch (insn & 0xFF3FC200u) {
         case 0x25208000u: { // cntp_r_p_p_
-                        Instruction result(Mnemonic::CNTP, insn, 3425);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::CNTP, insn, EncodingId::cntp_r_p_p_);
+            #else
+                        Instruction result(Mnemonic::CNTP, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -64095,7 +68487,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x25218000u: { // firstp_r_p_p_
-                        Instruction result(Mnemonic::FIRSTP, insn, 3570);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FIRSTP, insn, EncodingId::firstp_r_p_p_);
+            #else
+                        Instruction result(Mnemonic::FIRSTP, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -64112,7 +68508,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x25228000u: { // lastp_r_p_p_
-                        Instruction result(Mnemonic::LASTP, insn, 3706);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LASTP, insn, EncodingId::lastp_r_p_p_);
+            #else
+                        Instruction result(Mnemonic::LASTP, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -64134,7 +68534,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
     // Switch for mask 0xFF3FC000u (8 patterns, 9 encodings)
     switch (insn & 0xFF3FC000u) {
         case 0x2520C000u: { // add_z_zi_
-                        Instruction result(Mnemonic::ADD, insn, 3267);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::ADD, insn, EncodingId::add_z_zi_);
+            #else
+                        Instruction result(Mnemonic::ADD, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = Arrangement::None;
@@ -64150,7 +68554,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x2521C000u: { // sub_z_zi_
-                        Instruction result(Mnemonic::SUB, insn, 4398);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SUB, insn, EncodingId::sub_z_zi_);
+            #else
+                        Instruction result(Mnemonic::SUB, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = Arrangement::None;
@@ -64166,7 +68574,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x2523C000u: { // subr_z_zi_
-                        Instruction result(Mnemonic::SUBR, insn, 4406);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SUBR, insn, EncodingId::subr_z_zi_);
+            #else
+                        Instruction result(Mnemonic::SUBR, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = Arrangement::None;
@@ -64182,7 +68594,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x2524C000u: { // sqadd_z_zi_
-                        Instruction result(Mnemonic::SQADD, insn, 4194);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SQADD, insn, EncodingId::sqadd_z_zi_);
+            #else
+                        Instruction result(Mnemonic::SQADD, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = Arrangement::None;
@@ -64198,7 +68614,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x2525C000u: { // uqadd_z_zi_
-                        Instruction result(Mnemonic::UQADD, insn, 4502);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::UQADD, insn, EncodingId::uqadd_z_zi_);
+            #else
+                        Instruction result(Mnemonic::UQADD, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = Arrangement::None;
@@ -64214,7 +68634,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x2526C000u: { // sqsub_z_zi_
-                        Instruction result(Mnemonic::SQSUB, insn, 4289);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SQSUB, insn, EncodingId::sqsub_z_zi_);
+            #else
+                        Instruction result(Mnemonic::SQSUB, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = Arrangement::None;
@@ -64230,7 +68654,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x2527C000u: { // uqsub_z_zi_
-                        Instruction result(Mnemonic::UQSUB, insn, 4546);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::UQSUB, insn, EncodingId::uqsub_z_zi_);
+            #else
+                        Instruction result(Mnemonic::UQSUB, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = Arrangement::None;
@@ -64247,7 +68675,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
         }
         case 0x2538C000u: { // dup_z_i_
             // Also matches: mov_z_i__dup_z_i_ (DUP)
-                        Instruction result(Mnemonic::DUP, insn, 3444);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::DUP, insn, EncodingId::dup_z_i_);
+            #else
+                        Instruction result(Mnemonic::DUP, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = Arrangement::None;
@@ -64267,7 +68699,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
     // Switch for mask 0xFF3EE000u (2 patterns, 2 encodings)
     switch (insn & 0xFF3EE000u) {
         case 0x04102000u: { // movprfx_z_p_z_
-                        Instruction result(Mnemonic::MOVPRFX, insn, 3993);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::MOVPRFX, insn, EncodingId::movprfx_z_p_z_);
+            #else
+                        Instruction result(Mnemonic::MOVPRFX, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = Arrangement::None;
@@ -64283,7 +68719,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x64008000u: { // fcadd_z_p_zz_
-                        Instruction result(Mnemonic::FCADD, insn, 3484);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FCADD, insn, EncodingId::fcadd_z_p_zz_);
+            #else
+                        Instruction result(Mnemonic::FCADD, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         if (enc.fcadd_zpzz.size == 0u) return std::nullopt;
@@ -64307,7 +68747,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
     // Switch for mask 0xFF38FC00u (1 pattern, 1 encoding)
     switch (insn & 0xFF38FC00u) {
         case 0x65108000u: { // ftmad_z_zzi_
-                        Instruction result(Mnemonic::FTMAD, insn, 3682);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FTMAD, insn, EncodingId::ftmad_z_zzi_);
+            #else
+                        Instruction result(Mnemonic::FTMAD, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         if (enc.ftmad_zzzi.size == 0u) return std::nullopt;
@@ -64330,7 +68774,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
     // Switch for mask 0xFF30FFE0u (1 pattern, 1 encoding)
     switch (insn & 0xFF30FFE0u) {
         case 0x05104000u: { // fmov_z_p_0__cpy_z_p_i_
-                        Instruction result(Mnemonic::CPY, insn, 3628);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::CPY, insn, EncodingId::fmov_z_p_0__cpy_z_p_i_);
+            #else
+                        Instruction result(Mnemonic::CPY, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = Arrangement::None;
@@ -64350,7 +68798,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
     // Switch for mask 0xFF30FE10u (6 patterns, 6 encodings)
     switch (insn & 0xFF30FE10u) {
         case 0x05204000u: { // zip1_p_pp_
-                        Instruction result(Mnemonic::ZIP1, insn, 4616);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::ZIP1, insn, EncodingId::zip1_p_pp_);
+            #else
+                        Instruction result(Mnemonic::ZIP1, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = Arrangement::None;
@@ -64366,7 +68818,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x05204400u: { // zip2_p_pp_
-                        Instruction result(Mnemonic::ZIP2, insn, 4615);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::ZIP2, insn, EncodingId::zip2_p_pp_);
+            #else
+                        Instruction result(Mnemonic::ZIP2, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = Arrangement::None;
@@ -64382,7 +68838,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x05204800u: { // uzp1_p_pp_
-                        Instruction result(Mnemonic::UZP1, insn, 4579);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::UZP1, insn, EncodingId::uzp1_p_pp_);
+            #else
+                        Instruction result(Mnemonic::UZP1, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = Arrangement::None;
@@ -64398,7 +68858,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x05204C00u: { // uzp2_p_pp_
-                        Instruction result(Mnemonic::UZP2, insn, 4580);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::UZP2, insn, EncodingId::uzp2_p_pp_);
+            #else
+                        Instruction result(Mnemonic::UZP2, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = Arrangement::None;
@@ -64414,7 +68878,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x05205000u: { // trn1_p_pp_
-                        Instruction result(Mnemonic::TRN1, insn, 4422);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::TRN1, insn, EncodingId::trn1_p_pp_);
+            #else
+                        Instruction result(Mnemonic::TRN1, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = Arrangement::None;
@@ -64430,7 +68898,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x05205400u: { // trn2_p_pp_
-                        Instruction result(Mnemonic::TRN2, insn, 4423);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::TRN2, insn, EncodingId::trn2_p_pp_);
+            #else
+                        Instruction result(Mnemonic::TRN2, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = Arrangement::None;
@@ -64452,7 +68924,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
     switch (insn & 0xFF30E000u) {
         case 0x0510C000u: { // fcpy_z_p_i_
             // Also matches: fmov_z_p_i__fcpy_z_p_i_ (FCPY)
-                        Instruction result(Mnemonic::FCPY, insn, 3502);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FCPY, insn, EncodingId::fcpy_z_p_i_);
+            #else
+                        Instruction result(Mnemonic::FCPY, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         if (enc.fcpy_zpi.size == 0u) return std::nullopt;
@@ -64475,7 +68951,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
     switch (insn & 0xFF30C000u) {
         case 0x05100000u: { // cpy_z_o_i_
             // Also matches: mov_z_o_i__cpy_z_o_i_ (CPY)
-                        Instruction result(Mnemonic::CPY, insn, 3429);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::CPY, insn, EncodingId::cpy_z_o_i_);
+            #else
+                        Instruction result(Mnemonic::CPY, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = Arrangement::None;
@@ -64496,7 +68976,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
         }
         case 0x05104000u: { // cpy_z_p_i_
             // Also matches: mov_z_p_i__cpy_z_p_i_ (CPY)
-                        Instruction result(Mnemonic::CPY, insn, 3430);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::CPY, insn, EncodingId::cpy_z_p_i_);
+            #else
+                        Instruction result(Mnemonic::CPY, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = Arrangement::None;
@@ -64521,7 +69005,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
     // Switch for mask 0xFF20FC11u (8 patterns, 8 encodings)
     switch (insn & 0xFF20FC11u) {
         case 0x25205010u: { // whilege_pp_rr_
-                        Instruction result(Mnemonic::WHILEGE, insn, 4589);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::WHILEGE, insn, EncodingId::whilege_pp_rr_);
+            #else
+                        Instruction result(Mnemonic::WHILEGE, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -64538,7 +69026,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x25205011u: { // whilegt_pp_rr_
-                        Instruction result(Mnemonic::WHILEGT, insn, 4592);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::WHILEGT, insn, EncodingId::whilegt_pp_rr_);
+            #else
+                        Instruction result(Mnemonic::WHILEGT, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -64555,7 +69047,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x25205410u: { // whilelt_pp_rr_
-                        Instruction result(Mnemonic::WHILELT, insn, 4610);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::WHILELT, insn, EncodingId::whilelt_pp_rr_);
+            #else
+                        Instruction result(Mnemonic::WHILELT, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -64572,7 +69068,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x25205411u: { // whilele_pp_rr_
-                        Instruction result(Mnemonic::WHILELE, insn, 4601);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::WHILELE, insn, EncodingId::whilele_pp_rr_);
+            #else
+                        Instruction result(Mnemonic::WHILELE, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -64589,7 +69089,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x25205810u: { // whilehs_pp_rr_
-                        Instruction result(Mnemonic::WHILEHS, insn, 4598);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::WHILEHS, insn, EncodingId::whilehs_pp_rr_);
+            #else
+                        Instruction result(Mnemonic::WHILEHS, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -64606,7 +69110,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x25205811u: { // whilehi_pp_rr_
-                        Instruction result(Mnemonic::WHILEHI, insn, 4595);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::WHILEHI, insn, EncodingId::whilehi_pp_rr_);
+            #else
+                        Instruction result(Mnemonic::WHILEHI, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -64623,7 +69131,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x25205C10u: { // whilelo_pp_rr_
-                        Instruction result(Mnemonic::WHILELO, insn, 4604);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::WHILELO, insn, EncodingId::whilelo_pp_rr_);
+            #else
+                        Instruction result(Mnemonic::WHILELO, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -64640,7 +69152,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x25205C11u: { // whilels_pp_rr_
-                        Instruction result(Mnemonic::WHILELS, insn, 4607);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::WHILELS, insn, EncodingId::whilels_pp_rr_);
+            #else
+                        Instruction result(Mnemonic::WHILELS, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -64662,7 +69178,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
     // Switch for mask 0xFF20FC10u (2 patterns, 2 encodings)
     switch (insn & 0xFF20FC10u) {
         case 0x25203000u: { // whilewr_p_rr_
-                        Instruction result(Mnemonic::WHILEWR, insn, 4612);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::WHILEWR, insn, EncodingId::whilewr_p_rr_);
+            #else
+                        Instruction result(Mnemonic::WHILEWR, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -64679,7 +69199,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x25203010u: { // whilerw_p_rr_
-                        Instruction result(Mnemonic::WHILERW, insn, 4611);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::WHILERW, insn, EncodingId::whilerw_p_rr_);
+            #else
+                        Instruction result(Mnemonic::WHILERW, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -64701,7 +69225,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
     // Switch for mask 0xFF20FC00u (128 patterns, 130 encodings)
     switch (insn & 0xFF20FC00u) {
         case 0x04200000u: { // add_z_zz_
-                        Instruction result(Mnemonic::ADD, insn, 3268);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::ADD, insn, EncodingId::add_z_zz_);
+            #else
+                        Instruction result(Mnemonic::ADD, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = Arrangement::None;
@@ -64717,7 +69245,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x04200400u: { // sub_z_zz_
-                        Instruction result(Mnemonic::SUB, insn, 4399);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SUB, insn, EncodingId::sub_z_zz_);
+            #else
+                        Instruction result(Mnemonic::SUB, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = Arrangement::None;
@@ -64733,7 +69265,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x04201000u: { // sqadd_z_zz_
-                        Instruction result(Mnemonic::SQADD, insn, 4195);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SQADD, insn, EncodingId::sqadd_z_zz_);
+            #else
+                        Instruction result(Mnemonic::SQADD, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = Arrangement::None;
@@ -64749,7 +69285,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x04201400u: { // uqadd_z_zz_
-                        Instruction result(Mnemonic::UQADD, insn, 4503);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::UQADD, insn, EncodingId::uqadd_z_zz_);
+            #else
+                        Instruction result(Mnemonic::UQADD, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = Arrangement::None;
@@ -64765,7 +69305,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x04201800u: { // sqsub_z_zz_
-                        Instruction result(Mnemonic::SQSUB, insn, 4290);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SQSUB, insn, EncodingId::sqsub_z_zz_);
+            #else
+                        Instruction result(Mnemonic::SQSUB, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = Arrangement::None;
@@ -64781,7 +69325,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x04201C00u: { // uqsub_z_zz_
-                        Instruction result(Mnemonic::UQSUB, insn, 4547);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::UQSUB, insn, EncodingId::uqsub_z_zz_);
+            #else
+                        Instruction result(Mnemonic::UQSUB, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = Arrangement::None;
@@ -64797,7 +69345,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x04203400u: { // xar_z_zzi_
-                        Instruction result(Mnemonic::XAR, insn, 4614);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::XAR, insn, EncodingId::xar_z_zzi_);
+            #else
+                        Instruction result(Mnemonic::XAR, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         uint32_t _tsize = (enc.xar_zzzi.tszh << 2) | enc.xar_zzzi.tszl;
@@ -64817,7 +69369,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x04204000u: { // index_z_ii_
-                        Instruction result(Mnemonic::INDEX, insn, 3696);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::INDEX, insn, EncodingId::index_z_ii_);
+            #else
+                        Instruction result(Mnemonic::INDEX, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = Arrangement::None;
@@ -64833,7 +69389,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x04204400u: { // index_z_ri_
-                        Instruction result(Mnemonic::INDEX, insn, 3698);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::INDEX, insn, EncodingId::index_z_ri_);
+            #else
+                        Instruction result(Mnemonic::INDEX, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -64850,7 +69410,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x04204800u: { // index_z_ir_
-                        Instruction result(Mnemonic::INDEX, insn, 3697);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::INDEX, insn, EncodingId::index_z_ir_);
+            #else
+                        Instruction result(Mnemonic::INDEX, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -64867,7 +69431,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x04204C00u: { // index_z_rr_
-                        Instruction result(Mnemonic::INDEX, insn, 3699);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::INDEX, insn, EncodingId::index_z_rr_);
+            #else
+                        Instruction result(Mnemonic::INDEX, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -64884,7 +69452,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x04206000u: { // mul_z_zz_
-                        Instruction result(Mnemonic::MUL, insn, 4000);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::MUL, insn, EncodingId::mul_z_zz_);
+            #else
+                        Instruction result(Mnemonic::MUL, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = Arrangement::None;
@@ -64900,7 +69472,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x04206800u: { // smulh_z_zz_
-                        Instruction result(Mnemonic::SMULH, insn, 4182);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SMULH, insn, EncodingId::smulh_z_zz_);
+            #else
+                        Instruction result(Mnemonic::SMULH, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = Arrangement::None;
@@ -64916,7 +69492,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x04206C00u: { // umulh_z_zz_
-                        Instruction result(Mnemonic::UMULH, insn, 4494);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::UMULH, insn, EncodingId::umulh_z_zz_);
+            #else
+                        Instruction result(Mnemonic::UMULH, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = Arrangement::None;
@@ -64932,7 +69512,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x04207000u: { // sqdmulh_z_zz_
-                        Instruction result(Mnemonic::SQDMULH, insn, 4227);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SQDMULH, insn, EncodingId::sqdmulh_z_zz_);
+            #else
+                        Instruction result(Mnemonic::SQDMULH, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = Arrangement::None;
@@ -64948,7 +69532,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x04207400u: { // sqrdmulh_z_zz_
-                        Instruction result(Mnemonic::SQRDMULH, insn, 4264);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SQRDMULH, insn, EncodingId::sqrdmulh_z_zz_);
+            #else
+                        Instruction result(Mnemonic::SQRDMULH, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = Arrangement::None;
@@ -64964,7 +69552,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x04207800u: { // addqp_z_zz_
-                        Instruction result(Mnemonic::ADDQP, insn, 3275);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::ADDQP, insn, EncodingId::addqp_z_zz_);
+            #else
+                        Instruction result(Mnemonic::ADDQP, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = Arrangement::None;
@@ -64980,7 +69572,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x04207C00u: { // addsubp_z_zz_
-                        Instruction result(Mnemonic::ADDSUBP, insn, 3278);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::ADDSUBP, insn, EncodingId::addsubp_z_zz_);
+            #else
+                        Instruction result(Mnemonic::ADDSUBP, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = Arrangement::None;
@@ -64996,7 +69592,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x04208000u: { // asr_z_zw_
-                        Instruction result(Mnemonic::ASR, insn, 3307);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::ASR, insn, EncodingId::asr_z_zw_);
+            #else
+                        Instruction result(Mnemonic::ASR, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         if (enc.asr_zzw.size == 3u) return std::nullopt;
@@ -65013,7 +69613,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x04208400u: { // lsr_z_zw_
-                        Instruction result(Mnemonic::LSR, insn, 3958);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LSR, insn, EncodingId::lsr_z_zw_);
+            #else
+                        Instruction result(Mnemonic::LSR, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         if (enc.lsr_zzw.size == 3u) return std::nullopt;
@@ -65030,7 +69634,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x04208C00u: { // lsl_z_zw_
-                        Instruction result(Mnemonic::LSL, insn, 3952);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LSL, insn, EncodingId::lsl_z_zw_);
+            #else
+                        Instruction result(Mnemonic::LSL, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         if (enc.lsl_zzw.size == 3u) return std::nullopt;
@@ -65047,7 +69655,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x04209000u: { // asr_z_zi_
-                        Instruction result(Mnemonic::ASR, insn, 3306);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::ASR, insn, EncodingId::asr_z_zi_);
+            #else
+                        Instruction result(Mnemonic::ASR, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         uint32_t _tsize = (enc.asr_zzi.tszh << 2) | enc.asr_zzi.tszl;
@@ -65066,7 +69678,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x04209400u: { // lsr_z_zi_
-                        Instruction result(Mnemonic::LSR, insn, 3957);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LSR, insn, EncodingId::lsr_z_zi_);
+            #else
+                        Instruction result(Mnemonic::LSR, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         uint32_t _tsize = (enc.lsr_zzi.tszh << 2) | enc.lsr_zzi.tszl;
@@ -65085,7 +69701,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x04209C00u: { // lsl_z_zi_
-                        Instruction result(Mnemonic::LSL, insn, 3951);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LSL, insn, EncodingId::lsl_z_zi_);
+            #else
+                        Instruction result(Mnemonic::LSL, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         uint32_t _tsize = (enc.lsl_zzi.tszh << 2) | enc.lsl_zzi.tszl;
@@ -65104,7 +69724,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x0420B000u: { // ftssel_z_zz_
-                        Instruction result(Mnemonic::FTSSEL, insn, 3684);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FTSSEL, insn, EncodingId::ftssel_z_zz_);
+            #else
+                        Instruction result(Mnemonic::FTSSEL, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         if (enc.ftssel_zzz.size == 0u) return std::nullopt;
@@ -65123,7 +69747,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
         case 0x05202000u: { // dup_z_zi_
             // Also matches: mov_z_v__dup_z_zi_ (DUP)
             // Also matches: mov_z_zi__dup_z_zi_ (DUP)
-                        Instruction result(Mnemonic::DUP, insn, 3446);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::DUP, insn, EncodingId::dup_z_zi_);
+            #else
+                        Instruction result(Mnemonic::DUP, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         if (enc.dup_zzi.tsz == 0u) return std::nullopt;
@@ -65133,7 +69761,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x05202800u: { // tbl_z_zz_2
-                        Instruction result(Mnemonic::TBL, insn, 4418);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::TBL, insn, EncodingId::tbl_z_zz_2);
+            #else
+                        Instruction result(Mnemonic::TBL, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = Arrangement::None;
@@ -65149,7 +69781,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x05202C00u: { // tbx_z_zz_
-                        Instruction result(Mnemonic::TBX, insn, 4420);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::TBX, insn, EncodingId::tbx_z_zz_);
+            #else
+                        Instruction result(Mnemonic::TBX, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = Arrangement::None;
@@ -65165,7 +69801,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x05203000u: { // tbl_z_zz_1
-                        Instruction result(Mnemonic::TBL, insn, 4417);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::TBL, insn, EncodingId::tbl_z_zz_1);
+            #else
+                        Instruction result(Mnemonic::TBL, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = Arrangement::None;
@@ -65181,7 +69821,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x05203400u: { // tbxq_z_zz_
-                        Instruction result(Mnemonic::TBXQ, insn, 4421);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::TBXQ, insn, EncodingId::tbxq_z_zz_);
+            #else
+                        Instruction result(Mnemonic::TBXQ, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = Arrangement::None;
@@ -65197,7 +69841,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x05206000u: { // zip1_z_zz_
-                        Instruction result(Mnemonic::ZIP1, insn, 4619);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::ZIP1, insn, EncodingId::zip1_z_zz_);
+            #else
+                        Instruction result(Mnemonic::ZIP1, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = Arrangement::None;
@@ -65213,7 +69861,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x05206400u: { // zip2_z_zz_
-                        Instruction result(Mnemonic::ZIP2, insn, 4617);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::ZIP2, insn, EncodingId::zip2_z_zz_);
+            #else
+                        Instruction result(Mnemonic::ZIP2, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = Arrangement::None;
@@ -65229,7 +69881,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x05206800u: { // uzp1_z_zz_
-                        Instruction result(Mnemonic::UZP1, insn, 4581);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::UZP1, insn, EncodingId::uzp1_z_zz_);
+            #else
+                        Instruction result(Mnemonic::UZP1, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = Arrangement::None;
@@ -65245,7 +69901,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x05206C00u: { // uzp2_z_zz_
-                        Instruction result(Mnemonic::UZP2, insn, 4583);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::UZP2, insn, EncodingId::uzp2_z_zz_);
+            #else
+                        Instruction result(Mnemonic::UZP2, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = Arrangement::None;
@@ -65261,7 +69921,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x05207000u: { // trn1_z_zz_
-                        Instruction result(Mnemonic::TRN1, insn, 4424);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::TRN1, insn, EncodingId::trn1_z_zz_);
+            #else
+                        Instruction result(Mnemonic::TRN1, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = Arrangement::None;
@@ -65277,7 +69941,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x05207400u: { // trn2_z_zz_
-                        Instruction result(Mnemonic::TRN2, insn, 4426);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::TRN2, insn, EncodingId::trn2_z_zz_);
+            #else
+                        Instruction result(Mnemonic::TRN2, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = Arrangement::None;
@@ -65293,7 +69961,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x44000800u: { // sqdmlalbt_z_zzz_
-                        Instruction result(Mnemonic::SQDMLALBT, insn, 4216);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SQDMLALBT, insn, EncodingId::sqdmlalbt_z_zzz_);
+            #else
+                        Instruction result(Mnemonic::SQDMLALBT, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         if (enc.sqdmlalbt_zzzz.size == 0u) return std::nullopt;
@@ -65317,7 +69989,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x44000C00u: { // sqdmlslbt_z_zzz_
-                        Instruction result(Mnemonic::SQDMLSLBT, insn, 4223);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SQDMLSLBT, insn, EncodingId::sqdmlslbt_z_zzz_);
+            #else
+                        Instruction result(Mnemonic::SQDMLSLBT, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         if (enc.sqdmlslbt_zzzz.size == 0u) return std::nullopt;
@@ -65341,7 +70017,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x44004000u: { // smlalb_z_zzz_
-                        Instruction result(Mnemonic::SMLALB, insn, 4168);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SMLALB, insn, EncodingId::smlalb_z_zzz_);
+            #else
+                        Instruction result(Mnemonic::SMLALB, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         if (enc.smlalb_zzzz.size == 0u) return std::nullopt;
@@ -65365,7 +70045,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x44004400u: { // smlalt_z_zzz_
-                        Instruction result(Mnemonic::SMLALT, insn, 4171);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SMLALT, insn, EncodingId::smlalt_z_zzz_);
+            #else
+                        Instruction result(Mnemonic::SMLALT, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         if (enc.smlalt_zzzz.size == 0u) return std::nullopt;
@@ -65389,7 +70073,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x44004800u: { // umlalb_z_zzz_
-                        Instruction result(Mnemonic::UMLALB, insn, 4480);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::UMLALB, insn, EncodingId::umlalb_z_zzz_);
+            #else
+                        Instruction result(Mnemonic::UMLALB, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         if (enc.umlalb_zzzz.size == 0u) return std::nullopt;
@@ -65413,7 +70101,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x44004C00u: { // umlalt_z_zzz_
-                        Instruction result(Mnemonic::UMLALT, insn, 4483);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::UMLALT, insn, EncodingId::umlalt_z_zzz_);
+            #else
+                        Instruction result(Mnemonic::UMLALT, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         if (enc.umlalt_zzzz.size == 0u) return std::nullopt;
@@ -65437,7 +70129,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x44005000u: { // smlslb_z_zzz_
-                        Instruction result(Mnemonic::SMLSLB, insn, 4174);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SMLSLB, insn, EncodingId::smlslb_z_zzz_);
+            #else
+                        Instruction result(Mnemonic::SMLSLB, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         if (enc.smlslb_zzzz.size == 0u) return std::nullopt;
@@ -65461,7 +70157,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x44005400u: { // smlslt_z_zzz_
-                        Instruction result(Mnemonic::SMLSLT, insn, 4177);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SMLSLT, insn, EncodingId::smlslt_z_zzz_);
+            #else
+                        Instruction result(Mnemonic::SMLSLT, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         if (enc.smlslt_zzzz.size == 0u) return std::nullopt;
@@ -65485,7 +70185,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x44005800u: { // umlslb_z_zzz_
-                        Instruction result(Mnemonic::UMLSLB, insn, 4486);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::UMLSLB, insn, EncodingId::umlslb_z_zzz_);
+            #else
+                        Instruction result(Mnemonic::UMLSLB, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         if (enc.umlslb_zzzz.size == 0u) return std::nullopt;
@@ -65509,7 +70213,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x44005C00u: { // umlslt_z_zzz_
-                        Instruction result(Mnemonic::UMLSLT, insn, 4489);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::UMLSLT, insn, EncodingId::umlslt_z_zzz_);
+            #else
+                        Instruction result(Mnemonic::UMLSLT, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         if (enc.umlslt_zzzz.size == 0u) return std::nullopt;
@@ -65533,7 +70241,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x44006000u: { // sqdmlalb_z_zzz_
-                        Instruction result(Mnemonic::SQDMLALB, insn, 4213);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SQDMLALB, insn, EncodingId::sqdmlalb_z_zzz_);
+            #else
+                        Instruction result(Mnemonic::SQDMLALB, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         if (enc.sqdmlalb_zzzz.size == 0u) return std::nullopt;
@@ -65557,7 +70269,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x44006400u: { // sqdmlalt_z_zzz_
-                        Instruction result(Mnemonic::SQDMLALT, insn, 4217);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SQDMLALT, insn, EncodingId::sqdmlalt_z_zzz_);
+            #else
+                        Instruction result(Mnemonic::SQDMLALT, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         if (enc.sqdmlalt_zzzz.size == 0u) return std::nullopt;
@@ -65581,7 +70297,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x44006800u: { // sqdmlslb_z_zzz_
-                        Instruction result(Mnemonic::SQDMLSLB, insn, 4220);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SQDMLSLB, insn, EncodingId::sqdmlslb_z_zzz_);
+            #else
+                        Instruction result(Mnemonic::SQDMLSLB, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         if (enc.sqdmlslb_zzzz.size == 0u) return std::nullopt;
@@ -65605,7 +70325,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x44006C00u: { // sqdmlslt_z_zzz_
-                        Instruction result(Mnemonic::SQDMLSLT, insn, 4224);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SQDMLSLT, insn, EncodingId::sqdmlslt_z_zzz_);
+            #else
+                        Instruction result(Mnemonic::SQDMLSLT, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         if (enc.sqdmlslt_zzzz.size == 0u) return std::nullopt;
@@ -65629,7 +70353,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x44007000u: { // sqrdmlah_z_zzz_
-                        Instruction result(Mnemonic::SQRDMLAH, insn, 4256);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SQRDMLAH, insn, EncodingId::sqrdmlah_z_zzz_);
+            #else
+                        Instruction result(Mnemonic::SQRDMLAH, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = Arrangement::None;
@@ -65645,7 +70373,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x44007400u: { // sqrdmlsh_z_zzz_
-                        Instruction result(Mnemonic::SQRDMLSH, insn, 4260);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SQRDMLSH, insn, EncodingId::sqrdmlsh_z_zzz_);
+            #else
+                        Instruction result(Mnemonic::SQRDMLSH, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = Arrangement::None;
@@ -65661,7 +70393,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x4400C000u: { // sclamp_z_zz_
-                        Instruction result(Mnemonic::SCLAMP, insn, 4121);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SCLAMP, insn, EncodingId::sclamp_z_zz_);
+            #else
+                        Instruction result(Mnemonic::SCLAMP, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = Arrangement::None;
@@ -65677,7 +70413,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x4400C400u: { // uclamp_z_zz_
-                        Instruction result(Mnemonic::UCLAMP, insn, 4441);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::UCLAMP, insn, EncodingId::uclamp_z_zz_);
+            #else
+                        Instruction result(Mnemonic::UCLAMP, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = Arrangement::None;
@@ -65693,7 +70433,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x4400D400u: { // sabal_z_zz_
-                        Instruction result(Mnemonic::SABAL, insn, 4106);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SABAL, insn, EncodingId::sabal_z_zz_);
+            #else
+                        Instruction result(Mnemonic::SABAL, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         if (enc.sabal_zzz.size == 0u) return std::nullopt;
@@ -65717,7 +70461,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x4400DC00u: { // uabal_z_zz_
-                        Instruction result(Mnemonic::UABAL, insn, 4429);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::UABAL, insn, EncodingId::uabal_z_zz_);
+            #else
+                        Instruction result(Mnemonic::UABAL, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         if (enc.uabal_zzz.size == 0u) return std::nullopt;
@@ -65741,7 +70489,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x4400E000u: { // zipq1_z_zz_
-                        Instruction result(Mnemonic::ZIPQ1, insn, 4621);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::ZIPQ1, insn, EncodingId::zipq1_z_zz_);
+            #else
+                        Instruction result(Mnemonic::ZIPQ1, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = Arrangement::None;
@@ -65757,7 +70509,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x4400E400u: { // zipq2_z_zz_
-                        Instruction result(Mnemonic::ZIPQ2, insn, 4622);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::ZIPQ2, insn, EncodingId::zipq2_z_zz_);
+            #else
+                        Instruction result(Mnemonic::ZIPQ2, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = Arrangement::None;
@@ -65773,7 +70529,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x4400E800u: { // uzpq1_z_zz_
-                        Instruction result(Mnemonic::UZPQ1, insn, 4585);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::UZPQ1, insn, EncodingId::uzpq1_z_zz_);
+            #else
+                        Instruction result(Mnemonic::UZPQ1, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = Arrangement::None;
@@ -65789,7 +70549,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x4400EC00u: { // uzpq2_z_zz_
-                        Instruction result(Mnemonic::UZPQ2, insn, 4586);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::UZPQ2, insn, EncodingId::uzpq2_z_zz_);
+            #else
+                        Instruction result(Mnemonic::UZPQ2, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = Arrangement::None;
@@ -65805,7 +70569,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x4400F800u: { // tblq_z_zz_
-                        Instruction result(Mnemonic::TBLQ, insn, 4419);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::TBLQ, insn, EncodingId::tblq_z_zz_);
+            #else
+                        Instruction result(Mnemonic::TBLQ, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = Arrangement::None;
@@ -65821,7 +70589,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x45000000u: { // saddlb_z_zz_
-                        Instruction result(Mnemonic::SADDLB, insn, 4113);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SADDLB, insn, EncodingId::saddlb_z_zz_);
+            #else
+                        Instruction result(Mnemonic::SADDLB, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         if (enc.saddlb_zzz.size == 0u) return std::nullopt;
@@ -65845,7 +70617,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x45000400u: { // saddlt_z_zz_
-                        Instruction result(Mnemonic::SADDLT, insn, 4115);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SADDLT, insn, EncodingId::saddlt_z_zz_);
+            #else
+                        Instruction result(Mnemonic::SADDLT, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         if (enc.saddlt_zzz.size == 0u) return std::nullopt;
@@ -65869,7 +70645,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x45000800u: { // uaddlb_z_zz_
-                        Instruction result(Mnemonic::UADDLB, insn, 4436);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::UADDLB, insn, EncodingId::uaddlb_z_zz_);
+            #else
+                        Instruction result(Mnemonic::UADDLB, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         if (enc.uaddlb_zzz.size == 0u) return std::nullopt;
@@ -65893,7 +70673,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x45000C00u: { // uaddlt_z_zz_
-                        Instruction result(Mnemonic::UADDLT, insn, 4437);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::UADDLT, insn, EncodingId::uaddlt_z_zz_);
+            #else
+                        Instruction result(Mnemonic::UADDLT, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         if (enc.uaddlt_zzz.size == 0u) return std::nullopt;
@@ -65917,7 +70701,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x45001000u: { // ssublb_z_zz_
-                        Instruction result(Mnemonic::SSUBLB, insn, 4305);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SSUBLB, insn, EncodingId::ssublb_z_zz_);
+            #else
+                        Instruction result(Mnemonic::SSUBLB, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         if (enc.ssublb_zzz.size == 0u) return std::nullopt;
@@ -65941,7 +70729,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x45001400u: { // ssublt_z_zz_
-                        Instruction result(Mnemonic::SSUBLT, insn, 4307);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SSUBLT, insn, EncodingId::ssublt_z_zz_);
+            #else
+                        Instruction result(Mnemonic::SSUBLT, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         if (enc.ssublt_zzz.size == 0u) return std::nullopt;
@@ -65965,7 +70757,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x45001800u: { // usublb_z_zz_
-                        Instruction result(Mnemonic::USUBLB, insn, 4567);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::USUBLB, insn, EncodingId::usublb_z_zz_);
+            #else
+                        Instruction result(Mnemonic::USUBLB, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         if (enc.usublb_zzz.size == 0u) return std::nullopt;
@@ -65989,7 +70785,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x45001C00u: { // usublt_z_zz_
-                        Instruction result(Mnemonic::USUBLT, insn, 4568);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::USUBLT, insn, EncodingId::usublt_z_zz_);
+            #else
+                        Instruction result(Mnemonic::USUBLT, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         if (enc.usublt_zzz.size == 0u) return std::nullopt;
@@ -66013,7 +70813,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x45003000u: { // sabdlb_z_zz_
-                        Instruction result(Mnemonic::SABDLB, insn, 4110);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SABDLB, insn, EncodingId::sabdlb_z_zz_);
+            #else
+                        Instruction result(Mnemonic::SABDLB, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         if (enc.sabdlb_zzz.size == 0u) return std::nullopt;
@@ -66037,7 +70841,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x45003400u: { // sabdlt_z_zz_
-                        Instruction result(Mnemonic::SABDLT, insn, 4111);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SABDLT, insn, EncodingId::sabdlt_z_zz_);
+            #else
+                        Instruction result(Mnemonic::SABDLT, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         if (enc.sabdlt_zzz.size == 0u) return std::nullopt;
@@ -66061,7 +70869,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x45003800u: { // uabdlb_z_zz_
-                        Instruction result(Mnemonic::UABDLB, insn, 4433);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::UABDLB, insn, EncodingId::uabdlb_z_zz_);
+            #else
+                        Instruction result(Mnemonic::UABDLB, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         if (enc.uabdlb_zzz.size == 0u) return std::nullopt;
@@ -66085,7 +70897,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x45003C00u: { // uabdlt_z_zz_
-                        Instruction result(Mnemonic::UABDLT, insn, 4434);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::UABDLT, insn, EncodingId::uabdlt_z_zz_);
+            #else
+                        Instruction result(Mnemonic::UABDLT, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         if (enc.uabdlt_zzz.size == 0u) return std::nullopt;
@@ -66109,7 +70925,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x45004000u: { // saddwb_z_zz_
-                        Instruction result(Mnemonic::SADDWB, insn, 4117);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SADDWB, insn, EncodingId::saddwb_z_zz_);
+            #else
+                        Instruction result(Mnemonic::SADDWB, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         if (enc.saddwb_zzz.size == 0u) return std::nullopt;
@@ -66133,7 +70953,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x45004400u: { // saddwt_z_zz_
-                        Instruction result(Mnemonic::SADDWT, insn, 4118);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SADDWT, insn, EncodingId::saddwt_z_zz_);
+            #else
+                        Instruction result(Mnemonic::SADDWT, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         if (enc.saddwt_zzz.size == 0u) return std::nullopt;
@@ -66157,7 +70981,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x45004800u: { // uaddwb_z_zz_
-                        Instruction result(Mnemonic::UADDWB, insn, 4439);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::UADDWB, insn, EncodingId::uaddwb_z_zz_);
+            #else
+                        Instruction result(Mnemonic::UADDWB, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         if (enc.uaddwb_zzz.size == 0u) return std::nullopt;
@@ -66181,7 +71009,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x45004C00u: { // uaddwt_z_zz_
-                        Instruction result(Mnemonic::UADDWT, insn, 4440);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::UADDWT, insn, EncodingId::uaddwt_z_zz_);
+            #else
+                        Instruction result(Mnemonic::UADDWT, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         if (enc.uaddwt_zzz.size == 0u) return std::nullopt;
@@ -66205,7 +71037,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x45005000u: { // ssubwb_z_zz_
-                        Instruction result(Mnemonic::SSUBWB, insn, 4309);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SSUBWB, insn, EncodingId::ssubwb_z_zz_);
+            #else
+                        Instruction result(Mnemonic::SSUBWB, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         if (enc.ssubwb_zzz.size == 0u) return std::nullopt;
@@ -66229,7 +71065,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x45005400u: { // ssubwt_z_zz_
-                        Instruction result(Mnemonic::SSUBWT, insn, 4310);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SSUBWT, insn, EncodingId::ssubwt_z_zz_);
+            #else
+                        Instruction result(Mnemonic::SSUBWT, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         if (enc.ssubwt_zzz.size == 0u) return std::nullopt;
@@ -66253,7 +71093,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x45005800u: { // usubwb_z_zz_
-                        Instruction result(Mnemonic::USUBWB, insn, 4569);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::USUBWB, insn, EncodingId::usubwb_z_zz_);
+            #else
+                        Instruction result(Mnemonic::USUBWB, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         if (enc.usubwb_zzz.size == 0u) return std::nullopt;
@@ -66277,7 +71121,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x45005C00u: { // usubwt_z_zz_
-                        Instruction result(Mnemonic::USUBWT, insn, 4570);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::USUBWT, insn, EncodingId::usubwt_z_zz_);
+            #else
+                        Instruction result(Mnemonic::USUBWT, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         if (enc.usubwt_zzz.size == 0u) return std::nullopt;
@@ -66301,7 +71149,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x45006000u: { // sqdmullb_z_zz_
-                        Instruction result(Mnemonic::SQDMULLB, insn, 4231);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SQDMULLB, insn, EncodingId::sqdmullb_z_zz_);
+            #else
+                        Instruction result(Mnemonic::SQDMULLB, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         if (enc.sqdmullb_zzz.size == 0u) return std::nullopt;
@@ -66325,7 +71177,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x45006400u: { // sqdmullt_z_zz_
-                        Instruction result(Mnemonic::SQDMULLT, insn, 4234);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SQDMULLT, insn, EncodingId::sqdmullt_z_zz_);
+            #else
+                        Instruction result(Mnemonic::SQDMULLT, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         if (enc.sqdmullt_zzz.size == 0u) return std::nullopt;
@@ -66350,7 +71206,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
         }
         case 0x45006800u: { // pmullb_z_zz_
             if (((insn >> 22) & 0x3) == 0x0) break;
-                        Instruction result(Mnemonic::PMULLB, insn, 4041);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::PMULLB, insn, EncodingId::pmullb_z_zz_);
+            #else
+                        Instruction result(Mnemonic::PMULLB, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = Arrangement::None;
@@ -66374,7 +71234,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
         }
         case 0x45006C00u: { // pmullt_z_zz_
             if (((insn >> 22) & 0x3) == 0x0) break;
-                        Instruction result(Mnemonic::PMULLT, insn, 4043);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::PMULLT, insn, EncodingId::pmullt_z_zz_);
+            #else
+                        Instruction result(Mnemonic::PMULLT, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = Arrangement::None;
@@ -66397,7 +71261,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x45007000u: { // smullb_z_zz_
-                        Instruction result(Mnemonic::SMULLB, insn, 4183);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SMULLB, insn, EncodingId::smullb_z_zz_);
+            #else
+                        Instruction result(Mnemonic::SMULLB, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         if (enc.smullb_zzz.size == 0u) return std::nullopt;
@@ -66421,7 +71289,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x45007400u: { // smullt_z_zz_
-                        Instruction result(Mnemonic::SMULLT, insn, 4186);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SMULLT, insn, EncodingId::smullt_z_zz_);
+            #else
+                        Instruction result(Mnemonic::SMULLT, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         if (enc.smullt_zzz.size == 0u) return std::nullopt;
@@ -66445,7 +71317,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x45007800u: { // umullb_z_zz_
-                        Instruction result(Mnemonic::UMULLB, insn, 4495);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::UMULLB, insn, EncodingId::umullb_z_zz_);
+            #else
+                        Instruction result(Mnemonic::UMULLB, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         if (enc.umullb_zzz.size == 0u) return std::nullopt;
@@ -66469,7 +71345,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x45007C00u: { // umullt_z_zz_
-                        Instruction result(Mnemonic::UMULLT, insn, 4498);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::UMULLT, insn, EncodingId::umullt_z_zz_);
+            #else
+                        Instruction result(Mnemonic::UMULLT, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         if (enc.umullt_zzz.size == 0u) return std::nullopt;
@@ -66493,7 +71373,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x45008000u: { // saddlbt_z_zz_
-                        Instruction result(Mnemonic::SADDLBT, insn, 4114);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SADDLBT, insn, EncodingId::saddlbt_z_zz_);
+            #else
+                        Instruction result(Mnemonic::SADDLBT, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         if (enc.saddlbt_zzz.size == 0u) return std::nullopt;
@@ -66517,7 +71401,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x45008800u: { // ssublbt_z_zz_
-                        Instruction result(Mnemonic::SSUBLBT, insn, 4306);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SSUBLBT, insn, EncodingId::ssublbt_z_zz_);
+            #else
+                        Instruction result(Mnemonic::SSUBLBT, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         if (enc.ssublbt_zzz.size == 0u) return std::nullopt;
@@ -66541,7 +71429,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x45008C00u: { // ssubltb_z_zz_
-                        Instruction result(Mnemonic::SSUBLTB, insn, 4308);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SSUBLTB, insn, EncodingId::ssubltb_z_zz_);
+            #else
+                        Instruction result(Mnemonic::SSUBLTB, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         if (enc.ssubltb_zzz.size == 0u) return std::nullopt;
@@ -66565,7 +71457,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x45009000u: { // eorbt_z_zz_
-                        Instruction result(Mnemonic::EORBT, insn, 3455);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::EORBT, insn, EncodingId::eorbt_z_zz_);
+            #else
+                        Instruction result(Mnemonic::EORBT, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = Arrangement::None;
@@ -66581,7 +71477,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x45009400u: { // eortb_z_zz_
-                        Instruction result(Mnemonic::EORTB, insn, 3458);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::EORTB, insn, EncodingId::eortb_z_zz_);
+            #else
+                        Instruction result(Mnemonic::EORTB, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = Arrangement::None;
@@ -66597,7 +71497,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x4500B000u: { // bext_z_zz_
-                        Instruction result(Mnemonic::BEXT, insn, 3312);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::BEXT, insn, EncodingId::bext_z_zz_);
+            #else
+                        Instruction result(Mnemonic::BEXT, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = Arrangement::None;
@@ -66613,7 +71517,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x4500B400u: { // bdep_z_zz_
-                        Instruction result(Mnemonic::BDEP, insn, 3311);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::BDEP, insn, EncodingId::bdep_z_zz_);
+            #else
+                        Instruction result(Mnemonic::BDEP, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = Arrangement::None;
@@ -66629,7 +71537,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x4500B800u: { // bgrp_z_zz_
-                        Instruction result(Mnemonic::BGRP, insn, 3351);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::BGRP, insn, EncodingId::bgrp_z_zz_);
+            #else
+                        Instruction result(Mnemonic::BGRP, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = Arrangement::None;
@@ -66645,7 +71557,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x4500C000u: { // sabalb_z_zzz_
-                        Instruction result(Mnemonic::SABALB, insn, 4107);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SABALB, insn, EncodingId::sabalb_z_zzz_);
+            #else
+                        Instruction result(Mnemonic::SABALB, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         if (enc.sabalb_zzzz.size == 0u) return std::nullopt;
@@ -66669,7 +71585,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x4500C400u: { // sabalt_z_zzz_
-                        Instruction result(Mnemonic::SABALT, insn, 4108);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SABALT, insn, EncodingId::sabalt_z_zzz_);
+            #else
+                        Instruction result(Mnemonic::SABALT, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         if (enc.sabalt_zzzz.size == 0u) return std::nullopt;
@@ -66693,7 +71613,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x4500C800u: { // uabalb_z_zzz_
-                        Instruction result(Mnemonic::UABALB, insn, 4430);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::UABALB, insn, EncodingId::uabalb_z_zzz_);
+            #else
+                        Instruction result(Mnemonic::UABALB, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         if (enc.uabalb_zzzz.size == 0u) return std::nullopt;
@@ -66717,7 +71641,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x4500CC00u: { // uabalt_z_zzz_
-                        Instruction result(Mnemonic::UABALT, insn, 4431);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::UABALT, insn, EncodingId::uabalt_z_zzz_);
+            #else
+                        Instruction result(Mnemonic::UABALT, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         if (enc.uabalt_zzzz.size == 0u) return std::nullopt;
@@ -66741,7 +71669,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x4500E000u: { // ssra_z_zi_
-                        Instruction result(Mnemonic::SSRA, insn, 4304);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SSRA, insn, EncodingId::ssra_z_zi_);
+            #else
+                        Instruction result(Mnemonic::SSRA, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         uint32_t _tsize = (enc.ssra_zzi.tszh << 2) | enc.ssra_zzi.tszl;
@@ -66760,7 +71692,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x4500E400u: { // usra_z_zi_
-                        Instruction result(Mnemonic::USRA, insn, 4566);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::USRA, insn, EncodingId::usra_z_zi_);
+            #else
+                        Instruction result(Mnemonic::USRA, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         uint32_t _tsize = (enc.usra_zzi.tszh << 2) | enc.usra_zzi.tszl;
@@ -66779,7 +71715,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x4500E800u: { // srsra_z_zi_
-                        Instruction result(Mnemonic::SRSRA, insn, 4301);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SRSRA, insn, EncodingId::srsra_z_zi_);
+            #else
+                        Instruction result(Mnemonic::SRSRA, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         uint32_t _tsize = (enc.srsra_zzi.tszh << 2) | enc.srsra_zzi.tszl;
@@ -66798,7 +71738,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x4500EC00u: { // ursra_z_zi_
-                        Instruction result(Mnemonic::URSRA, insn, 4559);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::URSRA, insn, EncodingId::ursra_z_zi_);
+            #else
+                        Instruction result(Mnemonic::URSRA, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         uint32_t _tsize = (enc.ursra_zzi.tszh << 2) | enc.ursra_zzi.tszl;
@@ -66817,7 +71761,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x4500F000u: { // sri_z_zzi_
-                        Instruction result(Mnemonic::SRI, insn, 4297);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SRI, insn, EncodingId::sri_z_zzi_);
+            #else
+                        Instruction result(Mnemonic::SRI, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         uint32_t _tsize = (enc.sri_zzzi.tszh << 2) | enc.sri_zzzi.tszl;
@@ -66836,7 +71784,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x4500F400u: { // sli_z_zzi_
-                        Instruction result(Mnemonic::SLI, insn, 4155);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SLI, insn, EncodingId::sli_z_zzi_);
+            #else
+                        Instruction result(Mnemonic::SLI, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         uint32_t _tsize = (enc.sli_zzzi.tszh << 2) | enc.sli_zzzi.tszl;
@@ -66855,7 +71807,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x4500F800u: { // saba_z_zzz_
-                        Instruction result(Mnemonic::SABA, insn, 4105);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SABA, insn, EncodingId::saba_z_zzz_);
+            #else
+                        Instruction result(Mnemonic::SABA, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = Arrangement::None;
@@ -66871,7 +71827,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x4500FC00u: { // uaba_z_zzz_
-                        Instruction result(Mnemonic::UABA, insn, 4428);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::UABA, insn, EncodingId::uaba_z_zzz_);
+            #else
+                        Instruction result(Mnemonic::UABA, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = Arrangement::None;
@@ -66887,7 +71847,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x45206000u: { // addhnb_z_zz_
-                        Instruction result(Mnemonic::ADDHNB, insn, 3269);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::ADDHNB, insn, EncodingId::addhnb_z_zz_);
+            #else
+                        Instruction result(Mnemonic::ADDHNB, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         if (enc.addhnb_zzz.size == 0u) return std::nullopt;
@@ -66911,7 +71875,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x45206400u: { // addhnt_z_zz_
-                        Instruction result(Mnemonic::ADDHNT, insn, 3270);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::ADDHNT, insn, EncodingId::addhnt_z_zz_);
+            #else
+                        Instruction result(Mnemonic::ADDHNT, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         if (enc.addhnt_zzz.size == 0u) return std::nullopt;
@@ -66935,7 +71903,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x45206800u: { // raddhnb_z_zz_
-                        Instruction result(Mnemonic::RADDHNB, insn, 4081);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::RADDHNB, insn, EncodingId::raddhnb_z_zz_);
+            #else
+                        Instruction result(Mnemonic::RADDHNB, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         if (enc.raddhnb_zzz.size == 0u) return std::nullopt;
@@ -66959,7 +71931,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x45206C00u: { // raddhnt_z_zz_
-                        Instruction result(Mnemonic::RADDHNT, insn, 4082);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::RADDHNT, insn, EncodingId::raddhnt_z_zz_);
+            #else
+                        Instruction result(Mnemonic::RADDHNT, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         if (enc.raddhnt_zzz.size == 0u) return std::nullopt;
@@ -66983,7 +71959,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x45207000u: { // subhnb_z_zz_
-                        Instruction result(Mnemonic::SUBHNB, insn, 4400);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SUBHNB, insn, EncodingId::subhnb_z_zz_);
+            #else
+                        Instruction result(Mnemonic::SUBHNB, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         if (enc.subhnb_zzz.size == 0u) return std::nullopt;
@@ -67007,7 +71987,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x45207400u: { // subhnt_z_zz_
-                        Instruction result(Mnemonic::SUBHNT, insn, 4401);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SUBHNT, insn, EncodingId::subhnt_z_zz_);
+            #else
+                        Instruction result(Mnemonic::SUBHNT, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         if (enc.subhnt_zzz.size == 0u) return std::nullopt;
@@ -67031,7 +72015,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x45207800u: { // rsubhnb_z_zz_
-                        Instruction result(Mnemonic::RSUBHNB, insn, 4103);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::RSUBHNB, insn, EncodingId::rsubhnb_z_zz_);
+            #else
+                        Instruction result(Mnemonic::RSUBHNB, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         if (enc.rsubhnb_zzz.size == 0u) return std::nullopt;
@@ -67055,7 +72043,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x45207C00u: { // rsubhnt_z_zz_
-                        Instruction result(Mnemonic::RSUBHNT, insn, 4104);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::RSUBHNT, insn, EncodingId::rsubhnt_z_zz_);
+            #else
+                        Instruction result(Mnemonic::RSUBHNT, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         if (enc.rsubhnt_zzz.size == 0u) return std::nullopt;
@@ -67079,7 +72071,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x4520A000u: { // histseg_z_zz_
-                        Instruction result(Mnemonic::HISTSEG, insn, 3686);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::HISTSEG, insn, EncodingId::histseg_z_zz_);
+            #else
+                        Instruction result(Mnemonic::HISTSEG, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         if (enc.histseg_zzz.size != 0u) return std::nullopt;
@@ -67096,7 +72092,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x4520B000u: { // luti2_z_zz_8
-                        Instruction result(Mnemonic::LUTI2, insn, 3960);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LUTI2, insn, EncodingId::luti2_z_zz_8);
+            #else
+                        Instruction result(Mnemonic::LUTI2, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::sve(enc.luti2zzz8.Zd, Arrangement::B));
@@ -67105,7 +72105,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x4520B400u: { // luti4_z_zz_2x16
-                        Instruction result(Mnemonic::LUTI4, insn, 3963);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LUTI4, insn, EncodingId::luti4_z_zz_2x16);
+            #else
+                        Instruction result(Mnemonic::LUTI4, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::sve(enc.luti4zzz2x16.Zd, Arrangement::H));
@@ -67114,7 +72118,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x4520BC00u: { // luti4_z_zz_1x16
-                        Instruction result(Mnemonic::LUTI4, insn, 3964);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LUTI4, insn, EncodingId::luti4_z_zz_1x16);
+            #else
+                        Instruction result(Mnemonic::LUTI4, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::sve(enc.luti4zzz1x16.Zd, Arrangement::H));
@@ -67124,7 +72132,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
         }
         case 0x64202400u: { // fclamp_z_zz_
             if (((insn >> 22) & 0x3) == 0x0) break;
-                        Instruction result(Mnemonic::FCLAMP, insn, 3485);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FCLAMP, insn, EncodingId::fclamp_z_zz_);
+            #else
+                        Instruction result(Mnemonic::FCLAMP, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = Arrangement::None;
@@ -67141,7 +72153,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
         }
         case 0x65000000u: { // fadd_z_zz_
             if (((insn >> 22) & 0x3) == 0x0) break;
-                        Instruction result(Mnemonic::FADD, insn, 3477);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FADD, insn, EncodingId::fadd_z_zz_);
+            #else
+                        Instruction result(Mnemonic::FADD, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = Arrangement::None;
@@ -67158,7 +72174,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
         }
         case 0x65000400u: { // fsub_z_zz_
             if (((insn >> 22) & 0x3) == 0x0) break;
-                        Instruction result(Mnemonic::FSUB, insn, 3679);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FSUB, insn, EncodingId::fsub_z_zz_);
+            #else
+                        Instruction result(Mnemonic::FSUB, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = Arrangement::None;
@@ -67175,7 +72195,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
         }
         case 0x65000800u: { // fmul_z_zz_
             if (((insn >> 22) & 0x3) == 0x0) break;
-                        Instruction result(Mnemonic::FMUL, insn, 3635);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FMUL, insn, EncodingId::fmul_z_zz_);
+            #else
+                        Instruction result(Mnemonic::FMUL, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = Arrangement::None;
@@ -67191,7 +72215,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x65000C00u: { // ftsmul_z_zz_
-                        Instruction result(Mnemonic::FTSMUL, insn, 3683);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FTSMUL, insn, EncodingId::ftsmul_z_zz_);
+            #else
+                        Instruction result(Mnemonic::FTSMUL, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         if (enc.ftsmul_zzz.size == 0u) return std::nullopt;
@@ -67208,7 +72236,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x65001800u: { // frecps_z_zz_
-                        Instruction result(Mnemonic::FRECPS, insn, 3647);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FRECPS, insn, EncodingId::frecps_z_zz_);
+            #else
+                        Instruction result(Mnemonic::FRECPS, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         if (enc.frecps_zzz.size == 0u) return std::nullopt;
@@ -67225,7 +72257,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x65001C00u: { // frsqrts_z_zz_
-                        Instruction result(Mnemonic::FRSQRTS, insn, 3673);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FRSQRTS, insn, EncodingId::frsqrts_z_zz_);
+            #else
+                        Instruction result(Mnemonic::FRSQRTS, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         if (enc.frsqrts_zzz.size == 0u) return std::nullopt;
@@ -67247,7 +72283,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
     // Switch for mask 0xFF20F000u (3 patterns, 3 encodings)
     switch (insn & 0xFF20F000u) {
         case 0x44001000u: { // cdot_z_zzz_
-                        Instruction result(Mnemonic::CDOT, insn, 3371);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::CDOT, insn, EncodingId::cdot_z_zzz_);
+            #else
+                        Instruction result(Mnemonic::CDOT, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = Arrangement::None;
@@ -67271,7 +72311,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x44002000u: { // cmla_z_zzz_
-                        Instruction result(Mnemonic::CMLA, insn, 3384);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::CMLA, insn, EncodingId::cmla_z_zzz_);
+            #else
+                        Instruction result(Mnemonic::CMLA, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = Arrangement::None;
@@ -67288,7 +72332,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x44003000u: { // sqrdcmlah_z_zzz_
-                        Instruction result(Mnemonic::SQRDCMLAH, insn, 4253);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SQRDCMLAH, insn, EncodingId::sqrdcmlah_z_zzz_);
+            #else
+                        Instruction result(Mnemonic::SQRDCMLAH, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = Arrangement::None;
@@ -67310,7 +72358,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
     // Switch for mask 0xFF20EC10u (8 patterns, 8 encodings)
     switch (insn & 0xFF20EC10u) {
         case 0x25200000u: { // whilege_p_p_rr_
-                        Instruction result(Mnemonic::WHILEGE, insn, 4587);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::WHILEGE, insn, EncodingId::whilege_p_p_rr_);
+            #else
+                        Instruction result(Mnemonic::WHILEGE, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = enc.whilege_pprr.sf;
@@ -67327,7 +72379,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x25200010u: { // whilegt_p_p_rr_
-                        Instruction result(Mnemonic::WHILEGT, insn, 4590);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::WHILEGT, insn, EncodingId::whilegt_p_p_rr_);
+            #else
+                        Instruction result(Mnemonic::WHILEGT, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = enc.whilegt_pprr.sf;
@@ -67344,7 +72400,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x25200400u: { // whilelt_p_p_rr_
-                        Instruction result(Mnemonic::WHILELT, insn, 4608);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::WHILELT, insn, EncodingId::whilelt_p_p_rr_);
+            #else
+                        Instruction result(Mnemonic::WHILELT, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = enc.whilelt_pprr.sf;
@@ -67361,7 +72421,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x25200410u: { // whilele_p_p_rr_
-                        Instruction result(Mnemonic::WHILELE, insn, 4599);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::WHILELE, insn, EncodingId::whilele_p_p_rr_);
+            #else
+                        Instruction result(Mnemonic::WHILELE, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = enc.whilele_pprr.sf;
@@ -67378,7 +72442,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x25200800u: { // whilehs_p_p_rr_
-                        Instruction result(Mnemonic::WHILEHS, insn, 4596);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::WHILEHS, insn, EncodingId::whilehs_p_p_rr_);
+            #else
+                        Instruction result(Mnemonic::WHILEHS, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = enc.whilehs_pprr.sf;
@@ -67395,7 +72463,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x25200810u: { // whilehi_p_p_rr_
-                        Instruction result(Mnemonic::WHILEHI, insn, 4593);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::WHILEHI, insn, EncodingId::whilehi_p_p_rr_);
+            #else
+                        Instruction result(Mnemonic::WHILEHI, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = enc.whilehi_pprr.sf;
@@ -67412,7 +72484,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x25200C00u: { // whilelo_p_p_rr_
-                        Instruction result(Mnemonic::WHILELO, insn, 4602);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::WHILELO, insn, EncodingId::whilelo_p_p_rr_);
+            #else
+                        Instruction result(Mnemonic::WHILELO, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = enc.whilelo_pprr.sf;
@@ -67429,7 +72505,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x25200C10u: { // whilels_p_p_rr_
-                        Instruction result(Mnemonic::WHILELS, insn, 4605);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::WHILELS, insn, EncodingId::whilels_p_p_rr_);
+            #else
+                        Instruction result(Mnemonic::WHILELS, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = enc.whilels_pprr.sf;
@@ -67451,7 +72531,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
     // Switch for mask 0xFF20EC00u (1 pattern, 1 encoding)
     switch (insn & 0xFF20EC00u) {
         case 0x4520A800u: { // luti2_z_zz_16
-                        Instruction result(Mnemonic::LUTI2, insn, 3961);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LUTI2, insn, EncodingId::luti2_z_zz_16);
+            #else
+                        Instruction result(Mnemonic::LUTI2, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::sve(enc.luti2zzz16.Zd, Arrangement::H));
@@ -67466,7 +72550,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
     switch (insn & 0xFF20E010u) {
         case 0x24000000u: { // cmphs_p_p_zz_
             // Also matches: cmpls_p_p_zz__cmphs_p_p_zz_ (CMPHS)
-                        Instruction result(Mnemonic::CMPHS, insn, 3411);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::CMPHS, insn, EncodingId::cmphs_p_p_zz_);
+            #else
+                        Instruction result(Mnemonic::CMPHS, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = Arrangement::None;
@@ -67484,7 +72572,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
         }
         case 0x24000010u: { // cmphi_p_p_zz_
             // Also matches: cmplo_p_p_zz__cmphi_p_p_zz_ (CMPHI)
-                        Instruction result(Mnemonic::CMPHI, insn, 3410);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::CMPHI, insn, EncodingId::cmphi_p_p_zz_);
+            #else
+                        Instruction result(Mnemonic::CMPHI, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = Arrangement::None;
@@ -67501,7 +72593,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x24002000u: { // cmpeq_p_p_zw_
-                        Instruction result(Mnemonic::CMPEQ, insn, 3397);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::CMPEQ, insn, EncodingId::cmpeq_p_p_zw_);
+            #else
+                        Instruction result(Mnemonic::CMPEQ, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         if (enc.cmpeq_ppzw.size == 3u) return std::nullopt;
@@ -67519,7 +72615,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x24002010u: { // cmpne_p_p_zw_
-                        Instruction result(Mnemonic::CMPNE, insn, 3406);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::CMPNE, insn, EncodingId::cmpne_p_p_zw_);
+            #else
+                        Instruction result(Mnemonic::CMPNE, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         if (enc.cmpne_ppzw.size == 3u) return std::nullopt;
@@ -67537,7 +72637,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x24004000u: { // cmpge_p_p_zw_
-                        Instruction result(Mnemonic::CMPGE, insn, 3399);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::CMPGE, insn, EncodingId::cmpge_p_p_zw_);
+            #else
+                        Instruction result(Mnemonic::CMPGE, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         if (enc.cmpge_ppzw.size == 3u) return std::nullopt;
@@ -67555,7 +72659,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x24004010u: { // cmpgt_p_p_zw_
-                        Instruction result(Mnemonic::CMPGT, insn, 3398);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::CMPGT, insn, EncodingId::cmpgt_p_p_zw_);
+            #else
+                        Instruction result(Mnemonic::CMPGT, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         if (enc.cmpgt_ppzw.size == 3u) return std::nullopt;
@@ -67573,7 +72681,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x24006000u: { // cmplt_p_p_zw_
-                        Instruction result(Mnemonic::CMPLT, insn, 3402);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::CMPLT, insn, EncodingId::cmplt_p_p_zw_);
+            #else
+                        Instruction result(Mnemonic::CMPLT, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         if (enc.cmplt_ppzw.size == 3u) return std::nullopt;
@@ -67591,7 +72703,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x24006010u: { // cmple_p_p_zw_
-                        Instruction result(Mnemonic::CMPLE, insn, 3403);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::CMPLE, insn, EncodingId::cmple_p_p_zw_);
+            #else
+                        Instruction result(Mnemonic::CMPLE, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         if (enc.cmple_ppzw.size == 3u) return std::nullopt;
@@ -67610,7 +72726,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
         }
         case 0x24008000u: { // cmpge_p_p_zz_
             // Also matches: cmple_p_p_zz__cmpge_p_p_zz_ (CMPGE)
-                        Instruction result(Mnemonic::CMPGE, insn, 3409);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::CMPGE, insn, EncodingId::cmpge_p_p_zz_);
+            #else
+                        Instruction result(Mnemonic::CMPGE, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = Arrangement::None;
@@ -67628,7 +72748,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
         }
         case 0x24008010u: { // cmpgt_p_p_zz_
             // Also matches: cmplt_p_p_zz__cmpgt_p_p_zz_ (CMPGT)
-                        Instruction result(Mnemonic::CMPGT, insn, 3408);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::CMPGT, insn, EncodingId::cmpgt_p_p_zz_);
+            #else
+                        Instruction result(Mnemonic::CMPGT, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = Arrangement::None;
@@ -67645,7 +72769,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x2400A000u: { // cmpeq_p_p_zz_
-                        Instruction result(Mnemonic::CMPEQ, insn, 3407);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::CMPEQ, insn, EncodingId::cmpeq_p_p_zz_);
+            #else
+                        Instruction result(Mnemonic::CMPEQ, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = Arrangement::None;
@@ -67662,7 +72790,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x2400A010u: { // cmpne_p_p_zz_
-                        Instruction result(Mnemonic::CMPNE, insn, 3412);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::CMPNE, insn, EncodingId::cmpne_p_p_zz_);
+            #else
+                        Instruction result(Mnemonic::CMPNE, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = Arrangement::None;
@@ -67679,7 +72811,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x2400C000u: { // cmphs_p_p_zw_
-                        Instruction result(Mnemonic::CMPHS, insn, 3401);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::CMPHS, insn, EncodingId::cmphs_p_p_zw_);
+            #else
+                        Instruction result(Mnemonic::CMPHS, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         if (enc.cmphs_ppzw.size == 3u) return std::nullopt;
@@ -67697,7 +72833,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x2400C010u: { // cmphi_p_p_zw_
-                        Instruction result(Mnemonic::CMPHI, insn, 3400);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::CMPHI, insn, EncodingId::cmphi_p_p_zw_);
+            #else
+                        Instruction result(Mnemonic::CMPHI, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         if (enc.cmphi_ppzw.size == 3u) return std::nullopt;
@@ -67715,7 +72855,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x2400E000u: { // cmplo_p_p_zw_
-                        Instruction result(Mnemonic::CMPLO, insn, 3404);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::CMPLO, insn, EncodingId::cmplo_p_p_zw_);
+            #else
+                        Instruction result(Mnemonic::CMPLO, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         if (enc.cmplo_ppzw.size == 3u) return std::nullopt;
@@ -67733,7 +72877,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x2400E010u: { // cmpls_p_p_zw_
-                        Instruction result(Mnemonic::CMPLS, insn, 3405);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::CMPLS, insn, EncodingId::cmpls_p_p_zw_);
+            #else
+                        Instruction result(Mnemonic::CMPLS, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         if (enc.cmpls_ppzw.size == 3u) return std::nullopt;
@@ -67751,7 +72899,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x25000000u: { // cmpge_p_p_zi_
-                        Instruction result(Mnemonic::CMPGE, insn, 3389);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::CMPGE, insn, EncodingId::cmpge_p_p_zi_);
+            #else
+                        Instruction result(Mnemonic::CMPGE, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = Arrangement::None;
@@ -67771,7 +72923,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x25000010u: { // cmpgt_p_p_zi_
-                        Instruction result(Mnemonic::CMPGT, insn, 3388);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::CMPGT, insn, EncodingId::cmpgt_p_p_zi_);
+            #else
+                        Instruction result(Mnemonic::CMPGT, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = Arrangement::None;
@@ -67791,7 +72947,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x25002000u: { // cmplt_p_p_zi_
-                        Instruction result(Mnemonic::CMPLT, insn, 3392);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::CMPLT, insn, EncodingId::cmplt_p_p_zi_);
+            #else
+                        Instruction result(Mnemonic::CMPLT, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = Arrangement::None;
@@ -67811,7 +72971,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x25002010u: { // cmple_p_p_zi_
-                        Instruction result(Mnemonic::CMPLE, insn, 3393);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::CMPLE, insn, EncodingId::cmple_p_p_zi_);
+            #else
+                        Instruction result(Mnemonic::CMPLE, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = Arrangement::None;
@@ -67831,7 +72995,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x25008000u: { // cmpeq_p_p_zi_
-                        Instruction result(Mnemonic::CMPEQ, insn, 3387);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::CMPEQ, insn, EncodingId::cmpeq_p_p_zi_);
+            #else
+                        Instruction result(Mnemonic::CMPEQ, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = Arrangement::None;
@@ -67851,7 +73019,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x25008010u: { // cmpne_p_p_zi_
-                        Instruction result(Mnemonic::CMPNE, insn, 3396);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::CMPNE, insn, EncodingId::cmpne_p_p_zi_);
+            #else
+                        Instruction result(Mnemonic::CMPNE, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = Arrangement::None;
@@ -67871,7 +73043,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x45208000u: { // match_p_p_zz_
-                        Instruction result(Mnemonic::MATCH, insn, 3969);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::MATCH, insn, EncodingId::match_p_p_zz_);
+            #else
+                        Instruction result(Mnemonic::MATCH, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = Arrangement::None;
@@ -67888,7 +73064,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x45208010u: { // nmatch_p_p_zz_
-                        Instruction result(Mnemonic::NMATCH, insn, 4009);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::NMATCH, insn, EncodingId::nmatch_p_p_zz_);
+            #else
+                        Instruction result(Mnemonic::NMATCH, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = Arrangement::None;
@@ -67906,7 +73086,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
         }
         case 0x65004000u: { // fcmge_p_p_zz_
             // Also matches: fcmle_p_p_zz__fcmge_p_p_zz_ (FCMGE)
-                        Instruction result(Mnemonic::FCMGE, insn, 3494);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FCMGE, insn, EncodingId::fcmge_p_p_zz_);
+            #else
+                        Instruction result(Mnemonic::FCMGE, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         if (enc.fcmge_ppzz.size == 0u) return std::nullopt;
@@ -67925,7 +73109,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
         }
         case 0x65004010u: { // fcmgt_p_p_zz_
             // Also matches: fcmlt_p_p_zz__fcmgt_p_p_zz_ (FCMGT)
-                        Instruction result(Mnemonic::FCMGT, insn, 3493);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FCMGT, insn, EncodingId::fcmgt_p_p_zz_);
+            #else
+                        Instruction result(Mnemonic::FCMGT, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         if (enc.fcmgt_ppzz.size == 0u) return std::nullopt;
@@ -67943,7 +73131,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x65006000u: { // fcmeq_p_p_zz_
-                        Instruction result(Mnemonic::FCMEQ, insn, 3492);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FCMEQ, insn, EncodingId::fcmeq_p_p_zz_);
+            #else
+                        Instruction result(Mnemonic::FCMEQ, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         if (enc.fcmeq_ppzz.size == 0u) return std::nullopt;
@@ -67961,7 +73153,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x65006010u: { // fcmne_p_p_zz_
-                        Instruction result(Mnemonic::FCMNE, insn, 3495);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FCMNE, insn, EncodingId::fcmne_p_p_zz_);
+            #else
+                        Instruction result(Mnemonic::FCMNE, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         if (enc.fcmne_ppzz.size == 0u) return std::nullopt;
@@ -67979,7 +73175,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x6500C000u: { // fcmuo_p_p_zz_
-                        Instruction result(Mnemonic::FCMUO, insn, 3496);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FCMUO, insn, EncodingId::fcmuo_p_p_zz_);
+            #else
+                        Instruction result(Mnemonic::FCMUO, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         if (enc.fcmuo_ppzz.size == 0u) return std::nullopt;
@@ -67998,7 +73198,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
         }
         case 0x6500C010u: { // facge_p_p_zz_
             // Also matches: facle_p_p_zz__facge_p_p_zz_ (FACGE)
-                        Instruction result(Mnemonic::FACGE, insn, 3472);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FACGE, insn, EncodingId::facge_p_p_zz_);
+            #else
+                        Instruction result(Mnemonic::FACGE, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         if (enc.facge_ppzz.size == 0u) return std::nullopt;
@@ -68017,7 +73221,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
         }
         case 0x6500E010u: { // facgt_p_p_zz_
             // Also matches: faclt_p_p_zz__facgt_p_p_zz_ (FACGT)
-                        Instruction result(Mnemonic::FACGT, insn, 3471);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FACGT, insn, EncodingId::facgt_p_p_zz_);
+            #else
+                        Instruction result(Mnemonic::FACGT, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         if (enc.facgt_ppzz.size == 0u) return std::nullopt;
@@ -68040,7 +73248,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
     // Switch for mask 0xFF20E000u (13 patterns, 13 encodings)
     switch (insn & 0xFF20E000u) {
         case 0x04004000u: { // mla_z_p_zzz_
-                        Instruction result(Mnemonic::MLA, insn, 3970);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::MLA, insn, EncodingId::mla_z_p_zzz_);
+            #else
+                        Instruction result(Mnemonic::MLA, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = Arrangement::None;
@@ -68057,7 +73269,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x04006000u: { // mls_z_p_zzz_
-                        Instruction result(Mnemonic::MLS, insn, 3975);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::MLS, insn, EncodingId::mls_z_p_zzz_);
+            #else
+                        Instruction result(Mnemonic::MLS, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = Arrangement::None;
@@ -68074,7 +73290,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x0400C000u: { // mad_z_p_zzz_
-                        Instruction result(Mnemonic::MAD, insn, 3967);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::MAD, insn, EncodingId::mad_z_p_zzz_);
+            #else
+                        Instruction result(Mnemonic::MAD, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = Arrangement::None;
@@ -68091,7 +73311,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x0400E000u: { // msb_z_p_zzz_
-                        Instruction result(Mnemonic::MSB, insn, 3997);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::MSB, insn, EncodingId::msb_z_p_zzz_);
+            #else
+                        Instruction result(Mnemonic::MSB, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = Arrangement::None;
@@ -68108,7 +73332,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x4520C000u: { // histcnt_z_p_zz_
-                        Instruction result(Mnemonic::HISTCNT, insn, 3685);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::HISTCNT, insn, EncodingId::histcnt_z_p_zz_);
+            #else
+                        Instruction result(Mnemonic::HISTCNT, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = Arrangement::None;
@@ -68126,7 +73354,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
         }
         case 0x65200000u: { // fmla_z_p_zzz_
             if (((insn >> 22) & 0x3) == 0x0) break;
-                        Instruction result(Mnemonic::FMLA, insn, 3594);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FMLA, insn, EncodingId::fmla_z_p_zzz_);
+            #else
+                        Instruction result(Mnemonic::FMLA, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = Arrangement::None;
@@ -68144,7 +73376,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
         }
         case 0x65202000u: { // fmls_z_p_zzz_
             if (((insn >> 22) & 0x3) == 0x0) break;
-                        Instruction result(Mnemonic::FMLS, insn, 3614);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FMLS, insn, EncodingId::fmls_z_p_zzz_);
+            #else
+                        Instruction result(Mnemonic::FMLS, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = Arrangement::None;
@@ -68162,7 +73398,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
         }
         case 0x65204000u: { // fnmla_z_p_zzz_
             if (((insn >> 22) & 0x3) == 0x0) break;
-                        Instruction result(Mnemonic::FNMLA, insn, 3643);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FNMLA, insn, EncodingId::fnmla_z_p_zzz_);
+            #else
+                        Instruction result(Mnemonic::FNMLA, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         if (enc.fnmla_zpzzz.size == 0u) return std::nullopt;
@@ -68181,7 +73421,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
         }
         case 0x65206000u: { // fnmls_z_p_zzz_
             if (((insn >> 22) & 0x3) == 0x0) break;
-                        Instruction result(Mnemonic::FNMLS, insn, 3644);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FNMLS, insn, EncodingId::fnmls_z_p_zzz_);
+            #else
+                        Instruction result(Mnemonic::FNMLS, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         if (enc.fnmls_zpzzz.size == 0u) return std::nullopt;
@@ -68199,7 +73443,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x65208000u: { // fmad_z_p_zzz_
-                        Instruction result(Mnemonic::FMAD, insn, 3573);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FMAD, insn, EncodingId::fmad_z_p_zzz_);
+            #else
+                        Instruction result(Mnemonic::FMAD, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         if (enc.fmad_zpzzz.size == 0u) return std::nullopt;
@@ -68217,7 +73465,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x6520A000u: { // fmsb_z_p_zzz_
-                        Instruction result(Mnemonic::FMSB, insn, 3632);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FMSB, insn, EncodingId::fmsb_z_p_zzz_);
+            #else
+                        Instruction result(Mnemonic::FMSB, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         if (enc.fmsb_zpzzz.size == 0u) return std::nullopt;
@@ -68235,7 +73487,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x6520C000u: { // fnmad_z_p_zzz_
-                        Instruction result(Mnemonic::FNMAD, insn, 3642);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FNMAD, insn, EncodingId::fnmad_z_p_zzz_);
+            #else
+                        Instruction result(Mnemonic::FNMAD, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         if (enc.fnmad_zpzzz.size == 0u) return std::nullopt;
@@ -68253,7 +73509,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x6520E000u: { // fnmsb_z_p_zzz_
-                        Instruction result(Mnemonic::FNMSB, insn, 3645);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FNMSB, insn, EncodingId::fnmsb_z_p_zzz_);
+            #else
+                        Instruction result(Mnemonic::FNMSB, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         if (enc.fnmsb_zpzzz.size == 0u) return std::nullopt;
@@ -68276,7 +73536,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
     // Switch for mask 0xFF20DC18u (8 patterns, 8 encodings)
     switch (insn & 0xFF20DC18u) {
         case 0x25204010u: { // whilege_pn_rr_
-                        Instruction result(Mnemonic::WHILEGE, insn, 4588);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::WHILEGE, insn, EncodingId::whilege_pn_rr_);
+            #else
+                        Instruction result(Mnemonic::WHILEGE, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -68295,7 +73559,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x25204018u: { // whilegt_pn_rr_
-                        Instruction result(Mnemonic::WHILEGT, insn, 4591);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::WHILEGT, insn, EncodingId::whilegt_pn_rr_);
+            #else
+                        Instruction result(Mnemonic::WHILEGT, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -68314,7 +73582,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x25204410u: { // whilelt_pn_rr_
-                        Instruction result(Mnemonic::WHILELT, insn, 4609);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::WHILELT, insn, EncodingId::whilelt_pn_rr_);
+            #else
+                        Instruction result(Mnemonic::WHILELT, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -68333,7 +73605,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x25204418u: { // whilele_pn_rr_
-                        Instruction result(Mnemonic::WHILELE, insn, 4600);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::WHILELE, insn, EncodingId::whilele_pn_rr_);
+            #else
+                        Instruction result(Mnemonic::WHILELE, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -68352,7 +73628,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x25204810u: { // whilehs_pn_rr_
-                        Instruction result(Mnemonic::WHILEHS, insn, 4597);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::WHILEHS, insn, EncodingId::whilehs_pn_rr_);
+            #else
+                        Instruction result(Mnemonic::WHILEHS, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -68371,7 +73651,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x25204818u: { // whilehi_pn_rr_
-                        Instruction result(Mnemonic::WHILEHI, insn, 4594);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::WHILEHI, insn, EncodingId::whilehi_pn_rr_);
+            #else
+                        Instruction result(Mnemonic::WHILEHI, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -68390,7 +73674,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x25204C10u: { // whilelo_pn_rr_
-                        Instruction result(Mnemonic::WHILELO, insn, 4603);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::WHILELO, insn, EncodingId::whilelo_pn_rr_);
+            #else
+                        Instruction result(Mnemonic::WHILELO, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -68409,7 +73697,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x25204C18u: { // whilels_pn_rr_
-                        Instruction result(Mnemonic::WHILELS, insn, 4606);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::WHILELS, insn, EncodingId::whilels_pn_rr_);
+            #else
+                        Instruction result(Mnemonic::WHILELS, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -68433,7 +73725,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
     // Switch for mask 0xFF20C210u (1 pattern, 1 encoding)
     switch (insn & 0xFF20C210u) {
         case 0x25204000u: { // psel_p_ppi_
-                        Instruction result(Mnemonic::PSEL, insn, 4074);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::PSEL, insn, EncodingId::psel_p_ppi_);
+            #else
+                        Instruction result(Mnemonic::PSEL, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         result.operands.clear();  // PSEL special case: discard generic operands
@@ -68456,7 +73752,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
     switch (insn & 0xFF20C000u) {
         case 0x0520C000u: { // mov_z_p_z__sel_z_p_zz_
             // Also matches: sel_z_p_zz_ (SEL)
-                        Instruction result(Mnemonic::SEL, insn, 3992);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SEL, insn, EncodingId::mov_z_p_z__sel_z_p_zz_);
+            #else
+                        Instruction result(Mnemonic::SEL, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = Arrangement::None;
@@ -68478,7 +73778,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
     // Switch for mask 0xFF208000u (1 pattern, 1 encoding)
     switch (insn & 0xFF208000u) {
         case 0x64000000u: { // fcmla_z_p_zzz_
-                        Instruction result(Mnemonic::FCMLA, insn, 3497);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FCMLA, insn, EncodingId::fcmla_z_p_zzz_);
+            #else
+                        Instruction result(Mnemonic::FCMLA, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         if (enc.fcmla_zpzzz.size == 0u) return std::nullopt;
@@ -68502,7 +73806,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
     // Switch for mask 0xFF202010u (4 patterns, 4 encodings)
     switch (insn & 0xFF202010u) {
         case 0x24200000u: { // cmphs_p_p_zi_
-                        Instruction result(Mnemonic::CMPHS, insn, 3391);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::CMPHS, insn, EncodingId::cmphs_p_p_zi_);
+            #else
+                        Instruction result(Mnemonic::CMPHS, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = Arrangement::None;
@@ -68519,7 +73827,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x24200010u: { // cmphi_p_p_zi_
-                        Instruction result(Mnemonic::CMPHI, insn, 3390);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::CMPHI, insn, EncodingId::cmphi_p_p_zi_);
+            #else
+                        Instruction result(Mnemonic::CMPHI, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = Arrangement::None;
@@ -68536,7 +73848,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x24202000u: { // cmplo_p_p_zi_
-                        Instruction result(Mnemonic::CMPLO, insn, 3394);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::CMPLO, insn, EncodingId::cmplo_p_p_zi_);
+            #else
+                        Instruction result(Mnemonic::CMPLO, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = Arrangement::None;
@@ -68553,7 +73869,11 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         return result;
         }
         case 0x24202010u: { // cmpls_p_p_zi_
-                        Instruction result(Mnemonic::CMPLS, insn, 3395);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::CMPLS, insn, EncodingId::cmpls_p_p_zi_);
+            #else
+                        Instruction result(Mnemonic::CMPLS, insn);
+            #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
                         Arrangement _sve_arr = Arrangement::None;

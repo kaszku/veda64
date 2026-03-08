@@ -12,6 +12,9 @@
 #include "types.hpp"
 #include "operand.hpp"
 #include "util.hpp"
+#ifdef VEDA64_IR
+#include "encoding_id.hpp"
+#endif
 
 namespace veda64 {
 
@@ -19,13 +22,20 @@ namespace veda64 {
 class Instruction {
 public:
     Instruction() = default;
-    Instruction(Mnemonic mnem, uint32_t raw, uint16_t enc_id = 0xFFFF)
+#ifdef VEDA64_IR
+    Instruction(Mnemonic mnem, uint32_t raw, EncodingId enc_id = EncodingId::UNKNOWN)
         : mnemonic(mnem), raw_value(raw), encoding_id(enc_id) {}
+#else
+    Instruction(Mnemonic mnem, uint32_t raw)
+        : mnemonic(mnem), raw_value(raw) {}
+#endif
 
     Mnemonic mnemonic = Mnemonic::UNKNOWN;
     Condition condition = Condition::None;
     uint32_t raw_value = 0;
-    uint16_t encoding_id = 0xFFFF;  // 0xFFFF = unknown/unclassified
+#ifdef VEDA64_IR
+    EncodingId encoding_id = EncodingId::UNKNOWN;
+#endif
     std::vector<Operand> operands;
 
 #ifdef VEDA64_STRINGS

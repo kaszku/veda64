@@ -32624,7 +32624,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
     // Switch for mask 0xFFFFFC00u (226 patterns, 226 encodings)
     switch (insn & 0xFFFFFC00u) {
         case 0x1E200000u: { // FCVTNS_32S_float2int
-                        Instruction result(Mnemonic::FCVTNS, insn, 1762);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FCVTNS, insn, EncodingId::FCVTNS_32S_float2int);
+            #else
+                        Instruction result(Mnemonic::FCVTNS, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -32633,7 +32637,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x1E204000u: { // FMOV_S_floatdp1
-                        Instruction result(Mnemonic::FMOV, insn, 1957);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FMOV, insn, EncodingId::FMOV_S_floatdp1);
+            #else
+                        Instruction result(Mnemonic::FMOV, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -32642,7 +32650,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x1E20C000u: { // FABS_S_floatdp1
-                        Instruction result(Mnemonic::FABS, insn, 1611);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FABS, insn, EncodingId::FABS_S_floatdp1);
+            #else
+                        Instruction result(Mnemonic::FABS, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -32651,7 +32663,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x1E210000u: { // FCVTNU_32S_float2int
-                        Instruction result(Mnemonic::FCVTNU, insn, 1776);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FCVTNU, insn, EncodingId::FCVTNU_32S_float2int);
+            #else
+                        Instruction result(Mnemonic::FCVTNU, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -32660,7 +32676,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x1E214000u: { // FNEG_S_floatdp1
-                        Instruction result(Mnemonic::FNEG, insn, 1995);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FNEG, insn, EncodingId::FNEG_S_floatdp1);
+            #else
+                        Instruction result(Mnemonic::FNEG, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -32669,7 +32689,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x1E21C000u: { // FSQRT_S_floatdp1
-                        Instruction result(Mnemonic::FSQRT, insn, 2076);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FSQRT, insn, EncodingId::FSQRT_S_floatdp1);
+            #else
+                        Instruction result(Mnemonic::FSQRT, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -32678,7 +32702,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x1E220000u: { // SCVTF_S32_float2int
-                        Instruction result(Mnemonic::SCVTF, insn, 2150);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SCVTF, insn, EncodingId::SCVTF_S32_float2int);
+            #else
+                        Instruction result(Mnemonic::SCVTF, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -32687,7 +32715,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x1E22C000u: { // FCVT_DS_floatdp1
-                        Instruction result(Mnemonic::FCVT, insn, 1693);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FCVT, insn, EncodingId::FCVT_DS_floatdp1);
+            #else
+                        Instruction result(Mnemonic::FCVT, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -32696,7 +32728,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x1E230000u: { // UCVTF_S32_float2int
-                        Instruction result(Mnemonic::UCVTF, insn, 2320);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::UCVTF, insn, EncodingId::UCVTF_S32_float2int);
+            #else
+                        Instruction result(Mnemonic::UCVTF, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -32705,7 +32741,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x1E23C000u: { // FCVT_HS_floatdp1
-                        Instruction result(Mnemonic::FCVT, insn, 1692);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FCVT, insn, EncodingId::FCVT_HS_floatdp1);
+            #else
+                        Instruction result(Mnemonic::FCVT, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -32714,7 +32754,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x1E240000u: { // FCVTAS_32S_float2int
-                        Instruction result(Mnemonic::FCVTAS, insn, 1702);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FCVTAS, insn, EncodingId::FCVTAS_32S_float2int);
+            #else
+                        Instruction result(Mnemonic::FCVTAS, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -32723,7 +32767,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x1E244000u: { // FRINTN_S_floatdp1
-                        Instruction result(Mnemonic::FRINTN, insn, 2046);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FRINTN, insn, EncodingId::FRINTN_S_floatdp1);
+            #else
+                        Instruction result(Mnemonic::FRINTN, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -32732,7 +32780,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x1E24C000u: { // FRINTP_S_floatdp1
-                        Instruction result(Mnemonic::FRINTP, insn, 2051);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FRINTP, insn, EncodingId::FRINTP_S_floatdp1);
+            #else
+                        Instruction result(Mnemonic::FRINTP, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -32741,7 +32793,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x1E250000u: { // FCVTAU_32S_float2int
-                        Instruction result(Mnemonic::FCVTAU, insn, 1716);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FCVTAU, insn, EncodingId::FCVTAU_32S_float2int);
+            #else
+                        Instruction result(Mnemonic::FCVTAU, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -32750,7 +32806,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x1E254000u: { // FRINTM_S_floatdp1
-                        Instruction result(Mnemonic::FRINTM, insn, 2041);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FRINTM, insn, EncodingId::FRINTM_S_floatdp1);
+            #else
+                        Instruction result(Mnemonic::FRINTM, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -32759,7 +32819,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x1E25C000u: { // FRINTZ_S_floatdp1
-                        Instruction result(Mnemonic::FRINTZ, insn, 2061);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FRINTZ, insn, EncodingId::FRINTZ_S_floatdp1);
+            #else
+                        Instruction result(Mnemonic::FRINTZ, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -32768,7 +32832,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x1E260000u: { // FMOV_32S_float2int
-                        Instruction result(Mnemonic::FMOV, insn, 1963);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FMOV, insn, EncodingId::FMOV_32S_float2int);
+            #else
+                        Instruction result(Mnemonic::FMOV, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -32777,7 +32845,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x1E264000u: { // FRINTA_S_floatdp1
-                        Instruction result(Mnemonic::FRINTA, insn, 2031);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FRINTA, insn, EncodingId::FRINTA_S_floatdp1);
+            #else
+                        Instruction result(Mnemonic::FRINTA, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -32786,7 +32858,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x1E270000u: { // FMOV_S32_float2int
-                        Instruction result(Mnemonic::FMOV, insn, 1962);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FMOV, insn, EncodingId::FMOV_S32_float2int);
+            #else
+                        Instruction result(Mnemonic::FMOV, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -32795,7 +32871,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x1E274000u: { // FRINTX_S_floatdp1
-                        Instruction result(Mnemonic::FRINTX, insn, 2056);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FRINTX, insn, EncodingId::FRINTX_S_floatdp1);
+            #else
+                        Instruction result(Mnemonic::FRINTX, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -32804,7 +32884,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x1E27C000u: { // FRINTI_S_floatdp1
-                        Instruction result(Mnemonic::FRINTI, insn, 2036);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FRINTI, insn, EncodingId::FRINTI_S_floatdp1);
+            #else
+                        Instruction result(Mnemonic::FRINTI, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -32813,7 +32897,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x1E280000u: { // FCVTPS_32S_float2int
-                        Instruction result(Mnemonic::FCVTPS, insn, 1790);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FCVTPS, insn, EncodingId::FCVTPS_32S_float2int);
+            #else
+                        Instruction result(Mnemonic::FCVTPS, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -32822,7 +32910,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x1E284000u: { // FRINT32Z_S_floatdp1
-                        Instruction result(Mnemonic::FRINT32Z, insn, 2020);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FRINT32Z, insn, EncodingId::FRINT32Z_S_floatdp1);
+            #else
+                        Instruction result(Mnemonic::FRINT32Z, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -32831,7 +32923,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x1E28C000u: { // FRINT32X_S_floatdp1
-                        Instruction result(Mnemonic::FRINT32X, insn, 2017);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FRINT32X, insn, EncodingId::FRINT32X_S_floatdp1);
+            #else
+                        Instruction result(Mnemonic::FRINT32X, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -32840,7 +32936,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x1E290000u: { // FCVTPU_32S_float2int
-                        Instruction result(Mnemonic::FCVTPU, insn, 1804);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FCVTPU, insn, EncodingId::FCVTPU_32S_float2int);
+            #else
+                        Instruction result(Mnemonic::FCVTPU, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -32849,7 +32949,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x1E294000u: { // FRINT64Z_S_floatdp1
-                        Instruction result(Mnemonic::FRINT64Z, insn, 2026);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FRINT64Z, insn, EncodingId::FRINT64Z_S_floatdp1);
+            #else
+                        Instruction result(Mnemonic::FRINT64Z, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -32858,7 +32962,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x1E29C000u: { // FRINT64X_S_floatdp1
-                        Instruction result(Mnemonic::FRINT64X, insn, 2023);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FRINT64X, insn, EncodingId::FRINT64X_S_floatdp1);
+            #else
+                        Instruction result(Mnemonic::FRINT64X, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -32867,7 +32975,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x1E300000u: { // FCVTMS_32S_float2int
-                        Instruction result(Mnemonic::FCVTMS, insn, 1731);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FCVTMS, insn, EncodingId::FCVTMS_32S_float2int);
+            #else
+                        Instruction result(Mnemonic::FCVTMS, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -32876,7 +32988,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x1E310000u: { // FCVTMU_32S_float2int
-                        Instruction result(Mnemonic::FCVTMU, insn, 1745);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FCVTMU, insn, EncodingId::FCVTMU_32S_float2int);
+            #else
+                        Instruction result(Mnemonic::FCVTMU, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -32885,7 +33001,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x1E380000u: { // FCVTZS_32S_float2int
-                        Instruction result(Mnemonic::FCVTZS, insn, 1828);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FCVTZS, insn, EncodingId::FCVTZS_32S_float2int);
+            #else
+                        Instruction result(Mnemonic::FCVTZS, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -32894,7 +33014,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x1E390000u: { // FCVTZU_32S_float2int
-                        Instruction result(Mnemonic::FCVTZU, insn, 1850);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FCVTZU, insn, EncodingId::FCVTZU_32S_float2int);
+            #else
+                        Instruction result(Mnemonic::FCVTZU, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -32903,7 +33027,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x1E600000u: { // FCVTNS_32D_float2int
-                        Instruction result(Mnemonic::FCVTNS, insn, 1764);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FCVTNS, insn, EncodingId::FCVTNS_32D_float2int);
+            #else
+                        Instruction result(Mnemonic::FCVTNS, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -32912,7 +33040,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x1E604000u: { // FMOV_D_floatdp1
-                        Instruction result(Mnemonic::FMOV, insn, 1958);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FMOV, insn, EncodingId::FMOV_D_floatdp1);
+            #else
+                        Instruction result(Mnemonic::FMOV, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -32921,7 +33053,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x1E60C000u: { // FABS_D_floatdp1
-                        Instruction result(Mnemonic::FABS, insn, 1612);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FABS, insn, EncodingId::FABS_D_floatdp1);
+            #else
+                        Instruction result(Mnemonic::FABS, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -32930,7 +33066,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x1E610000u: { // FCVTNU_32D_float2int
-                        Instruction result(Mnemonic::FCVTNU, insn, 1778);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FCVTNU, insn, EncodingId::FCVTNU_32D_float2int);
+            #else
+                        Instruction result(Mnemonic::FCVTNU, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -32939,7 +33079,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x1E614000u: { // FNEG_D_floatdp1
-                        Instruction result(Mnemonic::FNEG, insn, 1996);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FNEG, insn, EncodingId::FNEG_D_floatdp1);
+            #else
+                        Instruction result(Mnemonic::FNEG, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -32948,7 +33092,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x1E61C000u: { // FSQRT_D_floatdp1
-                        Instruction result(Mnemonic::FSQRT, insn, 2077);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FSQRT, insn, EncodingId::FSQRT_D_floatdp1);
+            #else
+                        Instruction result(Mnemonic::FSQRT, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -32957,7 +33105,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x1E620000u: { // SCVTF_D32_float2int
-                        Instruction result(Mnemonic::SCVTF, insn, 2151);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SCVTF, insn, EncodingId::SCVTF_D32_float2int);
+            #else
+                        Instruction result(Mnemonic::SCVTF, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -32966,7 +33118,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x1E624000u: { // FCVT_SD_floatdp1
-                        Instruction result(Mnemonic::FCVT, insn, 1695);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FCVT, insn, EncodingId::FCVT_SD_floatdp1);
+            #else
+                        Instruction result(Mnemonic::FCVT, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -32975,7 +33131,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x1E630000u: { // UCVTF_D32_float2int
-                        Instruction result(Mnemonic::UCVTF, insn, 2321);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::UCVTF, insn, EncodingId::UCVTF_D32_float2int);
+            #else
+                        Instruction result(Mnemonic::UCVTF, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -32984,7 +33144,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x1E634000u: { // BFCVT_BS_floatdp1
-                        Instruction result(Mnemonic::BFCVT, insn, 1558);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::BFCVT, insn, EncodingId::BFCVT_BS_floatdp1);
+            #else
+                        Instruction result(Mnemonic::BFCVT, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -32993,7 +33157,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x1E63C000u: { // FCVT_HD_floatdp1
-                        Instruction result(Mnemonic::FCVT, insn, 1694);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FCVT, insn, EncodingId::FCVT_HD_floatdp1);
+            #else
+                        Instruction result(Mnemonic::FCVT, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -33002,7 +33170,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x1E640000u: { // FCVTAS_32D_float2int
-                        Instruction result(Mnemonic::FCVTAS, insn, 1704);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FCVTAS, insn, EncodingId::FCVTAS_32D_float2int);
+            #else
+                        Instruction result(Mnemonic::FCVTAS, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -33011,7 +33183,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x1E644000u: { // FRINTN_D_floatdp1
-                        Instruction result(Mnemonic::FRINTN, insn, 2047);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FRINTN, insn, EncodingId::FRINTN_D_floatdp1);
+            #else
+                        Instruction result(Mnemonic::FRINTN, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -33020,7 +33196,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x1E64C000u: { // FRINTP_D_floatdp1
-                        Instruction result(Mnemonic::FRINTP, insn, 2052);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FRINTP, insn, EncodingId::FRINTP_D_floatdp1);
+            #else
+                        Instruction result(Mnemonic::FRINTP, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -33029,7 +33209,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x1E650000u: { // FCVTAU_32D_float2int
-                        Instruction result(Mnemonic::FCVTAU, insn, 1718);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FCVTAU, insn, EncodingId::FCVTAU_32D_float2int);
+            #else
+                        Instruction result(Mnemonic::FCVTAU, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -33038,7 +33222,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x1E654000u: { // FRINTM_D_floatdp1
-                        Instruction result(Mnemonic::FRINTM, insn, 2042);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FRINTM, insn, EncodingId::FRINTM_D_floatdp1);
+            #else
+                        Instruction result(Mnemonic::FRINTM, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -33047,7 +33235,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x1E65C000u: { // FRINTZ_D_floatdp1
-                        Instruction result(Mnemonic::FRINTZ, insn, 2062);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FRINTZ, insn, EncodingId::FRINTZ_D_floatdp1);
+            #else
+                        Instruction result(Mnemonic::FRINTZ, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -33056,7 +33248,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x1E664000u: { // FRINTA_D_floatdp1
-                        Instruction result(Mnemonic::FRINTA, insn, 2032);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FRINTA, insn, EncodingId::FRINTA_D_floatdp1);
+            #else
+                        Instruction result(Mnemonic::FRINTA, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -33065,7 +33261,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x1E674000u: { // FRINTX_D_floatdp1
-                        Instruction result(Mnemonic::FRINTX, insn, 2057);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FRINTX, insn, EncodingId::FRINTX_D_floatdp1);
+            #else
+                        Instruction result(Mnemonic::FRINTX, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -33074,7 +33274,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x1E67C000u: { // FRINTI_D_floatdp1
-                        Instruction result(Mnemonic::FRINTI, insn, 2037);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FRINTI, insn, EncodingId::FRINTI_D_floatdp1);
+            #else
+                        Instruction result(Mnemonic::FRINTI, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -33083,7 +33287,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x1E680000u: { // FCVTPS_32D_float2int
-                        Instruction result(Mnemonic::FCVTPS, insn, 1792);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FCVTPS, insn, EncodingId::FCVTPS_32D_float2int);
+            #else
+                        Instruction result(Mnemonic::FCVTPS, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -33092,7 +33300,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x1E684000u: { // FRINT32Z_D_floatdp1
-                        Instruction result(Mnemonic::FRINT32Z, insn, 2021);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FRINT32Z, insn, EncodingId::FRINT32Z_D_floatdp1);
+            #else
+                        Instruction result(Mnemonic::FRINT32Z, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -33101,7 +33313,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x1E68C000u: { // FRINT32X_D_floatdp1
-                        Instruction result(Mnemonic::FRINT32X, insn, 2018);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FRINT32X, insn, EncodingId::FRINT32X_D_floatdp1);
+            #else
+                        Instruction result(Mnemonic::FRINT32X, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -33110,7 +33326,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x1E690000u: { // FCVTPU_32D_float2int
-                        Instruction result(Mnemonic::FCVTPU, insn, 1806);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FCVTPU, insn, EncodingId::FCVTPU_32D_float2int);
+            #else
+                        Instruction result(Mnemonic::FCVTPU, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -33119,7 +33339,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x1E694000u: { // FRINT64Z_D_floatdp1
-                        Instruction result(Mnemonic::FRINT64Z, insn, 2027);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FRINT64Z, insn, EncodingId::FRINT64Z_D_floatdp1);
+            #else
+                        Instruction result(Mnemonic::FRINT64Z, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -33128,7 +33352,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x1E69C000u: { // FRINT64X_D_floatdp1
-                        Instruction result(Mnemonic::FRINT64X, insn, 2024);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FRINT64X, insn, EncodingId::FRINT64X_D_floatdp1);
+            #else
+                        Instruction result(Mnemonic::FRINT64X, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -33137,7 +33365,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x1E6A0000u: { // FCVTNS_sisd_32D
-                        Instruction result(Mnemonic::FCVTNS, insn, 1769);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FCVTNS, insn, EncodingId::FCVTNS_sisd_32D);
+            #else
+                        Instruction result(Mnemonic::FCVTNS, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -33146,7 +33378,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x1E6B0000u: { // FCVTNU_sisd_32D
-                        Instruction result(Mnemonic::FCVTNU, insn, 1783);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FCVTNU, insn, EncodingId::FCVTNU_sisd_32D);
+            #else
+                        Instruction result(Mnemonic::FCVTNU, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -33155,7 +33391,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x1E700000u: { // FCVTMS_32D_float2int
-                        Instruction result(Mnemonic::FCVTMS, insn, 1733);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FCVTMS, insn, EncodingId::FCVTMS_32D_float2int);
+            #else
+                        Instruction result(Mnemonic::FCVTMS, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -33164,7 +33404,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x1E710000u: { // FCVTMU_32D_float2int
-                        Instruction result(Mnemonic::FCVTMU, insn, 1747);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FCVTMU, insn, EncodingId::FCVTMU_32D_float2int);
+            #else
+                        Instruction result(Mnemonic::FCVTMU, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -33173,7 +33417,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x1E720000u: { // FCVTPS_sisd_32D
-                        Instruction result(Mnemonic::FCVTPS, insn, 1797);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FCVTPS, insn, EncodingId::FCVTPS_sisd_32D);
+            #else
+                        Instruction result(Mnemonic::FCVTPS, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -33182,7 +33430,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x1E730000u: { // FCVTPU_sisd_32D
-                        Instruction result(Mnemonic::FCVTPU, insn, 1811);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FCVTPU, insn, EncodingId::FCVTPU_sisd_32D);
+            #else
+                        Instruction result(Mnemonic::FCVTPU, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -33191,7 +33443,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x1E740000u: { // FCVTMS_sisd_32D
-                        Instruction result(Mnemonic::FCVTMS, insn, 1738);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FCVTMS, insn, EncodingId::FCVTMS_sisd_32D);
+            #else
+                        Instruction result(Mnemonic::FCVTMS, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -33200,7 +33456,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x1E750000u: { // FCVTMU_sisd_32D
-                        Instruction result(Mnemonic::FCVTMU, insn, 1752);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FCVTMU, insn, EncodingId::FCVTMU_sisd_32D);
+            #else
+                        Instruction result(Mnemonic::FCVTMU, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -33209,7 +33469,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x1E760000u: { // FCVTZS_sisd_32D
-                        Instruction result(Mnemonic::FCVTZS, insn, 1835);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FCVTZS, insn, EncodingId::FCVTZS_sisd_32D);
+            #else
+                        Instruction result(Mnemonic::FCVTZS, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -33218,7 +33482,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x1E770000u: { // FCVTZU_sisd_32D
-                        Instruction result(Mnemonic::FCVTZU, insn, 1857);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FCVTZU, insn, EncodingId::FCVTZU_sisd_32D);
+            #else
+                        Instruction result(Mnemonic::FCVTZU, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -33227,7 +33495,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x1E780000u: { // FCVTZS_32D_float2int
-                        Instruction result(Mnemonic::FCVTZS, insn, 1830);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FCVTZS, insn, EncodingId::FCVTZS_32D_float2int);
+            #else
+                        Instruction result(Mnemonic::FCVTZS, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -33236,7 +33508,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x1E790000u: { // FCVTZU_32D_float2int
-                        Instruction result(Mnemonic::FCVTZU, insn, 1852);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FCVTZU, insn, EncodingId::FCVTZU_32D_float2int);
+            #else
+                        Instruction result(Mnemonic::FCVTZU, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -33245,7 +33521,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x1E7A0000u: { // FCVTAS_sisd_32D
-                        Instruction result(Mnemonic::FCVTAS, insn, 1709);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FCVTAS, insn, EncodingId::FCVTAS_sisd_32D);
+            #else
+                        Instruction result(Mnemonic::FCVTAS, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -33254,7 +33534,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x1E7B0000u: { // FCVTAU_sisd_32D
-                        Instruction result(Mnemonic::FCVTAU, insn, 1723);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FCVTAU, insn, EncodingId::FCVTAU_sisd_32D);
+            #else
+                        Instruction result(Mnemonic::FCVTAU, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -33263,7 +33547,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x1E7C0000u: { // SCVTF_sisd_32D
-                        Instruction result(Mnemonic::SCVTF, insn, 2156);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SCVTF, insn, EncodingId::SCVTF_sisd_32D);
+            #else
+                        Instruction result(Mnemonic::SCVTF, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -33272,7 +33560,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x1E7D0000u: { // UCVTF_sisd_32D
-                        Instruction result(Mnemonic::UCVTF, insn, 2326);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::UCVTF, insn, EncodingId::UCVTF_sisd_32D);
+            #else
+                        Instruction result(Mnemonic::UCVTF, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -33281,7 +33573,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x1E7E0000u: { // FJCVTZS_32D_float2int
-                        Instruction result(Mnemonic::FJCVTZS, insn, 1869);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FJCVTZS, insn, EncodingId::FJCVTZS_32D_float2int);
+            #else
+                        Instruction result(Mnemonic::FJCVTZS, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -33290,7 +33586,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x1EE00000u: { // FCVTNS_32H_float2int
-                        Instruction result(Mnemonic::FCVTNS, insn, 1760);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FCVTNS, insn, EncodingId::FCVTNS_32H_float2int);
+            #else
+                        Instruction result(Mnemonic::FCVTNS, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -33299,7 +33599,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x1EE04000u: { // FMOV_H_floatdp1
-                        Instruction result(Mnemonic::FMOV, insn, 1956);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FMOV, insn, EncodingId::FMOV_H_floatdp1);
+            #else
+                        Instruction result(Mnemonic::FMOV, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -33308,7 +33612,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x1EE0C000u: { // FABS_H_floatdp1
-                        Instruction result(Mnemonic::FABS, insn, 1610);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FABS, insn, EncodingId::FABS_H_floatdp1);
+            #else
+                        Instruction result(Mnemonic::FABS, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -33317,7 +33625,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x1EE10000u: { // FCVTNU_32H_float2int
-                        Instruction result(Mnemonic::FCVTNU, insn, 1774);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FCVTNU, insn, EncodingId::FCVTNU_32H_float2int);
+            #else
+                        Instruction result(Mnemonic::FCVTNU, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -33326,7 +33638,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x1EE14000u: { // FNEG_H_floatdp1
-                        Instruction result(Mnemonic::FNEG, insn, 1994);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FNEG, insn, EncodingId::FNEG_H_floatdp1);
+            #else
+                        Instruction result(Mnemonic::FNEG, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -33335,7 +33651,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x1EE1C000u: { // FSQRT_H_floatdp1
-                        Instruction result(Mnemonic::FSQRT, insn, 2075);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FSQRT, insn, EncodingId::FSQRT_H_floatdp1);
+            #else
+                        Instruction result(Mnemonic::FSQRT, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -33344,7 +33664,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x1EE20000u: { // SCVTF_H32_float2int
-                        Instruction result(Mnemonic::SCVTF, insn, 2149);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SCVTF, insn, EncodingId::SCVTF_H32_float2int);
+            #else
+                        Instruction result(Mnemonic::SCVTF, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -33353,7 +33677,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x1EE24000u: { // FCVT_SH_floatdp1
-                        Instruction result(Mnemonic::FCVT, insn, 1690);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FCVT, insn, EncodingId::FCVT_SH_floatdp1);
+            #else
+                        Instruction result(Mnemonic::FCVT, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -33362,7 +33690,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x1EE2C000u: { // FCVT_DH_floatdp1
-                        Instruction result(Mnemonic::FCVT, insn, 1691);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FCVT, insn, EncodingId::FCVT_DH_floatdp1);
+            #else
+                        Instruction result(Mnemonic::FCVT, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -33371,7 +33703,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x1EE30000u: { // UCVTF_H32_float2int
-                        Instruction result(Mnemonic::UCVTF, insn, 2319);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::UCVTF, insn, EncodingId::UCVTF_H32_float2int);
+            #else
+                        Instruction result(Mnemonic::UCVTF, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -33380,7 +33716,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x1EE40000u: { // FCVTAS_32H_float2int
-                        Instruction result(Mnemonic::FCVTAS, insn, 1700);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FCVTAS, insn, EncodingId::FCVTAS_32H_float2int);
+            #else
+                        Instruction result(Mnemonic::FCVTAS, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -33389,7 +33729,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x1EE44000u: { // FRINTN_H_floatdp1
-                        Instruction result(Mnemonic::FRINTN, insn, 2045);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FRINTN, insn, EncodingId::FRINTN_H_floatdp1);
+            #else
+                        Instruction result(Mnemonic::FRINTN, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -33398,7 +33742,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x1EE4C000u: { // FRINTP_H_floatdp1
-                        Instruction result(Mnemonic::FRINTP, insn, 2050);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FRINTP, insn, EncodingId::FRINTP_H_floatdp1);
+            #else
+                        Instruction result(Mnemonic::FRINTP, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -33407,7 +33755,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x1EE50000u: { // FCVTAU_32H_float2int
-                        Instruction result(Mnemonic::FCVTAU, insn, 1714);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FCVTAU, insn, EncodingId::FCVTAU_32H_float2int);
+            #else
+                        Instruction result(Mnemonic::FCVTAU, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -33416,7 +33768,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x1EE54000u: { // FRINTM_H_floatdp1
-                        Instruction result(Mnemonic::FRINTM, insn, 2040);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FRINTM, insn, EncodingId::FRINTM_H_floatdp1);
+            #else
+                        Instruction result(Mnemonic::FRINTM, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -33425,7 +33781,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x1EE5C000u: { // FRINTZ_H_floatdp1
-                        Instruction result(Mnemonic::FRINTZ, insn, 2060);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FRINTZ, insn, EncodingId::FRINTZ_H_floatdp1);
+            #else
+                        Instruction result(Mnemonic::FRINTZ, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -33434,7 +33794,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x1EE60000u: { // FMOV_32H_float2int
-                        Instruction result(Mnemonic::FMOV, insn, 1959);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FMOV, insn, EncodingId::FMOV_32H_float2int);
+            #else
+                        Instruction result(Mnemonic::FMOV, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -33443,7 +33807,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x1EE64000u: { // FRINTA_H_floatdp1
-                        Instruction result(Mnemonic::FRINTA, insn, 2030);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FRINTA, insn, EncodingId::FRINTA_H_floatdp1);
+            #else
+                        Instruction result(Mnemonic::FRINTA, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -33452,7 +33820,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x1EE70000u: { // FMOV_H32_float2int
-                        Instruction result(Mnemonic::FMOV, insn, 1961);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FMOV, insn, EncodingId::FMOV_H32_float2int);
+            #else
+                        Instruction result(Mnemonic::FMOV, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -33461,7 +33833,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x1EE74000u: { // FRINTX_H_floatdp1
-                        Instruction result(Mnemonic::FRINTX, insn, 2055);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FRINTX, insn, EncodingId::FRINTX_H_floatdp1);
+            #else
+                        Instruction result(Mnemonic::FRINTX, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -33470,7 +33846,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x1EE7C000u: { // FRINTI_H_floatdp1
-                        Instruction result(Mnemonic::FRINTI, insn, 2035);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FRINTI, insn, EncodingId::FRINTI_H_floatdp1);
+            #else
+                        Instruction result(Mnemonic::FRINTI, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -33479,7 +33859,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x1EE80000u: { // FCVTPS_32H_float2int
-                        Instruction result(Mnemonic::FCVTPS, insn, 1788);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FCVTPS, insn, EncodingId::FCVTPS_32H_float2int);
+            #else
+                        Instruction result(Mnemonic::FCVTPS, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -33488,7 +33872,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x1EE90000u: { // FCVTPU_32H_float2int
-                        Instruction result(Mnemonic::FCVTPU, insn, 1802);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FCVTPU, insn, EncodingId::FCVTPU_32H_float2int);
+            #else
+                        Instruction result(Mnemonic::FCVTPU, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -33497,7 +33885,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x1EEA0000u: { // FCVTNS_sisd_32H
-                        Instruction result(Mnemonic::FCVTNS, insn, 1766);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FCVTNS, insn, EncodingId::FCVTNS_sisd_32H);
+            #else
+                        Instruction result(Mnemonic::FCVTNS, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -33506,7 +33898,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x1EEB0000u: { // FCVTNU_sisd_32H
-                        Instruction result(Mnemonic::FCVTNU, insn, 1780);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FCVTNU, insn, EncodingId::FCVTNU_sisd_32H);
+            #else
+                        Instruction result(Mnemonic::FCVTNU, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -33515,7 +33911,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x1EF00000u: { // FCVTMS_32H_float2int
-                        Instruction result(Mnemonic::FCVTMS, insn, 1729);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FCVTMS, insn, EncodingId::FCVTMS_32H_float2int);
+            #else
+                        Instruction result(Mnemonic::FCVTMS, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -33524,7 +33924,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x1EF10000u: { // FCVTMU_32H_float2int
-                        Instruction result(Mnemonic::FCVTMU, insn, 1743);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FCVTMU, insn, EncodingId::FCVTMU_32H_float2int);
+            #else
+                        Instruction result(Mnemonic::FCVTMU, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -33533,7 +33937,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x1EF20000u: { // FCVTPS_sisd_32H
-                        Instruction result(Mnemonic::FCVTPS, insn, 1794);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FCVTPS, insn, EncodingId::FCVTPS_sisd_32H);
+            #else
+                        Instruction result(Mnemonic::FCVTPS, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -33542,7 +33950,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x1EF30000u: { // FCVTPU_sisd_32H
-                        Instruction result(Mnemonic::FCVTPU, insn, 1808);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FCVTPU, insn, EncodingId::FCVTPU_sisd_32H);
+            #else
+                        Instruction result(Mnemonic::FCVTPU, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -33551,7 +33963,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x1EF40000u: { // FCVTMS_sisd_32H
-                        Instruction result(Mnemonic::FCVTMS, insn, 1735);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FCVTMS, insn, EncodingId::FCVTMS_sisd_32H);
+            #else
+                        Instruction result(Mnemonic::FCVTMS, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -33560,7 +33976,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x1EF50000u: { // FCVTMU_sisd_32H
-                        Instruction result(Mnemonic::FCVTMU, insn, 1749);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FCVTMU, insn, EncodingId::FCVTMU_sisd_32H);
+            #else
+                        Instruction result(Mnemonic::FCVTMU, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -33569,7 +33989,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x1EF60000u: { // FCVTZS_sisd_32H
-                        Instruction result(Mnemonic::FCVTZS, insn, 1832);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FCVTZS, insn, EncodingId::FCVTZS_sisd_32H);
+            #else
+                        Instruction result(Mnemonic::FCVTZS, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -33578,7 +34002,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x1EF70000u: { // FCVTZU_sisd_32H
-                        Instruction result(Mnemonic::FCVTZU, insn, 1854);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FCVTZU, insn, EncodingId::FCVTZU_sisd_32H);
+            #else
+                        Instruction result(Mnemonic::FCVTZU, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -33587,7 +34015,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x1EF80000u: { // FCVTZS_32H_float2int
-                        Instruction result(Mnemonic::FCVTZS, insn, 1826);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FCVTZS, insn, EncodingId::FCVTZS_32H_float2int);
+            #else
+                        Instruction result(Mnemonic::FCVTZS, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -33596,7 +34028,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x1EF90000u: { // FCVTZU_32H_float2int
-                        Instruction result(Mnemonic::FCVTZU, insn, 1848);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FCVTZU, insn, EncodingId::FCVTZU_32H_float2int);
+            #else
+                        Instruction result(Mnemonic::FCVTZU, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -33605,7 +34041,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x1EFA0000u: { // FCVTAS_sisd_32H
-                        Instruction result(Mnemonic::FCVTAS, insn, 1706);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FCVTAS, insn, EncodingId::FCVTAS_sisd_32H);
+            #else
+                        Instruction result(Mnemonic::FCVTAS, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -33614,7 +34054,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x1EFB0000u: { // FCVTAU_sisd_32H
-                        Instruction result(Mnemonic::FCVTAU, insn, 1720);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FCVTAU, insn, EncodingId::FCVTAU_sisd_32H);
+            #else
+                        Instruction result(Mnemonic::FCVTAU, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -33623,7 +34067,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x1EFC0000u: { // SCVTF_sisd_32H
-                        Instruction result(Mnemonic::SCVTF, insn, 2155);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SCVTF, insn, EncodingId::SCVTF_sisd_32H);
+            #else
+                        Instruction result(Mnemonic::SCVTF, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -33632,7 +34080,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x1EFD0000u: { // UCVTF_sisd_32H
-                        Instruction result(Mnemonic::UCVTF, insn, 2325);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::UCVTF, insn, EncodingId::UCVTF_sisd_32H);
+            #else
+                        Instruction result(Mnemonic::UCVTF, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -33641,7 +34093,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x4E284800u: { // AESE_B_cryptoaes
-                        Instruction result(Mnemonic::AESE, insn, 1551);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::AESE, insn, EncodingId::AESE_B_cryptoaes);
+            #else
+                        Instruction result(Mnemonic::AESE, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -33650,7 +34106,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x4E285800u: { // AESD_B_cryptoaes
-                        Instruction result(Mnemonic::AESD, insn, 1550);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::AESD, insn, EncodingId::AESD_B_cryptoaes);
+            #else
+                        Instruction result(Mnemonic::AESD, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -33659,7 +34119,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x4E286800u: { // AESMC_B_cryptoaes
-                        Instruction result(Mnemonic::AESMC, insn, 1553);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::AESMC, insn, EncodingId::AESMC_B_cryptoaes);
+            #else
+                        Instruction result(Mnemonic::AESMC, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -33668,7 +34132,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x4E287800u: { // AESIMC_B_cryptoaes
-                        Instruction result(Mnemonic::AESIMC, insn, 1552);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::AESIMC, insn, EncodingId::AESIMC_B_cryptoaes);
+            #else
+                        Instruction result(Mnemonic::AESIMC, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -33677,7 +34145,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x5E280800u: { // SHA1H_SS_cryptosha2
-                        Instruction result(Mnemonic::SHA1H, insn, 2162);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SHA1H, insn, EncodingId::SHA1H_SS_cryptosha2);
+            #else
+                        Instruction result(Mnemonic::SHA1H, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -33686,7 +34158,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x5E281800u: { // SHA1SU1_VV_cryptosha2
-                        Instruction result(Mnemonic::SHA1SU1, insn, 2166);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SHA1SU1, insn, EncodingId::SHA1SU1_VV_cryptosha2);
+            #else
+                        Instruction result(Mnemonic::SHA1SU1, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -33695,7 +34171,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x5E282800u: { // SHA256SU0_VV_cryptosha2
-                        Instruction result(Mnemonic::SHA256SU0, insn, 2169);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SHA256SU0, insn, EncodingId::SHA256SU0_VV_cryptosha2);
+            #else
+                        Instruction result(Mnemonic::SHA256SU0, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -33704,7 +34184,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x5E30C800u: { // FMAXNMP_asisdpair_only_H
-                        Instruction result(Mnemonic::FMAXNMP, insn, 1883);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FMAXNMP, insn, EncodingId::FMAXNMP_asisdpair_only_H);
+            #else
+                        Instruction result(Mnemonic::FMAXNMP, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -33713,7 +34197,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x5E30D800u: { // FADDP_asisdpair_only_H
-                        Instruction result(Mnemonic::FADDP, insn, 1626);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FADDP, insn, EncodingId::FADDP_asisdpair_only_H);
+            #else
+                        Instruction result(Mnemonic::FADDP, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -33722,7 +34210,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x5E30F800u: { // FMAXP_asisdpair_only_H
-                        Instruction result(Mnemonic::FMAXP, insn, 1889);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FMAXP, insn, EncodingId::FMAXP_asisdpair_only_H);
+            #else
+                        Instruction result(Mnemonic::FMAXP, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -33731,7 +34223,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x5E79A800u: { // FCVTNS_asisdmiscfp16_R
-                        Instruction result(Mnemonic::FCVTNS, insn, 1756);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FCVTNS, insn, EncodingId::FCVTNS_asisdmiscfp16_R);
+            #else
+                        Instruction result(Mnemonic::FCVTNS, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -33740,7 +34236,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x5E79B800u: { // FCVTMS_asisdmiscfp16_R
-                        Instruction result(Mnemonic::FCVTMS, insn, 1725);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FCVTMS, insn, EncodingId::FCVTMS_asisdmiscfp16_R);
+            #else
+                        Instruction result(Mnemonic::FCVTMS, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -33749,7 +34249,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x5E79C800u: { // FCVTAS_asisdmiscfp16_R
-                        Instruction result(Mnemonic::FCVTAS, insn, 1696);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FCVTAS, insn, EncodingId::FCVTAS_asisdmiscfp16_R);
+            #else
+                        Instruction result(Mnemonic::FCVTAS, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -33758,7 +34262,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x5E79D800u: { // SCVTF_asisdmiscfp16_R
-                        Instruction result(Mnemonic::SCVTF, insn, 2139);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SCVTF, insn, EncodingId::SCVTF_asisdmiscfp16_R);
+            #else
+                        Instruction result(Mnemonic::SCVTF, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -33767,7 +34275,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x5EB0C800u: { // FMINNMP_asisdpair_only_H
-                        Instruction result(Mnemonic::FMINNMP, insn, 1905);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FMINNMP, insn, EncodingId::FMINNMP_asisdpair_only_H);
+            #else
+                        Instruction result(Mnemonic::FMINNMP, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -33776,7 +34288,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x5EB0F800u: { // FMINP_asisdpair_only_H
-                        Instruction result(Mnemonic::FMINP, insn, 1911);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FMINP, insn, EncodingId::FMINP_asisdpair_only_H);
+            #else
+                        Instruction result(Mnemonic::FMINP, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -33785,7 +34301,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x5EE08800u: { // CMGT_asisdmisc_Z
-                        Instruction result(Mnemonic::CMGT, insn, 1583);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::CMGT, insn, EncodingId::CMGT_asisdmisc_Z);
+            #else
+                        Instruction result(Mnemonic::CMGT, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -33795,7 +34315,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x5EE09800u: { // CMEQ_asisdmisc_Z
-                        Instruction result(Mnemonic::CMEQ, insn, 1575);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::CMEQ, insn, EncodingId::CMEQ_asisdmisc_Z);
+            #else
+                        Instruction result(Mnemonic::CMEQ, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -33805,7 +34329,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x5EE0A800u: { // CMLT_asisdmisc_Z
-                        Instruction result(Mnemonic::CMLT, insn, 1591);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::CMLT, insn, EncodingId::CMLT_asisdmisc_Z);
+            #else
+                        Instruction result(Mnemonic::CMLT, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -33815,7 +34343,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x5EE0B800u: { // ABS_asisdmisc_R
-                        Instruction result(Mnemonic::ABS, insn, 1542);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::ABS, insn, EncodingId::ABS_asisdmisc_R);
+            #else
+                        Instruction result(Mnemonic::ABS, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -33824,7 +34356,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x5EF1B800u: { // ADDP_asisdpair_only
-                        Instruction result(Mnemonic::ADDP, insn, 1547);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::ADDP, insn, EncodingId::ADDP_asisdpair_only);
+            #else
+                        Instruction result(Mnemonic::ADDP, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -33833,7 +34369,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x5EF8C800u: { // FCMGT_asisdmiscfp16_FZ
-                        Instruction result(Mnemonic::FCMGT, insn, 1661);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FCMGT, insn, EncodingId::FCMGT_asisdmiscfp16_FZ);
+            #else
+                        Instruction result(Mnemonic::FCMGT, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -33843,7 +34383,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x5EF8D800u: { // FCMEQ_asisdmiscfp16_FZ
-                        Instruction result(Mnemonic::FCMEQ, insn, 1645);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FCMEQ, insn, EncodingId::FCMEQ_asisdmiscfp16_FZ);
+            #else
+                        Instruction result(Mnemonic::FCMEQ, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -33853,7 +34397,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x5EF8E800u: { // FCMLT_asisdmiscfp16_FZ
-                        Instruction result(Mnemonic::FCMLT, insn, 1671);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FCMLT, insn, EncodingId::FCMLT_asisdmiscfp16_FZ);
+            #else
+                        Instruction result(Mnemonic::FCMLT, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -33863,7 +34411,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x5EF9A800u: { // FCVTPS_asisdmiscfp16_R
-                        Instruction result(Mnemonic::FCVTPS, insn, 1784);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FCVTPS, insn, EncodingId::FCVTPS_asisdmiscfp16_R);
+            #else
+                        Instruction result(Mnemonic::FCVTPS, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -33872,7 +34424,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x5EF9B800u: { // FCVTZS_asisdmiscfp16_R
-                        Instruction result(Mnemonic::FCVTZS, insn, 1816);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FCVTZS, insn, EncodingId::FCVTZS_asisdmiscfp16_R);
+            #else
+                        Instruction result(Mnemonic::FCVTZS, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -33881,7 +34437,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x5EF9D800u: { // FRECPE_asisdmiscfp16_R
-                        Instruction result(Mnemonic::FRECPE, insn, 2006);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FRECPE, insn, EncodingId::FRECPE_asisdmiscfp16_R);
+            #else
+                        Instruction result(Mnemonic::FRECPE, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -33890,7 +34450,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x5EF9F800u: { // FRECPX_asisdmiscfp16_R
-                        Instruction result(Mnemonic::FRECPX, insn, 2014);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FRECPX, insn, EncodingId::FRECPX_asisdmiscfp16_R);
+            #else
+                        Instruction result(Mnemonic::FRECPX, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -33899,7 +34463,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x6E30C800u: { // FMAXNMV_asimdall_only_SD
-                        Instruction result(Mnemonic::FMAXNMV, insn, 1888);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FMAXNMV, insn, EncodingId::FMAXNMV_asimdall_only_SD);
+            #else
+                        Instruction result(Mnemonic::FMAXNMV, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -33908,7 +34476,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x6E30F800u: { // FMAXV_asimdall_only_SD
-                        Instruction result(Mnemonic::FMAXV, insn, 1894);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FMAXV, insn, EncodingId::FMAXV_asimdall_only_SD);
+            #else
+                        Instruction result(Mnemonic::FMAXV, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -33917,7 +34489,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x6EB0C800u: { // FMINNMV_asimdall_only_SD
-                        Instruction result(Mnemonic::FMINNMV, insn, 1910);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FMINNMV, insn, EncodingId::FMINNMV_asimdall_only_SD);
+            #else
+                        Instruction result(Mnemonic::FMINNMV, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -33926,7 +34502,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x6EB0F800u: { // FMINV_asimdall_only_SD
-                        Instruction result(Mnemonic::FMINV, insn, 1916);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FMINV, insn, EncodingId::FMINV_asimdall_only_SD);
+            #else
+                        Instruction result(Mnemonic::FMINV, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -33935,7 +34515,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x7E616800u: { // FCVTXN_asisdmisc_N
-                        Instruction result(Mnemonic::FCVTXN, insn, 1812);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FCVTXN, insn, EncodingId::FCVTXN_asisdmisc_N);
+            #else
+                        Instruction result(Mnemonic::FCVTXN, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -33944,7 +34528,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x7E79A800u: { // FCVTNU_asisdmiscfp16_R
-                        Instruction result(Mnemonic::FCVTNU, insn, 1770);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FCVTNU, insn, EncodingId::FCVTNU_asisdmiscfp16_R);
+            #else
+                        Instruction result(Mnemonic::FCVTNU, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -33953,7 +34541,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x7E79B800u: { // FCVTMU_asisdmiscfp16_R
-                        Instruction result(Mnemonic::FCVTMU, insn, 1739);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FCVTMU, insn, EncodingId::FCVTMU_asisdmiscfp16_R);
+            #else
+                        Instruction result(Mnemonic::FCVTMU, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -33962,7 +34554,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x7E79C800u: { // FCVTAU_asisdmiscfp16_R
-                        Instruction result(Mnemonic::FCVTAU, insn, 1710);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FCVTAU, insn, EncodingId::FCVTAU_asisdmiscfp16_R);
+            #else
+                        Instruction result(Mnemonic::FCVTAU, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -33971,7 +34567,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x7E79D800u: { // UCVTF_asisdmiscfp16_R
-                        Instruction result(Mnemonic::UCVTF, insn, 2309);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::UCVTF, insn, EncodingId::UCVTF_asisdmiscfp16_R);
+            #else
+                        Instruction result(Mnemonic::UCVTF, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -33980,7 +34580,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x7EE08800u: { // CMGE_asisdmisc_Z
-                        Instruction result(Mnemonic::CMGE, insn, 1579);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::CMGE, insn, EncodingId::CMGE_asisdmisc_Z);
+            #else
+                        Instruction result(Mnemonic::CMGE, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -33990,7 +34594,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x7EE09800u: { // CMLE_asisdmisc_Z
-                        Instruction result(Mnemonic::CMLE, insn, 1589);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::CMLE, insn, EncodingId::CMLE_asisdmisc_Z);
+            #else
+                        Instruction result(Mnemonic::CMLE, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -34000,7 +34608,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x7EE0B800u: { // NEG_asisdmisc_R
-                        Instruction result(Mnemonic::NEG, insn, 2111);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::NEG, insn, EncodingId::NEG_asisdmisc_R);
+            #else
+                        Instruction result(Mnemonic::NEG, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -34009,7 +34621,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x7EF8C800u: { // FCMGE_asisdmiscfp16_FZ
-                        Instruction result(Mnemonic::FCMGE, insn, 1653);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FCMGE, insn, EncodingId::FCMGE_asisdmiscfp16_FZ);
+            #else
+                        Instruction result(Mnemonic::FCMGE, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -34019,7 +34635,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x7EF8D800u: { // FCMLE_asisdmiscfp16_FZ
-                        Instruction result(Mnemonic::FCMLE, insn, 1667);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FCMLE, insn, EncodingId::FCMLE_asisdmiscfp16_FZ);
+            #else
+                        Instruction result(Mnemonic::FCMLE, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -34029,7 +34649,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x7EF9A800u: { // FCVTPU_asisdmiscfp16_R
-                        Instruction result(Mnemonic::FCVTPU, insn, 1798);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FCVTPU, insn, EncodingId::FCVTPU_asisdmiscfp16_R);
+            #else
+                        Instruction result(Mnemonic::FCVTPU, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -34038,7 +34662,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x7EF9B800u: { // FCVTZU_asisdmiscfp16_R
-                        Instruction result(Mnemonic::FCVTZU, insn, 1838);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FCVTZU, insn, EncodingId::FCVTZU_asisdmiscfp16_R);
+            #else
+                        Instruction result(Mnemonic::FCVTZU, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -34047,7 +34675,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x7EF9D800u: { // FRSQRTE_asisdmiscfp16_R
-                        Instruction result(Mnemonic::FRSQRTE, insn, 2063);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FRSQRTE, insn, EncodingId::FRSQRTE_asisdmiscfp16_R);
+            #else
+                        Instruction result(Mnemonic::FRSQRTE, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -34056,7 +34688,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x9E200000u: { // FCVTNS_64S_float2int
-                        Instruction result(Mnemonic::FCVTNS, insn, 1763);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FCVTNS, insn, EncodingId::FCVTNS_64S_float2int);
+            #else
+                        Instruction result(Mnemonic::FCVTNS, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -34065,7 +34701,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x9E210000u: { // FCVTNU_64S_float2int
-                        Instruction result(Mnemonic::FCVTNU, insn, 1777);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FCVTNU, insn, EncodingId::FCVTNU_64S_float2int);
+            #else
+                        Instruction result(Mnemonic::FCVTNU, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -34074,7 +34714,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x9E220000u: { // SCVTF_S64_float2int
-                        Instruction result(Mnemonic::SCVTF, insn, 2153);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SCVTF, insn, EncodingId::SCVTF_S64_float2int);
+            #else
+                        Instruction result(Mnemonic::SCVTF, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -34083,7 +34727,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x9E230000u: { // UCVTF_S64_float2int
-                        Instruction result(Mnemonic::UCVTF, insn, 2323);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::UCVTF, insn, EncodingId::UCVTF_S64_float2int);
+            #else
+                        Instruction result(Mnemonic::UCVTF, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -34092,7 +34740,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x9E240000u: { // FCVTAS_64S_float2int
-                        Instruction result(Mnemonic::FCVTAS, insn, 1703);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FCVTAS, insn, EncodingId::FCVTAS_64S_float2int);
+            #else
+                        Instruction result(Mnemonic::FCVTAS, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -34101,7 +34753,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x9E250000u: { // FCVTAU_64S_float2int
-                        Instruction result(Mnemonic::FCVTAU, insn, 1717);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FCVTAU, insn, EncodingId::FCVTAU_64S_float2int);
+            #else
+                        Instruction result(Mnemonic::FCVTAU, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -34110,7 +34766,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x9E280000u: { // FCVTPS_64S_float2int
-                        Instruction result(Mnemonic::FCVTPS, insn, 1791);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FCVTPS, insn, EncodingId::FCVTPS_64S_float2int);
+            #else
+                        Instruction result(Mnemonic::FCVTPS, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -34119,7 +34779,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x9E290000u: { // FCVTPU_64S_float2int
-                        Instruction result(Mnemonic::FCVTPU, insn, 1805);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FCVTPU, insn, EncodingId::FCVTPU_64S_float2int);
+            #else
+                        Instruction result(Mnemonic::FCVTPU, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -34128,7 +34792,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x9E2A0000u: { // FCVTNS_sisd_64S
-                        Instruction result(Mnemonic::FCVTNS, insn, 1768);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FCVTNS, insn, EncodingId::FCVTNS_sisd_64S);
+            #else
+                        Instruction result(Mnemonic::FCVTNS, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -34137,7 +34805,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x9E2B0000u: { // FCVTNU_sisd_64S
-                        Instruction result(Mnemonic::FCVTNU, insn, 1782);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FCVTNU, insn, EncodingId::FCVTNU_sisd_64S);
+            #else
+                        Instruction result(Mnemonic::FCVTNU, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -34146,7 +34818,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x9E300000u: { // FCVTMS_64S_float2int
-                        Instruction result(Mnemonic::FCVTMS, insn, 1732);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FCVTMS, insn, EncodingId::FCVTMS_64S_float2int);
+            #else
+                        Instruction result(Mnemonic::FCVTMS, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -34155,7 +34831,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x9E310000u: { // FCVTMU_64S_float2int
-                        Instruction result(Mnemonic::FCVTMU, insn, 1746);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FCVTMU, insn, EncodingId::FCVTMU_64S_float2int);
+            #else
+                        Instruction result(Mnemonic::FCVTMU, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -34164,7 +34844,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x9E320000u: { // FCVTPS_sisd_64S
-                        Instruction result(Mnemonic::FCVTPS, insn, 1796);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FCVTPS, insn, EncodingId::FCVTPS_sisd_64S);
+            #else
+                        Instruction result(Mnemonic::FCVTPS, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -34173,7 +34857,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x9E330000u: { // FCVTPU_sisd_64S
-                        Instruction result(Mnemonic::FCVTPU, insn, 1810);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FCVTPU, insn, EncodingId::FCVTPU_sisd_64S);
+            #else
+                        Instruction result(Mnemonic::FCVTPU, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -34182,7 +34870,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x9E340000u: { // FCVTMS_sisd_64S
-                        Instruction result(Mnemonic::FCVTMS, insn, 1737);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FCVTMS, insn, EncodingId::FCVTMS_sisd_64S);
+            #else
+                        Instruction result(Mnemonic::FCVTMS, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -34191,7 +34883,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x9E350000u: { // FCVTMU_sisd_64S
-                        Instruction result(Mnemonic::FCVTMU, insn, 1751);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FCVTMU, insn, EncodingId::FCVTMU_sisd_64S);
+            #else
+                        Instruction result(Mnemonic::FCVTMU, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -34200,7 +34896,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x9E360000u: { // FCVTZS_sisd_64S
-                        Instruction result(Mnemonic::FCVTZS, insn, 1834);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FCVTZS, insn, EncodingId::FCVTZS_sisd_64S);
+            #else
+                        Instruction result(Mnemonic::FCVTZS, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -34209,7 +34909,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x9E370000u: { // FCVTZU_sisd_64S
-                        Instruction result(Mnemonic::FCVTZU, insn, 1856);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FCVTZU, insn, EncodingId::FCVTZU_sisd_64S);
+            #else
+                        Instruction result(Mnemonic::FCVTZU, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -34218,7 +34922,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x9E380000u: { // FCVTZS_64S_float2int
-                        Instruction result(Mnemonic::FCVTZS, insn, 1829);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FCVTZS, insn, EncodingId::FCVTZS_64S_float2int);
+            #else
+                        Instruction result(Mnemonic::FCVTZS, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -34227,7 +34935,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x9E390000u: { // FCVTZU_64S_float2int
-                        Instruction result(Mnemonic::FCVTZU, insn, 1851);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FCVTZU, insn, EncodingId::FCVTZU_64S_float2int);
+            #else
+                        Instruction result(Mnemonic::FCVTZU, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -34236,7 +34948,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x9E3A0000u: { // FCVTAS_sisd_64S
-                        Instruction result(Mnemonic::FCVTAS, insn, 1708);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FCVTAS, insn, EncodingId::FCVTAS_sisd_64S);
+            #else
+                        Instruction result(Mnemonic::FCVTAS, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -34245,7 +34961,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x9E3B0000u: { // FCVTAU_sisd_64S
-                        Instruction result(Mnemonic::FCVTAU, insn, 1722);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FCVTAU, insn, EncodingId::FCVTAU_sisd_64S);
+            #else
+                        Instruction result(Mnemonic::FCVTAU, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -34254,7 +34974,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x9E3C0000u: { // SCVTF_sisd_64S
-                        Instruction result(Mnemonic::SCVTF, insn, 2158);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SCVTF, insn, EncodingId::SCVTF_sisd_64S);
+            #else
+                        Instruction result(Mnemonic::SCVTF, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -34263,7 +34987,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x9E3D0000u: { // UCVTF_sisd_64S
-                        Instruction result(Mnemonic::UCVTF, insn, 2328);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::UCVTF, insn, EncodingId::UCVTF_sisd_64S);
+            #else
+                        Instruction result(Mnemonic::UCVTF, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -34272,7 +35000,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x9E600000u: { // FCVTNS_64D_float2int
-                        Instruction result(Mnemonic::FCVTNS, insn, 1765);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FCVTNS, insn, EncodingId::FCVTNS_64D_float2int);
+            #else
+                        Instruction result(Mnemonic::FCVTNS, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -34281,7 +35013,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x9E610000u: { // FCVTNU_64D_float2int
-                        Instruction result(Mnemonic::FCVTNU, insn, 1779);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FCVTNU, insn, EncodingId::FCVTNU_64D_float2int);
+            #else
+                        Instruction result(Mnemonic::FCVTNU, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -34290,7 +35026,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x9E620000u: { // SCVTF_D64_float2int
-                        Instruction result(Mnemonic::SCVTF, insn, 2154);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SCVTF, insn, EncodingId::SCVTF_D64_float2int);
+            #else
+                        Instruction result(Mnemonic::SCVTF, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -34299,7 +35039,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x9E630000u: { // UCVTF_D64_float2int
-                        Instruction result(Mnemonic::UCVTF, insn, 2324);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::UCVTF, insn, EncodingId::UCVTF_D64_float2int);
+            #else
+                        Instruction result(Mnemonic::UCVTF, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -34308,7 +35052,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x9E640000u: { // FCVTAS_64D_float2int
-                        Instruction result(Mnemonic::FCVTAS, insn, 1705);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FCVTAS, insn, EncodingId::FCVTAS_64D_float2int);
+            #else
+                        Instruction result(Mnemonic::FCVTAS, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -34317,7 +35065,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x9E650000u: { // FCVTAU_64D_float2int
-                        Instruction result(Mnemonic::FCVTAU, insn, 1719);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FCVTAU, insn, EncodingId::FCVTAU_64D_float2int);
+            #else
+                        Instruction result(Mnemonic::FCVTAU, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -34326,7 +35078,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x9E660000u: { // FMOV_64D_float2int
-                        Instruction result(Mnemonic::FMOV, insn, 1967);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FMOV, insn, EncodingId::FMOV_64D_float2int);
+            #else
+                        Instruction result(Mnemonic::FMOV, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -34335,7 +35091,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x9E670000u: { // FMOV_D64_float2int
-                        Instruction result(Mnemonic::FMOV, insn, 1965);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FMOV, insn, EncodingId::FMOV_D64_float2int);
+            #else
+                        Instruction result(Mnemonic::FMOV, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -34344,7 +35104,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x9E680000u: { // FCVTPS_64D_float2int
-                        Instruction result(Mnemonic::FCVTPS, insn, 1793);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FCVTPS, insn, EncodingId::FCVTPS_64D_float2int);
+            #else
+                        Instruction result(Mnemonic::FCVTPS, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -34353,7 +35117,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x9E690000u: { // FCVTPU_64D_float2int
-                        Instruction result(Mnemonic::FCVTPU, insn, 1807);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FCVTPU, insn, EncodingId::FCVTPU_64D_float2int);
+            #else
+                        Instruction result(Mnemonic::FCVTPU, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -34362,7 +35130,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x9E700000u: { // FCVTMS_64D_float2int
-                        Instruction result(Mnemonic::FCVTMS, insn, 1734);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FCVTMS, insn, EncodingId::FCVTMS_64D_float2int);
+            #else
+                        Instruction result(Mnemonic::FCVTMS, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -34371,7 +35143,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x9E710000u: { // FCVTMU_64D_float2int
-                        Instruction result(Mnemonic::FCVTMU, insn, 1748);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FCVTMU, insn, EncodingId::FCVTMU_64D_float2int);
+            #else
+                        Instruction result(Mnemonic::FCVTMU, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -34380,7 +35156,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x9E780000u: { // FCVTZS_64D_float2int
-                        Instruction result(Mnemonic::FCVTZS, insn, 1831);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FCVTZS, insn, EncodingId::FCVTZS_64D_float2int);
+            #else
+                        Instruction result(Mnemonic::FCVTZS, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -34389,7 +35169,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x9E790000u: { // FCVTZU_64D_float2int
-                        Instruction result(Mnemonic::FCVTZU, insn, 1853);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FCVTZU, insn, EncodingId::FCVTZU_64D_float2int);
+            #else
+                        Instruction result(Mnemonic::FCVTZU, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -34398,7 +35182,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x9EAE0000u: { // FMOV_64VX_float2int
-                        Instruction result(Mnemonic::FMOV, insn, 1968);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FMOV, insn, EncodingId::FMOV_64VX_float2int);
+            #else
+                        Instruction result(Mnemonic::FMOV, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -34407,7 +35195,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x9EAF0000u: { // FMOV_V64I_float2int
-                        Instruction result(Mnemonic::FMOV, insn, 1966);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FMOV, insn, EncodingId::FMOV_V64I_float2int);
+            #else
+                        Instruction result(Mnemonic::FMOV, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -34416,7 +35208,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x9EE00000u: { // FCVTNS_64H_float2int
-                        Instruction result(Mnemonic::FCVTNS, insn, 1761);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FCVTNS, insn, EncodingId::FCVTNS_64H_float2int);
+            #else
+                        Instruction result(Mnemonic::FCVTNS, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -34425,7 +35221,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x9EE10000u: { // FCVTNU_64H_float2int
-                        Instruction result(Mnemonic::FCVTNU, insn, 1775);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FCVTNU, insn, EncodingId::FCVTNU_64H_float2int);
+            #else
+                        Instruction result(Mnemonic::FCVTNU, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -34434,7 +35234,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x9EE20000u: { // SCVTF_H64_float2int
-                        Instruction result(Mnemonic::SCVTF, insn, 2152);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SCVTF, insn, EncodingId::SCVTF_H64_float2int);
+            #else
+                        Instruction result(Mnemonic::SCVTF, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -34443,7 +35247,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x9EE30000u: { // UCVTF_H64_float2int
-                        Instruction result(Mnemonic::UCVTF, insn, 2322);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::UCVTF, insn, EncodingId::UCVTF_H64_float2int);
+            #else
+                        Instruction result(Mnemonic::UCVTF, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -34452,7 +35260,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x9EE40000u: { // FCVTAS_64H_float2int
-                        Instruction result(Mnemonic::FCVTAS, insn, 1701);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FCVTAS, insn, EncodingId::FCVTAS_64H_float2int);
+            #else
+                        Instruction result(Mnemonic::FCVTAS, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -34461,7 +35273,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x9EE50000u: { // FCVTAU_64H_float2int
-                        Instruction result(Mnemonic::FCVTAU, insn, 1715);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FCVTAU, insn, EncodingId::FCVTAU_64H_float2int);
+            #else
+                        Instruction result(Mnemonic::FCVTAU, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -34470,7 +35286,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x9EE60000u: { // FMOV_64H_float2int
-                        Instruction result(Mnemonic::FMOV, insn, 1960);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FMOV, insn, EncodingId::FMOV_64H_float2int);
+            #else
+                        Instruction result(Mnemonic::FMOV, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -34479,7 +35299,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x9EE70000u: { // FMOV_H64_float2int
-                        Instruction result(Mnemonic::FMOV, insn, 1964);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FMOV, insn, EncodingId::FMOV_H64_float2int);
+            #else
+                        Instruction result(Mnemonic::FMOV, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -34488,7 +35312,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x9EE80000u: { // FCVTPS_64H_float2int
-                        Instruction result(Mnemonic::FCVTPS, insn, 1789);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FCVTPS, insn, EncodingId::FCVTPS_64H_float2int);
+            #else
+                        Instruction result(Mnemonic::FCVTPS, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -34497,7 +35325,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x9EE90000u: { // FCVTPU_64H_float2int
-                        Instruction result(Mnemonic::FCVTPU, insn, 1803);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FCVTPU, insn, EncodingId::FCVTPU_64H_float2int);
+            #else
+                        Instruction result(Mnemonic::FCVTPU, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -34506,7 +35338,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x9EEA0000u: { // FCVTNS_sisd_64H
-                        Instruction result(Mnemonic::FCVTNS, insn, 1767);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FCVTNS, insn, EncodingId::FCVTNS_sisd_64H);
+            #else
+                        Instruction result(Mnemonic::FCVTNS, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -34515,7 +35351,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x9EEB0000u: { // FCVTNU_sisd_64H
-                        Instruction result(Mnemonic::FCVTNU, insn, 1781);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FCVTNU, insn, EncodingId::FCVTNU_sisd_64H);
+            #else
+                        Instruction result(Mnemonic::FCVTNU, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -34524,7 +35364,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x9EF00000u: { // FCVTMS_64H_float2int
-                        Instruction result(Mnemonic::FCVTMS, insn, 1730);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FCVTMS, insn, EncodingId::FCVTMS_64H_float2int);
+            #else
+                        Instruction result(Mnemonic::FCVTMS, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -34533,7 +35377,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x9EF10000u: { // FCVTMU_64H_float2int
-                        Instruction result(Mnemonic::FCVTMU, insn, 1744);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FCVTMU, insn, EncodingId::FCVTMU_64H_float2int);
+            #else
+                        Instruction result(Mnemonic::FCVTMU, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -34542,7 +35390,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x9EF20000u: { // FCVTPS_sisd_64H
-                        Instruction result(Mnemonic::FCVTPS, insn, 1795);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FCVTPS, insn, EncodingId::FCVTPS_sisd_64H);
+            #else
+                        Instruction result(Mnemonic::FCVTPS, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -34551,7 +35403,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x9EF30000u: { // FCVTPU_sisd_64H
-                        Instruction result(Mnemonic::FCVTPU, insn, 1809);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FCVTPU, insn, EncodingId::FCVTPU_sisd_64H);
+            #else
+                        Instruction result(Mnemonic::FCVTPU, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -34560,7 +35416,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x9EF40000u: { // FCVTMS_sisd_64H
-                        Instruction result(Mnemonic::FCVTMS, insn, 1736);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FCVTMS, insn, EncodingId::FCVTMS_sisd_64H);
+            #else
+                        Instruction result(Mnemonic::FCVTMS, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -34569,7 +35429,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x9EF50000u: { // FCVTMU_sisd_64H
-                        Instruction result(Mnemonic::FCVTMU, insn, 1750);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FCVTMU, insn, EncodingId::FCVTMU_sisd_64H);
+            #else
+                        Instruction result(Mnemonic::FCVTMU, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -34578,7 +35442,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x9EF60000u: { // FCVTZS_sisd_64H
-                        Instruction result(Mnemonic::FCVTZS, insn, 1833);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FCVTZS, insn, EncodingId::FCVTZS_sisd_64H);
+            #else
+                        Instruction result(Mnemonic::FCVTZS, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -34587,7 +35455,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x9EF70000u: { // FCVTZU_sisd_64H
-                        Instruction result(Mnemonic::FCVTZU, insn, 1855);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FCVTZU, insn, EncodingId::FCVTZU_sisd_64H);
+            #else
+                        Instruction result(Mnemonic::FCVTZU, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -34596,7 +35468,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x9EF80000u: { // FCVTZS_64H_float2int
-                        Instruction result(Mnemonic::FCVTZS, insn, 1827);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FCVTZS, insn, EncodingId::FCVTZS_64H_float2int);
+            #else
+                        Instruction result(Mnemonic::FCVTZS, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -34605,7 +35481,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x9EF90000u: { // FCVTZU_64H_float2int
-                        Instruction result(Mnemonic::FCVTZU, insn, 1849);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FCVTZU, insn, EncodingId::FCVTZU_64H_float2int);
+            #else
+                        Instruction result(Mnemonic::FCVTZU, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -34614,7 +35494,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x9EFA0000u: { // FCVTAS_sisd_64H
-                        Instruction result(Mnemonic::FCVTAS, insn, 1707);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FCVTAS, insn, EncodingId::FCVTAS_sisd_64H);
+            #else
+                        Instruction result(Mnemonic::FCVTAS, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -34623,7 +35507,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x9EFB0000u: { // FCVTAU_sisd_64H
-                        Instruction result(Mnemonic::FCVTAU, insn, 1721);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FCVTAU, insn, EncodingId::FCVTAU_sisd_64H);
+            #else
+                        Instruction result(Mnemonic::FCVTAU, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -34632,7 +35520,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x9EFC0000u: { // SCVTF_sisd_64H
-                        Instruction result(Mnemonic::SCVTF, insn, 2157);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SCVTF, insn, EncodingId::SCVTF_sisd_64H);
+            #else
+                        Instruction result(Mnemonic::SCVTF, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -34641,7 +35533,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x9EFD0000u: { // UCVTF_sisd_64H
-                        Instruction result(Mnemonic::UCVTF, insn, 2327);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::UCVTF, insn, EncodingId::UCVTF_sisd_64H);
+            #else
+                        Instruction result(Mnemonic::UCVTF, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -34650,7 +35546,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0xCEC08000u: { // SHA512SU0_VV2_cryptosha512_2
-                        Instruction result(Mnemonic::SHA512SU0, insn, 2173);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SHA512SU0, insn, EncodingId::SHA512SU0_VV2_cryptosha512_2);
+            #else
+                        Instruction result(Mnemonic::SHA512SU0, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -34659,7 +35559,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0xCEC08400u: { // SM4E_VV4_cryptosha512_2
-                        Instruction result(Mnemonic::SM4E, insn, 2190);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SM4E, insn, EncodingId::SM4E_VV4_cryptosha512_2);
+            #else
+                        Instruction result(Mnemonic::SM4E, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -34673,7 +35577,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
     // Switch for mask 0xFFFF0000u (24 patterns, 24 encodings)
     switch (insn & 0xFFFF0000u) {
         case 0x1E020000u: { // SCVTF_S32_float2fix
-                        Instruction result(Mnemonic::SCVTF, insn, 2145);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SCVTF, insn, EncodingId::SCVTF_S32_float2fix);
+            #else
+                        Instruction result(Mnemonic::SCVTF, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -34691,7 +35599,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x1E030000u: { // UCVTF_S32_float2fix
-                        Instruction result(Mnemonic::UCVTF, insn, 2315);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::UCVTF, insn, EncodingId::UCVTF_S32_float2fix);
+            #else
+                        Instruction result(Mnemonic::UCVTF, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -34709,7 +35621,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x1E180000u: { // FCVTZS_32S_float2fix
-                        Instruction result(Mnemonic::FCVTZS, insn, 1822);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FCVTZS, insn, EncodingId::FCVTZS_32S_float2fix);
+            #else
+                        Instruction result(Mnemonic::FCVTZS, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -34727,7 +35643,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x1E190000u: { // FCVTZU_32S_float2fix
-                        Instruction result(Mnemonic::FCVTZU, insn, 1844);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FCVTZU, insn, EncodingId::FCVTZU_32S_float2fix);
+            #else
+                        Instruction result(Mnemonic::FCVTZU, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -34745,7 +35665,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x1E420000u: { // SCVTF_D32_float2fix
-                        Instruction result(Mnemonic::SCVTF, insn, 2147);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SCVTF, insn, EncodingId::SCVTF_D32_float2fix);
+            #else
+                        Instruction result(Mnemonic::SCVTF, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -34763,7 +35687,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x1E430000u: { // UCVTF_D32_float2fix
-                        Instruction result(Mnemonic::UCVTF, insn, 2317);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::UCVTF, insn, EncodingId::UCVTF_D32_float2fix);
+            #else
+                        Instruction result(Mnemonic::UCVTF, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -34781,7 +35709,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x1E580000u: { // FCVTZS_32D_float2fix
-                        Instruction result(Mnemonic::FCVTZS, insn, 1824);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FCVTZS, insn, EncodingId::FCVTZS_32D_float2fix);
+            #else
+                        Instruction result(Mnemonic::FCVTZS, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -34799,7 +35731,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x1E590000u: { // FCVTZU_32D_float2fix
-                        Instruction result(Mnemonic::FCVTZU, insn, 1846);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FCVTZU, insn, EncodingId::FCVTZU_32D_float2fix);
+            #else
+                        Instruction result(Mnemonic::FCVTZU, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -34817,7 +35753,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x1EC20000u: { // SCVTF_H32_float2fix
-                        Instruction result(Mnemonic::SCVTF, insn, 2143);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SCVTF, insn, EncodingId::SCVTF_H32_float2fix);
+            #else
+                        Instruction result(Mnemonic::SCVTF, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -34835,7 +35775,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x1EC30000u: { // UCVTF_H32_float2fix
-                        Instruction result(Mnemonic::UCVTF, insn, 2313);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::UCVTF, insn, EncodingId::UCVTF_H32_float2fix);
+            #else
+                        Instruction result(Mnemonic::UCVTF, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -34853,7 +35797,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x1ED80000u: { // FCVTZS_32H_float2fix
-                        Instruction result(Mnemonic::FCVTZS, insn, 1820);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FCVTZS, insn, EncodingId::FCVTZS_32H_float2fix);
+            #else
+                        Instruction result(Mnemonic::FCVTZS, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -34871,7 +35819,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x1ED90000u: { // FCVTZU_32H_float2fix
-                        Instruction result(Mnemonic::FCVTZU, insn, 1842);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FCVTZU, insn, EncodingId::FCVTZU_32H_float2fix);
+            #else
+                        Instruction result(Mnemonic::FCVTZU, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -34889,7 +35841,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x9E020000u: { // SCVTF_S64_float2fix
-                        Instruction result(Mnemonic::SCVTF, insn, 2146);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SCVTF, insn, EncodingId::SCVTF_S64_float2fix);
+            #else
+                        Instruction result(Mnemonic::SCVTF, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -34907,7 +35863,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x9E030000u: { // UCVTF_S64_float2fix
-                        Instruction result(Mnemonic::UCVTF, insn, 2316);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::UCVTF, insn, EncodingId::UCVTF_S64_float2fix);
+            #else
+                        Instruction result(Mnemonic::UCVTF, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -34925,7 +35885,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x9E180000u: { // FCVTZS_64S_float2fix
-                        Instruction result(Mnemonic::FCVTZS, insn, 1823);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FCVTZS, insn, EncodingId::FCVTZS_64S_float2fix);
+            #else
+                        Instruction result(Mnemonic::FCVTZS, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -34943,7 +35907,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x9E190000u: { // FCVTZU_64S_float2fix
-                        Instruction result(Mnemonic::FCVTZU, insn, 1845);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FCVTZU, insn, EncodingId::FCVTZU_64S_float2fix);
+            #else
+                        Instruction result(Mnemonic::FCVTZU, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -34961,7 +35929,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x9E420000u: { // SCVTF_D64_float2fix
-                        Instruction result(Mnemonic::SCVTF, insn, 2148);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SCVTF, insn, EncodingId::SCVTF_D64_float2fix);
+            #else
+                        Instruction result(Mnemonic::SCVTF, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -34979,7 +35951,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x9E430000u: { // UCVTF_D64_float2fix
-                        Instruction result(Mnemonic::UCVTF, insn, 2318);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::UCVTF, insn, EncodingId::UCVTF_D64_float2fix);
+            #else
+                        Instruction result(Mnemonic::UCVTF, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -34997,7 +35973,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x9E580000u: { // FCVTZS_64D_float2fix
-                        Instruction result(Mnemonic::FCVTZS, insn, 1825);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FCVTZS, insn, EncodingId::FCVTZS_64D_float2fix);
+            #else
+                        Instruction result(Mnemonic::FCVTZS, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -35015,7 +35995,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x9E590000u: { // FCVTZU_64D_float2fix
-                        Instruction result(Mnemonic::FCVTZU, insn, 1847);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FCVTZU, insn, EncodingId::FCVTZU_64D_float2fix);
+            #else
+                        Instruction result(Mnemonic::FCVTZU, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -35033,7 +36017,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x9EC20000u: { // SCVTF_H64_float2fix
-                        Instruction result(Mnemonic::SCVTF, insn, 2144);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SCVTF, insn, EncodingId::SCVTF_H64_float2fix);
+            #else
+                        Instruction result(Mnemonic::SCVTF, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -35051,7 +36039,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x9EC30000u: { // UCVTF_H64_float2fix
-                        Instruction result(Mnemonic::UCVTF, insn, 2314);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::UCVTF, insn, EncodingId::UCVTF_H64_float2fix);
+            #else
+                        Instruction result(Mnemonic::UCVTF, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -35069,7 +36061,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x9ED80000u: { // FCVTZS_64H_float2fix
-                        Instruction result(Mnemonic::FCVTZS, insn, 1821);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FCVTZS, insn, EncodingId::FCVTZS_64H_float2fix);
+            #else
+                        Instruction result(Mnemonic::FCVTZS, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -35087,7 +36083,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x9ED90000u: { // FCVTZU_64H_float2fix
-                        Instruction result(Mnemonic::FCVTZU, insn, 1843);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FCVTZU, insn, EncodingId::FCVTZU_64H_float2fix);
+            #else
+                        Instruction result(Mnemonic::FCVTZU, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -35110,7 +36110,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
     // Switch for mask 0xFFF8FC00u (3 patterns, 3 encodings)
     switch (insn & 0xFFF8FC00u) {
         case 0x2F00E400u: { // MOVI_asimdimm_D_ds
-                        Instruction result(Mnemonic::MOVI, insn, 2103);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::MOVI, insn, EncodingId::MOVI_asimdimm_D_ds);
+            #else
+                        Instruction result(Mnemonic::MOVI, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -35126,7 +36130,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x6F00E400u: { // MOVI_asimdimm_D2_d
-                        Instruction result(Mnemonic::MOVI, insn, 2104);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::MOVI, insn, EncodingId::MOVI_asimdimm_D2_d);
+            #else
+                        Instruction result(Mnemonic::MOVI, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -35142,7 +36150,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x6F00F400u: { // FMOV_asimdimm_D2_d
-                        Instruction result(Mnemonic::FMOV, insn, 1955);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FMOV, insn, EncodingId::FMOV_asimdimm_D2_d);
+            #else
+                        Instruction result(Mnemonic::FMOV, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -35157,7 +36169,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
     switch (insn & 0xFFEFFC00u) {
         case 0x4E083C00u: { // MOV_UMOV_asimdins_X_x
             // Also matches: UMOV_asimdins_X_x (UMOV)
-                        Instruction result(Mnemonic::UMOV, insn, 2098);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::UMOV, insn, EncodingId::MOV_UMOV_asimdins_X_x);
+            #else
+                        Instruction result(Mnemonic::UMOV, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -35182,7 +36198,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
     // Switch for mask 0xFFE7FC00u (1 pattern, 1 encoding)
     switch (insn & 0xFFE7FC00u) {
         case 0x0E043C00u: { // MOV_UMOV_asimdins_W_w
-                        Instruction result(Mnemonic::UMOV, insn, 2097);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::UMOV, insn, EncodingId::MOV_UMOV_asimdins_W_w);
+            #else
+                        Instruction result(Mnemonic::UMOV, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -35207,7 +36227,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
     // Switch for mask 0xFFE0FC1Fu (12 patterns, 12 encodings)
     switch (insn & 0xFFE0FC1Fu) {
         case 0x1E202000u: { // FCMP_S_floatcmp
-                        Instruction result(Mnemonic::FCMP, insn, 1677);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FCMP, insn, EncodingId::FCMP_S_floatcmp);
+            #else
+                        Instruction result(Mnemonic::FCMP, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -35216,7 +36240,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x1E202008u: { // FCMP_SZ_floatcmp
-                        Instruction result(Mnemonic::FCMP, insn, 1678);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FCMP, insn, EncodingId::FCMP_SZ_floatcmp);
+            #else
+                        Instruction result(Mnemonic::FCMP, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -35225,7 +36253,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x1E202010u: { // FCMPE_S_floatcmp
-                        Instruction result(Mnemonic::FCMPE, insn, 1683);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FCMPE, insn, EncodingId::FCMPE_S_floatcmp);
+            #else
+                        Instruction result(Mnemonic::FCMPE, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -35234,7 +36266,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x1E202018u: { // FCMPE_SZ_floatcmp
-                        Instruction result(Mnemonic::FCMPE, insn, 1684);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FCMPE, insn, EncodingId::FCMPE_SZ_floatcmp);
+            #else
+                        Instruction result(Mnemonic::FCMPE, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -35243,7 +36279,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x1E602000u: { // FCMP_D_floatcmp
-                        Instruction result(Mnemonic::FCMP, insn, 1679);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FCMP, insn, EncodingId::FCMP_D_floatcmp);
+            #else
+                        Instruction result(Mnemonic::FCMP, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -35252,7 +36292,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x1E602008u: { // FCMP_DZ_floatcmp
-                        Instruction result(Mnemonic::FCMP, insn, 1680);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FCMP, insn, EncodingId::FCMP_DZ_floatcmp);
+            #else
+                        Instruction result(Mnemonic::FCMP, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -35261,7 +36305,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x1E602010u: { // FCMPE_D_floatcmp
-                        Instruction result(Mnemonic::FCMPE, insn, 1685);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FCMPE, insn, EncodingId::FCMPE_D_floatcmp);
+            #else
+                        Instruction result(Mnemonic::FCMPE, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -35270,7 +36318,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x1E602018u: { // FCMPE_DZ_floatcmp
-                        Instruction result(Mnemonic::FCMPE, insn, 1686);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FCMPE, insn, EncodingId::FCMPE_DZ_floatcmp);
+            #else
+                        Instruction result(Mnemonic::FCMPE, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -35279,7 +36331,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x1EE02000u: { // FCMP_H_floatcmp
-                        Instruction result(Mnemonic::FCMP, insn, 1675);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FCMP, insn, EncodingId::FCMP_H_floatcmp);
+            #else
+                        Instruction result(Mnemonic::FCMP, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -35288,7 +36344,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x1EE02008u: { // FCMP_HZ_floatcmp
-                        Instruction result(Mnemonic::FCMP, insn, 1676);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FCMP, insn, EncodingId::FCMP_HZ_floatcmp);
+            #else
+                        Instruction result(Mnemonic::FCMP, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -35297,7 +36357,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x1EE02010u: { // FCMPE_H_floatcmp
-                        Instruction result(Mnemonic::FCMPE, insn, 1681);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FCMPE, insn, EncodingId::FCMPE_H_floatcmp);
+            #else
+                        Instruction result(Mnemonic::FCMPE, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -35306,7 +36370,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x1EE02018u: { // FCMPE_HZ_floatcmp
-                        Instruction result(Mnemonic::FCMPE, insn, 1682);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FCMPE, insn, EncodingId::FCMPE_HZ_floatcmp);
+            #else
+                        Instruction result(Mnemonic::FCMPE, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -35320,7 +36388,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
     // Switch for mask 0xFFE0FC00u (81 patterns, 83 encodings)
     switch (insn & 0xFFE0FC00u) {
         case 0x0E002C00u: { // SMOV_asimdins_W_w
-                        Instruction result(Mnemonic::SMOV, insn, 2203);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SMOV, insn, EncodingId::SMOV_asimdins_W_w);
+            #else
+                        Instruction result(Mnemonic::SMOV, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -35340,7 +36412,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x0E003C00u: { // UMOV_asimdins_W_w
-                        Instruction result(Mnemonic::UMOV, insn, 2344);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::UMOV, insn, EncodingId::UMOV_asimdins_W_w);
+            #else
+                        Instruction result(Mnemonic::UMOV, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -35360,7 +36436,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x0E00C400u: { // FMLALLBB_asimdsame2_G
-                        Instruction result(Mnemonic::FMLALLBB, insn, 1935);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FMLALLBB, insn, EncodingId::FMLALLBB_asimdsame2_G);
+            #else
+                        Instruction result(Mnemonic::FMLALLBB, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -35370,7 +36450,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x0E40C400u: { // FMLALLBT_asimdsame2_G
-                        Instruction result(Mnemonic::FMLALLBT, insn, 1936);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FMLALLBT, insn, EncodingId::FMLALLBT_asimdsame2_G);
+            #else
+                        Instruction result(Mnemonic::FMLALLBT, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -35380,7 +36464,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x0EC0FC00u: { // FMLALB_asimdsame2_J
-                        Instruction result(Mnemonic::FMLALB, insn, 1929);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FMLALB, insn, EncodingId::FMLALB_asimdsame2_J);
+            #else
+                        Instruction result(Mnemonic::FMLALB, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -35390,7 +36478,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x1E200800u: { // FMUL_S_floatdp2
-                        Instruction result(Mnemonic::FMUL, insn, 1982);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FMUL, insn, EncodingId::FMUL_S_floatdp2);
+            #else
+                        Instruction result(Mnemonic::FMUL, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -35400,7 +36492,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x1E201800u: { // FDIV_S_floatdp2
-                        Instruction result(Mnemonic::FDIV, insn, 1861);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FDIV, insn, EncodingId::FDIV_S_floatdp2);
+            #else
+                        Instruction result(Mnemonic::FDIV, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -35410,7 +36506,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x1E202800u: { // FADD_S_floatdp2
-                        Instruction result(Mnemonic::FADD, insn, 1624);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FADD, insn, EncodingId::FADD_S_floatdp2);
+            #else
+                        Instruction result(Mnemonic::FADD, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -35420,7 +36520,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x1E203800u: { // FSUB_S_floatdp2
-                        Instruction result(Mnemonic::FSUB, insn, 2081);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FSUB, insn, EncodingId::FSUB_S_floatdp2);
+            #else
+                        Instruction result(Mnemonic::FSUB, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -35430,7 +36534,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x1E204800u: { // FMAX_S_floatdp2
-                        Instruction result(Mnemonic::FMAX, insn, 1876);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FMAX, insn, EncodingId::FMAX_S_floatdp2);
+            #else
+                        Instruction result(Mnemonic::FMAX, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -35440,7 +36548,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x1E205800u: { // FMIN_S_floatdp2
-                        Instruction result(Mnemonic::FMIN, insn, 1898);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FMIN, insn, EncodingId::FMIN_S_floatdp2);
+            #else
+                        Instruction result(Mnemonic::FMIN, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -35450,7 +36562,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x1E206800u: { // FMAXNM_S_floatdp2
-                        Instruction result(Mnemonic::FMAXNM, insn, 1881);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FMAXNM, insn, EncodingId::FMAXNM_S_floatdp2);
+            #else
+                        Instruction result(Mnemonic::FMAXNM, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -35460,7 +36576,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x1E207800u: { // FMINNM_S_floatdp2
-                        Instruction result(Mnemonic::FMINNM, insn, 1903);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FMINNM, insn, EncodingId::FMINNM_S_floatdp2);
+            #else
+                        Instruction result(Mnemonic::FMINNM, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -35470,7 +36590,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x1E208800u: { // FNMUL_S_floatdp2
-                        Instruction result(Mnemonic::FNMUL, insn, 2004);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FNMUL, insn, EncodingId::FNMUL_S_floatdp2);
+            #else
+                        Instruction result(Mnemonic::FNMUL, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -35480,7 +36604,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x1E600800u: { // FMUL_D_floatdp2
-                        Instruction result(Mnemonic::FMUL, insn, 1983);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FMUL, insn, EncodingId::FMUL_D_floatdp2);
+            #else
+                        Instruction result(Mnemonic::FMUL, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -35490,7 +36618,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x1E601800u: { // FDIV_D_floatdp2
-                        Instruction result(Mnemonic::FDIV, insn, 1862);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FDIV, insn, EncodingId::FDIV_D_floatdp2);
+            #else
+                        Instruction result(Mnemonic::FDIV, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -35500,7 +36632,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x1E602800u: { // FADD_D_floatdp2
-                        Instruction result(Mnemonic::FADD, insn, 1625);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FADD, insn, EncodingId::FADD_D_floatdp2);
+            #else
+                        Instruction result(Mnemonic::FADD, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -35510,7 +36646,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x1E603800u: { // FSUB_D_floatdp2
-                        Instruction result(Mnemonic::FSUB, insn, 2082);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FSUB, insn, EncodingId::FSUB_D_floatdp2);
+            #else
+                        Instruction result(Mnemonic::FSUB, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -35520,7 +36660,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x1E604800u: { // FMAX_D_floatdp2
-                        Instruction result(Mnemonic::FMAX, insn, 1877);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FMAX, insn, EncodingId::FMAX_D_floatdp2);
+            #else
+                        Instruction result(Mnemonic::FMAX, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -35530,7 +36674,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x1E605800u: { // FMIN_D_floatdp2
-                        Instruction result(Mnemonic::FMIN, insn, 1899);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FMIN, insn, EncodingId::FMIN_D_floatdp2);
+            #else
+                        Instruction result(Mnemonic::FMIN, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -35540,7 +36688,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x1E606800u: { // FMAXNM_D_floatdp2
-                        Instruction result(Mnemonic::FMAXNM, insn, 1882);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FMAXNM, insn, EncodingId::FMAXNM_D_floatdp2);
+            #else
+                        Instruction result(Mnemonic::FMAXNM, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -35550,7 +36702,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x1E607800u: { // FMINNM_D_floatdp2
-                        Instruction result(Mnemonic::FMINNM, insn, 1904);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FMINNM, insn, EncodingId::FMINNM_D_floatdp2);
+            #else
+                        Instruction result(Mnemonic::FMINNM, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -35560,7 +36716,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x1E608800u: { // FNMUL_D_floatdp2
-                        Instruction result(Mnemonic::FNMUL, insn, 2005);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FNMUL, insn, EncodingId::FNMUL_D_floatdp2);
+            #else
+                        Instruction result(Mnemonic::FNMUL, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -35570,7 +36730,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x1EE00800u: { // FMUL_H_floatdp2
-                        Instruction result(Mnemonic::FMUL, insn, 1981);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FMUL, insn, EncodingId::FMUL_H_floatdp2);
+            #else
+                        Instruction result(Mnemonic::FMUL, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -35580,7 +36744,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x1EE01800u: { // FDIV_H_floatdp2
-                        Instruction result(Mnemonic::FDIV, insn, 1860);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FDIV, insn, EncodingId::FDIV_H_floatdp2);
+            #else
+                        Instruction result(Mnemonic::FDIV, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -35590,7 +36758,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x1EE02800u: { // FADD_H_floatdp2
-                        Instruction result(Mnemonic::FADD, insn, 1623);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FADD, insn, EncodingId::FADD_H_floatdp2);
+            #else
+                        Instruction result(Mnemonic::FADD, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -35600,7 +36772,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x1EE03800u: { // FSUB_H_floatdp2
-                        Instruction result(Mnemonic::FSUB, insn, 2080);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FSUB, insn, EncodingId::FSUB_H_floatdp2);
+            #else
+                        Instruction result(Mnemonic::FSUB, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -35610,7 +36786,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x1EE04800u: { // FMAX_H_floatdp2
-                        Instruction result(Mnemonic::FMAX, insn, 1875);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FMAX, insn, EncodingId::FMAX_H_floatdp2);
+            #else
+                        Instruction result(Mnemonic::FMAX, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -35620,7 +36800,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x1EE05800u: { // FMIN_H_floatdp2
-                        Instruction result(Mnemonic::FMIN, insn, 1897);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FMIN, insn, EncodingId::FMIN_H_floatdp2);
+            #else
+                        Instruction result(Mnemonic::FMIN, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -35630,7 +36814,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x1EE06800u: { // FMAXNM_H_floatdp2
-                        Instruction result(Mnemonic::FMAXNM, insn, 1880);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FMAXNM, insn, EncodingId::FMAXNM_H_floatdp2);
+            #else
+                        Instruction result(Mnemonic::FMAXNM, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -35640,7 +36828,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x1EE07800u: { // FMINNM_H_floatdp2
-                        Instruction result(Mnemonic::FMINNM, insn, 1902);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FMINNM, insn, EncodingId::FMINNM_H_floatdp2);
+            #else
+                        Instruction result(Mnemonic::FMINNM, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -35650,7 +36842,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x1EE08800u: { // FNMUL_H_floatdp2
-                        Instruction result(Mnemonic::FNMUL, insn, 2003);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FNMUL, insn, EncodingId::FNMUL_H_floatdp2);
+            #else
+                        Instruction result(Mnemonic::FNMUL, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -35661,7 +36857,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
         }
         case 0x4E001C00u: { // INS_asimdins_IR_r
             // Also matches: MOV_INS_asimdins_IR_r (INS)
-                        Instruction result(Mnemonic::INS, insn, 2084);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::INS, insn, EncodingId::INS_asimdins_IR_r);
+            #else
+                        Instruction result(Mnemonic::INS, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -35682,7 +36882,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x4E002C00u: { // SMOV_asimdins_X_x
-                        Instruction result(Mnemonic::SMOV, insn, 2204);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SMOV, insn, EncodingId::SMOV_asimdins_X_x);
+            #else
+                        Instruction result(Mnemonic::SMOV, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -35702,7 +36906,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x4E00C400u: { // FMLALLTB_asimdsame2_G
-                        Instruction result(Mnemonic::FMLALLTB, insn, 1937);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FMLALLTB, insn, EncodingId::FMLALLTB_asimdsame2_G);
+            #else
+                        Instruction result(Mnemonic::FMLALLTB, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -35712,7 +36920,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x4E40C400u: { // FMLALLTT_asimdsame2_G
-                        Instruction result(Mnemonic::FMLALLTT, insn, 1938);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FMLALLTT, insn, EncodingId::FMLALLTT_asimdsame2_G);
+            #else
+                        Instruction result(Mnemonic::FMLALLTT, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -35722,7 +36934,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x4E40EC00u: { // FMMLA_asimd_FP16FP32
-                        Instruction result(Mnemonic::FMMLA, insn, 1950);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FMMLA, insn, EncodingId::FMMLA_asimd_FP16FP32);
+            #else
+                        Instruction result(Mnemonic::FMMLA, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -35732,7 +36948,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x4E80A400u: { // SMMLA_asimdsame2_G
-                        Instruction result(Mnemonic::SMMLA, insn, 2202);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SMMLA, insn, EncodingId::SMMLA_asimdsame2_G);
+            #else
+                        Instruction result(Mnemonic::SMMLA, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -35742,7 +36962,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x4E80AC00u: { // USMMLA_asimdsame2_G
-                        Instruction result(Mnemonic::USMMLA, insn, 2380);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::USMMLA, insn, EncodingId::USMMLA_asimdsame2_G);
+            #else
+                        Instruction result(Mnemonic::USMMLA, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -35752,7 +36976,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x4EC0EC00u: { // FMMLA_asimd_FP16FP16
-                        Instruction result(Mnemonic::FMMLA, insn, 1949);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FMMLA, insn, EncodingId::FMMLA_asimd_FP16FP16);
+            #else
+                        Instruction result(Mnemonic::FMMLA, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -35762,7 +36990,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x4EC0FC00u: { // FMLALT_asimdsame2_J
-                        Instruction result(Mnemonic::FMLALT, insn, 1930);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FMLALT, insn, EncodingId::FMLALT_asimdsame2_J);
+            #else
+                        Instruction result(Mnemonic::FMLALT, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -35772,7 +37004,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x5E000000u: { // SHA1C_QSV_cryptosha3
-                        Instruction result(Mnemonic::SHA1C, insn, 2161);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SHA1C, insn, EncodingId::SHA1C_QSV_cryptosha3);
+            #else
+                        Instruction result(Mnemonic::SHA1C, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -35783,7 +37019,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
         }
         case 0x5E000400u: { // DUP_asisdone_only
             // Also matches: MOV_DUP_asisdone_only (DUP)
-                        Instruction result(Mnemonic::DUP, insn, 1596);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::DUP, insn, EncodingId::DUP_asisdone_only);
+            #else
+                        Instruction result(Mnemonic::DUP, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -35809,7 +37049,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x5E001000u: { // SHA1P_QSV_cryptosha3
-                        Instruction result(Mnemonic::SHA1P, insn, 2164);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SHA1P, insn, EncodingId::SHA1P_QSV_cryptosha3);
+            #else
+                        Instruction result(Mnemonic::SHA1P, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -35819,7 +37063,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x5E002000u: { // SHA1M_QSV_cryptosha3
-                        Instruction result(Mnemonic::SHA1M, insn, 2163);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SHA1M, insn, EncodingId::SHA1M_QSV_cryptosha3);
+            #else
+                        Instruction result(Mnemonic::SHA1M, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -35829,7 +37077,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x5E003000u: { // SHA1SU0_VVV_cryptosha3
-                        Instruction result(Mnemonic::SHA1SU0, insn, 2165);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SHA1SU0, insn, EncodingId::SHA1SU0_VVV_cryptosha3);
+            #else
+                        Instruction result(Mnemonic::SHA1SU0, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -35839,7 +37091,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x5E004000u: { // SHA256H_QQV_cryptosha3
-                        Instruction result(Mnemonic::SHA256H, insn, 2168);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SHA256H, insn, EncodingId::SHA256H_QQV_cryptosha3);
+            #else
+                        Instruction result(Mnemonic::SHA256H, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -35849,7 +37105,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x5E005000u: { // SHA256H2_QQV_cryptosha3
-                        Instruction result(Mnemonic::SHA256H2, insn, 2167);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SHA256H2, insn, EncodingId::SHA256H2_QQV_cryptosha3);
+            #else
+                        Instruction result(Mnemonic::SHA256H2, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -35859,7 +37119,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x5E006000u: { // SHA256SU1_VVV_cryptosha3
-                        Instruction result(Mnemonic::SHA256SU1, insn, 2170);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SHA256SU1, insn, EncodingId::SHA256SU1_VVV_cryptosha3);
+            #else
+                        Instruction result(Mnemonic::SHA256SU1, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -35869,7 +37133,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x5E401C00u: { // FMULX_asisdsamefp16_only
-                        Instruction result(Mnemonic::FMULX, insn, 1988);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FMULX, insn, EncodingId::FMULX_asisdsamefp16_only);
+            #else
+                        Instruction result(Mnemonic::FMULX, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -35879,7 +37147,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x5E402400u: { // FCMEQ_asisdsamefp16_only
-                        Instruction result(Mnemonic::FCMEQ, insn, 1641);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FCMEQ, insn, EncodingId::FCMEQ_asisdsamefp16_only);
+            #else
+                        Instruction result(Mnemonic::FCMEQ, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -35889,7 +37161,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x5E403C00u: { // FRECPS_asisdsamefp16_only
-                        Instruction result(Mnemonic::FRECPS, insn, 2010);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FRECPS, insn, EncodingId::FRECPS_asisdsamefp16_only);
+            #else
+                        Instruction result(Mnemonic::FRECPS, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -35899,7 +37175,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x5EC03C00u: { // FRSQRTS_asisdsamefp16_only
-                        Instruction result(Mnemonic::FRSQRTS, insn, 2067);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FRSQRTS, insn, EncodingId::FRSQRTS_asisdsamefp16_only);
+            #else
+                        Instruction result(Mnemonic::FRSQRTS, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -35909,7 +37189,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x5EE03400u: { // CMGT_asisdsame_only
-                        Instruction result(Mnemonic::CMGT, insn, 1581);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::CMGT, insn, EncodingId::CMGT_asisdsame_only);
+            #else
+                        Instruction result(Mnemonic::CMGT, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -35919,7 +37203,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x5EE03C00u: { // CMGE_asisdsame_only
-                        Instruction result(Mnemonic::CMGE, insn, 1577);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::CMGE, insn, EncodingId::CMGE_asisdsame_only);
+            #else
+                        Instruction result(Mnemonic::CMGE, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -35929,7 +37217,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x5EE04400u: { // SSHL_asisdsame_only
-                        Instruction result(Mnemonic::SSHL, insn, 2272);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SSHL, insn, EncodingId::SSHL_asisdsame_only);
+            #else
+                        Instruction result(Mnemonic::SSHL, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -35939,7 +37231,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x5EE05400u: { // SRSHL_asisdsame_only
-                        Instruction result(Mnemonic::SRSHL, insn, 2266);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SRSHL, insn, EncodingId::SRSHL_asisdsame_only);
+            #else
+                        Instruction result(Mnemonic::SRSHL, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -35949,7 +37245,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x5EE08400u: { // ADD_asisdsame_only
-                        Instruction result(Mnemonic::ADD, insn, 1544);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::ADD, insn, EncodingId::ADD_asisdsame_only);
+            #else
+                        Instruction result(Mnemonic::ADD, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -35959,7 +37259,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x5EE08C00u: { // CMTST_asisdsame_only
-                        Instruction result(Mnemonic::CMTST, insn, 1593);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::CMTST, insn, EncodingId::CMTST_asisdsame_only);
+            #else
+                        Instruction result(Mnemonic::CMTST, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -35969,7 +37273,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x6E00EC00u: { // FMMLA_asimd_FP8FP16
-                        Instruction result(Mnemonic::FMMLA, insn, 1951);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FMMLA, insn, EncodingId::FMMLA_asimd_FP8FP16);
+            #else
+                        Instruction result(Mnemonic::FMMLA, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -35979,7 +37287,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x6E40EC00u: { // BFMMLA_asimdsame2_E
-                        Instruction result(Mnemonic::BFMMLA, insn, 1564);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::BFMMLA, insn, EncodingId::BFMMLA_asimdsame2_E);
+            #else
+                        Instruction result(Mnemonic::BFMMLA, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -35989,7 +37301,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x6E80A400u: { // UMMLA_asimdsame2_G
-                        Instruction result(Mnemonic::UMMLA, insn, 2343);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::UMMLA, insn, EncodingId::UMMLA_asimdsame2_G);
+            #else
+                        Instruction result(Mnemonic::UMMLA, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -35999,7 +37315,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x6E80EC00u: { // FMMLA_asimd_FP8FP32
-                        Instruction result(Mnemonic::FMMLA, insn, 1952);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FMMLA, insn, EncodingId::FMMLA_asimd_FP8FP32);
+            #else
+                        Instruction result(Mnemonic::FMMLA, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -36009,7 +37329,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x7E402400u: { // FCMGE_asisdsamefp16_only
-                        Instruction result(Mnemonic::FCMGE, insn, 1649);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FCMGE, insn, EncodingId::FCMGE_asisdsamefp16_only);
+            #else
+                        Instruction result(Mnemonic::FCMGE, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -36019,7 +37343,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x7E402C00u: { // FACGE_asisdsamefp16_only
-                        Instruction result(Mnemonic::FACGE, insn, 1613);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FACGE, insn, EncodingId::FACGE_asisdsamefp16_only);
+            #else
+                        Instruction result(Mnemonic::FACGE, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -36029,7 +37357,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x7EC01400u: { // FABD_asisdsamefp16_only
-                        Instruction result(Mnemonic::FABD, insn, 1604);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FABD, insn, EncodingId::FABD_asisdsamefp16_only);
+            #else
+                        Instruction result(Mnemonic::FABD, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -36039,7 +37371,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x7EC02400u: { // FCMGT_asisdsamefp16_only
-                        Instruction result(Mnemonic::FCMGT, insn, 1657);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FCMGT, insn, EncodingId::FCMGT_asisdsamefp16_only);
+            #else
+                        Instruction result(Mnemonic::FCMGT, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -36049,7 +37385,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x7EC02C00u: { // FACGT_asisdsamefp16_only
-                        Instruction result(Mnemonic::FACGT, insn, 1617);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FACGT, insn, EncodingId::FACGT_asisdsamefp16_only);
+            #else
+                        Instruction result(Mnemonic::FACGT, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -36059,7 +37399,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x7EE03400u: { // CMHI_asisdsame_only
-                        Instruction result(Mnemonic::CMHI, insn, 1585);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::CMHI, insn, EncodingId::CMHI_asisdsame_only);
+            #else
+                        Instruction result(Mnemonic::CMHI, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -36069,7 +37413,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x7EE03C00u: { // CMHS_asisdsame_only
-                        Instruction result(Mnemonic::CMHS, insn, 1587);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::CMHS, insn, EncodingId::CMHS_asisdsame_only);
+            #else
+                        Instruction result(Mnemonic::CMHS, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -36079,7 +37427,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x7EE04400u: { // USHL_asisdsame_only
-                        Instruction result(Mnemonic::USHL, insn, 2375);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::USHL, insn, EncodingId::USHL_asisdsame_only);
+            #else
+                        Instruction result(Mnemonic::USHL, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -36089,7 +37441,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x7EE05400u: { // URSHL_asisdsame_only
-                        Instruction result(Mnemonic::URSHL, insn, 2366);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::URSHL, insn, EncodingId::URSHL_asisdsame_only);
+            #else
+                        Instruction result(Mnemonic::URSHL, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -36099,7 +37455,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x7EE08400u: { // SUB_asisdsame_only
-                        Instruction result(Mnemonic::SUB, insn, 2281);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SUB, insn, EncodingId::SUB_asisdsame_only);
+            #else
+                        Instruction result(Mnemonic::SUB, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -36109,7 +37469,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x7EE08C00u: { // CMEQ_asisdsame_only
-                        Instruction result(Mnemonic::CMEQ, insn, 1573);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::CMEQ, insn, EncodingId::CMEQ_asisdsame_only);
+            #else
+                        Instruction result(Mnemonic::CMEQ, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -36119,7 +37483,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0xCE608000u: { // SHA512H_QQV_cryptosha512_3
-                        Instruction result(Mnemonic::SHA512H, insn, 2172);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SHA512H, insn, EncodingId::SHA512H_QQV_cryptosha512_3);
+            #else
+                        Instruction result(Mnemonic::SHA512H, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -36129,7 +37497,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0xCE608400u: { // SHA512H2_QQV_cryptosha512_3
-                        Instruction result(Mnemonic::SHA512H2, insn, 2171);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SHA512H2, insn, EncodingId::SHA512H2_QQV_cryptosha512_3);
+            #else
+                        Instruction result(Mnemonic::SHA512H2, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -36139,7 +37511,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0xCE608800u: { // SHA512SU1_VVV2_cryptosha512_3
-                        Instruction result(Mnemonic::SHA512SU1, insn, 2174);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SHA512SU1, insn, EncodingId::SHA512SU1_VVV2_cryptosha512_3);
+            #else
+                        Instruction result(Mnemonic::SHA512SU1, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -36149,7 +37525,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0xCE608C00u: { // RAX1_VVV2_cryptosha512_3
-                        Instruction result(Mnemonic::RAX1, insn, 2121);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::RAX1, insn, EncodingId::RAX1_VVV2_cryptosha512_3);
+            #else
+                        Instruction result(Mnemonic::RAX1, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -36159,7 +37539,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0xCE60C000u: { // SM3PARTW1_VVV4_cryptosha512_3
-                        Instruction result(Mnemonic::SM3PARTW1, insn, 2183);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SM3PARTW1, insn, EncodingId::SM3PARTW1_VVV4_cryptosha512_3);
+            #else
+                        Instruction result(Mnemonic::SM3PARTW1, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -36169,7 +37553,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0xCE60C400u: { // SM3PARTW2_VVV4_cryptosha512_3
-                        Instruction result(Mnemonic::SM3PARTW2, insn, 2184);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SM3PARTW2, insn, EncodingId::SM3PARTW2_VVV4_cryptosha512_3);
+            #else
+                        Instruction result(Mnemonic::SM3PARTW2, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -36179,7 +37567,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0xCE60C800u: { // SM4EKEY_VVV4_cryptosha512_3
-                        Instruction result(Mnemonic::SM4EKEY, insn, 2191);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SM4EKEY, insn, EncodingId::SM4EKEY_VVV4_cryptosha512_3);
+            #else
+                        Instruction result(Mnemonic::SM4EKEY, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -36194,7 +37586,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
     // Switch for mask 0xFFE0CC00u (4 patterns, 4 encodings)
     switch (insn & 0xFFE0CC00u) {
         case 0xCE408000u: { // SM3TT1A_VVV4_crypto3_imm2
-                        Instruction result(Mnemonic::SM3TT1A, insn, 2186);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SM3TT1A, insn, EncodingId::SM3TT1A_VVV4_crypto3_imm2);
+            #else
+                        Instruction result(Mnemonic::SM3TT1A, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -36204,7 +37600,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0xCE408400u: { // SM3TT1B_VVV4_crypto3_imm2
-                        Instruction result(Mnemonic::SM3TT1B, insn, 2187);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SM3TT1B, insn, EncodingId::SM3TT1B_VVV4_crypto3_imm2);
+            #else
+                        Instruction result(Mnemonic::SM3TT1B, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -36214,7 +37614,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0xCE408800u: { // SM3TT2A_VVV4_crypto3_imm2
-                        Instruction result(Mnemonic::SM3TT2A, insn, 2188);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SM3TT2A, insn, EncodingId::SM3TT2A_VVV4_crypto3_imm2);
+            #else
+                        Instruction result(Mnemonic::SM3TT2A, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -36224,7 +37628,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0xCE408C00u: { // SM3TT2B_VVV_crypto3_imm2
-                        Instruction result(Mnemonic::SM3TT2B, insn, 2189);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SM3TT2B, insn, EncodingId::SM3TT2B_VVV_crypto3_imm2);
+            #else
+                        Instruction result(Mnemonic::SM3TT2B, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -36239,7 +37647,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
     // Switch for mask 0xFFE0BC00u (1 pattern, 1 encoding)
     switch (insn & 0xFFE0BC00u) {
         case 0x4E402000u: { // LUTI4_asimdtbl_L5
-                        Instruction result(Mnemonic::LUTI4, insn, 2087);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LUTI4, insn, EncodingId::LUTI4_asimdtbl_L5);
+            #else
+                        Instruction result(Mnemonic::LUTI4, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -36254,7 +37666,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
     // Switch for mask 0xFFE09C00u (2 patterns, 2 encodings)
     switch (insn & 0xFFE09C00u) {
         case 0x4E401000u: { // LUTI4_asimdtbl_L7
-                        Instruction result(Mnemonic::LUTI4, insn, 2088);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LUTI4, insn, EncodingId::LUTI4_asimdtbl_L7);
+            #else
+                        Instruction result(Mnemonic::LUTI4, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -36264,7 +37680,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x4E801000u: { // LUTI2_asimdtbl_L5
-                        Instruction result(Mnemonic::LUTI2, insn, 2085);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LUTI2, insn, EncodingId::LUTI2_asimdtbl_L5);
+            #else
+                        Instruction result(Mnemonic::LUTI2, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -36279,7 +37699,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
     // Switch for mask 0xFFE08C00u (1 pattern, 1 encoding)
     switch (insn & 0xFFE08C00u) {
         case 0x4EC00000u: { // LUTI2_asimdtbl_L6
-                        Instruction result(Mnemonic::LUTI2, insn, 2086);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::LUTI2, insn, EncodingId::LUTI2_asimdtbl_L6);
+            #else
+                        Instruction result(Mnemonic::LUTI2, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -36295,7 +37719,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
     switch (insn & 0xFFE08400u) {
         case 0x6E000400u: { // INS_asimdins_IV_v
             // Also matches: MOV_INS_asimdins_IV_v (INS)
-                        Instruction result(Mnemonic::INS, insn, 2083);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::INS, insn, EncodingId::INS_asimdins_IV_v);
+            #else
+                        Instruction result(Mnemonic::INS, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -36331,7 +37759,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
     // Switch for mask 0xFFE08000u (15 patterns, 15 encodings)
     switch (insn & 0xFFE08000u) {
         case 0x1F000000u: { // FMADD_S_floatdp3
-                        Instruction result(Mnemonic::FMADD, insn, 1871);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FMADD, insn, EncodingId::FMADD_S_floatdp3);
+            #else
+                        Instruction result(Mnemonic::FMADD, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -36342,7 +37774,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x1F008000u: { // FMSUB_S_floatdp3
-                        Instruction result(Mnemonic::FMSUB, insn, 1973);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FMSUB, insn, EncodingId::FMSUB_S_floatdp3);
+            #else
+                        Instruction result(Mnemonic::FMSUB, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -36353,7 +37789,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x1F200000u: { // FNMADD_S_floatdp3
-                        Instruction result(Mnemonic::FNMADD, insn, 1998);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FNMADD, insn, EncodingId::FNMADD_S_floatdp3);
+            #else
+                        Instruction result(Mnemonic::FNMADD, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -36364,7 +37804,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x1F208000u: { // FNMSUB_S_floatdp3
-                        Instruction result(Mnemonic::FNMSUB, insn, 2001);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FNMSUB, insn, EncodingId::FNMSUB_S_floatdp3);
+            #else
+                        Instruction result(Mnemonic::FNMSUB, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -36375,7 +37819,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x1F400000u: { // FMADD_D_floatdp3
-                        Instruction result(Mnemonic::FMADD, insn, 1872);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FMADD, insn, EncodingId::FMADD_D_floatdp3);
+            #else
+                        Instruction result(Mnemonic::FMADD, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -36386,7 +37834,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x1F408000u: { // FMSUB_D_floatdp3
-                        Instruction result(Mnemonic::FMSUB, insn, 1974);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FMSUB, insn, EncodingId::FMSUB_D_floatdp3);
+            #else
+                        Instruction result(Mnemonic::FMSUB, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -36397,7 +37849,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x1F600000u: { // FNMADD_D_floatdp3
-                        Instruction result(Mnemonic::FNMADD, insn, 1999);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FNMADD, insn, EncodingId::FNMADD_D_floatdp3);
+            #else
+                        Instruction result(Mnemonic::FNMADD, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -36408,7 +37864,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x1F608000u: { // FNMSUB_D_floatdp3
-                        Instruction result(Mnemonic::FNMSUB, insn, 2002);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FNMSUB, insn, EncodingId::FNMSUB_D_floatdp3);
+            #else
+                        Instruction result(Mnemonic::FNMSUB, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -36419,7 +37879,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x1FC00000u: { // FMADD_H_floatdp3
-                        Instruction result(Mnemonic::FMADD, insn, 1870);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FMADD, insn, EncodingId::FMADD_H_floatdp3);
+            #else
+                        Instruction result(Mnemonic::FMADD, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -36430,7 +37894,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x1FC08000u: { // FMSUB_H_floatdp3
-                        Instruction result(Mnemonic::FMSUB, insn, 1972);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FMSUB, insn, EncodingId::FMSUB_H_floatdp3);
+            #else
+                        Instruction result(Mnemonic::FMSUB, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -36441,7 +37909,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x1FE00000u: { // FNMADD_H_floatdp3
-                        Instruction result(Mnemonic::FNMADD, insn, 1997);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FNMADD, insn, EncodingId::FNMADD_H_floatdp3);
+            #else
+                        Instruction result(Mnemonic::FNMADD, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -36452,7 +37924,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x1FE08000u: { // FNMSUB_H_floatdp3
-                        Instruction result(Mnemonic::FNMSUB, insn, 2000);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FNMSUB, insn, EncodingId::FNMSUB_H_floatdp3);
+            #else
+                        Instruction result(Mnemonic::FNMSUB, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -36463,7 +37939,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0xCE000000u: { // EOR3_VVV16_crypto4
-                        Instruction result(Mnemonic::EOR3, insn, 1599);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::EOR3, insn, EncodingId::EOR3_VVV16_crypto4);
+            #else
+                        Instruction result(Mnemonic::EOR3, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -36474,7 +37954,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0xCE200000u: { // BCAX_VVV16_crypto4
-                        Instruction result(Mnemonic::BCAX, insn, 1555);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::BCAX, insn, EncodingId::BCAX_VVV16_crypto4);
+            #else
+                        Instruction result(Mnemonic::BCAX, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -36485,7 +37969,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0xCE400000u: { // SM3SS1_VVV4_crypto4
-                        Instruction result(Mnemonic::SM3SS1, insn, 2185);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SM3SS1, insn, EncodingId::SM3SS1_VVV4_crypto4);
+            #else
+                        Instruction result(Mnemonic::SM3SS1, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -36501,7 +37989,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
     // Switch for mask 0xFFE01FE0u (3 patterns, 3 encodings)
     switch (insn & 0xFFE01FE0u) {
         case 0x1E201000u: { // FMOV_S_floatimm
-                        Instruction result(Mnemonic::FMOV, insn, 1970);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FMOV, insn, EncodingId::FMOV_S_floatimm);
+            #else
+                        Instruction result(Mnemonic::FMOV, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -36510,7 +38002,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x1E601000u: { // FMOV_D_floatimm
-                        Instruction result(Mnemonic::FMOV, insn, 1971);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FMOV, insn, EncodingId::FMOV_D_floatimm);
+            #else
+                        Instruction result(Mnemonic::FMOV, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -36519,7 +38015,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x1EE01000u: { // FMOV_H_floatimm
-                        Instruction result(Mnemonic::FMOV, insn, 1969);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FMOV, insn, EncodingId::FMOV_H_floatimm);
+            #else
+                        Instruction result(Mnemonic::FMOV, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -36533,7 +38033,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
     // Switch for mask 0xFFE00C10u (6 patterns, 6 encodings)
     switch (insn & 0xFFE00C10u) {
         case 0x1E200400u: { // FCCMP_S_floatccmp
-                        Instruction result(Mnemonic::FCCMP, insn, 1636);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FCCMP, insn, EncodingId::FCCMP_S_floatccmp);
+            #else
+                        Instruction result(Mnemonic::FCCMP, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -36544,7 +38048,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x1E200410u: { // FCCMPE_S_floatccmp
-                        Instruction result(Mnemonic::FCCMPE, insn, 1639);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FCCMPE, insn, EncodingId::FCCMPE_S_floatccmp);
+            #else
+                        Instruction result(Mnemonic::FCCMPE, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -36555,7 +38063,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x1E600400u: { // FCCMP_D_floatccmp
-                        Instruction result(Mnemonic::FCCMP, insn, 1637);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FCCMP, insn, EncodingId::FCCMP_D_floatccmp);
+            #else
+                        Instruction result(Mnemonic::FCCMP, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -36566,7 +38078,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x1E600410u: { // FCCMPE_D_floatccmp
-                        Instruction result(Mnemonic::FCCMPE, insn, 1640);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FCCMPE, insn, EncodingId::FCCMPE_D_floatccmp);
+            #else
+                        Instruction result(Mnemonic::FCCMPE, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -36577,7 +38093,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x1EE00400u: { // FCCMP_H_floatccmp
-                        Instruction result(Mnemonic::FCCMP, insn, 1635);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FCCMP, insn, EncodingId::FCCMP_H_floatccmp);
+            #else
+                        Instruction result(Mnemonic::FCCMP, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -36588,7 +38108,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x1EE00410u: { // FCCMPE_H_floatccmp
-                        Instruction result(Mnemonic::FCCMPE, insn, 1638);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FCCMPE, insn, EncodingId::FCCMPE_H_floatccmp);
+            #else
+                        Instruction result(Mnemonic::FCCMPE, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -36604,7 +38128,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
     // Switch for mask 0xFFE00C00u (3 patterns, 3 encodings)
     switch (insn & 0xFFE00C00u) {
         case 0x1E200C00u: { // FCSEL_S_floatsel
-                        Instruction result(Mnemonic::FCSEL, insn, 1688);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FCSEL, insn, EncodingId::FCSEL_S_floatsel);
+            #else
+                        Instruction result(Mnemonic::FCSEL, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -36615,7 +38143,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x1E600C00u: { // FCSEL_D_floatsel
-                        Instruction result(Mnemonic::FCSEL, insn, 1689);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FCSEL, insn, EncodingId::FCSEL_D_floatsel);
+            #else
+                        Instruction result(Mnemonic::FCSEL, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -36626,7 +38158,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x1EE00C00u: { // FCSEL_H_floatsel
-                        Instruction result(Mnemonic::FCSEL, insn, 1687);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FCSEL, insn, EncodingId::FCSEL_H_floatsel);
+            #else
+                        Instruction result(Mnemonic::FCSEL, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -36642,7 +38178,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
     // Switch for mask 0xFFE00000u (1 pattern, 1 encoding)
     switch (insn & 0xFFE00000u) {
         case 0xCE800000u: { // XAR_VVV2_crypto3_imm6
-                        Instruction result(Mnemonic::XAR, insn, 2390);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::XAR, insn, EncodingId::XAR_VVV2_crypto3_imm6);
+            #else
+                        Instruction result(Mnemonic::XAR, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -36658,7 +38198,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
     // Switch for mask 0xFFC0FC00u (11 patterns, 11 encodings)
     switch (insn & 0xFFC0FC00u) {
         case 0x5F400400u: { // SSHR_asisdshf_R
-                        Instruction result(Mnemonic::SSHR, insn, 2275);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SSHR, insn, EncodingId::SSHR_asisdshf_R);
+            #else
+                        Instruction result(Mnemonic::SSHR, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -36676,7 +38220,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x5F401400u: { // SSRA_asisdshf_R
-                        Instruction result(Mnemonic::SSRA, insn, 2277);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SSRA, insn, EncodingId::SSRA_asisdshf_R);
+            #else
+                        Instruction result(Mnemonic::SSRA, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -36694,7 +38242,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x5F402400u: { // SRSHR_asisdshf_R
-                        Instruction result(Mnemonic::SRSHR, insn, 2268);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SRSHR, insn, EncodingId::SRSHR_asisdshf_R);
+            #else
+                        Instruction result(Mnemonic::SRSHR, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -36712,7 +38264,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x5F403400u: { // SRSRA_asisdshf_R
-                        Instruction result(Mnemonic::SRSRA, insn, 2270);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SRSRA, insn, EncodingId::SRSRA_asisdshf_R);
+            #else
+                        Instruction result(Mnemonic::SRSRA, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -36730,7 +38286,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x5F405400u: { // SHL_asisdshf_R
-                        Instruction result(Mnemonic::SHL, insn, 2176);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SHL, insn, EncodingId::SHL_asisdshf_R);
+            #else
+                        Instruction result(Mnemonic::SHL, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -36748,7 +38308,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x7F400400u: { // USHR_asisdshf_R
-                        Instruction result(Mnemonic::USHR, insn, 2378);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::USHR, insn, EncodingId::USHR_asisdshf_R);
+            #else
+                        Instruction result(Mnemonic::USHR, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -36766,7 +38330,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x7F401400u: { // USRA_asisdshf_R
-                        Instruction result(Mnemonic::USRA, insn, 2383);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::USRA, insn, EncodingId::USRA_asisdshf_R);
+            #else
+                        Instruction result(Mnemonic::USRA, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -36784,7 +38352,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x7F402400u: { // URSHR_asisdshf_R
-                        Instruction result(Mnemonic::URSHR, insn, 2368);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::URSHR, insn, EncodingId::URSHR_asisdshf_R);
+            #else
+                        Instruction result(Mnemonic::URSHR, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -36802,7 +38374,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x7F403400u: { // URSRA_asisdshf_R
-                        Instruction result(Mnemonic::URSRA, insn, 2371);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::URSRA, insn, EncodingId::URSRA_asisdshf_R);
+            #else
+                        Instruction result(Mnemonic::URSRA, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -36820,7 +38396,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x7F404400u: { // SRI_asisdshf_R
-                        Instruction result(Mnemonic::SRI, insn, 2264);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SRI, insn, EncodingId::SRI_asisdshf_R);
+            #else
+                        Instruction result(Mnemonic::SRI, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -36838,7 +38418,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x7F405400u: { // SLI_asisdshf_R
-                        Instruction result(Mnemonic::SLI, insn, 2181);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SLI, insn, EncodingId::SLI_asisdshf_R);
+            #else
+                        Instruction result(Mnemonic::SLI, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -36861,7 +38445,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
     // Switch for mask 0xFFC0F400u (10 patterns, 10 encodings)
     switch (insn & 0xFFC0F400u) {
         case 0x0FC00000u: { // FMLALB_asimdelem_H
-                        Instruction result(Mnemonic::FMLALB, insn, 1927);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FMLALB, insn, EncodingId::FMLALB_asimdelem_H);
+            #else
+                        Instruction result(Mnemonic::FMLALB, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -36881,7 +38469,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x2F008000u: { // FMLALLBB_asimdelem_J
-                        Instruction result(Mnemonic::FMLALLBB, insn, 1931);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FMLALLBB, insn, EncodingId::FMLALLBB_asimdelem_J);
+            #else
+                        Instruction result(Mnemonic::FMLALLBB, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -36899,7 +38491,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x2F408000u: { // FMLALLBT_asimdelem_J
-                        Instruction result(Mnemonic::FMLALLBT, insn, 1932);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FMLALLBT, insn, EncodingId::FMLALLBT_asimdelem_J);
+            #else
+                        Instruction result(Mnemonic::FMLALLBT, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -36917,7 +38513,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x4FC00000u: { // FMLALT_asimdelem_H
-                        Instruction result(Mnemonic::FMLALT, insn, 1928);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FMLALT, insn, EncodingId::FMLALT_asimdelem_H);
+            #else
+                        Instruction result(Mnemonic::FMLALT, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -36937,7 +38537,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x5F001000u: { // FMLA_asisdelem_RH_H
-                        Instruction result(Mnemonic::FMLA, insn, 1917);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FMLA, insn, EncodingId::FMLA_asisdelem_RH_H);
+            #else
+                        Instruction result(Mnemonic::FMLA, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -36953,7 +38557,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x5F005000u: { // FMLS_asisdelem_RH_H
-                        Instruction result(Mnemonic::FMLS, insn, 1939);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FMLS, insn, EncodingId::FMLS_asisdelem_RH_H);
+            #else
+                        Instruction result(Mnemonic::FMLS, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -36969,7 +38577,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x5F009000u: { // FMUL_asisdelem_RH_H
-                        Instruction result(Mnemonic::FMUL, insn, 1975);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FMUL, insn, EncodingId::FMUL_asisdelem_RH_H);
+            #else
+                        Instruction result(Mnemonic::FMUL, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -36985,7 +38597,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x6F008000u: { // FMLALLTB_asimdelem_J
-                        Instruction result(Mnemonic::FMLALLTB, insn, 1933);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FMLALLTB, insn, EncodingId::FMLALLTB_asimdelem_J);
+            #else
+                        Instruction result(Mnemonic::FMLALLTB, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -37003,7 +38619,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x6F408000u: { // FMLALLTT_asimdelem_J
-                        Instruction result(Mnemonic::FMLALLTT, insn, 1934);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FMLALLTT, insn, EncodingId::FMLALLTT_asimdelem_J);
+            #else
+                        Instruction result(Mnemonic::FMLALLTT, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -37021,7 +38641,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x7F009000u: { // FMULX_asisdelem_RH_H
-                        Instruction result(Mnemonic::FMULX, insn, 1984);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FMULX, insn, EncodingId::FMULX_asisdelem_RH_H);
+            #else
+                        Instruction result(Mnemonic::FMULX, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -37042,7 +38666,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
     // Switch for mask 0xFFBFFC00u (25 patterns, 25 encodings)
     switch (insn & 0xFFBFFC00u) {
         case 0x5E21A800u: { // FCVTNS_asisdmisc_R
-                        Instruction result(Mnemonic::FCVTNS, insn, 1757);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FCVTNS, insn, EncodingId::FCVTNS_asisdmisc_R);
+            #else
+                        Instruction result(Mnemonic::FCVTNS, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -37053,7 +38681,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x5E21B800u: { // FCVTMS_asisdmisc_R
-                        Instruction result(Mnemonic::FCVTMS, insn, 1726);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FCVTMS, insn, EncodingId::FCVTMS_asisdmisc_R);
+            #else
+                        Instruction result(Mnemonic::FCVTMS, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -37064,7 +38696,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x5E21C800u: { // FCVTAS_asisdmisc_R
-                        Instruction result(Mnemonic::FCVTAS, insn, 1697);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FCVTAS, insn, EncodingId::FCVTAS_asisdmisc_R);
+            #else
+                        Instruction result(Mnemonic::FCVTAS, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -37075,7 +38711,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x5E21D800u: { // SCVTF_asisdmisc_R
-                        Instruction result(Mnemonic::SCVTF, insn, 2140);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SCVTF, insn, EncodingId::SCVTF_asisdmisc_R);
+            #else
+                        Instruction result(Mnemonic::SCVTF, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -37086,7 +38726,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x5EA0C800u: { // FCMGT_asisdmisc_FZ
-                        Instruction result(Mnemonic::FCMGT, insn, 1662);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FCMGT, insn, EncodingId::FCMGT_asisdmisc_FZ);
+            #else
+                        Instruction result(Mnemonic::FCMGT, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -37098,7 +38742,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x5EA0D800u: { // FCMEQ_asisdmisc_FZ
-                        Instruction result(Mnemonic::FCMEQ, insn, 1646);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FCMEQ, insn, EncodingId::FCMEQ_asisdmisc_FZ);
+            #else
+                        Instruction result(Mnemonic::FCMEQ, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -37110,7 +38758,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x5EA0E800u: { // FCMLT_asisdmisc_FZ
-                        Instruction result(Mnemonic::FCMLT, insn, 1672);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FCMLT, insn, EncodingId::FCMLT_asisdmisc_FZ);
+            #else
+                        Instruction result(Mnemonic::FCMLT, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -37122,7 +38774,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x5EA1A800u: { // FCVTPS_asisdmisc_R
-                        Instruction result(Mnemonic::FCVTPS, insn, 1785);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FCVTPS, insn, EncodingId::FCVTPS_asisdmisc_R);
+            #else
+                        Instruction result(Mnemonic::FCVTPS, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -37133,7 +38789,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x5EA1B800u: { // FCVTZS_asisdmisc_R
-                        Instruction result(Mnemonic::FCVTZS, insn, 1817);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FCVTZS, insn, EncodingId::FCVTZS_asisdmisc_R);
+            #else
+                        Instruction result(Mnemonic::FCVTZS, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -37144,7 +38804,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x5EA1D800u: { // FRECPE_asisdmisc_R
-                        Instruction result(Mnemonic::FRECPE, insn, 2007);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FRECPE, insn, EncodingId::FRECPE_asisdmisc_R);
+            #else
+                        Instruction result(Mnemonic::FRECPE, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -37155,7 +38819,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x5EA1F800u: { // FRECPX_asisdmisc_R
-                        Instruction result(Mnemonic::FRECPX, insn, 2015);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FRECPX, insn, EncodingId::FRECPX_asisdmisc_R);
+            #else
+                        Instruction result(Mnemonic::FRECPX, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -37166,7 +38834,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x7E21A800u: { // FCVTNU_asisdmisc_R
-                        Instruction result(Mnemonic::FCVTNU, insn, 1771);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FCVTNU, insn, EncodingId::FCVTNU_asisdmisc_R);
+            #else
+                        Instruction result(Mnemonic::FCVTNU, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -37177,7 +38849,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x7E21B800u: { // FCVTMU_asisdmisc_R
-                        Instruction result(Mnemonic::FCVTMU, insn, 1740);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FCVTMU, insn, EncodingId::FCVTMU_asisdmisc_R);
+            #else
+                        Instruction result(Mnemonic::FCVTMU, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -37188,7 +38864,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x7E21C800u: { // FCVTAU_asisdmisc_R
-                        Instruction result(Mnemonic::FCVTAU, insn, 1711);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FCVTAU, insn, EncodingId::FCVTAU_asisdmisc_R);
+            #else
+                        Instruction result(Mnemonic::FCVTAU, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -37199,7 +38879,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x7E21D800u: { // UCVTF_asisdmisc_R
-                        Instruction result(Mnemonic::UCVTF, insn, 2310);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::UCVTF, insn, EncodingId::UCVTF_asisdmisc_R);
+            #else
+                        Instruction result(Mnemonic::UCVTF, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -37210,7 +38894,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x7E30C800u: { // FMAXNMP_asisdpair_only_SD
-                        Instruction result(Mnemonic::FMAXNMP, insn, 1884);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FMAXNMP, insn, EncodingId::FMAXNMP_asisdpair_only_SD);
+            #else
+                        Instruction result(Mnemonic::FMAXNMP, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -37221,7 +38909,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x7E30D800u: { // FADDP_asisdpair_only_SD
-                        Instruction result(Mnemonic::FADDP, insn, 1627);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FADDP, insn, EncodingId::FADDP_asisdpair_only_SD);
+            #else
+                        Instruction result(Mnemonic::FADDP, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -37232,7 +38924,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x7E30F800u: { // FMAXP_asisdpair_only_SD
-                        Instruction result(Mnemonic::FMAXP, insn, 1890);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FMAXP, insn, EncodingId::FMAXP_asisdpair_only_SD);
+            #else
+                        Instruction result(Mnemonic::FMAXP, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -37243,7 +38939,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x7EA0C800u: { // FCMGE_asisdmisc_FZ
-                        Instruction result(Mnemonic::FCMGE, insn, 1654);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FCMGE, insn, EncodingId::FCMGE_asisdmisc_FZ);
+            #else
+                        Instruction result(Mnemonic::FCMGE, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -37255,7 +38955,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x7EA0D800u: { // FCMLE_asisdmisc_FZ
-                        Instruction result(Mnemonic::FCMLE, insn, 1668);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FCMLE, insn, EncodingId::FCMLE_asisdmisc_FZ);
+            #else
+                        Instruction result(Mnemonic::FCMLE, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -37267,7 +38971,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x7EA1A800u: { // FCVTPU_asisdmisc_R
-                        Instruction result(Mnemonic::FCVTPU, insn, 1799);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FCVTPU, insn, EncodingId::FCVTPU_asisdmisc_R);
+            #else
+                        Instruction result(Mnemonic::FCVTPU, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -37278,7 +38986,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x7EA1B800u: { // FCVTZU_asisdmisc_R
-                        Instruction result(Mnemonic::FCVTZU, insn, 1839);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FCVTZU, insn, EncodingId::FCVTZU_asisdmisc_R);
+            #else
+                        Instruction result(Mnemonic::FCVTZU, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -37289,7 +39001,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x7EA1D800u: { // FRSQRTE_asisdmisc_R
-                        Instruction result(Mnemonic::FRSQRTE, insn, 2064);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FRSQRTE, insn, EncodingId::FRSQRTE_asisdmisc_R);
+            #else
+                        Instruction result(Mnemonic::FRSQRTE, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -37300,7 +39016,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x7EB0C800u: { // FMINNMP_asisdpair_only_SD
-                        Instruction result(Mnemonic::FMINNMP, insn, 1906);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FMINNMP, insn, EncodingId::FMINNMP_asisdpair_only_SD);
+            #else
+                        Instruction result(Mnemonic::FMINNMP, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -37311,7 +39031,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x7EB0F800u: { // FMINP_asisdpair_only_SD
-                        Instruction result(Mnemonic::FMINP, insn, 1912);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FMINP, insn, EncodingId::FMINP_asisdpair_only_SD);
+            #else
+                        Instruction result(Mnemonic::FMINP, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -37327,7 +39051,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
     // Switch for mask 0xFFA0FC00u (9 patterns, 9 encodings)
     switch (insn & 0xFFA0FC00u) {
         case 0x5E20DC00u: { // FMULX_asisdsame_only
-                        Instruction result(Mnemonic::FMULX, insn, 1989);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FMULX, insn, EncodingId::FMULX_asisdsame_only);
+            #else
+                        Instruction result(Mnemonic::FMULX, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -37340,7 +39068,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x5E20E400u: { // FCMEQ_asisdsame_only
-                        Instruction result(Mnemonic::FCMEQ, insn, 1642);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FCMEQ, insn, EncodingId::FCMEQ_asisdsame_only);
+            #else
+                        Instruction result(Mnemonic::FCMEQ, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -37353,7 +39085,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x5E20FC00u: { // FRECPS_asisdsame_only
-                        Instruction result(Mnemonic::FRECPS, insn, 2011);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FRECPS, insn, EncodingId::FRECPS_asisdsame_only);
+            #else
+                        Instruction result(Mnemonic::FRECPS, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -37366,7 +39102,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x5EA0FC00u: { // FRSQRTS_asisdsame_only
-                        Instruction result(Mnemonic::FRSQRTS, insn, 2068);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FRSQRTS, insn, EncodingId::FRSQRTS_asisdsame_only);
+            #else
+                        Instruction result(Mnemonic::FRSQRTS, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -37379,7 +39119,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x7E20E400u: { // FCMGE_asisdsame_only
-                        Instruction result(Mnemonic::FCMGE, insn, 1650);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FCMGE, insn, EncodingId::FCMGE_asisdsame_only);
+            #else
+                        Instruction result(Mnemonic::FCMGE, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -37392,7 +39136,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x7E20EC00u: { // FACGE_asisdsame_only
-                        Instruction result(Mnemonic::FACGE, insn, 1614);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FACGE, insn, EncodingId::FACGE_asisdsame_only);
+            #else
+                        Instruction result(Mnemonic::FACGE, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -37405,7 +39153,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x7EA0D400u: { // FABD_asisdsame_only
-                        Instruction result(Mnemonic::FABD, insn, 1605);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FABD, insn, EncodingId::FABD_asisdsame_only);
+            #else
+                        Instruction result(Mnemonic::FABD, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -37418,7 +39170,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x7EA0E400u: { // FCMGT_asisdsame_only
-                        Instruction result(Mnemonic::FCMGT, insn, 1658);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FCMGT, insn, EncodingId::FCMGT_asisdsame_only);
+            #else
+                        Instruction result(Mnemonic::FCMGT, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -37431,7 +39187,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x7EA0EC00u: { // FACGT_asisdsame_only
-                        Instruction result(Mnemonic::FACGT, insn, 1618);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FACGT, insn, EncodingId::FACGT_asisdsame_only);
+            #else
+                        Instruction result(Mnemonic::FACGT, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -37450,7 +39210,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
     switch (insn & 0xFF80FC00u) {
         case 0x5F007400u: { // SQSHL_asisdshf_R
             if (((insn >> 19) & 0xF) == 0x0) break;
-                        Instruction result(Mnemonic::SQSHL, insn, 2247);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SQSHL, insn, EncodingId::SQSHL_asisdshf_R);
+            #else
+                        Instruction result(Mnemonic::SQSHL, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         if (enc.sqshl_asisdshf_r.immh == 0u) return std::nullopt;
@@ -37470,7 +39234,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
         }
         case 0x5F009400u: { // SQSHRN_asisdshf_N
             if (((insn >> 19) & 0xF) == 0x0) break;
-                        Instruction result(Mnemonic::SQSHRN, insn, 2253);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SQSHRN, insn, EncodingId::SQSHRN_asisdshf_N);
+            #else
+                        Instruction result(Mnemonic::SQSHRN, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         if (enc.sqshrn_asisdshf_n.immh == 0u) return std::nullopt;
@@ -37496,7 +39264,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
         }
         case 0x5F009C00u: { // SQRSHRN_asisdshf_N
             if (((insn >> 19) & 0xF) == 0x0) break;
-                        Instruction result(Mnemonic::SQRSHRN, insn, 2243);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SQRSHRN, insn, EncodingId::SQRSHRN_asisdshf_N);
+            #else
+                        Instruction result(Mnemonic::SQRSHRN, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         if (enc.sqrshrn_asisdshf_n.immh == 0u) return std::nullopt;
@@ -37522,7 +39294,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
         }
         case 0x5F00E400u: { // SCVTF_asisdshf_C
             if (((insn >> 19) & 0xF) == 0x0) break;
-                        Instruction result(Mnemonic::SCVTF, insn, 2137);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SCVTF, insn, EncodingId::SCVTF_asisdshf_C);
+            #else
+                        Instruction result(Mnemonic::SCVTF, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -37541,7 +39317,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
         }
         case 0x5F00FC00u: { // FCVTZS_asisdshf_C
             if (((insn >> 19) & 0xF) == 0x0) break;
-                        Instruction result(Mnemonic::FCVTZS, insn, 1814);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FCVTZS, insn, EncodingId::FCVTZS_asisdshf_C);
+            #else
+                        Instruction result(Mnemonic::FCVTZS, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -37560,7 +39340,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
         }
         case 0x7F006400u: { // SQSHLU_asisdshf_R
             if (((insn >> 19) & 0xF) == 0x0) break;
-                        Instruction result(Mnemonic::SQSHLU, insn, 2251);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SQSHLU, insn, EncodingId::SQSHLU_asisdshf_R);
+            #else
+                        Instruction result(Mnemonic::SQSHLU, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         if (enc.sqshlu_asisdshf_r.immh == 0u) return std::nullopt;
@@ -37580,7 +39364,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
         }
         case 0x7F007400u: { // UQSHL_asisdshf_R
             if (((insn >> 19) & 0xF) == 0x0) break;
-                        Instruction result(Mnemonic::UQSHL, insn, 2354);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::UQSHL, insn, EncodingId::UQSHL_asisdshf_R);
+            #else
+                        Instruction result(Mnemonic::UQSHL, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         if (enc.uqshl_asisdshf_r.immh == 0u) return std::nullopt;
@@ -37600,7 +39388,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
         }
         case 0x7F008400u: { // SQSHRUN_asisdshf_N
             if (((insn >> 19) & 0xF) == 0x0) break;
-                        Instruction result(Mnemonic::SQSHRUN, insn, 2255);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SQSHRUN, insn, EncodingId::SQSHRUN_asisdshf_N);
+            #else
+                        Instruction result(Mnemonic::SQSHRUN, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         if (enc.sqshrun_asisdshf_n.immh == 0u) return std::nullopt;
@@ -37626,7 +39418,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
         }
         case 0x7F008C00u: { // SQRSHRUN_asisdshf_N
             if (((insn >> 19) & 0xF) == 0x0) break;
-                        Instruction result(Mnemonic::SQRSHRUN, insn, 2245);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SQRSHRUN, insn, EncodingId::SQRSHRUN_asisdshf_N);
+            #else
+                        Instruction result(Mnemonic::SQRSHRUN, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         if (enc.sqrshrun_asisdshf_n.immh == 0u) return std::nullopt;
@@ -37652,7 +39448,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
         }
         case 0x7F009400u: { // UQSHRN_asisdshf_N
             if (((insn >> 19) & 0xF) == 0x0) break;
-                        Instruction result(Mnemonic::UQSHRN, insn, 2358);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::UQSHRN, insn, EncodingId::UQSHRN_asisdshf_N);
+            #else
+                        Instruction result(Mnemonic::UQSHRN, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         if (enc.uqshrn_asisdshf_n.immh == 0u) return std::nullopt;
@@ -37678,7 +39478,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
         }
         case 0x7F009C00u: { // UQRSHRN_asisdshf_N
             if (((insn >> 19) & 0xF) == 0x0) break;
-                        Instruction result(Mnemonic::UQRSHRN, insn, 2352);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::UQRSHRN, insn, EncodingId::UQRSHRN_asisdshf_N);
+            #else
+                        Instruction result(Mnemonic::UQRSHRN, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         if (enc.uqrshrn_asisdshf_n.immh == 0u) return std::nullopt;
@@ -37704,7 +39508,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
         }
         case 0x7F00E400u: { // UCVTF_asisdshf_C
             if (((insn >> 19) & 0xF) == 0x0) break;
-                        Instruction result(Mnemonic::UCVTF, insn, 2307);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::UCVTF, insn, EncodingId::UCVTF_asisdshf_C);
+            #else
+                        Instruction result(Mnemonic::UCVTF, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -37723,7 +39531,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
         }
         case 0x7F00FC00u: { // FCVTZU_asisdshf_C
             if (((insn >> 19) & 0xF) == 0x0) break;
-                        Instruction result(Mnemonic::FCVTZU, insn, 1836);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FCVTZU, insn, EncodingId::FCVTZU_asisdshf_C);
+            #else
+                        Instruction result(Mnemonic::FCVTZU, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -37746,7 +39558,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
     // Switch for mask 0xFF80F400u (4 patterns, 4 encodings)
     switch (insn & 0xFF80F400u) {
         case 0x5F801000u: { // FMLA_asisdelem_R_SD
-                        Instruction result(Mnemonic::FMLA, insn, 1918);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FMLA, insn, EncodingId::FMLA_asisdelem_R_SD);
+            #else
+                        Instruction result(Mnemonic::FMLA, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -37766,7 +39582,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x5F805000u: { // FMLS_asisdelem_R_SD
-                        Instruction result(Mnemonic::FMLS, insn, 1940);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FMLS, insn, EncodingId::FMLS_asisdelem_R_SD);
+            #else
+                        Instruction result(Mnemonic::FMLS, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -37786,7 +39606,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x5F809000u: { // FMUL_asisdelem_R_SD
-                        Instruction result(Mnemonic::FMUL, insn, 1976);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FMUL, insn, EncodingId::FMUL_asisdelem_R_SD);
+            #else
+                        Instruction result(Mnemonic::FMUL, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -37806,7 +39630,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x7F809000u: { // FMULX_asisdelem_R_SD
-                        Instruction result(Mnemonic::FMULX, insn, 1985);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FMULX, insn, EncodingId::FMULX_asisdelem_R_SD);
+            #else
+                        Instruction result(Mnemonic::FMULX, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -37831,7 +39659,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
     // Switch for mask 0xFF3FFC00u (7 patterns, 7 encodings)
     switch (insn & 0xFF3FFC00u) {
         case 0x5E203800u: { // SUQADD_asisdmisc_R
-                        Instruction result(Mnemonic::SUQADD, insn, 2285);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SUQADD, insn, EncodingId::SUQADD_asisdmisc_R);
+            #else
+                        Instruction result(Mnemonic::SUQADD, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -37842,7 +39674,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x5E207800u: { // SQABS_asisdmisc_R
-                        Instruction result(Mnemonic::SQABS, insn, 2207);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SQABS, insn, EncodingId::SQABS_asisdmisc_R);
+            #else
+                        Instruction result(Mnemonic::SQABS, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -37853,7 +39689,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x5E214800u: { // SQXTN_asisdmisc_N
-                        Instruction result(Mnemonic::SQXTN, insn, 2259);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SQXTN, insn, EncodingId::SQXTN_asisdmisc_N);
+            #else
+                        Instruction result(Mnemonic::SQXTN, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         if (enc.sqxtn_asisdmisc_n.size == 3u) return std::nullopt;
@@ -37865,7 +39705,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x7E203800u: { // USQADD_asisdmisc_R
-                        Instruction result(Mnemonic::USQADD, insn, 2381);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::USQADD, insn, EncodingId::USQADD_asisdmisc_R);
+            #else
+                        Instruction result(Mnemonic::USQADD, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -37876,7 +39720,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x7E207800u: { // SQNEG_asisdmisc_R
-                        Instruction result(Mnemonic::SQNEG, insn, 2227);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SQNEG, insn, EncodingId::SQNEG_asisdmisc_R);
+            #else
+                        Instruction result(Mnemonic::SQNEG, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -37887,7 +39735,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x7E212800u: { // SQXTUN_asisdmisc_N
-                        Instruction result(Mnemonic::SQXTUN, insn, 2261);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SQXTUN, insn, EncodingId::SQXTUN_asisdmisc_N);
+            #else
+                        Instruction result(Mnemonic::SQXTUN, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         if (enc.sqxtun_asisdmisc_n.size == 3u) return std::nullopt;
@@ -37899,7 +39751,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x7E214800u: { // UQXTN_asisdmisc_N
-                        Instruction result(Mnemonic::UQXTN, insn, 2362);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::UQXTN, insn, EncodingId::UQXTN_asisdmisc_N);
+            #else
+                        Instruction result(Mnemonic::UQXTN, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         if (enc.uqxtn_asisdmisc_n.size == 3u) return std::nullopt;
@@ -37916,7 +39772,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
     // Switch for mask 0xFF20FC00u (15 patterns, 15 encodings)
     switch (insn & 0xFF20FC00u) {
         case 0x5E200C00u: { // SQADD_asisdsame_only
-                        Instruction result(Mnemonic::SQADD, insn, 2209);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SQADD, insn, EncodingId::SQADD_asisdsame_only);
+            #else
+                        Instruction result(Mnemonic::SQADD, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -37929,7 +39789,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x5E202C00u: { // SQSUB_asisdsame_only
-                        Instruction result(Mnemonic::SQSUB, insn, 2257);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SQSUB, insn, EncodingId::SQSUB_asisdsame_only);
+            #else
+                        Instruction result(Mnemonic::SQSUB, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -37942,7 +39806,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x5E204C00u: { // SQSHL_asisdsame_only
-                        Instruction result(Mnemonic::SQSHL, insn, 2249);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SQSHL, insn, EncodingId::SQSHL_asisdsame_only);
+            #else
+                        Instruction result(Mnemonic::SQSHL, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -37955,7 +39823,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x5E205C00u: { // SQRSHL_asisdsame_only
-                        Instruction result(Mnemonic::SQRSHL, insn, 2241);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SQRSHL, insn, EncodingId::SQRSHL_asisdsame_only);
+            #else
+                        Instruction result(Mnemonic::SQRSHL, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -37968,7 +39840,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x5E209000u: { // SQDMLAL_asisddiff_only
-                        Instruction result(Mnemonic::SQDMLAL, insn, 2213);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SQDMLAL, insn, EncodingId::SQDMLAL_asisddiff_only);
+            #else
+                        Instruction result(Mnemonic::SQDMLAL, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -37981,7 +39857,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x5E20B000u: { // SQDMLSL_asisddiff_only
-                        Instruction result(Mnemonic::SQDMLSL, insn, 2217);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SQDMLSL, insn, EncodingId::SQDMLSL_asisddiff_only);
+            #else
+                        Instruction result(Mnemonic::SQDMLSL, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -37994,7 +39874,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x5E20B400u: { // SQDMULH_asisdsame_only
-                        Instruction result(Mnemonic::SQDMULH, insn, 2221);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SQDMULH, insn, EncodingId::SQDMULH_asisdsame_only);
+            #else
+                        Instruction result(Mnemonic::SQDMULH, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -38007,7 +39891,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x5E20D000u: { // SQDMULL_asisddiff_only
-                        Instruction result(Mnemonic::SQDMULL, insn, 2225);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SQDMULL, insn, EncodingId::SQDMULL_asisddiff_only);
+            #else
+                        Instruction result(Mnemonic::SQDMULL, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -38020,7 +39908,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x7E008400u: { // SQRDMLAH_asisdsame2_only
-                        Instruction result(Mnemonic::SQRDMLAH, insn, 2231);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SQRDMLAH, insn, EncodingId::SQRDMLAH_asisdsame2_only);
+            #else
+                        Instruction result(Mnemonic::SQRDMLAH, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -38033,7 +39925,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x7E008C00u: { // SQRDMLSH_asisdsame2_only
-                        Instruction result(Mnemonic::SQRDMLSH, insn, 2235);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SQRDMLSH, insn, EncodingId::SQRDMLSH_asisdsame2_only);
+            #else
+                        Instruction result(Mnemonic::SQRDMLSH, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -38046,7 +39942,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x7E200C00u: { // UQADD_asisdsame_only
-                        Instruction result(Mnemonic::UQADD, insn, 2348);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::UQADD, insn, EncodingId::UQADD_asisdsame_only);
+            #else
+                        Instruction result(Mnemonic::UQADD, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -38059,7 +39959,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x7E202C00u: { // UQSUB_asisdsame_only
-                        Instruction result(Mnemonic::UQSUB, insn, 2360);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::UQSUB, insn, EncodingId::UQSUB_asisdsame_only);
+            #else
+                        Instruction result(Mnemonic::UQSUB, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -38072,7 +39976,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x7E204C00u: { // UQSHL_asisdsame_only
-                        Instruction result(Mnemonic::UQSHL, insn, 2356);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::UQSHL, insn, EncodingId::UQSHL_asisdsame_only);
+            #else
+                        Instruction result(Mnemonic::UQSHL, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -38085,7 +39993,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x7E205C00u: { // UQRSHL_asisdsame_only
-                        Instruction result(Mnemonic::UQRSHL, insn, 2350);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::UQRSHL, insn, EncodingId::UQRSHL_asisdsame_only);
+            #else
+                        Instruction result(Mnemonic::UQRSHL, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -38098,7 +40010,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x7E20B400u: { // SQRDMULH_asisdsame_only
-                        Instruction result(Mnemonic::SQRDMULH, insn, 2239);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SQRDMULH, insn, EncodingId::SQRDMULH_asisdsame_only);
+            #else
+                        Instruction result(Mnemonic::SQRDMULH, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -38116,7 +40032,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
     // Switch for mask 0xFF00F400u (7 patterns, 7 encodings)
     switch (insn & 0xFF00F400u) {
         case 0x5F003000u: { // SQDMLAL_asisdelem_L
-                        Instruction result(Mnemonic::SQDMLAL, insn, 2211);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SQDMLAL, insn, EncodingId::SQDMLAL_asisdelem_L);
+            #else
+                        Instruction result(Mnemonic::SQDMLAL, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -38136,7 +40056,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x5F007000u: { // SQDMLSL_asisdelem_L
-                        Instruction result(Mnemonic::SQDMLSL, insn, 2215);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SQDMLSL, insn, EncodingId::SQDMLSL_asisdelem_L);
+            #else
+                        Instruction result(Mnemonic::SQDMLSL, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -38156,7 +40080,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x5F00B000u: { // SQDMULL_asisdelem_L
-                        Instruction result(Mnemonic::SQDMULL, insn, 2224);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SQDMULL, insn, EncodingId::SQDMULL_asisdelem_L);
+            #else
+                        Instruction result(Mnemonic::SQDMULL, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -38176,7 +40104,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x5F00C000u: { // SQDMULH_asisdelem_R
-                        Instruction result(Mnemonic::SQDMULH, insn, 2219);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SQDMULH, insn, EncodingId::SQDMULH_asisdelem_R);
+            #else
+                        Instruction result(Mnemonic::SQDMULH, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -38196,7 +40128,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x5F00D000u: { // SQRDMULH_asisdelem_R
-                        Instruction result(Mnemonic::SQRDMULH, insn, 2237);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SQRDMULH, insn, EncodingId::SQRDMULH_asisdelem_R);
+            #else
+                        Instruction result(Mnemonic::SQRDMULH, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -38216,7 +40152,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x7F00D000u: { // SQRDMLAH_asisdelem_R
-                        Instruction result(Mnemonic::SQRDMLAH, insn, 2229);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SQRDMLAH, insn, EncodingId::SQRDMLAH_asisdelem_R);
+            #else
+                        Instruction result(Mnemonic::SQRDMLAH, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -38236,7 +40176,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x7F00F000u: { // SQRDMLSH_asisdelem_R
-                        Instruction result(Mnemonic::SQRDMLSH, insn, 2233);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SQRDMLSH, insn, EncodingId::SQRDMLSH_asisdelem_R);
+            #else
+                        Instruction result(Mnemonic::SQRDMLSH, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -38261,7 +40205,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
     // Switch for mask 0xBFFFFC00u (41 patterns, 42 encodings)
     switch (insn & 0xBFFFFC00u) {
         case 0x0E30C800u: { // FMAXNMV_asimdall_only_H
-                        Instruction result(Mnemonic::FMAXNMV, insn, 1887);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FMAXNMV, insn, EncodingId::FMAXNMV_asimdall_only_H);
+            #else
+                        Instruction result(Mnemonic::FMAXNMV, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -38270,7 +40218,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x0E30F800u: { // FMAXV_asimdall_only_H
-                        Instruction result(Mnemonic::FMAXV, insn, 1893);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FMAXV, insn, EncodingId::FMAXV_asimdall_only_H);
+            #else
+                        Instruction result(Mnemonic::FMAXV, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -38279,7 +40231,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x0E798800u: { // FRINTN_asimdmiscfp16_R
-                        Instruction result(Mnemonic::FRINTN, insn, 2043);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FRINTN, insn, EncodingId::FRINTN_asimdmiscfp16_R);
+            #else
+                        Instruction result(Mnemonic::FRINTN, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -38289,7 +40245,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x0E799800u: { // FRINTM_asimdmiscfp16_R
-                        Instruction result(Mnemonic::FRINTM, insn, 2038);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FRINTM, insn, EncodingId::FRINTM_asimdmiscfp16_R);
+            #else
+                        Instruction result(Mnemonic::FRINTM, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -38299,7 +40259,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x0E79A800u: { // FCVTNS_asimdmiscfp16_R
-                        Instruction result(Mnemonic::FCVTNS, insn, 1758);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FCVTNS, insn, EncodingId::FCVTNS_asimdmiscfp16_R);
+            #else
+                        Instruction result(Mnemonic::FCVTNS, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -38309,7 +40273,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x0E79B800u: { // FCVTMS_asimdmiscfp16_R
-                        Instruction result(Mnemonic::FCVTMS, insn, 1727);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FCVTMS, insn, EncodingId::FCVTMS_asimdmiscfp16_R);
+            #else
+                        Instruction result(Mnemonic::FCVTMS, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -38319,7 +40287,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x0E79C800u: { // FCVTAS_asimdmiscfp16_R
-                        Instruction result(Mnemonic::FCVTAS, insn, 1698);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FCVTAS, insn, EncodingId::FCVTAS_asimdmiscfp16_R);
+            #else
+                        Instruction result(Mnemonic::FCVTAS, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -38329,7 +40301,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x0E79D800u: { // SCVTF_asimdmiscfp16_R
-                        Instruction result(Mnemonic::SCVTF, insn, 2141);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SCVTF, insn, EncodingId::SCVTF_asimdmiscfp16_R);
+            #else
+                        Instruction result(Mnemonic::SCVTF, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -38339,7 +40315,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x0EA16800u: { // BFCVTN_asimdmisc_4S
-                        Instruction result(Mnemonic::BFCVTN, insn, 1559);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::BFCVTN, insn, EncodingId::BFCVTN_asimdmisc_4S);
+            #else
+                        Instruction result(Mnemonic::BFCVTN, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -38349,7 +40329,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x0EB0C800u: { // FMINNMV_asimdall_only_H
-                        Instruction result(Mnemonic::FMINNMV, insn, 1909);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FMINNMV, insn, EncodingId::FMINNMV_asimdall_only_H);
+            #else
+                        Instruction result(Mnemonic::FMINNMV, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -38358,7 +40342,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x0EB0F800u: { // FMINV_asimdall_only_H
-                        Instruction result(Mnemonic::FMINV, insn, 1915);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FMINV, insn, EncodingId::FMINV_asimdall_only_H);
+            #else
+                        Instruction result(Mnemonic::FMINV, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -38367,7 +40355,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x0EF8C800u: { // FCMGT_asimdmiscfp16_FZ
-                        Instruction result(Mnemonic::FCMGT, insn, 1663);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FCMGT, insn, EncodingId::FCMGT_asimdmiscfp16_FZ);
+            #else
+                        Instruction result(Mnemonic::FCMGT, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -38378,7 +40370,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x0EF8D800u: { // FCMEQ_asimdmiscfp16_FZ
-                        Instruction result(Mnemonic::FCMEQ, insn, 1647);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FCMEQ, insn, EncodingId::FCMEQ_asimdmiscfp16_FZ);
+            #else
+                        Instruction result(Mnemonic::FCMEQ, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -38389,7 +40385,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x0EF8E800u: { // FCMLT_asimdmiscfp16_FZ
-                        Instruction result(Mnemonic::FCMLT, insn, 1673);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FCMLT, insn, EncodingId::FCMLT_asimdmiscfp16_FZ);
+            #else
+                        Instruction result(Mnemonic::FCMLT, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -38400,7 +40400,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x0EF8F800u: { // FABS_asimdmiscfp16_R
-                        Instruction result(Mnemonic::FABS, insn, 1608);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FABS, insn, EncodingId::FABS_asimdmiscfp16_R);
+            #else
+                        Instruction result(Mnemonic::FABS, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -38410,7 +40414,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x0EF98800u: { // FRINTP_asimdmiscfp16_R
-                        Instruction result(Mnemonic::FRINTP, insn, 2048);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FRINTP, insn, EncodingId::FRINTP_asimdmiscfp16_R);
+            #else
+                        Instruction result(Mnemonic::FRINTP, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -38420,7 +40428,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x0EF99800u: { // FRINTZ_asimdmiscfp16_R
-                        Instruction result(Mnemonic::FRINTZ, insn, 2058);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FRINTZ, insn, EncodingId::FRINTZ_asimdmiscfp16_R);
+            #else
+                        Instruction result(Mnemonic::FRINTZ, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -38430,7 +40442,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x0EF9A800u: { // FCVTPS_asimdmiscfp16_R
-                        Instruction result(Mnemonic::FCVTPS, insn, 1786);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FCVTPS, insn, EncodingId::FCVTPS_asimdmiscfp16_R);
+            #else
+                        Instruction result(Mnemonic::FCVTPS, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -38440,7 +40456,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x0EF9B800u: { // FCVTZS_asimdmiscfp16_R
-                        Instruction result(Mnemonic::FCVTZS, insn, 1818);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FCVTZS, insn, EncodingId::FCVTZS_asimdmiscfp16_R);
+            #else
+                        Instruction result(Mnemonic::FCVTZS, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -38450,7 +40470,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x0EF9D800u: { // FRECPE_asimdmiscfp16_R
-                        Instruction result(Mnemonic::FRECPE, insn, 2008);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FRECPE, insn, EncodingId::FRECPE_asimdmiscfp16_R);
+            #else
+                        Instruction result(Mnemonic::FRECPE, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -38461,7 +40485,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
         }
         case 0x2E205800u: { // MVN_NOT_asimdmisc_R
             // Also matches: NOT_asimdmisc_R (NOT)
-                        Instruction result(Mnemonic::NOT, insn, 2107);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::NOT, insn, EncodingId::MVN_NOT_asimdmisc_R);
+            #else
+                        Instruction result(Mnemonic::NOT, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -38471,7 +40499,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x2E217800u: { // F1CVTL_asimdmisc_V
-                        Instruction result(Mnemonic::F1CVTL, insn, 1602);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::F1CVTL, insn, EncodingId::F1CVTL_asimdmisc_V);
+            #else
+                        Instruction result(Mnemonic::F1CVTL, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -38480,7 +40512,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x2E605800u: { // RBIT_asimdmisc_R
-                        Instruction result(Mnemonic::RBIT, insn, 2122);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::RBIT, insn, EncodingId::RBIT_asimdmisc_R);
+            #else
+                        Instruction result(Mnemonic::RBIT, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -38490,7 +40526,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x2E616800u: { // FCVTXN_asimdmisc_N
-                        Instruction result(Mnemonic::FCVTXN, insn, 1813);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FCVTXN, insn, EncodingId::FCVTXN_asimdmisc_N);
+            #else
+                        Instruction result(Mnemonic::FCVTXN, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -38500,7 +40540,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x2E617800u: { // F2CVTL_asimdmisc_V
-                        Instruction result(Mnemonic::F2CVTL, insn, 1603);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::F2CVTL, insn, EncodingId::F2CVTL_asimdmisc_V);
+            #else
+                        Instruction result(Mnemonic::F2CVTL, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -38509,7 +40553,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x2E798800u: { // FRINTA_asimdmiscfp16_R
-                        Instruction result(Mnemonic::FRINTA, insn, 2028);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FRINTA, insn, EncodingId::FRINTA_asimdmiscfp16_R);
+            #else
+                        Instruction result(Mnemonic::FRINTA, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -38519,7 +40567,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x2E799800u: { // FRINTX_asimdmiscfp16_R
-                        Instruction result(Mnemonic::FRINTX, insn, 2053);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FRINTX, insn, EncodingId::FRINTX_asimdmiscfp16_R);
+            #else
+                        Instruction result(Mnemonic::FRINTX, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -38529,7 +40581,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x2E79A800u: { // FCVTNU_asimdmiscfp16_R
-                        Instruction result(Mnemonic::FCVTNU, insn, 1772);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FCVTNU, insn, EncodingId::FCVTNU_asimdmiscfp16_R);
+            #else
+                        Instruction result(Mnemonic::FCVTNU, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -38539,7 +40595,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x2E79B800u: { // FCVTMU_asimdmiscfp16_R
-                        Instruction result(Mnemonic::FCVTMU, insn, 1741);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FCVTMU, insn, EncodingId::FCVTMU_asimdmiscfp16_R);
+            #else
+                        Instruction result(Mnemonic::FCVTMU, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -38549,7 +40609,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x2E79C800u: { // FCVTAU_asimdmiscfp16_R
-                        Instruction result(Mnemonic::FCVTAU, insn, 1712);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FCVTAU, insn, EncodingId::FCVTAU_asimdmiscfp16_R);
+            #else
+                        Instruction result(Mnemonic::FCVTAU, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -38559,7 +40623,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x2E79D800u: { // UCVTF_asimdmiscfp16_R
-                        Instruction result(Mnemonic::UCVTF, insn, 2311);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::UCVTF, insn, EncodingId::UCVTF_asimdmiscfp16_R);
+            #else
+                        Instruction result(Mnemonic::UCVTF, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -38569,7 +40637,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x2EA17800u: { // BF1CVTL_asimdmisc_V
-                        Instruction result(Mnemonic::BF1CVTL, insn, 1556);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::BF1CVTL, insn, EncodingId::BF1CVTL_asimdmisc_V);
+            #else
+                        Instruction result(Mnemonic::BF1CVTL, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -38578,7 +40650,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x2EE17800u: { // BF2CVTL_asimdmisc_V
-                        Instruction result(Mnemonic::BF2CVTL, insn, 1557);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::BF2CVTL, insn, EncodingId::BF2CVTL_asimdmisc_V);
+            #else
+                        Instruction result(Mnemonic::BF2CVTL, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -38587,7 +40663,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x2EF8C800u: { // FCMGE_asimdmiscfp16_FZ
-                        Instruction result(Mnemonic::FCMGE, insn, 1655);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FCMGE, insn, EncodingId::FCMGE_asimdmiscfp16_FZ);
+            #else
+                        Instruction result(Mnemonic::FCMGE, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -38598,7 +40678,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x2EF8D800u: { // FCMLE_asimdmiscfp16_FZ
-                        Instruction result(Mnemonic::FCMLE, insn, 1669);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FCMLE, insn, EncodingId::FCMLE_asimdmiscfp16_FZ);
+            #else
+                        Instruction result(Mnemonic::FCMLE, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -38609,7 +40693,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x2EF8F800u: { // FNEG_asimdmiscfp16_R
-                        Instruction result(Mnemonic::FNEG, insn, 1992);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FNEG, insn, EncodingId::FNEG_asimdmiscfp16_R);
+            #else
+                        Instruction result(Mnemonic::FNEG, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -38619,7 +40707,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x2EF99800u: { // FRINTI_asimdmiscfp16_R
-                        Instruction result(Mnemonic::FRINTI, insn, 2033);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FRINTI, insn, EncodingId::FRINTI_asimdmiscfp16_R);
+            #else
+                        Instruction result(Mnemonic::FRINTI, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -38629,7 +40721,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x2EF9A800u: { // FCVTPU_asimdmiscfp16_R
-                        Instruction result(Mnemonic::FCVTPU, insn, 1800);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FCVTPU, insn, EncodingId::FCVTPU_asimdmiscfp16_R);
+            #else
+                        Instruction result(Mnemonic::FCVTPU, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -38639,7 +40735,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x2EF9B800u: { // FCVTZU_asimdmiscfp16_R
-                        Instruction result(Mnemonic::FCVTZU, insn, 1840);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FCVTZU, insn, EncodingId::FCVTZU_asimdmiscfp16_R);
+            #else
+                        Instruction result(Mnemonic::FCVTZU, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -38649,7 +40749,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x2EF9D800u: { // FRSQRTE_asimdmiscfp16_R
-                        Instruction result(Mnemonic::FRSQRTE, insn, 2065);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FRSQRTE, insn, EncodingId::FRSQRTE_asimdmiscfp16_R);
+            #else
+                        Instruction result(Mnemonic::FRSQRTE, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -38659,7 +40763,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x2EF9F800u: { // FSQRT_asimdmiscfp16_R
-                        Instruction result(Mnemonic::FSQRT, insn, 2073);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FSQRT, insn, EncodingId::FSQRT_asimdmiscfp16_R);
+            #else
+                        Instruction result(Mnemonic::FSQRT, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -38674,7 +40782,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
     // Switch for mask 0xBFF8FC00u (3 patterns, 3 encodings)
     switch (insn & 0xBFF8FC00u) {
         case 0x0F00E400u: { // MOVI_asimdimm_N_b
-                        Instruction result(Mnemonic::MOVI, insn, 2099);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::MOVI, insn, EncodingId::MOVI_asimdimm_N_b);
+            #else
+                        Instruction result(Mnemonic::MOVI, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -38700,7 +40812,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x0F00F400u: { // FMOV_asimdimm_S_s
-                        Instruction result(Mnemonic::FMOV, insn, 1954);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FMOV, insn, EncodingId::FMOV_asimdimm_S_s);
+            #else
+                        Instruction result(Mnemonic::FMOV, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -38716,7 +40832,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x0F00FC00u: { // FMOV_asimdimm_H_h
-                        Instruction result(Mnemonic::FMOV, insn, 1953);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FMOV, insn, EncodingId::FMOV_asimdimm_H_h);
+            #else
+                        Instruction result(Mnemonic::FMOV, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -38737,7 +40857,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
     // Switch for mask 0xBFF8EC00u (2 patterns, 2 encodings)
     switch (insn & 0xBFF8EC00u) {
         case 0x0F00C400u: { // MOVI_asimdimm_M_sm
-                        Instruction result(Mnemonic::MOVI, insn, 2102);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::MOVI, insn, EncodingId::MOVI_asimdimm_M_sm);
+            #else
+                        Instruction result(Mnemonic::MOVI, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -38764,7 +40888,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x2F00C400u: { // MVNI_asimdimm_M_sm
-                        Instruction result(Mnemonic::MVNI, insn, 2110);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::MVNI, insn, EncodingId::MVNI_asimdimm_M_sm);
+            #else
+                        Instruction result(Mnemonic::MVNI, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -38786,7 +40914,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
     // Switch for mask 0xBFF8DC00u (4 patterns, 4 encodings)
     switch (insn & 0xBFF8DC00u) {
         case 0x0F008400u: { // MOVI_asimdimm_L_hl
-                        Instruction result(Mnemonic::MOVI, insn, 2100);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::MOVI, insn, EncodingId::MOVI_asimdimm_L_hl);
+            #else
+                        Instruction result(Mnemonic::MOVI, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -38816,7 +40948,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x0F009400u: { // ORR_asimdimm_L_hl
-                        Instruction result(Mnemonic::ORR, insn, 2115);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::ORR, insn, EncodingId::ORR_asimdimm_L_hl);
+            #else
+                        Instruction result(Mnemonic::ORR, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -38825,7 +40961,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x2F008400u: { // MVNI_asimdimm_L_hl
-                        Instruction result(Mnemonic::MVNI, insn, 2108);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::MVNI, insn, EncodingId::MVNI_asimdimm_L_hl);
+            #else
+                        Instruction result(Mnemonic::MVNI, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -38845,7 +40985,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x2F009400u: { // BIC_asimdimm_L_hl
-                        Instruction result(Mnemonic::BIC, insn, 1565);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::BIC, insn, EncodingId::BIC_asimdimm_L_hl);
+            #else
+                        Instruction result(Mnemonic::BIC, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -38859,7 +41003,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
     // Switch for mask 0xBFF89C00u (4 patterns, 4 encodings)
     switch (insn & 0xBFF89C00u) {
         case 0x0F000400u: { // MOVI_asimdimm_L_sl
-                        Instruction result(Mnemonic::MOVI, insn, 2101);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::MOVI, insn, EncodingId::MOVI_asimdimm_L_sl);
+            #else
+                        Instruction result(Mnemonic::MOVI, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -38889,7 +41037,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x0F001400u: { // ORR_asimdimm_L_sl
-                        Instruction result(Mnemonic::ORR, insn, 2116);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::ORR, insn, EncodingId::ORR_asimdimm_L_sl);
+            #else
+                        Instruction result(Mnemonic::ORR, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -38898,7 +41050,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x2F000400u: { // MVNI_asimdimm_L_sl
-                        Instruction result(Mnemonic::MVNI, insn, 2109);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::MVNI, insn, EncodingId::MVNI_asimdimm_L_sl);
+            #else
+                        Instruction result(Mnemonic::MVNI, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -38918,7 +41074,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x2F001400u: { // BIC_asimdimm_L_sl
-                        Instruction result(Mnemonic::BIC, insn, 1566);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::BIC, insn, EncodingId::BIC_asimdimm_L_sl);
+            #else
+                        Instruction result(Mnemonic::BIC, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -38932,7 +41092,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
     // Switch for mask 0xBFE0FC00u (57 patterns, 58 encodings)
     switch (insn & 0xBFE0FC00u) {
         case 0x0E000000u: { // TBL_asimdtbl_L1_1
-                        Instruction result(Mnemonic::TBL, insn, 2288);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::TBL, insn, EncodingId::TBL_asimdtbl_L1_1);
+            #else
+                        Instruction result(Mnemonic::TBL, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -38943,7 +41107,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x0E000400u: { // DUP_asimdins_DV_v
-                        Instruction result(Mnemonic::DUP, insn, 1597);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::DUP, insn, EncodingId::DUP_asimdins_DV_v);
+            #else
+                        Instruction result(Mnemonic::DUP, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -38969,7 +41137,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x0E000C00u: { // DUP_asimdins_DR_r
-                        Instruction result(Mnemonic::DUP, insn, 1598);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::DUP, insn, EncodingId::DUP_asimdins_DR_r);
+            #else
+                        Instruction result(Mnemonic::DUP, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -38986,7 +41158,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x0E001000u: { // TBX_asimdtbl_L1_1
-                        Instruction result(Mnemonic::TBX, insn, 2292);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::TBX, insn, EncodingId::TBX_asimdtbl_L1_1);
+            #else
+                        Instruction result(Mnemonic::TBX, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -38997,7 +41173,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x0E002000u: { // TBL_asimdtbl_L2_2
-                        Instruction result(Mnemonic::TBL, insn, 2289);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::TBL, insn, EncodingId::TBL_asimdtbl_L2_2);
+            #else
+                        Instruction result(Mnemonic::TBL, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -39008,7 +41188,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x0E003000u: { // TBX_asimdtbl_L2_2
-                        Instruction result(Mnemonic::TBX, insn, 2293);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::TBX, insn, EncodingId::TBX_asimdtbl_L2_2);
+            #else
+                        Instruction result(Mnemonic::TBX, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -39019,7 +41203,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x0E004000u: { // TBL_asimdtbl_L3_3
-                        Instruction result(Mnemonic::TBL, insn, 2290);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::TBL, insn, EncodingId::TBL_asimdtbl_L3_3);
+            #else
+                        Instruction result(Mnemonic::TBL, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -39030,7 +41218,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x0E005000u: { // TBX_asimdtbl_L3_3
-                        Instruction result(Mnemonic::TBX, insn, 2294);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::TBX, insn, EncodingId::TBX_asimdtbl_L3_3);
+            #else
+                        Instruction result(Mnemonic::TBX, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -39041,7 +41233,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x0E006000u: { // TBL_asimdtbl_L4_4
-                        Instruction result(Mnemonic::TBL, insn, 2291);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::TBL, insn, EncodingId::TBL_asimdtbl_L4_4);
+            #else
+                        Instruction result(Mnemonic::TBL, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -39052,7 +41248,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x0E007000u: { // TBX_asimdtbl_L4_4
-                        Instruction result(Mnemonic::TBX, insn, 2295);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::TBX, insn, EncodingId::TBX_asimdtbl_L4_4);
+            #else
+                        Instruction result(Mnemonic::TBX, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -39063,7 +41263,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x0E00F400u: { // FCVTN_asimdsame2_H
-                        Instruction result(Mnemonic::FCVTN, insn, 1755);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FCVTN, insn, EncodingId::FCVTN_asimdsame2_H);
+            #else
+                        Instruction result(Mnemonic::FCVTN, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -39073,7 +41277,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x0E00FC00u: { // FDOT_asimdsame2_DD
-                        Instruction result(Mnemonic::FDOT, insn, 1866);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FDOT, insn, EncodingId::FDOT_asimdsame2_DD);
+            #else
+                        Instruction result(Mnemonic::FDOT, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -39085,7 +41293,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x0E201C00u: { // AND_asimdsame_only
-                        Instruction result(Mnemonic::AND, insn, 1554);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::AND, insn, EncodingId::AND_asimdsame_only);
+            #else
+                        Instruction result(Mnemonic::AND, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -39096,7 +41308,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x0E20EC00u: { // FMLAL_asimdsame_F
-                        Instruction result(Mnemonic::FMLAL, insn, 1925);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FMLAL, insn, EncodingId::FMLAL_asimdsame_F);
+            #else
+                        Instruction result(Mnemonic::FMLAL, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -39108,7 +41324,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x0E400400u: { // FMAXNM_asimdsamefp16_only
-                        Instruction result(Mnemonic::FMAXNM, insn, 1878);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FMAXNM, insn, EncodingId::FMAXNM_asimdsamefp16_only);
+            #else
+                        Instruction result(Mnemonic::FMAXNM, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -39119,7 +41339,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x0E400C00u: { // FMLA_asimdsamefp16_only
-                        Instruction result(Mnemonic::FMLA, insn, 1921);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FMLA, insn, EncodingId::FMLA_asimdsamefp16_only);
+            #else
+                        Instruction result(Mnemonic::FMLA, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -39130,7 +41354,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x0E401400u: { // FADD_asimdsamefp16_only
-                        Instruction result(Mnemonic::FADD, insn, 1621);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FADD, insn, EncodingId::FADD_asimdsamefp16_only);
+            #else
+                        Instruction result(Mnemonic::FADD, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -39141,7 +41369,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x0E401C00u: { // FMULX_asimdsamefp16_only
-                        Instruction result(Mnemonic::FMULX, insn, 1990);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FMULX, insn, EncodingId::FMULX_asimdsamefp16_only);
+            #else
+                        Instruction result(Mnemonic::FMULX, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -39152,7 +41384,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x0E402400u: { // FCMEQ_asimdsamefp16_only
-                        Instruction result(Mnemonic::FCMEQ, insn, 1643);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FCMEQ, insn, EncodingId::FCMEQ_asimdsamefp16_only);
+            #else
+                        Instruction result(Mnemonic::FCMEQ, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -39163,7 +41399,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x0E403400u: { // FMAX_asimdsamefp16_only
-                        Instruction result(Mnemonic::FMAX, insn, 1873);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FMAX, insn, EncodingId::FMAX_asimdsamefp16_only);
+            #else
+                        Instruction result(Mnemonic::FMAX, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -39174,7 +41414,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x0E403C00u: { // FRECPS_asimdsamefp16_only
-                        Instruction result(Mnemonic::FRECPS, insn, 2012);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FRECPS, insn, EncodingId::FRECPS_asimdsamefp16_only);
+            #else
+                        Instruction result(Mnemonic::FRECPS, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -39185,7 +41429,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x0E40F400u: { // FCVTN_asimdsame2_D
-                        Instruction result(Mnemonic::FCVTN, insn, 1754);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FCVTN, insn, EncodingId::FCVTN_asimdsame2_D);
+            #else
+                        Instruction result(Mnemonic::FCVTN, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -39195,7 +41443,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x0E40FC00u: { // FDOT_asimdsame2_D
-                        Instruction result(Mnemonic::FDOT, insn, 1864);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FDOT, insn, EncodingId::FDOT_asimdsame2_D);
+            #else
+                        Instruction result(Mnemonic::FDOT, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -39207,7 +41459,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x0E601C00u: { // BIC_asimdsame_only
-                        Instruction result(Mnemonic::BIC, insn, 1567);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::BIC, insn, EncodingId::BIC_asimdsame_only);
+            #else
+                        Instruction result(Mnemonic::BIC, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -39218,7 +41474,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x0E809C00u: { // USDOT_asimdsame2_D
-                        Instruction result(Mnemonic::USDOT, insn, 2374);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::USDOT, insn, EncodingId::USDOT_asimdsame2_D);
+            #else
+                        Instruction result(Mnemonic::USDOT, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -39229,7 +41489,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x0E80FC00u: { // FDOT_asimdsame2_FP16FP32
-                        Instruction result(Mnemonic::FDOT, insn, 1868);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FDOT, insn, EncodingId::FDOT_asimdsame2_FP16FP32);
+            #else
+                        Instruction result(Mnemonic::FDOT, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -39241,7 +41505,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
         }
         case 0x0EA01C00u: { // MOV_ORR_asimdsame_only
             // Also matches: ORR_asimdsame_only (ORR)
-                        Instruction result(Mnemonic::ORR, insn, 2096);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::ORR, insn, EncodingId::MOV_ORR_asimdsame_only);
+            #else
+                        Instruction result(Mnemonic::ORR, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -39252,7 +41520,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x0EA0EC00u: { // FMLSL_asimdsame_F
-                        Instruction result(Mnemonic::FMLSL, insn, 1947);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FMLSL, insn, EncodingId::FMLSL_asimdsame_F);
+            #else
+                        Instruction result(Mnemonic::FMLSL, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -39264,7 +41536,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x0EC00400u: { // FMINNM_asimdsamefp16_only
-                        Instruction result(Mnemonic::FMINNM, insn, 1900);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FMINNM, insn, EncodingId::FMINNM_asimdsamefp16_only);
+            #else
+                        Instruction result(Mnemonic::FMINNM, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -39275,7 +41551,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x0EC00C00u: { // FMLS_asimdsamefp16_only
-                        Instruction result(Mnemonic::FMLS, insn, 1943);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FMLS, insn, EncodingId::FMLS_asimdsamefp16_only);
+            #else
+                        Instruction result(Mnemonic::FMLS, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -39286,7 +41566,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x0EC01400u: { // FSUB_asimdsamefp16_only
-                        Instruction result(Mnemonic::FSUB, insn, 2078);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FSUB, insn, EncodingId::FSUB_asimdsamefp16_only);
+            #else
+                        Instruction result(Mnemonic::FSUB, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -39297,7 +41581,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x0EC01C00u: { // FAMAX_asimdsamefp16_only
-                        Instruction result(Mnemonic::FAMAX, insn, 1630);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FAMAX, insn, EncodingId::FAMAX_asimdsamefp16_only);
+            #else
+                        Instruction result(Mnemonic::FAMAX, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -39308,7 +41596,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x0EC03400u: { // FMIN_asimdsamefp16_only
-                        Instruction result(Mnemonic::FMIN, insn, 1895);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FMIN, insn, EncodingId::FMIN_asimdsamefp16_only);
+            #else
+                        Instruction result(Mnemonic::FMIN, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -39319,7 +41611,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x0EC03C00u: { // FRSQRTS_asimdsamefp16_only
-                        Instruction result(Mnemonic::FRSQRTS, insn, 2069);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FRSQRTS, insn, EncodingId::FRSQRTS_asimdsamefp16_only);
+            #else
+                        Instruction result(Mnemonic::FRSQRTS, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -39330,7 +41626,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x0EE01C00u: { // ORN_asimdsame_only
-                        Instruction result(Mnemonic::ORN, insn, 2114);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::ORN, insn, EncodingId::ORN_asimdsame_only);
+            #else
+                        Instruction result(Mnemonic::ORN, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -39341,7 +41641,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x2E201C00u: { // EOR_asimdsame_only
-                        Instruction result(Mnemonic::EOR, insn, 1600);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::EOR, insn, EncodingId::EOR_asimdsame_only);
+            #else
+                        Instruction result(Mnemonic::EOR, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -39352,7 +41656,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x2E20CC00u: { // FMLAL2_asimdsame_F
-                        Instruction result(Mnemonic::FMLAL2, insn, 1926);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FMLAL2, insn, EncodingId::FMLAL2_asimdsame_F);
+            #else
+                        Instruction result(Mnemonic::FMLAL2, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -39364,7 +41672,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x2E400400u: { // FMAXNMP_asimdsamefp16_only
-                        Instruction result(Mnemonic::FMAXNMP, insn, 1885);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FMAXNMP, insn, EncodingId::FMAXNMP_asimdsamefp16_only);
+            #else
+                        Instruction result(Mnemonic::FMAXNMP, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -39375,7 +41687,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x2E401400u: { // FADDP_asimdsamefp16_only
-                        Instruction result(Mnemonic::FADDP, insn, 1628);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FADDP, insn, EncodingId::FADDP_asimdsamefp16_only);
+            #else
+                        Instruction result(Mnemonic::FADDP, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -39386,7 +41702,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x2E401C00u: { // FMUL_asimdsamefp16_only
-                        Instruction result(Mnemonic::FMUL, insn, 1979);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FMUL, insn, EncodingId::FMUL_asimdsamefp16_only);
+            #else
+                        Instruction result(Mnemonic::FMUL, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -39397,7 +41717,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x2E402400u: { // FCMGE_asimdsamefp16_only
-                        Instruction result(Mnemonic::FCMGE, insn, 1651);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FCMGE, insn, EncodingId::FCMGE_asimdsamefp16_only);
+            #else
+                        Instruction result(Mnemonic::FCMGE, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -39408,7 +41732,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x2E402C00u: { // FACGE_asimdsamefp16_only
-                        Instruction result(Mnemonic::FACGE, insn, 1615);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FACGE, insn, EncodingId::FACGE_asimdsamefp16_only);
+            #else
+                        Instruction result(Mnemonic::FACGE, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -39419,7 +41747,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x2E403400u: { // FMAXP_asimdsamefp16_only
-                        Instruction result(Mnemonic::FMAXP, insn, 1891);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FMAXP, insn, EncodingId::FMAXP_asimdsamefp16_only);
+            #else
+                        Instruction result(Mnemonic::FMAXP, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -39430,7 +41762,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x2E403C00u: { // FDIV_asimdsamefp16_only
-                        Instruction result(Mnemonic::FDIV, insn, 1858);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FDIV, insn, EncodingId::FDIV_asimdsamefp16_only);
+            #else
+                        Instruction result(Mnemonic::FDIV, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -39441,7 +41777,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x2E40FC00u: { // BFDOT_asimdsame2_D
-                        Instruction result(Mnemonic::BFDOT, insn, 1561);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::BFDOT, insn, EncodingId::BFDOT_asimdsame2_D);
+            #else
+                        Instruction result(Mnemonic::BFDOT, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -39452,7 +41792,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x2E601C00u: { // BSL_asimdsame_only
-                        Instruction result(Mnemonic::BSL, insn, 1570);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::BSL, insn, EncodingId::BSL_asimdsame_only);
+            #else
+                        Instruction result(Mnemonic::BSL, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -39463,7 +41807,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x2EA01C00u: { // BIT_asimdsame_only
-                        Instruction result(Mnemonic::BIT, insn, 1569);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::BIT, insn, EncodingId::BIT_asimdsame_only);
+            #else
+                        Instruction result(Mnemonic::BIT, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -39474,7 +41822,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x2EA0CC00u: { // FMLSL2_asimdsame_F
-                        Instruction result(Mnemonic::FMLSL2, insn, 1948);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FMLSL2, insn, EncodingId::FMLSL2_asimdsame_F);
+            #else
+                        Instruction result(Mnemonic::FMLSL2, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -39486,7 +41838,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x2EC00400u: { // FMINNMP_asimdsamefp16_only
-                        Instruction result(Mnemonic::FMINNMP, insn, 1907);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FMINNMP, insn, EncodingId::FMINNMP_asimdsamefp16_only);
+            #else
+                        Instruction result(Mnemonic::FMINNMP, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -39497,7 +41853,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x2EC01400u: { // FABD_asimdsamefp16_only
-                        Instruction result(Mnemonic::FABD, insn, 1606);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FABD, insn, EncodingId::FABD_asimdsamefp16_only);
+            #else
+                        Instruction result(Mnemonic::FABD, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -39508,7 +41868,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x2EC01C00u: { // FAMIN_asimdsamefp16_only
-                        Instruction result(Mnemonic::FAMIN, insn, 1632);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FAMIN, insn, EncodingId::FAMIN_asimdsamefp16_only);
+            #else
+                        Instruction result(Mnemonic::FAMIN, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -39519,7 +41883,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x2EC02400u: { // FCMGT_asimdsamefp16_only
-                        Instruction result(Mnemonic::FCMGT, insn, 1659);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FCMGT, insn, EncodingId::FCMGT_asimdsamefp16_only);
+            #else
+                        Instruction result(Mnemonic::FCMGT, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -39530,7 +41898,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x2EC02C00u: { // FACGT_asimdsamefp16_only
-                        Instruction result(Mnemonic::FACGT, insn, 1619);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FACGT, insn, EncodingId::FACGT_asimdsamefp16_only);
+            #else
+                        Instruction result(Mnemonic::FACGT, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -39541,7 +41913,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x2EC03400u: { // FMINP_asimdsamefp16_only
-                        Instruction result(Mnemonic::FMINP, insn, 1913);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FMINP, insn, EncodingId::FMINP_asimdsamefp16_only);
+            #else
+                        Instruction result(Mnemonic::FMINP, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -39552,7 +41928,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x2EC03C00u: { // FSCALE_asimdsamefp16_only
-                        Instruction result(Mnemonic::FSCALE, insn, 2071);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FSCALE, insn, EncodingId::FSCALE_asimdsamefp16_only);
+            #else
+                        Instruction result(Mnemonic::FSCALE, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -39563,7 +41943,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x2EC0FC00u: { // BFMLAL_asimdsame2_F_
-                        Instruction result(Mnemonic::BFMLAL, insn, 1563);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::BFMLAL, insn, EncodingId::BFMLAL_asimdsame2_F_);
+            #else
+                        Instruction result(Mnemonic::BFMLAL, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -39573,7 +41957,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x2EE01C00u: { // BIF_asimdsame_only
-                        Instruction result(Mnemonic::BIF, insn, 1568);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::BIF, insn, EncodingId::BIF_asimdsame_only);
+            #else
+                        Instruction result(Mnemonic::BIF, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -39589,7 +41977,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
     // Switch for mask 0xBFE08400u (1 pattern, 1 encoding)
     switch (insn & 0xBFE08400u) {
         case 0x2E000000u: { // EXT_asimdext_only
-                        Instruction result(Mnemonic::EXT, insn, 1601);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::EXT, insn, EncodingId::EXT_asimdext_only);
+            #else
+                        Instruction result(Mnemonic::EXT, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -39606,7 +41998,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
     // Switch for mask 0xBFC0F400u (15 patterns, 15 encodings)
     switch (insn & 0xBFC0F400u) {
         case 0x0F000000u: { // FDOT_asimdelem_D
-                        Instruction result(Mnemonic::FDOT, insn, 1865);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FDOT, insn, EncodingId::FDOT_asimdelem_D);
+            #else
+                        Instruction result(Mnemonic::FDOT, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -39630,7 +42026,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x0F001000u: { // FMLA_asimdelem_RH_H
-                        Instruction result(Mnemonic::FMLA, insn, 1919);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FMLA, insn, EncodingId::FMLA_asimdelem_RH_H);
+            #else
+                        Instruction result(Mnemonic::FMLA, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -39657,7 +42057,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x0F005000u: { // FMLS_asimdelem_RH_H
-                        Instruction result(Mnemonic::FMLS, insn, 1941);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FMLS, insn, EncodingId::FMLS_asimdelem_RH_H);
+            #else
+                        Instruction result(Mnemonic::FMLS, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -39684,7 +42088,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x0F009000u: { // FMUL_asimdelem_RH_H
-                        Instruction result(Mnemonic::FMUL, insn, 1977);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FMUL, insn, EncodingId::FMUL_asimdelem_RH_H);
+            #else
+                        Instruction result(Mnemonic::FMUL, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -39711,7 +42119,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x0F00F000u: { // SUDOT_asimdelem_D
-                        Instruction result(Mnemonic::SUDOT, insn, 2284);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SUDOT, insn, EncodingId::SUDOT_asimdelem_D);
+            #else
+                        Instruction result(Mnemonic::SUDOT, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -39722,7 +42134,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x0F400000u: { // FDOT_asimdelem_G
-                        Instruction result(Mnemonic::FDOT, insn, 1863);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FDOT, insn, EncodingId::FDOT_asimdelem_G);
+            #else
+                        Instruction result(Mnemonic::FDOT, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -39748,7 +42164,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x0F409000u: { // FDOT_asimdelem_FP16FP32
-                        Instruction result(Mnemonic::FDOT, insn, 1867);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FDOT, insn, EncodingId::FDOT_asimdelem_FP16FP32);
+            #else
+                        Instruction result(Mnemonic::FDOT, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -39772,7 +42192,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x0F40F000u: { // BFDOT_asimdelem_E
-                        Instruction result(Mnemonic::BFDOT, insn, 1560);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::BFDOT, insn, EncodingId::BFDOT_asimdelem_E);
+            #else
+                        Instruction result(Mnemonic::BFDOT, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -39796,7 +42220,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x0F800000u: { // FMLAL_asimdelem_LH
-                        Instruction result(Mnemonic::FMLAL, insn, 1923);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FMLAL, insn, EncodingId::FMLAL_asimdelem_LH);
+            #else
+                        Instruction result(Mnemonic::FMLAL, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -39827,7 +42255,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x0F804000u: { // FMLSL_asimdelem_LH
-                        Instruction result(Mnemonic::FMLSL, insn, 1945);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FMLSL, insn, EncodingId::FMLSL_asimdelem_LH);
+            #else
+                        Instruction result(Mnemonic::FMLSL, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -39858,7 +42290,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x0F80F000u: { // USDOT_asimdelem_D
-                        Instruction result(Mnemonic::USDOT, insn, 2373);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::USDOT, insn, EncodingId::USDOT_asimdelem_D);
+            #else
+                        Instruction result(Mnemonic::USDOT, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -39869,7 +42305,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x0FC0F000u: { // BFMLAL_asimdelem_F
-                        Instruction result(Mnemonic::BFMLAL, insn, 1562);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::BFMLAL, insn, EncodingId::BFMLAL_asimdelem_F);
+            #else
+                        Instruction result(Mnemonic::BFMLAL, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -39888,7 +42328,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x2F009000u: { // FMULX_asimdelem_RH_H
-                        Instruction result(Mnemonic::FMULX, insn, 1986);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FMULX, insn, EncodingId::FMULX_asimdelem_RH_H);
+            #else
+                        Instruction result(Mnemonic::FMULX, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -39915,7 +42359,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x2F808000u: { // FMLAL2_asimdelem_LH
-                        Instruction result(Mnemonic::FMLAL2, insn, 1924);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FMLAL2, insn, EncodingId::FMLAL2_asimdelem_LH);
+            #else
+                        Instruction result(Mnemonic::FMLAL2, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -39946,7 +42394,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x2F80C000u: { // FMLSL2_asimdelem_LH
-                        Instruction result(Mnemonic::FMLSL2, insn, 1946);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FMLSL2, insn, EncodingId::FMLSL2_asimdelem_LH);
+            #else
+                        Instruction result(Mnemonic::FMLSL2, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -39982,7 +42434,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
     // Switch for mask 0xBFBFFC00u (37 patterns, 37 encodings)
     switch (insn & 0xBFBFFC00u) {
         case 0x0E216800u: { // FCVTN_asimdmisc_N
-                        Instruction result(Mnemonic::FCVTN, insn, 1753);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FCVTN, insn, EncodingId::FCVTN_asimdmisc_N);
+            #else
+                        Instruction result(Mnemonic::FCVTN, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -39993,7 +42449,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x0E217800u: { // FCVTL_asimdmisc_L
-                        Instruction result(Mnemonic::FCVTL, insn, 1724);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FCVTL, insn, EncodingId::FCVTL_asimdmisc_L);
+            #else
+                        Instruction result(Mnemonic::FCVTL, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -40006,7 +42466,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x0E218800u: { // FRINTN_asimdmisc_R
-                        Instruction result(Mnemonic::FRINTN, insn, 2044);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FRINTN, insn, EncodingId::FRINTN_asimdmisc_R);
+            #else
+                        Instruction result(Mnemonic::FRINTN, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -40020,7 +42484,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x0E219800u: { // FRINTM_asimdmisc_R
-                        Instruction result(Mnemonic::FRINTM, insn, 2039);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FRINTM, insn, EncodingId::FRINTM_asimdmisc_R);
+            #else
+                        Instruction result(Mnemonic::FRINTM, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -40034,7 +42502,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x0E21A800u: { // FCVTNS_asimdmisc_R
-                        Instruction result(Mnemonic::FCVTNS, insn, 1759);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FCVTNS, insn, EncodingId::FCVTNS_asimdmisc_R);
+            #else
+                        Instruction result(Mnemonic::FCVTNS, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -40048,7 +42520,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x0E21B800u: { // FCVTMS_asimdmisc_R
-                        Instruction result(Mnemonic::FCVTMS, insn, 1728);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FCVTMS, insn, EncodingId::FCVTMS_asimdmisc_R);
+            #else
+                        Instruction result(Mnemonic::FCVTMS, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -40062,7 +42538,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x0E21C800u: { // FCVTAS_asimdmisc_R
-                        Instruction result(Mnemonic::FCVTAS, insn, 1699);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FCVTAS, insn, EncodingId::FCVTAS_asimdmisc_R);
+            #else
+                        Instruction result(Mnemonic::FCVTAS, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -40076,7 +42556,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x0E21D800u: { // SCVTF_asimdmisc_R
-                        Instruction result(Mnemonic::SCVTF, insn, 2142);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SCVTF, insn, EncodingId::SCVTF_asimdmisc_R);
+            #else
+                        Instruction result(Mnemonic::SCVTF, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -40090,7 +42574,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x0E21E800u: { // FRINT32Z_asimdmisc_R
-                        Instruction result(Mnemonic::FRINT32Z, insn, 2019);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FRINT32Z, insn, EncodingId::FRINT32Z_asimdmisc_R);
+            #else
+                        Instruction result(Mnemonic::FRINT32Z, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -40104,7 +42592,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x0E21F800u: { // FRINT64Z_asimdmisc_R
-                        Instruction result(Mnemonic::FRINT64Z, insn, 2025);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FRINT64Z, insn, EncodingId::FRINT64Z_asimdmisc_R);
+            #else
+                        Instruction result(Mnemonic::FRINT64Z, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -40118,7 +42610,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x0EA0C800u: { // FCMGT_asimdmisc_FZ
-                        Instruction result(Mnemonic::FCMGT, insn, 1664);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FCMGT, insn, EncodingId::FCMGT_asimdmisc_FZ);
+            #else
+                        Instruction result(Mnemonic::FCMGT, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -40133,7 +42629,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x0EA0D800u: { // FCMEQ_asimdmisc_FZ
-                        Instruction result(Mnemonic::FCMEQ, insn, 1648);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FCMEQ, insn, EncodingId::FCMEQ_asimdmisc_FZ);
+            #else
+                        Instruction result(Mnemonic::FCMEQ, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -40148,7 +42648,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x0EA0E800u: { // FCMLT_asimdmisc_FZ
-                        Instruction result(Mnemonic::FCMLT, insn, 1674);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FCMLT, insn, EncodingId::FCMLT_asimdmisc_FZ);
+            #else
+                        Instruction result(Mnemonic::FCMLT, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -40163,7 +42667,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x0EA0F800u: { // FABS_asimdmisc_R
-                        Instruction result(Mnemonic::FABS, insn, 1609);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FABS, insn, EncodingId::FABS_asimdmisc_R);
+            #else
+                        Instruction result(Mnemonic::FABS, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -40177,7 +42685,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x0EA18800u: { // FRINTP_asimdmisc_R
-                        Instruction result(Mnemonic::FRINTP, insn, 2049);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FRINTP, insn, EncodingId::FRINTP_asimdmisc_R);
+            #else
+                        Instruction result(Mnemonic::FRINTP, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -40191,7 +42703,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x0EA19800u: { // FRINTZ_asimdmisc_R
-                        Instruction result(Mnemonic::FRINTZ, insn, 2059);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FRINTZ, insn, EncodingId::FRINTZ_asimdmisc_R);
+            #else
+                        Instruction result(Mnemonic::FRINTZ, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -40205,7 +42721,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x0EA1A800u: { // FCVTPS_asimdmisc_R
-                        Instruction result(Mnemonic::FCVTPS, insn, 1787);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FCVTPS, insn, EncodingId::FCVTPS_asimdmisc_R);
+            #else
+                        Instruction result(Mnemonic::FCVTPS, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -40219,7 +42739,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x0EA1B800u: { // FCVTZS_asimdmisc_R
-                        Instruction result(Mnemonic::FCVTZS, insn, 1819);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FCVTZS, insn, EncodingId::FCVTZS_asimdmisc_R);
+            #else
+                        Instruction result(Mnemonic::FCVTZS, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -40233,7 +42757,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x0EA1C800u: { // URECPE_asimdmisc_R
-                        Instruction result(Mnemonic::URECPE, insn, 2364);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::URECPE, insn, EncodingId::URECPE_asimdmisc_R);
+            #else
+                        Instruction result(Mnemonic::URECPE, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         if (enc.urecpe_asimdmisc_r.sz == 1u) return std::nullopt;
@@ -40248,7 +42776,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x0EA1D800u: { // FRECPE_asimdmisc_R
-                        Instruction result(Mnemonic::FRECPE, insn, 2009);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FRECPE, insn, EncodingId::FRECPE_asimdmisc_R);
+            #else
+                        Instruction result(Mnemonic::FRECPE, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -40262,7 +42794,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x2E218800u: { // FRINTA_asimdmisc_R
-                        Instruction result(Mnemonic::FRINTA, insn, 2029);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FRINTA, insn, EncodingId::FRINTA_asimdmisc_R);
+            #else
+                        Instruction result(Mnemonic::FRINTA, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -40276,7 +42812,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x2E219800u: { // FRINTX_asimdmisc_R
-                        Instruction result(Mnemonic::FRINTX, insn, 2054);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FRINTX, insn, EncodingId::FRINTX_asimdmisc_R);
+            #else
+                        Instruction result(Mnemonic::FRINTX, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -40290,7 +42830,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x2E21A800u: { // FCVTNU_asimdmisc_R
-                        Instruction result(Mnemonic::FCVTNU, insn, 1773);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FCVTNU, insn, EncodingId::FCVTNU_asimdmisc_R);
+            #else
+                        Instruction result(Mnemonic::FCVTNU, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -40304,7 +42848,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x2E21B800u: { // FCVTMU_asimdmisc_R
-                        Instruction result(Mnemonic::FCVTMU, insn, 1742);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FCVTMU, insn, EncodingId::FCVTMU_asimdmisc_R);
+            #else
+                        Instruction result(Mnemonic::FCVTMU, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -40318,7 +42866,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x2E21C800u: { // FCVTAU_asimdmisc_R
-                        Instruction result(Mnemonic::FCVTAU, insn, 1713);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FCVTAU, insn, EncodingId::FCVTAU_asimdmisc_R);
+            #else
+                        Instruction result(Mnemonic::FCVTAU, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -40332,7 +42884,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x2E21D800u: { // UCVTF_asimdmisc_R
-                        Instruction result(Mnemonic::UCVTF, insn, 2312);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::UCVTF, insn, EncodingId::UCVTF_asimdmisc_R);
+            #else
+                        Instruction result(Mnemonic::UCVTF, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -40346,7 +42902,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x2E21E800u: { // FRINT32X_asimdmisc_R
-                        Instruction result(Mnemonic::FRINT32X, insn, 2016);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FRINT32X, insn, EncodingId::FRINT32X_asimdmisc_R);
+            #else
+                        Instruction result(Mnemonic::FRINT32X, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -40360,7 +42920,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x2E21F800u: { // FRINT64X_asimdmisc_R
-                        Instruction result(Mnemonic::FRINT64X, insn, 2022);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FRINT64X, insn, EncodingId::FRINT64X_asimdmisc_R);
+            #else
+                        Instruction result(Mnemonic::FRINT64X, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -40374,7 +42938,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x2EA0C800u: { // FCMGE_asimdmisc_FZ
-                        Instruction result(Mnemonic::FCMGE, insn, 1656);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FCMGE, insn, EncodingId::FCMGE_asimdmisc_FZ);
+            #else
+                        Instruction result(Mnemonic::FCMGE, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -40389,7 +42957,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x2EA0D800u: { // FCMLE_asimdmisc_FZ
-                        Instruction result(Mnemonic::FCMLE, insn, 1670);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FCMLE, insn, EncodingId::FCMLE_asimdmisc_FZ);
+            #else
+                        Instruction result(Mnemonic::FCMLE, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -40404,7 +42976,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x2EA0F800u: { // FNEG_asimdmisc_R
-                        Instruction result(Mnemonic::FNEG, insn, 1993);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FNEG, insn, EncodingId::FNEG_asimdmisc_R);
+            #else
+                        Instruction result(Mnemonic::FNEG, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -40418,7 +42994,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x2EA19800u: { // FRINTI_asimdmisc_R
-                        Instruction result(Mnemonic::FRINTI, insn, 2034);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FRINTI, insn, EncodingId::FRINTI_asimdmisc_R);
+            #else
+                        Instruction result(Mnemonic::FRINTI, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -40432,7 +43012,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x2EA1A800u: { // FCVTPU_asimdmisc_R
-                        Instruction result(Mnemonic::FCVTPU, insn, 1801);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FCVTPU, insn, EncodingId::FCVTPU_asimdmisc_R);
+            #else
+                        Instruction result(Mnemonic::FCVTPU, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -40446,7 +43030,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x2EA1B800u: { // FCVTZU_asimdmisc_R
-                        Instruction result(Mnemonic::FCVTZU, insn, 1841);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FCVTZU, insn, EncodingId::FCVTZU_asimdmisc_R);
+            #else
+                        Instruction result(Mnemonic::FCVTZU, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -40460,7 +43048,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x2EA1C800u: { // URSQRTE_asimdmisc_R
-                        Instruction result(Mnemonic::URSQRTE, insn, 2370);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::URSQRTE, insn, EncodingId::URSQRTE_asimdmisc_R);
+            #else
+                        Instruction result(Mnemonic::URSQRTE, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         if (enc.ursqrte_asimdmisc_r.sz == 1u) return std::nullopt;
@@ -40475,7 +43067,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x2EA1D800u: { // FRSQRTE_asimdmisc_R
-                        Instruction result(Mnemonic::FRSQRTE, insn, 2066);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FRSQRTE, insn, EncodingId::FRSQRTE_asimdmisc_R);
+            #else
+                        Instruction result(Mnemonic::FRSQRTE, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -40489,7 +43085,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x2EA1F800u: { // FSQRT_asimdmisc_R
-                        Instruction result(Mnemonic::FSQRT, insn, 2074);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FSQRT, insn, EncodingId::FSQRT_asimdmisc_R);
+            #else
+                        Instruction result(Mnemonic::FSQRT, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -40508,7 +43108,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
     // Switch for mask 0xBFA0FC00u (27 patterns, 27 encodings)
     switch (insn & 0xBFA0FC00u) {
         case 0x0E20C400u: { // FMAXNM_asimdsame_only
-                        Instruction result(Mnemonic::FMAXNM, insn, 1879);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FMAXNM, insn, EncodingId::FMAXNM_asimdsame_only);
+            #else
+                        Instruction result(Mnemonic::FMAXNM, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -40523,7 +43127,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x0E20CC00u: { // FMLA_asimdsame_only
-                        Instruction result(Mnemonic::FMLA, insn, 1922);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FMLA, insn, EncodingId::FMLA_asimdsame_only);
+            #else
+                        Instruction result(Mnemonic::FMLA, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -40538,7 +43146,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x0E20D400u: { // FADD_asimdsame_only
-                        Instruction result(Mnemonic::FADD, insn, 1622);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FADD, insn, EncodingId::FADD_asimdsame_only);
+            #else
+                        Instruction result(Mnemonic::FADD, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -40553,7 +43165,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x0E20DC00u: { // FMULX_asimdsame_only
-                        Instruction result(Mnemonic::FMULX, insn, 1991);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FMULX, insn, EncodingId::FMULX_asimdsame_only);
+            #else
+                        Instruction result(Mnemonic::FMULX, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -40568,7 +43184,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x0E20E400u: { // FCMEQ_asimdsame_only
-                        Instruction result(Mnemonic::FCMEQ, insn, 1644);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FCMEQ, insn, EncodingId::FCMEQ_asimdsame_only);
+            #else
+                        Instruction result(Mnemonic::FCMEQ, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -40583,7 +43203,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x0E20F400u: { // FMAX_asimdsame_only
-                        Instruction result(Mnemonic::FMAX, insn, 1874);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FMAX, insn, EncodingId::FMAX_asimdsame_only);
+            #else
+                        Instruction result(Mnemonic::FMAX, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -40598,7 +43222,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x0E20FC00u: { // FRECPS_asimdsame_only
-                        Instruction result(Mnemonic::FRECPS, insn, 2013);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FRECPS, insn, EncodingId::FRECPS_asimdsame_only);
+            #else
+                        Instruction result(Mnemonic::FRECPS, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -40613,7 +43241,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x0EA0C400u: { // FMINNM_asimdsame_only
-                        Instruction result(Mnemonic::FMINNM, insn, 1901);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FMINNM, insn, EncodingId::FMINNM_asimdsame_only);
+            #else
+                        Instruction result(Mnemonic::FMINNM, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -40628,7 +43260,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x0EA0CC00u: { // FMLS_asimdsame_only
-                        Instruction result(Mnemonic::FMLS, insn, 1944);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FMLS, insn, EncodingId::FMLS_asimdsame_only);
+            #else
+                        Instruction result(Mnemonic::FMLS, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -40643,7 +43279,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x0EA0D400u: { // FSUB_asimdsame_only
-                        Instruction result(Mnemonic::FSUB, insn, 2079);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FSUB, insn, EncodingId::FSUB_asimdsame_only);
+            #else
+                        Instruction result(Mnemonic::FSUB, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -40658,7 +43298,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x0EA0DC00u: { // FAMAX_asimdsame_only
-                        Instruction result(Mnemonic::FAMAX, insn, 1631);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FAMAX, insn, EncodingId::FAMAX_asimdsame_only);
+            #else
+                        Instruction result(Mnemonic::FAMAX, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         if (enc.famax_asimdsame_only.Q == 0u && enc.famax_asimdsame_only.size == 3u) return std::nullopt;
@@ -40677,7 +43321,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x0EA0F400u: { // FMIN_asimdsame_only
-                        Instruction result(Mnemonic::FMIN, insn, 1896);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FMIN, insn, EncodingId::FMIN_asimdsame_only);
+            #else
+                        Instruction result(Mnemonic::FMIN, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -40692,7 +43340,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x0EA0FC00u: { // FRSQRTS_asimdsame_only
-                        Instruction result(Mnemonic::FRSQRTS, insn, 2070);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FRSQRTS, insn, EncodingId::FRSQRTS_asimdsame_only);
+            #else
+                        Instruction result(Mnemonic::FRSQRTS, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -40707,7 +43359,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x2E20C400u: { // FMAXNMP_asimdsame_only
-                        Instruction result(Mnemonic::FMAXNMP, insn, 1886);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FMAXNMP, insn, EncodingId::FMAXNMP_asimdsame_only);
+            #else
+                        Instruction result(Mnemonic::FMAXNMP, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -40722,7 +43378,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x2E20D400u: { // FADDP_asimdsame_only
-                        Instruction result(Mnemonic::FADDP, insn, 1629);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FADDP, insn, EncodingId::FADDP_asimdsame_only);
+            #else
+                        Instruction result(Mnemonic::FADDP, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -40737,7 +43397,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x2E20DC00u: { // FMUL_asimdsame_only
-                        Instruction result(Mnemonic::FMUL, insn, 1980);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FMUL, insn, EncodingId::FMUL_asimdsame_only);
+            #else
+                        Instruction result(Mnemonic::FMUL, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -40752,7 +43416,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x2E20E400u: { // FCMGE_asimdsame_only
-                        Instruction result(Mnemonic::FCMGE, insn, 1652);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FCMGE, insn, EncodingId::FCMGE_asimdsame_only);
+            #else
+                        Instruction result(Mnemonic::FCMGE, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -40767,7 +43435,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x2E20EC00u: { // FACGE_asimdsame_only
-                        Instruction result(Mnemonic::FACGE, insn, 1616);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FACGE, insn, EncodingId::FACGE_asimdsame_only);
+            #else
+                        Instruction result(Mnemonic::FACGE, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -40782,7 +43454,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x2E20F400u: { // FMAXP_asimdsame_only
-                        Instruction result(Mnemonic::FMAXP, insn, 1892);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FMAXP, insn, EncodingId::FMAXP_asimdsame_only);
+            #else
+                        Instruction result(Mnemonic::FMAXP, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -40797,7 +43473,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x2E20FC00u: { // FDIV_asimdsame_only
-                        Instruction result(Mnemonic::FDIV, insn, 1859);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FDIV, insn, EncodingId::FDIV_asimdsame_only);
+            #else
+                        Instruction result(Mnemonic::FDIV, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -40812,7 +43492,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x2EA0C400u: { // FMINNMP_asimdsame_only
-                        Instruction result(Mnemonic::FMINNMP, insn, 1908);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FMINNMP, insn, EncodingId::FMINNMP_asimdsame_only);
+            #else
+                        Instruction result(Mnemonic::FMINNMP, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -40827,7 +43511,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x2EA0D400u: { // FABD_asimdsame_only
-                        Instruction result(Mnemonic::FABD, insn, 1607);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FABD, insn, EncodingId::FABD_asimdsame_only);
+            #else
+                        Instruction result(Mnemonic::FABD, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -40842,7 +43530,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x2EA0DC00u: { // FAMIN_asimdsame_only
-                        Instruction result(Mnemonic::FAMIN, insn, 1633);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FAMIN, insn, EncodingId::FAMIN_asimdsame_only);
+            #else
+                        Instruction result(Mnemonic::FAMIN, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         if (enc.famin_asimdsame_only.Q == 0u && enc.famin_asimdsame_only.size == 3u) return std::nullopt;
@@ -40861,7 +43553,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x2EA0E400u: { // FCMGT_asimdsame_only
-                        Instruction result(Mnemonic::FCMGT, insn, 1660);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FCMGT, insn, EncodingId::FCMGT_asimdsame_only);
+            #else
+                        Instruction result(Mnemonic::FCMGT, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -40876,7 +43572,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x2EA0EC00u: { // FACGT_asimdsame_only
-                        Instruction result(Mnemonic::FACGT, insn, 1620);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FACGT, insn, EncodingId::FACGT_asimdsame_only);
+            #else
+                        Instruction result(Mnemonic::FACGT, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -40891,7 +43591,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x2EA0F400u: { // FMINP_asimdsame_only
-                        Instruction result(Mnemonic::FMINP, insn, 1914);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FMINP, insn, EncodingId::FMINP_asimdsame_only);
+            #else
+                        Instruction result(Mnemonic::FMINP, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -40906,7 +43610,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x2EA0FC00u: { // FSCALE_asimdsame_only
-                        Instruction result(Mnemonic::FSCALE, insn, 2072);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FSCALE, insn, EncodingId::FSCALE_asimdsame_only);
+            #else
+                        Instruction result(Mnemonic::FSCALE, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         if (enc.fscale_asimdsame_only.Q == 0u && enc.fscale_asimdsame_only.size == 3u) return std::nullopt;
@@ -40931,7 +43639,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
     switch (insn & 0xBF87FC00u) {
         case 0x0F00A400u: { // SXTL_SSHLL_asimdshf_L
             if (((insn >> 19) & 0xF) == 0x0) break;
-                        Instruction result(Mnemonic::SSHLL, insn, 2287);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SSHLL, insn, EncodingId::SXTL_SSHLL_asimdshf_L);
+            #else
+                        Instruction result(Mnemonic::SSHLL, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -40966,7 +43678,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
         }
         case 0x2F00A400u: { // UXTL_USHLL_asimdshf_L
             if (((insn >> 19) & 0xF) == 0x0) break;
-                        Instruction result(Mnemonic::USHLL, insn, 2387);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::USHLL, insn, EncodingId::UXTL_USHLL_asimdshf_L);
+            #else
+                        Instruction result(Mnemonic::USHLL, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -41006,7 +43722,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
     switch (insn & 0xBF80FC00u) {
         case 0x0F000400u: { // SSHR_asimdshf_R
             if (((insn >> 19) & 0xF) == 0x0) break;
-                        Instruction result(Mnemonic::SSHR, insn, 2276);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SSHR, insn, EncodingId::SSHR_asimdshf_R);
+            #else
+                        Instruction result(Mnemonic::SSHR, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -41031,7 +43751,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
         }
         case 0x0F001400u: { // SSRA_asimdshf_R
             if (((insn >> 19) & 0xF) == 0x0) break;
-                        Instruction result(Mnemonic::SSRA, insn, 2278);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SSRA, insn, EncodingId::SSRA_asimdshf_R);
+            #else
+                        Instruction result(Mnemonic::SSRA, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -41056,7 +43780,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
         }
         case 0x0F002400u: { // SRSHR_asimdshf_R
             if (((insn >> 19) & 0xF) == 0x0) break;
-                        Instruction result(Mnemonic::SRSHR, insn, 2269);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SRSHR, insn, EncodingId::SRSHR_asimdshf_R);
+            #else
+                        Instruction result(Mnemonic::SRSHR, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -41081,7 +43809,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
         }
         case 0x0F003400u: { // SRSRA_asimdshf_R
             if (((insn >> 19) & 0xF) == 0x0) break;
-                        Instruction result(Mnemonic::SRSRA, insn, 2271);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SRSRA, insn, EncodingId::SRSRA_asimdshf_R);
+            #else
+                        Instruction result(Mnemonic::SRSRA, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -41106,7 +43838,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
         }
         case 0x0F005400u: { // SHL_asimdshf_R
             if (((insn >> 19) & 0xF) == 0x0) break;
-                        Instruction result(Mnemonic::SHL, insn, 2177);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SHL, insn, EncodingId::SHL_asimdshf_R);
+            #else
+                        Instruction result(Mnemonic::SHL, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -41131,7 +43867,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
         }
         case 0x0F007400u: { // SQSHL_asimdshf_R
             if (((insn >> 19) & 0xF) == 0x0) break;
-                        Instruction result(Mnemonic::SQSHL, insn, 2248);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SQSHL, insn, EncodingId::SQSHL_asimdshf_R);
+            #else
+                        Instruction result(Mnemonic::SQSHL, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -41156,7 +43896,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
         }
         case 0x0F008400u: { // SHRN_asimdshf_N
             if (((insn >> 19) & 0xF) == 0x0) break;
-                        Instruction result(Mnemonic::SHRN, insn, 2179);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SHRN, insn, EncodingId::SHRN_asimdshf_N);
+            #else
+                        Instruction result(Mnemonic::SHRN, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -41186,7 +43930,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
         }
         case 0x0F008C00u: { // RSHRN_asimdshf_N
             if (((insn >> 19) & 0xF) == 0x0) break;
-                        Instruction result(Mnemonic::RSHRN, insn, 2126);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::RSHRN, insn, EncodingId::RSHRN_asimdshf_N);
+            #else
+                        Instruction result(Mnemonic::RSHRN, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -41216,7 +43964,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
         }
         case 0x0F009400u: { // SQSHRN_asimdshf_N
             if (((insn >> 19) & 0xF) == 0x0) break;
-                        Instruction result(Mnemonic::SQSHRN, insn, 2254);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SQSHRN, insn, EncodingId::SQSHRN_asimdshf_N);
+            #else
+                        Instruction result(Mnemonic::SQSHRN, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -41246,7 +43998,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
         }
         case 0x0F009C00u: { // SQRSHRN_asimdshf_N
             if (((insn >> 19) & 0xF) == 0x0) break;
-                        Instruction result(Mnemonic::SQRSHRN, insn, 2244);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SQRSHRN, insn, EncodingId::SQRSHRN_asimdshf_N);
+            #else
+                        Instruction result(Mnemonic::SQRSHRN, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -41276,7 +44032,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
         }
         case 0x0F00A400u: { // SSHLL_asimdshf_L
             if (((insn >> 19) & 0xF) == 0x0) break;
-                        Instruction result(Mnemonic::SSHLL, insn, 2274);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SSHLL, insn, EncodingId::SSHLL_asimdshf_L);
+            #else
+                        Instruction result(Mnemonic::SSHLL, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -41311,7 +44071,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
         }
         case 0x0F00E400u: { // SCVTF_asimdshf_C
             if (((insn >> 19) & 0xF) == 0x0) break;
-                        Instruction result(Mnemonic::SCVTF, insn, 2138);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SCVTF, insn, EncodingId::SCVTF_asimdshf_C);
+            #else
+                        Instruction result(Mnemonic::SCVTF, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -41336,7 +44100,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
         }
         case 0x0F00FC00u: { // FCVTZS_asimdshf_C
             if (((insn >> 19) & 0xF) == 0x0) break;
-                        Instruction result(Mnemonic::FCVTZS, insn, 1815);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FCVTZS, insn, EncodingId::FCVTZS_asimdshf_C);
+            #else
+                        Instruction result(Mnemonic::FCVTZS, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -41361,7 +44129,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
         }
         case 0x2F000400u: { // USHR_asimdshf_R
             if (((insn >> 19) & 0xF) == 0x0) break;
-                        Instruction result(Mnemonic::USHR, insn, 2379);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::USHR, insn, EncodingId::USHR_asimdshf_R);
+            #else
+                        Instruction result(Mnemonic::USHR, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -41386,7 +44158,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
         }
         case 0x2F001400u: { // USRA_asimdshf_R
             if (((insn >> 19) & 0xF) == 0x0) break;
-                        Instruction result(Mnemonic::USRA, insn, 2384);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::USRA, insn, EncodingId::USRA_asimdshf_R);
+            #else
+                        Instruction result(Mnemonic::USRA, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -41411,7 +44187,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
         }
         case 0x2F002400u: { // URSHR_asimdshf_R
             if (((insn >> 19) & 0xF) == 0x0) break;
-                        Instruction result(Mnemonic::URSHR, insn, 2369);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::URSHR, insn, EncodingId::URSHR_asimdshf_R);
+            #else
+                        Instruction result(Mnemonic::URSHR, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -41436,7 +44216,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
         }
         case 0x2F003400u: { // URSRA_asimdshf_R
             if (((insn >> 19) & 0xF) == 0x0) break;
-                        Instruction result(Mnemonic::URSRA, insn, 2372);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::URSRA, insn, EncodingId::URSRA_asimdshf_R);
+            #else
+                        Instruction result(Mnemonic::URSRA, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -41461,7 +44245,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
         }
         case 0x2F004400u: { // SRI_asimdshf_R
             if (((insn >> 19) & 0xF) == 0x0) break;
-                        Instruction result(Mnemonic::SRI, insn, 2265);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SRI, insn, EncodingId::SRI_asimdshf_R);
+            #else
+                        Instruction result(Mnemonic::SRI, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -41486,7 +44274,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
         }
         case 0x2F005400u: { // SLI_asimdshf_R
             if (((insn >> 19) & 0xF) == 0x0) break;
-                        Instruction result(Mnemonic::SLI, insn, 2182);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SLI, insn, EncodingId::SLI_asimdshf_R);
+            #else
+                        Instruction result(Mnemonic::SLI, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -41511,7 +44303,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
         }
         case 0x2F006400u: { // SQSHLU_asimdshf_R
             if (((insn >> 19) & 0xF) == 0x0) break;
-                        Instruction result(Mnemonic::SQSHLU, insn, 2252);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SQSHLU, insn, EncodingId::SQSHLU_asimdshf_R);
+            #else
+                        Instruction result(Mnemonic::SQSHLU, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -41536,7 +44332,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
         }
         case 0x2F007400u: { // UQSHL_asimdshf_R
             if (((insn >> 19) & 0xF) == 0x0) break;
-                        Instruction result(Mnemonic::UQSHL, insn, 2355);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::UQSHL, insn, EncodingId::UQSHL_asimdshf_R);
+            #else
+                        Instruction result(Mnemonic::UQSHL, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -41561,7 +44361,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
         }
         case 0x2F008400u: { // SQSHRUN_asimdshf_N
             if (((insn >> 19) & 0xF) == 0x0) break;
-                        Instruction result(Mnemonic::SQSHRUN, insn, 2256);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SQSHRUN, insn, EncodingId::SQSHRUN_asimdshf_N);
+            #else
+                        Instruction result(Mnemonic::SQSHRUN, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -41591,7 +44395,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
         }
         case 0x2F008C00u: { // SQRSHRUN_asimdshf_N
             if (((insn >> 19) & 0xF) == 0x0) break;
-                        Instruction result(Mnemonic::SQRSHRUN, insn, 2246);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SQRSHRUN, insn, EncodingId::SQRSHRUN_asimdshf_N);
+            #else
+                        Instruction result(Mnemonic::SQRSHRUN, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -41621,7 +44429,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
         }
         case 0x2F009400u: { // UQSHRN_asimdshf_N
             if (((insn >> 19) & 0xF) == 0x0) break;
-                        Instruction result(Mnemonic::UQSHRN, insn, 2359);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::UQSHRN, insn, EncodingId::UQSHRN_asimdshf_N);
+            #else
+                        Instruction result(Mnemonic::UQSHRN, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -41651,7 +44463,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
         }
         case 0x2F009C00u: { // UQRSHRN_asimdshf_N
             if (((insn >> 19) & 0xF) == 0x0) break;
-                        Instruction result(Mnemonic::UQRSHRN, insn, 2353);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::UQRSHRN, insn, EncodingId::UQRSHRN_asimdshf_N);
+            #else
+                        Instruction result(Mnemonic::UQRSHRN, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -41681,7 +44497,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
         }
         case 0x2F00A400u: { // USHLL_asimdshf_L
             if (((insn >> 19) & 0xF) == 0x0) break;
-                        Instruction result(Mnemonic::USHLL, insn, 2377);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::USHLL, insn, EncodingId::USHLL_asimdshf_L);
+            #else
+                        Instruction result(Mnemonic::USHLL, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -41716,7 +44536,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
         }
         case 0x2F00E400u: { // UCVTF_asimdshf_C
             if (((insn >> 19) & 0xF) == 0x0) break;
-                        Instruction result(Mnemonic::UCVTF, insn, 2308);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::UCVTF, insn, EncodingId::UCVTF_asimdshf_C);
+            #else
+                        Instruction result(Mnemonic::UCVTF, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -41741,7 +44565,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
         }
         case 0x2F00FC00u: { // FCVTZU_asimdshf_C
             if (((insn >> 19) & 0xF) == 0x0) break;
-                        Instruction result(Mnemonic::FCVTZU, insn, 1837);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FCVTZU, insn, EncodingId::FCVTZU_asimdshf_C);
+            #else
+                        Instruction result(Mnemonic::FCVTZU, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -41770,7 +44598,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
     // Switch for mask 0xBF80F400u (4 patterns, 4 encodings)
     switch (insn & 0xBF80F400u) {
         case 0x0F801000u: { // FMLA_asimdelem_R_SD
-                        Instruction result(Mnemonic::FMLA, insn, 1920);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FMLA, insn, EncodingId::FMLA_asimdelem_R_SD);
+            #else
+                        Instruction result(Mnemonic::FMLA, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -41797,7 +44629,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x0F805000u: { // FMLS_asimdelem_R_SD
-                        Instruction result(Mnemonic::FMLS, insn, 1942);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FMLS, insn, EncodingId::FMLS_asimdelem_R_SD);
+            #else
+                        Instruction result(Mnemonic::FMLS, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -41824,7 +44660,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x0F809000u: { // FMUL_asimdelem_R_SD
-                        Instruction result(Mnemonic::FMUL, insn, 1978);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FMUL, insn, EncodingId::FMUL_asimdelem_R_SD);
+            #else
+                        Instruction result(Mnemonic::FMUL, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -41851,7 +44691,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x2F809000u: { // FMULX_asimdelem_R_SD
-                        Instruction result(Mnemonic::FMULX, insn, 1987);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FMULX, insn, EncodingId::FMULX_asimdelem_R_SD);
+            #else
+                        Instruction result(Mnemonic::FMULX, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -41883,7 +44727,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
     // Switch for mask 0xBF3FFC00u (33 patterns, 33 encodings)
     switch (insn & 0xBF3FFC00u) {
         case 0x0E200800u: { // REV64_asimdmisc_R
-                        Instruction result(Mnemonic::REV64, insn, 2125);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::REV64, insn, EncodingId::REV64_asimdmisc_R);
+            #else
+                        Instruction result(Mnemonic::REV64, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = true;
@@ -41900,7 +44748,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x0E201800u: { // REV16_asimdmisc_R
-                        Instruction result(Mnemonic::REV16, insn, 2123);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::REV16, insn, EncodingId::REV16_asimdmisc_R);
+            #else
+                        Instruction result(Mnemonic::REV16, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -41917,7 +44769,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x0E202800u: { // SADDLP_asimdmisc_P
-                        Instruction result(Mnemonic::SADDLP, insn, 2134);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SADDLP, insn, EncodingId::SADDLP_asimdmisc_P);
+            #else
+                        Instruction result(Mnemonic::SADDLP, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         if (enc.saddlp_asimdmisc_p.size == 3u) return std::nullopt;
@@ -41940,7 +44796,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x0E203800u: { // SUQADD_asimdmisc_R
-                        Instruction result(Mnemonic::SUQADD, insn, 2286);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SUQADD, insn, EncodingId::SUQADD_asimdmisc_R);
+            #else
+                        Instruction result(Mnemonic::SUQADD, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -41957,7 +44817,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x0E204800u: { // CLS_asimdmisc_R
-                        Instruction result(Mnemonic::CLS, insn, 1571);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::CLS, insn, EncodingId::CLS_asimdmisc_R);
+            #else
+                        Instruction result(Mnemonic::CLS, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         if (enc.cls_asimdmisc_r.size == 3u) return std::nullopt;
@@ -41975,7 +44839,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x0E205800u: { // CNT_asimdmisc_R
-                        Instruction result(Mnemonic::CNT, insn, 1595);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::CNT, insn, EncodingId::CNT_asimdmisc_R);
+            #else
+                        Instruction result(Mnemonic::CNT, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         if (enc.cnt_asimdmisc_r.size != 0u) return std::nullopt;
@@ -41993,7 +44861,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x0E206800u: { // SADALP_asimdmisc_P
-                        Instruction result(Mnemonic::SADALP, insn, 2132);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SADALP, insn, EncodingId::SADALP_asimdmisc_P);
+            #else
+                        Instruction result(Mnemonic::SADALP, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         if (enc.sadalp_asimdmisc_p.size == 3u) return std::nullopt;
@@ -42016,7 +44888,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x0E207800u: { // SQABS_asimdmisc_R
-                        Instruction result(Mnemonic::SQABS, insn, 2208);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SQABS, insn, EncodingId::SQABS_asimdmisc_R);
+            #else
+                        Instruction result(Mnemonic::SQABS, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -42033,7 +44909,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x0E208800u: { // CMGT_asimdmisc_Z
-                        Instruction result(Mnemonic::CMGT, insn, 1584);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::CMGT, insn, EncodingId::CMGT_asimdmisc_Z);
+            #else
+                        Instruction result(Mnemonic::CMGT, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -42051,7 +44931,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x0E209800u: { // CMEQ_asimdmisc_Z
-                        Instruction result(Mnemonic::CMEQ, insn, 1576);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::CMEQ, insn, EncodingId::CMEQ_asimdmisc_Z);
+            #else
+                        Instruction result(Mnemonic::CMEQ, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -42069,7 +44953,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x0E20A800u: { // CMLT_asimdmisc_Z
-                        Instruction result(Mnemonic::CMLT, insn, 1592);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::CMLT, insn, EncodingId::CMLT_asimdmisc_Z);
+            #else
+                        Instruction result(Mnemonic::CMLT, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -42087,7 +44975,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x0E20B800u: { // ABS_asimdmisc_R
-                        Instruction result(Mnemonic::ABS, insn, 1543);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::ABS, insn, EncodingId::ABS_asimdmisc_R);
+            #else
+                        Instruction result(Mnemonic::ABS, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -42104,7 +44996,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x0E212800u: { // XTN_asimdmisc_N
-                        Instruction result(Mnemonic::XTN, insn, 2391);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::XTN, insn, EncodingId::XTN_asimdmisc_N);
+            #else
+                        Instruction result(Mnemonic::XTN, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         if (enc.xtn_asimdmisc_n.size == 3u) return std::nullopt;
@@ -42127,7 +45023,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x0E214800u: { // SQXTN_asimdmisc_N
-                        Instruction result(Mnemonic::SQXTN, insn, 2260);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SQXTN, insn, EncodingId::SQXTN_asimdmisc_N);
+            #else
+                        Instruction result(Mnemonic::SQXTN, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         if (enc.sqxtn_asimdmisc_n.size == 3u) return std::nullopt;
@@ -42150,7 +45050,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x0E303800u: { // SADDLV_asimdall_only
-                        Instruction result(Mnemonic::SADDLV, insn, 2135);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SADDLV, insn, EncodingId::SADDLV_asimdall_only);
+            #else
+                        Instruction result(Mnemonic::SADDLV, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         if (enc.saddlv_asimdall_only.size == 3u) return std::nullopt;
@@ -42171,7 +45075,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x0E30A800u: { // SMAXV_asimdall_only
-                        Instruction result(Mnemonic::SMAXV, insn, 2194);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SMAXV, insn, EncodingId::SMAXV_asimdall_only);
+            #else
+                        Instruction result(Mnemonic::SMAXV, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         if (enc.smaxv_asimdall_only.size == 3u) return std::nullopt;
@@ -42192,7 +45100,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x0E31A800u: { // SMINV_asimdall_only
-                        Instruction result(Mnemonic::SMINV, insn, 2197);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SMINV, insn, EncodingId::SMINV_asimdall_only);
+            #else
+                        Instruction result(Mnemonic::SMINV, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         if (enc.sminv_asimdall_only.size == 3u) return std::nullopt;
@@ -42213,7 +45125,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x0E31B800u: { // ADDV_asimdall_only
-                        Instruction result(Mnemonic::ADDV, insn, 1549);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::ADDV, insn, EncodingId::ADDV_asimdall_only);
+            #else
+                        Instruction result(Mnemonic::ADDV, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         if (enc.addv_asimdall_only.size == 3u) return std::nullopt;
@@ -42234,7 +45150,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x2E200800u: { // REV32_asimdmisc_R
-                        Instruction result(Mnemonic::REV32, insn, 2124);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::REV32, insn, EncodingId::REV32_asimdmisc_R);
+            #else
+                        Instruction result(Mnemonic::REV32, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -42251,7 +45171,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x2E202800u: { // UADDLP_asimdmisc_P
-                        Instruction result(Mnemonic::UADDLP, insn, 2304);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::UADDLP, insn, EncodingId::UADDLP_asimdmisc_P);
+            #else
+                        Instruction result(Mnemonic::UADDLP, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         if (enc.uaddlp_asimdmisc_p.size == 3u) return std::nullopt;
@@ -42274,7 +45198,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x2E203800u: { // USQADD_asimdmisc_R
-                        Instruction result(Mnemonic::USQADD, insn, 2382);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::USQADD, insn, EncodingId::USQADD_asimdmisc_R);
+            #else
+                        Instruction result(Mnemonic::USQADD, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -42291,7 +45219,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x2E204800u: { // CLZ_asimdmisc_R
-                        Instruction result(Mnemonic::CLZ, insn, 1572);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::CLZ, insn, EncodingId::CLZ_asimdmisc_R);
+            #else
+                        Instruction result(Mnemonic::CLZ, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         if (enc.clz_asimdmisc_r.size == 3u) return std::nullopt;
@@ -42309,7 +45241,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x2E206800u: { // UADALP_asimdmisc_P
-                        Instruction result(Mnemonic::UADALP, insn, 2302);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::UADALP, insn, EncodingId::UADALP_asimdmisc_P);
+            #else
+                        Instruction result(Mnemonic::UADALP, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         if (enc.uadalp_asimdmisc_p.size == 3u) return std::nullopt;
@@ -42332,7 +45268,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x2E207800u: { // SQNEG_asimdmisc_R
-                        Instruction result(Mnemonic::SQNEG, insn, 2228);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SQNEG, insn, EncodingId::SQNEG_asimdmisc_R);
+            #else
+                        Instruction result(Mnemonic::SQNEG, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -42349,7 +45289,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x2E208800u: { // CMGE_asimdmisc_Z
-                        Instruction result(Mnemonic::CMGE, insn, 1580);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::CMGE, insn, EncodingId::CMGE_asimdmisc_Z);
+            #else
+                        Instruction result(Mnemonic::CMGE, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -42367,7 +45311,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x2E209800u: { // CMLE_asimdmisc_Z
-                        Instruction result(Mnemonic::CMLE, insn, 1590);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::CMLE, insn, EncodingId::CMLE_asimdmisc_Z);
+            #else
+                        Instruction result(Mnemonic::CMLE, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -42385,7 +45333,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x2E20B800u: { // NEG_asimdmisc_R
-                        Instruction result(Mnemonic::NEG, insn, 2112);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::NEG, insn, EncodingId::NEG_asimdmisc_R);
+            #else
+                        Instruction result(Mnemonic::NEG, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -42402,7 +45354,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x2E212800u: { // SQXTUN_asimdmisc_N
-                        Instruction result(Mnemonic::SQXTUN, insn, 2262);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SQXTUN, insn, EncodingId::SQXTUN_asimdmisc_N);
+            #else
+                        Instruction result(Mnemonic::SQXTUN, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         if (enc.sqxtun_asimdmisc_n.size == 3u) return std::nullopt;
@@ -42425,7 +45381,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x2E213800u: { // SHLL_asimdmisc_S
-                        Instruction result(Mnemonic::SHLL, insn, 2178);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SHLL, insn, EncodingId::SHLL_asimdmisc_S);
+            #else
+                        Instruction result(Mnemonic::SHLL, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         if (enc.shll_asimdmisc_s.size == 3u) return std::nullopt;
@@ -42441,7 +45401,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x2E214800u: { // UQXTN_asimdmisc_N
-                        Instruction result(Mnemonic::UQXTN, insn, 2363);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::UQXTN, insn, EncodingId::UQXTN_asimdmisc_N);
+            #else
+                        Instruction result(Mnemonic::UQXTN, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         if (enc.uqxtn_asimdmisc_n.size == 3u) return std::nullopt;
@@ -42464,7 +45428,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x2E303800u: { // UADDLV_asimdall_only
-                        Instruction result(Mnemonic::UADDLV, insn, 2305);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::UADDLV, insn, EncodingId::UADDLV_asimdall_only);
+            #else
+                        Instruction result(Mnemonic::UADDLV, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         if (enc.uaddlv_asimdall_only.size == 3u) return std::nullopt;
@@ -42485,7 +45453,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x2E30A800u: { // UMAXV_asimdall_only
-                        Instruction result(Mnemonic::UMAXV, insn, 2335);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::UMAXV, insn, EncodingId::UMAXV_asimdall_only);
+            #else
+                        Instruction result(Mnemonic::UMAXV, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         if (enc.umaxv_asimdall_only.size == 3u) return std::nullopt;
@@ -42506,7 +45478,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x2E31A800u: { // UMINV_asimdall_only
-                        Instruction result(Mnemonic::UMINV, insn, 2338);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::UMINV, insn, EncodingId::UMINV_asimdall_only);
+            #else
+                        Instruction result(Mnemonic::UMINV, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         if (enc.uminv_asimdall_only.size == 3u) return std::nullopt;
@@ -42532,7 +45508,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
     // Switch for mask 0xBF20FC00u (81 patterns, 81 encodings)
     switch (insn & 0xBF20FC00u) {
         case 0x0E001800u: { // UZP1_asimdperm_only
-                        Instruction result(Mnemonic::UZP1, insn, 2388);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::UZP1, insn, EncodingId::UZP1_asimdperm_only);
+            #else
+                        Instruction result(Mnemonic::UZP1, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -42550,7 +45530,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x0E002800u: { // TRN1_asimdperm_only
-                        Instruction result(Mnemonic::TRN1, insn, 2296);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::TRN1, insn, EncodingId::TRN1_asimdperm_only);
+            #else
+                        Instruction result(Mnemonic::TRN1, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -42568,7 +45552,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x0E003800u: { // ZIP1_asimdperm_only
-                        Instruction result(Mnemonic::ZIP1, insn, 2392);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::ZIP1, insn, EncodingId::ZIP1_asimdperm_only);
+            #else
+                        Instruction result(Mnemonic::ZIP1, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -42586,7 +45574,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x0E005800u: { // UZP2_asimdperm_only
-                        Instruction result(Mnemonic::UZP2, insn, 2389);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::UZP2, insn, EncodingId::UZP2_asimdperm_only);
+            #else
+                        Instruction result(Mnemonic::UZP2, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -42604,7 +45596,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x0E006800u: { // TRN2_asimdperm_only
-                        Instruction result(Mnemonic::TRN2, insn, 2297);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::TRN2, insn, EncodingId::TRN2_asimdperm_only);
+            #else
+                        Instruction result(Mnemonic::TRN2, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -42622,7 +45618,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x0E007800u: { // ZIP2_asimdperm_only
-                        Instruction result(Mnemonic::ZIP2, insn, 2393);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::ZIP2, insn, EncodingId::ZIP2_asimdperm_only);
+            #else
+                        Instruction result(Mnemonic::ZIP2, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -42640,7 +45640,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x0E009400u: { // SDOT_asimdsame2_D
-                        Instruction result(Mnemonic::SDOT, insn, 2160);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SDOT, insn, EncodingId::SDOT_asimdsame2_D);
+            #else
+                        Instruction result(Mnemonic::SDOT, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         if (enc.sdot_asimdsame2d.size != 2u) return std::nullopt;
@@ -42659,7 +45663,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x0E200000u: { // SADDL_asimddiff_L
-                        Instruction result(Mnemonic::SADDL, insn, 2133);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SADDL, insn, EncodingId::SADDL_asimddiff_L);
+            #else
+                        Instruction result(Mnemonic::SADDL, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         if (enc.saddl_asimddiff_l.size == 3u) return std::nullopt;
@@ -42683,7 +45691,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x0E200400u: { // SHADD_asimdsame_only
-                        Instruction result(Mnemonic::SHADD, insn, 2175);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SHADD, insn, EncodingId::SHADD_asimdsame_only);
+            #else
+                        Instruction result(Mnemonic::SHADD, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         if (enc.shadd_asimdsame_only.size == 3u) return std::nullopt;
@@ -42702,7 +45714,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x0E200C00u: { // SQADD_asimdsame_only
-                        Instruction result(Mnemonic::SQADD, insn, 2210);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SQADD, insn, EncodingId::SQADD_asimdsame_only);
+            #else
+                        Instruction result(Mnemonic::SQADD, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -42720,7 +45736,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x0E201000u: { // SADDW_asimddiff_W
-                        Instruction result(Mnemonic::SADDW, insn, 2136);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SADDW, insn, EncodingId::SADDW_asimddiff_W);
+            #else
+                        Instruction result(Mnemonic::SADDW, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         if (enc.saddw_asimddiff_w.size == 3u) return std::nullopt;
@@ -42749,7 +45769,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x0E201400u: { // SRHADD_asimdsame_only
-                        Instruction result(Mnemonic::SRHADD, insn, 2263);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SRHADD, insn, EncodingId::SRHADD_asimdsame_only);
+            #else
+                        Instruction result(Mnemonic::SRHADD, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         if (enc.srhadd_asimdsame_only.size == 3u) return std::nullopt;
@@ -42768,7 +45792,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x0E202000u: { // SSUBL_asimddiff_L
-                        Instruction result(Mnemonic::SSUBL, insn, 2279);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SSUBL, insn, EncodingId::SSUBL_asimddiff_L);
+            #else
+                        Instruction result(Mnemonic::SSUBL, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         if (enc.ssubl_asimddiff_l.size == 3u) return std::nullopt;
@@ -42792,7 +45820,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x0E202400u: { // SHSUB_asimdsame_only
-                        Instruction result(Mnemonic::SHSUB, insn, 2180);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SHSUB, insn, EncodingId::SHSUB_asimdsame_only);
+            #else
+                        Instruction result(Mnemonic::SHSUB, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         if (enc.shsub_asimdsame_only.size == 3u) return std::nullopt;
@@ -42811,7 +45843,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x0E202C00u: { // SQSUB_asimdsame_only
-                        Instruction result(Mnemonic::SQSUB, insn, 2258);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SQSUB, insn, EncodingId::SQSUB_asimdsame_only);
+            #else
+                        Instruction result(Mnemonic::SQSUB, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -42829,7 +45865,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x0E203000u: { // SSUBW_asimddiff_W
-                        Instruction result(Mnemonic::SSUBW, insn, 2280);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SSUBW, insn, EncodingId::SSUBW_asimddiff_W);
+            #else
+                        Instruction result(Mnemonic::SSUBW, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         if (enc.ssubw_asimddiff_w.size == 3u) return std::nullopt;
@@ -42858,7 +45898,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x0E203400u: { // CMGT_asimdsame_only
-                        Instruction result(Mnemonic::CMGT, insn, 1582);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::CMGT, insn, EncodingId::CMGT_asimdsame_only);
+            #else
+                        Instruction result(Mnemonic::CMGT, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -42876,7 +45920,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x0E203C00u: { // CMGE_asimdsame_only
-                        Instruction result(Mnemonic::CMGE, insn, 1578);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::CMGE, insn, EncodingId::CMGE_asimdsame_only);
+            #else
+                        Instruction result(Mnemonic::CMGE, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -42894,7 +45942,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x0E204000u: { // ADDHN_asimddiff_N
-                        Instruction result(Mnemonic::ADDHN, insn, 1546);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::ADDHN, insn, EncodingId::ADDHN_asimddiff_N);
+            #else
+                        Instruction result(Mnemonic::ADDHN, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         if (enc.addhn_asimddiff_n.size == 3u) return std::nullopt;
@@ -42923,7 +45975,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x0E204400u: { // SSHL_asimdsame_only
-                        Instruction result(Mnemonic::SSHL, insn, 2273);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SSHL, insn, EncodingId::SSHL_asimdsame_only);
+            #else
+                        Instruction result(Mnemonic::SSHL, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -42941,7 +45997,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x0E204C00u: { // SQSHL_asimdsame_only
-                        Instruction result(Mnemonic::SQSHL, insn, 2250);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SQSHL, insn, EncodingId::SQSHL_asimdsame_only);
+            #else
+                        Instruction result(Mnemonic::SQSHL, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -42959,7 +46019,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x0E205000u: { // SABAL_asimddiff_L
-                        Instruction result(Mnemonic::SABAL, insn, 2129);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SABAL, insn, EncodingId::SABAL_asimddiff_L);
+            #else
+                        Instruction result(Mnemonic::SABAL, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         if (enc.sabal_asimddiff_l.size == 3u) return std::nullopt;
@@ -42983,7 +46047,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x0E205400u: { // SRSHL_asimdsame_only
-                        Instruction result(Mnemonic::SRSHL, insn, 2267);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SRSHL, insn, EncodingId::SRSHL_asimdsame_only);
+            #else
+                        Instruction result(Mnemonic::SRSHL, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -43001,7 +46069,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x0E205C00u: { // SQRSHL_asimdsame_only
-                        Instruction result(Mnemonic::SQRSHL, insn, 2242);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SQRSHL, insn, EncodingId::SQRSHL_asimdsame_only);
+            #else
+                        Instruction result(Mnemonic::SQRSHL, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -43019,7 +46091,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x0E206000u: { // SUBHN_asimddiff_N
-                        Instruction result(Mnemonic::SUBHN, insn, 2283);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SUBHN, insn, EncodingId::SUBHN_asimddiff_N);
+            #else
+                        Instruction result(Mnemonic::SUBHN, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         if (enc.subhn_asimddiff_n.size == 3u) return std::nullopt;
@@ -43048,7 +46124,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x0E206400u: { // SMAX_asimdsame_only
-                        Instruction result(Mnemonic::SMAX, insn, 2192);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SMAX, insn, EncodingId::SMAX_asimdsame_only);
+            #else
+                        Instruction result(Mnemonic::SMAX, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         if (enc.smax_asimdsame_only.size == 3u) return std::nullopt;
@@ -43067,7 +46147,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x0E206C00u: { // SMIN_asimdsame_only
-                        Instruction result(Mnemonic::SMIN, insn, 2195);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SMIN, insn, EncodingId::SMIN_asimdsame_only);
+            #else
+                        Instruction result(Mnemonic::SMIN, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         if (enc.smin_asimdsame_only.size == 3u) return std::nullopt;
@@ -43086,7 +46170,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x0E207000u: { // SABDL_asimddiff_L
-                        Instruction result(Mnemonic::SABDL, insn, 2131);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SABDL, insn, EncodingId::SABDL_asimddiff_L);
+            #else
+                        Instruction result(Mnemonic::SABDL, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         if (enc.sabdl_asimddiff_l.size == 3u) return std::nullopt;
@@ -43110,7 +46198,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x0E207400u: { // SABD_asimdsame_only
-                        Instruction result(Mnemonic::SABD, insn, 2130);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SABD, insn, EncodingId::SABD_asimdsame_only);
+            #else
+                        Instruction result(Mnemonic::SABD, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         if (enc.sabd_asimdsame_only.size == 3u) return std::nullopt;
@@ -43129,7 +46221,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x0E207C00u: { // SABA_asimdsame_only
-                        Instruction result(Mnemonic::SABA, insn, 2128);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SABA, insn, EncodingId::SABA_asimdsame_only);
+            #else
+                        Instruction result(Mnemonic::SABA, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         if (enc.saba_asimdsame_only.size == 3u) return std::nullopt;
@@ -43148,7 +46244,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x0E208000u: { // SMLAL_asimddiff_L
-                        Instruction result(Mnemonic::SMLAL, insn, 2199);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SMLAL, insn, EncodingId::SMLAL_asimddiff_L);
+            #else
+                        Instruction result(Mnemonic::SMLAL, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         if (enc.smlal_asimddiff_l.size == 3u) return std::nullopt;
@@ -43172,7 +46272,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x0E208400u: { // ADD_asimdsame_only
-                        Instruction result(Mnemonic::ADD, insn, 1545);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::ADD, insn, EncodingId::ADD_asimdsame_only);
+            #else
+                        Instruction result(Mnemonic::ADD, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -43190,7 +46294,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x0E208C00u: { // CMTST_asimdsame_only
-                        Instruction result(Mnemonic::CMTST, insn, 1594);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::CMTST, insn, EncodingId::CMTST_asimdsame_only);
+            #else
+                        Instruction result(Mnemonic::CMTST, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -43208,7 +46316,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x0E209000u: { // SQDMLAL_asimddiff_L
-                        Instruction result(Mnemonic::SQDMLAL, insn, 2214);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SQDMLAL, insn, EncodingId::SQDMLAL_asimddiff_L);
+            #else
+                        Instruction result(Mnemonic::SQDMLAL, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -43231,7 +46343,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x0E209400u: { // MLA_asimdsame_only
-                        Instruction result(Mnemonic::MLA, insn, 2090);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::MLA, insn, EncodingId::MLA_asimdsame_only);
+            #else
+                        Instruction result(Mnemonic::MLA, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         if (enc.mla_asimdsame_only.size == 3u) return std::nullopt;
@@ -43250,7 +46366,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x0E209C00u: { // MUL_asimdsame_only
-                        Instruction result(Mnemonic::MUL, insn, 2106);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::MUL, insn, EncodingId::MUL_asimdsame_only);
+            #else
+                        Instruction result(Mnemonic::MUL, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         if (enc.mul_asimdsame_only.size == 3u) return std::nullopt;
@@ -43269,7 +46389,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x0E20A000u: { // SMLSL_asimddiff_L
-                        Instruction result(Mnemonic::SMLSL, insn, 2201);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SMLSL, insn, EncodingId::SMLSL_asimddiff_L);
+            #else
+                        Instruction result(Mnemonic::SMLSL, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         if (enc.smlsl_asimddiff_l.size == 3u) return std::nullopt;
@@ -43293,7 +46417,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x0E20A400u: { // SMAXP_asimdsame_only
-                        Instruction result(Mnemonic::SMAXP, insn, 2193);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SMAXP, insn, EncodingId::SMAXP_asimdsame_only);
+            #else
+                        Instruction result(Mnemonic::SMAXP, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         if (enc.smaxp_asimdsame_only.size == 3u) return std::nullopt;
@@ -43312,7 +46440,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x0E20AC00u: { // SMINP_asimdsame_only
-                        Instruction result(Mnemonic::SMINP, insn, 2196);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SMINP, insn, EncodingId::SMINP_asimdsame_only);
+            #else
+                        Instruction result(Mnemonic::SMINP, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         if (enc.sminp_asimdsame_only.size == 3u) return std::nullopt;
@@ -43331,7 +46463,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x0E20B000u: { // SQDMLSL_asimddiff_L
-                        Instruction result(Mnemonic::SQDMLSL, insn, 2218);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SQDMLSL, insn, EncodingId::SQDMLSL_asimddiff_L);
+            #else
+                        Instruction result(Mnemonic::SQDMLSL, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -43354,7 +46490,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x0E20B400u: { // SQDMULH_asimdsame_only
-                        Instruction result(Mnemonic::SQDMULH, insn, 2222);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SQDMULH, insn, EncodingId::SQDMULH_asimdsame_only);
+            #else
+                        Instruction result(Mnemonic::SQDMULH, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -43372,7 +46512,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x0E20BC00u: { // ADDP_asimdsame_only
-                        Instruction result(Mnemonic::ADDP, insn, 1548);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::ADDP, insn, EncodingId::ADDP_asimdsame_only);
+            #else
+                        Instruction result(Mnemonic::ADDP, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -43390,7 +46534,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x0E20C000u: { // SMULL_asimddiff_L
-                        Instruction result(Mnemonic::SMULL, insn, 2206);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SMULL, insn, EncodingId::SMULL_asimddiff_L);
+            #else
+                        Instruction result(Mnemonic::SMULL, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         if (enc.smull_asimddiff_l.size == 3u) return std::nullopt;
@@ -43414,7 +46562,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x0E20D000u: { // SQDMULL_asimddiff_L
-                        Instruction result(Mnemonic::SQDMULL, insn, 2226);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SQDMULL, insn, EncodingId::SQDMULL_asimddiff_L);
+            #else
+                        Instruction result(Mnemonic::SQDMULL, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -43437,7 +46589,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x0E20E000u: { // PMULL_asimddiff_L
-                        Instruction result(Mnemonic::PMULL, insn, 2119);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::PMULL, insn, EncodingId::PMULL_asimddiff_L);
+            #else
+                        Instruction result(Mnemonic::PMULL, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -43455,7 +46611,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x2E008400u: { // SQRDMLAH_asimdsame2_only
-                        Instruction result(Mnemonic::SQRDMLAH, insn, 2232);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SQRDMLAH, insn, EncodingId::SQRDMLAH_asimdsame2_only);
+            #else
+                        Instruction result(Mnemonic::SQRDMLAH, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -43473,7 +46633,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x2E008C00u: { // SQRDMLSH_asimdsame2_only
-                        Instruction result(Mnemonic::SQRDMLSH, insn, 2236);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SQRDMLSH, insn, EncodingId::SQRDMLSH_asimdsame2_only);
+            #else
+                        Instruction result(Mnemonic::SQRDMLSH, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -43491,7 +46655,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x2E009400u: { // UDOT_asimdsame2_D
-                        Instruction result(Mnemonic::UDOT, insn, 2330);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::UDOT, insn, EncodingId::UDOT_asimdsame2_D);
+            #else
+                        Instruction result(Mnemonic::UDOT, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         if (enc.udot_asimdsame2d.size != 2u) return std::nullopt;
@@ -43510,7 +46678,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x2E200000u: { // UADDL_asimddiff_L
-                        Instruction result(Mnemonic::UADDL, insn, 2303);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::UADDL, insn, EncodingId::UADDL_asimddiff_L);
+            #else
+                        Instruction result(Mnemonic::UADDL, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         if (enc.uaddl_asimddiff_l.size == 3u) return std::nullopt;
@@ -43534,7 +46706,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x2E200400u: { // UHADD_asimdsame_only
-                        Instruction result(Mnemonic::UHADD, insn, 2331);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::UHADD, insn, EncodingId::UHADD_asimdsame_only);
+            #else
+                        Instruction result(Mnemonic::UHADD, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         if (enc.uhadd_asimdsame_only.size == 3u) return std::nullopt;
@@ -43553,7 +46729,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x2E200C00u: { // UQADD_asimdsame_only
-                        Instruction result(Mnemonic::UQADD, insn, 2349);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::UQADD, insn, EncodingId::UQADD_asimdsame_only);
+            #else
+                        Instruction result(Mnemonic::UQADD, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -43571,7 +46751,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x2E201000u: { // UADDW_asimddiff_W
-                        Instruction result(Mnemonic::UADDW, insn, 2306);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::UADDW, insn, EncodingId::UADDW_asimddiff_W);
+            #else
+                        Instruction result(Mnemonic::UADDW, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         if (enc.uaddw_asimddiff_w.size == 3u) return std::nullopt;
@@ -43600,7 +46784,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x2E201400u: { // URHADD_asimdsame_only
-                        Instruction result(Mnemonic::URHADD, insn, 2365);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::URHADD, insn, EncodingId::URHADD_asimdsame_only);
+            #else
+                        Instruction result(Mnemonic::URHADD, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         if (enc.urhadd_asimdsame_only.size == 3u) return std::nullopt;
@@ -43619,7 +46807,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x2E202000u: { // USUBL_asimddiff_L
-                        Instruction result(Mnemonic::USUBL, insn, 2385);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::USUBL, insn, EncodingId::USUBL_asimddiff_L);
+            #else
+                        Instruction result(Mnemonic::USUBL, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         if (enc.usubl_asimddiff_l.size == 3u) return std::nullopt;
@@ -43643,7 +46835,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x2E202400u: { // UHSUB_asimdsame_only
-                        Instruction result(Mnemonic::UHSUB, insn, 2332);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::UHSUB, insn, EncodingId::UHSUB_asimdsame_only);
+            #else
+                        Instruction result(Mnemonic::UHSUB, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         if (enc.uhsub_asimdsame_only.size == 3u) return std::nullopt;
@@ -43662,7 +46858,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x2E202C00u: { // UQSUB_asimdsame_only
-                        Instruction result(Mnemonic::UQSUB, insn, 2361);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::UQSUB, insn, EncodingId::UQSUB_asimdsame_only);
+            #else
+                        Instruction result(Mnemonic::UQSUB, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -43680,7 +46880,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x2E203000u: { // USUBW_asimddiff_W
-                        Instruction result(Mnemonic::USUBW, insn, 2386);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::USUBW, insn, EncodingId::USUBW_asimddiff_W);
+            #else
+                        Instruction result(Mnemonic::USUBW, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         if (enc.usubw_asimddiff_w.size == 3u) return std::nullopt;
@@ -43709,7 +46913,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x2E203400u: { // CMHI_asimdsame_only
-                        Instruction result(Mnemonic::CMHI, insn, 1586);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::CMHI, insn, EncodingId::CMHI_asimdsame_only);
+            #else
+                        Instruction result(Mnemonic::CMHI, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -43727,7 +46935,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x2E203C00u: { // CMHS_asimdsame_only
-                        Instruction result(Mnemonic::CMHS, insn, 1588);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::CMHS, insn, EncodingId::CMHS_asimdsame_only);
+            #else
+                        Instruction result(Mnemonic::CMHS, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -43745,7 +46957,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x2E204000u: { // RADDHN_asimddiff_N
-                        Instruction result(Mnemonic::RADDHN, insn, 2120);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::RADDHN, insn, EncodingId::RADDHN_asimddiff_N);
+            #else
+                        Instruction result(Mnemonic::RADDHN, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         if (enc.raddhn_asimddiff_n.size == 3u) return std::nullopt;
@@ -43774,7 +46990,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x2E204400u: { // USHL_asimdsame_only
-                        Instruction result(Mnemonic::USHL, insn, 2376);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::USHL, insn, EncodingId::USHL_asimdsame_only);
+            #else
+                        Instruction result(Mnemonic::USHL, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -43792,7 +47012,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x2E204C00u: { // UQSHL_asimdsame_only
-                        Instruction result(Mnemonic::UQSHL, insn, 2357);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::UQSHL, insn, EncodingId::UQSHL_asimdsame_only);
+            #else
+                        Instruction result(Mnemonic::UQSHL, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -43810,7 +47034,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x2E205000u: { // UABAL_asimddiff_L
-                        Instruction result(Mnemonic::UABAL, insn, 2299);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::UABAL, insn, EncodingId::UABAL_asimddiff_L);
+            #else
+                        Instruction result(Mnemonic::UABAL, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         if (enc.uabal_asimddiff_l.size == 3u) return std::nullopt;
@@ -43834,7 +47062,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x2E205400u: { // URSHL_asimdsame_only
-                        Instruction result(Mnemonic::URSHL, insn, 2367);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::URSHL, insn, EncodingId::URSHL_asimdsame_only);
+            #else
+                        Instruction result(Mnemonic::URSHL, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -43852,7 +47084,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x2E205C00u: { // UQRSHL_asimdsame_only
-                        Instruction result(Mnemonic::UQRSHL, insn, 2351);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::UQRSHL, insn, EncodingId::UQRSHL_asimdsame_only);
+            #else
+                        Instruction result(Mnemonic::UQRSHL, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -43870,7 +47106,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x2E206000u: { // RSUBHN_asimddiff_N
-                        Instruction result(Mnemonic::RSUBHN, insn, 2127);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::RSUBHN, insn, EncodingId::RSUBHN_asimddiff_N);
+            #else
+                        Instruction result(Mnemonic::RSUBHN, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         if (enc.rsubhn_asimddiff_n.size == 3u) return std::nullopt;
@@ -43899,7 +47139,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x2E206400u: { // UMAX_asimdsame_only
-                        Instruction result(Mnemonic::UMAX, insn, 2333);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::UMAX, insn, EncodingId::UMAX_asimdsame_only);
+            #else
+                        Instruction result(Mnemonic::UMAX, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         if (enc.umax_asimdsame_only.size == 3u) return std::nullopt;
@@ -43918,7 +47162,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x2E206C00u: { // UMIN_asimdsame_only
-                        Instruction result(Mnemonic::UMIN, insn, 2336);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::UMIN, insn, EncodingId::UMIN_asimdsame_only);
+            #else
+                        Instruction result(Mnemonic::UMIN, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         if (enc.umin_asimdsame_only.size == 3u) return std::nullopt;
@@ -43937,7 +47185,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x2E207000u: { // UABDL_asimddiff_L
-                        Instruction result(Mnemonic::UABDL, insn, 2301);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::UABDL, insn, EncodingId::UABDL_asimddiff_L);
+            #else
+                        Instruction result(Mnemonic::UABDL, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         if (enc.uabdl_asimddiff_l.size == 3u) return std::nullopt;
@@ -43961,7 +47213,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x2E207400u: { // UABD_asimdsame_only
-                        Instruction result(Mnemonic::UABD, insn, 2300);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::UABD, insn, EncodingId::UABD_asimdsame_only);
+            #else
+                        Instruction result(Mnemonic::UABD, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         if (enc.uabd_asimdsame_only.size == 3u) return std::nullopt;
@@ -43980,7 +47236,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x2E207C00u: { // UABA_asimdsame_only
-                        Instruction result(Mnemonic::UABA, insn, 2298);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::UABA, insn, EncodingId::UABA_asimdsame_only);
+            #else
+                        Instruction result(Mnemonic::UABA, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         if (enc.uaba_asimdsame_only.size == 3u) return std::nullopt;
@@ -43999,7 +47259,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x2E208000u: { // UMLAL_asimddiff_L
-                        Instruction result(Mnemonic::UMLAL, insn, 2340);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::UMLAL, insn, EncodingId::UMLAL_asimddiff_L);
+            #else
+                        Instruction result(Mnemonic::UMLAL, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         if (enc.umlal_asimddiff_l.size == 3u) return std::nullopt;
@@ -44023,7 +47287,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x2E208400u: { // SUB_asimdsame_only
-                        Instruction result(Mnemonic::SUB, insn, 2282);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SUB, insn, EncodingId::SUB_asimdsame_only);
+            #else
+                        Instruction result(Mnemonic::SUB, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -44041,7 +47309,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x2E208C00u: { // CMEQ_asimdsame_only
-                        Instruction result(Mnemonic::CMEQ, insn, 1574);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::CMEQ, insn, EncodingId::CMEQ_asimdsame_only);
+            #else
+                        Instruction result(Mnemonic::CMEQ, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -44059,7 +47331,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x2E209400u: { // MLS_asimdsame_only
-                        Instruction result(Mnemonic::MLS, insn, 2092);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::MLS, insn, EncodingId::MLS_asimdsame_only);
+            #else
+                        Instruction result(Mnemonic::MLS, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         if (enc.mls_asimdsame_only.size == 3u) return std::nullopt;
@@ -44078,7 +47354,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x2E209C00u: { // PMUL_asimdsame_only
-                        Instruction result(Mnemonic::PMUL, insn, 2118);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::PMUL, insn, EncodingId::PMUL_asimdsame_only);
+            #else
+                        Instruction result(Mnemonic::PMUL, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         if (enc.pmul_asimdsame_only.size == 3u) return std::nullopt;
@@ -44097,7 +47377,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x2E20A000u: { // UMLSL_asimddiff_L
-                        Instruction result(Mnemonic::UMLSL, insn, 2342);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::UMLSL, insn, EncodingId::UMLSL_asimddiff_L);
+            #else
+                        Instruction result(Mnemonic::UMLSL, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         if (enc.umlsl_asimddiff_l.size == 3u) return std::nullopt;
@@ -44121,7 +47405,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x2E20A400u: { // UMAXP_asimdsame_only
-                        Instruction result(Mnemonic::UMAXP, insn, 2334);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::UMAXP, insn, EncodingId::UMAXP_asimdsame_only);
+            #else
+                        Instruction result(Mnemonic::UMAXP, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         if (enc.umaxp_asimdsame_only.size == 3u) return std::nullopt;
@@ -44140,7 +47428,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x2E20AC00u: { // UMINP_asimdsame_only
-                        Instruction result(Mnemonic::UMINP, insn, 2337);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::UMINP, insn, EncodingId::UMINP_asimdsame_only);
+            #else
+                        Instruction result(Mnemonic::UMINP, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         if (enc.uminp_asimdsame_only.size == 3u) return std::nullopt;
@@ -44159,7 +47451,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x2E20B400u: { // SQRDMULH_asimdsame_only
-                        Instruction result(Mnemonic::SQRDMULH, insn, 2240);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SQRDMULH, insn, EncodingId::SQRDMULH_asimdsame_only);
+            #else
+                        Instruction result(Mnemonic::SQRDMULH, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -44177,7 +47473,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x2E20C000u: { // UMULL_asimddiff_L
-                        Instruction result(Mnemonic::UMULL, insn, 2347);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::UMULL, insn, EncodingId::UMULL_asimddiff_L);
+            #else
+                        Instruction result(Mnemonic::UMULL, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         if (enc.umull_asimddiff_l.size == 3u) return std::nullopt;
@@ -44206,7 +47506,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
     // Switch for mask 0xBF20EC00u (1 pattern, 1 encoding)
     switch (insn & 0xBF20EC00u) {
         case 0x2E00E400u: { // FCADD_asimdsame2_C
-                        Instruction result(Mnemonic::FCADD, insn, 1634);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FCADD, insn, EncodingId::FCADD_asimdsame2_C);
+            #else
+                        Instruction result(Mnemonic::FCADD, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         if (enc.fcadd_asimdsame2c.size == 0u) return std::nullopt;
@@ -44232,7 +47536,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
     // Switch for mask 0xBF20E400u (1 pattern, 1 encoding)
     switch (insn & 0xBF20E400u) {
         case 0x2E00C400u: { // FCMLA_asimdsame2_C
-                        Instruction result(Mnemonic::FCMLA, insn, 1666);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FCMLA, insn, EncodingId::FCMLA_asimdsame2_C);
+            #else
+                        Instruction result(Mnemonic::FCMLA, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         if (enc.fcmla_asimdsame2c.size == 0u) return std::nullopt;
@@ -44258,7 +47566,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
     // Switch for mask 0xBF00F400u (18 patterns, 18 encodings)
     switch (insn & 0xBF00F400u) {
         case 0x0F002000u: { // SMLAL_asimdelem_L
-                        Instruction result(Mnemonic::SMLAL, insn, 2198);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SMLAL, insn, EncodingId::SMLAL_asimdelem_L);
+            #else
+                        Instruction result(Mnemonic::SMLAL, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -44296,7 +47608,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x0F003000u: { // SQDMLAL_asimdelem_L
-                        Instruction result(Mnemonic::SQDMLAL, insn, 2212);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SQDMLAL, insn, EncodingId::SQDMLAL_asimdelem_L);
+            #else
+                        Instruction result(Mnemonic::SQDMLAL, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -44334,7 +47650,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x0F006000u: { // SMLSL_asimdelem_L
-                        Instruction result(Mnemonic::SMLSL, insn, 2200);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SMLSL, insn, EncodingId::SMLSL_asimdelem_L);
+            #else
+                        Instruction result(Mnemonic::SMLSL, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -44372,7 +47692,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x0F007000u: { // SQDMLSL_asimdelem_L
-                        Instruction result(Mnemonic::SQDMLSL, insn, 2216);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SQDMLSL, insn, EncodingId::SQDMLSL_asimdelem_L);
+            #else
+                        Instruction result(Mnemonic::SQDMLSL, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -44410,7 +47734,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x0F008000u: { // MUL_asimdelem_R
-                        Instruction result(Mnemonic::MUL, insn, 2105);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::MUL, insn, EncodingId::MUL_asimdelem_R);
+            #else
+                        Instruction result(Mnemonic::MUL, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -44442,7 +47770,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x0F00A000u: { // SMULL_asimdelem_L
-                        Instruction result(Mnemonic::SMULL, insn, 2205);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SMULL, insn, EncodingId::SMULL_asimdelem_L);
+            #else
+                        Instruction result(Mnemonic::SMULL, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -44480,7 +47812,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x0F00B000u: { // SQDMULL_asimdelem_L
-                        Instruction result(Mnemonic::SQDMULL, insn, 2223);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SQDMULL, insn, EncodingId::SQDMULL_asimdelem_L);
+            #else
+                        Instruction result(Mnemonic::SQDMULL, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -44518,7 +47854,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x0F00C000u: { // SQDMULH_asimdelem_R
-                        Instruction result(Mnemonic::SQDMULH, insn, 2220);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SQDMULH, insn, EncodingId::SQDMULH_asimdelem_R);
+            #else
+                        Instruction result(Mnemonic::SQDMULH, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -44550,7 +47890,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x0F00D000u: { // SQRDMULH_asimdelem_R
-                        Instruction result(Mnemonic::SQRDMULH, insn, 2238);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SQRDMULH, insn, EncodingId::SQRDMULH_asimdelem_R);
+            #else
+                        Instruction result(Mnemonic::SQRDMULH, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -44582,7 +47926,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x0F00E000u: { // SDOT_asimdelem_D
-                        Instruction result(Mnemonic::SDOT, insn, 2159);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SDOT, insn, EncodingId::SDOT_asimdelem_D);
+            #else
+                        Instruction result(Mnemonic::SDOT, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         if (enc.sdot_asimdelem_d.size != 2u) return std::nullopt;
@@ -44616,7 +47964,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x2F000000u: { // MLA_asimdelem_R
-                        Instruction result(Mnemonic::MLA, insn, 2089);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::MLA, insn, EncodingId::MLA_asimdelem_R);
+            #else
+                        Instruction result(Mnemonic::MLA, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -44648,7 +48000,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x2F002000u: { // UMLAL_asimdelem_L
-                        Instruction result(Mnemonic::UMLAL, insn, 2339);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::UMLAL, insn, EncodingId::UMLAL_asimdelem_L);
+            #else
+                        Instruction result(Mnemonic::UMLAL, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -44686,7 +48042,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x2F004000u: { // MLS_asimdelem_R
-                        Instruction result(Mnemonic::MLS, insn, 2091);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::MLS, insn, EncodingId::MLS_asimdelem_R);
+            #else
+                        Instruction result(Mnemonic::MLS, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -44718,7 +48078,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x2F006000u: { // UMLSL_asimdelem_L
-                        Instruction result(Mnemonic::UMLSL, insn, 2341);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::UMLSL, insn, EncodingId::UMLSL_asimdelem_L);
+            #else
+                        Instruction result(Mnemonic::UMLSL, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -44756,7 +48120,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x2F00A000u: { // UMULL_asimdelem_L
-                        Instruction result(Mnemonic::UMULL, insn, 2346);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::UMULL, insn, EncodingId::UMULL_asimdelem_L);
+            #else
+                        Instruction result(Mnemonic::UMULL, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -44794,7 +48162,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x2F00D000u: { // SQRDMLAH_asimdelem_R
-                        Instruction result(Mnemonic::SQRDMLAH, insn, 2230);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SQRDMLAH, insn, EncodingId::SQRDMLAH_asimdelem_R);
+            #else
+                        Instruction result(Mnemonic::SQRDMLAH, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -44826,7 +48198,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x2F00E000u: { // UDOT_asimdelem_D
-                        Instruction result(Mnemonic::UDOT, insn, 2329);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::UDOT, insn, EncodingId::UDOT_asimdelem_D);
+            #else
+                        Instruction result(Mnemonic::UDOT, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         if (enc.udot_asimdelem_d.size != 2u) return std::nullopt;
@@ -44860,7 +48236,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         return result;
         }
         case 0x2F00F000u: { // SQRDMLSH_asimdelem_R
-                        Instruction result(Mnemonic::SQRDMLSH, insn, 2234);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::SQRDMLSH, insn, EncodingId::SQRDMLSH_asimdelem_R);
+            #else
+                        Instruction result(Mnemonic::SQRDMLSH, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
@@ -44897,7 +48277,11 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
     // Switch for mask 0xBF009400u (1 pattern, 1 encoding)
     switch (insn & 0xBF009400u) {
         case 0x2F001000u: { // FCMLA_advsimd_elt
-                        Instruction result(Mnemonic::FCMLA, insn, 1665);
+            #ifdef VEDA64_IR
+                        Instruction result(Mnemonic::FCMLA, insn, EncodingId::FCMLA_advsimd_elt);
+            #else
+                        Instruction result(Mnemonic::FCMLA, insn);
+            #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;

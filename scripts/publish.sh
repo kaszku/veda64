@@ -71,7 +71,7 @@ $buildDir = Join-Path $SourceDir "_build"
 New-Item -ItemType Directory -Path $buildDir -Force | Out-Null
 
 Write-Host "Configuring..."
-& $cmake -S $SourceDir -B $buildDir -G Ninja -DCMAKE_BUILD_TYPE=Release "-DCMAKE_MAKE_PROGRAM=$ninja" -DVEDA64_PYTHON=OFF
+& $cmake -S $SourceDir -B $buildDir -G Ninja -DCMAKE_BUILD_TYPE=Release "-DCMAKE_MAKE_PROGRAM=$ninja" -DVEDA64_STRINGS=ON -DVEDA64_PYTHON=OFF
 if ($LASTEXITCODE -ne 0) { exit 1 }
 
 Write-Host "Building..."
