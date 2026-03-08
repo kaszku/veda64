@@ -136,7 +136,7 @@ static int test_execute() {
     cg.ret();
     cg.ready();
 
-    auto fn = cg.getCode<int(*)(int)>();
+    auto fn = cg.get_code<int(*)(int)>();
     assert(fn(41) == 42);
     std::cout << "  execute: OK" << std::endl;
     return 0;
@@ -155,7 +155,7 @@ static int test_execute_loop() {
     cg.ret();
     cg.ready();
 
-    auto fn = cg.getCode<int(*)(int)>();
+    auto fn = cg.get_code<int(*)(int)>();
     assert(fn(10) == 10);
     assert(fn(1) == 1);
     std::cout << "  execute loop: OK" << std::endl;

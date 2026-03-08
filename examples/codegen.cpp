@@ -73,7 +73,7 @@ static void example_labels() {
 
 #if defined(__aarch64__) || defined(_M_ARM64)
     cg.ready();
-    auto fn = cg.getCode<int(*)(int)>();
+    auto fn = cg.get_code<int(*)(int)>();
     printf("  fn(10) = %d (expected 10)\n", fn(10));
     printf("  fn(50) = %d (expected 50)\n", fn(50));
 #endif
@@ -129,7 +129,7 @@ static void example_fp() {
     cg2.fmul(d0, d0, d2);
     cg2.ret();
     cg2.ready();
-    auto fn = cg2.getCode<double(*)(double, double, double)>();
+    auto fn = cg2.get_code<double(*)(double, double, double)>();
     printf("  (3.0 + 4.0) * 2.0 = %.1f (expected 14.0)\n", fn(3.0, 4.0, 2.0));
 #endif
 }
@@ -158,7 +158,7 @@ static void example_mov() {
     cg2.mov(x0, uint64_t(0xDEADBEEFCAFEULL));
     cg2.ret();
     cg2.ready();
-    auto fn = cg2.getCode<uint64_t(*)()>();
+    auto fn = cg2.get_code<uint64_t(*)()>();
     printf("  returned 0x%llX (expected 0xDEADBEEFCAFE)\n",
            (unsigned long long)fn());
 #endif
@@ -192,7 +192,7 @@ static void example_fibonacci() {
     cg.ret();
     cg.ready();
 
-    auto fib = cg.getCode<int(*)(int)>();
+    auto fib = cg.get_code<int(*)(int)>();
     for (int n : {0, 1, 2, 5, 10, 20}) {
         printf("  fib(%d) = %d\n", n, fib(n));
     }
@@ -223,7 +223,7 @@ static void example_shifted() {
     cg2.add(w0, w0, w1, Shift(ShiftType::LSL, 2));
     cg2.ret();
     cg2.ready();
-    auto fn = cg2.getCode<int(*)(int, int)>();
+    auto fn = cg2.get_code<int(*)(int, int)>();
     printf("  5 + 3*4 = %d (expected 17)\n", fn(5, 3));
 #endif
 }

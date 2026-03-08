@@ -28,7 +28,7 @@ static void test_identity() {
     CodeGenerator cg(4096);
     cg.ret();
     cg.ready();
-    auto fn = cg.getCode<int(*)(int)>();
+    auto fn = cg.get_code<int(*)(int)>();
     CHECK(fn(0) == 0, "identity(0)");
     CHECK(fn(123) == 123, "identity(123)");
     CHECK(fn(-1) == -1, "identity(-1)");
@@ -40,7 +40,7 @@ static void test_add_imm() {
     cg.add(w0, w0, uint32_t(7));
     cg.ret();
     cg.ready();
-    auto fn = cg.getCode<int(*)(int)>();
+    auto fn = cg.get_code<int(*)(int)>();
     CHECK(fn(0) == 7, "add_imm(0)");
     CHECK(fn(35) == 42, "add_imm(35)");
     CHECK(fn(-10) == -3, "add_imm(-10)");
@@ -53,7 +53,7 @@ static void test_sub_reg() {
     cg.sub(w0, w0, w1);
     cg.ret();
     cg.ready();
-    auto fn = cg.getCode<int(*)(int, int)>();
+    auto fn = cg.get_code<int(*)(int, int)>();
     CHECK(fn(10, 3) == 7, "sub_reg(10,3)");
     CHECK(fn(0, 0) == 0, "sub_reg(0,0)");
     CHECK(fn(1, 5) == -4, "sub_reg(1,5)");
@@ -66,7 +66,7 @@ static void test_multiply() {
     cg.mul(w0, w0, w1);
     cg.ret();
     cg.ready();
-    auto fn = cg.getCode<int(*)(int, int)>();
+    auto fn = cg.get_code<int(*)(int, int)>();
     CHECK(fn(6, 7) == 42, "mul(6,7)");
     CHECK(fn(0, 999) == 0, "mul(0,999)");
     CHECK(fn(-3, 4) == -12, "mul(-3,4)");
@@ -79,7 +79,7 @@ static void test_multiply64() {
     cg.mul(x0, x0, x1);
     cg.ret();
     cg.ready();
-    auto fn = cg.getCode<int64_t(*)(int64_t, int64_t)>();
+    auto fn = cg.get_code<int64_t(*)(int64_t, int64_t)>();
     CHECK(fn(100000LL, 100000LL) == 10000000000LL, "mul64 large");
     CHECK(fn(-1LL, 42LL) == -42LL, "mul64 neg");
     std::cout << "  multiply64: OK" << std::endl;
@@ -97,7 +97,7 @@ static void test_count_loop() {
     cg.mov(w0, w1);
     cg.ret();
     cg.ready();
-    auto fn = cg.getCode<int(*)(int)>();
+    auto fn = cg.get_code<int(*)(int)>();
     CHECK(fn(1) == 1, "count(1)");
     CHECK(fn(10) == 10, "count(10)");
     CHECK(fn(100) == 100, "count(100)");
@@ -120,7 +120,7 @@ static void test_sum() {
     cg.mov(w0, w1);
     cg.ret();
     cg.ready();
-    auto fn = cg.getCode<int(*)(int)>();
+    auto fn = cg.get_code<int(*)(int)>();
     CHECK(fn(0) == 0, "sum(0)");
     CHECK(fn(1) == 1, "sum(1)");
     CHECK(fn(10) == 55, "sum(10)");
@@ -143,7 +143,7 @@ static void test_factorial() {
     cg.mov(w0, w1);
     cg.ret();
     cg.ready();
-    auto fn = cg.getCode<int(*)(int)>();
+    auto fn = cg.get_code<int(*)(int)>();
     CHECK(fn(0) == 1, "fact(0)");
     CHECK(fn(1) == 1, "fact(1)");
     CHECK(fn(5) == 120, "fact(5)");
@@ -170,7 +170,7 @@ static void test_fibonacci() {
     cg.mov(w0, w1);
     cg.ret();
     cg.ready();
-    auto fn = cg.getCode<int(*)(int)>();
+    auto fn = cg.get_code<int(*)(int)>();
     CHECK(fn(0) == 0, "fib(0)");
     CHECK(fn(1) == 1, "fib(1)");
     CHECK(fn(2) == 1, "fib(2)");
@@ -186,7 +186,7 @@ static void test_max_csel() {
     cg.csel(w0, w0, w1, Condition::GT);
     cg.ret();
     cg.ready();
-    auto fn = cg.getCode<int(*)(int, int)>();
+    auto fn = cg.get_code<int(*)(int, int)>();
     CHECK(fn(5, 3) == 5, "max(5,3)");
     CHECK(fn(3, 5) == 5, "max(3,5)");
     CHECK(fn(7, 7) == 7, "max(7,7)");
@@ -202,7 +202,7 @@ static void test_abs() {
     cg.csel(w0, w0, w1, Condition::GE);
     cg.ret();
     cg.ready();
-    auto fn = cg.getCode<int(*)(int)>();
+    auto fn = cg.get_code<int(*)(int)>();
     CHECK(fn(42) == 42, "abs(42)");
     CHECK(fn(-42) == 42, "abs(-42)");
     CHECK(fn(0) == 0, "abs(0)");
@@ -218,7 +218,7 @@ static void test_logical() {
     cg.orr(w0, w2, w3);            // w0 = (a & b) | (~a & b) = b
     cg.ret();
     cg.ready();
-    auto fn = cg.getCode<int(*)(int, int)>();
+    auto fn = cg.get_code<int(*)(int, int)>();
     CHECK(fn(0xFF, 0x0F) == 0x0F, "logical(0xFF,0x0F)");
     CHECK(fn(0x00, 0xFF) == 0xFF, "logical(0x00,0xFF)");
     CHECK(fn(0xAA, 0x55) == 0x55, "logical identity");
@@ -231,7 +231,7 @@ static void test_shifts() {
     cg.lsl(w0, w0, w1);
     cg.ret();
     cg.ready();
-    auto fn = cg.getCode<int(*)(int, int)>();
+    auto fn = cg.get_code<int(*)(int, int)>();
     CHECK(fn(1, 0) == 1, "shl(1,0)");
     CHECK(fn(1, 4) == 16, "shl(1,4)");
     CHECK(fn(3, 8) == 768, "shl(3,8)");
@@ -251,7 +251,7 @@ static void test_stack_spill() {
     cg.add(sp, sp, uint32_t(16));
     cg.ret();
     cg.ready();
-    auto fn = cg.getCode<int(*)(int, int)>();
+    auto fn = cg.get_code<int(*)(int, int)>();
     CHECK(fn(10, 20) == 30, "stack(10,20)");
     CHECK(fn(-5, 5) == 0, "stack(-5,5)");
     std::cout << "  stack_spill: OK" << std::endl;
@@ -267,7 +267,7 @@ static void test_pair_ldst() {
     cg.add(x0, x0, x1);
     cg.ret();
     cg.ready();
-    auto fn = cg.getCode<int64_t(*)(int64_t, int64_t)>();
+    auto fn = cg.get_code<int64_t(*)(int64_t, int64_t)>();
     CHECK(fn(100, 200) == 300, "pair(100,200)");
     CHECK(fn(-1, 1) == 0, "pair(-1,1)");
     std::cout << "  pair_ldst: OK" << std::endl;
@@ -279,7 +279,7 @@ static void test_mov_large() {
     cg.mov(x0, uint64_t(0xDEADBEEFCAFEULL));
     cg.ret();
     cg.ready();
-    auto fn = cg.getCode<uint64_t(*)()>();
+    auto fn = cg.get_code<uint64_t(*)()>();
     CHECK(fn() == 0xDEADBEEFCAFEULL, "mov_large");
     std::cout << "  mov_large: OK" << std::endl;
 }
@@ -301,7 +301,7 @@ static void test_nested_branches() {
     cg.bind(done);
     cg.ret();
     cg.ready();
-    auto fn = cg.getCode<int(*)(int, int, int)>();
+    auto fn = cg.get_code<int(*)(int, int, int)>();
     CHECK(fn(5, 0, 10) == 5, "clamp mid");
     CHECK(fn(-5, 0, 10) == 0, "clamp lo");
     CHECK(fn(15, 0, 10) == 10, "clamp hi");
@@ -321,7 +321,7 @@ static void test_cbz() {
     cg.mov(w0, uint32_t(0));
     cg.ret();
     cg.ready();
-    auto fn = cg.getCode<int(*)(int)>();
+    auto fn = cg.get_code<int(*)(int)>();
     CHECK(fn(0) == 1, "cbz(0)");
     CHECK(fn(1) == 0, "cbz(1)");
     CHECK(fn(-99) == 0, "cbz(-99)");
@@ -339,7 +339,7 @@ static void test_tbz() {
     cg.mov(w0, uint32_t(1));        // odd
     cg.ret();
     cg.ready();
-    auto fn = cg.getCode<int(*)(int)>();
+    auto fn = cg.get_code<int(*)(int)>();
     CHECK(fn(0) == 0, "tbz even 0");
     CHECK(fn(1) == 1, "tbz odd 1");
     CHECK(fn(42) == 0, "tbz even 42");
@@ -355,7 +355,7 @@ static void test_fp_double() {
     cg.fmul(d0, d2, d3);            // d0 = (a+b)*(a-b)
     cg.ret();
     cg.ready();
-    auto fn = cg.getCode<double(*)(double, double)>();
+    auto fn = cg.get_code<double(*)(double, double)>();
     // (5+3)*(5-3) = 8*2 = 16
     CHECK(fn(5.0, 3.0) == 16.0, "fp_double(5,3)");
     // (10+0)*(10-0) = 100
@@ -371,7 +371,7 @@ static void test_fp_single() {
     cg.fdiv(s0, s0, s1);
     cg.ret();
     cg.ready();
-    auto fn = cg.getCode<float(*)(float, float)>();
+    auto fn = cg.get_code<float(*)(float, float)>();
     CHECK(fn(10.0f, 2.0f) == 5.0f, "fp_single(10/2)");
     CHECK(fn(7.0f, 2.0f) == 3.5f, "fp_single(7/2)");
     std::cout << "  fp_single: OK" << std::endl;
@@ -383,7 +383,7 @@ static void test_madd() {
     cg.madd(w0, w1, w2, w0);       // w0 = w0 + w1 * w2
     cg.ret();
     cg.ready();
-    auto fn = cg.getCode<int(*)(int, int, int)>();
+    auto fn = cg.get_code<int(*)(int, int, int)>();
     CHECK(fn(10, 3, 4) == 22, "madd(10,3,4)");
     CHECK(fn(0, 5, 6) == 30, "madd(0,5,6)");
     CHECK(fn(100, 0, 99) == 100, "madd(100,0,99)");
@@ -397,7 +397,7 @@ static void test_cset() {
     cg.cset(w0, Condition::GT);
     cg.ret();
     cg.ready();
-    auto fn = cg.getCode<int(*)(int)>();
+    auto fn = cg.get_code<int(*)(int)>();
     CHECK(fn(5) == 1, "cset(5)");
     CHECK(fn(0) == 0, "cset(0)");
     CHECK(fn(-1) == 0, "cset(-1)");
@@ -410,7 +410,7 @@ static void test_shifted_reg() {
     cg.add(w0, w0, w1, Shift(ShiftType::LSL, 2));
     cg.ret();
     cg.ready();
-    auto fn = cg.getCode<int(*)(int, int)>();
+    auto fn = cg.get_code<int(*)(int, int)>();
     CHECK(fn(1, 3) == 13, "shl_add(1,3)");     // 1 + 3*4 = 13
     CHECK(fn(0, 1) == 4, "shl_add(0,1)");      // 0 + 1*4 = 4
     CHECK(fn(10, 0) == 10, "shl_add(10,0)");   // 10 + 0 = 10
@@ -433,7 +433,7 @@ static void test_gcd() {
     cg.bind(done);
     cg.ret();
     cg.ready();
-    auto fn = cg.getCode<int(*)(int, int)>();
+    auto fn = cg.get_code<int(*)(int, int)>();
     CHECK(fn(12, 8) == 4, "gcd(12,8)");
     CHECK(fn(100, 75) == 25, "gcd(100,75)");
     CHECK(fn(7, 13) == 1, "gcd(7,13)");
@@ -453,8 +453,8 @@ static void test_multiple_generators() {
     cg2.ret();
     cg2.ready();
 
-    auto fn1 = cg1.getCode<int(*)(int)>();
-    auto fn2 = cg2.getCode<int(*)(int)>();
+    auto fn1 = cg1.get_code<int(*)(int)>();
+    auto fn2 = cg2.get_code<int(*)(int)>();
     CHECK(fn1(0) == 1, "multi gen1");
     CHECK(fn2(0) == 100, "multi gen2");
     CHECK(fn1(fn2(0)) == 101, "multi chain");
@@ -467,7 +467,7 @@ static void test_nop_sled() {
     cg.mov(w0, uint32_t(99));
     cg.ret();
     cg.ready();
-    auto fn = cg.getCode<int(*)()>();
+    auto fn = cg.get_code<int(*)()>();
     CHECK(fn() == 99, "nop_sled");
     CHECK(cg.size() == (100 + 2) * 4, "nop_sled size");
     std::cout << "  nop_sled: OK" << std::endl;

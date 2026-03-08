@@ -22,11 +22,11 @@ enum class PatchType : uint8_t {
 class Label {
     friend class CodeGenerator;
     struct Patch { size_t insn_offset; PatchType type; };
-    size_t bound_offset_ = SIZE_MAX;
-    std::vector<Patch> patches_;
+    size_t m_bound_offset = SIZE_MAX;
+    std::vector<Patch> m_patches;
 public:
     Label() = default;
-    bool is_bound() const { return bound_offset_ != SIZE_MAX; }
+    bool is_bound() const { return m_bound_offset != SIZE_MAX; }
 };
 
 } // namespace codegen

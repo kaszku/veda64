@@ -42,9 +42,9 @@ public:
     ~CodeGenerator();
 
     /// Get pointer to generated code (cast to function pointer)
-    template<typename T> T getCode() const { return reinterpret_cast<T>(exec_ptr_); }
-    size_t size() const { return offset_; }
-    const uint8_t* data() const { return write_ptr_; }
+    template<typename T> T get_code() const { return reinterpret_cast<T>(m_exec_ptr); }
+    size_t size() const { return m_offset; }
+    const uint8_t* data() const { return m_write_ptr; }
 
     /// Flush I-cache and resolve any pending labels
     void ready();
@@ -207,11 +207,11 @@ private:
     void patch(size_t offset, uint32_t insn);
     int32_t label_offset(Label& label, PatchType type);
 
-    uint8_t* write_ptr_;
-    uint8_t* exec_ptr_;
-    size_t capacity_;
-    size_t offset_;
-    bool owns_buffer_;
+    uint8_t* m_write_ptr;
+    uint8_t* m_exec_ptr;
+    size_t m_capacity;
+    size_t m_offset;
+    bool m_owns_buffer;
 };
 
 } // namespace codegen
