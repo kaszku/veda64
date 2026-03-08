@@ -54764,8 +54764,8 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         enc.raw = insn;
                         { Operand op = Operand::pred(enc.mov_pporr_pppp_z.Pd); op.set_arrangement(Arrangement::B); result.operands.push_back(op); }
                         { Operand op = Operand::pred(enc.mov_pporr_pppp_z.Pn); op.set_arrangement(Arrangement::B); result.operands.push_back(op); }
-                        result.operands.push_back(Operand::pred(enc.mov_pporr_pppp_z.Pm));
                         result.operands.push_back(Operand::pred(enc.mov_pporr_pppp_z.Pg));
+                        result.operands.push_back(Operand::pred(enc.mov_pporr_pppp_z.Pm));
                         return result;
         }
         case 0x25804010u: { // orn_p_p_pp_z
@@ -54821,8 +54821,8 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         enc.raw = insn;
                         { Operand op = Operand::pred(enc.movs_pporrs_pppp_z.Pd); op.set_arrangement(Arrangement::B); result.operands.push_back(op); }
                         { Operand op = Operand::pred(enc.movs_pporrs_pppp_z.Pn); op.set_arrangement(Arrangement::B); result.operands.push_back(op); }
-                        result.operands.push_back(Operand::pred(enc.movs_pporrs_pppp_z.Pm));
                         result.operands.push_back(Operand::pred(enc.movs_pporrs_pppp_z.Pg));
+                        result.operands.push_back(Operand::pred(enc.movs_pporrs_pppp_z.Pm));
                         return result;
         }
         case 0x25C04010u: { // orns_p_p_pp_z

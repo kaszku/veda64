@@ -13,6 +13,7 @@ set_property(GLOBAL PROPERTY USE_FOLDERS ON)
 option(VEDA64_STRINGS "Enable string functions (to_string, mnemonic_to_string, etc.)" OFF)
 option(VEDA64_IR "Enable IR lifting and interpreter support" OFF)
 option(VEDA64_HOOK "Enable inline hooking support (Windows only)" OFF)
+option(VEDA64_CODEGEN "Enable JIT code generator / assembler API" OFF)
 option(VEDA64_BUILD_TESTS "Build test executables" OFF)
 option(VEDA64_PYTHON "Build Python bindings via nanobind (requires vcpkg toolchain)" OFF)
 
@@ -33,6 +34,9 @@ endif()
 if(VEDA64_HOOK)
     add_compile_definitions(VEDA64_HOOK)
 endif()
+if(VEDA64_CODEGEN)
+    add_compile_definitions(VEDA64_CODEGEN)
+endif()
 
 # Collect all source and header files
 file(GLOB_RECURSE VEDA64_SOURCES "lib/*.cpp")
@@ -41,6 +45,14 @@ file(GLOB_RECURSE VEDA64_HEADERS "include/*.hpp")
 # Hook support
 if(NOT VEDA64_HOOK)
     list(REMOVE_ITEM VEDA64_SOURCES "${CMAKE_CURRENT_SOURCE_DIR}/lib/hook.cpp")
+endif()
+
+# CodeGen support
+if(NOT VEDA64_CODEGEN)
+    file(GLOB_RECURSE CODEGEN_SOURCES "lib/codegen/*.cpp")
+    if(CODEGEN_SOURCES)
+        list(REMOVE_ITEM VEDA64_SOURCES ${CODEGEN_SOURCES})
+    endif()
 endif()
 
 # Create library
@@ -73,6 +85,12 @@ endif()
 if(VEDA64_BUILD_TESTS)
     enable_testing()
     add_subdirectory(test)
+endif()
+
+# Examples
+option(VEDA64_BUILD_EXAMPLES "Build example programs" OFF)
+if(VEDA64_BUILD_EXAMPLES)
+    add_subdirectory(examples)
 endif()
 
 # Python bindings via nanobind (use vcpkg toolchain to satisfy dependency)
