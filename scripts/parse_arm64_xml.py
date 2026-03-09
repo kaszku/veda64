@@ -19064,10 +19064,10 @@ class ARM64XMLParser:
         code.append("    const uint8_t* data() const { return m_write_ptr; }")
         code.append("")
         code.append("    /// Flush I-cache and resolve any pending labels")
-        code.append("    void ready();")
+        code.append("    CodeGenerator& ready();")
         code.append("")
         code.append("    /// Bind a label at the current position")
-        code.append("    void bind(Label& label);")
+        code.append("    CodeGenerator& bind(Label& label);")
         code.append("")
 
         # Generate all instruction method declarations
@@ -19093,143 +19093,144 @@ class ARM64XMLParser:
 
     def _emit_codegen_method_decls(self, code: list):
         """Emit all instruction method declarations for the CodeGenerator class."""
+        CG = "CodeGenerator&"
         code.append("    // === Data Processing - Immediate ===")
         # ADD/SUB immediate
         for op in ['add', 'sub']:
             for (rt, doc) in [('XReg', '64'), ('WReg', '32')]:
-                code.append(f"    void {op}({rt} rd, {rt} rn, uint32_t imm12, bool lsl12 = false);")
+                code.append(f"    {CG} {op}({rt} rd, {rt} rn, uint32_t imm12, bool lsl12 = false);")
         # ADDS/SUBS immediate
         for op in ['adds', 'subs']:
             for rt in ['XReg', 'WReg']:
-                code.append(f"    void {op}({rt} rd, {rt} rn, uint32_t imm12, bool lsl12 = false);")
+                code.append(f"    {CG} {op}({rt} rd, {rt} rn, uint32_t imm12, bool lsl12 = false);")
         # AND/ORR/EOR immediate (bitmask)
         for op in ['and_', 'orr', 'eor']:
             for rt in ['XReg', 'WReg']:
-                code.append(f"    void {op}({rt} rd, {rt} rn, uint64_t imm);")
+                code.append(f"    {CG} {op}({rt} rd, {rt} rn, uint64_t imm);")
         # ANDS immediate
         for rt in ['XReg', 'WReg']:
-            code.append(f"    void ands({rt} rd, {rt} rn, uint64_t imm);")
+            code.append(f"    {CG} ands({rt} rd, {rt} rn, uint64_t imm);")
         # MOVZ/MOVN/MOVK
         for op in ['movz', 'movn', 'movk']:
             for rt in ['XReg', 'WReg']:
-                code.append(f"    void {op}({rt} rd, uint16_t imm16, uint8_t hw = 0);")
+                code.append(f"    {CG} {op}({rt} rd, uint16_t imm16, uint8_t hw = 0);")
         # ADR/ADRP
-        code.append("    void adr(XReg rd, Label& label);")
-        code.append("    void adrp(XReg rd, int64_t imm);")
+        code.append(f"    {CG} adr(XReg rd, Label& label);")
+        code.append(f"    {CG} adrp(XReg rd, int64_t imm);")
         code.append("")
 
         code.append("    // === Data Processing - Register ===")
         # ADD/SUB shifted register
         for op in ['add', 'sub']:
             for rt in ['XReg', 'WReg']:
-                code.append(f"    void {op}({rt} rd, {rt} rn, {rt} rm, Shift sh = {{}});")
+                code.append(f"    {CG} {op}({rt} rd, {rt} rn, {rt} rm, Shift sh = {{}});")
         # ADD/SUB extended register
         for op in ['add', 'sub']:
-            code.append(f"    void {op}(XReg rd, XReg rn, WReg rm, Extend ext);")
+            code.append(f"    {CG} {op}(XReg rd, XReg rn, WReg rm, Extend ext);")
         # ADDS/SUBS shifted register
         for op in ['adds', 'subs']:
             for rt in ['XReg', 'WReg']:
-                code.append(f"    void {op}({rt} rd, {rt} rn, {rt} rm, Shift sh = {{}});")
+                code.append(f"    {CG} {op}({rt} rd, {rt} rn, {rt} rm, Shift sh = {{}});")
         # Logical shifted register
         for op in ['and_', 'orr', 'eor', 'orn', 'bic']:
             for rt in ['XReg', 'WReg']:
-                code.append(f"    void {op}({rt} rd, {rt} rn, {rt} rm, Shift sh = {{}});")
+                code.append(f"    {CG} {op}({rt} rd, {rt} rn, {rt} rm, Shift sh = {{}});")
         # ANDS shifted register
         for rt in ['XReg', 'WReg']:
-            code.append(f"    void ands({rt} rd, {rt} rn, {rt} rm, Shift sh = {{}});")
+            code.append(f"    {CG} ands({rt} rd, {rt} rn, {rt} rm, Shift sh = {{}});")
         # Shift variable (register)
         for op in ['lsl', 'lsr', 'asr']:
             for rt in ['XReg', 'WReg']:
-                code.append(f"    void {op}({rt} rd, {rt} rn, {rt} rm);")
+                code.append(f"    {CG} {op}({rt} rd, {rt} rn, {rt} rm);")
         # MUL/MADD/SDIV/UDIV
         for op in ['mul', 'sdiv', 'udiv']:
             for rt in ['XReg', 'WReg']:
-                code.append(f"    void {op}({rt} rd, {rt} rn, {rt} rm);")
+                code.append(f"    {CG} {op}({rt} rd, {rt} rn, {rt} rm);")
         for rt in ['XReg', 'WReg']:
-            code.append(f"    void madd({rt} rd, {rt} rn, {rt} rm, {rt} ra);")
+            code.append(f"    {CG} madd({rt} rd, {rt} rn, {rt} rm, {rt} ra);")
         # CSEL
         for rt in ['XReg', 'WReg']:
-            code.append(f"    void csel({rt} rd, {rt} rn, {rt} rm, Condition cc);")
+            code.append(f"    {CG} csel({rt} rd, {rt} rn, {rt} rm, Condition cc);")
         code.append("")
 
         code.append("    // === Aliases ===")
         # CMP/CMN/TST
         for op, doc in [('cmp', 'subs(zr,rn,rm)'), ('cmn', 'adds(zr,rn,rm)')]:
             for rt in ['XReg', 'WReg']:
-                code.append(f"    void {op}({rt} rn, {rt} rm, Shift sh = {{}});")
-                code.append(f"    void {op}({rt} rn, uint32_t imm12, bool lsl12 = false);")
+                code.append(f"    {CG} {op}({rt} rn, {rt} rm, Shift sh = {{}});")
+                code.append(f"    {CG} {op}({rt} rn, uint32_t imm12, bool lsl12 = false);")
         for rt in ['XReg', 'WReg']:
-            code.append(f"    void tst({rt} rn, {rt} rm, Shift sh = {{}});")
+            code.append(f"    {CG} tst({rt} rn, {rt} rm, Shift sh = {{}});")
         # NEG/MVN
         for rt in ['XReg', 'WReg']:
-            code.append(f"    void neg({rt} rd, {rt} rm, Shift sh = {{}});")
-            code.append(f"    void mvn({rt} rd, {rt} rm, Shift sh = {{}});")
+            code.append(f"    {CG} neg({rt} rd, {rt} rm, Shift sh = {{}});")
+            code.append(f"    {CG} mvn({rt} rd, {rt} rm, Shift sh = {{}});")
         # MOV convenience
-        code.append("    void mov(XReg rd, uint64_t imm);")
-        code.append("    void mov(WReg rd, uint32_t imm);")
+        code.append(f"    {CG} mov(XReg rd, uint64_t imm);")
+        code.append(f"    {CG} mov(WReg rd, uint32_t imm);")
         for rt in ['XReg', 'WReg']:
-            code.append(f"    void mov({rt} rd, {rt} rm);")
+            code.append(f"    {CG} mov({rt} rd, {rt} rm);")
         # CSET
         for rt in ['XReg', 'WReg']:
-            code.append(f"    void cset({rt} rd, Condition cc);")
+            code.append(f"    {CG} cset({rt} rd, Condition cc);")
         code.append("")
 
         code.append("    // === Branches ===")
-        code.append("    void b(Label& label);")
-        code.append("    void b(Condition cc, Label& label);")
-        code.append("    void bl(Label& label);")
-        code.append("    void br(XReg rn);")
-        code.append("    void blr(XReg rn);")
-        code.append("    void ret(XReg rn = XReg{30});")
+        code.append(f"    {CG} b(Label& label);")
+        code.append(f"    {CG} b(Condition cc, Label& label);")
+        code.append(f"    {CG} bl(Label& label);")
+        code.append(f"    {CG} br(XReg rn);")
+        code.append(f"    {CG} blr(XReg rn);")
+        code.append(f"    {CG} ret(XReg rn = XReg{30});")
         for op in ['cbz', 'cbnz']:
             for rt in ['XReg', 'WReg']:
-                code.append(f"    void {op}({rt} rt, Label& label);")
+                code.append(f"    {CG} {op}({rt} rt, Label& label);")
         for op in ['tbz', 'tbnz']:
-            code.append(f"    void {op}(XReg rt, uint8_t bit, Label& label);")
-            code.append(f"    void {op}(WReg rt, uint8_t bit, Label& label);")
-        code.append("    void svc(uint16_t imm);")
-        code.append("    void brk(uint16_t imm);")
-        code.append("    void nop();")
+            code.append(f"    {CG} {op}(XReg rt, uint8_t bit, Label& label);")
+            code.append(f"    {CG} {op}(WReg rt, uint8_t bit, Label& label);")
+        code.append(f"    {CG} svc(uint16_t imm);")
+        code.append(f"    {CG} brk(uint16_t imm);")
+        code.append(f"    {CG} nop();")
         code.append("")
 
         code.append("    // === Loads and Stores ===")
         # LDR/STR GP
         for op in ['ldr', 'str']:
             for rt in ['XReg', 'WReg']:
-                code.append(f"    void {op}({rt} rt, Mem mem);")
+                code.append(f"    {CG} {op}({rt} rt, Mem mem);")
         # LDR/STR FP scalar
         for op in ['ldr', 'str']:
             for rt in ['SReg', 'DReg', 'QReg']:
-                code.append(f"    void {op}({rt} rt, Mem mem);")
+                code.append(f"    {CG} {op}({rt} rt, Mem mem);")
         # LDRB/LDRH/STRB/STRH
         for op in ['ldrb', 'ldrh', 'strb', 'strh']:
-            code.append(f"    void {op}(WReg rt, Mem mem);")
+            code.append(f"    {CG} {op}(WReg rt, Mem mem);")
         # LDRSB/LDRSH (to 32 and 64)
         for op in ['ldrsb', 'ldrsh']:
             for rt in ['XReg', 'WReg']:
-                code.append(f"    void {op}({rt} rt, Mem mem);")
+                code.append(f"    {CG} {op}({rt} rt, Mem mem);")
         # LDRSW
-        code.append("    void ldrsw(XReg rt, Mem mem);")
+        code.append(f"    {CG} ldrsw(XReg rt, Mem mem);")
         # LDR literal
-        code.append("    void ldr(XReg rt, Label& label);")
-        code.append("    void ldr(WReg rt, Label& label);")
+        code.append(f"    {CG} ldr(XReg rt, Label& label);")
+        code.append(f"    {CG} ldr(WReg rt, Label& label);")
         # LDP/STP GP
         for op in ['ldp', 'stp']:
             for rt in ['XReg', 'WReg']:
-                code.append(f"    void {op}({rt} rt1, {rt} rt2, Mem mem);")
+                code.append(f"    {CG} {op}({rt} rt1, {rt} rt2, Mem mem);")
         code.append("")
 
         code.append("    // === Scalar FP ===")
         for op in ['fadd', 'fsub', 'fmul', 'fdiv']:
             for rt in ['SReg', 'DReg']:
-                code.append(f"    void {op}({rt} rd, {rt} rn, {rt} rm);")
+                code.append(f"    {CG} {op}({rt} rd, {rt} rn, {rt} rm);")
         for op in ['fmov']:
             for rt in ['SReg', 'DReg']:
-                code.append(f"    void {op}({rt} rd, {rt} rn);")
+                code.append(f"    {CG} {op}({rt} rd, {rt} rn);")
         for op in ['fcmp']:
             for rt in ['SReg', 'DReg']:
-                code.append(f"    void {op}({rt} rn, {rt} rm);")
-                code.append(f"    void {op}({rt} rn);  // compare with 0.0")
+                code.append(f"    {CG} {op}({rt} rn, {rt} rm);")
+                code.append(f"    {CG} {op}({rt} rn);  // compare with 0.0")
 
     def _generate_codegen_infrastructure(self, out_dir: Path):
         """Generate codegen.cpp with buffer management, ready(), and label resolution."""
@@ -19314,7 +19315,7 @@ class ARM64XMLParser:
         code.append("}")
         code.append("")
         # ready()
-        code.append("void CodeGenerator::ready() {")
+        code.append("CodeGenerator& CodeGenerator::ready() {")
         code.append("#ifdef _WIN32")
         code.append("    if (m_owns_buffer) {")
         code.append("        void* base = m_exec_ptr;")
@@ -19331,6 +19332,7 @@ class ARM64XMLParser:
         code.append("    __builtin___clear_cache(reinterpret_cast<char*>(m_exec_ptr),")
         code.append("        reinterpret_cast<char*>(m_exec_ptr + m_offset));")
         code.append("#endif")
+        code.append("    return *this;")
         code.append("}")
         code.append("")
         # emit()
@@ -19346,7 +19348,7 @@ class ARM64XMLParser:
         code.append("}")
         code.append("")
         # bind()
-        code.append("void CodeGenerator::bind(Label& label) {")
+        code.append("CodeGenerator& CodeGenerator::bind(Label& label) {")
         code.append("    label.m_bound_offset = m_offset;")
         code.append("    // Back-patch all pending references")
         code.append("    for (auto& p : label.m_patches) {")
@@ -19373,6 +19375,7 @@ class ARM64XMLParser:
         code.append("        std::memcpy(m_write_ptr + p.insn_offset, &insn, 4);")
         code.append("    }")
         code.append("    label.m_patches.clear();")
+        code.append("    return *this;")
         code.append("}")
         code.append("")
         # label_offset()
@@ -19466,8 +19469,9 @@ class ARM64XMLParser:
             ('subs', 'subs_32s_addsub_imm', 'subs_64s_addsub_imm'),
         ]:
             for rt, enc in [('XReg', enc_name_64), ('WReg', enc_name_32)]:
-                code.append(f"void CodeGenerator::{op}({rt} rd, {rt} rn, uint32_t imm12, bool lsl12) {{")
+                code.append(f"CodeGenerator& CodeGenerator::{op}({rt} rd, {rt} rn, uint32_t imm12, bool lsl12) {{")
                 code.append(f"    emit(dpimm::encode_{enc}(rd.idx, rn.idx, imm12, lsl12 ? 1 : 0));")
+                code.append("    return *this;")
                 code.append("}")
                 code.append("")
 
@@ -19479,13 +19483,14 @@ class ARM64XMLParser:
             ('ands', 'ands_32s_log_imm', 'ands_64s_log_imm'),
         ]:
             for rt, enc, is64 in [('XReg', enc64, True), ('WReg', enc32, False)]:
-                code.append(f"void CodeGenerator::{op}({rt} rd, {rt} rn, uint64_t imm) {{")
+                code.append(f"CodeGenerator& CodeGenerator::{op}({rt} rd, {rt} rn, uint64_t imm) {{")
                 code.append(f"    uint32_t N, immr, imms;")
                 code.append(f"    encode_logical_imm(imm, {'true' if is64 else 'false'}, N, immr, imms);")
                 if is64:
                     code.append(f"    emit(dpimm::encode_{enc}(rd.idx, rn.idx, imms, immr, N));")
                 else:
                     code.append(f"    emit(dpimm::encode_{enc}(rd.idx, rn.idx, imms, immr));")
+                code.append("    return *this;")
                 code.append("}")
                 code.append("")
 
@@ -19496,24 +19501,27 @@ class ARM64XMLParser:
             ('movk', 'movk_32_movewide', 'movk_64_movewide'),
         ]:
             for rt, enc in [('XReg', enc64), ('WReg', enc32)]:
-                code.append(f"void CodeGenerator::{op}({rt} rd, uint16_t imm16, uint8_t hw) {{")
+                code.append(f"CodeGenerator& CodeGenerator::{op}({rt} rd, uint16_t imm16, uint8_t hw) {{")
                 code.append(f"    emit(dpimm::encode_{enc}(rd.idx, imm16, hw));")
+                code.append("    return *this;")
                 code.append("}")
                 code.append("")
 
         # ADR (label)
-        code.append("void CodeGenerator::adr(XReg rd, Label& label) {")
+        code.append("CodeGenerator& CodeGenerator::adr(XReg rd, Label& label) {")
         code.append("    int32_t off = label_offset(label, PatchType::Adr21);")
         code.append("    int32_t immhi = (off >> 2) & 0x7FFFF;")
         code.append("    int32_t immlo = off & 0x3;")
         code.append("    emit(dpimm::encode_adr_only_pcreladdr(rd.idx, immhi, immlo));")
+        code.append("    return *this;")
         code.append("}")
         code.append("")
         # ADRP (page-relative, not label-based for now)
-        code.append("void CodeGenerator::adrp(XReg rd, int64_t imm) {")
+        code.append("CodeGenerator& CodeGenerator::adrp(XReg rd, int64_t imm) {")
         code.append("    int32_t immhi = static_cast<int32_t>((imm >> 14) & 0x7FFFF);")
         code.append("    int32_t immlo = static_cast<int32_t>((imm >> 12) & 0x3);")
         code.append("    emit(dpimm::encode_adrp_only_pcreladdr(rd.idx, immhi, immlo));")
+        code.append("    return *this;")
         code.append("}")
         code.append("")
 
@@ -19527,15 +19535,17 @@ class ARM64XMLParser:
             ('subs', 'subs_32_addsub_shift', 'subs_64_addsub_shift'),
         ]:
             for rt, enc in [('XReg', enc64), ('WReg', enc32)]:
-                code.append(f"void CodeGenerator::{op}({rt} rd, {rt} rn, {rt} rm, Shift sh) {{")
+                code.append(f"CodeGenerator& CodeGenerator::{op}({rt} rd, {rt} rn, {rt} rm, Shift sh) {{")
                 code.append(f"    emit(dpreg::encode_{enc}(rd.idx, rn.idx, sh.amount, rm.idx, static_cast<uint32_t>(sh.type)));")
+                code.append("    return *this;")
                 code.append("}")
                 code.append("")
 
         # ADD/SUB extended register
         for op, enc in [('add', 'add_64_addsub_ext'), ('sub', 'sub_64_addsub_ext')]:
-            code.append(f"void CodeGenerator::{op}(XReg rd, XReg rn, WReg rm, Extend ext) {{")
+            code.append(f"CodeGenerator& CodeGenerator::{op}(XReg rd, XReg rn, WReg rm, Extend ext) {{")
             code.append(f"    emit(dpreg::encode_{enc}(rd.idx, rn.idx, ext.amount, static_cast<uint32_t>(ext.type), rm.idx));")
+            code.append("    return *this;")
             code.append("}")
             code.append("")
 
@@ -19549,8 +19559,9 @@ class ARM64XMLParser:
             ('ands', 'ands_32_log_shift', 'ands_64_log_shift'),
         ]:
             for rt, enc in [('XReg', enc64), ('WReg', enc32)]:
-                code.append(f"void CodeGenerator::{op}({rt} rd, {rt} rn, {rt} rm, Shift sh) {{")
+                code.append(f"CodeGenerator& CodeGenerator::{op}({rt} rd, {rt} rn, {rt} rm, Shift sh) {{")
                 code.append(f"    emit(dpreg::encode_{enc}(rd.idx, rn.idx, sh.amount, rm.idx, static_cast<uint32_t>(sh.type)));")
+                code.append("    return *this;")
                 code.append("}")
                 code.append("")
 
@@ -19561,8 +19572,9 @@ class ARM64XMLParser:
             ('asr', 'asr_asrv_32_dp_2src', 'asr_asrv_64_dp_2src'),
         ]:
             for rt, enc in [('XReg', enc64), ('WReg', enc32)]:
-                code.append(f"void CodeGenerator::{op}({rt} rd, {rt} rn, {rt} rm) {{")
+                code.append(f"CodeGenerator& CodeGenerator::{op}({rt} rd, {rt} rn, {rt} rm) {{")
                 code.append(f"    emit(dpreg::encode_{enc}(rd.idx, rn.idx, rm.idx));")
+                code.append("    return *this;")
                 code.append("}")
                 code.append("")
 
@@ -19573,22 +19585,25 @@ class ARM64XMLParser:
             ('udiv', 'udiv_32_dp_2src', 'udiv_64_dp_2src'),
         ]:
             for rt, enc in [('XReg', enc64), ('WReg', enc32)]:
-                code.append(f"void CodeGenerator::{op}({rt} rd, {rt} rn, {rt} rm) {{")
+                code.append(f"CodeGenerator& CodeGenerator::{op}({rt} rd, {rt} rn, {rt} rm) {{")
                 code.append(f"    emit(dpreg::encode_{enc}(rd.idx, rn.idx, rm.idx));")
+                code.append("    return *this;")
                 code.append("}")
                 code.append("")
 
         # MADD
         for rt, enc in [('XReg', 'madd_64a_dp_3src'), ('WReg', 'madd_32a_dp_3src')]:
-            code.append(f"void CodeGenerator::madd({rt} rd, {rt} rn, {rt} rm, {rt} ra) {{")
+            code.append(f"CodeGenerator& CodeGenerator::madd({rt} rd, {rt} rn, {rt} rm, {rt} ra) {{")
             code.append(f"    emit(dpreg::encode_{enc}(rd.idx, rn.idx, ra.idx, rm.idx));")
+            code.append("    return *this;")
             code.append("}")
             code.append("")
 
         # CSEL
         for rt, enc in [('XReg', 'csel_64_condsel'), ('WReg', 'csel_32_condsel')]:
-            code.append(f"void CodeGenerator::csel({rt} rd, {rt} rn, {rt} rm, Condition cc) {{")
+            code.append(f"CodeGenerator& CodeGenerator::csel({rt} rd, {rt} rn, {rt} rm, Condition cc) {{")
             code.append(f"    emit(dpreg::encode_{enc}(rd.idx, rn.idx, static_cast<uint32_t>(cc), rm.idx));")
+            code.append("    return *this;")
             code.append("}")
             code.append("")
 
@@ -19596,33 +19611,34 @@ class ARM64XMLParser:
         code.append("// === Aliases ===")
         # CMP (shifted register)
         for rt, zr in [('XReg', 'xzr'), ('WReg', 'wzr')]:
-            code.append(f"void CodeGenerator::cmp({rt} rn, {rt} rm, Shift sh) {{ subs({rt}{{31}}, rn, rm, sh); }}")
-            code.append(f"void CodeGenerator::cmp({rt} rn, uint32_t imm12, bool lsl12) {{ subs({rt}{{31}}, rn, imm12, lsl12); }}")
+            code.append(f"CodeGenerator& CodeGenerator::cmp({rt} rn, {rt} rm, Shift sh) {{ return subs({rt}{{31}}, rn, rm, sh); }}")
+            code.append(f"CodeGenerator& CodeGenerator::cmp({rt} rn, uint32_t imm12, bool lsl12) {{ return subs({rt}{{31}}, rn, imm12, lsl12); }}")
         # CMN
         for rt in ['XReg', 'WReg']:
-            code.append(f"void CodeGenerator::cmn({rt} rn, {rt} rm, Shift sh) {{ adds({rt}{{31}}, rn, rm, sh); }}")
-            code.append(f"void CodeGenerator::cmn({rt} rn, uint32_t imm12, bool lsl12) {{ adds({rt}{{31}}, rn, imm12, lsl12); }}")
+            code.append(f"CodeGenerator& CodeGenerator::cmn({rt} rn, {rt} rm, Shift sh) {{ return adds({rt}{{31}}, rn, rm, sh); }}")
+            code.append(f"CodeGenerator& CodeGenerator::cmn({rt} rn, uint32_t imm12, bool lsl12) {{ return adds({rt}{{31}}, rn, imm12, lsl12); }}")
         # TST
         for rt in ['XReg', 'WReg']:
-            code.append(f"void CodeGenerator::tst({rt} rn, {rt} rm, Shift sh) {{ ands({rt}{{31}}, rn, rm, sh); }}")
+            code.append(f"CodeGenerator& CodeGenerator::tst({rt} rn, {rt} rm, Shift sh) {{ return ands({rt}{{31}}, rn, rm, sh); }}")
         # NEG
         for rt in ['XReg', 'WReg']:
-            code.append(f"void CodeGenerator::neg({rt} rd, {rt} rm, Shift sh) {{ sub(rd, {rt}{{31}}, rm, sh); }}")
+            code.append(f"CodeGenerator& CodeGenerator::neg({rt} rd, {rt} rm, Shift sh) {{ return sub(rd, {rt}{{31}}, rm, sh); }}")
         # MVN
         for rt in ['XReg', 'WReg']:
-            code.append(f"void CodeGenerator::mvn({rt} rd, {rt} rm, Shift sh) {{ orn(rd, {rt}{{31}}, rm, sh); }}")
+            code.append(f"CodeGenerator& CodeGenerator::mvn({rt} rd, {rt} rm, Shift sh) {{ return orn(rd, {rt}{{31}}, rm, sh); }}")
         code.append("")
 
         # MOV convenience (reg)
         for rt, enc in [('XReg', 'mov_add_64_addsub_imm'), ('WReg', 'mov_add_32_addsub_imm')]:
-            code.append(f"void CodeGenerator::mov({rt} rd, {rt} rm) {{")
+            code.append(f"CodeGenerator& CodeGenerator::mov({rt} rd, {rt} rm) {{")
             code.append(f"    emit(dpimm::encode_{enc}(rd.idx, rm.idx));")
+            code.append("    return *this;")
             code.append("}")
             code.append("")
 
         # MOV immediate (synthesize MOVZ + MOVK sequence)
-        code.append("void CodeGenerator::mov(XReg rd, uint64_t imm) {")
-        code.append("    if (imm == 0) { movz(rd, 0, 0); return; }")
+        code.append("CodeGenerator& CodeGenerator::mov(XReg rd, uint64_t imm) {")
+        code.append("    if (imm == 0) { movz(rd, 0, 0); return *this; }")
         code.append("    // Try MOVZ/MOVN for simple cases")
         code.append("    bool first = true;")
         code.append("    for (uint8_t hw = 0; hw < 4; hw++) {")
@@ -19632,10 +19648,11 @@ class ARM64XMLParser:
         code.append("            else { movk(rd, chunk, hw); }")
         code.append("        }")
         code.append("    }")
+        code.append("    return *this;")
         code.append("}")
         code.append("")
-        code.append("void CodeGenerator::mov(WReg rd, uint32_t imm) {")
-        code.append("    if (imm == 0) { movz(rd, 0, 0); return; }")
+        code.append("CodeGenerator& CodeGenerator::mov(WReg rd, uint32_t imm) {")
+        code.append("    if (imm == 0) { movz(rd, 0, 0); return *this; }")
         code.append("    bool first = true;")
         code.append("    for (uint8_t hw = 0; hw < 2; hw++) {")
         code.append("        uint16_t chunk = static_cast<uint16_t>((imm >> (hw * 16)) & 0xFFFF);")
@@ -19644,36 +19661,41 @@ class ARM64XMLParser:
         code.append("            else { movk(rd, chunk, hw); }")
         code.append("        }")
         code.append("    }")
+        code.append("    return *this;")
         code.append("}")
         code.append("")
 
         # CSET
         for rt, enc in [('XReg', 'cset_csinc_64_condsel'), ('WReg', 'cset_csinc_32_condsel')]:
-            code.append(f"void CodeGenerator::cset({rt} rd, Condition cc) {{")
+            code.append(f"CodeGenerator& CodeGenerator::cset({rt} rd, Condition cc) {{")
             code.append(f"    emit(dpreg::encode_{enc}(rd.idx, static_cast<uint32_t>(cc) ^ 1));")
+            code.append("    return *this;")
             code.append("}")
             code.append("")
 
         # === Branches ===
         code.append("// === Branches ===")
-        code.append("void CodeGenerator::b(Label& label) {")
+        code.append("CodeGenerator& CodeGenerator::b(Label& label) {")
         code.append("    int32_t off = label_offset(label, PatchType::Imm26);")
         code.append("    emit(control::encode_b_only_branch_imm(off >> 2));")
+        code.append("    return *this;")
         code.append("}")
         code.append("")
-        code.append("void CodeGenerator::b(Condition cc, Label& label) {")
+        code.append("CodeGenerator& CodeGenerator::b(Condition cc, Label& label) {")
         code.append("    int32_t off = label_offset(label, PatchType::Imm19);")
         code.append("    emit(control::encode_b_only_condbranch(static_cast<uint32_t>(cc), off >> 2));")
+        code.append("    return *this;")
         code.append("}")
         code.append("")
-        code.append("void CodeGenerator::bl(Label& label) {")
+        code.append("CodeGenerator& CodeGenerator::bl(Label& label) {")
         code.append("    int32_t off = label_offset(label, PatchType::Imm26);")
         code.append("    emit(control::encode_bl_only_branch_imm(off >> 2));")
+        code.append("    return *this;")
         code.append("}")
         code.append("")
-        code.append("void CodeGenerator::br(XReg rn) { emit(control::encode_br_64_branch_reg(rn.idx)); }")
-        code.append("void CodeGenerator::blr(XReg rn) { emit(control::encode_blr_64_branch_reg(rn.idx)); }")
-        code.append("void CodeGenerator::ret(XReg rn) { emit(control::encode_ret_64r_branch_reg(rn.idx)); }")
+        code.append("CodeGenerator& CodeGenerator::br(XReg rn) { emit(control::encode_br_64_branch_reg(rn.idx)); return *this; }")
+        code.append("CodeGenerator& CodeGenerator::blr(XReg rn) { emit(control::encode_blr_64_branch_reg(rn.idx)); return *this; }")
+        code.append("CodeGenerator& CodeGenerator::ret(XReg rn) { emit(control::encode_ret_64r_branch_reg(rn.idx)); return *this; }")
         code.append("")
 
         # CBZ/CBNZ
@@ -19682,24 +19704,26 @@ class ARM64XMLParser:
             ('cbnz', 'cbnz_32_compbranch', 'cbnz_64_compbranch'),
         ]:
             for rt, enc in [('XReg', enc64), ('WReg', enc32)]:
-                code.append(f"void CodeGenerator::{op}({rt} rt, Label& label) {{")
+                code.append(f"CodeGenerator& CodeGenerator::{op}({rt} rt, Label& label) {{")
                 code.append(f"    int32_t off = label_offset(label, PatchType::Imm19);")
                 code.append(f"    emit(control::encode_{enc}(rt.idx, off >> 2));")
+                code.append("    return *this;")
                 code.append("}")
                 code.append("")
 
         # TBZ/TBNZ
         for op, enc in [('tbz', 'tbz_only_testbranch'), ('tbnz', 'tbnz_only_testbranch')]:
             for rt in ['XReg', 'WReg']:
-                code.append(f"void CodeGenerator::{op}({rt} rt, uint8_t bit, Label& label) {{")
+                code.append(f"CodeGenerator& CodeGenerator::{op}({rt} rt, uint8_t bit, Label& label) {{")
                 code.append(f"    int32_t off = label_offset(label, PatchType::Imm14);")
                 code.append(f"    emit(control::encode_{enc}(rt.idx, off >> 2, bit & 0x1F, (bit >> 5) & 1));")
+                code.append("    return *this;")
                 code.append("}")
                 code.append("")
 
-        code.append("void CodeGenerator::svc(uint16_t imm) { emit(control::encode_svc_ex_exception(imm)); }")
-        code.append("void CodeGenerator::brk(uint16_t imm) { emit(control::encode_brk_ex_exception(imm)); }")
-        code.append("void CodeGenerator::nop() { emit(control::encode_nop_hi_hints()); }")
+        code.append("CodeGenerator& CodeGenerator::svc(uint16_t imm) { emit(control::encode_svc_ex_exception(imm)); return *this; }")
+        code.append("CodeGenerator& CodeGenerator::brk(uint16_t imm) { emit(control::encode_brk_ex_exception(imm)); return *this; }")
+        code.append("CodeGenerator& CodeGenerator::nop() { emit(control::encode_nop_hi_hints()); return *this; }")
         code.append("")
 
         # === Loads and Stores ===
@@ -19714,7 +19738,7 @@ class ARM64XMLParser:
             ('str', 'WReg', 32, 'str_32_ldst_pos', 'str_32_ldst_immpost', 'str_32_ldst_immpre', 'str_32_ldst_regoff', 2),
         ]
         for method, rt, bits, pos, immpost, immpre, regoff, scale in ldst_gp:
-            code.append(f"void CodeGenerator::{method}({rt} rt, Mem mem) {{")
+            code.append(f"CodeGenerator& CodeGenerator::{method}({rt} rt, Mem mem) {{")
             code.append(f"    switch (mem.mode) {{")
             code.append(f"    case MemMode::Offset:")
             code.append(f"        emit(ldst::encode_{pos}(rt.idx, mem.base_idx, static_cast<uint32_t>(mem.offset) >> {scale}));")
@@ -19729,6 +19753,8 @@ class ARM64XMLParser:
             code.append(f"        emit(ldst::encode_{regoff}(rt.idx, mem.base_idx, mem.shift_amount ? 1 : 0, mem.extend_type, mem.index_idx));")
             code.append(f"        break;")
             code.append(f"    }}")
+            code.append("    return *this;")
+            code.append("    return *this;")
             code.append("}")
             code.append("")
 
@@ -19742,7 +19768,7 @@ class ARM64XMLParser:
             ('str', 'QReg', 'str_q_ldst_pos', 'str_q_ldst_immpost', 'str_q_ldst_immpre', 4),
         ]
         for method, rt, pos, immpost, immpre, scale in fp_ldst:
-            code.append(f"void CodeGenerator::{method}({rt} rt, Mem mem) {{")
+            code.append(f"CodeGenerator& CodeGenerator::{method}({rt} rt, Mem mem) {{")
             code.append(f"    switch (mem.mode) {{")
             code.append(f"    case MemMode::Offset:")
             code.append(f"        emit(ldst::encode_{pos}(rt.idx, mem.base_idx, static_cast<uint32_t>(mem.offset) >> {scale}));")
@@ -19755,6 +19781,8 @@ class ARM64XMLParser:
             code.append(f"        break;")
             code.append(f"    default: break;")
             code.append(f"    }}")
+            code.append("    return *this;")
+            code.append("    return *this;")
             code.append("}")
             code.append("")
 
@@ -19766,7 +19794,7 @@ class ARM64XMLParser:
             ('strh', 'strh_32_ldst_pos', 'strh_32_ldst_immpost', 'strh_32_ldst_immpre', 1),
         ]
         for method, pos, immpost, immpre, scale in byte_half:
-            code.append(f"void CodeGenerator::{method}(WReg rt, Mem mem) {{")
+            code.append(f"CodeGenerator& CodeGenerator::{method}(WReg rt, Mem mem) {{")
             code.append(f"    switch (mem.mode) {{")
             code.append(f"    case MemMode::Offset:")
             if scale > 0:
@@ -19782,6 +19810,8 @@ class ARM64XMLParser:
             code.append(f"        break;")
             code.append(f"    default: break;")
             code.append(f"    }}")
+            code.append("    return *this;")
+            code.append("    return *this;")
             code.append("}")
             code.append("")
 
@@ -19793,7 +19823,7 @@ class ARM64XMLParser:
                        ('WReg', 'ldrsh_32_ldst_pos', 'ldrsh_32_ldst_immpost', 'ldrsh_32_ldst_immpre', 1)]),
         ]:
             for rt, pos, immpost, immpre, scale in sign_encs:
-                code.append(f"void CodeGenerator::{op}({rt} rt, Mem mem) {{")
+                code.append(f"CodeGenerator& CodeGenerator::{op}({rt} rt, Mem mem) {{")
                 code.append(f"    switch (mem.mode) {{")
                 code.append(f"    case MemMode::Offset:")
                 if scale > 0:
@@ -19809,11 +19839,13 @@ class ARM64XMLParser:
                 code.append(f"        break;")
                 code.append(f"    default: break;")
                 code.append(f"    }}")
+                code.append("    return *this;")
+                code.append("    return *this;")
                 code.append("}")
                 code.append("")
 
         # LDRSW
-        code.append("void CodeGenerator::ldrsw(XReg rt, Mem mem) {")
+        code.append("CodeGenerator& CodeGenerator::ldrsw(XReg rt, Mem mem) {")
         code.append("    switch (mem.mode) {")
         code.append("    case MemMode::Offset:")
         code.append("        emit(ldst::encode_ldrsw_64_ldst_pos(rt.idx, mem.base_idx, static_cast<uint32_t>(mem.offset) >> 2));")
@@ -19826,14 +19858,16 @@ class ARM64XMLParser:
         code.append("        break;")
         code.append("    default: break;")
         code.append("    }")
+        code.append("    return *this;")
         code.append("}")
         code.append("")
 
         # LDR literal (PC-relative)
         for rt, enc in [('XReg', 'ldr_64_loadlit'), ('WReg', 'ldr_32_loadlit')]:
-            code.append(f"void CodeGenerator::ldr({rt} rt, Label& label) {{")
+            code.append(f"CodeGenerator& CodeGenerator::ldr({rt} rt, Label& label) {{")
             code.append(f"    int32_t off = label_offset(label, PatchType::Imm19);")
             code.append(f"    emit(ldst::encode_{enc}(rt.idx, off >> 2));")
+            code.append("    return *this;")
             code.append("}")
             code.append("")
 
@@ -19852,7 +19886,7 @@ class ARM64XMLParser:
             ]:
                 # Note: LDP/STP encode the second register as Rt2, and imm7 is the scaled offset
                 # The encode functions have params: (Rt, Rn, Rt2, imm7)
-                code.append(f"void CodeGenerator::{op}({rt} rt1, {rt} rt2, Mem mem) {{")
+                code.append(f"CodeGenerator& CodeGenerator::{op}({rt} rt1, {rt} rt2, Mem mem) {{")
                 code.append(f"    int32_t imm7 = mem.offset >> {scale};")
                 code.append(f"    switch (mem.mode) {{")
                 code.append(f"    case MemMode::Offset:")
@@ -19866,6 +19900,8 @@ class ARM64XMLParser:
                 code.append(f"        break;")
                 code.append(f"    default: break;")
                 code.append(f"    }}")
+                code.append("    return *this;")
+                code.append("    return *this;")
                 code.append("}")
                 code.append("")
 
@@ -19878,27 +19914,32 @@ class ARM64XMLParser:
             ('fdiv', 'fdiv_s_floatdp2', 'fdiv_d_floatdp2'),
         ]:
             for rt, enc in [('SReg', enc_s), ('DReg', enc_d)]:
-                code.append(f"void CodeGenerator::{op}({rt} rd, {rt} rn, {rt} rm) {{")
+                code.append(f"CodeGenerator& CodeGenerator::{op}({rt} rd, {rt} rn, {rt} rm) {{")
                 code.append(f"    emit(simd_dp::encode_{enc}(rd.idx, rn.idx, rm.idx));")
+                code.append("    return *this;")
+                code.append("    return *this;")
                 code.append("}")
                 code.append("")
 
         # FMOV scalar
         for rt, enc in [('SReg', 'fmov_s_floatdp1'), ('DReg', 'fmov_d_floatdp1')]:
-            code.append(f"void CodeGenerator::fmov({rt} rd, {rt} rn) {{")
+            code.append(f"CodeGenerator& CodeGenerator::fmov({rt} rd, {rt} rn) {{")
             code.append(f"    emit(simd_dp::encode_{enc}(rd.idx, rn.idx));")
+            code.append("    return *this;")
             code.append("}")
             code.append("")
 
         # FCMP
         for rt, enc, enc_z in [('SReg', 'fcmp_s_floatcmp', 'fcmp_sz_floatcmp'),
                                  ('DReg', 'fcmp_d_floatcmp', 'fcmp_dz_floatcmp')]:
-            code.append(f"void CodeGenerator::fcmp({rt} rn, {rt} rm) {{")
+            code.append(f"CodeGenerator& CodeGenerator::fcmp({rt} rn, {rt} rm) {{")
             code.append(f"    emit(simd_dp::encode_{enc}(rn.idx, rm.idx));")
+            code.append("    return *this;")
             code.append("}")
             code.append("")
-            code.append(f"void CodeGenerator::fcmp({rt} rn) {{")
+            code.append(f"CodeGenerator& CodeGenerator::fcmp({rt} rn) {{")
             code.append(f"    emit(simd_dp::encode_{enc_z}(rn.idx, 0));")
+            code.append("    return *this;")
             code.append("}")
             code.append("")
 
@@ -19925,6 +19966,7 @@ class ARM64XMLParser:
         code.append("    uint32_t val;")
         code.append("    std::memcpy(&val, cg.data() + idx * 4, 4);")
         code.append("    return val;")
+        code.append("    return *this;")
         code.append("}")
         code.append("")
 
@@ -19956,6 +19998,7 @@ class ARM64XMLParser:
         code.append("    assert(r && r->mnemonic() == Mnemonic::SUB);   // NEG -> SUB")
         code.append("    std::cout << \"  arithmetic: OK\" << std::endl;")
         code.append("    return 0;")
+        code.append("    return *this;")
         code.append("}")
         code.append("")
 
@@ -19972,6 +20015,7 @@ class ARM64XMLParser:
         code.append("    assert(r && r->mnemonic() == Mnemonic::B);")
         code.append("    std::cout << \"  branches: OK\" << std::endl;")
         code.append("    return 0;")
+        code.append("    return *this;")
         code.append("}")
         code.append("")
 
@@ -19990,6 +20034,7 @@ class ARM64XMLParser:
         code.append("    (void)imm26;")
         code.append("    std::cout << \"  forward branch: OK\" << std::endl;")
         code.append("    return 0;")
+        code.append("    return *this;")
         code.append("}")
         code.append("")
 
@@ -20010,6 +20055,7 @@ class ARM64XMLParser:
         code.append("    assert(r && r->mnemonic() == Mnemonic::STP);")
         code.append("    std::cout << \"  ldst: OK\" << std::endl;")
         code.append("    return 0;")
+        code.append("    return *this;")
         code.append("}")
         code.append("")
 

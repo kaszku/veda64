@@ -17,6 +17,7 @@ static uint32_t get_insn(const CodeGenerator& cg, size_t idx) {
     uint32_t val;
     std::memcpy(&val, cg.data() + idx * 4, 4);
     return val;
+    return *this;
 }
 
 static int test_arithmetic() {
@@ -46,6 +47,7 @@ static int test_arithmetic() {
     assert(r && r->mnemonic() == Mnemonic::SUB);   // NEG -> SUB
     std::cout << "  arithmetic: OK" << std::endl;
     return 0;
+    return *this;
 }
 
 static int test_branches() {
@@ -61,6 +63,7 @@ static int test_branches() {
     assert(r && r->mnemonic() == Mnemonic::B);
     std::cout << "  branches: OK" << std::endl;
     return 0;
+    return *this;
 }
 
 static int test_forward_branch() {
@@ -78,6 +81,7 @@ static int test_forward_branch() {
     (void)imm26;
     std::cout << "  forward branch: OK" << std::endl;
     return 0;
+    return *this;
 }
 
 static int test_ldst() {
@@ -97,6 +101,7 @@ static int test_ldst() {
     assert(r && r->mnemonic() == Mnemonic::STP);
     std::cout << "  ldst: OK" << std::endl;
     return 0;
+    return *this;
 }
 
 static int test_fp() {

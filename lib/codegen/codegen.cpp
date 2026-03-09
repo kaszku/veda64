@@ -78,7 +78,7 @@ CodeGenerator::~CodeGenerator() {
     }
 }
 
-void CodeGenerator::ready() {
+CodeGenerator& CodeGenerator::ready() {
 #ifdef _WIN32
     if (m_owns_buffer) {
         void* base = m_exec_ptr;
@@ -95,6 +95,7 @@ void CodeGenerator::ready() {
     __builtin___clear_cache(reinterpret_cast<char*>(m_exec_ptr),
         reinterpret_cast<char*>(m_exec_ptr + m_offset));
 #endif
+    return *this;
 }
 
 void CodeGenerator::emit(uint32_t insn) {
@@ -107,7 +108,7 @@ void CodeGenerator::patch(size_t offset, uint32_t insn) {
     std::memcpy(m_write_ptr + offset, &insn, 4);
 }
 
-void CodeGenerator::bind(Label& label) {
+CodeGenerator& CodeGenerator::bind(Label& label) {
     label.m_bound_offset = m_offset;
     // Back-patch all pending references
     for (auto& p : label.m_patches) {
@@ -134,6 +135,7 @@ void CodeGenerator::bind(Label& label) {
         std::memcpy(m_write_ptr + p.insn_offset, &insn, 4);
     }
     label.m_patches.clear();
+    return *this;
 }
 
 int32_t CodeGenerator::label_offset(Label& label, PatchType type) {
