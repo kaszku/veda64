@@ -31,7 +31,7 @@
 
 // Pseudo handles
 #ifndef NtCurrentProcess
-#define NtCurrentProcess() ((HANDLE)(LONG_PTR)-1)
+#define NtCurrentProcess() (reinterpret_cast<HANDLE>(static_cast<LONG_PTR>(-1)))
 #endif
 #ifndef NtCurrentThread
 #define NtCurrentThread() ((HANDLE)(LONG_PTR)-2)

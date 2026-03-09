@@ -65,17 +65,17 @@ int main() {
         // ADD X0, X1, X2
         ir::execute(ctx, 0x8B020020);
         printf("After ADD X0, X1, X2:  X0 = %llu (expected 142)\n",
-               (unsigned long long)ctx.gpr[0]);
+               static_cast<unsigned long long>(ctx.gpr[0]));
 
         // SUB X0, X0, X2 -> 142 - 42 = 100
         ir::execute(ctx, 0xCB020000);
         printf("After SUB X0, X0, X2:  X0 = %llu (expected 100)\n",
-               (unsigned long long)ctx.gpr[0]);
+               static_cast<unsigned long long>(ctx.gpr[0]));
 
         // SUBS X0, X1, X2 -> 100 - 42 = 58, sets flags
         ir::execute(ctx, 0xEB020020);
         printf("After SUBS X0, X1, X2: X0 = %llu, N=%d Z=%d C=%d V=%d\n",
-               (unsigned long long)ctx.gpr[0],
+               static_cast<unsigned long long>(ctx.gpr[0]),
                ctx.flags[0], ctx.flags[1], ctx.flags[2], ctx.flags[3]);
     }
 
@@ -95,12 +95,12 @@ int main() {
         printf("After STR X1, [SP]:    mem[0x100] = ");
         uint64_t val;
         memcpy(&val, &mem[0x100], 8);
-        printf("0x%llX\n", (unsigned long long)val);
+        printf("0x%llX\n", static_cast<unsigned long long>(val));
 
         // LDR X0, [SP]
         ir::execute(ctx, 0xF94003E0);
         printf("After LDR X0, [SP]:    X0 = 0x%llX (expected 0xDEADBEEF)\n",
-               (unsigned long long)ctx.gpr[0]);
+               static_cast<unsigned long long>(ctx.gpr[0]));
     }
 
     // --- Multi-instruction sequence ---
@@ -117,12 +117,12 @@ int main() {
 
         // MUL X0, X1, X2      -> X0 = 5 * 3 = 15
         ir::execute(ctx, 0x9B027C20);
-        printf("After MUL X0, X1, X2: X0 = %llu\n", (unsigned long long)ctx.gpr[0]);
+        printf("After MUL X0, X1, X2: X0 = %llu\n", static_cast<unsigned long long>(ctx.gpr[0]));
 
         // ADD X0, X0, X3      -> X0 = 15 + 7 = 22
         ir::execute(ctx, 0x8B030000);
         printf("After ADD X0, X0, X3: X0 = %llu (expected 22)\n",
-               (unsigned long long)ctx.gpr[0]);
+               static_cast<unsigned long long>(ctx.gpr[0]));
     }
 
     return 0;

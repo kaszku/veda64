@@ -2340,7 +2340,7 @@ std::string Operand::to_string() const {
                 std::string s = "za";
                 if (_sme_arr != Arrangement::None) { s += "."; s += arrangement_to_string(_sme_arr); }
                 s += "[w" + std::to_string(sme.wv) + ", " + std::to_string(sme.start);
-                int32_t vgx = (int32_t)sme.detail;
+                int32_t vgx = static_cast<int32_t>(sme.detail);
                 if (vgx > 1) s += ", vgx" + std::to_string(vgx);
                 s += "]";
                 return s;
@@ -2350,10 +2350,10 @@ std::string Operand::to_string() const {
                 std::string s = "za";
                 if (_sme_arr != Arrangement::None) { s += "."; s += arrangement_to_string(_sme_arr); }
                 s += "[w" + std::to_string(sme.wv) + ", ";
-                if (sme.start >= 10) { std::ostringstream oss; oss << "0x" << std::hex << (uint32_t)sme.start; s += oss.str(); }
+                if (sme.start >= 10) { std::ostringstream oss; oss << "0x" << std::hex << static_cast<uint32_t>(sme.start); s += oss.str(); }
                 else s += std::to_string(sme.start);
                 s += ":";
-                uint32_t range_end = (uint32_t)(sme.detail & 0xFFFF);
+                uint32_t range_end = static_cast<uint32_t>(sme.detail & 0xFFFF);
                 if (range_end >= 10) { std::ostringstream oss; oss << "0x" << std::hex << range_end; s += oss.str(); }
                 else s += std::to_string(range_end);
                 if (sme.mode == 3) { int32_t vgx = (sme.detail >> 16) & 0xFFFF; if (vgx > 1) s += ", vgx" + std::to_string(vgx); }
@@ -2373,7 +2373,7 @@ std::string Operand::to_string() const {
                 if (_sme_arr != Arrangement::None) { s += "."; s += arrangement_to_string(_sme_arr); }
                 s += "[w" + std::to_string(sme.wv) + ", ";
                 s += std::to_string(sme.start);
-                uint32_t range_end = (uint32_t)(sme.detail & 0xFFFF);
+                uint32_t range_end = static_cast<uint32_t>(sme.detail & 0xFFFF);
                 if (range_end != sme.start) { s += ":"; s += std::to_string(range_end); }
                 s += "]";
                 return s;
@@ -2385,7 +2385,7 @@ std::string Operand::to_string() const {
                 s += (sme.mode & 8) ? "v" : "h";
                 if (_sme_arr != Arrangement::None) { s += "."; s += arrangement_to_string(_sme_arr); }
                 s += "[w" + std::to_string(sme.wv) + ", ";
-                if (sme.start >= 10) { std::ostringstream oss; oss << "0x" << std::hex << (uint32_t)sme.start; s += oss.str(); }
+                if (sme.start >= 10) { std::ostringstream oss; oss << "0x" << std::hex << static_cast<uint32_t>(sme.start); s += oss.str(); }
                 else s += std::to_string(sme.start);
                 s += "]}";
                 return s;
@@ -2523,8 +2523,8 @@ std::string Operand::to_string() const {
                 if (st > 4) st = 0;  // safety
                 std::ostringstream oss;
                 oss << shifts[st] << " #";
-                if (sh.amount <= 15) oss << std::dec << (uint32_t)sh.amount;
-                else oss << "0x" << std::hex << (uint32_t)sh.amount;
+                if (sh.amount <= 15) oss << std::dec << static_cast<uint32_t>(sh.amount);
+                else oss << "0x" << std::hex << static_cast<uint32_t>(sh.amount);
                 return oss.str();
             }
 
@@ -2647,7 +2647,7 @@ std::string Operand::to_string() const {
                     mask = 31; prefix = "v";
                 }
                 const char* arr_str = (_list_arr != Arrangement::None) ? arrangement_to_string(_list_arr) : nullptr;
-                uint32_t stride = (rl.stride > 1) ? (uint32_t)rl.stride : 1;
+                uint32_t stride = (rl.stride > 1) ? static_cast<uint32_t>(rl.stride) : 1;
                 // Use range notation for count>=3 when consecutive and non-wrapping
                 bool is_sve = (rv >= REG_Z_BASE && rv < REG_P_BASE);
                 if (is_sve && stride == 1 && rl.count >= 3 && (base_num + rl.count - 1) <= 31) {

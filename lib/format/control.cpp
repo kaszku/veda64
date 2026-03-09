@@ -7288,7 +7288,7 @@ std::optional<Instruction> decode_control(uint32_t insn) {
             #endif
                         ControlEncoding enc = {};
                         enc.raw = insn;
-                        int32_t offset = -(int32_t)(enc.retaasppc_only_miscbranch.imm16 * 4u);
+                        int32_t offset = -static_cast<int32_t>(enc.retaasppc_only_miscbranch.imm16 * 4u);
                         result.operands.push_back(Operand::relative(static_cast<int64_t>(offset)));
                         return result;
         }
@@ -7300,7 +7300,7 @@ std::optional<Instruction> decode_control(uint32_t insn) {
             #endif
                         ControlEncoding enc = {};
                         enc.raw = insn;
-                        int32_t offset = -(int32_t)(enc.retabsppc_only_miscbranch.imm16 * 4u);
+                        int32_t offset = -static_cast<int32_t>(enc.retabsppc_only_miscbranch.imm16 * 4u);
                         result.operands.push_back(Operand::relative(static_cast<int64_t>(offset)));
                         return result;
         }

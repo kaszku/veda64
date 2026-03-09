@@ -404,14 +404,14 @@ uint64_t Context::read_mem(uint64_t addr, uint8_t size) const {
     if (!memory || addr + size > memory_size) return 0;
     uint64_t val = 0;
     for (uint8_t i = 0; i < size && i < 8; ++i)
-        val |= (uint64_t)memory[addr + i] << (i * 8);
+        val |= static_cast<uint64_t>(memory[addr + i]) << (i * 8);
     return val;
 }
 
 void Context::write_mem(uint64_t addr, uint64_t val, uint8_t size) {
     if (!memory || addr + size > memory_size) return;
     for (uint8_t i = 0; i < size && i < 8; ++i)
-        memory[addr + i] = (uint8_t)(val >> (i * 8));
+        memory[addr + i] = static_cast<uint8_t>(val >> (i * 8));
 }
 
 static uint64_t sign_extend(uint64_t val, uint8_t from_size) {
@@ -474,7 +474,7 @@ static uint64_t fp_unaryop(Opcode opc, uint64_t a, uint8_t size) {
 uint64_t eval_expr(const Context& ctx, const Expr& e) {
     switch (e.kind) {
     case Expr::Kind::Const:
-        return (uint64_t)e.var.value & size_mask(e.size ? e.size : e.var.size);
+        return static_cast<uint64_t>(e.var.value) & size_mask(e.size ? e.size : e.var.size);
     case Expr::Kind::Var:
         switch (e.var.space) {
         case Space::GPR: return ctx.read_gpr(e.var.offset, e.var.size);
@@ -482,7 +482,7 @@ uint64_t eval_expr(const Context& ctx, const Expr& e) {
         case Space::SIMD: {
             uint64_t v = 0;
             uint8_t sz = e.var.size < 8 ? e.var.size : 8;
-            for (uint8_t i = 0; i < sz; ++i) v |= (uint64_t)ctx.simd[e.var.offset][i] << (i*8);
+            for (uint8_t i = 0; i < sz; ++i) v |= static_cast<uint64_t>(ctx.simd[e.var.offset][i]) << (i*8);
             return v;
         }
         default: return 0;
@@ -507,9 +507,9 @@ uint64_t eval_expr(const Context& ctx, const Expr& e) {
     case Opcode::SUB: return (c[0] - c[1]) & mask;
     case Opcode::MUL: return (c[0] * c[1]) & mask;
     case Opcode::SDIV: {
-        int64_t sa = (int64_t)sign_extend(c[0], e.size);
-        int64_t sb = (int64_t)sign_extend(c[1], e.size);
-        return sb ? ((uint64_t)(sa / sb) & mask) : 0;
+        int64_t sa = static_cast<int64_t>(sign_extend(c[0], e.size));
+        int64_t sb = static_cast<int64_t>(sign_extend(c[1], e.size));
+        return sb ? (static_cast<uint64_t>(sa / sb) & mask) : 0;
     }
     case Opcode::UDIV: return c[1] ? ((c[0] / c[1]) & mask) : 0;
     case Opcode::NEG: return ((~c[0] + 1) & mask);
@@ -531,8 +531,8 @@ uint64_t eval_expr(const Context& ctx, const Expr& e) {
     case Opcode::SAR: {
         uint8_t csz = nc > 0 && e.children[0]->size > e.size ? e.children[0]->size : e.size;
         uint8_t cbits = csz * 8;
-        int64_t sv = (int64_t)sign_extend(c[0], csz);
-        return ((uint64_t)(sv >> (c[1] % cbits))) & mask;
+        int64_t sv = static_cast<int64_t>(sign_extend(c[0], csz));
+        return (static_cast<uint64_t>(sv >> (c[1] % cbits))) & mask;
     }
     case Opcode::ROR: {
         uint8_t csz = nc > 0 && e.children[0]->size > e.size ? e.children[0]->size : e.size;
@@ -554,7 +554,7 @@ uint64_t eval_expr(const Context& ctx, const Expr& e) {
     }
     case Opcode::CMP_SLT: {
         uint8_t csz = nc > 0 ? e.children[0]->size : e.size;
-        return (int64_t)sign_extend(c[0],csz) <  (int64_t)sign_extend(c[1],csz) ? 1 : 0;
+        return static_cast<int64_t>(sign_extend(c[0],csz)) <  static_cast<int64_t>(sign_extend(c[1],csz)) ? 1 : 0;
     }
     case Opcode::CMP_ULT: {
         uint8_t csz = nc > 0 ? e.children[0]->size : e.size;
@@ -563,7 +563,7 @@ uint64_t eval_expr(const Context& ctx, const Expr& e) {
     }
     case Opcode::CMP_SLE: {
         uint8_t csz = nc > 0 ? e.children[0]->size : e.size;
-        return (int64_t)sign_extend(c[0],csz) <= (int64_t)sign_extend(c[1],csz) ? 1 : 0;
+        return static_cast<int64_t>(sign_extend(c[0],csz)) <= static_cast<int64_t>(sign_extend(c[1],csz)) ? 1 : 0;
     }
     case Opcode::CMP_ULE: {
         uint8_t csz = nc > 0 ? e.children[0]->size : e.size;
@@ -598,7 +598,7 @@ void execute_ast(Context& ctx, const Ast& ast) {
             case Space::SIMD: {
                 uint8_t sz = eff.dest.size < 16 ? eff.dest.size : 8;
                 for (uint8_t i = 0; i < sz && i < 8; ++i)
-                    ctx.simd[eff.dest.offset][i] = (uint8_t)(val >> (i*8));
+                    ctx.simd[eff.dest.offset][i] = static_cast<uint8_t>(val >> (i*8));
                 break;
             }
             default: break;

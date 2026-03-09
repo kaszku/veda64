@@ -2642,7 +2642,7 @@ std::optional<Instruction> decode_dpimm(uint32_t insn) {
                         result.operands.push_back(Operand::gp(enc.smax32minmax_imm.Rd, false));
                         result.operands.push_back(Operand::gp(enc.smax32minmax_imm.Rn, false));
                         {
-                            int32_t simm = (int32_t)((enc.smax32minmax_imm.imm8 ^ (1u << 7)) - (1u << 7));
+                            int32_t simm = static_cast<int32_t>((enc.smax32minmax_imm.imm8 ^ (1u << 7)) - (1u << 7));
                             result.operands.push_back(Operand::simm(static_cast<int64_t>(simm)));
                         }
                         return result;
@@ -2671,7 +2671,7 @@ std::optional<Instruction> decode_dpimm(uint32_t insn) {
                         result.operands.push_back(Operand::gp(enc.smin32minmax_imm.Rd, false));
                         result.operands.push_back(Operand::gp(enc.smin32minmax_imm.Rn, false));
                         {
-                            int32_t simm = (int32_t)((enc.smin32minmax_imm.imm8 ^ (1u << 7)) - (1u << 7));
+                            int32_t simm = static_cast<int32_t>((enc.smin32minmax_imm.imm8 ^ (1u << 7)) - (1u << 7));
                             result.operands.push_back(Operand::simm(static_cast<int64_t>(simm)));
                         }
                         return result;
@@ -2700,7 +2700,7 @@ std::optional<Instruction> decode_dpimm(uint32_t insn) {
                         result.operands.push_back(Operand::gp(enc.smax64minmax_imm.Rd, true));
                         result.operands.push_back(Operand::gp(enc.smax64minmax_imm.Rn, true));
                         {
-                            int32_t simm = (int32_t)((enc.smax64minmax_imm.imm8 ^ (1u << 7)) - (1u << 7));
+                            int32_t simm = static_cast<int32_t>((enc.smax64minmax_imm.imm8 ^ (1u << 7)) - (1u << 7));
                             result.operands.push_back(Operand::simm(static_cast<int64_t>(simm)));
                         }
                         return result;
@@ -2729,7 +2729,7 @@ std::optional<Instruction> decode_dpimm(uint32_t insn) {
                         result.operands.push_back(Operand::gp(enc.smin64minmax_imm.Rd, true));
                         result.operands.push_back(Operand::gp(enc.smin64minmax_imm.Rn, true));
                         {
-                            int32_t simm = (int32_t)((enc.smin64minmax_imm.imm8 ^ (1u << 7)) - (1u << 7));
+                            int32_t simm = static_cast<int32_t>((enc.smin64minmax_imm.imm8 ^ (1u << 7)) - (1u << 7));
                             result.operands.push_back(Operand::simm(static_cast<int64_t>(simm)));
                         }
                         return result;

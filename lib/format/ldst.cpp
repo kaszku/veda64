@@ -38731,7 +38731,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.stlr32s_ldapstl_writeback.Rt, false));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.stlr32s_ldapstl_writeback.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.stlr32s_ldapstl_writeback.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0x99C00800u: { // LDAPR_32L_ldapstl_writeback
@@ -38743,7 +38743,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldapr32l_ldapstl_writeback.Rt, false));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldapr32l_ldapstl_writeback.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldapr32l_ldapstl_writeback.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0xD91F0C00u: { // GCSSTR_64_ldst_gcs
@@ -38755,7 +38755,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.gcsstr64ldst_gcs.Rt, true));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.gcsstr64ldst_gcs.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.gcsstr64ldst_gcs.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0xD91F1C00u: { // GCSSTTR_64_ldst_gcs
@@ -38767,7 +38767,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.gcssttr64ldst_gcs.Rt, true));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.gcssttr64ldst_gcs.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.gcssttr64ldst_gcs.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0xD9200000u: { // STZGM_64bulk_ldsttags
@@ -38792,7 +38792,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.stlr64s_ldapstl_writeback.Rt, true));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.stlr64s_ldapstl_writeback.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.stlr64s_ldapstl_writeback.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0xD9A00000u: { // STGM_64bulk_ldsttags
@@ -38817,7 +38817,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldapr64l_ldapstl_writeback.Rt, true));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldapr64l_ldapstl_writeback.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldapr64l_ldapstl_writeback.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0xD9E00000u: { // LDGM_64bulk_ldsttags
@@ -38842,7 +38842,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.st64b64l_memop.Rt, true));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.st64b64l_memop.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.st64b64l_memop.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0xF83FD000u: { // LD64B_64L_memop
@@ -38854,7 +38854,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ld64b64l_memop.Rt, true));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ld64b64l_memop.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ld64b64l_memop.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         default: break;
@@ -38871,7 +38871,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.sttadd_ldtadd32memop_unpriv.Rs, false));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.sttadd_ldtadd32memop_unpriv.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.sttadd_ldtadd32memop_unpriv.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0x1920141Fu: { // STTCLR_LDTCLR_32_memop_unpriv
@@ -38883,7 +38883,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.sttclr_ldtclr32memop_unpriv.Rs, false));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.sttclr_ldtclr32memop_unpriv.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.sttclr_ldtclr32memop_unpriv.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0x1920341Fu: { // STTSET_LDTSET_32_memop_unpriv
@@ -38895,7 +38895,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.sttset_ldtset32memop_unpriv.Rs, false));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.sttset_ldtset32memop_unpriv.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.sttset_ldtset32memop_unpriv.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0x1960041Fu: { // STTADDL_LDTADDL_32_memop_unpriv
@@ -38907,7 +38907,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.sttaddl_ldtaddl32memop_unpriv.Rs, false));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.sttaddl_ldtaddl32memop_unpriv.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.sttaddl_ldtaddl32memop_unpriv.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0x1960141Fu: { // STTCLRL_LDTCLRL_32_memop_unpriv
@@ -38919,7 +38919,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.sttclrl_ldtclrl32memop_unpriv.Rs, false));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.sttclrl_ldtclrl32memop_unpriv.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.sttclrl_ldtclrl32memop_unpriv.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0x1960341Fu: { // STTSETL_LDTSETL_32_memop_unpriv
@@ -38931,7 +38931,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.sttsetl_ldtsetl32memop_unpriv.Rs, false));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.sttsetl_ldtsetl32memop_unpriv.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.sttsetl_ldtsetl32memop_unpriv.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0x3820001Fu: { // STADDB_LDADDB_32_memop
@@ -38943,7 +38943,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.staddb_ldaddb32memop.Rs, false));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.staddb_ldaddb32memop.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.staddb_ldaddb32memop.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0x3820101Fu: { // STCLRB_LDCLRB_32_memop
@@ -38955,7 +38955,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.stclrb_ldclrb32memop.Rs, false));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.stclrb_ldclrb32memop.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.stclrb_ldclrb32memop.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0x3820201Fu: { // STEORB_LDEORB_32_memop
@@ -38967,7 +38967,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.steorb_ldeorb32memop.Rs, false));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.steorb_ldeorb32memop.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.steorb_ldeorb32memop.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0x3820301Fu: { // STSETB_LDSETB_32_memop
@@ -38979,7 +38979,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.stsetb_ldsetb32memop.Rs, false));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.stsetb_ldsetb32memop.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.stsetb_ldsetb32memop.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0x3820401Fu: { // STSMAXB_LDSMAXB_32_memop
@@ -38991,7 +38991,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.stsmaxb_ldsmaxb32memop.Rs, false));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.stsmaxb_ldsmaxb32memop.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.stsmaxb_ldsmaxb32memop.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0x3820501Fu: { // STSMINB_LDSMINB_32_memop
@@ -39003,7 +39003,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.stsminb_ldsminb32memop.Rs, false));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.stsminb_ldsminb32memop.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.stsminb_ldsminb32memop.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0x3820601Fu: { // STUMAXB_LDUMAXB_32_memop
@@ -39015,7 +39015,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.stumaxb_ldumaxb32memop.Rs, false));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.stumaxb_ldumaxb32memop.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.stumaxb_ldumaxb32memop.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0x3820701Fu: { // STUMINB_LDUMINB_32_memop
@@ -39027,7 +39027,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.stuminb_lduminb32memop.Rs, false));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.stuminb_lduminb32memop.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.stuminb_lduminb32memop.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0x3860001Fu: { // STADDLB_LDADDLB_32_memop
@@ -39039,7 +39039,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.staddlb_ldaddlb32memop.Rs, false));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.staddlb_ldaddlb32memop.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.staddlb_ldaddlb32memop.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0x3860101Fu: { // STCLRLB_LDCLRLB_32_memop
@@ -39051,7 +39051,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.stclrlb_ldclrlb32memop.Rs, false));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.stclrlb_ldclrlb32memop.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.stclrlb_ldclrlb32memop.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0x3860201Fu: { // STEORLB_LDEORLB_32_memop
@@ -39063,7 +39063,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.steorlb_ldeorlb32memop.Rs, false));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.steorlb_ldeorlb32memop.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.steorlb_ldeorlb32memop.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0x3860301Fu: { // STSETLB_LDSETLB_32_memop
@@ -39075,7 +39075,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.stsetlb_ldsetlb32memop.Rs, false));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.stsetlb_ldsetlb32memop.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.stsetlb_ldsetlb32memop.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0x3860401Fu: { // STSMAXLB_LDSMAXLB_32_memop
@@ -39087,7 +39087,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.stsmaxlb_ldsmaxlb32memop.Rs, false));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.stsmaxlb_ldsmaxlb32memop.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.stsmaxlb_ldsmaxlb32memop.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0x3860501Fu: { // STSMINLB_LDSMINLB_32_memop
@@ -39099,7 +39099,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.stsminlb_ldsminlb32memop.Rs, false));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.stsminlb_ldsminlb32memop.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.stsminlb_ldsminlb32memop.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0x3860601Fu: { // STUMAXLB_LDUMAXLB_32_memop
@@ -39111,7 +39111,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.stumaxlb_ldumaxlb32memop.Rs, false));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.stumaxlb_ldumaxlb32memop.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.stumaxlb_ldumaxlb32memop.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0x3860701Fu: { // STUMINLB_LDUMINLB_32_memop
@@ -39123,7 +39123,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.stuminlb_lduminlb32memop.Rs, false));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.stuminlb_lduminlb32memop.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.stuminlb_lduminlb32memop.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0x3C20801Fu: { // STBFADD_16
@@ -39265,7 +39265,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.sttadd_ldtadd64memop_unpriv.Rs, true));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.sttadd_ldtadd64memop_unpriv.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.sttadd_ldtadd64memop_unpriv.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0x5920141Fu: { // STTCLR_LDTCLR_64_memop_unpriv
@@ -39277,7 +39277,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.sttclr_ldtclr64memop_unpriv.Rs, true));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.sttclr_ldtclr64memop_unpriv.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.sttclr_ldtclr64memop_unpriv.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0x5920341Fu: { // STTSET_LDTSET_64_memop_unpriv
@@ -39289,7 +39289,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.sttset_ldtset64memop_unpriv.Rs, true));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.sttset_ldtset64memop_unpriv.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.sttset_ldtset64memop_unpriv.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0x5960041Fu: { // STTADDL_LDTADDL_64_memop_unpriv
@@ -39301,7 +39301,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.sttaddl_ldtaddl64memop_unpriv.Rs, true));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.sttaddl_ldtaddl64memop_unpriv.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.sttaddl_ldtaddl64memop_unpriv.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0x5960141Fu: { // STTCLRL_LDTCLRL_64_memop_unpriv
@@ -39313,7 +39313,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.sttclrl_ldtclrl64memop_unpriv.Rs, true));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.sttclrl_ldtclrl64memop_unpriv.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.sttclrl_ldtclrl64memop_unpriv.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0x5960341Fu: { // STTSETL_LDTSETL_64_memop_unpriv
@@ -39325,7 +39325,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.sttsetl_ldtsetl64memop_unpriv.Rs, true));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.sttsetl_ldtsetl64memop_unpriv.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.sttsetl_ldtsetl64memop_unpriv.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0x7820001Fu: { // STADDH_LDADDH_32_memop
@@ -39337,7 +39337,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.staddh_ldaddh32memop.Rs, false));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.staddh_ldaddh32memop.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.staddh_ldaddh32memop.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0x7820101Fu: { // STCLRH_LDCLRH_32_memop
@@ -39349,7 +39349,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.stclrh_ldclrh32memop.Rs, false));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.stclrh_ldclrh32memop.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.stclrh_ldclrh32memop.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0x7820201Fu: { // STEORH_LDEORH_32_memop
@@ -39361,7 +39361,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.steorh_ldeorh32memop.Rs, false));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.steorh_ldeorh32memop.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.steorh_ldeorh32memop.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0x7820301Fu: { // STSETH_LDSETH_32_memop
@@ -39373,7 +39373,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.stseth_ldseth32memop.Rs, false));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.stseth_ldseth32memop.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.stseth_ldseth32memop.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0x7820401Fu: { // STSMAXH_LDSMAXH_32_memop
@@ -39385,7 +39385,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.stsmaxh_ldsmaxh32memop.Rs, false));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.stsmaxh_ldsmaxh32memop.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.stsmaxh_ldsmaxh32memop.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0x7820501Fu: { // STSMINH_LDSMINH_32_memop
@@ -39397,7 +39397,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.stsminh_ldsminh32memop.Rs, false));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.stsminh_ldsminh32memop.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.stsminh_ldsminh32memop.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0x7820601Fu: { // STUMAXH_LDUMAXH_32_memop
@@ -39409,7 +39409,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.stumaxh_ldumaxh32memop.Rs, false));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.stumaxh_ldumaxh32memop.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.stumaxh_ldumaxh32memop.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0x7820701Fu: { // STUMINH_LDUMINH_32_memop
@@ -39421,7 +39421,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.stuminh_lduminh32memop.Rs, false));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.stuminh_lduminh32memop.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.stuminh_lduminh32memop.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0x7860001Fu: { // STADDLH_LDADDLH_32_memop
@@ -39433,7 +39433,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.staddlh_ldaddlh32memop.Rs, false));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.staddlh_ldaddlh32memop.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.staddlh_ldaddlh32memop.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0x7860101Fu: { // STCLRLH_LDCLRLH_32_memop
@@ -39445,7 +39445,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.stclrlh_ldclrlh32memop.Rs, false));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.stclrlh_ldclrlh32memop.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.stclrlh_ldclrlh32memop.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0x7860201Fu: { // STEORLH_LDEORLH_32_memop
@@ -39457,7 +39457,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.steorlh_ldeorlh32memop.Rs, false));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.steorlh_ldeorlh32memop.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.steorlh_ldeorlh32memop.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0x7860301Fu: { // STSETLH_LDSETLH_32_memop
@@ -39469,7 +39469,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.stsetlh_ldsetlh32memop.Rs, false));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.stsetlh_ldsetlh32memop.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.stsetlh_ldsetlh32memop.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0x7860401Fu: { // STSMAXLH_LDSMAXLH_32_memop
@@ -39481,7 +39481,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.stsmaxlh_ldsmaxlh32memop.Rs, false));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.stsmaxlh_ldsmaxlh32memop.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.stsmaxlh_ldsmaxlh32memop.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0x7860501Fu: { // STSMINLH_LDSMINLH_32_memop
@@ -39493,7 +39493,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.stsminlh_ldsminlh32memop.Rs, false));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.stsminlh_ldsminlh32memop.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.stsminlh_ldsminlh32memop.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0x7860601Fu: { // STUMAXLH_LDUMAXLH_32_memop
@@ -39505,7 +39505,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.stumaxlh_ldumaxlh32memop.Rs, false));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.stumaxlh_ldumaxlh32memop.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.stumaxlh_ldumaxlh32memop.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0x7860701Fu: { // STUMINLH_LDUMINLH_32_memop
@@ -39517,7 +39517,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.stuminlh_lduminlh32memop.Rs, false));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.stuminlh_lduminlh32memop.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.stuminlh_lduminlh32memop.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0x7C20801Fu: { // STFADD_16
@@ -39659,7 +39659,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.stadd_ldadd32memop.Rs, false));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.stadd_ldadd32memop.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.stadd_ldadd32memop.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0xB820101Fu: { // STCLR_LDCLR_32_memop
@@ -39671,7 +39671,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.stclr_ldclr32memop.Rs, false));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.stclr_ldclr32memop.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.stclr_ldclr32memop.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0xB820201Fu: { // STEOR_LDEOR_32_memop
@@ -39683,7 +39683,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.steor_ldeor32memop.Rs, false));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.steor_ldeor32memop.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.steor_ldeor32memop.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0xB820301Fu: { // STSET_LDSET_32_memop
@@ -39695,7 +39695,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.stset_ldset32memop.Rs, false));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.stset_ldset32memop.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.stset_ldset32memop.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0xB820401Fu: { // STSMAX_LDSMAX_32_memop
@@ -39707,7 +39707,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.stsmax_ldsmax32memop.Rs, false));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.stsmax_ldsmax32memop.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.stsmax_ldsmax32memop.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0xB820501Fu: { // STSMIN_LDSMIN_32_memop
@@ -39719,7 +39719,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.stsmin_ldsmin32memop.Rs, false));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.stsmin_ldsmin32memop.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.stsmin_ldsmin32memop.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0xB820601Fu: { // STUMAX_LDUMAX_32_memop
@@ -39731,7 +39731,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.stumax_ldumax32memop.Rs, false));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.stumax_ldumax32memop.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.stumax_ldumax32memop.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0xB820701Fu: { // STUMIN_LDUMIN_32_memop
@@ -39743,7 +39743,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.stumin_ldumin32memop.Rs, false));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.stumin_ldumin32memop.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.stumin_ldumin32memop.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0xB860001Fu: { // STADDL_LDADDL_32_memop
@@ -39755,7 +39755,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.staddl_ldaddl32memop.Rs, false));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.staddl_ldaddl32memop.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.staddl_ldaddl32memop.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0xB860101Fu: { // STCLRL_LDCLRL_32_memop
@@ -39767,7 +39767,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.stclrl_ldclrl32memop.Rs, false));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.stclrl_ldclrl32memop.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.stclrl_ldclrl32memop.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0xB860201Fu: { // STEORL_LDEORL_32_memop
@@ -39779,7 +39779,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.steorl_ldeorl32memop.Rs, false));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.steorl_ldeorl32memop.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.steorl_ldeorl32memop.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0xB860301Fu: { // STSETL_LDSETL_32_memop
@@ -39791,7 +39791,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.stsetl_ldsetl32memop.Rs, false));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.stsetl_ldsetl32memop.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.stsetl_ldsetl32memop.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0xB860401Fu: { // STSMAXL_LDSMAXL_32_memop
@@ -39803,7 +39803,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.stsmaxl_ldsmaxl32memop.Rs, false));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.stsmaxl_ldsmaxl32memop.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.stsmaxl_ldsmaxl32memop.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0xB860501Fu: { // STSMINL_LDSMINL_32_memop
@@ -39815,7 +39815,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.stsminl_ldsminl32memop.Rs, false));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.stsminl_ldsminl32memop.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.stsminl_ldsminl32memop.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0xB860601Fu: { // STUMAXL_LDUMAXL_32_memop
@@ -39827,7 +39827,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.stumaxl_ldumaxl32memop.Rs, false));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.stumaxl_ldumaxl32memop.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.stumaxl_ldumaxl32memop.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0xB860701Fu: { // STUMINL_LDUMINL_32_memop
@@ -39839,7 +39839,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.stuminl_lduminl32memop.Rs, false));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.stuminl_lduminl32memop.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.stuminl_lduminl32memop.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0xBC20801Fu: { // STFADD_32
@@ -39981,7 +39981,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.stadd_ldadd64memop.Rs, true));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.stadd_ldadd64memop.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.stadd_ldadd64memop.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0xF820101Fu: { // STCLR_LDCLR_64_memop
@@ -39993,7 +39993,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.stclr_ldclr64memop.Rs, true));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.stclr_ldclr64memop.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.stclr_ldclr64memop.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0xF820201Fu: { // STEOR_LDEOR_64_memop
@@ -40005,7 +40005,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.steor_ldeor64memop.Rs, true));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.steor_ldeor64memop.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.steor_ldeor64memop.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0xF820301Fu: { // STSET_LDSET_64_memop
@@ -40017,7 +40017,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.stset_ldset64memop.Rs, true));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.stset_ldset64memop.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.stset_ldset64memop.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0xF820401Fu: { // STSMAX_LDSMAX_64_memop
@@ -40029,7 +40029,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.stsmax_ldsmax64memop.Rs, true));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.stsmax_ldsmax64memop.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.stsmax_ldsmax64memop.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0xF820501Fu: { // STSMIN_LDSMIN_64_memop
@@ -40041,7 +40041,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.stsmin_ldsmin64memop.Rs, true));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.stsmin_ldsmin64memop.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.stsmin_ldsmin64memop.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0xF820601Fu: { // STUMAX_LDUMAX_64_memop
@@ -40053,7 +40053,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.stumax_ldumax64memop.Rs, true));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.stumax_ldumax64memop.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.stumax_ldumax64memop.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0xF820701Fu: { // STUMIN_LDUMIN_64_memop
@@ -40065,7 +40065,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.stumin_ldumin64memop.Rs, true));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.stumin_ldumin64memop.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.stumin_ldumin64memop.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0xF860001Fu: { // STADDL_LDADDL_64_memop
@@ -40077,7 +40077,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.staddl_ldaddl64memop.Rs, true));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.staddl_ldaddl64memop.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.staddl_ldaddl64memop.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0xF860101Fu: { // STCLRL_LDCLRL_64_memop
@@ -40089,7 +40089,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.stclrl_ldclrl64memop.Rs, true));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.stclrl_ldclrl64memop.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.stclrl_ldclrl64memop.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0xF860201Fu: { // STEORL_LDEORL_64_memop
@@ -40101,7 +40101,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.steorl_ldeorl64memop.Rs, true));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.steorl_ldeorl64memop.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.steorl_ldeorl64memop.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0xF860301Fu: { // STSETL_LDSETL_64_memop
@@ -40113,7 +40113,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.stsetl_ldsetl64memop.Rs, true));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.stsetl_ldsetl64memop.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.stsetl_ldsetl64memop.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0xF860401Fu: { // STSMAXL_LDSMAXL_64_memop
@@ -40125,7 +40125,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.stsmaxl_ldsmaxl64memop.Rs, true));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.stsmaxl_ldsmaxl64memop.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.stsmaxl_ldsmaxl64memop.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0xF860501Fu: { // STSMINL_LDSMINL_64_memop
@@ -40137,7 +40137,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.stsminl_ldsminl64memop.Rs, true));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.stsminl_ldsminl64memop.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.stsminl_ldsminl64memop.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0xF860601Fu: { // STUMAXL_LDUMAXL_64_memop
@@ -40149,7 +40149,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.stumaxl_ldumaxl64memop.Rs, true));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.stumaxl_ldumaxl64memop.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.stumaxl_ldumaxl64memop.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0xF860701Fu: { // STUMINL_LDUMINL_64_memop
@@ -40161,7 +40161,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.stuminl_lduminl64memop.Rs, true));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.stuminl_lduminl64memop.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.stuminl_lduminl64memop.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0xFC20801Fu: { // STFADD_64
@@ -40373,7 +40373,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.casb_c32comswap.Rs, false));
                         result.operands.push_back(Operand::gp(enc.casb_c32comswap.Rt, false));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.casb_c32comswap.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.casb_c32comswap.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0x08A0FC00u: { // CASLB_C32_comswap
@@ -40386,7 +40386,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.caslb_c32comswap.Rs, false));
                         result.operands.push_back(Operand::gp(enc.caslb_c32comswap.Rt, false));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.caslb_c32comswap.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.caslb_c32comswap.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0x08E07C00u: { // CASAB_C32_comswap
@@ -40399,7 +40399,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.casab_c32comswap.Rs, false));
                         result.operands.push_back(Operand::gp(enc.casab_c32comswap.Rt, false));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.casab_c32comswap.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.casab_c32comswap.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0x08E0FC00u: { // CASALB_C32_comswap
@@ -40412,7 +40412,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.casalb_c32comswap.Rs, false));
                         result.operands.push_back(Operand::gp(enc.casalb_c32comswap.Rt, false));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.casalb_c32comswap.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.casalb_c32comswap.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0x19200400u: { // LDTADD_32_memop_unpriv
@@ -40425,7 +40425,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldtadd32memop_unpriv.Rs, false));
                         result.operands.push_back(Operand::gp(enc.ldtadd32memop_unpriv.Rt, false));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldtadd32memop_unpriv.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldtadd32memop_unpriv.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0x19200800u: { // RCWCAS_C64_rcwcomswap
@@ -40438,7 +40438,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.rcwcas_c64rcwcomswap.Rs, true));
                         result.operands.push_back(Operand::gp(enc.rcwcas_c64rcwcomswap.Rt, true));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.rcwcas_c64rcwcomswap.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.rcwcas_c64rcwcomswap.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0x19200C00u: { // RCWCASP_C64_rcwcomswappr
@@ -40467,7 +40467,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         if (enc.ldclrp128memop128.Rt2 == 31u) return std::nullopt;
                         result.operands.push_back(Operand::gp(enc.ldclrp128memop128.Rt, true));
                         result.operands.push_back(Operand::gp(enc.ldclrp128memop128.Rt2, true));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldclrp128memop128.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldclrp128memop128.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0x19201400u: { // LDTCLR_32_memop_unpriv
@@ -40480,7 +40480,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldtclr32memop_unpriv.Rs, false));
                         result.operands.push_back(Operand::gp(enc.ldtclr32memop_unpriv.Rt, false));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldtclr32memop_unpriv.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldtclr32memop_unpriv.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0x19203000u: { // LDSETP_128_memop_128
@@ -40495,7 +40495,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         if (enc.ldsetp128memop128.Rt2 == 31u) return std::nullopt;
                         result.operands.push_back(Operand::gp(enc.ldsetp128memop128.Rt, true));
                         result.operands.push_back(Operand::gp(enc.ldsetp128memop128.Rt2, true));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldsetp128memop128.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldsetp128memop128.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0x19203400u: { // LDTSET_32_memop_unpriv
@@ -40508,7 +40508,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldtset32memop_unpriv.Rs, false));
                         result.operands.push_back(Operand::gp(enc.ldtset32memop_unpriv.Rt, false));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldtset32memop_unpriv.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldtset32memop_unpriv.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0x19208000u: { // SWPP_128_memop_128
@@ -40523,7 +40523,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         if (enc.swpp128memop128.Rt2 == 31u) return std::nullopt;
                         result.operands.push_back(Operand::gp(enc.swpp128memop128.Rt, true));
                         result.operands.push_back(Operand::gp(enc.swpp128memop128.Rt2, true));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.swpp128memop128.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.swpp128memop128.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0x19208400u: { // SWPT_32_memop_unpriv
@@ -40536,7 +40536,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.swpt32memop_unpriv.Rs, false));
                         result.operands.push_back(Operand::gp(enc.swpt32memop_unpriv.Rt, false));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.swpt32memop_unpriv.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.swpt32memop_unpriv.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0x19209000u: { // RCWCLRP_128_memop_128
@@ -40551,7 +40551,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         if (enc.rcwclrp128memop128.Rt2 == 31u) return std::nullopt;
                         result.operands.push_back(Operand::gp(enc.rcwclrp128memop128.Rt, true));
                         result.operands.push_back(Operand::gp(enc.rcwclrp128memop128.Rt2, true));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.rcwclrp128memop128.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.rcwclrp128memop128.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0x1920A000u: { // RCWSWPP_128_memop_128
@@ -40566,7 +40566,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         if (enc.rcwswpp128memop128.Rt2 == 31u) return std::nullopt;
                         result.operands.push_back(Operand::gp(enc.rcwswpp128memop128.Rt, true));
                         result.operands.push_back(Operand::gp(enc.rcwswpp128memop128.Rt2, true));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.rcwswpp128memop128.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.rcwswpp128memop128.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0x1920B000u: { // RCWSETP_128_memop_128
@@ -40581,7 +40581,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         if (enc.rcwsetp128memop128.Rt2 == 31u) return std::nullopt;
                         result.operands.push_back(Operand::gp(enc.rcwsetp128memop128.Rt, true));
                         result.operands.push_back(Operand::gp(enc.rcwsetp128memop128.Rt2, true));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.rcwsetp128memop128.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.rcwsetp128memop128.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0x19600400u: { // LDTADDL_32_memop_unpriv
@@ -40594,7 +40594,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldtaddl32memop_unpriv.Rs, false));
                         result.operands.push_back(Operand::gp(enc.ldtaddl32memop_unpriv.Rt, false));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldtaddl32memop_unpriv.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldtaddl32memop_unpriv.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0x19600800u: { // RCWCASL_C64_rcwcomswap
@@ -40607,7 +40607,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.rcwcasl_c64rcwcomswap.Rs, true));
                         result.operands.push_back(Operand::gp(enc.rcwcasl_c64rcwcomswap.Rt, true));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.rcwcasl_c64rcwcomswap.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.rcwcasl_c64rcwcomswap.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0x19600C00u: { // RCWCASPL_C64_rcwcomswappr
@@ -40636,7 +40636,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         if (enc.ldclrpl128memop128.Rt2 == 31u) return std::nullopt;
                         result.operands.push_back(Operand::gp(enc.ldclrpl128memop128.Rt, true));
                         result.operands.push_back(Operand::gp(enc.ldclrpl128memop128.Rt2, true));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldclrpl128memop128.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldclrpl128memop128.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0x19601400u: { // LDTCLRL_32_memop_unpriv
@@ -40649,7 +40649,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldtclrl32memop_unpriv.Rs, false));
                         result.operands.push_back(Operand::gp(enc.ldtclrl32memop_unpriv.Rt, false));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldtclrl32memop_unpriv.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldtclrl32memop_unpriv.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0x19603000u: { // LDSETPL_128_memop_128
@@ -40664,7 +40664,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         if (enc.ldsetpl128memop128.Rt2 == 31u) return std::nullopt;
                         result.operands.push_back(Operand::gp(enc.ldsetpl128memop128.Rt, true));
                         result.operands.push_back(Operand::gp(enc.ldsetpl128memop128.Rt2, true));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldsetpl128memop128.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldsetpl128memop128.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0x19603400u: { // LDTSETL_32_memop_unpriv
@@ -40677,7 +40677,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldtsetl32memop_unpriv.Rs, false));
                         result.operands.push_back(Operand::gp(enc.ldtsetl32memop_unpriv.Rt, false));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldtsetl32memop_unpriv.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldtsetl32memop_unpriv.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0x19608000u: { // SWPPL_128_memop_128
@@ -40692,7 +40692,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         if (enc.swppl128memop128.Rt2 == 31u) return std::nullopt;
                         result.operands.push_back(Operand::gp(enc.swppl128memop128.Rt, true));
                         result.operands.push_back(Operand::gp(enc.swppl128memop128.Rt2, true));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.swppl128memop128.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.swppl128memop128.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0x19608400u: { // SWPTL_32_memop_unpriv
@@ -40705,7 +40705,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.swptl32memop_unpriv.Rs, false));
                         result.operands.push_back(Operand::gp(enc.swptl32memop_unpriv.Rt, false));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.swptl32memop_unpriv.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.swptl32memop_unpriv.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0x19609000u: { // RCWCLRPL_128_memop_128
@@ -40720,7 +40720,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         if (enc.rcwclrpl128memop128.Rt2 == 31u) return std::nullopt;
                         result.operands.push_back(Operand::gp(enc.rcwclrpl128memop128.Rt, true));
                         result.operands.push_back(Operand::gp(enc.rcwclrpl128memop128.Rt2, true));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.rcwclrpl128memop128.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.rcwclrpl128memop128.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0x1960A000u: { // RCWSWPPL_128_memop_128
@@ -40735,7 +40735,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         if (enc.rcwswppl128memop128.Rt2 == 31u) return std::nullopt;
                         result.operands.push_back(Operand::gp(enc.rcwswppl128memop128.Rt, true));
                         result.operands.push_back(Operand::gp(enc.rcwswppl128memop128.Rt2, true));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.rcwswppl128memop128.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.rcwswppl128memop128.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0x1960B000u: { // RCWSETPL_128_memop_128
@@ -40750,7 +40750,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         if (enc.rcwsetpl128memop128.Rt2 == 31u) return std::nullopt;
                         result.operands.push_back(Operand::gp(enc.rcwsetpl128memop128.Rt, true));
                         result.operands.push_back(Operand::gp(enc.rcwsetpl128memop128.Rt2, true));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.rcwsetpl128memop128.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.rcwsetpl128memop128.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0x19A00400u: { // LDTADDA_32_memop_unpriv
@@ -40763,7 +40763,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldtadda32memop_unpriv.Rs, false));
                         result.operands.push_back(Operand::gp(enc.ldtadda32memop_unpriv.Rt, false));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldtadda32memop_unpriv.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldtadda32memop_unpriv.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0x19A00800u: { // RCWCASA_C64_rcwcomswap
@@ -40776,7 +40776,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.rcwcasa_c64rcwcomswap.Rs, true));
                         result.operands.push_back(Operand::gp(enc.rcwcasa_c64rcwcomswap.Rt, true));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.rcwcasa_c64rcwcomswap.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.rcwcasa_c64rcwcomswap.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0x19A00C00u: { // RCWCASPA_C64_rcwcomswappr
@@ -40805,7 +40805,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         if (enc.ldclrpa128memop128.Rt2 == 31u) return std::nullopt;
                         result.operands.push_back(Operand::gp(enc.ldclrpa128memop128.Rt, true));
                         result.operands.push_back(Operand::gp(enc.ldclrpa128memop128.Rt2, true));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldclrpa128memop128.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldclrpa128memop128.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0x19A01400u: { // LDTCLRA_32_memop_unpriv
@@ -40818,7 +40818,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldtclra32memop_unpriv.Rs, false));
                         result.operands.push_back(Operand::gp(enc.ldtclra32memop_unpriv.Rt, false));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldtclra32memop_unpriv.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldtclra32memop_unpriv.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0x19A03000u: { // LDSETPA_128_memop_128
@@ -40833,7 +40833,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         if (enc.ldsetpa128memop128.Rt2 == 31u) return std::nullopt;
                         result.operands.push_back(Operand::gp(enc.ldsetpa128memop128.Rt, true));
                         result.operands.push_back(Operand::gp(enc.ldsetpa128memop128.Rt2, true));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldsetpa128memop128.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldsetpa128memop128.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0x19A03400u: { // LDTSETA_32_memop_unpriv
@@ -40846,7 +40846,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldtseta32memop_unpriv.Rs, false));
                         result.operands.push_back(Operand::gp(enc.ldtseta32memop_unpriv.Rt, false));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldtseta32memop_unpriv.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldtseta32memop_unpriv.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0x19A08000u: { // SWPPA_128_memop_128
@@ -40861,7 +40861,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         if (enc.swppa128memop128.Rt2 == 31u) return std::nullopt;
                         result.operands.push_back(Operand::gp(enc.swppa128memop128.Rt, true));
                         result.operands.push_back(Operand::gp(enc.swppa128memop128.Rt2, true));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.swppa128memop128.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.swppa128memop128.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0x19A08400u: { // SWPTA_32_memop_unpriv
@@ -40874,7 +40874,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.swpta32memop_unpriv.Rs, false));
                         result.operands.push_back(Operand::gp(enc.swpta32memop_unpriv.Rt, false));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.swpta32memop_unpriv.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.swpta32memop_unpriv.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0x19A09000u: { // RCWCLRPA_128_memop_128
@@ -40889,7 +40889,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         if (enc.rcwclrpa128memop128.Rt2 == 31u) return std::nullopt;
                         result.operands.push_back(Operand::gp(enc.rcwclrpa128memop128.Rt, true));
                         result.operands.push_back(Operand::gp(enc.rcwclrpa128memop128.Rt2, true));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.rcwclrpa128memop128.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.rcwclrpa128memop128.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0x19A0A000u: { // RCWSWPPA_128_memop_128
@@ -40904,7 +40904,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         if (enc.rcwswppa128memop128.Rt2 == 31u) return std::nullopt;
                         result.operands.push_back(Operand::gp(enc.rcwswppa128memop128.Rt, true));
                         result.operands.push_back(Operand::gp(enc.rcwswppa128memop128.Rt2, true));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.rcwswppa128memop128.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.rcwswppa128memop128.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0x19A0B000u: { // RCWSETPA_128_memop_128
@@ -40919,7 +40919,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         if (enc.rcwsetpa128memop128.Rt2 == 31u) return std::nullopt;
                         result.operands.push_back(Operand::gp(enc.rcwsetpa128memop128.Rt, true));
                         result.operands.push_back(Operand::gp(enc.rcwsetpa128memop128.Rt2, true));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.rcwsetpa128memop128.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.rcwsetpa128memop128.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0x19E00400u: { // LDTADDAL_32_memop_unpriv
@@ -40932,7 +40932,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldtaddal32memop_unpriv.Rs, false));
                         result.operands.push_back(Operand::gp(enc.ldtaddal32memop_unpriv.Rt, false));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldtaddal32memop_unpriv.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldtaddal32memop_unpriv.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0x19E00800u: { // RCWCASAL_C64_rcwcomswap
@@ -40945,7 +40945,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.rcwcasal_c64rcwcomswap.Rs, true));
                         result.operands.push_back(Operand::gp(enc.rcwcasal_c64rcwcomswap.Rt, true));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.rcwcasal_c64rcwcomswap.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.rcwcasal_c64rcwcomswap.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0x19E00C00u: { // RCWCASPAL_C64_rcwcomswappr
@@ -40974,7 +40974,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         if (enc.ldclrpal128memop128.Rt2 == 31u) return std::nullopt;
                         result.operands.push_back(Operand::gp(enc.ldclrpal128memop128.Rt, true));
                         result.operands.push_back(Operand::gp(enc.ldclrpal128memop128.Rt2, true));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldclrpal128memop128.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldclrpal128memop128.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0x19E01400u: { // LDTCLRAL_32_memop_unpriv
@@ -40987,7 +40987,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldtclral32memop_unpriv.Rs, false));
                         result.operands.push_back(Operand::gp(enc.ldtclral32memop_unpriv.Rt, false));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldtclral32memop_unpriv.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldtclral32memop_unpriv.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0x19E03000u: { // LDSETPAL_128_memop_128
@@ -41002,7 +41002,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         if (enc.ldsetpal128memop128.Rt2 == 31u) return std::nullopt;
                         result.operands.push_back(Operand::gp(enc.ldsetpal128memop128.Rt, true));
                         result.operands.push_back(Operand::gp(enc.ldsetpal128memop128.Rt2, true));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldsetpal128memop128.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldsetpal128memop128.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0x19E03400u: { // LDTSETAL_32_memop_unpriv
@@ -41015,7 +41015,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldtsetal32memop_unpriv.Rs, false));
                         result.operands.push_back(Operand::gp(enc.ldtsetal32memop_unpriv.Rt, false));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldtsetal32memop_unpriv.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldtsetal32memop_unpriv.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0x19E08000u: { // SWPPAL_128_memop_128
@@ -41030,7 +41030,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         if (enc.swppal128memop128.Rt2 == 31u) return std::nullopt;
                         result.operands.push_back(Operand::gp(enc.swppal128memop128.Rt, true));
                         result.operands.push_back(Operand::gp(enc.swppal128memop128.Rt2, true));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.swppal128memop128.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.swppal128memop128.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0x19E08400u: { // SWPTAL_32_memop_unpriv
@@ -41043,7 +41043,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.swptal32memop_unpriv.Rs, false));
                         result.operands.push_back(Operand::gp(enc.swptal32memop_unpriv.Rt, false));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.swptal32memop_unpriv.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.swptal32memop_unpriv.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0x19E09000u: { // RCWCLRPAL_128_memop_128
@@ -41058,7 +41058,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         if (enc.rcwclrpal128memop128.Rt2 == 31u) return std::nullopt;
                         result.operands.push_back(Operand::gp(enc.rcwclrpal128memop128.Rt, true));
                         result.operands.push_back(Operand::gp(enc.rcwclrpal128memop128.Rt2, true));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.rcwclrpal128memop128.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.rcwclrpal128memop128.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0x19E0A000u: { // RCWSWPPAL_128_memop_128
@@ -41073,7 +41073,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         if (enc.rcwswppal128memop128.Rt2 == 31u) return std::nullopt;
                         result.operands.push_back(Operand::gp(enc.rcwswppal128memop128.Rt, true));
                         result.operands.push_back(Operand::gp(enc.rcwswppal128memop128.Rt2, true));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.rcwswppal128memop128.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.rcwswppal128memop128.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0x19E0B000u: { // RCWSETPAL_128_memop_128
@@ -41088,7 +41088,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         if (enc.rcwsetpal128memop128.Rt2 == 31u) return std::nullopt;
                         result.operands.push_back(Operand::gp(enc.rcwsetpal128memop128.Rt, true));
                         result.operands.push_back(Operand::gp(enc.rcwsetpal128memop128.Rt2, true));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.rcwsetpal128memop128.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.rcwsetpal128memop128.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0x38200000u: { // LDADDB_32_memop
@@ -41101,7 +41101,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldaddb32memop.Rs, false));
                         result.operands.push_back(Operand::gp(enc.ldaddb32memop.Rt, false));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldaddb32memop.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldaddb32memop.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0x38201000u: { // LDCLRB_32_memop
@@ -41114,7 +41114,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldclrb32memop.Rs, false));
                         result.operands.push_back(Operand::gp(enc.ldclrb32memop.Rt, false));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldclrb32memop.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldclrb32memop.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0x38202000u: { // LDEORB_32_memop
@@ -41127,7 +41127,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldeorb32memop.Rs, false));
                         result.operands.push_back(Operand::gp(enc.ldeorb32memop.Rt, false));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldeorb32memop.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldeorb32memop.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0x38203000u: { // LDSETB_32_memop
@@ -41140,7 +41140,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldsetb32memop.Rs, false));
                         result.operands.push_back(Operand::gp(enc.ldsetb32memop.Rt, false));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldsetb32memop.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldsetb32memop.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0x38204000u: { // LDSMAXB_32_memop
@@ -41153,7 +41153,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldsmaxb32memop.Rs, false));
                         result.operands.push_back(Operand::gp(enc.ldsmaxb32memop.Rt, false));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldsmaxb32memop.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldsmaxb32memop.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0x38205000u: { // LDSMINB_32_memop
@@ -41166,7 +41166,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldsminb32memop.Rs, false));
                         result.operands.push_back(Operand::gp(enc.ldsminb32memop.Rt, false));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldsminb32memop.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldsminb32memop.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0x38206000u: { // LDUMAXB_32_memop
@@ -41179,7 +41179,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldumaxb32memop.Rs, false));
                         result.operands.push_back(Operand::gp(enc.ldumaxb32memop.Rt, false));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldumaxb32memop.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldumaxb32memop.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0x38207000u: { // LDUMINB_32_memop
@@ -41192,7 +41192,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.lduminb32memop.Rs, false));
                         result.operands.push_back(Operand::gp(enc.lduminb32memop.Rt, false));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.lduminb32memop.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.lduminb32memop.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0x38208000u: { // SWPB_32_memop
@@ -41205,7 +41205,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.swpb32memop.Rs, false));
                         result.operands.push_back(Operand::gp(enc.swpb32memop.Rt, false));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.swpb32memop.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.swpb32memop.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0x38209000u: { // RCWCLR_64_memop
@@ -41218,7 +41218,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.rcwclr64memop.Rs, true));
                         result.operands.push_back(Operand::gp(enc.rcwclr64memop.Rt, true));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.rcwclr64memop.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.rcwclr64memop.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0x3820A000u: { // RCWSWP_64_memop
@@ -41231,7 +41231,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.rcwswp64memop.Rs, true));
                         result.operands.push_back(Operand::gp(enc.rcwswp64memop.Rt, true));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.rcwswp64memop.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.rcwswp64memop.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0x3820B000u: { // RCWSET_64_memop
@@ -41244,7 +41244,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.rcwset64memop.Rs, true));
                         result.operands.push_back(Operand::gp(enc.rcwset64memop.Rt, true));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.rcwset64memop.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.rcwset64memop.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0x38600000u: { // LDADDLB_32_memop
@@ -41257,7 +41257,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldaddlb32memop.Rs, false));
                         result.operands.push_back(Operand::gp(enc.ldaddlb32memop.Rt, false));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldaddlb32memop.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldaddlb32memop.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0x38601000u: { // LDCLRLB_32_memop
@@ -41270,7 +41270,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldclrlb32memop.Rs, false));
                         result.operands.push_back(Operand::gp(enc.ldclrlb32memop.Rt, false));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldclrlb32memop.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldclrlb32memop.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0x38602000u: { // LDEORLB_32_memop
@@ -41283,7 +41283,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldeorlb32memop.Rs, false));
                         result.operands.push_back(Operand::gp(enc.ldeorlb32memop.Rt, false));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldeorlb32memop.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldeorlb32memop.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0x38603000u: { // LDSETLB_32_memop
@@ -41296,7 +41296,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldsetlb32memop.Rs, false));
                         result.operands.push_back(Operand::gp(enc.ldsetlb32memop.Rt, false));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldsetlb32memop.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldsetlb32memop.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0x38604000u: { // LDSMAXLB_32_memop
@@ -41309,7 +41309,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldsmaxlb32memop.Rs, false));
                         result.operands.push_back(Operand::gp(enc.ldsmaxlb32memop.Rt, false));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldsmaxlb32memop.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldsmaxlb32memop.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0x38605000u: { // LDSMINLB_32_memop
@@ -41322,7 +41322,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldsminlb32memop.Rs, false));
                         result.operands.push_back(Operand::gp(enc.ldsminlb32memop.Rt, false));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldsminlb32memop.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldsminlb32memop.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0x38606000u: { // LDUMAXLB_32_memop
@@ -41335,7 +41335,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldumaxlb32memop.Rs, false));
                         result.operands.push_back(Operand::gp(enc.ldumaxlb32memop.Rt, false));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldumaxlb32memop.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldumaxlb32memop.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0x38607000u: { // LDUMINLB_32_memop
@@ -41348,7 +41348,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.lduminlb32memop.Rs, false));
                         result.operands.push_back(Operand::gp(enc.lduminlb32memop.Rt, false));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.lduminlb32memop.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.lduminlb32memop.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0x38608000u: { // SWPLB_32_memop
@@ -41361,7 +41361,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.swplb32memop.Rs, false));
                         result.operands.push_back(Operand::gp(enc.swplb32memop.Rt, false));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.swplb32memop.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.swplb32memop.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0x38609000u: { // RCWCLRL_64_memop
@@ -41374,7 +41374,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.rcwclrl64memop.Rs, true));
                         result.operands.push_back(Operand::gp(enc.rcwclrl64memop.Rt, true));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.rcwclrl64memop.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.rcwclrl64memop.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0x3860A000u: { // RCWSWPL_64_memop
@@ -41387,7 +41387,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.rcwswpl64memop.Rs, true));
                         result.operands.push_back(Operand::gp(enc.rcwswpl64memop.Rt, true));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.rcwswpl64memop.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.rcwswpl64memop.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0x3860B000u: { // RCWSETL_64_memop
@@ -41400,7 +41400,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.rcwsetl64memop.Rs, true));
                         result.operands.push_back(Operand::gp(enc.rcwsetl64memop.Rt, true));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.rcwsetl64memop.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.rcwsetl64memop.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0x38A00000u: { // LDADDAB_32_memop
@@ -41413,7 +41413,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldaddab32memop.Rs, false));
                         result.operands.push_back(Operand::gp(enc.ldaddab32memop.Rt, false));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldaddab32memop.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldaddab32memop.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0x38A01000u: { // LDCLRAB_32_memop
@@ -41426,7 +41426,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldclrab32memop.Rs, false));
                         result.operands.push_back(Operand::gp(enc.ldclrab32memop.Rt, false));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldclrab32memop.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldclrab32memop.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0x38A02000u: { // LDEORAB_32_memop
@@ -41439,7 +41439,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldeorab32memop.Rs, false));
                         result.operands.push_back(Operand::gp(enc.ldeorab32memop.Rt, false));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldeorab32memop.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldeorab32memop.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0x38A03000u: { // LDSETAB_32_memop
@@ -41452,7 +41452,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldsetab32memop.Rs, false));
                         result.operands.push_back(Operand::gp(enc.ldsetab32memop.Rt, false));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldsetab32memop.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldsetab32memop.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0x38A04000u: { // LDSMAXAB_32_memop
@@ -41465,7 +41465,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldsmaxab32memop.Rs, false));
                         result.operands.push_back(Operand::gp(enc.ldsmaxab32memop.Rt, false));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldsmaxab32memop.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldsmaxab32memop.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0x38A05000u: { // LDSMINAB_32_memop
@@ -41478,7 +41478,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldsminab32memop.Rs, false));
                         result.operands.push_back(Operand::gp(enc.ldsminab32memop.Rt, false));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldsminab32memop.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldsminab32memop.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0x38A06000u: { // LDUMAXAB_32_memop
@@ -41491,7 +41491,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldumaxab32memop.Rs, false));
                         result.operands.push_back(Operand::gp(enc.ldumaxab32memop.Rt, false));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldumaxab32memop.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldumaxab32memop.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0x38A07000u: { // LDUMINAB_32_memop
@@ -41504,7 +41504,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.lduminab32memop.Rs, false));
                         result.operands.push_back(Operand::gp(enc.lduminab32memop.Rt, false));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.lduminab32memop.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.lduminab32memop.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0x38A08000u: { // SWPAB_32_memop
@@ -41517,7 +41517,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.swpab32memop.Rs, false));
                         result.operands.push_back(Operand::gp(enc.swpab32memop.Rt, false));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.swpab32memop.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.swpab32memop.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0x38A09000u: { // RCWCLRA_64_memop
@@ -41530,7 +41530,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.rcwclra64memop.Rs, true));
                         result.operands.push_back(Operand::gp(enc.rcwclra64memop.Rt, true));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.rcwclra64memop.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.rcwclra64memop.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0x38A0A000u: { // RCWSWPA_64_memop
@@ -41543,7 +41543,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.rcwswpa64memop.Rs, true));
                         result.operands.push_back(Operand::gp(enc.rcwswpa64memop.Rt, true));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.rcwswpa64memop.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.rcwswpa64memop.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0x38A0B000u: { // RCWSETA_64_memop
@@ -41556,7 +41556,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.rcwseta64memop.Rs, true));
                         result.operands.push_back(Operand::gp(enc.rcwseta64memop.Rt, true));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.rcwseta64memop.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.rcwseta64memop.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0x38A0C000u: { // LDAPRB_32L_memop
@@ -41568,7 +41568,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldaprb32l_memop.Rt, false));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldaprb32l_memop.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldaprb32l_memop.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0x38E00000u: { // LDADDALB_32_memop
@@ -41581,7 +41581,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldaddalb32memop.Rs, false));
                         result.operands.push_back(Operand::gp(enc.ldaddalb32memop.Rt, false));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldaddalb32memop.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldaddalb32memop.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0x38E01000u: { // LDCLRALB_32_memop
@@ -41594,7 +41594,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldclralb32memop.Rs, false));
                         result.operands.push_back(Operand::gp(enc.ldclralb32memop.Rt, false));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldclralb32memop.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldclralb32memop.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0x38E02000u: { // LDEORALB_32_memop
@@ -41607,7 +41607,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldeoralb32memop.Rs, false));
                         result.operands.push_back(Operand::gp(enc.ldeoralb32memop.Rt, false));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldeoralb32memop.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldeoralb32memop.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0x38E03000u: { // LDSETALB_32_memop
@@ -41620,7 +41620,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldsetalb32memop.Rs, false));
                         result.operands.push_back(Operand::gp(enc.ldsetalb32memop.Rt, false));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldsetalb32memop.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldsetalb32memop.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0x38E04000u: { // LDSMAXALB_32_memop
@@ -41633,7 +41633,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldsmaxalb32memop.Rs, false));
                         result.operands.push_back(Operand::gp(enc.ldsmaxalb32memop.Rt, false));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldsmaxalb32memop.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldsmaxalb32memop.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0x38E05000u: { // LDSMINALB_32_memop
@@ -41646,7 +41646,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldsminalb32memop.Rs, false));
                         result.operands.push_back(Operand::gp(enc.ldsminalb32memop.Rt, false));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldsminalb32memop.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldsminalb32memop.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0x38E06000u: { // LDUMAXALB_32_memop
@@ -41659,7 +41659,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldumaxalb32memop.Rs, false));
                         result.operands.push_back(Operand::gp(enc.ldumaxalb32memop.Rt, false));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldumaxalb32memop.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldumaxalb32memop.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0x38E07000u: { // LDUMINALB_32_memop
@@ -41672,7 +41672,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.lduminalb32memop.Rs, false));
                         result.operands.push_back(Operand::gp(enc.lduminalb32memop.Rt, false));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.lduminalb32memop.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.lduminalb32memop.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0x38E08000u: { // SWPALB_32_memop
@@ -41685,7 +41685,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.swpalb32memop.Rs, false));
                         result.operands.push_back(Operand::gp(enc.swpalb32memop.Rt, false));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.swpalb32memop.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.swpalb32memop.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0x38E09000u: { // RCWCLRAL_64_memop
@@ -41698,7 +41698,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.rcwclral64memop.Rs, true));
                         result.operands.push_back(Operand::gp(enc.rcwclral64memop.Rt, true));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.rcwclral64memop.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.rcwclral64memop.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0x38E0A000u: { // RCWSWPAL_64_memop
@@ -41711,7 +41711,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.rcwswpal64memop.Rs, true));
                         result.operands.push_back(Operand::gp(enc.rcwswpal64memop.Rt, true));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.rcwswpal64memop.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.rcwswpal64memop.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0x38E0B000u: { // RCWSETAL_64_memop
@@ -41724,7 +41724,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.rcwsetal64memop.Rs, true));
                         result.operands.push_back(Operand::gp(enc.rcwsetal64memop.Rt, true));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.rcwsetal64memop.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.rcwsetal64memop.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0x3C200000u: { // LDBFADD_16
@@ -42081,7 +42081,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.cash_c32comswap.Rs, false));
                         result.operands.push_back(Operand::gp(enc.cash_c32comswap.Rt, false));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.cash_c32comswap.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.cash_c32comswap.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0x48A0FC00u: { // CASLH_C32_comswap
@@ -42094,7 +42094,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.caslh_c32comswap.Rs, false));
                         result.operands.push_back(Operand::gp(enc.caslh_c32comswap.Rt, false));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.caslh_c32comswap.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.caslh_c32comswap.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0x48E07C00u: { // CASAH_C32_comswap
@@ -42107,7 +42107,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.casah_c32comswap.Rs, false));
                         result.operands.push_back(Operand::gp(enc.casah_c32comswap.Rt, false));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.casah_c32comswap.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.casah_c32comswap.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0x48E0FC00u: { // CASALH_C32_comswap
@@ -42120,7 +42120,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.casalh_c32comswap.Rs, false));
                         result.operands.push_back(Operand::gp(enc.casalh_c32comswap.Rt, false));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.casalh_c32comswap.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.casalh_c32comswap.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0x49807C00u: { // CASPT_CP64_comswappr_unpriv
@@ -42197,7 +42197,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldtadd64memop_unpriv.Rs, true));
                         result.operands.push_back(Operand::gp(enc.ldtadd64memop_unpriv.Rt, true));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldtadd64memop_unpriv.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldtadd64memop_unpriv.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0x59200800u: { // RCWSCAS_C64_rcwcomswap
@@ -42210,7 +42210,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.rcwscas_c64rcwcomswap.Rs, true));
                         result.operands.push_back(Operand::gp(enc.rcwscas_c64rcwcomswap.Rt, true));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.rcwscas_c64rcwcomswap.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.rcwscas_c64rcwcomswap.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0x59200C00u: { // RCWSCASP_C64_rcwcomswappr
@@ -42237,7 +42237,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldtclr64memop_unpriv.Rs, true));
                         result.operands.push_back(Operand::gp(enc.ldtclr64memop_unpriv.Rt, true));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldtclr64memop_unpriv.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldtclr64memop_unpriv.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0x59203400u: { // LDTSET_64_memop_unpriv
@@ -42250,7 +42250,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldtset64memop_unpriv.Rs, true));
                         result.operands.push_back(Operand::gp(enc.ldtset64memop_unpriv.Rt, true));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldtset64memop_unpriv.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldtset64memop_unpriv.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0x59208400u: { // SWPT_64_memop_unpriv
@@ -42263,7 +42263,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.swpt64memop_unpriv.Rs, true));
                         result.operands.push_back(Operand::gp(enc.swpt64memop_unpriv.Rt, true));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.swpt64memop_unpriv.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.swpt64memop_unpriv.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0x59209000u: { // RCWSCLRP_128_memop_128
@@ -42278,7 +42278,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         if (enc.rcwsclrp128memop128.Rt2 == 31u) return std::nullopt;
                         result.operands.push_back(Operand::gp(enc.rcwsclrp128memop128.Rt, true));
                         result.operands.push_back(Operand::gp(enc.rcwsclrp128memop128.Rt2, true));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.rcwsclrp128memop128.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.rcwsclrp128memop128.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0x5920A000u: { // RCWSSWPP_128_memop_128
@@ -42293,7 +42293,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         if (enc.rcwsswpp128memop128.Rt2 == 31u) return std::nullopt;
                         result.operands.push_back(Operand::gp(enc.rcwsswpp128memop128.Rt, true));
                         result.operands.push_back(Operand::gp(enc.rcwsswpp128memop128.Rt2, true));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.rcwsswpp128memop128.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.rcwsswpp128memop128.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0x5920B000u: { // RCWSSETP_128_memop_128
@@ -42308,7 +42308,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         if (enc.rcwssetp128memop128.Rt2 == 31u) return std::nullopt;
                         result.operands.push_back(Operand::gp(enc.rcwssetp128memop128.Rt, true));
                         result.operands.push_back(Operand::gp(enc.rcwssetp128memop128.Rt2, true));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.rcwssetp128memop128.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.rcwssetp128memop128.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0x59600400u: { // LDTADDL_64_memop_unpriv
@@ -42321,7 +42321,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldtaddl64memop_unpriv.Rs, true));
                         result.operands.push_back(Operand::gp(enc.ldtaddl64memop_unpriv.Rt, true));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldtaddl64memop_unpriv.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldtaddl64memop_unpriv.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0x59600800u: { // RCWSCASL_C64_rcwcomswap
@@ -42334,7 +42334,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.rcwscasl_c64rcwcomswap.Rs, true));
                         result.operands.push_back(Operand::gp(enc.rcwscasl_c64rcwcomswap.Rt, true));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.rcwscasl_c64rcwcomswap.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.rcwscasl_c64rcwcomswap.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0x59600C00u: { // RCWSCASPL_C64_rcwcomswappr
@@ -42361,7 +42361,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldtclrl64memop_unpriv.Rs, true));
                         result.operands.push_back(Operand::gp(enc.ldtclrl64memop_unpriv.Rt, true));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldtclrl64memop_unpriv.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldtclrl64memop_unpriv.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0x59603400u: { // LDTSETL_64_memop_unpriv
@@ -42374,7 +42374,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldtsetl64memop_unpriv.Rs, true));
                         result.operands.push_back(Operand::gp(enc.ldtsetl64memop_unpriv.Rt, true));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldtsetl64memop_unpriv.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldtsetl64memop_unpriv.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0x59608400u: { // SWPTL_64_memop_unpriv
@@ -42387,7 +42387,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.swptl64memop_unpriv.Rs, true));
                         result.operands.push_back(Operand::gp(enc.swptl64memop_unpriv.Rt, true));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.swptl64memop_unpriv.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.swptl64memop_unpriv.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0x59609000u: { // RCWSCLRPL_128_memop_128
@@ -42402,7 +42402,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         if (enc.rcwsclrpl128memop128.Rt2 == 31u) return std::nullopt;
                         result.operands.push_back(Operand::gp(enc.rcwsclrpl128memop128.Rt, true));
                         result.operands.push_back(Operand::gp(enc.rcwsclrpl128memop128.Rt2, true));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.rcwsclrpl128memop128.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.rcwsclrpl128memop128.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0x5960A000u: { // RCWSSWPPL_128_memop_128
@@ -42417,7 +42417,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         if (enc.rcwsswppl128memop128.Rt2 == 31u) return std::nullopt;
                         result.operands.push_back(Operand::gp(enc.rcwsswppl128memop128.Rt, true));
                         result.operands.push_back(Operand::gp(enc.rcwsswppl128memop128.Rt2, true));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.rcwsswppl128memop128.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.rcwsswppl128memop128.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0x5960B000u: { // RCWSSETPL_128_memop_128
@@ -42432,7 +42432,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         if (enc.rcwssetpl128memop128.Rt2 == 31u) return std::nullopt;
                         result.operands.push_back(Operand::gp(enc.rcwssetpl128memop128.Rt, true));
                         result.operands.push_back(Operand::gp(enc.rcwssetpl128memop128.Rt2, true));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.rcwssetpl128memop128.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.rcwssetpl128memop128.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0x59A00400u: { // LDTADDA_64_memop_unpriv
@@ -42445,7 +42445,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldtadda64memop_unpriv.Rs, true));
                         result.operands.push_back(Operand::gp(enc.ldtadda64memop_unpriv.Rt, true));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldtadda64memop_unpriv.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldtadda64memop_unpriv.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0x59A00800u: { // RCWSCASA_C64_rcwcomswap
@@ -42458,7 +42458,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.rcwscasa_c64rcwcomswap.Rs, true));
                         result.operands.push_back(Operand::gp(enc.rcwscasa_c64rcwcomswap.Rt, true));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.rcwscasa_c64rcwcomswap.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.rcwscasa_c64rcwcomswap.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0x59A00C00u: { // RCWSCASPA_C64_rcwcomswappr
@@ -42485,7 +42485,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldtclra64memop_unpriv.Rs, true));
                         result.operands.push_back(Operand::gp(enc.ldtclra64memop_unpriv.Rt, true));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldtclra64memop_unpriv.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldtclra64memop_unpriv.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0x59A03400u: { // LDTSETA_64_memop_unpriv
@@ -42498,7 +42498,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldtseta64memop_unpriv.Rs, true));
                         result.operands.push_back(Operand::gp(enc.ldtseta64memop_unpriv.Rt, true));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldtseta64memop_unpriv.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldtseta64memop_unpriv.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0x59A08400u: { // SWPTA_64_memop_unpriv
@@ -42511,7 +42511,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.swpta64memop_unpriv.Rs, true));
                         result.operands.push_back(Operand::gp(enc.swpta64memop_unpriv.Rt, true));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.swpta64memop_unpriv.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.swpta64memop_unpriv.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0x59A09000u: { // RCWSCLRPA_128_memop_128
@@ -42526,7 +42526,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         if (enc.rcwsclrpa128memop128.Rt2 == 31u) return std::nullopt;
                         result.operands.push_back(Operand::gp(enc.rcwsclrpa128memop128.Rt, true));
                         result.operands.push_back(Operand::gp(enc.rcwsclrpa128memop128.Rt2, true));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.rcwsclrpa128memop128.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.rcwsclrpa128memop128.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0x59A0A000u: { // RCWSSWPPA_128_memop_128
@@ -42541,7 +42541,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         if (enc.rcwsswppa128memop128.Rt2 == 31u) return std::nullopt;
                         result.operands.push_back(Operand::gp(enc.rcwsswppa128memop128.Rt, true));
                         result.operands.push_back(Operand::gp(enc.rcwsswppa128memop128.Rt2, true));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.rcwsswppa128memop128.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.rcwsswppa128memop128.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0x59A0B000u: { // RCWSSETPA_128_memop_128
@@ -42556,7 +42556,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         if (enc.rcwssetpa128memop128.Rt2 == 31u) return std::nullopt;
                         result.operands.push_back(Operand::gp(enc.rcwssetpa128memop128.Rt, true));
                         result.operands.push_back(Operand::gp(enc.rcwssetpa128memop128.Rt2, true));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.rcwssetpa128memop128.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.rcwssetpa128memop128.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0x59E00400u: { // LDTADDAL_64_memop_unpriv
@@ -42569,7 +42569,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldtaddal64memop_unpriv.Rs, true));
                         result.operands.push_back(Operand::gp(enc.ldtaddal64memop_unpriv.Rt, true));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldtaddal64memop_unpriv.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldtaddal64memop_unpriv.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0x59E00800u: { // RCWSCASAL_C64_rcwcomswap
@@ -42582,7 +42582,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.rcwscasal_c64rcwcomswap.Rs, true));
                         result.operands.push_back(Operand::gp(enc.rcwscasal_c64rcwcomswap.Rt, true));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.rcwscasal_c64rcwcomswap.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.rcwscasal_c64rcwcomswap.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0x59E00C00u: { // RCWSCASPAL_C64_rcwcomswappr
@@ -42609,7 +42609,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldtclral64memop_unpriv.Rs, true));
                         result.operands.push_back(Operand::gp(enc.ldtclral64memop_unpriv.Rt, true));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldtclral64memop_unpriv.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldtclral64memop_unpriv.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0x59E03400u: { // LDTSETAL_64_memop_unpriv
@@ -42622,7 +42622,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldtsetal64memop_unpriv.Rs, true));
                         result.operands.push_back(Operand::gp(enc.ldtsetal64memop_unpriv.Rt, true));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldtsetal64memop_unpriv.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldtsetal64memop_unpriv.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0x59E08400u: { // SWPTAL_64_memop_unpriv
@@ -42635,7 +42635,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.swptal64memop_unpriv.Rs, true));
                         result.operands.push_back(Operand::gp(enc.swptal64memop_unpriv.Rt, true));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.swptal64memop_unpriv.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.swptal64memop_unpriv.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0x59E09000u: { // RCWSCLRPAL_128_memop_128
@@ -42650,7 +42650,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         if (enc.rcwsclrpal128memop128.Rt2 == 31u) return std::nullopt;
                         result.operands.push_back(Operand::gp(enc.rcwsclrpal128memop128.Rt, true));
                         result.operands.push_back(Operand::gp(enc.rcwsclrpal128memop128.Rt2, true));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.rcwsclrpal128memop128.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.rcwsclrpal128memop128.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0x59E0A000u: { // RCWSSWPPAL_128_memop_128
@@ -42665,7 +42665,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         if (enc.rcwsswppal128memop128.Rt2 == 31u) return std::nullopt;
                         result.operands.push_back(Operand::gp(enc.rcwsswppal128memop128.Rt, true));
                         result.operands.push_back(Operand::gp(enc.rcwsswppal128memop128.Rt2, true));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.rcwsswppal128memop128.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.rcwsswppal128memop128.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0x59E0B000u: { // RCWSSETPAL_128_memop_128
@@ -42680,7 +42680,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         if (enc.rcwssetpal128memop128.Rt2 == 31u) return std::nullopt;
                         result.operands.push_back(Operand::gp(enc.rcwssetpal128memop128.Rt, true));
                         result.operands.push_back(Operand::gp(enc.rcwssetpal128memop128.Rt2, true));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.rcwssetpal128memop128.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.rcwssetpal128memop128.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0x78200000u: { // LDADDH_32_memop
@@ -42693,7 +42693,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldaddh32memop.Rs, false));
                         result.operands.push_back(Operand::gp(enc.ldaddh32memop.Rt, false));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldaddh32memop.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldaddh32memop.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0x78201000u: { // LDCLRH_32_memop
@@ -42706,7 +42706,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldclrh32memop.Rs, false));
                         result.operands.push_back(Operand::gp(enc.ldclrh32memop.Rt, false));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldclrh32memop.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldclrh32memop.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0x78202000u: { // LDEORH_32_memop
@@ -42719,7 +42719,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldeorh32memop.Rs, false));
                         result.operands.push_back(Operand::gp(enc.ldeorh32memop.Rt, false));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldeorh32memop.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldeorh32memop.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0x78203000u: { // LDSETH_32_memop
@@ -42732,7 +42732,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldseth32memop.Rs, false));
                         result.operands.push_back(Operand::gp(enc.ldseth32memop.Rt, false));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldseth32memop.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldseth32memop.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0x78204000u: { // LDSMAXH_32_memop
@@ -42745,7 +42745,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldsmaxh32memop.Rs, false));
                         result.operands.push_back(Operand::gp(enc.ldsmaxh32memop.Rt, false));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldsmaxh32memop.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldsmaxh32memop.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0x78205000u: { // LDSMINH_32_memop
@@ -42758,7 +42758,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldsminh32memop.Rs, false));
                         result.operands.push_back(Operand::gp(enc.ldsminh32memop.Rt, false));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldsminh32memop.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldsminh32memop.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0x78206000u: { // LDUMAXH_32_memop
@@ -42771,7 +42771,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldumaxh32memop.Rs, false));
                         result.operands.push_back(Operand::gp(enc.ldumaxh32memop.Rt, false));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldumaxh32memop.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldumaxh32memop.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0x78207000u: { // LDUMINH_32_memop
@@ -42784,7 +42784,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.lduminh32memop.Rs, false));
                         result.operands.push_back(Operand::gp(enc.lduminh32memop.Rt, false));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.lduminh32memop.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.lduminh32memop.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0x78208000u: { // SWPH_32_memop
@@ -42797,7 +42797,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.swph32memop.Rs, false));
                         result.operands.push_back(Operand::gp(enc.swph32memop.Rt, false));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.swph32memop.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.swph32memop.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0x78209000u: { // RCWSCLR_64_memop
@@ -42810,7 +42810,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.rcwsclr64memop.Rs, true));
                         result.operands.push_back(Operand::gp(enc.rcwsclr64memop.Rt, true));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.rcwsclr64memop.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.rcwsclr64memop.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0x7820A000u: { // RCWSSWP_64_memop
@@ -42823,7 +42823,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.rcwsswp64memop.Rs, true));
                         result.operands.push_back(Operand::gp(enc.rcwsswp64memop.Rt, true));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.rcwsswp64memop.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.rcwsswp64memop.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0x7820B000u: { // RCWSSET_64_memop
@@ -42836,7 +42836,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.rcwsset64memop.Rs, true));
                         result.operands.push_back(Operand::gp(enc.rcwsset64memop.Rt, true));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.rcwsset64memop.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.rcwsset64memop.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0x78600000u: { // LDADDLH_32_memop
@@ -42849,7 +42849,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldaddlh32memop.Rs, false));
                         result.operands.push_back(Operand::gp(enc.ldaddlh32memop.Rt, false));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldaddlh32memop.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldaddlh32memop.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0x78601000u: { // LDCLRLH_32_memop
@@ -42862,7 +42862,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldclrlh32memop.Rs, false));
                         result.operands.push_back(Operand::gp(enc.ldclrlh32memop.Rt, false));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldclrlh32memop.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldclrlh32memop.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0x78602000u: { // LDEORLH_32_memop
@@ -42875,7 +42875,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldeorlh32memop.Rs, false));
                         result.operands.push_back(Operand::gp(enc.ldeorlh32memop.Rt, false));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldeorlh32memop.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldeorlh32memop.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0x78603000u: { // LDSETLH_32_memop
@@ -42888,7 +42888,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldsetlh32memop.Rs, false));
                         result.operands.push_back(Operand::gp(enc.ldsetlh32memop.Rt, false));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldsetlh32memop.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldsetlh32memop.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0x78604000u: { // LDSMAXLH_32_memop
@@ -42901,7 +42901,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldsmaxlh32memop.Rs, false));
                         result.operands.push_back(Operand::gp(enc.ldsmaxlh32memop.Rt, false));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldsmaxlh32memop.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldsmaxlh32memop.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0x78605000u: { // LDSMINLH_32_memop
@@ -42914,7 +42914,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldsminlh32memop.Rs, false));
                         result.operands.push_back(Operand::gp(enc.ldsminlh32memop.Rt, false));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldsminlh32memop.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldsminlh32memop.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0x78606000u: { // LDUMAXLH_32_memop
@@ -42927,7 +42927,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldumaxlh32memop.Rs, false));
                         result.operands.push_back(Operand::gp(enc.ldumaxlh32memop.Rt, false));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldumaxlh32memop.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldumaxlh32memop.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0x78607000u: { // LDUMINLH_32_memop
@@ -42940,7 +42940,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.lduminlh32memop.Rs, false));
                         result.operands.push_back(Operand::gp(enc.lduminlh32memop.Rt, false));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.lduminlh32memop.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.lduminlh32memop.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0x78608000u: { // SWPLH_32_memop
@@ -42953,7 +42953,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.swplh32memop.Rs, false));
                         result.operands.push_back(Operand::gp(enc.swplh32memop.Rt, false));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.swplh32memop.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.swplh32memop.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0x78609000u: { // RCWSCLRL_64_memop
@@ -42966,7 +42966,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.rcwsclrl64memop.Rs, true));
                         result.operands.push_back(Operand::gp(enc.rcwsclrl64memop.Rt, true));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.rcwsclrl64memop.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.rcwsclrl64memop.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0x7860A000u: { // RCWSSWPL_64_memop
@@ -42979,7 +42979,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.rcwsswpl64memop.Rs, true));
                         result.operands.push_back(Operand::gp(enc.rcwsswpl64memop.Rt, true));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.rcwsswpl64memop.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.rcwsswpl64memop.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0x7860B000u: { // RCWSSETL_64_memop
@@ -42992,7 +42992,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.rcwssetl64memop.Rs, true));
                         result.operands.push_back(Operand::gp(enc.rcwssetl64memop.Rt, true));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.rcwssetl64memop.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.rcwssetl64memop.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0x78A00000u: { // LDADDAH_32_memop
@@ -43005,7 +43005,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldaddah32memop.Rs, false));
                         result.operands.push_back(Operand::gp(enc.ldaddah32memop.Rt, false));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldaddah32memop.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldaddah32memop.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0x78A01000u: { // LDCLRAH_32_memop
@@ -43018,7 +43018,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldclrah32memop.Rs, false));
                         result.operands.push_back(Operand::gp(enc.ldclrah32memop.Rt, false));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldclrah32memop.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldclrah32memop.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0x78A02000u: { // LDEORAH_32_memop
@@ -43031,7 +43031,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldeorah32memop.Rs, false));
                         result.operands.push_back(Operand::gp(enc.ldeorah32memop.Rt, false));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldeorah32memop.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldeorah32memop.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0x78A03000u: { // LDSETAH_32_memop
@@ -43044,7 +43044,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldsetah32memop.Rs, false));
                         result.operands.push_back(Operand::gp(enc.ldsetah32memop.Rt, false));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldsetah32memop.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldsetah32memop.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0x78A04000u: { // LDSMAXAH_32_memop
@@ -43057,7 +43057,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldsmaxah32memop.Rs, false));
                         result.operands.push_back(Operand::gp(enc.ldsmaxah32memop.Rt, false));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldsmaxah32memop.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldsmaxah32memop.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0x78A05000u: { // LDSMINAH_32_memop
@@ -43070,7 +43070,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldsminah32memop.Rs, false));
                         result.operands.push_back(Operand::gp(enc.ldsminah32memop.Rt, false));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldsminah32memop.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldsminah32memop.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0x78A06000u: { // LDUMAXAH_32_memop
@@ -43083,7 +43083,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldumaxah32memop.Rs, false));
                         result.operands.push_back(Operand::gp(enc.ldumaxah32memop.Rt, false));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldumaxah32memop.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldumaxah32memop.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0x78A07000u: { // LDUMINAH_32_memop
@@ -43096,7 +43096,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.lduminah32memop.Rs, false));
                         result.operands.push_back(Operand::gp(enc.lduminah32memop.Rt, false));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.lduminah32memop.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.lduminah32memop.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0x78A08000u: { // SWPAH_32_memop
@@ -43109,7 +43109,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.swpah32memop.Rs, false));
                         result.operands.push_back(Operand::gp(enc.swpah32memop.Rt, false));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.swpah32memop.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.swpah32memop.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0x78A09000u: { // RCWSCLRA_64_memop
@@ -43122,7 +43122,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.rcwsclra64memop.Rs, true));
                         result.operands.push_back(Operand::gp(enc.rcwsclra64memop.Rt, true));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.rcwsclra64memop.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.rcwsclra64memop.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0x78A0A000u: { // RCWSSWPA_64_memop
@@ -43135,7 +43135,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.rcwsswpa64memop.Rs, true));
                         result.operands.push_back(Operand::gp(enc.rcwsswpa64memop.Rt, true));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.rcwsswpa64memop.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.rcwsswpa64memop.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0x78A0B000u: { // RCWSSETA_64_memop
@@ -43148,7 +43148,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.rcwsseta64memop.Rs, true));
                         result.operands.push_back(Operand::gp(enc.rcwsseta64memop.Rt, true));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.rcwsseta64memop.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.rcwsseta64memop.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0x78A0C000u: { // LDAPRH_32L_memop
@@ -43160,7 +43160,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldaprh32l_memop.Rt, false));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldaprh32l_memop.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldaprh32l_memop.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0x78E00000u: { // LDADDALH_32_memop
@@ -43173,7 +43173,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldaddalh32memop.Rs, false));
                         result.operands.push_back(Operand::gp(enc.ldaddalh32memop.Rt, false));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldaddalh32memop.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldaddalh32memop.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0x78E01000u: { // LDCLRALH_32_memop
@@ -43186,7 +43186,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldclralh32memop.Rs, false));
                         result.operands.push_back(Operand::gp(enc.ldclralh32memop.Rt, false));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldclralh32memop.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldclralh32memop.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0x78E02000u: { // LDEORALH_32_memop
@@ -43199,7 +43199,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldeoralh32memop.Rs, false));
                         result.operands.push_back(Operand::gp(enc.ldeoralh32memop.Rt, false));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldeoralh32memop.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldeoralh32memop.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0x78E03000u: { // LDSETALH_32_memop
@@ -43212,7 +43212,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldsetalh32memop.Rs, false));
                         result.operands.push_back(Operand::gp(enc.ldsetalh32memop.Rt, false));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldsetalh32memop.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldsetalh32memop.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0x78E04000u: { // LDSMAXALH_32_memop
@@ -43225,7 +43225,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldsmaxalh32memop.Rs, false));
                         result.operands.push_back(Operand::gp(enc.ldsmaxalh32memop.Rt, false));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldsmaxalh32memop.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldsmaxalh32memop.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0x78E05000u: { // LDSMINALH_32_memop
@@ -43238,7 +43238,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldsminalh32memop.Rs, false));
                         result.operands.push_back(Operand::gp(enc.ldsminalh32memop.Rt, false));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldsminalh32memop.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldsminalh32memop.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0x78E06000u: { // LDUMAXALH_32_memop
@@ -43251,7 +43251,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldumaxalh32memop.Rs, false));
                         result.operands.push_back(Operand::gp(enc.ldumaxalh32memop.Rt, false));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldumaxalh32memop.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldumaxalh32memop.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0x78E07000u: { // LDUMINALH_32_memop
@@ -43264,7 +43264,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.lduminalh32memop.Rs, false));
                         result.operands.push_back(Operand::gp(enc.lduminalh32memop.Rt, false));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.lduminalh32memop.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.lduminalh32memop.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0x78E08000u: { // SWPALH_32_memop
@@ -43277,7 +43277,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.swpalh32memop.Rs, false));
                         result.operands.push_back(Operand::gp(enc.swpalh32memop.Rt, false));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.swpalh32memop.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.swpalh32memop.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0x78E09000u: { // RCWSCLRAL_64_memop
@@ -43290,7 +43290,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.rcwsclral64memop.Rs, true));
                         result.operands.push_back(Operand::gp(enc.rcwsclral64memop.Rt, true));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.rcwsclral64memop.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.rcwsclral64memop.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0x78E0A000u: { // RCWSSWPAL_64_memop
@@ -43303,7 +43303,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.rcwsswpal64memop.Rs, true));
                         result.operands.push_back(Operand::gp(enc.rcwsswpal64memop.Rt, true));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.rcwsswpal64memop.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.rcwsswpal64memop.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0x78E0B000u: { // RCWSSETAL_64_memop
@@ -43316,7 +43316,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.rcwssetal64memop.Rs, true));
                         result.operands.push_back(Operand::gp(enc.rcwssetal64memop.Rt, true));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.rcwssetal64memop.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.rcwssetal64memop.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0x7C200000u: { // LDFADD_16
@@ -43609,7 +43609,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.cas_c32comswap.Rs, false));
                         result.operands.push_back(Operand::gp(enc.cas_c32comswap.Rt, false));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.cas_c32comswap.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.cas_c32comswap.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0x88A0FC00u: { // CASL_C32_comswap
@@ -43622,7 +43622,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.casl_c32comswap.Rs, false));
                         result.operands.push_back(Operand::gp(enc.casl_c32comswap.Rt, false));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.casl_c32comswap.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.casl_c32comswap.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0x88E07C00u: { // CASA_C32_comswap
@@ -43635,7 +43635,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.casa_c32comswap.Rs, false));
                         result.operands.push_back(Operand::gp(enc.casa_c32comswap.Rt, false));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.casa_c32comswap.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.casa_c32comswap.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0x88E0FC00u: { // CASAL_C32_comswap
@@ -43648,7 +43648,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.casal_c32comswap.Rs, false));
                         result.operands.push_back(Operand::gp(enc.casal_c32comswap.Rt, false));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.casal_c32comswap.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.casal_c32comswap.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0x99000800u: { // STILP_32SE_ldiappstilp
@@ -43661,7 +43661,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.stilp32se_ldiappstilp.Rt, false));
                         result.operands.push_back(Operand::gp(enc.stilp32se_ldiappstilp.Rt2, false));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.stilp32se_ldiappstilp.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.stilp32se_ldiappstilp.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0x99001800u: { // STILP_32S_ldiappstilp
@@ -43674,7 +43674,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.stilp32s_ldiappstilp.Rt, false));
                         result.operands.push_back(Operand::gp(enc.stilp32s_ldiappstilp.Rt2, false));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.stilp32s_ldiappstilp.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.stilp32s_ldiappstilp.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0x99400800u: { // LDIAPP_32LE_ldiappstilp
@@ -43687,7 +43687,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldiapp32le_ldiappstilp.Rt, false));
                         result.operands.push_back(Operand::gp(enc.ldiapp32le_ldiappstilp.Rt2, false));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldiapp32le_ldiappstilp.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldiapp32le_ldiappstilp.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0x99401800u: { // LDIAPP_32L_ldiappstilp
@@ -43700,7 +43700,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldiapp32l_ldiappstilp.Rt, false));
                         result.operands.push_back(Operand::gp(enc.ldiapp32l_ldiappstilp.Rt2, false));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldiapp32l_ldiappstilp.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldiapp32l_ldiappstilp.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0xB8200000u: { // LDADD_32_memop
@@ -43713,7 +43713,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldadd32memop.Rs, false));
                         result.operands.push_back(Operand::gp(enc.ldadd32memop.Rt, false));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldadd32memop.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldadd32memop.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0xB8201000u: { // LDCLR_32_memop
@@ -43726,7 +43726,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldclr32memop.Rs, false));
                         result.operands.push_back(Operand::gp(enc.ldclr32memop.Rt, false));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldclr32memop.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldclr32memop.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0xB8202000u: { // LDEOR_32_memop
@@ -43739,7 +43739,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldeor32memop.Rs, false));
                         result.operands.push_back(Operand::gp(enc.ldeor32memop.Rt, false));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldeor32memop.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldeor32memop.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0xB8203000u: { // LDSET_32_memop
@@ -43752,7 +43752,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldset32memop.Rs, false));
                         result.operands.push_back(Operand::gp(enc.ldset32memop.Rt, false));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldset32memop.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldset32memop.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0xB8204000u: { // LDSMAX_32_memop
@@ -43765,7 +43765,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldsmax32memop.Rs, false));
                         result.operands.push_back(Operand::gp(enc.ldsmax32memop.Rt, false));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldsmax32memop.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldsmax32memop.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0xB8205000u: { // LDSMIN_32_memop
@@ -43778,7 +43778,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldsmin32memop.Rs, false));
                         result.operands.push_back(Operand::gp(enc.ldsmin32memop.Rt, false));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldsmin32memop.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldsmin32memop.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0xB8206000u: { // LDUMAX_32_memop
@@ -43791,7 +43791,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldumax32memop.Rs, false));
                         result.operands.push_back(Operand::gp(enc.ldumax32memop.Rt, false));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldumax32memop.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldumax32memop.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0xB8207000u: { // LDUMIN_32_memop
@@ -43804,7 +43804,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldumin32memop.Rs, false));
                         result.operands.push_back(Operand::gp(enc.ldumin32memop.Rt, false));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldumin32memop.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldumin32memop.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0xB8208000u: { // SWP_32_memop
@@ -43817,7 +43817,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.swp32memop.Rs, false));
                         result.operands.push_back(Operand::gp(enc.swp32memop.Rt, false));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.swp32memop.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.swp32memop.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0xB8600000u: { // LDADDL_32_memop
@@ -43830,7 +43830,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldaddl32memop.Rs, false));
                         result.operands.push_back(Operand::gp(enc.ldaddl32memop.Rt, false));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldaddl32memop.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldaddl32memop.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0xB8601000u: { // LDCLRL_32_memop
@@ -43843,7 +43843,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldclrl32memop.Rs, false));
                         result.operands.push_back(Operand::gp(enc.ldclrl32memop.Rt, false));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldclrl32memop.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldclrl32memop.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0xB8602000u: { // LDEORL_32_memop
@@ -43856,7 +43856,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldeorl32memop.Rs, false));
                         result.operands.push_back(Operand::gp(enc.ldeorl32memop.Rt, false));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldeorl32memop.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldeorl32memop.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0xB8603000u: { // LDSETL_32_memop
@@ -43869,7 +43869,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldsetl32memop.Rs, false));
                         result.operands.push_back(Operand::gp(enc.ldsetl32memop.Rt, false));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldsetl32memop.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldsetl32memop.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0xB8604000u: { // LDSMAXL_32_memop
@@ -43882,7 +43882,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldsmaxl32memop.Rs, false));
                         result.operands.push_back(Operand::gp(enc.ldsmaxl32memop.Rt, false));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldsmaxl32memop.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldsmaxl32memop.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0xB8605000u: { // LDSMINL_32_memop
@@ -43895,7 +43895,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldsminl32memop.Rs, false));
                         result.operands.push_back(Operand::gp(enc.ldsminl32memop.Rt, false));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldsminl32memop.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldsminl32memop.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0xB8606000u: { // LDUMAXL_32_memop
@@ -43908,7 +43908,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldumaxl32memop.Rs, false));
                         result.operands.push_back(Operand::gp(enc.ldumaxl32memop.Rt, false));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldumaxl32memop.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldumaxl32memop.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0xB8607000u: { // LDUMINL_32_memop
@@ -43921,7 +43921,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.lduminl32memop.Rs, false));
                         result.operands.push_back(Operand::gp(enc.lduminl32memop.Rt, false));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.lduminl32memop.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.lduminl32memop.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0xB8608000u: { // SWPL_32_memop
@@ -43934,7 +43934,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.swpl32memop.Rs, false));
                         result.operands.push_back(Operand::gp(enc.swpl32memop.Rt, false));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.swpl32memop.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.swpl32memop.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0xB8A00000u: { // LDADDA_32_memop
@@ -43947,7 +43947,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldadda32memop.Rs, false));
                         result.operands.push_back(Operand::gp(enc.ldadda32memop.Rt, false));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldadda32memop.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldadda32memop.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0xB8A01000u: { // LDCLRA_32_memop
@@ -43960,7 +43960,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldclra32memop.Rs, false));
                         result.operands.push_back(Operand::gp(enc.ldclra32memop.Rt, false));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldclra32memop.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldclra32memop.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0xB8A02000u: { // LDEORA_32_memop
@@ -43973,7 +43973,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldeora32memop.Rs, false));
                         result.operands.push_back(Operand::gp(enc.ldeora32memop.Rt, false));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldeora32memop.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldeora32memop.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0xB8A03000u: { // LDSETA_32_memop
@@ -43986,7 +43986,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldseta32memop.Rs, false));
                         result.operands.push_back(Operand::gp(enc.ldseta32memop.Rt, false));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldseta32memop.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldseta32memop.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0xB8A04000u: { // LDSMAXA_32_memop
@@ -43999,7 +43999,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldsmaxa32memop.Rs, false));
                         result.operands.push_back(Operand::gp(enc.ldsmaxa32memop.Rt, false));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldsmaxa32memop.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldsmaxa32memop.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0xB8A05000u: { // LDSMINA_32_memop
@@ -44012,7 +44012,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldsmina32memop.Rs, false));
                         result.operands.push_back(Operand::gp(enc.ldsmina32memop.Rt, false));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldsmina32memop.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldsmina32memop.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0xB8A06000u: { // LDUMAXA_32_memop
@@ -44025,7 +44025,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldumaxa32memop.Rs, false));
                         result.operands.push_back(Operand::gp(enc.ldumaxa32memop.Rt, false));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldumaxa32memop.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldumaxa32memop.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0xB8A07000u: { // LDUMINA_32_memop
@@ -44038,7 +44038,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldumina32memop.Rs, false));
                         result.operands.push_back(Operand::gp(enc.ldumina32memop.Rt, false));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldumina32memop.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldumina32memop.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0xB8A08000u: { // SWPA_32_memop
@@ -44051,7 +44051,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.swpa32memop.Rs, false));
                         result.operands.push_back(Operand::gp(enc.swpa32memop.Rt, false));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.swpa32memop.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.swpa32memop.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0xB8A0C000u: { // LDAPR_32L_memop
@@ -44063,7 +44063,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldapr32l_memop.Rt, false));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldapr32l_memop.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldapr32l_memop.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0xB8E00000u: { // LDADDAL_32_memop
@@ -44076,7 +44076,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldaddal32memop.Rs, false));
                         result.operands.push_back(Operand::gp(enc.ldaddal32memop.Rt, false));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldaddal32memop.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldaddal32memop.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0xB8E01000u: { // LDCLRAL_32_memop
@@ -44089,7 +44089,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldclral32memop.Rs, false));
                         result.operands.push_back(Operand::gp(enc.ldclral32memop.Rt, false));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldclral32memop.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldclral32memop.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0xB8E02000u: { // LDEORAL_32_memop
@@ -44102,7 +44102,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldeoral32memop.Rs, false));
                         result.operands.push_back(Operand::gp(enc.ldeoral32memop.Rt, false));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldeoral32memop.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldeoral32memop.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0xB8E03000u: { // LDSETAL_32_memop
@@ -44115,7 +44115,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldsetal32memop.Rs, false));
                         result.operands.push_back(Operand::gp(enc.ldsetal32memop.Rt, false));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldsetal32memop.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldsetal32memop.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0xB8E04000u: { // LDSMAXAL_32_memop
@@ -44128,7 +44128,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldsmaxal32memop.Rs, false));
                         result.operands.push_back(Operand::gp(enc.ldsmaxal32memop.Rt, false));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldsmaxal32memop.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldsmaxal32memop.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0xB8E05000u: { // LDSMINAL_32_memop
@@ -44141,7 +44141,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldsminal32memop.Rs, false));
                         result.operands.push_back(Operand::gp(enc.ldsminal32memop.Rt, false));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldsminal32memop.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldsminal32memop.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0xB8E06000u: { // LDUMAXAL_32_memop
@@ -44154,7 +44154,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldumaxal32memop.Rs, false));
                         result.operands.push_back(Operand::gp(enc.ldumaxal32memop.Rt, false));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldumaxal32memop.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldumaxal32memop.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0xB8E07000u: { // LDUMINAL_32_memop
@@ -44167,7 +44167,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.lduminal32memop.Rs, false));
                         result.operands.push_back(Operand::gp(enc.lduminal32memop.Rt, false));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.lduminal32memop.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.lduminal32memop.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0xB8E08000u: { // SWPAL_32_memop
@@ -44180,7 +44180,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.swpal32memop.Rs, false));
                         result.operands.push_back(Operand::gp(enc.swpal32memop.Rt, false));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.swpal32memop.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.swpal32memop.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0xBC200000u: { // LDFADD_32
@@ -44473,7 +44473,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.cas_c64comswap.Rs, true));
                         result.operands.push_back(Operand::gp(enc.cas_c64comswap.Rt, true));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.cas_c64comswap.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.cas_c64comswap.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0xC8A0FC00u: { // CASL_C64_comswap
@@ -44486,7 +44486,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.casl_c64comswap.Rs, true));
                         result.operands.push_back(Operand::gp(enc.casl_c64comswap.Rt, true));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.casl_c64comswap.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.casl_c64comswap.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0xC8E07C00u: { // CASA_C64_comswap
@@ -44499,7 +44499,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.casa_c64comswap.Rs, true));
                         result.operands.push_back(Operand::gp(enc.casa_c64comswap.Rt, true));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.casa_c64comswap.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.casa_c64comswap.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0xC8E0FC00u: { // CASAL_C64_comswap
@@ -44512,7 +44512,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.casal_c64comswap.Rs, true));
                         result.operands.push_back(Operand::gp(enc.casal_c64comswap.Rt, true));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.casal_c64comswap.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.casal_c64comswap.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0xC9807C00u: { // CAST_C64_comswap_unpriv
@@ -44525,7 +44525,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.cast_c64comswap_unpriv.Rs, true));
                         result.operands.push_back(Operand::gp(enc.cast_c64comswap_unpriv.Rt, true));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.cast_c64comswap_unpriv.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.cast_c64comswap_unpriv.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0xC980FC00u: { // CASLT_C64_comswap_unpriv
@@ -44538,7 +44538,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.caslt_c64comswap_unpriv.Rs, true));
                         result.operands.push_back(Operand::gp(enc.caslt_c64comswap_unpriv.Rt, true));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.caslt_c64comswap_unpriv.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.caslt_c64comswap_unpriv.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0xC9C07C00u: { // CASAT_C64_comswap_unpriv
@@ -44551,7 +44551,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.casat_c64comswap_unpriv.Rs, true));
                         result.operands.push_back(Operand::gp(enc.casat_c64comswap_unpriv.Rt, true));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.casat_c64comswap_unpriv.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.casat_c64comswap_unpriv.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0xC9C0FC00u: { // CASALT_C64_comswap_unpriv
@@ -44564,7 +44564,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.casalt_c64comswap_unpriv.Rs, true));
                         result.operands.push_back(Operand::gp(enc.casalt_c64comswap_unpriv.Rt, true));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.casalt_c64comswap_unpriv.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.casalt_c64comswap_unpriv.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0xD9000800u: { // STILP_64SS_ldiappstilp
@@ -44577,7 +44577,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.stilp64ss_ldiappstilp.Rt, true));
                         result.operands.push_back(Operand::gp(enc.stilp64ss_ldiappstilp.Rt2, true));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.stilp64ss_ldiappstilp.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.stilp64ss_ldiappstilp.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0xD9001800u: { // STILP_64S_ldiappstilp
@@ -44590,7 +44590,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.stilp64s_ldiappstilp.Rt, true));
                         result.operands.push_back(Operand::gp(enc.stilp64s_ldiappstilp.Rt2, true));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.stilp64s_ldiappstilp.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.stilp64s_ldiappstilp.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0xD9005800u: { // STLP_64_ldiappstilp
@@ -44603,7 +44603,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.stlp64ldiappstilp.Rt, true));
                         result.operands.push_back(Operand::gp(enc.stlp64ldiappstilp.Rt2, true));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.stlp64ldiappstilp.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.stlp64ldiappstilp.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0xD9400800u: { // LDIAPP_64LS_ldiappstilp
@@ -44616,7 +44616,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldiapp64ls_ldiappstilp.Rt, true));
                         result.operands.push_back(Operand::gp(enc.ldiapp64ls_ldiappstilp.Rt2, true));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldiapp64ls_ldiappstilp.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldiapp64ls_ldiappstilp.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0xD9401800u: { // LDIAPP_64L_ldiappstilp
@@ -44629,7 +44629,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldiapp64l_ldiappstilp.Rt, true));
                         result.operands.push_back(Operand::gp(enc.ldiapp64l_ldiappstilp.Rt2, true));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldiapp64l_ldiappstilp.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldiapp64l_ldiappstilp.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0xD9405800u: { // LDAP_64_ldiappstilp
@@ -44642,7 +44642,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldap64ldiappstilp.Rt, true));
                         result.operands.push_back(Operand::gp(enc.ldap64ldiappstilp.Rt2, true));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldap64ldiappstilp.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldap64ldiappstilp.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0xD9407800u: { // LDAPP_64_ldiappstilp
@@ -44655,7 +44655,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldapp64ldiappstilp.Rt, true));
                         result.operands.push_back(Operand::gp(enc.ldapp64ldiappstilp.Rt2, true));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldapp64ldiappstilp.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldapp64ldiappstilp.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0xF8200000u: { // LDADD_64_memop
@@ -44668,7 +44668,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldadd64memop.Rs, true));
                         result.operands.push_back(Operand::gp(enc.ldadd64memop.Rt, true));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldadd64memop.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldadd64memop.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0xF8201000u: { // LDCLR_64_memop
@@ -44681,7 +44681,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldclr64memop.Rs, true));
                         result.operands.push_back(Operand::gp(enc.ldclr64memop.Rt, true));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldclr64memop.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldclr64memop.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0xF8202000u: { // LDEOR_64_memop
@@ -44694,7 +44694,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldeor64memop.Rs, true));
                         result.operands.push_back(Operand::gp(enc.ldeor64memop.Rt, true));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldeor64memop.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldeor64memop.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0xF8203000u: { // LDSET_64_memop
@@ -44707,7 +44707,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldset64memop.Rs, true));
                         result.operands.push_back(Operand::gp(enc.ldset64memop.Rt, true));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldset64memop.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldset64memop.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0xF8204000u: { // LDSMAX_64_memop
@@ -44720,7 +44720,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldsmax64memop.Rs, true));
                         result.operands.push_back(Operand::gp(enc.ldsmax64memop.Rt, true));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldsmax64memop.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldsmax64memop.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0xF8205000u: { // LDSMIN_64_memop
@@ -44733,7 +44733,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldsmin64memop.Rs, true));
                         result.operands.push_back(Operand::gp(enc.ldsmin64memop.Rt, true));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldsmin64memop.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldsmin64memop.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0xF8206000u: { // LDUMAX_64_memop
@@ -44746,7 +44746,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldumax64memop.Rs, true));
                         result.operands.push_back(Operand::gp(enc.ldumax64memop.Rt, true));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldumax64memop.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldumax64memop.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0xF8207000u: { // LDUMIN_64_memop
@@ -44759,7 +44759,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldumin64memop.Rs, true));
                         result.operands.push_back(Operand::gp(enc.ldumin64memop.Rt, true));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldumin64memop.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldumin64memop.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0xF8208000u: { // SWP_64_memop
@@ -44772,7 +44772,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.swp64memop.Rs, true));
                         result.operands.push_back(Operand::gp(enc.swp64memop.Rt, true));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.swp64memop.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.swp64memop.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0xF820A000u: { // ST64BV0_64_memop
@@ -44785,7 +44785,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.st64bv064memop.Rs, true));
                         result.operands.push_back(Operand::gp(enc.st64bv064memop.Rt, true));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.st64bv064memop.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.st64bv064memop.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0xF820B000u: { // ST64BV_64_memop
@@ -44798,7 +44798,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.st64bv64memop.Rs, true));
                         result.operands.push_back(Operand::gp(enc.st64bv64memop.Rt, true));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.st64bv64memop.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.st64bv64memop.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0xF8600000u: { // LDADDL_64_memop
@@ -44811,7 +44811,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldaddl64memop.Rs, true));
                         result.operands.push_back(Operand::gp(enc.ldaddl64memop.Rt, true));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldaddl64memop.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldaddl64memop.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0xF8601000u: { // LDCLRL_64_memop
@@ -44824,7 +44824,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldclrl64memop.Rs, true));
                         result.operands.push_back(Operand::gp(enc.ldclrl64memop.Rt, true));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldclrl64memop.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldclrl64memop.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0xF8602000u: { // LDEORL_64_memop
@@ -44837,7 +44837,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldeorl64memop.Rs, true));
                         result.operands.push_back(Operand::gp(enc.ldeorl64memop.Rt, true));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldeorl64memop.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldeorl64memop.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0xF8603000u: { // LDSETL_64_memop
@@ -44850,7 +44850,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldsetl64memop.Rs, true));
                         result.operands.push_back(Operand::gp(enc.ldsetl64memop.Rt, true));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldsetl64memop.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldsetl64memop.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0xF8604000u: { // LDSMAXL_64_memop
@@ -44863,7 +44863,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldsmaxl64memop.Rs, true));
                         result.operands.push_back(Operand::gp(enc.ldsmaxl64memop.Rt, true));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldsmaxl64memop.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldsmaxl64memop.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0xF8605000u: { // LDSMINL_64_memop
@@ -44876,7 +44876,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldsminl64memop.Rs, true));
                         result.operands.push_back(Operand::gp(enc.ldsminl64memop.Rt, true));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldsminl64memop.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldsminl64memop.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0xF8606000u: { // LDUMAXL_64_memop
@@ -44889,7 +44889,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldumaxl64memop.Rs, true));
                         result.operands.push_back(Operand::gp(enc.ldumaxl64memop.Rt, true));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldumaxl64memop.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldumaxl64memop.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0xF8607000u: { // LDUMINL_64_memop
@@ -44902,7 +44902,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.lduminl64memop.Rs, true));
                         result.operands.push_back(Operand::gp(enc.lduminl64memop.Rt, true));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.lduminl64memop.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.lduminl64memop.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0xF8608000u: { // SWPL_64_memop
@@ -44915,7 +44915,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.swpl64memop.Rs, true));
                         result.operands.push_back(Operand::gp(enc.swpl64memop.Rt, true));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.swpl64memop.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.swpl64memop.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0xF8A00000u: { // LDADDA_64_memop
@@ -44928,7 +44928,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldadda64memop.Rs, true));
                         result.operands.push_back(Operand::gp(enc.ldadda64memop.Rt, true));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldadda64memop.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldadda64memop.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0xF8A01000u: { // LDCLRA_64_memop
@@ -44941,7 +44941,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldclra64memop.Rs, true));
                         result.operands.push_back(Operand::gp(enc.ldclra64memop.Rt, true));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldclra64memop.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldclra64memop.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0xF8A02000u: { // LDEORA_64_memop
@@ -44954,7 +44954,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldeora64memop.Rs, true));
                         result.operands.push_back(Operand::gp(enc.ldeora64memop.Rt, true));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldeora64memop.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldeora64memop.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0xF8A03000u: { // LDSETA_64_memop
@@ -44967,7 +44967,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldseta64memop.Rs, true));
                         result.operands.push_back(Operand::gp(enc.ldseta64memop.Rt, true));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldseta64memop.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldseta64memop.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0xF8A04000u: { // LDSMAXA_64_memop
@@ -44980,7 +44980,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldsmaxa64memop.Rs, true));
                         result.operands.push_back(Operand::gp(enc.ldsmaxa64memop.Rt, true));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldsmaxa64memop.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldsmaxa64memop.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0xF8A05000u: { // LDSMINA_64_memop
@@ -44993,7 +44993,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldsmina64memop.Rs, true));
                         result.operands.push_back(Operand::gp(enc.ldsmina64memop.Rt, true));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldsmina64memop.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldsmina64memop.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0xF8A06000u: { // LDUMAXA_64_memop
@@ -45006,7 +45006,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldumaxa64memop.Rs, true));
                         result.operands.push_back(Operand::gp(enc.ldumaxa64memop.Rt, true));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldumaxa64memop.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldumaxa64memop.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0xF8A07000u: { // LDUMINA_64_memop
@@ -45019,7 +45019,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldumina64memop.Rs, true));
                         result.operands.push_back(Operand::gp(enc.ldumina64memop.Rt, true));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldumina64memop.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldumina64memop.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0xF8A08000u: { // SWPA_64_memop
@@ -45032,7 +45032,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.swpa64memop.Rs, true));
                         result.operands.push_back(Operand::gp(enc.swpa64memop.Rt, true));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.swpa64memop.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.swpa64memop.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0xF8A0C000u: { // LDAPR_64L_memop
@@ -45044,7 +45044,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldapr64l_memop.Rt, true));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldapr64l_memop.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldapr64l_memop.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0xF8E00000u: { // LDADDAL_64_memop
@@ -45057,7 +45057,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldaddal64memop.Rs, true));
                         result.operands.push_back(Operand::gp(enc.ldaddal64memop.Rt, true));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldaddal64memop.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldaddal64memop.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0xF8E01000u: { // LDCLRAL_64_memop
@@ -45070,7 +45070,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldclral64memop.Rs, true));
                         result.operands.push_back(Operand::gp(enc.ldclral64memop.Rt, true));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldclral64memop.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldclral64memop.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0xF8E02000u: { // LDEORAL_64_memop
@@ -45083,7 +45083,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldeoral64memop.Rs, true));
                         result.operands.push_back(Operand::gp(enc.ldeoral64memop.Rt, true));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldeoral64memop.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldeoral64memop.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0xF8E03000u: { // LDSETAL_64_memop
@@ -45096,7 +45096,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldsetal64memop.Rs, true));
                         result.operands.push_back(Operand::gp(enc.ldsetal64memop.Rt, true));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldsetal64memop.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldsetal64memop.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0xF8E04000u: { // LDSMAXAL_64_memop
@@ -45109,7 +45109,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldsmaxal64memop.Rs, true));
                         result.operands.push_back(Operand::gp(enc.ldsmaxal64memop.Rt, true));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldsmaxal64memop.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldsmaxal64memop.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0xF8E05000u: { // LDSMINAL_64_memop
@@ -45122,7 +45122,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldsminal64memop.Rs, true));
                         result.operands.push_back(Operand::gp(enc.ldsminal64memop.Rt, true));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldsminal64memop.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldsminal64memop.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0xF8E06000u: { // LDUMAXAL_64_memop
@@ -45135,7 +45135,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldumaxal64memop.Rs, true));
                         result.operands.push_back(Operand::gp(enc.ldumaxal64memop.Rt, true));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldumaxal64memop.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldumaxal64memop.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0xF8E07000u: { // LDUMINAL_64_memop
@@ -45148,7 +45148,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.lduminal64memop.Rs, true));
                         result.operands.push_back(Operand::gp(enc.lduminal64memop.Rt, true));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.lduminal64memop.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.lduminal64memop.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0xF8E08000u: { // SWPAL_64_memop
@@ -45161,7 +45161,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.swpal64memop.Rs, true));
                         result.operands.push_back(Operand::gp(enc.swpal64memop.Rt, true));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.swpal64memop.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.swpal64memop.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0xFC200000u: { // LDFADD_64
@@ -45538,7 +45538,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.stxrb_sr32ldstexclr.Rs, false));
                         result.operands.push_back(Operand::gp(enc.stxrb_sr32ldstexclr.Rt, false));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.stxrb_sr32ldstexclr.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.stxrb_sr32ldstexclr.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0x08008000u: { // STLXRB_SR32_ldstexclr
@@ -45551,7 +45551,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.stlxrb_sr32ldstexclr.Rs, false));
                         result.operands.push_back(Operand::gp(enc.stlxrb_sr32ldstexclr.Rt, false));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.stlxrb_sr32ldstexclr.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.stlxrb_sr32ldstexclr.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0x08400000u: { // LDXRB_LR32_ldstexclr
@@ -45563,7 +45563,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldxrb_lr32ldstexclr.Rt, false));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldxrb_lr32ldstexclr.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldxrb_lr32ldstexclr.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0x08408000u: { // LDAXRB_LR32_ldstexclr
@@ -45575,7 +45575,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldaxrb_lr32ldstexclr.Rt, false));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldaxrb_lr32ldstexclr.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldaxrb_lr32ldstexclr.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0x08800000u: { // STLLRB_SL32_ldstord
@@ -45587,7 +45587,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.stllrb_sl32ldstord.Rt, false));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.stllrb_sl32ldstord.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.stllrb_sl32ldstord.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0x08808000u: { // STLRB_SL32_ldstord
@@ -45599,7 +45599,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.stlrb_sl32ldstord.Rt, false));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.stlrb_sl32ldstord.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.stlrb_sl32ldstord.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0x08C00000u: { // LDLARB_LR32_ldstord
@@ -45611,7 +45611,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldlarb_lr32ldstord.Rt, false));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldlarb_lr32ldstord.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldlarb_lr32ldstord.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0x08C08000u: { // LDARB_LR32_ldstord
@@ -45623,7 +45623,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldarb_lr32ldstord.Rt, false));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldarb_lr32ldstord.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldarb_lr32ldstord.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0x48000000u: { // STXRH_SR32_ldstexclr
@@ -45636,7 +45636,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.stxrh_sr32ldstexclr.Rs, false));
                         result.operands.push_back(Operand::gp(enc.stxrh_sr32ldstexclr.Rt, false));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.stxrh_sr32ldstexclr.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.stxrh_sr32ldstexclr.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0x48008000u: { // STLXRH_SR32_ldstexclr
@@ -45649,7 +45649,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.stlxrh_sr32ldstexclr.Rs, false));
                         result.operands.push_back(Operand::gp(enc.stlxrh_sr32ldstexclr.Rt, false));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.stlxrh_sr32ldstexclr.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.stlxrh_sr32ldstexclr.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0x48400000u: { // LDXRH_LR32_ldstexclr
@@ -45661,7 +45661,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldxrh_lr32ldstexclr.Rt, false));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldxrh_lr32ldstexclr.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldxrh_lr32ldstexclr.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0x48408000u: { // LDAXRH_LR32_ldstexclr
@@ -45673,7 +45673,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldaxrh_lr32ldstexclr.Rt, false));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldaxrh_lr32ldstexclr.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldaxrh_lr32ldstexclr.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0x48800000u: { // STLLRH_SL32_ldstord
@@ -45685,7 +45685,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.stllrh_sl32ldstord.Rt, false));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.stllrh_sl32ldstord.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.stllrh_sl32ldstord.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0x48808000u: { // STLRH_SL32_ldstord
@@ -45697,7 +45697,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.stlrh_sl32ldstord.Rt, false));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.stlrh_sl32ldstord.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.stlrh_sl32ldstord.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0x48C00000u: { // LDLARH_LR32_ldstord
@@ -45709,7 +45709,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldlarh_lr32ldstord.Rt, false));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldlarh_lr32ldstord.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldlarh_lr32ldstord.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0x48C08000u: { // LDARH_LR32_ldstord
@@ -45721,7 +45721,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldarh_lr32ldstord.Rt, false));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldarh_lr32ldstord.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldarh_lr32ldstord.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0x88000000u: { // STXR_SR32_ldstexclr
@@ -45734,7 +45734,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.stxr_sr32ldstexclr.Rs, false));
                         result.operands.push_back(Operand::gp(enc.stxr_sr32ldstexclr.Rt, false));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.stxr_sr32ldstexclr.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.stxr_sr32ldstexclr.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0x88008000u: { // STLXR_SR32_ldstexclr
@@ -45747,7 +45747,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.stlxr_sr32ldstexclr.Rs, false));
                         result.operands.push_back(Operand::gp(enc.stlxr_sr32ldstexclr.Rt, false));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.stlxr_sr32ldstexclr.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.stlxr_sr32ldstexclr.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0x88200000u: { // STXP_SP32_ldstexclp
@@ -45761,7 +45761,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.operands.push_back(Operand::gp(enc.stxp_sp32ldstexclp.Rs, false));
                         result.operands.push_back(Operand::gp(enc.stxp_sp32ldstexclp.Rt, false));
                         result.operands.push_back(Operand::gp(enc.stxp_sp32ldstexclp.Rt2, false));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.stxp_sp32ldstexclp.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.stxp_sp32ldstexclp.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0x88208000u: { // STLXP_SP32_ldstexclp
@@ -45775,7 +45775,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.operands.push_back(Operand::gp(enc.stlxp_sp32ldstexclp.Rs, false));
                         result.operands.push_back(Operand::gp(enc.stlxp_sp32ldstexclp.Rt, false));
                         result.operands.push_back(Operand::gp(enc.stlxp_sp32ldstexclp.Rt2, false));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.stlxp_sp32ldstexclp.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.stlxp_sp32ldstexclp.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0x88400000u: { // LDXR_LR32_ldstexclr
@@ -45787,7 +45787,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldxr_lr32ldstexclr.Rt, false));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldxr_lr32ldstexclr.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldxr_lr32ldstexclr.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0x88408000u: { // LDAXR_LR32_ldstexclr
@@ -45799,7 +45799,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldaxr_lr32ldstexclr.Rt, false));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldaxr_lr32ldstexclr.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldaxr_lr32ldstexclr.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0x88600000u: { // LDXP_LP32_ldstexclp
@@ -45812,7 +45812,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldxp_lp32ldstexclp.Rt, false));
                         result.operands.push_back(Operand::gp(enc.ldxp_lp32ldstexclp.Rt2, false));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldxp_lp32ldstexclp.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldxp_lp32ldstexclp.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0x88608000u: { // LDAXP_LP32_ldstexclp
@@ -45825,7 +45825,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldaxp_lp32ldstexclp.Rt, false));
                         result.operands.push_back(Operand::gp(enc.ldaxp_lp32ldstexclp.Rt2, false));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldaxp_lp32ldstexclp.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldaxp_lp32ldstexclp.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0x88800000u: { // STLLR_SL32_ldstord
@@ -45837,7 +45837,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.stllr_sl32ldstord.Rt, false));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.stllr_sl32ldstord.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.stllr_sl32ldstord.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0x88808000u: { // STLR_SL32_ldstord
@@ -45849,7 +45849,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.stlr_sl32ldstord.Rt, false));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.stlr_sl32ldstord.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.stlr_sl32ldstord.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0x88C00000u: { // LDLAR_LR32_ldstord
@@ -45861,7 +45861,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldlar_lr32ldstord.Rt, false));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldlar_lr32ldstord.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldlar_lr32ldstord.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0x88C08000u: { // LDAR_LR32_ldstord
@@ -45873,7 +45873,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldar_lr32ldstord.Rt, false));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldar_lr32ldstord.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldar_lr32ldstord.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0x89000000u: { // STTXR_SR32_ldstexclr_unpriv
@@ -45886,7 +45886,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.sttxr_sr32ldstexclr_unpriv.Rs, false));
                         result.operands.push_back(Operand::gp(enc.sttxr_sr32ldstexclr_unpriv.Rt, false));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.sttxr_sr32ldstexclr_unpriv.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.sttxr_sr32ldstexclr_unpriv.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0x89008000u: { // STLTXR_SR32_ldstexclr_unpriv
@@ -45899,7 +45899,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.stltxr_sr32ldstexclr_unpriv.Rs, false));
                         result.operands.push_back(Operand::gp(enc.stltxr_sr32ldstexclr_unpriv.Rt, false));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.stltxr_sr32ldstexclr_unpriv.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.stltxr_sr32ldstexclr_unpriv.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0x89400000u: { // LDTXR_LR32_ldstexclr_unpriv
@@ -45911,7 +45911,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldtxr_lr32ldstexclr_unpriv.Rt, false));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldtxr_lr32ldstexclr_unpriv.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldtxr_lr32ldstexclr_unpriv.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0x89408000u: { // LDATXR_LR32_ldstexclr_unpriv
@@ -45923,7 +45923,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldatxr_lr32ldstexclr_unpriv.Rt, false));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldatxr_lr32ldstexclr_unpriv.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldatxr_lr32ldstexclr_unpriv.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0xC8000000u: { // STXR_SR64_ldstexclr
@@ -45936,7 +45936,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.stxr_sr64ldstexclr.Rs, false));
                         result.operands.push_back(Operand::gp(enc.stxr_sr64ldstexclr.Rt, true));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.stxr_sr64ldstexclr.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.stxr_sr64ldstexclr.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0xC8008000u: { // STLXR_SR64_ldstexclr
@@ -45949,7 +45949,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.stlxr_sr64ldstexclr.Rs, false));
                         result.operands.push_back(Operand::gp(enc.stlxr_sr64ldstexclr.Rt, true));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.stlxr_sr64ldstexclr.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.stlxr_sr64ldstexclr.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0xC8200000u: { // STXP_SP64_ldstexclp
@@ -45963,7 +45963,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.operands.push_back(Operand::gp(enc.stxp_sp64ldstexclp.Rs, false));
                         result.operands.push_back(Operand::gp(enc.stxp_sp64ldstexclp.Rt, true));
                         result.operands.push_back(Operand::gp(enc.stxp_sp64ldstexclp.Rt2, true));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.stxp_sp64ldstexclp.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.stxp_sp64ldstexclp.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0xC8208000u: { // STLXP_SP64_ldstexclp
@@ -45977,7 +45977,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         result.operands.push_back(Operand::gp(enc.stlxp_sp64ldstexclp.Rs, false));
                         result.operands.push_back(Operand::gp(enc.stlxp_sp64ldstexclp.Rt, true));
                         result.operands.push_back(Operand::gp(enc.stlxp_sp64ldstexclp.Rt2, true));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.stlxp_sp64ldstexclp.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.stlxp_sp64ldstexclp.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0xC8400000u: { // LDXR_LR64_ldstexclr
@@ -45989,7 +45989,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldxr_lr64ldstexclr.Rt, true));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldxr_lr64ldstexclr.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldxr_lr64ldstexclr.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0xC8408000u: { // LDAXR_LR64_ldstexclr
@@ -46001,7 +46001,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldaxr_lr64ldstexclr.Rt, true));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldaxr_lr64ldstexclr.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldaxr_lr64ldstexclr.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0xC8600000u: { // LDXP_LP64_ldstexclp
@@ -46014,7 +46014,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldxp_lp64ldstexclp.Rt, true));
                         result.operands.push_back(Operand::gp(enc.ldxp_lp64ldstexclp.Rt2, true));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldxp_lp64ldstexclp.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldxp_lp64ldstexclp.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0xC8608000u: { // LDAXP_LP64_ldstexclp
@@ -46027,7 +46027,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldaxp_lp64ldstexclp.Rt, true));
                         result.operands.push_back(Operand::gp(enc.ldaxp_lp64ldstexclp.Rt2, true));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldaxp_lp64ldstexclp.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldaxp_lp64ldstexclp.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0xC8800000u: { // STLLR_SL64_ldstord
@@ -46039,7 +46039,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.stllr_sl64ldstord.Rt, true));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.stllr_sl64ldstord.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.stllr_sl64ldstord.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0xC8808000u: { // STLR_SL64_ldstord
@@ -46051,7 +46051,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.stlr_sl64ldstord.Rt, true));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.stlr_sl64ldstord.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.stlr_sl64ldstord.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0xC8C00000u: { // LDLAR_LR64_ldstord
@@ -46063,7 +46063,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldlar_lr64ldstord.Rt, true));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldlar_lr64ldstord.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldlar_lr64ldstord.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0xC8C08000u: { // LDAR_LR64_ldstord
@@ -46075,7 +46075,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldar_lr64ldstord.Rt, true));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldar_lr64ldstord.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldar_lr64ldstord.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0xC9000000u: { // STTXR_SR64_ldstexclr_unpriv
@@ -46088,7 +46088,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.sttxr_sr64ldstexclr_unpriv.Rs, false));
                         result.operands.push_back(Operand::gp(enc.sttxr_sr64ldstexclr_unpriv.Rt, true));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.sttxr_sr64ldstexclr_unpriv.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.sttxr_sr64ldstexclr_unpriv.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0xC9008000u: { // STLTXR_SR64_ldstexclr_unpriv
@@ -46101,7 +46101,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.stltxr_sr64ldstexclr_unpriv.Rs, false));
                         result.operands.push_back(Operand::gp(enc.stltxr_sr64ldstexclr_unpriv.Rt, true));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.stltxr_sr64ldstexclr_unpriv.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.stltxr_sr64ldstexclr_unpriv.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0xC9400000u: { // LDTXR_LR64_ldstexclr_unpriv
@@ -46113,7 +46113,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldtxr_lr64ldstexclr_unpriv.Rt, true));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldtxr_lr64ldstexclr_unpriv.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldtxr_lr64ldstexclr_unpriv.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0xC9408000u: { // LDATXR_LR64_ldstexclr_unpriv
@@ -46125,7 +46125,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldatxr_lr64ldstexclr_unpriv.Rt, true));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldatxr_lr64ldstexclr_unpriv.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldatxr_lr64ldstexclr_unpriv.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         default: break;
@@ -46180,7 +46180,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.stlurb32ldapstl_unscaled.Rt, false));
-                        { int32_t soff = (int32_t)(enc.stlurb32ldapstl_unscaled.imm9); result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.stlurb32ldapstl_unscaled.Rn, true, true)), soff)); }
+                        { int32_t soff = static_cast<int32_t>(enc.stlurb32ldapstl_unscaled.imm9); result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.stlurb32ldapstl_unscaled.Rn, true, true)), soff)); }
                         return result;
         }
         case 0x19400000u: { // LDAPURB_32_ldapstl_unscaled
@@ -46192,7 +46192,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldapurb32ldapstl_unscaled.Rt, false));
-                        { int32_t soff = (int32_t)(enc.ldapurb32ldapstl_unscaled.imm9); result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldapurb32ldapstl_unscaled.Rn, true, true)), soff)); }
+                        { int32_t soff = static_cast<int32_t>(enc.ldapurb32ldapstl_unscaled.imm9); result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldapurb32ldapstl_unscaled.Rn, true, true)), soff)); }
                         return result;
         }
         case 0x19800000u: { // LDAPURSB_64_ldapstl_unscaled
@@ -46204,7 +46204,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldapursb64ldapstl_unscaled.Rt, true));
-                        { int32_t soff = (int32_t)(enc.ldapursb64ldapstl_unscaled.imm9); result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldapursb64ldapstl_unscaled.Rn, true, true)), soff)); }
+                        { int32_t soff = static_cast<int32_t>(enc.ldapursb64ldapstl_unscaled.imm9); result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldapursb64ldapstl_unscaled.Rn, true, true)), soff)); }
                         return result;
         }
         case 0x19C00000u: { // LDAPURSB_32_ldapstl_unscaled
@@ -46216,7 +46216,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldapursb32ldapstl_unscaled.Rt, false));
-                        { int32_t soff = (int32_t)(enc.ldapursb32ldapstl_unscaled.imm9); result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldapursb32ldapstl_unscaled.Rn, true, true)), soff)); }
+                        { int32_t soff = static_cast<int32_t>(enc.ldapursb32ldapstl_unscaled.imm9); result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldapursb32ldapstl_unscaled.Rn, true, true)), soff)); }
                         return result;
         }
         case 0x1D000800u: { // STLUR_B_ldapstl_simd
@@ -46280,7 +46280,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.sturb32ldst_unscaled.Rt, false));
-                        { int32_t soff = (int32_t)(enc.sturb32ldst_unscaled.imm9); result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.sturb32ldst_unscaled.Rn, true, true)), soff)); }
+                        { int32_t soff = static_cast<int32_t>(enc.sturb32ldst_unscaled.imm9); result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.sturb32ldst_unscaled.Rn, true, true)), soff)); }
                         return result;
         }
         case 0x38000400u: { // STRB_32_ldst_immpost
@@ -46292,9 +46292,9 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.strb32ldst_immpost.Rt, false));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.strb32ldst_immpost.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.strb32ldst_immpost.Rn, true, true)), static_cast<int32_t>(0)));
                         {
-                            int32_t simm = (int32_t)enc.strb32ldst_immpost.imm9;
+                            int32_t simm = static_cast<int32_t>(enc.strb32ldst_immpost.imm9);
                             result.operands.push_back(Operand::simm(static_cast<int64_t>(simm)));
                         }
                         return result;
@@ -46308,7 +46308,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.sttrb32ldst_unpriv.Rt, false));
-                        { int32_t soff = (int32_t)(enc.sttrb32ldst_unpriv.imm9); result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.sttrb32ldst_unpriv.Rn, true, true)), soff)); }
+                        { int32_t soff = static_cast<int32_t>(enc.sttrb32ldst_unpriv.imm9); result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.sttrb32ldst_unpriv.Rn, true, true)), soff)); }
                         return result;
         }
         case 0x38000C00u: { // STRB_32_ldst_immpre
@@ -46320,7 +46320,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.strb32ldst_immpre.Rt, false));
-                        { int32_t soff = (int32_t)(enc.strb32ldst_immpre.imm9); result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.strb32ldst_immpre.Rn, true, true)), soff)); }
+                        { int32_t soff = static_cast<int32_t>(enc.strb32ldst_immpre.imm9); result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.strb32ldst_immpre.Rn, true, true)), soff)); }
                         return result;
         }
         case 0x38200800u: { // STRB_32B_ldst_regoff
@@ -46344,7 +46344,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldurb32ldst_unscaled.Rt, false));
-                        { int32_t soff = (int32_t)(enc.ldurb32ldst_unscaled.imm9); result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldurb32ldst_unscaled.Rn, true, true)), soff)); }
+                        { int32_t soff = static_cast<int32_t>(enc.ldurb32ldst_unscaled.imm9); result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldurb32ldst_unscaled.Rn, true, true)), soff)); }
                         return result;
         }
         case 0x38400400u: { // LDRB_32_ldst_immpost
@@ -46356,9 +46356,9 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldrb32ldst_immpost.Rt, false));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldrb32ldst_immpost.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldrb32ldst_immpost.Rn, true, true)), static_cast<int32_t>(0)));
                         {
-                            int32_t simm = (int32_t)enc.ldrb32ldst_immpost.imm9;
+                            int32_t simm = static_cast<int32_t>(enc.ldrb32ldst_immpost.imm9);
                             result.operands.push_back(Operand::simm(static_cast<int64_t>(simm)));
                         }
                         return result;
@@ -46372,7 +46372,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldtrb32ldst_unpriv.Rt, false));
-                        { int32_t soff = (int32_t)(enc.ldtrb32ldst_unpriv.imm9); result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldtrb32ldst_unpriv.Rn, true, true)), soff)); }
+                        { int32_t soff = static_cast<int32_t>(enc.ldtrb32ldst_unpriv.imm9); result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldtrb32ldst_unpriv.Rn, true, true)), soff)); }
                         return result;
         }
         case 0x38400C00u: { // LDRB_32_ldst_immpre
@@ -46384,7 +46384,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldrb32ldst_immpre.Rt, false));
-                        { int32_t soff = (int32_t)(enc.ldrb32ldst_immpre.imm9); result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldrb32ldst_immpre.Rn, true, true)), soff)); }
+                        { int32_t soff = static_cast<int32_t>(enc.ldrb32ldst_immpre.imm9); result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldrb32ldst_immpre.Rn, true, true)), soff)); }
                         return result;
         }
         case 0x38600800u: { // LDRB_32B_ldst_regoff
@@ -46408,7 +46408,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldursb64ldst_unscaled.Rt, true));
-                        { int32_t soff = (int32_t)(enc.ldursb64ldst_unscaled.imm9); result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldursb64ldst_unscaled.Rn, true, true)), soff)); }
+                        { int32_t soff = static_cast<int32_t>(enc.ldursb64ldst_unscaled.imm9); result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldursb64ldst_unscaled.Rn, true, true)), soff)); }
                         return result;
         }
         case 0x38800400u: { // LDRSB_64_ldst_immpost
@@ -46420,9 +46420,9 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldrsb64ldst_immpost.Rt, true));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldrsb64ldst_immpost.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldrsb64ldst_immpost.Rn, true, true)), static_cast<int32_t>(0)));
                         {
-                            int32_t simm = (int32_t)enc.ldrsb64ldst_immpost.imm9;
+                            int32_t simm = static_cast<int32_t>(enc.ldrsb64ldst_immpost.imm9);
                             result.operands.push_back(Operand::simm(static_cast<int64_t>(simm)));
                         }
                         return result;
@@ -46436,7 +46436,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldtrsb64ldst_unpriv.Rt, true));
-                        { int32_t soff = (int32_t)(enc.ldtrsb64ldst_unpriv.imm9); result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldtrsb64ldst_unpriv.Rn, true, true)), soff)); }
+                        { int32_t soff = static_cast<int32_t>(enc.ldtrsb64ldst_unpriv.imm9); result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldtrsb64ldst_unpriv.Rn, true, true)), soff)); }
                         return result;
         }
         case 0x38800C00u: { // LDRSB_64_ldst_immpre
@@ -46448,7 +46448,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldrsb64ldst_immpre.Rt, true));
-                        { int32_t soff = (int32_t)(enc.ldrsb64ldst_immpre.imm9); result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldrsb64ldst_immpre.Rn, true, true)), soff)); }
+                        { int32_t soff = static_cast<int32_t>(enc.ldrsb64ldst_immpre.imm9); result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldrsb64ldst_immpre.Rn, true, true)), soff)); }
                         return result;
         }
         case 0x38A00800u: { // LDRSB_64B_ldst_regoff
@@ -46472,7 +46472,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldursb32ldst_unscaled.Rt, false));
-                        { int32_t soff = (int32_t)(enc.ldursb32ldst_unscaled.imm9); result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldursb32ldst_unscaled.Rn, true, true)), soff)); }
+                        { int32_t soff = static_cast<int32_t>(enc.ldursb32ldst_unscaled.imm9); result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldursb32ldst_unscaled.Rn, true, true)), soff)); }
                         return result;
         }
         case 0x38C00400u: { // LDRSB_32_ldst_immpost
@@ -46484,9 +46484,9 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldrsb32ldst_immpost.Rt, false));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldrsb32ldst_immpost.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldrsb32ldst_immpost.Rn, true, true)), static_cast<int32_t>(0)));
                         {
-                            int32_t simm = (int32_t)enc.ldrsb32ldst_immpost.imm9;
+                            int32_t simm = static_cast<int32_t>(enc.ldrsb32ldst_immpost.imm9);
                             result.operands.push_back(Operand::simm(static_cast<int64_t>(simm)));
                         }
                         return result;
@@ -46500,7 +46500,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldtrsb32ldst_unpriv.Rt, false));
-                        { int32_t soff = (int32_t)(enc.ldtrsb32ldst_unpriv.imm9); result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldtrsb32ldst_unpriv.Rn, true, true)), soff)); }
+                        { int32_t soff = static_cast<int32_t>(enc.ldtrsb32ldst_unpriv.imm9); result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldtrsb32ldst_unpriv.Rn, true, true)), soff)); }
                         return result;
         }
         case 0x38C00C00u: { // LDRSB_32_ldst_immpre
@@ -46512,7 +46512,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldrsb32ldst_immpre.Rt, false));
-                        { int32_t soff = (int32_t)(enc.ldrsb32ldst_immpre.imm9); result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldrsb32ldst_immpre.Rn, true, true)), soff)); }
+                        { int32_t soff = static_cast<int32_t>(enc.ldrsb32ldst_immpre.imm9); result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldrsb32ldst_immpre.Rn, true, true)), soff)); }
                         return result;
         }
         case 0x38E00800u: { // LDRSB_32B_ldst_regoff
@@ -46760,7 +46760,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.stlurh32ldapstl_unscaled.Rt, false));
-                        { int32_t soff = (int32_t)(enc.stlurh32ldapstl_unscaled.imm9); result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.stlurh32ldapstl_unscaled.Rn, true, true)), soff)); }
+                        { int32_t soff = static_cast<int32_t>(enc.stlurh32ldapstl_unscaled.imm9); result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.stlurh32ldapstl_unscaled.Rn, true, true)), soff)); }
                         return result;
         }
         case 0x59400000u: { // LDAPURH_32_ldapstl_unscaled
@@ -46772,7 +46772,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldapurh32ldapstl_unscaled.Rt, false));
-                        { int32_t soff = (int32_t)(enc.ldapurh32ldapstl_unscaled.imm9); result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldapurh32ldapstl_unscaled.Rn, true, true)), soff)); }
+                        { int32_t soff = static_cast<int32_t>(enc.ldapurh32ldapstl_unscaled.imm9); result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldapurh32ldapstl_unscaled.Rn, true, true)), soff)); }
                         return result;
         }
         case 0x59800000u: { // LDAPURSH_64_ldapstl_unscaled
@@ -46784,7 +46784,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldapursh64ldapstl_unscaled.Rt, true));
-                        { int32_t soff = (int32_t)(enc.ldapursh64ldapstl_unscaled.imm9); result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldapursh64ldapstl_unscaled.Rn, true, true)), soff)); }
+                        { int32_t soff = static_cast<int32_t>(enc.ldapursh64ldapstl_unscaled.imm9); result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldapursh64ldapstl_unscaled.Rn, true, true)), soff)); }
                         return result;
         }
         case 0x59C00000u: { // LDAPURSH_32_ldapstl_unscaled
@@ -46796,7 +46796,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldapursh32ldapstl_unscaled.Rt, false));
-                        { int32_t soff = (int32_t)(enc.ldapursh32ldapstl_unscaled.imm9); result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldapursh32ldapstl_unscaled.Rn, true, true)), soff)); }
+                        { int32_t soff = static_cast<int32_t>(enc.ldapursh32ldapstl_unscaled.imm9); result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldapursh32ldapstl_unscaled.Rn, true, true)), soff)); }
                         return result;
         }
         case 0x5D000800u: { // STLUR_H_ldapstl_simd
@@ -46834,7 +46834,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.sturh32ldst_unscaled.Rt, false));
-                        { int32_t soff = (int32_t)(enc.sturh32ldst_unscaled.imm9); result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.sturh32ldst_unscaled.Rn, true, true)), soff)); }
+                        { int32_t soff = static_cast<int32_t>(enc.sturh32ldst_unscaled.imm9); result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.sturh32ldst_unscaled.Rn, true, true)), soff)); }
                         return result;
         }
         case 0x78000400u: { // STRH_32_ldst_immpost
@@ -46846,9 +46846,9 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.strh32ldst_immpost.Rt, false));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.strh32ldst_immpost.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.strh32ldst_immpost.Rn, true, true)), static_cast<int32_t>(0)));
                         {
-                            int32_t simm = (int32_t)enc.strh32ldst_immpost.imm9;
+                            int32_t simm = static_cast<int32_t>(enc.strh32ldst_immpost.imm9);
                             result.operands.push_back(Operand::simm(static_cast<int64_t>(simm)));
                         }
                         return result;
@@ -46862,7 +46862,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.sttrh32ldst_unpriv.Rt, false));
-                        { int32_t soff = (int32_t)(enc.sttrh32ldst_unpriv.imm9); result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.sttrh32ldst_unpriv.Rn, true, true)), soff)); }
+                        { int32_t soff = static_cast<int32_t>(enc.sttrh32ldst_unpriv.imm9); result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.sttrh32ldst_unpriv.Rn, true, true)), soff)); }
                         return result;
         }
         case 0x78000C00u: { // STRH_32_ldst_immpre
@@ -46874,7 +46874,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.strh32ldst_immpre.Rt, false));
-                        { int32_t soff = (int32_t)(enc.strh32ldst_immpre.imm9); result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.strh32ldst_immpre.Rn, true, true)), soff)); }
+                        { int32_t soff = static_cast<int32_t>(enc.strh32ldst_immpre.imm9); result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.strh32ldst_immpre.Rn, true, true)), soff)); }
                         return result;
         }
         case 0x78200800u: { // STRH_32_ldst_regoff
@@ -46898,7 +46898,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldurh32ldst_unscaled.Rt, false));
-                        { int32_t soff = (int32_t)(enc.ldurh32ldst_unscaled.imm9); result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldurh32ldst_unscaled.Rn, true, true)), soff)); }
+                        { int32_t soff = static_cast<int32_t>(enc.ldurh32ldst_unscaled.imm9); result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldurh32ldst_unscaled.Rn, true, true)), soff)); }
                         return result;
         }
         case 0x78400400u: { // LDRH_32_ldst_immpost
@@ -46910,9 +46910,9 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldrh32ldst_immpost.Rt, false));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldrh32ldst_immpost.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldrh32ldst_immpost.Rn, true, true)), static_cast<int32_t>(0)));
                         {
-                            int32_t simm = (int32_t)enc.ldrh32ldst_immpost.imm9;
+                            int32_t simm = static_cast<int32_t>(enc.ldrh32ldst_immpost.imm9);
                             result.operands.push_back(Operand::simm(static_cast<int64_t>(simm)));
                         }
                         return result;
@@ -46926,7 +46926,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldtrh32ldst_unpriv.Rt, false));
-                        { int32_t soff = (int32_t)(enc.ldtrh32ldst_unpriv.imm9); result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldtrh32ldst_unpriv.Rn, true, true)), soff)); }
+                        { int32_t soff = static_cast<int32_t>(enc.ldtrh32ldst_unpriv.imm9); result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldtrh32ldst_unpriv.Rn, true, true)), soff)); }
                         return result;
         }
         case 0x78400C00u: { // LDRH_32_ldst_immpre
@@ -46938,7 +46938,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldrh32ldst_immpre.Rt, false));
-                        { int32_t soff = (int32_t)(enc.ldrh32ldst_immpre.imm9); result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldrh32ldst_immpre.Rn, true, true)), soff)); }
+                        { int32_t soff = static_cast<int32_t>(enc.ldrh32ldst_immpre.imm9); result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldrh32ldst_immpre.Rn, true, true)), soff)); }
                         return result;
         }
         case 0x78600800u: { // LDRH_32_ldst_regoff
@@ -46962,7 +46962,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldursh64ldst_unscaled.Rt, true));
-                        { int32_t soff = (int32_t)(enc.ldursh64ldst_unscaled.imm9); result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldursh64ldst_unscaled.Rn, true, true)), soff)); }
+                        { int32_t soff = static_cast<int32_t>(enc.ldursh64ldst_unscaled.imm9); result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldursh64ldst_unscaled.Rn, true, true)), soff)); }
                         return result;
         }
         case 0x78800400u: { // LDRSH_64_ldst_immpost
@@ -46974,9 +46974,9 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldrsh64ldst_immpost.Rt, true));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldrsh64ldst_immpost.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldrsh64ldst_immpost.Rn, true, true)), static_cast<int32_t>(0)));
                         {
-                            int32_t simm = (int32_t)enc.ldrsh64ldst_immpost.imm9;
+                            int32_t simm = static_cast<int32_t>(enc.ldrsh64ldst_immpost.imm9);
                             result.operands.push_back(Operand::simm(static_cast<int64_t>(simm)));
                         }
                         return result;
@@ -46990,7 +46990,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldtrsh64ldst_unpriv.Rt, true));
-                        { int32_t soff = (int32_t)(enc.ldtrsh64ldst_unpriv.imm9); result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldtrsh64ldst_unpriv.Rn, true, true)), soff)); }
+                        { int32_t soff = static_cast<int32_t>(enc.ldtrsh64ldst_unpriv.imm9); result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldtrsh64ldst_unpriv.Rn, true, true)), soff)); }
                         return result;
         }
         case 0x78800C00u: { // LDRSH_64_ldst_immpre
@@ -47002,7 +47002,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldrsh64ldst_immpre.Rt, true));
-                        { int32_t soff = (int32_t)(enc.ldrsh64ldst_immpre.imm9); result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldrsh64ldst_immpre.Rn, true, true)), soff)); }
+                        { int32_t soff = static_cast<int32_t>(enc.ldrsh64ldst_immpre.imm9); result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldrsh64ldst_immpre.Rn, true, true)), soff)); }
                         return result;
         }
         case 0x78A00800u: { // LDRSH_64_ldst_regoff
@@ -47026,7 +47026,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldursh32ldst_unscaled.Rt, false));
-                        { int32_t soff = (int32_t)(enc.ldursh32ldst_unscaled.imm9); result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldursh32ldst_unscaled.Rn, true, true)), soff)); }
+                        { int32_t soff = static_cast<int32_t>(enc.ldursh32ldst_unscaled.imm9); result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldursh32ldst_unscaled.Rn, true, true)), soff)); }
                         return result;
         }
         case 0x78C00400u: { // LDRSH_32_ldst_immpost
@@ -47038,9 +47038,9 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldrsh32ldst_immpost.Rt, false));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldrsh32ldst_immpost.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldrsh32ldst_immpost.Rn, true, true)), static_cast<int32_t>(0)));
                         {
-                            int32_t simm = (int32_t)enc.ldrsh32ldst_immpost.imm9;
+                            int32_t simm = static_cast<int32_t>(enc.ldrsh32ldst_immpost.imm9);
                             result.operands.push_back(Operand::simm(static_cast<int64_t>(simm)));
                         }
                         return result;
@@ -47054,7 +47054,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldtrsh32ldst_unpriv.Rt, false));
-                        { int32_t soff = (int32_t)(enc.ldtrsh32ldst_unpriv.imm9); result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldtrsh32ldst_unpriv.Rn, true, true)), soff)); }
+                        { int32_t soff = static_cast<int32_t>(enc.ldtrsh32ldst_unpriv.imm9); result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldtrsh32ldst_unpriv.Rn, true, true)), soff)); }
                         return result;
         }
         case 0x78C00C00u: { // LDRSH_32_ldst_immpre
@@ -47066,7 +47066,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldrsh32ldst_immpre.Rt, false));
-                        { int32_t soff = (int32_t)(enc.ldrsh32ldst_immpre.imm9); result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldrsh32ldst_immpre.Rn, true, true)), soff)); }
+                        { int32_t soff = static_cast<int32_t>(enc.ldrsh32ldst_immpre.imm9); result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldrsh32ldst_immpre.Rn, true, true)), soff)); }
                         return result;
         }
         case 0x78E00800u: { // LDRSH_32_ldst_regoff
@@ -47202,7 +47202,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.stlur32ldapstl_unscaled.Rt, false));
-                        { int32_t soff = (int32_t)(enc.stlur32ldapstl_unscaled.imm9); result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.stlur32ldapstl_unscaled.Rn, true, true)), soff)); }
+                        { int32_t soff = static_cast<int32_t>(enc.stlur32ldapstl_unscaled.imm9); result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.stlur32ldapstl_unscaled.Rn, true, true)), soff)); }
                         return result;
         }
         case 0x99400000u: { // LDAPUR_32_ldapstl_unscaled
@@ -47214,7 +47214,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldapur32ldapstl_unscaled.Rt, false));
-                        { int32_t soff = (int32_t)(enc.ldapur32ldapstl_unscaled.imm9); result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldapur32ldapstl_unscaled.Rn, true, true)), soff)); }
+                        { int32_t soff = static_cast<int32_t>(enc.ldapur32ldapstl_unscaled.imm9); result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldapur32ldapstl_unscaled.Rn, true, true)), soff)); }
                         return result;
         }
         case 0x99800000u: { // LDAPURSW_64_ldapstl_unscaled
@@ -47226,7 +47226,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldapursw64ldapstl_unscaled.Rt, true));
-                        { int32_t soff = (int32_t)(enc.ldapursw64ldapstl_unscaled.imm9); result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldapursw64ldapstl_unscaled.Rn, true, true)), soff)); }
+                        { int32_t soff = static_cast<int32_t>(enc.ldapursw64ldapstl_unscaled.imm9); result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldapursw64ldapstl_unscaled.Rn, true, true)), soff)); }
                         return result;
         }
         case 0x9D000800u: { // STLUR_S_ldapstl_simd
@@ -47264,7 +47264,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.stur32ldst_unscaled.Rt, false));
-                        { int32_t soff = (int32_t)(enc.stur32ldst_unscaled.imm9); result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.stur32ldst_unscaled.Rn, true, true)), soff)); }
+                        { int32_t soff = static_cast<int32_t>(enc.stur32ldst_unscaled.imm9); result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.stur32ldst_unscaled.Rn, true, true)), soff)); }
                         return result;
         }
         case 0xB8000400u: { // STR_32_ldst_immpost
@@ -47276,9 +47276,9 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.str32ldst_immpost.Rt, false));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.str32ldst_immpost.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.str32ldst_immpost.Rn, true, true)), static_cast<int32_t>(0)));
                         {
-                            int32_t simm = (int32_t)enc.str32ldst_immpost.imm9;
+                            int32_t simm = static_cast<int32_t>(enc.str32ldst_immpost.imm9);
                             result.operands.push_back(Operand::simm(static_cast<int64_t>(simm)));
                         }
                         return result;
@@ -47292,7 +47292,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.sttr32ldst_unpriv.Rt, false));
-                        { int32_t soff = (int32_t)(enc.sttr32ldst_unpriv.imm9); result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.sttr32ldst_unpriv.Rn, true, true)), soff)); }
+                        { int32_t soff = static_cast<int32_t>(enc.sttr32ldst_unpriv.imm9); result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.sttr32ldst_unpriv.Rn, true, true)), soff)); }
                         return result;
         }
         case 0xB8000C00u: { // STR_32_ldst_immpre
@@ -47304,7 +47304,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.str32ldst_immpre.Rt, false));
-                        { int32_t soff = (int32_t)(enc.str32ldst_immpre.imm9); result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.str32ldst_immpre.Rn, true, true)), soff)); }
+                        { int32_t soff = static_cast<int32_t>(enc.str32ldst_immpre.imm9); result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.str32ldst_immpre.Rn, true, true)), soff)); }
                         return result;
         }
         case 0xB8200800u: { // STR_32_ldst_regoff
@@ -47329,7 +47329,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldur32ldst_unscaled.Rt, false));
-                        { int32_t soff = (int32_t)(enc.ldur32ldst_unscaled.imm9); result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldur32ldst_unscaled.Rn, true, true)), soff)); }
+                        { int32_t soff = static_cast<int32_t>(enc.ldur32ldst_unscaled.imm9); result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldur32ldst_unscaled.Rn, true, true)), soff)); }
                         return result;
         }
         case 0xB8400400u: { // LDR_32_ldst_immpost
@@ -47341,9 +47341,9 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldr32ldst_immpost.Rt, false));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldr32ldst_immpost.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldr32ldst_immpost.Rn, true, true)), static_cast<int32_t>(0)));
                         {
-                            int32_t simm = (int32_t)enc.ldr32ldst_immpost.imm9;
+                            int32_t simm = static_cast<int32_t>(enc.ldr32ldst_immpost.imm9);
                             result.operands.push_back(Operand::simm(static_cast<int64_t>(simm)));
                         }
                         return result;
@@ -47357,7 +47357,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldtr32ldst_unpriv.Rt, false));
-                        { int32_t soff = (int32_t)(enc.ldtr32ldst_unpriv.imm9); result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldtr32ldst_unpriv.Rn, true, true)), soff)); }
+                        { int32_t soff = static_cast<int32_t>(enc.ldtr32ldst_unpriv.imm9); result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldtr32ldst_unpriv.Rn, true, true)), soff)); }
                         return result;
         }
         case 0xB8400C00u: { // LDR_32_ldst_immpre
@@ -47369,7 +47369,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldr32ldst_immpre.Rt, false));
-                        { int32_t soff = (int32_t)(enc.ldr32ldst_immpre.imm9); result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldr32ldst_immpre.Rn, true, true)), soff)); }
+                        { int32_t soff = static_cast<int32_t>(enc.ldr32ldst_immpre.imm9); result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldr32ldst_immpre.Rn, true, true)), soff)); }
                         return result;
         }
         case 0xB8600800u: { // LDR_32_ldst_regoff
@@ -47394,7 +47394,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldursw64ldst_unscaled.Rt, true));
-                        { int32_t soff = (int32_t)(enc.ldursw64ldst_unscaled.imm9); result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldursw64ldst_unscaled.Rn, true, true)), soff)); }
+                        { int32_t soff = static_cast<int32_t>(enc.ldursw64ldst_unscaled.imm9); result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldursw64ldst_unscaled.Rn, true, true)), soff)); }
                         return result;
         }
         case 0xB8800400u: { // LDRSW_64_ldst_immpost
@@ -47406,9 +47406,9 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldrsw64ldst_immpost.Rt, true));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldrsw64ldst_immpost.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldrsw64ldst_immpost.Rn, true, true)), static_cast<int32_t>(0)));
                         {
-                            int32_t simm = (int32_t)enc.ldrsw64ldst_immpost.imm9;
+                            int32_t simm = static_cast<int32_t>(enc.ldrsw64ldst_immpost.imm9);
                             result.operands.push_back(Operand::simm(static_cast<int64_t>(simm)));
                         }
                         return result;
@@ -47422,7 +47422,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldtrsw64ldst_unpriv.Rt, true));
-                        { int32_t soff = (int32_t)(enc.ldtrsw64ldst_unpriv.imm9); result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldtrsw64ldst_unpriv.Rn, true, true)), soff)); }
+                        { int32_t soff = static_cast<int32_t>(enc.ldtrsw64ldst_unpriv.imm9); result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldtrsw64ldst_unpriv.Rn, true, true)), soff)); }
                         return result;
         }
         case 0xB8800C00u: { // LDRSW_64_ldst_immpre
@@ -47434,7 +47434,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldrsw64ldst_immpre.Rt, true));
-                        { int32_t soff = (int32_t)(enc.ldrsw64ldst_immpre.imm9); result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldrsw64ldst_immpre.Rn, true, true)), soff)); }
+                        { int32_t soff = static_cast<int32_t>(enc.ldrsw64ldst_immpre.imm9); result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldrsw64ldst_immpre.Rn, true, true)), soff)); }
                         return result;
         }
         case 0xB8A00800u: { // LDRSW_64_ldst_regoff
@@ -47571,7 +47571,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.stlur64ldapstl_unscaled.Rt, true));
-                        { int32_t soff = (int32_t)(enc.stlur64ldapstl_unscaled.imm9); result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.stlur64ldapstl_unscaled.Rn, true, true)), soff)); }
+                        { int32_t soff = static_cast<int32_t>(enc.stlur64ldapstl_unscaled.imm9); result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.stlur64ldapstl_unscaled.Rn, true, true)), soff)); }
                         return result;
         }
         case 0xD9200400u: { // STG_64Spost_ldsttags
@@ -47622,7 +47622,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldapur64ldapstl_unscaled.Rt, true));
-                        { int32_t soff = (int32_t)(enc.ldapur64ldapstl_unscaled.imm9); result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldapur64ldapstl_unscaled.Rn, true, true)), soff)); }
+                        { int32_t soff = static_cast<int32_t>(enc.ldapur64ldapstl_unscaled.imm9); result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldapur64ldapstl_unscaled.Rn, true, true)), soff)); }
                         return result;
         }
         case 0xD9600000u: { // LDG_64Loffset_ldsttags
@@ -47790,7 +47790,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.stur64ldst_unscaled.Rt, true));
-                        { int32_t soff = (int32_t)(enc.stur64ldst_unscaled.imm9); result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.stur64ldst_unscaled.Rn, true, true)), soff)); }
+                        { int32_t soff = static_cast<int32_t>(enc.stur64ldst_unscaled.imm9); result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.stur64ldst_unscaled.Rn, true, true)), soff)); }
                         return result;
         }
         case 0xF8000400u: { // STR_64_ldst_immpost
@@ -47802,9 +47802,9 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.str64ldst_immpost.Rt, true));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.str64ldst_immpost.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.str64ldst_immpost.Rn, true, true)), static_cast<int32_t>(0)));
                         {
-                            int32_t simm = (int32_t)enc.str64ldst_immpost.imm9;
+                            int32_t simm = static_cast<int32_t>(enc.str64ldst_immpost.imm9);
                             result.operands.push_back(Operand::simm(static_cast<int64_t>(simm)));
                         }
                         return result;
@@ -47818,7 +47818,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.sttr64ldst_unpriv.Rt, true));
-                        { int32_t soff = (int32_t)(enc.sttr64ldst_unpriv.imm9); result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.sttr64ldst_unpriv.Rn, true, true)), soff)); }
+                        { int32_t soff = static_cast<int32_t>(enc.sttr64ldst_unpriv.imm9); result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.sttr64ldst_unpriv.Rn, true, true)), soff)); }
                         return result;
         }
         case 0xF8000C00u: { // STR_64_ldst_immpre
@@ -47830,7 +47830,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.str64ldst_immpre.Rt, true));
-                        { int32_t soff = (int32_t)(enc.str64ldst_immpre.imm9); result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.str64ldst_immpre.Rn, true, true)), soff)); }
+                        { int32_t soff = static_cast<int32_t>(enc.str64ldst_immpre.imm9); result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.str64ldst_immpre.Rn, true, true)), soff)); }
                         return result;
         }
         case 0xF8200800u: { // STR_64_ldst_regoff
@@ -47855,7 +47855,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldur64ldst_unscaled.Rt, true));
-                        { int32_t soff = (int32_t)(enc.ldur64ldst_unscaled.imm9); result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldur64ldst_unscaled.Rn, true, true)), soff)); }
+                        { int32_t soff = static_cast<int32_t>(enc.ldur64ldst_unscaled.imm9); result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldur64ldst_unscaled.Rn, true, true)), soff)); }
                         return result;
         }
         case 0xF8400400u: { // LDR_64_ldst_immpost
@@ -47867,9 +47867,9 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldr64ldst_immpost.Rt, true));
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldr64ldst_immpost.Rn, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldr64ldst_immpost.Rn, true, true)), static_cast<int32_t>(0)));
                         {
-                            int32_t simm = (int32_t)enc.ldr64ldst_immpost.imm9;
+                            int32_t simm = static_cast<int32_t>(enc.ldr64ldst_immpost.imm9);
                             result.operands.push_back(Operand::simm(static_cast<int64_t>(simm)));
                         }
                         return result;
@@ -47883,7 +47883,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldtr64ldst_unpriv.Rt, true));
-                        { int32_t soff = (int32_t)(enc.ldtr64ldst_unpriv.imm9); result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldtr64ldst_unpriv.Rn, true, true)), soff)); }
+                        { int32_t soff = static_cast<int32_t>(enc.ldtr64ldst_unpriv.imm9); result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldtr64ldst_unpriv.Rn, true, true)), soff)); }
                         return result;
         }
         case 0xF8400C00u: { // LDR_64_ldst_immpre
@@ -47895,7 +47895,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldr64ldst_immpre.Rt, true));
-                        { int32_t soff = (int32_t)(enc.ldr64ldst_immpre.imm9); result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldr64ldst_immpre.Rn, true, true)), soff)); }
+                        { int32_t soff = static_cast<int32_t>(enc.ldr64ldst_immpre.imm9); result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldr64ldst_immpre.Rn, true, true)), soff)); }
                         return result;
         }
         case 0xF8600800u: { // LDR_64_ldst_regoff
@@ -48291,8 +48291,8 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.strb32ldst_pos.Rt, false));
-                        if (enc.strb32ldst_pos.imm12 != 0) result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.strb32ldst_pos.Rn, true, true)), (int32_t)enc.strb32ldst_pos.imm12));
-                        else result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.strb32ldst_pos.Rn, true, true)), (int32_t)0));
+                        if (enc.strb32ldst_pos.imm12 != 0) result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.strb32ldst_pos.Rn, true, true)), static_cast<int32_t>(enc.strb32ldst_pos.imm12)));
+                        else result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.strb32ldst_pos.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0x39400000u: { // LDRB_32_ldst_pos
@@ -48304,8 +48304,8 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldrb32ldst_pos.Rt, false));
-                        if (enc.ldrb32ldst_pos.imm12 != 0) result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldrb32ldst_pos.Rn, true, true)), (int32_t)enc.ldrb32ldst_pos.imm12));
-                        else result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldrb32ldst_pos.Rn, true, true)), (int32_t)0));
+                        if (enc.ldrb32ldst_pos.imm12 != 0) result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldrb32ldst_pos.Rn, true, true)), static_cast<int32_t>(enc.ldrb32ldst_pos.imm12)));
+                        else result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldrb32ldst_pos.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0x39800000u: { // LDRSB_64_ldst_pos
@@ -48317,8 +48317,8 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldrsb64ldst_pos.Rt, true));
-                        if (enc.ldrsb64ldst_pos.imm12 != 0) result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldrsb64ldst_pos.Rn, true, true)), (int32_t)enc.ldrsb64ldst_pos.imm12));
-                        else result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldrsb64ldst_pos.Rn, true, true)), (int32_t)0));
+                        if (enc.ldrsb64ldst_pos.imm12 != 0) result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldrsb64ldst_pos.Rn, true, true)), static_cast<int32_t>(enc.ldrsb64ldst_pos.imm12)));
+                        else result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldrsb64ldst_pos.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0x39C00000u: { // LDRSB_32_ldst_pos
@@ -48330,8 +48330,8 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldrsb32ldst_pos.Rt, false));
-                        if (enc.ldrsb32ldst_pos.imm12 != 0) result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldrsb32ldst_pos.Rn, true, true)), (int32_t)enc.ldrsb32ldst_pos.imm12));
-                        else result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldrsb32ldst_pos.Rn, true, true)), (int32_t)0));
+                        if (enc.ldrsb32ldst_pos.imm12 != 0) result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldrsb32ldst_pos.Rn, true, true)), static_cast<int32_t>(enc.ldrsb32ldst_pos.imm12)));
+                        else result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldrsb32ldst_pos.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0x3D000000u: { // STR_B_ldst_pos
@@ -48609,8 +48609,8 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.strh32ldst_pos.Rt, false));
-                        if (enc.strh32ldst_pos.imm12 != 0) result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.strh32ldst_pos.Rn, true, true)), ((int32_t)((uint32_t)enc.strh32ldst_pos.imm12 << 1))));
-                        else result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.strh32ldst_pos.Rn, true, true)), (int32_t)0));
+                        if (enc.strh32ldst_pos.imm12 != 0) result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.strh32ldst_pos.Rn, true, true)), static_cast<int32_t>(static_cast<uint32_t>(enc.strh32ldst_pos.imm12) << 1)));
+                        else result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.strh32ldst_pos.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0x79400000u: { // LDRH_32_ldst_pos
@@ -48622,8 +48622,8 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldrh32ldst_pos.Rt, false));
-                        if (enc.ldrh32ldst_pos.imm12 != 0) result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldrh32ldst_pos.Rn, true, true)), ((int32_t)((uint32_t)enc.ldrh32ldst_pos.imm12 << 1))));
-                        else result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldrh32ldst_pos.Rn, true, true)), (int32_t)0));
+                        if (enc.ldrh32ldst_pos.imm12 != 0) result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldrh32ldst_pos.Rn, true, true)), static_cast<int32_t>(static_cast<uint32_t>(enc.ldrh32ldst_pos.imm12) << 1)));
+                        else result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldrh32ldst_pos.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0x79800000u: { // LDRSH_64_ldst_pos
@@ -48635,8 +48635,8 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldrsh64ldst_pos.Rt, true));
-                        if (enc.ldrsh64ldst_pos.imm12 != 0) result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldrsh64ldst_pos.Rn, true, true)), ((int32_t)((uint32_t)enc.ldrsh64ldst_pos.imm12 << 1))));
-                        else result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldrsh64ldst_pos.Rn, true, true)), (int32_t)0));
+                        if (enc.ldrsh64ldst_pos.imm12 != 0) result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldrsh64ldst_pos.Rn, true, true)), static_cast<int32_t>(static_cast<uint32_t>(enc.ldrsh64ldst_pos.imm12) << 1)));
+                        else result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldrsh64ldst_pos.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0x79C00000u: { // LDRSH_32_ldst_pos
@@ -48648,8 +48648,8 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldrsh32ldst_pos.Rt, false));
-                        if (enc.ldrsh32ldst_pos.imm12 != 0) result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldrsh32ldst_pos.Rn, true, true)), ((int32_t)((uint32_t)enc.ldrsh32ldst_pos.imm12 << 1))));
-                        else result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldrsh32ldst_pos.Rn, true, true)), (int32_t)0));
+                        if (enc.ldrsh32ldst_pos.imm12 != 0) result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldrsh32ldst_pos.Rn, true, true)), static_cast<int32_t>(static_cast<uint32_t>(enc.ldrsh32ldst_pos.imm12) << 1)));
+                        else result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldrsh32ldst_pos.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0x7D000000u: { // STR_H_ldst_pos
@@ -48929,8 +48929,8 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.str32ldst_pos.Rt, false));
-                        if (enc.str32ldst_pos.imm12 != 0) result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.str32ldst_pos.Rn, true, true)), ((int32_t)((uint32_t)enc.str32ldst_pos.imm12 << 2))));
-                        else result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.str32ldst_pos.Rn, true, true)), (int32_t)0));
+                        if (enc.str32ldst_pos.imm12 != 0) result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.str32ldst_pos.Rn, true, true)), static_cast<int32_t>(static_cast<uint32_t>(enc.str32ldst_pos.imm12) << 2)));
+                        else result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.str32ldst_pos.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0xB9400000u: { // LDR_32_ldst_pos
@@ -48942,8 +48942,8 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldr32ldst_pos.Rt, false));
-                        if (enc.ldr32ldst_pos.imm12 != 0) result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldr32ldst_pos.Rn, true, true)), ((int32_t)((uint32_t)enc.ldr32ldst_pos.imm12 << 2))));
-                        else result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldr32ldst_pos.Rn, true, true)), (int32_t)0));
+                        if (enc.ldr32ldst_pos.imm12 != 0) result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldr32ldst_pos.Rn, true, true)), static_cast<int32_t>(static_cast<uint32_t>(enc.ldr32ldst_pos.imm12) << 2)));
+                        else result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldr32ldst_pos.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0xB9800000u: { // LDRSW_64_ldst_pos
@@ -48955,8 +48955,8 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldrsw64ldst_pos.Rt, true));
-                        if (enc.ldrsw64ldst_pos.imm12 != 0) result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldrsw64ldst_pos.Rn, true, true)), ((int32_t)((uint32_t)enc.ldrsw64ldst_pos.imm12 << 2))));
-                        else result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldrsw64ldst_pos.Rn, true, true)), (int32_t)0));
+                        if (enc.ldrsw64ldst_pos.imm12 != 0) result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldrsw64ldst_pos.Rn, true, true)), static_cast<int32_t>(static_cast<uint32_t>(enc.ldrsw64ldst_pos.imm12) << 2)));
+                        else result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldrsw64ldst_pos.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0xBD000000u: { // STR_S_ldst_pos
@@ -49236,8 +49236,8 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.str64ldst_pos.Rt, true));
-                        if (enc.str64ldst_pos.imm12 != 0) result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.str64ldst_pos.Rn, true, true)), ((int32_t)((uint32_t)enc.str64ldst_pos.imm12 << 3))));
-                        else result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.str64ldst_pos.Rn, true, true)), (int32_t)0));
+                        if (enc.str64ldst_pos.imm12 != 0) result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.str64ldst_pos.Rn, true, true)), static_cast<int32_t>(static_cast<uint32_t>(enc.str64ldst_pos.imm12) << 3)));
+                        else result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.str64ldst_pos.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0xF9400000u: { // LDR_64_ldst_pos
@@ -49249,8 +49249,8 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
                         LdstEncoding enc = {};
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.ldr64ldst_pos.Rt, true));
-                        if (enc.ldr64ldst_pos.imm12 != 0) result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldr64ldst_pos.Rn, true, true)), ((int32_t)((uint32_t)enc.ldr64ldst_pos.imm12 << 3))));
-                        else result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldr64ldst_pos.Rn, true, true)), (int32_t)0));
+                        if (enc.ldr64ldst_pos.imm12 != 0) result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldr64ldst_pos.Rn, true, true)), static_cast<int32_t>(static_cast<uint32_t>(enc.ldr64ldst_pos.imm12) << 3)));
+                        else result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ldr64ldst_pos.Rn, true, true)), static_cast<int32_t>(0)));
                         return result;
         }
         case 0xF9800000u: { // PRFM_P_ldst_pos
@@ -53637,7 +53637,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
             #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.setp_set_memcms.Rd, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.setp_set_memcms.Rd, true, true)), static_cast<int32_t>(0)));
                         result.operands.push_back(Operand::gp(enc.setp_set_memcms.Rn, true));
                         result.operands.push_back(Operand::gp(enc.setp_set_memcms.Rs, true));
                         return result;
@@ -53650,7 +53650,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
             #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.setpt_set_memcms.Rd, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.setpt_set_memcms.Rd, true, true)), static_cast<int32_t>(0)));
                         result.operands.push_back(Operand::gp(enc.setpt_set_memcms.Rn, true));
                         result.operands.push_back(Operand::gp(enc.setpt_set_memcms.Rs, true));
                         return result;
@@ -53663,7 +53663,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
             #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.setpn_set_memcms.Rd, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.setpn_set_memcms.Rd, true, true)), static_cast<int32_t>(0)));
                         result.operands.push_back(Operand::gp(enc.setpn_set_memcms.Rn, true));
                         result.operands.push_back(Operand::gp(enc.setpn_set_memcms.Rs, true));
                         return result;
@@ -53676,7 +53676,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
             #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.setptn_set_memcms.Rd, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.setptn_set_memcms.Rd, true, true)), static_cast<int32_t>(0)));
                         result.operands.push_back(Operand::gp(enc.setptn_set_memcms.Rn, true));
                         result.operands.push_back(Operand::gp(enc.setptn_set_memcms.Rs, true));
                         return result;
@@ -53689,7 +53689,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
             #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.setm_set_memcms.Rd, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.setm_set_memcms.Rd, true, true)), static_cast<int32_t>(0)));
                         result.operands.push_back(Operand::gp(enc.setm_set_memcms.Rn, true));
                         result.operands.push_back(Operand::gp(enc.setm_set_memcms.Rs, true));
                         return result;
@@ -53702,7 +53702,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
             #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.setmt_set_memcms.Rd, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.setmt_set_memcms.Rd, true, true)), static_cast<int32_t>(0)));
                         result.operands.push_back(Operand::gp(enc.setmt_set_memcms.Rn, true));
                         result.operands.push_back(Operand::gp(enc.setmt_set_memcms.Rs, true));
                         return result;
@@ -53715,7 +53715,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
             #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.setmn_set_memcms.Rd, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.setmn_set_memcms.Rd, true, true)), static_cast<int32_t>(0)));
                         result.operands.push_back(Operand::gp(enc.setmn_set_memcms.Rn, true));
                         result.operands.push_back(Operand::gp(enc.setmn_set_memcms.Rs, true));
                         return result;
@@ -53728,7 +53728,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
             #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.setmtn_set_memcms.Rd, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.setmtn_set_memcms.Rd, true, true)), static_cast<int32_t>(0)));
                         result.operands.push_back(Operand::gp(enc.setmtn_set_memcms.Rn, true));
                         result.operands.push_back(Operand::gp(enc.setmtn_set_memcms.Rs, true));
                         return result;
@@ -53741,7 +53741,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
             #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.sete_set_memcms.Rd, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.sete_set_memcms.Rd, true, true)), static_cast<int32_t>(0)));
                         result.operands.push_back(Operand::gp(enc.sete_set_memcms.Rn, true));
                         result.operands.push_back(Operand::gp(enc.sete_set_memcms.Rs, true));
                         return result;
@@ -53754,7 +53754,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
             #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.setet_set_memcms.Rd, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.setet_set_memcms.Rd, true, true)), static_cast<int32_t>(0)));
                         result.operands.push_back(Operand::gp(enc.setet_set_memcms.Rn, true));
                         result.operands.push_back(Operand::gp(enc.setet_set_memcms.Rs, true));
                         return result;
@@ -53767,7 +53767,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
             #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.seten_set_memcms.Rd, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.seten_set_memcms.Rd, true, true)), static_cast<int32_t>(0)));
                         result.operands.push_back(Operand::gp(enc.seten_set_memcms.Rn, true));
                         result.operands.push_back(Operand::gp(enc.seten_set_memcms.Rs, true));
                         return result;
@@ -53780,7 +53780,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
             #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.setetn_set_memcms.Rd, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.setetn_set_memcms.Rd, true, true)), static_cast<int32_t>(0)));
                         result.operands.push_back(Operand::gp(enc.setetn_set_memcms.Rn, true));
                         result.operands.push_back(Operand::gp(enc.setetn_set_memcms.Rs, true));
                         return result;
@@ -54465,7 +54465,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
             #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.setgp_set_memcms.Rd, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.setgp_set_memcms.Rd, true, true)), static_cast<int32_t>(0)));
                         result.operands.push_back(Operand::gp(enc.setgp_set_memcms.Rn, true));
                         result.operands.push_back(Operand::gp(enc.setgp_set_memcms.Rs, true));
                         return result;
@@ -54478,7 +54478,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
             #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.setgpt_set_memcms.Rd, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.setgpt_set_memcms.Rd, true, true)), static_cast<int32_t>(0)));
                         result.operands.push_back(Operand::gp(enc.setgpt_set_memcms.Rn, true));
                         result.operands.push_back(Operand::gp(enc.setgpt_set_memcms.Rs, true));
                         return result;
@@ -54491,7 +54491,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
             #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.setgpn_set_memcms.Rd, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.setgpn_set_memcms.Rd, true, true)), static_cast<int32_t>(0)));
                         result.operands.push_back(Operand::gp(enc.setgpn_set_memcms.Rn, true));
                         result.operands.push_back(Operand::gp(enc.setgpn_set_memcms.Rs, true));
                         return result;
@@ -54504,7 +54504,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
             #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.setgptn_set_memcms.Rd, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.setgptn_set_memcms.Rd, true, true)), static_cast<int32_t>(0)));
                         result.operands.push_back(Operand::gp(enc.setgptn_set_memcms.Rn, true));
                         result.operands.push_back(Operand::gp(enc.setgptn_set_memcms.Rs, true));
                         return result;
@@ -54517,7 +54517,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
             #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.setgm_set_memcms.Rd, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.setgm_set_memcms.Rd, true, true)), static_cast<int32_t>(0)));
                         result.operands.push_back(Operand::gp(enc.setgm_set_memcms.Rn, true));
                         result.operands.push_back(Operand::gp(enc.setgm_set_memcms.Rs, true));
                         return result;
@@ -54530,7 +54530,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
             #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.setgmt_set_memcms.Rd, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.setgmt_set_memcms.Rd, true, true)), static_cast<int32_t>(0)));
                         result.operands.push_back(Operand::gp(enc.setgmt_set_memcms.Rn, true));
                         result.operands.push_back(Operand::gp(enc.setgmt_set_memcms.Rs, true));
                         return result;
@@ -54543,7 +54543,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
             #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.setgmn_set_memcms.Rd, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.setgmn_set_memcms.Rd, true, true)), static_cast<int32_t>(0)));
                         result.operands.push_back(Operand::gp(enc.setgmn_set_memcms.Rn, true));
                         result.operands.push_back(Operand::gp(enc.setgmn_set_memcms.Rs, true));
                         return result;
@@ -54556,7 +54556,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
             #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.setgmtn_set_memcms.Rd, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.setgmtn_set_memcms.Rd, true, true)), static_cast<int32_t>(0)));
                         result.operands.push_back(Operand::gp(enc.setgmtn_set_memcms.Rn, true));
                         result.operands.push_back(Operand::gp(enc.setgmtn_set_memcms.Rs, true));
                         return result;
@@ -54569,7 +54569,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
             #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.setge_set_memcms.Rd, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.setge_set_memcms.Rd, true, true)), static_cast<int32_t>(0)));
                         result.operands.push_back(Operand::gp(enc.setge_set_memcms.Rn, true));
                         result.operands.push_back(Operand::gp(enc.setge_set_memcms.Rs, true));
                         return result;
@@ -54582,7 +54582,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
             #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.setget_set_memcms.Rd, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.setget_set_memcms.Rd, true, true)), static_cast<int32_t>(0)));
                         result.operands.push_back(Operand::gp(enc.setget_set_memcms.Rn, true));
                         result.operands.push_back(Operand::gp(enc.setget_set_memcms.Rs, true));
                         return result;
@@ -54595,7 +54595,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
             #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.setgen_set_memcms.Rd, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.setgen_set_memcms.Rd, true, true)), static_cast<int32_t>(0)));
                         result.operands.push_back(Operand::gp(enc.setgen_set_memcms.Rn, true));
                         result.operands.push_back(Operand::gp(enc.setgen_set_memcms.Rs, true));
                         return result;
@@ -54608,7 +54608,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn) {
             #endif
                         LdstEncoding enc = {};
                         enc.raw = insn;
-                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.setgetn_set_memcms.Rd, true, true)), (int32_t)0));
+                        result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.setgetn_set_memcms.Rd, true, true)), static_cast<int32_t>(0)));
                         result.operands.push_back(Operand::gp(enc.setgetn_set_memcms.Rn, true));
                         result.operands.push_back(Operand::gp(enc.setgetn_set_memcms.Rs, true));
                         return result;

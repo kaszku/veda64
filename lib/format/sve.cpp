@@ -53032,7 +53032,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         { auto op = Operand::reg_list(static_cast<uint32_t>(make_sve_reg(enc.ld1rqb_zpbi_u8.Zt))); op.set_arrangement(Arrangement::B); op.rl.count = 1; result.operands.push_back(op); }
                         result.operands.push_back(Operand::pred(enc.ld1rqb_zpbi_u8.Pg, PredQual::Zeroing));
                         {
-                            int32_t _imm = (int32_t)enc.ld1rqb_zpbi_u8.imm4 * 16;
+                            int32_t _imm = static_cast<int32_t>(enc.ld1rqb_zpbi_u8.imm4) * 16;
                             if (_imm == 0) result.operands.push_back(Operand::memory_base(static_cast<uint32_t>(make_gp_reg(enc.ld1rqb_zpbi_u8.Rn, true, true))));
                             else result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ld1rqb_zpbi_u8.Rn, true, true)), _imm));
                         }
@@ -53107,7 +53107,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         { auto op = Operand::reg_list(static_cast<uint32_t>(make_sve_reg(enc.ld1rob_zpbi_u8.Zt))); op.set_arrangement(Arrangement::B); op.rl.count = 1; result.operands.push_back(op); }
                         result.operands.push_back(Operand::pred(enc.ld1rob_zpbi_u8.Pg, PredQual::Zeroing));
                         {
-                            int32_t _imm = (int32_t)enc.ld1rob_zpbi_u8.imm4 * 32;
+                            int32_t _imm = static_cast<int32_t>(enc.ld1rob_zpbi_u8.imm4) * 32;
                             if (_imm == 0) result.operands.push_back(Operand::memory_base(static_cast<uint32_t>(make_gp_reg(enc.ld1rob_zpbi_u8.Rn, true, true))));
                             else result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ld1rob_zpbi_u8.Rn, true, true)), _imm));
                         }
@@ -53296,7 +53296,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         { auto op = Operand::reg_list(static_cast<uint32_t>(make_sve_reg(enc.ld1rqh_zpbi_u16.Zt))); op.set_arrangement(Arrangement::H); op.rl.count = 1; result.operands.push_back(op); }
                         result.operands.push_back(Operand::pred(enc.ld1rqh_zpbi_u16.Pg, PredQual::Zeroing));
                         {
-                            int32_t _imm = (int32_t)enc.ld1rqh_zpbi_u16.imm4 * 16;
+                            int32_t _imm = static_cast<int32_t>(enc.ld1rqh_zpbi_u16.imm4) * 16;
                             if (_imm == 0) result.operands.push_back(Operand::memory_base(static_cast<uint32_t>(make_gp_reg(enc.ld1rqh_zpbi_u16.Rn, true, true))));
                             else result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ld1rqh_zpbi_u16.Rn, true, true)), _imm));
                         }
@@ -53390,7 +53390,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         { auto op = Operand::reg_list(static_cast<uint32_t>(make_sve_reg(enc.ld1roh_zpbi_u16.Zt))); op.set_arrangement(Arrangement::H); op.rl.count = 1; result.operands.push_back(op); }
                         result.operands.push_back(Operand::pred(enc.ld1roh_zpbi_u16.Pg, PredQual::Zeroing));
                         {
-                            int32_t _imm = (int32_t)enc.ld1roh_zpbi_u16.imm4 * 32;
+                            int32_t _imm = static_cast<int32_t>(enc.ld1roh_zpbi_u16.imm4) * 32;
                             if (_imm == 0) result.operands.push_back(Operand::memory_base(static_cast<uint32_t>(make_gp_reg(enc.ld1roh_zpbi_u16.Rn, true, true))));
                             else result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ld1roh_zpbi_u16.Rn, true, true)), _imm));
                         }
@@ -53579,7 +53579,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         { auto op = Operand::reg_list(static_cast<uint32_t>(make_sve_reg(enc.ld1rqw_zpbi_u32.Zt))); op.set_arrangement(Arrangement::S); op.rl.count = 1; result.operands.push_back(op); }
                         result.operands.push_back(Operand::pred(enc.ld1rqw_zpbi_u32.Pg, PredQual::Zeroing));
                         {
-                            int32_t _imm = (int32_t)enc.ld1rqw_zpbi_u32.imm4 * 16;
+                            int32_t _imm = static_cast<int32_t>(enc.ld1rqw_zpbi_u32.imm4) * 16;
                             if (_imm == 0) result.operands.push_back(Operand::memory_base(static_cast<uint32_t>(make_gp_reg(enc.ld1rqw_zpbi_u32.Rn, true, true))));
                             else result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ld1rqw_zpbi_u32.Rn, true, true)), _imm));
                         }
@@ -53692,7 +53692,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         { auto op = Operand::reg_list(static_cast<uint32_t>(make_sve_reg(enc.ld1row_zpbi_u32.Zt))); op.set_arrangement(Arrangement::S); op.rl.count = 1; result.operands.push_back(op); }
                         result.operands.push_back(Operand::pred(enc.ld1row_zpbi_u32.Pg, PredQual::Zeroing));
                         {
-                            int32_t _imm = (int32_t)enc.ld1row_zpbi_u32.imm4 * 32;
+                            int32_t _imm = static_cast<int32_t>(enc.ld1row_zpbi_u32.imm4) * 32;
                             if (_imm == 0) result.operands.push_back(Operand::memory_base(static_cast<uint32_t>(make_gp_reg(enc.ld1row_zpbi_u32.Rn, true, true))));
                             else result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ld1row_zpbi_u32.Rn, true, true)), _imm));
                         }
@@ -53881,7 +53881,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         { auto op = Operand::reg_list(static_cast<uint32_t>(make_sve_reg(enc.ld1rqd_zpbi_u64.Zt))); op.set_arrangement(Arrangement::D); op.rl.count = 1; result.operands.push_back(op); }
                         result.operands.push_back(Operand::pred(enc.ld1rqd_zpbi_u64.Pg, PredQual::Zeroing));
                         {
-                            int32_t _imm = (int32_t)enc.ld1rqd_zpbi_u64.imm4 * 16;
+                            int32_t _imm = static_cast<int32_t>(enc.ld1rqd_zpbi_u64.imm4) * 16;
                             if (_imm == 0) result.operands.push_back(Operand::memory_base(static_cast<uint32_t>(make_gp_reg(enc.ld1rqd_zpbi_u64.Rn, true, true))));
                             else result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ld1rqd_zpbi_u64.Rn, true, true)), _imm));
                         }
@@ -53994,7 +53994,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         { auto op = Operand::reg_list(static_cast<uint32_t>(make_sve_reg(enc.ld1rod_zpbi_u64.Zt))); op.set_arrangement(Arrangement::D); op.rl.count = 1; result.operands.push_back(op); }
                         result.operands.push_back(Operand::pred(enc.ld1rod_zpbi_u64.Pg, PredQual::Zeroing));
                         {
-                            int32_t _imm = (int32_t)enc.ld1rod_zpbi_u64.imm4 * 32;
+                            int32_t _imm = static_cast<int32_t>(enc.ld1rod_zpbi_u64.imm4) * 32;
                             if (_imm == 0) result.operands.push_back(Operand::memory_base(static_cast<uint32_t>(make_gp_reg(enc.ld1rod_zpbi_u64.Rn, true, true))));
                             else result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ld1rod_zpbi_u64.Rn, true, true)), _imm));
                         }
@@ -57221,7 +57221,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         result.operands.back().e.prefetch = prefetch_from_value((enc.prfb_ipai_s.prfop < 8 ? enc.prfb_ipai_s.prfop : (enc.prfb_ipai_s.prfop & 7u) | 16u));
                         { Operand op = Operand::pred(enc.prfb_ipai_s.Pg); op.set_arrangement(Arrangement::None); result.operands.push_back(op); }
                         {
-                            int32_t _imm = (int32_t)enc.prfb_ipai_s.imm5 * 1;
+                            int32_t _imm = static_cast<int32_t>(enc.prfb_ipai_s.imm5) * 1;
                             result.operands.push_back(Operand::memory_sve_offset(static_cast<uint16_t>(make_sve_reg(enc.prfb_ipai_s.Zn, Arrangement::S)), _imm));
                         }
                         return result;
@@ -57255,7 +57255,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         result.operands.back().e.prefetch = prefetch_from_value((enc.prfh_ipai_s.prfop < 8 ? enc.prfh_ipai_s.prfop : (enc.prfh_ipai_s.prfop & 7u) | 16u));
                         { Operand op = Operand::pred(enc.prfh_ipai_s.Pg); op.set_arrangement(Arrangement::None); result.operands.push_back(op); }
                         {
-                            int32_t _imm = (int32_t)enc.prfh_ipai_s.imm5 * 2;
+                            int32_t _imm = static_cast<int32_t>(enc.prfh_ipai_s.imm5) * 2;
                             result.operands.push_back(Operand::memory_sve_offset(static_cast<uint16_t>(make_sve_reg(enc.prfh_ipai_s.Zn, Arrangement::S)), _imm));
                         }
                         return result;
@@ -57289,7 +57289,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         result.operands.back().e.prefetch = prefetch_from_value((enc.prfw_ipai_s.prfop < 8 ? enc.prfw_ipai_s.prfop : (enc.prfw_ipai_s.prfop & 7u) | 16u));
                         { Operand op = Operand::pred(enc.prfw_ipai_s.Pg); op.set_arrangement(Arrangement::None); result.operands.push_back(op); }
                         {
-                            int32_t _imm = (int32_t)enc.prfw_ipai_s.imm5 * 4;
+                            int32_t _imm = static_cast<int32_t>(enc.prfw_ipai_s.imm5) * 4;
                             result.operands.push_back(Operand::memory_sve_offset(static_cast<uint16_t>(make_sve_reg(enc.prfw_ipai_s.Zn, Arrangement::S)), _imm));
                         }
                         return result;
@@ -57323,7 +57323,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         result.operands.back().e.prefetch = prefetch_from_value((enc.prfd_ipai_s.prfop < 8 ? enc.prfd_ipai_s.prfop : (enc.prfd_ipai_s.prfop & 7u) | 16u));
                         { Operand op = Operand::pred(enc.prfd_ipai_s.Pg); op.set_arrangement(Arrangement::None); result.operands.push_back(op); }
                         {
-                            int32_t _imm = (int32_t)enc.prfd_ipai_s.imm5 * 8;
+                            int32_t _imm = static_cast<int32_t>(enc.prfd_ipai_s.imm5) * 8;
                             result.operands.push_back(Operand::memory_sve_offset(static_cast<uint16_t>(make_sve_reg(enc.prfd_ipai_s.Zn, Arrangement::S)), _imm));
                         }
                         return result;
@@ -57340,7 +57340,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         result.operands.back().e.prefetch = prefetch_from_value((enc.prfb_ipai_d.prfop < 8 ? enc.prfb_ipai_d.prfop : (enc.prfb_ipai_d.prfop & 7u) | 16u));
                         { Operand op = Operand::pred(enc.prfb_ipai_d.Pg); op.set_arrangement(Arrangement::None); result.operands.push_back(op); }
                         {
-                            int32_t _imm = (int32_t)enc.prfb_ipai_d.imm5 * 1;
+                            int32_t _imm = static_cast<int32_t>(enc.prfb_ipai_d.imm5) * 1;
                             result.operands.push_back(Operand::memory_sve_offset(static_cast<uint16_t>(make_sve_reg(enc.prfb_ipai_d.Zn, Arrangement::D)), _imm));
                         }
                         return result;
@@ -57417,7 +57417,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         result.operands.back().e.prefetch = prefetch_from_value((enc.prfh_ipai_d.prfop < 8 ? enc.prfh_ipai_d.prfop : (enc.prfh_ipai_d.prfop & 7u) | 16u));
                         { Operand op = Operand::pred(enc.prfh_ipai_d.Pg); op.set_arrangement(Arrangement::None); result.operands.push_back(op); }
                         {
-                            int32_t _imm = (int32_t)enc.prfh_ipai_d.imm5 * 2;
+                            int32_t _imm = static_cast<int32_t>(enc.prfh_ipai_d.imm5) * 2;
                             result.operands.push_back(Operand::memory_sve_offset(static_cast<uint16_t>(make_sve_reg(enc.prfh_ipai_d.Zn, Arrangement::D)), _imm));
                         }
                         return result;
@@ -57434,7 +57434,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         result.operands.back().e.prefetch = prefetch_from_value((enc.prfw_ipai_d.prfop < 8 ? enc.prfw_ipai_d.prfop : (enc.prfw_ipai_d.prfop & 7u) | 16u));
                         { Operand op = Operand::pred(enc.prfw_ipai_d.Pg); op.set_arrangement(Arrangement::None); result.operands.push_back(op); }
                         {
-                            int32_t _imm = (int32_t)enc.prfw_ipai_d.imm5 * 4;
+                            int32_t _imm = static_cast<int32_t>(enc.prfw_ipai_d.imm5) * 4;
                             result.operands.push_back(Operand::memory_sve_offset(static_cast<uint16_t>(make_sve_reg(enc.prfw_ipai_d.Zn, Arrangement::D)), _imm));
                         }
                         return result;
@@ -57451,7 +57451,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         result.operands.back().e.prefetch = prefetch_from_value((enc.prfd_ipai_d.prfop < 8 ? enc.prfd_ipai_d.prfop : (enc.prfd_ipai_d.prfop & 7u) | 16u));
                         { Operand op = Operand::pred(enc.prfd_ipai_d.Pg); op.set_arrangement(Arrangement::None); result.operands.push_back(op); }
                         {
-                            int32_t _imm = (int32_t)enc.prfd_ipai_d.imm5 * 8;
+                            int32_t _imm = static_cast<int32_t>(enc.prfd_ipai_d.imm5) * 8;
                             result.operands.push_back(Operand::memory_sve_offset(static_cast<uint16_t>(make_sve_reg(enc.prfd_ipai_d.Zn, Arrangement::D)), _imm));
                         }
                         return result;
@@ -57557,7 +57557,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         { auto op = Operand::reg_list(static_cast<uint32_t>(make_sve_reg(enc.ld1sb_zpai_s.Zt))); op.set_arrangement(Arrangement::S); op.rl.count = 1; result.operands.push_back(op); }
                         result.operands.push_back(Operand::pred(enc.ld1sb_zpai_s.Pg, PredQual::Zeroing));
                         {
-                            int32_t _imm = (int32_t)enc.ld1sb_zpai_s.imm5 * 1;
+                            int32_t _imm = static_cast<int32_t>(enc.ld1sb_zpai_s.imm5) * 1;
                             result.operands.push_back(Operand::memory_sve_offset(static_cast<uint16_t>(make_sve_reg(enc.ld1sb_zpai_s.Zn, Arrangement::S)), _imm));
                         }
                         return result;
@@ -57573,7 +57573,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         { auto op = Operand::reg_list(static_cast<uint32_t>(make_sve_reg(enc.ldff1sb_zpai_s.Zt))); op.set_arrangement(Arrangement::S); op.rl.count = 1; result.operands.push_back(op); }
                         result.operands.push_back(Operand::pred(enc.ldff1sb_zpai_s.Pg, PredQual::Zeroing));
                         {
-                            int32_t _imm = (int32_t)enc.ldff1sb_zpai_s.imm5 * 1;
+                            int32_t _imm = static_cast<int32_t>(enc.ldff1sb_zpai_s.imm5) * 1;
                             result.operands.push_back(Operand::memory_sve_offset(static_cast<uint16_t>(make_sve_reg(enc.ldff1sb_zpai_s.Zn, Arrangement::S)), _imm));
                         }
                         return result;
@@ -57589,7 +57589,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         { auto op = Operand::reg_list(static_cast<uint32_t>(make_sve_reg(enc.ld1b_zpai_s.Zt))); op.set_arrangement(Arrangement::S); op.rl.count = 1; result.operands.push_back(op); }
                         result.operands.push_back(Operand::pred(enc.ld1b_zpai_s.Pg, PredQual::Zeroing));
                         {
-                            int32_t _imm = (int32_t)enc.ld1b_zpai_s.imm5 * 1;
+                            int32_t _imm = static_cast<int32_t>(enc.ld1b_zpai_s.imm5) * 1;
                             result.operands.push_back(Operand::memory_sve_offset(static_cast<uint16_t>(make_sve_reg(enc.ld1b_zpai_s.Zn, Arrangement::S)), _imm));
                         }
                         return result;
@@ -57605,7 +57605,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         { auto op = Operand::reg_list(static_cast<uint32_t>(make_sve_reg(enc.ldff1b_zpai_s.Zt))); op.set_arrangement(Arrangement::S); op.rl.count = 1; result.operands.push_back(op); }
                         result.operands.push_back(Operand::pred(enc.ldff1b_zpai_s.Pg, PredQual::Zeroing));
                         {
-                            int32_t _imm = (int32_t)enc.ldff1b_zpai_s.imm5 * 1;
+                            int32_t _imm = static_cast<int32_t>(enc.ldff1b_zpai_s.imm5) * 1;
                             result.operands.push_back(Operand::memory_sve_offset(static_cast<uint16_t>(make_sve_reg(enc.ldff1b_zpai_s.Zn, Arrangement::S)), _imm));
                         }
                         return result;
@@ -57651,7 +57651,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         { auto op = Operand::reg_list(static_cast<uint32_t>(make_sve_reg(enc.ld1sh_zpai_s.Zt))); op.set_arrangement(Arrangement::S); op.rl.count = 1; result.operands.push_back(op); }
                         result.operands.push_back(Operand::pred(enc.ld1sh_zpai_s.Pg, PredQual::Zeroing));
                         {
-                            int32_t _imm = (int32_t)enc.ld1sh_zpai_s.imm5 * 2;
+                            int32_t _imm = static_cast<int32_t>(enc.ld1sh_zpai_s.imm5) * 2;
                             result.operands.push_back(Operand::memory_sve_offset(static_cast<uint16_t>(make_sve_reg(enc.ld1sh_zpai_s.Zn, Arrangement::S)), _imm));
                         }
                         return result;
@@ -57667,7 +57667,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         { auto op = Operand::reg_list(static_cast<uint32_t>(make_sve_reg(enc.ldff1sh_zpai_s.Zt))); op.set_arrangement(Arrangement::S); op.rl.count = 1; result.operands.push_back(op); }
                         result.operands.push_back(Operand::pred(enc.ldff1sh_zpai_s.Pg, PredQual::Zeroing));
                         {
-                            int32_t _imm = (int32_t)enc.ldff1sh_zpai_s.imm5 * 2;
+                            int32_t _imm = static_cast<int32_t>(enc.ldff1sh_zpai_s.imm5) * 2;
                             result.operands.push_back(Operand::memory_sve_offset(static_cast<uint16_t>(make_sve_reg(enc.ldff1sh_zpai_s.Zn, Arrangement::S)), _imm));
                         }
                         return result;
@@ -57683,7 +57683,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         { auto op = Operand::reg_list(static_cast<uint32_t>(make_sve_reg(enc.ld1h_zpai_s.Zt))); op.set_arrangement(Arrangement::S); op.rl.count = 1; result.operands.push_back(op); }
                         result.operands.push_back(Operand::pred(enc.ld1h_zpai_s.Pg, PredQual::Zeroing));
                         {
-                            int32_t _imm = (int32_t)enc.ld1h_zpai_s.imm5 * 2;
+                            int32_t _imm = static_cast<int32_t>(enc.ld1h_zpai_s.imm5) * 2;
                             result.operands.push_back(Operand::memory_sve_offset(static_cast<uint16_t>(make_sve_reg(enc.ld1h_zpai_s.Zn, Arrangement::S)), _imm));
                         }
                         return result;
@@ -57699,7 +57699,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         { auto op = Operand::reg_list(static_cast<uint32_t>(make_sve_reg(enc.ldff1h_zpai_s.Zt))); op.set_arrangement(Arrangement::S); op.rl.count = 1; result.operands.push_back(op); }
                         result.operands.push_back(Operand::pred(enc.ldff1h_zpai_s.Pg, PredQual::Zeroing));
                         {
-                            int32_t _imm = (int32_t)enc.ldff1h_zpai_s.imm5 * 2;
+                            int32_t _imm = static_cast<int32_t>(enc.ldff1h_zpai_s.imm5) * 2;
                             result.operands.push_back(Operand::memory_sve_offset(static_cast<uint16_t>(make_sve_reg(enc.ldff1h_zpai_s.Zn, Arrangement::S)), _imm));
                         }
                         return result;
@@ -57730,7 +57730,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         { auto op = Operand::reg_list(static_cast<uint32_t>(make_sve_reg(enc.ld1w_zpai_s.Zt))); op.set_arrangement(Arrangement::S); op.rl.count = 1; result.operands.push_back(op); }
                         result.operands.push_back(Operand::pred(enc.ld1w_zpai_s.Pg, PredQual::Zeroing));
                         {
-                            int32_t _imm = (int32_t)enc.ld1w_zpai_s.imm5 * 4;
+                            int32_t _imm = static_cast<int32_t>(enc.ld1w_zpai_s.imm5) * 4;
                             result.operands.push_back(Operand::memory_sve_offset(static_cast<uint16_t>(make_sve_reg(enc.ld1w_zpai_s.Zn, Arrangement::S)), _imm));
                         }
                         return result;
@@ -57746,7 +57746,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         { auto op = Operand::reg_list(static_cast<uint32_t>(make_sve_reg(enc.ldff1w_zpai_s.Zt))); op.set_arrangement(Arrangement::S); op.rl.count = 1; result.operands.push_back(op); }
                         result.operands.push_back(Operand::pred(enc.ldff1w_zpai_s.Pg, PredQual::Zeroing));
                         {
-                            int32_t _imm = (int32_t)enc.ldff1w_zpai_s.imm5 * 4;
+                            int32_t _imm = static_cast<int32_t>(enc.ldff1w_zpai_s.imm5) * 4;
                             result.operands.push_back(Operand::memory_sve_offset(static_cast<uint16_t>(make_sve_reg(enc.ldff1w_zpai_s.Zn, Arrangement::S)), _imm));
                         }
                         return result;
@@ -58751,7 +58751,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         { auto op = Operand::reg_list(static_cast<uint32_t>(make_sve_reg(enc.ld1sb_zpai_d.Zt))); op.set_arrangement(Arrangement::D); op.rl.count = 1; result.operands.push_back(op); }
                         result.operands.push_back(Operand::pred(enc.ld1sb_zpai_d.Pg, PredQual::Zeroing));
                         {
-                            int32_t _imm = (int32_t)enc.ld1sb_zpai_d.imm5 * 1;
+                            int32_t _imm = static_cast<int32_t>(enc.ld1sb_zpai_d.imm5) * 1;
                             result.operands.push_back(Operand::memory_sve_offset(static_cast<uint16_t>(make_sve_reg(enc.ld1sb_zpai_d.Zn, Arrangement::D)), _imm));
                         }
                         return result;
@@ -58767,7 +58767,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         { auto op = Operand::reg_list(static_cast<uint32_t>(make_sve_reg(enc.ldff1sb_zpai_d.Zt))); op.set_arrangement(Arrangement::D); op.rl.count = 1; result.operands.push_back(op); }
                         result.operands.push_back(Operand::pred(enc.ldff1sb_zpai_d.Pg, PredQual::Zeroing));
                         {
-                            int32_t _imm = (int32_t)enc.ldff1sb_zpai_d.imm5 * 1;
+                            int32_t _imm = static_cast<int32_t>(enc.ldff1sb_zpai_d.imm5) * 1;
                             result.operands.push_back(Operand::memory_sve_offset(static_cast<uint16_t>(make_sve_reg(enc.ldff1sb_zpai_d.Zn, Arrangement::D)), _imm));
                         }
                         return result;
@@ -58783,7 +58783,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         { auto op = Operand::reg_list(static_cast<uint32_t>(make_sve_reg(enc.ld1b_zpai_d.Zt))); op.set_arrangement(Arrangement::D); op.rl.count = 1; result.operands.push_back(op); }
                         result.operands.push_back(Operand::pred(enc.ld1b_zpai_d.Pg, PredQual::Zeroing));
                         {
-                            int32_t _imm = (int32_t)enc.ld1b_zpai_d.imm5 * 1;
+                            int32_t _imm = static_cast<int32_t>(enc.ld1b_zpai_d.imm5) * 1;
                             result.operands.push_back(Operand::memory_sve_offset(static_cast<uint16_t>(make_sve_reg(enc.ld1b_zpai_d.Zn, Arrangement::D)), _imm));
                         }
                         return result;
@@ -58799,7 +58799,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         { auto op = Operand::reg_list(static_cast<uint32_t>(make_sve_reg(enc.ldff1b_zpai_d.Zt))); op.set_arrangement(Arrangement::D); op.rl.count = 1; result.operands.push_back(op); }
                         result.operands.push_back(Operand::pred(enc.ldff1b_zpai_d.Pg, PredQual::Zeroing));
                         {
-                            int32_t _imm = (int32_t)enc.ldff1b_zpai_d.imm5 * 1;
+                            int32_t _imm = static_cast<int32_t>(enc.ldff1b_zpai_d.imm5) * 1;
                             result.operands.push_back(Operand::memory_sve_offset(static_cast<uint16_t>(make_sve_reg(enc.ldff1b_zpai_d.Zn, Arrangement::D)), _imm));
                         }
                         return result;
@@ -58901,7 +58901,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         { auto op = Operand::reg_list(static_cast<uint32_t>(make_sve_reg(enc.ld1sh_zpai_d.Zt))); op.set_arrangement(Arrangement::D); op.rl.count = 1; result.operands.push_back(op); }
                         result.operands.push_back(Operand::pred(enc.ld1sh_zpai_d.Pg, PredQual::Zeroing));
                         {
-                            int32_t _imm = (int32_t)enc.ld1sh_zpai_d.imm5 * 2;
+                            int32_t _imm = static_cast<int32_t>(enc.ld1sh_zpai_d.imm5) * 2;
                             result.operands.push_back(Operand::memory_sve_offset(static_cast<uint16_t>(make_sve_reg(enc.ld1sh_zpai_d.Zn, Arrangement::D)), _imm));
                         }
                         return result;
@@ -58917,7 +58917,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         { auto op = Operand::reg_list(static_cast<uint32_t>(make_sve_reg(enc.ldff1sh_zpai_d.Zt))); op.set_arrangement(Arrangement::D); op.rl.count = 1; result.operands.push_back(op); }
                         result.operands.push_back(Operand::pred(enc.ldff1sh_zpai_d.Pg, PredQual::Zeroing));
                         {
-                            int32_t _imm = (int32_t)enc.ldff1sh_zpai_d.imm5 * 2;
+                            int32_t _imm = static_cast<int32_t>(enc.ldff1sh_zpai_d.imm5) * 2;
                             result.operands.push_back(Operand::memory_sve_offset(static_cast<uint16_t>(make_sve_reg(enc.ldff1sh_zpai_d.Zn, Arrangement::D)), _imm));
                         }
                         return result;
@@ -58933,7 +58933,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         { auto op = Operand::reg_list(static_cast<uint32_t>(make_sve_reg(enc.ld1h_zpai_d.Zt))); op.set_arrangement(Arrangement::D); op.rl.count = 1; result.operands.push_back(op); }
                         result.operands.push_back(Operand::pred(enc.ld1h_zpai_d.Pg, PredQual::Zeroing));
                         {
-                            int32_t _imm = (int32_t)enc.ld1h_zpai_d.imm5 * 2;
+                            int32_t _imm = static_cast<int32_t>(enc.ld1h_zpai_d.imm5) * 2;
                             result.operands.push_back(Operand::memory_sve_offset(static_cast<uint16_t>(make_sve_reg(enc.ld1h_zpai_d.Zn, Arrangement::D)), _imm));
                         }
                         return result;
@@ -58949,7 +58949,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         { auto op = Operand::reg_list(static_cast<uint32_t>(make_sve_reg(enc.ldff1h_zpai_d.Zt))); op.set_arrangement(Arrangement::D); op.rl.count = 1; result.operands.push_back(op); }
                         result.operands.push_back(Operand::pred(enc.ldff1h_zpai_d.Pg, PredQual::Zeroing));
                         {
-                            int32_t _imm = (int32_t)enc.ldff1h_zpai_d.imm5 * 2;
+                            int32_t _imm = static_cast<int32_t>(enc.ldff1h_zpai_d.imm5) * 2;
                             result.operands.push_back(Operand::memory_sve_offset(static_cast<uint16_t>(make_sve_reg(enc.ldff1h_zpai_d.Zn, Arrangement::D)), _imm));
                         }
                         return result;
@@ -59107,7 +59107,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         { auto op = Operand::reg_list(static_cast<uint32_t>(make_sve_reg(enc.ld1sw_zpai_d.Zt))); op.set_arrangement(Arrangement::D); op.rl.count = 1; result.operands.push_back(op); }
                         result.operands.push_back(Operand::pred(enc.ld1sw_zpai_d.Pg, PredQual::Zeroing));
                         {
-                            int32_t _imm = (int32_t)enc.ld1sw_zpai_d.imm5 * 4;
+                            int32_t _imm = static_cast<int32_t>(enc.ld1sw_zpai_d.imm5) * 4;
                             result.operands.push_back(Operand::memory_sve_offset(static_cast<uint16_t>(make_sve_reg(enc.ld1sw_zpai_d.Zn, Arrangement::D)), _imm));
                         }
                         return result;
@@ -59123,7 +59123,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         { auto op = Operand::reg_list(static_cast<uint32_t>(make_sve_reg(enc.ldff1sw_zpai_d.Zt))); op.set_arrangement(Arrangement::D); op.rl.count = 1; result.operands.push_back(op); }
                         result.operands.push_back(Operand::pred(enc.ldff1sw_zpai_d.Pg, PredQual::Zeroing));
                         {
-                            int32_t _imm = (int32_t)enc.ldff1sw_zpai_d.imm5 * 4;
+                            int32_t _imm = static_cast<int32_t>(enc.ldff1sw_zpai_d.imm5) * 4;
                             result.operands.push_back(Operand::memory_sve_offset(static_cast<uint16_t>(make_sve_reg(enc.ldff1sw_zpai_d.Zn, Arrangement::D)), _imm));
                         }
                         return result;
@@ -59139,7 +59139,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         { auto op = Operand::reg_list(static_cast<uint32_t>(make_sve_reg(enc.ld1w_zpai_d.Zt))); op.set_arrangement(Arrangement::D); op.rl.count = 1; result.operands.push_back(op); }
                         result.operands.push_back(Operand::pred(enc.ld1w_zpai_d.Pg, PredQual::Zeroing));
                         {
-                            int32_t _imm = (int32_t)enc.ld1w_zpai_d.imm5 * 4;
+                            int32_t _imm = static_cast<int32_t>(enc.ld1w_zpai_d.imm5) * 4;
                             result.operands.push_back(Operand::memory_sve_offset(static_cast<uint16_t>(make_sve_reg(enc.ld1w_zpai_d.Zn, Arrangement::D)), _imm));
                         }
                         return result;
@@ -59155,7 +59155,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         { auto op = Operand::reg_list(static_cast<uint32_t>(make_sve_reg(enc.ldff1w_zpai_d.Zt))); op.set_arrangement(Arrangement::D); op.rl.count = 1; result.operands.push_back(op); }
                         result.operands.push_back(Operand::pred(enc.ldff1w_zpai_d.Pg, PredQual::Zeroing));
                         {
-                            int32_t _imm = (int32_t)enc.ldff1w_zpai_d.imm5 * 4;
+                            int32_t _imm = static_cast<int32_t>(enc.ldff1w_zpai_d.imm5) * 4;
                             result.operands.push_back(Operand::memory_sve_offset(static_cast<uint16_t>(make_sve_reg(enc.ldff1w_zpai_d.Zn, Arrangement::D)), _imm));
                         }
                         return result;
@@ -59298,7 +59298,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         { auto op = Operand::reg_list(static_cast<uint32_t>(make_sve_reg(enc.ld1d_zpai_d.Zt))); op.set_arrangement(Arrangement::D); op.rl.count = 1; result.operands.push_back(op); }
                         result.operands.push_back(Operand::pred(enc.ld1d_zpai_d.Pg, PredQual::Zeroing));
                         {
-                            int32_t _imm = (int32_t)enc.ld1d_zpai_d.imm5 * 8;
+                            int32_t _imm = static_cast<int32_t>(enc.ld1d_zpai_d.imm5) * 8;
                             result.operands.push_back(Operand::memory_sve_offset(static_cast<uint16_t>(make_sve_reg(enc.ld1d_zpai_d.Zn, Arrangement::D)), _imm));
                         }
                         return result;
@@ -59314,7 +59314,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         { auto op = Operand::reg_list(static_cast<uint32_t>(make_sve_reg(enc.ldff1d_zpai_d.Zt))); op.set_arrangement(Arrangement::D); op.rl.count = 1; result.operands.push_back(op); }
                         result.operands.push_back(Operand::pred(enc.ldff1d_zpai_d.Pg, PredQual::Zeroing));
                         {
-                            int32_t _imm = (int32_t)enc.ldff1d_zpai_d.imm5 * 8;
+                            int32_t _imm = static_cast<int32_t>(enc.ldff1d_zpai_d.imm5) * 8;
                             result.operands.push_back(Operand::memory_sve_offset(static_cast<uint16_t>(make_sve_reg(enc.ldff1d_zpai_d.Zn, Arrangement::D)), _imm));
                         }
                         return result;
@@ -59493,7 +59493,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         { auto op = Operand::reg_list(static_cast<uint32_t>(make_sve_reg(enc.st1b_zpai_d.Zt))); op.set_arrangement(Arrangement::D); op.rl.count = 1; result.operands.push_back(op); }
                         { Operand op = Operand::pred(enc.st1b_zpai_d.Pg); op.set_arrangement(Arrangement::None); result.operands.push_back(op); }
                         {
-                            int32_t _imm = (int32_t)enc.st1b_zpai_d.imm5 * 1;
+                            int32_t _imm = static_cast<int32_t>(enc.st1b_zpai_d.imm5) * 1;
                             result.operands.push_back(Operand::memory_sve_offset(static_cast<uint16_t>(make_sve_reg(enc.st1b_zpai_d.Zn, Arrangement::D)), _imm));
                         }
                         return result;
@@ -59541,7 +59541,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         { auto op = Operand::reg_list(static_cast<uint32_t>(make_sve_reg(enc.st1b_zpai_s.Zt))); op.set_arrangement(Arrangement::S); op.rl.count = 1; result.operands.push_back(op); }
                         { Operand op = Operand::pred(enc.st1b_zpai_s.Pg); op.set_arrangement(Arrangement::None); result.operands.push_back(op); }
                         {
-                            int32_t _imm = (int32_t)enc.st1b_zpai_s.imm5 * 1;
+                            int32_t _imm = static_cast<int32_t>(enc.st1b_zpai_s.imm5) * 1;
                             result.operands.push_back(Operand::memory_sve_offset(static_cast<uint16_t>(make_sve_reg(enc.st1b_zpai_s.Zn, Arrangement::S)), _imm));
                         }
                         return result;
@@ -59679,7 +59679,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         { auto op = Operand::reg_list(static_cast<uint32_t>(make_sve_reg(enc.st1h_zpai_d.Zt))); op.set_arrangement(Arrangement::D); op.rl.count = 1; result.operands.push_back(op); }
                         { Operand op = Operand::pred(enc.st1h_zpai_d.Pg); op.set_arrangement(Arrangement::None); result.operands.push_back(op); }
                         {
-                            int32_t _imm = (int32_t)enc.st1h_zpai_d.imm5 * 2;
+                            int32_t _imm = static_cast<int32_t>(enc.st1h_zpai_d.imm5) * 2;
                             result.operands.push_back(Operand::memory_sve_offset(static_cast<uint16_t>(make_sve_reg(enc.st1h_zpai_d.Zn, Arrangement::D)), _imm));
                         }
                         return result;
@@ -59727,7 +59727,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         { auto op = Operand::reg_list(static_cast<uint32_t>(make_sve_reg(enc.st1h_zpai_s.Zt))); op.set_arrangement(Arrangement::S); op.rl.count = 1; result.operands.push_back(op); }
                         { Operand op = Operand::pred(enc.st1h_zpai_s.Pg); op.set_arrangement(Arrangement::None); result.operands.push_back(op); }
                         {
-                            int32_t _imm = (int32_t)enc.st1h_zpai_s.imm5 * 2;
+                            int32_t _imm = static_cast<int32_t>(enc.st1h_zpai_s.imm5) * 2;
                             result.operands.push_back(Operand::memory_sve_offset(static_cast<uint16_t>(make_sve_reg(enc.st1h_zpai_s.Zn, Arrangement::S)), _imm));
                         }
                         return result;
@@ -59865,7 +59865,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         { auto op = Operand::reg_list(static_cast<uint32_t>(make_sve_reg(enc.st1w_zpai_d.Zt))); op.set_arrangement(Arrangement::D); op.rl.count = 1; result.operands.push_back(op); }
                         { Operand op = Operand::pred(enc.st1w_zpai_d.Pg); op.set_arrangement(Arrangement::None); result.operands.push_back(op); }
                         {
-                            int32_t _imm = (int32_t)enc.st1w_zpai_d.imm5 * 4;
+                            int32_t _imm = static_cast<int32_t>(enc.st1w_zpai_d.imm5) * 4;
                             result.operands.push_back(Operand::memory_sve_offset(static_cast<uint16_t>(make_sve_reg(enc.st1w_zpai_d.Zn, Arrangement::D)), _imm));
                         }
                         return result;
@@ -59897,7 +59897,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         { auto op = Operand::reg_list(static_cast<uint32_t>(make_sve_reg(enc.st1w_zpai_s.Zt))); op.set_arrangement(Arrangement::S); op.rl.count = 1; result.operands.push_back(op); }
                         { Operand op = Operand::pred(enc.st1w_zpai_s.Pg); op.set_arrangement(Arrangement::None); result.operands.push_back(op); }
                         {
-                            int32_t _imm = (int32_t)enc.st1w_zpai_s.imm5 * 4;
+                            int32_t _imm = static_cast<int32_t>(enc.st1w_zpai_s.imm5) * 4;
                             result.operands.push_back(Operand::memory_sve_offset(static_cast<uint16_t>(make_sve_reg(enc.st1w_zpai_s.Zn, Arrangement::S)), _imm));
                         }
                         return result;
@@ -60020,7 +60020,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         { auto op = Operand::reg_list(static_cast<uint32_t>(make_sve_reg(enc.st1d_zpai_d.Zt))); op.set_arrangement(Arrangement::D); op.rl.count = 1; result.operands.push_back(op); }
                         { Operand op = Operand::pred(enc.st1d_zpai_d.Pg); op.set_arrangement(Arrangement::None); result.operands.push_back(op); }
                         {
-                            int32_t _imm = (int32_t)enc.st1d_zpai_d.imm5 * 8;
+                            int32_t _imm = static_cast<int32_t>(enc.st1d_zpai_d.imm5) * 8;
                             result.operands.push_back(Operand::memory_sve_offset(static_cast<uint16_t>(make_sve_reg(enc.st1d_zpai_d.Zn, Arrangement::D)), _imm));
                         }
                         return result;
@@ -60395,7 +60395,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         { auto op = Operand::reg_list(static_cast<uint32_t>(make_sve_reg(enc.ld1rb_zpbi_u8.Zt))); op.set_arrangement(Arrangement::B); op.rl.count = 1; result.operands.push_back(op); }
                         result.operands.push_back(Operand::pred(enc.ld1rb_zpbi_u8.Pg, PredQual::Zeroing));
                         {
-                            int32_t _imm = (int32_t)enc.ld1rb_zpbi_u8.imm6 * 1;
+                            int32_t _imm = static_cast<int32_t>(enc.ld1rb_zpbi_u8.imm6) * 1;
                             if (_imm == 0) result.operands.push_back(Operand::memory_base(static_cast<uint32_t>(make_gp_reg(enc.ld1rb_zpbi_u8.Rn, true, true))));
                             else result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ld1rb_zpbi_u8.Rn, true, true)), _imm));
                         }
@@ -60413,7 +60413,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         { auto op = Operand::reg_list(static_cast<uint32_t>(make_sve_reg(enc.ld1rb_zpbi_u16.Zt))); op.set_arrangement(Arrangement::H); op.rl.count = 1; result.operands.push_back(op); }
                         result.operands.push_back(Operand::pred(enc.ld1rb_zpbi_u16.Pg, PredQual::Zeroing));
                         {
-                            int32_t _imm = (int32_t)enc.ld1rb_zpbi_u16.imm6 * 1;
+                            int32_t _imm = static_cast<int32_t>(enc.ld1rb_zpbi_u16.imm6) * 1;
                             if (_imm == 0) result.operands.push_back(Operand::memory_base(static_cast<uint32_t>(make_gp_reg(enc.ld1rb_zpbi_u16.Rn, true, true))));
                             else result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ld1rb_zpbi_u16.Rn, true, true)), _imm));
                         }
@@ -60431,7 +60431,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         { auto op = Operand::reg_list(static_cast<uint32_t>(make_sve_reg(enc.ld1rb_zpbi_u32.Zt))); op.set_arrangement(Arrangement::S); op.rl.count = 1; result.operands.push_back(op); }
                         result.operands.push_back(Operand::pred(enc.ld1rb_zpbi_u32.Pg, PredQual::Zeroing));
                         {
-                            int32_t _imm = (int32_t)enc.ld1rb_zpbi_u32.imm6 * 1;
+                            int32_t _imm = static_cast<int32_t>(enc.ld1rb_zpbi_u32.imm6) * 1;
                             if (_imm == 0) result.operands.push_back(Operand::memory_base(static_cast<uint32_t>(make_gp_reg(enc.ld1rb_zpbi_u32.Rn, true, true))));
                             else result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ld1rb_zpbi_u32.Rn, true, true)), _imm));
                         }
@@ -60449,7 +60449,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         { auto op = Operand::reg_list(static_cast<uint32_t>(make_sve_reg(enc.ld1rb_zpbi_u64.Zt))); op.set_arrangement(Arrangement::D); op.rl.count = 1; result.operands.push_back(op); }
                         result.operands.push_back(Operand::pred(enc.ld1rb_zpbi_u64.Pg, PredQual::Zeroing));
                         {
-                            int32_t _imm = (int32_t)enc.ld1rb_zpbi_u64.imm6 * 1;
+                            int32_t _imm = static_cast<int32_t>(enc.ld1rb_zpbi_u64.imm6) * 1;
                             if (_imm == 0) result.operands.push_back(Operand::memory_base(static_cast<uint32_t>(make_gp_reg(enc.ld1rb_zpbi_u64.Rn, true, true))));
                             else result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ld1rb_zpbi_u64.Rn, true, true)), _imm));
                         }
@@ -60467,7 +60467,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         { auto op = Operand::reg_list(static_cast<uint32_t>(make_sve_reg(enc.ld1rsw_zpbi_s64.Zt))); op.set_arrangement(Arrangement::D); op.rl.count = 1; result.operands.push_back(op); }
                         result.operands.push_back(Operand::pred(enc.ld1rsw_zpbi_s64.Pg, PredQual::Zeroing));
                         {
-                            int32_t _imm = (int32_t)enc.ld1rsw_zpbi_s64.imm6 * 4;
+                            int32_t _imm = static_cast<int32_t>(enc.ld1rsw_zpbi_s64.imm6) * 4;
                             if (_imm == 0) result.operands.push_back(Operand::memory_base(static_cast<uint32_t>(make_gp_reg(enc.ld1rsw_zpbi_s64.Rn, true, true))));
                             else result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ld1rsw_zpbi_s64.Rn, true, true)), _imm));
                         }
@@ -60485,7 +60485,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         { auto op = Operand::reg_list(static_cast<uint32_t>(make_sve_reg(enc.ld1rh_zpbi_u16.Zt))); op.set_arrangement(Arrangement::H); op.rl.count = 1; result.operands.push_back(op); }
                         result.operands.push_back(Operand::pred(enc.ld1rh_zpbi_u16.Pg, PredQual::Zeroing));
                         {
-                            int32_t _imm = (int32_t)enc.ld1rh_zpbi_u16.imm6 * 2;
+                            int32_t _imm = static_cast<int32_t>(enc.ld1rh_zpbi_u16.imm6) * 2;
                             if (_imm == 0) result.operands.push_back(Operand::memory_base(static_cast<uint32_t>(make_gp_reg(enc.ld1rh_zpbi_u16.Rn, true, true))));
                             else result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ld1rh_zpbi_u16.Rn, true, true)), _imm));
                         }
@@ -60503,7 +60503,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         { auto op = Operand::reg_list(static_cast<uint32_t>(make_sve_reg(enc.ld1rh_zpbi_u32.Zt))); op.set_arrangement(Arrangement::S); op.rl.count = 1; result.operands.push_back(op); }
                         result.operands.push_back(Operand::pred(enc.ld1rh_zpbi_u32.Pg, PredQual::Zeroing));
                         {
-                            int32_t _imm = (int32_t)enc.ld1rh_zpbi_u32.imm6 * 2;
+                            int32_t _imm = static_cast<int32_t>(enc.ld1rh_zpbi_u32.imm6) * 2;
                             if (_imm == 0) result.operands.push_back(Operand::memory_base(static_cast<uint32_t>(make_gp_reg(enc.ld1rh_zpbi_u32.Rn, true, true))));
                             else result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ld1rh_zpbi_u32.Rn, true, true)), _imm));
                         }
@@ -60521,7 +60521,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         { auto op = Operand::reg_list(static_cast<uint32_t>(make_sve_reg(enc.ld1rh_zpbi_u64.Zt))); op.set_arrangement(Arrangement::D); op.rl.count = 1; result.operands.push_back(op); }
                         result.operands.push_back(Operand::pred(enc.ld1rh_zpbi_u64.Pg, PredQual::Zeroing));
                         {
-                            int32_t _imm = (int32_t)enc.ld1rh_zpbi_u64.imm6 * 2;
+                            int32_t _imm = static_cast<int32_t>(enc.ld1rh_zpbi_u64.imm6) * 2;
                             if (_imm == 0) result.operands.push_back(Operand::memory_base(static_cast<uint32_t>(make_gp_reg(enc.ld1rh_zpbi_u64.Rn, true, true))));
                             else result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ld1rh_zpbi_u64.Rn, true, true)), _imm));
                         }
@@ -60539,7 +60539,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         { auto op = Operand::reg_list(static_cast<uint32_t>(make_sve_reg(enc.ld1rsh_zpbi_s64.Zt))); op.set_arrangement(Arrangement::D); op.rl.count = 1; result.operands.push_back(op); }
                         result.operands.push_back(Operand::pred(enc.ld1rsh_zpbi_s64.Pg, PredQual::Zeroing));
                         {
-                            int32_t _imm = (int32_t)enc.ld1rsh_zpbi_s64.imm6 * 2;
+                            int32_t _imm = static_cast<int32_t>(enc.ld1rsh_zpbi_s64.imm6) * 2;
                             if (_imm == 0) result.operands.push_back(Operand::memory_base(static_cast<uint32_t>(make_gp_reg(enc.ld1rsh_zpbi_s64.Rn, true, true))));
                             else result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ld1rsh_zpbi_s64.Rn, true, true)), _imm));
                         }
@@ -60557,7 +60557,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         { auto op = Operand::reg_list(static_cast<uint32_t>(make_sve_reg(enc.ld1rsh_zpbi_s32.Zt))); op.set_arrangement(Arrangement::S); op.rl.count = 1; result.operands.push_back(op); }
                         result.operands.push_back(Operand::pred(enc.ld1rsh_zpbi_s32.Pg, PredQual::Zeroing));
                         {
-                            int32_t _imm = (int32_t)enc.ld1rsh_zpbi_s32.imm6 * 2;
+                            int32_t _imm = static_cast<int32_t>(enc.ld1rsh_zpbi_s32.imm6) * 2;
                             if (_imm == 0) result.operands.push_back(Operand::memory_base(static_cast<uint32_t>(make_gp_reg(enc.ld1rsh_zpbi_s32.Rn, true, true))));
                             else result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ld1rsh_zpbi_s32.Rn, true, true)), _imm));
                         }
@@ -60575,7 +60575,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         { auto op = Operand::reg_list(static_cast<uint32_t>(make_sve_reg(enc.ld1rw_zpbi_u32.Zt))); op.set_arrangement(Arrangement::S); op.rl.count = 1; result.operands.push_back(op); }
                         result.operands.push_back(Operand::pred(enc.ld1rw_zpbi_u32.Pg, PredQual::Zeroing));
                         {
-                            int32_t _imm = (int32_t)enc.ld1rw_zpbi_u32.imm6 * 4;
+                            int32_t _imm = static_cast<int32_t>(enc.ld1rw_zpbi_u32.imm6) * 4;
                             if (_imm == 0) result.operands.push_back(Operand::memory_base(static_cast<uint32_t>(make_gp_reg(enc.ld1rw_zpbi_u32.Rn, true, true))));
                             else result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ld1rw_zpbi_u32.Rn, true, true)), _imm));
                         }
@@ -60593,7 +60593,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         { auto op = Operand::reg_list(static_cast<uint32_t>(make_sve_reg(enc.ld1rw_zpbi_u64.Zt))); op.set_arrangement(Arrangement::D); op.rl.count = 1; result.operands.push_back(op); }
                         result.operands.push_back(Operand::pred(enc.ld1rw_zpbi_u64.Pg, PredQual::Zeroing));
                         {
-                            int32_t _imm = (int32_t)enc.ld1rw_zpbi_u64.imm6 * 4;
+                            int32_t _imm = static_cast<int32_t>(enc.ld1rw_zpbi_u64.imm6) * 4;
                             if (_imm == 0) result.operands.push_back(Operand::memory_base(static_cast<uint32_t>(make_gp_reg(enc.ld1rw_zpbi_u64.Rn, true, true))));
                             else result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ld1rw_zpbi_u64.Rn, true, true)), _imm));
                         }
@@ -60630,7 +60630,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         { auto op = Operand::reg_list(static_cast<uint32_t>(make_sve_reg(enc.ld1rsb_zpbi_s64.Zt))); op.set_arrangement(Arrangement::D); op.rl.count = 1; result.operands.push_back(op); }
                         result.operands.push_back(Operand::pred(enc.ld1rsb_zpbi_s64.Pg, PredQual::Zeroing));
                         {
-                            int32_t _imm = (int32_t)enc.ld1rsb_zpbi_s64.imm6 * 1;
+                            int32_t _imm = static_cast<int32_t>(enc.ld1rsb_zpbi_s64.imm6) * 1;
                             if (_imm == 0) result.operands.push_back(Operand::memory_base(static_cast<uint32_t>(make_gp_reg(enc.ld1rsb_zpbi_s64.Rn, true, true))));
                             else result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ld1rsb_zpbi_s64.Rn, true, true)), _imm));
                         }
@@ -60648,7 +60648,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         { auto op = Operand::reg_list(static_cast<uint32_t>(make_sve_reg(enc.ld1rsb_zpbi_s32.Zt))); op.set_arrangement(Arrangement::S); op.rl.count = 1; result.operands.push_back(op); }
                         result.operands.push_back(Operand::pred(enc.ld1rsb_zpbi_s32.Pg, PredQual::Zeroing));
                         {
-                            int32_t _imm = (int32_t)enc.ld1rsb_zpbi_s32.imm6 * 1;
+                            int32_t _imm = static_cast<int32_t>(enc.ld1rsb_zpbi_s32.imm6) * 1;
                             if (_imm == 0) result.operands.push_back(Operand::memory_base(static_cast<uint32_t>(make_gp_reg(enc.ld1rsb_zpbi_s32.Rn, true, true))));
                             else result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ld1rsb_zpbi_s32.Rn, true, true)), _imm));
                         }
@@ -60666,7 +60666,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         { auto op = Operand::reg_list(static_cast<uint32_t>(make_sve_reg(enc.ld1rsb_zpbi_s16.Zt))); op.set_arrangement(Arrangement::H); op.rl.count = 1; result.operands.push_back(op); }
                         result.operands.push_back(Operand::pred(enc.ld1rsb_zpbi_s16.Pg, PredQual::Zeroing));
                         {
-                            int32_t _imm = (int32_t)enc.ld1rsb_zpbi_s16.imm6 * 1;
+                            int32_t _imm = static_cast<int32_t>(enc.ld1rsb_zpbi_s16.imm6) * 1;
                             if (_imm == 0) result.operands.push_back(Operand::memory_base(static_cast<uint32_t>(make_gp_reg(enc.ld1rsb_zpbi_s16.Rn, true, true))));
                             else result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ld1rsb_zpbi_s16.Rn, true, true)), _imm));
                         }
@@ -60684,7 +60684,7 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
                         { auto op = Operand::reg_list(static_cast<uint32_t>(make_sve_reg(enc.ld1rd_zpbi_u64.Zt))); op.set_arrangement(Arrangement::D); op.rl.count = 1; result.operands.push_back(op); }
                         result.operands.push_back(Operand::pred(enc.ld1rd_zpbi_u64.Pg, PredQual::Zeroing));
                         {
-                            int32_t _imm = (int32_t)enc.ld1rd_zpbi_u64.imm6 * 8;
+                            int32_t _imm = static_cast<int32_t>(enc.ld1rd_zpbi_u64.imm6) * 8;
                             if (_imm == 0) result.operands.push_back(Operand::memory_base(static_cast<uint32_t>(make_gp_reg(enc.ld1rd_zpbi_u64.Rn, true, true))));
                             else result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.ld1rd_zpbi_u64.Rn, true, true)), _imm));
                         }

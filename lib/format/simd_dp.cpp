@@ -38216,7 +38216,7 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         else if (_immh & 0x1) { _esize = 8; _fp_arr = Arrangement::B; }
                         result.operands.push_back(Operand::scalar(enc.sshr_asisdshf_r.Rd, _fp_arr));
                         result.operands.push_back(Operand::scalar(enc.sshr_asisdshf_r.Rn, _fp_arr));
-                        result.operands.push_back(Operand::imm((int)_immhb - _esize));  // shift left
+                        result.operands.push_back(Operand::imm(static_cast<int>(_immhb) - _esize));  // shift left
                         return result;
         }
         case 0x5F401400u: { // SSRA_asisdshf_R
@@ -38238,7 +38238,7 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         else if (_immh & 0x1) { _esize = 8; _fp_arr = Arrangement::B; }
                         result.operands.push_back(Operand::scalar(enc.ssra_asisdshf_r.Rd, _fp_arr));
                         result.operands.push_back(Operand::scalar(enc.ssra_asisdshf_r.Rn, _fp_arr));
-                        result.operands.push_back(Operand::imm((int)_immhb - _esize));  // shift left
+                        result.operands.push_back(Operand::imm(static_cast<int>(_immhb) - _esize));  // shift left
                         return result;
         }
         case 0x5F402400u: { // SRSHR_asisdshf_R
@@ -38260,7 +38260,7 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         else if (_immh & 0x1) { _esize = 8; _fp_arr = Arrangement::B; }
                         result.operands.push_back(Operand::scalar(enc.srshr_asisdshf_r.Rd, _fp_arr));
                         result.operands.push_back(Operand::scalar(enc.srshr_asisdshf_r.Rn, _fp_arr));
-                        result.operands.push_back(Operand::imm((int)_immhb - _esize));  // shift left
+                        result.operands.push_back(Operand::imm(static_cast<int>(_immhb) - _esize));  // shift left
                         return result;
         }
         case 0x5F403400u: { // SRSRA_asisdshf_R
@@ -38282,7 +38282,7 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         else if (_immh & 0x1) { _esize = 8; _fp_arr = Arrangement::B; }
                         result.operands.push_back(Operand::scalar(enc.srsra_asisdshf_r.Rd, _fp_arr));
                         result.operands.push_back(Operand::scalar(enc.srsra_asisdshf_r.Rn, _fp_arr));
-                        result.operands.push_back(Operand::imm((int)_immhb - _esize));  // shift left
+                        result.operands.push_back(Operand::imm(static_cast<int>(_immhb) - _esize));  // shift left
                         return result;
         }
         case 0x5F405400u: { // SHL_asisdshf_R
@@ -38304,7 +38304,7 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         else if (_immh & 0x1) { _esize = 8; _fp_arr = Arrangement::B; }
                         result.operands.push_back(Operand::scalar(enc.shl_asisdshf_r.Rd, _fp_arr));
                         result.operands.push_back(Operand::scalar(enc.shl_asisdshf_r.Rn, _fp_arr));
-                        result.operands.push_back(Operand::imm((int)_immhb - _esize));  // shift left
+                        result.operands.push_back(Operand::imm(static_cast<int>(_immhb) - _esize));  // shift left
                         return result;
         }
         case 0x7F400400u: { // USHR_asisdshf_R
@@ -38326,7 +38326,7 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         else if (_immh & 0x1) { _esize = 8; _fp_arr = Arrangement::B; }
                         result.operands.push_back(Operand::scalar(enc.ushr_asisdshf_r.Rd, _fp_arr));
                         result.operands.push_back(Operand::scalar(enc.ushr_asisdshf_r.Rn, _fp_arr));
-                        result.operands.push_back(Operand::imm((int)_immhb - _esize));  // shift left
+                        result.operands.push_back(Operand::imm(static_cast<int>(_immhb) - _esize));  // shift left
                         return result;
         }
         case 0x7F401400u: { // USRA_asisdshf_R
@@ -38348,7 +38348,7 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         else if (_immh & 0x1) { _esize = 8; _fp_arr = Arrangement::B; }
                         result.operands.push_back(Operand::scalar(enc.usra_asisdshf_r.Rd, _fp_arr));
                         result.operands.push_back(Operand::scalar(enc.usra_asisdshf_r.Rn, _fp_arr));
-                        result.operands.push_back(Operand::imm((int)_immhb - _esize));  // shift left
+                        result.operands.push_back(Operand::imm(static_cast<int>(_immhb) - _esize));  // shift left
                         return result;
         }
         case 0x7F402400u: { // URSHR_asisdshf_R
@@ -38370,7 +38370,7 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         else if (_immh & 0x1) { _esize = 8; _fp_arr = Arrangement::B; }
                         result.operands.push_back(Operand::scalar(enc.urshr_asisdshf_r.Rd, _fp_arr));
                         result.operands.push_back(Operand::scalar(enc.urshr_asisdshf_r.Rn, _fp_arr));
-                        result.operands.push_back(Operand::imm((int)_immhb - _esize));  // shift left
+                        result.operands.push_back(Operand::imm(static_cast<int>(_immhb) - _esize));  // shift left
                         return result;
         }
         case 0x7F403400u: { // URSRA_asisdshf_R
@@ -38392,7 +38392,7 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         else if (_immh & 0x1) { _esize = 8; _fp_arr = Arrangement::B; }
                         result.operands.push_back(Operand::scalar(enc.ursra_asisdshf_r.Rd, _fp_arr));
                         result.operands.push_back(Operand::scalar(enc.ursra_asisdshf_r.Rn, _fp_arr));
-                        result.operands.push_back(Operand::imm((int)_immhb - _esize));  // shift left
+                        result.operands.push_back(Operand::imm(static_cast<int>(_immhb) - _esize));  // shift left
                         return result;
         }
         case 0x7F404400u: { // SRI_asisdshf_R
@@ -38414,7 +38414,7 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         else if (_immh & 0x1) { _esize = 8; _fp_arr = Arrangement::B; }
                         result.operands.push_back(Operand::scalar(enc.sri_asisdshf_r.Rd, _fp_arr));
                         result.operands.push_back(Operand::scalar(enc.sri_asisdshf_r.Rn, _fp_arr));
-                        result.operands.push_back(Operand::imm((int)_immhb - _esize));  // shift left
+                        result.operands.push_back(Operand::imm(static_cast<int>(_immhb) - _esize));  // shift left
                         return result;
         }
         case 0x7F405400u: { // SLI_asisdshf_R
@@ -38436,7 +38436,7 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         else if (_immh & 0x1) { _esize = 8; _fp_arr = Arrangement::B; }
                         result.operands.push_back(Operand::scalar(enc.sli_asisdshf_r.Rd, _fp_arr));
                         result.operands.push_back(Operand::scalar(enc.sli_asisdshf_r.Rn, _fp_arr));
-                        result.operands.push_back(Operand::imm((int)_immhb - _esize));  // shift left
+                        result.operands.push_back(Operand::imm(static_cast<int>(_immhb) - _esize));  // shift left
                         return result;
         }
         default: break;
@@ -39229,7 +39229,7 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         else if (_immh & 0x1) { _esize = 8; _fp_arr = Arrangement::B; }
                         result.operands.push_back(Operand::scalar(enc.sqshl_asisdshf_r.Rd, _fp_arr));
                         result.operands.push_back(Operand::scalar(enc.sqshl_asisdshf_r.Rn, _fp_arr));
-                        result.operands.push_back(Operand::imm((int)_immhb - _esize));  // shift left
+                        result.operands.push_back(Operand::imm(static_cast<int>(_immhb) - _esize));  // shift left
                         return result;
         }
         case 0x5F009400u: { // SQSHRN_asisdshf_N
@@ -39259,7 +39259,7 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         else _wide_arr = Arrangement::D;
                         result.operands.push_back(Operand::scalar(enc.sqshrn_asisdshf_n.Rd, _narrow_arr));
                         result.operands.push_back(Operand::scalar(enc.sqshrn_asisdshf_n.Rn, _wide_arr));
-                        result.operands.push_back(Operand::imm((_esize * 2) - (int)_immhb));
+                        result.operands.push_back(Operand::imm((_esize * 2) - static_cast<int>(_immhb)));
                         return result;
         }
         case 0x5F009C00u: { // SQRSHRN_asisdshf_N
@@ -39289,7 +39289,7 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         else _wide_arr = Arrangement::D;
                         result.operands.push_back(Operand::scalar(enc.sqrshrn_asisdshf_n.Rd, _narrow_arr));
                         result.operands.push_back(Operand::scalar(enc.sqrshrn_asisdshf_n.Rn, _wide_arr));
-                        result.operands.push_back(Operand::imm((_esize * 2) - (int)_immhb));
+                        result.operands.push_back(Operand::imm((_esize * 2) - static_cast<int>(_immhb)));
                         return result;
         }
         case 0x5F00E400u: { // SCVTF_asisdshf_C
@@ -39312,7 +39312,7 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         else if (_immh & 0x1) { _esize = 8; _fp_arr = Arrangement::B; }
                         result.operands.push_back(Operand::scalar(enc.scvtf_asisdshf_c.Rd, _fp_arr));
                         result.operands.push_back(Operand::scalar(enc.scvtf_asisdshf_c.Rn, _fp_arr));
-                        result.operands.push_back(Operand::imm((_esize * 2) - (int)_immhb));  // fbits
+                        result.operands.push_back(Operand::imm((_esize * 2) - static_cast<int>(_immhb)));  // fbits
                         return result;
         }
         case 0x5F00FC00u: { // FCVTZS_asisdshf_C
@@ -39335,7 +39335,7 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         else if (_immh & 0x1) { _esize = 8; _fp_arr = Arrangement::B; }
                         result.operands.push_back(Operand::scalar(enc.fcvtzs_asisdshf_c.Rd, _fp_arr));
                         result.operands.push_back(Operand::scalar(enc.fcvtzs_asisdshf_c.Rn, _fp_arr));
-                        result.operands.push_back(Operand::imm((_esize * 2) - (int)_immhb));  // fbits
+                        result.operands.push_back(Operand::imm((_esize * 2) - static_cast<int>(_immhb)));  // fbits
                         return result;
         }
         case 0x7F006400u: { // SQSHLU_asisdshf_R
@@ -39359,7 +39359,7 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         else if (_immh & 0x1) { _esize = 8; _fp_arr = Arrangement::B; }
                         result.operands.push_back(Operand::scalar(enc.sqshlu_asisdshf_r.Rd, _fp_arr));
                         result.operands.push_back(Operand::scalar(enc.sqshlu_asisdshf_r.Rn, _fp_arr));
-                        result.operands.push_back(Operand::imm((int)_immhb - _esize));  // shift left
+                        result.operands.push_back(Operand::imm(static_cast<int>(_immhb) - _esize));  // shift left
                         return result;
         }
         case 0x7F007400u: { // UQSHL_asisdshf_R
@@ -39383,7 +39383,7 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         else if (_immh & 0x1) { _esize = 8; _fp_arr = Arrangement::B; }
                         result.operands.push_back(Operand::scalar(enc.uqshl_asisdshf_r.Rd, _fp_arr));
                         result.operands.push_back(Operand::scalar(enc.uqshl_asisdshf_r.Rn, _fp_arr));
-                        result.operands.push_back(Operand::imm((int)_immhb - _esize));  // shift left
+                        result.operands.push_back(Operand::imm(static_cast<int>(_immhb) - _esize));  // shift left
                         return result;
         }
         case 0x7F008400u: { // SQSHRUN_asisdshf_N
@@ -39413,7 +39413,7 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         else _wide_arr = Arrangement::D;
                         result.operands.push_back(Operand::scalar(enc.sqshrun_asisdshf_n.Rd, _narrow_arr));
                         result.operands.push_back(Operand::scalar(enc.sqshrun_asisdshf_n.Rn, _wide_arr));
-                        result.operands.push_back(Operand::imm((_esize * 2) - (int)_immhb));
+                        result.operands.push_back(Operand::imm((_esize * 2) - static_cast<int>(_immhb)));
                         return result;
         }
         case 0x7F008C00u: { // SQRSHRUN_asisdshf_N
@@ -39443,7 +39443,7 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         else _wide_arr = Arrangement::D;
                         result.operands.push_back(Operand::scalar(enc.sqrshrun_asisdshf_n.Rd, _narrow_arr));
                         result.operands.push_back(Operand::scalar(enc.sqrshrun_asisdshf_n.Rn, _wide_arr));
-                        result.operands.push_back(Operand::imm((_esize * 2) - (int)_immhb));
+                        result.operands.push_back(Operand::imm((_esize * 2) - static_cast<int>(_immhb)));
                         return result;
         }
         case 0x7F009400u: { // UQSHRN_asisdshf_N
@@ -39473,7 +39473,7 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         else _wide_arr = Arrangement::D;
                         result.operands.push_back(Operand::scalar(enc.uqshrn_asisdshf_n.Rd, _narrow_arr));
                         result.operands.push_back(Operand::scalar(enc.uqshrn_asisdshf_n.Rn, _wide_arr));
-                        result.operands.push_back(Operand::imm((_esize * 2) - (int)_immhb));
+                        result.operands.push_back(Operand::imm((_esize * 2) - static_cast<int>(_immhb)));
                         return result;
         }
         case 0x7F009C00u: { // UQRSHRN_asisdshf_N
@@ -39503,7 +39503,7 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         else _wide_arr = Arrangement::D;
                         result.operands.push_back(Operand::scalar(enc.uqrshrn_asisdshf_n.Rd, _narrow_arr));
                         result.operands.push_back(Operand::scalar(enc.uqrshrn_asisdshf_n.Rn, _wide_arr));
-                        result.operands.push_back(Operand::imm((_esize * 2) - (int)_immhb));
+                        result.operands.push_back(Operand::imm((_esize * 2) - static_cast<int>(_immhb)));
                         return result;
         }
         case 0x7F00E400u: { // UCVTF_asisdshf_C
@@ -39526,7 +39526,7 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         else if (_immh & 0x1) { _esize = 8; _fp_arr = Arrangement::B; }
                         result.operands.push_back(Operand::scalar(enc.ucvtf_asisdshf_c.Rd, _fp_arr));
                         result.operands.push_back(Operand::scalar(enc.ucvtf_asisdshf_c.Rn, _fp_arr));
-                        result.operands.push_back(Operand::imm((_esize * 2) - (int)_immhb));  // fbits
+                        result.operands.push_back(Operand::imm((_esize * 2) - static_cast<int>(_immhb)));  // fbits
                         return result;
         }
         case 0x7F00FC00u: { // FCVTZU_asisdshf_C
@@ -39549,7 +39549,7 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
                         else if (_immh & 0x1) { _esize = 8; _fp_arr = Arrangement::B; }
                         result.operands.push_back(Operand::scalar(enc.fcvtzu_asisdshf_c.Rd, _fp_arr));
                         result.operands.push_back(Operand::scalar(enc.fcvtzu_asisdshf_c.Rn, _fp_arr));
-                        result.operands.push_back(Operand::imm((_esize * 2) - (int)_immhb));  // fbits
+                        result.operands.push_back(Operand::imm((_esize * 2) - static_cast<int>(_immhb)));  // fbits
                         return result;
         }
         default: break;

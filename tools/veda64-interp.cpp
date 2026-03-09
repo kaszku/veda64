@@ -20,10 +20,10 @@ static uint64_t parse_hex(const char* s) {
 
 static void dump_context(const ir::Context& ctx) {
     for (int i = 0; i < 31; ++i) {
-        if (ctx.gpr[i]) printf("  x%-2d = 0x%016llx  (%llu)\n", i, (unsigned long long)ctx.gpr[i], (unsigned long long)ctx.gpr[i]);
+        if (ctx.gpr[i]) printf("  x%-2d = 0x%016llx  (%llu)\n", i, static_cast<unsigned long long>(ctx.gpr[i]), static_cast<unsigned long long>(ctx.gpr[i]));
     }
-    if (ctx.gpr[31]) printf("  sp  = 0x%016llx\n", (unsigned long long)ctx.gpr[31]);
-    printf("  pc  = 0x%016llx\n", (unsigned long long)ctx.pc);
+    if (ctx.gpr[31]) printf("  sp  = 0x%016llx\n", static_cast<unsigned long long>(ctx.gpr[31]));
+    printf("  pc  = 0x%016llx\n", static_cast<unsigned long long>(ctx.pc));
     if (ctx.flags[0] || ctx.flags[1] || ctx.flags[2] || ctx.flags[3])
         printf("  flags: N=%d Z=%d C=%d V=%d\n", ctx.flags[0], ctx.flags[1], ctx.flags[2], ctx.flags[3]);
 }
@@ -45,13 +45,13 @@ int main(int argc, char** argv) {
         } else if (strncmp(argv[i], "--pc=", 5) == 0) {
             ctx.pc = parse_hex(argv[i] + 5);
         } else if (strncmp(argv[i], "--mem=", 6) == 0) {
-            mem_size = (size_t)parse_hex(argv[i] + 6);
+            mem_size = static_cast<size_t>(parse_hex(argv[i] + 6));
         } else if (strcmp(argv[i], "--dump") == 0) {
             dump = true;
         } else if (strcmp(argv[i], "--step") == 0) {
             step = true;
         } else if (strncmp(argv[i], "0x", 2) == 0 || strncmp(argv[i], "0X", 2) == 0) {
-            insns.push_back((uint32_t)strtoul(argv[i], nullptr, 16));
+            insns.push_back(static_cast<uint32_t>(strtoul(argv[i], nullptr, 16)));
         } else {
             fprintf(stderr, "Unknown argument: %s\n", argv[i]);
             return 1;
@@ -72,9 +72,9 @@ int main(int argc, char** argv) {
         if (step) {
 #ifdef VEDA64_STRINGS
             auto decoded = decode(insn);
-            if (decoded) printf("[0x%llx] %s\n", (unsigned long long)ctx.pc, decoded->to_string().c_str());
+            if (decoded) printf("[0x%llx] %s\n", static_cast<unsigned long long>(ctx.pc), decoded->to_string().c_str());
 #else
-            printf("[0x%llx] 0x%08x\n", (unsigned long long)ctx.pc, insn);
+            printf("[0x%llx] 0x%08x\n", static_cast<unsigned long long>(ctx.pc), insn);
 #endif
         }
         uint64_t old_pc = ctx.pc;

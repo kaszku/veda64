@@ -995,10 +995,10 @@ static void run_tests() {
             } else {
                 printf("FAIL: ops=%zu opc=%d out=%d/%d in0=%d/%d in1=%d/%d\n",
                     sim.ops.size(),
-                    sim.ops.empty() ? -1 : (int)sim.ops[0].opcode,
-                    sim.ops.empty() ? -1 : (int)sim.ops[0].output.space, sim.ops.empty() ? -1 : (int)sim.ops[0].output.offset,
-                    sim.ops.empty() ? -1 : (int)sim.ops[0].inputs[0].space, sim.ops.empty() ? -1 : (int)sim.ops[0].inputs[0].offset,
-                    sim.ops.empty() ? -1 : (int)sim.ops[0].inputs[1].space, sim.ops.empty() ? -1 : (int)sim.ops[0].inputs[1].offset);
+                    sim.ops.empty() ? -1 : static_cast<int>(sim.ops[0].opcode),
+                    sim.ops.empty() ? -1 : static_cast<int>(sim.ops[0].output.space), sim.ops.empty() ? -1 : static_cast<int>(sim.ops[0].output.offset),
+                    sim.ops.empty() ? -1 : static_cast<int>(sim.ops[0].inputs[0].space), sim.ops.empty() ? -1 : static_cast<int>(sim.ops[0].inputs[0].offset),
+                    sim.ops.empty() ? -1 : static_cast<int>(sim.ops[0].inputs[1].space), sim.ops.empty() ? -1 : static_cast<int>(sim.ops[0].inputs[1].offset));
             }
         }
     }
@@ -1030,7 +1030,7 @@ static void run_tests() {
             if (sim.ops.size() == 1 && sim.ops[0].opcode == Opcode::SDIV) {
                 printf("PASS\n"); tests_passed++;
             } else {
-                printf("FAIL: ops=%zu opc=%d\n", sim.ops.size(), sim.ops.empty() ? -1 : (int)sim.ops[0].opcode);
+                printf("FAIL: ops=%zu opc=%d\n", sim.ops.size(), sim.ops.empty() ? -1 : static_cast<int>(sim.ops[0].opcode));
             }
         }
     }
@@ -1185,9 +1185,9 @@ static void run_tests() {
             printf("PASS\n"); tests_passed++;
         } else {
             printf("FAIL: out=%d in0=%d in1=%d\n",
-                sim.ops.empty() ? -1 : (int)sim.ops[0].output.offset,
-                sim.ops.empty() ? -1 : (int)sim.ops[0].inputs[0].offset,
-                sim.ops.empty() ? -1 : (int)sim.ops[0].inputs[1].offset);
+                sim.ops.empty() ? -1 : static_cast<int>(sim.ops[0].output.offset),
+                sim.ops.empty() ? -1 : static_cast<int>(sim.ops[0].inputs[0].offset),
+                sim.ops.empty() ? -1 : static_cast<int>(sim.ops[0].inputs[1].offset));
         }
     }
 
@@ -1559,7 +1559,7 @@ static void run_tests() {
         ctx.gpr[1] = 5; ctx.gpr[2] = 3;
         execute(ctx, 0x8B020020);  // ADD X0, X1, X2
         if (ctx.gpr[0] == 8 && ctx.pc == 4) { printf("PASS\n"); tests_passed++; }
-        else { printf("FAIL: x0=%llu pc=%llu\n", (unsigned long long)ctx.gpr[0], (unsigned long long)ctx.pc); }
+        else { printf("FAIL: x0=%llu pc=%llu\n", static_cast<unsigned long long>(ctx.gpr[0]), static_cast<unsigned long long>(ctx.pc)); }
     }
 
     // interp_subs_positive
@@ -1574,7 +1574,7 @@ static void run_tests() {
         // 5-3=2: N=0, Z=0, C=1 (no borrow), V=0
         if (ctx.gpr[0] == 2 && ctx.flags[0] == 0 && ctx.flags[1] == 0 && ctx.flags[2] == 1 && ctx.flags[3] == 0)
             { printf("PASS\n"); tests_passed++; }
-        else { printf("FAIL: x0=%llu N=%d Z=%d C=%d V=%d\n", (unsigned long long)ctx.gpr[0], ctx.flags[0], ctx.flags[1], ctx.flags[2], ctx.flags[3]); }
+        else { printf("FAIL: x0=%llu N=%d Z=%d C=%d V=%d\n", static_cast<unsigned long long>(ctx.gpr[0]), ctx.flags[0], ctx.flags[1], ctx.flags[2], ctx.flags[3]); }
     }
 
     // interp_subs_negative
@@ -1604,7 +1604,7 @@ static void run_tests() {
         // 7-7=0: N=0, Z=1, C=1, V=0
         if (ctx.gpr[0] == 0 && ctx.flags[0] == 0 && ctx.flags[1] == 1 && ctx.flags[2] == 1 && ctx.flags[3] == 0)
             { printf("PASS\n"); tests_passed++; }
-        else { printf("FAIL: x0=%llu N=%d Z=%d C=%d V=%d\n", (unsigned long long)ctx.gpr[0], ctx.flags[0], ctx.flags[1], ctx.flags[2], ctx.flags[3]); }
+        else { printf("FAIL: x0=%llu N=%d Z=%d C=%d V=%d\n", static_cast<unsigned long long>(ctx.gpr[0]), ctx.flags[0], ctx.flags[1], ctx.flags[2], ctx.flags[3]); }
     }
 
     // interp_adds_carry
@@ -1619,7 +1619,7 @@ static void run_tests() {
         // MAX+1 wraps to 0: N=0, Z=1, C=1 (carry out), V=0
         if (ctx.gpr[0] == 0 && ctx.flags[0] == 0 && ctx.flags[1] == 1 && ctx.flags[2] == 1 && ctx.flags[3] == 0)
             { printf("PASS\n"); tests_passed++; }
-        else { printf("FAIL: x0=0x%llx N=%d Z=%d C=%d V=%d\n", (unsigned long long)ctx.gpr[0], ctx.flags[0], ctx.flags[1], ctx.flags[2], ctx.flags[3]); }
+        else { printf("FAIL: x0=0x%llx N=%d Z=%d C=%d V=%d\n", static_cast<unsigned long long>(ctx.gpr[0]), ctx.flags[0], ctx.flags[1], ctx.flags[2], ctx.flags[3]); }
     }
 
     // interp_adds_overflow
@@ -1634,7 +1634,7 @@ static void run_tests() {
         // LLONG_MAX+1 overflows to negative: N=1, Z=0, C=0, V=1
         if (ctx.gpr[0] == 0x8000000000000000ULL && ctx.flags[0] == 1 && ctx.flags[1] == 0 && ctx.flags[2] == 0 && ctx.flags[3] == 1)
             { printf("PASS\n"); tests_passed++; }
-        else { printf("FAIL: x0=0x%llx N=%d Z=%d C=%d V=%d\n", (unsigned long long)ctx.gpr[0], ctx.flags[0], ctx.flags[1], ctx.flags[2], ctx.flags[3]); }
+        else { printf("FAIL: x0=0x%llx N=%d Z=%d C=%d V=%d\n", static_cast<unsigned long long>(ctx.gpr[0]), ctx.flags[0], ctx.flags[1], ctx.flags[2], ctx.flags[3]); }
     }
 
     // interp_ands_flags
@@ -1649,7 +1649,7 @@ static void run_tests() {
         // 0xABCD & 0xFFFF = 0xABCD: N=0, Z=0
         if (ctx.gpr[0] == 0xABCD && ctx.flags[0] == 0 && ctx.flags[1] == 0)
             { printf("PASS\n"); tests_passed++; }
-        else { printf("FAIL: x0=0x%llx N=%d Z=%d\n", (unsigned long long)ctx.gpr[0], ctx.flags[0], ctx.flags[1]); }
+        else { printf("FAIL: x0=0x%llx N=%d Z=%d\n", static_cast<unsigned long long>(ctx.gpr[0]), ctx.flags[0], ctx.flags[1]); }
     }
 
     // interp_cmp_bne
@@ -1666,7 +1666,7 @@ static void run_tests() {
         execute(ctx, 0x54000041);  // B.NE +8
         // Z=0 means NE taken, pc = 0x1004 + 8 = 0x100C
         if (ctx.pc == 0x100C) { printf("PASS\n"); tests_passed++; }
-        else { printf("FAIL: pc=0x%llx Z=%d\n", (unsigned long long)ctx.pc, ctx.flags[1]); }
+        else { printf("FAIL: pc=0x%llx Z=%d\n", static_cast<unsigned long long>(ctx.pc), ctx.flags[1]); }
     }
 
     // interp_cmp_beq_not_taken
@@ -1682,7 +1682,7 @@ static void run_tests() {
         execute(ctx, 0x54000040);  // B.EQ +8
         // Z=0 means EQ not taken, pc = 0x1004 + 4 = 0x1008
         if (ctx.pc == 0x1008) { printf("PASS\n"); tests_passed++; }
-        else { printf("FAIL: pc=0x%llx Z=%d\n", (unsigned long long)ctx.pc, ctx.flags[1]); }
+        else { printf("FAIL: pc=0x%llx Z=%d\n", static_cast<unsigned long long>(ctx.pc), ctx.flags[1]); }
     }
 
     // interp_mov_imm
@@ -1694,7 +1694,7 @@ static void run_tests() {
         ctx.memory = mem; ctx.memory_size = sizeof(mem);
         execute(ctx, 0xD2800540);  // MOVZ X0, #42
         if (ctx.gpr[0] == 42) { printf("PASS\n"); tests_passed++; }
-        else { printf("FAIL: x0=%llu\n", (unsigned long long)ctx.gpr[0]); }
+        else { printf("FAIL: x0=%llu\n", static_cast<unsigned long long>(ctx.gpr[0])); }
     }
 
     // interp_ldr_str
@@ -1709,7 +1709,7 @@ static void run_tests() {
         execute(ctx, 0xF90003E1);  // STR X1, [SP]
         execute(ctx, 0xF94003E0);  // LDR X0, [SP]
         if (ctx.gpr[0] == 0xDEADBEEFCAFEBABEULL) { printf("PASS\n"); tests_passed++; }
-        else { printf("FAIL: x0=0x%llx\n", (unsigned long long)ctx.gpr[0]); }
+        else { printf("FAIL: x0=0x%llx\n", static_cast<unsigned long long>(ctx.gpr[0])); }
     }
 
     // interp_branch
@@ -1722,7 +1722,7 @@ static void run_tests() {
         ctx.pc = 0x100;
         execute(ctx, 0x14000002);  // B +8
         if (ctx.pc == 0x108) { printf("PASS\n"); tests_passed++; }
-        else { printf("FAIL: pc=0x%llx\n", (unsigned long long)ctx.pc); }
+        else { printf("FAIL: pc=0x%llx\n", static_cast<unsigned long long>(ctx.pc)); }
     }
 
     // interp_add_w32
@@ -1737,7 +1737,7 @@ static void run_tests() {
         execute(ctx, 0x0B020020);  // ADD W0, W1, W2
         // 0xFFFFFFFF + 1 = 0x100000000 truncated to 32-bit = 0, zero-extended
         if (ctx.gpr[0] == 0) { printf("PASS\n"); tests_passed++; }
-        else { printf("FAIL: x0=0x%llx\n", (unsigned long long)ctx.gpr[0]); }
+        else { printf("FAIL: x0=0x%llx\n", static_cast<unsigned long long>(ctx.gpr[0])); }
     }
 
     // interp_sub_x64
@@ -1751,7 +1751,7 @@ static void run_tests() {
         ctx.gpr[1] = 100; ctx.gpr[2] = 37;
         execute(ctx, 0xCB020020);  // SUB X0, X1, X2
         if (ctx.gpr[0] == 63) { printf("PASS\n"); tests_passed++; }
-        else { printf("FAIL: x0=%llu\n", (unsigned long long)ctx.gpr[0]); }
+        else { printf("FAIL: x0=%llu\n", static_cast<unsigned long long>(ctx.gpr[0])); }
     }
 
     // interp_subs_w32_flags
@@ -1767,7 +1767,7 @@ static void run_tests() {
         // 1-2 wraps in 32-bit: result=0xFFFFFFFF, N=1, Z=0, C=0
         if (ctx.gpr[0] == 0xFFFFFFFF && ctx.flags[0] == 1 && ctx.flags[1] == 0 && ctx.flags[2] == 0)
             { printf("PASS\n"); tests_passed++; }
-        else { printf("FAIL: x0=0x%llx N=%d Z=%d C=%d\n", (unsigned long long)ctx.gpr[0], ctx.flags[0], ctx.flags[1], ctx.flags[2]); }
+        else { printf("FAIL: x0=0x%llx N=%d Z=%d C=%d\n", static_cast<unsigned long long>(ctx.gpr[0]), ctx.flags[0], ctx.flags[1], ctx.flags[2]); }
     }
 
     // interp_and
@@ -1780,7 +1780,7 @@ static void run_tests() {
         ctx.gpr[1] = 0xFF00FF00ULL; ctx.gpr[2] = 0x0F0F0F0FULL;
         execute(ctx, 0x8A020020);  // AND X0, X1, X2
         if (ctx.gpr[0] == 0x0F000F00ULL) { printf("PASS\n"); tests_passed++; }
-        else { printf("FAIL: x0=0x%llx\n", (unsigned long long)ctx.gpr[0]); }
+        else { printf("FAIL: x0=0x%llx\n", static_cast<unsigned long long>(ctx.gpr[0])); }
     }
 
     // interp_eor
@@ -1793,7 +1793,7 @@ static void run_tests() {
         ctx.gpr[1] = 0xAAAAAAAAAAAAAAAAULL; ctx.gpr[2] = 0x5555555555555555ULL;
         execute(ctx, 0xCA020020);  // EOR X0, X1, X2
         if (ctx.gpr[0] == 0xFFFFFFFFFFFFFFFFULL) { printf("PASS\n"); tests_passed++; }
-        else { printf("FAIL: x0=0x%llx\n", (unsigned long long)ctx.gpr[0]); }
+        else { printf("FAIL: x0=0x%llx\n", static_cast<unsigned long long>(ctx.gpr[0])); }
     }
 
     // interp_movn
@@ -1806,7 +1806,7 @@ static void run_tests() {
         ctx.memory = mem; ctx.memory_size = sizeof(mem);
         execute(ctx, 0x92800020);  // MOV X0, #-2 (MOVN X0, #1)
         if (ctx.gpr[0] == 0xFFFFFFFFFFFFFFFEULL) { printf("PASS\n"); tests_passed++; }
-        else { printf("FAIL: x0=0x%llx\n", (unsigned long long)ctx.gpr[0]); }
+        else { printf("FAIL: x0=0x%llx\n", static_cast<unsigned long long>(ctx.gpr[0])); }
     }
 
     // interp_movz_shifted
@@ -1819,7 +1819,7 @@ static void run_tests() {
         ctx.memory = mem; ctx.memory_size = sizeof(mem);
         execute(ctx, 0xD2820020);  // MOV X0, #0x1001
         if (ctx.gpr[0] == 0x1001) { printf("PASS\n"); tests_passed++; }
-        else { printf("FAIL: x0=0x%llx\n", (unsigned long long)ctx.gpr[0]); }
+        else { printf("FAIL: x0=0x%llx\n", static_cast<unsigned long long>(ctx.gpr[0])); }
     }
 
     // interp_udiv
@@ -1832,7 +1832,7 @@ static void run_tests() {
         ctx.gpr[1] = 100; ctx.gpr[2] = 7;
         execute(ctx, 0x9AC20820);  // UDIV X0, X1, X2
         if (ctx.gpr[0] == 14) { printf("PASS\n"); tests_passed++; }
-        else { printf("FAIL: x0=%llu\n", (unsigned long long)ctx.gpr[0]); }
+        else { printf("FAIL: x0=%llu\n", static_cast<unsigned long long>(ctx.gpr[0])); }
     }
 
     // interp_sdiv
@@ -1842,11 +1842,11 @@ static void run_tests() {
         Context ctx;
         uint8_t mem[1024] = {};
         ctx.memory = mem; ctx.memory_size = sizeof(mem);
-        ctx.gpr[1] = (uint64_t)(int64_t)-100; ctx.gpr[2] = 7;
+        ctx.gpr[1] = static_cast<uint64_t>(int64_t)-100; ctx.gpr[2] = 7;
         execute(ctx, 0x9AC20C20);  // SDIV X0, X1, X2
         // -100 / 7 = -14
-        if (ctx.gpr[0] == (uint64_t)(int64_t)-14) { printf("PASS\n"); tests_passed++; }
-        else { printf("FAIL: x0=0x%llx\n", (unsigned long long)ctx.gpr[0]); }
+        if (ctx.gpr[0] == static_cast<uint64_t>(int64_t)-14) { printf("PASS\n"); tests_passed++; }
+        else { printf("FAIL: x0=0x%llx\n", static_cast<unsigned long long>(ctx.gpr[0])); }
     }
 
     // interp_udiv_by_zero
@@ -1859,7 +1859,7 @@ static void run_tests() {
         ctx.gpr[0] = 0xDEAD; ctx.gpr[1] = 42; ctx.gpr[2] = 0;
         execute(ctx, 0x9AC20820);  // UDIV X0, X1, X2 (div by zero → 0)
         if (ctx.gpr[0] == 0) { printf("PASS\n"); tests_passed++; }
-        else { printf("FAIL: x0=%llu\n", (unsigned long long)ctx.gpr[0]); }
+        else { printf("FAIL: x0=%llu\n", static_cast<unsigned long long>(ctx.gpr[0])); }
     }
 
     // interp_mov_reg
@@ -1873,7 +1873,7 @@ static void run_tests() {
         ctx.gpr[2] = 0x123456789ABCDEF0ULL;
         execute(ctx, 0xAA0203E0);  // MOV X0, X2
         if (ctx.gpr[0] == 0x123456789ABCDEF0ULL) { printf("PASS\n"); tests_passed++; }
-        else { printf("FAIL: x0=0x%llx\n", (unsigned long long)ctx.gpr[0]); }
+        else { printf("FAIL: x0=0x%llx\n", static_cast<unsigned long long>(ctx.gpr[0])); }
     }
 
     // interp_csel_taken
@@ -1897,7 +1897,7 @@ static void run_tests() {
         execute(ctx2, 0x9A840060);  // CSEL X0, X3, X4, EQ
         // Z=1 → EQ taken → X0=X3
         if (ctx2.gpr[0] == 0xAAAA) { printf("PASS\n"); tests_passed++; }
-        else { printf("FAIL: x0=0x%llx Z=%d\n", (unsigned long long)ctx2.gpr[0], ctx2.flags[1]); }
+        else { printf("FAIL: x0=0x%llx Z=%d\n", static_cast<unsigned long long>(ctx2.gpr[0]), ctx2.flags[1]); }
     }
 
     // interp_csel_not_taken
@@ -1914,7 +1914,7 @@ static void run_tests() {
         execute(ctx, 0x9A840060);  // CSEL X0, X3, X4, EQ
         // Z=0 → EQ not taken → X0=X4
         if (ctx.gpr[0] == 0xBBBB) { printf("PASS\n"); tests_passed++; }
-        else { printf("FAIL: x0=0x%llx Z=%d\n", (unsigned long long)ctx.gpr[0], ctx.flags[1]); }
+        else { printf("FAIL: x0=0x%llx Z=%d\n", static_cast<unsigned long long>(ctx.gpr[0]), ctx.flags[1]); }
     }
 
     // interp_ldr_str_offset
@@ -1929,7 +1929,7 @@ static void run_tests() {
         execute(ctx, 0xF9000820);  // STR X0, [X1, #0x10]
         execute(ctx, 0xF9400822);  // LDR X2, [X1, #0x10]
         if (ctx.gpr[2] == 0xCAFEBABE12345678ULL) { printf("PASS\n"); tests_passed++; }
-        else { printf("FAIL: x2=0x%llx\n", (unsigned long long)ctx.gpr[2]); }
+        else { printf("FAIL: x2=0x%llx\n", static_cast<unsigned long long>(ctx.gpr[2])); }
     }
 
     // interp_stp_ldp
@@ -1951,7 +1951,7 @@ static void run_tests() {
         execute(ctx, 0xA9400FE2);  // LDP X2, X3, [SP]
         if (ctx.gpr[2] == 0x1111111111111111ULL && ctx.gpr[3] == 0x2222222222222222ULL)
             { printf("PASS\n"); tests_passed++; }
-        else { printf("FAIL: x2=0x%llx x3=0x%llx\n", (unsigned long long)ctx.gpr[2], (unsigned long long)ctx.gpr[3]); }
+        else { printf("FAIL: x2=0x%llx x3=0x%llx\n", static_cast<unsigned long long>(ctx.gpr[2]), static_cast<unsigned long long>(ctx.gpr[3])); }
     }
 
     // interp_adds_imm
@@ -1966,7 +1966,7 @@ static void run_tests() {
         execute(ctx, 0xB1000C20);  // ADDS X0, X1, #3
         if (ctx.gpr[0] == 13 && ctx.flags[0] == 0 && ctx.flags[1] == 0 && ctx.flags[2] == 0 && ctx.flags[3] == 0)
             { printf("PASS\n"); tests_passed++; }
-        else { printf("FAIL: x0=%llu N=%d Z=%d C=%d V=%d\n", (unsigned long long)ctx.gpr[0], ctx.flags[0], ctx.flags[1], ctx.flags[2], ctx.flags[3]); }
+        else { printf("FAIL: x0=%llu N=%d Z=%d C=%d V=%d\n", static_cast<unsigned long long>(ctx.gpr[0]), ctx.flags[0], ctx.flags[1], ctx.flags[2], ctx.flags[3]); }
     }
 
     // interp_sequence_add_mul
@@ -1981,7 +1981,7 @@ static void run_tests() {
         execute(ctx, 0x8B020020);  // ADD X0, X1, X2  → X0=10
         execute(ctx, 0x9B037C00);  // MUL X0, X0, X3  → X0=50
         if (ctx.gpr[0] == 50) { printf("PASS\n"); tests_passed++; }
-        else { printf("FAIL: x0=%llu\n", (unsigned long long)ctx.gpr[0]); }
+        else { printf("FAIL: x0=%llu\n", static_cast<unsigned long long>(ctx.gpr[0])); }
     }
 
     // interp_subs_beq_taken
@@ -1997,7 +1997,7 @@ static void run_tests() {
         execute(ctx, 0x54000040);  // B.EQ +8
         // Z=1 → EQ taken → pc = 0x2004 + 8 = 0x200C
         if (ctx.pc == 0x200C && ctx.flags[1] == 1) { printf("PASS\n"); tests_passed++; }
-        else { printf("FAIL: pc=0x%llx Z=%d\n", (unsigned long long)ctx.pc, ctx.flags[1]); }
+        else { printf("FAIL: pc=0x%llx Z=%d\n", static_cast<unsigned long long>(ctx.pc), ctx.flags[1]); }
     }
 
     // interp_mem_le_bytes
@@ -2034,7 +2034,7 @@ static void run_tests() {
         // CMP writes to XZR which maps to gpr[31]; this tests current behavior
         bool flags_ok = (ctx.flags[0] == 0 && ctx.flags[1] == 0 && ctx.flags[2] == 1);
         if (flags_ok) { printf("PASS\n"); tests_passed++; }
-        else { printf("FAIL: N=%d Z=%d C=%d V=%d sp=0x%llx\n", ctx.flags[0], ctx.flags[1], ctx.flags[2], ctx.flags[3], (unsigned long long)ctx.gpr[31]); }
+        else { printf("FAIL: N=%d Z=%d C=%d V=%d sp=0x%llx\n", ctx.flags[0], ctx.flags[1], ctx.flags[2], ctx.flags[3], static_cast<unsigned long long>(ctx.gpr[31])); }
     }
 
     // interp_pc_advance
@@ -2051,7 +2051,7 @@ static void run_tests() {
         execute(ctx, 0x8B030000);  // ADD X0, X0, X3
         execute(ctx, 0xD2800060);  // MOV X0, #3
         if (ctx.pc == 0x40C) { printf("PASS\n"); tests_passed++; }
-        else { printf("FAIL: pc=0x%llx\n", (unsigned long long)ctx.pc); }
+        else { printf("FAIL: pc=0x%llx\n", static_cast<unsigned long long>(ctx.pc)); }
     }
 
     // interp_csel_ne
@@ -2067,7 +2067,7 @@ static void run_tests() {
         execute(ctx, 0x9A821020);  // CSEL X0, X1, X2, NE
         // NE → Z==0 → condition true → X0 = X1 = 111
         if (ctx.gpr[0] == 111) { printf("PASS\n"); tests_passed++; }
-        else { printf("FAIL: x0=%llu Z=%d\n", (unsigned long long)ctx.gpr[0], ctx.flags[1]); }
+        else { printf("FAIL: x0=%llu Z=%d\n", static_cast<unsigned long long>(ctx.gpr[0]), ctx.flags[1]); }
     }
 
     // interp_csel_ne_false
@@ -2082,7 +2082,7 @@ static void run_tests() {
         ctx.flags[1] = 1; // Z=1 → NE is false
         execute(ctx, 0x9A821020);  // CSEL X0, X1, X2, NE
         if (ctx.gpr[0] == 222) { printf("PASS\n"); tests_passed++; }
-        else { printf("FAIL: x0=%llu Z=%d\n", (unsigned long long)ctx.gpr[0], ctx.flags[1]); }
+        else { printf("FAIL: x0=%llu Z=%d\n", static_cast<unsigned long long>(ctx.gpr[0]), ctx.flags[1]); }
     }
 
 }

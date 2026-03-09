@@ -12,7 +12,7 @@
 
 // NT syscall declarations (linked via ntdll.lib)
 #ifndef NtCurrentProcess
-#define NtCurrentProcess() ((void*)(intptr_t)-1)
+#define NtCurrentProcess() (reinterpret_cast<void*>(static_cast<intptr_t>(-1)))
 #endif
 
 // Memory protection constants

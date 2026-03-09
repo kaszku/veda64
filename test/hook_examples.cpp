@@ -221,7 +221,7 @@ double get_average_ms() {
     QueryPerformanceFrequency(&freq);
     std::lock_guard<std::mutex> lock(mtx);
     if (data.call_count == 0) return 0.0;
-    return (double)data.total_ticks / data.call_count / freq.QuadPart * 1000.0;
+    return static_cast<double>(data.total_ticks) / data.call_count / freq.QuadPart * 1000.0;
 }
 
 } // namespace profiling_hook

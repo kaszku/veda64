@@ -37885,7 +37885,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.sme.mode = 3;  // range + VGx mode
                             op.sme.wv = enc.zero_za4ri2.Rv + 8;
                             op.sme.start = static_cast<uint8_t>(_start);
-                            op.sme.detail = (int32_t)((_end & 0xFFFF) | (2 << 16));
+                            op.sme.detail = static_cast<int32_t>((_end & 0xFFFF) | (2 << 16));
                             result.operands.push_back(op);
                         }
                         return result;
@@ -37908,7 +37908,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.sme.mode = 3;  // range + VGx mode
                             op.sme.wv = enc.zero_za4ri4.Rv + 8;
                             op.sme.start = static_cast<uint8_t>(_start);
-                            op.sme.detail = (int32_t)((_end & 0xFFFF) | (4 << 16));
+                            op.sme.detail = static_cast<int32_t>((_end & 0xFFFF) | (4 << 16));
                             result.operands.push_back(op);
                         }
                         return result;
@@ -37936,7 +37936,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.sme.mode = 3;  // range + VGx mode
                             op.sme.wv = enc.zero_za2ri2.Rv + 8;
                             op.sme.start = static_cast<uint8_t>(_start);
-                            op.sme.detail = (int32_t)((_end & 0xFFFF) | (2 << 16));
+                            op.sme.detail = static_cast<int32_t>((_end & 0xFFFF) | (2 << 16));
                             result.operands.push_back(op);
                         }
                         return result;
@@ -37959,7 +37959,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.sme.mode = 3;  // range + VGx mode
                             op.sme.wv = enc.zero_za2ri4.Rv + 8;
                             op.sme.start = static_cast<uint8_t>(_start);
-                            op.sme.detail = (int32_t)((_end & 0xFFFF) | (4 << 16));
+                            op.sme.detail = static_cast<int32_t>((_end & 0xFFFF) | (4 << 16));
                             result.operands.push_back(op);
                         }
                         return result;
@@ -37982,7 +37982,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.sme.mode = 1;  // range mode
                             op.sme.wv = enc.zero_za4ri1.Rv + 8;
                             op.sme.start = static_cast<uint8_t>(_start);
-                            op.sme.detail = (int32_t)_end;
+                            op.sme.detail = static_cast<int32_t>(_end);
                             result.operands.push_back(op);
                         }
                         return result;
@@ -38030,7 +38030,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.sme.mode = 1;  // range mode
                             op.sme.wv = enc.zero_za2ri1.Rv + 8;
                             op.sme.start = static_cast<uint8_t>(_start);
-                            op.sme.detail = (int32_t)_end;
+                            op.sme.detail = static_cast<int32_t>(_end);
                             result.operands.push_back(op);
                         }
                         return result;
@@ -42987,7 +42987,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.sme.mode = 3;  // range + VGx mode
                             op.sme.wv = enc.fmlall_za32z8z8v2x1.Rv + 8;
                             op.sme.start = static_cast<uint8_t>(_start);
-                            op.sme.detail = (int32_t)((_end & 0xFFFF) | (2 << 16));
+                            op.sme.detail = static_cast<int32_t>((_end & 0xFFFF) | (2 << 16));
                             result.operands.push_back(op);
                         }
                         { auto op = Operand::reg_list(static_cast<uint32_t>(make_sve_reg(enc.fmlall_za32z8z8v2x1.Zn))); op.set_arrangement(Arrangement::B); op.rl.count = 2; result.operands.push_back(op); }
@@ -43012,7 +43012,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.sme.mode = 3;  // range + VGx mode
                             op.sme.wv = enc.usmlall_za_zzv_s2x1.Rv + 8;
                             op.sme.start = static_cast<uint8_t>(_start);
-                            op.sme.detail = (int32_t)((_end & 0xFFFF) | (2 << 16));
+                            op.sme.detail = static_cast<int32_t>((_end & 0xFFFF) | (2 << 16));
                             result.operands.push_back(op);
                         }
                         { auto op = Operand::reg_list(static_cast<uint32_t>(make_sve_reg(enc.usmlall_za_zzv_s2x1.Zn))); op.set_arrangement(Arrangement::B); op.rl.count = 2; result.operands.push_back(op); }
@@ -43037,7 +43037,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.sme.mode = 3;  // range + VGx mode
                             op.sme.wv = enc.sumlall_za_zzv_s2x1.Rv + 8;
                             op.sme.start = static_cast<uint8_t>(_start);
-                            op.sme.detail = (int32_t)((_end & 0xFFFF) | (2 << 16));
+                            op.sme.detail = static_cast<int32_t>((_end & 0xFFFF) | (2 << 16));
                             result.operands.push_back(op);
                         }
                         { auto op = Operand::reg_list(static_cast<uint32_t>(make_sve_reg(enc.sumlall_za_zzv_s2x1.Zn))); op.set_arrangement(Arrangement::B); op.rl.count = 2; result.operands.push_back(op); }
@@ -43062,7 +43062,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.sme.mode = 3;  // range + VGx mode
                             op.sme.wv = enc.fmlall_za32z8z8v4x1.Rv + 8;
                             op.sme.start = static_cast<uint8_t>(_start);
-                            op.sme.detail = (int32_t)((_end & 0xFFFF) | (4 << 16));
+                            op.sme.detail = static_cast<int32_t>((_end & 0xFFFF) | (4 << 16));
                             result.operands.push_back(op);
                         }
                         { auto op = Operand::reg_list(static_cast<uint32_t>(make_sve_reg(enc.fmlall_za32z8z8v4x1.Zn))); op.set_arrangement(Arrangement::B); op.rl.count = 4; result.operands.push_back(op); }
@@ -43087,7 +43087,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.sme.mode = 3;  // range + VGx mode
                             op.sme.wv = enc.usmlall_za_zzv_s4x1.Rv + 8;
                             op.sme.start = static_cast<uint8_t>(_start);
-                            op.sme.detail = (int32_t)((_end & 0xFFFF) | (4 << 16));
+                            op.sme.detail = static_cast<int32_t>((_end & 0xFFFF) | (4 << 16));
                             result.operands.push_back(op);
                         }
                         { auto op = Operand::reg_list(static_cast<uint32_t>(make_sve_reg(enc.usmlall_za_zzv_s4x1.Zn))); op.set_arrangement(Arrangement::B); op.rl.count = 4; result.operands.push_back(op); }
@@ -43112,7 +43112,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.sme.mode = 3;  // range + VGx mode
                             op.sme.wv = enc.sumlall_za_zzv_s4x1.Rv + 8;
                             op.sme.start = static_cast<uint8_t>(_start);
-                            op.sme.detail = (int32_t)((_end & 0xFFFF) | (4 << 16));
+                            op.sme.detail = static_cast<int32_t>((_end & 0xFFFF) | (4 << 16));
                             result.operands.push_back(op);
                         }
                         { auto op = Operand::reg_list(static_cast<uint32_t>(make_sve_reg(enc.sumlall_za_zzv_s4x1.Zn))); op.set_arrangement(Arrangement::B); op.rl.count = 4; result.operands.push_back(op); }
@@ -43142,7 +43142,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.sme.mode = 1;  // range mode
                             op.sme.wv = enc.usmlall_za_zzv_s.Rv + 8;
                             op.sme.start = static_cast<uint8_t>(_start);
-                            op.sme.detail = (int32_t)_end;
+                            op.sme.detail = static_cast<int32_t>(_end);
                             result.operands.push_back(op);
                         }
                         result.operands.push_back(Operand::sve(enc.usmlall_za_zzv_s.Zn, Arrangement::B));
@@ -43167,7 +43167,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.sme.mode = 3;  // range + VGx mode
                             op.sme.wv = enc.fmlal_za_zzv2x1.Rv + 8;
                             op.sme.start = static_cast<uint8_t>(_start);
-                            op.sme.detail = (int32_t)((_end & 0xFFFF) | (2 << 16));
+                            op.sme.detail = static_cast<int32_t>((_end & 0xFFFF) | (2 << 16));
                             result.operands.push_back(op);
                         }
                         { auto op = Operand::reg_list(static_cast<uint32_t>(make_sve_reg(enc.fmlal_za_zzv2x1.Zn))); op.set_arrangement(Arrangement::H); op.rl.count = 2; result.operands.push_back(op); }
@@ -43192,7 +43192,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.sme.mode = 3;  // range + VGx mode
                             op.sme.wv = enc.fmlal_za_z8z8v2x1.Rv + 8;
                             op.sme.start = static_cast<uint8_t>(_start);
-                            op.sme.detail = (int32_t)((_end & 0xFFFF) | (2 << 16));
+                            op.sme.detail = static_cast<int32_t>((_end & 0xFFFF) | (2 << 16));
                             result.operands.push_back(op);
                         }
                         { auto op = Operand::reg_list(static_cast<uint32_t>(make_sve_reg(enc.fmlal_za_z8z8v2x1.Zn))); op.set_arrangement(Arrangement::B); op.rl.count = 2; result.operands.push_back(op); }
@@ -43217,7 +43217,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.sme.mode = 3;  // range + VGx mode
                             op.sme.wv = enc.fmlsl_za_zzv2x1.Rv + 8;
                             op.sme.start = static_cast<uint8_t>(_start);
-                            op.sme.detail = (int32_t)((_end & 0xFFFF) | (2 << 16));
+                            op.sme.detail = static_cast<int32_t>((_end & 0xFFFF) | (2 << 16));
                             result.operands.push_back(op);
                         }
                         { auto op = Operand::reg_list(static_cast<uint32_t>(make_sve_reg(enc.fmlsl_za_zzv2x1.Zn))); op.set_arrangement(Arrangement::H); op.rl.count = 2; result.operands.push_back(op); }
@@ -43242,7 +43242,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.sme.mode = 3;  // range + VGx mode
                             op.sme.wv = enc.bfmlal_za_zzv2x1.Rv + 8;
                             op.sme.start = static_cast<uint8_t>(_start);
-                            op.sme.detail = (int32_t)((_end & 0xFFFF) | (2 << 16));
+                            op.sme.detail = static_cast<int32_t>((_end & 0xFFFF) | (2 << 16));
                             result.operands.push_back(op);
                         }
                         { auto op = Operand::reg_list(static_cast<uint32_t>(make_sve_reg(enc.bfmlal_za_zzv2x1.Zn))); op.set_arrangement(Arrangement::H); op.rl.count = 2; result.operands.push_back(op); }
@@ -43267,7 +43267,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.sme.mode = 3;  // range + VGx mode
                             op.sme.wv = enc.bfmlsl_za_zzv2x1.Rv + 8;
                             op.sme.start = static_cast<uint8_t>(_start);
-                            op.sme.detail = (int32_t)((_end & 0xFFFF) | (2 << 16));
+                            op.sme.detail = static_cast<int32_t>((_end & 0xFFFF) | (2 << 16));
                             result.operands.push_back(op);
                         }
                         { auto op = Operand::reg_list(static_cast<uint32_t>(make_sve_reg(enc.bfmlsl_za_zzv2x1.Zn))); op.set_arrangement(Arrangement::H); op.rl.count = 2; result.operands.push_back(op); }
@@ -43292,7 +43292,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.sme.mode = 1;  // range mode
                             op.sme.wv = enc.fmlall_za32z8z8v1.Rv + 8;
                             op.sme.start = static_cast<uint8_t>(_start);
-                            op.sme.detail = (int32_t)_end;
+                            op.sme.detail = static_cast<int32_t>(_end);
                             result.operands.push_back(op);
                         }
                         result.operands.push_back(Operand::sve(enc.fmlall_za32z8z8v1.Zn, Arrangement::B));
@@ -43317,7 +43317,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.sme.mode = 3;  // range + VGx mode
                             op.sme.wv = enc.fmlal_za_zzv4x1.Rv + 8;
                             op.sme.start = static_cast<uint8_t>(_start);
-                            op.sme.detail = (int32_t)((_end & 0xFFFF) | (4 << 16));
+                            op.sme.detail = static_cast<int32_t>((_end & 0xFFFF) | (4 << 16));
                             result.operands.push_back(op);
                         }
                         { auto op = Operand::reg_list(static_cast<uint32_t>(make_sve_reg(enc.fmlal_za_zzv4x1.Zn))); op.set_arrangement(Arrangement::H); op.rl.count = 4; result.operands.push_back(op); }
@@ -43342,7 +43342,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.sme.mode = 3;  // range + VGx mode
                             op.sme.wv = enc.fmlal_za_z8z8v4x1.Rv + 8;
                             op.sme.start = static_cast<uint8_t>(_start);
-                            op.sme.detail = (int32_t)((_end & 0xFFFF) | (4 << 16));
+                            op.sme.detail = static_cast<int32_t>((_end & 0xFFFF) | (4 << 16));
                             result.operands.push_back(op);
                         }
                         { auto op = Operand::reg_list(static_cast<uint32_t>(make_sve_reg(enc.fmlal_za_z8z8v4x1.Zn))); op.set_arrangement(Arrangement::B); op.rl.count = 4; result.operands.push_back(op); }
@@ -43367,7 +43367,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.sme.mode = 3;  // range + VGx mode
                             op.sme.wv = enc.fmlsl_za_zzv4x1.Rv + 8;
                             op.sme.start = static_cast<uint8_t>(_start);
-                            op.sme.detail = (int32_t)((_end & 0xFFFF) | (4 << 16));
+                            op.sme.detail = static_cast<int32_t>((_end & 0xFFFF) | (4 << 16));
                             result.operands.push_back(op);
                         }
                         { auto op = Operand::reg_list(static_cast<uint32_t>(make_sve_reg(enc.fmlsl_za_zzv4x1.Zn))); op.set_arrangement(Arrangement::H); op.rl.count = 4; result.operands.push_back(op); }
@@ -43392,7 +43392,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.sme.mode = 3;  // range + VGx mode
                             op.sme.wv = enc.bfmlal_za_zzv4x1.Rv + 8;
                             op.sme.start = static_cast<uint8_t>(_start);
-                            op.sme.detail = (int32_t)((_end & 0xFFFF) | (4 << 16));
+                            op.sme.detail = static_cast<int32_t>((_end & 0xFFFF) | (4 << 16));
                             result.operands.push_back(op);
                         }
                         { auto op = Operand::reg_list(static_cast<uint32_t>(make_sve_reg(enc.bfmlal_za_zzv4x1.Zn))); op.set_arrangement(Arrangement::H); op.rl.count = 4; result.operands.push_back(op); }
@@ -43417,7 +43417,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.sme.mode = 3;  // range + VGx mode
                             op.sme.wv = enc.bfmlsl_za_zzv4x1.Rv + 8;
                             op.sme.start = static_cast<uint8_t>(_start);
-                            op.sme.detail = (int32_t)((_end & 0xFFFF) | (4 << 16));
+                            op.sme.detail = static_cast<int32_t>((_end & 0xFFFF) | (4 << 16));
                             result.operands.push_back(op);
                         }
                         { auto op = Operand::reg_list(static_cast<uint32_t>(make_sve_reg(enc.bfmlsl_za_zzv4x1.Zn))); op.set_arrangement(Arrangement::H); op.rl.count = 4; result.operands.push_back(op); }
@@ -43442,7 +43442,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.sme.mode = 3;  // range + VGx mode
                             op.sme.wv = enc.smlal_za_zzv2x1.Rv + 8;
                             op.sme.start = static_cast<uint8_t>(_start);
-                            op.sme.detail = (int32_t)((_end & 0xFFFF) | (2 << 16));
+                            op.sme.detail = static_cast<int32_t>((_end & 0xFFFF) | (2 << 16));
                             result.operands.push_back(op);
                         }
                         { auto op = Operand::reg_list(static_cast<uint32_t>(make_sve_reg(enc.smlal_za_zzv2x1.Zn))); op.set_arrangement(Arrangement::H); op.rl.count = 2; result.operands.push_back(op); }
@@ -43467,7 +43467,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.sme.mode = 3;  // range + VGx mode
                             op.sme.wv = enc.smlsl_za_zzv2x1.Rv + 8;
                             op.sme.start = static_cast<uint8_t>(_start);
-                            op.sme.detail = (int32_t)((_end & 0xFFFF) | (2 << 16));
+                            op.sme.detail = static_cast<int32_t>((_end & 0xFFFF) | (2 << 16));
                             result.operands.push_back(op);
                         }
                         { auto op = Operand::reg_list(static_cast<uint32_t>(make_sve_reg(enc.smlsl_za_zzv2x1.Zn))); op.set_arrangement(Arrangement::H); op.rl.count = 2; result.operands.push_back(op); }
@@ -43492,7 +43492,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.sme.mode = 3;  // range + VGx mode
                             op.sme.wv = enc.umlal_za_zzv2x1.Rv + 8;
                             op.sme.start = static_cast<uint8_t>(_start);
-                            op.sme.detail = (int32_t)((_end & 0xFFFF) | (2 << 16));
+                            op.sme.detail = static_cast<int32_t>((_end & 0xFFFF) | (2 << 16));
                             result.operands.push_back(op);
                         }
                         { auto op = Operand::reg_list(static_cast<uint32_t>(make_sve_reg(enc.umlal_za_zzv2x1.Zn))); op.set_arrangement(Arrangement::H); op.rl.count = 2; result.operands.push_back(op); }
@@ -43517,7 +43517,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.sme.mode = 3;  // range + VGx mode
                             op.sme.wv = enc.umlsl_za_zzv2x1.Rv + 8;
                             op.sme.start = static_cast<uint8_t>(_start);
-                            op.sme.detail = (int32_t)((_end & 0xFFFF) | (2 << 16));
+                            op.sme.detail = static_cast<int32_t>((_end & 0xFFFF) | (2 << 16));
                             result.operands.push_back(op);
                         }
                         { auto op = Operand::reg_list(static_cast<uint32_t>(make_sve_reg(enc.umlsl_za_zzv2x1.Zn))); op.set_arrangement(Arrangement::H); op.rl.count = 2; result.operands.push_back(op); }
@@ -43542,7 +43542,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.sme.mode = 3;  // range + VGx mode
                             op.sme.wv = enc.smlal_za_zzv4x1.Rv + 8;
                             op.sme.start = static_cast<uint8_t>(_start);
-                            op.sme.detail = (int32_t)((_end & 0xFFFF) | (4 << 16));
+                            op.sme.detail = static_cast<int32_t>((_end & 0xFFFF) | (4 << 16));
                             result.operands.push_back(op);
                         }
                         { auto op = Operand::reg_list(static_cast<uint32_t>(make_sve_reg(enc.smlal_za_zzv4x1.Zn))); op.set_arrangement(Arrangement::H); op.rl.count = 4; result.operands.push_back(op); }
@@ -43567,7 +43567,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.sme.mode = 3;  // range + VGx mode
                             op.sme.wv = enc.smlsl_za_zzv4x1.Rv + 8;
                             op.sme.start = static_cast<uint8_t>(_start);
-                            op.sme.detail = (int32_t)((_end & 0xFFFF) | (4 << 16));
+                            op.sme.detail = static_cast<int32_t>((_end & 0xFFFF) | (4 << 16));
                             result.operands.push_back(op);
                         }
                         { auto op = Operand::reg_list(static_cast<uint32_t>(make_sve_reg(enc.smlsl_za_zzv4x1.Zn))); op.set_arrangement(Arrangement::H); op.rl.count = 4; result.operands.push_back(op); }
@@ -43592,7 +43592,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.sme.mode = 3;  // range + VGx mode
                             op.sme.wv = enc.umlal_za_zzv4x1.Rv + 8;
                             op.sme.start = static_cast<uint8_t>(_start);
-                            op.sme.detail = (int32_t)((_end & 0xFFFF) | (4 << 16));
+                            op.sme.detail = static_cast<int32_t>((_end & 0xFFFF) | (4 << 16));
                             result.operands.push_back(op);
                         }
                         { auto op = Operand::reg_list(static_cast<uint32_t>(make_sve_reg(enc.umlal_za_zzv4x1.Zn))); op.set_arrangement(Arrangement::H); op.rl.count = 4; result.operands.push_back(op); }
@@ -43617,7 +43617,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.sme.mode = 3;  // range + VGx mode
                             op.sme.wv = enc.umlsl_za_zzv4x1.Rv + 8;
                             op.sme.start = static_cast<uint8_t>(_start);
-                            op.sme.detail = (int32_t)((_end & 0xFFFF) | (4 << 16));
+                            op.sme.detail = static_cast<int32_t>((_end & 0xFFFF) | (4 << 16));
                             result.operands.push_back(op);
                         }
                         { auto op = Operand::reg_list(static_cast<uint32_t>(make_sve_reg(enc.umlsl_za_zzv4x1.Zn))); op.set_arrangement(Arrangement::H); op.rl.count = 4; result.operands.push_back(op); }
@@ -43647,7 +43647,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.sme.mode = 1;  // range mode
                             op.sme.wv = enc.fmlal_za_zzv1.Rv + 8;
                             op.sme.start = static_cast<uint8_t>(_start);
-                            op.sme.detail = (int32_t)_end;
+                            op.sme.detail = static_cast<int32_t>(_end);
                             result.operands.push_back(op);
                         }
                         result.operands.push_back(Operand::sve(enc.fmlal_za_zzv1.Zn, Arrangement::H));
@@ -43672,7 +43672,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.sme.mode = 1;  // range mode
                             op.sme.wv = enc.fmlsl_za_zzv1.Rv + 8;
                             op.sme.start = static_cast<uint8_t>(_start);
-                            op.sme.detail = (int32_t)_end;
+                            op.sme.detail = static_cast<int32_t>(_end);
                             result.operands.push_back(op);
                         }
                         result.operands.push_back(Operand::sve(enc.fmlsl_za_zzv1.Zn, Arrangement::H));
@@ -43697,7 +43697,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.sme.mode = 1;  // range mode
                             op.sme.wv = enc.bfmlal_za_zzv1.Rv + 8;
                             op.sme.start = static_cast<uint8_t>(_start);
-                            op.sme.detail = (int32_t)_end;
+                            op.sme.detail = static_cast<int32_t>(_end);
                             result.operands.push_back(op);
                         }
                         result.operands.push_back(Operand::sve(enc.bfmlal_za_zzv1.Zn, Arrangement::H));
@@ -43722,7 +43722,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.sme.mode = 1;  // range mode
                             op.sme.wv = enc.bfmlsl_za_zzv1.Rv + 8;
                             op.sme.start = static_cast<uint8_t>(_start);
-                            op.sme.detail = (int32_t)_end;
+                            op.sme.detail = static_cast<int32_t>(_end);
                             result.operands.push_back(op);
                         }
                         result.operands.push_back(Operand::sve(enc.bfmlsl_za_zzv1.Zn, Arrangement::H));
@@ -43923,7 +43923,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.sme.mode = 1;  // range mode
                             op.sme.wv = enc.fmlal_za_z8z8v1.Rv + 8;
                             op.sme.start = static_cast<uint8_t>(_start);
-                            op.sme.detail = (int32_t)_end;
+                            op.sme.detail = static_cast<int32_t>(_end);
                             result.operands.push_back(op);
                         }
                         result.operands.push_back(Operand::sve(enc.fmlal_za_z8z8v1.Zn, Arrangement::B));
@@ -44124,7 +44124,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.sme.mode = 1;  // range mode
                             op.sme.wv = enc.smlal_za_zzv1.Rv + 8;
                             op.sme.start = static_cast<uint8_t>(_start);
-                            op.sme.detail = (int32_t)_end;
+                            op.sme.detail = static_cast<int32_t>(_end);
                             result.operands.push_back(op);
                         }
                         result.operands.push_back(Operand::sve(enc.smlal_za_zzv1.Zn, Arrangement::H));
@@ -44149,7 +44149,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.sme.mode = 1;  // range mode
                             op.sme.wv = enc.smlsl_za_zzv1.Rv + 8;
                             op.sme.start = static_cast<uint8_t>(_start);
-                            op.sme.detail = (int32_t)_end;
+                            op.sme.detail = static_cast<int32_t>(_end);
                             result.operands.push_back(op);
                         }
                         result.operands.push_back(Operand::sve(enc.smlsl_za_zzv1.Zn, Arrangement::H));
@@ -44174,7 +44174,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.sme.mode = 1;  // range mode
                             op.sme.wv = enc.umlal_za_zzv1.Rv + 8;
                             op.sme.start = static_cast<uint8_t>(_start);
-                            op.sme.detail = (int32_t)_end;
+                            op.sme.detail = static_cast<int32_t>(_end);
                             result.operands.push_back(op);
                         }
                         result.operands.push_back(Operand::sve(enc.umlal_za_zzv1.Zn, Arrangement::H));
@@ -44199,7 +44199,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.sme.mode = 1;  // range mode
                             op.sme.wv = enc.umlsl_za_zzv1.Rv + 8;
                             op.sme.start = static_cast<uint8_t>(_start);
-                            op.sme.detail = (int32_t)_end;
+                            op.sme.detail = static_cast<int32_t>(_end);
                             result.operands.push_back(op);
                         }
                         result.operands.push_back(Operand::sve(enc.umlsl_za_zzv1.Zn, Arrangement::H));
@@ -44405,7 +44405,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.sme.mode = 3;  // range + VGx mode
                             op.sme.wv = enc.smlall_za_zzi_d4xi.Rv + 8;
                             op.sme.start = static_cast<uint8_t>(_start);
-                            op.sme.detail = (int32_t)((_end & 0xFFFF) | (4 << 16));
+                            op.sme.detail = static_cast<int32_t>((_end & 0xFFFF) | (4 << 16));
                             result.operands.push_back(op);
                         }
                         { auto op = Operand::reg_list(static_cast<uint32_t>(make_sve_reg(enc.smlall_za_zzi_d4xi.Zn * 4))); op.set_arrangement(Arrangement::H); op.rl.count = 4; result.operands.push_back(op); }
@@ -44430,7 +44430,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.sme.mode = 3;  // range + VGx mode
                             op.sme.wv = enc.smlsll_za_zzi_d4xi.Rv + 8;
                             op.sme.start = static_cast<uint8_t>(_start);
-                            op.sme.detail = (int32_t)((_end & 0xFFFF) | (4 << 16));
+                            op.sme.detail = static_cast<int32_t>((_end & 0xFFFF) | (4 << 16));
                             result.operands.push_back(op);
                         }
                         { auto op = Operand::reg_list(static_cast<uint32_t>(make_sve_reg(enc.smlsll_za_zzi_d4xi.Zn * 4))); op.set_arrangement(Arrangement::H); op.rl.count = 4; result.operands.push_back(op); }
@@ -44455,7 +44455,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.sme.mode = 3;  // range + VGx mode
                             op.sme.wv = enc.umlall_za_zzi_d4xi.Rv + 8;
                             op.sme.start = static_cast<uint8_t>(_start);
-                            op.sme.detail = (int32_t)((_end & 0xFFFF) | (4 << 16));
+                            op.sme.detail = static_cast<int32_t>((_end & 0xFFFF) | (4 << 16));
                             result.operands.push_back(op);
                         }
                         { auto op = Operand::reg_list(static_cast<uint32_t>(make_sve_reg(enc.umlall_za_zzi_d4xi.Zn * 4))); op.set_arrangement(Arrangement::H); op.rl.count = 4; result.operands.push_back(op); }
@@ -44480,7 +44480,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.sme.mode = 3;  // range + VGx mode
                             op.sme.wv = enc.umlsll_za_zzi_d4xi.Rv + 8;
                             op.sme.start = static_cast<uint8_t>(_start);
-                            op.sme.detail = (int32_t)((_end & 0xFFFF) | (4 << 16));
+                            op.sme.detail = static_cast<int32_t>((_end & 0xFFFF) | (4 << 16));
                             result.operands.push_back(op);
                         }
                         { auto op = Operand::reg_list(static_cast<uint32_t>(make_sve_reg(enc.umlsll_za_zzi_d4xi.Zn * 4))); op.set_arrangement(Arrangement::H); op.rl.count = 4; result.operands.push_back(op); }
@@ -44642,7 +44642,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.sme.mode = 3;  // range + VGx mode
                             op.sme.wv = enc.smlall_za_zzi_d2xi.Rv + 8;
                             op.sme.start = static_cast<uint8_t>(_start);
-                            op.sme.detail = (int32_t)((_end & 0xFFFF) | (2 << 16));
+                            op.sme.detail = static_cast<int32_t>((_end & 0xFFFF) | (2 << 16));
                             result.operands.push_back(op);
                         }
                         { auto op = Operand::reg_list(static_cast<uint32_t>(make_sve_reg(enc.smlall_za_zzi_d2xi.Zn * 2))); op.set_arrangement(Arrangement::H); op.rl.count = 2; result.operands.push_back(op); }
@@ -44667,7 +44667,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.sme.mode = 3;  // range + VGx mode
                             op.sme.wv = enc.smlsll_za_zzi_d2xi.Rv + 8;
                             op.sme.start = static_cast<uint8_t>(_start);
-                            op.sme.detail = (int32_t)((_end & 0xFFFF) | (2 << 16));
+                            op.sme.detail = static_cast<int32_t>((_end & 0xFFFF) | (2 << 16));
                             result.operands.push_back(op);
                         }
                         { auto op = Operand::reg_list(static_cast<uint32_t>(make_sve_reg(enc.smlsll_za_zzi_d2xi.Zn * 2))); op.set_arrangement(Arrangement::H); op.rl.count = 2; result.operands.push_back(op); }
@@ -44692,7 +44692,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.sme.mode = 3;  // range + VGx mode
                             op.sme.wv = enc.umlall_za_zzi_d2xi.Rv + 8;
                             op.sme.start = static_cast<uint8_t>(_start);
-                            op.sme.detail = (int32_t)((_end & 0xFFFF) | (2 << 16));
+                            op.sme.detail = static_cast<int32_t>((_end & 0xFFFF) | (2 << 16));
                             result.operands.push_back(op);
                         }
                         { auto op = Operand::reg_list(static_cast<uint32_t>(make_sve_reg(enc.umlall_za_zzi_d2xi.Zn * 2))); op.set_arrangement(Arrangement::H); op.rl.count = 2; result.operands.push_back(op); }
@@ -44717,7 +44717,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.sme.mode = 3;  // range + VGx mode
                             op.sme.wv = enc.umlsll_za_zzi_d2xi.Rv + 8;
                             op.sme.start = static_cast<uint8_t>(_start);
-                            op.sme.detail = (int32_t)((_end & 0xFFFF) | (2 << 16));
+                            op.sme.detail = static_cast<int32_t>((_end & 0xFFFF) | (2 << 16));
                             result.operands.push_back(op);
                         }
                         { auto op = Operand::reg_list(static_cast<uint32_t>(make_sve_reg(enc.umlsll_za_zzi_d2xi.Zn * 2))); op.set_arrangement(Arrangement::H); op.rl.count = 2; result.operands.push_back(op); }
@@ -44884,7 +44884,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.sme.mode = 3;  // range + VGx mode
                             op.sme.wv = enc.smlall_za_zzi_s4xi.Rv + 8;
                             op.sme.start = static_cast<uint8_t>(_start);
-                            op.sme.detail = (int32_t)((_end & 0xFFFF) | (4 << 16));
+                            op.sme.detail = static_cast<int32_t>((_end & 0xFFFF) | (4 << 16));
                             result.operands.push_back(op);
                         }
                         { auto op = Operand::reg_list(static_cast<uint32_t>(make_sve_reg(enc.smlall_za_zzi_s4xi.Zn * 4))); op.set_arrangement(Arrangement::B); op.rl.count = 4; result.operands.push_back(op); }
@@ -44909,7 +44909,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.sme.mode = 3;  // range + VGx mode
                             op.sme.wv = enc.smlsll_za_zzi_s4xi.Rv + 8;
                             op.sme.start = static_cast<uint8_t>(_start);
-                            op.sme.detail = (int32_t)((_end & 0xFFFF) | (4 << 16));
+                            op.sme.detail = static_cast<int32_t>((_end & 0xFFFF) | (4 << 16));
                             result.operands.push_back(op);
                         }
                         { auto op = Operand::reg_list(static_cast<uint32_t>(make_sve_reg(enc.smlsll_za_zzi_s4xi.Zn * 4))); op.set_arrangement(Arrangement::B); op.rl.count = 4; result.operands.push_back(op); }
@@ -44934,7 +44934,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.sme.mode = 3;  // range + VGx mode
                             op.sme.wv = enc.umlall_za_zzi_s4xi.Rv + 8;
                             op.sme.start = static_cast<uint8_t>(_start);
-                            op.sme.detail = (int32_t)((_end & 0xFFFF) | (4 << 16));
+                            op.sme.detail = static_cast<int32_t>((_end & 0xFFFF) | (4 << 16));
                             result.operands.push_back(op);
                         }
                         { auto op = Operand::reg_list(static_cast<uint32_t>(make_sve_reg(enc.umlall_za_zzi_s4xi.Zn * 4))); op.set_arrangement(Arrangement::B); op.rl.count = 4; result.operands.push_back(op); }
@@ -44959,7 +44959,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.sme.mode = 3;  // range + VGx mode
                             op.sme.wv = enc.umlsll_za_zzi_s4xi.Rv + 8;
                             op.sme.start = static_cast<uint8_t>(_start);
-                            op.sme.detail = (int32_t)((_end & 0xFFFF) | (4 << 16));
+                            op.sme.detail = static_cast<int32_t>((_end & 0xFFFF) | (4 << 16));
                             result.operands.push_back(op);
                         }
                         { auto op = Operand::reg_list(static_cast<uint32_t>(make_sve_reg(enc.umlsll_za_zzi_s4xi.Zn * 4))); op.set_arrangement(Arrangement::B); op.rl.count = 4; result.operands.push_back(op); }
@@ -44984,7 +44984,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.sme.mode = 3;  // range + VGx mode
                             op.sme.wv = enc.usmlall_za_zzi_s4xi.Rv + 8;
                             op.sme.start = static_cast<uint8_t>(_start);
-                            op.sme.detail = (int32_t)((_end & 0xFFFF) | (4 << 16));
+                            op.sme.detail = static_cast<int32_t>((_end & 0xFFFF) | (4 << 16));
                             result.operands.push_back(op);
                         }
                         { auto op = Operand::reg_list(static_cast<uint32_t>(make_sve_reg(enc.usmlall_za_zzi_s4xi.Zn * 4))); op.set_arrangement(Arrangement::B); op.rl.count = 4; result.operands.push_back(op); }
@@ -45009,7 +45009,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.sme.mode = 3;  // range + VGx mode
                             op.sme.wv = enc.sumlall_za_zzi_s4xi.Rv + 8;
                             op.sme.start = static_cast<uint8_t>(_start);
-                            op.sme.detail = (int32_t)((_end & 0xFFFF) | (4 << 16));
+                            op.sme.detail = static_cast<int32_t>((_end & 0xFFFF) | (4 << 16));
                             result.operands.push_back(op);
                         }
                         { auto op = Operand::reg_list(static_cast<uint32_t>(make_sve_reg(enc.sumlall_za_zzi_s4xi.Zn * 4))); op.set_arrangement(Arrangement::B); op.rl.count = 4; result.operands.push_back(op); }
@@ -45034,7 +45034,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.sme.mode = 3;  // range + VGx mode
                             op.sme.wv = enc.fmlall_za32z8z8i4xi.Rv + 8;
                             op.sme.start = static_cast<uint8_t>(_start);
-                            op.sme.detail = (int32_t)((_end & 0xFFFF) | (4 << 16));
+                            op.sme.detail = static_cast<int32_t>((_end & 0xFFFF) | (4 << 16));
                             result.operands.push_back(op);
                         }
                         { auto op = Operand::reg_list(static_cast<uint32_t>(make_sve_reg(enc.fmlall_za32z8z8i4xi.Zn * 4))); op.set_arrangement(Arrangement::B); op.rl.count = 4; result.operands.push_back(op); }
@@ -45389,7 +45389,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.sme.mode = 3;  // range + VGx mode
                             op.sme.wv = enc.fmlal_za_zzi4xi.Rv + 8;
                             op.sme.start = static_cast<uint8_t>(_start);
-                            op.sme.detail = (int32_t)((_end & 0xFFFF) | (4 << 16));
+                            op.sme.detail = static_cast<int32_t>((_end & 0xFFFF) | (4 << 16));
                             result.operands.push_back(op);
                         }
                         { auto op = Operand::reg_list(static_cast<uint32_t>(make_sve_reg(enc.fmlal_za_zzi4xi.Zn * 4))); op.set_arrangement(Arrangement::H); op.rl.count = 4; result.operands.push_back(op); }
@@ -45414,7 +45414,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.sme.mode = 3;  // range + VGx mode
                             op.sme.wv = enc.fmlsl_za_zzi4xi.Rv + 8;
                             op.sme.start = static_cast<uint8_t>(_start);
-                            op.sme.detail = (int32_t)((_end & 0xFFFF) | (4 << 16));
+                            op.sme.detail = static_cast<int32_t>((_end & 0xFFFF) | (4 << 16));
                             result.operands.push_back(op);
                         }
                         { auto op = Operand::reg_list(static_cast<uint32_t>(make_sve_reg(enc.fmlsl_za_zzi4xi.Zn * 4))); op.set_arrangement(Arrangement::H); op.rl.count = 4; result.operands.push_back(op); }
@@ -45439,7 +45439,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.sme.mode = 3;  // range + VGx mode
                             op.sme.wv = enc.bfmlal_za_zzi4xi.Rv + 8;
                             op.sme.start = static_cast<uint8_t>(_start);
-                            op.sme.detail = (int32_t)((_end & 0xFFFF) | (4 << 16));
+                            op.sme.detail = static_cast<int32_t>((_end & 0xFFFF) | (4 << 16));
                             result.operands.push_back(op);
                         }
                         { auto op = Operand::reg_list(static_cast<uint32_t>(make_sve_reg(enc.bfmlal_za_zzi4xi.Zn * 4))); op.set_arrangement(Arrangement::H); op.rl.count = 4; result.operands.push_back(op); }
@@ -45464,7 +45464,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.sme.mode = 3;  // range + VGx mode
                             op.sme.wv = enc.bfmlsl_za_zzi4xi.Rv + 8;
                             op.sme.start = static_cast<uint8_t>(_start);
-                            op.sme.detail = (int32_t)((_end & 0xFFFF) | (4 << 16));
+                            op.sme.detail = static_cast<int32_t>((_end & 0xFFFF) | (4 << 16));
                             result.operands.push_back(op);
                         }
                         { auto op = Operand::reg_list(static_cast<uint32_t>(make_sve_reg(enc.bfmlsl_za_zzi4xi.Zn * 4))); op.set_arrangement(Arrangement::H); op.rl.count = 4; result.operands.push_back(op); }
@@ -45489,7 +45489,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.sme.mode = 3;  // range + VGx mode
                             op.sme.wv = enc.smlal_za_zzi4xi.Rv + 8;
                             op.sme.start = static_cast<uint8_t>(_start);
-                            op.sme.detail = (int32_t)((_end & 0xFFFF) | (4 << 16));
+                            op.sme.detail = static_cast<int32_t>((_end & 0xFFFF) | (4 << 16));
                             result.operands.push_back(op);
                         }
                         { auto op = Operand::reg_list(static_cast<uint32_t>(make_sve_reg(enc.smlal_za_zzi4xi.Zn * 4))); op.set_arrangement(Arrangement::H); op.rl.count = 4; result.operands.push_back(op); }
@@ -45514,7 +45514,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.sme.mode = 3;  // range + VGx mode
                             op.sme.wv = enc.smlsl_za_zzi4xi.Rv + 8;
                             op.sme.start = static_cast<uint8_t>(_start);
-                            op.sme.detail = (int32_t)((_end & 0xFFFF) | (4 << 16));
+                            op.sme.detail = static_cast<int32_t>((_end & 0xFFFF) | (4 << 16));
                             result.operands.push_back(op);
                         }
                         { auto op = Operand::reg_list(static_cast<uint32_t>(make_sve_reg(enc.smlsl_za_zzi4xi.Zn * 4))); op.set_arrangement(Arrangement::H); op.rl.count = 4; result.operands.push_back(op); }
@@ -45539,7 +45539,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.sme.mode = 3;  // range + VGx mode
                             op.sme.wv = enc.umlal_za_zzi4xi.Rv + 8;
                             op.sme.start = static_cast<uint8_t>(_start);
-                            op.sme.detail = (int32_t)((_end & 0xFFFF) | (4 << 16));
+                            op.sme.detail = static_cast<int32_t>((_end & 0xFFFF) | (4 << 16));
                             result.operands.push_back(op);
                         }
                         { auto op = Operand::reg_list(static_cast<uint32_t>(make_sve_reg(enc.umlal_za_zzi4xi.Zn * 4))); op.set_arrangement(Arrangement::H); op.rl.count = 4; result.operands.push_back(op); }
@@ -45564,7 +45564,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.sme.mode = 3;  // range + VGx mode
                             op.sme.wv = enc.umlsl_za_zzi4xi.Rv + 8;
                             op.sme.start = static_cast<uint8_t>(_start);
-                            op.sme.detail = (int32_t)((_end & 0xFFFF) | (4 << 16));
+                            op.sme.detail = static_cast<int32_t>((_end & 0xFFFF) | (4 << 16));
                             result.operands.push_back(op);
                         }
                         { auto op = Operand::reg_list(static_cast<uint32_t>(make_sve_reg(enc.umlsl_za_zzi4xi.Zn * 4))); op.set_arrangement(Arrangement::H); op.rl.count = 4; result.operands.push_back(op); }
@@ -45704,7 +45704,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.sme.mode = 3;  // range + VGx mode
                             op.sme.wv = enc.fmlal_za_z8z8i4xi.Rv + 8;
                             op.sme.start = static_cast<uint8_t>(_start);
-                            op.sme.detail = (int32_t)((_end & 0xFFFF) | (4 << 16));
+                            op.sme.detail = static_cast<int32_t>((_end & 0xFFFF) | (4 << 16));
                             result.operands.push_back(op);
                         }
                         { auto op = Operand::reg_list(static_cast<uint32_t>(make_sve_reg(enc.fmlal_za_z8z8i4xi.Zn * 4))); op.set_arrangement(Arrangement::B); op.rl.count = 4; result.operands.push_back(op); }
@@ -45734,7 +45734,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.sme.mode = 3;  // range + VGx mode
                             op.sme.wv = enc.smlall_za_zzi_s2xi.Rv + 8;
                             op.sme.start = static_cast<uint8_t>(_start);
-                            op.sme.detail = (int32_t)((_end & 0xFFFF) | (2 << 16));
+                            op.sme.detail = static_cast<int32_t>((_end & 0xFFFF) | (2 << 16));
                             result.operands.push_back(op);
                         }
                         { auto op = Operand::reg_list(static_cast<uint32_t>(make_sve_reg(enc.smlall_za_zzi_s2xi.Zn * 2))); op.set_arrangement(Arrangement::B); op.rl.count = 2; result.operands.push_back(op); }
@@ -45759,7 +45759,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.sme.mode = 3;  // range + VGx mode
                             op.sme.wv = enc.smlsll_za_zzi_s2xi.Rv + 8;
                             op.sme.start = static_cast<uint8_t>(_start);
-                            op.sme.detail = (int32_t)((_end & 0xFFFF) | (2 << 16));
+                            op.sme.detail = static_cast<int32_t>((_end & 0xFFFF) | (2 << 16));
                             result.operands.push_back(op);
                         }
                         { auto op = Operand::reg_list(static_cast<uint32_t>(make_sve_reg(enc.smlsll_za_zzi_s2xi.Zn * 2))); op.set_arrangement(Arrangement::B); op.rl.count = 2; result.operands.push_back(op); }
@@ -45784,7 +45784,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.sme.mode = 3;  // range + VGx mode
                             op.sme.wv = enc.umlall_za_zzi_s2xi.Rv + 8;
                             op.sme.start = static_cast<uint8_t>(_start);
-                            op.sme.detail = (int32_t)((_end & 0xFFFF) | (2 << 16));
+                            op.sme.detail = static_cast<int32_t>((_end & 0xFFFF) | (2 << 16));
                             result.operands.push_back(op);
                         }
                         { auto op = Operand::reg_list(static_cast<uint32_t>(make_sve_reg(enc.umlall_za_zzi_s2xi.Zn * 2))); op.set_arrangement(Arrangement::B); op.rl.count = 2; result.operands.push_back(op); }
@@ -45809,7 +45809,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.sme.mode = 3;  // range + VGx mode
                             op.sme.wv = enc.umlsll_za_zzi_s2xi.Rv + 8;
                             op.sme.start = static_cast<uint8_t>(_start);
-                            op.sme.detail = (int32_t)((_end & 0xFFFF) | (2 << 16));
+                            op.sme.detail = static_cast<int32_t>((_end & 0xFFFF) | (2 << 16));
                             result.operands.push_back(op);
                         }
                         { auto op = Operand::reg_list(static_cast<uint32_t>(make_sve_reg(enc.umlsll_za_zzi_s2xi.Zn * 2))); op.set_arrangement(Arrangement::B); op.rl.count = 2; result.operands.push_back(op); }
@@ -45834,7 +45834,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.sme.mode = 3;  // range + VGx mode
                             op.sme.wv = enc.usmlall_za_zzi_s2xi.Rv + 8;
                             op.sme.start = static_cast<uint8_t>(_start);
-                            op.sme.detail = (int32_t)((_end & 0xFFFF) | (2 << 16));
+                            op.sme.detail = static_cast<int32_t>((_end & 0xFFFF) | (2 << 16));
                             result.operands.push_back(op);
                         }
                         { auto op = Operand::reg_list(static_cast<uint32_t>(make_sve_reg(enc.usmlall_za_zzi_s2xi.Zn * 2))); op.set_arrangement(Arrangement::B); op.rl.count = 2; result.operands.push_back(op); }
@@ -45859,7 +45859,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.sme.mode = 3;  // range + VGx mode
                             op.sme.wv = enc.sumlall_za_zzi_s2xi.Rv + 8;
                             op.sme.start = static_cast<uint8_t>(_start);
-                            op.sme.detail = (int32_t)((_end & 0xFFFF) | (2 << 16));
+                            op.sme.detail = static_cast<int32_t>((_end & 0xFFFF) | (2 << 16));
                             result.operands.push_back(op);
                         }
                         { auto op = Operand::reg_list(static_cast<uint32_t>(make_sve_reg(enc.sumlall_za_zzi_s2xi.Zn * 2))); op.set_arrangement(Arrangement::B); op.rl.count = 2; result.operands.push_back(op); }
@@ -46214,7 +46214,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.sme.mode = 3;  // range + VGx mode
                             op.sme.wv = enc.fmlall_za32z8z8i2xi.Rv + 8;
                             op.sme.start = static_cast<uint8_t>(_start);
-                            op.sme.detail = (int32_t)((_end & 0xFFFF) | (2 << 16));
+                            op.sme.detail = static_cast<int32_t>((_end & 0xFFFF) | (2 << 16));
                             result.operands.push_back(op);
                         }
                         { auto op = Operand::reg_list(static_cast<uint32_t>(make_sve_reg(enc.fmlall_za32z8z8i2xi.Zn * 2))); op.set_arrangement(Arrangement::B); op.rl.count = 2; result.operands.push_back(op); }
@@ -46239,7 +46239,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.sme.mode = 3;  // range + VGx mode
                             op.sme.wv = enc.fmlal_za_zzi2xi.Rv + 8;
                             op.sme.start = static_cast<uint8_t>(_start);
-                            op.sme.detail = (int32_t)((_end & 0xFFFF) | (2 << 16));
+                            op.sme.detail = static_cast<int32_t>((_end & 0xFFFF) | (2 << 16));
                             result.operands.push_back(op);
                         }
                         { auto op = Operand::reg_list(static_cast<uint32_t>(make_sve_reg(enc.fmlal_za_zzi2xi.Zn * 2))); op.set_arrangement(Arrangement::H); op.rl.count = 2; result.operands.push_back(op); }
@@ -46264,7 +46264,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.sme.mode = 3;  // range + VGx mode
                             op.sme.wv = enc.fmlsl_za_zzi2xi.Rv + 8;
                             op.sme.start = static_cast<uint8_t>(_start);
-                            op.sme.detail = (int32_t)((_end & 0xFFFF) | (2 << 16));
+                            op.sme.detail = static_cast<int32_t>((_end & 0xFFFF) | (2 << 16));
                             result.operands.push_back(op);
                         }
                         { auto op = Operand::reg_list(static_cast<uint32_t>(make_sve_reg(enc.fmlsl_za_zzi2xi.Zn * 2))); op.set_arrangement(Arrangement::H); op.rl.count = 2; result.operands.push_back(op); }
@@ -46289,7 +46289,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.sme.mode = 3;  // range + VGx mode
                             op.sme.wv = enc.bfmlal_za_zzi2xi.Rv + 8;
                             op.sme.start = static_cast<uint8_t>(_start);
-                            op.sme.detail = (int32_t)((_end & 0xFFFF) | (2 << 16));
+                            op.sme.detail = static_cast<int32_t>((_end & 0xFFFF) | (2 << 16));
                             result.operands.push_back(op);
                         }
                         { auto op = Operand::reg_list(static_cast<uint32_t>(make_sve_reg(enc.bfmlal_za_zzi2xi.Zn * 2))); op.set_arrangement(Arrangement::H); op.rl.count = 2; result.operands.push_back(op); }
@@ -46314,7 +46314,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.sme.mode = 3;  // range + VGx mode
                             op.sme.wv = enc.bfmlsl_za_zzi2xi.Rv + 8;
                             op.sme.start = static_cast<uint8_t>(_start);
-                            op.sme.detail = (int32_t)((_end & 0xFFFF) | (2 << 16));
+                            op.sme.detail = static_cast<int32_t>((_end & 0xFFFF) | (2 << 16));
                             result.operands.push_back(op);
                         }
                         { auto op = Operand::reg_list(static_cast<uint32_t>(make_sve_reg(enc.bfmlsl_za_zzi2xi.Zn * 2))); op.set_arrangement(Arrangement::H); op.rl.count = 2; result.operands.push_back(op); }
@@ -46339,7 +46339,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.sme.mode = 3;  // range + VGx mode
                             op.sme.wv = enc.smlal_za_zzi2xi.Rv + 8;
                             op.sme.start = static_cast<uint8_t>(_start);
-                            op.sme.detail = (int32_t)((_end & 0xFFFF) | (2 << 16));
+                            op.sme.detail = static_cast<int32_t>((_end & 0xFFFF) | (2 << 16));
                             result.operands.push_back(op);
                         }
                         { auto op = Operand::reg_list(static_cast<uint32_t>(make_sve_reg(enc.smlal_za_zzi2xi.Zn * 2))); op.set_arrangement(Arrangement::H); op.rl.count = 2; result.operands.push_back(op); }
@@ -46364,7 +46364,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.sme.mode = 3;  // range + VGx mode
                             op.sme.wv = enc.smlsl_za_zzi2xi.Rv + 8;
                             op.sme.start = static_cast<uint8_t>(_start);
-                            op.sme.detail = (int32_t)((_end & 0xFFFF) | (2 << 16));
+                            op.sme.detail = static_cast<int32_t>((_end & 0xFFFF) | (2 << 16));
                             result.operands.push_back(op);
                         }
                         { auto op = Operand::reg_list(static_cast<uint32_t>(make_sve_reg(enc.smlsl_za_zzi2xi.Zn * 2))); op.set_arrangement(Arrangement::H); op.rl.count = 2; result.operands.push_back(op); }
@@ -46389,7 +46389,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.sme.mode = 3;  // range + VGx mode
                             op.sme.wv = enc.umlal_za_zzi2xi.Rv + 8;
                             op.sme.start = static_cast<uint8_t>(_start);
-                            op.sme.detail = (int32_t)((_end & 0xFFFF) | (2 << 16));
+                            op.sme.detail = static_cast<int32_t>((_end & 0xFFFF) | (2 << 16));
                             result.operands.push_back(op);
                         }
                         { auto op = Operand::reg_list(static_cast<uint32_t>(make_sve_reg(enc.umlal_za_zzi2xi.Zn * 2))); op.set_arrangement(Arrangement::H); op.rl.count = 2; result.operands.push_back(op); }
@@ -46414,7 +46414,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.sme.mode = 3;  // range + VGx mode
                             op.sme.wv = enc.umlsl_za_zzi2xi.Rv + 8;
                             op.sme.start = static_cast<uint8_t>(_start);
-                            op.sme.detail = (int32_t)((_end & 0xFFFF) | (2 << 16));
+                            op.sme.detail = static_cast<int32_t>((_end & 0xFFFF) | (2 << 16));
                             result.operands.push_back(op);
                         }
                         { auto op = Operand::reg_list(static_cast<uint32_t>(make_sve_reg(enc.umlsl_za_zzi2xi.Zn * 2))); op.set_arrangement(Arrangement::H); op.rl.count = 2; result.operands.push_back(op); }
@@ -46532,7 +46532,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.sme.mode = 3;  // range + VGx mode
                             op.sme.wv = enc.fmlal_za_z8z8i2xi.Rv + 8;
                             op.sme.start = static_cast<uint8_t>(_start);
-                            op.sme.detail = (int32_t)((_end & 0xFFFF) | (2 << 16));
+                            op.sme.detail = static_cast<int32_t>((_end & 0xFFFF) | (2 << 16));
                             result.operands.push_back(op);
                         }
                         { auto op = Operand::reg_list(static_cast<uint32_t>(make_sve_reg(enc.fmlal_za_z8z8i2xi.Zn * 2))); op.set_arrangement(Arrangement::B); op.rl.count = 2; result.operands.push_back(op); }
@@ -46606,7 +46606,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.sme.mode = 1;  // range mode
                             op.sme.wv = enc.smlall_za_zzi_d.Rv + 8;
                             op.sme.start = static_cast<uint8_t>(_start);
-                            op.sme.detail = (int32_t)_end;
+                            op.sme.detail = static_cast<int32_t>(_end);
                             result.operands.push_back(op);
                         }
                         result.operands.push_back(Operand::sve(enc.smlall_za_zzi_d.Zn, Arrangement::H));
@@ -46631,7 +46631,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.sme.mode = 1;  // range mode
                             op.sme.wv = enc.smlsll_za_zzi_d.Rv + 8;
                             op.sme.start = static_cast<uint8_t>(_start);
-                            op.sme.detail = (int32_t)_end;
+                            op.sme.detail = static_cast<int32_t>(_end);
                             result.operands.push_back(op);
                         }
                         result.operands.push_back(Operand::sve(enc.smlsll_za_zzi_d.Zn, Arrangement::H));
@@ -46656,7 +46656,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.sme.mode = 1;  // range mode
                             op.sme.wv = enc.umlall_za_zzi_d.Rv + 8;
                             op.sme.start = static_cast<uint8_t>(_start);
-                            op.sme.detail = (int32_t)_end;
+                            op.sme.detail = static_cast<int32_t>(_end);
                             result.operands.push_back(op);
                         }
                         result.operands.push_back(Operand::sve(enc.umlall_za_zzi_d.Zn, Arrangement::H));
@@ -46681,7 +46681,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.sme.mode = 1;  // range mode
                             op.sme.wv = enc.umlsll_za_zzi_d.Rv + 8;
                             op.sme.start = static_cast<uint8_t>(_start);
-                            op.sme.detail = (int32_t)_end;
+                            op.sme.detail = static_cast<int32_t>(_end);
                             result.operands.push_back(op);
                         }
                         result.operands.push_back(Operand::sve(enc.umlsll_za_zzi_d.Zn, Arrangement::H));
@@ -46711,7 +46711,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.sme.mode = 1;  // range mode
                             op.sme.wv = enc.fmlal_za_zzi1.Rv + 8;
                             op.sme.start = static_cast<uint8_t>(_start);
-                            op.sme.detail = (int32_t)_end;
+                            op.sme.detail = static_cast<int32_t>(_end);
                             result.operands.push_back(op);
                         }
                         result.operands.push_back(Operand::sve(enc.fmlal_za_zzi1.Zn, Arrangement::H));
@@ -46736,7 +46736,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.sme.mode = 1;  // range mode
                             op.sme.wv = enc.fmlsl_za_zzi1.Rv + 8;
                             op.sme.start = static_cast<uint8_t>(_start);
-                            op.sme.detail = (int32_t)_end;
+                            op.sme.detail = static_cast<int32_t>(_end);
                             result.operands.push_back(op);
                         }
                         result.operands.push_back(Operand::sve(enc.fmlsl_za_zzi1.Zn, Arrangement::H));
@@ -46761,7 +46761,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.sme.mode = 1;  // range mode
                             op.sme.wv = enc.bfmlal_za_zzi1.Rv + 8;
                             op.sme.start = static_cast<uint8_t>(_start);
-                            op.sme.detail = (int32_t)_end;
+                            op.sme.detail = static_cast<int32_t>(_end);
                             result.operands.push_back(op);
                         }
                         result.operands.push_back(Operand::sve(enc.bfmlal_za_zzi1.Zn, Arrangement::H));
@@ -46786,7 +46786,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.sme.mode = 1;  // range mode
                             op.sme.wv = enc.bfmlsl_za_zzi1.Rv + 8;
                             op.sme.start = static_cast<uint8_t>(_start);
-                            op.sme.detail = (int32_t)_end;
+                            op.sme.detail = static_cast<int32_t>(_end);
                             result.operands.push_back(op);
                         }
                         result.operands.push_back(Operand::sve(enc.bfmlsl_za_zzi1.Zn, Arrangement::H));
@@ -46811,7 +46811,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.sme.mode = 1;  // range mode
                             op.sme.wv = enc.smlal_za_zzi1.Rv + 8;
                             op.sme.start = static_cast<uint8_t>(_start);
-                            op.sme.detail = (int32_t)_end;
+                            op.sme.detail = static_cast<int32_t>(_end);
                             result.operands.push_back(op);
                         }
                         result.operands.push_back(Operand::sve(enc.smlal_za_zzi1.Zn, Arrangement::H));
@@ -46836,7 +46836,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.sme.mode = 1;  // range mode
                             op.sme.wv = enc.smlsl_za_zzi1.Rv + 8;
                             op.sme.start = static_cast<uint8_t>(_start);
-                            op.sme.detail = (int32_t)_end;
+                            op.sme.detail = static_cast<int32_t>(_end);
                             result.operands.push_back(op);
                         }
                         result.operands.push_back(Operand::sve(enc.smlsl_za_zzi1.Zn, Arrangement::H));
@@ -46861,7 +46861,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.sme.mode = 1;  // range mode
                             op.sme.wv = enc.umlal_za_zzi1.Rv + 8;
                             op.sme.start = static_cast<uint8_t>(_start);
-                            op.sme.detail = (int32_t)_end;
+                            op.sme.detail = static_cast<int32_t>(_end);
                             result.operands.push_back(op);
                         }
                         result.operands.push_back(Operand::sve(enc.umlal_za_zzi1.Zn, Arrangement::H));
@@ -46886,7 +46886,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.sme.mode = 1;  // range mode
                             op.sme.wv = enc.umlsl_za_zzi1.Rv + 8;
                             op.sme.start = static_cast<uint8_t>(_start);
-                            op.sme.detail = (int32_t)_end;
+                            op.sme.detail = static_cast<int32_t>(_end);
                             result.operands.push_back(op);
                         }
                         result.operands.push_back(Operand::sve(enc.umlsl_za_zzi1.Zn, Arrangement::H));
@@ -46916,7 +46916,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.sme.mode = 1;  // range mode
                             op.sme.wv = enc.fmlal_za_z8z8i1.Rv + 8;
                             op.sme.start = static_cast<uint8_t>(_start);
-                            op.sme.detail = (int32_t)_end;
+                            op.sme.detail = static_cast<int32_t>(_end);
                             result.operands.push_back(op);
                         }
                         result.operands.push_back(Operand::sve(enc.fmlal_za_z8z8i1.Zn, Arrangement::B));
@@ -46946,7 +46946,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.sme.mode = 1;  // range mode
                             op.sme.wv = enc.smlall_za_zzi_s.Rv + 8;
                             op.sme.start = static_cast<uint8_t>(_start);
-                            op.sme.detail = (int32_t)_end;
+                            op.sme.detail = static_cast<int32_t>(_end);
                             result.operands.push_back(op);
                         }
                         result.operands.push_back(Operand::sve(enc.smlall_za_zzi_s.Zn, Arrangement::B));
@@ -46971,7 +46971,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.sme.mode = 1;  // range mode
                             op.sme.wv = enc.usmlall_za_zzi_s.Rv + 8;
                             op.sme.start = static_cast<uint8_t>(_start);
-                            op.sme.detail = (int32_t)_end;
+                            op.sme.detail = static_cast<int32_t>(_end);
                             result.operands.push_back(op);
                         }
                         result.operands.push_back(Operand::sve(enc.usmlall_za_zzi_s.Zn, Arrangement::B));
@@ -46996,7 +46996,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.sme.mode = 1;  // range mode
                             op.sme.wv = enc.smlsll_za_zzi_s.Rv + 8;
                             op.sme.start = static_cast<uint8_t>(_start);
-                            op.sme.detail = (int32_t)_end;
+                            op.sme.detail = static_cast<int32_t>(_end);
                             result.operands.push_back(op);
                         }
                         result.operands.push_back(Operand::sve(enc.smlsll_za_zzi_s.Zn, Arrangement::B));
@@ -47021,7 +47021,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.sme.mode = 1;  // range mode
                             op.sme.wv = enc.umlall_za_zzi_s.Rv + 8;
                             op.sme.start = static_cast<uint8_t>(_start);
-                            op.sme.detail = (int32_t)_end;
+                            op.sme.detail = static_cast<int32_t>(_end);
                             result.operands.push_back(op);
                         }
                         result.operands.push_back(Operand::sve(enc.umlall_za_zzi_s.Zn, Arrangement::B));
@@ -47046,7 +47046,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.sme.mode = 1;  // range mode
                             op.sme.wv = enc.sumlall_za_zzi_s.Rv + 8;
                             op.sme.start = static_cast<uint8_t>(_start);
-                            op.sme.detail = (int32_t)_end;
+                            op.sme.detail = static_cast<int32_t>(_end);
                             result.operands.push_back(op);
                         }
                         result.operands.push_back(Operand::sve(enc.sumlall_za_zzi_s.Zn, Arrangement::B));
@@ -47071,7 +47071,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.sme.mode = 1;  // range mode
                             op.sme.wv = enc.umlsll_za_zzi_s.Rv + 8;
                             op.sme.start = static_cast<uint8_t>(_start);
-                            op.sme.detail = (int32_t)_end;
+                            op.sme.detail = static_cast<int32_t>(_end);
                             result.operands.push_back(op);
                         }
                         result.operands.push_back(Operand::sve(enc.umlsll_za_zzi_s.Zn, Arrangement::B));
@@ -47096,7 +47096,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.sme.mode = 1;  // range mode
                             op.sme.wv = enc.fmlall_za32z8z8i1.Rv + 8;
                             op.sme.start = static_cast<uint8_t>(_start);
-                            op.sme.detail = (int32_t)_end;
+                            op.sme.detail = static_cast<int32_t>(_end);
                             result.operands.push_back(op);
                         }
                         result.operands.push_back(Operand::sve(enc.fmlall_za32z8z8i1.Zn, Arrangement::B));
@@ -47214,7 +47214,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.sme.mode = 3;  // range + VGx mode
                             op.sme.wv = enc.usmlall_za_zzw_s4x4.Rv + 8;
                             op.sme.start = static_cast<uint8_t>(_start);
-                            op.sme.detail = (int32_t)((_end & 0xFFFF) | (4 << 16));
+                            op.sme.detail = static_cast<int32_t>((_end & 0xFFFF) | (4 << 16));
                             result.operands.push_back(op);
                         }
                         { auto op = Operand::reg_list(static_cast<uint32_t>(make_sve_reg(enc.usmlall_za_zzw_s4x4.Zn * 4))); op.set_arrangement(Arrangement::B); op.rl.count = 4; result.operands.push_back(op); }
@@ -47239,7 +47239,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.sme.mode = 3;  // range + VGx mode
                             op.sme.wv = enc.fmlall_za32z8z8w4x4.Rv + 8;
                             op.sme.start = static_cast<uint8_t>(_start);
-                            op.sme.detail = (int32_t)((_end & 0xFFFF) | (4 << 16));
+                            op.sme.detail = static_cast<int32_t>((_end & 0xFFFF) | (4 << 16));
                             result.operands.push_back(op);
                         }
                         { auto op = Operand::reg_list(static_cast<uint32_t>(make_sve_reg(enc.fmlall_za32z8z8w4x4.Zn * 4))); op.set_arrangement(Arrangement::B); op.rl.count = 4; result.operands.push_back(op); }
@@ -47269,7 +47269,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.sme.mode = 3;  // range + VGx mode
                             op.sme.wv = enc.fmlal_za_zzw4x4.Rv + 8;
                             op.sme.start = static_cast<uint8_t>(_start);
-                            op.sme.detail = (int32_t)((_end & 0xFFFF) | (4 << 16));
+                            op.sme.detail = static_cast<int32_t>((_end & 0xFFFF) | (4 << 16));
                             result.operands.push_back(op);
                         }
                         { auto op = Operand::reg_list(static_cast<uint32_t>(make_sve_reg(enc.fmlal_za_zzw4x4.Zn * 4))); op.set_arrangement(Arrangement::H); op.rl.count = 4; result.operands.push_back(op); }
@@ -47294,7 +47294,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.sme.mode = 3;  // range + VGx mode
                             op.sme.wv = enc.fmlsl_za_zzw4x4.Rv + 8;
                             op.sme.start = static_cast<uint8_t>(_start);
-                            op.sme.detail = (int32_t)((_end & 0xFFFF) | (4 << 16));
+                            op.sme.detail = static_cast<int32_t>((_end & 0xFFFF) | (4 << 16));
                             result.operands.push_back(op);
                         }
                         { auto op = Operand::reg_list(static_cast<uint32_t>(make_sve_reg(enc.fmlsl_za_zzw4x4.Zn * 4))); op.set_arrangement(Arrangement::H); op.rl.count = 4; result.operands.push_back(op); }
@@ -47319,7 +47319,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.sme.mode = 3;  // range + VGx mode
                             op.sme.wv = enc.bfmlal_za_zzw4x4.Rv + 8;
                             op.sme.start = static_cast<uint8_t>(_start);
-                            op.sme.detail = (int32_t)((_end & 0xFFFF) | (4 << 16));
+                            op.sme.detail = static_cast<int32_t>((_end & 0xFFFF) | (4 << 16));
                             result.operands.push_back(op);
                         }
                         { auto op = Operand::reg_list(static_cast<uint32_t>(make_sve_reg(enc.bfmlal_za_zzw4x4.Zn * 4))); op.set_arrangement(Arrangement::H); op.rl.count = 4; result.operands.push_back(op); }
@@ -47344,7 +47344,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.sme.mode = 3;  // range + VGx mode
                             op.sme.wv = enc.bfmlsl_za_zzw4x4.Rv + 8;
                             op.sme.start = static_cast<uint8_t>(_start);
-                            op.sme.detail = (int32_t)((_end & 0xFFFF) | (4 << 16));
+                            op.sme.detail = static_cast<int32_t>((_end & 0xFFFF) | (4 << 16));
                             result.operands.push_back(op);
                         }
                         { auto op = Operand::reg_list(static_cast<uint32_t>(make_sve_reg(enc.bfmlsl_za_zzw4x4.Zn * 4))); op.set_arrangement(Arrangement::H); op.rl.count = 4; result.operands.push_back(op); }
@@ -47369,7 +47369,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.sme.mode = 3;  // range + VGx mode
                             op.sme.wv = enc.fmlal_za_z8z8w4x4.Rv + 8;
                             op.sme.start = static_cast<uint8_t>(_start);
-                            op.sme.detail = (int32_t)((_end & 0xFFFF) | (4 << 16));
+                            op.sme.detail = static_cast<int32_t>((_end & 0xFFFF) | (4 << 16));
                             result.operands.push_back(op);
                         }
                         { auto op = Operand::reg_list(static_cast<uint32_t>(make_sve_reg(enc.fmlal_za_z8z8w4x4.Zn * 4))); op.set_arrangement(Arrangement::B); op.rl.count = 4; result.operands.push_back(op); }
@@ -47394,7 +47394,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.sme.mode = 3;  // range + VGx mode
                             op.sme.wv = enc.smlal_za_zzw4x4.Rv + 8;
                             op.sme.start = static_cast<uint8_t>(_start);
-                            op.sme.detail = (int32_t)((_end & 0xFFFF) | (4 << 16));
+                            op.sme.detail = static_cast<int32_t>((_end & 0xFFFF) | (4 << 16));
                             result.operands.push_back(op);
                         }
                         { auto op = Operand::reg_list(static_cast<uint32_t>(make_sve_reg(enc.smlal_za_zzw4x4.Zn * 4))); op.set_arrangement(Arrangement::H); op.rl.count = 4; result.operands.push_back(op); }
@@ -47419,7 +47419,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.sme.mode = 3;  // range + VGx mode
                             op.sme.wv = enc.smlsl_za_zzw4x4.Rv + 8;
                             op.sme.start = static_cast<uint8_t>(_start);
-                            op.sme.detail = (int32_t)((_end & 0xFFFF) | (4 << 16));
+                            op.sme.detail = static_cast<int32_t>((_end & 0xFFFF) | (4 << 16));
                             result.operands.push_back(op);
                         }
                         { auto op = Operand::reg_list(static_cast<uint32_t>(make_sve_reg(enc.smlsl_za_zzw4x4.Zn * 4))); op.set_arrangement(Arrangement::H); op.rl.count = 4; result.operands.push_back(op); }
@@ -47444,7 +47444,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.sme.mode = 3;  // range + VGx mode
                             op.sme.wv = enc.umlal_za_zzw4x4.Rv + 8;
                             op.sme.start = static_cast<uint8_t>(_start);
-                            op.sme.detail = (int32_t)((_end & 0xFFFF) | (4 << 16));
+                            op.sme.detail = static_cast<int32_t>((_end & 0xFFFF) | (4 << 16));
                             result.operands.push_back(op);
                         }
                         { auto op = Operand::reg_list(static_cast<uint32_t>(make_sve_reg(enc.umlal_za_zzw4x4.Zn * 4))); op.set_arrangement(Arrangement::H); op.rl.count = 4; result.operands.push_back(op); }
@@ -47469,7 +47469,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.sme.mode = 3;  // range + VGx mode
                             op.sme.wv = enc.umlsl_za_zzw4x4.Rv + 8;
                             op.sme.start = static_cast<uint8_t>(_start);
-                            op.sme.detail = (int32_t)((_end & 0xFFFF) | (4 << 16));
+                            op.sme.detail = static_cast<int32_t>((_end & 0xFFFF) | (4 << 16));
                             result.operands.push_back(op);
                         }
                         { auto op = Operand::reg_list(static_cast<uint32_t>(make_sve_reg(enc.umlsl_za_zzw4x4.Zn * 4))); op.set_arrangement(Arrangement::H); op.rl.count = 4; result.operands.push_back(op); }
@@ -47865,7 +47865,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.sme.mode = 3;  // range + VGx mode
                             op.sme.wv = enc.usmlall_za_zzw_s2x2.Rv + 8;
                             op.sme.start = static_cast<uint8_t>(_start);
-                            op.sme.detail = (int32_t)((_end & 0xFFFF) | (2 << 16));
+                            op.sme.detail = static_cast<int32_t>((_end & 0xFFFF) | (2 << 16));
                             result.operands.push_back(op);
                         }
                         { auto op = Operand::reg_list(static_cast<uint32_t>(make_sve_reg(enc.usmlall_za_zzw_s2x2.Zn * 2))); op.set_arrangement(Arrangement::B); op.rl.count = 2; result.operands.push_back(op); }
@@ -47890,7 +47890,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.sme.mode = 3;  // range + VGx mode
                             op.sme.wv = enc.fmlall_za32z8z8w2x2.Rv + 8;
                             op.sme.start = static_cast<uint8_t>(_start);
-                            op.sme.detail = (int32_t)((_end & 0xFFFF) | (2 << 16));
+                            op.sme.detail = static_cast<int32_t>((_end & 0xFFFF) | (2 << 16));
                             result.operands.push_back(op);
                         }
                         { auto op = Operand::reg_list(static_cast<uint32_t>(make_sve_reg(enc.fmlall_za32z8z8w2x2.Zn * 2))); op.set_arrangement(Arrangement::B); op.rl.count = 2; result.operands.push_back(op); }
@@ -47920,7 +47920,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.sme.mode = 3;  // range + VGx mode
                             op.sme.wv = enc.fmlal_za_zzw2x2.Rv + 8;
                             op.sme.start = static_cast<uint8_t>(_start);
-                            op.sme.detail = (int32_t)((_end & 0xFFFF) | (2 << 16));
+                            op.sme.detail = static_cast<int32_t>((_end & 0xFFFF) | (2 << 16));
                             result.operands.push_back(op);
                         }
                         { auto op = Operand::reg_list(static_cast<uint32_t>(make_sve_reg(enc.fmlal_za_zzw2x2.Zn * 2))); op.set_arrangement(Arrangement::H); op.rl.count = 2; result.operands.push_back(op); }
@@ -47945,7 +47945,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.sme.mode = 3;  // range + VGx mode
                             op.sme.wv = enc.fmlsl_za_zzw2x2.Rv + 8;
                             op.sme.start = static_cast<uint8_t>(_start);
-                            op.sme.detail = (int32_t)((_end & 0xFFFF) | (2 << 16));
+                            op.sme.detail = static_cast<int32_t>((_end & 0xFFFF) | (2 << 16));
                             result.operands.push_back(op);
                         }
                         { auto op = Operand::reg_list(static_cast<uint32_t>(make_sve_reg(enc.fmlsl_za_zzw2x2.Zn * 2))); op.set_arrangement(Arrangement::H); op.rl.count = 2; result.operands.push_back(op); }
@@ -47970,7 +47970,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.sme.mode = 3;  // range + VGx mode
                             op.sme.wv = enc.bfmlal_za_zzw2x2.Rv + 8;
                             op.sme.start = static_cast<uint8_t>(_start);
-                            op.sme.detail = (int32_t)((_end & 0xFFFF) | (2 << 16));
+                            op.sme.detail = static_cast<int32_t>((_end & 0xFFFF) | (2 << 16));
                             result.operands.push_back(op);
                         }
                         { auto op = Operand::reg_list(static_cast<uint32_t>(make_sve_reg(enc.bfmlal_za_zzw2x2.Zn * 2))); op.set_arrangement(Arrangement::H); op.rl.count = 2; result.operands.push_back(op); }
@@ -47995,7 +47995,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.sme.mode = 3;  // range + VGx mode
                             op.sme.wv = enc.bfmlsl_za_zzw2x2.Rv + 8;
                             op.sme.start = static_cast<uint8_t>(_start);
-                            op.sme.detail = (int32_t)((_end & 0xFFFF) | (2 << 16));
+                            op.sme.detail = static_cast<int32_t>((_end & 0xFFFF) | (2 << 16));
                             result.operands.push_back(op);
                         }
                         { auto op = Operand::reg_list(static_cast<uint32_t>(make_sve_reg(enc.bfmlsl_za_zzw2x2.Zn * 2))); op.set_arrangement(Arrangement::H); op.rl.count = 2; result.operands.push_back(op); }
@@ -48020,7 +48020,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.sme.mode = 3;  // range + VGx mode
                             op.sme.wv = enc.fmlal_za_z8z8w2x2.Rv + 8;
                             op.sme.start = static_cast<uint8_t>(_start);
-                            op.sme.detail = (int32_t)((_end & 0xFFFF) | (2 << 16));
+                            op.sme.detail = static_cast<int32_t>((_end & 0xFFFF) | (2 << 16));
                             result.operands.push_back(op);
                         }
                         { auto op = Operand::reg_list(static_cast<uint32_t>(make_sve_reg(enc.fmlal_za_z8z8w2x2.Zn * 2))); op.set_arrangement(Arrangement::B); op.rl.count = 2; result.operands.push_back(op); }
@@ -48045,7 +48045,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.sme.mode = 3;  // range + VGx mode
                             op.sme.wv = enc.smlal_za_zzw2x2.Rv + 8;
                             op.sme.start = static_cast<uint8_t>(_start);
-                            op.sme.detail = (int32_t)((_end & 0xFFFF) | (2 << 16));
+                            op.sme.detail = static_cast<int32_t>((_end & 0xFFFF) | (2 << 16));
                             result.operands.push_back(op);
                         }
                         { auto op = Operand::reg_list(static_cast<uint32_t>(make_sve_reg(enc.smlal_za_zzw2x2.Zn * 2))); op.set_arrangement(Arrangement::H); op.rl.count = 2; result.operands.push_back(op); }
@@ -48070,7 +48070,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.sme.mode = 3;  // range + VGx mode
                             op.sme.wv = enc.smlsl_za_zzw2x2.Rv + 8;
                             op.sme.start = static_cast<uint8_t>(_start);
-                            op.sme.detail = (int32_t)((_end & 0xFFFF) | (2 << 16));
+                            op.sme.detail = static_cast<int32_t>((_end & 0xFFFF) | (2 << 16));
                             result.operands.push_back(op);
                         }
                         { auto op = Operand::reg_list(static_cast<uint32_t>(make_sve_reg(enc.smlsl_za_zzw2x2.Zn * 2))); op.set_arrangement(Arrangement::H); op.rl.count = 2; result.operands.push_back(op); }
@@ -48095,7 +48095,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.sme.mode = 3;  // range + VGx mode
                             op.sme.wv = enc.umlal_za_zzw2x2.Rv + 8;
                             op.sme.start = static_cast<uint8_t>(_start);
-                            op.sme.detail = (int32_t)((_end & 0xFFFF) | (2 << 16));
+                            op.sme.detail = static_cast<int32_t>((_end & 0xFFFF) | (2 << 16));
                             result.operands.push_back(op);
                         }
                         { auto op = Operand::reg_list(static_cast<uint32_t>(make_sve_reg(enc.umlal_za_zzw2x2.Zn * 2))); op.set_arrangement(Arrangement::H); op.rl.count = 2; result.operands.push_back(op); }
@@ -48120,7 +48120,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.sme.mode = 3;  // range + VGx mode
                             op.sme.wv = enc.umlsl_za_zzw2x2.Rv + 8;
                             op.sme.start = static_cast<uint8_t>(_start);
-                            op.sme.detail = (int32_t)((_end & 0xFFFF) | (2 << 16));
+                            op.sme.detail = static_cast<int32_t>((_end & 0xFFFF) | (2 << 16));
                             result.operands.push_back(op);
                         }
                         { auto op = Operand::reg_list(static_cast<uint32_t>(make_sve_reg(enc.umlsl_za_zzw2x2.Zn * 2))); op.set_arrangement(Arrangement::H); op.rl.count = 2; result.operands.push_back(op); }
@@ -50588,7 +50588,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.sme.mode = 3;  // range + VGx mode
                             op.sme.wv = enc.smlall_za_zzv2x1.Rv + 8;
                             op.sme.start = static_cast<uint8_t>(_start);
-                            op.sme.detail = (int32_t)((_end & 0xFFFF) | (2 << 16));
+                            op.sme.detail = static_cast<int32_t>((_end & 0xFFFF) | (2 << 16));
                             result.operands.push_back(op);
                         }
                         { auto op = Operand::reg_list(static_cast<uint32_t>(make_sve_reg(enc.smlall_za_zzv2x1.Zn))); op.set_arrangement(_sve_arr_narrow); op.rl.count = 2; result.operands.push_back(op); }
@@ -50615,7 +50615,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.sme.mode = 3;  // range + VGx mode
                             op.sme.wv = enc.smlsll_za_zzv2x1.Rv + 8;
                             op.sme.start = static_cast<uint8_t>(_start);
-                            op.sme.detail = (int32_t)((_end & 0xFFFF) | (2 << 16));
+                            op.sme.detail = static_cast<int32_t>((_end & 0xFFFF) | (2 << 16));
                             result.operands.push_back(op);
                         }
                         { auto op = Operand::reg_list(static_cast<uint32_t>(make_sve_reg(enc.smlsll_za_zzv2x1.Zn))); op.set_arrangement(_sve_arr_narrow); op.rl.count = 2; result.operands.push_back(op); }
@@ -50642,7 +50642,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.sme.mode = 3;  // range + VGx mode
                             op.sme.wv = enc.umlall_za_zzv2x1.Rv + 8;
                             op.sme.start = static_cast<uint8_t>(_start);
-                            op.sme.detail = (int32_t)((_end & 0xFFFF) | (2 << 16));
+                            op.sme.detail = static_cast<int32_t>((_end & 0xFFFF) | (2 << 16));
                             result.operands.push_back(op);
                         }
                         { auto op = Operand::reg_list(static_cast<uint32_t>(make_sve_reg(enc.umlall_za_zzv2x1.Zn))); op.set_arrangement(_sve_arr_narrow); op.rl.count = 2; result.operands.push_back(op); }
@@ -50669,7 +50669,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.sme.mode = 3;  // range + VGx mode
                             op.sme.wv = enc.umlsll_za_zzv2x1.Rv + 8;
                             op.sme.start = static_cast<uint8_t>(_start);
-                            op.sme.detail = (int32_t)((_end & 0xFFFF) | (2 << 16));
+                            op.sme.detail = static_cast<int32_t>((_end & 0xFFFF) | (2 << 16));
                             result.operands.push_back(op);
                         }
                         { auto op = Operand::reg_list(static_cast<uint32_t>(make_sve_reg(enc.umlsll_za_zzv2x1.Zn))); op.set_arrangement(_sve_arr_narrow); op.rl.count = 2; result.operands.push_back(op); }
@@ -50696,7 +50696,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.sme.mode = 3;  // range + VGx mode
                             op.sme.wv = enc.smlall_za_zzv4x1.Rv + 8;
                             op.sme.start = static_cast<uint8_t>(_start);
-                            op.sme.detail = (int32_t)((_end & 0xFFFF) | (4 << 16));
+                            op.sme.detail = static_cast<int32_t>((_end & 0xFFFF) | (4 << 16));
                             result.operands.push_back(op);
                         }
                         { auto op = Operand::reg_list(static_cast<uint32_t>(make_sve_reg(enc.smlall_za_zzv4x1.Zn))); op.set_arrangement(_sve_arr_narrow); op.rl.count = 4; result.operands.push_back(op); }
@@ -50723,7 +50723,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.sme.mode = 3;  // range + VGx mode
                             op.sme.wv = enc.smlsll_za_zzv4x1.Rv + 8;
                             op.sme.start = static_cast<uint8_t>(_start);
-                            op.sme.detail = (int32_t)((_end & 0xFFFF) | (4 << 16));
+                            op.sme.detail = static_cast<int32_t>((_end & 0xFFFF) | (4 << 16));
                             result.operands.push_back(op);
                         }
                         { auto op = Operand::reg_list(static_cast<uint32_t>(make_sve_reg(enc.smlsll_za_zzv4x1.Zn))); op.set_arrangement(_sve_arr_narrow); op.rl.count = 4; result.operands.push_back(op); }
@@ -50750,7 +50750,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.sme.mode = 3;  // range + VGx mode
                             op.sme.wv = enc.umlall_za_zzv4x1.Rv + 8;
                             op.sme.start = static_cast<uint8_t>(_start);
-                            op.sme.detail = (int32_t)((_end & 0xFFFF) | (4 << 16));
+                            op.sme.detail = static_cast<int32_t>((_end & 0xFFFF) | (4 << 16));
                             result.operands.push_back(op);
                         }
                         { auto op = Operand::reg_list(static_cast<uint32_t>(make_sve_reg(enc.umlall_za_zzv4x1.Zn))); op.set_arrangement(_sve_arr_narrow); op.rl.count = 4; result.operands.push_back(op); }
@@ -50777,7 +50777,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.sme.mode = 3;  // range + VGx mode
                             op.sme.wv = enc.umlsll_za_zzv4x1.Rv + 8;
                             op.sme.start = static_cast<uint8_t>(_start);
-                            op.sme.detail = (int32_t)((_end & 0xFFFF) | (4 << 16));
+                            op.sme.detail = static_cast<int32_t>((_end & 0xFFFF) | (4 << 16));
                             result.operands.push_back(op);
                         }
                         { auto op = Operand::reg_list(static_cast<uint32_t>(make_sve_reg(enc.umlsll_za_zzv4x1.Zn))); op.set_arrangement(_sve_arr_narrow); op.rl.count = 4; result.operands.push_back(op); }
@@ -50809,7 +50809,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.sme.mode = 1;  // range mode
                             op.sme.wv = enc.smlall_za_zzv1.Rv + 8;
                             op.sme.start = static_cast<uint8_t>(_start);
-                            op.sme.detail = (int32_t)_end;
+                            op.sme.detail = static_cast<int32_t>(_end);
                             result.operands.push_back(op);
                         }
                         result.operands.push_back(Operand::sve(enc.smlall_za_zzv1.Zn, _sve_arr_narrow));
@@ -50836,7 +50836,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.sme.mode = 1;  // range mode
                             op.sme.wv = enc.smlsll_za_zzv1.Rv + 8;
                             op.sme.start = static_cast<uint8_t>(_start);
-                            op.sme.detail = (int32_t)_end;
+                            op.sme.detail = static_cast<int32_t>(_end);
                             result.operands.push_back(op);
                         }
                         result.operands.push_back(Operand::sve(enc.smlsll_za_zzv1.Zn, _sve_arr_narrow));
@@ -50863,7 +50863,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.sme.mode = 1;  // range mode
                             op.sme.wv = enc.umlall_za_zzv1.Rv + 8;
                             op.sme.start = static_cast<uint8_t>(_start);
-                            op.sme.detail = (int32_t)_end;
+                            op.sme.detail = static_cast<int32_t>(_end);
                             result.operands.push_back(op);
                         }
                         result.operands.push_back(Operand::sve(enc.umlall_za_zzv1.Zn, _sve_arr_narrow));
@@ -50890,7 +50890,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.sme.mode = 1;  // range mode
                             op.sme.wv = enc.umlsll_za_zzv1.Rv + 8;
                             op.sme.start = static_cast<uint8_t>(_start);
-                            op.sme.detail = (int32_t)_end;
+                            op.sme.detail = static_cast<int32_t>(_end);
                             result.operands.push_back(op);
                         }
                         result.operands.push_back(Operand::sve(enc.umlsll_za_zzv1.Zn, _sve_arr_narrow));
@@ -51215,7 +51215,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.sme.mode = 3;  // range + VGx mode
                             op.sme.wv = enc.smlall_za_zzw4x4.Rv + 8;
                             op.sme.start = static_cast<uint8_t>(_start);
-                            op.sme.detail = (int32_t)((_end & 0xFFFF) | (4 << 16));
+                            op.sme.detail = static_cast<int32_t>((_end & 0xFFFF) | (4 << 16));
                             result.operands.push_back(op);
                         }
                         { auto op = Operand::reg_list(static_cast<uint32_t>(make_sve_reg(enc.smlall_za_zzw4x4.Zn * 4))); op.set_arrangement(_sve_arr_narrow); op.rl.count = 4; result.operands.push_back(op); }
@@ -51242,7 +51242,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.sme.mode = 3;  // range + VGx mode
                             op.sme.wv = enc.smlsll_za_zzw4x4.Rv + 8;
                             op.sme.start = static_cast<uint8_t>(_start);
-                            op.sme.detail = (int32_t)((_end & 0xFFFF) | (4 << 16));
+                            op.sme.detail = static_cast<int32_t>((_end & 0xFFFF) | (4 << 16));
                             result.operands.push_back(op);
                         }
                         { auto op = Operand::reg_list(static_cast<uint32_t>(make_sve_reg(enc.smlsll_za_zzw4x4.Zn * 4))); op.set_arrangement(_sve_arr_narrow); op.rl.count = 4; result.operands.push_back(op); }
@@ -51269,7 +51269,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.sme.mode = 3;  // range + VGx mode
                             op.sme.wv = enc.umlall_za_zzw4x4.Rv + 8;
                             op.sme.start = static_cast<uint8_t>(_start);
-                            op.sme.detail = (int32_t)((_end & 0xFFFF) | (4 << 16));
+                            op.sme.detail = static_cast<int32_t>((_end & 0xFFFF) | (4 << 16));
                             result.operands.push_back(op);
                         }
                         { auto op = Operand::reg_list(static_cast<uint32_t>(make_sve_reg(enc.umlall_za_zzw4x4.Zn * 4))); op.set_arrangement(_sve_arr_narrow); op.rl.count = 4; result.operands.push_back(op); }
@@ -51296,7 +51296,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.sme.mode = 3;  // range + VGx mode
                             op.sme.wv = enc.umlsll_za_zzw4x4.Rv + 8;
                             op.sme.start = static_cast<uint8_t>(_start);
-                            op.sme.detail = (int32_t)((_end & 0xFFFF) | (4 << 16));
+                            op.sme.detail = static_cast<int32_t>((_end & 0xFFFF) | (4 << 16));
                             result.operands.push_back(op);
                         }
                         { auto op = Operand::reg_list(static_cast<uint32_t>(make_sve_reg(enc.umlsll_za_zzw4x4.Zn * 4))); op.set_arrangement(_sve_arr_narrow); op.rl.count = 4; result.operands.push_back(op); }
@@ -51477,7 +51477,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.sme.mode = 3;  // range + VGx mode
                             op.sme.wv = enc.smlall_za_zzw2x2.Rv + 8;
                             op.sme.start = static_cast<uint8_t>(_start);
-                            op.sme.detail = (int32_t)((_end & 0xFFFF) | (2 << 16));
+                            op.sme.detail = static_cast<int32_t>((_end & 0xFFFF) | (2 << 16));
                             result.operands.push_back(op);
                         }
                         { auto op = Operand::reg_list(static_cast<uint32_t>(make_sve_reg(enc.smlall_za_zzw2x2.Zn * 2))); op.set_arrangement(_sve_arr_narrow); op.rl.count = 2; result.operands.push_back(op); }
@@ -51504,7 +51504,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.sme.mode = 3;  // range + VGx mode
                             op.sme.wv = enc.smlsll_za_zzw2x2.Rv + 8;
                             op.sme.start = static_cast<uint8_t>(_start);
-                            op.sme.detail = (int32_t)((_end & 0xFFFF) | (2 << 16));
+                            op.sme.detail = static_cast<int32_t>((_end & 0xFFFF) | (2 << 16));
                             result.operands.push_back(op);
                         }
                         { auto op = Operand::reg_list(static_cast<uint32_t>(make_sve_reg(enc.smlsll_za_zzw2x2.Zn * 2))); op.set_arrangement(_sve_arr_narrow); op.rl.count = 2; result.operands.push_back(op); }
@@ -51531,7 +51531,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.sme.mode = 3;  // range + VGx mode
                             op.sme.wv = enc.umlall_za_zzw2x2.Rv + 8;
                             op.sme.start = static_cast<uint8_t>(_start);
-                            op.sme.detail = (int32_t)((_end & 0xFFFF) | (2 << 16));
+                            op.sme.detail = static_cast<int32_t>((_end & 0xFFFF) | (2 << 16));
                             result.operands.push_back(op);
                         }
                         { auto op = Operand::reg_list(static_cast<uint32_t>(make_sve_reg(enc.umlall_za_zzw2x2.Zn * 2))); op.set_arrangement(_sve_arr_narrow); op.rl.count = 2; result.operands.push_back(op); }
@@ -51558,7 +51558,7 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
                             op.sme.mode = 3;  // range + VGx mode
                             op.sme.wv = enc.umlsll_za_zzw2x2.Rv + 8;
                             op.sme.start = static_cast<uint8_t>(_start);
-                            op.sme.detail = (int32_t)((_end & 0xFFFF) | (2 << 16));
+                            op.sme.detail = static_cast<int32_t>((_end & 0xFFFF) | (2 << 16));
                             result.operands.push_back(op);
                         }
                         { auto op = Operand::reg_list(static_cast<uint32_t>(make_sve_reg(enc.umlsll_za_zzw2x2.Zn * 2))); op.set_arrangement(_sve_arr_narrow); op.rl.count = 2; result.operands.push_back(op); }

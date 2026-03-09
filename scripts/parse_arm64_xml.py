@@ -2779,7 +2779,7 @@ class ARM64XMLParser:
                 std::string s = "za";
                 if (_sme_arr != Arrangement::None) { s += "."; s += arrangement_to_string(_sme_arr); }
                 s += "[w" + std::to_string(sme.wv) + ", " + std::to_string(sme.start);
-                int32_t vgx = (int32_t)sme.detail;
+                int32_t vgx = static_cast<int32_t>(sme.detail);
                 if (vgx > 1) s += ", vgx" + std::to_string(vgx);
                 s += "]";
                 return s;
@@ -2789,10 +2789,10 @@ class ARM64XMLParser:
                 std::string s = "za";
                 if (_sme_arr != Arrangement::None) { s += "."; s += arrangement_to_string(_sme_arr); }
                 s += "[w" + std::to_string(sme.wv) + ", ";
-                if (sme.start >= 10) { std::ostringstream oss; oss << "0x" << std::hex << (uint32_t)sme.start; s += oss.str(); }
+                if (sme.start >= 10) { std::ostringstream oss; oss << "0x" << std::hex << static_cast<uint32_t>(sme.start); s += oss.str(); }
                 else s += std::to_string(sme.start);
                 s += ":";
-                uint32_t range_end = (uint32_t)(sme.detail & 0xFFFF);
+                uint32_t range_end = static_cast<uint32_t>(sme.detail & 0xFFFF);
                 if (range_end >= 10) { std::ostringstream oss; oss << "0x" << std::hex << range_end; s += oss.str(); }
                 else s += std::to_string(range_end);
                 if (sme.mode == 3) { int32_t vgx = (sme.detail >> 16) & 0xFFFF; if (vgx > 1) s += ", vgx" + std::to_string(vgx); }
@@ -2812,7 +2812,7 @@ class ARM64XMLParser:
                 if (_sme_arr != Arrangement::None) { s += "."; s += arrangement_to_string(_sme_arr); }
                 s += "[w" + std::to_string(sme.wv) + ", ";
                 s += std::to_string(sme.start);
-                uint32_t range_end = (uint32_t)(sme.detail & 0xFFFF);
+                uint32_t range_end = static_cast<uint32_t>(sme.detail & 0xFFFF);
                 if (range_end != sme.start) { s += ":"; s += std::to_string(range_end); }
                 s += "]";
                 return s;
@@ -2824,7 +2824,7 @@ class ARM64XMLParser:
                 s += (sme.mode & 8) ? "v" : "h";
                 if (_sme_arr != Arrangement::None) { s += "."; s += arrangement_to_string(_sme_arr); }
                 s += "[w" + std::to_string(sme.wv) + ", ";
-                if (sme.start >= 10) { std::ostringstream oss; oss << "0x" << std::hex << (uint32_t)sme.start; s += oss.str(); }
+                if (sme.start >= 10) { std::ostringstream oss; oss << "0x" << std::hex << static_cast<uint32_t>(sme.start); s += oss.str(); }
                 else s += std::to_string(sme.start);
                 s += "]}";
                 return s;
@@ -2963,8 +2963,8 @@ class ARM64XMLParser:
         code.append("                if (st > 4) st = 0;  // safety")
         code.append("                std::ostringstream oss;")
         code.append("                oss << shifts[st] << \" #\";")
-        code.append("                if (sh.amount <= 15) oss << std::dec << (uint32_t)sh.amount;")
-        code.append("                else oss << \"0x\" << std::hex << (uint32_t)sh.amount;")
+        code.append("                if (sh.amount <= 15) oss << std::dec << static_cast<uint32_t>(sh.amount);")
+        code.append("                else oss << \"0x\" << std::hex << static_cast<uint32_t>(sh.amount);")
         code.append("                return oss.str();")
         code.append("            }")
         code.append("        ")
@@ -3089,7 +3089,7 @@ class ARM64XMLParser:
                     mask = 31; prefix = "v";
                 }
                 const char* arr_str = (_list_arr != Arrangement::None) ? arrangement_to_string(_list_arr) : nullptr;
-                uint32_t stride = (rl.stride > 1) ? (uint32_t)rl.stride : 1;
+                uint32_t stride = (rl.stride > 1) ? static_cast<uint32_t>(rl.stride) : 1;
                 // Use range notation for count>=3 when consecutive and non-wrapping
                 bool is_sve = (rv >= REG_Z_BASE && rv < REG_P_BASE);
                 if (is_sve && stride == 1 && rl.count >= 3 && (base_num + rl.count - 1) <= 31) {
@@ -5600,13 +5600,13 @@ class ARM64XMLParser:
 
         if op_type == 'reg64':
             if in_mem:
-                code.append(f"{ind}result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg({mem_ref}, true, true)), (int32_t)0));")
+                code.append(f"{ind}result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg({mem_ref}, true, true)), static_cast<int32_t>(0)));")
             else:
                 code.append(f"{ind}result.operands.push_back(Operand::gp({mem_ref}, true));")
 
         elif op_type == 'reg32':
             if in_mem:
-                code.append(f"{ind}result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg({mem_ref}, true, true)), (int32_t)0));")
+                code.append(f"{ind}result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg({mem_ref}, true, true)), static_cast<int32_t>(0)));")
             else:
                 code.append(f"{ind}result.operands.push_back(Operand::gp({mem_ref}, false));")
 
@@ -5656,17 +5656,17 @@ class ARM64XMLParser:
                 if in_mem:
                     code.append(f"{ind}{{")
                     if already_signed:
-                        code.append(f"{ind}    int32_t soff = (int32_t){mem_ref};")
+                        code.append(f"{ind}    int32_t soff = static_cast<int32_t>({mem_ref});")
                     else:
-                        code.append(f"{ind}    int32_t soff = (int32_t)(({mem_ref} ^ (1u << {sign_bit})) - (1u << {sign_bit}));")
-                    code.append(f"{ind}    result.operands.push_back(Operand::memory_val((uint32_t)soff));")
+                        code.append(f"{ind}    int32_t soff = static_cast<int32_t>(({mem_ref} ^ (1u << {sign_bit})) - (1u << {sign_bit}));")
+                    code.append(f"{ind}    result.operands.push_back(Operand::memory_val(static_cast<uint32_t>(soff)));")
                     code.append(f"{ind}}}")
                 else:
                     code.append(f"{ind}{{")
                     if already_signed:
-                        code.append(f"{ind}    int32_t simm = (int32_t){mem_ref};")
+                        code.append(f"{ind}    int32_t simm = static_cast<int32_t>({mem_ref});")
                     else:
-                        code.append(f"{ind}    int32_t simm = (int32_t)(({mem_ref} ^ (1u << {sign_bit})) - (1u << {sign_bit}));")
+                        code.append(f"{ind}    int32_t simm = static_cast<int32_t>(({mem_ref} ^ (1u << {sign_bit})) - (1u << {sign_bit}));")
                     code.append(f"{ind}    result.operands.push_back(Operand::simm(static_cast<int64_t>(simm)));")
                     code.append(f"{ind}}}")
             else:
@@ -6043,36 +6043,36 @@ class ARM64XMLParser:
                         _is_signed = field_map.get(_imm_field, {}).get('is_signed', False)
                         if _fw > 0 and not _is_signed:
                             code.append(f"{ind}{{ int32_t _soff = static_cast<int32_t>(({_imm_ref} ^ (1u << {_fw-1})) - (1u << {_fw-1}));")
-                            code.append(f"{ind}    if (_soff == 0) result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg({_b_ref}, true, true)), (int32_t)0));")
+                            code.append(f"{ind}    if (_soff == 0) result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg({_b_ref}, true, true)), static_cast<int32_t>(0)));")
                             code.append(f"{ind}    else result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg({_b_ref}, true, true)), _soff)); }}")
                         else:
-                            code.append(f"{ind}{{ int32_t _soff = (int32_t){_imm_ref};")
-                            code.append(f"{ind}    if (_soff == 0) result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg({_b_ref}, true, true)), (int32_t)0));")
+                            code.append(f"{ind}{{ int32_t _soff = static_cast<int32_t>({_imm_ref});")
+                            code.append(f"{ind}    if (_soff == 0) result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg({_b_ref}, true, true)), static_cast<int32_t>(0)));")
                             code.append(f"{ind}    else result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg({_b_ref}, true, true)), _soff)); }}")
                     else:
                         if _size_fixed is not None:
                             _scale = int(_size_fixed, 2)
                             if _scale > 0:
-                                _scaled = f"((int32_t)((uint32_t){_imm_ref} << {_scale}))"
+                                _scaled = f"static_cast<int32_t>(static_cast<uint32_t>({_imm_ref}) << {_scale})"
                             else:
-                                _scaled = f"(int32_t){_imm_ref}"
+                                _scaled = f"static_cast<int32_t>({_imm_ref})"
                         elif 'size' in field_map and not field_map['size'].get('is_fixed', True):
                             _sr = f"enc.{member_name}.size"
-                            _scaled = f"((int32_t)((uint32_t){_imm_ref} << {_sr}))"
+                            _scaled = f"static_cast<int32_t>(static_cast<uint32_t>({_imm_ref}) << {_sr})"
                         else:
-                            _scaled = f"(int32_t){_imm_ref}"
+                            _scaled = f"static_cast<int32_t>({_imm_ref})"
                         if _imm_opt:
-                            code.append(f"{ind}if ({_imm_ref} == 0) result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg({_b_ref}, true, true)), (int32_t)0));")
+                            code.append(f"{ind}if ({_imm_ref} == 0) result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg({_b_ref}, true, true)), static_cast<int32_t>(0)));")
                             code.append(f"{ind}else result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg({_b_ref}, true, true)), {_scaled}));")
                         else:
                             code.append(f"{ind}{{ int32_t _uoff = {_scaled};")
-                            code.append(f"{ind}    if (_uoff == 0) result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg({_b_ref}, true, true)), (int32_t)0));")
+                            code.append(f"{ind}    if (_uoff == 0) result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg({_b_ref}, true, true)), static_cast<int32_t>(0)));")
                             code.append(f"{ind}    else result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg({_b_ref}, true, true)), _uoff)); }}")
                 else:
                     if _b_sp:
-                        code.append(f"{ind}result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg({_b_ref}, true, true)), (int32_t)0));")
+                        code.append(f"{ind}result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg({_b_ref}, true, true)), static_cast<int32_t>(0)));")
                     else:
-                        code.append(f"{ind}result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg({_b_ref}, true, true)), (int32_t)0));")
+                        code.append(f"{ind}result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg({_b_ref}, true, true)), static_cast<int32_t>(0)));")
 
             lines = self._emit_operand_v2(ind, op_type, field, mem_ref,
                                            is_optional, in_mem, extras, field_map)
@@ -6087,9 +6087,9 @@ class ARM64XMLParser:
             if mem_imm_tok is None:
                 # [Rn] — base only
                 if is_sp:
-                    code.append(f"{ind}result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg({base_ref}, true, true)), (int32_t)0));")
+                    code.append(f"{ind}result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg({base_ref}, true, true)), static_cast<int32_t>(0)));")
                 else:
-                    code.append(f"{ind}result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg({base_ref}, true, true)), (int32_t)0));")
+                    code.append(f"{ind}result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg({base_ref}, true, true)), static_cast<int32_t>(0)));")
             else:
                 imm_type, imm_field, imm_ref, imm_optional = mem_imm_tok
                 fw = field_map.get(imm_field, {}).get('width', 0)
@@ -6097,9 +6097,9 @@ class ARM64XMLParser:
                     sign_bit = fw - 1
                     # Check if struct field is already declared as signed (int32_t bitfield)
                     if self._is_signed_field(imm_field):
-                        soff_expr = f"(int32_t)({imm_ref})"
+                        soff_expr = f"static_cast<int32_t>({imm_ref})"
                     else:
-                        soff_expr = f"(int32_t)(({imm_ref} ^ (1u << {sign_bit})) - (1u << {sign_bit}))"
+                        soff_expr = f"static_cast<int32_t>(({imm_ref} ^ (1u << {sign_bit})) - (1u << {sign_bit}))"
                     code.append(f"{ind}{{ int32_t soff = {soff_expr}; result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg({base_ref}, true, true)), soff)); }}")
                 else:
                     # Unsigned offset — may need scaling by access size (imm12 * size_bytes)
@@ -6109,18 +6109,18 @@ class ARM64XMLParser:
                     if size_fixed is not None:
                         scale_shift = int(size_fixed, 2)  # e.g. '10' -> 2 -> imm12 << 2
                         if scale_shift > 0:
-                            scaled_imm = f"((int32_t)((uint32_t){imm_ref} << {scale_shift}))"
+                            scaled_imm = f"static_cast<int32_t>(static_cast<uint32_t>({imm_ref}) << {scale_shift})"
                         else:
-                            scaled_imm = f"(int32_t){imm_ref}"
+                            scaled_imm = f"static_cast<int32_t>({imm_ref})"
                     elif 'size' in field_map and not field_map['size'].get('is_fixed', True):
                         # Variable size field — compute scale at runtime
                         size_ref = f"enc.{member_name}.size"
-                        scaled_imm = f"((int32_t)((uint32_t){imm_ref} << {size_ref}))"
+                        scaled_imm = f"static_cast<int32_t>(static_cast<uint32_t>({imm_ref}) << {size_ref})"
                     else:
-                        scaled_imm = f"(int32_t){imm_ref}"  # No scaling (byte access)
+                        scaled_imm = f"static_cast<int32_t>({imm_ref})"  # No scaling (byte access)
                     if imm_optional:
                         code.append(f"{ind}if ({imm_ref} != 0) result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg({base_ref}, true, true)), {scaled_imm}));")
-                        code.append(f"{ind}else result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg({base_ref}, true, true)), (int32_t)0));")
+                        code.append(f"{ind}else result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg({base_ref}, true, true)), static_cast<int32_t>(0)));")
                     else:
                         code.append(f"{ind}result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg({base_ref}, true, true)), {scaled_imm}));")
 
@@ -6467,7 +6467,7 @@ class ARM64XMLParser:
             # imm16 is unsigned, offset is negative, scaled by 4
             elif mnemonic in ['RETAASPPC', 'RETABSPPC'] and 'imm16' in field_map:
                 imm_field = field_map['imm16']['name']
-                code.append(f"{ind}int32_t offset = -(int32_t)(enc.{member_name}.{imm_field} * 4u);")
+                code.append(f"{ind}int32_t offset = -static_cast<int32_t>(enc.{member_name}.{imm_field} * 4u);")
                 code.append(f"{ind}result.operands.push_back(Operand::relative(static_cast<int64_t>(offset)));")
                 code.append(f"{ind}return result;")
                 return code
@@ -7617,14 +7617,14 @@ class ARM64XMLParser:
                     code.append(f"{ind}else _wide_arr = Arrangement::D;")
                     code.append(f"{ind}result.operands.push_back(Operand::scalar(enc.{member_name}.{rd_field}, _narrow_arr));")
                     code.append(f"{ind}result.operands.push_back(Operand::scalar(enc.{member_name}.{rn_field}, _wide_arr));")
-                    code.append(f"{ind}result.operands.push_back(Operand::imm((_esize * 2) - (int)_immhb));")
+                    code.append(f"{ind}result.operands.push_back(Operand::imm((_esize * 2) - static_cast<int>(_immhb)));")
                 else:
                     code.append(f"{ind}result.operands.push_back(Operand::scalar(enc.{member_name}.{rd_field}, _fp_arr));")
                     code.append(f"{ind}result.operands.push_back(Operand::scalar(enc.{member_name}.{rn_field}, _fp_arr));")
                     if is_fp_convert:
-                        code.append(f"{ind}result.operands.push_back(Operand::imm((_esize * 2) - (int)_immhb));  // fbits")
+                        code.append(f"{ind}result.operands.push_back(Operand::imm((_esize * 2) - static_cast<int>(_immhb)));  // fbits")
                     else:
-                        code.append(f"{ind}result.operands.push_back(Operand::imm((int)_immhb - _esize));  // shift left")
+                        code.append(f"{ind}result.operands.push_back(Operand::imm(static_cast<int>(_immhb) - _esize));  // shift left")
                 code.append(f"{ind}return result;")
                 return code
 
@@ -9194,12 +9194,12 @@ class ARM64XMLParser:
                 code.append(f"{ind}    op.sme.mode = 3;  // range + VGx mode")
                 code.append(f"{ind}    op.sme.wv = enc.{member_name}.{rv_field} + 8;")
                 code.append(f"{ind}    op.sme.start = static_cast<uint8_t>(_start);")
-                code.append(f"{ind}    op.sme.detail = (int32_t)((_end & 0xFFFF) | ({_range_vgx} << 16));")
+                code.append(f"{ind}    op.sme.detail = static_cast<int32_t>((_end & 0xFFFF) | ({_range_vgx} << 16));")
             else:
                 code.append(f"{ind}    op.sme.mode = 1;  // range mode")
                 code.append(f"{ind}    op.sme.wv = enc.{member_name}.{rv_field} + 8;")
                 code.append(f"{ind}    op.sme.start = static_cast<uint8_t>(_start);")
-                code.append(f"{ind}    op.sme.detail = (int32_t)_end;")
+                code.append(f"{ind}    op.sme.detail = static_cast<int32_t>(_end);")
             code.append(f"{ind}    result.operands.push_back(op);")
             code.append(f"{ind}}}")
             # Emit SVE source registers using index expressions from template
@@ -9995,7 +9995,7 @@ class ARM64XMLParser:
                     code.append(f"{ind}    op.sme.mode = 3;  // range + VGx mode")
                     code.append(f"{ind}    op.sme.wv = {_ws_expr};")
                     code.append(f"{ind}    op.sme.start = static_cast<uint8_t>({_start_expr});")
-                    code.append(f"{ind}    op.sme.detail = ({_grp_sz} << 16) | (uint32_t)({_end_expr});  // VGx in high 16, range_end in low 16")
+                    code.append(f"{ind}    op.sme.detail = ({_grp_sz} << 16) | static_cast<uint32_t>({_end_expr});  // VGx in high 16, range_end in low 16")
                     code.append(f"{ind}    result.operands.push_back(op);")
                     code.append(f"{ind}}}")
                 else:
@@ -10546,7 +10546,7 @@ class ARM64XMLParser:
                                 elif _m.endswith('Q'): _esz = 16
                                 else: _esz = 1
                                 code.append(f"{ind}{{")
-                                code.append(f"{ind}    int32_t _imm = (int32_t)enc.{member_name}.{imm_field_cpp} * {_esz};")
+                                code.append(f"{ind}    int32_t _imm = static_cast<int32_t>(enc.{member_name}.{imm_field_cpp}) * {_esz};")
                                 code.append(f"{ind}    if (_imm == 0) result.operands.push_back(Operand::memory_base(static_cast<uint32_t>(make_gp_reg(enc.{member_name}.{rn_field_cpp}, true, true))));")
                                 code.append(f"{ind}    else result.operands.push_back(Operand::memory_offset(static_cast<uint32_t>(make_gp_reg(enc.{member_name}.{rn_field_cpp}, true, true)), _imm));")
                                 code.append(f"{ind}}}")
@@ -10738,7 +10738,7 @@ class ARM64XMLParser:
                         if mem_imm and mem_imm in field_map and not field_map[mem_imm]['is_fixed']:
                             imm_field_cpp = field_map[mem_imm]['name']
                             code.append(f"{ind}{{")
-                            code.append(f"{ind}    int32_t _imm = (int32_t)enc.{member_name}.{imm_field_cpp} * {_esz};")
+                            code.append(f"{ind}    int32_t _imm = static_cast<int32_t>(enc.{member_name}.{imm_field_cpp}) * {_esz};")
                             code.append(f"{ind}    result.operands.push_back(Operand::memory_sve_offset(static_cast<uint16_t>(make_sve_reg({reg_val_expr}, {arr_expr})), _imm));")
                             code.append(f"{ind}}}")
                             consumed_imm_fields.add(mem_imm)
@@ -12518,10 +12518,10 @@ class ARM64XMLParser:
         code.append("")
         code.append("static void dump_context(const ir::Context& ctx) {")
         code.append("    for (int i = 0; i < 31; ++i) {")
-        code.append('        if (ctx.gpr[i]) printf("  x%-2d = 0x%016llx  (%llu)\\n", i, (unsigned long long)ctx.gpr[i], (unsigned long long)ctx.gpr[i]);')
+        code.append('        if (ctx.gpr[i]) printf("  x%-2d = 0x%016llx  (%llu)\\n", i, static_cast<unsigned long long>(ctx.gpr[i]), static_cast<unsigned long long>(ctx.gpr[i]));')
         code.append("    }")
-        code.append('    if (ctx.gpr[31]) printf("  sp  = 0x%016llx\\n", (unsigned long long)ctx.gpr[31]);')
-        code.append('    printf("  pc  = 0x%016llx\\n", (unsigned long long)ctx.pc);')
+        code.append('    if (ctx.gpr[31]) printf("  sp  = 0x%016llx\\n", static_cast<unsigned long long>(ctx.gpr[31]));')
+        code.append('    printf("  pc  = 0x%016llx\\n", static_cast<unsigned long long>(ctx.pc));')
         code.append("    if (ctx.flags[0] || ctx.flags[1] || ctx.flags[2] || ctx.flags[3])")
         code.append('        printf("  flags: N=%d Z=%d C=%d V=%d\\n", ctx.flags[0], ctx.flags[1], ctx.flags[2], ctx.flags[3]);')
         code.append("}")
@@ -12543,13 +12543,13 @@ class ARM64XMLParser:
         code.append("        } else if (strncmp(argv[i], \"--pc=\", 5) == 0) {")
         code.append("            ctx.pc = parse_hex(argv[i] + 5);")
         code.append("        } else if (strncmp(argv[i], \"--mem=\", 6) == 0) {")
-        code.append("            mem_size = (size_t)parse_hex(argv[i] + 6);")
+        code.append("            mem_size = static_cast<size_t>(parse_hex(argv[i] + 6));")
         code.append("        } else if (strcmp(argv[i], \"--dump\") == 0) {")
         code.append("            dump = true;")
         code.append("        } else if (strcmp(argv[i], \"--step\") == 0) {")
         code.append("            step = true;")
         code.append("        } else if (strncmp(argv[i], \"0x\", 2) == 0 || strncmp(argv[i], \"0X\", 2) == 0) {")
-        code.append("            insns.push_back((uint32_t)strtoul(argv[i], nullptr, 16));")
+        code.append("            insns.push_back(static_cast<uint32_t>(strtoul(argv[i], nullptr, 16)));")
         code.append("        } else {")
         code.append('            fprintf(stderr, "Unknown argument: %s\\n", argv[i]);')
         code.append("            return 1;")
@@ -12570,9 +12570,9 @@ class ARM64XMLParser:
         code.append("        if (step) {")
         code.append("#ifdef VEDA64_STRINGS")
         code.append("            auto decoded = decode(insn);")
-        code.append('            if (decoded) printf("[0x%llx] %s\\n", (unsigned long long)ctx.pc, decoded->to_string().c_str());')
+        code.append('            if (decoded) printf("[0x%llx] %s\\n", static_cast<unsigned long long>(ctx.pc), decoded->to_string().c_str());')
         code.append('#else')
-        code.append('            printf("[0x%llx] 0x%08x\\n", (unsigned long long)ctx.pc, insn);')
+        code.append('            printf("[0x%llx] 0x%08x\\n", static_cast<unsigned long long>(ctx.pc), insn);')
         code.append('#endif')
         code.append("        }")
         code.append("        uint64_t old_pc = ctx.pc;")
@@ -12637,7 +12637,7 @@ class ARM64XMLParser:
         code.append("")
         code.append("// Pseudo handles")
         code.append("#ifndef NtCurrentProcess")
-        code.append("#define NtCurrentProcess() ((HANDLE)(LONG_PTR)-1)")
+        code.append("#define NtCurrentProcess() (reinterpret_cast<HANDLE>(static_cast<LONG_PTR>(-1)))")
         code.append("#endif")
         code.append("#ifndef NtCurrentThread")
         code.append("#define NtCurrentThread() ((HANDLE)(LONG_PTR)-2)")
@@ -15262,7 +15262,7 @@ class ARM64XMLParser:
         code.append("    QueryPerformanceFrequency(&freq);")
         code.append("    std::lock_guard<std::mutex> lock(mtx);")
         code.append("    if (data.call_count == 0) return 0.0;")
-        code.append("    return (double)data.total_ticks / data.call_count / freq.QuadPart * 1000.0;")
+        code.append("    return static_cast<double>(data.total_ticks) / data.call_count / freq.QuadPart * 1000.0;")
         code.append("}")
         code.append("")
         code.append("} // namespace profiling_hook")
@@ -16638,14 +16638,14 @@ class ARM64XMLParser:
         code.append("    if (!memory || addr + size > memory_size) return 0;")
         code.append("    uint64_t val = 0;")
         code.append("    for (uint8_t i = 0; i < size && i < 8; ++i)")
-        code.append("        val |= (uint64_t)memory[addr + i] << (i * 8);")
+        code.append("        val |= static_cast<uint64_t>(memory[addr + i]) << (i * 8);")
         code.append("    return val;")
         code.append("}")
         code.append("")
         code.append("void Context::write_mem(uint64_t addr, uint64_t val, uint8_t size) {")
         code.append("    if (!memory || addr + size > memory_size) return;")
         code.append("    for (uint8_t i = 0; i < size && i < 8; ++i)")
-        code.append("        memory[addr + i] = (uint8_t)(val >> (i * 8));")
+        code.append("        memory[addr + i] = static_cast<uint8_t>(val >> (i * 8));")
         code.append("}")
         code.append("")
         code.append("static uint64_t sign_extend(uint64_t val, uint8_t from_size) {")
@@ -16708,7 +16708,7 @@ class ARM64XMLParser:
         code.append("uint64_t eval_expr(const Context& ctx, const Expr& e) {")
         code.append("    switch (e.kind) {")
         code.append("    case Expr::Kind::Const:")
-        code.append("        return (uint64_t)e.var.value & size_mask(e.size ? e.size : e.var.size);")
+        code.append("        return static_cast<uint64_t>(e.var.value) & size_mask(e.size ? e.size : e.var.size);")
         code.append("    case Expr::Kind::Var:")
         code.append("        switch (e.var.space) {")
         code.append("        case Space::GPR: return ctx.read_gpr(e.var.offset, e.var.size);")
@@ -16716,7 +16716,7 @@ class ARM64XMLParser:
         code.append("        case Space::SIMD: {")
         code.append("            uint64_t v = 0;")
         code.append("            uint8_t sz = e.var.size < 8 ? e.var.size : 8;")
-        code.append("            for (uint8_t i = 0; i < sz; ++i) v |= (uint64_t)ctx.simd[e.var.offset][i] << (i*8);")
+        code.append("            for (uint8_t i = 0; i < sz; ++i) v |= static_cast<uint64_t>(ctx.simd[e.var.offset][i]) << (i*8);")
         code.append("            return v;")
         code.append("        }")
         code.append("        default: return 0;")
@@ -16741,9 +16741,9 @@ class ARM64XMLParser:
         code.append("    case Opcode::SUB: return (c[0] - c[1]) & mask;")
         code.append("    case Opcode::MUL: return (c[0] * c[1]) & mask;")
         code.append("    case Opcode::SDIV: {")
-        code.append("        int64_t sa = (int64_t)sign_extend(c[0], e.size);")
-        code.append("        int64_t sb = (int64_t)sign_extend(c[1], e.size);")
-        code.append("        return sb ? ((uint64_t)(sa / sb) & mask) : 0;")
+        code.append("        int64_t sa = static_cast<int64_t>(sign_extend(c[0], e.size));")
+        code.append("        int64_t sb = static_cast<int64_t>(sign_extend(c[1], e.size));")
+        code.append("        return sb ? (static_cast<uint64_t>(sa / sb) & mask) : 0;")
         code.append("    }")
         code.append("    case Opcode::UDIV: return c[1] ? ((c[0] / c[1]) & mask) : 0;")
         code.append("    case Opcode::NEG: return ((~c[0] + 1) & mask);")
@@ -16765,8 +16765,8 @@ class ARM64XMLParser:
         code.append("    case Opcode::SAR: {")
         code.append("        uint8_t csz = nc > 0 && e.children[0]->size > e.size ? e.children[0]->size : e.size;")
         code.append("        uint8_t cbits = csz * 8;")
-        code.append("        int64_t sv = (int64_t)sign_extend(c[0], csz);")
-        code.append("        return ((uint64_t)(sv >> (c[1] % cbits))) & mask;")
+        code.append("        int64_t sv = static_cast<int64_t>(sign_extend(c[0], csz));")
+        code.append("        return (static_cast<uint64_t>(sv >> (c[1] % cbits))) & mask;")
         code.append("    }")
         code.append("    case Opcode::ROR: {")
         code.append("        uint8_t csz = nc > 0 && e.children[0]->size > e.size ? e.children[0]->size : e.size;")
@@ -16788,7 +16788,7 @@ class ARM64XMLParser:
         code.append("    }")
         code.append("    case Opcode::CMP_SLT: {")
         code.append("        uint8_t csz = nc > 0 ? e.children[0]->size : e.size;")
-        code.append("        return (int64_t)sign_extend(c[0],csz) <  (int64_t)sign_extend(c[1],csz) ? 1 : 0;")
+        code.append("        return static_cast<int64_t>(sign_extend(c[0],csz)) <  static_cast<int64_t>(sign_extend(c[1],csz)) ? 1 : 0;")
         code.append("    }")
         code.append("    case Opcode::CMP_ULT: {")
         code.append("        uint8_t csz = nc > 0 ? e.children[0]->size : e.size;")
@@ -16797,7 +16797,7 @@ class ARM64XMLParser:
         code.append("    }")
         code.append("    case Opcode::CMP_SLE: {")
         code.append("        uint8_t csz = nc > 0 ? e.children[0]->size : e.size;")
-        code.append("        return (int64_t)sign_extend(c[0],csz) <= (int64_t)sign_extend(c[1],csz) ? 1 : 0;")
+        code.append("        return static_cast<int64_t>(sign_extend(c[0],csz)) <= static_cast<int64_t>(sign_extend(c[1],csz)) ? 1 : 0;")
         code.append("    }")
         code.append("    case Opcode::CMP_ULE: {")
         code.append("        uint8_t csz = nc > 0 ? e.children[0]->size : e.size;")
@@ -16832,7 +16832,7 @@ class ARM64XMLParser:
         code.append("            case Space::SIMD: {")
         code.append("                uint8_t sz = eff.dest.size < 16 ? eff.dest.size : 8;")
         code.append("                for (uint8_t i = 0; i < sz && i < 8; ++i)")
-        code.append("                    ctx.simd[eff.dest.offset][i] = (uint8_t)(val >> (i*8));")
+        code.append("                    ctx.simd[eff.dest.offset][i] = static_cast<uint8_t>(val >> (i*8));")
         code.append("                break;")
         code.append("            }")
         code.append("            default: break;")
@@ -17954,10 +17954,10 @@ class ARM64XMLParser:
             '    } else {',
             '        printf("FAIL: ops=%zu opc=%d out=%d/%d in0=%d/%d in1=%d/%d\\n",',
             '            sim.ops.size(),',
-            '            sim.ops.empty() ? -1 : (int)sim.ops[0].opcode,',
-            '            sim.ops.empty() ? -1 : (int)sim.ops[0].output.space, sim.ops.empty() ? -1 : (int)sim.ops[0].output.offset,',
-            '            sim.ops.empty() ? -1 : (int)sim.ops[0].inputs[0].space, sim.ops.empty() ? -1 : (int)sim.ops[0].inputs[0].offset,',
-            '            sim.ops.empty() ? -1 : (int)sim.ops[0].inputs[1].space, sim.ops.empty() ? -1 : (int)sim.ops[0].inputs[1].offset);',
+            '            sim.ops.empty() ? -1 : static_cast<int>(sim.ops[0].opcode),',
+            '            sim.ops.empty() ? -1 : static_cast<int>(sim.ops[0].output.space), sim.ops.empty() ? -1 : static_cast<int>(sim.ops[0].output.offset),',
+            '            sim.ops.empty() ? -1 : static_cast<int>(sim.ops[0].inputs[0].space), sim.ops.empty() ? -1 : static_cast<int>(sim.ops[0].inputs[0].offset),',
+            '            sim.ops.empty() ? -1 : static_cast<int>(sim.ops[0].inputs[1].space), sim.ops.empty() ? -1 : static_cast<int>(sim.ops[0].inputs[1].offset));',
             '    }',
             '}',
         ])
@@ -17985,7 +17985,7 @@ class ARM64XMLParser:
             '    if (sim.ops.size() == 1 && sim.ops[0].opcode == Opcode::SDIV) {',
             '        printf("PASS\\n"); tests_passed++;',
             '    } else {',
-            '        printf("FAIL: ops=%zu opc=%d\\n", sim.ops.size(), sim.ops.empty() ? -1 : (int)sim.ops[0].opcode);',
+            '        printf("FAIL: ops=%zu opc=%d\\n", sim.ops.size(), sim.ops.empty() ? -1 : static_cast<int>(sim.ops[0].opcode));',
             '    }',
             '}',
         ])
@@ -18059,9 +18059,9 @@ class ARM64XMLParser:
             '    printf("PASS\\n"); tests_passed++;',
             '} else {',
             '    printf("FAIL: out=%d in0=%d in1=%d\\n",',
-            '        sim.ops.empty() ? -1 : (int)sim.ops[0].output.offset,',
-            '        sim.ops.empty() ? -1 : (int)sim.ops[0].inputs[0].offset,',
-            '        sim.ops.empty() ? -1 : (int)sim.ops[0].inputs[1].offset);',
+            '        sim.ops.empty() ? -1 : static_cast<int>(sim.ops[0].output.offset),',
+            '        sim.ops.empty() ? -1 : static_cast<int>(sim.ops[0].inputs[0].offset),',
+            '        sim.ops.empty() ? -1 : static_cast<int>(sim.ops[0].inputs[1].offset));',
             '}',
         ])
 
@@ -18381,7 +18381,7 @@ class ARM64XMLParser:
             'ctx.gpr[1] = 5; ctx.gpr[2] = 3;',
             'execute(ctx, 0x8B020020);  // ADD X0, X1, X2',
             'if (ctx.gpr[0] == 8 && ctx.pc == 4) { printf("PASS\\n"); tests_passed++; }',
-            'else { printf("FAIL: x0=%llu pc=%llu\\n", (unsigned long long)ctx.gpr[0], (unsigned long long)ctx.pc); }',
+            'else { printf("FAIL: x0=%llu pc=%llu\\n", static_cast<unsigned long long>(ctx.gpr[0]), static_cast<unsigned long long>(ctx.pc)); }',
         ])
 
         emit_test("interp_subs_positive", [
@@ -18393,7 +18393,7 @@ class ARM64XMLParser:
             '// 5-3=2: N=0, Z=0, C=1 (no borrow), V=0',
             'if (ctx.gpr[0] == 2 && ctx.flags[0] == 0 && ctx.flags[1] == 0 && ctx.flags[2] == 1 && ctx.flags[3] == 0)',
             '    { printf("PASS\\n"); tests_passed++; }',
-            'else { printf("FAIL: x0=%llu N=%d Z=%d C=%d V=%d\\n", (unsigned long long)ctx.gpr[0], ctx.flags[0], ctx.flags[1], ctx.flags[2], ctx.flags[3]); }',
+            'else { printf("FAIL: x0=%llu N=%d Z=%d C=%d V=%d\\n", static_cast<unsigned long long>(ctx.gpr[0]), ctx.flags[0], ctx.flags[1], ctx.flags[2], ctx.flags[3]); }',
         ])
 
         emit_test("interp_subs_negative", [
@@ -18417,7 +18417,7 @@ class ARM64XMLParser:
             '// 7-7=0: N=0, Z=1, C=1, V=0',
             'if (ctx.gpr[0] == 0 && ctx.flags[0] == 0 && ctx.flags[1] == 1 && ctx.flags[2] == 1 && ctx.flags[3] == 0)',
             '    { printf("PASS\\n"); tests_passed++; }',
-            'else { printf("FAIL: x0=%llu N=%d Z=%d C=%d V=%d\\n", (unsigned long long)ctx.gpr[0], ctx.flags[0], ctx.flags[1], ctx.flags[2], ctx.flags[3]); }',
+            'else { printf("FAIL: x0=%llu N=%d Z=%d C=%d V=%d\\n", static_cast<unsigned long long>(ctx.gpr[0]), ctx.flags[0], ctx.flags[1], ctx.flags[2], ctx.flags[3]); }',
         ])
 
         emit_test("interp_adds_carry", [
@@ -18429,7 +18429,7 @@ class ARM64XMLParser:
             '// MAX+1 wraps to 0: N=0, Z=1, C=1 (carry out), V=0',
             'if (ctx.gpr[0] == 0 && ctx.flags[0] == 0 && ctx.flags[1] == 1 && ctx.flags[2] == 1 && ctx.flags[3] == 0)',
             '    { printf("PASS\\n"); tests_passed++; }',
-            'else { printf("FAIL: x0=0x%llx N=%d Z=%d C=%d V=%d\\n", (unsigned long long)ctx.gpr[0], ctx.flags[0], ctx.flags[1], ctx.flags[2], ctx.flags[3]); }',
+            'else { printf("FAIL: x0=0x%llx N=%d Z=%d C=%d V=%d\\n", static_cast<unsigned long long>(ctx.gpr[0]), ctx.flags[0], ctx.flags[1], ctx.flags[2], ctx.flags[3]); }',
         ])
 
         emit_test("interp_adds_overflow", [
@@ -18441,7 +18441,7 @@ class ARM64XMLParser:
             '// LLONG_MAX+1 overflows to negative: N=1, Z=0, C=0, V=1',
             'if (ctx.gpr[0] == 0x8000000000000000ULL && ctx.flags[0] == 1 && ctx.flags[1] == 0 && ctx.flags[2] == 0 && ctx.flags[3] == 1)',
             '    { printf("PASS\\n"); tests_passed++; }',
-            'else { printf("FAIL: x0=0x%llx N=%d Z=%d C=%d V=%d\\n", (unsigned long long)ctx.gpr[0], ctx.flags[0], ctx.flags[1], ctx.flags[2], ctx.flags[3]); }',
+            'else { printf("FAIL: x0=0x%llx N=%d Z=%d C=%d V=%d\\n", static_cast<unsigned long long>(ctx.gpr[0]), ctx.flags[0], ctx.flags[1], ctx.flags[2], ctx.flags[3]); }',
         ])
 
         emit_test("interp_ands_flags", [
@@ -18453,7 +18453,7 @@ class ARM64XMLParser:
             '// 0xABCD & 0xFFFF = 0xABCD: N=0, Z=0',
             'if (ctx.gpr[0] == 0xABCD && ctx.flags[0] == 0 && ctx.flags[1] == 0)',
             '    { printf("PASS\\n"); tests_passed++; }',
-            'else { printf("FAIL: x0=0x%llx N=%d Z=%d\\n", (unsigned long long)ctx.gpr[0], ctx.flags[0], ctx.flags[1]); }',
+            'else { printf("FAIL: x0=0x%llx N=%d Z=%d\\n", static_cast<unsigned long long>(ctx.gpr[0]), ctx.flags[0], ctx.flags[1]); }',
         ])
 
         emit_test("interp_cmp_bne", [
@@ -18467,7 +18467,7 @@ class ARM64XMLParser:
             'execute(ctx, 0x54000041);  // B.NE +8',
             '// Z=0 means NE taken, pc = 0x1004 + 8 = 0x100C',
             'if (ctx.pc == 0x100C) { printf("PASS\\n"); tests_passed++; }',
-            'else { printf("FAIL: pc=0x%llx Z=%d\\n", (unsigned long long)ctx.pc, ctx.flags[1]); }',
+            'else { printf("FAIL: pc=0x%llx Z=%d\\n", static_cast<unsigned long long>(ctx.pc), ctx.flags[1]); }',
         ])
 
         emit_test("interp_cmp_beq_not_taken", [
@@ -18480,7 +18480,7 @@ class ARM64XMLParser:
             'execute(ctx, 0x54000040);  // B.EQ +8',
             '// Z=0 means EQ not taken, pc = 0x1004 + 4 = 0x1008',
             'if (ctx.pc == 0x1008) { printf("PASS\\n"); tests_passed++; }',
-            'else { printf("FAIL: pc=0x%llx Z=%d\\n", (unsigned long long)ctx.pc, ctx.flags[1]); }',
+            'else { printf("FAIL: pc=0x%llx Z=%d\\n", static_cast<unsigned long long>(ctx.pc), ctx.flags[1]); }',
         ])
 
         emit_test("interp_mov_imm", [
@@ -18489,7 +18489,7 @@ class ARM64XMLParser:
             'ctx.memory = mem; ctx.memory_size = sizeof(mem);',
             'execute(ctx, 0xD2800540);  // MOVZ X0, #42',
             'if (ctx.gpr[0] == 42) { printf("PASS\\n"); tests_passed++; }',
-            'else { printf("FAIL: x0=%llu\\n", (unsigned long long)ctx.gpr[0]); }',
+            'else { printf("FAIL: x0=%llu\\n", static_cast<unsigned long long>(ctx.gpr[0])); }',
         ])
 
         emit_test("interp_ldr_str", [
@@ -18501,7 +18501,7 @@ class ARM64XMLParser:
             'execute(ctx, 0xF90003E1);  // STR X1, [SP]',
             'execute(ctx, 0xF94003E0);  // LDR X0, [SP]',
             'if (ctx.gpr[0] == 0xDEADBEEFCAFEBABEULL) { printf("PASS\\n"); tests_passed++; }',
-            'else { printf("FAIL: x0=0x%llx\\n", (unsigned long long)ctx.gpr[0]); }',
+            'else { printf("FAIL: x0=0x%llx\\n", static_cast<unsigned long long>(ctx.gpr[0])); }',
         ])
 
         emit_test("interp_branch", [
@@ -18511,7 +18511,7 @@ class ARM64XMLParser:
             'ctx.pc = 0x100;',
             'execute(ctx, 0x14000002);  // B +8',
             'if (ctx.pc == 0x108) { printf("PASS\\n"); tests_passed++; }',
-            'else { printf("FAIL: pc=0x%llx\\n", (unsigned long long)ctx.pc); }',
+            'else { printf("FAIL: pc=0x%llx\\n", static_cast<unsigned long long>(ctx.pc)); }',
         ])
 
         # --- 32-bit arithmetic ---
@@ -18524,7 +18524,7 @@ class ARM64XMLParser:
             'execute(ctx, 0x0B020020);  // ADD W0, W1, W2',
             '// 0xFFFFFFFF + 1 = 0x100000000 truncated to 32-bit = 0, zero-extended',
             'if (ctx.gpr[0] == 0) { printf("PASS\\n"); tests_passed++; }',
-            'else { printf("FAIL: x0=0x%llx\\n", (unsigned long long)ctx.gpr[0]); }',
+            'else { printf("FAIL: x0=0x%llx\\n", static_cast<unsigned long long>(ctx.gpr[0])); }',
         ])
 
         emit_test("interp_sub_x64", [
@@ -18535,7 +18535,7 @@ class ARM64XMLParser:
             'ctx.gpr[1] = 100; ctx.gpr[2] = 37;',
             'execute(ctx, 0xCB020020);  // SUB X0, X1, X2',
             'if (ctx.gpr[0] == 63) { printf("PASS\\n"); tests_passed++; }',
-            'else { printf("FAIL: x0=%llu\\n", (unsigned long long)ctx.gpr[0]); }',
+            'else { printf("FAIL: x0=%llu\\n", static_cast<unsigned long long>(ctx.gpr[0])); }',
         ])
 
         emit_test("interp_subs_w32_flags", [
@@ -18548,7 +18548,7 @@ class ARM64XMLParser:
             '// 1-2 wraps in 32-bit: result=0xFFFFFFFF, N=1, Z=0, C=0',
             'if (ctx.gpr[0] == 0xFFFFFFFF && ctx.flags[0] == 1 && ctx.flags[1] == 0 && ctx.flags[2] == 0)',
             '    { printf("PASS\\n"); tests_passed++; }',
-            'else { printf("FAIL: x0=0x%llx N=%d Z=%d C=%d\\n", (unsigned long long)ctx.gpr[0], ctx.flags[0], ctx.flags[1], ctx.flags[2]); }',
+            'else { printf("FAIL: x0=0x%llx N=%d Z=%d C=%d\\n", static_cast<unsigned long long>(ctx.gpr[0]), ctx.flags[0], ctx.flags[1], ctx.flags[2]); }',
         ])
 
         # --- Logical ops ---
@@ -18559,7 +18559,7 @@ class ARM64XMLParser:
             'ctx.gpr[1] = 0xFF00FF00ULL; ctx.gpr[2] = 0x0F0F0F0FULL;',
             'execute(ctx, 0x8A020020);  // AND X0, X1, X2',
             'if (ctx.gpr[0] == 0x0F000F00ULL) { printf("PASS\\n"); tests_passed++; }',
-            'else { printf("FAIL: x0=0x%llx\\n", (unsigned long long)ctx.gpr[0]); }',
+            'else { printf("FAIL: x0=0x%llx\\n", static_cast<unsigned long long>(ctx.gpr[0])); }',
         ])
 
         emit_test("interp_eor", [
@@ -18569,7 +18569,7 @@ class ARM64XMLParser:
             'ctx.gpr[1] = 0xAAAAAAAAAAAAAAAAULL; ctx.gpr[2] = 0x5555555555555555ULL;',
             'execute(ctx, 0xCA020020);  // EOR X0, X1, X2',
             'if (ctx.gpr[0] == 0xFFFFFFFFFFFFFFFFULL) { printf("PASS\\n"); tests_passed++; }',
-            'else { printf("FAIL: x0=0x%llx\\n", (unsigned long long)ctx.gpr[0]); }',
+            'else { printf("FAIL: x0=0x%llx\\n", static_cast<unsigned long long>(ctx.gpr[0])); }',
         ])
 
         # --- MOV variants ---
@@ -18580,7 +18580,7 @@ class ARM64XMLParser:
             'ctx.memory = mem; ctx.memory_size = sizeof(mem);',
             'execute(ctx, 0x92800020);  // MOV X0, #-2 (MOVN X0, #1)',
             'if (ctx.gpr[0] == 0xFFFFFFFFFFFFFFFEULL) { printf("PASS\\n"); tests_passed++; }',
-            'else { printf("FAIL: x0=0x%llx\\n", (unsigned long long)ctx.gpr[0]); }',
+            'else { printf("FAIL: x0=0x%llx\\n", static_cast<unsigned long long>(ctx.gpr[0])); }',
         ])
 
         emit_test("interp_movz_shifted", [
@@ -18590,7 +18590,7 @@ class ARM64XMLParser:
             'ctx.memory = mem; ctx.memory_size = sizeof(mem);',
             'execute(ctx, 0xD2820020);  // MOV X0, #0x1001',
             'if (ctx.gpr[0] == 0x1001) { printf("PASS\\n"); tests_passed++; }',
-            'else { printf("FAIL: x0=0x%llx\\n", (unsigned long long)ctx.gpr[0]); }',
+            'else { printf("FAIL: x0=0x%llx\\n", static_cast<unsigned long long>(ctx.gpr[0])); }',
         ])
 
         # --- Division ---
@@ -18601,18 +18601,18 @@ class ARM64XMLParser:
             'ctx.gpr[1] = 100; ctx.gpr[2] = 7;',
             'execute(ctx, 0x9AC20820);  // UDIV X0, X1, X2',
             'if (ctx.gpr[0] == 14) { printf("PASS\\n"); tests_passed++; }',
-            'else { printf("FAIL: x0=%llu\\n", (unsigned long long)ctx.gpr[0]); }',
+            'else { printf("FAIL: x0=%llu\\n", static_cast<unsigned long long>(ctx.gpr[0])); }',
         ])
 
         emit_test("interp_sdiv", [
             'Context ctx;',
             'uint8_t mem[1024] = {};',
             'ctx.memory = mem; ctx.memory_size = sizeof(mem);',
-            'ctx.gpr[1] = (uint64_t)(int64_t)-100; ctx.gpr[2] = 7;',
+            'ctx.gpr[1] = static_cast<uint64_t>(int64_t)-100; ctx.gpr[2] = 7;',
             'execute(ctx, 0x9AC20C20);  // SDIV X0, X1, X2',
             '// -100 / 7 = -14',
-            'if (ctx.gpr[0] == (uint64_t)(int64_t)-14) { printf("PASS\\n"); tests_passed++; }',
-            'else { printf("FAIL: x0=0x%llx\\n", (unsigned long long)ctx.gpr[0]); }',
+            'if (ctx.gpr[0] == static_cast<uint64_t>(int64_t)-14) { printf("PASS\\n"); tests_passed++; }',
+            'else { printf("FAIL: x0=0x%llx\\n", static_cast<unsigned long long>(ctx.gpr[0])); }',
         ])
 
         emit_test("interp_udiv_by_zero", [
@@ -18622,7 +18622,7 @@ class ARM64XMLParser:
             'ctx.gpr[0] = 0xDEAD; ctx.gpr[1] = 42; ctx.gpr[2] = 0;',
             'execute(ctx, 0x9AC20820);  // UDIV X0, X1, X2 (div by zero → 0)',
             'if (ctx.gpr[0] == 0) { printf("PASS\\n"); tests_passed++; }',
-            'else { printf("FAIL: x0=%llu\\n", (unsigned long long)ctx.gpr[0]); }',
+            'else { printf("FAIL: x0=%llu\\n", static_cast<unsigned long long>(ctx.gpr[0])); }',
         ])
 
         # --- MOV register ---
@@ -18634,7 +18634,7 @@ class ARM64XMLParser:
             'ctx.gpr[2] = 0x123456789ABCDEF0ULL;',
             'execute(ctx, 0xAA0203E0);  // MOV X0, X2',
             'if (ctx.gpr[0] == 0x123456789ABCDEF0ULL) { printf("PASS\\n"); tests_passed++; }',
-            'else { printf("FAIL: x0=0x%llx\\n", (unsigned long long)ctx.gpr[0]); }',
+            'else { printf("FAIL: x0=0x%llx\\n", static_cast<unsigned long long>(ctx.gpr[0])); }',
         ])
 
         # --- CSEL ---
@@ -18656,7 +18656,7 @@ class ARM64XMLParser:
             'execute(ctx2, 0x9A840060);  // CSEL X0, X3, X4, EQ',
             '// Z=1 → EQ taken → X0=X3',
             'if (ctx2.gpr[0] == 0xAAAA) { printf("PASS\\n"); tests_passed++; }',
-            'else { printf("FAIL: x0=0x%llx Z=%d\\n", (unsigned long long)ctx2.gpr[0], ctx2.flags[1]); }',
+            'else { printf("FAIL: x0=0x%llx Z=%d\\n", static_cast<unsigned long long>(ctx2.gpr[0]), ctx2.flags[1]); }',
         ])
 
         emit_test("interp_csel_not_taken", [
@@ -18670,7 +18670,7 @@ class ARM64XMLParser:
             'execute(ctx, 0x9A840060);  // CSEL X0, X3, X4, EQ',
             '// Z=0 → EQ not taken → X0=X4',
             'if (ctx.gpr[0] == 0xBBBB) { printf("PASS\\n"); tests_passed++; }',
-            'else { printf("FAIL: x0=0x%llx Z=%d\\n", (unsigned long long)ctx.gpr[0], ctx.flags[1]); }',
+            'else { printf("FAIL: x0=0x%llx Z=%d\\n", static_cast<unsigned long long>(ctx.gpr[0]), ctx.flags[1]); }',
         ])
 
         # --- LDR/STR with offset ---
@@ -18683,7 +18683,7 @@ class ARM64XMLParser:
             'execute(ctx, 0xF9000820);  // STR X0, [X1, #0x10]',
             'execute(ctx, 0xF9400822);  // LDR X2, [X1, #0x10]',
             'if (ctx.gpr[2] == 0xCAFEBABE12345678ULL) { printf("PASS\\n"); tests_passed++; }',
-            'else { printf("FAIL: x2=0x%llx\\n", (unsigned long long)ctx.gpr[2]); }',
+            'else { printf("FAIL: x2=0x%llx\\n", static_cast<unsigned long long>(ctx.gpr[2])); }',
         ])
 
         # --- STP/LDP ---
@@ -18703,7 +18703,7 @@ class ARM64XMLParser:
             'execute(ctx, 0xA9400FE2);  // LDP X2, X3, [SP]',
             'if (ctx.gpr[2] == 0x1111111111111111ULL && ctx.gpr[3] == 0x2222222222222222ULL)',
             '    { printf("PASS\\n"); tests_passed++; }',
-            'else { printf("FAIL: x2=0x%llx x3=0x%llx\\n", (unsigned long long)ctx.gpr[2], (unsigned long long)ctx.gpr[3]); }',
+            'else { printf("FAIL: x2=0x%llx x3=0x%llx\\n", static_cast<unsigned long long>(ctx.gpr[2]), static_cast<unsigned long long>(ctx.gpr[3])); }',
         ])
 
         # --- ADDS immediate ---
@@ -18716,7 +18716,7 @@ class ARM64XMLParser:
             'execute(ctx, 0xB1000C20);  // ADDS X0, X1, #3',
             'if (ctx.gpr[0] == 13 && ctx.flags[0] == 0 && ctx.flags[1] == 0 && ctx.flags[2] == 0 && ctx.flags[3] == 0)',
             '    { printf("PASS\\n"); tests_passed++; }',
-            'else { printf("FAIL: x0=%llu N=%d Z=%d C=%d V=%d\\n", (unsigned long long)ctx.gpr[0], ctx.flags[0], ctx.flags[1], ctx.flags[2], ctx.flags[3]); }',
+            'else { printf("FAIL: x0=%llu N=%d Z=%d C=%d V=%d\\n", static_cast<unsigned long long>(ctx.gpr[0]), ctx.flags[0], ctx.flags[1], ctx.flags[2], ctx.flags[3]); }',
         ])
 
         # --- Multi-instruction sequence: compute x0 = (x1 + x2) * x3 ---
@@ -18729,7 +18729,7 @@ class ARM64XMLParser:
             'execute(ctx, 0x8B020020);  // ADD X0, X1, X2  → X0=10',
             'execute(ctx, 0x9B037C00);  // MUL X0, X0, X3  → X0=50',
             'if (ctx.gpr[0] == 50) { printf("PASS\\n"); tests_passed++; }',
-            'else { printf("FAIL: x0=%llu\\n", (unsigned long long)ctx.gpr[0]); }',
+            'else { printf("FAIL: x0=%llu\\n", static_cast<unsigned long long>(ctx.gpr[0])); }',
         ])
 
         # --- SUBS equal then B.EQ taken ---
@@ -18743,7 +18743,7 @@ class ARM64XMLParser:
             'execute(ctx, 0x54000040);  // B.EQ +8',
             '// Z=1 → EQ taken → pc = 0x2004 + 8 = 0x200C',
             'if (ctx.pc == 0x200C && ctx.flags[1] == 1) { printf("PASS\\n"); tests_passed++; }',
-            'else { printf("FAIL: pc=0x%llx Z=%d\\n", (unsigned long long)ctx.pc, ctx.flags[1]); }',
+            'else { printf("FAIL: pc=0x%llx Z=%d\\n", static_cast<unsigned long long>(ctx.pc), ctx.flags[1]); }',
         ])
 
         # --- Memory write then verify bytes (little-endian) ---
@@ -18776,7 +18776,7 @@ class ARM64XMLParser:
             '// CMP writes to XZR which maps to gpr[31]; this tests current behavior',
             'bool flags_ok = (ctx.flags[0] == 0 && ctx.flags[1] == 0 && ctx.flags[2] == 1);',
             'if (flags_ok) { printf("PASS\\n"); tests_passed++; }',
-            'else { printf("FAIL: N=%d Z=%d C=%d V=%d sp=0x%llx\\n", ctx.flags[0], ctx.flags[1], ctx.flags[2], ctx.flags[3], (unsigned long long)ctx.gpr[31]); }',
+            'else { printf("FAIL: N=%d Z=%d C=%d V=%d sp=0x%llx\\n", ctx.flags[0], ctx.flags[1], ctx.flags[2], ctx.flags[3], static_cast<unsigned long long>(ctx.gpr[31])); }',
         ])
 
         # --- PC advances by 4 for non-branch ---
@@ -18791,7 +18791,7 @@ class ARM64XMLParser:
             'execute(ctx, 0x8B030000);  // ADD X0, X0, X3',
             'execute(ctx, 0xD2800060);  // MOV X0, #3',
             'if (ctx.pc == 0x40C) { printf("PASS\\n"); tests_passed++; }',
-            'else { printf("FAIL: pc=0x%llx\\n", (unsigned long long)ctx.pc); }',
+            'else { printf("FAIL: pc=0x%llx\\n", static_cast<unsigned long long>(ctx.pc)); }',
         ])
 
         # --- CSEL with NE condition ---
@@ -18805,7 +18805,7 @@ class ARM64XMLParser:
             'execute(ctx, 0x9A821020);  // CSEL X0, X1, X2, NE',
             '// NE → Z==0 → condition true → X0 = X1 = 111',
             'if (ctx.gpr[0] == 111) { printf("PASS\\n"); tests_passed++; }',
-            'else { printf("FAIL: x0=%llu Z=%d\\n", (unsigned long long)ctx.gpr[0], ctx.flags[1]); }',
+            'else { printf("FAIL: x0=%llu Z=%d\\n", static_cast<unsigned long long>(ctx.gpr[0]), ctx.flags[1]); }',
         ])
 
         emit_test("interp_csel_ne_false", [
@@ -18817,7 +18817,7 @@ class ARM64XMLParser:
             'ctx.flags[1] = 1; // Z=1 → NE is false',
             'execute(ctx, 0x9A821020);  // CSEL X0, X1, X2, NE',
             'if (ctx.gpr[0] == 222) { printf("PASS\\n"); tests_passed++; }',
-            'else { printf("FAIL: x0=%llu Z=%d\\n", (unsigned long long)ctx.gpr[0], ctx.flags[1]); }',
+            'else { printf("FAIL: x0=%llu Z=%d\\n", static_cast<unsigned long long>(ctx.gpr[0]), ctx.flags[1]); }',
         ])
 
         code.append("}")
@@ -19245,7 +19245,7 @@ class ARM64XMLParser:
         code.append("")
         code.append("// NT syscall declarations (linked via ntdll.lib)")
         code.append("#ifndef NtCurrentProcess")
-        code.append("#define NtCurrentProcess() ((void*)(intptr_t)-1)")
+        code.append("#define NtCurrentProcess() (reinterpret_cast<void*>(static_cast<intptr_t>(-1)))")
         code.append("#endif")
         code.append("")
         code.append("// Memory protection constants")

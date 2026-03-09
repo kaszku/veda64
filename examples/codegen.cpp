@@ -156,7 +156,7 @@ static void example_mov() {
     cg2.mov(x0, uint64_t(0xDEADBEEFCAFEULL)).ret().ready();
     auto fn = cg2.get_code<uint64_t(*)()>();
     printf("  returned 0x%llX (expected 0xDEADBEEFCAFE)\n",
-           (unsigned long long)fn());
+           static_cast<unsigned long long>(fn()));
 #endif
 }
 
