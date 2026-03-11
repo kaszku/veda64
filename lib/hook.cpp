@@ -34,7 +34,7 @@
 #define NtCurrentProcess() (reinterpret_cast<HANDLE>(static_cast<LONG_PTR>(-1)))
 #endif
 #ifndef NtCurrentThread
-#define NtCurrentThread() ((HANDLE)(LONG_PTR)-2)
+#define NtCurrentThread() (reinterpret_cast<HANDLE>(static_cast<LONG_PTR>(-2)))
 #endif
 
 // Local type definitions to avoid SDK conflicts
@@ -357,7 +357,8 @@ bool is_initialized() {
 namespace detail {
 
 void* alloc_executable_near(void* target, size_t size) {
-    // Try to allocate RWX memory near the target for PC-relative instructions
+    // Allocate RW memory near the target for PC-relative instructions.
+    // Caller must call make_executable() after writing code (W^X policy).
     // We need to be within ±4GB for ADRP, ±128MB for B/BL
 
     uintptr_t alloc_granularity = g_AllocationGranularity;
@@ -376,7 +377,7 @@ void* alloc_executable_near(void* target, size_t size) {
                 0,
                 &region_size,
                 MEM_COMMIT | MEM_RESERVE,
-                PAGE_EXECUTE_READWRITE
+                PAGE_READWRITE
             );
             if (status == STATUS_SUCCESS) return base_addr;
         }
@@ -391,7 +392,7 @@ void* alloc_executable_near(void* target, size_t size) {
                 0,
                 &region_size,
                 MEM_COMMIT | MEM_RESERVE,
-                PAGE_EXECUTE_READWRITE
+                PAGE_READWRITE
             );
             if (status == STATUS_SUCCESS) return base_addr;
         }
@@ -406,7 +407,7 @@ void* alloc_executable_near(void* target, size_t size) {
         0,
         &region_size,
         MEM_COMMIT | MEM_RESERVE,
-        PAGE_EXECUTE_READWRITE
+        PAGE_READWRITE
     );
     return (status == STATUS_SUCCESS) ? base_addr : nullptr;
 }
@@ -421,7 +422,7 @@ void* alloc_executable(size_t size) {
         0,
         &region_size,
         MEM_COMMIT | MEM_RESERVE,
-        PAGE_EXECUTE_READWRITE
+        PAGE_READWRITE
     );
     return (status == STATUS_SUCCESS) ? base_addr : nullptr;
 }
@@ -438,8 +439,15 @@ uint32_t make_writable(void* addr, size_t size) {
     PVOID base_addr = addr;
     SIZE_T region_size = size;
     ULONG old_protect = 0;
-    NtProtectVirtualMemory(NtCurrentProcess(), &base_addr, &region_size, PAGE_EXECUTE_READWRITE, &old_protect);
+    NtProtectVirtualMemory(NtCurrentProcess(), &base_addr, &region_size, PAGE_READWRITE, &old_protect);
     return static_cast<uint32_t>(old_protect);
+}
+
+void make_executable(void* addr, size_t size) {
+    PVOID base_addr = addr;
+    SIZE_T region_size = size;
+    ULONG old_protect = 0;
+    NtProtectVirtualMemory(NtCurrentProcess(), &base_addr, &region_size, PAGE_EXECUTE_READ, &old_protect);
 }
 
 void restore_protection(void* addr, size_t size, uint32_t old_protect) {
@@ -949,6 +957,7 @@ static HookStatus create_trampoline(void* target, size_t hook_size, Trampoline* 
         dst_insn[1] = src_insn[1];  // RET
         tramp.used_size = 8;
         tramp.insn_count = 2;
+        detail::make_executable(tramp.code, tramp.code_size);
         detail::flush_icache(tramp.code, tramp.used_size);
         return HookStatus::Success;
     }
@@ -1012,7 +1021,8 @@ static HookStatus create_trampoline(void* target, size_t hook_size, Trampoline* 
 
     tramp.used_size = dst_offset;
 
-    // Flush instruction cache for trampoline
+    // Finalize trampoline: RW -> RX (W^X policy)
+    detail::make_executable(tramp.code, tramp.code_size);
     detail::flush_icache(tramp.code, tramp.used_size);
 
     return HookStatus::Success;

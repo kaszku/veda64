@@ -170,15 +170,18 @@ bool relocate_instruction(
     size_t* out_count
 );
 
-// Allocate executable memory for trampolines
+// Allocate RW memory for trampolines (call make_executable after writing)
 void* alloc_executable(size_t size);
 
 // Free executable memory
 void free_executable(void* ptr, size_t size);
 
-// Make memory region writable temporarily
+// Make memory region writable temporarily (RW)
 // Returns previous protection value
 uint32_t make_writable(void* addr, size_t size);
+
+// Make memory region executable (RX) — W^X finalization
+void make_executable(void* addr, size_t size);
 
 // Restore memory protection
 void restore_protection(void* addr, size_t size, uint32_t old_protect);
