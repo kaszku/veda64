@@ -1842,10 +1842,10 @@ static void run_tests() {
         Context ctx;
         uint8_t mem[1024] = {};
         ctx.memory = mem; ctx.memory_size = sizeof(mem);
-        ctx.gpr[1] = static_cast<uint64_t>(int64_t)-100; ctx.gpr[2] = 7;
+        ctx.gpr[1] = static_cast<uint64_t>(static_cast<int64_t>(-100)); ctx.gpr[2] = 7;
         execute(ctx, 0x9AC20C20);  // SDIV X0, X1, X2
         // -100 / 7 = -14
-        if (ctx.gpr[0] == static_cast<uint64_t>(int64_t)-14) { printf("PASS\n"); tests_passed++; }
+        if (ctx.gpr[0] == static_cast<uint64_t>(static_cast<int64_t>(-14))) { printf("PASS\n"); tests_passed++; }
         else { printf("FAIL: x0=0x%llx\n", static_cast<unsigned long long>(ctx.gpr[0])); }
     }
 

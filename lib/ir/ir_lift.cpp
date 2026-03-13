@@ -68,7 +68,7 @@ static uint8_t arr_vec_size(Register r) {
 // Template interpreters
 // ============================================================================
 
-static uint16_t temp_idx;
+static uint32_t temp_idx;
 
 static VarNode next_temp(uint8_t sz) {
     return VarNode::temp(temp_idx++, sz);

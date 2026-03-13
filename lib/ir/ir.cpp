@@ -29,7 +29,7 @@ std::optional<Lifted> lift(const Instruction& insn, IrDetail detail) {
 
 static bool is_temp(const VarNode& v) { return v.space == Space::Temp; }
 
-static void replace_input(VarNode& v, const std::unordered_map<uint16_t, VarNode>& subs) {
+static void replace_input(VarNode& v, const std::unordered_map<uint32_t, VarNode>& subs) {
     if (is_temp(v)) {
         auto it = subs.find(v.offset);
         if (it != subs.end()) v = it->second;
@@ -38,7 +38,7 @@ static void replace_input(VarNode& v, const std::unordered_map<uint16_t, VarNode
 
 Lifted simplify(const Lifted& l) {
     // Pass 1: Copy propagation -- build substitution map for temp = copy X
-    std::unordered_map<uint16_t, VarNode> subs;
+    std::unordered_map<uint32_t, VarNode> subs;
     std::vector<Op> ops;
     ops.reserve(l.ops.size());
 
@@ -59,8 +59,8 @@ Lifted simplify(const Lifted& l) {
     // Pass 2: Output folding -- if dest = copy temp, and temp defined by exactly
     // one op with one use, fold the defining op's opcode+inputs into dest
     // Count temp references
-    std::unordered_map<uint16_t, int> temp_uses;
-    std::unordered_map<uint16_t, size_t> temp_def; // temp -> index in ops
+    std::unordered_map<uint32_t, int> temp_uses;
+    std::unordered_map<uint32_t, size_t> temp_def; // temp -> index in ops
     for (size_t i = 0; i < ops.size(); ++i) {
         auto& o = ops[i];
         if (is_temp(o.output))
@@ -75,7 +75,7 @@ Lifted simplify(const Lifted& l) {
         auto& o = ops[i];
         // dest = copy temp (single input, temp used once)
         if (o.opcode == Opcode::COPY && o.num_inputs == 1 && is_temp(o.inputs[0])) {
-            uint16_t tidx = o.inputs[0].offset;
+            uint32_t tidx = o.inputs[0].offset;
             if (temp_uses[tidx] == 1) {
                 auto dit = temp_def.find(tidx);
                 if (dit != temp_def.end() && !dead[dit->second]) {
@@ -236,7 +236,7 @@ Ast to_ast(const Lifted& l) {
     auto sim = simplify(l);
 
     // Build def map: temp offset -> op index
-    std::unordered_map<uint16_t, size_t> temp_def;
+    std::unordered_map<uint32_t, size_t> temp_def;
     for (size_t i = 0; i < sim.ops.size(); ++i) {
         if (is_temp(sim.ops[i].output))
             temp_def[sim.ops[i].output.offset] = i;
@@ -496,7 +496,6 @@ uint64_t eval_expr(const Context& ctx, const Expr& e) {
     for (size_t i = 0; i < nc && i < 3; ++i)
         c[i] = eval_expr(ctx, *e.children[i]);
     uint64_t mask = size_mask(e.size);
-    uint8_t bits = e.size * 8;
 
     switch (e.opcode) {
     case Opcode::COPY:

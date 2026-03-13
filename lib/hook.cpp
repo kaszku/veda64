@@ -357,8 +357,9 @@ bool is_initialized() {
 namespace detail {
 
 void* alloc_executable_near(void* target, size_t size) {
-    // Allocate RW memory near the target for PC-relative instructions.
-    // Caller must call make_executable() after writing code (W^X policy).
+    // Allocate RWX memory near the target for PC-relative instructions.
+    // Starts as RWX so the trampoline is callable immediately after writing.
+    // Caller should call make_executable() to downgrade to RX when done.
     // We need to be within ±4GB for ADRP, ±128MB for B/BL
 
     uintptr_t alloc_granularity = g_AllocationGranularity;
@@ -377,7 +378,7 @@ void* alloc_executable_near(void* target, size_t size) {
                 0,
                 &region_size,
                 MEM_COMMIT | MEM_RESERVE,
-                PAGE_READWRITE
+                PAGE_EXECUTE_READWRITE
             );
             if (status == STATUS_SUCCESS) return base_addr;
         }
@@ -392,7 +393,7 @@ void* alloc_executable_near(void* target, size_t size) {
                 0,
                 &region_size,
                 MEM_COMMIT | MEM_RESERVE,
-                PAGE_READWRITE
+                PAGE_EXECUTE_READWRITE
             );
             if (status == STATUS_SUCCESS) return base_addr;
         }
@@ -407,7 +408,7 @@ void* alloc_executable_near(void* target, size_t size) {
         0,
         &region_size,
         MEM_COMMIT | MEM_RESERVE,
-        PAGE_READWRITE
+        PAGE_EXECUTE_READWRITE
     );
     return (status == STATUS_SUCCESS) ? base_addr : nullptr;
 }
@@ -422,7 +423,7 @@ void* alloc_executable(size_t size) {
         0,
         &region_size,
         MEM_COMMIT | MEM_RESERVE,
-        PAGE_READWRITE
+        PAGE_EXECUTE_READWRITE
     );
     return (status == STATUS_SUCCESS) ? base_addr : nullptr;
 }
@@ -439,7 +440,9 @@ uint32_t make_writable(void* addr, size_t size) {
     PVOID base_addr = addr;
     SIZE_T region_size = size;
     ULONG old_protect = 0;
-    NtProtectVirtualMemory(NtCurrentProcess(), &base_addr, &region_size, PAGE_READWRITE, &old_protect);
+    // Use RWX (not RW) because the target page may contain NT syscall stubs
+    // (e.g. NtProtectVirtualMemory) — removing execute mid-call would crash.
+    NtProtectVirtualMemory(NtCurrentProcess(), &base_addr, &region_size, PAGE_EXECUTE_READWRITE, &old_protect);
     return static_cast<uint32_t>(old_protect);
 }
 
@@ -1202,6 +1205,7 @@ HookStatus enable(HookHandle handle) {
         detail::suspend_threads();
     }
 
+    fprintf(stderr, "[hook] enable: make_writable target=%p size=%zu\n", handle->target, handle->hook_size);
     uint32_t old_protect = detail::make_writable(handle->target, handle->hook_size);
     std::memcpy(handle->target, handle->hook_bytes, handle->hook_size);
     detail::restore_protection(handle->target, handle->hook_size, old_protect);
@@ -1210,7 +1214,6 @@ HookStatus enable(HookHandle handle) {
     if (g_state.config.thread_safe) {
         detail::resume_threads();
     }
-
     handle->enabled = true;
     return HookStatus::Success;
 }

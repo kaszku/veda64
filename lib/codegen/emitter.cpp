@@ -552,7 +552,6 @@ CodeGenerator& CodeGenerator::ldr(XReg rt, Mem mem) {
         break;
     }
     return *this;
-    return *this;
 }
 
 CodeGenerator& CodeGenerator::ldr(WReg rt, Mem mem) {
@@ -570,7 +569,6 @@ CodeGenerator& CodeGenerator::ldr(WReg rt, Mem mem) {
         emit(ldst::encode_ldr_32_ldst_regoff(rt.idx, mem.base_idx, mem.shift_amount ? 1 : 0, mem.extend_type, mem.index_idx));
         break;
     }
-    return *this;
     return *this;
 }
 
@@ -590,7 +588,6 @@ CodeGenerator& CodeGenerator::str(XReg rt, Mem mem) {
         break;
     }
     return *this;
-    return *this;
 }
 
 CodeGenerator& CodeGenerator::str(WReg rt, Mem mem) {
@@ -609,7 +606,6 @@ CodeGenerator& CodeGenerator::str(WReg rt, Mem mem) {
         break;
     }
     return *this;
-    return *this;
 }
 
 CodeGenerator& CodeGenerator::ldr(SReg rt, Mem mem) {
@@ -625,7 +621,6 @@ CodeGenerator& CodeGenerator::ldr(SReg rt, Mem mem) {
         break;
     default: break;
     }
-    return *this;
     return *this;
 }
 
@@ -643,7 +638,6 @@ CodeGenerator& CodeGenerator::ldr(DReg rt, Mem mem) {
     default: break;
     }
     return *this;
-    return *this;
 }
 
 CodeGenerator& CodeGenerator::ldr(QReg rt, Mem mem) {
@@ -659,7 +653,6 @@ CodeGenerator& CodeGenerator::ldr(QReg rt, Mem mem) {
         break;
     default: break;
     }
-    return *this;
     return *this;
 }
 
@@ -677,7 +670,6 @@ CodeGenerator& CodeGenerator::str(SReg rt, Mem mem) {
     default: break;
     }
     return *this;
-    return *this;
 }
 
 CodeGenerator& CodeGenerator::str(DReg rt, Mem mem) {
@@ -693,7 +685,6 @@ CodeGenerator& CodeGenerator::str(DReg rt, Mem mem) {
         break;
     default: break;
     }
-    return *this;
     return *this;
 }
 
@@ -711,7 +702,6 @@ CodeGenerator& CodeGenerator::str(QReg rt, Mem mem) {
     default: break;
     }
     return *this;
-    return *this;
 }
 
 CodeGenerator& CodeGenerator::ldrb(WReg rt, Mem mem) {
@@ -727,7 +717,6 @@ CodeGenerator& CodeGenerator::ldrb(WReg rt, Mem mem) {
         break;
     default: break;
     }
-    return *this;
     return *this;
 }
 
@@ -745,7 +734,6 @@ CodeGenerator& CodeGenerator::ldrh(WReg rt, Mem mem) {
     default: break;
     }
     return *this;
-    return *this;
 }
 
 CodeGenerator& CodeGenerator::strb(WReg rt, Mem mem) {
@@ -761,7 +749,6 @@ CodeGenerator& CodeGenerator::strb(WReg rt, Mem mem) {
         break;
     default: break;
     }
-    return *this;
     return *this;
 }
 
@@ -779,7 +766,6 @@ CodeGenerator& CodeGenerator::strh(WReg rt, Mem mem) {
     default: break;
     }
     return *this;
-    return *this;
 }
 
 CodeGenerator& CodeGenerator::ldrsb(XReg rt, Mem mem) {
@@ -795,7 +781,6 @@ CodeGenerator& CodeGenerator::ldrsb(XReg rt, Mem mem) {
         break;
     default: break;
     }
-    return *this;
     return *this;
 }
 
@@ -813,7 +798,6 @@ CodeGenerator& CodeGenerator::ldrsb(WReg rt, Mem mem) {
     default: break;
     }
     return *this;
-    return *this;
 }
 
 CodeGenerator& CodeGenerator::ldrsh(XReg rt, Mem mem) {
@@ -830,7 +814,6 @@ CodeGenerator& CodeGenerator::ldrsh(XReg rt, Mem mem) {
     default: break;
     }
     return *this;
-    return *this;
 }
 
 CodeGenerator& CodeGenerator::ldrsh(WReg rt, Mem mem) {
@@ -846,7 +829,6 @@ CodeGenerator& CodeGenerator::ldrsh(WReg rt, Mem mem) {
         break;
     default: break;
     }
-    return *this;
     return *this;
 }
 
@@ -893,7 +875,6 @@ CodeGenerator& CodeGenerator::ldp(XReg rt1, XReg rt2, Mem mem) {
     default: break;
     }
     return *this;
-    return *this;
 }
 
 CodeGenerator& CodeGenerator::ldp(WReg rt1, WReg rt2, Mem mem) {
@@ -910,7 +891,6 @@ CodeGenerator& CodeGenerator::ldp(WReg rt1, WReg rt2, Mem mem) {
         break;
     default: break;
     }
-    return *this;
     return *this;
 }
 
@@ -929,7 +909,6 @@ CodeGenerator& CodeGenerator::stp(XReg rt1, XReg rt2, Mem mem) {
     default: break;
     }
     return *this;
-    return *this;
 }
 
 CodeGenerator& CodeGenerator::stp(WReg rt1, WReg rt2, Mem mem) {
@@ -947,55 +926,46 @@ CodeGenerator& CodeGenerator::stp(WReg rt1, WReg rt2, Mem mem) {
     default: break;
     }
     return *this;
-    return *this;
 }
 
 // === Scalar FP ===
 CodeGenerator& CodeGenerator::fadd(SReg rd, SReg rn, SReg rm) {
     emit(simd_dp::encode_fadd_s_floatdp2(rd.idx, rn.idx, rm.idx));
     return *this;
-    return *this;
 }
 
 CodeGenerator& CodeGenerator::fadd(DReg rd, DReg rn, DReg rm) {
     emit(simd_dp::encode_fadd_d_floatdp2(rd.idx, rn.idx, rm.idx));
-    return *this;
     return *this;
 }
 
 CodeGenerator& CodeGenerator::fsub(SReg rd, SReg rn, SReg rm) {
     emit(simd_dp::encode_fsub_s_floatdp2(rd.idx, rn.idx, rm.idx));
     return *this;
-    return *this;
 }
 
 CodeGenerator& CodeGenerator::fsub(DReg rd, DReg rn, DReg rm) {
     emit(simd_dp::encode_fsub_d_floatdp2(rd.idx, rn.idx, rm.idx));
-    return *this;
     return *this;
 }
 
 CodeGenerator& CodeGenerator::fmul(SReg rd, SReg rn, SReg rm) {
     emit(simd_dp::encode_fmul_s_floatdp2(rd.idx, rn.idx, rm.idx));
     return *this;
-    return *this;
 }
 
 CodeGenerator& CodeGenerator::fmul(DReg rd, DReg rn, DReg rm) {
     emit(simd_dp::encode_fmul_d_floatdp2(rd.idx, rn.idx, rm.idx));
-    return *this;
     return *this;
 }
 
 CodeGenerator& CodeGenerator::fdiv(SReg rd, SReg rn, SReg rm) {
     emit(simd_dp::encode_fdiv_s_floatdp2(rd.idx, rn.idx, rm.idx));
     return *this;
-    return *this;
 }
 
 CodeGenerator& CodeGenerator::fdiv(DReg rd, DReg rn, DReg rm) {
     emit(simd_dp::encode_fdiv_d_floatdp2(rd.idx, rn.idx, rm.idx));
-    return *this;
     return *this;
 }
 

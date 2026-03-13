@@ -146,7 +146,7 @@ public:
     CodeGenerator& bl(Label& label);
     CodeGenerator& br(XReg rn);
     CodeGenerator& blr(XReg rn);
-    CodeGenerator& ret(XReg rn = XReg30);
+    CodeGenerator& ret(XReg rn = XReg{30});
     CodeGenerator& cbz(XReg rt, Label& label);
     CodeGenerator& cbz(WReg rt, Label& label);
     CodeGenerator& cbnz(XReg rt, Label& label);

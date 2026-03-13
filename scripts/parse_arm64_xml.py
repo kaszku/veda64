@@ -12986,7 +12986,7 @@ class ARM64XMLParser:
         code.append("                0,")
         code.append("                &region_size,")
         code.append("                MEM_COMMIT | MEM_RESERVE,")
-        code.append("                PAGE_READWRITE")
+        code.append("                PAGE_EXECUTE_READWRITE")
         code.append("            );")
         code.append("            if (status == STATUS_SUCCESS) return base_addr;")
         code.append("        }")
@@ -13001,7 +13001,7 @@ class ARM64XMLParser:
         code.append("                0,")
         code.append("                &region_size,")
         code.append("                MEM_COMMIT | MEM_RESERVE,")
-        code.append("                PAGE_READWRITE")
+        code.append("                PAGE_EXECUTE_READWRITE")
         code.append("            );")
         code.append("            if (status == STATUS_SUCCESS) return base_addr;")
         code.append("        }")
@@ -13016,7 +13016,7 @@ class ARM64XMLParser:
         code.append("        0,")
         code.append("        &region_size,")
         code.append("        MEM_COMMIT | MEM_RESERVE,")
-        code.append("        PAGE_READWRITE")
+        code.append("        PAGE_EXECUTE_READWRITE")
         code.append("    );")
         code.append("    return (status == STATUS_SUCCESS) ? base_addr : nullptr;")
         code.append("}")
@@ -13031,7 +13031,7 @@ class ARM64XMLParser:
         code.append("        0,")
         code.append("        &region_size,")
         code.append("        MEM_COMMIT | MEM_RESERVE,")
-        code.append("        PAGE_READWRITE")
+        code.append("        PAGE_EXECUTE_READWRITE")
         code.append("    );")
         code.append("    return (status == STATUS_SUCCESS) ? base_addr : nullptr;")
         code.append("}")
@@ -13048,7 +13048,9 @@ class ARM64XMLParser:
         code.append("    PVOID base_addr = addr;")
         code.append("    SIZE_T region_size = size;")
         code.append("    ULONG old_protect = 0;")
-        code.append("    NtProtectVirtualMemory(NtCurrentProcess(), &base_addr, &region_size, PAGE_READWRITE, &old_protect);")
+        code.append("    // Use RWX (not RW) because the target page may contain NT syscall stubs")
+        code.append("    // (e.g. NtProtectVirtualMemory) — removing execute mid-call would crash.")
+        code.append("    NtProtectVirtualMemory(NtCurrentProcess(), &base_addr, &region_size, PAGE_EXECUTE_READWRITE, &old_protect);")
         code.append("    return static_cast<uint32_t>(old_protect);")
         code.append("}")
         code.append("")
@@ -16276,7 +16278,7 @@ class ARM64XMLParser:
         code.append("")
         code.append("static bool is_temp(const VarNode& v) { return v.space == Space::Temp; }")
         code.append("")
-        code.append("static void replace_input(VarNode& v, const std::unordered_map<uint16_t, VarNode>& subs) {")
+        code.append("static void replace_input(VarNode& v, const std::unordered_map<uint32_t, VarNode>& subs) {")
         code.append("    if (is_temp(v)) {")
         code.append("        auto it = subs.find(v.offset);")
         code.append("        if (it != subs.end()) v = it->second;")
@@ -16285,7 +16287,7 @@ class ARM64XMLParser:
         code.append("")
         code.append("Lifted simplify(const Lifted& l) {")
         code.append("    // Pass 1: Copy propagation -- build substitution map for temp = copy X")
-        code.append("    std::unordered_map<uint16_t, VarNode> subs;")
+        code.append("    std::unordered_map<uint32_t, VarNode> subs;")
         code.append("    std::vector<Op> ops;")
         code.append("    ops.reserve(l.ops.size());")
         code.append("")
@@ -16306,8 +16308,8 @@ class ARM64XMLParser:
         code.append("    // Pass 2: Output folding -- if dest = copy temp, and temp defined by exactly")
         code.append("    // one op with one use, fold the defining op's opcode+inputs into dest")
         code.append("    // Count temp references")
-        code.append("    std::unordered_map<uint16_t, int> temp_uses;")
-        code.append("    std::unordered_map<uint16_t, size_t> temp_def; // temp -> index in ops")
+        code.append("    std::unordered_map<uint32_t, int> temp_uses;")
+        code.append("    std::unordered_map<uint32_t, size_t> temp_def; // temp -> index in ops")
         code.append("    for (size_t i = 0; i < ops.size(); ++i) {")
         code.append("        auto& o = ops[i];")
         code.append("        if (is_temp(o.output))")
@@ -16322,7 +16324,7 @@ class ARM64XMLParser:
         code.append("        auto& o = ops[i];")
         code.append("        // dest = copy temp (single input, temp used once)")
         code.append("        if (o.opcode == Opcode::COPY && o.num_inputs == 1 && is_temp(o.inputs[0])) {")
-        code.append("            uint16_t tidx = o.inputs[0].offset;")
+        code.append("            uint32_t tidx = o.inputs[0].offset;")
         code.append("            if (temp_uses[tidx] == 1) {")
         code.append("                auto dit = temp_def.find(tidx);")
         code.append("                if (dit != temp_def.end() && !dead[dit->second]) {")
@@ -16483,7 +16485,7 @@ class ARM64XMLParser:
         code.append("    auto sim = simplify(l);")
         code.append("")
         code.append("    // Build def map: temp offset -> op index")
-        code.append("    std::unordered_map<uint16_t, size_t> temp_def;")
+        code.append("    std::unordered_map<uint32_t, size_t> temp_def;")
         code.append("    for (size_t i = 0; i < sim.ops.size(); ++i) {")
         code.append("        if (is_temp(sim.ops[i].output))")
         code.append("            temp_def[sim.ops[i].output.offset] = i;")
@@ -16743,7 +16745,6 @@ class ARM64XMLParser:
         code.append("    for (size_t i = 0; i < nc && i < 3; ++i)")
         code.append("        c[i] = eval_expr(ctx, *e.children[i]);")
         code.append("    uint64_t mask = size_mask(e.size);")
-        code.append("    uint8_t bits = e.size * 8;")
         code.append("")
         code.append("    switch (e.opcode) {")
         code.append("    case Opcode::COPY:")
@@ -16964,7 +16965,7 @@ class ARM64XMLParser:
         code.append("// Template interpreters")
         code.append("// ============================================================================")
         code.append("")
-        code.append("static uint16_t temp_idx;")
+        code.append("static uint32_t temp_idx;")
         code.append("")
         code.append("static VarNode next_temp(uint8_t sz) {")
         code.append("    return VarNode::temp(temp_idx++, sz);")
@@ -18621,10 +18622,10 @@ class ARM64XMLParser:
             'Context ctx;',
             'uint8_t mem[1024] = {};',
             'ctx.memory = mem; ctx.memory_size = sizeof(mem);',
-            'ctx.gpr[1] = static_cast<uint64_t>(int64_t)-100; ctx.gpr[2] = 7;',
+            'ctx.gpr[1] = static_cast<uint64_t>(static_cast<int64_t>(-100)); ctx.gpr[2] = 7;',
             'execute(ctx, 0x9AC20C20);  // SDIV X0, X1, X2',
             '// -100 / 7 = -14',
-            'if (ctx.gpr[0] == static_cast<uint64_t>(int64_t)-14) { printf("PASS\\n"); tests_passed++; }',
+            'if (ctx.gpr[0] == static_cast<uint64_t>(static_cast<int64_t>(-14))) { printf("PASS\\n"); tests_passed++; }',
             'else { printf("FAIL: x0=0x%llx\\n", static_cast<unsigned long long>(ctx.gpr[0])); }',
         ])
 
@@ -19194,7 +19195,7 @@ class ARM64XMLParser:
         code.append(f"    {CG} bl(Label& label);")
         code.append(f"    {CG} br(XReg rn);")
         code.append(f"    {CG} blr(XReg rn);")
-        code.append(f"    {CG} ret(XReg rn = XReg{30});")
+        code.append(f"    {CG} ret(XReg rn = XReg{{30}});")
         for op in ['cbz', 'cbnz']:
             for rt in ['XReg', 'WReg']:
                 code.append(f"    {CG} {op}({rt} rt, Label& label);")
@@ -19767,7 +19768,6 @@ class ARM64XMLParser:
             code.append(f"        break;")
             code.append(f"    }}")
             code.append("    return *this;")
-            code.append("    return *this;")
             code.append("}")
             code.append("")
 
@@ -19794,7 +19794,6 @@ class ARM64XMLParser:
             code.append(f"        break;")
             code.append(f"    default: break;")
             code.append(f"    }}")
-            code.append("    return *this;")
             code.append("    return *this;")
             code.append("}")
             code.append("")
@@ -19824,7 +19823,6 @@ class ARM64XMLParser:
             code.append(f"    default: break;")
             code.append(f"    }}")
             code.append("    return *this;")
-            code.append("    return *this;")
             code.append("}")
             code.append("")
 
@@ -19852,7 +19850,6 @@ class ARM64XMLParser:
                 code.append(f"        break;")
                 code.append(f"    default: break;")
                 code.append(f"    }}")
-                code.append("    return *this;")
                 code.append("    return *this;")
                 code.append("}")
                 code.append("")
@@ -19914,7 +19911,6 @@ class ARM64XMLParser:
                 code.append(f"    default: break;")
                 code.append(f"    }}")
                 code.append("    return *this;")
-                code.append("    return *this;")
                 code.append("}")
                 code.append("")
 
@@ -19929,7 +19925,6 @@ class ARM64XMLParser:
             for rt, enc in [('SReg', enc_s), ('DReg', enc_d)]:
                 code.append(f"CodeGenerator& CodeGenerator::{op}({rt} rd, {rt} rn, {rt} rm) {{")
                 code.append(f"    emit(simd_dp::encode_{enc}(rd.idx, rn.idx, rm.idx));")
-                code.append("    return *this;")
                 code.append("    return *this;")
                 code.append("}")
                 code.append("")
@@ -19979,7 +19974,6 @@ class ARM64XMLParser:
         code.append("    uint32_t val;")
         code.append("    std::memcpy(&val, cg.data() + idx * 4, 4);")
         code.append("    return val;")
-        code.append("    return *this;")
         code.append("}")
         code.append("")
 
@@ -20011,7 +20005,6 @@ class ARM64XMLParser:
         code.append("    assert(r && r->mnemonic() == Mnemonic::SUB);   // NEG -> SUB")
         code.append("    std::cout << \"  arithmetic: OK\" << std::endl;")
         code.append("    return 0;")
-        code.append("    return *this;")
         code.append("}")
         code.append("")
 
@@ -20028,7 +20021,6 @@ class ARM64XMLParser:
         code.append("    assert(r && r->mnemonic() == Mnemonic::B);")
         code.append("    std::cout << \"  branches: OK\" << std::endl;")
         code.append("    return 0;")
-        code.append("    return *this;")
         code.append("}")
         code.append("")
 
@@ -20047,7 +20039,6 @@ class ARM64XMLParser:
         code.append("    (void)imm26;")
         code.append("    std::cout << \"  forward branch: OK\" << std::endl;")
         code.append("    return 0;")
-        code.append("    return *this;")
         code.append("}")
         code.append("")
 
@@ -20068,7 +20059,6 @@ class ARM64XMLParser:
         code.append("    assert(r && r->mnemonic() == Mnemonic::STP);")
         code.append("    std::cout << \"  ldst: OK\" << std::endl;")
         code.append("    return 0;")
-        code.append("    return *this;")
         code.append("}")
         code.append("")
 
