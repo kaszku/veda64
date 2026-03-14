@@ -3,6 +3,10 @@
 // Auto-generated — do not edit
 
 #include <codegen/emitter.hpp>
+#include "veda64.hpp"
+#include <format/format.hpp>
+
+using namespace veda64::format;
 
 #include <cstring>
 #include <stdexcept>
@@ -110,29 +114,67 @@ void CodeGenerator::patch(size_t offset, uint32_t insn) {
 
 CodeGenerator& CodeGenerator::bind(Label& label) {
     label.m_bound_offset = m_offset;
-    // Back-patch all pending references
+    // Back-patch all pending references using the proper encoders
     for (auto& p : label.m_patches) {
         int32_t diff = static_cast<int32_t>(label.m_bound_offset - p.insn_offset);
         uint32_t insn;
         std::memcpy(&insn, m_write_ptr + p.insn_offset, 4);
+        auto decoded = decode(insn);
+        if (!decoded) continue;  // should not happen
+        uint32_t patched = insn;
         switch (p.type) {
-        case PatchType::Imm26:
-            insn = (insn & 0xFC000000U) | ((diff >> 2) & 0x03FFFFFFU);
+        case PatchType::Imm26: {
+            // B or BL — re-encode with correct offset
+            if (decoded->mnemonic == Mnemonic::BL)
+                patched = control::encode_bl_only_branch_imm(diff >> 2);
+            else
+                patched = control::encode_b_only_branch_imm(diff >> 2);
             break;
-        case PatchType::Imm19:
-            insn = (insn & 0xFF00001FU) | (((diff >> 2) & 0x7FFFF) << 5);
+        }
+        case PatchType::Imm19: {
+            // B.cond, CBZ, CBNZ — decode fields, re-encode
+            auto m = decoded->mnemonic;
+            if (m == Mnemonic::CBZ || m == Mnemonic::CBNZ) {
+                uint32_t rt = insn & 0x1F;
+                uint32_t sf = (insn >> 31) & 1;
+                if (m == Mnemonic::CBZ)
+                    patched = sf ? control::encode_cbz_64_compbranch(rt, diff >> 2)
+                                : control::encode_cbz_32_compbranch(rt, diff >> 2);
+                else
+                    patched = sf ? control::encode_cbnz_64_compbranch(rt, diff >> 2)
+                                : control::encode_cbnz_32_compbranch(rt, diff >> 2);
+            } else {
+                // B.cond
+                uint32_t cond = insn & 0xF;
+                patched = control::encode_b_only_condbranch(cond, diff >> 2);
+            }
             break;
-        case PatchType::Imm14:
-            insn = (insn & 0xFFF8001FU) | (((diff >> 2) & 0x3FFF) << 5);
+        }
+        case PatchType::Imm14: {
+            // TBZ/TBNZ — extract rt, b5, b40, op and re-encode
+            uint32_t rt = insn & 0x1F;
+            uint32_t b40 = (insn >> 19) & 0x1F;
+            uint32_t b5 = (insn >> 31) & 1;
+            uint32_t op = (insn >> 24) & 1;
+            if (op == 0)
+                patched = control::encode_tbz_only_testbranch(rt, diff >> 2, b40, b5);
+            else
+                patched = control::encode_tbnz_only_testbranch(rt, diff >> 2, b40, b5);
             break;
+        }
         case PatchType::Adr21: {
-            uint32_t immlo = diff & 0x3;
-            uint32_t immhi = (diff >> 2) & 0x7FFFF;
-            insn = (insn & 0x9F00001FU) | (immlo << 29) | (immhi << 5);
+            // ADR/ADRP — extract rd and re-encode with split immhi/immlo
+            uint32_t rd = insn & 0x1F;
+            int32_t immlo = diff & 0x3;
+            int32_t immhi = (diff >> 2) & 0x7FFFF;
+            if (decoded->mnemonic == Mnemonic::ADRP)
+                patched = dpimm::encode_adrp_only_pcreladdr(rd, immhi, immlo);
+            else
+                patched = dpimm::encode_adr_only_pcreladdr(rd, immhi, immlo);
             break;
         }
         }
-        std::memcpy(m_write_ptr + p.insn_offset, &insn, 4);
+        std::memcpy(m_write_ptr + p.insn_offset, &patched, 4);
     }
     label.m_patches.clear();
     return *this;

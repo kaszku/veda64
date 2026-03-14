@@ -357,9 +357,8 @@ bool is_initialized() {
 namespace detail {
 
 void* alloc_executable_near(void* target, size_t size) {
-    // Allocate RWX memory near the target for PC-relative instructions.
-    // Starts as RWX so the trampoline is callable immediately after writing.
-    // Caller should call make_executable() to downgrade to RX when done.
+    // Allocate RW memory near the target for PC-relative instructions.
+    // Caller must call make_executable() after writing code (W^X policy).
     // We need to be within ±4GB for ADRP, ±128MB for B/BL
 
     uintptr_t alloc_granularity = g_AllocationGranularity;
@@ -1205,7 +1204,6 @@ HookStatus enable(HookHandle handle) {
         detail::suspend_threads();
     }
 
-    fprintf(stderr, "[hook] enable: make_writable target=%p size=%zu\n", handle->target, handle->hook_size);
     uint32_t old_protect = detail::make_writable(handle->target, handle->hook_size);
     std::memcpy(handle->target, handle->hook_bytes, handle->hook_size);
     detail::restore_protection(handle->target, handle->hook_size, old_protect);
@@ -1214,6 +1212,7 @@ HookStatus enable(HookHandle handle) {
     if (g_state.config.thread_safe) {
         detail::resume_threads();
     }
+
     handle->enabled = true;
     return HookStatus::Success;
 }
