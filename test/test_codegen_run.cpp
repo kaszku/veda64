@@ -461,6 +461,92 @@ static void test_multiple_generators() {
     std::cout << "  multiple_generators: OK" << std::endl;
 }
 
+static void test_shift_imm() {
+    CodeGenerator cg(4096);
+    // int lsl4(int x) { return x << 4; }
+    cg.lsl(w0, w0, uint8_t(4));
+    cg.ret();
+    cg.ready();
+    auto fn = cg.get_code<int(*)(int)>();
+    CHECK(fn(1) == 16, "lsl_imm(1)");
+    CHECK(fn(3) == 48, "lsl_imm(3)");
+    std::cout << "  shift_imm: OK" << std::endl;
+}
+
+static void test_bitfield() {
+    CodeGenerator cg(4096);
+    // Extract bits [11:4] from input (byte 1)
+    cg.ubfx(w0, w0, 4, 8);
+    cg.ret();
+    cg.ready();
+    auto fn = cg.get_code<int(*)(int)>();
+    CHECK(fn(0xFF0) == 0xFF, "ubfx(0xFF0)");
+    CHECK(fn(0x12340) == 0x34, "ubfx extracts [11:4]");
+    std::cout << "  bitfield: OK" << std::endl;
+}
+
+static void test_clz() {
+    CodeGenerator cg(4096);
+    cg.clz(w0, w0);
+    cg.ret();
+    cg.ready();
+    auto fn = cg.get_code<int(*)(int)>();
+    CHECK(fn(1) == 31, "clz(1)");
+    CHECK(fn(0x80000000) == 0, "clz(0x80000000)");
+    CHECK(fn(0xFF) == 24, "clz(0xFF)");
+    std::cout << "  clz: OK" << std::endl;
+}
+
+static void test_msub() {
+    CodeGenerator cg(4096);
+    // int msub(int a, int b, int c) { return c - a*b; }
+    cg.msub(w0, w0, w1, w2);
+    cg.ret();
+    cg.ready();
+    auto fn = cg.get_code<int(*)(int, int, int)>();
+    CHECK(fn(3, 4, 20) == 8, "msub(3,4,20)");
+    CHECK(fn(2, 5, 10) == 0, "msub(2,5,10)");
+    std::cout << "  msub: OK" << std::endl;
+}
+
+static void test_ror_imm() {
+    CodeGenerator cg(4096);
+    // uint32_t ror1(uint32_t x) { return (x >> 1) | (x << 31); }
+    cg.ror(w0, w0, uint8_t(1));
+    cg.ret();
+    cg.ready();
+    auto fn = cg.get_code<uint32_t(*)(uint32_t)>();
+    CHECK(fn(1) == 0x80000000u, "ror_imm(1)");
+    CHECK(fn(2) == 1u, "ror_imm(2)");
+    std::cout << "  ror_imm: OK" << std::endl;
+}
+
+static void test_cinc() {
+    CodeGenerator cg(4096);
+    // int cinc_if_pos(int x) { return x > 0 ? x+1 : x; }
+    cg.cmp(w0, uint32_t(0));
+    cg.cinc(w0, w0, Condition::GT);
+    cg.ret();
+    cg.ready();
+    auto fn = cg.get_code<int(*)(int)>();
+    CHECK(fn(5) == 6, "cinc_if_pos(5)");
+    CHECK(fn(0) == 0, "cinc_if_pos(0)");
+    CHECK(fn(-3) == -3, "cinc_if_pos(-3)");
+    std::cout << "  cinc: OK" << std::endl;
+}
+
+static void test_sxtb() {
+    CodeGenerator cg(4096);
+    cg.sxtb(w0, w0);
+    cg.ret();
+    cg.ready();
+    auto fn = cg.get_code<int(*)(int)>();
+    CHECK(fn(0x7F) == 127, "sxtb(0x7F)");
+    CHECK(fn(0x80) == -128, "sxtb(0x80)");
+    CHECK(fn(0xFF) == -1, "sxtb(0xFF)");
+    std::cout << "  sxtb: OK" << std::endl;
+}
+
 static void test_nop_sled() {
     CodeGenerator cg(4096);
     for (int i = 0; i < 100; i++) cg.nop();
@@ -471,6 +557,149 @@ static void test_nop_sled() {
     CHECK(fn() == 99, "nop_sled");
     CHECK(cg.size() == (100 + 2) * 4, "nop_sled size");
     std::cout << "  nop_sled: OK" << std::endl;
+}
+
+static void test_lsr_asr_reg() {
+    CodeGenerator cg(4096);
+    cg.lsr(w0, w0, w1);
+    cg.ret();
+    cg.ready();
+    auto fn = cg.get_code<uint32_t(*)(uint32_t, uint32_t)>();
+    CHECK(fn(0x80, 4) == 8, "lsr_reg(0x80,4)");
+    CHECK(fn(256, 8) == 1, "lsr_reg(256,8)");
+
+    CodeGenerator cg2(4096);
+    cg2.asr(w0, w0, w1);
+    cg2.ret();
+    cg2.ready();
+    auto fn2 = cg2.get_code<int(*)(int, int)>();
+    CHECK(fn2(-128, 4) == -8, "asr_reg(-128,4)");
+    CHECK(fn2(128, 4) == 8, "asr_reg(128,4)");
+    std::cout << "  lsr_asr_reg: OK" << std::endl;
+}
+
+static void test_cmn() {
+    CodeGenerator cg(4096);
+    // if (x + 5 == 0) return 1, else 0  => CMN x, #5; CSET w0, EQ
+    cg.cmn(w0, uint32_t(5));
+    cg.cset(w0, Condition::EQ);
+    cg.ret();
+    cg.ready();
+    auto fn = cg.get_code<int(*)(int)>();
+    CHECK(fn(-5) == 1, "cmn(-5)");
+    CHECK(fn(0) == 0, "cmn(0)");
+    CHECK(fn(5) == 0, "cmn(5)");
+    std::cout << "  cmn: OK" << std::endl;
+}
+
+static void test_tst() {
+    CodeGenerator cg(4096);
+    // if (x & 0x80) return 1, else 0
+    cg.tst(w0, w1);
+    cg.cset(w0, Condition::NE);
+    cg.ret();
+    cg.ready();
+    auto fn = cg.get_code<int(*)(int, int)>();
+    CHECK(fn(0xFF, 0x80) == 1, "tst(0xFF,0x80)");
+    CHECK(fn(0x7F, 0x80) == 0, "tst(0x7F,0x80)");
+    CHECK(fn(0, 0xFF) == 0, "tst(0,0xFF)");
+    std::cout << "  tst: OK" << std::endl;
+}
+
+static void test_logical_imm() {
+    CodeGenerator cg(4096);
+    cg.and_(w0, w0, uint64_t(0xFF));
+    cg.ret();
+    cg.ready();
+    auto fn = cg.get_code<uint32_t(*)(uint32_t)>();
+    CHECK(fn(0x12345678) == 0x78, "and_imm(0x12345678)");
+    CHECK(fn(0xFF) == 0xFF, "and_imm(0xFF)");
+    CHECK(fn(0) == 0, "and_imm(0)");
+    std::cout << "  logical_imm: OK" << std::endl;
+}
+
+static void test_sxth_sxtw() {
+    CodeGenerator cg(4096);
+    cg.sxth(w0, w0);
+    cg.ret();
+    cg.ready();
+    auto fn = cg.get_code<int(*)(int)>();
+    CHECK(fn(0x7FFF) == 32767, "sxth(0x7FFF)");
+    CHECK(fn(0x8000) == -32768, "sxth(0x8000)");
+    CHECK(fn(0xFFFF) == -1, "sxth(0xFFFF)");
+
+    CodeGenerator cg2(4096);
+    cg2.sxtw(x0, w0);
+    cg2.ret();
+    cg2.ready();
+    auto fn2 = cg2.get_code<int64_t(*)(int64_t)>();
+    CHECK(fn2(0xFFFFFFFF) == -1LL, "sxtw(0xFFFFFFFF)");
+    CHECK(fn2(0x7FFFFFFF) == 0x7FFFFFFFLL, "sxtw(0x7FFFFFFF)");
+    std::cout << "  sxth_sxtw: OK" << std::endl;
+}
+
+static void test_uxtb_uxth() {
+    CodeGenerator cg(4096);
+    cg.uxtb(w0, w0);
+    cg.ret();
+    cg.ready();
+    auto fn = cg.get_code<uint32_t(*)(uint32_t)>();
+    CHECK(fn(0x12345678) == 0x78, "uxtb(0x12345678)");
+    CHECK(fn(0xFF) == 0xFF, "uxtb(0xFF)");
+
+    CodeGenerator cg2(4096);
+    cg2.uxth(w0, w0);
+    cg2.ret();
+    cg2.ready();
+    auto fn2 = cg2.get_code<uint32_t(*)(uint32_t)>();
+    CHECK(fn2(0x12345678) == 0x5678, "uxth(0x12345678)");
+    CHECK(fn2(0xFFFF) == 0xFFFF, "uxth(0xFFFF)");
+    std::cout << "  uxtb_uxth: OK" << std::endl;
+}
+
+static void test_ror_reg() {
+    CodeGenerator cg(4096);
+    cg.ror(w0, w0, w1);
+    cg.ret();
+    cg.ready();
+    auto fn = cg.get_code<uint32_t(*)(uint32_t, uint32_t)>();
+    CHECK(fn(1, 1) == 0x80000000u, "ror_reg(1,1)");
+    CHECK(fn(0x80000000, 1) == 0x40000000u, "ror_reg(0x80000000,1)");
+    std::cout << "  ror_reg: OK" << std::endl;
+}
+
+static void test_fmov() {
+    CodeGenerator cg(4096);
+    cg.fmov(d0, d1);  // d0 = d1 (which is arg 2)
+    cg.ret();
+    cg.ready();
+    auto fn = cg.get_code<double(*)(double, double)>();
+    CHECK(fn(1.0, 42.0) == 42.0, "fmov_d(42)");
+    CHECK(fn(0.0, -3.14) == -3.14, "fmov_d(-3.14)");
+    std::cout << "  fmov: OK" << std::endl;
+}
+
+static void test_bfxil() {
+    CodeGenerator cg(4096);
+    // bfxil w0, w1, #4, #8: copy bits [11:4] from w1 into w0[7:0]
+    cg.bfxil(w0, w1, 4, 8);
+    cg.ret();
+    cg.ready();
+    auto fn = cg.get_code<uint32_t(*)(uint32_t, uint32_t)>();
+    CHECK(fn(0xFFFFFF00, 0xAB0) == 0xFFFFFFAB, "bfxil");
+    std::cout << "  bfxil: OK" << std::endl;
+}
+
+static void test_sbfiz() {
+    CodeGenerator cg(4096);
+    // sbfiz w0, w0, #4, #8: sign-extend 8 bits, shift left 4
+    cg.sbfiz(w0, w0, 4, 8);
+    cg.ret();
+    cg.ready();
+    auto fn = cg.get_code<int32_t(*)(int32_t)>();
+    CHECK(fn(0x7F) == (127 << 4), "sbfiz(0x7F)");
+    CHECK(fn(0x80) == (-128 << 4), "sbfiz(0x80)");
+    std::cout << "  sbfiz: OK" << std::endl;
 }
 
 int main() {
@@ -502,11 +731,28 @@ int main() {
     test_gcd();
     test_multiple_generators();
     test_nop_sled();
+    test_shift_imm();
+    test_bitfield();
+    test_clz();
+    test_msub();
+    test_ror_imm();
+    test_cinc();
+    test_sxtb();
+    test_lsr_asr_reg();
+    test_cmn();
+    test_tst();
+    test_logical_imm();
+    test_sxth_sxtw();
+    test_uxtb_uxth();
+    test_ror_reg();
+    test_fmov();
+    test_bfxil();
+    test_sbfiz();
     if (failures) {
         std::cerr << failures << " test(s) FAILED" << std::endl;
         return 1;
     }
-    std::cout << "All codegen execution tests passed! (27 tests)" << std::endl;
+    std::cout << "All codegen execution tests passed!" << std::endl;
     return 0;
 }
 

@@ -9,6 +9,8 @@
 namespace veda64 {
 namespace codegen {
 
+struct VArr;
+
 /// 64-bit GP register
 struct XReg {
     uint8_t idx;
@@ -26,6 +28,13 @@ struct WReg {
 /// 128-bit SIMD register
 struct VReg {
     uint8_t idx;
+    inline constexpr VArr b8() const;
+    inline constexpr VArr b16() const;
+    inline constexpr VArr h4() const;
+    inline constexpr VArr h8() const;
+    inline constexpr VArr s2() const;
+    inline constexpr VArr s4() const;
+    inline constexpr VArr d2() const;
 };
 
 /// 8-bit SIMD scalar
@@ -52,6 +61,47 @@ struct DReg {
 struct QReg {
     uint8_t idx;
 };
+
+/// Arrangement specifier for SIMD operations
+enum class Arr : uint8_t {
+    B8  = 0,  // 8B  (64-bit, 8x8-bit)
+    B16 = 1,  // 16B (128-bit, 16x8-bit)
+    H4  = 2,  // 4H  (64-bit, 4x16-bit)
+    H8  = 3,  // 8H  (128-bit, 8x16-bit)
+    S2  = 4,  // 2S  (64-bit, 2x32-bit)
+    S4  = 5,  // 4S  (128-bit, 4x32-bit)
+    D2  = 7,  // 2D  (128-bit, 2x64-bit)
+};
+
+/// Vector register with arrangement (for SIMD three-same, etc.)
+struct VArr {
+    uint8_t idx;
+    Arr arr;
+    constexpr uint32_t size() const {
+        switch (arr) {
+        case Arr::B8: case Arr::B16: return 0;
+        case Arr::H4: case Arr::H8: return 1;
+        case Arr::S2: case Arr::S4: return 2;
+        case Arr::D2: return 3;
+        default: return 0;
+        }
+    }
+    constexpr uint32_t Q() const {
+        switch (arr) {
+        case Arr::B16: case Arr::H8: case Arr::S4: case Arr::D2: return 1;
+        default: return 0;
+        }
+    }
+};
+
+// VReg arrangement methods: v0.b8(), v0.b16(), v0.s4(), etc.
+inline constexpr VArr VReg::b8() const { return VArr{idx, Arr::B8}; }
+inline constexpr VArr VReg::b16() const { return VArr{idx, Arr::B16}; }
+inline constexpr VArr VReg::h4() const { return VArr{idx, Arr::H4}; }
+inline constexpr VArr VReg::h8() const { return VArr{idx, Arr::H8}; }
+inline constexpr VArr VReg::s2() const { return VArr{idx, Arr::S2}; }
+inline constexpr VArr VReg::s4() const { return VArr{idx, Arr::S4}; }
+inline constexpr VArr VReg::d2() const { return VArr{idx, Arr::D2}; }
 
 // Predeclared GP registers
 inline constexpr XReg x0{0};

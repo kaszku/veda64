@@ -347,6 +347,16 @@ CodeGenerator& CodeGenerator::asr(WReg rd, WReg rn, WReg rm) {
     return *this;
 }
 
+CodeGenerator& CodeGenerator::ror(XReg rd, XReg rn, XReg rm) {
+    emit(dpreg::encode_ror_rorv_64_dp_2src(rd.idx, rn.idx, rm.idx));
+    return *this;
+}
+
+CodeGenerator& CodeGenerator::ror(WReg rd, WReg rn, WReg rm) {
+    emit(dpreg::encode_ror_rorv_32_dp_2src(rd.idx, rn.idx, rm.idx));
+    return *this;
+}
+
 CodeGenerator& CodeGenerator::mul(XReg rd, XReg rn, XReg rm) {
     emit(dpreg::encode_mul_madd_64a_dp_3src(rd.idx, rn.idx, rm.idx));
     return *this;
@@ -387,6 +397,86 @@ CodeGenerator& CodeGenerator::madd(WReg rd, WReg rn, WReg rm, WReg ra) {
     return *this;
 }
 
+CodeGenerator& CodeGenerator::msub(XReg rd, XReg rn, XReg rm, XReg ra) {
+    emit(dpreg::encode_msub_64a_dp_3src(rd.idx, rn.idx, ra.idx, rm.idx));
+    return *this;
+}
+
+CodeGenerator& CodeGenerator::msub(WReg rd, WReg rn, WReg rm, WReg ra) {
+    emit(dpreg::encode_msub_32a_dp_3src(rd.idx, rn.idx, ra.idx, rm.idx));
+    return *this;
+}
+
+CodeGenerator& CodeGenerator::mneg(XReg rd, XReg rn, XReg rm) {
+    emit(dpreg::encode_mneg_msub_64a_dp_3src(rd.idx, rn.idx, rm.idx));
+    return *this;
+}
+
+CodeGenerator& CodeGenerator::mneg(WReg rd, WReg rn, WReg rm) {
+    emit(dpreg::encode_mneg_msub_32a_dp_3src(rd.idx, rn.idx, rm.idx));
+    return *this;
+}
+
+CodeGenerator& CodeGenerator::smull(XReg rd, WReg rn, WReg rm) {
+    emit(dpreg::encode_smull_smaddl_64wa_dp_3src(rd.idx, rn.idx, rm.idx));
+    return *this;
+}
+
+CodeGenerator& CodeGenerator::umull(XReg rd, WReg rn, WReg rm) {
+    emit(dpreg::encode_umull_umaddl_64wa_dp_3src(rd.idx, rn.idx, rm.idx));
+    return *this;
+}
+
+CodeGenerator& CodeGenerator::smulh(XReg rd, XReg rn, XReg rm) {
+    emit(dpreg::encode_smulh_64_dp_3src(rd.idx, rn.idx, rm.idx));
+    return *this;
+}
+
+CodeGenerator& CodeGenerator::umulh(XReg rd, XReg rn, XReg rm) {
+    emit(dpreg::encode_umulh_64_dp_3src(rd.idx, rn.idx, rm.idx));
+    return *this;
+}
+
+CodeGenerator& CodeGenerator::adc(XReg rd, XReg rn, XReg rm) {
+    emit(dpreg::encode_adc_64_addsub_carry(rd.idx, rn.idx, rm.idx));
+    return *this;
+}
+
+CodeGenerator& CodeGenerator::adc(WReg rd, WReg rn, WReg rm) {
+    emit(dpreg::encode_adc_32_addsub_carry(rd.idx, rn.idx, rm.idx));
+    return *this;
+}
+
+CodeGenerator& CodeGenerator::adcs(XReg rd, XReg rn, XReg rm) {
+    emit(dpreg::encode_adcs_64_addsub_carry(rd.idx, rn.idx, rm.idx));
+    return *this;
+}
+
+CodeGenerator& CodeGenerator::adcs(WReg rd, WReg rn, WReg rm) {
+    emit(dpreg::encode_adcs_32_addsub_carry(rd.idx, rn.idx, rm.idx));
+    return *this;
+}
+
+CodeGenerator& CodeGenerator::sbc(XReg rd, XReg rn, XReg rm) {
+    emit(dpreg::encode_sbc_64_addsub_carry(rd.idx, rn.idx, rm.idx));
+    return *this;
+}
+
+CodeGenerator& CodeGenerator::sbc(WReg rd, WReg rn, WReg rm) {
+    emit(dpreg::encode_sbc_32_addsub_carry(rd.idx, rn.idx, rm.idx));
+    return *this;
+}
+
+CodeGenerator& CodeGenerator::sbcs(XReg rd, XReg rn, XReg rm) {
+    emit(dpreg::encode_sbcs_64_addsub_carry(rd.idx, rn.idx, rm.idx));
+    return *this;
+}
+
+CodeGenerator& CodeGenerator::sbcs(WReg rd, WReg rn, WReg rm) {
+    emit(dpreg::encode_sbcs_32_addsub_carry(rd.idx, rn.idx, rm.idx));
+    return *this;
+}
+
 CodeGenerator& CodeGenerator::csel(XReg rd, XReg rn, XReg rm, Condition cc) {
     emit(dpreg::encode_csel_64_condsel(rd.idx, rn.idx, static_cast<uint32_t>(cc), rm.idx));
     return *this;
@@ -394,6 +484,116 @@ CodeGenerator& CodeGenerator::csel(XReg rd, XReg rn, XReg rm, Condition cc) {
 
 CodeGenerator& CodeGenerator::csel(WReg rd, WReg rn, WReg rm, Condition cc) {
     emit(dpreg::encode_csel_32_condsel(rd.idx, rn.idx, static_cast<uint32_t>(cc), rm.idx));
+    return *this;
+}
+
+CodeGenerator& CodeGenerator::csinc(XReg rd, XReg rn, XReg rm, Condition cc) {
+    emit(dpreg::encode_csinc_64_condsel(rd.idx, rn.idx, static_cast<uint32_t>(cc), rm.idx));
+    return *this;
+}
+
+CodeGenerator& CodeGenerator::csinc(WReg rd, WReg rn, WReg rm, Condition cc) {
+    emit(dpreg::encode_csinc_32_condsel(rd.idx, rn.idx, static_cast<uint32_t>(cc), rm.idx));
+    return *this;
+}
+
+CodeGenerator& CodeGenerator::csinv(XReg rd, XReg rn, XReg rm, Condition cc) {
+    emit(dpreg::encode_csinv_64_condsel(rd.idx, rn.idx, static_cast<uint32_t>(cc), rm.idx));
+    return *this;
+}
+
+CodeGenerator& CodeGenerator::csinv(WReg rd, WReg rn, WReg rm, Condition cc) {
+    emit(dpreg::encode_csinv_32_condsel(rd.idx, rn.idx, static_cast<uint32_t>(cc), rm.idx));
+    return *this;
+}
+
+CodeGenerator& CodeGenerator::csneg(XReg rd, XReg rn, XReg rm, Condition cc) {
+    emit(dpreg::encode_csneg_64_condsel(rd.idx, rn.idx, static_cast<uint32_t>(cc), rm.idx));
+    return *this;
+}
+
+CodeGenerator& CodeGenerator::csneg(WReg rd, WReg rn, WReg rm, Condition cc) {
+    emit(dpreg::encode_csneg_32_condsel(rd.idx, rn.idx, static_cast<uint32_t>(cc), rm.idx));
+    return *this;
+}
+
+CodeGenerator& CodeGenerator::ccmp(XReg rn, XReg rm, uint8_t nzcv, Condition cc) {
+    emit(dpreg::encode_ccmp_64_condcmp_reg(nzcv, rn.idx, static_cast<uint32_t>(cc), rm.idx));
+    return *this;
+}
+
+CodeGenerator& CodeGenerator::ccmp(XReg rn, uint8_t imm5, uint8_t nzcv, Condition cc) {
+    emit(dpreg::encode_ccmp_64_condcmp_imm(nzcv, rn.idx, static_cast<uint32_t>(cc), imm5));
+    return *this;
+}
+
+CodeGenerator& CodeGenerator::ccmp(WReg rn, WReg rm, uint8_t nzcv, Condition cc) {
+    emit(dpreg::encode_ccmp_32_condcmp_reg(nzcv, rn.idx, static_cast<uint32_t>(cc), rm.idx));
+    return *this;
+}
+
+CodeGenerator& CodeGenerator::ccmp(WReg rn, uint8_t imm5, uint8_t nzcv, Condition cc) {
+    emit(dpreg::encode_ccmp_32_condcmp_imm(nzcv, rn.idx, static_cast<uint32_t>(cc), imm5));
+    return *this;
+}
+
+CodeGenerator& CodeGenerator::ccmn(XReg rn, XReg rm, uint8_t nzcv, Condition cc) {
+    emit(dpreg::encode_ccmn_64_condcmp_reg(nzcv, rn.idx, static_cast<uint32_t>(cc), rm.idx));
+    return *this;
+}
+
+CodeGenerator& CodeGenerator::ccmn(XReg rn, uint8_t imm5, uint8_t nzcv, Condition cc) {
+    emit(dpreg::encode_ccmn_64_condcmp_imm(nzcv, rn.idx, static_cast<uint32_t>(cc), imm5));
+    return *this;
+}
+
+CodeGenerator& CodeGenerator::ccmn(WReg rn, WReg rm, uint8_t nzcv, Condition cc) {
+    emit(dpreg::encode_ccmn_32_condcmp_reg(nzcv, rn.idx, static_cast<uint32_t>(cc), rm.idx));
+    return *this;
+}
+
+CodeGenerator& CodeGenerator::ccmn(WReg rn, uint8_t imm5, uint8_t nzcv, Condition cc) {
+    emit(dpreg::encode_ccmn_32_condcmp_imm(nzcv, rn.idx, static_cast<uint32_t>(cc), imm5));
+    return *this;
+}
+
+CodeGenerator& CodeGenerator::clz(XReg rd, XReg rn) {
+    emit(dpreg::encode_clz_64_dp_1src(rd.idx, rn.idx));
+    return *this;
+}
+
+CodeGenerator& CodeGenerator::clz(WReg rd, WReg rn) {
+    emit(dpreg::encode_clz_32_dp_1src(rd.idx, rn.idx));
+    return *this;
+}
+
+CodeGenerator& CodeGenerator::cls(XReg rd, XReg rn) {
+    emit(dpreg::encode_cls_64_dp_1src(rd.idx, rn.idx));
+    return *this;
+}
+
+CodeGenerator& CodeGenerator::cls(WReg rd, WReg rn) {
+    emit(dpreg::encode_cls_32_dp_1src(rd.idx, rn.idx));
+    return *this;
+}
+
+CodeGenerator& CodeGenerator::rbit(XReg rd, XReg rn) {
+    emit(dpreg::encode_rbit_64_dp_1src(rd.idx, rn.idx));
+    return *this;
+}
+
+CodeGenerator& CodeGenerator::rbit(WReg rd, WReg rn) {
+    emit(dpreg::encode_rbit_32_dp_1src(rd.idx, rn.idx));
+    return *this;
+}
+
+CodeGenerator& CodeGenerator::rev(XReg rd, XReg rn) {
+    emit(dpreg::encode_rev_64_dp_1src(rd.idx, rn.idx));
+    return *this;
+}
+
+CodeGenerator& CodeGenerator::rev(WReg rd, WReg rn) {
+    emit(dpreg::encode_rev_32_dp_1src(rd.idx, rn.idx));
     return *this;
 }
 
@@ -412,6 +612,8 @@ CodeGenerator& CodeGenerator::neg(XReg rd, XReg rm, Shift sh) { return sub(rd, X
 CodeGenerator& CodeGenerator::neg(WReg rd, WReg rm, Shift sh) { return sub(rd, WReg{31}, rm, sh); }
 CodeGenerator& CodeGenerator::mvn(XReg rd, XReg rm, Shift sh) { return orn(rd, XReg{31}, rm, sh); }
 CodeGenerator& CodeGenerator::mvn(WReg rd, WReg rm, Shift sh) { return orn(rd, WReg{31}, rm, sh); }
+CodeGenerator& CodeGenerator::ngc(XReg rd, XReg rm) { return sbc(rd, XReg{31}, rm); }
+CodeGenerator& CodeGenerator::ngc(WReg rd, WReg rm) { return sbc(rd, WReg{31}, rm); }
 
 CodeGenerator& CodeGenerator::mov(XReg rd, XReg rm) {
     emit(dpimm::encode_mov_add_64_addsub_imm(rd.idx, rm.idx));
@@ -457,6 +659,193 @@ CodeGenerator& CodeGenerator::cset(XReg rd, Condition cc) {
 
 CodeGenerator& CodeGenerator::cset(WReg rd, Condition cc) {
     emit(dpreg::encode_cset_csinc_32_condsel(rd.idx, static_cast<uint32_t>(cc) ^ 1));
+    return *this;
+}
+
+CodeGenerator& CodeGenerator::cinc(XReg rd, XReg rn, Condition cc) {
+    emit(dpreg::encode_csinc_64_condsel(rd.idx, rn.idx, static_cast<uint32_t>(cc) ^ 1, rn.idx));
+    return *this;
+}
+
+CodeGenerator& CodeGenerator::cinc(WReg rd, WReg rn, Condition cc) {
+    emit(dpreg::encode_csinc_32_condsel(rd.idx, rn.idx, static_cast<uint32_t>(cc) ^ 1, rn.idx));
+    return *this;
+}
+
+CodeGenerator& CodeGenerator::cinv(XReg rd, XReg rn, Condition cc) {
+    emit(dpreg::encode_csinv_64_condsel(rd.idx, rn.idx, static_cast<uint32_t>(cc) ^ 1, rn.idx));
+    return *this;
+}
+
+CodeGenerator& CodeGenerator::cinv(WReg rd, WReg rn, Condition cc) {
+    emit(dpreg::encode_csinv_32_condsel(rd.idx, rn.idx, static_cast<uint32_t>(cc) ^ 1, rn.idx));
+    return *this;
+}
+
+CodeGenerator& CodeGenerator::cneg(XReg rd, XReg rn, Condition cc) {
+    emit(dpreg::encode_csneg_64_condsel(rd.idx, rn.idx, static_cast<uint32_t>(cc) ^ 1, rn.idx));
+    return *this;
+}
+
+CodeGenerator& CodeGenerator::cneg(WReg rd, WReg rn, Condition cc) {
+    emit(dpreg::encode_csneg_32_condsel(rd.idx, rn.idx, static_cast<uint32_t>(cc) ^ 1, rn.idx));
+    return *this;
+}
+
+CodeGenerator& CodeGenerator::tst(XReg rn, uint64_t imm) {
+    return ands(XReg{31}, rn, imm);
+}
+
+CodeGenerator& CodeGenerator::tst(WReg rn, uint64_t imm) {
+    return ands(WReg{31}, rn, imm);
+}
+
+CodeGenerator& CodeGenerator::lsl(XReg rd, XReg rn, uint8_t imm) {
+    uint8_t immr = (-imm) & 63;
+    uint8_t imms = 63 - imm;
+    emit(dpimm::encode_ubfm_64m_bitfield(rd.idx, rn.idx, imms, immr));
+    return *this;
+}
+
+CodeGenerator& CodeGenerator::lsl(WReg rd, WReg rn, uint8_t imm) {
+    uint8_t immr = (-imm) & 31;
+    uint8_t imms = 31 - imm;
+    emit(dpimm::encode_ubfm_32m_bitfield(rd.idx, rn.idx, imms, immr));
+    return *this;
+}
+
+CodeGenerator& CodeGenerator::lsr(XReg rd, XReg rn, uint8_t imm) {
+    emit(dpimm::encode_ubfm_64m_bitfield(rd.idx, rn.idx, 63, imm));
+    return *this;
+}
+
+CodeGenerator& CodeGenerator::lsr(WReg rd, WReg rn, uint8_t imm) {
+    emit(dpimm::encode_ubfm_32m_bitfield(rd.idx, rn.idx, 31, imm));
+    return *this;
+}
+
+CodeGenerator& CodeGenerator::asr(XReg rd, XReg rn, uint8_t imm) {
+    emit(dpimm::encode_sbfm_64m_bitfield(rd.idx, rn.idx, 63, imm));
+    return *this;
+}
+
+CodeGenerator& CodeGenerator::asr(WReg rd, WReg rn, uint8_t imm) {
+    emit(dpimm::encode_sbfm_32m_bitfield(rd.idx, rn.idx, 31, imm));
+    return *this;
+}
+
+CodeGenerator& CodeGenerator::ror(XReg rd, XReg rn, uint8_t imm) {
+    emit(dpimm::encode_extr_64_extract(rd.idx, rn.idx, imm, rn.idx));
+    return *this;
+}
+
+CodeGenerator& CodeGenerator::ror(WReg rd, WReg rn, uint8_t imm) {
+    emit(dpimm::encode_extr_32_extract(rd.idx, rn.idx, imm, rn.idx));
+    return *this;
+}
+
+CodeGenerator& CodeGenerator::bfi(XReg rd, XReg rn, uint8_t lsb, uint8_t width) {
+    emit(dpimm::encode_bfm_64m_bitfield(rd.idx, rn.idx, width - 1, (-lsb) & 63));
+    return *this;
+}
+
+CodeGenerator& CodeGenerator::bfi(WReg rd, WReg rn, uint8_t lsb, uint8_t width) {
+    emit(dpimm::encode_bfm_32m_bitfield(rd.idx, rn.idx, width - 1, (-lsb) & 31));
+    return *this;
+}
+
+CodeGenerator& CodeGenerator::bfxil(XReg rd, XReg rn, uint8_t lsb, uint8_t width) {
+    emit(dpimm::encode_bfm_64m_bitfield(rd.idx, rn.idx, lsb + width - 1, lsb));
+    return *this;
+}
+
+CodeGenerator& CodeGenerator::bfxil(WReg rd, WReg rn, uint8_t lsb, uint8_t width) {
+    emit(dpimm::encode_bfm_32m_bitfield(rd.idx, rn.idx, lsb + width - 1, lsb));
+    return *this;
+}
+
+CodeGenerator& CodeGenerator::sbfx(XReg rd, XReg rn, uint8_t lsb, uint8_t width) {
+    emit(dpimm::encode_sbfm_64m_bitfield(rd.idx, rn.idx, lsb + width - 1, lsb));
+    return *this;
+}
+
+CodeGenerator& CodeGenerator::sbfx(WReg rd, WReg rn, uint8_t lsb, uint8_t width) {
+    emit(dpimm::encode_sbfm_32m_bitfield(rd.idx, rn.idx, lsb + width - 1, lsb));
+    return *this;
+}
+
+CodeGenerator& CodeGenerator::ubfx(XReg rd, XReg rn, uint8_t lsb, uint8_t width) {
+    emit(dpimm::encode_ubfm_64m_bitfield(rd.idx, rn.idx, lsb + width - 1, lsb));
+    return *this;
+}
+
+CodeGenerator& CodeGenerator::ubfx(WReg rd, WReg rn, uint8_t lsb, uint8_t width) {
+    emit(dpimm::encode_ubfm_32m_bitfield(rd.idx, rn.idx, lsb + width - 1, lsb));
+    return *this;
+}
+
+CodeGenerator& CodeGenerator::sbfiz(XReg rd, XReg rn, uint8_t lsb, uint8_t width) {
+    emit(dpimm::encode_sbfm_64m_bitfield(rd.idx, rn.idx, width - 1, (-lsb) & 63));
+    return *this;
+}
+
+CodeGenerator& CodeGenerator::sbfiz(WReg rd, WReg rn, uint8_t lsb, uint8_t width) {
+    emit(dpimm::encode_sbfm_32m_bitfield(rd.idx, rn.idx, width - 1, (-lsb) & 31));
+    return *this;
+}
+
+CodeGenerator& CodeGenerator::ubfiz(XReg rd, XReg rn, uint8_t lsb, uint8_t width) {
+    emit(dpimm::encode_ubfm_64m_bitfield(rd.idx, rn.idx, width - 1, (-lsb) & 63));
+    return *this;
+}
+
+CodeGenerator& CodeGenerator::ubfiz(WReg rd, WReg rn, uint8_t lsb, uint8_t width) {
+    emit(dpimm::encode_ubfm_32m_bitfield(rd.idx, rn.idx, width - 1, (-lsb) & 31));
+    return *this;
+}
+
+CodeGenerator& CodeGenerator::extr(XReg rd, XReg rn, XReg rm, uint8_t lsb) {
+    emit(dpimm::encode_extr_64_extract(rd.idx, rn.idx, lsb, rm.idx));
+    return *this;
+}
+
+CodeGenerator& CodeGenerator::extr(WReg rd, WReg rn, WReg rm, uint8_t lsb) {
+    emit(dpimm::encode_extr_32_extract(rd.idx, rn.idx, lsb, rm.idx));
+    return *this;
+}
+
+CodeGenerator& CodeGenerator::sxtb(XReg rd, WReg rn) {
+    emit(dpimm::encode_sbfm_64m_bitfield(rd.idx, rn.idx, 7, 0));
+    return *this;
+}
+
+CodeGenerator& CodeGenerator::sxtb(WReg rd, WReg rn) {
+    emit(dpimm::encode_sbfm_32m_bitfield(rd.idx, rn.idx, 7, 0));
+    return *this;
+}
+
+CodeGenerator& CodeGenerator::sxth(XReg rd, WReg rn) {
+    emit(dpimm::encode_sbfm_64m_bitfield(rd.idx, rn.idx, 15, 0));
+    return *this;
+}
+
+CodeGenerator& CodeGenerator::sxth(WReg rd, WReg rn) {
+    emit(dpimm::encode_sbfm_32m_bitfield(rd.idx, rn.idx, 15, 0));
+    return *this;
+}
+
+CodeGenerator& CodeGenerator::sxtw(XReg rd, WReg rn) {
+    emit(dpimm::encode_sbfm_64m_bitfield(rd.idx, rn.idx, 31, 0));
+    return *this;
+}
+
+CodeGenerator& CodeGenerator::uxtb(WReg rd, WReg rn) {
+    emit(dpimm::encode_ubfm_32m_bitfield(rd.idx, rn.idx, 7, 0));
+    return *this;
+}
+
+CodeGenerator& CodeGenerator::uxth(WReg rd, WReg rn) {
+    emit(dpimm::encode_ubfm_32m_bitfield(rd.idx, rn.idx, 15, 0));
     return *this;
 }
 
@@ -928,6 +1317,688 @@ CodeGenerator& CodeGenerator::stp(WReg rt1, WReg rt2, Mem mem) {
     return *this;
 }
 
+// === Atomics and Exclusives ===
+CodeGenerator& CodeGenerator::ldar(XReg rt, XReg rn) {
+    emit(ldst::encode_ldar_lr64_ldstord(rt.idx, rn.idx));
+    return *this;
+}
+
+CodeGenerator& CodeGenerator::ldar(WReg rt, XReg rn) {
+    emit(ldst::encode_ldar_lr32_ldstord(rt.idx, rn.idx));
+    return *this;
+}
+
+CodeGenerator& CodeGenerator::stlr(XReg rt, XReg rn) {
+    emit(ldst::encode_stlr_sl64_ldstord(rt.idx, rn.idx));
+    return *this;
+}
+
+CodeGenerator& CodeGenerator::stlr(WReg rt, XReg rn) {
+    emit(ldst::encode_stlr_sl32_ldstord(rt.idx, rn.idx));
+    return *this;
+}
+
+CodeGenerator& CodeGenerator::ldarb(WReg rt, XReg rn) {
+    emit(ldst::encode_ldarb_lr32_ldstord(rt.idx, rn.idx));
+    return *this;
+}
+
+CodeGenerator& CodeGenerator::ldarh(WReg rt, XReg rn) {
+    emit(ldst::encode_ldarh_lr32_ldstord(rt.idx, rn.idx));
+    return *this;
+}
+
+CodeGenerator& CodeGenerator::stlrb(WReg rt, XReg rn) {
+    emit(ldst::encode_stlrb_sl32_ldstord(rt.idx, rn.idx));
+    return *this;
+}
+
+CodeGenerator& CodeGenerator::stlrh(WReg rt, XReg rn) {
+    emit(ldst::encode_stlrh_sl32_ldstord(rt.idx, rn.idx));
+    return *this;
+}
+
+CodeGenerator& CodeGenerator::ldxr(XReg rt, XReg rn) {
+    emit(ldst::encode_ldxr_lr64_ldstexclr(rt.idx, rn.idx));
+    return *this;
+}
+
+CodeGenerator& CodeGenerator::ldxr(WReg rt, XReg rn) {
+    emit(ldst::encode_ldxr_lr32_ldstexclr(rt.idx, rn.idx));
+    return *this;
+}
+
+CodeGenerator& CodeGenerator::ldaxr(XReg rt, XReg rn) {
+    emit(ldst::encode_ldaxr_lr64_ldstexclr(rt.idx, rn.idx));
+    return *this;
+}
+
+CodeGenerator& CodeGenerator::ldaxr(WReg rt, XReg rn) {
+    emit(ldst::encode_ldaxr_lr32_ldstexclr(rt.idx, rn.idx));
+    return *this;
+}
+
+CodeGenerator& CodeGenerator::ldxrb(WReg rt, XReg rn) {
+    emit(ldst::encode_ldxrb_lr32_ldstexclr(rt.idx, rn.idx));
+    return *this;
+}
+
+CodeGenerator& CodeGenerator::ldxrh(WReg rt, XReg rn) {
+    emit(ldst::encode_ldxrh_lr32_ldstexclr(rt.idx, rn.idx));
+    return *this;
+}
+
+CodeGenerator& CodeGenerator::ldaxrb(WReg rt, XReg rn) {
+    emit(ldst::encode_ldaxrb_lr32_ldstexclr(rt.idx, rn.idx));
+    return *this;
+}
+
+CodeGenerator& CodeGenerator::ldaxrh(WReg rt, XReg rn) {
+    emit(ldst::encode_ldaxrh_lr32_ldstexclr(rt.idx, rn.idx));
+    return *this;
+}
+
+CodeGenerator& CodeGenerator::stxr(WReg rs, XReg rt, XReg rn) {
+    emit(ldst::encode_stxr_sr64_ldstexclr(rt.idx, rn.idx, rs.idx));
+    return *this;
+}
+
+CodeGenerator& CodeGenerator::stxr(WReg rs, WReg rt, XReg rn) {
+    emit(ldst::encode_stxr_sr32_ldstexclr(rt.idx, rn.idx, rs.idx));
+    return *this;
+}
+
+CodeGenerator& CodeGenerator::stlxr(WReg rs, XReg rt, XReg rn) {
+    emit(ldst::encode_stlxr_sr64_ldstexclr(rt.idx, rn.idx, rs.idx));
+    return *this;
+}
+
+CodeGenerator& CodeGenerator::stlxr(WReg rs, WReg rt, XReg rn) {
+    emit(ldst::encode_stlxr_sr32_ldstexclr(rt.idx, rn.idx, rs.idx));
+    return *this;
+}
+
+CodeGenerator& CodeGenerator::stxrb(WReg rs, WReg rt, XReg rn) {
+    emit(ldst::encode_stxrb_sr32_ldstexclr(rt.idx, rn.idx, rs.idx));
+    return *this;
+}
+
+CodeGenerator& CodeGenerator::stxrh(WReg rs, WReg rt, XReg rn) {
+    emit(ldst::encode_stxrh_sr32_ldstexclr(rt.idx, rn.idx, rs.idx));
+    return *this;
+}
+
+CodeGenerator& CodeGenerator::stlxrb(WReg rs, WReg rt, XReg rn) {
+    emit(ldst::encode_stlxrb_sr32_ldstexclr(rt.idx, rn.idx, rs.idx));
+    return *this;
+}
+
+CodeGenerator& CodeGenerator::stlxrh(WReg rs, WReg rt, XReg rn) {
+    emit(ldst::encode_stlxrh_sr32_ldstexclr(rt.idx, rn.idx, rs.idx));
+    return *this;
+}
+
+CodeGenerator& CodeGenerator::cas(WReg rs, WReg rt, XReg rn) {
+    emit(ldst::encode_cas_c32_comswap(rt.idx, rn.idx, rs.idx));
+    return *this;
+}
+
+CodeGenerator& CodeGenerator::cas(XReg rs, XReg rt, XReg rn) {
+    emit(ldst::encode_cas_c64_comswap(rt.idx, rn.idx, rs.idx));
+    return *this;
+}
+
+CodeGenerator& CodeGenerator::casa(WReg rs, WReg rt, XReg rn) {
+    emit(ldst::encode_casa_c32_comswap(rt.idx, rn.idx, rs.idx));
+    return *this;
+}
+
+CodeGenerator& CodeGenerator::casa(XReg rs, XReg rt, XReg rn) {
+    emit(ldst::encode_casa_c64_comswap(rt.idx, rn.idx, rs.idx));
+    return *this;
+}
+
+CodeGenerator& CodeGenerator::casl(WReg rs, WReg rt, XReg rn) {
+    emit(ldst::encode_casl_c32_comswap(rt.idx, rn.idx, rs.idx));
+    return *this;
+}
+
+CodeGenerator& CodeGenerator::casl(XReg rs, XReg rt, XReg rn) {
+    emit(ldst::encode_casl_c64_comswap(rt.idx, rn.idx, rs.idx));
+    return *this;
+}
+
+CodeGenerator& CodeGenerator::casal(WReg rs, WReg rt, XReg rn) {
+    emit(ldst::encode_casal_c32_comswap(rt.idx, rn.idx, rs.idx));
+    return *this;
+}
+
+CodeGenerator& CodeGenerator::casal(XReg rs, XReg rt, XReg rn) {
+    emit(ldst::encode_casal_c64_comswap(rt.idx, rn.idx, rs.idx));
+    return *this;
+}
+
+CodeGenerator& CodeGenerator::casb(WReg rs, WReg rt, XReg rn) {
+    emit(ldst::encode_casb_c32_comswap(rt.idx, rn.idx, rs.idx));
+    return *this;
+}
+
+CodeGenerator& CodeGenerator::cash(WReg rs, WReg rt, XReg rn) {
+    emit(ldst::encode_cash_c32_comswap(rt.idx, rn.idx, rs.idx));
+    return *this;
+}
+
+CodeGenerator& CodeGenerator::casab(WReg rs, WReg rt, XReg rn) {
+    emit(ldst::encode_casab_c32_comswap(rt.idx, rn.idx, rs.idx));
+    return *this;
+}
+
+CodeGenerator& CodeGenerator::casah(WReg rs, WReg rt, XReg rn) {
+    emit(ldst::encode_casah_c32_comswap(rt.idx, rn.idx, rs.idx));
+    return *this;
+}
+
+CodeGenerator& CodeGenerator::caslb(WReg rs, WReg rt, XReg rn) {
+    emit(ldst::encode_caslb_c32_comswap(rt.idx, rn.idx, rs.idx));
+    return *this;
+}
+
+CodeGenerator& CodeGenerator::caslh(WReg rs, WReg rt, XReg rn) {
+    emit(ldst::encode_caslh_c32_comswap(rt.idx, rn.idx, rs.idx));
+    return *this;
+}
+
+CodeGenerator& CodeGenerator::casalb(WReg rs, WReg rt, XReg rn) {
+    emit(ldst::encode_casalb_c32_comswap(rt.idx, rn.idx, rs.idx));
+    return *this;
+}
+
+CodeGenerator& CodeGenerator::casalh(WReg rs, WReg rt, XReg rn) {
+    emit(ldst::encode_casalh_c32_comswap(rt.idx, rn.idx, rs.idx));
+    return *this;
+}
+
+CodeGenerator& CodeGenerator::swp(WReg rs, WReg rt, XReg rn) {
+    emit(ldst::encode_swp_32_memop(rt.idx, rn.idx, rs.idx));
+    return *this;
+}
+
+CodeGenerator& CodeGenerator::swp(XReg rs, XReg rt, XReg rn) {
+    emit(ldst::encode_swp_64_memop(rt.idx, rn.idx, rs.idx));
+    return *this;
+}
+
+CodeGenerator& CodeGenerator::swpa(WReg rs, WReg rt, XReg rn) {
+    emit(ldst::encode_swpa_32_memop(rt.idx, rn.idx, rs.idx));
+    return *this;
+}
+
+CodeGenerator& CodeGenerator::swpa(XReg rs, XReg rt, XReg rn) {
+    emit(ldst::encode_swpa_64_memop(rt.idx, rn.idx, rs.idx));
+    return *this;
+}
+
+CodeGenerator& CodeGenerator::swpl(WReg rs, WReg rt, XReg rn) {
+    emit(ldst::encode_swpl_32_memop(rt.idx, rn.idx, rs.idx));
+    return *this;
+}
+
+CodeGenerator& CodeGenerator::swpl(XReg rs, XReg rt, XReg rn) {
+    emit(ldst::encode_swpl_64_memop(rt.idx, rn.idx, rs.idx));
+    return *this;
+}
+
+CodeGenerator& CodeGenerator::swpal(WReg rs, WReg rt, XReg rn) {
+    emit(ldst::encode_swpal_32_memop(rt.idx, rn.idx, rs.idx));
+    return *this;
+}
+
+CodeGenerator& CodeGenerator::swpal(XReg rs, XReg rt, XReg rn) {
+    emit(ldst::encode_swpal_64_memop(rt.idx, rn.idx, rs.idx));
+    return *this;
+}
+
+CodeGenerator& CodeGenerator::swpb(WReg rs, WReg rt, XReg rn) {
+    emit(ldst::encode_swpb_32_memop(rt.idx, rn.idx, rs.idx));
+    return *this;
+}
+
+CodeGenerator& CodeGenerator::swph(WReg rs, WReg rt, XReg rn) {
+    emit(ldst::encode_swph_32_memop(rt.idx, rn.idx, rs.idx));
+    return *this;
+}
+
+CodeGenerator& CodeGenerator::swpab(WReg rs, WReg rt, XReg rn) {
+    emit(ldst::encode_swpab_32_memop(rt.idx, rn.idx, rs.idx));
+    return *this;
+}
+
+CodeGenerator& CodeGenerator::swpah(WReg rs, WReg rt, XReg rn) {
+    emit(ldst::encode_swpah_32_memop(rt.idx, rn.idx, rs.idx));
+    return *this;
+}
+
+CodeGenerator& CodeGenerator::swplb(WReg rs, WReg rt, XReg rn) {
+    emit(ldst::encode_swplb_32_memop(rt.idx, rn.idx, rs.idx));
+    return *this;
+}
+
+CodeGenerator& CodeGenerator::swplh(WReg rs, WReg rt, XReg rn) {
+    emit(ldst::encode_swplh_32_memop(rt.idx, rn.idx, rs.idx));
+    return *this;
+}
+
+CodeGenerator& CodeGenerator::swpalb(WReg rs, WReg rt, XReg rn) {
+    emit(ldst::encode_swpalb_32_memop(rt.idx, rn.idx, rs.idx));
+    return *this;
+}
+
+CodeGenerator& CodeGenerator::swpalh(WReg rs, WReg rt, XReg rn) {
+    emit(ldst::encode_swpalh_32_memop(rt.idx, rn.idx, rs.idx));
+    return *this;
+}
+
+CodeGenerator& CodeGenerator::ldadd(WReg rs, WReg rt, XReg rn) {
+    emit(ldst::encode_ldadd_32_memop(rt.idx, rn.idx, rs.idx));
+    return *this;
+}
+
+CodeGenerator& CodeGenerator::ldadd(XReg rs, XReg rt, XReg rn) {
+    emit(ldst::encode_ldadd_64_memop(rt.idx, rn.idx, rs.idx));
+    return *this;
+}
+
+CodeGenerator& CodeGenerator::ldadda(WReg rs, WReg rt, XReg rn) {
+    emit(ldst::encode_ldadda_32_memop(rt.idx, rn.idx, rs.idx));
+    return *this;
+}
+
+CodeGenerator& CodeGenerator::ldadda(XReg rs, XReg rt, XReg rn) {
+    emit(ldst::encode_ldadda_64_memop(rt.idx, rn.idx, rs.idx));
+    return *this;
+}
+
+CodeGenerator& CodeGenerator::ldaddl(WReg rs, WReg rt, XReg rn) {
+    emit(ldst::encode_ldaddl_32_memop(rt.idx, rn.idx, rs.idx));
+    return *this;
+}
+
+CodeGenerator& CodeGenerator::ldaddl(XReg rs, XReg rt, XReg rn) {
+    emit(ldst::encode_ldaddl_64_memop(rt.idx, rn.idx, rs.idx));
+    return *this;
+}
+
+CodeGenerator& CodeGenerator::ldaddal(WReg rs, WReg rt, XReg rn) {
+    emit(ldst::encode_ldaddal_32_memop(rt.idx, rn.idx, rs.idx));
+    return *this;
+}
+
+CodeGenerator& CodeGenerator::ldaddal(XReg rs, XReg rt, XReg rn) {
+    emit(ldst::encode_ldaddal_64_memop(rt.idx, rn.idx, rs.idx));
+    return *this;
+}
+
+CodeGenerator& CodeGenerator::ldaddb(WReg rs, WReg rt, XReg rn) {
+    emit(ldst::encode_ldaddb_32_memop(rt.idx, rn.idx, rs.idx));
+    return *this;
+}
+
+CodeGenerator& CodeGenerator::ldaddh(WReg rs, WReg rt, XReg rn) {
+    emit(ldst::encode_ldaddh_32_memop(rt.idx, rn.idx, rs.idx));
+    return *this;
+}
+
+CodeGenerator& CodeGenerator::ldaddab(WReg rs, WReg rt, XReg rn) {
+    emit(ldst::encode_ldaddab_32_memop(rt.idx, rn.idx, rs.idx));
+    return *this;
+}
+
+CodeGenerator& CodeGenerator::ldaddah(WReg rs, WReg rt, XReg rn) {
+    emit(ldst::encode_ldaddah_32_memop(rt.idx, rn.idx, rs.idx));
+    return *this;
+}
+
+CodeGenerator& CodeGenerator::ldaddlb(WReg rs, WReg rt, XReg rn) {
+    emit(ldst::encode_ldaddlb_32_memop(rt.idx, rn.idx, rs.idx));
+    return *this;
+}
+
+CodeGenerator& CodeGenerator::ldaddlh(WReg rs, WReg rt, XReg rn) {
+    emit(ldst::encode_ldaddlh_32_memop(rt.idx, rn.idx, rs.idx));
+    return *this;
+}
+
+CodeGenerator& CodeGenerator::ldaddalb(WReg rs, WReg rt, XReg rn) {
+    emit(ldst::encode_ldaddalb_32_memop(rt.idx, rn.idx, rs.idx));
+    return *this;
+}
+
+CodeGenerator& CodeGenerator::ldaddalh(WReg rs, WReg rt, XReg rn) {
+    emit(ldst::encode_ldaddalh_32_memop(rt.idx, rn.idx, rs.idx));
+    return *this;
+}
+
+CodeGenerator& CodeGenerator::ldclr(WReg rs, WReg rt, XReg rn) {
+    emit(ldst::encode_ldclr_32_memop(rt.idx, rn.idx, rs.idx));
+    return *this;
+}
+
+CodeGenerator& CodeGenerator::ldclr(XReg rs, XReg rt, XReg rn) {
+    emit(ldst::encode_ldclr_64_memop(rt.idx, rn.idx, rs.idx));
+    return *this;
+}
+
+CodeGenerator& CodeGenerator::ldclra(WReg rs, WReg rt, XReg rn) {
+    emit(ldst::encode_ldclra_32_memop(rt.idx, rn.idx, rs.idx));
+    return *this;
+}
+
+CodeGenerator& CodeGenerator::ldclra(XReg rs, XReg rt, XReg rn) {
+    emit(ldst::encode_ldclra_64_memop(rt.idx, rn.idx, rs.idx));
+    return *this;
+}
+
+CodeGenerator& CodeGenerator::ldclrl(WReg rs, WReg rt, XReg rn) {
+    emit(ldst::encode_ldclrl_32_memop(rt.idx, rn.idx, rs.idx));
+    return *this;
+}
+
+CodeGenerator& CodeGenerator::ldclrl(XReg rs, XReg rt, XReg rn) {
+    emit(ldst::encode_ldclrl_64_memop(rt.idx, rn.idx, rs.idx));
+    return *this;
+}
+
+CodeGenerator& CodeGenerator::ldclral(WReg rs, WReg rt, XReg rn) {
+    emit(ldst::encode_ldclral_32_memop(rt.idx, rn.idx, rs.idx));
+    return *this;
+}
+
+CodeGenerator& CodeGenerator::ldclral(XReg rs, XReg rt, XReg rn) {
+    emit(ldst::encode_ldclral_64_memop(rt.idx, rn.idx, rs.idx));
+    return *this;
+}
+
+CodeGenerator& CodeGenerator::ldclrb(WReg rs, WReg rt, XReg rn) {
+    emit(ldst::encode_ldclrb_32_memop(rt.idx, rn.idx, rs.idx));
+    return *this;
+}
+
+CodeGenerator& CodeGenerator::ldclrh(WReg rs, WReg rt, XReg rn) {
+    emit(ldst::encode_ldclrh_32_memop(rt.idx, rn.idx, rs.idx));
+    return *this;
+}
+
+CodeGenerator& CodeGenerator::ldclrab(WReg rs, WReg rt, XReg rn) {
+    emit(ldst::encode_ldclrab_32_memop(rt.idx, rn.idx, rs.idx));
+    return *this;
+}
+
+CodeGenerator& CodeGenerator::ldclrah(WReg rs, WReg rt, XReg rn) {
+    emit(ldst::encode_ldclrah_32_memop(rt.idx, rn.idx, rs.idx));
+    return *this;
+}
+
+CodeGenerator& CodeGenerator::ldclrlb(WReg rs, WReg rt, XReg rn) {
+    emit(ldst::encode_ldclrlb_32_memop(rt.idx, rn.idx, rs.idx));
+    return *this;
+}
+
+CodeGenerator& CodeGenerator::ldclrlh(WReg rs, WReg rt, XReg rn) {
+    emit(ldst::encode_ldclrlh_32_memop(rt.idx, rn.idx, rs.idx));
+    return *this;
+}
+
+CodeGenerator& CodeGenerator::ldclralb(WReg rs, WReg rt, XReg rn) {
+    emit(ldst::encode_ldclralb_32_memop(rt.idx, rn.idx, rs.idx));
+    return *this;
+}
+
+CodeGenerator& CodeGenerator::ldclralh(WReg rs, WReg rt, XReg rn) {
+    emit(ldst::encode_ldclralh_32_memop(rt.idx, rn.idx, rs.idx));
+    return *this;
+}
+
+CodeGenerator& CodeGenerator::ldset(WReg rs, WReg rt, XReg rn) {
+    emit(ldst::encode_ldset_32_memop(rt.idx, rn.idx, rs.idx));
+    return *this;
+}
+
+CodeGenerator& CodeGenerator::ldset(XReg rs, XReg rt, XReg rn) {
+    emit(ldst::encode_ldset_64_memop(rt.idx, rn.idx, rs.idx));
+    return *this;
+}
+
+CodeGenerator& CodeGenerator::ldseta(WReg rs, WReg rt, XReg rn) {
+    emit(ldst::encode_ldseta_32_memop(rt.idx, rn.idx, rs.idx));
+    return *this;
+}
+
+CodeGenerator& CodeGenerator::ldseta(XReg rs, XReg rt, XReg rn) {
+    emit(ldst::encode_ldseta_64_memop(rt.idx, rn.idx, rs.idx));
+    return *this;
+}
+
+CodeGenerator& CodeGenerator::ldsetl(WReg rs, WReg rt, XReg rn) {
+    emit(ldst::encode_ldsetl_32_memop(rt.idx, rn.idx, rs.idx));
+    return *this;
+}
+
+CodeGenerator& CodeGenerator::ldsetl(XReg rs, XReg rt, XReg rn) {
+    emit(ldst::encode_ldsetl_64_memop(rt.idx, rn.idx, rs.idx));
+    return *this;
+}
+
+CodeGenerator& CodeGenerator::ldsetal(WReg rs, WReg rt, XReg rn) {
+    emit(ldst::encode_ldsetal_32_memop(rt.idx, rn.idx, rs.idx));
+    return *this;
+}
+
+CodeGenerator& CodeGenerator::ldsetal(XReg rs, XReg rt, XReg rn) {
+    emit(ldst::encode_ldsetal_64_memop(rt.idx, rn.idx, rs.idx));
+    return *this;
+}
+
+CodeGenerator& CodeGenerator::ldsetb(WReg rs, WReg rt, XReg rn) {
+    emit(ldst::encode_ldsetb_32_memop(rt.idx, rn.idx, rs.idx));
+    return *this;
+}
+
+CodeGenerator& CodeGenerator::ldseth(WReg rs, WReg rt, XReg rn) {
+    emit(ldst::encode_ldseth_32_memop(rt.idx, rn.idx, rs.idx));
+    return *this;
+}
+
+CodeGenerator& CodeGenerator::ldsetab(WReg rs, WReg rt, XReg rn) {
+    emit(ldst::encode_ldsetab_32_memop(rt.idx, rn.idx, rs.idx));
+    return *this;
+}
+
+CodeGenerator& CodeGenerator::ldsetah(WReg rs, WReg rt, XReg rn) {
+    emit(ldst::encode_ldsetah_32_memop(rt.idx, rn.idx, rs.idx));
+    return *this;
+}
+
+CodeGenerator& CodeGenerator::ldsetlb(WReg rs, WReg rt, XReg rn) {
+    emit(ldst::encode_ldsetlb_32_memop(rt.idx, rn.idx, rs.idx));
+    return *this;
+}
+
+CodeGenerator& CodeGenerator::ldsetlh(WReg rs, WReg rt, XReg rn) {
+    emit(ldst::encode_ldsetlh_32_memop(rt.idx, rn.idx, rs.idx));
+    return *this;
+}
+
+CodeGenerator& CodeGenerator::ldsetalb(WReg rs, WReg rt, XReg rn) {
+    emit(ldst::encode_ldsetalb_32_memop(rt.idx, rn.idx, rs.idx));
+    return *this;
+}
+
+CodeGenerator& CodeGenerator::ldsetalh(WReg rs, WReg rt, XReg rn) {
+    emit(ldst::encode_ldsetalh_32_memop(rt.idx, rn.idx, rs.idx));
+    return *this;
+}
+
+CodeGenerator& CodeGenerator::ldeor(WReg rs, WReg rt, XReg rn) {
+    emit(ldst::encode_ldeor_32_memop(rt.idx, rn.idx, rs.idx));
+    return *this;
+}
+
+CodeGenerator& CodeGenerator::ldeor(XReg rs, XReg rt, XReg rn) {
+    emit(ldst::encode_ldeor_64_memop(rt.idx, rn.idx, rs.idx));
+    return *this;
+}
+
+CodeGenerator& CodeGenerator::ldeora(WReg rs, WReg rt, XReg rn) {
+    emit(ldst::encode_ldeora_32_memop(rt.idx, rn.idx, rs.idx));
+    return *this;
+}
+
+CodeGenerator& CodeGenerator::ldeora(XReg rs, XReg rt, XReg rn) {
+    emit(ldst::encode_ldeora_64_memop(rt.idx, rn.idx, rs.idx));
+    return *this;
+}
+
+CodeGenerator& CodeGenerator::ldeorl(WReg rs, WReg rt, XReg rn) {
+    emit(ldst::encode_ldeorl_32_memop(rt.idx, rn.idx, rs.idx));
+    return *this;
+}
+
+CodeGenerator& CodeGenerator::ldeorl(XReg rs, XReg rt, XReg rn) {
+    emit(ldst::encode_ldeorl_64_memop(rt.idx, rn.idx, rs.idx));
+    return *this;
+}
+
+CodeGenerator& CodeGenerator::ldeoral(WReg rs, WReg rt, XReg rn) {
+    emit(ldst::encode_ldeoral_32_memop(rt.idx, rn.idx, rs.idx));
+    return *this;
+}
+
+CodeGenerator& CodeGenerator::ldeoral(XReg rs, XReg rt, XReg rn) {
+    emit(ldst::encode_ldeoral_64_memop(rt.idx, rn.idx, rs.idx));
+    return *this;
+}
+
+CodeGenerator& CodeGenerator::ldeorb(WReg rs, WReg rt, XReg rn) {
+    emit(ldst::encode_ldeorb_32_memop(rt.idx, rn.idx, rs.idx));
+    return *this;
+}
+
+CodeGenerator& CodeGenerator::ldeorh(WReg rs, WReg rt, XReg rn) {
+    emit(ldst::encode_ldeorh_32_memop(rt.idx, rn.idx, rs.idx));
+    return *this;
+}
+
+CodeGenerator& CodeGenerator::ldeorab(WReg rs, WReg rt, XReg rn) {
+    emit(ldst::encode_ldeorab_32_memop(rt.idx, rn.idx, rs.idx));
+    return *this;
+}
+
+CodeGenerator& CodeGenerator::ldeorah(WReg rs, WReg rt, XReg rn) {
+    emit(ldst::encode_ldeorah_32_memop(rt.idx, rn.idx, rs.idx));
+    return *this;
+}
+
+CodeGenerator& CodeGenerator::ldeorlb(WReg rs, WReg rt, XReg rn) {
+    emit(ldst::encode_ldeorlb_32_memop(rt.idx, rn.idx, rs.idx));
+    return *this;
+}
+
+CodeGenerator& CodeGenerator::ldeorlh(WReg rs, WReg rt, XReg rn) {
+    emit(ldst::encode_ldeorlh_32_memop(rt.idx, rn.idx, rs.idx));
+    return *this;
+}
+
+CodeGenerator& CodeGenerator::ldeoralb(WReg rs, WReg rt, XReg rn) {
+    emit(ldst::encode_ldeoralb_32_memop(rt.idx, rn.idx, rs.idx));
+    return *this;
+}
+
+CodeGenerator& CodeGenerator::ldeoralh(WReg rs, WReg rt, XReg rn) {
+    emit(ldst::encode_ldeoralh_32_memop(rt.idx, rn.idx, rs.idx));
+    return *this;
+}
+
+CodeGenerator& CodeGenerator::stadd(WReg rs, XReg rn) {
+    emit(ldst::encode_ldadd_32_memop(31, rn.idx, rs.idx));
+    return *this;
+}
+
+CodeGenerator& CodeGenerator::stadd(XReg rs, XReg rn) {
+    emit(ldst::encode_ldadd_64_memop(31, rn.idx, rs.idx));
+    return *this;
+}
+
+CodeGenerator& CodeGenerator::staddl(WReg rs, XReg rn) {
+    emit(ldst::encode_ldaddl_32_memop(31, rn.idx, rs.idx));
+    return *this;
+}
+
+CodeGenerator& CodeGenerator::staddl(XReg rs, XReg rn) {
+    emit(ldst::encode_ldaddl_64_memop(31, rn.idx, rs.idx));
+    return *this;
+}
+
+CodeGenerator& CodeGenerator::stclr(WReg rs, XReg rn) {
+    emit(ldst::encode_ldclr_32_memop(31, rn.idx, rs.idx));
+    return *this;
+}
+
+CodeGenerator& CodeGenerator::stclr(XReg rs, XReg rn) {
+    emit(ldst::encode_ldclr_64_memop(31, rn.idx, rs.idx));
+    return *this;
+}
+
+CodeGenerator& CodeGenerator::stclrl(WReg rs, XReg rn) {
+    emit(ldst::encode_ldclrl_32_memop(31, rn.idx, rs.idx));
+    return *this;
+}
+
+CodeGenerator& CodeGenerator::stclrl(XReg rs, XReg rn) {
+    emit(ldst::encode_ldclrl_64_memop(31, rn.idx, rs.idx));
+    return *this;
+}
+
+CodeGenerator& CodeGenerator::stset(WReg rs, XReg rn) {
+    emit(ldst::encode_ldset_32_memop(31, rn.idx, rs.idx));
+    return *this;
+}
+
+CodeGenerator& CodeGenerator::stset(XReg rs, XReg rn) {
+    emit(ldst::encode_ldset_64_memop(31, rn.idx, rs.idx));
+    return *this;
+}
+
+CodeGenerator& CodeGenerator::stsetl(WReg rs, XReg rn) {
+    emit(ldst::encode_ldsetl_32_memop(31, rn.idx, rs.idx));
+    return *this;
+}
+
+CodeGenerator& CodeGenerator::stsetl(XReg rs, XReg rn) {
+    emit(ldst::encode_ldsetl_64_memop(31, rn.idx, rs.idx));
+    return *this;
+}
+
+CodeGenerator& CodeGenerator::steor(WReg rs, XReg rn) {
+    emit(ldst::encode_ldeor_32_memop(31, rn.idx, rs.idx));
+    return *this;
+}
+
+CodeGenerator& CodeGenerator::steor(XReg rs, XReg rn) {
+    emit(ldst::encode_ldeor_64_memop(31, rn.idx, rs.idx));
+    return *this;
+}
+
+CodeGenerator& CodeGenerator::steorl(WReg rs, XReg rn) {
+    emit(ldst::encode_ldeorl_32_memop(31, rn.idx, rs.idx));
+    return *this;
+}
+
+CodeGenerator& CodeGenerator::steorl(XReg rs, XReg rn) {
+    emit(ldst::encode_ldeorl_64_memop(31, rn.idx, rs.idx));
+    return *this;
+}
+
+
 // === Scalar FP ===
 CodeGenerator& CodeGenerator::fadd(SReg rd, SReg rn, SReg rm) {
     emit(simd_dp::encode_fadd_s_floatdp2(rd.idx, rn.idx, rm.idx));
@@ -996,6 +2067,197 @@ CodeGenerator& CodeGenerator::fcmp(DReg rn, DReg rm) {
 
 CodeGenerator& CodeGenerator::fcmp(DReg rn) {
     emit(simd_dp::encode_fcmp_dz_floatcmp(rn.idx, 0));
+    return *this;
+}
+
+// === Advanced SIMD (Vector) ===
+
+CodeGenerator& CodeGenerator::add(VArr vd, VArr vn, VArr vm) {
+    emit(simd_dp::encode_add_asimdsame_only(vd.idx, vn.idx, vm.idx, vd.size(), vd.Q()));
+    return *this;
+}
+
+CodeGenerator& CodeGenerator::sub(VArr vd, VArr vn, VArr vm) {
+    emit(simd_dp::encode_sub_asimdsame_only(vd.idx, vn.idx, vm.idx, vd.size(), vd.Q()));
+    return *this;
+}
+
+CodeGenerator& CodeGenerator::mul(VArr vd, VArr vn, VArr vm) {
+    emit(simd_dp::encode_mul_asimdsame_only(vd.idx, vn.idx, vm.idx, vd.size(), vd.Q()));
+    return *this;
+}
+
+CodeGenerator& CodeGenerator::and_(VArr vd, VArr vn, VArr vm) {
+    emit(simd_dp::encode_and_asimdsame_only(vd.idx, vn.idx, vm.idx, vd.Q()));
+    return *this;
+}
+
+CodeGenerator& CodeGenerator::orr(VArr vd, VArr vn, VArr vm) {
+    emit(simd_dp::encode_orr_asimdsame_only(vd.idx, vn.idx, vm.idx, vd.Q()));
+    return *this;
+}
+
+CodeGenerator& CodeGenerator::eor(VArr vd, VArr vn, VArr vm) {
+    emit(simd_dp::encode_eor_asimdsame_only(vd.idx, vn.idx, vm.idx, vd.Q()));
+    return *this;
+}
+
+CodeGenerator& CodeGenerator::bic(VArr vd, VArr vn, VArr vm) {
+    emit(simd_dp::encode_bic_asimdsame_only(vd.idx, vn.idx, vm.idx, vd.Q()));
+    return *this;
+}
+
+CodeGenerator& CodeGenerator::not_(VArr vd, VArr vn) {
+    emit(simd_dp::encode_not_asimdmisc_r(vd.idx, vn.idx, vd.Q()));
+    return *this;
+}
+
+CodeGenerator& CodeGenerator::mvn(VArr vd, VArr vn) {
+    return not_(vd, vn);
+}
+
+CodeGenerator& CodeGenerator::addp(VArr vd, VArr vn, VArr vm) {
+    emit(simd_dp::encode_addp_asimdsame_only(vd.idx, vn.idx, vm.idx, vd.size(), vd.Q()));
+    return *this;
+}
+
+CodeGenerator& CodeGenerator::abs(VArr vd, VArr vn) {
+    emit(simd_dp::encode_abs_asimdmisc_r(vd.idx, vn.idx, vd.size(), vd.Q()));
+    return *this;
+}
+
+CodeGenerator& CodeGenerator::neg(VArr vd, VArr vn) {
+    emit(simd_dp::encode_neg_asimdmisc_r(vd.idx, vn.idx, vd.size(), vd.Q()));
+    return *this;
+}
+
+CodeGenerator& CodeGenerator::cnt(VArr vd, VArr vn) {
+    emit(simd_dp::encode_cnt_asimdmisc_r(vd.idx, vn.idx, vd.size(), vd.Q()));
+    return *this;
+}
+
+CodeGenerator& CodeGenerator::cmeq(VArr vd, VArr vn, VArr vm) {
+    emit(simd_dp::encode_cmeq_asimdsame_only(vd.idx, vn.idx, vm.idx, vd.size(), vd.Q()));
+    return *this;
+}
+
+CodeGenerator& CodeGenerator::cmge(VArr vd, VArr vn, VArr vm) {
+    emit(simd_dp::encode_cmge_asimdsame_only(vd.idx, vn.idx, vm.idx, vd.size(), vd.Q()));
+    return *this;
+}
+
+CodeGenerator& CodeGenerator::cmgt(VArr vd, VArr vn, VArr vm) {
+    emit(simd_dp::encode_cmgt_asimdsame_only(vd.idx, vn.idx, vm.idx, vd.size(), vd.Q()));
+    return *this;
+}
+
+CodeGenerator& CodeGenerator::cmhi(VArr vd, VArr vn, VArr vm) {
+    emit(simd_dp::encode_cmhi_asimdsame_only(vd.idx, vn.idx, vm.idx, vd.size(), vd.Q()));
+    return *this;
+}
+
+CodeGenerator& CodeGenerator::cmhs(VArr vd, VArr vn, VArr vm) {
+    emit(simd_dp::encode_cmhs_asimdsame_only(vd.idx, vn.idx, vm.idx, vd.size(), vd.Q()));
+    return *this;
+}
+
+CodeGenerator& CodeGenerator::cmeq_zero(VArr vd, VArr vn) {
+    emit(simd_dp::encode_cmeq_asimdmisc_z(vd.idx, vn.idx, vd.size(), vd.Q()));
+    return *this;
+}
+
+CodeGenerator& CodeGenerator::cmge_zero(VArr vd, VArr vn) {
+    emit(simd_dp::encode_cmge_asimdmisc_z(vd.idx, vn.idx, vd.size(), vd.Q()));
+    return *this;
+}
+
+CodeGenerator& CodeGenerator::cmgt_zero(VArr vd, VArr vn) {
+    emit(simd_dp::encode_cmgt_asimdmisc_z(vd.idx, vn.idx, vd.size(), vd.Q()));
+    return *this;
+}
+
+CodeGenerator& CodeGenerator::cmle_zero(VArr vd, VArr vn) {
+    emit(simd_dp::encode_cmle_asimdmisc_z(vd.idx, vn.idx, vd.size(), vd.Q()));
+    return *this;
+}
+
+CodeGenerator& CodeGenerator::cmlt_zero(VArr vd, VArr vn) {
+    emit(simd_dp::encode_cmlt_asimdmisc_z(vd.idx, vn.idx, vd.size(), vd.Q()));
+    return *this;
+}
+
+// Helper: compute immh and immb for shift-by-immediate
+static void compute_shift_immhb(uint32_t size, uint8_t shift, bool right,
+                                uint32_t& immh, uint32_t& immb) {
+    uint32_t esize = 8u << size;  // 8, 16, 32, 64
+    uint32_t val = right ? (esize * 2 - shift) : (esize + shift);
+    immh = val >> 3;
+    immb = val & 7;
+}
+
+CodeGenerator& CodeGenerator::shl(VArr vd, VArr vn, uint8_t shift) {
+    uint32_t immh, immb;
+    compute_shift_immhb(vd.size(), shift, false, immh, immb);
+    emit(simd_dp::encode_shl_asimdshf_r(vd.idx, vn.idx, immb, immh, vd.Q()));
+    return *this;
+}
+
+CodeGenerator& CodeGenerator::sshr(VArr vd, VArr vn, uint8_t shift) {
+    uint32_t immh, immb;
+    compute_shift_immhb(vd.size(), shift, true, immh, immb);
+    emit(simd_dp::encode_sshr_asimdshf_r(vd.idx, vn.idx, immb, immh, vd.Q()));
+    return *this;
+}
+
+CodeGenerator& CodeGenerator::ushr(VArr vd, VArr vn, uint8_t shift) {
+    uint32_t immh, immb;
+    compute_shift_immhb(vd.size(), shift, true, immh, immb);
+    emit(simd_dp::encode_ushr_asimdshf_r(vd.idx, vn.idx, immb, immh, vd.Q()));
+    return *this;
+}
+
+CodeGenerator& CodeGenerator::dup(VArr vd, XReg rn) {
+    uint32_t imm5 = 1u << vd.size();  // element size selector
+    emit(simd_dp::encode_dup_asimdins_dr_r(vd.idx, rn.idx, imm5, vd.Q()));
+    return *this;
+}
+
+CodeGenerator& CodeGenerator::dup(VArr vd, WReg rn) {
+    uint32_t imm5 = 1u << vd.size();
+    emit(simd_dp::encode_dup_asimdins_dr_r(vd.idx, rn.idx, imm5, vd.Q()));
+    return *this;
+}
+
+CodeGenerator& CodeGenerator::ins(VArr vd, uint8_t index, XReg rn) {
+    uint32_t imm5 = (index << (vd.size() + 1)) | (1u << vd.size());
+    emit(simd_dp::encode_ins_asimdins_ir_r(vd.idx, rn.idx, imm5));
+    return *this;
+}
+
+CodeGenerator& CodeGenerator::ins(VArr vd, uint8_t index, WReg rn) {
+    uint32_t imm5 = (index << (vd.size() + 1)) | (1u << vd.size());
+    emit(simd_dp::encode_ins_asimdins_ir_r(vd.idx, rn.idx, imm5));
+    return *this;
+}
+
+CodeGenerator& CodeGenerator::umov(XReg rd, VArr vn, uint8_t index) {
+    uint32_t imm5 = (index << (vn.size() + 1)) | (1u << vn.size());
+    emit(simd_dp::encode_umov_asimdins_x_x(rd.idx, vn.idx, imm5));
+    return *this;
+}
+
+CodeGenerator& CodeGenerator::umov(WReg rd, VArr vn, uint8_t index) {
+    uint32_t imm5 = (index << (vn.size() + 1)) | (1u << vn.size());
+    emit(simd_dp::encode_umov_asimdins_w_w(rd.idx, vn.idx, imm5));
+    return *this;
+}
+
+CodeGenerator& CodeGenerator::movi(VArr vd, uint8_t imm8) {
+    uint32_t a = (imm8 >> 7) & 1, b = (imm8 >> 6) & 1;
+    uint32_t c = (imm8 >> 5) & 1, d = (imm8 >> 4) & 1;
+    uint32_t e = (imm8 >> 3) & 1, f = (imm8 >> 2) & 1;
+    uint32_t g = (imm8 >> 1) & 1, h = imm8 & 1;
+    emit(simd_dp::encode_movi_asimdimm_n_b(vd.idx, h, g, f, e, d, c, b, a, vd.Q()));
     return *this;
 }
 

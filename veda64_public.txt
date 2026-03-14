@@ -26,6 +26,8 @@ include/veda64/sysreg.hpp
 include/veda64/types.hpp
 include/veda64/ir.hpp
 include/veda64/util.hpp
+include/veda64/relocation.hpp
+include/veda64/branch_follow.hpp
 lib/format/control.cpp
 lib/format/dpimm.cpp
 lib/format/dpreg.cpp
@@ -46,6 +48,8 @@ lib/ir/ir_internal.hpp
 lib/ir/ir_lift.cpp
 lib/ir/ir_tables.cpp
 lib/veda64.cpp
+lib/relocation.cpp
+lib/branch_follow.cpp
 test/CMakeLists.txt
 test/hook_examples.cpp
 test/test_control.cpp
@@ -62,6 +66,10 @@ test/test_ir.cpp
 test/test_undef.cpp
 test/test_codegen.cpp
 test/test_codegen_run.cpp
+test/test_aliases.cpp
+test/test_functional.cpp
+test/test_branch_follow.cpp
+test/test_relocation.cpp
 include/codegen/codegen.hpp
 include/codegen/emitter.hpp
 include/codegen/label.hpp
@@ -77,3 +85,6 @@ examples/encode.cpp
 examples/ir.cpp
 examples/codegen.cpp
 examples/hook.cpp
+examples/codegen_examples.cpp
+examples/relocation.cpp
+examples/branch_follow.cpp
