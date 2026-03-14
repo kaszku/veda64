@@ -7,8 +7,12 @@
 #include <nanobind/stl/vector.h>
 #include <nanobind/stl/string.h>
 #include <nanobind/stl/shared_ptr.h>
+#include <nanobind/stl/tuple.h>
+#include <nanobind/stl/list.h>
 #include <nanobind/make_iterator.h>
 #include <veda64.hpp>
+#include <veda64/relocation.hpp>
+#include <veda64/branch_follow.hpp>
 #ifdef VEDA64_IR
 #include <veda64/ir.hpp>
 #endif
@@ -1857,4 +1861,40 @@ NB_MODULE(veda64_py, m) {
     }, "ctx"_a, "insn"_a, "Execute a single ARM64 instruction against a context");
 
 #endif // VEDA64_IR
+
+    // --- Relocation API bindings ---
+    m.def("is_pc_relative", &veda64::is_pc_relative, "insn"_a,
+        "Check if an instruction is PC-relative");
+    m.def("can_relocate", &veda64::can_relocate, "insn"_a,
+        "Check if an instruction can be safely relocated");
+    m.def("relocate_instruction", [](uint32_t insn, uint64_t old_pc, uint64_t new_pc) {
+        uint32_t out[4];
+        size_t count = 0;
+        bool ok = veda64::relocate_instruction(insn, old_pc, new_pc, out, &count);
+        nb::list result;
+        if (ok) { for (size_t i = 0; i < count; i++) result.append(out[i]); }
+        return nb::make_tuple(ok, result);
+    }, "insn"_a, "old_pc"_a, "new_pc"_a,
+        "Relocate an instruction from old_pc to new_pc. Returns (success, [relocated_insns])");
+
+    // --- Branch following API bindings ---
+    nb::enum_<veda64::FlowType>(m, "FlowType")
+        .value("Sequential", veda64::FlowType::Sequential)
+        .value("Branch", veda64::FlowType::Branch)
+        .value("Call", veda64::FlowType::Call)
+        .value("ConditionalBranch", veda64::FlowType::ConditionalBranch)
+        .value("Return", veda64::FlowType::Return)
+        .value("Exception", veda64::FlowType::Exception)
+        .value("Unknown", veda64::FlowType::Unknown);
+
+    nb::class_<veda64::FlowInfo>(m, "FlowInfo")
+        .def_ro("type", &veda64::FlowInfo::type)
+        .def_ro("address", &veda64::FlowInfo::address)
+        .def_ro("target", &veda64::FlowInfo::target)
+        .def_ro("is_indirect", &veda64::FlowInfo::is_indirect)
+        .def_ro("has_fallthrough", &veda64::FlowInfo::has_fallthrough);
+
+    m.def("classify_flow", &veda64::classify_flow, "insn"_a, "address"_a,
+        "Classify the control flow of a single instruction");
 }
+

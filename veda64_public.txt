@@ -88,3 +88,5 @@ examples/hook.cpp
 examples/codegen_examples.cpp
 examples/relocation.cpp
 examples/branch_follow.cpp
+python/veda64_py.cpp
+vcpkg.json
