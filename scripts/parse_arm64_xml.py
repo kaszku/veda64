@@ -3519,29 +3519,31 @@ class ARM64XMLParser:
         code.append("")
 
         # register_arrangement - extract Arrangement from Register enum value
+        # Note: lookup arrays at namespace scope to avoid C++23 'static constexpr in constexpr fn'
+        code.append("namespace detail {")
+        code.append("    inline constexpr Arrangement arr_6[] = {Arrangement::None, Arrangement::B, Arrangement::H, Arrangement::S, Arrangement::D, Arrangement::Q};")
+        code.append("    inline constexpr Arrangement arr_5[] = {Arrangement::None, Arrangement::B, Arrangement::H, Arrangement::S, Arrangement::D};")
+        code.append("}")
+        code.append("")
         code.append("inline constexpr Arrangement register_arrangement(Register r) {")
         code.append("    auto v = static_cast<uint16_t>(r);")
         code.append(f"    if (v < {V_BASE}) return Arrangement::None;")  # GP + scalar
         code.append(f"    if (v <= {Z_BASE-1}) return static_cast<Arrangement>((v - {V_BASE}) / 32u);")  # V: direct
         code.append(f"    if (v <= {P_BASE-1}) {{")  # Z
         code.append(f"        auto idx = static_cast<uint8_t>((v - {Z_BASE}) / 32u);")
-        code.append("        static constexpr Arrangement z_arrs[] = {Arrangement::None, Arrangement::B, Arrangement::H, Arrangement::S, Arrangement::D, Arrangement::Q};")
-        code.append("        return (idx < 6) ? z_arrs[idx] : Arrangement::None;")
+        code.append("        return (idx < 6) ? detail::arr_6[idx] : Arrangement::None;")
         code.append("    }")
         code.append(f"    if (v <= {PN_BASE-1}) {{")  # P
         code.append(f"        auto idx = static_cast<uint8_t>((v - {P_BASE}) / 16u);")
-        code.append("        static constexpr Arrangement p_arrs[] = {Arrangement::None, Arrangement::B, Arrangement::H, Arrangement::S, Arrangement::D};")
-        code.append("        return (idx < 5) ? p_arrs[idx] : Arrangement::None;")
+        code.append("        return (idx < 5) ? detail::arr_5[idx] : Arrangement::None;")
         code.append("    }")
         code.append(f"    if (v <= {ZA_BASE-1}) {{")  # PN
         code.append(f"        auto idx = static_cast<uint8_t>((v - {PN_BASE}) / 16u);")
-        code.append("        static constexpr Arrangement p_arrs[] = {Arrangement::None, Arrangement::B, Arrangement::H, Arrangement::S, Arrangement::D};")
-        code.append("        return (idx < 5) ? p_arrs[idx] : Arrangement::None;")
+        code.append("        return (idx < 5) ? detail::arr_5[idx] : Arrangement::None;")
         code.append("    }")
         code.append(f"    if (v <= {ZT0_VAL-1}) {{")  # ZA
         code.append(f"        auto idx = static_cast<uint8_t>((v - {ZA_BASE}) / 9u);")
-        code.append("        static constexpr Arrangement za_arrs[] = {Arrangement::None, Arrangement::B, Arrangement::H, Arrangement::S, Arrangement::D, Arrangement::Q};")
-        code.append("        return (idx < 6) ? za_arrs[idx] : Arrangement::None;")
+        code.append("        return (idx < 6) ? detail::arr_6[idx] : Arrangement::None;")
         code.append("    }")
         code.append("    return Arrangement::None;")
         code.append("}")

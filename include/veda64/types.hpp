@@ -511,29 +511,30 @@ inline constexpr uint32_t register_num(Register r) {
     return 0;
 }
 
+namespace detail {
+    inline constexpr Arrangement arr_6[] = {Arrangement::None, Arrangement::B, Arrangement::H, Arrangement::S, Arrangement::D, Arrangement::Q};
+    inline constexpr Arrangement arr_5[] = {Arrangement::None, Arrangement::B, Arrangement::H, Arrangement::S, Arrangement::D};
+}
+
 inline constexpr Arrangement register_arrangement(Register r) {
     auto v = static_cast<uint16_t>(r);
     if (v < 226) return Arrangement::None;
     if (v <= 801) return static_cast<Arrangement>((v - 226) / 32u);
     if (v <= 993) {
         auto idx = static_cast<uint8_t>((v - 802) / 32u);
-        static constexpr Arrangement z_arrs[] = {Arrangement::None, Arrangement::B, Arrangement::H, Arrangement::S, Arrangement::D, Arrangement::Q};
-        return (idx < 6) ? z_arrs[idx] : Arrangement::None;
+        return (idx < 6) ? detail::arr_6[idx] : Arrangement::None;
     }
     if (v <= 1073) {
         auto idx = static_cast<uint8_t>((v - 994) / 16u);
-        static constexpr Arrangement p_arrs[] = {Arrangement::None, Arrangement::B, Arrangement::H, Arrangement::S, Arrangement::D};
-        return (idx < 5) ? p_arrs[idx] : Arrangement::None;
+        return (idx < 5) ? detail::arr_5[idx] : Arrangement::None;
     }
     if (v <= 1153) {
         auto idx = static_cast<uint8_t>((v - 1074) / 16u);
-        static constexpr Arrangement p_arrs[] = {Arrangement::None, Arrangement::B, Arrangement::H, Arrangement::S, Arrangement::D};
-        return (idx < 5) ? p_arrs[idx] : Arrangement::None;
+        return (idx < 5) ? detail::arr_5[idx] : Arrangement::None;
     }
     if (v <= 1207) {
         auto idx = static_cast<uint8_t>((v - 1154) / 9u);
-        static constexpr Arrangement za_arrs[] = {Arrangement::None, Arrangement::B, Arrangement::H, Arrangement::S, Arrangement::D, Arrangement::Q};
-        return (idx < 6) ? za_arrs[idx] : Arrangement::None;
+        return (idx < 6) ? detail::arr_6[idx] : Arrangement::None;
     }
     return Arrangement::None;
 }
