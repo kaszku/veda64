@@ -17,6 +17,8 @@ enum class IrTemplate : uint8_t {
     GpBinopFlags,   // ADDS, SUBS, ANDS (sets flags)
     GpBinopImm,     // ADD/SUB immediate
     GpBinopImmFlags,// ADDS/SUBS immediate (sets flags)
+    GpCompare,      // CMP/CMN/TST/NEGS register (no Rd in operands)
+    GpCompareImm,   // CMP/CMN/TST immediate (no Rd in operands)
     GpShift,        // LSL, LSR, ASR, ROR (variable shift)
     GpMove,         // MOV, MVN
     GpMoveImm,      // MOVZ, MOVN, MOVK

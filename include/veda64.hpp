@@ -17,10 +17,3 @@
 #ifdef VEDA64_IR
 #include "veda64/ir.hpp"
 #endif
-
-#include "veda64/relocation.hpp"
-#include "veda64/branch_follow.hpp"
-
-#ifdef VEDA64_CODEGEN
-#include "codegen/codegen.hpp"
-#endif

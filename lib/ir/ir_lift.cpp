@@ -207,6 +207,45 @@ static Lifted interpret_gp_binop_imm_flags(const Instruction& insn, const IrEntr
     return l;
 }
 
+// GP compare register: Rn, Rm (Rd=XZR omitted from operands)
+static Lifted interpret_gp_compare(const Instruction& insn, const IrEntry& e, IrDetail detail) {
+    Lifted l;
+    uint8_t sz = op_reg_sz(insn, 0);
+    uint32_t rn = op_reg(insn, 0);
+    uint32_t rm = op_reg(insn, 1);
+
+    auto t0 = next_temp(sz);
+    auto t1 = next_temp(sz);
+    auto t2 = next_temp(sz);
+
+    l.ops.push_back(make_op(Opcode::COPY, t0, VarNode::gpr(rn, sz)));
+    l.ops.push_back(make_op(Opcode::COPY, t1, VarNode::gpr(rm, sz)));
+    l.ops.push_back(make_op2(e.opcode, t2, t0, t1));
+    // Result discarded (Rd=XZR), only flags matter
+    bool is_sub = (e.opcode == Opcode::SUB);
+    emit_flags(l, t2, t0, t1, is_sub, detail);
+    return l;
+}
+
+// GP compare immediate: Rn, #imm (Rd=XZR omitted from operands)
+static Lifted interpret_gp_compare_imm(const Instruction& insn, const IrEntry& e, IrDetail detail) {
+    Lifted l;
+    uint8_t sz = op_reg_sz(insn, 0);
+    uint32_t rn = op_reg(insn, 0);
+    int64_t imm = op_imm(insn, 1);
+
+    auto t0 = next_temp(sz);
+    auto t1 = next_temp(sz);
+    auto imm_v = VarNode::constant(imm, sz);
+
+    l.ops.push_back(make_op(Opcode::COPY, t0, VarNode::gpr(rn, sz)));
+    l.ops.push_back(make_op2(e.opcode, t1, t0, imm_v));
+    // Result discarded (Rd=XZR), only flags matter
+    bool is_sub = (e.opcode == Opcode::SUB);
+    emit_flags(l, t1, t0, imm_v, is_sub, detail);
+    return l;
+}
+
 // GP move wide: Rd, #imm
 static Lifted interpret_gp_move_imm(const Instruction& insn, const IrEntry& e, IrDetail) {
     Lifted l;
@@ -777,6 +816,8 @@ static Interpreter get_interpreter(IrTemplate tpl) {
     case IrTemplate::GpBinopFlags:    return interpret_gp_binop_flags;
     case IrTemplate::GpBinopImm:      return interpret_gp_binop_imm;
     case IrTemplate::GpBinopImmFlags: return interpret_gp_binop_imm_flags;
+    case IrTemplate::GpCompare:       return interpret_gp_compare;
+    case IrTemplate::GpCompareImm:    return interpret_gp_compare_imm;
     case IrTemplate::GpShift:         return interpret_gp_shift;
     case IrTemplate::GpMove:          return interpret_gp_binop; // same pattern
     case IrTemplate::GpMoveImm:       return interpret_gp_move_imm;
