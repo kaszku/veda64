@@ -10,11 +10,18 @@
 #include <nanobind/stl/tuple.h>
 #include <nanobind/stl/list.h>
 #include <nanobind/make_iterator.h>
+#include <nanobind/stl/function.h>
 #include <veda64.hpp>
 #include <veda64/relocation.hpp>
 #include <veda64/branch_follow.hpp>
 #ifdef VEDA64_IR
 #include <veda64/ir.hpp>
+#endif
+#ifdef VEDA64_CODEGEN
+#include <codegen/codegen.hpp>
+#endif
+#ifdef VEDA64_HOOK
+#include <veda64/hook.hpp>
 #endif
 
 namespace nb = nanobind;
@@ -1896,5 +1903,611 @@ NB_MODULE(veda64_py, m) {
 
     m.def("classify_flow", &veda64::classify_flow, "insn"_a, "address"_a,
         "Classify the control flow of a single instruction");
+
+    nb::class_<veda64::BasicBlock>(m, "BasicBlock")
+        .def_ro("start", &veda64::BasicBlock::start)
+        .def_ro("end_", &veda64::BasicBlock::end)
+        .def_ro("instructions", &veda64::BasicBlock::instructions)
+        .def_ro("successors", &veda64::BasicBlock::successors)
+        .def("__repr__", [](const veda64::BasicBlock& bb) {
+            return "<BasicBlock 0x" + std::to_string(bb.start) + "-0x" + std::to_string(bb.end) + " (" + std::to_string(bb.instructions.size()) + " insns)>";
+        });
+
+    m.def("walk_basic_block", [](uint64_t start, nb::callable read_fn, size_t max_insns) {
+        return veda64::walk_basic_block(start, [&](uint64_t addr) -> uint32_t {
+            return nb::cast<uint32_t>(read_fn(addr));
+        }, max_insns);
+    }, "start"_a, "read_insn"_a, "max_insns"_a = 1024,
+        "Walk a basic block. read_insn(address) -> uint32_t returns the instruction at that address.");
+
+    m.def("walk_cfg", [](uint64_t entry, nb::callable read_fn, size_t max_blocks, size_t max_insns) {
+        return veda64::walk_cfg(entry, [&](uint64_t addr) -> uint32_t {
+            return nb::cast<uint32_t>(read_fn(addr));
+        }, max_blocks, max_insns);
+    }, "entry"_a, "read_insn"_a, "max_blocks"_a = 256, "max_insns_per_block"_a = 1024,
+        "Walk a full CFG from entry point. Returns list of BasicBlocks.");
+
+#ifdef VEDA64_CODEGEN
+    {
+    auto cg = m.def_submodule("codegen", "JIT code generator / assembler");
+
+    nb::class_<veda64::codegen::XReg>(cg, "XReg")
+        .def(nb::init<uint8_t>(), "idx"_a)
+        .def_ro("idx", &veda64::codegen::XReg::idx)
+        .def("__repr__", [](const veda64::codegen::XReg& r) { return "xreg" + std::to_string(r.idx); });
+    nb::class_<veda64::codegen::WReg>(cg, "WReg")
+        .def(nb::init<uint8_t>(), "idx"_a)
+        .def_ro("idx", &veda64::codegen::WReg::idx)
+        .def("__repr__", [](const veda64::codegen::WReg& r) { return "wreg" + std::to_string(r.idx); });
+    nb::class_<veda64::codegen::VReg>(cg, "VReg")
+        .def(nb::init<uint8_t>(), "idx"_a)
+        .def_ro("idx", &veda64::codegen::VReg::idx)
+        .def("b8", &veda64::codegen::VReg::b8)
+        .def("b16", &veda64::codegen::VReg::b16)
+        .def("h4", &veda64::codegen::VReg::h4)
+        .def("h8", &veda64::codegen::VReg::h8)
+        .def("s2", &veda64::codegen::VReg::s2)
+        .def("s4", &veda64::codegen::VReg::s4)
+        .def("d2", &veda64::codegen::VReg::d2)
+        .def("__repr__", [](const veda64::codegen::VReg& r) { return "vreg" + std::to_string(r.idx); });
+    nb::class_<veda64::codegen::BReg>(cg, "BReg")
+        .def(nb::init<uint8_t>(), "idx"_a)
+        .def_ro("idx", &veda64::codegen::BReg::idx)
+        .def("__repr__", [](const veda64::codegen::BReg& r) { return "breg" + std::to_string(r.idx); });
+    nb::class_<veda64::codegen::HReg>(cg, "HReg")
+        .def(nb::init<uint8_t>(), "idx"_a)
+        .def_ro("idx", &veda64::codegen::HReg::idx)
+        .def("__repr__", [](const veda64::codegen::HReg& r) { return "hreg" + std::to_string(r.idx); });
+    nb::class_<veda64::codegen::SReg>(cg, "SReg")
+        .def(nb::init<uint8_t>(), "idx"_a)
+        .def_ro("idx", &veda64::codegen::SReg::idx)
+        .def("__repr__", [](const veda64::codegen::SReg& r) { return "sreg" + std::to_string(r.idx); });
+    nb::class_<veda64::codegen::DReg>(cg, "DReg")
+        .def(nb::init<uint8_t>(), "idx"_a)
+        .def_ro("idx", &veda64::codegen::DReg::idx)
+        .def("__repr__", [](const veda64::codegen::DReg& r) { return "dreg" + std::to_string(r.idx); });
+    nb::class_<veda64::codegen::QReg>(cg, "QReg")
+        .def(nb::init<uint8_t>(), "idx"_a)
+        .def_ro("idx", &veda64::codegen::QReg::idx)
+        .def("__repr__", [](const veda64::codegen::QReg& r) { return "qreg" + std::to_string(r.idx); });
+    nb::enum_<veda64::codegen::Arr>(cg, "Arr")
+        .value("B8", veda64::codegen::Arr::B8)
+        .value("B16", veda64::codegen::Arr::B16)
+        .value("H4", veda64::codegen::Arr::H4)
+        .value("H8", veda64::codegen::Arr::H8)
+        .value("S2", veda64::codegen::Arr::S2)
+        .value("S4", veda64::codegen::Arr::S4)
+        .value("D2", veda64::codegen::Arr::D2)
+        ;
+    nb::class_<veda64::codegen::VArr>(cg, "VArr")
+        .def_ro("idx", &veda64::codegen::VArr::idx)
+        .def_ro("arr", &veda64::codegen::VArr::arr);
+
+    cg.attr("x0") = veda64::codegen::x0;
+    cg.attr("x1") = veda64::codegen::x1;
+    cg.attr("x2") = veda64::codegen::x2;
+    cg.attr("x3") = veda64::codegen::x3;
+    cg.attr("x4") = veda64::codegen::x4;
+    cg.attr("x5") = veda64::codegen::x5;
+    cg.attr("x6") = veda64::codegen::x6;
+    cg.attr("x7") = veda64::codegen::x7;
+    cg.attr("x8") = veda64::codegen::x8;
+    cg.attr("x9") = veda64::codegen::x9;
+    cg.attr("x10") = veda64::codegen::x10;
+    cg.attr("x11") = veda64::codegen::x11;
+    cg.attr("x12") = veda64::codegen::x12;
+    cg.attr("x13") = veda64::codegen::x13;
+    cg.attr("x14") = veda64::codegen::x14;
+    cg.attr("x15") = veda64::codegen::x15;
+    cg.attr("x16") = veda64::codegen::x16;
+    cg.attr("x17") = veda64::codegen::x17;
+    cg.attr("x18") = veda64::codegen::x18;
+    cg.attr("x19") = veda64::codegen::x19;
+    cg.attr("x20") = veda64::codegen::x20;
+    cg.attr("x21") = veda64::codegen::x21;
+    cg.attr("x22") = veda64::codegen::x22;
+    cg.attr("x23") = veda64::codegen::x23;
+    cg.attr("x24") = veda64::codegen::x24;
+    cg.attr("x25") = veda64::codegen::x25;
+    cg.attr("x26") = veda64::codegen::x26;
+    cg.attr("x27") = veda64::codegen::x27;
+    cg.attr("x28") = veda64::codegen::x28;
+    cg.attr("x29") = veda64::codegen::x29;
+    cg.attr("x30") = veda64::codegen::x30;
+    cg.attr("xzr") = veda64::codegen::xzr;
+    cg.attr("sp") = veda64::codegen::sp;
+    cg.attr("w0") = veda64::codegen::w0;
+    cg.attr("w1") = veda64::codegen::w1;
+    cg.attr("w2") = veda64::codegen::w2;
+    cg.attr("w3") = veda64::codegen::w3;
+    cg.attr("w4") = veda64::codegen::w4;
+    cg.attr("w5") = veda64::codegen::w5;
+    cg.attr("w6") = veda64::codegen::w6;
+    cg.attr("w7") = veda64::codegen::w7;
+    cg.attr("w8") = veda64::codegen::w8;
+    cg.attr("w9") = veda64::codegen::w9;
+    cg.attr("w10") = veda64::codegen::w10;
+    cg.attr("w11") = veda64::codegen::w11;
+    cg.attr("w12") = veda64::codegen::w12;
+    cg.attr("w13") = veda64::codegen::w13;
+    cg.attr("w14") = veda64::codegen::w14;
+    cg.attr("w15") = veda64::codegen::w15;
+    cg.attr("w16") = veda64::codegen::w16;
+    cg.attr("w17") = veda64::codegen::w17;
+    cg.attr("w18") = veda64::codegen::w18;
+    cg.attr("w19") = veda64::codegen::w19;
+    cg.attr("w20") = veda64::codegen::w20;
+    cg.attr("w21") = veda64::codegen::w21;
+    cg.attr("w22") = veda64::codegen::w22;
+    cg.attr("w23") = veda64::codegen::w23;
+    cg.attr("w24") = veda64::codegen::w24;
+    cg.attr("w25") = veda64::codegen::w25;
+    cg.attr("w26") = veda64::codegen::w26;
+    cg.attr("w27") = veda64::codegen::w27;
+    cg.attr("w28") = veda64::codegen::w28;
+    cg.attr("w29") = veda64::codegen::w29;
+    cg.attr("w30") = veda64::codegen::w30;
+    cg.attr("wzr") = veda64::codegen::wzr;
+    cg.attr("wsp") = veda64::codegen::wsp;
+    cg.attr("v0") = veda64::codegen::v0;
+    cg.attr("v1") = veda64::codegen::v1;
+    cg.attr("v2") = veda64::codegen::v2;
+    cg.attr("v3") = veda64::codegen::v3;
+    cg.attr("v4") = veda64::codegen::v4;
+    cg.attr("v5") = veda64::codegen::v5;
+    cg.attr("v6") = veda64::codegen::v6;
+    cg.attr("v7") = veda64::codegen::v7;
+    cg.attr("v8") = veda64::codegen::v8;
+    cg.attr("v9") = veda64::codegen::v9;
+    cg.attr("v10") = veda64::codegen::v10;
+    cg.attr("v11") = veda64::codegen::v11;
+    cg.attr("v12") = veda64::codegen::v12;
+    cg.attr("v13") = veda64::codegen::v13;
+    cg.attr("v14") = veda64::codegen::v14;
+    cg.attr("v15") = veda64::codegen::v15;
+    cg.attr("v16") = veda64::codegen::v16;
+    cg.attr("v17") = veda64::codegen::v17;
+    cg.attr("v18") = veda64::codegen::v18;
+    cg.attr("v19") = veda64::codegen::v19;
+    cg.attr("v20") = veda64::codegen::v20;
+    cg.attr("v21") = veda64::codegen::v21;
+    cg.attr("v22") = veda64::codegen::v22;
+    cg.attr("v23") = veda64::codegen::v23;
+    cg.attr("v24") = veda64::codegen::v24;
+    cg.attr("v25") = veda64::codegen::v25;
+    cg.attr("v26") = veda64::codegen::v26;
+    cg.attr("v27") = veda64::codegen::v27;
+    cg.attr("v28") = veda64::codegen::v28;
+    cg.attr("v29") = veda64::codegen::v29;
+    cg.attr("v30") = veda64::codegen::v30;
+    cg.attr("v31") = veda64::codegen::v31;
+    cg.attr("s0") = veda64::codegen::s0;
+    cg.attr("s1") = veda64::codegen::s1;
+    cg.attr("s2") = veda64::codegen::s2;
+    cg.attr("s3") = veda64::codegen::s3;
+    cg.attr("s4") = veda64::codegen::s4;
+    cg.attr("s5") = veda64::codegen::s5;
+    cg.attr("s6") = veda64::codegen::s6;
+    cg.attr("s7") = veda64::codegen::s7;
+    cg.attr("s8") = veda64::codegen::s8;
+    cg.attr("s9") = veda64::codegen::s9;
+    cg.attr("s10") = veda64::codegen::s10;
+    cg.attr("s11") = veda64::codegen::s11;
+    cg.attr("s12") = veda64::codegen::s12;
+    cg.attr("s13") = veda64::codegen::s13;
+    cg.attr("s14") = veda64::codegen::s14;
+    cg.attr("s15") = veda64::codegen::s15;
+    cg.attr("s16") = veda64::codegen::s16;
+    cg.attr("s17") = veda64::codegen::s17;
+    cg.attr("s18") = veda64::codegen::s18;
+    cg.attr("s19") = veda64::codegen::s19;
+    cg.attr("s20") = veda64::codegen::s20;
+    cg.attr("s21") = veda64::codegen::s21;
+    cg.attr("s22") = veda64::codegen::s22;
+    cg.attr("s23") = veda64::codegen::s23;
+    cg.attr("s24") = veda64::codegen::s24;
+    cg.attr("s25") = veda64::codegen::s25;
+    cg.attr("s26") = veda64::codegen::s26;
+    cg.attr("s27") = veda64::codegen::s27;
+    cg.attr("s28") = veda64::codegen::s28;
+    cg.attr("s29") = veda64::codegen::s29;
+    cg.attr("s30") = veda64::codegen::s30;
+    cg.attr("s31") = veda64::codegen::s31;
+    cg.attr("d0") = veda64::codegen::d0;
+    cg.attr("d1") = veda64::codegen::d1;
+    cg.attr("d2") = veda64::codegen::d2;
+    cg.attr("d3") = veda64::codegen::d3;
+    cg.attr("d4") = veda64::codegen::d4;
+    cg.attr("d5") = veda64::codegen::d5;
+    cg.attr("d6") = veda64::codegen::d6;
+    cg.attr("d7") = veda64::codegen::d7;
+    cg.attr("d8") = veda64::codegen::d8;
+    cg.attr("d9") = veda64::codegen::d9;
+    cg.attr("d10") = veda64::codegen::d10;
+    cg.attr("d11") = veda64::codegen::d11;
+    cg.attr("d12") = veda64::codegen::d12;
+    cg.attr("d13") = veda64::codegen::d13;
+    cg.attr("d14") = veda64::codegen::d14;
+    cg.attr("d15") = veda64::codegen::d15;
+    cg.attr("d16") = veda64::codegen::d16;
+    cg.attr("d17") = veda64::codegen::d17;
+    cg.attr("d18") = veda64::codegen::d18;
+    cg.attr("d19") = veda64::codegen::d19;
+    cg.attr("d20") = veda64::codegen::d20;
+    cg.attr("d21") = veda64::codegen::d21;
+    cg.attr("d22") = veda64::codegen::d22;
+    cg.attr("d23") = veda64::codegen::d23;
+    cg.attr("d24") = veda64::codegen::d24;
+    cg.attr("d25") = veda64::codegen::d25;
+    cg.attr("d26") = veda64::codegen::d26;
+    cg.attr("d27") = veda64::codegen::d27;
+    cg.attr("d28") = veda64::codegen::d28;
+    cg.attr("d29") = veda64::codegen::d29;
+    cg.attr("d30") = veda64::codegen::d30;
+    cg.attr("d31") = veda64::codegen::d31;
+    cg.attr("q0") = veda64::codegen::q0;
+    cg.attr("q1") = veda64::codegen::q1;
+    cg.attr("q2") = veda64::codegen::q2;
+    cg.attr("q3") = veda64::codegen::q3;
+    cg.attr("q4") = veda64::codegen::q4;
+    cg.attr("q5") = veda64::codegen::q5;
+    cg.attr("q6") = veda64::codegen::q6;
+    cg.attr("q7") = veda64::codegen::q7;
+    cg.attr("q8") = veda64::codegen::q8;
+    cg.attr("q9") = veda64::codegen::q9;
+    cg.attr("q10") = veda64::codegen::q10;
+    cg.attr("q11") = veda64::codegen::q11;
+    cg.attr("q12") = veda64::codegen::q12;
+    cg.attr("q13") = veda64::codegen::q13;
+    cg.attr("q14") = veda64::codegen::q14;
+    cg.attr("q15") = veda64::codegen::q15;
+    cg.attr("q16") = veda64::codegen::q16;
+    cg.attr("q17") = veda64::codegen::q17;
+    cg.attr("q18") = veda64::codegen::q18;
+    cg.attr("q19") = veda64::codegen::q19;
+    cg.attr("q20") = veda64::codegen::q20;
+    cg.attr("q21") = veda64::codegen::q21;
+    cg.attr("q22") = veda64::codegen::q22;
+    cg.attr("q23") = veda64::codegen::q23;
+    cg.attr("q24") = veda64::codegen::q24;
+    cg.attr("q25") = veda64::codegen::q25;
+    cg.attr("q26") = veda64::codegen::q26;
+    cg.attr("q27") = veda64::codegen::q27;
+    cg.attr("q28") = veda64::codegen::q28;
+    cg.attr("q29") = veda64::codegen::q29;
+    cg.attr("q30") = veda64::codegen::q30;
+    cg.attr("q31") = veda64::codegen::q31;
+    cg.attr("b0") = veda64::codegen::b0;
+    cg.attr("b1") = veda64::codegen::b1;
+    cg.attr("b2") = veda64::codegen::b2;
+    cg.attr("b3") = veda64::codegen::b3;
+    cg.attr("b4") = veda64::codegen::b4;
+    cg.attr("b5") = veda64::codegen::b5;
+    cg.attr("b6") = veda64::codegen::b6;
+    cg.attr("b7") = veda64::codegen::b7;
+    cg.attr("b8") = veda64::codegen::b8;
+    cg.attr("b9") = veda64::codegen::b9;
+    cg.attr("b10") = veda64::codegen::b10;
+    cg.attr("b11") = veda64::codegen::b11;
+    cg.attr("b12") = veda64::codegen::b12;
+    cg.attr("b13") = veda64::codegen::b13;
+    cg.attr("b14") = veda64::codegen::b14;
+    cg.attr("b15") = veda64::codegen::b15;
+    cg.attr("b16") = veda64::codegen::b16;
+    cg.attr("b17") = veda64::codegen::b17;
+    cg.attr("b18") = veda64::codegen::b18;
+    cg.attr("b19") = veda64::codegen::b19;
+    cg.attr("b20") = veda64::codegen::b20;
+    cg.attr("b21") = veda64::codegen::b21;
+    cg.attr("b22") = veda64::codegen::b22;
+    cg.attr("b23") = veda64::codegen::b23;
+    cg.attr("b24") = veda64::codegen::b24;
+    cg.attr("b25") = veda64::codegen::b25;
+    cg.attr("b26") = veda64::codegen::b26;
+    cg.attr("b27") = veda64::codegen::b27;
+    cg.attr("b28") = veda64::codegen::b28;
+    cg.attr("b29") = veda64::codegen::b29;
+    cg.attr("b30") = veda64::codegen::b30;
+    cg.attr("b31") = veda64::codegen::b31;
+    cg.attr("h0") = veda64::codegen::h0;
+    cg.attr("h1") = veda64::codegen::h1;
+    cg.attr("h2") = veda64::codegen::h2;
+    cg.attr("h3") = veda64::codegen::h3;
+    cg.attr("h4") = veda64::codegen::h4;
+    cg.attr("h5") = veda64::codegen::h5;
+    cg.attr("h6") = veda64::codegen::h6;
+    cg.attr("h7") = veda64::codegen::h7;
+    cg.attr("h8") = veda64::codegen::h8;
+    cg.attr("h9") = veda64::codegen::h9;
+    cg.attr("h10") = veda64::codegen::h10;
+    cg.attr("h11") = veda64::codegen::h11;
+    cg.attr("h12") = veda64::codegen::h12;
+    cg.attr("h13") = veda64::codegen::h13;
+    cg.attr("h14") = veda64::codegen::h14;
+    cg.attr("h15") = veda64::codegen::h15;
+    cg.attr("h16") = veda64::codegen::h16;
+    cg.attr("h17") = veda64::codegen::h17;
+    cg.attr("h18") = veda64::codegen::h18;
+    cg.attr("h19") = veda64::codegen::h19;
+    cg.attr("h20") = veda64::codegen::h20;
+    cg.attr("h21") = veda64::codegen::h21;
+    cg.attr("h22") = veda64::codegen::h22;
+    cg.attr("h23") = veda64::codegen::h23;
+    cg.attr("h24") = veda64::codegen::h24;
+    cg.attr("h25") = veda64::codegen::h25;
+    cg.attr("h26") = veda64::codegen::h26;
+    cg.attr("h27") = veda64::codegen::h27;
+    cg.attr("h28") = veda64::codegen::h28;
+    cg.attr("h29") = veda64::codegen::h29;
+    cg.attr("h30") = veda64::codegen::h30;
+    cg.attr("h31") = veda64::codegen::h31;
+
+    nb::enum_<veda64::codegen::MemMode>(cg, "MemMode")
+        .value("Offset", veda64::codegen::MemMode::Offset)
+        .value("Pre", veda64::codegen::MemMode::Pre)
+        .value("Post", veda64::codegen::MemMode::Post)
+        .value("RegOffset", veda64::codegen::MemMode::RegOffset);
+
+    nb::class_<veda64::codegen::Mem>(cg, "Mem")
+        .def_ro("base_idx", &veda64::codegen::Mem::base_idx)
+        .def_ro("offset", &veda64::codegen::Mem::offset)
+        .def_ro("mode", &veda64::codegen::Mem::mode);
+    cg.def("ptr", nb::overload_cast<veda64::codegen::XReg, int32_t>(&veda64::codegen::ptr),
+        "base"_a, "offset"_a = 0, "Create [base, #offset] memory operand");
+    cg.def("pre", &veda64::codegen::pre, "base"_a, "offset"_a,
+        "Create [base, #offset]! pre-index memory operand");
+    cg.def("post", &veda64::codegen::post, "base"_a, "offset"_a,
+        "Create [base], #offset post-index memory operand");
+
+    nb::class_<veda64::codegen::Shift>(cg, "Shift")
+        .def(nb::init<>())
+        .def(nb::init<veda64::ShiftType, uint8_t>(), "type"_a, "amount"_a)
+        .def_rw("type", &veda64::codegen::Shift::type)
+        .def_rw("amount", &veda64::codegen::Shift::amount);
+    nb::class_<veda64::codegen::Extend>(cg, "Extend")
+        .def(nb::init<veda64::ExtendType, uint8_t>(), "type"_a, "amount"_a = 0)
+        .def_rw("type", &veda64::codegen::Extend::type)
+        .def_rw("amount", &veda64::codegen::Extend::amount);
+
+    nb::class_<veda64::codegen::Label>(cg, "Label")
+        .def(nb::init<>())
+        .def("is_bound", &veda64::codegen::Label::is_bound);
+
+    nb::class_<veda64::codegen::CodeGenerator>(cg, "CodeGenerator")
+        .def(nb::init<size_t>(), "capacity"_a = 4096)
+        .def("size", &veda64::codegen::CodeGenerator::size)
+        .def("ready", &veda64::codegen::CodeGenerator::ready, nb::rv_policy::reference)
+        .def("bind", &veda64::codegen::CodeGenerator::bind, "label"_a, nb::rv_policy::reference)
+        .def("get_code", [](const veda64::codegen::CodeGenerator& gen) { return reinterpret_cast<uintptr_t>(gen.data()); })
+        .def("get_bytes", [](const veda64::codegen::CodeGenerator& gen) {
+            return nb::bytes(reinterpret_cast<const char*>(gen.data()), gen.size());
+        })
+        .def("add_x_imm", nb::overload_cast<veda64::codegen::XReg, veda64::codegen::XReg, uint32_t, bool>(&veda64::codegen::CodeGenerator::add), "rd"_a, "rn"_a, "imm12"_a, "lsl12"_a = false, nb::rv_policy::reference)
+        .def("add_w_imm", nb::overload_cast<veda64::codegen::WReg, veda64::codegen::WReg, uint32_t, bool>(&veda64::codegen::CodeGenerator::add), "rd"_a, "rn"_a, "imm12"_a, "lsl12"_a = false, nb::rv_policy::reference)
+        .def("sub_x_imm", nb::overload_cast<veda64::codegen::XReg, veda64::codegen::XReg, uint32_t, bool>(&veda64::codegen::CodeGenerator::sub), "rd"_a, "rn"_a, "imm12"_a, "lsl12"_a = false, nb::rv_policy::reference)
+        .def("sub_w_imm", nb::overload_cast<veda64::codegen::WReg, veda64::codegen::WReg, uint32_t, bool>(&veda64::codegen::CodeGenerator::sub), "rd"_a, "rn"_a, "imm12"_a, "lsl12"_a = false, nb::rv_policy::reference)
+        .def("adds_x_imm", nb::overload_cast<veda64::codegen::XReg, veda64::codegen::XReg, uint32_t, bool>(&veda64::codegen::CodeGenerator::adds), "rd"_a, "rn"_a, "imm12"_a, "lsl12"_a = false, nb::rv_policy::reference)
+        .def("adds_w_imm", nb::overload_cast<veda64::codegen::WReg, veda64::codegen::WReg, uint32_t, bool>(&veda64::codegen::CodeGenerator::adds), "rd"_a, "rn"_a, "imm12"_a, "lsl12"_a = false, nb::rv_policy::reference)
+        .def("subs_x_imm", nb::overload_cast<veda64::codegen::XReg, veda64::codegen::XReg, uint32_t, bool>(&veda64::codegen::CodeGenerator::subs), "rd"_a, "rn"_a, "imm12"_a, "lsl12"_a = false, nb::rv_policy::reference)
+        .def("subs_w_imm", nb::overload_cast<veda64::codegen::WReg, veda64::codegen::WReg, uint32_t, bool>(&veda64::codegen::CodeGenerator::subs), "rd"_a, "rn"_a, "imm12"_a, "lsl12"_a = false, nb::rv_policy::reference)
+        .def("add_x_reg", nb::overload_cast<veda64::codegen::XReg, veda64::codegen::XReg, veda64::codegen::XReg, veda64::codegen::Shift>(&veda64::codegen::CodeGenerator::add), "rd"_a, "rn"_a, "rm"_a, "sh"_a = veda64::codegen::Shift{}, nb::rv_policy::reference)
+        .def("add_w_reg", nb::overload_cast<veda64::codegen::WReg, veda64::codegen::WReg, veda64::codegen::WReg, veda64::codegen::Shift>(&veda64::codegen::CodeGenerator::add), "rd"_a, "rn"_a, "rm"_a, "sh"_a = veda64::codegen::Shift{}, nb::rv_policy::reference)
+        .def("sub_x_reg", nb::overload_cast<veda64::codegen::XReg, veda64::codegen::XReg, veda64::codegen::XReg, veda64::codegen::Shift>(&veda64::codegen::CodeGenerator::sub), "rd"_a, "rn"_a, "rm"_a, "sh"_a = veda64::codegen::Shift{}, nb::rv_policy::reference)
+        .def("sub_w_reg", nb::overload_cast<veda64::codegen::WReg, veda64::codegen::WReg, veda64::codegen::WReg, veda64::codegen::Shift>(&veda64::codegen::CodeGenerator::sub), "rd"_a, "rn"_a, "rm"_a, "sh"_a = veda64::codegen::Shift{}, nb::rv_policy::reference)
+        .def("adds_x_reg", nb::overload_cast<veda64::codegen::XReg, veda64::codegen::XReg, veda64::codegen::XReg, veda64::codegen::Shift>(&veda64::codegen::CodeGenerator::adds), "rd"_a, "rn"_a, "rm"_a, "sh"_a = veda64::codegen::Shift{}, nb::rv_policy::reference)
+        .def("adds_w_reg", nb::overload_cast<veda64::codegen::WReg, veda64::codegen::WReg, veda64::codegen::WReg, veda64::codegen::Shift>(&veda64::codegen::CodeGenerator::adds), "rd"_a, "rn"_a, "rm"_a, "sh"_a = veda64::codegen::Shift{}, nb::rv_policy::reference)
+        .def("subs_x_reg", nb::overload_cast<veda64::codegen::XReg, veda64::codegen::XReg, veda64::codegen::XReg, veda64::codegen::Shift>(&veda64::codegen::CodeGenerator::subs), "rd"_a, "rn"_a, "rm"_a, "sh"_a = veda64::codegen::Shift{}, nb::rv_policy::reference)
+        .def("subs_w_reg", nb::overload_cast<veda64::codegen::WReg, veda64::codegen::WReg, veda64::codegen::WReg, veda64::codegen::Shift>(&veda64::codegen::CodeGenerator::subs), "rd"_a, "rn"_a, "rm"_a, "sh"_a = veda64::codegen::Shift{}, nb::rv_policy::reference)
+        .def("and__x_imm", nb::overload_cast<veda64::codegen::XReg, veda64::codegen::XReg, uint64_t>(&veda64::codegen::CodeGenerator::and_), "rd"_a, "rn"_a, "imm"_a, nb::rv_policy::reference)
+        .def("and__w_imm", nb::overload_cast<veda64::codegen::WReg, veda64::codegen::WReg, uint64_t>(&veda64::codegen::CodeGenerator::and_), "rd"_a, "rn"_a, "imm"_a, nb::rv_policy::reference)
+        .def("orr_x_imm", nb::overload_cast<veda64::codegen::XReg, veda64::codegen::XReg, uint64_t>(&veda64::codegen::CodeGenerator::orr), "rd"_a, "rn"_a, "imm"_a, nb::rv_policy::reference)
+        .def("orr_w_imm", nb::overload_cast<veda64::codegen::WReg, veda64::codegen::WReg, uint64_t>(&veda64::codegen::CodeGenerator::orr), "rd"_a, "rn"_a, "imm"_a, nb::rv_policy::reference)
+        .def("eor_x_imm", nb::overload_cast<veda64::codegen::XReg, veda64::codegen::XReg, uint64_t>(&veda64::codegen::CodeGenerator::eor), "rd"_a, "rn"_a, "imm"_a, nb::rv_policy::reference)
+        .def("eor_w_imm", nb::overload_cast<veda64::codegen::WReg, veda64::codegen::WReg, uint64_t>(&veda64::codegen::CodeGenerator::eor), "rd"_a, "rn"_a, "imm"_a, nb::rv_policy::reference)
+        .def("ands_x_imm", nb::overload_cast<veda64::codegen::XReg, veda64::codegen::XReg, uint64_t>(&veda64::codegen::CodeGenerator::ands), "rd"_a, "rn"_a, "imm"_a, nb::rv_policy::reference)
+        .def("ands_w_imm", nb::overload_cast<veda64::codegen::WReg, veda64::codegen::WReg, uint64_t>(&veda64::codegen::CodeGenerator::ands), "rd"_a, "rn"_a, "imm"_a, nb::rv_policy::reference)
+        .def("and__x_reg", nb::overload_cast<veda64::codegen::XReg, veda64::codegen::XReg, veda64::codegen::XReg, veda64::codegen::Shift>(&veda64::codegen::CodeGenerator::and_), "rd"_a, "rn"_a, "rm"_a, "sh"_a = veda64::codegen::Shift{}, nb::rv_policy::reference)
+        .def("and__w_reg", nb::overload_cast<veda64::codegen::WReg, veda64::codegen::WReg, veda64::codegen::WReg, veda64::codegen::Shift>(&veda64::codegen::CodeGenerator::and_), "rd"_a, "rn"_a, "rm"_a, "sh"_a = veda64::codegen::Shift{}, nb::rv_policy::reference)
+        .def("orr_x_reg", nb::overload_cast<veda64::codegen::XReg, veda64::codegen::XReg, veda64::codegen::XReg, veda64::codegen::Shift>(&veda64::codegen::CodeGenerator::orr), "rd"_a, "rn"_a, "rm"_a, "sh"_a = veda64::codegen::Shift{}, nb::rv_policy::reference)
+        .def("orr_w_reg", nb::overload_cast<veda64::codegen::WReg, veda64::codegen::WReg, veda64::codegen::WReg, veda64::codegen::Shift>(&veda64::codegen::CodeGenerator::orr), "rd"_a, "rn"_a, "rm"_a, "sh"_a = veda64::codegen::Shift{}, nb::rv_policy::reference)
+        .def("eor_x_reg", nb::overload_cast<veda64::codegen::XReg, veda64::codegen::XReg, veda64::codegen::XReg, veda64::codegen::Shift>(&veda64::codegen::CodeGenerator::eor), "rd"_a, "rn"_a, "rm"_a, "sh"_a = veda64::codegen::Shift{}, nb::rv_policy::reference)
+        .def("eor_w_reg", nb::overload_cast<veda64::codegen::WReg, veda64::codegen::WReg, veda64::codegen::WReg, veda64::codegen::Shift>(&veda64::codegen::CodeGenerator::eor), "rd"_a, "rn"_a, "rm"_a, "sh"_a = veda64::codegen::Shift{}, nb::rv_policy::reference)
+        .def("orn_x_reg", nb::overload_cast<veda64::codegen::XReg, veda64::codegen::XReg, veda64::codegen::XReg, veda64::codegen::Shift>(&veda64::codegen::CodeGenerator::orn), "rd"_a, "rn"_a, "rm"_a, "sh"_a = veda64::codegen::Shift{}, nb::rv_policy::reference)
+        .def("orn_w_reg", nb::overload_cast<veda64::codegen::WReg, veda64::codegen::WReg, veda64::codegen::WReg, veda64::codegen::Shift>(&veda64::codegen::CodeGenerator::orn), "rd"_a, "rn"_a, "rm"_a, "sh"_a = veda64::codegen::Shift{}, nb::rv_policy::reference)
+        .def("bic_x_reg", nb::overload_cast<veda64::codegen::XReg, veda64::codegen::XReg, veda64::codegen::XReg, veda64::codegen::Shift>(&veda64::codegen::CodeGenerator::bic), "rd"_a, "rn"_a, "rm"_a, "sh"_a = veda64::codegen::Shift{}, nb::rv_policy::reference)
+        .def("bic_w_reg", nb::overload_cast<veda64::codegen::WReg, veda64::codegen::WReg, veda64::codegen::WReg, veda64::codegen::Shift>(&veda64::codegen::CodeGenerator::bic), "rd"_a, "rn"_a, "rm"_a, "sh"_a = veda64::codegen::Shift{}, nb::rv_policy::reference)
+        .def("ands_x_reg", nb::overload_cast<veda64::codegen::XReg, veda64::codegen::XReg, veda64::codegen::XReg, veda64::codegen::Shift>(&veda64::codegen::CodeGenerator::ands), "rd"_a, "rn"_a, "rm"_a, "sh"_a = veda64::codegen::Shift{}, nb::rv_policy::reference)
+        .def("ands_w_reg", nb::overload_cast<veda64::codegen::WReg, veda64::codegen::WReg, veda64::codegen::WReg, veda64::codegen::Shift>(&veda64::codegen::CodeGenerator::ands), "rd"_a, "rn"_a, "rm"_a, "sh"_a = veda64::codegen::Shift{}, nb::rv_policy::reference)
+        .def("movz_x", nb::overload_cast<veda64::codegen::XReg, uint16_t, uint8_t>(&veda64::codegen::CodeGenerator::movz), "rd"_a, "imm16"_a, "hw"_a = 0, nb::rv_policy::reference)
+        .def("movz_w", nb::overload_cast<veda64::codegen::WReg, uint16_t, uint8_t>(&veda64::codegen::CodeGenerator::movz), "rd"_a, "imm16"_a, "hw"_a = 0, nb::rv_policy::reference)
+        .def("movn_x", nb::overload_cast<veda64::codegen::XReg, uint16_t, uint8_t>(&veda64::codegen::CodeGenerator::movn), "rd"_a, "imm16"_a, "hw"_a = 0, nb::rv_policy::reference)
+        .def("movn_w", nb::overload_cast<veda64::codegen::WReg, uint16_t, uint8_t>(&veda64::codegen::CodeGenerator::movn), "rd"_a, "imm16"_a, "hw"_a = 0, nb::rv_policy::reference)
+        .def("movk_x", nb::overload_cast<veda64::codegen::XReg, uint16_t, uint8_t>(&veda64::codegen::CodeGenerator::movk), "rd"_a, "imm16"_a, "hw"_a = 0, nb::rv_policy::reference)
+        .def("movk_w", nb::overload_cast<veda64::codegen::WReg, uint16_t, uint8_t>(&veda64::codegen::CodeGenerator::movk), "rd"_a, "imm16"_a, "hw"_a = 0, nb::rv_policy::reference)
+        .def("mov_x_imm", nb::overload_cast<veda64::codegen::XReg, uint64_t>(&veda64::codegen::CodeGenerator::mov), "rd"_a, "imm"_a, nb::rv_policy::reference)
+        .def("mov_w_imm", nb::overload_cast<veda64::codegen::WReg, uint32_t>(&veda64::codegen::CodeGenerator::mov), "rd"_a, "imm"_a, nb::rv_policy::reference)
+        .def("mov_x", nb::overload_cast<veda64::codegen::XReg, veda64::codegen::XReg>(&veda64::codegen::CodeGenerator::mov), "rd"_a, "rm"_a, nb::rv_policy::reference)
+        .def("mov_w", nb::overload_cast<veda64::codegen::WReg, veda64::codegen::WReg>(&veda64::codegen::CodeGenerator::mov), "rd"_a, "rm"_a, nb::rv_policy::reference)
+        .def("mul_x", nb::overload_cast<veda64::codegen::XReg, veda64::codegen::XReg, veda64::codegen::XReg>(&veda64::codegen::CodeGenerator::mul), "rd"_a, "rn"_a, "rm"_a, nb::rv_policy::reference)
+        .def("mul_w", nb::overload_cast<veda64::codegen::WReg, veda64::codegen::WReg, veda64::codegen::WReg>(&veda64::codegen::CodeGenerator::mul), "rd"_a, "rn"_a, "rm"_a, nb::rv_policy::reference)
+        .def("sdiv_x", nb::overload_cast<veda64::codegen::XReg, veda64::codegen::XReg, veda64::codegen::XReg>(&veda64::codegen::CodeGenerator::sdiv), "rd"_a, "rn"_a, "rm"_a, nb::rv_policy::reference)
+        .def("sdiv_w", nb::overload_cast<veda64::codegen::WReg, veda64::codegen::WReg, veda64::codegen::WReg>(&veda64::codegen::CodeGenerator::sdiv), "rd"_a, "rn"_a, "rm"_a, nb::rv_policy::reference)
+        .def("udiv_x", nb::overload_cast<veda64::codegen::XReg, veda64::codegen::XReg, veda64::codegen::XReg>(&veda64::codegen::CodeGenerator::udiv), "rd"_a, "rn"_a, "rm"_a, nb::rv_policy::reference)
+        .def("udiv_w", nb::overload_cast<veda64::codegen::WReg, veda64::codegen::WReg, veda64::codegen::WReg>(&veda64::codegen::CodeGenerator::udiv), "rd"_a, "rn"_a, "rm"_a, nb::rv_policy::reference)
+        .def("mneg_x", nb::overload_cast<veda64::codegen::XReg, veda64::codegen::XReg, veda64::codegen::XReg>(&veda64::codegen::CodeGenerator::mneg), "rd"_a, "rn"_a, "rm"_a, nb::rv_policy::reference)
+        .def("mneg_w", nb::overload_cast<veda64::codegen::WReg, veda64::codegen::WReg, veda64::codegen::WReg>(&veda64::codegen::CodeGenerator::mneg), "rd"_a, "rn"_a, "rm"_a, nb::rv_policy::reference)
+        .def("lsl_x_reg", nb::overload_cast<veda64::codegen::XReg, veda64::codegen::XReg, veda64::codegen::XReg>(&veda64::codegen::CodeGenerator::lsl), "rd"_a, "rn"_a, "rm"_a, nb::rv_policy::reference)
+        .def("lsl_w_reg", nb::overload_cast<veda64::codegen::WReg, veda64::codegen::WReg, veda64::codegen::WReg>(&veda64::codegen::CodeGenerator::lsl), "rd"_a, "rn"_a, "rm"_a, nb::rv_policy::reference)
+        .def("lsr_x_reg", nb::overload_cast<veda64::codegen::XReg, veda64::codegen::XReg, veda64::codegen::XReg>(&veda64::codegen::CodeGenerator::lsr), "rd"_a, "rn"_a, "rm"_a, nb::rv_policy::reference)
+        .def("lsr_w_reg", nb::overload_cast<veda64::codegen::WReg, veda64::codegen::WReg, veda64::codegen::WReg>(&veda64::codegen::CodeGenerator::lsr), "rd"_a, "rn"_a, "rm"_a, nb::rv_policy::reference)
+        .def("asr_x_reg", nb::overload_cast<veda64::codegen::XReg, veda64::codegen::XReg, veda64::codegen::XReg>(&veda64::codegen::CodeGenerator::asr), "rd"_a, "rn"_a, "rm"_a, nb::rv_policy::reference)
+        .def("asr_w_reg", nb::overload_cast<veda64::codegen::WReg, veda64::codegen::WReg, veda64::codegen::WReg>(&veda64::codegen::CodeGenerator::asr), "rd"_a, "rn"_a, "rm"_a, nb::rv_policy::reference)
+        .def("ror_x_reg", nb::overload_cast<veda64::codegen::XReg, veda64::codegen::XReg, veda64::codegen::XReg>(&veda64::codegen::CodeGenerator::ror), "rd"_a, "rn"_a, "rm"_a, nb::rv_policy::reference)
+        .def("ror_w_reg", nb::overload_cast<veda64::codegen::WReg, veda64::codegen::WReg, veda64::codegen::WReg>(&veda64::codegen::CodeGenerator::ror), "rd"_a, "rn"_a, "rm"_a, nb::rv_policy::reference)
+        .def("lsl_x_imm", nb::overload_cast<veda64::codegen::XReg, veda64::codegen::XReg, uint8_t>(&veda64::codegen::CodeGenerator::lsl), "rd"_a, "rn"_a, "imm"_a, nb::rv_policy::reference)
+        .def("lsl_w_imm", nb::overload_cast<veda64::codegen::WReg, veda64::codegen::WReg, uint8_t>(&veda64::codegen::CodeGenerator::lsl), "rd"_a, "rn"_a, "imm"_a, nb::rv_policy::reference)
+        .def("lsr_x_imm", nb::overload_cast<veda64::codegen::XReg, veda64::codegen::XReg, uint8_t>(&veda64::codegen::CodeGenerator::lsr), "rd"_a, "rn"_a, "imm"_a, nb::rv_policy::reference)
+        .def("lsr_w_imm", nb::overload_cast<veda64::codegen::WReg, veda64::codegen::WReg, uint8_t>(&veda64::codegen::CodeGenerator::lsr), "rd"_a, "rn"_a, "imm"_a, nb::rv_policy::reference)
+        .def("asr_x_imm", nb::overload_cast<veda64::codegen::XReg, veda64::codegen::XReg, uint8_t>(&veda64::codegen::CodeGenerator::asr), "rd"_a, "rn"_a, "imm"_a, nb::rv_policy::reference)
+        .def("asr_w_imm", nb::overload_cast<veda64::codegen::WReg, veda64::codegen::WReg, uint8_t>(&veda64::codegen::CodeGenerator::asr), "rd"_a, "rn"_a, "imm"_a, nb::rv_policy::reference)
+        .def("ror_x_imm", nb::overload_cast<veda64::codegen::XReg, veda64::codegen::XReg, uint8_t>(&veda64::codegen::CodeGenerator::ror), "rd"_a, "rn"_a, "imm"_a, nb::rv_policy::reference)
+        .def("ror_w_imm", nb::overload_cast<veda64::codegen::WReg, veda64::codegen::WReg, uint8_t>(&veda64::codegen::CodeGenerator::ror), "rd"_a, "rn"_a, "imm"_a, nb::rv_policy::reference)
+        .def("csel_x", nb::overload_cast<veda64::codegen::XReg, veda64::codegen::XReg, veda64::codegen::XReg, veda64::Condition>(&veda64::codegen::CodeGenerator::csel), "rd"_a, "rn"_a, "rm"_a, "cc"_a, nb::rv_policy::reference)
+        .def("csel_w", nb::overload_cast<veda64::codegen::WReg, veda64::codegen::WReg, veda64::codegen::WReg, veda64::Condition>(&veda64::codegen::CodeGenerator::csel), "rd"_a, "rn"_a, "rm"_a, "cc"_a, nb::rv_policy::reference)
+        .def("csinc_x", nb::overload_cast<veda64::codegen::XReg, veda64::codegen::XReg, veda64::codegen::XReg, veda64::Condition>(&veda64::codegen::CodeGenerator::csinc), "rd"_a, "rn"_a, "rm"_a, "cc"_a, nb::rv_policy::reference)
+        .def("csinc_w", nb::overload_cast<veda64::codegen::WReg, veda64::codegen::WReg, veda64::codegen::WReg, veda64::Condition>(&veda64::codegen::CodeGenerator::csinc), "rd"_a, "rn"_a, "rm"_a, "cc"_a, nb::rv_policy::reference)
+        .def("csinv_x", nb::overload_cast<veda64::codegen::XReg, veda64::codegen::XReg, veda64::codegen::XReg, veda64::Condition>(&veda64::codegen::CodeGenerator::csinv), "rd"_a, "rn"_a, "rm"_a, "cc"_a, nb::rv_policy::reference)
+        .def("csinv_w", nb::overload_cast<veda64::codegen::WReg, veda64::codegen::WReg, veda64::codegen::WReg, veda64::Condition>(&veda64::codegen::CodeGenerator::csinv), "rd"_a, "rn"_a, "rm"_a, "cc"_a, nb::rv_policy::reference)
+        .def("csneg_x", nb::overload_cast<veda64::codegen::XReg, veda64::codegen::XReg, veda64::codegen::XReg, veda64::Condition>(&veda64::codegen::CodeGenerator::csneg), "rd"_a, "rn"_a, "rm"_a, "cc"_a, nb::rv_policy::reference)
+        .def("csneg_w", nb::overload_cast<veda64::codegen::WReg, veda64::codegen::WReg, veda64::codegen::WReg, veda64::Condition>(&veda64::codegen::CodeGenerator::csneg), "rd"_a, "rn"_a, "rm"_a, "cc"_a, nb::rv_policy::reference)
+        .def("cmp_x_reg", nb::overload_cast<veda64::codegen::XReg, veda64::codegen::XReg, veda64::codegen::Shift>(&veda64::codegen::CodeGenerator::cmp), "rn"_a, "rm"_a, "sh"_a = veda64::codegen::Shift{}, nb::rv_policy::reference)
+        .def("cmp_x_imm", nb::overload_cast<veda64::codegen::XReg, uint32_t, bool>(&veda64::codegen::CodeGenerator::cmp), "rn"_a, "imm12"_a, "lsl12"_a = false, nb::rv_policy::reference)
+        .def("cmp_w_reg", nb::overload_cast<veda64::codegen::WReg, veda64::codegen::WReg, veda64::codegen::Shift>(&veda64::codegen::CodeGenerator::cmp), "rn"_a, "rm"_a, "sh"_a = veda64::codegen::Shift{}, nb::rv_policy::reference)
+        .def("cmp_w_imm", nb::overload_cast<veda64::codegen::WReg, uint32_t, bool>(&veda64::codegen::CodeGenerator::cmp), "rn"_a, "imm12"_a, "lsl12"_a = false, nb::rv_policy::reference)
+        .def("cmn_x_reg", nb::overload_cast<veda64::codegen::XReg, veda64::codegen::XReg, veda64::codegen::Shift>(&veda64::codegen::CodeGenerator::cmn), "rn"_a, "rm"_a, "sh"_a = veda64::codegen::Shift{}, nb::rv_policy::reference)
+        .def("cmn_x_imm", nb::overload_cast<veda64::codegen::XReg, uint32_t, bool>(&veda64::codegen::CodeGenerator::cmn), "rn"_a, "imm12"_a, "lsl12"_a = false, nb::rv_policy::reference)
+        .def("cmn_w_reg", nb::overload_cast<veda64::codegen::WReg, veda64::codegen::WReg, veda64::codegen::Shift>(&veda64::codegen::CodeGenerator::cmn), "rn"_a, "rm"_a, "sh"_a = veda64::codegen::Shift{}, nb::rv_policy::reference)
+        .def("cmn_w_imm", nb::overload_cast<veda64::codegen::WReg, uint32_t, bool>(&veda64::codegen::CodeGenerator::cmn), "rn"_a, "imm12"_a, "lsl12"_a = false, nb::rv_policy::reference)
+        .def("cset_x", nb::overload_cast<veda64::codegen::XReg, veda64::Condition>(&veda64::codegen::CodeGenerator::cset), "rd"_a, "cc"_a, nb::rv_policy::reference)
+        .def("cset_w", nb::overload_cast<veda64::codegen::WReg, veda64::Condition>(&veda64::codegen::CodeGenerator::cset), "rd"_a, "cc"_a, nb::rv_policy::reference)
+        .def("neg_x", nb::overload_cast<veda64::codegen::XReg, veda64::codegen::XReg, veda64::codegen::Shift>(&veda64::codegen::CodeGenerator::neg), "rd"_a, "rm"_a, "sh"_a = veda64::codegen::Shift{}, nb::rv_policy::reference)
+        .def("mvn_x", nb::overload_cast<veda64::codegen::XReg, veda64::codegen::XReg, veda64::codegen::Shift>(&veda64::codegen::CodeGenerator::mvn), "rd"_a, "rm"_a, "sh"_a = veda64::codegen::Shift{}, nb::rv_policy::reference)
+        .def("clz_x", nb::overload_cast<veda64::codegen::XReg, veda64::codegen::XReg>(&veda64::codegen::CodeGenerator::clz), "rd"_a, "rn"_a, nb::rv_policy::reference)
+        .def("clz_w", nb::overload_cast<veda64::codegen::WReg, veda64::codegen::WReg>(&veda64::codegen::CodeGenerator::clz), "rd"_a, "rn"_a, nb::rv_policy::reference)
+        .def("cls_x", nb::overload_cast<veda64::codegen::XReg, veda64::codegen::XReg>(&veda64::codegen::CodeGenerator::cls), "rd"_a, "rn"_a, nb::rv_policy::reference)
+        .def("cls_w", nb::overload_cast<veda64::codegen::WReg, veda64::codegen::WReg>(&veda64::codegen::CodeGenerator::cls), "rd"_a, "rn"_a, nb::rv_policy::reference)
+        .def("rbit_x", nb::overload_cast<veda64::codegen::XReg, veda64::codegen::XReg>(&veda64::codegen::CodeGenerator::rbit), "rd"_a, "rn"_a, nb::rv_policy::reference)
+        .def("rbit_w", nb::overload_cast<veda64::codegen::WReg, veda64::codegen::WReg>(&veda64::codegen::CodeGenerator::rbit), "rd"_a, "rn"_a, nb::rv_policy::reference)
+        .def("rev_x", nb::overload_cast<veda64::codegen::XReg, veda64::codegen::XReg>(&veda64::codegen::CodeGenerator::rev), "rd"_a, "rn"_a, nb::rv_policy::reference)
+        .def("rev_w", nb::overload_cast<veda64::codegen::WReg, veda64::codegen::WReg>(&veda64::codegen::CodeGenerator::rev), "rd"_a, "rn"_a, nb::rv_policy::reference)
+        .def("b", nb::overload_cast<veda64::codegen::Label&>(&veda64::codegen::CodeGenerator::b), "label"_a, nb::rv_policy::reference)
+        .def("b_cond", nb::overload_cast<veda64::Condition, veda64::codegen::Label&>(&veda64::codegen::CodeGenerator::b), "cc"_a, "label"_a, nb::rv_policy::reference)
+        .def("bl", &veda64::codegen::CodeGenerator::bl, "label"_a, nb::rv_policy::reference)
+        .def("br", &veda64::codegen::CodeGenerator::br, "rn"_a, nb::rv_policy::reference)
+        .def("blr", &veda64::codegen::CodeGenerator::blr, "rn"_a, nb::rv_policy::reference)
+        .def("ret", &veda64::codegen::CodeGenerator::ret, "rn"_a = veda64::codegen::XReg{30}, nb::rv_policy::reference)
+        .def("cbz_x", nb::overload_cast<veda64::codegen::XReg, veda64::codegen::Label&>(&veda64::codegen::CodeGenerator::cbz), "rt"_a, "label"_a, nb::rv_policy::reference)
+        .def("cbz_w", nb::overload_cast<veda64::codegen::WReg, veda64::codegen::Label&>(&veda64::codegen::CodeGenerator::cbz), "rt"_a, "label"_a, nb::rv_policy::reference)
+        .def("cbnz_x", nb::overload_cast<veda64::codegen::XReg, veda64::codegen::Label&>(&veda64::codegen::CodeGenerator::cbnz), "rt"_a, "label"_a, nb::rv_policy::reference)
+        .def("cbnz_w", nb::overload_cast<veda64::codegen::WReg, veda64::codegen::Label&>(&veda64::codegen::CodeGenerator::cbnz), "rt"_a, "label"_a, nb::rv_policy::reference)
+        .def("tbz_x", nb::overload_cast<veda64::codegen::XReg, uint8_t, veda64::codegen::Label&>(&veda64::codegen::CodeGenerator::tbz), "rt"_a, "bit"_a, "label"_a, nb::rv_policy::reference)
+        .def("tbnz_x", nb::overload_cast<veda64::codegen::XReg, uint8_t, veda64::codegen::Label&>(&veda64::codegen::CodeGenerator::tbnz), "rt"_a, "bit"_a, "label"_a, nb::rv_policy::reference)
+        .def("svc", &veda64::codegen::CodeGenerator::svc, "imm"_a, nb::rv_policy::reference)
+        .def("brk", &veda64::codegen::CodeGenerator::brk, "imm"_a, nb::rv_policy::reference)
+        .def("nop", &veda64::codegen::CodeGenerator::nop, nb::rv_policy::reference)
+        .def("ldr_x", nb::overload_cast<veda64::codegen::XReg, veda64::codegen::Mem>(&veda64::codegen::CodeGenerator::ldr), "rt"_a, "mem"_a, nb::rv_policy::reference)
+        .def("ldr_w", nb::overload_cast<veda64::codegen::WReg, veda64::codegen::Mem>(&veda64::codegen::CodeGenerator::ldr), "rt"_a, "mem"_a, nb::rv_policy::reference)
+        .def("ldr_s", nb::overload_cast<veda64::codegen::SReg, veda64::codegen::Mem>(&veda64::codegen::CodeGenerator::ldr), "rt"_a, "mem"_a, nb::rv_policy::reference)
+        .def("ldr_d", nb::overload_cast<veda64::codegen::DReg, veda64::codegen::Mem>(&veda64::codegen::CodeGenerator::ldr), "rt"_a, "mem"_a, nb::rv_policy::reference)
+        .def("ldr_q", nb::overload_cast<veda64::codegen::QReg, veda64::codegen::Mem>(&veda64::codegen::CodeGenerator::ldr), "rt"_a, "mem"_a, nb::rv_policy::reference)
+        .def("str_x", nb::overload_cast<veda64::codegen::XReg, veda64::codegen::Mem>(&veda64::codegen::CodeGenerator::str), "rt"_a, "mem"_a, nb::rv_policy::reference)
+        .def("str_w", nb::overload_cast<veda64::codegen::WReg, veda64::codegen::Mem>(&veda64::codegen::CodeGenerator::str), "rt"_a, "mem"_a, nb::rv_policy::reference)
+        .def("str_s", nb::overload_cast<veda64::codegen::SReg, veda64::codegen::Mem>(&veda64::codegen::CodeGenerator::str), "rt"_a, "mem"_a, nb::rv_policy::reference)
+        .def("str_d", nb::overload_cast<veda64::codegen::DReg, veda64::codegen::Mem>(&veda64::codegen::CodeGenerator::str), "rt"_a, "mem"_a, nb::rv_policy::reference)
+        .def("str_q", nb::overload_cast<veda64::codegen::QReg, veda64::codegen::Mem>(&veda64::codegen::CodeGenerator::str), "rt"_a, "mem"_a, nb::rv_policy::reference)
+        .def("ldrb", &veda64::codegen::CodeGenerator::ldrb, "rt"_a, "mem"_a, nb::rv_policy::reference)
+        .def("ldrh", &veda64::codegen::CodeGenerator::ldrh, "rt"_a, "mem"_a, nb::rv_policy::reference)
+        .def("strb", &veda64::codegen::CodeGenerator::strb, "rt"_a, "mem"_a, nb::rv_policy::reference)
+        .def("strh", &veda64::codegen::CodeGenerator::strh, "rt"_a, "mem"_a, nb::rv_policy::reference)
+        .def("ldrsb_x", nb::overload_cast<veda64::codegen::XReg, veda64::codegen::Mem>(&veda64::codegen::CodeGenerator::ldrsb), "rt"_a, "mem"_a, nb::rv_policy::reference)
+        .def("ldrsb_w", nb::overload_cast<veda64::codegen::WReg, veda64::codegen::Mem>(&veda64::codegen::CodeGenerator::ldrsb), "rt"_a, "mem"_a, nb::rv_policy::reference)
+        .def("ldrsh_x", nb::overload_cast<veda64::codegen::XReg, veda64::codegen::Mem>(&veda64::codegen::CodeGenerator::ldrsh), "rt"_a, "mem"_a, nb::rv_policy::reference)
+        .def("ldrsh_w", nb::overload_cast<veda64::codegen::WReg, veda64::codegen::Mem>(&veda64::codegen::CodeGenerator::ldrsh), "rt"_a, "mem"_a, nb::rv_policy::reference)
+        .def("ldrsw", &veda64::codegen::CodeGenerator::ldrsw, "rt"_a, "mem"_a, nb::rv_policy::reference)
+        .def("ldp_x", nb::overload_cast<veda64::codegen::XReg, veda64::codegen::XReg, veda64::codegen::Mem>(&veda64::codegen::CodeGenerator::ldp), "rt1"_a, "rt2"_a, "mem"_a, nb::rv_policy::reference)
+        .def("ldp_w", nb::overload_cast<veda64::codegen::WReg, veda64::codegen::WReg, veda64::codegen::Mem>(&veda64::codegen::CodeGenerator::ldp), "rt1"_a, "rt2"_a, "mem"_a, nb::rv_policy::reference)
+        .def("stp_x", nb::overload_cast<veda64::codegen::XReg, veda64::codegen::XReg, veda64::codegen::Mem>(&veda64::codegen::CodeGenerator::stp), "rt1"_a, "rt2"_a, "mem"_a, nb::rv_policy::reference)
+        .def("stp_w", nb::overload_cast<veda64::codegen::WReg, veda64::codegen::WReg, veda64::codegen::Mem>(&veda64::codegen::CodeGenerator::stp), "rt1"_a, "rt2"_a, "mem"_a, nb::rv_policy::reference)
+        .def("fadd_s", nb::overload_cast<veda64::codegen::SReg, veda64::codegen::SReg, veda64::codegen::SReg>(&veda64::codegen::CodeGenerator::fadd), "rd"_a, "rn"_a, "rm"_a, nb::rv_policy::reference)
+        .def("fadd_d", nb::overload_cast<veda64::codegen::DReg, veda64::codegen::DReg, veda64::codegen::DReg>(&veda64::codegen::CodeGenerator::fadd), "rd"_a, "rn"_a, "rm"_a, nb::rv_policy::reference)
+        .def("fsub_s", nb::overload_cast<veda64::codegen::SReg, veda64::codegen::SReg, veda64::codegen::SReg>(&veda64::codegen::CodeGenerator::fsub), "rd"_a, "rn"_a, "rm"_a, nb::rv_policy::reference)
+        .def("fsub_d", nb::overload_cast<veda64::codegen::DReg, veda64::codegen::DReg, veda64::codegen::DReg>(&veda64::codegen::CodeGenerator::fsub), "rd"_a, "rn"_a, "rm"_a, nb::rv_policy::reference)
+        .def("fmul_s", nb::overload_cast<veda64::codegen::SReg, veda64::codegen::SReg, veda64::codegen::SReg>(&veda64::codegen::CodeGenerator::fmul), "rd"_a, "rn"_a, "rm"_a, nb::rv_policy::reference)
+        .def("fmul_d", nb::overload_cast<veda64::codegen::DReg, veda64::codegen::DReg, veda64::codegen::DReg>(&veda64::codegen::CodeGenerator::fmul), "rd"_a, "rn"_a, "rm"_a, nb::rv_policy::reference)
+        .def("fdiv_s", nb::overload_cast<veda64::codegen::SReg, veda64::codegen::SReg, veda64::codegen::SReg>(&veda64::codegen::CodeGenerator::fdiv), "rd"_a, "rn"_a, "rm"_a, nb::rv_policy::reference)
+        .def("fdiv_d", nb::overload_cast<veda64::codegen::DReg, veda64::codegen::DReg, veda64::codegen::DReg>(&veda64::codegen::CodeGenerator::fdiv), "rd"_a, "rn"_a, "rm"_a, nb::rv_policy::reference)
+        .def("fmov_s", nb::overload_cast<veda64::codegen::SReg, veda64::codegen::SReg>(&veda64::codegen::CodeGenerator::fmov), "rd"_a, "rn"_a, nb::rv_policy::reference)
+        .def("fmov_d", nb::overload_cast<veda64::codegen::DReg, veda64::codegen::DReg>(&veda64::codegen::CodeGenerator::fmov), "rd"_a, "rn"_a, nb::rv_policy::reference)
+        .def("add_v", nb::overload_cast<veda64::codegen::VArr, veda64::codegen::VArr, veda64::codegen::VArr>(&veda64::codegen::CodeGenerator::add), "vd"_a, "vn"_a, "vm"_a, nb::rv_policy::reference)
+        .def("sub_v", nb::overload_cast<veda64::codegen::VArr, veda64::codegen::VArr, veda64::codegen::VArr>(&veda64::codegen::CodeGenerator::sub), "vd"_a, "vn"_a, "vm"_a, nb::rv_policy::reference)
+        .def("mul_v", nb::overload_cast<veda64::codegen::VArr, veda64::codegen::VArr, veda64::codegen::VArr>(&veda64::codegen::CodeGenerator::mul), "vd"_a, "vn"_a, "vm"_a, nb::rv_policy::reference)
+        .def("and_v", nb::overload_cast<veda64::codegen::VArr, veda64::codegen::VArr, veda64::codegen::VArr>(&veda64::codegen::CodeGenerator::and_), "vd"_a, "vn"_a, "vm"_a, nb::rv_policy::reference)
+        .def("orr_v", nb::overload_cast<veda64::codegen::VArr, veda64::codegen::VArr, veda64::codegen::VArr>(&veda64::codegen::CodeGenerator::orr), "vd"_a, "vn"_a, "vm"_a, nb::rv_policy::reference)
+        .def("eor_v", nb::overload_cast<veda64::codegen::VArr, veda64::codegen::VArr, veda64::codegen::VArr>(&veda64::codegen::CodeGenerator::eor), "vd"_a, "vn"_a, "vm"_a, nb::rv_policy::reference)
+        .def("not_v", nb::overload_cast<veda64::codegen::VArr, veda64::codegen::VArr>(&veda64::codegen::CodeGenerator::not_), "vd"_a, "vn"_a, nb::rv_policy::reference)
+        .def("neg_v", nb::overload_cast<veda64::codegen::VArr, veda64::codegen::VArr>(&veda64::codegen::CodeGenerator::neg), "vd"_a, "vn"_a, nb::rv_policy::reference)
+        .def("abs_v", nb::overload_cast<veda64::codegen::VArr, veda64::codegen::VArr>(&veda64::codegen::CodeGenerator::abs), "vd"_a, "vn"_a, nb::rv_policy::reference)
+        .def("adr", &veda64::codegen::CodeGenerator::adr, "rd"_a, "label"_a, nb::rv_policy::reference)
+    ;
+    }
+#endif // VEDA64_CODEGEN
+
+#ifdef VEDA64_HOOK
+    {
+    auto hk = m.def_submodule("hook", "Inline hooking for Windows ARM64");
+
+    nb::enum_<veda64::hook::HookStatus>(hk, "HookStatus")
+        .value("Success", veda64::hook::HookStatus::Success)
+        .value("NotInitialized", veda64::hook::HookStatus::NotInitialized)
+        .value("InvalidTarget", veda64::hook::HookStatus::InvalidTarget)
+        .value("InvalidDetour", veda64::hook::HookStatus::InvalidDetour)
+        .value("AllocationFailed", veda64::hook::HookStatus::AllocationFailed)
+        .value("ProtectionFailed", veda64::hook::HookStatus::ProtectionFailed)
+        .value("DisassemblyFailed", veda64::hook::HookStatus::DisassemblyFailed)
+        .value("RelocationFailed", veda64::hook::HookStatus::RelocationFailed)
+        .value("InstructionTooComplex", veda64::hook::HookStatus::InstructionTooComplex)
+        .value("HookAlreadyInstalled", veda64::hook::HookStatus::HookAlreadyInstalled)
+        .value("HookNotFound", veda64::hook::HookStatus::HookNotFound)
+        .value("HookDisabled", veda64::hook::HookStatus::HookDisabled)
+        .value("InternalError", veda64::hook::HookStatus::InternalError)
+        ;
+
+    nb::class_<veda64::hook::HookConfig>(hk, "HookConfig")
+        .def(nb::init<>())
+        .def_rw("min_hook_size", &veda64::hook::HookConfig::min_hook_size)
+        .def_rw("max_relocated_insns", &veda64::hook::HookConfig::max_relocated_insns)
+        .def_rw("thread_safe", &veda64::hook::HookConfig::thread_safe)
+        .def_rw("preserve_flags", &veda64::hook::HookConfig::preserve_flags)
+        .def_rw("allow_chain", &veda64::hook::HookConfig::allow_chain);
+
+    hk.def("initialize", &veda64::hook::initialize, "Initialize the hooking subsystem");
+    hk.def("shutdown", &veda64::hook::shutdown, "Shutdown and remove all hooks");
+    hk.def("is_initialized", &veda64::hook::is_initialized);
+    hk.def("set_config", &veda64::hook::set_config, "config"_a);
+    hk.def("get_config", &veda64::hook::get_config);
+    hk.def("remove_all", &veda64::hook::remove_all);
+    hk.def("enable_all", &veda64::hook::enable_all);
+    hk.def("disable_all", &veda64::hook::disable_all);
+
+    // install/remove/enable/disable take HookHandle (opaque pointer)
+    // For Python, we expose install_impl with uintptr_t addresses
+    hk.def("install", [](uintptr_t target, uintptr_t detour) {
+        void* original = nullptr;
+        veda64::hook::HookHandle handle = nullptr;
+        auto status = veda64::hook::install_impl(
+            reinterpret_cast<void*>(target), reinterpret_cast<void*>(detour),
+            &original, &handle);
+        return nb::make_tuple(status, reinterpret_cast<uintptr_t>(original), reinterpret_cast<uintptr_t>(handle));
+    }, "target"_a, "detour"_a, "Install a hook. Returns (status, original_ptr, handle)");
+
+    hk.def("remove", [](uintptr_t handle) {
+        return veda64::hook::remove(reinterpret_cast<veda64::hook::HookHandle>(handle));
+    }, "handle"_a);
+    hk.def("enable", [](uintptr_t handle) {
+        return veda64::hook::enable(reinterpret_cast<veda64::hook::HookHandle>(handle));
+    }, "handle"_a);
+    hk.def("disable", [](uintptr_t handle) {
+        return veda64::hook::disable(reinterpret_cast<veda64::hook::HookHandle>(handle));
+    }, "handle"_a);
+    hk.def("is_enabled", [](uintptr_t handle) {
+        return veda64::hook::is_enabled(reinterpret_cast<veda64::hook::HookHandle>(handle));
+    }, "handle"_a);
+
+#ifdef VEDA64_STRINGS
+    hk.def("status_to_string", &veda64::hook::status_to_string, "status"_a);
+#endif
+    }
+#endif // VEDA64_HOOK
+
 }
 
