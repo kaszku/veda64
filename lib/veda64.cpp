@@ -2126,7 +2126,7 @@ std::optional<std::string> synthesize_alias(const Instruction& insn) {
 
     // SVE: SEL Pd, Pg, Pn, Pm → MOV Pd, Pg/M, Pn when Pd==Pm (predicate form)
     if (insn.mnemonic == Mnemonic::SEL && insn.operands.size() >= 4 && insn.operands[0].type == OperandType::Register) {
-        if (insn.operands[0].reg_val() == insn.operands[3].reg_val()) {
+        if (register_num(insn.operands[0].r.reg) == register_num(insn.operands[3].r.reg)) {
             std::ostringstream oss;
             oss << "mov " << insn.operands[0].to_string() << ", " << insn.operands[1].to_string() << ", " << insn.operands[2].to_string();
             return oss.str();
@@ -2135,7 +2135,7 @@ std::optional<std::string> synthesize_alias(const Instruction& insn) {
 
     // SVE: SEL Zd, Pg, Zn, Zm → MOV Zd, Pg/M, Zn when Zd==Zm
     if (insn.mnemonic == Mnemonic::SEL && insn.operands.size() >= 4 && insn.operands[0].type == OperandType::Register) {
-        if (insn.operands[0].reg_val() == insn.operands[3].reg_val()) {
+        if (register_num(insn.operands[0].r.reg) == register_num(insn.operands[3].r.reg)) {
             std::ostringstream oss;
             oss << "mov " << insn.operands[0].to_string() << ", " << insn.operands[1].to_string() << ", " << insn.operands[2].to_string();
             return oss.str();

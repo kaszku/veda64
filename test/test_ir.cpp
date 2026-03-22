@@ -916,7 +916,7 @@ static void run_tests() {
             }
         }
     }
-    // Atomic LDADD returns UNDEF
+    // Atomic LDADD loads then ADDs
     {
         tests_run++;
         printf("  %-40s ", "LDADD_W0");
@@ -926,13 +926,133 @@ static void run_tests() {
         } else {
             bool found = false;
             for (auto& op : r->ops) {
-                if (op.opcode == Opcode::UNDEF) found = true;
+                if (op.opcode == Opcode::LOAD) found = true;
             }
             if (found) {
                 printf("PASS\n");
                 tests_passed++;
             } else {
-                printf("FAIL: expected UNDEF\n");
+                printf("FAIL: expected LOAD\n");
+            }
+        }
+    }
+    // Atomic LDCLR loads then AND-NOTs
+    {
+        tests_run++;
+        printf("  %-40s ", "LDCLR_W0");
+        auto r = lift(0xB8201020);
+        if (!r.has_value()) {
+            printf("FAIL: lift returned nullopt\n");
+        } else {
+            bool found = false;
+            for (auto& op : r->ops) {
+                if (op.opcode == Opcode::LOAD) found = true;
+            }
+            if (found) {
+                printf("PASS\n");
+                tests_passed++;
+            } else {
+                printf("FAIL: expected LOAD\n");
+            }
+        }
+    }
+    // Atomic LDSET loads then ORs
+    {
+        tests_run++;
+        printf("  %-40s ", "LDSET_W0");
+        auto r = lift(0xB8203020);
+        if (!r.has_value()) {
+            printf("FAIL: lift returned nullopt\n");
+        } else {
+            bool found = false;
+            for (auto& op : r->ops) {
+                if (op.opcode == Opcode::LOAD) found = true;
+            }
+            if (found) {
+                printf("PASS\n");
+                tests_passed++;
+            } else {
+                printf("FAIL: expected LOAD\n");
+            }
+        }
+    }
+    // Atomic LDEOR loads then XORs
+    {
+        tests_run++;
+        printf("  %-40s ", "LDEOR_W0");
+        auto r = lift(0xB8202020);
+        if (!r.has_value()) {
+            printf("FAIL: lift returned nullopt\n");
+        } else {
+            bool found = false;
+            for (auto& op : r->ops) {
+                if (op.opcode == Opcode::LOAD) found = true;
+            }
+            if (found) {
+                printf("PASS\n");
+                tests_passed++;
+            } else {
+                printf("FAIL: expected LOAD\n");
+            }
+        }
+    }
+    // Atomic SWP loads then stores
+    {
+        tests_run++;
+        printf("  %-40s ", "SWP_W0");
+        auto r = lift(0xB8208020);
+        if (!r.has_value()) {
+            printf("FAIL: lift returned nullopt\n");
+        } else {
+            bool found = false;
+            for (auto& op : r->ops) {
+                if (op.opcode == Opcode::LOAD) found = true;
+            }
+            if (found) {
+                printf("PASS\n");
+                tests_passed++;
+            } else {
+                printf("FAIL: expected LOAD\n");
+            }
+        }
+    }
+    // Atomic CAS compare-and-swap
+    {
+        tests_run++;
+        printf("  %-40s ", "CAS_W0");
+        auto r = lift(0x88A07C20);
+        if (!r.has_value()) {
+            printf("FAIL: lift returned nullopt\n");
+        } else {
+            bool found = false;
+            for (auto& op : r->ops) {
+                if (op.opcode == Opcode::LOAD) found = true;
+            }
+            if (found) {
+                printf("PASS\n");
+                tests_passed++;
+            } else {
+                printf("FAIL: expected LOAD\n");
+            }
+        }
+    }
+    // Atomic LDAPR load-acquire
+    {
+        tests_run++;
+        printf("  %-40s ", "LDAPR_W0");
+        auto r = lift(0xB8BFC020);
+        if (!r.has_value()) {
+            printf("FAIL: lift returned nullopt\n");
+        } else {
+            bool found = false;
+            for (auto& op : r->ops) {
+                if (op.opcode == Opcode::LOAD) found = true;
+            }
+            if (found) {
+                printf("PASS\n");
+                tests_passed++;
+            } else {
+                printf("FAIL: expected LOAD\n");
             }
         }
     }
@@ -2083,6 +2203,97 @@ static void run_tests() {
         execute(ctx, 0x9A821020);  // CSEL X0, X1, X2, NE
         if (ctx.gpr[0] == 222) { printf("PASS\n"); tests_passed++; }
         else { printf("FAIL: x0=%llu Z=%d\n", static_cast<unsigned long long>(ctx.gpr[0]), ctx.flags[1]); }
+    }
+
+    // atomic_ldadd_structure
+    {
+        tests_run++;
+        printf("  %-40s ", "atomic_ldadd_structure");
+        auto r = lift(0xB8220083);  // LDADD W2, W3, [X4]
+        if (!r.has_value()) { printf("FAIL: lift nullopt\n"); }
+        else {
+            bool has_load = false, has_add = false, has_store = false;
+            for (auto& op : r->ops) {
+                if (op.opcode == Opcode::LOAD) has_load = true;
+                if (op.opcode == Opcode::ADD) has_add = true;
+                if (op.opcode == Opcode::STORE) has_store = true;
+            }
+            if (has_load && has_add && has_store) { printf("PASS\n"); tests_passed++; }
+            else { printf("FAIL: load=%d add=%d store=%d\n", has_load, has_add, has_store); }
+        }
+    }
+
+    // atomic_swp_structure
+    {
+        tests_run++;
+        printf("  %-40s ", "atomic_swp_structure");
+        auto r = lift(0xB8208020);  // SWP (32-bit)
+        if (!r.has_value()) { printf("FAIL: lift nullopt\n"); }
+        else {
+            bool has_load = false, has_store = false;
+            int copy_count = 0;
+            for (auto& op : r->ops) {
+                if (op.opcode == Opcode::LOAD) has_load = true;
+                if (op.opcode == Opcode::STORE) has_store = true;
+                if (op.opcode == Opcode::COPY) copy_count++;
+            }
+            if (has_load && has_store && copy_count >= 2) { printf("PASS\n"); tests_passed++; }
+            else { printf("FAIL: load=%d store=%d copy=%d\n", has_load, has_store, copy_count); }
+        }
+    }
+
+    // atomic_cas_structure
+    {
+        tests_run++;
+        printf("  %-40s ", "atomic_cas_structure");
+        auto r = lift(0x88A07C20);  // CAS W0, W0, [X1]
+        if (!r.has_value()) { printf("FAIL: lift nullopt\n"); }
+        else {
+            bool has_load = false, has_cmp = false, has_store = false;
+            for (auto& op : r->ops) {
+                if (op.opcode == Opcode::LOAD) has_load = true;
+                if (op.opcode == Opcode::CMP_EQ) has_cmp = true;
+                if (op.opcode == Opcode::STORE) has_store = true;
+            }
+            if (has_load && has_cmp && has_store) { printf("PASS\n"); tests_passed++; }
+            else { printf("FAIL: load=%d cmp=%d store=%d\n", has_load, has_cmp, has_store); }
+        }
+    }
+
+    // atomic_ldclr_structure
+    {
+        tests_run++;
+        printf("  %-40s ", "atomic_ldclr_structure");
+        auto r = lift(0xB8201020);  // LDCLR (32-bit, opc=001 shifted)
+        if (!r.has_value()) { printf("FAIL: lift nullopt\n"); }
+        else {
+            bool has_load = false, has_not = false, has_and = false, has_store = false;
+            for (auto& op : r->ops) {
+                if (op.opcode == Opcode::LOAD) has_load = true;
+                if (op.opcode == Opcode::NOT) has_not = true;
+                if (op.opcode == Opcode::AND) has_and = true;
+                if (op.opcode == Opcode::STORE) has_store = true;
+            }
+            if (has_load && has_not && has_and && has_store) { printf("PASS\n"); tests_passed++; }
+            else { printf("FAIL: load=%d not=%d and=%d store=%d\n", has_load, has_not, has_and, has_store); }
+        }
+    }
+
+    // atomic_ldapr_load_only
+    {
+        tests_run++;
+        printf("  %-40s ", "atomic_ldapr_load_only");
+        auto r = lift(0xB8BFC020);  // LDAPR W0, [X1]
+        if (!r.has_value()) { printf("FAIL: lift nullopt\n"); }
+        else {
+            bool has_load = false, has_store = false;
+            for (auto& op : r->ops) {
+                if (op.opcode == Opcode::LOAD) has_load = true;
+                if (op.opcode == Opcode::STORE) has_store = true;
+            }
+            if (has_load && !has_store) { printf("PASS\n"); tests_passed++; }
+            else { printf("FAIL: load=%d store=%d\n", has_load, has_store); }
+        }
     }
 
 }

@@ -14,17 +14,33 @@ jobs:
       fail-fast: false
       matrix:
         include:
-          - os: ubuntu-latest
+          - name: Linux GCC
+            os: ubuntu-latest
             cmake_flags: "-DVEDA64_STRINGS=ON -DVEDA64_IR=ON -DVEDA64_CODEGEN=ON -DVEDA64_TESTS=ON"
-          - os: windows-latest
+          - name: Windows MSVC
+            os: windows-latest
             cmake_flags: "-DVEDA64_STRINGS=ON -DVEDA64_IR=ON -DVEDA64_CODEGEN=ON -DVEDA64_HOOK=ON -DVEDA64_TESTS=ON"
-          - os: macos-14
+          - name: macOS Clang (ARM64)
+            os: macos-14
             cmake_flags: "-DVEDA64_STRINGS=ON -DVEDA64_IR=ON -DVEDA64_CODEGEN=ON -DVEDA64_TESTS=ON"
+    name: ${{ matrix.name }}
     runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v4
       - name: Configure
         run: cmake -B build -DCMAKE_BUILD_TYPE=Release ${{ matrix.cmake_flags }}
+      - name: Build
+        run: cmake --build build --config Release
+      - name: Test
+        run: ctest --test-dir build --output-on-failure -C Release
+
+  build-vs:
+    name: Windows VS2026
+    runs-on: windows-2025-vs2026
+    steps:
+      - uses: actions/checkout@v4
+      - name: Configure
+        run: cmake -B build -G "Visual Studio 18 2026" -DVEDA64_STRINGS=ON -DVEDA64_IR=ON -DVEDA64_CODEGEN=ON -DVEDA64_HOOK=ON -DVEDA64_TESTS=ON
       - name: Build
         run: cmake --build build --config Release
       - name: Test

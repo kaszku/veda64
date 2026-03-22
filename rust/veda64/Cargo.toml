@@ -1,0 +1,13 @@
+[package]
+name = "veda64"
+version = "0.1.0"
+edition = "2021"
+description = "Rust bindings for veda64 ARM64 instruction decoder/disassembler"
+license = "MIT"
+
+[dependencies]
+cxx = "1"
+
+[build-dependencies]
+cxx-build = "1"
+cc = "1"

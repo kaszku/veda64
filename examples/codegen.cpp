@@ -25,14 +25,13 @@ static void example_encode_verify() {
     printf("=== Encode + decode roundtrip ===\n");
     CodeGenerator cg(4096);
 
-    // Method chaining — all instruction methods return CodeGenerator&
-    cg.add(x0, x1, x2)
-      .sub(w3, w4, uint32_t(100))
-      .ldr(x5, ptr(sp, 16))
-      .stp(x6, x7, pre(sp, -32))
-      .fadd(d0, d1, d2)
-      .nop()
-      .ret();
+    cg.add(x0, x1, x2);
+    cg.sub(w3, w4, uint32_t(100));
+    cg.ldr(x5, ptr(sp, 16));
+    cg.stp(x6, x7, pre(sp, -32));
+    cg.fadd(d0, d1, d2);
+    cg.nop();
+    cg.ret();
 
     printf("  Generated %zu bytes (%zu instructions)\n", cg.size(), cg.size() / 4);
     for (size_t i = 0; i < cg.size() / 4; i++) {
@@ -55,13 +54,13 @@ static void example_labels() {
     CodeGenerator cg(4096);
     Label loop, done;
 
-    cg.mov(w1, uint32_t(0))          // counter = 0
-      .bind(loop)
-      .add(w1, w1, uint32_t(1))     // counter++
-      .cmp(w1, w0)
-      .b(Condition::LT, loop)       // if counter < n, loop
-      .mov(w0, w1)
-      .ret();
+    cg.mov(w1, uint32_t(0));        // counter = 0
+    cg.bind(loop);
+    cg.add(w1, w1, uint32_t(1));    // counter++
+    cg.cmp(w1, w0);
+    cg.b(Condition::LT, loop);      // if counter < n, loop
+    cg.mov(w0, w1);
+    cg.ret();
 
     printf("  Generated %zu instructions with backward branch\n", cg.size() / 4);
     for (size_t i = 0; i < cg.size() / 4; i++) {
@@ -85,13 +84,13 @@ static void example_memory() {
     printf("\n=== Memory operand modes ===\n");
     CodeGenerator cg(4096);
 
-    cg.ldr(x0, ptr(x1))             // [X1]          offset, no displacement
-      .ldr(x0, ptr(x1, 64))         // [X1, #64]     offset
-      .str(x0, pre(x1, -16))        // [X1, #-16]!   pre-index
-      .ldr(x0, post(x1, 8))         // [X1], #8      post-index
-      .ldr(x0, ptr(x1, x2, 3))      // [X1, X2, LSL #3]  register offset
-      .ldp(x0, x1, ptr(sp, 16))     // [SP, #16]     pair offset
-      .stp(x0, x1, pre(sp, -32));   // [SP, #-32]!   pair pre-index
+    cg.ldr(x0, ptr(x1));            // [X1]          offset, no displacement
+    cg.ldr(x0, ptr(x1, 64));        // [X1, #64]     offset
+    cg.str(x0, pre(x1, -16));       // [X1, #-16]!   pre-index
+    cg.ldr(x0, post(x1, 8));        // [X1], #8      post-index
+    cg.ldr(x0, ptr(x1, x2, 3));     // [X1, X2, LSL #3]  register offset
+    cg.ldp(x0, x1, ptr(sp, 16));    // [SP, #16]     pair offset
+    cg.stp(x0, x1, pre(sp, -32));   // [SP, #-32]!   pair pre-index
 
     for (size_t i = 0; i < cg.size() / 4; i++) {
         uint32_t insn = get_insn(cg, i);
@@ -107,13 +106,13 @@ static void example_fp() {
     printf("\n=== Scalar floating-point ===\n");
     CodeGenerator cg(4096);
 
-    cg.fadd(d0, d0, d1)     // d0 = d0 + d1
-      .fmul(d0, d0, d2)     // d0 *= d2
-      .fsub(s3, s4, s5)     // s3 = s4 - s5
-      .fdiv(s0, s0, s1)     // s0 /= s1
-      .fmov(d3, d4)         // d3 = d4
-      .fcmp(d0, d1)         // compare d0, d1
-      .fcmp(s0);             // compare s0 with 0.0
+    cg.fadd(d0, d0, d1);    // d0 = d0 + d1
+    cg.fmul(d0, d0, d2);    // d0 *= d2
+    cg.fsub(s3, s4, s5);    // s3 = s4 - s5
+    cg.fdiv(s0, s0, s1);    // s0 /= s1
+    cg.fmov(d3, d4);        // d3 = d4
+    cg.fcmp(d0, d1);        // compare d0, d1
+    cg.fcmp(s0);             // compare s0 with 0.0
 
     for (size_t i = 0; i < cg.size() / 4; i++) {
         uint32_t insn = get_insn(cg, i);
@@ -126,7 +125,10 @@ static void example_fp() {
 #if defined(__aarch64__) || defined(_M_ARM64)
     // Build and execute: double add_mul(double a, double b, double c) = (a+b)*c
     CodeGenerator cg2(4096);
-    cg2.fadd(d0, d0, d1).fmul(d0, d0, d2).ret().ready();
+    cg2.fadd(d0, d0, d1);
+    cg2.fmul(d0, d0, d2);
+    cg2.ret();
+    cg2.ready();
     auto fn = cg2.get_code<double(*)(double, double, double)>();
     printf("  (3.0 + 4.0) * 2.0 = %.1f (expected 14.0)\n", fn(3.0, 4.0, 2.0));
 #endif
@@ -137,11 +139,11 @@ static void example_mov() {
     printf("\n=== MOV convenience (large immediates) ===\n");
     CodeGenerator cg(4096);
 
-    cg.mov(x0, uint64_t(0))                    // MOVZ X0, #0
-      .mov(x0, uint64_t(42))                  // MOVZ X0, #42
-      .mov(x0, uint64_t(0xFFFF))              // MOVZ X0, #0xFFFF
-      .mov(x0, uint64_t(0xDEAD0000))          // MOVZ + shifted
-      .mov(x0, uint64_t(0xDEADBEEFCAFE));     // MOVZ + 2x MOVK
+    cg.mov(x0, uint64_t(0));                  // MOVZ X0, #0
+    cg.mov(x0, uint64_t(42));                 // MOVZ X0, #42
+    cg.mov(x0, uint64_t(0xFFFF));             // MOVZ X0, #0xFFFF
+    cg.mov(x0, uint64_t(0xDEAD0000));         // MOVZ + shifted
+    cg.mov(x0, uint64_t(0xDEADBEEFCAFE));     // MOVZ + 2x MOVK
 
     for (size_t i = 0; i < cg.size() / 4; i++) {
         uint32_t insn = get_insn(cg, i);
@@ -153,10 +155,12 @@ static void example_mov() {
 
 #if defined(__aarch64__) || defined(_M_ARM64)
     CodeGenerator cg2(4096);
-    cg2.mov(x0, uint64_t(0xDEADBEEFCAFEULL)).ret().ready();
+    cg2.mov(x0, uint64_t(0xDEADBEEFCAFEULL));
+    cg2.ret();
+    cg2.ready();
     auto fn = cg2.get_code<uint64_t(*)()>();
     printf("  returned 0x%llX (expected 0xDEADBEEFCAFE)\n",
-           static_cast<unsigned long long>(fn()));
+           (unsigned long long)fn());
 #endif
 }
 
@@ -172,21 +176,21 @@ static void example_fibonacci() {
     CodeGenerator cg(4096);
     Label loop, done;
 
-    cg.mov(w1, uint32_t(0))         // a = 0
-      .mov(w2, uint32_t(1))        // b = 1
-      .mov(w3, uint32_t(0))        // i = 0
-      .bind(loop)
-      .cmp(w3, w0)
-      .b(Condition::GE, done)
-      .add(w4, w1, w2)             // t = a + b
-      .mov(w1, w2)                 // a = b
-      .mov(w2, w4)                 // b = t
-      .add(w3, w3, uint32_t(1))
-      .b(loop)
-      .bind(done)
-      .mov(w0, w1)
-      .ret()
-      .ready();
+    cg.mov(w1, uint32_t(0));       // a = 0
+    cg.mov(w2, uint32_t(1));       // b = 1
+    cg.mov(w3, uint32_t(0));       // i = 0
+    cg.bind(loop);
+    cg.cmp(w3, w0);
+    cg.b(Condition::GE, done);
+    cg.add(w4, w1, w2);            // t = a + b
+    cg.mov(w1, w2);                // a = b
+    cg.mov(w2, w4);                // b = t
+    cg.add(w3, w3, uint32_t(1));
+    cg.b(loop);
+    cg.bind(done);
+    cg.mov(w0, w1);
+    cg.ret();
+    cg.ready();
 
     auto fib = cg.get_code<int(*)(int)>();
     for (int n : {0, 1, 2, 5, 10, 20}) {
@@ -200,10 +204,10 @@ static void example_shifted() {
     printf("\n=== Shifted register operations ===\n");
     CodeGenerator cg(4096);
 
-    cg.add(x0, x1, x2, Shift(ShiftType::LSL, 2))     // X0 = X1 + (X2 << 2)
-      .sub(x0, x1, x2, Shift(ShiftType::LSR, 4))    // X0 = X1 - (X2 >> 4)
-      .and_(x0, x1, x2, Shift(ShiftType::ASR, 1))   // X0 = X1 & (X2 >>> 1)
-      .orr(w0, w1, w2, Shift(ShiftType::ROR, 8));    // W0 = W1 | ROR(W2, 8)
+    cg.add(x0, x1, x2, Shift(ShiftType::LSL, 2));   // X0 = X1 + (X2 << 2)
+    cg.sub(x0, x1, x2, Shift(ShiftType::LSR, 4));   // X0 = X1 - (X2 >> 4)
+    cg.and_(x0, x1, x2, Shift(ShiftType::ASR, 1));  // X0 = X1 & (X2 >>> 1)
+    cg.orr(w0, w1, w2, Shift(ShiftType::ROR, 8));   // W0 = W1 | ROR(W2, 8)
 
     for (size_t i = 0; i < cg.size() / 4; i++) {
         uint32_t insn = get_insn(cg, i);
@@ -216,7 +220,9 @@ static void example_shifted() {
 #if defined(__aarch64__) || defined(_M_ARM64)
     // Execute: x + y*4
     CodeGenerator cg2(4096);
-    cg2.add(w0, w0, w1, Shift(ShiftType::LSL, 2)).ret().ready();
+    cg2.add(w0, w0, w1, Shift(ShiftType::LSL, 2));
+    cg2.ret();
+    cg2.ready();
     auto fn = cg2.get_code<int(*)(int, int)>();
     printf("  5 + 3*4 = %d (expected 17)\n", fn(5, 3));
 #endif

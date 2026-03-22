@@ -1,6 +1,7 @@
 # Build directories
 __build/
 build/
+target/
 Debug/
 Release/
 *.sln

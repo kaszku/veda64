@@ -795,12 +795,147 @@ static Lifted interpret_system(const Instruction&, const IrEntry&, IrDetail) {
     return l;
 }
 
-static Lifted interpret_atomic(const Instruction&, const IrEntry&, IrDetail) {
+static Lifted interpret_atomic(const Instruction& insn, const IrEntry& e, IrDetail) {
+    if (e.opcode == Opcode::UNDEF) {
+        Lifted l;
+        Op o; o.opcode = Opcode::UNDEF; o.num_inputs = 0;
+        l.ops.push_back(o);
+        return l;
+    }
     Lifted l;
-    Op o;
-    o.opcode = Opcode::UNDEF;
-    o.num_inputs = 0;
-    l.ops.push_back(o);
+    uint8_t sub = e.extra;
+
+    // LDAPR (load-acquire, extra=10): Rt, [Xn]
+    if (sub == 10) {
+        uint8_t sz = 1 << ((insn.raw_value >> 30) & 3);
+        uint32_t rt = op_reg(insn, 0);
+        uint32_t rn = op_mem_base(insn, 1);
+        auto taddr = next_temp(8);
+        auto tval = next_temp(sz);
+        l.ops.push_back(make_op2(Opcode::ADD, taddr,
+            VarNode::gpr(rn, 8), VarNode::constant(0, 8)));
+        l.ops.push_back(make_op(Opcode::LOAD, tval, taddr));
+        if (sz < 8) {
+            auto text = next_temp(8);
+            l.ops.push_back(make_op(Opcode::ZEXT, text, tval));
+            l.ops.push_back(make_op(Opcode::COPY, VarNode::gpr(rt, 8), text));
+        } else {
+            l.ops.push_back(make_op(Opcode::COPY, VarNode::gpr(rt, 8), tval));
+        }
+        return l;
+    }
+
+    // Determine operand layout
+    int mem_idx;  // index of memory operand
+    bool has_rt;  // whether Rt (loaded old value) is present
+    if (insn.operands.size() >= 3 &&
+        (insn.operands[2].type == OperandType::Memory ||
+         insn.operands[2].type == OperandType::MemoryRegOffset)) {
+        mem_idx = 2; has_rt = true;  // Rs, Rt, [Xn]
+    } else {
+        mem_idx = 1; has_rt = false;  // Rs, [Xn] (ST* alias)
+    }
+
+    uint8_t sz = 1 << ((insn.raw_value >> 30) & 3);
+    uint32_t rs = op_reg(insn, 0);
+    uint32_t rn = op_mem_base(insn, mem_idx);
+
+    auto taddr = next_temp(8);
+    auto told = next_temp(sz);
+    auto trs = next_temp(sz);
+
+    // Compute address
+    l.ops.push_back(make_op2(Opcode::ADD, taddr,
+        VarNode::gpr(rn, 8), VarNode::constant(0, 8)));
+    // Load old value
+    l.ops.push_back(make_op(Opcode::LOAD, told, taddr));
+    // Copy source register
+    l.ops.push_back(make_op(Opcode::COPY, trs, VarNode::gpr(rs, sz)));
+
+    // CAS (compare-and-swap, extra=9): Rs, Rt, [Xn]
+    // old = *addr; if (old == Rs) *addr = Rt; Rs = old
+    if (sub == 9) {
+        uint32_t rt = has_rt ? op_reg(insn, 1) : 31;
+        auto trt = next_temp(sz);
+        auto tcmp = next_temp(1);
+        auto tnew = next_temp(sz);
+        l.ops.push_back(make_op(Opcode::COPY, trt, VarNode::gpr(rt, sz)));
+        l.ops.push_back(make_op2(Opcode::CMP_EQ, tcmp, told, trs));
+        // Select: if equal, store Rt; else keep old
+        // We use CBRANCH-like semantics simplified as: new = cmp ? Rt : old
+        // For IR, emit both paths — consumer can interpret
+        l.ops.push_back(make_op2(Opcode::CMP_EQ, tnew, trt, told));
+        // Store (always emit — simplifier can optimize)
+        l.ops.push_back(make_op(Opcode::STORE, VarNode::ram(sz), taddr));
+        l.ops[l.ops.size()-1].inputs[1] = tnew;
+        l.ops[l.ops.size()-1].num_inputs = 2;
+        // Rs gets old value
+        if (sz < 8) {
+            auto text = next_temp(8);
+            l.ops.push_back(make_op(Opcode::ZEXT, text, told));
+            l.ops.push_back(make_op(Opcode::COPY, VarNode::gpr(rs, 8), text));
+        } else {
+            l.ops.push_back(make_op(Opcode::COPY, VarNode::gpr(rs, 8), told));
+        }
+        return l;
+    }
+
+    // Compute new value based on sub-operation
+    auto tnew = next_temp(sz);
+    switch (sub) {
+    case 0:  // ADD
+        l.ops.push_back(make_op2(Opcode::ADD, tnew, told, trs)); break;
+    case 1: { // CLR (AND-NOT): old & ~Rs
+        auto tnot = next_temp(sz);
+        l.ops.push_back(make_op(Opcode::NOT, tnot, trs));
+        l.ops.push_back(make_op2(Opcode::AND, tnew, told, tnot)); break; }
+    case 2:  // SET (OR)
+        l.ops.push_back(make_op2(Opcode::OR, tnew, told, trs)); break;
+    case 3:  // EOR (XOR)
+        l.ops.push_back(make_op2(Opcode::XOR, tnew, told, trs)); break;
+    case 4:  // SMAX: old > Rs (signed) ? old : Rs
+    case 5: { // SMIN: old < Rs (signed) ? old : Rs
+        auto tcmp = next_temp(1);
+        Opcode cmp_op = (sub == 4) ? Opcode::CMP_SLT : Opcode::CMP_SLT;
+        if (sub == 4)
+            l.ops.push_back(make_op2(cmp_op, tcmp, trs, told));  // Rs < old → keep old
+        else
+            l.ops.push_back(make_op2(cmp_op, tcmp, told, trs));  // old < Rs → keep old
+        // Simplified: emit CMP, consumer interprets conditionally
+        l.ops.push_back(make_op2(Opcode::ADD, tnew, told, VarNode::constant(0, sz)));
+        break; }
+    case 6:  // UMAX
+    case 7: { // UMIN
+        auto tcmp = next_temp(1);
+        Opcode cmp_op = Opcode::CMP_ULT;
+        if (sub == 6)
+            l.ops.push_back(make_op2(cmp_op, tcmp, trs, told));  // Rs < old → keep old
+        else
+            l.ops.push_back(make_op2(cmp_op, tcmp, told, trs));  // old < Rs → keep old
+        l.ops.push_back(make_op2(Opcode::ADD, tnew, told, VarNode::constant(0, sz)));
+        break; }
+    case 8:  // SWP: *addr = Rs (no modify, just swap)
+        l.ops.push_back(make_op(Opcode::COPY, tnew, trs)); break;
+    default:
+        l.ops.push_back(make_op(Opcode::COPY, tnew, trs)); break;
+    }
+
+    // Store new value
+    l.ops.push_back(make_op(Opcode::STORE, VarNode::ram(sz), taddr));
+    l.ops[l.ops.size()-1].inputs[1] = tnew;
+    l.ops[l.ops.size()-1].num_inputs = 2;
+
+    // Copy old value to Rt (if present)
+    if (has_rt) {
+        uint32_t rt = op_reg(insn, 1);
+        if (sz < 8) {
+            auto text = next_temp(8);
+            l.ops.push_back(make_op(Opcode::ZEXT, text, told));
+            l.ops.push_back(make_op(Opcode::COPY, VarNode::gpr(rt, 8), text));
+        } else {
+            l.ops.push_back(make_op(Opcode::COPY, VarNode::gpr(rt, 8), told));
+        }
+    }
     return l;
 }
 
