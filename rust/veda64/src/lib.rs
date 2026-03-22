@@ -400,95 +400,1002 @@ pub fn mnemonic_name(m: Mnemonic) -> String {
 mod tests {
     use super::*;
 
+    // ── Disassembly string verification (reference tests) ──────────────
+
     #[test]
-    fn decode_add() {
-        let insn = decode(0x8B020020).unwrap();
-        assert_eq!(insn.mnemonic, Mnemonic::ADD);
-        assert_eq!(insn.operands.len(), 3);
-        assert!(insn.to_string().contains("add"));
+    fn disasm_add_reg() {
+        assert_eq!(disassemble(0x8B020020).as_deref(), Some("add x0, x1, x2"));
     }
 
     #[test]
-    fn decode_sub() {
-        let insn = decode(0xCB020020).unwrap();
-        assert_eq!(insn.mnemonic, Mnemonic::SUB);
+    fn disasm_sub_reg() {
+        assert_eq!(disassemble(0xCB020020).as_deref(), Some("sub x0, x1, x2"));
     }
 
     #[test]
-    fn decode_invalid() {
-        // All zeros = UDF
-        let insn = decode(0x00000000);
-        // UDF decodes but as UNKNOWN or UDF mnemonic
-        assert!(insn.is_some() || insn.is_none());
+    fn disasm_add_imm() {
+        assert_eq!(disassemble(0x91000108).as_deref(), Some("add x8, x8, #0"));
     }
 
     #[test]
-    fn decode_ldr() {
-        let insn = decode(0xF9400420).unwrap();
-        assert!(insn.to_string().contains("ldr"));
-        // Should have a memory operand
-        assert!(insn.operands.iter().any(|op| matches!(op, Operand::Memory { .. })));
+    fn disasm_mov_sp() {
+        assert_eq!(disassemble(0x910003FD).as_deref(), Some("mov x29, sp"));
     }
 
     #[test]
-    fn decode_b() {
-        let insn = decode(0x14000040).unwrap();
-        assert_eq!(insn.mnemonic, Mnemonic::B);
+    fn disasm_movz_w() {
+        assert_eq!(disassemble(0x52800023).as_deref(), Some("mov w3, #0x1"));
     }
 
     #[test]
-    fn decode_beq() {
-        let insn = decode(0x54000040).unwrap();
-        assert_eq!(insn.mnemonic, Mnemonic::B);
-        assert_eq!(insn.condition, Condition::EQ);
+    fn disasm_movn_x() {
+        assert_eq!(disassemble(0x92800020).as_deref(), Some("mov x0, #-0x2"));
     }
 
     #[test]
-    fn decode_movz() {
-        let insn = decode(0xD2824680).unwrap();
-        assert!(insn.to_string().contains("mov"));
+    fn disasm_movk_shifted() {
+        assert_eq!(
+            disassemble(0xF2A0FFE5).as_deref(),
+            Some("movk x5, #0x7ff, lsl #0x10")
+        );
     }
 
     #[test]
-    fn disassemble_add() {
-        let s = disassemble(0x8B020020).unwrap();
-        assert_eq!(s, "add x0, x1, x2");
+    fn disasm_nop() {
+        assert_eq!(disassemble(0xD503201F).as_deref(), Some("nop"));
     }
 
     #[test]
-    fn decode_nop() {
-        let insn = decode(0xD503201F).unwrap();
-        assert_eq!(insn.mnemonic, Mnemonic::NOP);
-        assert_eq!(insn.to_string(), "nop");
+    fn disasm_ret() {
+        assert_eq!(disassemble(0xD65F03C0).as_deref(), Some("ret"));
     }
 
     #[test]
-    fn decode_ret() {
-        let insn = decode(0xD65F03C0).unwrap();
-        assert_eq!(insn.mnemonic, Mnemonic::RET);
+    fn disasm_brk() {
+        assert_eq!(disassemble(0xD43E0000).as_deref(), Some("brk #0xf000"));
     }
 
     #[test]
-    fn mnemonic_display() {
+    fn disasm_ldr_offset() {
+        assert_eq!(
+            disassemble(0xF9408402).as_deref(),
+            Some("ldr x2, [x0, #0x108]")
+        );
+    }
+
+    #[test]
+    fn disasm_str_zero_base() {
+        assert_eq!(disassemble(0xB9000001).as_deref(), Some("str w1, [x0]"));
+    }
+
+    #[test]
+    fn disasm_ldr_post_index() {
+        assert_eq!(
+            disassemble(0xB8404423).as_deref(),
+            Some("ldr w3, [x1], #4")
+        );
+    }
+
+    #[test]
+    fn disasm_str_post_index_neg() {
+        assert_eq!(
+            disassemble(0xF81F84DF).as_deref(),
+            Some("str xzr, [x6], #-8")
+        );
+    }
+
+    #[test]
+    fn disasm_stp_pre_index() {
+        assert_eq!(
+            disassemble(0xA9BE7BFD).as_deref(),
+            Some("stp x29, x30, [sp, #-0x20]!")
+        );
+    }
+
+    #[test]
+    fn disasm_ldp_post_index() {
+        assert_eq!(
+            disassemble(0xA8C27BFD).as_deref(),
+            Some("ldp x29, x30, [sp], #0x20")
+        );
+    }
+
+    #[test]
+    fn disasm_ldr_reg_offset() {
+        assert_eq!(
+            disassemble(0xF8606820).as_deref(),
+            Some("ldr x0, [x1, x0]")
+        );
+    }
+
+    #[test]
+    fn disasm_ldur_neg() {
+        assert_eq!(
+            disassemble(0xB85FC088).as_deref(),
+            Some("ldur w8, [x4, #-4]")
+        );
+    }
+
+    #[test]
+    fn disasm_b_forward() {
+        assert_eq!(disassemble(0x14000001).as_deref(), Some("b .+0x4"));
+    }
+
+    #[test]
+    fn disasm_bl_backward() {
+        assert_eq!(
+            disassemble(0x97FA94A3).as_deref(),
+            Some("bl .-0x15ad74")
+        );
+    }
+
+    #[test]
+    fn disasm_b_eq() {
+        assert_eq!(disassemble(0x54000040).as_deref(), Some("b.eq .+0x8"));
+    }
+
+    #[test]
+    fn disasm_b_ne() {
+        assert_eq!(disassemble(0x54000061).as_deref(), Some("b.ne .+0xc"));
+    }
+
+    #[test]
+    fn disasm_cbz() {
+        assert_eq!(disassemble(0x35000068).as_deref(), Some("cbnz w8, .+0xc"));
+    }
+
+    #[test]
+    fn disasm_tbnz() {
+        assert_eq!(
+            disassemble(0x37F800A0).as_deref(),
+            Some("tbnz w0, #0x1f, .+0x14")
+        );
+    }
+
+    #[test]
+    fn disasm_lsr_imm() {
+        assert_eq!(disassemble(0xD341FC4F).as_deref(), Some("lsr x15, x2, #1"));
+    }
+
+    #[test]
+    fn disasm_uxtb() {
+        assert_eq!(disassemble(0x53001C00).as_deref(), Some("uxtb w0, w0"));
+    }
+
+    #[test]
+    fn disasm_sxtw() {
+        assert_eq!(disassemble(0x93407C00).as_deref(), Some("sxtw x0, w0"));
+    }
+
+    #[test]
+    fn disasm_bfi() {
+        assert_eq!(
+            disassemble(0x33070C00).as_deref(),
+            Some("bfi w0, w0, #25, #4")
+        );
+    }
+
+    #[test]
+    fn disasm_and_imm64() {
+        assert_eq!(
+            disassemble(0x9278DC63).as_deref(),
+            Some("and x3, x3, #0xffffffffffffff00")
+        );
+    }
+
+    #[test]
+    fn disasm_tst_imm64() {
+        assert_eq!(
+            disassemble(0xF278DC7F).as_deref(),
+            Some("tst x3, #0xffffffffffffff00")
+        );
+    }
+
+    #[test]
+    fn disasm_neg_shifted() {
+        assert_eq!(
+            disassemble(0xCB0407E4).as_deref(),
+            Some("neg x4, x4, lsl #1")
+        );
+    }
+
+    #[test]
+    fn disasm_subs_sp_shifted() {
+        assert_eq!(
+            disassemble(0xEB2F73F0).as_deref(),
+            Some("subs x16, sp, x15, lsl #4")
+        );
+    }
+
+    #[test]
+    fn disasm_sub_extended() {
+        assert_eq!(
+            disassemble(0xCB2043E0).as_deref(),
+            Some("sub x0, sp, w0, uxtw")
+        );
+    }
+
+    #[test]
+    fn disasm_csel() {
+        assert_eq!(
+            disassemble(0x1A800000).as_deref(),
+            Some("csel w0, w0, w0, eq")
+        );
+    }
+
+    #[test]
+    fn disasm_cset() {
+        assert_eq!(disassemble(0x1A9F07E0).as_deref(), Some("cset w0, ne"));
+    }
+
+    #[test]
+    fn disasm_csetm() {
+        assert_eq!(disassemble(0x5A9F03E0).as_deref(), Some("csetm w0, ne"));
+    }
+
+    #[test]
+    fn disasm_cinc() {
+        assert_eq!(
+            disassemble(0x1A800400).as_deref(),
+            Some("cinc w0, w0, ne")
+        );
+    }
+
+    #[test]
+    fn disasm_cinv() {
+        assert_eq!(
+            disassemble(0x5A800000).as_deref(),
+            Some("cinv w0, w0, ne")
+        );
+    }
+
+    #[test]
+    fn disasm_cneg() {
+        assert_eq!(
+            disassemble(0x5A802400).as_deref(),
+            Some("cneg w0, w0, lo")
+        );
+    }
+
+    #[test]
+    fn disasm_ccmp() {
+        assert_eq!(
+            disassemble(0x7A400000).as_deref(),
+            Some("ccmp w0, w0, #0, eq")
+        );
+    }
+
+    #[test]
+    fn disasm_fmov_gp_to_fp() {
+        assert_eq!(disassemble(0x1E270000).as_deref(), Some("fmov s0, w0"));
+    }
+
+    #[test]
+    fn disasm_fmov_fp_to_gp() {
+        assert_eq!(disassemble(0x1E260000).as_deref(), Some("fmov w0, s0"));
+    }
+
+    #[test]
+    fn disasm_fmov_x_to_d() {
+        assert_eq!(disassemble(0x9E670025).as_deref(), Some("fmov d5, x1"));
+    }
+
+    #[test]
+    fn disasm_dmb_sy() {
+        assert_eq!(disassemble(0xD5033FBF).as_deref(), Some("dmb sy"));
+    }
+
+    #[test]
+    fn disasm_clrex() {
+        assert_eq!(disassemble(0xD5033F5F).as_deref(), Some("clrex"));
+    }
+
+    #[test]
+    fn disasm_adrp() {
+        assert_eq!(disassemble(0x90000008).as_deref(), Some("adrp x8, .+0x0"));
+    }
+
+    #[test]
+    fn disasm_adr() {
+        assert_eq!(disassemble(0x10000020).as_deref(), Some("adr x0, .+0x4"));
+    }
+
+    #[test]
+    fn disasm_prfm() {
+        assert_eq!(
+            disassemble(0xF9800C01).as_deref(),
+            Some("prfm pldl1strm, [x0, #0x18]")
+        );
+    }
+
+    #[test]
+    fn disasm_simd_cmeq() {
+        assert_eq!(
+            disassemble(0x4E209800).as_deref(),
+            Some("cmeq v0.16b, v0.16b, #0")
+        );
+    }
+
+    #[test]
+    fn disasm_simd_dup() {
+        assert_eq!(
+            disassemble(0x4E010C20).as_deref(),
+            Some("dup v0.16b, w1")
+        );
+    }
+
+    #[test]
+    fn disasm_simd_orr() {
+        assert_eq!(
+            disassemble(0x4EA31C60).as_deref(),
+            Some("orr v0.16b, v3.16b, v3.16b")
+        );
+    }
+
+    #[test]
+    fn disasm_pacibsp() {
+        assert_eq!(disassemble(0xD503237F).as_deref(), Some("pacibsp"));
+    }
+
+    #[test]
+    fn disasm_autibsp() {
+        assert_eq!(disassemble(0xD50323FF).as_deref(), Some("autibsp"));
+    }
+
+    #[test]
+    fn disasm_ic_ialluis() {
+        assert_eq!(
+            disassemble(0xD5087108).as_deref(),
+            Some("ic ialluis")
+        );
+    }
+
+    #[test]
+    fn disasm_sve_ldr_p() {
+        assert_eq!(
+            disassemble(0x85800000).as_deref(),
+            Some("ldr p0, [x0]")
+        );
+    }
+
+    #[test]
+    fn disasm_sve_ldr_p_mul_vl() {
+        assert_eq!(
+            disassemble(0x85800400).as_deref(),
+            Some("ldr p0, [x0, #1, mul vl]")
+        );
+    }
+
+    #[test]
+    fn disasm_ldadd() {
+        assert!(disassemble(0xB8200020).unwrap().contains("ldadd"));
+    }
+
+    // ── Mnemonic enum ──────────────────────────────────────────────────
+
+    #[test]
+    fn mnemonic_name_lowercase() {
         assert_eq!(Mnemonic::ADD.name(), "add");
         assert_eq!(Mnemonic::LDR.name(), "ldr");
-        assert_eq!(format!("{}", Mnemonic::SUB), "sub");
+        assert_eq!(Mnemonic::FMOV.name(), "fmov");
     }
 
     #[test]
-    fn decode_str_memory() {
-        let insn = decode(0xF9000420).unwrap(); // STR X0, [X1, #8]
-        assert!(insn.to_string().contains("str"));
-        let mem = insn.operands.iter().find(|op| matches!(op, Operand::Memory { .. }));
-        assert!(mem.is_some());
-        if let Some(Operand::Memory { offset, .. }) = mem {
-            assert_eq!(*offset, 8);
+    fn mnemonic_display_trait() {
+        assert_eq!(format!("{}", Mnemonic::SUB), "sub");
+        assert_eq!(format!("{}", Mnemonic::NOP), "nop");
+    }
+
+    #[test]
+    fn mnemonic_name_via_ffi() {
+        let name = mnemonic_name(Mnemonic::ADD);
+        assert_eq!(name, "add");
+    }
+
+    #[test]
+    fn mnemonic_from_u16_roundtrip() {
+        let m = Mnemonic::from_u16(Mnemonic::BL as u16);
+        assert_eq!(m, Mnemonic::BL);
+    }
+
+    // ── Instruction fields ─────────────────────────────────────────────
+
+    #[test]
+    fn instruction_raw_value() {
+        let insn = decode(0x8B020020).unwrap();
+        assert_eq!(insn.raw_value, 0x8B020020);
+    }
+
+    #[test]
+    fn instruction_display_trait() {
+        let insn = decode(0x8B020020).unwrap();
+        assert_eq!(format!("{insn}"), "add x0, x1, x2");
+    }
+
+    #[test]
+    fn instruction_no_condition() {
+        let insn = decode(0x8B020020).unwrap();
+        assert_eq!(insn.condition, Condition::None);
+    }
+
+    // ── Condition codes ────────────────────────────────────────────────
+
+    #[test]
+    fn condition_eq() {
+        let insn = decode(0x54000040).unwrap(); // b.eq .+0x8
+        assert_eq!(insn.mnemonic, Mnemonic::B);
+        assert_eq!(insn.condition, Condition::EQ);
+        assert_eq!(insn.condition.name(), "eq");
+    }
+
+    #[test]
+    fn condition_ne() {
+        let insn = decode(0x54000061).unwrap(); // b.ne .+0xc
+        assert_eq!(insn.condition, Condition::NE);
+    }
+
+    #[test]
+    fn condition_from_i8_bounds() {
+        assert_eq!(Condition::from_i8(-1), Condition::None);
+        assert_eq!(Condition::from_i8(0), Condition::EQ);
+        assert_eq!(Condition::from_i8(15), Condition::NV);
+        assert_eq!(Condition::from_i8(16), Condition::None); // out of range
+        assert_eq!(Condition::from_i8(-2), Condition::None); // out of range
+    }
+
+    // ── Register operands ──────────────────────────────────────────────
+
+    #[test]
+    fn register_operands_add() {
+        // ADD X0, X1, X2
+        let insn = decode(0x8B020020).unwrap();
+        assert_eq!(insn.operands.len(), 3);
+        // All three should be Register
+        for op in &insn.operands {
+            assert!(matches!(op, Operand::Register(_)));
         }
     }
 
     #[test]
-    fn decode_ldadd_atomic() {
-        let insn = decode(0xB8200020).unwrap();
-        assert!(insn.to_string().contains("ldadd"));
+    fn register_values_add() {
+        // ADD X0, X1, X2 — register values include size encoding
+        let insn = decode(0x8B020020).unwrap();
+        match (&insn.operands[0], &insn.operands[1], &insn.operands[2]) {
+            (Operand::Register(rd), Operand::Register(rn), Operand::Register(rm)) => {
+                // All three are distinct registers in ascending order
+                assert_ne!(rd, rn);
+                assert_ne!(rn, rm);
+                // Rd and Rn differ by 1 in raw encoding
+                assert_eq!(*rn - *rd, 1);
+                assert_eq!(*rm - *rn, 1);
+            }
+            _ => panic!("expected 3 Register operands"),
+        }
+    }
+
+    // ── Immediate operands ─────────────────────────────────────────────
+
+    #[test]
+    fn immediate_operand_mov_w() {
+        // MOV W3, #0x1 (MOVZ)
+        let insn = decode(0x52800023).unwrap();
+        assert!(insn.operands.len() >= 2);
+        // Second operand is immediate #0x1
+        match &insn.operands[1] {
+            Operand::Immediate(v) => assert_eq!(*v, 0x1),
+            _ => panic!("expected Immediate, got {:?}", insn.operands[1]),
+        }
+    }
+
+    #[test]
+    fn immediate_operand_add_imm() {
+        // ADD X2, X1, #0x10 — use non-zero immediate to avoid MOV alias
+        let insn = decode(0x91004022).unwrap();
+        assert_eq!(insn.to_string(), "add x2, x1, #0x10");
+        assert!(insn.operands.len() >= 3);
+        let has_imm = insn.operands.iter().any(|op| {
+            matches!(
+                op,
+                Operand::Immediate(_) | Operand::DecimalImmediate(_) | Operand::SignedImmediate(_)
+            )
+        });
+        assert!(has_imm, "ADD imm should have an immediate operand, got: {:?}", insn.operands);
+    }
+
+    #[test]
+    fn signed_immediate_mov_neg() {
+        // MOV X0, #-0x2 (MOVN) — C++ encodes this as Immediate
+        let insn = decode(0x92800020).unwrap();
+        assert!(insn.operands.len() >= 2);
+        // The value may be Immediate (unsigned view) or SignedImmediate
+        let has_imm = insn.operands.iter().any(|op| {
+            matches!(op, Operand::Immediate(_) | Operand::SignedImmediate(_))
+        });
+        assert!(has_imm, "MOVN should have an immediate operand, ops: {:?}", insn.operands);
+    }
+
+    // ── Memory operands ────────────────────────────────────────────────
+
+    #[test]
+    fn memory_base_offset() {
+        // LDR X2, [X0, #0x108]
+        let insn = decode(0xF9408402).unwrap();
+        let mem = insn.operands.iter().find_map(|op| match op {
+            Operand::Memory { base, offset, mode } => Some((*base, *offset, *mode)),
+            _ => None,
+        });
+        let (_base, offset, mode) = mem.expect("should have Memory operand");
+        assert_eq!(offset, 0x108);
+        assert_eq!(mode, MemoryMode::Offset);
+    }
+
+    #[test]
+    fn memory_zero_offset() {
+        // LDR X1, [X0]
+        let insn = decode(0xF9400001).unwrap();
+        let mem = insn.operands.iter().find_map(|op| match op {
+            Operand::Memory { base, offset, .. } => Some((*base, *offset)),
+            _ => None,
+        });
+        let (_base, offset) = mem.expect("should have Memory operand");
+        assert_eq!(offset, 0);
+    }
+
+    #[test]
+    fn memory_post_index() {
+        // LDR W3, [X1], #4 — verify disassembly shows post-index syntax
+        let insn = decode(0xB8404423).unwrap();
+        assert_eq!(insn.to_string(), "ldr w3, [x1], #4");
+        // Has a memory operand
+        let has_mem = insn.operands.iter().any(|op| matches!(op, Operand::Memory { .. }));
+        assert!(has_mem, "post-index LDR should have Memory operand");
+    }
+
+    #[test]
+    fn memory_pre_index() {
+        // STP FP, LR, [SP, #-0x20]!
+        let insn = decode(0xA9BE7BFD).unwrap();
+        let mem = insn.operands.iter().find_map(|op| match op {
+            Operand::Memory { mode, .. } => Some(*mode),
+            _ => None,
+        });
+        let mode = mem.expect("should have Memory operand");
+        assert_eq!(mode, MemoryMode::PreIndex);
+    }
+
+    #[test]
+    fn memory_neg_offset_ldur() {
+        // LDUR W8, [X4, #-4]
+        let insn = decode(0xB85FC088).unwrap();
+        let mem = insn.operands.iter().find_map(|op| match op {
+            Operand::Memory { offset, .. } => Some(*offset),
+            _ => None,
+        });
+        assert_eq!(mem.unwrap(), -4);
+    }
+
+    #[test]
+    fn memory_reg_offset() {
+        // LDR X0, [X1, X0]
+        let insn = decode(0xF8606820).unwrap();
+        let has_reg_off = insn
+            .operands
+            .iter()
+            .any(|op| matches!(op, Operand::MemoryRegOffset { .. }));
+        assert!(has_reg_off, "should have MemoryRegOffset operand");
+    }
+
+    #[test]
+    fn memory_str_offset_scaled() {
+        // STR X1, [X1, #8]
+        let insn = decode(0xF9000421).unwrap();
+        let mem = insn.operands.iter().find_map(|op| match op {
+            Operand::Memory { offset, .. } => Some(*offset),
+            _ => None,
+        });
+        assert_eq!(mem.unwrap(), 8);
+    }
+
+    // ── Label / branch operands ────────────────────────────────────────
+
+    #[test]
+    fn label_branch_forward() {
+        // B .+0x4
+        let insn = decode(0x14000001).unwrap();
+        assert_eq!(insn.mnemonic, Mnemonic::B);
+        // Branch target is a Label or Relative operand
+        let target = insn.operands.iter().find(|op| {
+            matches!(op, Operand::Label(_) | Operand::Relative(_))
+        });
+        assert!(target.is_some(), "B should have a target operand, got: {:?}", insn.operands);
+    }
+
+    #[test]
+    fn label_branch_backward() {
+        // BL .-0x15AD74
+        let insn = decode(0x97FA94A3).unwrap();
+        assert_eq!(insn.mnemonic, Mnemonic::BL);
+        assert!(insn.operands.len() >= 1);
+        assert!(insn.to_string().contains("-0x15ad74"));
+    }
+
+    #[test]
+    fn label_cbnz() {
+        // CBNZ W8, .+0xc
+        let insn = decode(0x35000068).unwrap();
+        assert!(insn.operands.len() >= 2);
+        assert!(insn.to_string().contains("+0xc"));
+    }
+
+    #[test]
+    fn label_conditional_branch() {
+        // B.EQ .+0x8
+        let insn = decode(0x54000040).unwrap();
+        assert!(insn.operands.len() >= 1);
+        assert!(insn.to_string().contains("+0x8"));
+    }
+
+    // ── Shift operands ─────────────────────────────────────────────────
+
+    #[test]
+    fn shift_operand_subs() {
+        // SUBS X16, SP, X15, LSL #4
+        let insn = decode(0xEB2F73F0).unwrap();
+        assert_eq!(insn.to_string(), "subs x16, sp, x15, lsl #4");
+        // Has either a Shift or Extend operand for the LSL #4
+        let has_modifier = insn.operands.iter().any(|op| {
+            matches!(op, Operand::Shift { .. } | Operand::Extend { .. })
+        });
+        assert!(has_modifier, "should have shift/extend operand, got: {:?}", insn.operands);
+    }
+
+    #[test]
+    fn shift_operand_neg() {
+        // NEG X4, X4, LSL #1
+        let insn = decode(0xCB0407E4).unwrap();
+        let shift = insn.operands.iter().find_map(|op| match op {
+            Operand::Shift {
+                shift_type,
+                amount,
+            } => Some((*shift_type, *amount)),
+            _ => None,
+        });
+        let (st, amt) = shift.expect("should have Shift operand");
+        assert_eq!(st, ShiftType::LSL);
+        assert_eq!(amt, 1);
+    }
+
+    // ── Extend operands ────────────────────────────────────────────────
+
+    #[test]
+    fn extend_operand_sub_uxtw() {
+        // SUB X0, SP, W0, UXTW
+        let insn = decode(0xCB2043E0).unwrap();
+        let ext = insn.operands.iter().find_map(|op| match op {
+            Operand::Extend {
+                ext_type, amount, ..
+            } => Some((*ext_type, *amount)),
+            _ => None,
+        });
+        let (et, _) = ext.expect("should have Extend operand");
+        assert_eq!(et, ExtendType::UXTW);
+    }
+
+    // ── Barrier operands ───────────────────────────────────────────────
+
+    #[test]
+    fn barrier_dmb() {
+        // DMB SY
+        let insn = decode(0xD5033FBF).unwrap();
+        assert_eq!(insn.mnemonic, Mnemonic::DMB);
+    }
+
+    #[test]
+    fn barrier_dmb_nshld() {
+        // DMB NSHLD
+        let insn = decode(0xD50335BF).unwrap();
+        assert_eq!(insn.mnemonic, Mnemonic::DMB);
+        assert_eq!(insn.to_string(), "dmb nshld");
+    }
+
+    // ── Relative / ADRP operands ───────────────────────────────────────
+
+    #[test]
+    fn relative_adrp() {
+        // ADRP X8, .+0x0
+        let insn = decode(0x90000008).unwrap();
+        assert_eq!(insn.mnemonic, Mnemonic::ADRP);
+        assert!(insn.operands.len() >= 2);
+    }
+
+    #[test]
+    fn relative_adr() {
+        // ADR X0, .+0x4
+        let insn = decode(0x10000020).unwrap();
+        assert_eq!(insn.mnemonic, Mnemonic::ADR);
+    }
+
+    // ── Prefetch operands ──────────────────────────────────────────────
+
+    #[test]
+    fn prefetch_prfm() {
+        // PRFM PLDL1STRM, [X0, #0x18]
+        let insn = decode(0xF9800C01).unwrap();
+        assert_eq!(insn.mnemonic, Mnemonic::PRFM);
+        let has_prefetch = insn
+            .operands
+            .iter()
+            .any(|op| matches!(op, Operand::Prefetch(_)));
+        assert!(has_prefetch, "PRFM should have Prefetch operand");
+    }
+
+    // ── No-operand instructions ────────────────────────────────────────
+
+    #[test]
+    fn no_operands_nop() {
+        let insn = decode(0xD503201F).unwrap();
+        assert_eq!(insn.mnemonic, Mnemonic::NOP);
+        assert_eq!(insn.operands.len(), 0);
+    }
+
+    #[test]
+    fn no_operands_clrex() {
+        // CLREX (no immediate form)
+        let insn = decode(0xD5033F5F).unwrap();
+        assert_eq!(insn.mnemonic, Mnemonic::CLREX);
+    }
+
+    // ── Operand count ──────────────────────────────────────────────────
+
+    #[test]
+    fn operand_count_ret() {
+        let insn = decode(0xD65F03C0).unwrap();
+        // RET has 0 or 1 operand depending on whether Rn=LR is implicit
+        assert!(insn.operands.len() <= 1);
+    }
+
+    #[test]
+    fn operand_count_b() {
+        let insn = decode(0x14000001).unwrap();
+        assert_eq!(insn.operands.len(), 1); // just the label
+    }
+
+    #[test]
+    fn operand_count_add_3reg() {
+        let insn = decode(0x8B020020).unwrap();
+        assert_eq!(insn.operands.len(), 3);
+    }
+
+    #[test]
+    fn operand_count_subs_with_shift() {
+        // SUBS X16, SP, X15, LSL #4 → Rd, Rn, Rm, Shift = 4 operands
+        let insn = decode(0xEB2F73F0).unwrap();
+        assert_eq!(insn.operands.len(), 4);
+    }
+
+    // ── OperandType enum ───────────────────────────────────────────────
+
+    #[test]
+    fn operand_type_from_u8() {
+        assert_eq!(OperandType::from_u8(0), OperandType::Register);
+        assert_eq!(OperandType::from_u8(3), OperandType::Immediate);
+        assert_eq!(OperandType::from_u8(6), OperandType::Memory);
+        assert_eq!(OperandType::from_u8(9), OperandType::Label);
+        assert_eq!(OperandType::from_u8(12), OperandType::Shift);
+        assert_eq!(OperandType::from_u8(27), OperandType::Unknown);
+        assert_eq!(OperandType::from_u8(255), OperandType::Unknown);
+    }
+
+    // ── Operand Display trait ──────────────────────────────────────────
+
+    #[test]
+    fn operand_display_register() {
+        let op = Operand::Register(5);
+        assert_eq!(format!("{op}"), "reg:5");
+    }
+
+    #[test]
+    fn operand_display_immediate() {
+        let op = Operand::Immediate(0xFF);
+        assert_eq!(format!("{op}"), "#0xff");
+    }
+
+    #[test]
+    fn operand_display_signed() {
+        let op = Operand::SignedImmediate(-42);
+        assert_eq!(format!("{op}"), "#-42");
+    }
+
+    #[test]
+    fn operand_display_memory() {
+        let op = Operand::Memory {
+            base: 1,
+            offset: 8,
+            mode: MemoryMode::Offset,
+        };
+        assert_eq!(format!("{op}"), "[reg:1, #8]");
+    }
+
+    #[test]
+    fn operand_display_label() {
+        let op = Operand::Label(-16);
+        assert_eq!(format!("{op}"), "#-16");
+    }
+
+    #[test]
+    fn operand_display_shift() {
+        let op = Operand::Shift {
+            shift_type: ShiftType::LSR,
+            amount: 3,
+        };
+        assert_eq!(format!("{op}"), "LSR #3");
+    }
+
+    // ── SIMD / floating-point ──────────────────────────────────────────
+
+    #[test]
+    fn simd_movi() {
+        // MOVI V7.16B, #0
+        let insn = decode(0x4F00E407).unwrap();
+        assert_eq!(insn.mnemonic, Mnemonic::MOVI);
+    }
+
+    #[test]
+    fn simd_addp() {
+        // ADDP V0.16B, V0.16B, V2.16B
+        let insn = decode(0x4E22BC00).unwrap();
+        assert_eq!(insn.mnemonic, Mnemonic::ADDP);
+        assert!(insn.operands.len() >= 3);
+    }
+
+    #[test]
+    fn fmov_between_gp_fp() {
+        // FMOV S0, W0
+        let insn = decode(0x1E270000).unwrap();
+        assert_eq!(insn.mnemonic, Mnemonic::FMOV);
+        assert_eq!(insn.operands.len(), 2);
+    }
+
+    // ── Aliases ────────────────────────────────────────────────────────
+
+    #[test]
+    fn alias_mov_from_add_sp() {
+        // MOV X29, SP (encoded as ADD X29, SP, #0)
+        let insn = decode(0x910003FD).unwrap();
+        assert_eq!(insn.to_string(), "mov x29, sp");
+    }
+
+    #[test]
+    fn alias_lsr_from_ubfm() {
+        // LSR W8, W0, #1 (encoded as UBFM)
+        let insn = decode(0x53017C08).unwrap();
+        assert!(insn.to_string().contains("lsr"));
+    }
+
+    #[test]
+    fn alias_uxtb() {
+        // UXTB W0, W0 (encoded as UBFM)
+        let insn = decode(0x53001C00).unwrap();
+        assert_eq!(insn.to_string(), "uxtb w0, w0");
+    }
+
+    #[test]
+    fn alias_sxtw() {
+        // SXTW X0, W0 (encoded as SBFM)
+        let insn = decode(0x93407C00).unwrap();
+        assert_eq!(insn.to_string(), "sxtw x0, w0");
+    }
+
+    // ── SVE ────────────────────────────────────────────────────────────
+
+    #[test]
+    fn sve_saddv() {
+        // SADDV D1, P0, Z0.B
+        let insn = decode(0x04002001).unwrap();
+        assert_eq!(insn.mnemonic, Mnemonic::SADDV);
+    }
+
+    #[test]
+    fn sve_ldr_predicate() {
+        // LDR P0, [X0]
+        let insn = decode(0x85800000).unwrap();
+        assert_eq!(insn.mnemonic, Mnemonic::LDR);
+    }
+
+    // ── System instructions ────────────────────────────────────────────
+
+    #[test]
+    fn sys_pacibsp() {
+        let insn = decode(0xD503237F).unwrap();
+        assert_eq!(insn.mnemonic, Mnemonic::PACIBSP);
+    }
+
+    #[test]
+    fn sys_autibsp() {
+        let insn = decode(0xD50323FF).unwrap();
+        assert_eq!(insn.mnemonic, Mnemonic::AUTIBSP);
+    }
+
+    #[test]
+    fn sys_brk() {
+        // BRK #0xF000
+        let insn = decode(0xD43E0000).unwrap();
+        assert_eq!(insn.mnemonic, Mnemonic::BRK);
+        // Should have immediate operand for the exception code
+        let imm = insn.operands.iter().find_map(|op| match op {
+            Operand::Immediate(v) => Some(*v),
+            _ => None,
+        });
+        assert_eq!(imm.unwrap(), 0xF000);
+    }
+
+    // ── Batch decode (stress test) ─────────────────────────────────────
+
+    #[test]
+    fn batch_decode_known_instructions() {
+        let encodings: &[(u32, &str)] = &[
+            (0x8B020020, "add x0, x1, x2"),
+            (0xCB020020, "sub x0, x1, x2"),
+            (0xD503201F, "nop"),
+            (0xD65F03C0, "ret"),
+            (0x14000001, "b .+0x4"),
+            (0x54000040, "b.eq .+0x8"),
+            (0xF9400001, "ldr x1, [x0]"),
+            (0xB9000001, "str w1, [x0]"),
+            (0x52800023, "mov w3, #0x1"),
+            (0x910003FD, "mov x29, sp"),
+        ];
+        for &(raw, expected) in encodings {
+            let s = disassemble(raw).unwrap_or_else(|| panic!("failed to decode 0x{raw:08X}"));
+            assert_eq!(
+                s, expected,
+                "mismatch for 0x{raw:08X}: got \"{s}\", expected \"{expected}\""
+            );
+        }
+    }
+
+    // ── Clone / Debug derives ──────────────────────────────────────────
+
+    #[test]
+    fn instruction_clone() {
+        let insn = decode(0x8B020020).unwrap();
+        let cloned = insn.clone();
+        assert_eq!(cloned.mnemonic, insn.mnemonic);
+        assert_eq!(cloned.raw_value, insn.raw_value);
+        assert_eq!(cloned.operands.len(), insn.operands.len());
+    }
+
+    #[test]
+    fn instruction_debug() {
+        let insn = decode(0x8B020020).unwrap();
+        let dbg = format!("{insn:?}");
+        assert!(dbg.contains("ADD"));
+        assert!(dbg.contains("Register"));
+    }
+
+    #[test]
+    fn operand_clone() {
+        let op = Operand::Memory {
+            base: 31,
+            offset: -8,
+            mode: MemoryMode::PreIndex,
+        };
+        let cloned = op.clone();
+        assert!(matches!(
+            cloned,
+            Operand::Memory {
+                base: 31,
+                offset: -8,
+                mode: MemoryMode::PreIndex,
+            }
+        ));
+    }
+
+    #[test]
+    fn condition_clone_copy() {
+        let c = Condition::GT;
+        let c2 = c; // Copy
+        assert_eq!(c, c2);
+        assert_eq!(c.name(), "gt");
     }
 }
