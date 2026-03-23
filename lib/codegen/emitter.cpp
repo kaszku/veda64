@@ -5185,5 +5185,230 @@ CodeGenerator& CodeGenerator::xpaclri() {
     return *this;
 }
 
+// === GP Abs/Count (ARMv9) ===
+CodeGenerator& CodeGenerator::abs(XReg rd, XReg rn) {
+    emit(dpreg::encode_abs_64_dp_1src(rd.idx, rn.idx));
+    return *this;
+}
+CodeGenerator& CodeGenerator::abs(WReg rd, WReg rn) {
+    emit(dpreg::encode_abs_32_dp_1src(rd.idx, rn.idx));
+    return *this;
+}
+CodeGenerator& CodeGenerator::cnt(XReg rd, XReg rn) {
+    emit(dpreg::encode_cnt_64_dp_1src(rd.idx, rn.idx));
+    return *this;
+}
+CodeGenerator& CodeGenerator::cnt(WReg rd, WReg rn) {
+    emit(dpreg::encode_cnt_32_dp_1src(rd.idx, rn.idx));
+    return *this;
+}
+
+// === Flag Manipulation ===
+CodeGenerator& CodeGenerator::setf8(WReg rn) {
+    emit(dpreg::encode_setf8_only_setf(rn.idx));
+    return *this;
+}
+CodeGenerator& CodeGenerator::setf16(WReg rn) {
+    emit(dpreg::encode_setf16_only_setf(rn.idx));
+    return *this;
+}
+CodeGenerator& CodeGenerator::rmif(XReg rn, uint8_t imm6, uint8_t mask) {
+    emit(dpreg::encode_rmif_only_rmif(mask & 0xF, rn.idx, imm6 & 0x3F));
+    return *this;
+}
+
+// === FP Immediate ===
+CodeGenerator& CodeGenerator::fmov(SReg rd, uint8_t imm8) {
+    emit(simd_dp::encode_fmov_s_floatimm(rd.idx, imm8));
+    return *this;
+}
+CodeGenerator& CodeGenerator::fmov(DReg rd, uint8_t imm8) {
+    emit(simd_dp::encode_fmov_d_floatimm(rd.idx, imm8));
+    return *this;
+}
+
+// === Load/Store Register Offset ===
+// option=0b011 (LSL), S=shift flag
+CodeGenerator& CodeGenerator::ldr_reg(XReg rt, XReg rn, XReg rm, bool shift) {
+    emit(ldst::encode_ldr_64_ldst_regoff(rt.idx, rn.idx, shift ? 1 : 0, 0b011, rm.idx));
+    return *this;
+}
+CodeGenerator& CodeGenerator::ldr_reg(WReg rt, XReg rn, XReg rm, bool shift) {
+    emit(ldst::encode_ldr_32_ldst_regoff(rt.idx, rn.idx, shift ? 1 : 0, 0b011, rm.idx));
+    return *this;
+}
+CodeGenerator& CodeGenerator::str_reg(XReg rt, XReg rn, XReg rm, bool shift) {
+    emit(ldst::encode_str_64_ldst_regoff(rt.idx, rn.idx, shift ? 1 : 0, 0b011, rm.idx));
+    return *this;
+}
+CodeGenerator& CodeGenerator::str_reg(WReg rt, XReg rn, XReg rm, bool shift) {
+    emit(ldst::encode_str_32_ldst_regoff(rt.idx, rn.idx, shift ? 1 : 0, 0b011, rm.idx));
+    return *this;
+}
+CodeGenerator& CodeGenerator::ldrb_reg(WReg rt, XReg rn, XReg rm) {
+    emit(ldst::encode_ldrb_32b_ldst_regoff(rt.idx, rn.idx, 0, 0b011, rm.idx));
+    return *this;
+}
+CodeGenerator& CodeGenerator::ldrh_reg(WReg rt, XReg rn, XReg rm, bool shift) {
+    emit(ldst::encode_ldrh_32_ldst_regoff(rt.idx, rn.idx, shift ? 1 : 0, 0b011, rm.idx));
+    return *this;
+}
+CodeGenerator& CodeGenerator::strb_reg(WReg rt, XReg rn, XReg rm) {
+    emit(ldst::encode_strb_32b_ldst_regoff(rt.idx, rn.idx, 0, 0b011, rm.idx));
+    return *this;
+}
+CodeGenerator& CodeGenerator::strh_reg(WReg rt, XReg rn, XReg rm, bool shift) {
+    emit(ldst::encode_strh_32_ldst_regoff(rt.idx, rn.idx, shift ? 1 : 0, 0b011, rm.idx));
+    return *this;
+}
+CodeGenerator& CodeGenerator::ldrsb_reg(XReg rt, XReg rn, XReg rm) {
+    emit(ldst::encode_ldrsb_64b_ldst_regoff(rt.idx, rn.idx, 0, 0b011, rm.idx));
+    return *this;
+}
+CodeGenerator& CodeGenerator::ldrsb_reg(WReg rt, XReg rn, XReg rm) {
+    emit(ldst::encode_ldrsb_32b_ldst_regoff(rt.idx, rn.idx, 0, 0b011, rm.idx));
+    return *this;
+}
+CodeGenerator& CodeGenerator::ldrsh_reg(XReg rt, XReg rn, XReg rm, bool shift) {
+    emit(ldst::encode_ldrsh_64_ldst_regoff(rt.idx, rn.idx, shift ? 1 : 0, 0b011, rm.idx));
+    return *this;
+}
+CodeGenerator& CodeGenerator::ldrsh_reg(WReg rt, XReg rn, XReg rm, bool shift) {
+    emit(ldst::encode_ldrsh_32_ldst_regoff(rt.idx, rn.idx, shift ? 1 : 0, 0b011, rm.idx));
+    return *this;
+}
+CodeGenerator& CodeGenerator::ldrsw_reg(XReg rt, XReg rn, XReg rm, bool shift) {
+    emit(ldst::encode_ldrsw_64_ldst_regoff(rt.idx, rn.idx, shift ? 1 : 0, 0b011, rm.idx));
+    return *this;
+}
+CodeGenerator& CodeGenerator::ldr_reg(SReg rt, XReg rn, XReg rm, bool shift) {
+    emit(ldst::encode_ldr_s_ldst_regoff(rt.idx, rn.idx, shift ? 1 : 0, 0b011, rm.idx));
+    return *this;
+}
+CodeGenerator& CodeGenerator::ldr_reg(DReg rt, XReg rn, XReg rm, bool shift) {
+    emit(ldst::encode_ldr_d_ldst_regoff(rt.idx, rn.idx, shift ? 1 : 0, 0b011, rm.idx));
+    return *this;
+}
+CodeGenerator& CodeGenerator::ldr_reg(QReg rt, XReg rn, XReg rm, bool shift) {
+    emit(ldst::encode_ldr_q_ldst_regoff(rt.idx, rn.idx, shift ? 1 : 0, 0b011, rm.idx));
+    return *this;
+}
+CodeGenerator& CodeGenerator::str_reg(SReg rt, XReg rn, XReg rm, bool shift) {
+    emit(ldst::encode_str_s_ldst_regoff(rt.idx, rn.idx, shift ? 1 : 0, 0b011, rm.idx));
+    return *this;
+}
+CodeGenerator& CodeGenerator::str_reg(DReg rt, XReg rn, XReg rm, bool shift) {
+    emit(ldst::encode_str_d_ldst_regoff(rt.idx, rn.idx, shift ? 1 : 0, 0b011, rm.idx));
+    return *this;
+}
+CodeGenerator& CodeGenerator::str_reg(QReg rt, XReg rn, XReg rm, bool shift) {
+    emit(ldst::encode_str_q_ldst_regoff(rt.idx, rn.idx, shift ? 1 : 0, 0b011, rm.idx));
+    return *this;
+}
+CodeGenerator& CodeGenerator::prfm_reg(uint8_t prfop, XReg rn, XReg rm, bool shift) {
+    emit(ldst::encode_prfm_p_ldst_regoff(prfop, rn.idx, shift ? 1 : 0, 0b011, rm.idx));
+    return *this;
+}
+
+// === Scalar SIMD (D register, 64-bit) ===
+CodeGenerator& CodeGenerator::add_d(DReg rd, DReg rn, DReg rm) {
+    emit(simd_dp::encode_add_asisdsame_only(rd.idx, rn.idx, rm.idx));
+    return *this;
+}
+CodeGenerator& CodeGenerator::sub_d(DReg rd, DReg rn, DReg rm) {
+    emit(simd_dp::encode_sub_asisdsame_only(rd.idx, rn.idx, rm.idx));
+    return *this;
+}
+CodeGenerator& CodeGenerator::cmeq_d(DReg rd, DReg rn, DReg rm) {
+    emit(simd_dp::encode_cmeq_asisdsame_only(rd.idx, rn.idx, rm.idx));
+    return *this;
+}
+CodeGenerator& CodeGenerator::cmge_d(DReg rd, DReg rn, DReg rm) {
+    emit(simd_dp::encode_cmge_asisdsame_only(rd.idx, rn.idx, rm.idx));
+    return *this;
+}
+CodeGenerator& CodeGenerator::cmgt_d(DReg rd, DReg rn, DReg rm) {
+    emit(simd_dp::encode_cmgt_asisdsame_only(rd.idx, rn.idx, rm.idx));
+    return *this;
+}
+CodeGenerator& CodeGenerator::cmhi_d(DReg rd, DReg rn, DReg rm) {
+    emit(simd_dp::encode_cmhi_asisdsame_only(rd.idx, rn.idx, rm.idx));
+    return *this;
+}
+CodeGenerator& CodeGenerator::cmhs_d(DReg rd, DReg rn, DReg rm) {
+    emit(simd_dp::encode_cmhs_asisdsame_only(rd.idx, rn.idx, rm.idx));
+    return *this;
+}
+CodeGenerator& CodeGenerator::abs_d(DReg rd, DReg rn) {
+    emit(simd_dp::encode_abs_asisdmisc_r(rd.idx, rn.idx));
+    return *this;
+}
+CodeGenerator& CodeGenerator::neg_d(DReg rd, DReg rn) {
+    emit(simd_dp::encode_neg_asisdmisc_r(rd.idx, rn.idx));
+    return *this;
+}
+
+// === Scalar SIMD Saturating ===
+CodeGenerator& CodeGenerator::sqadd_d(DReg rd, DReg rn, DReg rm) {
+    emit(simd_dp::encode_sqadd_asisdsame_only(rd.idx, rn.idx, rm.idx, 3));  // size=3 for 64-bit
+    return *this;
+}
+CodeGenerator& CodeGenerator::sqsub_d(DReg rd, DReg rn, DReg rm) {
+    emit(simd_dp::encode_sqsub_asisdsame_only(rd.idx, rn.idx, rm.idx, 3));
+    return *this;
+}
+CodeGenerator& CodeGenerator::uqadd_d(DReg rd, DReg rn, DReg rm) {
+    emit(simd_dp::encode_uqadd_asisdsame_only(rd.idx, rn.idx, rm.idx, 3));
+    return *this;
+}
+CodeGenerator& CodeGenerator::uqsub_d(DReg rd, DReg rn, DReg rm) {
+    emit(simd_dp::encode_uqsub_asisdsame_only(rd.idx, rn.idx, rm.idx, 3));
+    return *this;
+}
+
+// === FP Scalar Min/Max (NaN) ===
+CodeGenerator& CodeGenerator::fmaxnm(SReg rd, SReg rn, SReg rm) {
+    emit(simd_dp::encode_fmaxnm_s_floatdp2(rd.idx, rn.idx, rm.idx));
+    return *this;
+}
+CodeGenerator& CodeGenerator::fmaxnm(DReg rd, DReg rn, DReg rm) {
+    emit(simd_dp::encode_fmaxnm_d_floatdp2(rd.idx, rn.idx, rm.idx));
+    return *this;
+}
+CodeGenerator& CodeGenerator::fminnm(SReg rd, SReg rn, SReg rm) {
+    emit(simd_dp::encode_fminnm_s_floatdp2(rd.idx, rn.idx, rm.idx));
+    return *this;
+}
+CodeGenerator& CodeGenerator::fminnm(DReg rd, DReg rn, DReg rm) {
+    emit(simd_dp::encode_fminnm_d_floatdp2(rd.idx, rn.idx, rm.idx));
+    return *this;
+}
+
+// === FP Vector Sqrt ===
+CodeGenerator& CodeGenerator::fsqrt(VArr vd, VArr vn) {
+    emit(simd_dp::encode_fsqrt_asimdmisc_r(vd.idx, vn.idx, vd.size() - 2, vd.Q()));
+    return *this;
+}
+
+// === SIMD Across-Lanes FP Pairwise ===
+CodeGenerator& CodeGenerator::faddp(SReg rd, VArr vn) {
+    emit(simd_dp::encode_faddp_asisdpair_only_sd(rd.idx, vn.idx, 0));  // sz=0 for single
+    return *this;
+}
+
+// === Load/Store PAC ===
+CodeGenerator& CodeGenerator::ldraa(XReg rt, XReg rn, int32_t imm) {
+    int32_t simm = imm >> 3;  // scaled by 8
+    uint32_t S = (simm < 0) ? 1 : 0;
+    emit(ldst::encode_ldraa_64_ldst_pac(rt.idx, rn.idx, simm & 0x1FF, S));
+    return *this;
+}
+CodeGenerator& CodeGenerator::ldrab(XReg rt, XReg rn, int32_t imm) {
+    int32_t simm = imm >> 3;
+    uint32_t S = (simm < 0) ? 1 : 0;
+    emit(ldst::encode_ldrab_64_ldst_pac(rt.idx, rn.idx, simm & 0x1FF, S));
+    return *this;
+}
+
 } // namespace codegen
 } // namespace veda64

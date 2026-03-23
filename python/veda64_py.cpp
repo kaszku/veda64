@@ -2649,7 +2649,7 @@ NB_MODULE(veda64_py, m) {
         .def("cmgt_zero", &veda64::codegen::CodeGenerator::cmgt_zero, "vd"_a, "vn"_a, nb::rv_policy::reference)
         .def("cmle_zero", &veda64::codegen::CodeGenerator::cmle_zero, "vd"_a, "vn"_a, nb::rv_policy::reference)
         .def("cmlt_zero", &veda64::codegen::CodeGenerator::cmlt_zero, "vd"_a, "vn"_a, nb::rv_policy::reference)
-        .def("cnt", &veda64::codegen::CodeGenerator::cnt, "vd"_a, "vn"_a, nb::rv_policy::reference)
+        .def("cnt", nb::overload_cast<veda64::codegen::VArr, veda64::codegen::VArr>(&veda64::codegen::CodeGenerator::cnt), "vd"_a, "vn"_a, nb::rv_policy::reference)
         .def("shl", &veda64::codegen::CodeGenerator::shl, "vd"_a, "vn"_a, "shift"_a, nb::rv_policy::reference)
         .def("sshr", &veda64::codegen::CodeGenerator::sshr, "vd"_a, "vn"_a, "shift"_a, nb::rv_policy::reference)
         .def("ushr", &veda64::codegen::CodeGenerator::ushr, "vd"_a, "vn"_a, "shift"_a, nb::rv_policy::reference)

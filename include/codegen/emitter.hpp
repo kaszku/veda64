@@ -1252,6 +1252,76 @@ public:
     CodeGenerator& xpaci(XReg rd);
     CodeGenerator& xpaclri();
 
+    // === GP Abs/Count (ARMv9) ===
+    CodeGenerator& abs(XReg rd, XReg rn);
+    CodeGenerator& abs(WReg rd, WReg rn);
+    CodeGenerator& cnt(XReg rd, XReg rn);
+    CodeGenerator& cnt(WReg rd, WReg rn);
+
+    // === Flag Manipulation ===
+    CodeGenerator& setf8(WReg rn);
+    CodeGenerator& setf16(WReg rn);
+    CodeGenerator& rmif(XReg rn, uint8_t imm6, uint8_t mask);
+
+    // === FP Immediate ===
+    CodeGenerator& fmov(SReg rd, uint8_t imm8);  // FP immediate
+    CodeGenerator& fmov(DReg rd, uint8_t imm8);  // FP immediate
+
+    // === Load/Store Register Offset ===
+    CodeGenerator& ldr_reg(XReg rt, XReg rn, XReg rm, bool shift = false);
+    CodeGenerator& ldr_reg(WReg rt, XReg rn, XReg rm, bool shift = false);
+    CodeGenerator& str_reg(XReg rt, XReg rn, XReg rm, bool shift = false);
+    CodeGenerator& str_reg(WReg rt, XReg rn, XReg rm, bool shift = false);
+    CodeGenerator& ldrb_reg(WReg rt, XReg rn, XReg rm);
+    CodeGenerator& ldrh_reg(WReg rt, XReg rn, XReg rm, bool shift = false);
+    CodeGenerator& strb_reg(WReg rt, XReg rn, XReg rm);
+    CodeGenerator& strh_reg(WReg rt, XReg rn, XReg rm, bool shift = false);
+    CodeGenerator& ldrsb_reg(XReg rt, XReg rn, XReg rm);
+    CodeGenerator& ldrsb_reg(WReg rt, XReg rn, XReg rm);
+    CodeGenerator& ldrsh_reg(XReg rt, XReg rn, XReg rm, bool shift = false);
+    CodeGenerator& ldrsh_reg(WReg rt, XReg rn, XReg rm, bool shift = false);
+    CodeGenerator& ldrsw_reg(XReg rt, XReg rn, XReg rm, bool shift = false);
+    CodeGenerator& ldr_reg(SReg rt, XReg rn, XReg rm, bool shift = false);
+    CodeGenerator& ldr_reg(DReg rt, XReg rn, XReg rm, bool shift = false);
+    CodeGenerator& ldr_reg(QReg rt, XReg rn, XReg rm, bool shift = false);
+    CodeGenerator& str_reg(SReg rt, XReg rn, XReg rm, bool shift = false);
+    CodeGenerator& str_reg(DReg rt, XReg rn, XReg rm, bool shift = false);
+    CodeGenerator& str_reg(QReg rt, XReg rn, XReg rm, bool shift = false);
+    CodeGenerator& prfm_reg(uint8_t prfop, XReg rn, XReg rm, bool shift = false);
+
+    // === Scalar SIMD (D register, 64-bit) ===
+    CodeGenerator& add_d(DReg rd, DReg rn, DReg rm);
+    CodeGenerator& sub_d(DReg rd, DReg rn, DReg rm);
+    CodeGenerator& cmeq_d(DReg rd, DReg rn, DReg rm);
+    CodeGenerator& cmge_d(DReg rd, DReg rn, DReg rm);
+    CodeGenerator& cmgt_d(DReg rd, DReg rn, DReg rm);
+    CodeGenerator& cmhi_d(DReg rd, DReg rn, DReg rm);
+    CodeGenerator& cmhs_d(DReg rd, DReg rn, DReg rm);
+    CodeGenerator& abs_d(DReg rd, DReg rn);
+    CodeGenerator& neg_d(DReg rd, DReg rn);
+
+    // === Scalar SIMD Saturating ===
+    CodeGenerator& sqadd_d(DReg rd, DReg rn, DReg rm);
+    CodeGenerator& sqsub_d(DReg rd, DReg rn, DReg rm);
+    CodeGenerator& uqadd_d(DReg rd, DReg rn, DReg rm);
+    CodeGenerator& uqsub_d(DReg rd, DReg rn, DReg rm);
+
+    // === FP Scalar Min/Max (NaN) ===
+    CodeGenerator& fmaxnm(SReg rd, SReg rn, SReg rm);
+    CodeGenerator& fmaxnm(DReg rd, DReg rn, DReg rm);
+    CodeGenerator& fminnm(SReg rd, SReg rn, SReg rm);
+    CodeGenerator& fminnm(DReg rd, DReg rn, DReg rm);
+
+    // === FP Vector Sqrt ===
+    CodeGenerator& fsqrt(VArr vd, VArr vn);
+
+    // === SIMD Across-Lanes FP Pairwise ===
+    CodeGenerator& faddp(SReg rd, VArr vn);  // scalar pairwise add
+
+    // === Load/Store PAC ===
+    CodeGenerator& ldraa(XReg rt, XReg rn, int32_t imm = 0);
+    CodeGenerator& ldrab(XReg rt, XReg rn, int32_t imm = 0);
+
 private:
     void emit(uint32_t insn);
     void patch(size_t offset, uint32_t insn);
