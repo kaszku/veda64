@@ -1028,6 +1028,230 @@ public:
     // === SIMD Table Extension ===
     CodeGenerator& tbx(VArr vd, VArr vn, VArr vm);
 
+    // === SIMD Compare (extra) ===
+    CodeGenerator& cmtst(VArr vd, VArr vn, VArr vm);
+
+    // === SIMD FP Compare vs Zero ===
+    CodeGenerator& fcmeq_zero(VArr vd, VArr vn);
+    CodeGenerator& fcmge_zero(VArr vd, VArr vn);
+    CodeGenerator& fcmgt_zero(VArr vd, VArr vn);
+    CodeGenerator& fcmle_zero(VArr vd, VArr vn);
+    CodeGenerator& fcmlt_zero(VArr vd, VArr vn);
+
+    // === SIMD DUP (element) / INS (element from element) ===
+    CodeGenerator& dup(VArr vd, VArr vn, uint8_t index);       // dup from element
+    CodeGenerator& ins(VArr vd, uint8_t dst_idx, VArr vn, uint8_t src_idx);  // element from element
+
+    // === SIMD MVNI ===
+    CodeGenerator& mvni(VArr vd, uint8_t imm8, uint8_t shift = 0);
+
+    // === SIMD Vector FP Conversions (rounding modes) ===
+    CodeGenerator& fcvtas(VArr vd, VArr vn);
+    CodeGenerator& fcvtau(VArr vd, VArr vn);
+    CodeGenerator& fcvtns(VArr vd, VArr vn);
+    CodeGenerator& fcvtnu(VArr vd, VArr vn);
+    CodeGenerator& fcvtps(VArr vd, VArr vn);
+    CodeGenerator& fcvtpu(VArr vd, VArr vn);
+    CodeGenerator& fcvtms(VArr vd, VArr vn);
+    CodeGenerator& fcvtmu(VArr vd, VArr vn);
+
+    // === Crypto (AES) ===
+    CodeGenerator& aesd(VArr vd, VArr vn);
+    CodeGenerator& aese(VArr vd, VArr vn);
+    CodeGenerator& aesimc(VArr vd, VArr vn);
+    CodeGenerator& aesmc(VArr vd, VArr vn);
+
+    // === Crypto (SHA-1) ===
+    CodeGenerator& sha1c(QReg rd, SReg rn, VArr vm);
+    CodeGenerator& sha1h(SReg rd, SReg rn);
+    CodeGenerator& sha1m(QReg rd, SReg rn, VArr vm);
+    CodeGenerator& sha1p(QReg rd, SReg rn, VArr vm);
+    CodeGenerator& sha1su0(VArr vd, VArr vn, VArr vm);
+    CodeGenerator& sha1su1(VArr vd, VArr vn);
+
+    // === Crypto (SHA-256) ===
+    CodeGenerator& sha256h(QReg rd, QReg rn, VArr vm);
+    CodeGenerator& sha256h2(QReg rd, QReg rn, VArr vm);
+    CodeGenerator& sha256su0(VArr vd, VArr vn);
+    CodeGenerator& sha256su1(VArr vd, VArr vn, VArr vm);
+
+    // === Crypto (SHA-512) ===
+    CodeGenerator& sha512h(QReg rd, QReg rn, VArr vm);
+    CodeGenerator& sha512h2(QReg rd, QReg rn, VArr vm);
+    CodeGenerator& sha512su0(VArr vd, VArr vn);
+    CodeGenerator& sha512su1(VArr vd, VArr vn, VArr vm);
+
+    // === Crypto (SHA3 / misc) ===
+    CodeGenerator& bcax(VArr vd, VArr vn, VArr vm, VArr va);
+    CodeGenerator& eor3(VArr vd, VArr vn, VArr vm, VArr va);
+    CodeGenerator& rax1(VArr vd, VArr vn, VArr vm);
+    CodeGenerator& xar(VArr vd, VArr vn, VArr vm, uint8_t imm6);
+
+    // === Scalar FP Reciprocal ===
+    CodeGenerator& frecpx(SReg rd, SReg rn);
+    CodeGenerator& frecpx(DReg rd, DReg rn);
+
+    // === SIMD FP Dot Product ===
+    CodeGenerator& fdot(VArr vd, VArr vn, VArr vm);
+
+    // === SIMD FP Reductions ===
+    CodeGenerator& fmaxv(VArr vd, VArr vn);
+    CodeGenerator& fminv(VArr vd, VArr vn);
+    CodeGenerator& fmaxnmv(VArr vd, VArr vn);
+    CodeGenerator& fminnmv(VArr vd, VArr vn);
+
+    // === SIMD Vector Reverse Bits ===
+    CodeGenerator& rbit(VArr vd, VArr vn);
+
+    // === Integer Dot Product ===
+    CodeGenerator& sdot(VArr vd, VArr vn, VArr vm);
+    CodeGenerator& udot(VArr vd, VArr vn, VArr vm);
+
+    // === Matrix Multiply ===
+    CodeGenerator& smmla(VArr vd, VArr vn, VArr vm);
+    CodeGenerator& ummla(VArr vd, VArr vn, VArr vm);
+    CodeGenerator& usmmla(VArr vd, VArr vn, VArr vm);
+
+    // === BFloat16 ===
+    CodeGenerator& bfmmla(VArr vd, VArr vn, VArr vm);
+    CodeGenerator& bfdot(VArr vd, VArr vn, VArr vm);
+    CodeGenerator& bfcvt(SReg rd, SReg rn);
+    CodeGenerator& bfcvtn(VArr vd, VArr vn);
+
+    // === GP<->FP Transfer (FMOV) ===
+    CodeGenerator& fmov_gp(WReg rd, SReg rn);
+    CodeGenerator& fmov_gp(SReg rd, WReg rn);
+    CodeGenerator& fmov_gp(XReg rd, DReg rn);
+    CodeGenerator& fmov_gp(DReg rd, XReg rn);
+
+    // === GP<->FP Conversion (scalar) ===
+    CodeGenerator& scvtf_gp(SReg rd, WReg rn);
+    CodeGenerator& scvtf_gp(DReg rd, WReg rn);
+    CodeGenerator& scvtf_gp(SReg rd, XReg rn);
+    CodeGenerator& scvtf_gp(DReg rd, XReg rn);
+    CodeGenerator& ucvtf_gp(SReg rd, WReg rn);
+    CodeGenerator& ucvtf_gp(DReg rd, WReg rn);
+    CodeGenerator& ucvtf_gp(SReg rd, XReg rn);
+    CodeGenerator& ucvtf_gp(DReg rd, XReg rn);
+    CodeGenerator& fcvtzs_gp(WReg rd, SReg rn);
+    CodeGenerator& fcvtzs_gp(WReg rd, DReg rn);
+    CodeGenerator& fcvtzs_gp(XReg rd, SReg rn);
+    CodeGenerator& fcvtzs_gp(XReg rd, DReg rn);
+    CodeGenerator& fcvtzu_gp(WReg rd, SReg rn);
+    CodeGenerator& fcvtzu_gp(WReg rd, DReg rn);
+    CodeGenerator& fcvtzu_gp(XReg rd, SReg rn);
+    CodeGenerator& fcvtzu_gp(XReg rd, DReg rn);
+    CodeGenerator& fjcvtzs(WReg rd, DReg rn);
+
+    // === Crypto (SM3/SM4) ===
+    CodeGenerator& sm3ss1(VArr vd, VArr vn, VArr vm, VArr va);
+    CodeGenerator& sm3tt1a(VArr vd, VArr vn, VArr vm, uint8_t imm2);
+    CodeGenerator& sm3tt1b(VArr vd, VArr vn, VArr vm, uint8_t imm2);
+    CodeGenerator& sm3tt2a(VArr vd, VArr vn, VArr vm, uint8_t imm2);
+    CodeGenerator& sm3tt2b(VArr vd, VArr vn, VArr vm, uint8_t imm2);
+    CodeGenerator& sm4e(VArr vd, VArr vn);
+    CodeGenerator& sm4ekey(VArr vd, VArr vn, VArr vm);
+
+    // === SIMD Saturating Misc ===
+    CodeGenerator& sqabs(VArr vd, VArr vn);
+    CodeGenerator& sqneg(VArr vd, VArr vn);
+    CodeGenerator& suqadd(VArr vd, VArr vn);
+    CodeGenerator& usqadd(VArr vd, VArr vn);
+    CodeGenerator& sqshlu(VArr vd, VArr vn, uint8_t shift);
+
+    // === SIMD Narrowing/Widening Extras ===
+    CodeGenerator& sqshrn(VArr vd, VArr vn, uint8_t shift);
+    CodeGenerator& sqrshrn(VArr vd, VArr vn, uint8_t shift);
+    CodeGenerator& uqshrn(VArr vd, VArr vn, uint8_t shift);
+    CodeGenerator& uqrshrn(VArr vd, VArr vn, uint8_t shift);
+
+    // === Shift Aliases (Immediate) ===
+    CodeGenerator& lsl_imm(WReg rd, WReg rn, uint8_t shift);
+    CodeGenerator& lsl_imm(XReg rd, XReg rn, uint8_t shift);
+    CodeGenerator& lsr_imm(WReg rd, WReg rn, uint8_t shift);
+    CodeGenerator& lsr_imm(XReg rd, XReg rn, uint8_t shift);
+    CodeGenerator& asr_imm(WReg rd, WReg rn, uint8_t shift);
+    CodeGenerator& asr_imm(XReg rd, XReg rn, uint8_t shift);
+    CodeGenerator& ror_imm(WReg rd, WReg rn, uint8_t shift);
+    CodeGenerator& ror_imm(XReg rd, XReg rn, uint8_t shift);
+
+    // === MOV SP Alias ===
+    CodeGenerator& mov_sp(XReg rd, XReg rn);
+
+    // === Misc Scalar FP ===
+    CodeGenerator& frintx(SReg rd, SReg rn);
+    CodeGenerator& frintx(DReg rd, DReg rn);
+
+    // === SIMD Indexed Element (FP) ===
+    CodeGenerator& fmla_elem(VArr vd, VArr vn, VArr vm, uint8_t index);
+    CodeGenerator& fmls_elem(VArr vd, VArr vn, VArr vm, uint8_t index);
+    CodeGenerator& fmul_elem(VArr vd, VArr vn, VArr vm, uint8_t index);
+    CodeGenerator& fmulx_elem(VArr vd, VArr vn, VArr vm, uint8_t index);
+
+    // === SIMD Indexed Element (Integer) ===
+    CodeGenerator& mul_elem(VArr vd, VArr vn, VArr vm, uint8_t index);
+    CodeGenerator& mla_elem(VArr vd, VArr vn, VArr vm, uint8_t index);
+    CodeGenerator& mls_elem(VArr vd, VArr vn, VArr vm, uint8_t index);
+    CodeGenerator& sqdmulh_elem(VArr vd, VArr vn, VArr vm, uint8_t index);
+    CodeGenerator& sqrdmulh_elem(VArr vd, VArr vn, VArr vm, uint8_t index);
+
+    // === SIMD Widening Indexed Element ===
+    CodeGenerator& smlal_elem(VArr vd, VArr vn, VArr vm, uint8_t index);
+    CodeGenerator& smlsl_elem(VArr vd, VArr vn, VArr vm, uint8_t index);
+    CodeGenerator& smull_elem(VArr vd, VArr vn, VArr vm, uint8_t index);
+    CodeGenerator& umlal_elem(VArr vd, VArr vn, VArr vm, uint8_t index);
+    CodeGenerator& umlsl_elem(VArr vd, VArr vn, VArr vm, uint8_t index);
+    CodeGenerator& umull_elem(VArr vd, VArr vn, VArr vm, uint8_t index);
+    CodeGenerator& sqdmlal_elem(VArr vd, VArr vn, VArr vm, uint8_t index);
+    CodeGenerator& sqdmlsl_elem(VArr vd, VArr vn, VArr vm, uint8_t index);
+    CodeGenerator& sqdmull_elem(VArr vd, VArr vn, VArr vm, uint8_t index);
+
+    // === FP Load/Store (unsigned offset) ===
+    CodeGenerator& ldr_fp(SReg rt, Mem mem);
+    CodeGenerator& ldr_fp(DReg rt, Mem mem);
+    CodeGenerator& ldr_fp(QReg rt, Mem mem);
+    CodeGenerator& str_fp(SReg rt, Mem mem);
+    CodeGenerator& str_fp(DReg rt, Mem mem);
+    CodeGenerator& str_fp(QReg rt, Mem mem);
+
+    // === FP Pair Load/Store ===
+    CodeGenerator& ldp_fp(SReg rt1, SReg rt2, Mem mem);
+    CodeGenerator& ldp_fp(DReg rt1, DReg rt2, Mem mem);
+    CodeGenerator& ldp_fp(QReg rt1, QReg rt2, Mem mem);
+    CodeGenerator& stp_fp(SReg rt1, SReg rt2, Mem mem);
+    CodeGenerator& stp_fp(DReg rt1, DReg rt2, Mem mem);
+    CodeGenerator& stp_fp(QReg rt1, QReg rt2, Mem mem);
+
+    // === FP Unscaled Load/Store ===
+    CodeGenerator& ldur_fp(SReg rt, Mem mem);
+    CodeGenerator& ldur_fp(DReg rt, Mem mem);
+    CodeGenerator& ldur_fp(QReg rt, Mem mem);
+    CodeGenerator& stur_fp(SReg rt, Mem mem);
+    CodeGenerator& stur_fp(DReg rt, Mem mem);
+    CodeGenerator& stur_fp(QReg rt, Mem mem);
+
+    // === System Instructions ===
+    CodeGenerator& hvc(uint16_t imm16);
+    CodeGenerator& smc(uint16_t imm16);
+    CodeGenerator& dcps1(uint16_t imm16);
+    CodeGenerator& dcps2(uint16_t imm16);
+    CodeGenerator& dcps3(uint16_t imm16);
+    CodeGenerator& hint(uint8_t imm7);
+    CodeGenerator& sys(uint8_t op1, uint8_t CRn, uint8_t CRm, uint8_t op2, XReg rt);
+    CodeGenerator& prfum(uint8_t prfop, Mem mem);
+
+    // === BFloat16 Multiply-Add ===
+    CodeGenerator& bfmlal(VArr vd, VArr vn, VArr vm);
+
+    // === Complex FP ===
+    CodeGenerator& fcadd(VArr vd, VArr vn, VArr vm, uint8_t rot);
+    CodeGenerator& fcmla(VArr vd, VArr vn, VArr vm, uint8_t rot);
+
+    // === PAC Extras ===
+    CodeGenerator& xpacd(XReg rd);
+    CodeGenerator& xpaci(XReg rd);
+    CodeGenerator& xpaclri();
+
 private:
     void emit(uint32_t insn);
     void patch(size_t offset, uint32_t insn);
