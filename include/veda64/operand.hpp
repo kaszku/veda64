@@ -107,7 +107,8 @@ public:
     }
     static Operand extend_op(ExtendType etype, uint32_t amt, bool is_64 = false) {
         Operand op; op.type = OperandType::Extend; op.ext.ext_type = etype; op.ext.amount = static_cast<uint8_t>(amt);
-        if (is_64) op.type = OperandType::Extend64; return op;
+        if (is_64) op.type = OperandType::Extend64;
+        return op;
     }
 
     // ── Misc factories ──
