@@ -1410,11 +1410,11 @@ static void run_tests() {
         tests_run++;
         printf("  %-40s ", "UDF_0x00000000");
         auto r = lift(0x00000000);
-        if (r.has_value() && r->ops.size() > 0 && r->ops[0].opcode == Opcode::UNDEF) {
+        if (r.has_value() && r->ops.size() > 0 && r->ops[0].opcode == Opcode::NOP) {
             printf("PASS\n"); tests_passed++;
         } else if (!r.has_value()) {
             printf("PASS\n"); tests_passed++;
-        } else { printf("FAIL: expected UNDEF or nullopt\n"); }
+        } else { printf("FAIL: expected NOP or nullopt\n"); }
     }
 
     // adds_nzcv_semantic

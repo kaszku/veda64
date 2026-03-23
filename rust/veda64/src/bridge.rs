@@ -65,5 +65,32 @@ pub mod ffi {
 
         /// Get mnemonic name from u16 value
         fn mnemonic_name(m: u16) -> String;
+
+        // IR types
+        type LiftedIr;
+
+        /// Lift a raw instruction to IR
+        fn ir_lift(insn: u32) -> UniquePtr<LiftedIr>;
+
+        /// Check if lifted IR is valid
+        fn ir_is_valid(l: &LiftedIr) -> bool;
+
+        /// Get number of IR operations
+        fn ir_num_ops(l: &LiftedIr) -> u32;
+
+        /// Get opcode of IR operation (returns Opcode as u8)
+        fn ir_op_opcode(l: &LiftedIr, idx: u32) -> u8;
+
+        /// Format a single IR operation as string
+        fn ir_op_to_string(l: &LiftedIr, idx: u32) -> String;
+
+        /// Format all IR operations as string
+        fn ir_to_string(l: &LiftedIr) -> String;
+
+        /// Get opcode name from u8 value
+        fn ir_opcode_name(op: u8) -> String;
+
+        /// Simplify IR (copy propagation + dead code elimination)
+        fn ir_simplify(l: &LiftedIr) -> UniquePtr<LiftedIr>;
     }
 }

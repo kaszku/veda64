@@ -92,4 +92,53 @@ rust::String mnemonic_name(uint16_t m) {
     return rust::String(veda64::mnemonic_to_string(static_cast<veda64::Mnemonic>(m)));
 }
 
+// IR functions
+std::unique_ptr<LiftedIr> ir_lift(uint32_t insn) {
+    auto result = std::make_unique<LiftedIr>();
+    auto opt = veda64::ir::lift(insn);
+    if (opt.has_value()) {
+        result->valid = true;
+        result->ops = std::move(opt->ops);
+    } else {
+        result->valid = false;
+    }
+    return result;
+}
+
+bool ir_is_valid(const LiftedIr& l) { return l.valid; }
+
+uint32_t ir_num_ops(const LiftedIr& l) {
+    return static_cast<uint32_t>(l.ops.size());
+}
+
+uint8_t ir_op_opcode(const LiftedIr& l, uint32_t idx) {
+    return static_cast<uint8_t>(l.ops[idx].opcode);
+}
+
+rust::String ir_op_to_string(const LiftedIr& l, uint32_t idx) {
+    if (idx >= l.ops.size()) return rust::String();
+    return rust::String(veda64::ir::to_string(l.ops[idx]));
+}
+
+rust::String ir_to_string(const LiftedIr& l) {
+    if (!l.valid) return rust::String();
+    veda64::ir::Lifted lifted;
+    lifted.ops = l.ops;
+    return rust::String(veda64::ir::to_string(lifted));
+}
+
+rust::String ir_opcode_name(uint8_t op) {
+    return rust::String(veda64::ir::opcode_name(static_cast<veda64::ir::Opcode>(op)));
+}
+
+std::unique_ptr<LiftedIr> ir_simplify(const LiftedIr& l) {
+    auto result = std::make_unique<LiftedIr>();
+    veda64::ir::Lifted lifted;
+    lifted.ops = l.ops;
+    auto simplified = veda64::ir::simplify(lifted);
+    result->valid = true;
+    result->ops = std::move(simplified.ops);
+    return result;
+}
+
 } // namespace veda64_ffi

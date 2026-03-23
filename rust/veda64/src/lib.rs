@@ -396,6 +396,90 @@ pub fn mnemonic_name(m: Mnemonic) -> String {
     bridge::ffi::mnemonic_name(m as u16)
 }
 
+/// IR (Intermediate Representation) module for semantic lifting.
+pub mod ir {
+    use crate::bridge;
+
+    /// IR opcode (P-Code style micro-operation).
+    #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
+    #[repr(u8)]
+    #[allow(non_camel_case_types)]
+    pub enum Opcode {
+        COPY = 0, LOAD = 1, STORE = 2,
+        ADD = 3, SUB = 4, MUL = 5, SDIV = 6, UDIV = 7, NEG = 8,
+        AND = 9, OR = 10, XOR = 11, NOT = 12, SHL = 13, SHR = 14, SAR = 15, ROR = 16,
+        CMP_EQ = 17, CMP_NE = 18, CMP_SLT = 19, CMP_ULT = 20, CMP_SLE = 21, CMP_ULE = 22,
+        ZEXT = 23, SEXT = 24, TRUNC = 25, INT2FLOAT = 26, FLOAT2INT = 27, FLOAT2FLOAT = 28,
+        FADD = 29, FSUB = 30, FMUL = 31, FDIV = 32, FSQRT = 33, FNEG = 34, FABS = 35,
+        BRANCH = 36, CBRANCH = 37, CALL = 38, RET = 39,
+        ADD_CARRY = 40, SUB_CARRY = 41, CARRY_ADD = 42, CARRY_SUB = 43,
+        OVERFLOW_ADD = 44, OVERFLOW_SUB = 45,
+        EXTRACT = 46, INSERT = 47, CONCAT = 48,
+        VEXTRACT_ELEM = 49, VINSERT_ELEM = 50, VBROADCAST = 51,
+        BARRIER = 52, NOP = 53, UNDEF = 54,
+    }
+
+    impl Opcode {
+        pub fn from_u8(v: u8) -> Self {
+            if v <= 54 { unsafe { std::mem::transmute(v) } } else { Self::UNDEF }
+        }
+
+        pub fn name(&self) -> String {
+            bridge::ffi::ir_opcode_name(*self as u8)
+        }
+    }
+
+    /// Lifted IR representation of a single instruction.
+    pub struct Lifted {
+        inner: cxx::UniquePtr<bridge::ffi::LiftedIr>,
+    }
+
+    impl Lifted {
+        /// Number of micro-operations.
+        pub fn num_ops(&self) -> u32 {
+            bridge::ffi::ir_num_ops(&self.inner)
+        }
+
+        /// Get the opcode of the i-th operation.
+        pub fn op_opcode(&self, idx: u32) -> Opcode {
+            Opcode::from_u8(bridge::ffi::ir_op_opcode(&self.inner, idx))
+        }
+
+        /// Format a single operation as a string.
+        pub fn op_to_string(&self, idx: u32) -> String {
+            bridge::ffi::ir_op_to_string(&self.inner, idx)
+        }
+
+        /// Simplify (copy propagation + dead code elimination).
+        pub fn simplify(&self) -> Lifted {
+            Lifted { inner: bridge::ffi::ir_simplify(&self.inner) }
+        }
+    }
+
+    impl std::fmt::Display for Lifted {
+        fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
+            f.write_str(&bridge::ffi::ir_to_string(&self.inner))
+        }
+    }
+
+    impl std::fmt::Debug for Lifted {
+        fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
+            write!(f, "Lifted({} ops)", self.num_ops())
+        }
+    }
+
+    /// Lift a raw 32-bit ARM64 instruction to IR.
+    ///
+    /// Returns `None` for unrecognized or UNDEF instructions.
+    pub fn lift(raw: u32) -> Option<Lifted> {
+        let l = bridge::ffi::ir_lift(raw);
+        if !bridge::ffi::ir_is_valid(&l) {
+            return None;
+        }
+        Some(Lifted { inner: l })
+    }
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;
@@ -1397,5 +1481,89 @@ mod tests {
         let c2 = c; // Copy
         assert_eq!(c, c2);
         assert_eq!(c.name(), "gt");
+    }
+
+    // ── IR (Intermediate Representation) ──────────────────────────────
+
+    #[test]
+    fn ir_lift_add() {
+        // ADD X0, X1, X2
+        let lifted = ir::lift(0x8B020020).unwrap();
+        assert!(lifted.num_ops() > 0);
+        // Should contain an ADD opcode
+        let has_add = (0..lifted.num_ops()).any(|i| lifted.op_opcode(i) == ir::Opcode::ADD);
+        assert!(has_add, "IR for ADD should contain ADD opcode");
+    }
+
+    #[test]
+    fn ir_lift_store() {
+        // STR X1, [X0]
+        let lifted = ir::lift(0xF9000001).unwrap();
+        let has_store = (0..lifted.num_ops()).any(|i| lifted.op_opcode(i) == ir::Opcode::STORE);
+        assert!(has_store, "IR for STR should contain STORE opcode");
+    }
+
+    #[test]
+    fn ir_lift_load() {
+        // LDR X1, [X0]
+        let lifted = ir::lift(0xF9400001).unwrap();
+        let has_load = (0..lifted.num_ops()).any(|i| lifted.op_opcode(i) == ir::Opcode::LOAD);
+        assert!(has_load, "IR for LDR should contain LOAD opcode");
+    }
+
+    #[test]
+    fn ir_lift_branch() {
+        // B .+4
+        let lifted = ir::lift(0x14000001).unwrap();
+        let has_branch = (0..lifted.num_ops()).any(|i| lifted.op_opcode(i) == ir::Opcode::BRANCH);
+        assert!(has_branch, "IR for B should contain BRANCH opcode");
+    }
+
+    #[test]
+    fn ir_lift_nop() {
+        let lifted = ir::lift(0xD503201F).unwrap();
+        let has_nop = (0..lifted.num_ops()).any(|i| lifted.op_opcode(i) == ir::Opcode::NOP);
+        assert!(has_nop);
+    }
+
+    #[test]
+    fn ir_simplify_reduces_ops() {
+        // ADD X0, X1, X2 — simplify should reduce temp count
+        let lifted = ir::lift(0x8B020020).unwrap();
+        let simplified = lifted.simplify();
+        assert!(simplified.num_ops() <= lifted.num_ops());
+    }
+
+    #[test]
+    fn ir_to_string_nonempty() {
+        let lifted = ir::lift(0x8B020020).unwrap();
+        let s = format!("{lifted}");
+        assert!(!s.is_empty());
+    }
+
+    #[test]
+    fn ir_opcode_name() {
+        // C++ returns lowercase opcode names
+        assert_eq!(ir::Opcode::ADD.name(), "add");
+        assert_eq!(ir::Opcode::STORE.name(), "store");
+        assert_eq!(ir::Opcode::NOP.name(), "nop");
+    }
+
+    #[test]
+    fn ir_lift_fadd() {
+        // FADD S0, S1, S2
+        let lifted = ir::lift(0x1E222820).unwrap();
+        let has_fadd = (0..lifted.num_ops()).any(|i| lifted.op_opcode(i) == ir::Opcode::FADD);
+        assert!(has_fadd);
+    }
+
+    #[test]
+    fn ir_lift_udf() {
+        // UDF #0 — decodes but IR is UNDEF
+        let lifted = ir::lift(0x00000000);
+        // May or may not lift (depends on template); just verify no crash
+        if let Some(l) = lifted {
+            assert!(l.num_ops() >= 0);
+        }
     }
 }

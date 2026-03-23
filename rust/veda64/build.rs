@@ -34,11 +34,24 @@ fn main() {
         }
     }
 
+    // lib/ir/ sources
+    let ir_dir = lib_dir.join("ir");
+    if ir_dir.exists() {
+        for entry in std::fs::read_dir(&ir_dir).expect("failed to read lib/ir/") {
+            let entry = entry.unwrap();
+            let path = entry.path();
+            if path.extension().map_or(false, |e| e == "cpp") {
+                cpp_sources.push(path);
+            }
+        }
+    }
+
     // Build the veda64 C++ library
     cc::Build::new()
         .cpp(true)
         .std("c++17")
         .define("VEDA64_STRINGS", None)
+        .define("VEDA64_IR", None)
         .include(&include_dir)
         .files(&cpp_sources)
         .compile("veda64_cpp");
@@ -53,6 +66,7 @@ fn main() {
         .file(&bridge_cpp)
         .std("c++17")
         .define("VEDA64_STRINGS", None)
+        .define("VEDA64_IR", None)
         .include(&include_dir)
         .include(&bridge_hpp_dir)
         .compile("veda64_bridge");
