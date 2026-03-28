@@ -2756,6 +2756,22 @@ std::optional<Instruction> decode_dpimm(uint32_t insn, bool aliases) {
     switch (insn & 0xFFE08000u) {
         case 0x13800000u: { // EXTR_32_extract
             // Also matches: ROR_EXTR_32_extract (EXTR)
+            { DpimmEncoding _enc = {}; _enc.raw = insn;
+            if (aliases && _enc.ror_extr32extract.Rn == _enc.ror_extr32extract.Rm) {
+                #ifdef VEDA64_IR
+                                Instruction result(aliases ? Mnemonic::ROR : Mnemonic::EXTR, insn, EncodingId::ROR_EXTR_32_extract);
+                #else
+                                Instruction result(aliases ? Mnemonic::ROR : Mnemonic::EXTR, insn);
+                #endif
+                                DpimmEncoding enc = {};
+                                enc.raw = insn;
+                                bool is_64bit = false;
+                                result.operands.push_back(Operand::gp(enc.ror_extr32extract.Rd, is_64bit));
+                                result.operands.push_back(Operand::gp(enc.ror_extr32extract.Rn, is_64bit));
+                                result.operands.push_back(Operand::gp(enc.ror_extr32extract.Rm, is_64bit));
+                                result.operands.push_back(Operand::imm(enc.ror_extr32extract.imms));
+                                return result;
+            }}
             #ifdef VEDA64_IR
                         Instruction result(Mnemonic::EXTR, insn, EncodingId::EXTR_32_extract);
             #else
@@ -2810,6 +2826,22 @@ std::optional<Instruction> decode_dpimm(uint32_t insn, bool aliases) {
     switch (insn & 0xFFE00000u) {
         case 0x93C00000u: { // EXTR_64_extract
             // Also matches: ROR_EXTR_64_extract (EXTR)
+            { DpimmEncoding _enc = {}; _enc.raw = insn;
+            if (aliases && _enc.ror_extr64extract.Rn == _enc.ror_extr64extract.Rm) {
+                #ifdef VEDA64_IR
+                                Instruction result(aliases ? Mnemonic::ROR : Mnemonic::EXTR, insn, EncodingId::ROR_EXTR_64_extract);
+                #else
+                                Instruction result(aliases ? Mnemonic::ROR : Mnemonic::EXTR, insn);
+                #endif
+                                DpimmEncoding enc = {};
+                                enc.raw = insn;
+                                bool is_64bit = true;
+                                result.operands.push_back(Operand::gp(enc.ror_extr64extract.Rd, is_64bit));
+                                result.operands.push_back(Operand::gp(enc.ror_extr64extract.Rn, is_64bit));
+                                result.operands.push_back(Operand::gp(enc.ror_extr64extract.Rm, is_64bit));
+                                result.operands.push_back(Operand::imm(enc.ror_extr64extract.imms));
+                                return result;
+            }}
             #ifdef VEDA64_IR
                         Instruction result(Mnemonic::EXTR, insn, EncodingId::EXTR_64_extract);
             #else
