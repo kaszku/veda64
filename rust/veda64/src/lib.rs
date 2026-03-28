@@ -1632,4 +1632,146 @@ mod tests {
             assert!(l.num_ops() >= 0);
         }
     }
+
+    // === Assembler tests ===
+
+    #[test]
+    fn assemble_nop() {
+        assert_eq!(assemble("nop"), Some(0xD503201F));
+    }
+
+    #[test]
+    fn assemble_add_reg() {
+        assert_eq!(assemble("add x0, x1, x2"), Some(0x8B020020));
+    }
+
+    #[test]
+    fn assemble_add_imm() {
+        assert_eq!(assemble("add x0, x1, #0x10"), Some(0x91004020));
+    }
+
+    #[test]
+    fn assemble_sub_reg() {
+        assert_eq!(assemble("sub x0, x1, x2"), Some(0xCB020020));
+    }
+
+    #[test]
+    fn assemble_ret() {
+        assert_eq!(assemble("ret"), Some(0xD65F03C0));
+    }
+
+    #[test]
+    fn assemble_brk() {
+        assert_eq!(assemble("brk #0"), Some(0xD4200000));
+    }
+
+    #[test]
+    fn assemble_invalid() {
+        assert_eq!(assemble("invalid_mnemonic"), None);
+    }
+
+    #[test]
+    fn assemble_roundtrip() {
+        // Decode → disassemble → assemble → compare
+        let insns = [0x8B020020u32, 0xD503201F, 0xD65F03C0, 0x91004020, 0x9B027C20];
+        for &raw in &insns {
+            let text = disassemble(raw).unwrap();
+            let assembled = assemble(&text);
+            assert_eq!(assembled, Some(raw), "roundtrip failed for 0x{:08X} -> {:?}", raw, text);
+        }
+    }
+
+    // === Alias decoder tests ===
+
+    #[test]
+    fn decode_aliased_mov_from_add() {
+        let insn = decode_aliased(0x910003FD).unwrap(); // mov x29, sp
+        assert_eq!(insn.mnemonic, Mnemonic::MOV);
+        assert_eq!(insn.operands.len(), 2);
+    }
+
+    #[test]
+    fn decode_aliased_cmp_from_subs() {
+        let insn = decode_aliased(0xEB00001F).unwrap(); // cmp x0, x0
+        assert_eq!(insn.mnemonic, Mnemonic::CMP);
+        assert_eq!(insn.operands.len(), 2);
+    }
+
+    #[test]
+    fn decode_aliased_neg_from_sub() {
+        let insn = decode_aliased(0xCB0003E0).unwrap(); // neg x0, x0
+        assert_eq!(insn.mnemonic, Mnemonic::NEG);
+        assert_eq!(insn.operands.len(), 2);
+    }
+
+    #[test]
+    fn decode_aliased_mul_from_madd() {
+        let insn = decode_aliased(0x9B007C00).unwrap(); // mul x0, x0, x0
+        assert_eq!(insn.mnemonic, Mnemonic::MUL);
+        assert_eq!(insn.operands.len(), 3);
+    }
+
+    #[test]
+    fn decode_aliased_nop() {
+        let insn = decode_aliased(0xD503201F).unwrap(); // nop
+        assert_eq!(insn.mnemonic, Mnemonic::NOP);
+        assert_eq!(insn.operands.len(), 0);
+    }
+
+    #[test]
+    fn decode_aliased_backward_compat() {
+        // Without aliases: should return base mnemonic
+        let raw = decode(0x910003FD).unwrap();
+        assert_eq!(raw.mnemonic, Mnemonic::ADD);
+
+        // With aliases: should return alias
+        let aliased = decode_aliased(0x910003FD).unwrap();
+        assert_eq!(aliased.mnemonic, Mnemonic::MOV);
+    }
+
+    #[test]
+    fn decode_aliased_cmn() {
+        let insn = decode_aliased(0xAB00001F).unwrap(); // cmn x0, x0
+        assert_eq!(insn.mnemonic, Mnemonic::CMN);
+    }
+
+    #[test]
+    fn decode_aliased_tst() {
+        let insn = decode_aliased(0xEA00001F).unwrap(); // tst x0, x0
+        assert_eq!(insn.mnemonic, Mnemonic::TST);
+    }
+
+    #[test]
+    fn decode_aliased_mvn() {
+        let insn = decode_aliased(0xAA2003E0).unwrap(); // mvn x0, x0
+        assert_eq!(insn.mnemonic, Mnemonic::MVN);
+        assert_eq!(insn.operands.len(), 2);
+    }
+
+    #[test]
+    fn decode_aliased_ngc() {
+        let insn = decode_aliased(0xDA0103E0).unwrap(); // ngc x0, x1
+        assert_eq!(insn.mnemonic, Mnemonic::NGC);
+        assert_eq!(insn.operands.len(), 2);
+    }
+
+    #[test]
+    fn decode_aliased_smull() {
+        let insn = decode_aliased(0x9B207C00).unwrap(); // smull x0, w0, w0
+        assert_eq!(insn.mnemonic, Mnemonic::SMULL);
+        assert_eq!(insn.operands.len(), 3);
+    }
+
+    #[test]
+    fn decode_aliased_lsr_reg() {
+        let insn = decode_aliased(0x9AC02400).unwrap(); // lsr x0, x0, x0
+        assert_eq!(insn.mnemonic, Mnemonic::LSR);
+    }
+
+    #[test]
+    fn decode_aliased_sxtb() {
+        let insn = decode_aliased(0x13001C00).unwrap(); // sxtb w0, w0
+        assert_eq!(insn.mnemonic, Mnemonic::SXTB);
+        assert_eq!(insn.operands.len(), 2);
+    }
 }
