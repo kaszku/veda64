@@ -7,6 +7,7 @@
 #define VEDA64_IR
 #endif
 #include "veda64.hpp"
+#include "veda64/assembler.hpp"
 #include "veda64/ir.hpp"
 
 #include "rust/cxx.h"
@@ -25,6 +26,9 @@ struct LiftedIr {
 };
 
 std::unique_ptr<DecodedInsn> decode(uint32_t raw);
+std::unique_ptr<DecodedInsn> decode_aliased(uint32_t raw);
+uint32_t assemble(rust::Str text);
+bool assemble_check(rust::Str text);
 bool is_valid(const DecodedInsn& d);
 uint16_t get_mnemonic(const DecodedInsn& d);
 int8_t get_condition(const DecodedInsn& d);

@@ -14,6 +14,30 @@ std::unique_ptr<DecodedInsn> decode(uint32_t raw) {
     return result;
 }
 
+std::unique_ptr<DecodedInsn> decode_aliased(uint32_t raw) {
+    auto result = std::make_unique<DecodedInsn>();
+    auto opt = veda64::decode(raw, true);
+    if (opt.has_value()) {
+        result->valid = true;
+        result->insn = std::move(*opt);
+    } else {
+        result->valid = false;
+    }
+    return result;
+}
+
+uint32_t assemble(rust::Str text) {
+    std::string s(text.data(), text.size());
+    auto result = veda64::assemble(s.c_str());
+    return result.success ? result.insn : 0;
+}
+
+bool assemble_check(rust::Str text) {
+    std::string s(text.data(), text.size());
+    auto result = veda64::assemble(s.c_str());
+    return result.success;
+}
+
 bool is_valid(const DecodedInsn& d) { return d.valid; }
 
 uint16_t get_mnemonic(const DecodedInsn& d) {

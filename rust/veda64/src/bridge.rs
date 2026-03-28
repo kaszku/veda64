@@ -9,6 +9,15 @@ pub mod ffi {
         /// Decode a raw 32-bit ARM64 instruction
         fn decode(raw: u32) -> UniquePtr<DecodedInsn>;
 
+        /// Decode with alias normalization (MOV instead of ADD, CMP instead of SUBS, etc.)
+        fn decode_aliased(raw: u32) -> UniquePtr<DecodedInsn>;
+
+        /// Assemble a text instruction to a 32-bit encoding (returns 0 on failure)
+        fn assemble(text: &str) -> u32;
+
+        /// Check if a text instruction can be assembled
+        fn assemble_check(text: &str) -> bool;
+
         /// Check if the decode result is valid
         fn is_valid(insn: &DecodedInsn) -> bool;
 

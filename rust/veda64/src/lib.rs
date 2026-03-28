@@ -376,6 +376,72 @@ pub fn decode(raw: u32) -> Option<Instruction> {
     })
 }
 
+/// Decode with alias normalization.
+///
+/// Returns alias mnemonics (MOV instead of ADD, CMP instead of SUBS, etc.)
+/// and adjusted operands (XZR register dropped for CMP/NEG/MUL aliases).
+///
+/// ```rust
+/// let insn = veda64::decode_aliased(0x910003FD).unwrap();
+/// assert_eq!(insn.mnemonic, veda64::Mnemonic::MOV);
+/// assert_eq!(insn.operands.len(), 2);
+/// ```
+pub fn decode_aliased(raw: u32) -> Option<Instruction> {
+    let d = bridge::ffi::decode_aliased(raw);
+    if !bridge::ffi::is_valid(&d) {
+        return None;
+    }
+
+    let mnemonic = Mnemonic::from_u16(bridge::ffi::get_mnemonic(&d));
+    let condition = Condition::from_i8(bridge::ffi::get_condition(&d));
+    let raw_value = bridge::ffi::get_raw_value(&d);
+    let num_ops = bridge::ffi::get_num_operands(&d);
+    let display = bridge::ffi::insn_to_string(&d);
+
+    let mut operands = Vec::with_capacity(num_ops as usize);
+    for i in 0..num_ops {
+        let op_type = OperandType::from_u8(bridge::ffi::get_operand_type(&d, i));
+        let operand = match op_type {
+            OperandType::Register => Operand::Register(bridge::ffi::get_operand_reg(&d, i)),
+            OperandType::Immediate => Operand::Immediate(bridge::ffi::get_operand_imm(&d, i)),
+            OperandType::SignedImmediate => Operand::SignedImmediate(bridge::ffi::get_operand_simm(&d, i)),
+            _ => Operand::Immediate(bridge::ffi::get_operand_imm(&d, i)),
+        };
+        operands.push(operand);
+    }
+
+    Some(Instruction {
+        mnemonic,
+        condition,
+        raw_value,
+        operands,
+        display,
+    })
+}
+
+/// Assemble a text ARM64 instruction to a 32-bit encoding.
+///
+/// Returns `None` if the instruction cannot be assembled.
+///
+/// ```rust
+/// assert_eq!(veda64::assemble("add x0, x1, x2"), Some(0x8B020020));
+/// assert_eq!(veda64::assemble("nop"), Some(0xD503201F));
+/// assert_eq!(veda64::assemble("invalid"), None);
+/// ```
+pub fn assemble(text: &str) -> Option<u32> {
+    if !bridge::ffi::assemble_check(text) {
+        return None;
+    }
+    let result = bridge::ffi::assemble(text);
+    if result == 0 && text.trim() != "nop" {
+        // 0 could mean failure or actual encoding — check explicitly
+        if !bridge::ffi::assemble_check(text) {
+            return None;
+        }
+    }
+    Some(result)
+}
+
 /// Disassemble a single ARM64 instruction to a string.
 ///
 /// Returns `None` if the encoding is unrecognized.
