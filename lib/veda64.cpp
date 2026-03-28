@@ -88,11 +88,13 @@ const char* mnemonic_to_string(Mnemonic mnem) {
         case Mnemonic::BF2CVTL: return "bf2cvtl";
         case Mnemonic::BF2CVTLT: return "bf2cvtlt";
         case Mnemonic::BFADD: return "bfadd";
+        case Mnemonic::BFC: return "bfc";
         case Mnemonic::BFCLAMP: return "bfclamp";
         case Mnemonic::BFCVT: return "bfcvt";
         case Mnemonic::BFCVTN: return "bfcvtn";
         case Mnemonic::BFCVTNT: return "bfcvtnt";
         case Mnemonic::BFDOT: return "bfdot";
+        case Mnemonic::BFI: return "bfi";
         case Mnemonic::BFM: return "bfm";
         case Mnemonic::BFMAX: return "bfmax";
         case Mnemonic::BFMAXNM: return "bfmaxnm";
@@ -203,6 +205,8 @@ const char* mnemonic_to_string(Mnemonic mnem) {
         case Mnemonic::CFINV: return "cfinv";
         case Mnemonic::CFP: return "cfp";
         case Mnemonic::CHKFEAT: return "chkfeat";
+        case Mnemonic::CINC: return "cinc";
+        case Mnemonic::CINV: return "cinv";
         case Mnemonic::CLASTA: return "clasta";
         case Mnemonic::CLASTB: return "clastb";
         case Mnemonic::CLRBHB: return "clrbhb";
@@ -217,6 +221,8 @@ const char* mnemonic_to_string(Mnemonic mnem) {
         case Mnemonic::CMLA: return "cmla";
         case Mnemonic::CMLE: return "cmle";
         case Mnemonic::CMLT: return "cmlt";
+        case Mnemonic::CMN: return "cmn";
+        case Mnemonic::CMP: return "cmp";
         case Mnemonic::CMPEQ: return "cmpeq";
         case Mnemonic::CMPGE: return "cmpge";
         case Mnemonic::CMPGT: return "cmpgt";
@@ -227,7 +233,9 @@ const char* mnemonic_to_string(Mnemonic mnem) {
         case Mnemonic::CMPLS: return "cmpls";
         case Mnemonic::CMPLT: return "cmplt";
         case Mnemonic::CMPNE: return "cmpne";
+        case Mnemonic::CMPP: return "cmpp";
         case Mnemonic::CMTST: return "cmtst";
+        case Mnemonic::CNEG: return "cneg";
         case Mnemonic::CNOT: return "cnot";
         case Mnemonic::CNT: return "cnt";
         case Mnemonic::CNTB: return "cntb";
@@ -236,6 +244,7 @@ const char* mnemonic_to_string(Mnemonic mnem) {
         case Mnemonic::CNTP: return "cntp";
         case Mnemonic::CNTW: return "cntw";
         case Mnemonic::COMPACT: return "compact";
+        case Mnemonic::COSP: return "cosp";
         case Mnemonic::CPP: return "cpp";
         case Mnemonic::CPY: return "cpy";
         case Mnemonic::CPYE: return "cpye";
@@ -344,6 +353,8 @@ const char* mnemonic_to_string(Mnemonic mnem) {
         case Mnemonic::CRC32X: return "crc32x";
         case Mnemonic::CSDB: return "csdb";
         case Mnemonic::CSEL: return "csel";
+        case Mnemonic::CSET: return "cset";
+        case Mnemonic::CSETM: return "csetm";
         case Mnemonic::CSINC: return "csinc";
         case Mnemonic::CSINV: return "csinv";
         case Mnemonic::CSNEG: return "csneg";
@@ -524,10 +535,19 @@ const char* mnemonic_to_string(Mnemonic mnem) {
         case Mnemonic::FVDOTB: return "fvdotb";
         case Mnemonic::FVDOTT: return "fvdott";
         case Mnemonic::GCSB: return "gcsb";
+        case Mnemonic::GCSPOPCX: return "gcspopcx";
+        case Mnemonic::GCSPOPM: return "gcspopm";
+        case Mnemonic::GCSPOPX: return "gcspopx";
+        case Mnemonic::GCSPUSHM: return "gcspushm";
+        case Mnemonic::GCSPUSHX: return "gcspushx";
+        case Mnemonic::GCSSS1: return "gcsss1";
+        case Mnemonic::GCSSS2: return "gcsss2";
         case Mnemonic::GCSSTR: return "gcsstr";
         case Mnemonic::GCSSTTR: return "gcssttr";
         case Mnemonic::GIC: return "gic";
+        case Mnemonic::GICR: return "gicr";
         case Mnemonic::GMI: return "gmi";
+        case Mnemonic::GSB: return "gsb";
         case Mnemonic::HINT: return "hint";
         case Mnemonic::HISTCNT: return "histcnt";
         case Mnemonic::HISTSEG: return "histseg";
@@ -843,13 +863,17 @@ const char* mnemonic_to_string(Mnemonic mnem) {
         case Mnemonic::MATCH: return "match";
         case Mnemonic::MLA: return "mla";
         case Mnemonic::MLAPT: return "mlapt";
+        case Mnemonic::MLBI: return "mlbi";
         case Mnemonic::MLS: return "mls";
+        case Mnemonic::MNEG: return "mneg";
+        case Mnemonic::MOV: return "mov";
         case Mnemonic::MOVA: return "mova";
         case Mnemonic::MOVAZ: return "movaz";
         case Mnemonic::MOVI: return "movi";
         case Mnemonic::MOVK: return "movk";
         case Mnemonic::MOVN: return "movn";
         case Mnemonic::MOVPRFX: return "movprfx";
+        case Mnemonic::MOVS: return "movs";
         case Mnemonic::MOVT: return "movt";
         case Mnemonic::MOVZ: return "movz";
         case Mnemonic::MRRS: return "mrrs";
@@ -860,11 +884,15 @@ const char* mnemonic_to_string(Mnemonic mnem) {
         case Mnemonic::MSUB: return "msub";
         case Mnemonic::MSUBPT: return "msubpt";
         case Mnemonic::MUL: return "mul";
+        case Mnemonic::MVN: return "mvn";
         case Mnemonic::MVNI: return "mvni";
         case Mnemonic::NAND: return "nand";
         case Mnemonic::NANDS: return "nands";
         case Mnemonic::NBSL: return "nbsl";
         case Mnemonic::NEG: return "neg";
+        case Mnemonic::NEGS: return "negs";
+        case Mnemonic::NGC: return "ngc";
+        case Mnemonic::NGCS: return "ngcs";
         case Mnemonic::NMATCH: return "nmatch";
         case Mnemonic::NOP: return "nop";
         case Mnemonic::NOR: return "nor";
@@ -916,6 +944,7 @@ const char* mnemonic_to_string(Mnemonic mnem) {
         case Mnemonic::PRFW: return "prfw";
         case Mnemonic::PSB: return "psb";
         case Mnemonic::PSEL: return "psel";
+        case Mnemonic::PSSBB: return "pssbb";
         case Mnemonic::PTEST: return "ptest";
         case Mnemonic::PTRUE: return "ptrue";
         case Mnemonic::PTRUES: return "ptrues";
@@ -1010,6 +1039,7 @@ const char* mnemonic_to_string(Mnemonic mnem) {
         case Mnemonic::REVH: return "revh";
         case Mnemonic::REVW: return "revw";
         case Mnemonic::RMIF: return "rmif";
+        case Mnemonic::ROR: return "ror";
         case Mnemonic::RORV: return "rorv";
         case Mnemonic::RPRFM: return "rprfm";
         case Mnemonic::RSHRN: return "rshrn";
@@ -1042,6 +1072,7 @@ const char* mnemonic_to_string(Mnemonic mnem) {
         case Mnemonic::SBCLB: return "sbclb";
         case Mnemonic::SBCLT: return "sbclt";
         case Mnemonic::SBCS: return "sbcs";
+        case Mnemonic::SBFIZ: return "sbfiz";
         case Mnemonic::SBFM: return "sbfm";
         case Mnemonic::SCLAMP: return "sclamp";
         case Mnemonic::SCVTF: return "scvtf";
@@ -1131,11 +1162,14 @@ const char* mnemonic_to_string(Mnemonic mnem) {
         case Mnemonic::SMLSLL: return "smlsll";
         case Mnemonic::SMLSLT: return "smlslt";
         case Mnemonic::SMMLA: return "smmla";
+        case Mnemonic::SMNEGL: return "smnegl";
         case Mnemonic::SMOP4A: return "smop4a";
         case Mnemonic::SMOP4S: return "smop4s";
         case Mnemonic::SMOPA: return "smopa";
         case Mnemonic::SMOPS: return "smops";
         case Mnemonic::SMOV: return "smov";
+        case Mnemonic::SMSTART: return "smstart";
+        case Mnemonic::SMSTOP: return "smstop";
         case Mnemonic::SMSUBL: return "smsubl";
         case Mnemonic::SMULH: return "smulh";
         case Mnemonic::SMULL: return "smull";
@@ -1209,6 +1243,7 @@ const char* mnemonic_to_string(Mnemonic mnem) {
         case Mnemonic::SRSHLR: return "srshlr";
         case Mnemonic::SRSHR: return "srshr";
         case Mnemonic::SRSRA: return "srsra";
+        case Mnemonic::SSBB: return "ssbb";
         case Mnemonic::SSHL: return "sshl";
         case Mnemonic::SSHLL: return "sshll";
         case Mnemonic::SSHLLB: return "sshllb";
@@ -1365,6 +1400,7 @@ const char* mnemonic_to_string(Mnemonic mnem) {
         case Mnemonic::SWPTL: return "swptl";
         case Mnemonic::SXTB: return "sxtb";
         case Mnemonic::SXTH: return "sxth";
+        case Mnemonic::SXTL: return "sxtl";
         case Mnemonic::SXTW: return "sxtw";
         case Mnemonic::SYS: return "sys";
         case Mnemonic::SYSL: return "sysl";
@@ -1376,9 +1412,12 @@ const char* mnemonic_to_string(Mnemonic mnem) {
         case Mnemonic::TBXQ: return "tbxq";
         case Mnemonic::TBZ: return "tbz";
         case Mnemonic::TLBI: return "tlbi";
+        case Mnemonic::TLBIP: return "tlbip";
+        case Mnemonic::TRCIT: return "trcit";
         case Mnemonic::TRN1: return "trn1";
         case Mnemonic::TRN2: return "trn2";
         case Mnemonic::TSB: return "tsb";
+        case Mnemonic::TST: return "tst";
         case Mnemonic::UABA: return "uaba";
         case Mnemonic::UABAL: return "uabal";
         case Mnemonic::UABALB: return "uabalb";
@@ -1426,6 +1465,7 @@ const char* mnemonic_to_string(Mnemonic mnem) {
         case Mnemonic::UMLSLL: return "umlsll";
         case Mnemonic::UMLSLT: return "umlslt";
         case Mnemonic::UMMLA: return "ummla";
+        case Mnemonic::UMNEGL: return "umnegl";
         case Mnemonic::UMOP4A: return "umop4a";
         case Mnemonic::UMOP4S: return "umop4s";
         case Mnemonic::UMOPA: return "umopa";
@@ -1501,6 +1541,7 @@ const char* mnemonic_to_string(Mnemonic mnem) {
         case Mnemonic::UVDOT: return "uvdot";
         case Mnemonic::UXTB: return "uxtb";
         case Mnemonic::UXTH: return "uxth";
+        case Mnemonic::UXTL: return "uxtl";
         case Mnemonic::UXTW: return "uxtw";
         case Mnemonic::UZP: return "uzp";
         case Mnemonic::UZP1: return "uzp1";
@@ -2700,8 +2741,8 @@ std::string Operand::to_string() const {
 #endif // VEDA64_STRINGS
 
 // Unified decode function - dispatches to format-based group decoders
-std::optional<Instruction> decode(uint32_t insn) {
-    return decode_format(insn);
+std::optional<Instruction> decode(uint32_t insn, bool aliases) {
+    return decode_format(insn, aliases);
 }
 
 } // namespace veda64

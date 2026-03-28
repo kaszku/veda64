@@ -1379,11 +1379,11 @@ uint32_t encode_zipq2_z_zz_(uint32_t Zd, uint32_t Zn, uint32_t Zm, uint32_t size
 
 // Decode function
 // Decode a sve instruction from a uint32_t
-std::optional<Instruction> decode_sve(uint32_t insn);
+std::optional<Instruction> decode_sve(uint32_t insn, bool aliases = false);
 
 // Decode a sve instruction from 4 bytes in memory (little-endian)
-inline std::optional<Instruction> decode_sve(const uint8_t* bytes) {
-    return decode_sve(from_bytes(bytes));
+inline std::optional<Instruction> decode_sve(const uint8_t* bytes, bool aliases = false) {
+    return decode_sve(from_bytes(bytes), aliases);
 }
 
 } // namespace sve

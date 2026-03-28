@@ -2515,14 +2515,16 @@ uint32_t encode_uxth_ubfm_32m_bitfield(uint32_t Rd, uint32_t Rn) {
 
 // Decode a dpimm instruction
 // Input is in native ARM64 format (as read from memory)
-std::optional<Instruction> decode_dpimm(uint32_t insn) {
+// When aliases=true, alias encodings return alias mnemonic + operands
+std::optional<Instruction> decode_dpimm(uint32_t insn, bool aliases) {
+    (void)aliases;
     // Switch for mask 0xFFFFFC00u (9 patterns, 9 encodings)
     switch (insn & 0xFFFFFC00u) {
         case 0x11000000u: { // MOV_ADD_32_addsub_imm
             #ifdef VEDA64_IR
-                        Instruction result(Mnemonic::ADD, insn, EncodingId::MOV_ADD_32_addsub_imm);
+                        Instruction result(aliases ? Mnemonic::MOV : Mnemonic::ADD, insn, EncodingId::MOV_ADD_32_addsub_imm);
             #else
-                        Instruction result(Mnemonic::ADD, insn);
+                        Instruction result(aliases ? Mnemonic::MOV : Mnemonic::ADD, insn);
             #endif
                         DpimmEncoding enc = {};
                         enc.raw = insn;
@@ -2532,9 +2534,9 @@ std::optional<Instruction> decode_dpimm(uint32_t insn) {
         }
         case 0x13001C00u: { // SXTB_SBFM_32M_bitfield
             #ifdef VEDA64_IR
-                        Instruction result(Mnemonic::SBFM, insn, EncodingId::SXTB_SBFM_32M_bitfield);
+                        Instruction result(aliases ? Mnemonic::SXTB : Mnemonic::SBFM, insn, EncodingId::SXTB_SBFM_32M_bitfield);
             #else
-                        Instruction result(Mnemonic::SBFM, insn);
+                        Instruction result(aliases ? Mnemonic::SXTB : Mnemonic::SBFM, insn);
             #endif
                         DpimmEncoding enc = {};
                         enc.raw = insn;
@@ -2544,9 +2546,9 @@ std::optional<Instruction> decode_dpimm(uint32_t insn) {
         }
         case 0x13003C00u: { // SXTH_SBFM_32M_bitfield
             #ifdef VEDA64_IR
-                        Instruction result(Mnemonic::SBFM, insn, EncodingId::SXTH_SBFM_32M_bitfield);
+                        Instruction result(aliases ? Mnemonic::SXTH : Mnemonic::SBFM, insn, EncodingId::SXTH_SBFM_32M_bitfield);
             #else
-                        Instruction result(Mnemonic::SBFM, insn);
+                        Instruction result(aliases ? Mnemonic::SXTH : Mnemonic::SBFM, insn);
             #endif
                         DpimmEncoding enc = {};
                         enc.raw = insn;
@@ -2556,9 +2558,9 @@ std::optional<Instruction> decode_dpimm(uint32_t insn) {
         }
         case 0x53001C00u: { // UXTB_UBFM_32M_bitfield
             #ifdef VEDA64_IR
-                        Instruction result(Mnemonic::UBFM, insn, EncodingId::UXTB_UBFM_32M_bitfield);
+                        Instruction result(aliases ? Mnemonic::UXTB : Mnemonic::UBFM, insn, EncodingId::UXTB_UBFM_32M_bitfield);
             #else
-                        Instruction result(Mnemonic::UBFM, insn);
+                        Instruction result(aliases ? Mnemonic::UXTB : Mnemonic::UBFM, insn);
             #endif
                         DpimmEncoding enc = {};
                         enc.raw = insn;
@@ -2568,9 +2570,9 @@ std::optional<Instruction> decode_dpimm(uint32_t insn) {
         }
         case 0x53003C00u: { // UXTH_UBFM_32M_bitfield
             #ifdef VEDA64_IR
-                        Instruction result(Mnemonic::UBFM, insn, EncodingId::UXTH_UBFM_32M_bitfield);
+                        Instruction result(aliases ? Mnemonic::UXTH : Mnemonic::UBFM, insn, EncodingId::UXTH_UBFM_32M_bitfield);
             #else
-                        Instruction result(Mnemonic::UBFM, insn);
+                        Instruction result(aliases ? Mnemonic::UXTH : Mnemonic::UBFM, insn);
             #endif
                         DpimmEncoding enc = {};
                         enc.raw = insn;
@@ -2580,9 +2582,9 @@ std::optional<Instruction> decode_dpimm(uint32_t insn) {
         }
         case 0x91000000u: { // MOV_ADD_64_addsub_imm
             #ifdef VEDA64_IR
-                        Instruction result(Mnemonic::ADD, insn, EncodingId::MOV_ADD_64_addsub_imm);
+                        Instruction result(aliases ? Mnemonic::MOV : Mnemonic::ADD, insn, EncodingId::MOV_ADD_64_addsub_imm);
             #else
-                        Instruction result(Mnemonic::ADD, insn);
+                        Instruction result(aliases ? Mnemonic::MOV : Mnemonic::ADD, insn);
             #endif
                         DpimmEncoding enc = {};
                         enc.raw = insn;
@@ -2592,9 +2594,9 @@ std::optional<Instruction> decode_dpimm(uint32_t insn) {
         }
         case 0x93401C00u: { // SXTB_SBFM_64M_bitfield
             #ifdef VEDA64_IR
-                        Instruction result(Mnemonic::SBFM, insn, EncodingId::SXTB_SBFM_64M_bitfield);
+                        Instruction result(aliases ? Mnemonic::SXTB : Mnemonic::SBFM, insn, EncodingId::SXTB_SBFM_64M_bitfield);
             #else
-                        Instruction result(Mnemonic::SBFM, insn);
+                        Instruction result(aliases ? Mnemonic::SXTB : Mnemonic::SBFM, insn);
             #endif
                         DpimmEncoding enc = {};
                         enc.raw = insn;
@@ -2604,9 +2606,9 @@ std::optional<Instruction> decode_dpimm(uint32_t insn) {
         }
         case 0x93403C00u: { // SXTH_SBFM_64M_bitfield
             #ifdef VEDA64_IR
-                        Instruction result(Mnemonic::SBFM, insn, EncodingId::SXTH_SBFM_64M_bitfield);
+                        Instruction result(aliases ? Mnemonic::SXTH : Mnemonic::SBFM, insn, EncodingId::SXTH_SBFM_64M_bitfield);
             #else
-                        Instruction result(Mnemonic::SBFM, insn);
+                        Instruction result(aliases ? Mnemonic::SXTH : Mnemonic::SBFM, insn);
             #endif
                         DpimmEncoding enc = {};
                         enc.raw = insn;
@@ -2616,9 +2618,9 @@ std::optional<Instruction> decode_dpimm(uint32_t insn) {
         }
         case 0x93407C00u: { // SXTW_SBFM_64M_bitfield
             #ifdef VEDA64_IR
-                        Instruction result(Mnemonic::SBFM, insn, EncodingId::SXTW_SBFM_64M_bitfield);
+                        Instruction result(aliases ? Mnemonic::SXTW : Mnemonic::SBFM, insn, EncodingId::SXTW_SBFM_64M_bitfield);
             #else
-                        Instruction result(Mnemonic::SBFM, insn);
+                        Instruction result(aliases ? Mnemonic::SXTW : Mnemonic::SBFM, insn);
             #endif
                         DpimmEncoding enc = {};
                         enc.raw = insn;
@@ -2829,9 +2831,9 @@ std::optional<Instruction> decode_dpimm(uint32_t insn) {
     switch (insn & 0xFFC0FC00u) {
         case 0x13007C00u: { // ASR_SBFM_32M_bitfield
             #ifdef VEDA64_IR
-                        Instruction result(Mnemonic::SBFM, insn, EncodingId::ASR_SBFM_32M_bitfield);
+                        Instruction result(aliases ? Mnemonic::ASR : Mnemonic::SBFM, insn, EncodingId::ASR_SBFM_32M_bitfield);
             #else
-                        Instruction result(Mnemonic::SBFM, insn);
+                        Instruction result(aliases ? Mnemonic::ASR : Mnemonic::SBFM, insn);
             #endif
                         DpimmEncoding enc = {};
                         enc.raw = insn;
@@ -2843,9 +2845,9 @@ std::optional<Instruction> decode_dpimm(uint32_t insn) {
         }
         case 0x53007C00u: { // LSR_UBFM_32M_bitfield
             #ifdef VEDA64_IR
-                        Instruction result(Mnemonic::UBFM, insn, EncodingId::LSR_UBFM_32M_bitfield);
+                        Instruction result(aliases ? Mnemonic::LSR : Mnemonic::UBFM, insn, EncodingId::LSR_UBFM_32M_bitfield);
             #else
-                        Instruction result(Mnemonic::UBFM, insn);
+                        Instruction result(aliases ? Mnemonic::LSR : Mnemonic::UBFM, insn);
             #endif
                         DpimmEncoding enc = {};
                         enc.raw = insn;
@@ -2857,9 +2859,9 @@ std::optional<Instruction> decode_dpimm(uint32_t insn) {
         }
         case 0x9340FC00u: { // ASR_SBFM_64M_bitfield
             #ifdef VEDA64_IR
-                        Instruction result(Mnemonic::SBFM, insn, EncodingId::ASR_SBFM_64M_bitfield);
+                        Instruction result(aliases ? Mnemonic::ASR : Mnemonic::SBFM, insn, EncodingId::ASR_SBFM_64M_bitfield);
             #else
-                        Instruction result(Mnemonic::SBFM, insn);
+                        Instruction result(aliases ? Mnemonic::ASR : Mnemonic::SBFM, insn);
             #endif
                         DpimmEncoding enc = {};
                         enc.raw = insn;
@@ -2871,9 +2873,9 @@ std::optional<Instruction> decode_dpimm(uint32_t insn) {
         }
         case 0xD340FC00u: { // LSR_UBFM_64M_bitfield
             #ifdef VEDA64_IR
-                        Instruction result(Mnemonic::UBFM, insn, EncodingId::LSR_UBFM_64M_bitfield);
+                        Instruction result(aliases ? Mnemonic::LSR : Mnemonic::UBFM, insn, EncodingId::LSR_UBFM_64M_bitfield);
             #else
-                        Instruction result(Mnemonic::UBFM, insn);
+                        Instruction result(aliases ? Mnemonic::LSR : Mnemonic::UBFM, insn);
             #endif
                         DpimmEncoding enc = {};
                         enc.raw = insn;
@@ -2890,9 +2892,9 @@ std::optional<Instruction> decode_dpimm(uint32_t insn) {
     switch (insn & 0xFFC003E0u) {
         case 0x320003E0u: { // MOV_ORR_32_log_imm
             #ifdef VEDA64_IR
-                        Instruction result(Mnemonic::ORR, insn, EncodingId::MOV_ORR_32_log_imm);
+                        Instruction result(aliases ? Mnemonic::MOV : Mnemonic::ORR, insn, EncodingId::MOV_ORR_32_log_imm);
             #else
-                        Instruction result(Mnemonic::ORR, insn);
+                        Instruction result(aliases ? Mnemonic::MOV : Mnemonic::ORR, insn);
             #endif
                         DpimmEncoding enc = {};
                         enc.raw = insn;
@@ -2905,9 +2907,9 @@ std::optional<Instruction> decode_dpimm(uint32_t insn) {
         }
         case 0x330003E0u: { // BFC_BFM_32M_bitfield
             #ifdef VEDA64_IR
-                        Instruction result(Mnemonic::BFM, insn, EncodingId::BFC_BFM_32M_bitfield);
+                        Instruction result(aliases ? Mnemonic::BFC : Mnemonic::BFM, insn, EncodingId::BFC_BFM_32M_bitfield);
             #else
-                        Instruction result(Mnemonic::BFM, insn);
+                        Instruction result(aliases ? Mnemonic::BFC : Mnemonic::BFM, insn);
             #endif
                         DpimmEncoding enc = {};
                         enc.raw = insn;
@@ -2919,9 +2921,9 @@ std::optional<Instruction> decode_dpimm(uint32_t insn) {
         }
         case 0xB34003E0u: { // BFC_BFM_64M_bitfield
             #ifdef VEDA64_IR
-                        Instruction result(Mnemonic::BFM, insn, EncodingId::BFC_BFM_64M_bitfield);
+                        Instruction result(aliases ? Mnemonic::BFC : Mnemonic::BFM, insn, EncodingId::BFC_BFM_64M_bitfield);
             #else
-                        Instruction result(Mnemonic::BFM, insn);
+                        Instruction result(aliases ? Mnemonic::BFC : Mnemonic::BFM, insn);
             #endif
                         DpimmEncoding enc = {};
                         enc.raw = insn;
@@ -2938,9 +2940,9 @@ std::optional<Instruction> decode_dpimm(uint32_t insn) {
     switch (insn & 0xFFC0001Fu) {
         case 0x7200001Fu: { // TST_ANDS_32S_log_imm
             #ifdef VEDA64_IR
-                        Instruction result(Mnemonic::ANDS, insn, EncodingId::TST_ANDS_32S_log_imm);
+                        Instruction result(aliases ? Mnemonic::TST : Mnemonic::ANDS, insn, EncodingId::TST_ANDS_32S_log_imm);
             #else
-                        Instruction result(Mnemonic::ANDS, insn);
+                        Instruction result(aliases ? Mnemonic::TST : Mnemonic::ANDS, insn);
             #endif
                         DpimmEncoding enc = {};
                         enc.raw = insn;
@@ -2974,9 +2976,9 @@ std::optional<Instruction> decode_dpimm(uint32_t insn) {
         case 0x12800000u: { // MOV_MOVN_32_movewide
             // Also matches: MOVN_32_movewide (MOVN)
             #ifdef VEDA64_IR
-                        Instruction result(Mnemonic::MOVN, insn, EncodingId::MOV_MOVN_32_movewide);
+                        Instruction result(aliases ? Mnemonic::MOV : Mnemonic::MOVN, insn, EncodingId::MOV_MOVN_32_movewide);
             #else
-                        Instruction result(Mnemonic::MOVN, insn);
+                        Instruction result(aliases ? Mnemonic::MOV : Mnemonic::MOVN, insn);
             #endif
                         DpimmEncoding enc = {};
                         enc.raw = insn;
@@ -2988,9 +2990,9 @@ std::optional<Instruction> decode_dpimm(uint32_t insn) {
             // Also matches: SBFM_32M_bitfield (SBFM)
             // Also matches: SBFX_SBFM_32M_bitfield (SBFM)
             #ifdef VEDA64_IR
-                        Instruction result(Mnemonic::SBFM, insn, EncodingId::SBFIZ_SBFM_32M_bitfield);
+                        Instruction result(aliases ? Mnemonic::SBFIZ : Mnemonic::SBFM, insn, EncodingId::SBFIZ_SBFM_32M_bitfield);
             #else
-                        Instruction result(Mnemonic::SBFM, insn);
+                        Instruction result(aliases ? Mnemonic::SBFIZ : Mnemonic::SBFM, insn);
             #endif
                         DpimmEncoding enc = {};
                         enc.raw = insn;
@@ -3021,9 +3023,9 @@ std::optional<Instruction> decode_dpimm(uint32_t insn) {
             // Also matches: BFXIL_BFM_32M_bitfield (BFM)
             if (!(((insn >> 5) & 0x1F) == 0x1F)) {
                 #ifdef VEDA64_IR
-                                Instruction result(Mnemonic::BFM, insn, EncodingId::BFI_BFM_32M_bitfield);
+                                Instruction result(aliases ? Mnemonic::BFI : Mnemonic::BFM, insn, EncodingId::BFI_BFM_32M_bitfield);
                 #else
-                                Instruction result(Mnemonic::BFM, insn);
+                                Instruction result(aliases ? Mnemonic::BFI : Mnemonic::BFM, insn);
                 #endif
                                 DpimmEncoding enc = {};
                                 enc.raw = insn;
@@ -3066,9 +3068,9 @@ std::optional<Instruction> decode_dpimm(uint32_t insn) {
         case 0x52800000u: { // MOV_MOVZ_32_movewide
             // Also matches: MOVZ_32_movewide (MOVZ)
             #ifdef VEDA64_IR
-                        Instruction result(Mnemonic::MOVZ, insn, EncodingId::MOV_MOVZ_32_movewide);
+                        Instruction result(aliases ? Mnemonic::MOV : Mnemonic::MOVZ, insn, EncodingId::MOV_MOVZ_32_movewide);
             #else
-                        Instruction result(Mnemonic::MOVZ, insn);
+                        Instruction result(aliases ? Mnemonic::MOV : Mnemonic::MOVZ, insn);
             #endif
                         DpimmEncoding enc = {};
                         enc.raw = insn;
@@ -3081,9 +3083,9 @@ std::optional<Instruction> decode_dpimm(uint32_t insn) {
             // Also matches: UBFM_32M_bitfield (UBFM)
             // Also matches: UBFX_UBFM_32M_bitfield (UBFM)
             #ifdef VEDA64_IR
-                        Instruction result(Mnemonic::UBFM, insn, EncodingId::LSL_UBFM_32M_bitfield);
+                        Instruction result(aliases ? Mnemonic::LSL : Mnemonic::UBFM, insn, EncodingId::LSL_UBFM_32M_bitfield);
             #else
-                        Instruction result(Mnemonic::UBFM, insn);
+                        Instruction result(aliases ? Mnemonic::LSL : Mnemonic::UBFM, insn);
             #endif
                         DpimmEncoding enc = {};
                         enc.raw = insn;
@@ -3143,9 +3145,9 @@ std::optional<Instruction> decode_dpimm(uint32_t insn) {
             // Also matches: SBFM_64M_bitfield (SBFM)
             // Also matches: SBFX_SBFM_64M_bitfield (SBFM)
             #ifdef VEDA64_IR
-                        Instruction result(Mnemonic::SBFM, insn, EncodingId::SBFIZ_SBFM_64M_bitfield);
+                        Instruction result(aliases ? Mnemonic::SBFIZ : Mnemonic::SBFM, insn, EncodingId::SBFIZ_SBFM_64M_bitfield);
             #else
-                        Instruction result(Mnemonic::SBFM, insn);
+                        Instruction result(aliases ? Mnemonic::SBFIZ : Mnemonic::SBFM, insn);
             #endif
                         DpimmEncoding enc = {};
                         enc.raw = insn;
@@ -3161,9 +3163,9 @@ std::optional<Instruction> decode_dpimm(uint32_t insn) {
             // Also matches: BFXIL_BFM_64M_bitfield (BFM)
             if (!(((insn >> 5) & 0x1F) == 0x1F)) {
                 #ifdef VEDA64_IR
-                                Instruction result(Mnemonic::BFM, insn, EncodingId::BFI_BFM_64M_bitfield);
+                                Instruction result(aliases ? Mnemonic::BFI : Mnemonic::BFM, insn, EncodingId::BFI_BFM_64M_bitfield);
                 #else
-                                Instruction result(Mnemonic::BFM, insn);
+                                Instruction result(aliases ? Mnemonic::BFI : Mnemonic::BFM, insn);
                 #endif
                                 DpimmEncoding enc = {};
                                 enc.raw = insn;
@@ -3208,9 +3210,9 @@ std::optional<Instruction> decode_dpimm(uint32_t insn) {
             // Also matches: UBFM_64M_bitfield (UBFM)
             // Also matches: UBFX_UBFM_64M_bitfield (UBFM)
             #ifdef VEDA64_IR
-                        Instruction result(Mnemonic::UBFM, insn, EncodingId::LSL_UBFM_64M_bitfield);
+                        Instruction result(aliases ? Mnemonic::LSL : Mnemonic::UBFM, insn, EncodingId::LSL_UBFM_64M_bitfield);
             #else
-                        Instruction result(Mnemonic::UBFM, insn);
+                        Instruction result(aliases ? Mnemonic::LSL : Mnemonic::UBFM, insn);
             #endif
                         DpimmEncoding enc = {};
                         enc.raw = insn;
@@ -3228,9 +3230,9 @@ std::optional<Instruction> decode_dpimm(uint32_t insn) {
     switch (insn & 0xFF8003E0u) {
         case 0xB20003E0u: { // MOV_ORR_64_log_imm
             #ifdef VEDA64_IR
-                        Instruction result(Mnemonic::ORR, insn, EncodingId::MOV_ORR_64_log_imm);
+                        Instruction result(aliases ? Mnemonic::MOV : Mnemonic::ORR, insn, EncodingId::MOV_ORR_64_log_imm);
             #else
-                        Instruction result(Mnemonic::ORR, insn);
+                        Instruction result(aliases ? Mnemonic::MOV : Mnemonic::ORR, insn);
             #endif
                         DpimmEncoding enc = {};
                         enc.raw = insn;
@@ -3248,9 +3250,9 @@ std::optional<Instruction> decode_dpimm(uint32_t insn) {
     switch (insn & 0xFF80001Fu) {
         case 0x3100001Fu: { // CMN_ADDS_32S_addsub_imm
             #ifdef VEDA64_IR
-                        Instruction result(Mnemonic::ADDS, insn, EncodingId::CMN_ADDS_32S_addsub_imm);
+                        Instruction result(aliases ? Mnemonic::CMN : Mnemonic::ADDS, insn, EncodingId::CMN_ADDS_32S_addsub_imm);
             #else
-                        Instruction result(Mnemonic::ADDS, insn);
+                        Instruction result(aliases ? Mnemonic::CMN : Mnemonic::ADDS, insn);
             #endif
                         DpimmEncoding enc = {};
                         enc.raw = insn;
@@ -3261,9 +3263,9 @@ std::optional<Instruction> decode_dpimm(uint32_t insn) {
         }
         case 0x7100001Fu: { // CMP_SUBS_32S_addsub_imm
             #ifdef VEDA64_IR
-                        Instruction result(Mnemonic::SUBS, insn, EncodingId::CMP_SUBS_32S_addsub_imm);
+                        Instruction result(aliases ? Mnemonic::CMP : Mnemonic::SUBS, insn, EncodingId::CMP_SUBS_32S_addsub_imm);
             #else
-                        Instruction result(Mnemonic::SUBS, insn);
+                        Instruction result(aliases ? Mnemonic::CMP : Mnemonic::SUBS, insn);
             #endif
                         DpimmEncoding enc = {};
                         enc.raw = insn;
@@ -3274,9 +3276,9 @@ std::optional<Instruction> decode_dpimm(uint32_t insn) {
         }
         case 0xB100001Fu: { // CMN_ADDS_64S_addsub_imm
             #ifdef VEDA64_IR
-                        Instruction result(Mnemonic::ADDS, insn, EncodingId::CMN_ADDS_64S_addsub_imm);
+                        Instruction result(aliases ? Mnemonic::CMN : Mnemonic::ADDS, insn, EncodingId::CMN_ADDS_64S_addsub_imm);
             #else
-                        Instruction result(Mnemonic::ADDS, insn);
+                        Instruction result(aliases ? Mnemonic::CMN : Mnemonic::ADDS, insn);
             #endif
                         DpimmEncoding enc = {};
                         enc.raw = insn;
@@ -3287,9 +3289,9 @@ std::optional<Instruction> decode_dpimm(uint32_t insn) {
         }
         case 0xF100001Fu: { // CMP_SUBS_64S_addsub_imm
             #ifdef VEDA64_IR
-                        Instruction result(Mnemonic::SUBS, insn, EncodingId::CMP_SUBS_64S_addsub_imm);
+                        Instruction result(aliases ? Mnemonic::CMP : Mnemonic::SUBS, insn, EncodingId::CMP_SUBS_64S_addsub_imm);
             #else
-                        Instruction result(Mnemonic::SUBS, insn);
+                        Instruction result(aliases ? Mnemonic::CMP : Mnemonic::SUBS, insn);
             #endif
                         DpimmEncoding enc = {};
                         enc.raw = insn;
@@ -3300,9 +3302,9 @@ std::optional<Instruction> decode_dpimm(uint32_t insn) {
         }
         case 0xF200001Fu: { // TST_ANDS_64S_log_imm
             #ifdef VEDA64_IR
-                        Instruction result(Mnemonic::ANDS, insn, EncodingId::TST_ANDS_64S_log_imm);
+                        Instruction result(aliases ? Mnemonic::TST : Mnemonic::ANDS, insn, EncodingId::TST_ANDS_64S_log_imm);
             #else
-                        Instruction result(Mnemonic::ANDS, insn);
+                        Instruction result(aliases ? Mnemonic::TST : Mnemonic::ANDS, insn);
             #endif
                         DpimmEncoding enc = {};
                         enc.raw = insn;
@@ -3406,9 +3408,9 @@ std::optional<Instruction> decode_dpimm(uint32_t insn) {
         case 0x92800000u: { // MOV_MOVN_64_movewide
             // Also matches: MOVN_64_movewide (MOVN)
             #ifdef VEDA64_IR
-                        Instruction result(Mnemonic::MOVN, insn, EncodingId::MOV_MOVN_64_movewide);
+                        Instruction result(aliases ? Mnemonic::MOV : Mnemonic::MOVN, insn, EncodingId::MOV_MOVN_64_movewide);
             #else
-                        Instruction result(Mnemonic::MOVN, insn);
+                        Instruction result(aliases ? Mnemonic::MOV : Mnemonic::MOVN, insn);
             #endif
                         DpimmEncoding enc = {};
                         enc.raw = insn;
@@ -3477,9 +3479,9 @@ std::optional<Instruction> decode_dpimm(uint32_t insn) {
         case 0xD2800000u: { // MOV_MOVZ_64_movewide
             // Also matches: MOVZ_64_movewide (MOVZ)
             #ifdef VEDA64_IR
-                        Instruction result(Mnemonic::MOVZ, insn, EncodingId::MOV_MOVZ_64_movewide);
+                        Instruction result(aliases ? Mnemonic::MOV : Mnemonic::MOVZ, insn, EncodingId::MOV_MOVZ_64_movewide);
             #else
-                        Instruction result(Mnemonic::MOVZ, insn);
+                        Instruction result(aliases ? Mnemonic::MOV : Mnemonic::MOVZ, insn);
             #endif
                         DpimmEncoding enc = {};
                         enc.raw = insn;

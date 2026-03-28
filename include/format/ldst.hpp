@@ -1093,11 +1093,11 @@ uint32_t encode_swptl_64_memop_unpriv(uint32_t Rt, uint32_t Rn, uint32_t Rs);
 
 // Decode function
 // Decode a ldst instruction from a uint32_t
-std::optional<Instruction> decode_ldst(uint32_t insn);
+std::optional<Instruction> decode_ldst(uint32_t insn, bool aliases = false);
 
 // Decode a ldst instruction from 4 bytes in memory (little-endian)
-inline std::optional<Instruction> decode_ldst(const uint8_t* bytes) {
-    return decode_ldst(from_bytes(bytes));
+inline std::optional<Instruction> decode_ldst(const uint8_t* bytes, bool aliases = false) {
+    return decode_ldst(from_bytes(bytes), aliases);
 }
 
 } // namespace ldst

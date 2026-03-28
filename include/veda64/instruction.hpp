@@ -45,11 +45,13 @@ public:
 };
 
 // Decode a single ARM64 instruction from a uint32_t (native little-endian value)
-std::optional<Instruction> decode(uint32_t insn);
+// When aliases=true, alias encodings return the alias mnemonic and operands
+// (e.g., MOV instead of ADD, CMP instead of SUBS)
+std::optional<Instruction> decode(uint32_t insn, bool aliases = false);
 
 // Decode a single ARM64 instruction from 4 bytes in memory (little-endian)
-inline std::optional<Instruction> decode(const uint8_t* bytes) {
-    return decode(from_bytes(bytes));
+inline std::optional<Instruction> decode(const uint8_t* bytes, bool aliases = false) {
+    return decode(from_bytes(bytes), aliases);
 }
 
 } // namespace veda64

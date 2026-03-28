@@ -32620,7 +32620,9 @@ uint32_t encode_zip2_asimdperm_only(uint32_t Rd, uint32_t Rn, uint32_t Rm, uint3
 
 // Decode a simd_dp instruction
 // Input is in native ARM64 format (as read from memory)
-std::optional<Instruction> decode_simd_dp(uint32_t insn) {
+// When aliases=true, alias encodings return alias mnemonic + operands
+std::optional<Instruction> decode_simd_dp(uint32_t insn, bool aliases) {
+    (void)aliases;
     // Switch for mask 0xFFFFFC00u (226 patterns, 226 encodings)
     switch (insn & 0xFFFFFC00u) {
         case 0x1E200000u: { // FCVTNS_32S_float2int
@@ -36170,9 +36172,9 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
         case 0x4E083C00u: { // MOV_UMOV_asimdins_X_x
             // Also matches: UMOV_asimdins_X_x (UMOV)
             #ifdef VEDA64_IR
-                        Instruction result(Mnemonic::UMOV, insn, EncodingId::MOV_UMOV_asimdins_X_x);
+                        Instruction result(aliases ? Mnemonic::MOV : Mnemonic::UMOV, insn, EncodingId::MOV_UMOV_asimdins_X_x);
             #else
-                        Instruction result(Mnemonic::UMOV, insn);
+                        Instruction result(aliases ? Mnemonic::MOV : Mnemonic::UMOV, insn);
             #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
@@ -36199,9 +36201,9 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
     switch (insn & 0xFFE7FC00u) {
         case 0x0E043C00u: { // MOV_UMOV_asimdins_W_w
             #ifdef VEDA64_IR
-                        Instruction result(Mnemonic::UMOV, insn, EncodingId::MOV_UMOV_asimdins_W_w);
+                        Instruction result(aliases ? Mnemonic::MOV : Mnemonic::UMOV, insn, EncodingId::MOV_UMOV_asimdins_W_w);
             #else
-                        Instruction result(Mnemonic::UMOV, insn);
+                        Instruction result(aliases ? Mnemonic::MOV : Mnemonic::UMOV, insn);
             #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
@@ -40486,9 +40488,9 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
         case 0x2E205800u: { // MVN_NOT_asimdmisc_R
             // Also matches: NOT_asimdmisc_R (NOT)
             #ifdef VEDA64_IR
-                        Instruction result(Mnemonic::NOT, insn, EncodingId::MVN_NOT_asimdmisc_R);
+                        Instruction result(aliases ? Mnemonic::MVN : Mnemonic::NOT, insn, EncodingId::MVN_NOT_asimdmisc_R);
             #else
-                        Instruction result(Mnemonic::NOT, insn);
+                        Instruction result(aliases ? Mnemonic::MVN : Mnemonic::NOT, insn);
             #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
@@ -41506,9 +41508,9 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
         case 0x0EA01C00u: { // MOV_ORR_asimdsame_only
             // Also matches: ORR_asimdsame_only (ORR)
             #ifdef VEDA64_IR
-                        Instruction result(Mnemonic::ORR, insn, EncodingId::MOV_ORR_asimdsame_only);
+                        Instruction result(aliases ? Mnemonic::MOV : Mnemonic::ORR, insn, EncodingId::MOV_ORR_asimdsame_only);
             #else
-                        Instruction result(Mnemonic::ORR, insn);
+                        Instruction result(aliases ? Mnemonic::MOV : Mnemonic::ORR, insn);
             #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
@@ -43640,9 +43642,9 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
         case 0x0F00A400u: { // SXTL_SSHLL_asimdshf_L
             if (((insn >> 19) & 0xF) == 0x0) break;
             #ifdef VEDA64_IR
-                        Instruction result(Mnemonic::SSHLL, insn, EncodingId::SXTL_SSHLL_asimdshf_L);
+                        Instruction result(aliases ? Mnemonic::SXTL : Mnemonic::SSHLL, insn, EncodingId::SXTL_SSHLL_asimdshf_L);
             #else
-                        Instruction result(Mnemonic::SSHLL, insn);
+                        Instruction result(aliases ? Mnemonic::SXTL : Mnemonic::SSHLL, insn);
             #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
@@ -43679,9 +43681,9 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn) {
         case 0x2F00A400u: { // UXTL_USHLL_asimdshf_L
             if (((insn >> 19) & 0xF) == 0x0) break;
             #ifdef VEDA64_IR
-                        Instruction result(Mnemonic::USHLL, insn, EncodingId::UXTL_USHLL_asimdshf_L);
+                        Instruction result(aliases ? Mnemonic::UXTL : Mnemonic::USHLL, insn, EncodingId::UXTL_USHLL_asimdshf_L);
             #else
-                        Instruction result(Mnemonic::USHLL, insn);
+                        Instruction result(aliases ? Mnemonic::UXTL : Mnemonic::USHLL, insn);
             #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;

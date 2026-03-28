@@ -219,11 +219,11 @@ uint32_t encode_xpaci_64z_dp_1src(uint32_t Rd);
 
 // Decode function
 // Decode a dpreg instruction from a uint32_t
-std::optional<Instruction> decode_dpreg(uint32_t insn);
+std::optional<Instruction> decode_dpreg(uint32_t insn, bool aliases = false);
 
 // Decode a dpreg instruction from 4 bytes in memory (little-endian)
-inline std::optional<Instruction> decode_dpreg(const uint8_t* bytes) {
-    return decode_dpreg(from_bytes(bytes));
+inline std::optional<Instruction> decode_dpreg(const uint8_t* bytes, bool aliases = false) {
+    return decode_dpreg(from_bytes(bytes), aliases);
 }
 
 } // namespace dpreg

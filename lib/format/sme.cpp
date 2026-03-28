@@ -37180,7 +37180,9 @@ uint32_t encode_zip_mz_zz_2q(uint32_t Zd, uint32_t Zn, uint32_t Zm) {
 
 // Decode a sme instruction
 // Input is in native ARM64 format (as read from memory)
-std::optional<Instruction> decode_sme(uint32_t insn) {
+// When aliases=true, alias encodings return alias mnemonic + operands
+std::optional<Instruction> decode_sme(uint32_t insn, bool aliases) {
+    (void)aliases;
     // Switch for mask 0xFFFFFFFFu (1 pattern, 1 encoding)
     switch (insn & 0xFFFFFFFFu) {
         case 0xC0480001u: { // zero_zt_i_
@@ -38063,9 +38065,9 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
         case 0xC0060C00u: { // mov_mz_za4_1_mova_mz_za4_1
             // Also matches: mova_mz_za4_1 (MOVA)
             #ifdef VEDA64_IR
-                        Instruction result(Mnemonic::MOVA, insn, EncodingId::mov_mz_za4_1_mova_mz_za4_1);
+                        Instruction result(aliases ? Mnemonic::MOV : Mnemonic::MOVA, insn, EncodingId::mov_mz_za4_1_mova_mz_za4_1);
             #else
-                        Instruction result(Mnemonic::MOVA, insn);
+                        Instruction result(aliases ? Mnemonic::MOV : Mnemonic::MOVA, insn);
             #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
@@ -38111,9 +38113,9 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
         case 0xC0060800u: { // mov_mz_za2_1_mova_mz_za2_1
             // Also matches: mova_mz_za2_1 (MOVA)
             #ifdef VEDA64_IR
-                        Instruction result(Mnemonic::MOVA, insn, EncodingId::mov_mz_za2_1_mova_mz_za2_1);
+                        Instruction result(aliases ? Mnemonic::MOV : Mnemonic::MOVA, insn, EncodingId::mov_mz_za2_1_mova_mz_za2_1);
             #else
-                        Instruction result(Mnemonic::MOVA, insn);
+                        Instruction result(aliases ? Mnemonic::MOV : Mnemonic::MOVA, insn);
             #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
@@ -38159,9 +38161,9 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
         case 0xC0040C00u: { // mov_za_mz4_1_mova_za_mz4_1
             // Also matches: mova_za_mz4_1 (MOVA)
             #ifdef VEDA64_IR
-                        Instruction result(Mnemonic::MOVA, insn, EncodingId::mov_za_mz4_1_mova_za_mz4_1);
+                        Instruction result(aliases ? Mnemonic::MOV : Mnemonic::MOVA, insn, EncodingId::mov_za_mz4_1_mova_za_mz4_1);
             #else
-                        Instruction result(Mnemonic::MOVA, insn);
+                        Instruction result(aliases ? Mnemonic::MOV : Mnemonic::MOVA, insn);
             #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
@@ -38270,9 +38272,9 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
         case 0xC0040800u: { // mov_za_mz2_1_mova_za_mz2_1
             // Also matches: mova_za_mz2_1 (MOVA)
             #ifdef VEDA64_IR
-                        Instruction result(Mnemonic::MOVA, insn, EncodingId::mov_za_mz2_1_mova_za_mz2_1);
+                        Instruction result(aliases ? Mnemonic::MOV : Mnemonic::MOVA, insn, EncodingId::mov_za_mz2_1_mova_za_mz2_1);
             #else
-                        Instruction result(Mnemonic::MOVA, insn);
+                        Instruction result(aliases ? Mnemonic::MOV : Mnemonic::MOVA, insn);
             #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
@@ -38463,9 +38465,9 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
         case 0xC0060400u: { // mov_mz4_za_b1_mova_mz4_za_b1
             // Also matches: mova_mz4_za_b1 (MOVA)
             #ifdef VEDA64_IR
-                        Instruction result(Mnemonic::MOVA, insn, EncodingId::mov_mz4_za_b1_mova_mz4_za_b1);
+                        Instruction result(aliases ? Mnemonic::MOV : Mnemonic::MOVA, insn, EncodingId::mov_mz4_za_b1_mova_mz4_za_b1);
             #else
-                        Instruction result(Mnemonic::MOVA, insn);
+                        Instruction result(aliases ? Mnemonic::MOV : Mnemonic::MOVA, insn);
             #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
@@ -38510,9 +38512,9 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
         case 0xC0460400u: { // mov_mz4_za_h1_mova_mz4_za_h1
             // Also matches: mova_mz4_za_h1 (MOVA)
             #ifdef VEDA64_IR
-                        Instruction result(Mnemonic::MOVA, insn, EncodingId::mov_mz4_za_h1_mova_mz4_za_h1);
+                        Instruction result(aliases ? Mnemonic::MOV : Mnemonic::MOVA, insn, EncodingId::mov_mz4_za_h1_mova_mz4_za_h1);
             #else
-                        Instruction result(Mnemonic::MOVA, insn);
+                        Instruction result(aliases ? Mnemonic::MOV : Mnemonic::MOVA, insn);
             #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
@@ -38557,9 +38559,9 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
         case 0xC0860400u: { // mov_mz4_za_w1_mova_mz4_za_w1
             // Also matches: mova_mz4_za_w1 (MOVA)
             #ifdef VEDA64_IR
-                        Instruction result(Mnemonic::MOVA, insn, EncodingId::mov_mz4_za_w1_mova_mz4_za_w1);
+                        Instruction result(aliases ? Mnemonic::MOV : Mnemonic::MOVA, insn, EncodingId::mov_mz4_za_w1_mova_mz4_za_w1);
             #else
-                        Instruction result(Mnemonic::MOVA, insn);
+                        Instruction result(aliases ? Mnemonic::MOV : Mnemonic::MOVA, insn);
             #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
@@ -38609,9 +38611,9 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
         case 0xC0C60400u: { // mov_mz4_za_d1_mova_mz4_za_d1
             // Also matches: mova_mz4_za_d1 (MOVA)
             #ifdef VEDA64_IR
-                        Instruction result(Mnemonic::MOVA, insn, EncodingId::mov_mz4_za_d1_mova_mz4_za_d1);
+                        Instruction result(aliases ? Mnemonic::MOV : Mnemonic::MOVA, insn, EncodingId::mov_mz4_za_d1_mova_mz4_za_d1);
             #else
-                        Instruction result(Mnemonic::MOVA, insn);
+                        Instruction result(aliases ? Mnemonic::MOV : Mnemonic::MOVA, insn);
             #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
@@ -38661,9 +38663,9 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
         case 0xC0060000u: { // mov_mz2_za_b1_mova_mz2_za_b1
             // Also matches: mova_mz2_za_b1 (MOVA)
             #ifdef VEDA64_IR
-                        Instruction result(Mnemonic::MOVA, insn, EncodingId::mov_mz2_za_b1_mova_mz2_za_b1);
+                        Instruction result(aliases ? Mnemonic::MOV : Mnemonic::MOVA, insn, EncodingId::mov_mz2_za_b1_mova_mz2_za_b1);
             #else
-                        Instruction result(Mnemonic::MOVA, insn);
+                        Instruction result(aliases ? Mnemonic::MOV : Mnemonic::MOVA, insn);
             #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
@@ -38708,9 +38710,9 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
         case 0xC0460000u: { // mov_mz2_za_h1_mova_mz2_za_h1
             // Also matches: mova_mz2_za_h1 (MOVA)
             #ifdef VEDA64_IR
-                        Instruction result(Mnemonic::MOVA, insn, EncodingId::mov_mz2_za_h1_mova_mz2_za_h1);
+                        Instruction result(aliases ? Mnemonic::MOV : Mnemonic::MOVA, insn, EncodingId::mov_mz2_za_h1_mova_mz2_za_h1);
             #else
-                        Instruction result(Mnemonic::MOVA, insn);
+                        Instruction result(aliases ? Mnemonic::MOV : Mnemonic::MOVA, insn);
             #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
@@ -38755,9 +38757,9 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
         case 0xC0860000u: { // mov_mz2_za_w1_mova_mz2_za_w1
             // Also matches: mova_mz2_za_w1 (MOVA)
             #ifdef VEDA64_IR
-                        Instruction result(Mnemonic::MOVA, insn, EncodingId::mov_mz2_za_w1_mova_mz2_za_w1);
+                        Instruction result(aliases ? Mnemonic::MOV : Mnemonic::MOVA, insn, EncodingId::mov_mz2_za_w1_mova_mz2_za_w1);
             #else
-                        Instruction result(Mnemonic::MOVA, insn);
+                        Instruction result(aliases ? Mnemonic::MOV : Mnemonic::MOVA, insn);
             #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
@@ -38802,9 +38804,9 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
         case 0xC0C60000u: { // mov_mz2_za_d1_mova_mz2_za_d1
             // Also matches: mova_mz2_za_d1 (MOVA)
             #ifdef VEDA64_IR
-                        Instruction result(Mnemonic::MOVA, insn, EncodingId::mov_mz2_za_d1_mova_mz2_za_d1);
+                        Instruction result(aliases ? Mnemonic::MOV : Mnemonic::MOVA, insn, EncodingId::mov_mz2_za_d1_mova_mz2_za_d1);
             #else
-                        Instruction result(Mnemonic::MOVA, insn);
+                        Instruction result(aliases ? Mnemonic::MOV : Mnemonic::MOVA, insn);
             #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
@@ -38974,9 +38976,9 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
         case 0xC0040400u: { // mov_za4_z_b1_mova_za4_z_b1
             // Also matches: mova_za4_z_b1 (MOVA)
             #ifdef VEDA64_IR
-                        Instruction result(Mnemonic::MOVA, insn, EncodingId::mov_za4_z_b1_mova_za4_z_b1);
+                        Instruction result(aliases ? Mnemonic::MOV : Mnemonic::MOVA, insn, EncodingId::mov_za4_z_b1_mova_za4_z_b1);
             #else
-                        Instruction result(Mnemonic::MOVA, insn);
+                        Instruction result(aliases ? Mnemonic::MOV : Mnemonic::MOVA, insn);
             #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
@@ -38998,9 +39000,9 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
         case 0xC0440400u: { // mov_za4_z_h1_mova_za4_z_h1
             // Also matches: mova_za4_z_h1 (MOVA)
             #ifdef VEDA64_IR
-                        Instruction result(Mnemonic::MOVA, insn, EncodingId::mov_za4_z_h1_mova_za4_z_h1);
+                        Instruction result(aliases ? Mnemonic::MOV : Mnemonic::MOVA, insn, EncodingId::mov_za4_z_h1_mova_za4_z_h1);
             #else
-                        Instruction result(Mnemonic::MOVA, insn);
+                        Instruction result(aliases ? Mnemonic::MOV : Mnemonic::MOVA, insn);
             #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
@@ -39023,9 +39025,9 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
         case 0xC0840400u: { // mov_za4_z_w1_mova_za4_z_w1
             // Also matches: mova_za4_z_w1 (MOVA)
             #ifdef VEDA64_IR
-                        Instruction result(Mnemonic::MOVA, insn, EncodingId::mov_za4_z_w1_mova_za4_z_w1);
+                        Instruction result(aliases ? Mnemonic::MOV : Mnemonic::MOVA, insn, EncodingId::mov_za4_z_w1_mova_za4_z_w1);
             #else
-                        Instruction result(Mnemonic::MOVA, insn);
+                        Instruction result(aliases ? Mnemonic::MOV : Mnemonic::MOVA, insn);
             #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
@@ -39053,9 +39055,9 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
         case 0xC0C40400u: { // mov_za4_z_d1_mova_za4_z_d1
             // Also matches: mova_za4_z_d1 (MOVA)
             #ifdef VEDA64_IR
-                        Instruction result(Mnemonic::MOVA, insn, EncodingId::mov_za4_z_d1_mova_za4_z_d1);
+                        Instruction result(aliases ? Mnemonic::MOV : Mnemonic::MOVA, insn, EncodingId::mov_za4_z_d1_mova_za4_z_d1);
             #else
-                        Instruction result(Mnemonic::MOVA, insn);
+                        Instruction result(aliases ? Mnemonic::MOV : Mnemonic::MOVA, insn);
             #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
@@ -39083,9 +39085,9 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
         case 0xC0040000u: { // mov_za2_z_b1_mova_za2_z_b1
             // Also matches: mova_za2_z_b1 (MOVA)
             #ifdef VEDA64_IR
-                        Instruction result(Mnemonic::MOVA, insn, EncodingId::mov_za2_z_b1_mova_za2_z_b1);
+                        Instruction result(aliases ? Mnemonic::MOV : Mnemonic::MOVA, insn, EncodingId::mov_za2_z_b1_mova_za2_z_b1);
             #else
-                        Instruction result(Mnemonic::MOVA, insn);
+                        Instruction result(aliases ? Mnemonic::MOV : Mnemonic::MOVA, insn);
             #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
@@ -39107,9 +39109,9 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
         case 0xC0440000u: { // mov_za2_z_h1_mova_za2_z_h1
             // Also matches: mova_za2_z_h1 (MOVA)
             #ifdef VEDA64_IR
-                        Instruction result(Mnemonic::MOVA, insn, EncodingId::mov_za2_z_h1_mova_za2_z_h1);
+                        Instruction result(aliases ? Mnemonic::MOV : Mnemonic::MOVA, insn, EncodingId::mov_za2_z_h1_mova_za2_z_h1);
             #else
-                        Instruction result(Mnemonic::MOVA, insn);
+                        Instruction result(aliases ? Mnemonic::MOV : Mnemonic::MOVA, insn);
             #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
@@ -39132,9 +39134,9 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
         case 0xC0840000u: { // mov_za2_z_w1_mova_za2_z_w1
             // Also matches: mova_za2_z_w1 (MOVA)
             #ifdef VEDA64_IR
-                        Instruction result(Mnemonic::MOVA, insn, EncodingId::mov_za2_z_w1_mova_za2_z_w1);
+                        Instruction result(aliases ? Mnemonic::MOV : Mnemonic::MOVA, insn, EncodingId::mov_za2_z_w1_mova_za2_z_w1);
             #else
-                        Instruction result(Mnemonic::MOVA, insn);
+                        Instruction result(aliases ? Mnemonic::MOV : Mnemonic::MOVA, insn);
             #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
@@ -39157,9 +39159,9 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
         case 0xC0C40000u: { // mov_za2_z_d1_mova_za2_z_d1
             // Also matches: mova_za2_z_d1 (MOVA)
             #ifdef VEDA64_IR
-                        Instruction result(Mnemonic::MOVA, insn, EncodingId::mov_za2_z_d1_mova_za2_z_d1);
+                        Instruction result(aliases ? Mnemonic::MOV : Mnemonic::MOVA, insn, EncodingId::mov_za2_z_d1_mova_za2_z_d1);
             #else
-                        Instruction result(Mnemonic::MOVA, insn);
+                        Instruction result(aliases ? Mnemonic::MOV : Mnemonic::MOVA, insn);
             #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
@@ -39187,9 +39189,9 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
         case 0xC0020000u: { // mov_z_p_rza_b_mova_z_p_rza_b
             // Also matches: mova_z_p_rza_b (MOVA)
             #ifdef VEDA64_IR
-                        Instruction result(Mnemonic::MOVA, insn, EncodingId::mov_z_p_rza_b_mova_z_p_rza_b);
+                        Instruction result(aliases ? Mnemonic::MOV : Mnemonic::MOVA, insn, EncodingId::mov_z_p_rza_b_mova_z_p_rza_b);
             #else
-                        Instruction result(Mnemonic::MOVA, insn);
+                        Instruction result(aliases ? Mnemonic::MOV : Mnemonic::MOVA, insn);
             #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
@@ -39211,9 +39213,9 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
         case 0xC0420000u: { // mov_z_p_rza_h_mova_z_p_rza_h
             // Also matches: mova_z_p_rza_h (MOVA)
             #ifdef VEDA64_IR
-                        Instruction result(Mnemonic::MOVA, insn, EncodingId::mov_z_p_rza_h_mova_z_p_rza_h);
+                        Instruction result(aliases ? Mnemonic::MOV : Mnemonic::MOVA, insn, EncodingId::mov_z_p_rza_h_mova_z_p_rza_h);
             #else
-                        Instruction result(Mnemonic::MOVA, insn);
+                        Instruction result(aliases ? Mnemonic::MOV : Mnemonic::MOVA, insn);
             #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
@@ -39235,9 +39237,9 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
         case 0xC0820000u: { // mov_z_p_rza_w_mova_z_p_rza_w
             // Also matches: mova_z_p_rza_w (MOVA)
             #ifdef VEDA64_IR
-                        Instruction result(Mnemonic::MOVA, insn, EncodingId::mov_z_p_rza_w_mova_z_p_rza_w);
+                        Instruction result(aliases ? Mnemonic::MOV : Mnemonic::MOVA, insn, EncodingId::mov_z_p_rza_w_mova_z_p_rza_w);
             #else
-                        Instruction result(Mnemonic::MOVA, insn);
+                        Instruction result(aliases ? Mnemonic::MOV : Mnemonic::MOVA, insn);
             #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
@@ -39259,9 +39261,9 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
         case 0xC0C20000u: { // mov_z_p_rza_d_mova_z_p_rza_d
             // Also matches: mova_z_p_rza_d (MOVA)
             #ifdef VEDA64_IR
-                        Instruction result(Mnemonic::MOVA, insn, EncodingId::mov_z_p_rza_d_mova_z_p_rza_d);
+                        Instruction result(aliases ? Mnemonic::MOV : Mnemonic::MOVA, insn, EncodingId::mov_z_p_rza_d_mova_z_p_rza_d);
             #else
-                        Instruction result(Mnemonic::MOVA, insn);
+                        Instruction result(aliases ? Mnemonic::MOV : Mnemonic::MOVA, insn);
             #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
@@ -39283,9 +39285,9 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
         case 0xC0C30000u: { // mov_z_p_rza_q_mova_z_p_rza_q
             // Also matches: mova_z_p_rza_q (MOVA)
             #ifdef VEDA64_IR
-                        Instruction result(Mnemonic::MOVA, insn, EncodingId::mov_z_p_rza_q_mova_z_p_rza_q);
+                        Instruction result(aliases ? Mnemonic::MOV : Mnemonic::MOVA, insn, EncodingId::mov_z_p_rza_q_mova_z_p_rza_q);
             #else
-                        Instruction result(Mnemonic::MOVA, insn);
+                        Instruction result(aliases ? Mnemonic::MOV : Mnemonic::MOVA, insn);
             #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
@@ -39378,9 +39380,9 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
         case 0xC0000000u: { // mov_za_p_rz_b_mova_za_p_rz_b
             // Also matches: mova_za_p_rz_b (MOVA)
             #ifdef VEDA64_IR
-                        Instruction result(Mnemonic::MOVA, insn, EncodingId::mov_za_p_rz_b_mova_za_p_rz_b);
+                        Instruction result(aliases ? Mnemonic::MOV : Mnemonic::MOVA, insn, EncodingId::mov_za_p_rz_b_mova_za_p_rz_b);
             #else
-                        Instruction result(Mnemonic::MOVA, insn);
+                        Instruction result(aliases ? Mnemonic::MOV : Mnemonic::MOVA, insn);
             #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
@@ -39402,9 +39404,9 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
         case 0xC0400000u: { // mov_za_p_rz_h_mova_za_p_rz_h
             // Also matches: mova_za_p_rz_h (MOVA)
             #ifdef VEDA64_IR
-                        Instruction result(Mnemonic::MOVA, insn, EncodingId::mov_za_p_rz_h_mova_za_p_rz_h);
+                        Instruction result(aliases ? Mnemonic::MOV : Mnemonic::MOVA, insn, EncodingId::mov_za_p_rz_h_mova_za_p_rz_h);
             #else
-                        Instruction result(Mnemonic::MOVA, insn);
+                        Instruction result(aliases ? Mnemonic::MOV : Mnemonic::MOVA, insn);
             #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
@@ -39426,9 +39428,9 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
         case 0xC0800000u: { // mov_za_p_rz_w_mova_za_p_rz_w
             // Also matches: mova_za_p_rz_w (MOVA)
             #ifdef VEDA64_IR
-                        Instruction result(Mnemonic::MOVA, insn, EncodingId::mov_za_p_rz_w_mova_za_p_rz_w);
+                        Instruction result(aliases ? Mnemonic::MOV : Mnemonic::MOVA, insn, EncodingId::mov_za_p_rz_w_mova_za_p_rz_w);
             #else
-                        Instruction result(Mnemonic::MOVA, insn);
+                        Instruction result(aliases ? Mnemonic::MOV : Mnemonic::MOVA, insn);
             #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
@@ -39450,9 +39452,9 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
         case 0xC0C00000u: { // mov_za_p_rz_d_mova_za_p_rz_d
             // Also matches: mova_za_p_rz_d (MOVA)
             #ifdef VEDA64_IR
-                        Instruction result(Mnemonic::MOVA, insn, EncodingId::mov_za_p_rz_d_mova_za_p_rz_d);
+                        Instruction result(aliases ? Mnemonic::MOV : Mnemonic::MOVA, insn, EncodingId::mov_za_p_rz_d_mova_za_p_rz_d);
             #else
-                        Instruction result(Mnemonic::MOVA, insn);
+                        Instruction result(aliases ? Mnemonic::MOV : Mnemonic::MOVA, insn);
             #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;
@@ -39474,9 +39476,9 @@ std::optional<Instruction> decode_sme(uint32_t insn) {
         case 0xC0C10000u: { // mov_za_p_rz_q_mova_za_p_rz_q
             // Also matches: mova_za_p_rz_q (MOVA)
             #ifdef VEDA64_IR
-                        Instruction result(Mnemonic::MOVA, insn, EncodingId::mov_za_p_rz_q_mova_za_p_rz_q);
+                        Instruction result(aliases ? Mnemonic::MOV : Mnemonic::MOVA, insn, EncodingId::mov_za_p_rz_q_mova_za_p_rz_q);
             #else
-                        Instruction result(Mnemonic::MOVA, insn);
+                        Instruction result(aliases ? Mnemonic::MOV : Mnemonic::MOVA, insn);
             #endif
                         SmeEncoding enc = {};
                         enc.raw = insn;

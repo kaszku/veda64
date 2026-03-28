@@ -45,7 +45,9 @@ uint32_t encode_udf_only_perm_undef(uint32_t imm16) {
 
 // Decode a reserved instruction
 // Input is in native ARM64 format (as read from memory)
-std::optional<Instruction> decode_reserved(uint32_t insn) {
+// When aliases=true, alias encodings return alias mnemonic + operands
+std::optional<Instruction> decode_reserved(uint32_t insn, bool aliases) {
+    (void)aliases;
     // Switch for mask 0xFFFF0000u (1 pattern, 1 encoding)
     switch (insn & 0xFFFF0000u) {
         case 0x00000000u: { // UDF_only_perm_undef

@@ -5290,7 +5290,9 @@ static bool decode_sys_alias(uint32_t insn, Instruction& result) {
 
 // Decode a control instruction
 // Input is in native ARM64 format (as read from memory)
-std::optional<Instruction> decode_control(uint32_t insn) {
+// When aliases=true, alias encodings return alias mnemonic + operands
+std::optional<Instruction> decode_control(uint32_t insn, bool aliases) {
+    (void)aliases;
     // Switch for mask 0xFFFFFFFFu (37 patterns, 37 encodings)
     switch (insn & 0xFFFFFFFFu) {
         case 0xD503201Fu: { // NOP_HI_hints
@@ -5583,9 +5585,9 @@ std::optional<Instruction> decode_control(uint32_t insn) {
         }
         case 0xD503309Fu: { // SSBB_DSB_BO_barriers
             #ifdef VEDA64_IR
-                        Instruction result(Mnemonic::DSB, insn, EncodingId::SSBB_DSB_BO_barriers);
+                        Instruction result(aliases ? Mnemonic::SSBB : Mnemonic::DSB, insn, EncodingId::SSBB_DSB_BO_barriers);
             #else
-                        Instruction result(Mnemonic::DSB, insn);
+                        Instruction result(aliases ? Mnemonic::SSBB : Mnemonic::DSB, insn);
             #endif
                         ControlEncoding enc = {};
                         enc.raw = insn;
@@ -5593,9 +5595,9 @@ std::optional<Instruction> decode_control(uint32_t insn) {
         }
         case 0xD503349Fu: { // PSSBB_DSB_BO_barriers
             #ifdef VEDA64_IR
-                        Instruction result(Mnemonic::DSB, insn, EncodingId::PSSBB_DSB_BO_barriers);
+                        Instruction result(aliases ? Mnemonic::PSSBB : Mnemonic::DSB, insn, EncodingId::PSSBB_DSB_BO_barriers);
             #else
-                        Instruction result(Mnemonic::DSB, insn);
+                        Instruction result(aliases ? Mnemonic::PSSBB : Mnemonic::DSB, insn);
             #endif
                         ControlEncoding enc = {};
                         enc.raw = insn;
@@ -5690,9 +5692,9 @@ std::optional<Instruction> decode_control(uint32_t insn) {
         }
         case 0xD5087780u: { // GCSPUSHX_SYS_CR_systeminstrs
             #ifdef VEDA64_IR
-                        Instruction result(Mnemonic::SYS, insn, EncodingId::GCSPUSHX_SYS_CR_systeminstrs);
+                        Instruction result(aliases ? Mnemonic::GCSPUSHX : Mnemonic::SYS, insn, EncodingId::GCSPUSHX_SYS_CR_systeminstrs);
             #else
-                        Instruction result(Mnemonic::SYS, insn);
+                        Instruction result(aliases ? Mnemonic::GCSPUSHX : Mnemonic::SYS, insn);
             #endif
                         ControlEncoding enc = {};
                         enc.raw = insn;
@@ -5702,9 +5704,9 @@ std::optional<Instruction> decode_control(uint32_t insn) {
         }
         case 0xD50877A0u: { // GCSPOPCX_SYS_CR_systeminstrs
             #ifdef VEDA64_IR
-                        Instruction result(Mnemonic::SYS, insn, EncodingId::GCSPOPCX_SYS_CR_systeminstrs);
+                        Instruction result(aliases ? Mnemonic::GCSPOPCX : Mnemonic::SYS, insn, EncodingId::GCSPOPCX_SYS_CR_systeminstrs);
             #else
-                        Instruction result(Mnemonic::SYS, insn);
+                        Instruction result(aliases ? Mnemonic::GCSPOPCX : Mnemonic::SYS, insn);
             #endif
                         ControlEncoding enc = {};
                         enc.raw = insn;
@@ -5714,9 +5716,9 @@ std::optional<Instruction> decode_control(uint32_t insn) {
         }
         case 0xD50877C0u: { // GCSPOPX_SYS_CR_systeminstrs
             #ifdef VEDA64_IR
-                        Instruction result(Mnemonic::SYS, insn, EncodingId::GCSPOPX_SYS_CR_systeminstrs);
+                        Instruction result(aliases ? Mnemonic::GCSPOPX : Mnemonic::SYS, insn, EncodingId::GCSPOPX_SYS_CR_systeminstrs);
             #else
-                        Instruction result(Mnemonic::SYS, insn);
+                        Instruction result(aliases ? Mnemonic::GCSPOPX : Mnemonic::SYS, insn);
             #endif
                         ControlEncoding enc = {};
                         enc.raw = insn;
@@ -5726,9 +5728,9 @@ std::optional<Instruction> decode_control(uint32_t insn) {
         }
         case 0xD50B72E0u: { // TRCIT_SYS_CR_systeminstrs
             #ifdef VEDA64_IR
-                        Instruction result(Mnemonic::SYS, insn, EncodingId::TRCIT_SYS_CR_systeminstrs);
+                        Instruction result(aliases ? Mnemonic::TRCIT : Mnemonic::SYS, insn, EncodingId::TRCIT_SYS_CR_systeminstrs);
             #else
-                        Instruction result(Mnemonic::SYS, insn);
+                        Instruction result(aliases ? Mnemonic::TRCIT : Mnemonic::SYS, insn);
             #endif
                         ControlEncoding enc = {};
                         enc.raw = insn;
@@ -5737,9 +5739,9 @@ std::optional<Instruction> decode_control(uint32_t insn) {
         }
         case 0xD50B7380u: { // CFP_SYS_CR_systeminstrs
             #ifdef VEDA64_IR
-                        Instruction result(Mnemonic::SYS, insn, EncodingId::CFP_SYS_CR_systeminstrs);
+                        Instruction result(aliases ? Mnemonic::CFP : Mnemonic::SYS, insn, EncodingId::CFP_SYS_CR_systeminstrs);
             #else
-                        Instruction result(Mnemonic::SYS, insn);
+                        Instruction result(aliases ? Mnemonic::CFP : Mnemonic::SYS, insn);
             #endif
             #ifdef VEDA64_STRINGS
                         if (decode_sys_alias(insn, result)) return result;
@@ -5762,9 +5764,9 @@ std::optional<Instruction> decode_control(uint32_t insn) {
         }
         case 0xD50B73A0u: { // DVP_SYS_CR_systeminstrs
             #ifdef VEDA64_IR
-                        Instruction result(Mnemonic::SYS, insn, EncodingId::DVP_SYS_CR_systeminstrs);
+                        Instruction result(aliases ? Mnemonic::DVP : Mnemonic::SYS, insn, EncodingId::DVP_SYS_CR_systeminstrs);
             #else
-                        Instruction result(Mnemonic::SYS, insn);
+                        Instruction result(aliases ? Mnemonic::DVP : Mnemonic::SYS, insn);
             #endif
             #ifdef VEDA64_STRINGS
                         if (decode_sys_alias(insn, result)) return result;
@@ -5787,9 +5789,9 @@ std::optional<Instruction> decode_control(uint32_t insn) {
         }
         case 0xD50B73C0u: { // COSP_SYS_CR_systeminstrs
             #ifdef VEDA64_IR
-                        Instruction result(Mnemonic::SYS, insn, EncodingId::COSP_SYS_CR_systeminstrs);
+                        Instruction result(aliases ? Mnemonic::COSP : Mnemonic::SYS, insn, EncodingId::COSP_SYS_CR_systeminstrs);
             #else
-                        Instruction result(Mnemonic::SYS, insn);
+                        Instruction result(aliases ? Mnemonic::COSP : Mnemonic::SYS, insn);
             #endif
                         ControlEncoding enc = {};
                         enc.raw = insn;
@@ -5798,9 +5800,9 @@ std::optional<Instruction> decode_control(uint32_t insn) {
         }
         case 0xD50B73E0u: { // CPP_SYS_CR_systeminstrs
             #ifdef VEDA64_IR
-                        Instruction result(Mnemonic::SYS, insn, EncodingId::CPP_SYS_CR_systeminstrs);
+                        Instruction result(aliases ? Mnemonic::CPP : Mnemonic::SYS, insn, EncodingId::CPP_SYS_CR_systeminstrs);
             #else
-                        Instruction result(Mnemonic::SYS, insn);
+                        Instruction result(aliases ? Mnemonic::CPP : Mnemonic::SYS, insn);
             #endif
             #ifdef VEDA64_STRINGS
                         if (decode_sys_alias(insn, result)) return result;
@@ -5823,9 +5825,9 @@ std::optional<Instruction> decode_control(uint32_t insn) {
         }
         case 0xD50B7700u: { // GCSPUSHM_SYS_CR_systeminstrs
             #ifdef VEDA64_IR
-                        Instruction result(Mnemonic::SYS, insn, EncodingId::GCSPUSHM_SYS_CR_systeminstrs);
+                        Instruction result(aliases ? Mnemonic::GCSPUSHM : Mnemonic::SYS, insn, EncodingId::GCSPUSHM_SYS_CR_systeminstrs);
             #else
-                        Instruction result(Mnemonic::SYS, insn);
+                        Instruction result(aliases ? Mnemonic::GCSPUSHM : Mnemonic::SYS, insn);
             #endif
                         ControlEncoding enc = {};
                         enc.raw = insn;
@@ -5834,9 +5836,9 @@ std::optional<Instruction> decode_control(uint32_t insn) {
         }
         case 0xD50B7740u: { // GCSSS1_SYS_CR_systeminstrs
             #ifdef VEDA64_IR
-                        Instruction result(Mnemonic::SYS, insn, EncodingId::GCSSS1_SYS_CR_systeminstrs);
+                        Instruction result(aliases ? Mnemonic::GCSSS1 : Mnemonic::SYS, insn, EncodingId::GCSSS1_SYS_CR_systeminstrs);
             #else
-                        Instruction result(Mnemonic::SYS, insn);
+                        Instruction result(aliases ? Mnemonic::GCSSS1 : Mnemonic::SYS, insn);
             #endif
                         ControlEncoding enc = {};
                         enc.raw = insn;
@@ -5845,9 +5847,9 @@ std::optional<Instruction> decode_control(uint32_t insn) {
         }
         case 0xD50E7000u: { // APAS_SYS_CR_systeminstrs
             #ifdef VEDA64_IR
-                        Instruction result(Mnemonic::SYS, insn, EncodingId::APAS_SYS_CR_systeminstrs);
+                        Instruction result(aliases ? Mnemonic::APAS : Mnemonic::SYS, insn, EncodingId::APAS_SYS_CR_systeminstrs);
             #else
-                        Instruction result(Mnemonic::SYS, insn);
+                        Instruction result(aliases ? Mnemonic::APAS : Mnemonic::SYS, insn);
             #endif
             #ifdef VEDA64_STRINGS
                         if (decode_sys_alias(insn, result)) return result;
@@ -5870,9 +5872,9 @@ std::optional<Instruction> decode_control(uint32_t insn) {
         }
         case 0xD52B7720u: { // GCSPOPM_SYSL_RC_systeminstrs
             #ifdef VEDA64_IR
-                        Instruction result(Mnemonic::SYSL, insn, EncodingId::GCSPOPM_SYSL_RC_systeminstrs);
+                        Instruction result(aliases ? Mnemonic::GCSPOPM : Mnemonic::SYSL, insn, EncodingId::GCSPOPM_SYSL_RC_systeminstrs);
             #else
-                        Instruction result(Mnemonic::SYSL, insn);
+                        Instruction result(aliases ? Mnemonic::GCSPOPM : Mnemonic::SYSL, insn);
             #endif
                         ControlEncoding enc = {};
                         enc.raw = insn;
@@ -5881,9 +5883,9 @@ std::optional<Instruction> decode_control(uint32_t insn) {
         }
         case 0xD52B7760u: { // GCSSS2_SYSL_RC_systeminstrs
             #ifdef VEDA64_IR
-                        Instruction result(Mnemonic::SYSL, insn, EncodingId::GCSSS2_SYSL_RC_systeminstrs);
+                        Instruction result(aliases ? Mnemonic::GCSSS2 : Mnemonic::SYSL, insn, EncodingId::GCSSS2_SYSL_RC_systeminstrs);
             #else
-                        Instruction result(Mnemonic::SYSL, insn);
+                        Instruction result(aliases ? Mnemonic::GCSSS2 : Mnemonic::SYSL, insn);
             #endif
                         ControlEncoding enc = {};
                         enc.raw = insn;
@@ -5946,9 +5948,9 @@ std::optional<Instruction> decode_control(uint32_t insn) {
     switch (insn & 0xFFFFFF80u) {
         case 0xD50C7080u: { // MLBI_SYS_CR_systeminstrs
             #ifdef VEDA64_IR
-                        Instruction result(Mnemonic::SYS, insn, EncodingId::MLBI_SYS_CR_systeminstrs);
+                        Instruction result(aliases ? Mnemonic::MLBI : Mnemonic::SYS, insn, EncodingId::MLBI_SYS_CR_systeminstrs);
             #else
-                        Instruction result(Mnemonic::SYS, insn);
+                        Instruction result(aliases ? Mnemonic::MLBI : Mnemonic::SYS, insn);
             #endif
                         ControlEncoding enc = {};
                         enc.raw = insn;
@@ -5978,9 +5980,9 @@ std::optional<Instruction> decode_control(uint32_t insn) {
     switch (insn & 0xFFFFFF00u) {
         case 0xD508C000u: { // GSB_SYS_CR_systeminstrs
             #ifdef VEDA64_IR
-                        Instruction result(Mnemonic::SYS, insn, EncodingId::GSB_SYS_CR_systeminstrs);
+                        Instruction result(aliases ? Mnemonic::GSB : Mnemonic::SYS, insn, EncodingId::GSB_SYS_CR_systeminstrs);
             #else
-                        Instruction result(Mnemonic::SYS, insn);
+                        Instruction result(aliases ? Mnemonic::GSB : Mnemonic::SYS, insn);
             #endif
                         ControlEncoding enc = {};
                         enc.raw = insn;
@@ -5989,9 +5991,9 @@ std::optional<Instruction> decode_control(uint32_t insn) {
         }
         case 0xD5097200u: { // BRB_SYS_CR_systeminstrs
             #ifdef VEDA64_IR
-                        Instruction result(Mnemonic::SYS, insn, EncodingId::BRB_SYS_CR_systeminstrs);
+                        Instruction result(aliases ? Mnemonic::BRB : Mnemonic::SYS, insn, EncodingId::BRB_SYS_CR_systeminstrs);
             #else
-                        Instruction result(Mnemonic::SYS, insn);
+                        Instruction result(aliases ? Mnemonic::BRB : Mnemonic::SYS, insn);
             #endif
             #ifdef VEDA64_STRINGS
                         if (decode_sys_alias(insn, result)) return result;
@@ -6014,9 +6016,9 @@ std::optional<Instruction> decode_control(uint32_t insn) {
         }
         case 0xD528C300u: { // GICR_SYSL_RC_systeminstrs
             #ifdef VEDA64_IR
-                        Instruction result(Mnemonic::SYSL, insn, EncodingId::GICR_SYSL_RC_systeminstrs);
+                        Instruction result(aliases ? Mnemonic::GICR : Mnemonic::SYSL, insn, EncodingId::GICR_SYSL_RC_systeminstrs);
             #else
-                        Instruction result(Mnemonic::SYSL, insn);
+                        Instruction result(aliases ? Mnemonic::GICR : Mnemonic::SYSL, insn);
             #endif
                         ControlEncoding enc = {};
                         enc.raw = insn;
@@ -6031,9 +6033,9 @@ std::optional<Instruction> decode_control(uint32_t insn) {
     switch (insn & 0xFFFFFE00u) {
         case 0xD508C400u: { // GIC_SYS_CR_systeminstrs
             #ifdef VEDA64_IR
-                        Instruction result(Mnemonic::SYS, insn, EncodingId::GIC_SYS_CR_systeminstrs);
+                        Instruction result(aliases ? Mnemonic::GIC : Mnemonic::SYS, insn, EncodingId::GIC_SYS_CR_systeminstrs);
             #else
-                        Instruction result(Mnemonic::SYS, insn);
+                        Instruction result(aliases ? Mnemonic::GIC : Mnemonic::SYS, insn);
             #endif
             #ifdef VEDA64_STRINGS
                         if (decode_sys_alias(insn, result)) return result;
@@ -6196,9 +6198,9 @@ std::optional<Instruction> decode_control(uint32_t insn) {
     switch (insn & 0xFFFFF9FFu) {
         case 0xD503407Fu: { // SMSTOP_MSR_SI_pstate
             #ifdef VEDA64_IR
-                        Instruction result(Mnemonic::MSR, insn, EncodingId::SMSTOP_MSR_SI_pstate);
+                        Instruction result(aliases ? Mnemonic::SMSTOP : Mnemonic::MSR, insn, EncodingId::SMSTOP_MSR_SI_pstate);
             #else
-                        Instruction result(Mnemonic::MSR, insn);
+                        Instruction result(aliases ? Mnemonic::SMSTOP : Mnemonic::MSR, insn);
             #endif
                         {
                             uint32_t _op1 = (insn >> 16) & 7;
@@ -6216,9 +6218,9 @@ std::optional<Instruction> decode_control(uint32_t insn) {
         }
         case 0xD503417Fu: { // SMSTART_MSR_SI_pstate
             #ifdef VEDA64_IR
-                        Instruction result(Mnemonic::MSR, insn, EncodingId::SMSTART_MSR_SI_pstate);
+                        Instruction result(aliases ? Mnemonic::SMSTART : Mnemonic::MSR, insn, EncodingId::SMSTART_MSR_SI_pstate);
             #else
-                        Instruction result(Mnemonic::MSR, insn);
+                        Instruction result(aliases ? Mnemonic::SMSTART : Mnemonic::MSR, insn);
             #endif
                         {
                             uint32_t _op1 = (insn >> 16) & 7;
@@ -6396,9 +6398,9 @@ std::optional<Instruction> decode_control(uint32_t insn) {
     switch (insn & 0xFFF8FE00u) {
         case 0xD5087800u: { // AT_SYS_CR_systeminstrs
             #ifdef VEDA64_IR
-                        Instruction result(Mnemonic::SYS, insn, EncodingId::AT_SYS_CR_systeminstrs);
+                        Instruction result(aliases ? Mnemonic::AT : Mnemonic::SYS, insn, EncodingId::AT_SYS_CR_systeminstrs);
             #else
-                        Instruction result(Mnemonic::SYS, insn);
+                        Instruction result(aliases ? Mnemonic::AT : Mnemonic::SYS, insn);
             #endif
             #ifdef VEDA64_STRINGS
                         if (decode_sys_alias(insn, result)) return result;
@@ -6452,9 +6454,9 @@ std::optional<Instruction> decode_control(uint32_t insn) {
         case 0xD5087000u: { // DC_SYS_CR_systeminstrs
             // Also matches: IC_SYS_CR_systeminstrs (SYS)
             #ifdef VEDA64_IR
-                        Instruction result(Mnemonic::SYS, insn, EncodingId::DC_SYS_CR_systeminstrs);
+                        Instruction result(aliases ? Mnemonic::DC : Mnemonic::SYS, insn, EncodingId::DC_SYS_CR_systeminstrs);
             #else
-                        Instruction result(Mnemonic::SYS, insn);
+                        Instruction result(aliases ? Mnemonic::DC : Mnemonic::SYS, insn);
             #endif
             #ifdef VEDA64_STRINGS
                         if (decode_sys_alias(insn, result)) return result;
@@ -6482,9 +6484,9 @@ std::optional<Instruction> decode_control(uint32_t insn) {
     switch (insn & 0xFFF8E000u) {
         case 0xD5088000u: { // TLBI_SYS_CR_systeminstrs
             #ifdef VEDA64_IR
-                        Instruction result(Mnemonic::SYS, insn, EncodingId::TLBI_SYS_CR_systeminstrs);
+                        Instruction result(aliases ? Mnemonic::TLBI : Mnemonic::SYS, insn, EncodingId::TLBI_SYS_CR_systeminstrs);
             #else
-                        Instruction result(Mnemonic::SYS, insn);
+                        Instruction result(aliases ? Mnemonic::TLBI : Mnemonic::SYS, insn);
             #endif
             #ifdef VEDA64_STRINGS
                         if (decode_sys_alias(insn, result)) return result;
@@ -6507,9 +6509,9 @@ std::optional<Instruction> decode_control(uint32_t insn) {
         }
         case 0xD5488000u: { // TLBIP_SYSP_CR_syspairinstrs
             #ifdef VEDA64_IR
-                        Instruction result(Mnemonic::SYSP, insn, EncodingId::TLBIP_SYSP_CR_syspairinstrs);
+                        Instruction result(aliases ? Mnemonic::TLBIP : Mnemonic::SYSP, insn, EncodingId::TLBIP_SYSP_CR_syspairinstrs);
             #else
-                        Instruction result(Mnemonic::SYSP, insn);
+                        Instruction result(aliases ? Mnemonic::TLBIP : Mnemonic::SYSP, insn);
             #endif
                         ControlEncoding enc = {};
                         enc.raw = insn;

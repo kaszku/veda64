@@ -886,11 +886,11 @@ uint32_t encode_zip_mz_zz_2q(uint32_t Zd, uint32_t Zn, uint32_t Zm);
 
 // Decode function
 // Decode a sme instruction from a uint32_t
-std::optional<Instruction> decode_sme(uint32_t insn);
+std::optional<Instruction> decode_sme(uint32_t insn, bool aliases = false);
 
 // Decode a sme instruction from 4 bytes in memory (little-endian)
-inline std::optional<Instruction> decode_sme(const uint8_t* bytes) {
-    return decode_sme(from_bytes(bytes));
+inline std::optional<Instruction> decode_sme(const uint8_t* bytes, bool aliases = false) {
+    return decode_sme(from_bytes(bytes), aliases);
 }
 
 } // namespace sme

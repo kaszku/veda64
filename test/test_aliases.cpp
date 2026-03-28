@@ -148,6 +148,90 @@ int main() {
     // NOT 8B → MVN
     check_mnemonic(0x2E205800u, "mvn");
 
+    // === decode(insn, aliases=true) tests ===
+    std::cout << "  Testing decode with aliases=true..." << std::endl;
+
+    // MOV from ADD: decode(insn, true) → Mnemonic::MOV with 2 operands
+    {
+        auto raw = decode(0x910003FDu, false);
+        assert(raw.has_value());
+        assert(raw->mnemonic == Mnemonic::ADD);
+
+        auto aliased = decode(0x910003FDu, true);
+        assert(aliased.has_value());
+        assert(aliased->mnemonic == Mnemonic::MOV);
+        assert(aliased->operands.size() == 2);  // X29, SP
+        passed++;
+    }
+
+    // CMP from SUBS: decode(insn, true) → Mnemonic::CMP
+    {
+        auto raw = decode(0xEB00001Fu, false);
+        assert(raw.has_value());
+        assert(raw->mnemonic == Mnemonic::SUBS);
+
+        auto aliased = decode(0xEB00001Fu, true);
+        assert(aliased.has_value());
+        assert(aliased->mnemonic == Mnemonic::CMP);
+        passed++;
+    }
+
+    // CMN from ADDS: decode(insn, true) → Mnemonic::CMN
+    {
+        auto aliased = decode(0xAB00001Fu, true);
+        assert(aliased.has_value());
+        assert(aliased->mnemonic == Mnemonic::CMN);
+        passed++;
+    }
+
+    // TST from ANDS: decode(insn, true) → Mnemonic::TST
+    {
+        auto aliased = decode(0xEA00001Fu, true);
+        assert(aliased.has_value());
+        assert(aliased->mnemonic == Mnemonic::TST);
+        passed++;
+    }
+
+    // NEG from SUB: decode(insn, true) → Mnemonic::NEG
+    {
+        auto aliased = decode(0xCB0003E0u, true);
+        assert(aliased.has_value());
+        assert(aliased->mnemonic == Mnemonic::NEG);
+        passed++;
+    }
+
+    // MUL from MADD: decode(insn, true) → Mnemonic::MUL
+    {
+        auto aliased = decode(0x9B007C00u, true);
+        assert(aliased.has_value());
+        assert(aliased->mnemonic == Mnemonic::MUL);
+        passed++;
+    }
+
+    // NOP from HINT: decode(insn, true) → Mnemonic::NOP
+    {
+        auto aliased = decode(0xD503201Fu, true);
+        assert(aliased.has_value());
+        assert(aliased->mnemonic == Mnemonic::NOP);
+        passed++;
+    }
+
+    // MOV from ORR: decode(insn, true) → Mnemonic::MOV
+    {
+        auto aliased = decode(0xAA0003E0u, true);
+        assert(aliased.has_value());
+        assert(aliased->mnemonic == Mnemonic::MOV);
+        passed++;
+    }
+
+    // Backward compat: decode(insn) without aliases flag → base mnemonic
+    {
+        auto raw = decode(0x910003FDu);
+        assert(raw.has_value());
+        assert(raw->mnemonic == Mnemonic::ADD);
+        passed++;
+    }
+
     std::cout << passed << " / " << (passed + failures) << " alias tests passed" << std::endl;
     return failures ? 1 : 0;
 }

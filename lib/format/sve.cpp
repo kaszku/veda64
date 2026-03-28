@@ -49615,7 +49615,9 @@ uint32_t encode_zipq2_z_zz_(uint32_t Zd, uint32_t Zn, uint32_t Zm, uint32_t size
 
 // Decode a sve instruction
 // Input is in native ARM64 format (as read from memory)
-std::optional<Instruction> decode_sve(uint32_t insn) {
+// When aliases=true, alias encodings return alias mnemonic + operands
+std::optional<Instruction> decode_sve(uint32_t insn, bool aliases) {
+    (void)aliases;
     // Switch for mask 0xFFFFFFFFu (1 pattern, 1 encoding)
     switch (insn & 0xFFFFFFFFu) {
         case 0x252C9000u: { // setffr_f_
@@ -51640,9 +51642,9 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
         case 0x05000000u: { // orn_z_zi__orr_z_zi_
             // Also matches: orr_z_zi_ (ORR)
             #ifdef VEDA64_IR
-                        Instruction result(Mnemonic::ORR, insn, EncodingId::orn_z_zi__orr_z_zi_);
+                        Instruction result(aliases ? Mnemonic::ORN : Mnemonic::ORR, insn, EncodingId::orn_z_zi__orr_z_zi_);
             #else
-                        Instruction result(Mnemonic::ORR, insn);
+                        Instruction result(aliases ? Mnemonic::ORN : Mnemonic::ORR, insn);
             #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
@@ -51669,9 +51671,9 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
         case 0x05400000u: { // eon_z_zi__eor_z_zi_
             // Also matches: eor_z_zi_ (EOR)
             #ifdef VEDA64_IR
-                        Instruction result(Mnemonic::EOR, insn, EncodingId::eon_z_zi__eor_z_zi_);
+                        Instruction result(aliases ? Mnemonic::EON : Mnemonic::EOR, insn, EncodingId::eon_z_zi__eor_z_zi_);
             #else
-                        Instruction result(Mnemonic::EOR, insn);
+                        Instruction result(aliases ? Mnemonic::EON : Mnemonic::EOR, insn);
             #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
@@ -54641,9 +54643,9 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
         case 0x25004210u: { // movm_p_p_p__sel_p_p_pp_
             // Also matches: sel_p_p_pp_ (SEL)
             #ifdef VEDA64_IR
-                        Instruction result(Mnemonic::SEL, insn, EncodingId::movm_p_p_p__sel_p_p_pp_);
+                        Instruction result(aliases ? Mnemonic::MOV : Mnemonic::SEL, insn, EncodingId::movm_p_p_p__sel_p_p_pp_);
             #else
-                        Instruction result(Mnemonic::SEL, insn);
+                        Instruction result(aliases ? Mnemonic::MOV : Mnemonic::SEL, insn);
             #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
@@ -54756,9 +54758,9 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
         case 0x25804000u: { // mov_p_p__orr_p_p_pp_z
             // Also matches: orr_p_p_pp_z (ORR)
             #ifdef VEDA64_IR
-                        Instruction result(Mnemonic::ORR, insn, EncodingId::mov_p_p__orr_p_p_pp_z);
+                        Instruction result(aliases ? Mnemonic::MOV : Mnemonic::ORR, insn, EncodingId::mov_p_p__orr_p_p_pp_z);
             #else
-                        Instruction result(Mnemonic::ORR, insn);
+                        Instruction result(aliases ? Mnemonic::MOV : Mnemonic::ORR, insn);
             #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
@@ -54813,9 +54815,9 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
         case 0x25C04000u: { // movs_p_p__orrs_p_p_pp_z
             // Also matches: orrs_p_p_pp_z (ORRS)
             #ifdef VEDA64_IR
-                        Instruction result(Mnemonic::ORRS, insn, EncodingId::movs_p_p__orrs_p_p_pp_z);
+                        Instruction result(aliases ? Mnemonic::MOVS : Mnemonic::ORRS, insn, EncodingId::movs_p_p__orrs_p_p_pp_z);
             #else
-                        Instruction result(Mnemonic::ORRS, insn);
+                        Instruction result(aliases ? Mnemonic::MOVS : Mnemonic::ORRS, insn);
             #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
@@ -55121,9 +55123,9 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
         case 0x04603000u: { // mov_z_z__orr_z_zz_
             // Also matches: orr_z_zz_ (ORR)
             #ifdef VEDA64_IR
-                        Instruction result(Mnemonic::ORR, insn, EncodingId::mov_z_z__orr_z_zz_);
+                        Instruction result(aliases ? Mnemonic::MOV : Mnemonic::ORR, insn, EncodingId::mov_z_z__orr_z_zz_);
             #else
-                        Instruction result(Mnemonic::ORR, insn);
+                        Instruction result(aliases ? Mnemonic::MOV : Mnemonic::ORR, insn);
             #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
@@ -62687,9 +62689,9 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
     switch (insn & 0xFF3FFFE0u) {
         case 0x2538C000u: { // fmov_z_0__dup_z_i_
             #ifdef VEDA64_IR
-                        Instruction result(Mnemonic::DUP, insn, EncodingId::fmov_z_0__dup_z_i_);
+                        Instruction result(aliases ? Mnemonic::FMOV : Mnemonic::DUP, insn, EncodingId::fmov_z_0__dup_z_i_);
             #else
-                        Instruction result(Mnemonic::DUP, insn);
+                        Instruction result(aliases ? Mnemonic::FMOV : Mnemonic::DUP, insn);
             #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
@@ -68775,9 +68777,9 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
     switch (insn & 0xFF30FFE0u) {
         case 0x05104000u: { // fmov_z_p_0__cpy_z_p_i_
             #ifdef VEDA64_IR
-                        Instruction result(Mnemonic::CPY, insn, EncodingId::fmov_z_p_0__cpy_z_p_i_);
+                        Instruction result(aliases ? Mnemonic::FMOV : Mnemonic::CPY, insn, EncodingId::fmov_z_p_0__cpy_z_p_i_);
             #else
-                        Instruction result(Mnemonic::CPY, insn);
+                        Instruction result(aliases ? Mnemonic::FMOV : Mnemonic::CPY, insn);
             #endif
                         SveEncoding enc = {};
                         enc.raw = insn;
@@ -73753,9 +73755,9 @@ std::optional<Instruction> decode_sve(uint32_t insn) {
         case 0x0520C000u: { // mov_z_p_z__sel_z_p_zz_
             // Also matches: sel_z_p_zz_ (SEL)
             #ifdef VEDA64_IR
-                        Instruction result(Mnemonic::SEL, insn, EncodingId::mov_z_p_z__sel_z_p_zz_);
+                        Instruction result(aliases ? Mnemonic::MOV : Mnemonic::SEL, insn, EncodingId::mov_z_p_z__sel_z_p_zz_);
             #else
-                        Instruction result(Mnemonic::SEL, insn);
+                        Instruction result(aliases ? Mnemonic::MOV : Mnemonic::SEL, insn);
             #endif
                         SveEncoding enc = {};
                         enc.raw = insn;

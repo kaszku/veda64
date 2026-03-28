@@ -6517,7 +6517,9 @@ uint32_t encode_xpaci_64z_dp_1src(uint32_t Rd) {
 
 // Decode a dpreg instruction
 // Input is in native ARM64 format (as read from memory)
-std::optional<Instruction> decode_dpreg(uint32_t insn) {
+// When aliases=true, alias encodings return alias mnemonic + operands
+std::optional<Instruction> decode_dpreg(uint32_t insn, bool aliases) {
+    (void)aliases;
     // Switch for mask 0xFFFFFFFFu (8 patterns, 8 encodings)
     switch (insn & 0xFFFFFFFFu) {
         case 0xDAC183FEu: { // PACNBIASPPC_64LR_dp_1src
@@ -7077,9 +7079,9 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
     switch (insn & 0xFFFF0FE0u) {
         case 0x1A9F07E0u: { // CSET_CSINC_32_condsel
             #ifdef VEDA64_IR
-                        Instruction result(Mnemonic::CSINC, insn, EncodingId::CSET_CSINC_32_condsel);
+                        Instruction result(aliases ? Mnemonic::CSET : Mnemonic::CSINC, insn, EncodingId::CSET_CSINC_32_condsel);
             #else
-                        Instruction result(Mnemonic::CSINC, insn);
+                        Instruction result(aliases ? Mnemonic::CSET : Mnemonic::CSINC, insn);
             #endif
                         DpregEncoding enc = {};
                         enc.raw = insn;
@@ -7089,9 +7091,9 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
         }
         case 0x5A9F03E0u: { // CSETM_CSINV_32_condsel
             #ifdef VEDA64_IR
-                        Instruction result(Mnemonic::CSINV, insn, EncodingId::CSETM_CSINV_32_condsel);
+                        Instruction result(aliases ? Mnemonic::CSETM : Mnemonic::CSINV, insn, EncodingId::CSETM_CSINV_32_condsel);
             #else
-                        Instruction result(Mnemonic::CSINV, insn);
+                        Instruction result(aliases ? Mnemonic::CSETM : Mnemonic::CSINV, insn);
             #endif
                         DpregEncoding enc = {};
                         enc.raw = insn;
@@ -7101,9 +7103,9 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
         }
         case 0x9A9F07E0u: { // CSET_CSINC_64_condsel
             #ifdef VEDA64_IR
-                        Instruction result(Mnemonic::CSINC, insn, EncodingId::CSET_CSINC_64_condsel);
+                        Instruction result(aliases ? Mnemonic::CSET : Mnemonic::CSINC, insn, EncodingId::CSET_CSINC_64_condsel);
             #else
-                        Instruction result(Mnemonic::CSINC, insn);
+                        Instruction result(aliases ? Mnemonic::CSET : Mnemonic::CSINC, insn);
             #endif
                         DpregEncoding enc = {};
                         enc.raw = insn;
@@ -7113,9 +7115,9 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
         }
         case 0xDA9F03E0u: { // CSETM_CSINV_64_condsel
             #ifdef VEDA64_IR
-                        Instruction result(Mnemonic::CSINV, insn, EncodingId::CSETM_CSINV_64_condsel);
+                        Instruction result(aliases ? Mnemonic::CSETM : Mnemonic::CSINV, insn, EncodingId::CSETM_CSINV_64_condsel);
             #else
-                        Instruction result(Mnemonic::CSINV, insn);
+                        Instruction result(aliases ? Mnemonic::CSETM : Mnemonic::CSINV, insn);
             #endif
                         DpregEncoding enc = {};
                         enc.raw = insn;
@@ -7130,9 +7132,9 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
     switch (insn & 0xFFE0FFE0u) {
         case 0x2A0003E0u: { // MOV_ORR_32_log_shift
             #ifdef VEDA64_IR
-                        Instruction result(Mnemonic::ORR, insn, EncodingId::MOV_ORR_32_log_shift);
+                        Instruction result(aliases ? Mnemonic::MOV : Mnemonic::ORR, insn, EncodingId::MOV_ORR_32_log_shift);
             #else
-                        Instruction result(Mnemonic::ORR, insn);
+                        Instruction result(aliases ? Mnemonic::MOV : Mnemonic::ORR, insn);
             #endif
                         DpregEncoding enc = {};
                         enc.raw = insn;
@@ -7142,9 +7144,9 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
         }
         case 0x5A0003E0u: { // NGC_SBC_32_addsub_carry
             #ifdef VEDA64_IR
-                        Instruction result(Mnemonic::SBC, insn, EncodingId::NGC_SBC_32_addsub_carry);
+                        Instruction result(aliases ? Mnemonic::NGC : Mnemonic::SBC, insn, EncodingId::NGC_SBC_32_addsub_carry);
             #else
-                        Instruction result(Mnemonic::SBC, insn);
+                        Instruction result(aliases ? Mnemonic::NGC : Mnemonic::SBC, insn);
             #endif
                         DpregEncoding enc = {};
                         enc.raw = insn;
@@ -7154,9 +7156,9 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
         }
         case 0x7A0003E0u: { // NGCS_SBCS_32_addsub_carry
             #ifdef VEDA64_IR
-                        Instruction result(Mnemonic::SBCS, insn, EncodingId::NGCS_SBCS_32_addsub_carry);
+                        Instruction result(aliases ? Mnemonic::NGCS : Mnemonic::SBCS, insn, EncodingId::NGCS_SBCS_32_addsub_carry);
             #else
-                        Instruction result(Mnemonic::SBCS, insn);
+                        Instruction result(aliases ? Mnemonic::NGCS : Mnemonic::SBCS, insn);
             #endif
                         DpregEncoding enc = {};
                         enc.raw = insn;
@@ -7166,9 +7168,9 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
         }
         case 0xAA0003E0u: { // MOV_ORR_64_log_shift
             #ifdef VEDA64_IR
-                        Instruction result(Mnemonic::ORR, insn, EncodingId::MOV_ORR_64_log_shift);
+                        Instruction result(aliases ? Mnemonic::MOV : Mnemonic::ORR, insn, EncodingId::MOV_ORR_64_log_shift);
             #else
-                        Instruction result(Mnemonic::ORR, insn);
+                        Instruction result(aliases ? Mnemonic::MOV : Mnemonic::ORR, insn);
             #endif
                         DpregEncoding enc = {};
                         enc.raw = insn;
@@ -7178,9 +7180,9 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
         }
         case 0xDA0003E0u: { // NGC_SBC_64_addsub_carry
             #ifdef VEDA64_IR
-                        Instruction result(Mnemonic::SBC, insn, EncodingId::NGC_SBC_64_addsub_carry);
+                        Instruction result(aliases ? Mnemonic::NGC : Mnemonic::SBC, insn, EncodingId::NGC_SBC_64_addsub_carry);
             #else
-                        Instruction result(Mnemonic::SBC, insn);
+                        Instruction result(aliases ? Mnemonic::NGC : Mnemonic::SBC, insn);
             #endif
                         DpregEncoding enc = {};
                         enc.raw = insn;
@@ -7190,9 +7192,9 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
         }
         case 0xFA0003E0u: { // NGCS_SBCS_64_addsub_carry
             #ifdef VEDA64_IR
-                        Instruction result(Mnemonic::SBCS, insn, EncodingId::NGCS_SBCS_64_addsub_carry);
+                        Instruction result(aliases ? Mnemonic::NGCS : Mnemonic::SBCS, insn, EncodingId::NGCS_SBCS_64_addsub_carry);
             #else
-                        Instruction result(Mnemonic::SBCS, insn);
+                        Instruction result(aliases ? Mnemonic::NGCS : Mnemonic::SBCS, insn);
             #endif
                         DpregEncoding enc = {};
                         enc.raw = insn;
@@ -7207,9 +7209,9 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
     switch (insn & 0xFFE0FC1Fu) {
         case 0xBAC0001Fu: { // CMPP_SUBPS_64S_dp_2src
             #ifdef VEDA64_IR
-                        Instruction result(Mnemonic::SUBPS, insn, EncodingId::CMPP_SUBPS_64S_dp_2src);
+                        Instruction result(aliases ? Mnemonic::CMPP : Mnemonic::SUBPS, insn, EncodingId::CMPP_SUBPS_64S_dp_2src);
             #else
-                        Instruction result(Mnemonic::SUBPS, insn);
+                        Instruction result(aliases ? Mnemonic::CMPP : Mnemonic::SUBPS, insn);
             #endif
                         DpregEncoding enc = {};
                         enc.raw = insn;
@@ -7264,9 +7266,9 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
         case 0x1AC02000u: { // LSL_LSLV_32_dp_2src
             // Also matches: LSLV_32_dp_2src (LSLV)
             #ifdef VEDA64_IR
-                        Instruction result(Mnemonic::LSLV, insn, EncodingId::LSL_LSLV_32_dp_2src);
+                        Instruction result(aliases ? Mnemonic::LSL : Mnemonic::LSLV, insn, EncodingId::LSL_LSLV_32_dp_2src);
             #else
-                        Instruction result(Mnemonic::LSLV, insn);
+                        Instruction result(aliases ? Mnemonic::LSL : Mnemonic::LSLV, insn);
             #endif
                         DpregEncoding enc = {};
                         enc.raw = insn;
@@ -7278,9 +7280,9 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
         case 0x1AC02400u: { // LSR_LSRV_32_dp_2src
             // Also matches: LSRV_32_dp_2src (LSRV)
             #ifdef VEDA64_IR
-                        Instruction result(Mnemonic::LSRV, insn, EncodingId::LSR_LSRV_32_dp_2src);
+                        Instruction result(aliases ? Mnemonic::LSR : Mnemonic::LSRV, insn, EncodingId::LSR_LSRV_32_dp_2src);
             #else
-                        Instruction result(Mnemonic::LSRV, insn);
+                        Instruction result(aliases ? Mnemonic::LSR : Mnemonic::LSRV, insn);
             #endif
                         DpregEncoding enc = {};
                         enc.raw = insn;
@@ -7292,9 +7294,9 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
         case 0x1AC02800u: { // ASR_ASRV_32_dp_2src
             // Also matches: ASRV_32_dp_2src (ASRV)
             #ifdef VEDA64_IR
-                        Instruction result(Mnemonic::ASRV, insn, EncodingId::ASR_ASRV_32_dp_2src);
+                        Instruction result(aliases ? Mnemonic::ASR : Mnemonic::ASRV, insn, EncodingId::ASR_ASRV_32_dp_2src);
             #else
-                        Instruction result(Mnemonic::ASRV, insn);
+                        Instruction result(aliases ? Mnemonic::ASR : Mnemonic::ASRV, insn);
             #endif
                         DpregEncoding enc = {};
                         enc.raw = insn;
@@ -7306,9 +7308,9 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
         case 0x1AC02C00u: { // ROR_RORV_32_dp_2src
             // Also matches: RORV_32_dp_2src (RORV)
             #ifdef VEDA64_IR
-                        Instruction result(Mnemonic::RORV, insn, EncodingId::ROR_RORV_32_dp_2src);
+                        Instruction result(aliases ? Mnemonic::ROR : Mnemonic::RORV, insn, EncodingId::ROR_RORV_32_dp_2src);
             #else
-                        Instruction result(Mnemonic::RORV, insn);
+                        Instruction result(aliases ? Mnemonic::ROR : Mnemonic::RORV, insn);
             #endif
                         DpregEncoding enc = {};
                         enc.raw = insn;
@@ -7449,9 +7451,9 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
         }
         case 0x1B007C00u: { // MUL_MADD_32A_dp_3src
             #ifdef VEDA64_IR
-                        Instruction result(Mnemonic::MADD, insn, EncodingId::MUL_MADD_32A_dp_3src);
+                        Instruction result(aliases ? Mnemonic::MUL : Mnemonic::MADD, insn, EncodingId::MUL_MADD_32A_dp_3src);
             #else
-                        Instruction result(Mnemonic::MADD, insn);
+                        Instruction result(aliases ? Mnemonic::MUL : Mnemonic::MADD, insn);
             #endif
                         DpregEncoding enc = {};
                         enc.raw = insn;
@@ -7462,9 +7464,9 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
         }
         case 0x1B00FC00u: { // MNEG_MSUB_32A_dp_3src
             #ifdef VEDA64_IR
-                        Instruction result(Mnemonic::MSUB, insn, EncodingId::MNEG_MSUB_32A_dp_3src);
+                        Instruction result(aliases ? Mnemonic::MNEG : Mnemonic::MSUB, insn, EncodingId::MNEG_MSUB_32A_dp_3src);
             #else
-                        Instruction result(Mnemonic::MSUB, insn);
+                        Instruction result(aliases ? Mnemonic::MNEG : Mnemonic::MSUB, insn);
             #endif
                         DpregEncoding enc = {};
                         enc.raw = insn;
@@ -7593,9 +7595,9 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
         case 0x9AC02000u: { // LSL_LSLV_64_dp_2src
             // Also matches: LSLV_64_dp_2src (LSLV)
             #ifdef VEDA64_IR
-                        Instruction result(Mnemonic::LSLV, insn, EncodingId::LSL_LSLV_64_dp_2src);
+                        Instruction result(aliases ? Mnemonic::LSL : Mnemonic::LSLV, insn, EncodingId::LSL_LSLV_64_dp_2src);
             #else
-                        Instruction result(Mnemonic::LSLV, insn);
+                        Instruction result(aliases ? Mnemonic::LSL : Mnemonic::LSLV, insn);
             #endif
                         DpregEncoding enc = {};
                         enc.raw = insn;
@@ -7607,9 +7609,9 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
         case 0x9AC02400u: { // LSR_LSRV_64_dp_2src
             // Also matches: LSRV_64_dp_2src (LSRV)
             #ifdef VEDA64_IR
-                        Instruction result(Mnemonic::LSRV, insn, EncodingId::LSR_LSRV_64_dp_2src);
+                        Instruction result(aliases ? Mnemonic::LSR : Mnemonic::LSRV, insn, EncodingId::LSR_LSRV_64_dp_2src);
             #else
-                        Instruction result(Mnemonic::LSRV, insn);
+                        Instruction result(aliases ? Mnemonic::LSR : Mnemonic::LSRV, insn);
             #endif
                         DpregEncoding enc = {};
                         enc.raw = insn;
@@ -7621,9 +7623,9 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
         case 0x9AC02800u: { // ASR_ASRV_64_dp_2src
             // Also matches: ASRV_64_dp_2src (ASRV)
             #ifdef VEDA64_IR
-                        Instruction result(Mnemonic::ASRV, insn, EncodingId::ASR_ASRV_64_dp_2src);
+                        Instruction result(aliases ? Mnemonic::ASR : Mnemonic::ASRV, insn, EncodingId::ASR_ASRV_64_dp_2src);
             #else
-                        Instruction result(Mnemonic::ASRV, insn);
+                        Instruction result(aliases ? Mnemonic::ASR : Mnemonic::ASRV, insn);
             #endif
                         DpregEncoding enc = {};
                         enc.raw = insn;
@@ -7635,9 +7637,9 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
         case 0x9AC02C00u: { // ROR_RORV_64_dp_2src
             // Also matches: RORV_64_dp_2src (RORV)
             #ifdef VEDA64_IR
-                        Instruction result(Mnemonic::RORV, insn, EncodingId::ROR_RORV_64_dp_2src);
+                        Instruction result(aliases ? Mnemonic::ROR : Mnemonic::RORV, insn, EncodingId::ROR_RORV_64_dp_2src);
             #else
-                        Instruction result(Mnemonic::RORV, insn);
+                        Instruction result(aliases ? Mnemonic::ROR : Mnemonic::RORV, insn);
             #endif
                         DpregEncoding enc = {};
                         enc.raw = insn;
@@ -7739,9 +7741,9 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
         }
         case 0x9B007C00u: { // MUL_MADD_64A_dp_3src
             #ifdef VEDA64_IR
-                        Instruction result(Mnemonic::MADD, insn, EncodingId::MUL_MADD_64A_dp_3src);
+                        Instruction result(aliases ? Mnemonic::MUL : Mnemonic::MADD, insn, EncodingId::MUL_MADD_64A_dp_3src);
             #else
-                        Instruction result(Mnemonic::MADD, insn);
+                        Instruction result(aliases ? Mnemonic::MUL : Mnemonic::MADD, insn);
             #endif
                         DpregEncoding enc = {};
                         enc.raw = insn;
@@ -7752,9 +7754,9 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
         }
         case 0x9B00FC00u: { // MNEG_MSUB_64A_dp_3src
             #ifdef VEDA64_IR
-                        Instruction result(Mnemonic::MSUB, insn, EncodingId::MNEG_MSUB_64A_dp_3src);
+                        Instruction result(aliases ? Mnemonic::MNEG : Mnemonic::MSUB, insn, EncodingId::MNEG_MSUB_64A_dp_3src);
             #else
-                        Instruction result(Mnemonic::MSUB, insn);
+                        Instruction result(aliases ? Mnemonic::MNEG : Mnemonic::MSUB, insn);
             #endif
                         DpregEncoding enc = {};
                         enc.raw = insn;
@@ -7765,9 +7767,9 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
         }
         case 0x9B207C00u: { // SMULL_SMADDL_64WA_dp_3src
             #ifdef VEDA64_IR
-                        Instruction result(Mnemonic::SMADDL, insn, EncodingId::SMULL_SMADDL_64WA_dp_3src);
+                        Instruction result(aliases ? Mnemonic::SMULL : Mnemonic::SMADDL, insn, EncodingId::SMULL_SMADDL_64WA_dp_3src);
             #else
-                        Instruction result(Mnemonic::SMADDL, insn);
+                        Instruction result(aliases ? Mnemonic::SMULL : Mnemonic::SMADDL, insn);
             #endif
                         DpregEncoding enc = {};
                         enc.raw = insn;
@@ -7778,9 +7780,9 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
         }
         case 0x9B20FC00u: { // SMNEGL_SMSUBL_64WA_dp_3src
             #ifdef VEDA64_IR
-                        Instruction result(Mnemonic::SMSUBL, insn, EncodingId::SMNEGL_SMSUBL_64WA_dp_3src);
+                        Instruction result(aliases ? Mnemonic::SMNEGL : Mnemonic::SMSUBL, insn, EncodingId::SMNEGL_SMSUBL_64WA_dp_3src);
             #else
-                        Instruction result(Mnemonic::SMSUBL, insn);
+                        Instruction result(aliases ? Mnemonic::SMNEGL : Mnemonic::SMSUBL, insn);
             #endif
                         DpregEncoding enc = {};
                         enc.raw = insn;
@@ -7791,9 +7793,9 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
         }
         case 0x9BA07C00u: { // UMULL_UMADDL_64WA_dp_3src
             #ifdef VEDA64_IR
-                        Instruction result(Mnemonic::UMADDL, insn, EncodingId::UMULL_UMADDL_64WA_dp_3src);
+                        Instruction result(aliases ? Mnemonic::UMULL : Mnemonic::UMADDL, insn, EncodingId::UMULL_UMADDL_64WA_dp_3src);
             #else
-                        Instruction result(Mnemonic::UMADDL, insn);
+                        Instruction result(aliases ? Mnemonic::UMULL : Mnemonic::UMADDL, insn);
             #endif
                         DpregEncoding enc = {};
                         enc.raw = insn;
@@ -7804,9 +7806,9 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
         }
         case 0x9BA0FC00u: { // UMNEGL_UMSUBL_64WA_dp_3src
             #ifdef VEDA64_IR
-                        Instruction result(Mnemonic::UMSUBL, insn, EncodingId::UMNEGL_UMSUBL_64WA_dp_3src);
+                        Instruction result(aliases ? Mnemonic::UMNEGL : Mnemonic::UMSUBL, insn, EncodingId::UMNEGL_UMSUBL_64WA_dp_3src);
             #else
-                        Instruction result(Mnemonic::UMSUBL, insn);
+                        Instruction result(aliases ? Mnemonic::UMNEGL : Mnemonic::UMSUBL, insn);
             #endif
                         DpregEncoding enc = {};
                         enc.raw = insn;
@@ -8250,9 +8252,9 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
             // Also matches: CSINC_32_condsel (CSINC)
             if (!(((insn >> 16) & 0x1F) == 0x1F || ((insn >> 5) & 0x1F) == 0x1F)) {
                 #ifdef VEDA64_IR
-                                Instruction result(Mnemonic::CSINC, insn, EncodingId::CINC_CSINC_32_condsel);
+                                Instruction result(aliases ? Mnemonic::CINC : Mnemonic::CSINC, insn, EncodingId::CINC_CSINC_32_condsel);
                 #else
-                                Instruction result(Mnemonic::CSINC, insn);
+                                Instruction result(aliases ? Mnemonic::CINC : Mnemonic::CSINC, insn);
                 #endif
                                 DpregEncoding enc = {};
                                 enc.raw = insn;
@@ -8278,9 +8280,9 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
             // Also matches: CSINV_32_condsel (CSINV)
             if (!(((insn >> 16) & 0x1F) == 0x1F || ((insn >> 5) & 0x1F) == 0x1F)) {
                 #ifdef VEDA64_IR
-                                Instruction result(Mnemonic::CSINV, insn, EncodingId::CINV_CSINV_32_condsel);
+                                Instruction result(aliases ? Mnemonic::CINV : Mnemonic::CSINV, insn, EncodingId::CINV_CSINV_32_condsel);
                 #else
-                                Instruction result(Mnemonic::CSINV, insn);
+                                Instruction result(aliases ? Mnemonic::CINV : Mnemonic::CSINV, insn);
                 #endif
                                 DpregEncoding enc = {};
                                 enc.raw = insn;
@@ -8305,9 +8307,9 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
         case 0x5A800400u: { // CNEG_CSNEG_32_condsel
             // Also matches: CSNEG_32_condsel (CSNEG)
             #ifdef VEDA64_IR
-                        Instruction result(Mnemonic::CSNEG, insn, EncodingId::CNEG_CSNEG_32_condsel);
+                        Instruction result(aliases ? Mnemonic::CNEG : Mnemonic::CSNEG, insn, EncodingId::CNEG_CSNEG_32_condsel);
             #else
-                        Instruction result(Mnemonic::CSNEG, insn);
+                        Instruction result(aliases ? Mnemonic::CNEG : Mnemonic::CSNEG, insn);
             #endif
                         DpregEncoding enc = {};
                         enc.raw = insn;
@@ -8334,9 +8336,9 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
             // Also matches: CSINC_64_condsel (CSINC)
             if (!(((insn >> 16) & 0x1F) == 0x1F || ((insn >> 5) & 0x1F) == 0x1F)) {
                 #ifdef VEDA64_IR
-                                Instruction result(Mnemonic::CSINC, insn, EncodingId::CINC_CSINC_64_condsel);
+                                Instruction result(aliases ? Mnemonic::CINC : Mnemonic::CSINC, insn, EncodingId::CINC_CSINC_64_condsel);
                 #else
-                                Instruction result(Mnemonic::CSINC, insn);
+                                Instruction result(aliases ? Mnemonic::CINC : Mnemonic::CSINC, insn);
                 #endif
                                 DpregEncoding enc = {};
                                 enc.raw = insn;
@@ -8362,9 +8364,9 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
             // Also matches: CSINV_64_condsel (CSINV)
             if (!(((insn >> 16) & 0x1F) == 0x1F || ((insn >> 5) & 0x1F) == 0x1F)) {
                 #ifdef VEDA64_IR
-                                Instruction result(Mnemonic::CSINV, insn, EncodingId::CINV_CSINV_64_condsel);
+                                Instruction result(aliases ? Mnemonic::CINV : Mnemonic::CSINV, insn, EncodingId::CINV_CSINV_64_condsel);
                 #else
-                                Instruction result(Mnemonic::CSINV, insn);
+                                Instruction result(aliases ? Mnemonic::CINV : Mnemonic::CSINV, insn);
                 #endif
                                 DpregEncoding enc = {};
                                 enc.raw = insn;
@@ -8389,9 +8391,9 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
         case 0xDA800400u: { // CNEG_CSNEG_64_condsel
             // Also matches: CSNEG_64_condsel (CSNEG)
             #ifdef VEDA64_IR
-                        Instruction result(Mnemonic::CSNEG, insn, EncodingId::CNEG_CSNEG_64_condsel);
+                        Instruction result(aliases ? Mnemonic::CNEG : Mnemonic::CSNEG, insn, EncodingId::CNEG_CSNEG_64_condsel);
             #else
-                        Instruction result(Mnemonic::CSNEG, insn);
+                        Instruction result(aliases ? Mnemonic::CNEG : Mnemonic::CSNEG, insn);
             #endif
                         DpregEncoding enc = {};
                         enc.raw = insn;
@@ -8407,9 +8409,9 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
     switch (insn & 0xFFE0001Fu) {
         case 0x2B20001Fu: { // CMN_ADDS_32S_addsub_ext
             #ifdef VEDA64_IR
-                        Instruction result(Mnemonic::ADDS, insn, EncodingId::CMN_ADDS_32S_addsub_ext);
+                        Instruction result(aliases ? Mnemonic::CMN : Mnemonic::ADDS, insn, EncodingId::CMN_ADDS_32S_addsub_ext);
             #else
-                        Instruction result(Mnemonic::ADDS, insn);
+                        Instruction result(aliases ? Mnemonic::CMN : Mnemonic::ADDS, insn);
             #endif
                         DpregEncoding enc = {};
                         enc.raw = insn;
@@ -8428,9 +8430,9 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
         }
         case 0x6B20001Fu: { // CMP_SUBS_32S_addsub_ext
             #ifdef VEDA64_IR
-                        Instruction result(Mnemonic::SUBS, insn, EncodingId::CMP_SUBS_32S_addsub_ext);
+                        Instruction result(aliases ? Mnemonic::CMP : Mnemonic::SUBS, insn, EncodingId::CMP_SUBS_32S_addsub_ext);
             #else
-                        Instruction result(Mnemonic::SUBS, insn);
+                        Instruction result(aliases ? Mnemonic::CMP : Mnemonic::SUBS, insn);
             #endif
                         DpregEncoding enc = {};
                         enc.raw = insn;
@@ -8449,9 +8451,9 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
         }
         case 0xAB20001Fu: { // CMN_ADDS_64S_addsub_ext
             #ifdef VEDA64_IR
-                        Instruction result(Mnemonic::ADDS, insn, EncodingId::CMN_ADDS_64S_addsub_ext);
+                        Instruction result(aliases ? Mnemonic::CMN : Mnemonic::ADDS, insn, EncodingId::CMN_ADDS_64S_addsub_ext);
             #else
-                        Instruction result(Mnemonic::ADDS, insn);
+                        Instruction result(aliases ? Mnemonic::CMN : Mnemonic::ADDS, insn);
             #endif
                         DpregEncoding enc = {};
                         enc.raw = insn;
@@ -8470,9 +8472,9 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
         }
         case 0xEB20001Fu: { // CMP_SUBS_64S_addsub_ext
             #ifdef VEDA64_IR
-                        Instruction result(Mnemonic::SUBS, insn, EncodingId::CMP_SUBS_64S_addsub_ext);
+                        Instruction result(aliases ? Mnemonic::CMP : Mnemonic::SUBS, insn, EncodingId::CMP_SUBS_64S_addsub_ext);
             #else
-                        Instruction result(Mnemonic::SUBS, insn);
+                        Instruction result(aliases ? Mnemonic::CMP : Mnemonic::SUBS, insn);
             #endif
                         DpregEncoding enc = {};
                         enc.raw = insn;
@@ -8677,9 +8679,9 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
     switch (insn & 0xFF2003E0u) {
         case 0x2A2003E0u: { // MVN_ORN_32_log_shift
             #ifdef VEDA64_IR
-                        Instruction result(Mnemonic::ORN, insn, EncodingId::MVN_ORN_32_log_shift);
+                        Instruction result(aliases ? Mnemonic::MVN : Mnemonic::ORN, insn, EncodingId::MVN_ORN_32_log_shift);
             #else
-                        Instruction result(Mnemonic::ORN, insn);
+                        Instruction result(aliases ? Mnemonic::MVN : Mnemonic::ORN, insn);
             #endif
                         DpregEncoding enc = {};
                         enc.raw = insn;
@@ -8698,9 +8700,9 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
         }
         case 0x4B0003E0u: { // NEG_SUB_32_addsub_shift
             #ifdef VEDA64_IR
-                        Instruction result(Mnemonic::SUB, insn, EncodingId::NEG_SUB_32_addsub_shift);
+                        Instruction result(aliases ? Mnemonic::NEG : Mnemonic::SUB, insn, EncodingId::NEG_SUB_32_addsub_shift);
             #else
-                        Instruction result(Mnemonic::SUB, insn);
+                        Instruction result(aliases ? Mnemonic::NEG : Mnemonic::SUB, insn);
             #endif
                         DpregEncoding enc = {};
                         enc.raw = insn;
@@ -8720,9 +8722,9 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
         case 0x6B0003E0u: { // NEGS_SUBS_32_addsub_shift
             if (((insn >> 0) & 0x1F) == 0x1F) break;
             #ifdef VEDA64_IR
-                        Instruction result(Mnemonic::SUBS, insn, EncodingId::NEGS_SUBS_32_addsub_shift);
+                        Instruction result(aliases ? Mnemonic::NEGS : Mnemonic::SUBS, insn, EncodingId::NEGS_SUBS_32_addsub_shift);
             #else
-                        Instruction result(Mnemonic::SUBS, insn);
+                        Instruction result(aliases ? Mnemonic::NEGS : Mnemonic::SUBS, insn);
             #endif
                         DpregEncoding enc = {};
                         enc.raw = insn;
@@ -8741,9 +8743,9 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
         }
         case 0xAA2003E0u: { // MVN_ORN_64_log_shift
             #ifdef VEDA64_IR
-                        Instruction result(Mnemonic::ORN, insn, EncodingId::MVN_ORN_64_log_shift);
+                        Instruction result(aliases ? Mnemonic::MVN : Mnemonic::ORN, insn, EncodingId::MVN_ORN_64_log_shift);
             #else
-                        Instruction result(Mnemonic::ORN, insn);
+                        Instruction result(aliases ? Mnemonic::MVN : Mnemonic::ORN, insn);
             #endif
                         DpregEncoding enc = {};
                         enc.raw = insn;
@@ -8762,9 +8764,9 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
         }
         case 0xCB0003E0u: { // NEG_SUB_64_addsub_shift
             #ifdef VEDA64_IR
-                        Instruction result(Mnemonic::SUB, insn, EncodingId::NEG_SUB_64_addsub_shift);
+                        Instruction result(aliases ? Mnemonic::NEG : Mnemonic::SUB, insn, EncodingId::NEG_SUB_64_addsub_shift);
             #else
-                        Instruction result(Mnemonic::SUB, insn);
+                        Instruction result(aliases ? Mnemonic::NEG : Mnemonic::SUB, insn);
             #endif
                         DpregEncoding enc = {};
                         enc.raw = insn;
@@ -8784,9 +8786,9 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
         case 0xEB0003E0u: { // NEGS_SUBS_64_addsub_shift
             if (((insn >> 0) & 0x1F) == 0x1F) break;
             #ifdef VEDA64_IR
-                        Instruction result(Mnemonic::SUBS, insn, EncodingId::NEGS_SUBS_64_addsub_shift);
+                        Instruction result(aliases ? Mnemonic::NEGS : Mnemonic::SUBS, insn, EncodingId::NEGS_SUBS_64_addsub_shift);
             #else
-                        Instruction result(Mnemonic::SUBS, insn);
+                        Instruction result(aliases ? Mnemonic::NEGS : Mnemonic::SUBS, insn);
             #endif
                         DpregEncoding enc = {};
                         enc.raw = insn;
@@ -8810,9 +8812,9 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
     switch (insn & 0xFF20001Fu) {
         case 0x2B00001Fu: { // CMN_ADDS_32_addsub_shift
             #ifdef VEDA64_IR
-                        Instruction result(Mnemonic::ADDS, insn, EncodingId::CMN_ADDS_32_addsub_shift);
+                        Instruction result(aliases ? Mnemonic::CMN : Mnemonic::ADDS, insn, EncodingId::CMN_ADDS_32_addsub_shift);
             #else
-                        Instruction result(Mnemonic::ADDS, insn);
+                        Instruction result(aliases ? Mnemonic::CMN : Mnemonic::ADDS, insn);
             #endif
                         DpregEncoding enc = {};
                         enc.raw = insn;
@@ -8831,9 +8833,9 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
         }
         case 0x6A00001Fu: { // TST_ANDS_32_log_shift
             #ifdef VEDA64_IR
-                        Instruction result(Mnemonic::ANDS, insn, EncodingId::TST_ANDS_32_log_shift);
+                        Instruction result(aliases ? Mnemonic::TST : Mnemonic::ANDS, insn, EncodingId::TST_ANDS_32_log_shift);
             #else
-                        Instruction result(Mnemonic::ANDS, insn);
+                        Instruction result(aliases ? Mnemonic::TST : Mnemonic::ANDS, insn);
             #endif
                         DpregEncoding enc = {};
                         enc.raw = insn;
@@ -8852,9 +8854,9 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
         }
         case 0x6B00001Fu: { // CMP_SUBS_32_addsub_shift
             #ifdef VEDA64_IR
-                        Instruction result(Mnemonic::SUBS, insn, EncodingId::CMP_SUBS_32_addsub_shift);
+                        Instruction result(aliases ? Mnemonic::CMP : Mnemonic::SUBS, insn, EncodingId::CMP_SUBS_32_addsub_shift);
             #else
-                        Instruction result(Mnemonic::SUBS, insn);
+                        Instruction result(aliases ? Mnemonic::CMP : Mnemonic::SUBS, insn);
             #endif
                         DpregEncoding enc = {};
                         enc.raw = insn;
@@ -8873,9 +8875,9 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
         }
         case 0xAB00001Fu: { // CMN_ADDS_64_addsub_shift
             #ifdef VEDA64_IR
-                        Instruction result(Mnemonic::ADDS, insn, EncodingId::CMN_ADDS_64_addsub_shift);
+                        Instruction result(aliases ? Mnemonic::CMN : Mnemonic::ADDS, insn, EncodingId::CMN_ADDS_64_addsub_shift);
             #else
-                        Instruction result(Mnemonic::ADDS, insn);
+                        Instruction result(aliases ? Mnemonic::CMN : Mnemonic::ADDS, insn);
             #endif
                         DpregEncoding enc = {};
                         enc.raw = insn;
@@ -8894,9 +8896,9 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
         }
         case 0xEA00001Fu: { // TST_ANDS_64_log_shift
             #ifdef VEDA64_IR
-                        Instruction result(Mnemonic::ANDS, insn, EncodingId::TST_ANDS_64_log_shift);
+                        Instruction result(aliases ? Mnemonic::TST : Mnemonic::ANDS, insn, EncodingId::TST_ANDS_64_log_shift);
             #else
-                        Instruction result(Mnemonic::ANDS, insn);
+                        Instruction result(aliases ? Mnemonic::TST : Mnemonic::ANDS, insn);
             #endif
                         DpregEncoding enc = {};
                         enc.raw = insn;
@@ -8915,9 +8917,9 @@ std::optional<Instruction> decode_dpreg(uint32_t insn) {
         }
         case 0xEB00001Fu: { // CMP_SUBS_64_addsub_shift
             #ifdef VEDA64_IR
-                        Instruction result(Mnemonic::SUBS, insn, EncodingId::CMP_SUBS_64_addsub_shift);
+                        Instruction result(aliases ? Mnemonic::CMP : Mnemonic::SUBS, insn, EncodingId::CMP_SUBS_64_addsub_shift);
             #else
-                        Instruction result(Mnemonic::SUBS, insn);
+                        Instruction result(aliases ? Mnemonic::CMP : Mnemonic::SUBS, insn);
             #endif
                         DpregEncoding enc = {};
                         enc.raw = insn;

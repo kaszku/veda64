@@ -38719,7 +38719,9 @@ uint32_t encode_swptl_64_memop_unpriv(uint32_t Rt, uint32_t Rn, uint32_t Rs) {
 
 // Decode a ldst instruction
 // Input is in native ARM64 format (as read from memory)
-std::optional<Instruction> decode_ldst(uint32_t insn) {
+// When aliases=true, alias encodings return alias mnemonic + operands
+std::optional<Instruction> decode_ldst(uint32_t insn, bool aliases) {
+    (void)aliases;
     // Switch for mask 0xFFFFFC00u (11 patterns, 11 encodings)
     switch (insn & 0xFFFFFC00u) {
         case 0x99800800u: { // STLR_32S_ldapstl_writeback

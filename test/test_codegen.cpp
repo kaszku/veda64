@@ -6,12 +6,14 @@
 
 #include <codegen/codegen.hpp>
 #include <veda64.hpp>
+#include <format/format.hpp>
 #include <iostream>
 #include <cassert>
 #include <cstring>
 
 using namespace veda64;
 using namespace veda64::codegen;
+using namespace veda64::format;
 
 static uint32_t get_insn(const CodeGenerator& cg, size_t idx) {
     uint32_t val;
@@ -634,6 +636,160 @@ int test_simd() {
     return 0;
 }
 
+static int test_adr_adrp() {
+    std::cout << "  ADR/ADRP PC-relative encoding..." << std::endl;
+
+    // --- ADRP encode→decode roundtrip ---
+
+    // ADRP X1, #+0x1000 (1 page forward)
+    // imm21 = 1, immhi = 0, immlo = 1
+    {
+        uint32_t insn = dpimm::encode_adrp_only_pcreladdr(1, 0, 1);
+        auto result = decode(insn);
+        assert(result.has_value());
+        assert(result->mnemonic == Mnemonic::ADRP);
+        assert(result->operands[0].gp.idx == 1);  // X1
+        assert(result->operands[1].iv.value == static_cast<uint64_t>(0x1000));
+    }
+
+    // ADRP X0, #-0x1000 (1 page backward)
+    // imm21 = -1 = 0x1FFFFF, immhi = 0x7FFFF, immlo = 3
+    {
+        int32_t imm21 = -1;
+        uint32_t immhi = static_cast<uint32_t>(imm21 >> 2) & 0x7FFFF;
+        uint32_t immlo = static_cast<uint32_t>(imm21) & 0x3;
+        uint32_t insn = dpimm::encode_adrp_only_pcreladdr(0, immhi, immlo);
+        auto result = decode(insn);
+        assert(result.has_value());
+        assert(result->mnemonic == Mnemonic::ADRP);
+        int64_t offset = static_cast<int64_t>(result->operands[1].iv.value);
+        assert(offset == -0x1000);
+    }
+
+    // ADRP X2, #+0x7FFFF000 (max positive: 2^20-1 pages = 0xFFFFF pages)
+    {
+        int32_t imm21 = 0xFFFFF;  // 2^20 - 1
+        uint32_t immhi = static_cast<uint32_t>(imm21 >> 2) & 0x7FFFF;
+        uint32_t immlo = static_cast<uint32_t>(imm21) & 0x3;
+        uint32_t insn = dpimm::encode_adrp_only_pcreladdr(2, immhi, immlo);
+        auto result = decode(insn);
+        assert(result.has_value());
+        assert(result->mnemonic == Mnemonic::ADRP);
+        int64_t offset = static_cast<int64_t>(result->operands[1].iv.value);
+        assert(offset == static_cast<int64_t>(0xFFFFF) << 12);  // +0xFFFFF000
+    }
+
+    // ADRP X3, #-0x80000000 (max negative: -2^20 pages)
+    {
+        int32_t imm21 = -0x100000;  // -2^20 (21-bit signed min)
+        uint32_t immhi = static_cast<uint32_t>(imm21 >> 2) & 0x7FFFF;
+        uint32_t immlo = static_cast<uint32_t>(imm21) & 0x3;
+        uint32_t insn = dpimm::encode_adrp_only_pcreladdr(3, immhi, immlo);
+        auto result = decode(insn);
+        assert(result.has_value());
+        assert(result->mnemonic == Mnemonic::ADRP);
+        int64_t offset = static_cast<int64_t>(result->operands[1].iv.value);
+        assert(offset == -(static_cast<int64_t>(0x100000) << 12));  // -0x100000000
+    }
+
+    // ADRP X5, #+0x5000 (5 pages) — via CodeGenerator
+    {
+        CodeGenerator cg(4096);
+        cg.adrp(x5, 0x5000);
+        uint32_t insn = get_insn(cg, 0);
+        auto result = decode(insn);
+        assert(result.has_value());
+        assert(result->mnemonic == Mnemonic::ADRP);
+        assert(result->operands[0].gp.idx == 5);
+        int64_t offset = static_cast<int64_t>(result->operands[1].iv.value);
+        assert(offset == 0x5000);
+    }
+
+    // --- ADR encode→decode roundtrip ---
+
+    // ADR X0, #+4
+    {
+        // offset=4 => immhi = 4>>2 = 1, immlo = 4&3 = 0
+        uint32_t insn = dpimm::encode_adr_only_pcreladdr(0, 1, 0);
+        auto result = decode(insn);
+        assert(result.has_value());
+        assert(result->mnemonic == Mnemonic::ADR);
+        int64_t offset = static_cast<int64_t>(result->operands[1].iv.value);
+        assert(offset == 4);
+    }
+
+    // ADR X1, #+7 (non-aligned offset, tests immlo)
+    {
+        // offset=7 => immhi = 7>>2 = 1, immlo = 7&3 = 3
+        uint32_t insn = dpimm::encode_adr_only_pcreladdr(1, 1, 3);
+        auto result = decode(insn);
+        assert(result.has_value());
+        assert(result->mnemonic == Mnemonic::ADR);
+        int64_t offset = static_cast<int64_t>(result->operands[1].iv.value);
+        assert(offset == 7);
+    }
+
+    // ADR X2, #-4
+    {
+        int32_t off = -4;
+        uint32_t immhi = static_cast<uint32_t>(off >> 2) & 0x7FFFF;
+        uint32_t immlo = static_cast<uint32_t>(off) & 0x3;
+        uint32_t insn = dpimm::encode_adr_only_pcreladdr(2, immhi, immlo);
+        auto result = decode(insn);
+        assert(result.has_value());
+        assert(result->mnemonic == Mnemonic::ADR);
+        int64_t offset = static_cast<int64_t>(result->operands[1].iv.value);
+        assert(offset == -4);
+    }
+
+    // ADR X4, #+0xFFFFF (max positive 21-bit: 2^20-1 = 1048575)
+    {
+        int32_t off = 0xFFFFF;
+        uint32_t immhi = static_cast<uint32_t>(off >> 2) & 0x7FFFF;
+        uint32_t immlo = static_cast<uint32_t>(off) & 0x3;
+        uint32_t insn = dpimm::encode_adr_only_pcreladdr(4, immhi, immlo);
+        auto result = decode(insn);
+        assert(result.has_value());
+        assert(result->mnemonic == Mnemonic::ADR);
+        int64_t offset = static_cast<int64_t>(result->operands[1].iv.value);
+        assert(offset == 0xFFFFF);
+    }
+
+    // ADR X5, #-0x100000 (max negative 21-bit: -2^20 = -1048576)
+    {
+        int32_t off = -0x100000;
+        uint32_t immhi = static_cast<uint32_t>(off >> 2) & 0x7FFFF;
+        uint32_t immlo = static_cast<uint32_t>(off) & 0x3;
+        uint32_t insn = dpimm::encode_adr_only_pcreladdr(5, immhi, immlo);
+        auto result = decode(insn);
+        assert(result.has_value());
+        assert(result->mnemonic == Mnemonic::ADR);
+        int64_t offset = static_cast<int64_t>(result->operands[1].iv.value);
+        assert(offset == -0x100000);
+    }
+
+    // ADR via CodeGenerator — forward label
+    {
+        CodeGenerator cg(4096);
+        Label target;
+        cg.adr(x0, target);
+        cg.nop();
+        cg.nop();
+        cg.nop();
+        cg.bind(target);  // target is 3 instructions (12 bytes) after ADR
+
+        uint32_t insn = get_insn(cg, 0);
+        auto result = decode(insn);
+        assert(result.has_value());
+        assert(result->mnemonic == Mnemonic::ADR);
+        int64_t offset = static_cast<int64_t>(result->operands[1].iv.value);
+        assert(offset == 12);  // 3 * 4 bytes
+    }
+
+    std::cout << "  ADR/ADRP tests passed." << std::endl;
+    return 0;
+}
+
 int main() {
     std::cout << "Running codegen tests..." << std::endl;
     int err = 0;
@@ -659,6 +815,7 @@ int main() {
     err |= test_atomic_variants();
     err |= test_more_simd();
     err |= test_extend_ops();
+    err |= test_adr_adrp();
 #if defined(__aarch64__) || defined(_M_ARM64)
     err |= test_execute();
     err |= test_execute_loop();
