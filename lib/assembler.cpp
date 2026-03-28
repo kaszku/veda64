@@ -97,6 +97,25 @@ static bool tokenize(const char* text, Parsed& o) {
     return true;
 }
 
+static bool enc_log_imm(uint64_t imm, bool is64, uint32_t& N, uint32_t& immr, uint32_t& imms) {
+    if (imm == 0 || imm == ~0ULL) return false;
+    if (!is64) imm = (imm & 0xFFFFFFFFULL) | ((imm & 0xFFFFFFFFULL) << 32);
+    unsigned size = 64; uint64_t mask = ~0ULL;
+    for (unsigned s = 32; s >= 2; s >>= 1) { uint64_t lo = imm & ((1ULL<<s)-1); uint64_t hi = (imm>>s) & ((1ULL<<s)-1); if (lo==hi) { size=s; mask=(1ULL<<s)-1; } else break; }
+    uint64_t pattern = imm & mask; unsigned rotation = 0; uint64_t normalized = pattern;
+    for (unsigned i=0;i<size;i++) { if ((normalized&1)==0) break; normalized=((normalized>>1)|((normalized&1)<<(size-1)))&mask; rotation++; }
+    if (normalized == 0) return false;
+    unsigned ones = 0, lz = 0;
+    for (unsigned i=0;i<size;i++) { if ((normalized>>i)&1) { lz=i; break; } }
+    for (unsigned i=lz;i<size;i++) { if ((normalized>>i)&1) ones++; else break; }
+    uint64_t expected = (((1ULL<<ones)-1)<<lz) & mask;
+    if (normalized != expected) return false;
+    immr = (size - rotation - lz) % size;
+    imms = ((~(size*2-1))&0x3F) | (ones-1);
+    N = (size==64) ? 1 : 0;
+    return true;
+}
+
 static AsmResult asm_mov_imm(uint32_t rd, int64_t imm, bool is64) {
     using namespace format;
     uint64_t val = static_cast<uint64_t>(imm);
@@ -147,6 +166,58 @@ static AsmResult asm_z(const Parsed& p, uint64_t pc);
 
 static AsmResult try_assemble(const Parsed& p, uint64_t pc) {
     (void)pc;
+    // Special: AND/ORR/EOR/ANDS/TST with logical immediate
+    if ((std::strcmp(p.mn, "and") == 0 || std::strcmp(p.mn, "orr") == 0 || std::strcmp(p.mn, "eor") == 0 || std::strcmp(p.mn, "ands") == 0 || std::strcmp(p.mn, "tst") == 0)
+        && p.n >= 2 && p.ops[p.n-1].k == T_IMM && (p.ops[0].k == T_X || p.ops[0].k == T_W)) {
+        // Check if last operand is immediate (logical imm form)
+        bool is64 = p.ops[0].k == T_X;
+        uint32_t N, immr, imms;
+        uint64_t imm_val = static_cast<uint64_t>(p.ops[p.n-1].v);
+        if (enc_log_imm(imm_val, is64, N, immr, imms)) {
+            if (std::strcmp(p.mn, "tst") == 0) {
+                uint32_t rn = static_cast<uint32_t>(p.ops[0].v);
+                return is64 ? AsmResult{format::dpimm::encode_tst_ands_64s_log_imm(rn, imms, immr, N), true, nullptr}
+                            : AsmResult{format::dpimm::encode_tst_ands_32s_log_imm(rn, imms, immr), true, nullptr};
+            }
+            uint32_t rd = static_cast<uint32_t>(p.ops[0].v);
+            uint32_t rn = static_cast<uint32_t>(p.ops[1].v);
+            if (std::strcmp(p.mn, "and") == 0) {
+                return is64 ? AsmResult{format::dpimm::encode_and_64_log_imm(rd, rn, imms, immr, N), true, nullptr}
+                            : AsmResult{format::dpimm::encode_and_32_log_imm(rd, rn, imms, immr), true, nullptr};
+            }
+            if (std::strcmp(p.mn, "orr") == 0) {
+                return is64 ? AsmResult{format::dpimm::encode_orr_64_log_imm(rd, rn, imms, immr, N), true, nullptr}
+                            : AsmResult{format::dpimm::encode_orr_32_log_imm(rd, rn, imms, immr), true, nullptr};
+            }
+            if (std::strcmp(p.mn, "eor") == 0) {
+                return is64 ? AsmResult{format::dpimm::encode_eor_64_log_imm(rd, rn, imms, immr, N), true, nullptr}
+                            : AsmResult{format::dpimm::encode_eor_32_log_imm(rd, rn, imms, immr), true, nullptr};
+            }
+            if (std::strcmp(p.mn, "ands") == 0) {
+                return is64 ? AsmResult{format::dpimm::encode_ands_64s_log_imm(rd, rn, imms, immr, N), true, nullptr}
+                            : AsmResult{format::dpimm::encode_ands_32s_log_imm(rd, rn, imms, immr), true, nullptr};
+            }
+        }
+    }
+    // Special: B.cond — conditional branch
+    if (p.mn[0] == 'b' && p.mn[1] == '.' && p.n >= 1 && p.ops[0].k == T_LABEL) {
+        uint8_t cc = 0xFF;
+        static const struct{const char*n;uint8_t v;}ct[]={{"eq",0},{"ne",1},{"cs",2},{"hs",2},{"cc",3},{"lo",3},
+          {"mi",4},{"pl",5},{"vs",6},{"vc",7},{"hi",8},{"ls",9},{"ge",10},{"lt",11},{"gt",12},{"le",13},{"al",14},{"nv",15}};
+        for(auto&e:ct){if(std::strcmp(p.mn+2,e.n)==0){cc=e.v;break;}}
+        if(cc!=0xFF) return { format::control::encode_b_only_condbranch(cc, static_cast<int32_t>(p.ops[0].v / 4)), true, nullptr };
+    }
+    // Special: TBNZ/TBZ
+    if ((std::strcmp(p.mn, "tbnz") == 0 || std::strcmp(p.mn, "tbz") == 0) && p.n >= 3) {
+        uint32_t rt = static_cast<uint32_t>(p.ops[0].v);
+        uint32_t bit_n = static_cast<uint32_t>(p.ops[1].v);
+        int32_t off = static_cast<int32_t>(p.ops[2].v / 4);
+        uint32_t b5 = bit_n >> 5; uint32_t b40 = bit_n & 0x1F;
+        if (p.mn[2] == 'n')
+            return { format::control::encode_tbnz_only_testbranch(rt, off, b40, b5), true, nullptr };
+        else
+            return { format::control::encode_tbz_only_testbranch(rt, off, b40, b5), true, nullptr };
+    }
     // Special: MOV Xd/Wd, #imm → decompose into MOVZ/MOVN with hw
     if (std::strcmp(p.mn, "mov") == 0 && p.n == 2 && p.ops[1].k == T_IMM) {
         bool is64 = p.ops[0].k == T_X;
