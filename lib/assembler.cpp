@@ -54,12 +54,21 @@ static bool tokenize(const char* text, Parsed& o) {
     while (*p && o.n<8) {
         p = skip(p); if (*p==',') { p++; continue; } if (!*p) break;
         Tok& t = o.ops[o.n];
-        // Memory [Xn, #imm]
+        // Memory: [Xn], [Xn, #imm], [Xn, #imm]!, [Xn, Xm], [Xn, Wm, extend]
         if (*p=='[') { p++; p=skip(p); const char* e; int b=gpreg(p,&e,true); if(b<0) return false;
-            p=skip(e); int64_t off=0; if(*p==','){p++;p=skip(p);if(*p=='#'){p++;off=pint(p,&e);p=e;}} p=skip(p);
-            if(*p==']')p++; bool pre=*p=='!'; if(pre)p++;
-            t.k=T_MEM; t.v=(b&0x1F)|((off&0xFFFFF)<<8); t.v2=pre?1:0; o.n++; continue; }
-        // Post-index: check if previous was MEM and next is #imm
+            p=skip(e); int64_t off=0; int idx_reg=-1; uint8_t flags=0;
+            if(*p==','){p++;p=skip(p);
+                if(*p=='#'){p++;off=pint(p,&e);p=e;}
+                else { // register offset: Xm or Wm
+                    int r=gpreg(p,&e,true); if(r<0) r=gpreg(p,&e,false);
+                    if(r>=0){idx_reg=r;p=e;flags|=4;} // bit2=reg_offset
+                }
+            } p=skip(p);
+            if(*p==']')p++; p=skip(p);
+            if(*p=='!'){flags|=1;p++;} // bit0=pre-index
+            // Check for post-index: ], #imm
+            p=skip(p); if(*p==','){p++;p=skip(p);if(*p=='#'){p++;off=pint(p,&e);p=e;flags|=2;}} // bit1=post-index
+            t.k=T_MEM; t.v=(b&0x1F)|((off&0xFFFFF)<<8); t.v2=flags|((idx_reg>=0?(idx_reg&0x1F):0)<<3); o.n++; continue; }
         if (*p=='#') { p++; const char* e; t.v=pint(p,&e); t.k=T_IMM; p=e; o.n++; continue; }
         // GP register
         { const char* e; int r=gpreg(p,&e,true); if(r>=0){t.k=T_X;t.v=r;p=e;o.n++;continue;}
@@ -85,6 +94,17 @@ static bool tokenize(const char* text, Parsed& o) {
           for(auto&e:cc){if(!std::strcmp(cl,e.n)&&!std::isalnum((unsigned char)p[std::strlen(e.n)])){t.k=T_COND;t.v=e.v;p+=std::strlen(e.n);o.n++;goto next;}} }
         // Label .+0x... or .-0x...
         if(*p=='.'&&(p[1]=='+'||p[1]=='-')){bool ng=p[1]=='-';p+=2;const char*e;t.v=pint(p,&e);if(ng)t.v=-t.v;t.k=T_LABEL;p=e;o.n++;continue;}
+        // SVE predicate register: p0-p15
+        if ((p[0]|0x20)=='p' && p[1]>='0' && p[1]<='9') {
+            const char* pp=p+1; int r=0; while(*pp>='0'&&*pp<='9')r=r*10+(*pp++-'0');
+            if(r<=15 && !std::isalpha((unsigned char)*pp)){t.k=T_P;t.v=r;p=pp;o.n++;continue;}
+        }
+        // Prefetch hints: pldl1keep, pldl1strm, etc.
+        { static const struct{const char*n;int l;uint8_t v;}pf[]={{"pldl1keep",9,0},{"pldl1strm",9,1},{"pldl2keep",9,2},{"pldl2strm",9,3},
+          {"pldl3keep",9,4},{"pldl3strm",9,5},{"plil1keep",9,8},{"plil1strm",9,9},
+          {"pstl1keep",9,16},{"pstl1strm",9,17},{"pstl2keep",9,18},{"pstl2strm",9,19}};
+          for(auto&e:pf){bool m=true;for(int j=0;j<e.l;j++){if((p[j]|0x20)!=e.n[j]){m=false;break;}}
+            if(m&&!std::isalnum((unsigned char)p[e.l])){t.k=T_IMM;t.v=e.v;p+=e.l;o.n++;goto next;}}}
         // Barrier options: sy, ish, ishld, ishst, osh, oshld, oshst, nsh, nshld, nshst, ld, st
         { static const struct{const char*n;int l;uint8_t v;}bo[]={{"sy",2,15},{"ish",3,11},{"ishld",5,9},{"ishst",5,10},
           {"osh",3,3},{"oshld",5,1},{"oshst",5,2},{"nsh",3,7},{"nshld",5,5},{"nshst",5,6},{"ld",2,13},{"st",2,14}};
@@ -222,6 +242,155 @@ static AsmResult try_assemble(const Parsed& p, uint64_t pc) {
     if (std::strcmp(p.mn, "mov") == 0 && p.n == 2 && p.ops[1].k == T_IMM) {
         bool is64 = p.ops[0].k == T_X;
         return asm_mov_imm(static_cast<uint32_t>(p.ops[0].v), p.ops[1].v, is64);
+    }
+    // Special: LDR/STR post-index — [Xn], #imm
+    if ((std::strcmp(p.mn, "ldr") == 0 || std::strcmp(p.mn, "str") == 0) && p.n >= 1) {
+        int mi = -1; for (int i=0;i<p.n;i++) if(p.ops[i].k==T_MEM){mi=i;break;}
+        if (mi >= 0) {
+            uint8_t flags = p.ops[mi].v2 & 7;
+            uint32_t base = static_cast<uint32_t>(p.ops[mi].v) & 0x1F;
+            int32_t off = static_cast<int32_t>((p.ops[mi].v >> 8) & 0xFFFFF);
+            if (off & 0x80000) off |= static_cast<int32_t>(0xFFF00000); // sign extend 20-bit
+            uint32_t rt = mi > 0 ? static_cast<uint32_t>(p.ops[0].v) : 0;
+            bool is_str = p.mn[0] == 's';
+            // Register offset: bit2
+            if (flags & 4) {
+                uint32_t rm = (p.ops[mi].v2 >> 3) & 0x1F;
+                if (p.ops[0].k == T_X) {
+                    if (is_str) return { format::ldst::encode_str_64_ldst_regoff(rt, base, 0, 0b011, rm), true, nullptr };
+                    return { format::ldst::encode_ldr_64_ldst_regoff(rt, base, 0, 0b011, rm), true, nullptr };
+                } else if (p.ops[0].k == T_W) {
+                    if (is_str) return { format::ldst::encode_str_32_ldst_regoff(rt, base, 0, 0b011, rm), true, nullptr };
+                    return { format::ldst::encode_ldr_32_ldst_regoff(rt, base, 0, 0b011, rm), true, nullptr };
+                }
+            }
+            // Post-index: bit1
+            if (flags & 2) {
+                if (p.ops[0].k == T_X) {
+                    if (is_str) return { format::ldst::encode_str_64_ldst_immpost(rt, base, off), true, nullptr };
+                    return { format::ldst::encode_ldr_64_ldst_immpost(rt, base, off), true, nullptr };
+                } else if (p.ops[0].k == T_W) {
+                    if (is_str) return { format::ldst::encode_str_32_ldst_immpost(rt, base, off), true, nullptr };
+                    return { format::ldst::encode_ldr_32_ldst_immpost(rt, base, off), true, nullptr };
+                }
+            }
+            // Pre-index: bit0
+            if (flags & 1) {
+                if (p.ops[0].k == T_X) {
+                    if (is_str) return { format::ldst::encode_str_64_ldst_immpre(rt, base, off), true, nullptr };
+                    return { format::ldst::encode_ldr_64_ldst_immpre(rt, base, off), true, nullptr };
+                } else if (p.ops[0].k == T_W) {
+                    if (is_str) return { format::ldst::encode_str_32_ldst_immpre(rt, base, off), true, nullptr };
+                    return { format::ldst::encode_ldr_32_ldst_immpre(rt, base, off), true, nullptr };
+                }
+            }
+        }
+    }
+    // Special: LDRB/STRB register offset
+    if ((std::strcmp(p.mn, "ldrb") == 0 || std::strcmp(p.mn, "strb") == 0) && p.n >= 1) {
+        int mi = -1; for (int i=0;i<p.n;i++) if(p.ops[i].k==T_MEM){mi=i;break;}
+        if (mi >= 0 && (p.ops[mi].v2 & 4)) {
+            uint32_t base = static_cast<uint32_t>(p.ops[mi].v) & 0x1F;
+            uint32_t rm = (p.ops[mi].v2 >> 3) & 0x1F;
+            uint32_t rt = static_cast<uint32_t>(p.ops[0].v);
+            if (p.mn[0] == 'l') return { format::ldst::encode_ldrb_32b_ldst_regoff(rt, base, 0, 0b011, rm), true, nullptr };
+            return { format::ldst::encode_strb_32b_ldst_regoff(rt, base, 0, 0b011, rm), true, nullptr };
+        }
+    }
+    // Special: STP/LDP with pre/post-index
+    if ((std::strcmp(p.mn, "stp") == 0 || std::strcmp(p.mn, "ldp") == 0) && p.n >= 2) {
+        int mi = -1; for (int i=0;i<p.n;i++) if(p.ops[i].k==T_MEM){mi=i;break;}
+        if (mi >= 0) {
+            uint8_t flags = p.ops[mi].v2 & 7;
+            uint32_t base = static_cast<uint32_t>(p.ops[mi].v) & 0x1F;
+            int32_t off = static_cast<int32_t>((p.ops[mi].v >> 8) & 0xFFFFF);
+            if (off & 0x80000) off |= static_cast<int32_t>(0xFFF00000);
+            uint32_t rt1 = static_cast<uint32_t>(p.ops[0].v);
+            uint32_t rt2 = static_cast<uint32_t>(p.ops[1].v);
+            bool is_stp = p.mn[0] == 's';
+            int scale = (p.ops[0].k == T_X || p.ops[0].k == T_D) ? 8 : (p.ops[0].k == T_Q ? 16 : 4);
+            int32_t simm7 = off / scale;
+            if (flags & 2) { // post-index
+                if (p.ops[0].k == T_X) {
+                    if (is_stp) return { format::ldst::encode_stp_64_ldstpair_post(rt1, base, rt2, simm7), true, nullptr };
+                    return { format::ldst::encode_ldp_64_ldstpair_post(rt1, base, rt2, simm7), true, nullptr };
+                } else if (p.ops[0].k == T_Q) {
+                    if (is_stp) return { format::ldst::encode_stp_q_ldstpair_post(rt1, base, rt2, simm7), true, nullptr };
+                    return { format::ldst::encode_ldp_q_ldstpair_post(rt1, base, rt2, simm7), true, nullptr };
+                } else {
+                    if (is_stp) return { format::ldst::encode_stp_32_ldstpair_post(rt1, base, rt2, simm7), true, nullptr };
+                    return { format::ldst::encode_ldp_32_ldstpair_post(rt1, base, rt2, simm7), true, nullptr };
+                }
+            }
+            if (flags & 1) { // pre-index
+                if (p.ops[0].k == T_X) {
+                    if (is_stp) return { format::ldst::encode_stp_64_ldstpair_pre(rt1, base, rt2, simm7), true, nullptr };
+                    return { format::ldst::encode_ldp_64_ldstpair_pre(rt1, base, rt2, simm7), true, nullptr };
+                } else if (p.ops[0].k == T_Q) {
+                    if (is_stp) return { format::ldst::encode_stp_q_ldstpair_pre(rt1, base, rt2, simm7), true, nullptr };
+                    return { format::ldst::encode_ldp_q_ldstpair_pre(rt1, base, rt2, simm7), true, nullptr };
+                } else {
+                    if (is_stp) return { format::ldst::encode_stp_32_ldstpair_pre(rt1, base, rt2, simm7), true, nullptr };
+                    return { format::ldst::encode_ldp_32_ldstpair_pre(rt1, base, rt2, simm7), true, nullptr };
+                }
+            }
+            // Offset (no pre/post) — only needed for Q/S/D pairs
+            if (p.ops[0].k == T_Q) {
+                if (is_stp) return { format::ldst::encode_stp_q_ldstpair_off(rt1, base, rt2, simm7), true, nullptr };
+                return { format::ldst::encode_ldp_q_ldstpair_off(rt1, base, rt2, simm7), true, nullptr };
+            }
+        }
+    }
+    // Special: LDNP/STNP with signed offset
+    if ((std::strcmp(p.mn, "ldnp") == 0 || std::strcmp(p.mn, "stnp") == 0) && p.n >= 2) {
+        int mi = -1; for (int i=0;i<p.n;i++) if(p.ops[i].k==T_MEM){mi=i;break;}
+        if (mi >= 0) {
+            uint32_t base = static_cast<uint32_t>(p.ops[mi].v) & 0x1F;
+            int32_t off = static_cast<int32_t>((p.ops[mi].v >> 8) & 0xFFFFF);
+            if (off & 0x80000) off |= static_cast<int32_t>(0xFFF00000);
+            uint32_t rt1 = static_cast<uint32_t>(p.ops[0].v);
+            uint32_t rt2 = static_cast<uint32_t>(p.ops[1].v);
+            int32_t simm7 = off / (p.ops[0].k == T_X ? 8 : 4);
+            if (p.mn[0] == 'l') {
+                if (p.ops[0].k == T_X) return { format::ldst::encode_ldnp_64_ldstnapair_offs(rt1, base, rt2, simm7), true, nullptr };
+                return { format::ldst::encode_ldnp_32_ldstnapair_offs(rt1, base, rt2, simm7), true, nullptr };
+            } else {
+                if (p.ops[0].k == T_X) return { format::ldst::encode_stnp_64_ldstnapair_offs(rt1, base, rt2, simm7), true, nullptr };
+                return { format::ldst::encode_stnp_32_ldstnapair_offs(rt1, base, rt2, simm7), true, nullptr };
+            }
+        }
+    }
+    // Special: PRFM with named hint
+    if (std::strcmp(p.mn, "prfm") == 0 && p.n >= 1) {
+        // Parse prefetch hint name → numeric value
+        uint32_t prfop = 0;
+        if (p.ops[0].k == T_IMM) { prfop = static_cast<uint32_t>(p.ops[0].v); }
+        else if (p.ops[0].k == T_IDENT) {
+            static const struct{const char*n;int l;uint8_t v;}pt[]={{"pldl1keep",9,0},{"pldl1strm",9,1},{"pldl2keep",9,2},{"pldl2strm",9,3},
+              {"pldl3keep",9,4},{"pldl3strm",9,5},{"plil1keep",9,8},{"plil1strm",9,9},
+              {"pstl1keep",9,16},{"pstl1strm",9,17},{"pstl2keep",9,18},{"pstl2strm",9,19}};
+            // IDENT tokens don't have start pointer in minimal Tok struct — skip named hints for now
+        }
+        int mi = -1; for (int i=0;i<p.n;i++) if(p.ops[i].k==T_MEM){mi=i;break;}
+        if (mi >= 0) {
+            uint32_t base = static_cast<uint32_t>(p.ops[mi].v) & 0x1F;
+            int32_t off = static_cast<int32_t>((p.ops[mi].v >> 8) & 0xFFFFF);
+            return { format::ldst::encode_prfm_p_ldst_pos(prfop, base, off / 8), true, nullptr };
+        }
+    }
+    // Special: SVE predicate LDR/STR p0, [Xn, #imm, mul vl]
+    if ((std::strcmp(p.mn, "ldr") == 0 || std::strcmp(p.mn, "str") == 0) && p.n >= 1 && p.ops[0].k == T_P) {
+        uint32_t pt = static_cast<uint32_t>(p.ops[0].v);
+        int mi = -1; for (int i=0;i<p.n;i++) if(p.ops[i].k==T_MEM){mi=i;break;}
+        if (mi >= 0) {
+            uint32_t base = static_cast<uint32_t>(p.ops[mi].v) & 0x1F;
+            int32_t off = static_cast<int32_t>((p.ops[mi].v >> 8) & 0xFFFFF);
+            if (off & 0x80000) off |= static_cast<int32_t>(0xFFF00000);
+            uint32_t imm9l = static_cast<uint32_t>(off) & 0x7;
+            uint32_t imm9h = (static_cast<uint32_t>(off) >> 3) & 0x3F;
+            if (p.mn[0] == 'l') return { format::sve::encode_ldr_p_bi_(pt, base, imm9l, imm9h), true, nullptr };
+            return { format::sve::encode_str_p_bi_(pt, base, imm9l, imm9h), true, nullptr };
+        }
     }
     // Special: ADD/SUB with SP as Rn — must use extended register form
     if ((std::strcmp(p.mn, "add") == 0 || std::strcmp(p.mn, "sub") == 0 || std::strcmp(p.mn, "adds") == 0 || std::strcmp(p.mn, "subs") == 0)
