@@ -1654,13 +1654,15 @@ const char* condition_to_string(Condition cond) {
 // Helper: check if OperandType is a register type (Register or IndexedRegister)
 inline bool is_register_type(OperandType t) { return t == OperandType::Register || t == OperandType::IndexedRegister; }
 
-// synthesize_alias() removed — alias handling is now in decode(insn, true)
+// synthesize_alias() removed — all alias handling is now in decode(insn, true)
+// The decoder handles: mnemonic change, operand adjustment, immediate computation,
+// condition inversion, and bitfield lsb/width transformation.
+std::optional<std::string> synthesize_alias(const Instruction&) {
+    return std::nullopt;
+}
 
-// synthesize_alias: still used by to_string() for display formatting
-// (computes final MOV immediate from MOVN/MOVZ, formats CMP/CMN/etc.)
-// The decode(insn, true) alias path handles mnemonic + operand adjustment,
-// but to_string() needs this for correct immediate formatting.
-std::optional<std::string> synthesize_alias(const Instruction& insn) {
+#if 0 // Dead code — kept as reference for alias rules
+std::optional<std::string> _old_synthesize_alias(const Instruction& insn) {
     auto is_sp_reg = [](uint32_t v) { return v == static_cast<uint32_t>(Register::SP) || v == static_cast<uint32_t>(Register::WSP); };
     auto reg_num = [](uint32_t v) { return v > 31 ? register_num(static_cast<Register>(v)) : v; };
 
@@ -2240,14 +2242,10 @@ std::optional<std::string> synthesize_alias(const Instruction& insn) {
 
     return std::nullopt;  // No alias
 }
+#endif // dead code
 
 // Format instruction as disassembly
 std::string Instruction::to_string() const {
-    // If mnemonic is already an alias (from decode with aliases=true), use it directly.
-    // Otherwise, try to synthesize an alias for display purposes.
-    auto alias = synthesize_alias(*this);
-    if (alias) return *alias;
-
     std::string result = mnemonic_to_string(mnemonic);
 
     // SIMD long/wide instructions: Q=1 → add '2' suffix (PMULL→PMULL2, SMLAL→SMLAL2, etc.)

@@ -2,6 +2,8 @@
 // Copyright (c) 2026 Kevin Szkudlapski
 // Auto-generated — do not edit
 
+#ifdef VEDA64_STRINGS
+
 #include "veda64.hpp"
 #include <iostream>
 #include <cassert>
@@ -176,3 +178,13 @@ int main() {
     std::cout << "All reference tests passed!" << std::endl;
     return 0;
 }
+
+#else // !VEDA64_STRINGS
+
+#include <cstdio>
+int main() {
+    printf("Reference tests skipped (VEDA64_STRINGS not set)\n");
+    return 0;
+}
+
+#endif

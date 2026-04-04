@@ -13,7 +13,9 @@ void test_udf_only_perm_undef() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: udf_only_perm_undef" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::UDF);
+#ifdef VEDA64_STRINGS
     std::cout << "  udf_only_perm_undef: " << result->to_string() << std::endl;
+#endif
 }
 
 int main() {

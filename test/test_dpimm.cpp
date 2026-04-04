@@ -15,7 +15,9 @@ void test_add_32_addsub_imm() {
     assert(result->mnemonic == Mnemonic::ADD);
     assert(result->operands.size() >= 1);
     assert(result->operands[0].type == OperandType::RegisterList);
+#ifdef VEDA64_STRINGS
     std::cout << "  add_32_addsub_imm: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_add_64_addsub_imm() {
@@ -27,7 +29,9 @@ void test_add_64_addsub_imm() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::RegisterList);
+#ifdef VEDA64_STRINGS
     std::cout << "  add_64_addsub_imm: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_addg_64_addsub_immtags() {
@@ -35,21 +39,27 @@ void test_addg_64_addsub_immtags() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: addg_64_addsub_immtags" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::ADDG);
+#ifdef VEDA64_STRINGS
     std::cout << "  addg_64_addsub_immtags: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_adds_32s_addsub_imm() {
     uint32_t insn = 0x31000000u;
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: adds_32s_addsub_imm" << std::endl; throw std::runtime_error("decode failed"); }
+#ifdef VEDA64_STRINGS
     std::cout << "  adds_32s_addsub_imm: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_adds_64s_addsub_imm() {
     uint32_t insn = 0xB1000000u;
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: adds_64s_addsub_imm" << std::endl; throw std::runtime_error("decode failed"); }
+#ifdef VEDA64_STRINGS
     std::cout << "  adds_64s_addsub_imm: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_adr_only_pcreladdr() {
@@ -57,7 +67,9 @@ void test_adr_only_pcreladdr() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: adr_only_pcreladdr" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::ADR);
+#ifdef VEDA64_STRINGS
     std::cout << "  adr_only_pcreladdr: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_adrp_only_pcreladdr() {
@@ -65,49 +77,63 @@ void test_adrp_only_pcreladdr() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: adrp_only_pcreladdr" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::ADRP);
+#ifdef VEDA64_STRINGS
     std::cout << "  adrp_only_pcreladdr: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_and_32_log_imm() {
     uint32_t insn = 0x12000000u;
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: and_32_log_imm" << std::endl; throw std::runtime_error("decode failed"); }
+#ifdef VEDA64_STRINGS
     std::cout << "  and_32_log_imm: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_and_64_log_imm() {
     uint32_t insn = 0x92000000u;
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: and_64_log_imm" << std::endl; throw std::runtime_error("decode failed"); }
+#ifdef VEDA64_STRINGS
     std::cout << "  and_64_log_imm: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ands_32s_log_imm() {
     uint32_t insn = 0x72000000u;
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: ands_32s_log_imm" << std::endl; throw std::runtime_error("decode failed"); }
+#ifdef VEDA64_STRINGS
     std::cout << "  ands_32s_log_imm: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ands_64s_log_imm() {
     uint32_t insn = 0xF2000000u;
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: ands_64s_log_imm" << std::endl; throw std::runtime_error("decode failed"); }
+#ifdef VEDA64_STRINGS
     std::cout << "  ands_64s_log_imm: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_asr_sbfm_32m_bitfield() {
     uint32_t insn = 0x13007C00u;
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: asr_sbfm_32m_bitfield" << std::endl; throw std::runtime_error("decode failed"); }
+#ifdef VEDA64_STRINGS
     std::cout << "  asr_sbfm_32m_bitfield: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_asr_sbfm_64m_bitfield() {
     uint32_t insn = 0x9340FC00u;
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: asr_sbfm_64m_bitfield" << std::endl; throw std::runtime_error("decode failed"); }
+#ifdef VEDA64_STRINGS
     std::cout << "  asr_sbfm_64m_bitfield: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_autiasppc_only_dp_1src_imm() {
@@ -115,7 +141,9 @@ void test_autiasppc_only_dp_1src_imm() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: autiasppc_only_dp_1src_imm" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::AUTIASPPC);
+#ifdef VEDA64_STRINGS
     std::cout << "  autiasppc_only_dp_1src_imm: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_autibsppc_only_dp_1src_imm() {
@@ -123,91 +151,117 @@ void test_autibsppc_only_dp_1src_imm() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: autibsppc_only_dp_1src_imm" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::AUTIBSPPC);
+#ifdef VEDA64_STRINGS
     std::cout << "  autibsppc_only_dp_1src_imm: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_bfc_bfm_32m_bitfield() {
     uint32_t insn = 0x330003E0u;
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: bfc_bfm_32m_bitfield" << std::endl; throw std::runtime_error("decode failed"); }
+#ifdef VEDA64_STRINGS
     std::cout << "  bfc_bfm_32m_bitfield: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_bfc_bfm_64m_bitfield() {
     uint32_t insn = 0xB34003E0u;
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: bfc_bfm_64m_bitfield" << std::endl; throw std::runtime_error("decode failed"); }
+#ifdef VEDA64_STRINGS
     std::cout << "  bfc_bfm_64m_bitfield: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_bfi_bfm_32m_bitfield() {
     uint32_t insn = 0x33000000u;
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: bfi_bfm_32m_bitfield" << std::endl; throw std::runtime_error("decode failed"); }
+#ifdef VEDA64_STRINGS
     std::cout << "  bfi_bfm_32m_bitfield: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_bfi_bfm_64m_bitfield() {
     uint32_t insn = 0xB3400000u;
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: bfi_bfm_64m_bitfield" << std::endl; throw std::runtime_error("decode failed"); }
+#ifdef VEDA64_STRINGS
     std::cout << "  bfi_bfm_64m_bitfield: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_bfm_32m_bitfield() {
     uint32_t insn = 0x33000000u;
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: bfm_32m_bitfield" << std::endl; throw std::runtime_error("decode failed"); }
+#ifdef VEDA64_STRINGS
     std::cout << "  bfm_32m_bitfield: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_bfm_64m_bitfield() {
     uint32_t insn = 0xB3400000u;
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: bfm_64m_bitfield" << std::endl; throw std::runtime_error("decode failed"); }
+#ifdef VEDA64_STRINGS
     std::cout << "  bfm_64m_bitfield: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_bfxil_bfm_32m_bitfield() {
     uint32_t insn = 0x33000000u;
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: bfxil_bfm_32m_bitfield" << std::endl; throw std::runtime_error("decode failed"); }
+#ifdef VEDA64_STRINGS
     std::cout << "  bfxil_bfm_32m_bitfield: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_bfxil_bfm_64m_bitfield() {
     uint32_t insn = 0xB3400000u;
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: bfxil_bfm_64m_bitfield" << std::endl; throw std::runtime_error("decode failed"); }
+#ifdef VEDA64_STRINGS
     std::cout << "  bfxil_bfm_64m_bitfield: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_cmn_adds_32s_addsub_imm() {
     uint32_t insn = 0x3100001Fu;
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: cmn_adds_32s_addsub_imm" << std::endl; throw std::runtime_error("decode failed"); }
+#ifdef VEDA64_STRINGS
     std::cout << "  cmn_adds_32s_addsub_imm: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_cmn_adds_64s_addsub_imm() {
     uint32_t insn = 0xB100001Fu;
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: cmn_adds_64s_addsub_imm" << std::endl; throw std::runtime_error("decode failed"); }
+#ifdef VEDA64_STRINGS
     std::cout << "  cmn_adds_64s_addsub_imm: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_cmp_subs_32s_addsub_imm() {
     uint32_t insn = 0x7100001Fu;
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: cmp_subs_32s_addsub_imm" << std::endl; throw std::runtime_error("decode failed"); }
+#ifdef VEDA64_STRINGS
     std::cout << "  cmp_subs_32s_addsub_imm: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_cmp_subs_64s_addsub_imm() {
     uint32_t insn = 0xF100001Fu;
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: cmp_subs_64s_addsub_imm" << std::endl; throw std::runtime_error("decode failed"); }
+#ifdef VEDA64_STRINGS
     std::cout << "  cmp_subs_64s_addsub_imm: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_eor_32_log_imm() {
@@ -215,7 +269,9 @@ void test_eor_32_log_imm() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: eor_32_log_imm" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::EOR);
+#ifdef VEDA64_STRINGS
     std::cout << "  eor_32_log_imm: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_eor_64_log_imm() {
@@ -223,49 +279,63 @@ void test_eor_64_log_imm() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: eor_64_log_imm" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::EOR);
+#ifdef VEDA64_STRINGS
     std::cout << "  eor_64_log_imm: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_extr_32_extract() {
     uint32_t insn = 0x13800000u;
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: extr_32_extract" << std::endl; throw std::runtime_error("decode failed"); }
+#ifdef VEDA64_STRINGS
     std::cout << "  extr_32_extract: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_extr_64_extract() {
     uint32_t insn = 0x93C00000u;
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: extr_64_extract" << std::endl; throw std::runtime_error("decode failed"); }
+#ifdef VEDA64_STRINGS
     std::cout << "  extr_64_extract: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_lsl_ubfm_32m_bitfield() {
     uint32_t insn = 0x53000000u;
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: lsl_ubfm_32m_bitfield" << std::endl; throw std::runtime_error("decode failed"); }
+#ifdef VEDA64_STRINGS
     std::cout << "  lsl_ubfm_32m_bitfield: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_lsl_ubfm_64m_bitfield() {
     uint32_t insn = 0xD3400000u;
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: lsl_ubfm_64m_bitfield" << std::endl; throw std::runtime_error("decode failed"); }
+#ifdef VEDA64_STRINGS
     std::cout << "  lsl_ubfm_64m_bitfield: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_lsr_ubfm_32m_bitfield() {
     uint32_t insn = 0x53007C00u;
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: lsr_ubfm_32m_bitfield" << std::endl; throw std::runtime_error("decode failed"); }
+#ifdef VEDA64_STRINGS
     std::cout << "  lsr_ubfm_32m_bitfield: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_lsr_ubfm_64m_bitfield() {
     uint32_t insn = 0xD340FC00u;
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: lsr_ubfm_64m_bitfield" << std::endl; throw std::runtime_error("decode failed"); }
+#ifdef VEDA64_STRINGS
     std::cout << "  lsr_ubfm_64m_bitfield: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_mov_add_32_addsub_imm() {
@@ -273,7 +343,9 @@ void test_mov_add_32_addsub_imm() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: mov_add_32_addsub_imm" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::ADD);
+#ifdef VEDA64_STRINGS
     std::cout << "  mov_add_32_addsub_imm: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_mov_add_64_addsub_imm() {
@@ -284,49 +356,63 @@ void test_mov_add_64_addsub_imm() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  mov_add_64_addsub_imm: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_mov_movn_32_movewide() {
     uint32_t insn = 0x12800000u;
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: mov_movn_32_movewide" << std::endl; throw std::runtime_error("decode failed"); }
+#ifdef VEDA64_STRINGS
     std::cout << "  mov_movn_32_movewide: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_mov_movn_64_movewide() {
     uint32_t insn = 0x92800000u;
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: mov_movn_64_movewide" << std::endl; throw std::runtime_error("decode failed"); }
+#ifdef VEDA64_STRINGS
     std::cout << "  mov_movn_64_movewide: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_mov_movz_32_movewide() {
     uint32_t insn = 0x52800000u;
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: mov_movz_32_movewide" << std::endl; throw std::runtime_error("decode failed"); }
+#ifdef VEDA64_STRINGS
     std::cout << "  mov_movz_32_movewide: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_mov_movz_64_movewide() {
     uint32_t insn = 0xD2800000u;
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: mov_movz_64_movewide" << std::endl; throw std::runtime_error("decode failed"); }
+#ifdef VEDA64_STRINGS
     std::cout << "  mov_movz_64_movewide: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_mov_orr_32_log_imm() {
     uint32_t insn = 0x320003E0u;
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: mov_orr_32_log_imm" << std::endl; throw std::runtime_error("decode failed"); }
+#ifdef VEDA64_STRINGS
     std::cout << "  mov_orr_32_log_imm: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_mov_orr_64_log_imm() {
     uint32_t insn = 0xB20003E0u;
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: mov_orr_64_log_imm" << std::endl; throw std::runtime_error("decode failed"); }
+#ifdef VEDA64_STRINGS
     std::cout << "  mov_orr_64_log_imm: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_movk_32_movewide() {
@@ -337,7 +423,9 @@ void test_movk_32_movewide() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::RegisterList);
+#ifdef VEDA64_STRINGS
     std::cout << "  movk_32_movewide: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_movk_64_movewide() {
@@ -348,105 +436,135 @@ void test_movk_64_movewide() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::RegisterList);
+#ifdef VEDA64_STRINGS
     std::cout << "  movk_64_movewide: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_movn_32_movewide() {
     uint32_t insn = 0x12800000u;
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: movn_32_movewide" << std::endl; throw std::runtime_error("decode failed"); }
+#ifdef VEDA64_STRINGS
     std::cout << "  movn_32_movewide: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_movn_64_movewide() {
     uint32_t insn = 0x92800000u;
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: movn_64_movewide" << std::endl; throw std::runtime_error("decode failed"); }
+#ifdef VEDA64_STRINGS
     std::cout << "  movn_64_movewide: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_movz_32_movewide() {
     uint32_t insn = 0x52800000u;
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: movz_32_movewide" << std::endl; throw std::runtime_error("decode failed"); }
+#ifdef VEDA64_STRINGS
     std::cout << "  movz_32_movewide: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_movz_64_movewide() {
     uint32_t insn = 0xD2800000u;
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: movz_64_movewide" << std::endl; throw std::runtime_error("decode failed"); }
+#ifdef VEDA64_STRINGS
     std::cout << "  movz_64_movewide: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_orr_32_log_imm() {
     uint32_t insn = 0x32000000u;
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: orr_32_log_imm" << std::endl; throw std::runtime_error("decode failed"); }
+#ifdef VEDA64_STRINGS
     std::cout << "  orr_32_log_imm: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_orr_64_log_imm() {
     uint32_t insn = 0xB2000000u;
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: orr_64_log_imm" << std::endl; throw std::runtime_error("decode failed"); }
+#ifdef VEDA64_STRINGS
     std::cout << "  orr_64_log_imm: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ror_extr_32_extract() {
     uint32_t insn = 0x13800000u;
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: ror_extr_32_extract" << std::endl; throw std::runtime_error("decode failed"); }
+#ifdef VEDA64_STRINGS
     std::cout << "  ror_extr_32_extract: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ror_extr_64_extract() {
     uint32_t insn = 0x93C00000u;
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: ror_extr_64_extract" << std::endl; throw std::runtime_error("decode failed"); }
+#ifdef VEDA64_STRINGS
     std::cout << "  ror_extr_64_extract: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_sbfiz_sbfm_32m_bitfield() {
     uint32_t insn = 0x13000000u;
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: sbfiz_sbfm_32m_bitfield" << std::endl; throw std::runtime_error("decode failed"); }
+#ifdef VEDA64_STRINGS
     std::cout << "  sbfiz_sbfm_32m_bitfield: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_sbfiz_sbfm_64m_bitfield() {
     uint32_t insn = 0x93400000u;
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: sbfiz_sbfm_64m_bitfield" << std::endl; throw std::runtime_error("decode failed"); }
+#ifdef VEDA64_STRINGS
     std::cout << "  sbfiz_sbfm_64m_bitfield: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_sbfm_32m_bitfield() {
     uint32_t insn = 0x13000000u;
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: sbfm_32m_bitfield" << std::endl; throw std::runtime_error("decode failed"); }
+#ifdef VEDA64_STRINGS
     std::cout << "  sbfm_32m_bitfield: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_sbfm_64m_bitfield() {
     uint32_t insn = 0x93400000u;
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: sbfm_64m_bitfield" << std::endl; throw std::runtime_error("decode failed"); }
+#ifdef VEDA64_STRINGS
     std::cout << "  sbfm_64m_bitfield: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_sbfx_sbfm_32m_bitfield() {
     uint32_t insn = 0x13000000u;
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: sbfx_sbfm_32m_bitfield" << std::endl; throw std::runtime_error("decode failed"); }
+#ifdef VEDA64_STRINGS
     std::cout << "  sbfx_sbfm_32m_bitfield: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_sbfx_sbfm_64m_bitfield() {
     uint32_t insn = 0x93400000u;
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: sbfx_sbfm_64m_bitfield" << std::endl; throw std::runtime_error("decode failed"); }
+#ifdef VEDA64_STRINGS
     std::cout << "  sbfx_sbfm_64m_bitfield: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_smax_32_minmax_imm() {
@@ -454,7 +572,9 @@ void test_smax_32_minmax_imm() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: smax_32_minmax_imm" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::SMAX);
+#ifdef VEDA64_STRINGS
     std::cout << "  smax_32_minmax_imm: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_smax_64_minmax_imm() {
@@ -462,7 +582,9 @@ void test_smax_64_minmax_imm() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: smax_64_minmax_imm" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::SMAX);
+#ifdef VEDA64_STRINGS
     std::cout << "  smax_64_minmax_imm: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_smin_32_minmax_imm() {
@@ -470,7 +592,9 @@ void test_smin_32_minmax_imm() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: smin_32_minmax_imm" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::SMIN);
+#ifdef VEDA64_STRINGS
     std::cout << "  smin_32_minmax_imm: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_smin_64_minmax_imm() {
@@ -478,21 +602,27 @@ void test_smin_64_minmax_imm() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: smin_64_minmax_imm" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::SMIN);
+#ifdef VEDA64_STRINGS
     std::cout << "  smin_64_minmax_imm: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_sub_32_addsub_imm() {
     uint32_t insn = 0x51000000u;
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: sub_32_addsub_imm" << std::endl; throw std::runtime_error("decode failed"); }
+#ifdef VEDA64_STRINGS
     std::cout << "  sub_32_addsub_imm: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_sub_64_addsub_imm() {
     uint32_t insn = 0xD1000000u;
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: sub_64_addsub_imm" << std::endl; throw std::runtime_error("decode failed"); }
+#ifdef VEDA64_STRINGS
     std::cout << "  sub_64_addsub_imm: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_subg_64_addsub_immtags() {
@@ -500,112 +630,144 @@ void test_subg_64_addsub_immtags() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: subg_64_addsub_immtags" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::SUBG);
+#ifdef VEDA64_STRINGS
     std::cout << "  subg_64_addsub_immtags: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_subs_32s_addsub_imm() {
     uint32_t insn = 0x71000000u;
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: subs_32s_addsub_imm" << std::endl; throw std::runtime_error("decode failed"); }
+#ifdef VEDA64_STRINGS
     std::cout << "  subs_32s_addsub_imm: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_subs_64s_addsub_imm() {
     uint32_t insn = 0xF1000000u;
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: subs_64s_addsub_imm" << std::endl; throw std::runtime_error("decode failed"); }
+#ifdef VEDA64_STRINGS
     std::cout << "  subs_64s_addsub_imm: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_sxtb_sbfm_32m_bitfield() {
     uint32_t insn = 0x13001C00u;
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: sxtb_sbfm_32m_bitfield" << std::endl; throw std::runtime_error("decode failed"); }
+#ifdef VEDA64_STRINGS
     std::cout << "  sxtb_sbfm_32m_bitfield: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_sxtb_sbfm_64m_bitfield() {
     uint32_t insn = 0x93401C00u;
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: sxtb_sbfm_64m_bitfield" << std::endl; throw std::runtime_error("decode failed"); }
+#ifdef VEDA64_STRINGS
     std::cout << "  sxtb_sbfm_64m_bitfield: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_sxth_sbfm_32m_bitfield() {
     uint32_t insn = 0x13003C00u;
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: sxth_sbfm_32m_bitfield" << std::endl; throw std::runtime_error("decode failed"); }
+#ifdef VEDA64_STRINGS
     std::cout << "  sxth_sbfm_32m_bitfield: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_sxth_sbfm_64m_bitfield() {
     uint32_t insn = 0x93403C00u;
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: sxth_sbfm_64m_bitfield" << std::endl; throw std::runtime_error("decode failed"); }
+#ifdef VEDA64_STRINGS
     std::cout << "  sxth_sbfm_64m_bitfield: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_sxtw_sbfm_64m_bitfield() {
     uint32_t insn = 0x93407C00u;
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: sxtw_sbfm_64m_bitfield" << std::endl; throw std::runtime_error("decode failed"); }
+#ifdef VEDA64_STRINGS
     std::cout << "  sxtw_sbfm_64m_bitfield: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_tst_ands_32s_log_imm() {
     uint32_t insn = 0x7200001Fu;
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: tst_ands_32s_log_imm" << std::endl; throw std::runtime_error("decode failed"); }
+#ifdef VEDA64_STRINGS
     std::cout << "  tst_ands_32s_log_imm: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_tst_ands_64s_log_imm() {
     uint32_t insn = 0xF200001Fu;
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: tst_ands_64s_log_imm" << std::endl; throw std::runtime_error("decode failed"); }
+#ifdef VEDA64_STRINGS
     std::cout << "  tst_ands_64s_log_imm: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ubfiz_ubfm_32m_bitfield() {
     uint32_t insn = 0x53000000u;
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: ubfiz_ubfm_32m_bitfield" << std::endl; throw std::runtime_error("decode failed"); }
+#ifdef VEDA64_STRINGS
     std::cout << "  ubfiz_ubfm_32m_bitfield: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ubfiz_ubfm_64m_bitfield() {
     uint32_t insn = 0xD3400000u;
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: ubfiz_ubfm_64m_bitfield" << std::endl; throw std::runtime_error("decode failed"); }
+#ifdef VEDA64_STRINGS
     std::cout << "  ubfiz_ubfm_64m_bitfield: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ubfm_32m_bitfield() {
     uint32_t insn = 0x53000000u;
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: ubfm_32m_bitfield" << std::endl; throw std::runtime_error("decode failed"); }
+#ifdef VEDA64_STRINGS
     std::cout << "  ubfm_32m_bitfield: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ubfm_64m_bitfield() {
     uint32_t insn = 0xD3400000u;
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: ubfm_64m_bitfield" << std::endl; throw std::runtime_error("decode failed"); }
+#ifdef VEDA64_STRINGS
     std::cout << "  ubfm_64m_bitfield: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ubfx_ubfm_32m_bitfield() {
     uint32_t insn = 0x53000000u;
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: ubfx_ubfm_32m_bitfield" << std::endl; throw std::runtime_error("decode failed"); }
+#ifdef VEDA64_STRINGS
     std::cout << "  ubfx_ubfm_32m_bitfield: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ubfx_ubfm_64m_bitfield() {
     uint32_t insn = 0xD3400000u;
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: ubfx_ubfm_64m_bitfield" << std::endl; throw std::runtime_error("decode failed"); }
+#ifdef VEDA64_STRINGS
     std::cout << "  ubfx_ubfm_64m_bitfield: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_umax_32u_minmax_imm() {
@@ -613,7 +775,9 @@ void test_umax_32u_minmax_imm() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: umax_32u_minmax_imm" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::UMAX);
+#ifdef VEDA64_STRINGS
     std::cout << "  umax_32u_minmax_imm: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_umax_64u_minmax_imm() {
@@ -621,7 +785,9 @@ void test_umax_64u_minmax_imm() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: umax_64u_minmax_imm" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::UMAX);
+#ifdef VEDA64_STRINGS
     std::cout << "  umax_64u_minmax_imm: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_umin_32u_minmax_imm() {
@@ -629,7 +795,9 @@ void test_umin_32u_minmax_imm() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: umin_32u_minmax_imm" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::UMIN);
+#ifdef VEDA64_STRINGS
     std::cout << "  umin_32u_minmax_imm: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_umin_64u_minmax_imm() {
@@ -637,21 +805,27 @@ void test_umin_64u_minmax_imm() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: umin_64u_minmax_imm" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::UMIN);
+#ifdef VEDA64_STRINGS
     std::cout << "  umin_64u_minmax_imm: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_uxtb_ubfm_32m_bitfield() {
     uint32_t insn = 0x53001C00u;
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: uxtb_ubfm_32m_bitfield" << std::endl; throw std::runtime_error("decode failed"); }
+#ifdef VEDA64_STRINGS
     std::cout << "  uxtb_ubfm_32m_bitfield: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_uxth_ubfm_32m_bitfield() {
     uint32_t insn = 0x53003C00u;
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: uxth_ubfm_32m_bitfield" << std::endl; throw std::runtime_error("decode failed"); }
+#ifdef VEDA64_STRINGS
     std::cout << "  uxth_ubfm_32m_bitfield: " << result->to_string() << std::endl;
+#endif
 }
 
 int main() {

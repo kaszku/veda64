@@ -13,7 +13,9 @@ void test_abs_z_p_z_m() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: abs_z_p_z_m" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::ABS);
+#ifdef VEDA64_STRINGS
     std::cout << "  abs_z_p_z_m: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_abs_z_p_z_z() {
@@ -21,7 +23,9 @@ void test_abs_z_p_z_z() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: abs_z_p_z_z" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::ABS);
+#ifdef VEDA64_STRINGS
     std::cout << "  abs_z_p_z_z: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_adclb_z_zzz_() {
@@ -29,7 +33,9 @@ void test_adclb_z_zzz_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: adclb_z_zzz_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::ADCLB);
+#ifdef VEDA64_STRINGS
     std::cout << "  adclb_z_zzz_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_adclt_z_zzz_() {
@@ -37,7 +43,9 @@ void test_adclt_z_zzz_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: adclt_z_zzz_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::ADCLT);
+#ifdef VEDA64_STRINGS
     std::cout << "  adclt_z_zzz_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_add_z_p_zz_() {
@@ -45,7 +53,9 @@ void test_add_z_p_zz_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: add_z_p_zz_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::ADD);
+#ifdef VEDA64_STRINGS
     std::cout << "  add_z_p_zz_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_add_z_zi_() {
@@ -53,7 +63,9 @@ void test_add_z_zi_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: add_z_zi_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::ADD);
+#ifdef VEDA64_STRINGS
     std::cout << "  add_z_zi_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_add_z_zz_() {
@@ -61,7 +73,9 @@ void test_add_z_zz_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: add_z_zz_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::ADD);
+#ifdef VEDA64_STRINGS
     std::cout << "  add_z_zz_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_addhnb_z_zz_() {
@@ -69,7 +83,9 @@ void test_addhnb_z_zz_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: addhnb_z_zz_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::ADDHNB);
+#ifdef VEDA64_STRINGS
     std::cout << "  addhnb_z_zz_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_addhnt_z_zz_() {
@@ -77,7 +93,9 @@ void test_addhnt_z_zz_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: addhnt_z_zz_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::ADDHNT);
+#ifdef VEDA64_STRINGS
     std::cout << "  addhnt_z_zz_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_addp_z_p_zz_() {
@@ -85,7 +103,9 @@ void test_addp_z_p_zz_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: addp_z_p_zz_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::ADDP);
+#ifdef VEDA64_STRINGS
     std::cout << "  addp_z_p_zz_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_addpl_r_ri_() {
@@ -93,7 +113,9 @@ void test_addpl_r_ri_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: addpl_r_ri_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::ADDPL);
+#ifdef VEDA64_STRINGS
     std::cout << "  addpl_r_ri_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_addpt_z_p_zz_() {
@@ -106,7 +128,9 @@ void test_addpt_z_p_zz_() {
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
     assert(result->operands[3].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  addpt_z_p_zz_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_addpt_z_zz_() {
@@ -118,7 +142,9 @@ void test_addpt_z_zz_() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  addpt_z_zz_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_addqp_z_zz_() {
@@ -126,7 +152,9 @@ void test_addqp_z_zz_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: addqp_z_zz_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::ADDQP);
+#ifdef VEDA64_STRINGS
     std::cout << "  addqp_z_zz_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_addqv_z_p_z_() {
@@ -134,7 +162,9 @@ void test_addqv_z_p_z_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: addqv_z_p_z_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::ADDQV);
+#ifdef VEDA64_STRINGS
     std::cout << "  addqv_z_p_z_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_addspl_r_ri_() {
@@ -142,7 +172,9 @@ void test_addspl_r_ri_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: addspl_r_ri_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::ADDSPL);
+#ifdef VEDA64_STRINGS
     std::cout << "  addspl_r_ri_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_addsubp_z_zz_() {
@@ -150,7 +182,9 @@ void test_addsubp_z_zz_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: addsubp_z_zz_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::ADDSUBP);
+#ifdef VEDA64_STRINGS
     std::cout << "  addsubp_z_zz_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_addsvl_r_ri_() {
@@ -158,7 +192,9 @@ void test_addsvl_r_ri_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: addsvl_r_ri_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::ADDSVL);
+#ifdef VEDA64_STRINGS
     std::cout << "  addsvl_r_ri_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_addvl_r_ri_() {
@@ -166,7 +202,9 @@ void test_addvl_r_ri_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: addvl_r_ri_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::ADDVL);
+#ifdef VEDA64_STRINGS
     std::cout << "  addvl_r_ri_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_adr_z_az_sd_same_scaled() {
@@ -174,7 +212,9 @@ void test_adr_z_az_sd_same_scaled() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: adr_z_az_sd_same_scaled" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::ADR);
+#ifdef VEDA64_STRINGS
     std::cout << "  adr_z_az_sd_same_scaled: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_adr_z_az_d_s32_scaled() {
@@ -185,7 +225,9 @@ void test_adr_z_az_d_s32_scaled() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::MemoryRegOffset);
+#ifdef VEDA64_STRINGS
     std::cout << "  adr_z_az_d_s32_scaled: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_adr_z_az_d_u32_scaled() {
@@ -196,7 +238,9 @@ void test_adr_z_az_d_u32_scaled() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::MemoryRegOffset);
+#ifdef VEDA64_STRINGS
     std::cout << "  adr_z_az_d_u32_scaled: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_aesd_mz_zzi_2x1() {
@@ -207,7 +251,9 @@ void test_aesd_mz_zzi_2x1() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  aesd_mz_zzi_2x1: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_aesd_mz_zzi_4x1() {
@@ -218,7 +264,9 @@ void test_aesd_mz_zzi_4x1() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  aesd_mz_zzi_4x1: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_aesd_z_zz_() {
@@ -230,7 +278,9 @@ void test_aesd_z_zz_() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  aesd_z_zz_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_aesdimc_mz_zzi_2x1() {
@@ -241,7 +291,9 @@ void test_aesdimc_mz_zzi_2x1() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  aesdimc_mz_zzi_2x1: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_aesdimc_mz_zzi_4x1() {
@@ -252,7 +304,9 @@ void test_aesdimc_mz_zzi_4x1() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  aesdimc_mz_zzi_4x1: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_aese_mz_zzi_2x1() {
@@ -263,7 +317,9 @@ void test_aese_mz_zzi_2x1() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  aese_mz_zzi_2x1: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_aese_mz_zzi_4x1() {
@@ -274,7 +330,9 @@ void test_aese_mz_zzi_4x1() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  aese_mz_zzi_4x1: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_aese_z_zz_() {
@@ -286,7 +344,9 @@ void test_aese_z_zz_() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  aese_z_zz_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_aesemc_mz_zzi_2x1() {
@@ -297,7 +357,9 @@ void test_aesemc_mz_zzi_2x1() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  aesemc_mz_zzi_2x1: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_aesemc_mz_zzi_4x1() {
@@ -308,7 +370,9 @@ void test_aesemc_mz_zzi_4x1() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  aesemc_mz_zzi_4x1: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_aesimc_z_z_() {
@@ -319,7 +383,9 @@ void test_aesimc_z_z_() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  aesimc_z_z_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_aesmc_z_z_() {
@@ -330,35 +396,45 @@ void test_aesmc_z_z_() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  aesmc_z_z_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_and_p_p_pp_z() {
     uint32_t insn = 0x25004000u;
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: and_p_p_pp_z" << std::endl; throw std::runtime_error("decode failed"); }
+#ifdef VEDA64_STRINGS
     std::cout << "  and_p_p_pp_z: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_and_z_p_zz_() {
     uint32_t insn = 0x041A0000u;
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: and_z_p_zz_" << std::endl; throw std::runtime_error("decode failed"); }
+#ifdef VEDA64_STRINGS
     std::cout << "  and_z_p_zz_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_and_z_zi_() {
     uint32_t insn = 0x05800000u;
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: and_z_zi_" << std::endl; throw std::runtime_error("decode failed"); }
+#ifdef VEDA64_STRINGS
     std::cout << "  and_z_zi_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_and_z_zz_() {
     uint32_t insn = 0x04203000u;
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: and_z_zz_" << std::endl; throw std::runtime_error("decode failed"); }
+#ifdef VEDA64_STRINGS
     std::cout << "  and_z_zz_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_andqv_z_p_z_() {
@@ -366,14 +442,18 @@ void test_andqv_z_p_z_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: andqv_z_p_z_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::ANDQV);
+#ifdef VEDA64_STRINGS
     std::cout << "  andqv_z_p_z_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ands_p_p_pp_z() {
     uint32_t insn = 0x25404000u;
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: ands_p_p_pp_z" << std::endl; throw std::runtime_error("decode failed"); }
+#ifdef VEDA64_STRINGS
     std::cout << "  ands_p_p_pp_z: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_andv_r_p_z_() {
@@ -381,7 +461,9 @@ void test_andv_r_p_z_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: andv_r_p_z_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::ANDV);
+#ifdef VEDA64_STRINGS
     std::cout << "  andv_r_p_z_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_asr_z_p_zi_() {
@@ -389,7 +471,9 @@ void test_asr_z_p_zi_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: asr_z_p_zi_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::ASR);
+#ifdef VEDA64_STRINGS
     std::cout << "  asr_z_p_zi_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_asr_z_p_zw_() {
@@ -397,7 +481,9 @@ void test_asr_z_p_zw_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: asr_z_p_zw_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::ASR);
+#ifdef VEDA64_STRINGS
     std::cout << "  asr_z_p_zw_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_asr_z_p_zz_() {
@@ -405,7 +491,9 @@ void test_asr_z_p_zz_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: asr_z_p_zz_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::ASR);
+#ifdef VEDA64_STRINGS
     std::cout << "  asr_z_p_zz_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_asr_z_zi_() {
@@ -413,7 +501,9 @@ void test_asr_z_zi_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: asr_z_zi_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::ASR);
+#ifdef VEDA64_STRINGS
     std::cout << "  asr_z_zi_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_asr_z_zw_() {
@@ -421,7 +511,9 @@ void test_asr_z_zw_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: asr_z_zw_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::ASR);
+#ifdef VEDA64_STRINGS
     std::cout << "  asr_z_zw_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_asrd_z_p_zi_() {
@@ -429,7 +521,9 @@ void test_asrd_z_p_zi_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: asrd_z_p_zi_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::ASRD);
+#ifdef VEDA64_STRINGS
     std::cout << "  asrd_z_p_zi_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_asrr_z_p_zz_() {
@@ -437,7 +531,9 @@ void test_asrr_z_p_zz_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: asrr_z_p_zz_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::ASRR);
+#ifdef VEDA64_STRINGS
     std::cout << "  asrr_z_p_zz_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_bcax_z_zzz_() {
@@ -450,7 +546,9 @@ void test_bcax_z_zzz_() {
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
     assert(result->operands[3].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  bcax_z_zzz_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_bdep_z_zz_() {
@@ -458,7 +556,9 @@ void test_bdep_z_zz_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: bdep_z_zz_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::BDEP);
+#ifdef VEDA64_STRINGS
     std::cout << "  bdep_z_zz_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_bext_z_zz_() {
@@ -466,7 +566,9 @@ void test_bext_z_zz_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: bext_z_zz_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::BEXT);
+#ifdef VEDA64_STRINGS
     std::cout << "  bext_z_zz_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_bf1cvt_z_z8_b2bf() {
@@ -476,7 +578,9 @@ void test_bf1cvt_z_z8_b2bf() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  bf1cvt_z_z8_b2bf: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_bf2cvt_z_z8_b2bf() {
@@ -486,7 +590,9 @@ void test_bf2cvt_z_z8_b2bf() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  bf2cvt_z_z8_b2bf: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_bf1cvtlt_z_z8_b2bf() {
@@ -496,7 +602,9 @@ void test_bf1cvtlt_z_z8_b2bf() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  bf1cvtlt_z_z8_b2bf: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_bf2cvtlt_z_z8_b2bf() {
@@ -506,7 +614,9 @@ void test_bf2cvtlt_z_z8_b2bf() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  bf2cvtlt_z_z8_b2bf: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_bfadd_z_p_zz_() {
@@ -519,7 +629,9 @@ void test_bfadd_z_p_zz_() {
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
     assert(result->operands[3].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  bfadd_z_p_zz_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_bfadd_z_zz_() {
@@ -531,7 +643,9 @@ void test_bfadd_z_zz_() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  bfadd_z_zz_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_bfclamp_z_zz_() {
@@ -543,7 +657,9 @@ void test_bfclamp_z_zz_() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  bfclamp_z_zz_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_bfcvt_z_p_z_s2bf() {
@@ -555,7 +671,9 @@ void test_bfcvt_z_p_z_s2bf() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  bfcvt_z_p_z_s2bf: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_bfcvt_z_p_z_s2bfz() {
@@ -567,7 +685,9 @@ void test_bfcvt_z_p_z_s2bfz() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  bfcvt_z_p_z_s2bfz: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_bfcvtn_z8_mz2_bf2b() {
@@ -578,7 +698,9 @@ void test_bfcvtn_z8_mz2_bf2b() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::RegisterList);
+#ifdef VEDA64_STRINGS
     std::cout << "  bfcvtn_z8_mz2_bf2b: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_bfcvtnt_z_p_z_s2bf() {
@@ -590,7 +712,9 @@ void test_bfcvtnt_z_p_z_s2bf() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  bfcvtnt_z_p_z_s2bf: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_bfcvtnt_z_p_z_s2bfz() {
@@ -602,7 +726,9 @@ void test_bfcvtnt_z_p_z_s2bfz() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  bfcvtnt_z_p_z_s2bfz: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_bfdot_z_zzz_() {
@@ -614,7 +740,9 @@ void test_bfdot_z_zzz_() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  bfdot_z_zzz_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_bfdot_z_zzzi_() {
@@ -626,7 +754,9 @@ void test_bfdot_z_zzzi_() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  bfdot_z_zzzi_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_bfmax_z_p_zz_() {
@@ -639,7 +769,9 @@ void test_bfmax_z_p_zz_() {
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
     assert(result->operands[3].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  bfmax_z_p_zz_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_bfmaxnm_z_p_zz_() {
@@ -652,7 +784,9 @@ void test_bfmaxnm_z_p_zz_() {
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
     assert(result->operands[3].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  bfmaxnm_z_p_zz_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_bfmin_z_p_zz_() {
@@ -665,7 +799,9 @@ void test_bfmin_z_p_zz_() {
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
     assert(result->operands[3].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  bfmin_z_p_zz_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_bfminnm_z_p_zz_() {
@@ -678,7 +814,9 @@ void test_bfminnm_z_p_zz_() {
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
     assert(result->operands[3].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  bfminnm_z_p_zz_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_bfmla_z_p_zzz_() {
@@ -691,7 +829,9 @@ void test_bfmla_z_p_zzz_() {
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
     assert(result->operands[3].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  bfmla_z_p_zzz_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_bfmla_z_zzzi_h() {
@@ -703,7 +843,9 @@ void test_bfmla_z_zzzi_h() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  bfmla_z_zzzi_h: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_bfmlalb_z_zzz_() {
@@ -715,7 +857,9 @@ void test_bfmlalb_z_zzz_() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  bfmlalb_z_zzz_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_bfmlalb_z_zzzi_() {
@@ -727,7 +871,9 @@ void test_bfmlalb_z_zzzi_() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  bfmlalb_z_zzzi_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_bfmlalt_z_zzz_() {
@@ -739,7 +885,9 @@ void test_bfmlalt_z_zzz_() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  bfmlalt_z_zzz_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_bfmlalt_z_zzzi_() {
@@ -751,7 +899,9 @@ void test_bfmlalt_z_zzzi_() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  bfmlalt_z_zzzi_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_bfmls_z_p_zzz_() {
@@ -764,7 +914,9 @@ void test_bfmls_z_p_zzz_() {
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
     assert(result->operands[3].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  bfmls_z_p_zzz_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_bfmls_z_zzzi_h() {
@@ -776,7 +928,9 @@ void test_bfmls_z_zzzi_h() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  bfmls_z_zzzi_h: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_bfmlslb_z_zzz_() {
@@ -788,7 +942,9 @@ void test_bfmlslb_z_zzz_() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  bfmlslb_z_zzz_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_bfmlslb_z_zzzi_() {
@@ -800,7 +956,9 @@ void test_bfmlslb_z_zzzi_() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  bfmlslb_z_zzzi_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_bfmlslt_z_zzz_() {
@@ -812,7 +970,9 @@ void test_bfmlslt_z_zzz_() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  bfmlslt_z_zzz_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_bfmlslt_z_zzzi_() {
@@ -824,7 +984,9 @@ void test_bfmlslt_z_zzzi_() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  bfmlslt_z_zzzi_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_bfmmla_z_zzz_h() {
@@ -836,7 +998,9 @@ void test_bfmmla_z_zzz_h() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  bfmmla_z_zzz_h: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_bfmmla_z_zzz_() {
@@ -848,7 +1012,9 @@ void test_bfmmla_z_zzz_() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  bfmmla_z_zzz_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_bfmul_z_p_zz_() {
@@ -861,7 +1027,9 @@ void test_bfmul_z_p_zz_() {
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
     assert(result->operands[3].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  bfmul_z_p_zz_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_bfmul_z_zz_() {
@@ -873,7 +1041,9 @@ void test_bfmul_z_zz_() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  bfmul_z_zz_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_bfmul_z_zzi_h() {
@@ -885,7 +1055,9 @@ void test_bfmul_z_zzi_h() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  bfmul_z_zzi_h: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_bfscale_z_p_zz_() {
@@ -898,7 +1070,9 @@ void test_bfscale_z_p_zz_() {
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
     assert(result->operands[3].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  bfscale_z_p_zz_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_bfsub_z_p_zz_() {
@@ -911,7 +1085,9 @@ void test_bfsub_z_p_zz_() {
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
     assert(result->operands[3].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  bfsub_z_p_zz_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_bfsub_z_zz_() {
@@ -923,7 +1099,9 @@ void test_bfsub_z_zz_() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  bfsub_z_zz_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_bgrp_z_zz_() {
@@ -931,14 +1109,18 @@ void test_bgrp_z_zz_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: bgrp_z_zz_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::BGRP);
+#ifdef VEDA64_STRINGS
     std::cout << "  bgrp_z_zz_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_bic_z_zi__and_z_zi_() {
     uint32_t insn = 0x05800000u;
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: bic_z_zi__and_z_zi_" << std::endl; throw std::runtime_error("decode failed"); }
+#ifdef VEDA64_STRINGS
     std::cout << "  bic_z_zi__and_z_zi_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_bic_p_p_pp_z() {
@@ -951,7 +1133,9 @@ void test_bic_p_p_pp_z() {
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
     assert(result->operands[3].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  bic_p_p_pp_z: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_bic_z_p_zz_() {
@@ -959,7 +1143,9 @@ void test_bic_z_p_zz_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: bic_z_p_zz_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::BIC);
+#ifdef VEDA64_STRINGS
     std::cout << "  bic_z_p_zz_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_bic_z_zz_() {
@@ -971,7 +1157,9 @@ void test_bic_z_zz_() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  bic_z_zz_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_bics_p_p_pp_z() {
@@ -984,7 +1172,9 @@ void test_bics_p_p_pp_z() {
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
     assert(result->operands[3].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  bics_p_p_pp_z: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_brka_p_p_p_() {
@@ -997,7 +1187,9 @@ void test_brka_p_p_p_() {
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
     assert(result->operands[3].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  brka_p_p_p_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_brkas_p_p_p_z() {
@@ -1009,7 +1201,9 @@ void test_brkas_p_p_p_z() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  brkas_p_p_p_z: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_brkb_p_p_p_() {
@@ -1022,7 +1216,9 @@ void test_brkb_p_p_p_() {
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
     assert(result->operands[3].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  brkb_p_p_p_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_brkbs_p_p_p_z() {
@@ -1034,7 +1230,9 @@ void test_brkbs_p_p_p_z() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  brkbs_p_p_p_z: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_brkn_p_p_pp_() {
@@ -1047,7 +1245,9 @@ void test_brkn_p_p_pp_() {
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
     assert(result->operands[3].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  brkn_p_p_pp_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_brkns_p_p_pp_() {
@@ -1060,7 +1260,9 @@ void test_brkns_p_p_pp_() {
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
     assert(result->operands[3].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  brkns_p_p_pp_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_brkpa_p_p_pp_() {
@@ -1073,7 +1275,9 @@ void test_brkpa_p_p_pp_() {
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
     assert(result->operands[3].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  brkpa_p_p_pp_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_brkpas_p_p_pp_() {
@@ -1086,7 +1290,9 @@ void test_brkpas_p_p_pp_() {
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
     assert(result->operands[3].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  brkpas_p_p_pp_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_brkpb_p_p_pp_() {
@@ -1099,7 +1305,9 @@ void test_brkpb_p_p_pp_() {
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
     assert(result->operands[3].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  brkpb_p_p_pp_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_brkpbs_p_p_pp_() {
@@ -1112,7 +1320,9 @@ void test_brkpbs_p_p_pp_() {
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
     assert(result->operands[3].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  brkpbs_p_p_pp_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_bsl1n_z_zzz_() {
@@ -1125,7 +1335,9 @@ void test_bsl1n_z_zzz_() {
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
     assert(result->operands[3].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  bsl1n_z_zzz_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_bsl2n_z_zzz_() {
@@ -1138,7 +1350,9 @@ void test_bsl2n_z_zzz_() {
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
     assert(result->operands[3].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  bsl2n_z_zzz_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_bsl_z_zzz_() {
@@ -1151,7 +1365,9 @@ void test_bsl_z_zzz_() {
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
     assert(result->operands[3].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  bsl_z_zzz_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_cadd_z_zz_() {
@@ -1159,7 +1375,9 @@ void test_cadd_z_zz_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: cadd_z_zz_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::CADD);
+#ifdef VEDA64_STRINGS
     std::cout << "  cadd_z_zz_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_cdot_z_zzz_() {
@@ -1167,7 +1385,9 @@ void test_cdot_z_zzz_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: cdot_z_zzz_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::CDOT);
+#ifdef VEDA64_STRINGS
     std::cout << "  cdot_z_zzz_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_cdot_z_zzzi_s() {
@@ -1175,7 +1395,9 @@ void test_cdot_z_zzzi_s() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: cdot_z_zzzi_s" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::CDOT);
+#ifdef VEDA64_STRINGS
     std::cout << "  cdot_z_zzzi_s: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_cdot_z_zzzi_d() {
@@ -1183,7 +1405,9 @@ void test_cdot_z_zzzi_d() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: cdot_z_zzzi_d" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::CDOT);
+#ifdef VEDA64_STRINGS
     std::cout << "  cdot_z_zzzi_d: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_clasta_r_p_z_() {
@@ -1191,7 +1415,9 @@ void test_clasta_r_p_z_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: clasta_r_p_z_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::CLASTA);
+#ifdef VEDA64_STRINGS
     std::cout << "  clasta_r_p_z_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_clasta_v_p_z_() {
@@ -1199,7 +1425,9 @@ void test_clasta_v_p_z_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: clasta_v_p_z_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::CLASTA);
+#ifdef VEDA64_STRINGS
     std::cout << "  clasta_v_p_z_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_clasta_z_p_zz_() {
@@ -1207,7 +1435,9 @@ void test_clasta_z_p_zz_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: clasta_z_p_zz_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::CLASTA);
+#ifdef VEDA64_STRINGS
     std::cout << "  clasta_z_p_zz_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_clastb_r_p_z_() {
@@ -1215,7 +1445,9 @@ void test_clastb_r_p_z_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: clastb_r_p_z_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::CLASTB);
+#ifdef VEDA64_STRINGS
     std::cout << "  clastb_r_p_z_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_clastb_v_p_z_() {
@@ -1223,7 +1455,9 @@ void test_clastb_v_p_z_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: clastb_v_p_z_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::CLASTB);
+#ifdef VEDA64_STRINGS
     std::cout << "  clastb_v_p_z_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_clastb_z_p_zz_() {
@@ -1231,7 +1465,9 @@ void test_clastb_z_p_zz_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: clastb_z_p_zz_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::CLASTB);
+#ifdef VEDA64_STRINGS
     std::cout << "  clastb_z_p_zz_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_cls_z_p_z_m() {
@@ -1239,7 +1475,9 @@ void test_cls_z_p_z_m() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: cls_z_p_z_m" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::CLS);
+#ifdef VEDA64_STRINGS
     std::cout << "  cls_z_p_z_m: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_cls_z_p_z_z() {
@@ -1247,7 +1485,9 @@ void test_cls_z_p_z_z() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: cls_z_p_z_z" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::CLS);
+#ifdef VEDA64_STRINGS
     std::cout << "  cls_z_p_z_z: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_clz_z_p_z_m() {
@@ -1255,7 +1495,9 @@ void test_clz_z_p_z_m() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: clz_z_p_z_m" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::CLZ);
+#ifdef VEDA64_STRINGS
     std::cout << "  clz_z_p_z_m: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_clz_z_p_z_z() {
@@ -1263,7 +1505,9 @@ void test_clz_z_p_z_z() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: clz_z_p_z_z" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::CLZ);
+#ifdef VEDA64_STRINGS
     std::cout << "  clz_z_p_z_z: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_cmla_z_zzz_() {
@@ -1271,7 +1515,9 @@ void test_cmla_z_zzz_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: cmla_z_zzz_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::CMLA);
+#ifdef VEDA64_STRINGS
     std::cout << "  cmla_z_zzz_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_cmla_z_zzzi_h() {
@@ -1279,7 +1525,9 @@ void test_cmla_z_zzzi_h() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: cmla_z_zzzi_h" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::CMLA);
+#ifdef VEDA64_STRINGS
     std::cout << "  cmla_z_zzzi_h: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_cmla_z_zzzi_s() {
@@ -1287,189 +1535,243 @@ void test_cmla_z_zzzi_s() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: cmla_z_zzzi_s" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::CMLA);
+#ifdef VEDA64_STRINGS
     std::cout << "  cmla_z_zzzi_s: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_cmpeq_p_p_zi_() {
     uint32_t insn = 0x25008000u;
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: cmpeq_p_p_zi_" << std::endl; throw std::runtime_error("decode failed"); }
+#ifdef VEDA64_STRINGS
     std::cout << "  cmpeq_p_p_zi_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_cmpgt_p_p_zi_() {
     uint32_t insn = 0x25000010u;
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: cmpgt_p_p_zi_" << std::endl; throw std::runtime_error("decode failed"); }
+#ifdef VEDA64_STRINGS
     std::cout << "  cmpgt_p_p_zi_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_cmpge_p_p_zi_() {
     uint32_t insn = 0x25000000u;
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: cmpge_p_p_zi_" << std::endl; throw std::runtime_error("decode failed"); }
+#ifdef VEDA64_STRINGS
     std::cout << "  cmpge_p_p_zi_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_cmphi_p_p_zi_() {
     uint32_t insn = 0x24200010u;
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: cmphi_p_p_zi_" << std::endl; throw std::runtime_error("decode failed"); }
+#ifdef VEDA64_STRINGS
     std::cout << "  cmphi_p_p_zi_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_cmphs_p_p_zi_() {
     uint32_t insn = 0x24200000u;
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: cmphs_p_p_zi_" << std::endl; throw std::runtime_error("decode failed"); }
+#ifdef VEDA64_STRINGS
     std::cout << "  cmphs_p_p_zi_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_cmplt_p_p_zi_() {
     uint32_t insn = 0x25002000u;
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: cmplt_p_p_zi_" << std::endl; throw std::runtime_error("decode failed"); }
+#ifdef VEDA64_STRINGS
     std::cout << "  cmplt_p_p_zi_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_cmple_p_p_zi_() {
     uint32_t insn = 0x25002010u;
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: cmple_p_p_zi_" << std::endl; throw std::runtime_error("decode failed"); }
+#ifdef VEDA64_STRINGS
     std::cout << "  cmple_p_p_zi_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_cmplo_p_p_zi_() {
     uint32_t insn = 0x24202000u;
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: cmplo_p_p_zi_" << std::endl; throw std::runtime_error("decode failed"); }
+#ifdef VEDA64_STRINGS
     std::cout << "  cmplo_p_p_zi_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_cmpls_p_p_zi_() {
     uint32_t insn = 0x24202010u;
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: cmpls_p_p_zi_" << std::endl; throw std::runtime_error("decode failed"); }
+#ifdef VEDA64_STRINGS
     std::cout << "  cmpls_p_p_zi_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_cmpne_p_p_zi_() {
     uint32_t insn = 0x25008010u;
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: cmpne_p_p_zi_" << std::endl; throw std::runtime_error("decode failed"); }
+#ifdef VEDA64_STRINGS
     std::cout << "  cmpne_p_p_zi_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_cmpeq_p_p_zw_() {
     uint32_t insn = 0x24002000u;
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: cmpeq_p_p_zw_" << std::endl; throw std::runtime_error("decode failed"); }
+#ifdef VEDA64_STRINGS
     std::cout << "  cmpeq_p_p_zw_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_cmpgt_p_p_zw_() {
     uint32_t insn = 0x24004010u;
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: cmpgt_p_p_zw_" << std::endl; throw std::runtime_error("decode failed"); }
+#ifdef VEDA64_STRINGS
     std::cout << "  cmpgt_p_p_zw_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_cmpge_p_p_zw_() {
     uint32_t insn = 0x24004000u;
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: cmpge_p_p_zw_" << std::endl; throw std::runtime_error("decode failed"); }
+#ifdef VEDA64_STRINGS
     std::cout << "  cmpge_p_p_zw_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_cmphi_p_p_zw_() {
     uint32_t insn = 0x2400C010u;
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: cmphi_p_p_zw_" << std::endl; throw std::runtime_error("decode failed"); }
+#ifdef VEDA64_STRINGS
     std::cout << "  cmphi_p_p_zw_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_cmphs_p_p_zw_() {
     uint32_t insn = 0x2400C000u;
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: cmphs_p_p_zw_" << std::endl; throw std::runtime_error("decode failed"); }
+#ifdef VEDA64_STRINGS
     std::cout << "  cmphs_p_p_zw_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_cmplt_p_p_zw_() {
     uint32_t insn = 0x24006000u;
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: cmplt_p_p_zw_" << std::endl; throw std::runtime_error("decode failed"); }
+#ifdef VEDA64_STRINGS
     std::cout << "  cmplt_p_p_zw_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_cmple_p_p_zw_() {
     uint32_t insn = 0x24006010u;
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: cmple_p_p_zw_" << std::endl; throw std::runtime_error("decode failed"); }
+#ifdef VEDA64_STRINGS
     std::cout << "  cmple_p_p_zw_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_cmplo_p_p_zw_() {
     uint32_t insn = 0x2400E000u;
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: cmplo_p_p_zw_" << std::endl; throw std::runtime_error("decode failed"); }
+#ifdef VEDA64_STRINGS
     std::cout << "  cmplo_p_p_zw_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_cmpls_p_p_zw_() {
     uint32_t insn = 0x2400E010u;
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: cmpls_p_p_zw_" << std::endl; throw std::runtime_error("decode failed"); }
+#ifdef VEDA64_STRINGS
     std::cout << "  cmpls_p_p_zw_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_cmpne_p_p_zw_() {
     uint32_t insn = 0x24002010u;
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: cmpne_p_p_zw_" << std::endl; throw std::runtime_error("decode failed"); }
+#ifdef VEDA64_STRINGS
     std::cout << "  cmpne_p_p_zw_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_cmpeq_p_p_zz_() {
     uint32_t insn = 0x2400A000u;
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: cmpeq_p_p_zz_" << std::endl; throw std::runtime_error("decode failed"); }
+#ifdef VEDA64_STRINGS
     std::cout << "  cmpeq_p_p_zz_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_cmpgt_p_p_zz_() {
     uint32_t insn = 0x24008010u;
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: cmpgt_p_p_zz_" << std::endl; throw std::runtime_error("decode failed"); }
+#ifdef VEDA64_STRINGS
     std::cout << "  cmpgt_p_p_zz_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_cmpge_p_p_zz_() {
     uint32_t insn = 0x24008000u;
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: cmpge_p_p_zz_" << std::endl; throw std::runtime_error("decode failed"); }
+#ifdef VEDA64_STRINGS
     std::cout << "  cmpge_p_p_zz_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_cmphi_p_p_zz_() {
     uint32_t insn = 0x24000010u;
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: cmphi_p_p_zz_" << std::endl; throw std::runtime_error("decode failed"); }
+#ifdef VEDA64_STRINGS
     std::cout << "  cmphi_p_p_zz_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_cmphs_p_p_zz_() {
     uint32_t insn = 0x24000000u;
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: cmphs_p_p_zz_" << std::endl; throw std::runtime_error("decode failed"); }
+#ifdef VEDA64_STRINGS
     std::cout << "  cmphs_p_p_zz_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_cmpne_p_p_zz_() {
     uint32_t insn = 0x2400A010u;
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: cmpne_p_p_zz_" << std::endl; throw std::runtime_error("decode failed"); }
+#ifdef VEDA64_STRINGS
     std::cout << "  cmpne_p_p_zz_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_cmple_p_p_zz__cmpge_p_p_zz_() {
@@ -1477,7 +1779,9 @@ void test_cmple_p_p_zz__cmpge_p_p_zz_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: cmple_p_p_zz__cmpge_p_p_zz_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::CMPGE);
+#ifdef VEDA64_STRINGS
     std::cout << "  cmple_p_p_zz__cmpge_p_p_zz_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_cmplo_p_p_zz__cmphi_p_p_zz_() {
@@ -1485,7 +1789,9 @@ void test_cmplo_p_p_zz__cmphi_p_p_zz_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: cmplo_p_p_zz__cmphi_p_p_zz_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::CMPHI);
+#ifdef VEDA64_STRINGS
     std::cout << "  cmplo_p_p_zz__cmphi_p_p_zz_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_cmpls_p_p_zz__cmphs_p_p_zz_() {
@@ -1493,7 +1799,9 @@ void test_cmpls_p_p_zz__cmphs_p_p_zz_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: cmpls_p_p_zz__cmphs_p_p_zz_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::CMPHS);
+#ifdef VEDA64_STRINGS
     std::cout << "  cmpls_p_p_zz__cmphs_p_p_zz_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_cmplt_p_p_zz__cmpgt_p_p_zz_() {
@@ -1501,7 +1809,9 @@ void test_cmplt_p_p_zz__cmpgt_p_p_zz_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: cmplt_p_p_zz__cmpgt_p_p_zz_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::CMPGT);
+#ifdef VEDA64_STRINGS
     std::cout << "  cmplt_p_p_zz__cmpgt_p_p_zz_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_cnot_z_p_z_m() {
@@ -1509,7 +1819,9 @@ void test_cnot_z_p_z_m() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: cnot_z_p_z_m" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::CNOT);
+#ifdef VEDA64_STRINGS
     std::cout << "  cnot_z_p_z_m: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_cnot_z_p_z_z() {
@@ -1517,7 +1829,9 @@ void test_cnot_z_p_z_z() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: cnot_z_p_z_z" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::CNOT);
+#ifdef VEDA64_STRINGS
     std::cout << "  cnot_z_p_z_z: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_cnt_z_p_z_m() {
@@ -1525,7 +1839,9 @@ void test_cnt_z_p_z_m() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: cnt_z_p_z_m" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::CNT);
+#ifdef VEDA64_STRINGS
     std::cout << "  cnt_z_p_z_m: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_cnt_z_p_z_z() {
@@ -1533,7 +1849,9 @@ void test_cnt_z_p_z_z() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: cnt_z_p_z_z" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::CNT);
+#ifdef VEDA64_STRINGS
     std::cout << "  cnt_z_p_z_z: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_cntb_r_s_() {
@@ -1542,7 +1860,9 @@ void test_cntb_r_s_() {
     if (!result.has_value()) { std::cerr << "DECODE FAIL: cntb_r_s_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->operands.size() >= 1);
     assert(result->operands[0].type == OperandType::RegisterList);
+#ifdef VEDA64_STRINGS
     std::cout << "  cntb_r_s_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_cntd_r_s_() {
@@ -1551,7 +1871,9 @@ void test_cntd_r_s_() {
     if (!result.has_value()) { std::cerr << "DECODE FAIL: cntd_r_s_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->operands.size() >= 1);
     assert(result->operands[0].type == OperandType::RegisterList);
+#ifdef VEDA64_STRINGS
     std::cout << "  cntd_r_s_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_cnth_r_s_() {
@@ -1560,7 +1882,9 @@ void test_cnth_r_s_() {
     if (!result.has_value()) { std::cerr << "DECODE FAIL: cnth_r_s_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->operands.size() >= 1);
     assert(result->operands[0].type == OperandType::RegisterList);
+#ifdef VEDA64_STRINGS
     std::cout << "  cnth_r_s_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_cntw_r_s_() {
@@ -1569,7 +1893,9 @@ void test_cntw_r_s_() {
     if (!result.has_value()) { std::cerr << "DECODE FAIL: cntw_r_s_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->operands.size() >= 1);
     assert(result->operands[0].type == OperandType::RegisterList);
+#ifdef VEDA64_STRINGS
     std::cout << "  cntw_r_s_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_cntp_r_p_p_() {
@@ -1577,7 +1903,9 @@ void test_cntp_r_p_p_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: cntp_r_p_p_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::CNTP);
+#ifdef VEDA64_STRINGS
     std::cout << "  cntp_r_p_p_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_cntp_r_pn_() {
@@ -1585,7 +1913,9 @@ void test_cntp_r_pn_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: cntp_r_pn_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::CNTP);
+#ifdef VEDA64_STRINGS
     std::cout << "  cntp_r_pn_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_compact_z_p_z_s() {
@@ -1593,7 +1923,9 @@ void test_compact_z_p_z_s() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: compact_z_p_z_s" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::COMPACT);
+#ifdef VEDA64_STRINGS
     std::cout << "  compact_z_p_z_s: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_compact_z_p_z_() {
@@ -1601,7 +1933,9 @@ void test_compact_z_p_z_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: compact_z_p_z_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::COMPACT);
+#ifdef VEDA64_STRINGS
     std::cout << "  compact_z_p_z_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_cpy_z_o_i_() {
@@ -1609,7 +1943,9 @@ void test_cpy_z_o_i_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: cpy_z_o_i_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::CPY);
+#ifdef VEDA64_STRINGS
     std::cout << "  cpy_z_o_i_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_cpy_z_p_i_() {
@@ -1617,7 +1953,9 @@ void test_cpy_z_p_i_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: cpy_z_p_i_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::CPY);
+#ifdef VEDA64_STRINGS
     std::cout << "  cpy_z_p_i_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_cpy_z_p_r_() {
@@ -1625,7 +1963,9 @@ void test_cpy_z_p_r_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: cpy_z_p_r_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::CPY);
+#ifdef VEDA64_STRINGS
     std::cout << "  cpy_z_p_r_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_cpy_z_p_v_() {
@@ -1633,7 +1973,9 @@ void test_cpy_z_p_v_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: cpy_z_p_v_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::CPY);
+#ifdef VEDA64_STRINGS
     std::cout << "  cpy_z_p_v_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ctermeq_rr_() {
@@ -1643,7 +1985,9 @@ void test_ctermeq_rr_() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  ctermeq_rr_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ctermne_rr_() {
@@ -1653,7 +1997,9 @@ void test_ctermne_rr_() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  ctermne_rr_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_decb_r_rs_() {
@@ -1662,7 +2008,9 @@ void test_decb_r_rs_() {
     if (!result.has_value()) { std::cerr << "DECODE FAIL: decb_r_rs_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->operands.size() >= 1);
     assert(result->operands[0].type == OperandType::RegisterList);
+#ifdef VEDA64_STRINGS
     std::cout << "  decb_r_rs_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_decd_r_rs_() {
@@ -1671,7 +2019,9 @@ void test_decd_r_rs_() {
     if (!result.has_value()) { std::cerr << "DECODE FAIL: decd_r_rs_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->operands.size() >= 1);
     assert(result->operands[0].type == OperandType::RegisterList);
+#ifdef VEDA64_STRINGS
     std::cout << "  decd_r_rs_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_dech_r_rs_() {
@@ -1680,7 +2030,9 @@ void test_dech_r_rs_() {
     if (!result.has_value()) { std::cerr << "DECODE FAIL: dech_r_rs_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->operands.size() >= 1);
     assert(result->operands[0].type == OperandType::RegisterList);
+#ifdef VEDA64_STRINGS
     std::cout << "  dech_r_rs_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_decw_r_rs_() {
@@ -1689,7 +2041,9 @@ void test_decw_r_rs_() {
     if (!result.has_value()) { std::cerr << "DECODE FAIL: decw_r_rs_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->operands.size() >= 1);
     assert(result->operands[0].type == OperandType::RegisterList);
+#ifdef VEDA64_STRINGS
     std::cout << "  decw_r_rs_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_decd_z_zs_() {
@@ -1698,7 +2052,9 @@ void test_decd_z_zs_() {
     if (!result.has_value()) { std::cerr << "DECODE FAIL: decd_z_zs_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->operands.size() >= 1);
     assert(result->operands[0].type == OperandType::RegisterList);
+#ifdef VEDA64_STRINGS
     std::cout << "  decd_z_zs_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_dech_z_zs_() {
@@ -1707,7 +2063,9 @@ void test_dech_z_zs_() {
     if (!result.has_value()) { std::cerr << "DECODE FAIL: dech_z_zs_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->operands.size() >= 1);
     assert(result->operands[0].type == OperandType::RegisterList);
+#ifdef VEDA64_STRINGS
     std::cout << "  dech_z_zs_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_decw_z_zs_() {
@@ -1716,7 +2074,9 @@ void test_decw_z_zs_() {
     if (!result.has_value()) { std::cerr << "DECODE FAIL: decw_z_zs_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->operands.size() >= 1);
     assert(result->operands[0].type == OperandType::RegisterList);
+#ifdef VEDA64_STRINGS
     std::cout << "  decw_z_zs_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_decp_r_p_r_() {
@@ -1724,7 +2084,9 @@ void test_decp_r_p_r_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: decp_r_p_r_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::DECP);
+#ifdef VEDA64_STRINGS
     std::cout << "  decp_r_p_r_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_decp_z_p_z_() {
@@ -1732,7 +2094,9 @@ void test_decp_z_p_z_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: decp_z_p_z_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::DECP);
+#ifdef VEDA64_STRINGS
     std::cout << "  decp_z_p_z_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_dup_z_i_() {
@@ -1740,7 +2104,9 @@ void test_dup_z_i_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: dup_z_i_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::DUP);
+#ifdef VEDA64_STRINGS
     std::cout << "  dup_z_i_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_dup_z_r_() {
@@ -1748,7 +2114,9 @@ void test_dup_z_r_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: dup_z_r_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::DUP);
+#ifdef VEDA64_STRINGS
     std::cout << "  dup_z_r_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_dup_z_zi_() {
@@ -1756,7 +2124,9 @@ void test_dup_z_zi_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: dup_z_zi_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::DUP);
+#ifdef VEDA64_STRINGS
     std::cout << "  dup_z_zi_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_dupm_z_i_() {
@@ -1764,7 +2134,9 @@ void test_dupm_z_i_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: dupm_z_i_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::DUPM);
+#ifdef VEDA64_STRINGS
     std::cout << "  dupm_z_i_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_dupq_z_zi_() {
@@ -1772,7 +2144,9 @@ void test_dupq_z_zi_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: dupq_z_zi_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::DUPQ);
+#ifdef VEDA64_STRINGS
     std::cout << "  dupq_z_zi_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_eon_z_zi__eor_z_zi_() {
@@ -1780,7 +2154,9 @@ void test_eon_z_zi__eor_z_zi_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: eon_z_zi__eor_z_zi_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::EOR);
+#ifdef VEDA64_STRINGS
     std::cout << "  eon_z_zi__eor_z_zi_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_eor3_z_zzz_() {
@@ -1793,7 +2169,9 @@ void test_eor3_z_zzz_() {
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
     assert(result->operands[3].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  eor3_z_zzz_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_eor_p_p_pp_z() {
@@ -1806,7 +2184,9 @@ void test_eor_p_p_pp_z() {
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
     assert(result->operands[3].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  eor_p_p_pp_z: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_eor_z_p_zz_() {
@@ -1814,7 +2194,9 @@ void test_eor_z_p_zz_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: eor_z_p_zz_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::EOR);
+#ifdef VEDA64_STRINGS
     std::cout << "  eor_z_p_zz_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_eor_z_zi_() {
@@ -1822,7 +2204,9 @@ void test_eor_z_zi_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: eor_z_zi_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::EOR);
+#ifdef VEDA64_STRINGS
     std::cout << "  eor_z_zi_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_eor_z_zz_() {
@@ -1834,7 +2218,9 @@ void test_eor_z_zz_() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  eor_z_zz_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_eorbt_z_zz_() {
@@ -1842,7 +2228,9 @@ void test_eorbt_z_zz_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: eorbt_z_zz_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::EORBT);
+#ifdef VEDA64_STRINGS
     std::cout << "  eorbt_z_zz_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_eorqv_z_p_z_() {
@@ -1850,7 +2238,9 @@ void test_eorqv_z_p_z_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: eorqv_z_p_z_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::EORQV);
+#ifdef VEDA64_STRINGS
     std::cout << "  eorqv_z_p_z_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_eors_p_p_pp_z() {
@@ -1863,7 +2253,9 @@ void test_eors_p_p_pp_z() {
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
     assert(result->operands[3].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  eors_p_p_pp_z: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_eortb_z_zz_() {
@@ -1871,7 +2263,9 @@ void test_eortb_z_zz_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: eortb_z_zz_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::EORTB);
+#ifdef VEDA64_STRINGS
     std::cout << "  eortb_z_zz_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_eorv_r_p_z_() {
@@ -1879,7 +2273,9 @@ void test_eorv_r_p_z_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: eorv_r_p_z_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::EORV);
+#ifdef VEDA64_STRINGS
     std::cout << "  eorv_r_p_z_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_expand_z_p_z_() {
@@ -1887,7 +2283,9 @@ void test_expand_z_p_z_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: expand_z_p_z_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::EXPAND);
+#ifdef VEDA64_STRINGS
     std::cout << "  expand_z_p_z_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ext_z_zi_con() {
@@ -1895,7 +2293,9 @@ void test_ext_z_zi_con() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: ext_z_zi_con" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::EXT);
+#ifdef VEDA64_STRINGS
     std::cout << "  ext_z_zi_con: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ext_z_zi_des() {
@@ -1903,7 +2303,9 @@ void test_ext_z_zi_des() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: ext_z_zi_des" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::EXT);
+#ifdef VEDA64_STRINGS
     std::cout << "  ext_z_zi_des: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_extq_z_zi_des() {
@@ -1911,7 +2313,9 @@ void test_extq_z_zi_des() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: extq_z_zi_des" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::EXTQ);
+#ifdef VEDA64_STRINGS
     std::cout << "  extq_z_zi_des: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_f1cvt_z_z8_b2h() {
@@ -1921,7 +2325,9 @@ void test_f1cvt_z_z8_b2h() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  f1cvt_z_z8_b2h: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_f2cvt_z_z8_b2h() {
@@ -1931,7 +2337,9 @@ void test_f2cvt_z_z8_b2h() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  f2cvt_z_z8_b2h: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_f1cvtlt_z_z8_b2h() {
@@ -1941,7 +2349,9 @@ void test_f1cvtlt_z_z8_b2h() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  f1cvtlt_z_z8_b2h: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_f2cvtlt_z_z8_b2h() {
@@ -1951,7 +2361,9 @@ void test_f2cvtlt_z_z8_b2h() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  f2cvtlt_z_z8_b2h: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fabd_z_p_zz_() {
@@ -1959,7 +2371,9 @@ void test_fabd_z_p_zz_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fabd_z_p_zz_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FABD);
+#ifdef VEDA64_STRINGS
     std::cout << "  fabd_z_p_zz_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fabs_z_p_z_m() {
@@ -1967,7 +2381,9 @@ void test_fabs_z_p_z_m() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fabs_z_p_z_m" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FABS);
+#ifdef VEDA64_STRINGS
     std::cout << "  fabs_z_p_z_m: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fabs_z_p_z_z() {
@@ -1975,21 +2391,27 @@ void test_fabs_z_p_z_z() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fabs_z_p_z_z" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FABS);
+#ifdef VEDA64_STRINGS
     std::cout << "  fabs_z_p_z_z: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_facgt_p_p_zz_() {
     uint32_t insn = 0x6540E010u;
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: facgt_p_p_zz_" << std::endl; throw std::runtime_error("decode failed"); }
+#ifdef VEDA64_STRINGS
     std::cout << "  facgt_p_p_zz_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_facge_p_p_zz_() {
     uint32_t insn = 0x6540C010u;
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: facge_p_p_zz_" << std::endl; throw std::runtime_error("decode failed"); }
+#ifdef VEDA64_STRINGS
     std::cout << "  facge_p_p_zz_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_facle_p_p_zz__facge_p_p_zz_() {
@@ -1997,7 +2419,9 @@ void test_facle_p_p_zz__facge_p_p_zz_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: facle_p_p_zz__facge_p_p_zz_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FACGE);
+#ifdef VEDA64_STRINGS
     std::cout << "  facle_p_p_zz__facge_p_p_zz_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_faclt_p_p_zz__facgt_p_p_zz_() {
@@ -2005,7 +2429,9 @@ void test_faclt_p_p_zz__facgt_p_p_zz_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: faclt_p_p_zz__facgt_p_p_zz_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FACGT);
+#ifdef VEDA64_STRINGS
     std::cout << "  faclt_p_p_zz__facgt_p_p_zz_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fadd_z_p_zs_() {
@@ -2013,7 +2439,9 @@ void test_fadd_z_p_zs_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fadd_z_p_zs_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FADD);
+#ifdef VEDA64_STRINGS
     std::cout << "  fadd_z_p_zs_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fadd_z_p_zz_() {
@@ -2021,7 +2449,9 @@ void test_fadd_z_p_zz_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fadd_z_p_zz_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FADD);
+#ifdef VEDA64_STRINGS
     std::cout << "  fadd_z_p_zz_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fadd_z_zz_() {
@@ -2029,7 +2459,9 @@ void test_fadd_z_zz_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fadd_z_zz_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FADD);
+#ifdef VEDA64_STRINGS
     std::cout << "  fadd_z_zz_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fadda_v_p_z_() {
@@ -2037,7 +2469,9 @@ void test_fadda_v_p_z_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fadda_v_p_z_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FADDA);
+#ifdef VEDA64_STRINGS
     std::cout << "  fadda_v_p_z_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_faddp_z_p_zz_() {
@@ -2045,7 +2479,9 @@ void test_faddp_z_p_zz_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: faddp_z_p_zz_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FADDP);
+#ifdef VEDA64_STRINGS
     std::cout << "  faddp_z_p_zz_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_faddqv_z_p_z_() {
@@ -2053,7 +2489,9 @@ void test_faddqv_z_p_z_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: faddqv_z_p_z_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FADDQV);
+#ifdef VEDA64_STRINGS
     std::cout << "  faddqv_z_p_z_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_faddv_v_p_z_() {
@@ -2061,7 +2499,9 @@ void test_faddv_v_p_z_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: faddv_v_p_z_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FADDV);
+#ifdef VEDA64_STRINGS
     std::cout << "  faddv_v_p_z_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_famax_z_p_zz_() {
@@ -2069,7 +2509,9 @@ void test_famax_z_p_zz_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: famax_z_p_zz_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FAMAX);
+#ifdef VEDA64_STRINGS
     std::cout << "  famax_z_p_zz_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_famin_z_p_zz_() {
@@ -2077,7 +2519,9 @@ void test_famin_z_p_zz_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: famin_z_p_zz_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FAMIN);
+#ifdef VEDA64_STRINGS
     std::cout << "  famin_z_p_zz_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fcadd_z_p_zz_() {
@@ -2085,7 +2529,9 @@ void test_fcadd_z_p_zz_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fcadd_z_p_zz_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FCADD);
+#ifdef VEDA64_STRINGS
     std::cout << "  fcadd_z_p_zz_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fclamp_z_zz_() {
@@ -2093,84 +2539,108 @@ void test_fclamp_z_zz_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fclamp_z_zz_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FCLAMP);
+#ifdef VEDA64_STRINGS
     std::cout << "  fclamp_z_zz_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fcmeq_p_p_z0_() {
     uint32_t insn = 0x65522000u;
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fcmeq_p_p_z0_" << std::endl; throw std::runtime_error("decode failed"); }
+#ifdef VEDA64_STRINGS
     std::cout << "  fcmeq_p_p_z0_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fcmgt_p_p_z0_() {
     uint32_t insn = 0x65502010u;
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fcmgt_p_p_z0_" << std::endl; throw std::runtime_error("decode failed"); }
+#ifdef VEDA64_STRINGS
     std::cout << "  fcmgt_p_p_z0_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fcmge_p_p_z0_() {
     uint32_t insn = 0x65502000u;
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fcmge_p_p_z0_" << std::endl; throw std::runtime_error("decode failed"); }
+#ifdef VEDA64_STRINGS
     std::cout << "  fcmge_p_p_z0_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fcmlt_p_p_z0_() {
     uint32_t insn = 0x65512000u;
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fcmlt_p_p_z0_" << std::endl; throw std::runtime_error("decode failed"); }
+#ifdef VEDA64_STRINGS
     std::cout << "  fcmlt_p_p_z0_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fcmle_p_p_z0_() {
     uint32_t insn = 0x65512010u;
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fcmle_p_p_z0_" << std::endl; throw std::runtime_error("decode failed"); }
+#ifdef VEDA64_STRINGS
     std::cout << "  fcmle_p_p_z0_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fcmne_p_p_z0_() {
     uint32_t insn = 0x65532000u;
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fcmne_p_p_z0_" << std::endl; throw std::runtime_error("decode failed"); }
+#ifdef VEDA64_STRINGS
     std::cout << "  fcmne_p_p_z0_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fcmeq_p_p_zz_() {
     uint32_t insn = 0x65406000u;
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fcmeq_p_p_zz_" << std::endl; throw std::runtime_error("decode failed"); }
+#ifdef VEDA64_STRINGS
     std::cout << "  fcmeq_p_p_zz_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fcmgt_p_p_zz_() {
     uint32_t insn = 0x65404010u;
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fcmgt_p_p_zz_" << std::endl; throw std::runtime_error("decode failed"); }
+#ifdef VEDA64_STRINGS
     std::cout << "  fcmgt_p_p_zz_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fcmge_p_p_zz_() {
     uint32_t insn = 0x65404000u;
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fcmge_p_p_zz_" << std::endl; throw std::runtime_error("decode failed"); }
+#ifdef VEDA64_STRINGS
     std::cout << "  fcmge_p_p_zz_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fcmne_p_p_zz_() {
     uint32_t insn = 0x65406010u;
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fcmne_p_p_zz_" << std::endl; throw std::runtime_error("decode failed"); }
+#ifdef VEDA64_STRINGS
     std::cout << "  fcmne_p_p_zz_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fcmuo_p_p_zz_() {
     uint32_t insn = 0x6540C000u;
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fcmuo_p_p_zz_" << std::endl; throw std::runtime_error("decode failed"); }
+#ifdef VEDA64_STRINGS
     std::cout << "  fcmuo_p_p_zz_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fcmla_z_p_zzz_() {
@@ -2178,7 +2648,9 @@ void test_fcmla_z_p_zzz_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fcmla_z_p_zzz_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FCMLA);
+#ifdef VEDA64_STRINGS
     std::cout << "  fcmla_z_p_zzz_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fcmla_z_zzzi_h() {
@@ -2186,7 +2658,9 @@ void test_fcmla_z_zzzi_h() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fcmla_z_zzzi_h" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FCMLA);
+#ifdef VEDA64_STRINGS
     std::cout << "  fcmla_z_zzzi_h: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fcmla_z_zzzi_s() {
@@ -2194,7 +2668,9 @@ void test_fcmla_z_zzzi_s() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fcmla_z_zzzi_s" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FCMLA);
+#ifdef VEDA64_STRINGS
     std::cout << "  fcmla_z_zzzi_s: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fcmle_p_p_zz__fcmge_p_p_zz_() {
@@ -2202,7 +2678,9 @@ void test_fcmle_p_p_zz__fcmge_p_p_zz_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fcmle_p_p_zz__fcmge_p_p_zz_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FCMGE);
+#ifdef VEDA64_STRINGS
     std::cout << "  fcmle_p_p_zz__fcmge_p_p_zz_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fcmlt_p_p_zz__fcmgt_p_p_zz_() {
@@ -2210,7 +2688,9 @@ void test_fcmlt_p_p_zz__fcmgt_p_p_zz_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fcmlt_p_p_zz__fcmgt_p_p_zz_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FCMGT);
+#ifdef VEDA64_STRINGS
     std::cout << "  fcmlt_p_p_zz__fcmgt_p_p_zz_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fcpy_z_p_i_() {
@@ -2218,7 +2698,9 @@ void test_fcpy_z_p_i_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fcpy_z_p_i_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FCPY);
+#ifdef VEDA64_STRINGS
     std::cout << "  fcpy_z_p_i_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fcvt_z_p_z_h2s() {
@@ -2230,7 +2712,9 @@ void test_fcvt_z_p_z_h2s() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  fcvt_z_p_z_h2s: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fcvt_z_p_z_h2sz() {
@@ -2242,7 +2726,9 @@ void test_fcvt_z_p_z_h2sz() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  fcvt_z_p_z_h2sz: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fcvt_z_p_z_h2d() {
@@ -2254,7 +2740,9 @@ void test_fcvt_z_p_z_h2d() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  fcvt_z_p_z_h2d: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fcvt_z_p_z_h2dz() {
@@ -2266,7 +2754,9 @@ void test_fcvt_z_p_z_h2dz() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  fcvt_z_p_z_h2dz: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fcvt_z_p_z_s2h() {
@@ -2278,7 +2768,9 @@ void test_fcvt_z_p_z_s2h() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  fcvt_z_p_z_s2h: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fcvt_z_p_z_s2hz() {
@@ -2290,7 +2782,9 @@ void test_fcvt_z_p_z_s2hz() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  fcvt_z_p_z_s2hz: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fcvt_z_p_z_s2d() {
@@ -2302,7 +2796,9 @@ void test_fcvt_z_p_z_s2d() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  fcvt_z_p_z_s2d: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fcvt_z_p_z_s2dz() {
@@ -2314,7 +2810,9 @@ void test_fcvt_z_p_z_s2dz() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  fcvt_z_p_z_s2dz: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fcvt_z_p_z_d2h() {
@@ -2326,7 +2824,9 @@ void test_fcvt_z_p_z_d2h() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  fcvt_z_p_z_d2h: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fcvt_z_p_z_d2hz() {
@@ -2338,7 +2838,9 @@ void test_fcvt_z_p_z_d2hz() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  fcvt_z_p_z_d2hz: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fcvt_z_p_z_d2s() {
@@ -2350,7 +2852,9 @@ void test_fcvt_z_p_z_d2s() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  fcvt_z_p_z_d2s: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fcvt_z_p_z_d2sz() {
@@ -2362,7 +2866,9 @@ void test_fcvt_z_p_z_d2sz() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  fcvt_z_p_z_d2sz: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fcvtlt_z_p_z_h2s() {
@@ -2374,7 +2880,9 @@ void test_fcvtlt_z_p_z_h2s() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  fcvtlt_z_p_z_h2s: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fcvtlt_z_p_z_h2sz() {
@@ -2386,7 +2894,9 @@ void test_fcvtlt_z_p_z_h2sz() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  fcvtlt_z_p_z_h2sz: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fcvtlt_z_p_z_s2d() {
@@ -2398,7 +2908,9 @@ void test_fcvtlt_z_p_z_s2d() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  fcvtlt_z_p_z_s2d: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fcvtlt_z_p_z_s2dz() {
@@ -2410,7 +2922,9 @@ void test_fcvtlt_z_p_z_s2dz() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  fcvtlt_z_p_z_s2dz: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fcvtn_z8_mz2_h2b() {
@@ -2421,7 +2935,9 @@ void test_fcvtn_z8_mz2_h2b() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::RegisterList);
+#ifdef VEDA64_STRINGS
     std::cout << "  fcvtn_z8_mz2_h2b: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fcvtnb_z8_mz2_s2b() {
@@ -2432,7 +2948,9 @@ void test_fcvtnb_z8_mz2_s2b() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::RegisterList);
+#ifdef VEDA64_STRINGS
     std::cout << "  fcvtnb_z8_mz2_s2b: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fcvtnt_z8_mz2_s2b() {
@@ -2443,7 +2961,9 @@ void test_fcvtnt_z8_mz2_s2b() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::RegisterList);
+#ifdef VEDA64_STRINGS
     std::cout << "  fcvtnt_z8_mz2_s2b: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fcvtnt_z_p_z_s2h() {
@@ -2455,7 +2975,9 @@ void test_fcvtnt_z_p_z_s2h() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  fcvtnt_z_p_z_s2h: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fcvtnt_z_p_z_s2hz() {
@@ -2467,7 +2989,9 @@ void test_fcvtnt_z_p_z_s2hz() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  fcvtnt_z_p_z_s2hz: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fcvtnt_z_p_z_d2s() {
@@ -2479,7 +3003,9 @@ void test_fcvtnt_z_p_z_d2s() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  fcvtnt_z_p_z_d2s: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fcvtnt_z_p_z_d2sz() {
@@ -2491,7 +3017,9 @@ void test_fcvtnt_z_p_z_d2sz() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  fcvtnt_z_p_z_d2sz: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fcvtx_z_p_z_d2s() {
@@ -2503,7 +3031,9 @@ void test_fcvtx_z_p_z_d2s() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  fcvtx_z_p_z_d2s: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fcvtx_z_p_z_d2sz() {
@@ -2515,7 +3045,9 @@ void test_fcvtx_z_p_z_d2sz() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  fcvtx_z_p_z_d2sz: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fcvtxnt_z_p_z_d2s() {
@@ -2527,7 +3059,9 @@ void test_fcvtxnt_z_p_z_d2s() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  fcvtxnt_z_p_z_d2s: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fcvtxnt_z_p_z_d2sz() {
@@ -2539,7 +3073,9 @@ void test_fcvtxnt_z_p_z_d2sz() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  fcvtxnt_z_p_z_d2sz: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fcvtzs_z_p_z_fp162h() {
@@ -2551,7 +3087,9 @@ void test_fcvtzs_z_p_z_fp162h() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  fcvtzs_z_p_z_fp162h: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fcvtzs_z_p_z_fp162hz() {
@@ -2563,7 +3101,9 @@ void test_fcvtzs_z_p_z_fp162hz() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  fcvtzs_z_p_z_fp162hz: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fcvtzs_z_p_z_fp162w() {
@@ -2575,7 +3115,9 @@ void test_fcvtzs_z_p_z_fp162w() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  fcvtzs_z_p_z_fp162w: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fcvtzs_z_p_z_fp162wz() {
@@ -2587,7 +3129,9 @@ void test_fcvtzs_z_p_z_fp162wz() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  fcvtzs_z_p_z_fp162wz: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fcvtzs_z_p_z_fp162x() {
@@ -2599,7 +3143,9 @@ void test_fcvtzs_z_p_z_fp162x() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  fcvtzs_z_p_z_fp162x: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fcvtzs_z_p_z_fp162xz() {
@@ -2611,7 +3157,9 @@ void test_fcvtzs_z_p_z_fp162xz() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  fcvtzs_z_p_z_fp162xz: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fcvtzs_z_p_z_s2w() {
@@ -2623,7 +3171,9 @@ void test_fcvtzs_z_p_z_s2w() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  fcvtzs_z_p_z_s2w: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fcvtzs_z_p_z_s2wz() {
@@ -2635,7 +3185,9 @@ void test_fcvtzs_z_p_z_s2wz() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  fcvtzs_z_p_z_s2wz: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fcvtzs_z_p_z_s2x() {
@@ -2647,7 +3199,9 @@ void test_fcvtzs_z_p_z_s2x() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  fcvtzs_z_p_z_s2x: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fcvtzs_z_p_z_s2xz() {
@@ -2659,7 +3213,9 @@ void test_fcvtzs_z_p_z_s2xz() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  fcvtzs_z_p_z_s2xz: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fcvtzs_z_p_z_d2w() {
@@ -2671,7 +3227,9 @@ void test_fcvtzs_z_p_z_d2w() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  fcvtzs_z_p_z_d2w: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fcvtzs_z_p_z_d2wz() {
@@ -2683,7 +3241,9 @@ void test_fcvtzs_z_p_z_d2wz() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  fcvtzs_z_p_z_d2wz: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fcvtzs_z_p_z_d2x() {
@@ -2695,7 +3255,9 @@ void test_fcvtzs_z_p_z_d2x() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  fcvtzs_z_p_z_d2x: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fcvtzs_z_p_z_d2xz() {
@@ -2707,7 +3269,9 @@ void test_fcvtzs_z_p_z_d2xz() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  fcvtzs_z_p_z_d2xz: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fcvtzsn_z_mz2_() {
@@ -2715,7 +3279,9 @@ void test_fcvtzsn_z_mz2_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fcvtzsn_z_mz2_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FCVTZSN);
+#ifdef VEDA64_STRINGS
     std::cout << "  fcvtzsn_z_mz2_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fcvtzu_z_p_z_fp162h() {
@@ -2727,7 +3293,9 @@ void test_fcvtzu_z_p_z_fp162h() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  fcvtzu_z_p_z_fp162h: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fcvtzu_z_p_z_fp162hz() {
@@ -2739,7 +3307,9 @@ void test_fcvtzu_z_p_z_fp162hz() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  fcvtzu_z_p_z_fp162hz: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fcvtzu_z_p_z_fp162w() {
@@ -2751,7 +3321,9 @@ void test_fcvtzu_z_p_z_fp162w() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  fcvtzu_z_p_z_fp162w: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fcvtzu_z_p_z_fp162wz() {
@@ -2763,7 +3335,9 @@ void test_fcvtzu_z_p_z_fp162wz() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  fcvtzu_z_p_z_fp162wz: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fcvtzu_z_p_z_fp162x() {
@@ -2775,7 +3349,9 @@ void test_fcvtzu_z_p_z_fp162x() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  fcvtzu_z_p_z_fp162x: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fcvtzu_z_p_z_fp162xz() {
@@ -2787,7 +3363,9 @@ void test_fcvtzu_z_p_z_fp162xz() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  fcvtzu_z_p_z_fp162xz: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fcvtzu_z_p_z_s2w() {
@@ -2799,7 +3377,9 @@ void test_fcvtzu_z_p_z_s2w() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  fcvtzu_z_p_z_s2w: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fcvtzu_z_p_z_s2wz() {
@@ -2811,7 +3391,9 @@ void test_fcvtzu_z_p_z_s2wz() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  fcvtzu_z_p_z_s2wz: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fcvtzu_z_p_z_s2x() {
@@ -2823,7 +3405,9 @@ void test_fcvtzu_z_p_z_s2x() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  fcvtzu_z_p_z_s2x: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fcvtzu_z_p_z_s2xz() {
@@ -2835,7 +3419,9 @@ void test_fcvtzu_z_p_z_s2xz() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  fcvtzu_z_p_z_s2xz: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fcvtzu_z_p_z_d2w() {
@@ -2847,7 +3433,9 @@ void test_fcvtzu_z_p_z_d2w() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  fcvtzu_z_p_z_d2w: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fcvtzu_z_p_z_d2wz() {
@@ -2859,7 +3447,9 @@ void test_fcvtzu_z_p_z_d2wz() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  fcvtzu_z_p_z_d2wz: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fcvtzu_z_p_z_d2x() {
@@ -2871,7 +3461,9 @@ void test_fcvtzu_z_p_z_d2x() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  fcvtzu_z_p_z_d2x: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fcvtzu_z_p_z_d2xz() {
@@ -2883,7 +3475,9 @@ void test_fcvtzu_z_p_z_d2xz() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  fcvtzu_z_p_z_d2xz: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fcvtzun_z_mz2_() {
@@ -2891,7 +3485,9 @@ void test_fcvtzun_z_mz2_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fcvtzun_z_mz2_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FCVTZUN);
+#ifdef VEDA64_STRINGS
     std::cout << "  fcvtzun_z_mz2_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fdiv_z_p_zz_() {
@@ -2899,7 +3495,9 @@ void test_fdiv_z_p_zz_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fdiv_z_p_zz_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FDIV);
+#ifdef VEDA64_STRINGS
     std::cout << "  fdiv_z_p_zz_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fdivr_z_p_zz_() {
@@ -2907,7 +3505,9 @@ void test_fdivr_z_p_zz_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fdivr_z_p_zz_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FDIVR);
+#ifdef VEDA64_STRINGS
     std::cout << "  fdivr_z_p_zz_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fdot_z32_zz8z8_() {
@@ -2919,7 +3519,9 @@ void test_fdot_z32_zz8z8_() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  fdot_z32_zz8z8_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fdot_z32_zz8z8i_() {
@@ -2931,7 +3533,9 @@ void test_fdot_z32_zz8z8i_() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  fdot_z32_zz8z8i_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fdot_z_zz8z8_() {
@@ -2943,7 +3547,9 @@ void test_fdot_z_zz8z8_() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  fdot_z_zz8z8_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fdot_z_zz8z8i_() {
@@ -2955,7 +3561,9 @@ void test_fdot_z_zz8z8i_() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  fdot_z_zz8z8i_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fdot_z_zzz_() {
@@ -2967,7 +3575,9 @@ void test_fdot_z_zzz_() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  fdot_z_zzz_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fdot_z_zzzi_() {
@@ -2979,7 +3589,9 @@ void test_fdot_z_zzzi_() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  fdot_z_zzzi_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fdup_z_i_() {
@@ -2987,7 +3599,9 @@ void test_fdup_z_i_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fdup_z_i_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FDUP);
+#ifdef VEDA64_STRINGS
     std::cout << "  fdup_z_i_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fexpa_z_z_() {
@@ -2995,7 +3609,9 @@ void test_fexpa_z_z_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fexpa_z_z_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FEXPA);
+#ifdef VEDA64_STRINGS
     std::cout << "  fexpa_z_z_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_firstp_r_p_p_() {
@@ -3003,7 +3619,9 @@ void test_firstp_r_p_p_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: firstp_r_p_p_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FIRSTP);
+#ifdef VEDA64_STRINGS
     std::cout << "  firstp_r_p_p_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_flogb_z_p_z_m() {
@@ -3011,7 +3629,9 @@ void test_flogb_z_p_z_m() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: flogb_z_p_z_m" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FLOGB);
+#ifdef VEDA64_STRINGS
     std::cout << "  flogb_z_p_z_m: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_flogb_z_p_z_z() {
@@ -3019,7 +3639,9 @@ void test_flogb_z_p_z_z() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: flogb_z_p_z_z" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FLOGB);
+#ifdef VEDA64_STRINGS
     std::cout << "  flogb_z_p_z_z: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fmad_z_p_zzz_() {
@@ -3027,7 +3649,9 @@ void test_fmad_z_p_zzz_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fmad_z_p_zzz_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FMAD);
+#ifdef VEDA64_STRINGS
     std::cout << "  fmad_z_p_zzz_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fmax_z_p_zs_() {
@@ -3035,7 +3659,9 @@ void test_fmax_z_p_zs_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fmax_z_p_zs_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FMAX);
+#ifdef VEDA64_STRINGS
     std::cout << "  fmax_z_p_zs_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fmax_z_p_zz_() {
@@ -3043,7 +3669,9 @@ void test_fmax_z_p_zz_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fmax_z_p_zz_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FMAX);
+#ifdef VEDA64_STRINGS
     std::cout << "  fmax_z_p_zz_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fmaxnm_z_p_zs_() {
@@ -3051,7 +3679,9 @@ void test_fmaxnm_z_p_zs_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fmaxnm_z_p_zs_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FMAXNM);
+#ifdef VEDA64_STRINGS
     std::cout << "  fmaxnm_z_p_zs_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fmaxnm_z_p_zz_() {
@@ -3059,7 +3689,9 @@ void test_fmaxnm_z_p_zz_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fmaxnm_z_p_zz_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FMAXNM);
+#ifdef VEDA64_STRINGS
     std::cout << "  fmaxnm_z_p_zz_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fmaxnmp_z_p_zz_() {
@@ -3067,7 +3699,9 @@ void test_fmaxnmp_z_p_zz_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fmaxnmp_z_p_zz_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FMAXNMP);
+#ifdef VEDA64_STRINGS
     std::cout << "  fmaxnmp_z_p_zz_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fmaxnmqv_z_p_z_() {
@@ -3075,7 +3709,9 @@ void test_fmaxnmqv_z_p_z_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fmaxnmqv_z_p_z_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FMAXNMQV);
+#ifdef VEDA64_STRINGS
     std::cout << "  fmaxnmqv_z_p_z_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fmaxnmv_v_p_z_() {
@@ -3083,7 +3719,9 @@ void test_fmaxnmv_v_p_z_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fmaxnmv_v_p_z_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FMAXNMV);
+#ifdef VEDA64_STRINGS
     std::cout << "  fmaxnmv_v_p_z_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fmaxp_z_p_zz_() {
@@ -3091,7 +3729,9 @@ void test_fmaxp_z_p_zz_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fmaxp_z_p_zz_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FMAXP);
+#ifdef VEDA64_STRINGS
     std::cout << "  fmaxp_z_p_zz_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fmaxqv_z_p_z_() {
@@ -3099,7 +3739,9 @@ void test_fmaxqv_z_p_z_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fmaxqv_z_p_z_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FMAXQV);
+#ifdef VEDA64_STRINGS
     std::cout << "  fmaxqv_z_p_z_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fmaxv_v_p_z_() {
@@ -3107,7 +3749,9 @@ void test_fmaxv_v_p_z_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fmaxv_v_p_z_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FMAXV);
+#ifdef VEDA64_STRINGS
     std::cout << "  fmaxv_v_p_z_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fmin_z_p_zs_() {
@@ -3115,7 +3759,9 @@ void test_fmin_z_p_zs_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fmin_z_p_zs_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FMIN);
+#ifdef VEDA64_STRINGS
     std::cout << "  fmin_z_p_zs_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fmin_z_p_zz_() {
@@ -3123,7 +3769,9 @@ void test_fmin_z_p_zz_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fmin_z_p_zz_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FMIN);
+#ifdef VEDA64_STRINGS
     std::cout << "  fmin_z_p_zz_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fminnm_z_p_zs_() {
@@ -3131,7 +3779,9 @@ void test_fminnm_z_p_zs_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fminnm_z_p_zs_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FMINNM);
+#ifdef VEDA64_STRINGS
     std::cout << "  fminnm_z_p_zs_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fminnm_z_p_zz_() {
@@ -3139,7 +3789,9 @@ void test_fminnm_z_p_zz_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fminnm_z_p_zz_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FMINNM);
+#ifdef VEDA64_STRINGS
     std::cout << "  fminnm_z_p_zz_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fminnmp_z_p_zz_() {
@@ -3147,7 +3799,9 @@ void test_fminnmp_z_p_zz_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fminnmp_z_p_zz_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FMINNMP);
+#ifdef VEDA64_STRINGS
     std::cout << "  fminnmp_z_p_zz_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fminnmqv_z_p_z_() {
@@ -3155,7 +3809,9 @@ void test_fminnmqv_z_p_z_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fminnmqv_z_p_z_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FMINNMQV);
+#ifdef VEDA64_STRINGS
     std::cout << "  fminnmqv_z_p_z_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fminnmv_v_p_z_() {
@@ -3163,7 +3819,9 @@ void test_fminnmv_v_p_z_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fminnmv_v_p_z_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FMINNMV);
+#ifdef VEDA64_STRINGS
     std::cout << "  fminnmv_v_p_z_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fminp_z_p_zz_() {
@@ -3171,7 +3829,9 @@ void test_fminp_z_p_zz_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fminp_z_p_zz_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FMINP);
+#ifdef VEDA64_STRINGS
     std::cout << "  fminp_z_p_zz_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fminqv_z_p_z_() {
@@ -3179,7 +3839,9 @@ void test_fminqv_z_p_z_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fminqv_z_p_z_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FMINQV);
+#ifdef VEDA64_STRINGS
     std::cout << "  fminqv_z_p_z_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fminv_v_p_z_() {
@@ -3187,7 +3849,9 @@ void test_fminv_v_p_z_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fminv_v_p_z_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FMINV);
+#ifdef VEDA64_STRINGS
     std::cout << "  fminv_v_p_z_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fmla_z_p_zzz_() {
@@ -3195,7 +3859,9 @@ void test_fmla_z_p_zzz_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fmla_z_p_zzz_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FMLA);
+#ifdef VEDA64_STRINGS
     std::cout << "  fmla_z_p_zzz_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fmla_z_zzzi_h() {
@@ -3207,7 +3873,9 @@ void test_fmla_z_zzzi_h() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  fmla_z_zzzi_h: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fmla_z_zzzi_s() {
@@ -3219,7 +3887,9 @@ void test_fmla_z_zzzi_s() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  fmla_z_zzzi_s: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fmla_z_zzzi_d() {
@@ -3231,7 +3901,9 @@ void test_fmla_z_zzzi_d() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  fmla_z_zzzi_d: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fmlalb_z_z8z8z8_() {
@@ -3243,7 +3915,9 @@ void test_fmlalb_z_z8z8z8_() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  fmlalb_z_z8z8z8_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fmlalb_z_z8z8z8i_() {
@@ -3255,7 +3929,9 @@ void test_fmlalb_z_z8z8z8i_() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  fmlalb_z_z8z8z8i_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fmlalb_z_zzz_() {
@@ -3267,7 +3943,9 @@ void test_fmlalb_z_zzz_() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  fmlalb_z_zzz_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fmlalb_z_zzzi_s() {
@@ -3279,7 +3957,9 @@ void test_fmlalb_z_zzzi_s() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  fmlalb_z_zzzi_s: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fmlallbb_z32_z8z8z8_() {
@@ -3291,7 +3971,9 @@ void test_fmlallbb_z32_z8z8z8_() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  fmlallbb_z32_z8z8z8_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fmlallbb_z32_z8z8z8i_() {
@@ -3303,7 +3985,9 @@ void test_fmlallbb_z32_z8z8z8i_() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  fmlallbb_z32_z8z8z8i_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fmlallbt_z32_z8z8z8_() {
@@ -3315,7 +3999,9 @@ void test_fmlallbt_z32_z8z8z8_() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  fmlallbt_z32_z8z8z8_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fmlallbt_z32_z8z8z8i_() {
@@ -3327,7 +4013,9 @@ void test_fmlallbt_z32_z8z8z8i_() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  fmlallbt_z32_z8z8z8i_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fmlalltb_z32_z8z8z8_() {
@@ -3339,7 +4027,9 @@ void test_fmlalltb_z32_z8z8z8_() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  fmlalltb_z32_z8z8z8_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fmlalltb_z32_z8z8z8i_() {
@@ -3351,7 +4041,9 @@ void test_fmlalltb_z32_z8z8z8i_() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  fmlalltb_z32_z8z8z8i_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fmlalltt_z32_z8z8z8_() {
@@ -3363,7 +4055,9 @@ void test_fmlalltt_z32_z8z8z8_() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  fmlalltt_z32_z8z8z8_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fmlalltt_z32_z8z8z8i_() {
@@ -3375,7 +4069,9 @@ void test_fmlalltt_z32_z8z8z8i_() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  fmlalltt_z32_z8z8z8i_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fmlalt_z_z8z8z8_() {
@@ -3387,7 +4083,9 @@ void test_fmlalt_z_z8z8z8_() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  fmlalt_z_z8z8z8_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fmlalt_z_z8z8z8i_() {
@@ -3399,7 +4097,9 @@ void test_fmlalt_z_z8z8z8i_() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  fmlalt_z_z8z8z8i_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fmlalt_z_zzz_() {
@@ -3411,7 +4111,9 @@ void test_fmlalt_z_zzz_() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  fmlalt_z_zzz_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fmlalt_z_zzzi_s() {
@@ -3423,7 +4125,9 @@ void test_fmlalt_z_zzzi_s() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  fmlalt_z_zzzi_s: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fmls_z_p_zzz_() {
@@ -3431,7 +4135,9 @@ void test_fmls_z_p_zzz_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fmls_z_p_zzz_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FMLS);
+#ifdef VEDA64_STRINGS
     std::cout << "  fmls_z_p_zzz_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fmls_z_zzzi_h() {
@@ -3443,7 +4149,9 @@ void test_fmls_z_zzzi_h() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  fmls_z_zzzi_h: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fmls_z_zzzi_s() {
@@ -3455,7 +4163,9 @@ void test_fmls_z_zzzi_s() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  fmls_z_zzzi_s: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fmls_z_zzzi_d() {
@@ -3467,7 +4177,9 @@ void test_fmls_z_zzzi_d() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  fmls_z_zzzi_d: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fmlslb_z_zzz_() {
@@ -3479,7 +4191,9 @@ void test_fmlslb_z_zzz_() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  fmlslb_z_zzz_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fmlslb_z_zzzi_s() {
@@ -3491,7 +4205,9 @@ void test_fmlslb_z_zzzi_s() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  fmlslb_z_zzzi_s: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fmlslt_z_zzz_() {
@@ -3503,7 +4219,9 @@ void test_fmlslt_z_zzz_() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  fmlslt_z_zzz_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fmlslt_z_zzzi_s() {
@@ -3515,7 +4233,9 @@ void test_fmlslt_z_zzzi_s() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  fmlslt_z_zzzi_s: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fmmla_z16_zz8z8_() {
@@ -3527,7 +4247,9 @@ void test_fmmla_z16_zz8z8_() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  fmmla_z16_zz8z8_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fmmla_z32_zz8z8_() {
@@ -3539,7 +4261,9 @@ void test_fmmla_z32_zz8z8_() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  fmmla_z32_zz8z8_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fmmla_z32_zzz_h() {
@@ -3551,7 +4275,9 @@ void test_fmmla_z32_zzz_h() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  fmmla_z32_zzz_h: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fmmla_z_zzz_h() {
@@ -3563,7 +4289,9 @@ void test_fmmla_z_zzz_h() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  fmmla_z_zzz_h: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fmmla_z_zzz_s() {
@@ -3575,7 +4303,9 @@ void test_fmmla_z_zzz_s() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  fmmla_z_zzz_s: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fmmla_z_zzz_d() {
@@ -3587,7 +4317,9 @@ void test_fmmla_z_zzz_d() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  fmmla_z_zzz_d: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fmov_z_p_0__cpy_z_p_i_() {
@@ -3595,7 +4327,9 @@ void test_fmov_z_p_0__cpy_z_p_i_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fmov_z_p_0__cpy_z_p_i_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::CPY);
+#ifdef VEDA64_STRINGS
     std::cout << "  fmov_z_p_0__cpy_z_p_i_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fmov_z_0__dup_z_i_() {
@@ -3603,7 +4337,9 @@ void test_fmov_z_0__dup_z_i_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fmov_z_0__dup_z_i_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::DUP);
+#ifdef VEDA64_STRINGS
     std::cout << "  fmov_z_0__dup_z_i_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fmov_z_p_i__fcpy_z_p_i_() {
@@ -3611,7 +4347,9 @@ void test_fmov_z_p_i__fcpy_z_p_i_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fmov_z_p_i__fcpy_z_p_i_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FCPY);
+#ifdef VEDA64_STRINGS
     std::cout << "  fmov_z_p_i__fcpy_z_p_i_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fmov_z_i__fdup_z_i_() {
@@ -3619,7 +4357,9 @@ void test_fmov_z_i__fdup_z_i_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fmov_z_i__fdup_z_i_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FDUP);
+#ifdef VEDA64_STRINGS
     std::cout << "  fmov_z_i__fdup_z_i_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fmsb_z_p_zzz_() {
@@ -3627,7 +4367,9 @@ void test_fmsb_z_p_zzz_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fmsb_z_p_zzz_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FMSB);
+#ifdef VEDA64_STRINGS
     std::cout << "  fmsb_z_p_zzz_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fmul_z_p_zs_() {
@@ -3635,7 +4377,9 @@ void test_fmul_z_p_zs_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fmul_z_p_zs_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FMUL);
+#ifdef VEDA64_STRINGS
     std::cout << "  fmul_z_p_zs_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fmul_z_p_zz_() {
@@ -3643,7 +4387,9 @@ void test_fmul_z_p_zz_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fmul_z_p_zz_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FMUL);
+#ifdef VEDA64_STRINGS
     std::cout << "  fmul_z_p_zz_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fmul_z_zz_() {
@@ -3651,7 +4397,9 @@ void test_fmul_z_zz_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fmul_z_zz_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FMUL);
+#ifdef VEDA64_STRINGS
     std::cout << "  fmul_z_zz_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fmul_z_zzi_h() {
@@ -3663,7 +4411,9 @@ void test_fmul_z_zzi_h() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  fmul_z_zzi_h: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fmul_z_zzi_s() {
@@ -3675,7 +4425,9 @@ void test_fmul_z_zzi_s() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  fmul_z_zzi_s: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fmul_z_zzi_d() {
@@ -3687,7 +4439,9 @@ void test_fmul_z_zzi_d() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  fmul_z_zzi_d: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fmulx_z_p_zz_() {
@@ -3695,7 +4449,9 @@ void test_fmulx_z_p_zz_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fmulx_z_p_zz_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FMULX);
+#ifdef VEDA64_STRINGS
     std::cout << "  fmulx_z_p_zz_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fneg_z_p_z_m() {
@@ -3703,7 +4459,9 @@ void test_fneg_z_p_z_m() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fneg_z_p_z_m" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FNEG);
+#ifdef VEDA64_STRINGS
     std::cout << "  fneg_z_p_z_m: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fneg_z_p_z_z() {
@@ -3711,7 +4469,9 @@ void test_fneg_z_p_z_z() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fneg_z_p_z_z" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FNEG);
+#ifdef VEDA64_STRINGS
     std::cout << "  fneg_z_p_z_z: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fnmad_z_p_zzz_() {
@@ -3719,7 +4479,9 @@ void test_fnmad_z_p_zzz_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fnmad_z_p_zzz_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FNMAD);
+#ifdef VEDA64_STRINGS
     std::cout << "  fnmad_z_p_zzz_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fnmla_z_p_zzz_() {
@@ -3727,7 +4489,9 @@ void test_fnmla_z_p_zzz_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fnmla_z_p_zzz_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FNMLA);
+#ifdef VEDA64_STRINGS
     std::cout << "  fnmla_z_p_zzz_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fnmls_z_p_zzz_() {
@@ -3735,7 +4499,9 @@ void test_fnmls_z_p_zzz_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fnmls_z_p_zzz_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FNMLS);
+#ifdef VEDA64_STRINGS
     std::cout << "  fnmls_z_p_zzz_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fnmsb_z_p_zzz_() {
@@ -3743,7 +4509,9 @@ void test_fnmsb_z_p_zzz_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fnmsb_z_p_zzz_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FNMSB);
+#ifdef VEDA64_STRINGS
     std::cout << "  fnmsb_z_p_zzz_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_frecpe_z_z_() {
@@ -3751,7 +4519,9 @@ void test_frecpe_z_z_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: frecpe_z_z_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FRECPE);
+#ifdef VEDA64_STRINGS
     std::cout << "  frecpe_z_z_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_frecps_z_zz_() {
@@ -3759,7 +4529,9 @@ void test_frecps_z_zz_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: frecps_z_zz_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FRECPS);
+#ifdef VEDA64_STRINGS
     std::cout << "  frecps_z_zz_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_frecpx_z_p_z_m() {
@@ -3767,7 +4539,9 @@ void test_frecpx_z_p_z_m() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: frecpx_z_p_z_m" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FRECPX);
+#ifdef VEDA64_STRINGS
     std::cout << "  frecpx_z_p_z_m: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_frecpx_z_p_z_z() {
@@ -3775,7 +4549,9 @@ void test_frecpx_z_p_z_z() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: frecpx_z_p_z_z" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FRECPX);
+#ifdef VEDA64_STRINGS
     std::cout << "  frecpx_z_p_z_z: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_frint32x_z_p_z_m() {
@@ -3783,7 +4559,9 @@ void test_frint32x_z_p_z_m() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: frint32x_z_p_z_m" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FRINT32X);
+#ifdef VEDA64_STRINGS
     std::cout << "  frint32x_z_p_z_m: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_frint32x_z_p_z_z() {
@@ -3791,7 +4569,9 @@ void test_frint32x_z_p_z_z() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: frint32x_z_p_z_z" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FRINT32X);
+#ifdef VEDA64_STRINGS
     std::cout << "  frint32x_z_p_z_z: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_frint32z_z_p_z_m() {
@@ -3799,7 +4579,9 @@ void test_frint32z_z_p_z_m() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: frint32z_z_p_z_m" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FRINT32Z);
+#ifdef VEDA64_STRINGS
     std::cout << "  frint32z_z_p_z_m: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_frint32z_z_p_z_z() {
@@ -3807,7 +4589,9 @@ void test_frint32z_z_p_z_z() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: frint32z_z_p_z_z" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FRINT32Z);
+#ifdef VEDA64_STRINGS
     std::cout << "  frint32z_z_p_z_z: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_frint64x_z_p_z_m() {
@@ -3815,7 +4599,9 @@ void test_frint64x_z_p_z_m() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: frint64x_z_p_z_m" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FRINT64X);
+#ifdef VEDA64_STRINGS
     std::cout << "  frint64x_z_p_z_m: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_frint64x_z_p_z_z() {
@@ -3823,7 +4609,9 @@ void test_frint64x_z_p_z_z() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: frint64x_z_p_z_z" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FRINT64X);
+#ifdef VEDA64_STRINGS
     std::cout << "  frint64x_z_p_z_z: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_frint64z_z_p_z_m() {
@@ -3831,7 +4619,9 @@ void test_frint64z_z_p_z_m() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: frint64z_z_p_z_m" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FRINT64Z);
+#ifdef VEDA64_STRINGS
     std::cout << "  frint64z_z_p_z_m: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_frint64z_z_p_z_z() {
@@ -3839,105 +4629,135 @@ void test_frint64z_z_p_z_z() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: frint64z_z_p_z_z" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FRINT64Z);
+#ifdef VEDA64_STRINGS
     std::cout << "  frint64z_z_p_z_z: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_frintx_z_p_z_m() {
     uint32_t insn = 0x6546A000u;
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: frintx_z_p_z_m" << std::endl; throw std::runtime_error("decode failed"); }
+#ifdef VEDA64_STRINGS
     std::cout << "  frintx_z_p_z_m: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_frintx_z_p_z_z() {
     uint32_t insn = 0x6459C000u;
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: frintx_z_p_z_z" << std::endl; throw std::runtime_error("decode failed"); }
+#ifdef VEDA64_STRINGS
     std::cout << "  frintx_z_p_z_z: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_frinti_z_p_z_m() {
     uint32_t insn = 0x6547A000u;
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: frinti_z_p_z_m" << std::endl; throw std::runtime_error("decode failed"); }
+#ifdef VEDA64_STRINGS
     std::cout << "  frinti_z_p_z_m: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_frinti_z_p_z_z() {
     uint32_t insn = 0x6459E000u;
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: frinti_z_p_z_z" << std::endl; throw std::runtime_error("decode failed"); }
+#ifdef VEDA64_STRINGS
     std::cout << "  frinti_z_p_z_z: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_frinta_z_p_z_m() {
     uint32_t insn = 0x6544A000u;
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: frinta_z_p_z_m" << std::endl; throw std::runtime_error("decode failed"); }
+#ifdef VEDA64_STRINGS
     std::cout << "  frinta_z_p_z_m: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_frinta_z_p_z_z() {
     uint32_t insn = 0x64598000u;
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: frinta_z_p_z_z" << std::endl; throw std::runtime_error("decode failed"); }
+#ifdef VEDA64_STRINGS
     std::cout << "  frinta_z_p_z_z: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_frintn_z_p_z_m() {
     uint32_t insn = 0x6540A000u;
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: frintn_z_p_z_m" << std::endl; throw std::runtime_error("decode failed"); }
+#ifdef VEDA64_STRINGS
     std::cout << "  frintn_z_p_z_m: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_frintn_z_p_z_z() {
     uint32_t insn = 0x64588000u;
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: frintn_z_p_z_z" << std::endl; throw std::runtime_error("decode failed"); }
+#ifdef VEDA64_STRINGS
     std::cout << "  frintn_z_p_z_z: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_frintz_z_p_z_m() {
     uint32_t insn = 0x6543A000u;
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: frintz_z_p_z_m" << std::endl; throw std::runtime_error("decode failed"); }
+#ifdef VEDA64_STRINGS
     std::cout << "  frintz_z_p_z_m: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_frintz_z_p_z_z() {
     uint32_t insn = 0x6458E000u;
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: frintz_z_p_z_z" << std::endl; throw std::runtime_error("decode failed"); }
+#ifdef VEDA64_STRINGS
     std::cout << "  frintz_z_p_z_z: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_frintm_z_p_z_m() {
     uint32_t insn = 0x6542A000u;
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: frintm_z_p_z_m" << std::endl; throw std::runtime_error("decode failed"); }
+#ifdef VEDA64_STRINGS
     std::cout << "  frintm_z_p_z_m: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_frintm_z_p_z_z() {
     uint32_t insn = 0x6458C000u;
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: frintm_z_p_z_z" << std::endl; throw std::runtime_error("decode failed"); }
+#ifdef VEDA64_STRINGS
     std::cout << "  frintm_z_p_z_z: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_frintp_z_p_z_m() {
     uint32_t insn = 0x6541A000u;
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: frintp_z_p_z_m" << std::endl; throw std::runtime_error("decode failed"); }
+#ifdef VEDA64_STRINGS
     std::cout << "  frintp_z_p_z_m: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_frintp_z_p_z_z() {
     uint32_t insn = 0x6458A000u;
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: frintp_z_p_z_z" << std::endl; throw std::runtime_error("decode failed"); }
+#ifdef VEDA64_STRINGS
     std::cout << "  frintp_z_p_z_z: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_frsqrte_z_z_() {
@@ -3945,7 +4765,9 @@ void test_frsqrte_z_z_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: frsqrte_z_z_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FRSQRTE);
+#ifdef VEDA64_STRINGS
     std::cout << "  frsqrte_z_z_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_frsqrts_z_zz_() {
@@ -3953,7 +4775,9 @@ void test_frsqrts_z_zz_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: frsqrts_z_zz_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FRSQRTS);
+#ifdef VEDA64_STRINGS
     std::cout << "  frsqrts_z_zz_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fscale_z_p_zz_() {
@@ -3961,7 +4785,9 @@ void test_fscale_z_p_zz_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fscale_z_p_zz_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FSCALE);
+#ifdef VEDA64_STRINGS
     std::cout << "  fscale_z_p_zz_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fsqrt_z_p_z_m() {
@@ -3969,7 +4795,9 @@ void test_fsqrt_z_p_z_m() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fsqrt_z_p_z_m" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FSQRT);
+#ifdef VEDA64_STRINGS
     std::cout << "  fsqrt_z_p_z_m: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fsqrt_z_p_z_z() {
@@ -3977,7 +4805,9 @@ void test_fsqrt_z_p_z_z() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fsqrt_z_p_z_z" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FSQRT);
+#ifdef VEDA64_STRINGS
     std::cout << "  fsqrt_z_p_z_z: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fsub_z_p_zs_() {
@@ -3985,7 +4815,9 @@ void test_fsub_z_p_zs_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fsub_z_p_zs_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FSUB);
+#ifdef VEDA64_STRINGS
     std::cout << "  fsub_z_p_zs_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fsub_z_p_zz_() {
@@ -3993,7 +4825,9 @@ void test_fsub_z_p_zz_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fsub_z_p_zz_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FSUB);
+#ifdef VEDA64_STRINGS
     std::cout << "  fsub_z_p_zz_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fsub_z_zz_() {
@@ -4001,7 +4835,9 @@ void test_fsub_z_zz_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fsub_z_zz_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FSUB);
+#ifdef VEDA64_STRINGS
     std::cout << "  fsub_z_zz_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fsubr_z_p_zs_() {
@@ -4009,7 +4845,9 @@ void test_fsubr_z_p_zs_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fsubr_z_p_zs_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FSUBR);
+#ifdef VEDA64_STRINGS
     std::cout << "  fsubr_z_p_zs_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fsubr_z_p_zz_() {
@@ -4017,7 +4855,9 @@ void test_fsubr_z_p_zz_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fsubr_z_p_zz_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FSUBR);
+#ifdef VEDA64_STRINGS
     std::cout << "  fsubr_z_p_zz_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ftmad_z_zzi_() {
@@ -4025,7 +4865,9 @@ void test_ftmad_z_zzi_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: ftmad_z_zzi_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FTMAD);
+#ifdef VEDA64_STRINGS
     std::cout << "  ftmad_z_zzi_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ftsmul_z_zz_() {
@@ -4033,7 +4875,9 @@ void test_ftsmul_z_zz_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: ftsmul_z_zz_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FTSMUL);
+#ifdef VEDA64_STRINGS
     std::cout << "  ftsmul_z_zz_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ftssel_z_zz_() {
@@ -4041,7 +4885,9 @@ void test_ftssel_z_zz_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: ftssel_z_zz_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FTSSEL);
+#ifdef VEDA64_STRINGS
     std::cout << "  ftssel_z_zz_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_histcnt_z_p_zz_() {
@@ -4049,7 +4895,9 @@ void test_histcnt_z_p_zz_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: histcnt_z_p_zz_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::HISTCNT);
+#ifdef VEDA64_STRINGS
     std::cout << "  histcnt_z_p_zz_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_histseg_z_zz_() {
@@ -4061,7 +4909,9 @@ void test_histseg_z_zz_() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  histseg_z_zz_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_incb_r_rs_() {
@@ -4070,7 +4920,9 @@ void test_incb_r_rs_() {
     if (!result.has_value()) { std::cerr << "DECODE FAIL: incb_r_rs_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->operands.size() >= 1);
     assert(result->operands[0].type == OperandType::RegisterList);
+#ifdef VEDA64_STRINGS
     std::cout << "  incb_r_rs_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_incd_r_rs_() {
@@ -4079,7 +4931,9 @@ void test_incd_r_rs_() {
     if (!result.has_value()) { std::cerr << "DECODE FAIL: incd_r_rs_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->operands.size() >= 1);
     assert(result->operands[0].type == OperandType::RegisterList);
+#ifdef VEDA64_STRINGS
     std::cout << "  incd_r_rs_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_inch_r_rs_() {
@@ -4088,7 +4942,9 @@ void test_inch_r_rs_() {
     if (!result.has_value()) { std::cerr << "DECODE FAIL: inch_r_rs_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->operands.size() >= 1);
     assert(result->operands[0].type == OperandType::RegisterList);
+#ifdef VEDA64_STRINGS
     std::cout << "  inch_r_rs_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_incw_r_rs_() {
@@ -4097,7 +4953,9 @@ void test_incw_r_rs_() {
     if (!result.has_value()) { std::cerr << "DECODE FAIL: incw_r_rs_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->operands.size() >= 1);
     assert(result->operands[0].type == OperandType::RegisterList);
+#ifdef VEDA64_STRINGS
     std::cout << "  incw_r_rs_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_incd_z_zs_() {
@@ -4106,7 +4964,9 @@ void test_incd_z_zs_() {
     if (!result.has_value()) { std::cerr << "DECODE FAIL: incd_z_zs_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->operands.size() >= 1);
     assert(result->operands[0].type == OperandType::RegisterList);
+#ifdef VEDA64_STRINGS
     std::cout << "  incd_z_zs_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_inch_z_zs_() {
@@ -4115,7 +4975,9 @@ void test_inch_z_zs_() {
     if (!result.has_value()) { std::cerr << "DECODE FAIL: inch_z_zs_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->operands.size() >= 1);
     assert(result->operands[0].type == OperandType::RegisterList);
+#ifdef VEDA64_STRINGS
     std::cout << "  inch_z_zs_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_incw_z_zs_() {
@@ -4124,7 +4986,9 @@ void test_incw_z_zs_() {
     if (!result.has_value()) { std::cerr << "DECODE FAIL: incw_z_zs_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->operands.size() >= 1);
     assert(result->operands[0].type == OperandType::RegisterList);
+#ifdef VEDA64_STRINGS
     std::cout << "  incw_z_zs_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_incp_r_p_r_() {
@@ -4132,7 +4996,9 @@ void test_incp_r_p_r_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: incp_r_p_r_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::INCP);
+#ifdef VEDA64_STRINGS
     std::cout << "  incp_r_p_r_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_incp_z_p_z_() {
@@ -4140,7 +5006,9 @@ void test_incp_z_p_z_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: incp_z_p_z_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::INCP);
+#ifdef VEDA64_STRINGS
     std::cout << "  incp_z_p_z_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_index_z_ii_() {
@@ -4148,7 +5016,9 @@ void test_index_z_ii_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: index_z_ii_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::INDEX);
+#ifdef VEDA64_STRINGS
     std::cout << "  index_z_ii_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_index_z_ir_() {
@@ -4156,7 +5026,9 @@ void test_index_z_ir_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: index_z_ir_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::INDEX);
+#ifdef VEDA64_STRINGS
     std::cout << "  index_z_ir_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_index_z_ri_() {
@@ -4164,7 +5036,9 @@ void test_index_z_ri_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: index_z_ri_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::INDEX);
+#ifdef VEDA64_STRINGS
     std::cout << "  index_z_ri_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_index_z_rr_() {
@@ -4172,7 +5046,9 @@ void test_index_z_rr_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: index_z_rr_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::INDEX);
+#ifdef VEDA64_STRINGS
     std::cout << "  index_z_rr_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_insr_z_r_() {
@@ -4180,7 +5056,9 @@ void test_insr_z_r_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: insr_z_r_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::INSR);
+#ifdef VEDA64_STRINGS
     std::cout << "  insr_z_r_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_insr_z_v_() {
@@ -4188,7 +5066,9 @@ void test_insr_z_v_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: insr_z_v_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::INSR);
+#ifdef VEDA64_STRINGS
     std::cout << "  insr_z_v_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_lasta_r_p_z_() {
@@ -4196,7 +5076,9 @@ void test_lasta_r_p_z_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: lasta_r_p_z_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::LASTA);
+#ifdef VEDA64_STRINGS
     std::cout << "  lasta_r_p_z_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_lasta_v_p_z_() {
@@ -4204,7 +5086,9 @@ void test_lasta_v_p_z_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: lasta_v_p_z_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::LASTA);
+#ifdef VEDA64_STRINGS
     std::cout << "  lasta_v_p_z_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_lastb_r_p_z_() {
@@ -4212,7 +5096,9 @@ void test_lastb_r_p_z_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: lastb_r_p_z_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::LASTB);
+#ifdef VEDA64_STRINGS
     std::cout << "  lastb_r_p_z_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_lastb_v_p_z_() {
@@ -4220,7 +5106,9 @@ void test_lastb_v_p_z_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: lastb_v_p_z_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::LASTB);
+#ifdef VEDA64_STRINGS
     std::cout << "  lastb_v_p_z_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_lastp_r_p_p_() {
@@ -4228,7 +5116,9 @@ void test_lastp_r_p_p_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: lastp_r_p_p_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::LASTP);
+#ifdef VEDA64_STRINGS
     std::cout << "  lastp_r_p_p_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ld1b_z_p_ai_s() {
@@ -4240,7 +5130,9 @@ void test_ld1b_z_p_ai_s() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ld1b_z_p_ai_s: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ld1b_z_p_ai_d() {
@@ -4252,7 +5144,9 @@ void test_ld1b_z_p_ai_d() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ld1b_z_p_ai_d: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ld1b_z_p_bi_u8() {
@@ -4264,7 +5158,9 @@ void test_ld1b_z_p_bi_u8() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ld1b_z_p_bi_u8: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ld1b_z_p_bi_u16() {
@@ -4276,7 +5172,9 @@ void test_ld1b_z_p_bi_u16() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ld1b_z_p_bi_u16: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ld1b_z_p_bi_u32() {
@@ -4288,7 +5186,9 @@ void test_ld1b_z_p_bi_u32() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ld1b_z_p_bi_u32: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ld1b_z_p_bi_u64() {
@@ -4300,7 +5200,9 @@ void test_ld1b_z_p_bi_u64() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ld1b_z_p_bi_u64: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ld1b_z_p_br_u8() {
@@ -4312,7 +5214,9 @@ void test_ld1b_z_p_br_u8() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::MemoryRegOffset);
+#ifdef VEDA64_STRINGS
     std::cout << "  ld1b_z_p_br_u8: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ld1b_z_p_br_u16() {
@@ -4324,7 +5228,9 @@ void test_ld1b_z_p_br_u16() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::MemoryRegOffset);
+#ifdef VEDA64_STRINGS
     std::cout << "  ld1b_z_p_br_u16: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ld1b_z_p_br_u32() {
@@ -4336,7 +5242,9 @@ void test_ld1b_z_p_br_u32() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::MemoryRegOffset);
+#ifdef VEDA64_STRINGS
     std::cout << "  ld1b_z_p_br_u32: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ld1b_z_p_br_u64() {
@@ -4348,7 +5256,9 @@ void test_ld1b_z_p_br_u64() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::MemoryRegOffset);
+#ifdef VEDA64_STRINGS
     std::cout << "  ld1b_z_p_br_u64: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ld1b_z_p_bz_d_x32_unscaled() {
@@ -4360,7 +5270,9 @@ void test_ld1b_z_p_bz_d_x32_unscaled() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::MemoryRegOffset);
+#ifdef VEDA64_STRINGS
     std::cout << "  ld1b_z_p_bz_d_x32_unscaled: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ld1b_z_p_bz_s_x32_unscaled() {
@@ -4372,7 +5284,9 @@ void test_ld1b_z_p_bz_s_x32_unscaled() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::MemoryRegOffset);
+#ifdef VEDA64_STRINGS
     std::cout << "  ld1b_z_p_bz_s_x32_unscaled: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ld1b_z_p_bz_d_64_unscaled() {
@@ -4384,7 +5298,9 @@ void test_ld1b_z_p_bz_d_64_unscaled() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::MemoryRegOffset);
+#ifdef VEDA64_STRINGS
     std::cout << "  ld1b_z_p_bz_d_64_unscaled: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ld1d_z_p_ai_d() {
@@ -4396,7 +5312,9 @@ void test_ld1d_z_p_ai_d() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ld1d_z_p_ai_d: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ld1d_z_p_bi_u64() {
@@ -4408,7 +5326,9 @@ void test_ld1d_z_p_bi_u64() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ld1d_z_p_bi_u64: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ld1d_z_p_bi_u128() {
@@ -4420,7 +5340,9 @@ void test_ld1d_z_p_bi_u128() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ld1d_z_p_bi_u128: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ld1d_z_p_br_u64() {
@@ -4432,7 +5354,9 @@ void test_ld1d_z_p_br_u64() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::MemoryRegOffset);
+#ifdef VEDA64_STRINGS
     std::cout << "  ld1d_z_p_br_u64: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ld1d_z_p_br_u128() {
@@ -4444,7 +5368,9 @@ void test_ld1d_z_p_br_u128() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::MemoryRegOffset);
+#ifdef VEDA64_STRINGS
     std::cout << "  ld1d_z_p_br_u128: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ld1d_z_p_bz_d_x32_scaled() {
@@ -4456,7 +5382,9 @@ void test_ld1d_z_p_bz_d_x32_scaled() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::MemoryRegOffset);
+#ifdef VEDA64_STRINGS
     std::cout << "  ld1d_z_p_bz_d_x32_scaled: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ld1d_z_p_bz_d_x32_unscaled() {
@@ -4468,7 +5396,9 @@ void test_ld1d_z_p_bz_d_x32_unscaled() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::MemoryRegOffset);
+#ifdef VEDA64_STRINGS
     std::cout << "  ld1d_z_p_bz_d_x32_unscaled: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ld1d_z_p_bz_d_64_scaled() {
@@ -4480,7 +5410,9 @@ void test_ld1d_z_p_bz_d_64_scaled() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::MemoryRegOffset);
+#ifdef VEDA64_STRINGS
     std::cout << "  ld1d_z_p_bz_d_64_scaled: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ld1d_z_p_bz_d_64_unscaled() {
@@ -4492,7 +5424,9 @@ void test_ld1d_z_p_bz_d_64_unscaled() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::MemoryRegOffset);
+#ifdef VEDA64_STRINGS
     std::cout << "  ld1d_z_p_bz_d_64_unscaled: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ld1h_z_p_ai_s() {
@@ -4504,7 +5438,9 @@ void test_ld1h_z_p_ai_s() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ld1h_z_p_ai_s: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ld1h_z_p_ai_d() {
@@ -4516,7 +5452,9 @@ void test_ld1h_z_p_ai_d() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ld1h_z_p_ai_d: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ld1h_z_p_bi_u16() {
@@ -4528,7 +5466,9 @@ void test_ld1h_z_p_bi_u16() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ld1h_z_p_bi_u16: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ld1h_z_p_bi_u32() {
@@ -4540,7 +5480,9 @@ void test_ld1h_z_p_bi_u32() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ld1h_z_p_bi_u32: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ld1h_z_p_bi_u64() {
@@ -4552,7 +5494,9 @@ void test_ld1h_z_p_bi_u64() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ld1h_z_p_bi_u64: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ld1h_z_p_br_u16() {
@@ -4564,7 +5508,9 @@ void test_ld1h_z_p_br_u16() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::MemoryRegOffset);
+#ifdef VEDA64_STRINGS
     std::cout << "  ld1h_z_p_br_u16: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ld1h_z_p_br_u32() {
@@ -4576,7 +5522,9 @@ void test_ld1h_z_p_br_u32() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::MemoryRegOffset);
+#ifdef VEDA64_STRINGS
     std::cout << "  ld1h_z_p_br_u32: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ld1h_z_p_br_u64() {
@@ -4588,7 +5536,9 @@ void test_ld1h_z_p_br_u64() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::MemoryRegOffset);
+#ifdef VEDA64_STRINGS
     std::cout << "  ld1h_z_p_br_u64: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ld1h_z_p_bz_s_x32_scaled() {
@@ -4600,7 +5550,9 @@ void test_ld1h_z_p_bz_s_x32_scaled() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::MemoryRegOffset);
+#ifdef VEDA64_STRINGS
     std::cout << "  ld1h_z_p_bz_s_x32_scaled: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ld1h_z_p_bz_d_x32_scaled() {
@@ -4612,7 +5564,9 @@ void test_ld1h_z_p_bz_d_x32_scaled() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::MemoryRegOffset);
+#ifdef VEDA64_STRINGS
     std::cout << "  ld1h_z_p_bz_d_x32_scaled: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ld1h_z_p_bz_d_x32_unscaled() {
@@ -4624,7 +5578,9 @@ void test_ld1h_z_p_bz_d_x32_unscaled() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::MemoryRegOffset);
+#ifdef VEDA64_STRINGS
     std::cout << "  ld1h_z_p_bz_d_x32_unscaled: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ld1h_z_p_bz_s_x32_unscaled() {
@@ -4636,7 +5592,9 @@ void test_ld1h_z_p_bz_s_x32_unscaled() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::MemoryRegOffset);
+#ifdef VEDA64_STRINGS
     std::cout << "  ld1h_z_p_bz_s_x32_unscaled: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ld1h_z_p_bz_d_64_scaled() {
@@ -4648,7 +5606,9 @@ void test_ld1h_z_p_bz_d_64_scaled() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::MemoryRegOffset);
+#ifdef VEDA64_STRINGS
     std::cout << "  ld1h_z_p_bz_d_64_scaled: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ld1h_z_p_bz_d_64_unscaled() {
@@ -4660,7 +5620,9 @@ void test_ld1h_z_p_bz_d_64_unscaled() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::MemoryRegOffset);
+#ifdef VEDA64_STRINGS
     std::cout << "  ld1h_z_p_bz_d_64_unscaled: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ld1q_z_p_ar_d_64_unscaled() {
@@ -4672,7 +5634,9 @@ void test_ld1q_z_p_ar_d_64_unscaled() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::MemoryRegOffset);
+#ifdef VEDA64_STRINGS
     std::cout << "  ld1q_z_p_ar_d_64_unscaled: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ld1rb_z_p_bi_u8() {
@@ -4684,7 +5648,9 @@ void test_ld1rb_z_p_bi_u8() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ld1rb_z_p_bi_u8: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ld1rb_z_p_bi_u16() {
@@ -4696,7 +5662,9 @@ void test_ld1rb_z_p_bi_u16() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ld1rb_z_p_bi_u16: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ld1rb_z_p_bi_u32() {
@@ -4708,7 +5676,9 @@ void test_ld1rb_z_p_bi_u32() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ld1rb_z_p_bi_u32: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ld1rb_z_p_bi_u64() {
@@ -4720,7 +5690,9 @@ void test_ld1rb_z_p_bi_u64() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ld1rb_z_p_bi_u64: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ld1rd_z_p_bi_u64() {
@@ -4732,7 +5704,9 @@ void test_ld1rd_z_p_bi_u64() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ld1rd_z_p_bi_u64: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ld1rh_z_p_bi_u16() {
@@ -4744,7 +5718,9 @@ void test_ld1rh_z_p_bi_u16() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ld1rh_z_p_bi_u16: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ld1rh_z_p_bi_u32() {
@@ -4756,7 +5732,9 @@ void test_ld1rh_z_p_bi_u32() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ld1rh_z_p_bi_u32: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ld1rh_z_p_bi_u64() {
@@ -4768,7 +5746,9 @@ void test_ld1rh_z_p_bi_u64() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ld1rh_z_p_bi_u64: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ld1rob_z_p_bi_u8() {
@@ -4780,7 +5760,9 @@ void test_ld1rob_z_p_bi_u8() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ld1rob_z_p_bi_u8: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ld1rob_z_p_br_contiguous() {
@@ -4792,7 +5774,9 @@ void test_ld1rob_z_p_br_contiguous() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::MemoryRegOffset);
+#ifdef VEDA64_STRINGS
     std::cout << "  ld1rob_z_p_br_contiguous: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ld1rod_z_p_bi_u64() {
@@ -4804,7 +5788,9 @@ void test_ld1rod_z_p_bi_u64() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ld1rod_z_p_bi_u64: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ld1rod_z_p_br_contiguous() {
@@ -4816,7 +5802,9 @@ void test_ld1rod_z_p_br_contiguous() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::MemoryRegOffset);
+#ifdef VEDA64_STRINGS
     std::cout << "  ld1rod_z_p_br_contiguous: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ld1roh_z_p_bi_u16() {
@@ -4828,7 +5816,9 @@ void test_ld1roh_z_p_bi_u16() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ld1roh_z_p_bi_u16: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ld1roh_z_p_br_contiguous() {
@@ -4840,7 +5830,9 @@ void test_ld1roh_z_p_br_contiguous() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::MemoryRegOffset);
+#ifdef VEDA64_STRINGS
     std::cout << "  ld1roh_z_p_br_contiguous: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ld1row_z_p_bi_u32() {
@@ -4852,7 +5844,9 @@ void test_ld1row_z_p_bi_u32() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ld1row_z_p_bi_u32: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ld1row_z_p_br_contiguous() {
@@ -4864,7 +5858,9 @@ void test_ld1row_z_p_br_contiguous() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::MemoryRegOffset);
+#ifdef VEDA64_STRINGS
     std::cout << "  ld1row_z_p_br_contiguous: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ld1rqb_z_p_bi_u8() {
@@ -4876,7 +5872,9 @@ void test_ld1rqb_z_p_bi_u8() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ld1rqb_z_p_bi_u8: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ld1rqb_z_p_br_contiguous() {
@@ -4888,7 +5886,9 @@ void test_ld1rqb_z_p_br_contiguous() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::MemoryRegOffset);
+#ifdef VEDA64_STRINGS
     std::cout << "  ld1rqb_z_p_br_contiguous: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ld1rqd_z_p_bi_u64() {
@@ -4900,7 +5900,9 @@ void test_ld1rqd_z_p_bi_u64() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ld1rqd_z_p_bi_u64: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ld1rqd_z_p_br_contiguous() {
@@ -4912,7 +5914,9 @@ void test_ld1rqd_z_p_br_contiguous() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::MemoryRegOffset);
+#ifdef VEDA64_STRINGS
     std::cout << "  ld1rqd_z_p_br_contiguous: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ld1rqh_z_p_bi_u16() {
@@ -4924,7 +5928,9 @@ void test_ld1rqh_z_p_bi_u16() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ld1rqh_z_p_bi_u16: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ld1rqh_z_p_br_contiguous() {
@@ -4936,7 +5942,9 @@ void test_ld1rqh_z_p_br_contiguous() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::MemoryRegOffset);
+#ifdef VEDA64_STRINGS
     std::cout << "  ld1rqh_z_p_br_contiguous: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ld1rqw_z_p_bi_u32() {
@@ -4948,7 +5956,9 @@ void test_ld1rqw_z_p_bi_u32() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ld1rqw_z_p_bi_u32: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ld1rqw_z_p_br_contiguous() {
@@ -4960,7 +5970,9 @@ void test_ld1rqw_z_p_br_contiguous() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::MemoryRegOffset);
+#ifdef VEDA64_STRINGS
     std::cout << "  ld1rqw_z_p_br_contiguous: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ld1rsb_z_p_bi_s16() {
@@ -4972,7 +5984,9 @@ void test_ld1rsb_z_p_bi_s16() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ld1rsb_z_p_bi_s16: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ld1rsb_z_p_bi_s32() {
@@ -4984,7 +5998,9 @@ void test_ld1rsb_z_p_bi_s32() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ld1rsb_z_p_bi_s32: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ld1rsb_z_p_bi_s64() {
@@ -4996,7 +6012,9 @@ void test_ld1rsb_z_p_bi_s64() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ld1rsb_z_p_bi_s64: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ld1rsh_z_p_bi_s32() {
@@ -5008,7 +6026,9 @@ void test_ld1rsh_z_p_bi_s32() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ld1rsh_z_p_bi_s32: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ld1rsh_z_p_bi_s64() {
@@ -5020,7 +6040,9 @@ void test_ld1rsh_z_p_bi_s64() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ld1rsh_z_p_bi_s64: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ld1rsw_z_p_bi_s64() {
@@ -5032,7 +6054,9 @@ void test_ld1rsw_z_p_bi_s64() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ld1rsw_z_p_bi_s64: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ld1rw_z_p_bi_u32() {
@@ -5044,7 +6068,9 @@ void test_ld1rw_z_p_bi_u32() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ld1rw_z_p_bi_u32: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ld1rw_z_p_bi_u64() {
@@ -5056,7 +6082,9 @@ void test_ld1rw_z_p_bi_u64() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ld1rw_z_p_bi_u64: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ld1sb_z_p_ai_s() {
@@ -5068,7 +6096,9 @@ void test_ld1sb_z_p_ai_s() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ld1sb_z_p_ai_s: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ld1sb_z_p_ai_d() {
@@ -5080,7 +6110,9 @@ void test_ld1sb_z_p_ai_d() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ld1sb_z_p_ai_d: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ld1sb_z_p_bi_s16() {
@@ -5092,7 +6124,9 @@ void test_ld1sb_z_p_bi_s16() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ld1sb_z_p_bi_s16: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ld1sb_z_p_bi_s32() {
@@ -5104,7 +6138,9 @@ void test_ld1sb_z_p_bi_s32() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ld1sb_z_p_bi_s32: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ld1sb_z_p_bi_s64() {
@@ -5116,7 +6152,9 @@ void test_ld1sb_z_p_bi_s64() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ld1sb_z_p_bi_s64: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ld1sb_z_p_br_s16() {
@@ -5128,7 +6166,9 @@ void test_ld1sb_z_p_br_s16() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::MemoryRegOffset);
+#ifdef VEDA64_STRINGS
     std::cout << "  ld1sb_z_p_br_s16: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ld1sb_z_p_br_s32() {
@@ -5140,7 +6180,9 @@ void test_ld1sb_z_p_br_s32() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::MemoryRegOffset);
+#ifdef VEDA64_STRINGS
     std::cout << "  ld1sb_z_p_br_s32: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ld1sb_z_p_br_s64() {
@@ -5152,7 +6194,9 @@ void test_ld1sb_z_p_br_s64() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::MemoryRegOffset);
+#ifdef VEDA64_STRINGS
     std::cout << "  ld1sb_z_p_br_s64: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ld1sb_z_p_bz_d_x32_unscaled() {
@@ -5164,7 +6208,9 @@ void test_ld1sb_z_p_bz_d_x32_unscaled() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::MemoryRegOffset);
+#ifdef VEDA64_STRINGS
     std::cout << "  ld1sb_z_p_bz_d_x32_unscaled: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ld1sb_z_p_bz_s_x32_unscaled() {
@@ -5176,7 +6222,9 @@ void test_ld1sb_z_p_bz_s_x32_unscaled() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::MemoryRegOffset);
+#ifdef VEDA64_STRINGS
     std::cout << "  ld1sb_z_p_bz_s_x32_unscaled: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ld1sb_z_p_bz_d_64_unscaled() {
@@ -5188,7 +6236,9 @@ void test_ld1sb_z_p_bz_d_64_unscaled() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::MemoryRegOffset);
+#ifdef VEDA64_STRINGS
     std::cout << "  ld1sb_z_p_bz_d_64_unscaled: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ld1sh_z_p_ai_s() {
@@ -5200,7 +6250,9 @@ void test_ld1sh_z_p_ai_s() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ld1sh_z_p_ai_s: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ld1sh_z_p_ai_d() {
@@ -5212,7 +6264,9 @@ void test_ld1sh_z_p_ai_d() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ld1sh_z_p_ai_d: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ld1sh_z_p_bi_s32() {
@@ -5224,7 +6278,9 @@ void test_ld1sh_z_p_bi_s32() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ld1sh_z_p_bi_s32: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ld1sh_z_p_bi_s64() {
@@ -5236,7 +6292,9 @@ void test_ld1sh_z_p_bi_s64() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ld1sh_z_p_bi_s64: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ld1sh_z_p_br_s32() {
@@ -5248,7 +6306,9 @@ void test_ld1sh_z_p_br_s32() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::MemoryRegOffset);
+#ifdef VEDA64_STRINGS
     std::cout << "  ld1sh_z_p_br_s32: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ld1sh_z_p_br_s64() {
@@ -5260,7 +6320,9 @@ void test_ld1sh_z_p_br_s64() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::MemoryRegOffset);
+#ifdef VEDA64_STRINGS
     std::cout << "  ld1sh_z_p_br_s64: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ld1sh_z_p_bz_s_x32_scaled() {
@@ -5272,7 +6334,9 @@ void test_ld1sh_z_p_bz_s_x32_scaled() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::MemoryRegOffset);
+#ifdef VEDA64_STRINGS
     std::cout << "  ld1sh_z_p_bz_s_x32_scaled: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ld1sh_z_p_bz_d_x32_scaled() {
@@ -5284,7 +6348,9 @@ void test_ld1sh_z_p_bz_d_x32_scaled() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::MemoryRegOffset);
+#ifdef VEDA64_STRINGS
     std::cout << "  ld1sh_z_p_bz_d_x32_scaled: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ld1sh_z_p_bz_d_x32_unscaled() {
@@ -5296,7 +6362,9 @@ void test_ld1sh_z_p_bz_d_x32_unscaled() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::MemoryRegOffset);
+#ifdef VEDA64_STRINGS
     std::cout << "  ld1sh_z_p_bz_d_x32_unscaled: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ld1sh_z_p_bz_s_x32_unscaled() {
@@ -5308,7 +6376,9 @@ void test_ld1sh_z_p_bz_s_x32_unscaled() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::MemoryRegOffset);
+#ifdef VEDA64_STRINGS
     std::cout << "  ld1sh_z_p_bz_s_x32_unscaled: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ld1sh_z_p_bz_d_64_scaled() {
@@ -5320,7 +6390,9 @@ void test_ld1sh_z_p_bz_d_64_scaled() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::MemoryRegOffset);
+#ifdef VEDA64_STRINGS
     std::cout << "  ld1sh_z_p_bz_d_64_scaled: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ld1sh_z_p_bz_d_64_unscaled() {
@@ -5332,7 +6404,9 @@ void test_ld1sh_z_p_bz_d_64_unscaled() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::MemoryRegOffset);
+#ifdef VEDA64_STRINGS
     std::cout << "  ld1sh_z_p_bz_d_64_unscaled: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ld1sw_z_p_ai_d() {
@@ -5344,7 +6418,9 @@ void test_ld1sw_z_p_ai_d() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ld1sw_z_p_ai_d: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ld1sw_z_p_bi_s64() {
@@ -5356,7 +6432,9 @@ void test_ld1sw_z_p_bi_s64() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ld1sw_z_p_bi_s64: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ld1sw_z_p_br_s64() {
@@ -5368,7 +6446,9 @@ void test_ld1sw_z_p_br_s64() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::MemoryRegOffset);
+#ifdef VEDA64_STRINGS
     std::cout << "  ld1sw_z_p_br_s64: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ld1sw_z_p_bz_d_x32_scaled() {
@@ -5380,7 +6460,9 @@ void test_ld1sw_z_p_bz_d_x32_scaled() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::MemoryRegOffset);
+#ifdef VEDA64_STRINGS
     std::cout << "  ld1sw_z_p_bz_d_x32_scaled: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ld1sw_z_p_bz_d_x32_unscaled() {
@@ -5392,7 +6474,9 @@ void test_ld1sw_z_p_bz_d_x32_unscaled() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::MemoryRegOffset);
+#ifdef VEDA64_STRINGS
     std::cout << "  ld1sw_z_p_bz_d_x32_unscaled: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ld1sw_z_p_bz_d_64_scaled() {
@@ -5404,7 +6488,9 @@ void test_ld1sw_z_p_bz_d_64_scaled() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::MemoryRegOffset);
+#ifdef VEDA64_STRINGS
     std::cout << "  ld1sw_z_p_bz_d_64_scaled: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ld1sw_z_p_bz_d_64_unscaled() {
@@ -5416,7 +6502,9 @@ void test_ld1sw_z_p_bz_d_64_unscaled() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::MemoryRegOffset);
+#ifdef VEDA64_STRINGS
     std::cout << "  ld1sw_z_p_bz_d_64_unscaled: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ld1w_z_p_ai_s() {
@@ -5428,7 +6516,9 @@ void test_ld1w_z_p_ai_s() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ld1w_z_p_ai_s: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ld1w_z_p_ai_d() {
@@ -5440,7 +6530,9 @@ void test_ld1w_z_p_ai_d() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ld1w_z_p_ai_d: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ld1w_z_p_bi_u32() {
@@ -5452,7 +6544,9 @@ void test_ld1w_z_p_bi_u32() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ld1w_z_p_bi_u32: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ld1w_z_p_bi_u64() {
@@ -5464,7 +6558,9 @@ void test_ld1w_z_p_bi_u64() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ld1w_z_p_bi_u64: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ld1w_z_p_bi_u128() {
@@ -5476,7 +6572,9 @@ void test_ld1w_z_p_bi_u128() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ld1w_z_p_bi_u128: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ld1w_z_p_br_u32() {
@@ -5488,7 +6586,9 @@ void test_ld1w_z_p_br_u32() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::MemoryRegOffset);
+#ifdef VEDA64_STRINGS
     std::cout << "  ld1w_z_p_br_u32: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ld1w_z_p_br_u64() {
@@ -5500,7 +6600,9 @@ void test_ld1w_z_p_br_u64() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::MemoryRegOffset);
+#ifdef VEDA64_STRINGS
     std::cout << "  ld1w_z_p_br_u64: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ld1w_z_p_br_u128() {
@@ -5512,7 +6614,9 @@ void test_ld1w_z_p_br_u128() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::MemoryRegOffset);
+#ifdef VEDA64_STRINGS
     std::cout << "  ld1w_z_p_br_u128: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ld1w_z_p_bz_s_x32_scaled() {
@@ -5524,7 +6628,9 @@ void test_ld1w_z_p_bz_s_x32_scaled() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::MemoryRegOffset);
+#ifdef VEDA64_STRINGS
     std::cout << "  ld1w_z_p_bz_s_x32_scaled: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ld1w_z_p_bz_d_x32_scaled() {
@@ -5536,7 +6642,9 @@ void test_ld1w_z_p_bz_d_x32_scaled() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::MemoryRegOffset);
+#ifdef VEDA64_STRINGS
     std::cout << "  ld1w_z_p_bz_d_x32_scaled: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ld1w_z_p_bz_d_x32_unscaled() {
@@ -5548,7 +6656,9 @@ void test_ld1w_z_p_bz_d_x32_unscaled() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::MemoryRegOffset);
+#ifdef VEDA64_STRINGS
     std::cout << "  ld1w_z_p_bz_d_x32_unscaled: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ld1w_z_p_bz_s_x32_unscaled() {
@@ -5560,7 +6670,9 @@ void test_ld1w_z_p_bz_s_x32_unscaled() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::MemoryRegOffset);
+#ifdef VEDA64_STRINGS
     std::cout << "  ld1w_z_p_bz_s_x32_unscaled: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ld1w_z_p_bz_d_64_scaled() {
@@ -5572,7 +6684,9 @@ void test_ld1w_z_p_bz_d_64_scaled() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::MemoryRegOffset);
+#ifdef VEDA64_STRINGS
     std::cout << "  ld1w_z_p_bz_d_64_scaled: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ld1w_z_p_bz_d_64_unscaled() {
@@ -5584,7 +6698,9 @@ void test_ld1w_z_p_bz_d_64_unscaled() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::MemoryRegOffset);
+#ifdef VEDA64_STRINGS
     std::cout << "  ld1w_z_p_bz_d_64_unscaled: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ld2b_z_p_bi_contiguous() {
@@ -5596,7 +6712,9 @@ void test_ld2b_z_p_bi_contiguous() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ld2b_z_p_bi_contiguous: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ld2b_z_p_br_contiguous() {
@@ -5608,7 +6726,9 @@ void test_ld2b_z_p_br_contiguous() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::MemoryRegOffset);
+#ifdef VEDA64_STRINGS
     std::cout << "  ld2b_z_p_br_contiguous: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ld2d_z_p_bi_contiguous() {
@@ -5620,7 +6740,9 @@ void test_ld2d_z_p_bi_contiguous() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ld2d_z_p_bi_contiguous: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ld2d_z_p_br_contiguous() {
@@ -5632,7 +6754,9 @@ void test_ld2d_z_p_br_contiguous() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::MemoryRegOffset);
+#ifdef VEDA64_STRINGS
     std::cout << "  ld2d_z_p_br_contiguous: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ld2h_z_p_bi_contiguous() {
@@ -5644,7 +6768,9 @@ void test_ld2h_z_p_bi_contiguous() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ld2h_z_p_bi_contiguous: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ld2h_z_p_br_contiguous() {
@@ -5656,7 +6782,9 @@ void test_ld2h_z_p_br_contiguous() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::MemoryRegOffset);
+#ifdef VEDA64_STRINGS
     std::cout << "  ld2h_z_p_br_contiguous: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ld2q_z_p_bi_contiguous() {
@@ -5668,7 +6796,9 @@ void test_ld2q_z_p_bi_contiguous() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ld2q_z_p_bi_contiguous: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ld2q_z_p_br_contiguous() {
@@ -5680,7 +6810,9 @@ void test_ld2q_z_p_br_contiguous() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::MemoryRegOffset);
+#ifdef VEDA64_STRINGS
     std::cout << "  ld2q_z_p_br_contiguous: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ld2w_z_p_bi_contiguous() {
@@ -5692,7 +6824,9 @@ void test_ld2w_z_p_bi_contiguous() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ld2w_z_p_bi_contiguous: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ld2w_z_p_br_contiguous() {
@@ -5704,7 +6838,9 @@ void test_ld2w_z_p_br_contiguous() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::MemoryRegOffset);
+#ifdef VEDA64_STRINGS
     std::cout << "  ld2w_z_p_br_contiguous: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ld3b_z_p_bi_contiguous() {
@@ -5716,7 +6852,9 @@ void test_ld3b_z_p_bi_contiguous() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ld3b_z_p_bi_contiguous: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ld3b_z_p_br_contiguous() {
@@ -5728,7 +6866,9 @@ void test_ld3b_z_p_br_contiguous() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::MemoryRegOffset);
+#ifdef VEDA64_STRINGS
     std::cout << "  ld3b_z_p_br_contiguous: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ld3d_z_p_bi_contiguous() {
@@ -5740,7 +6880,9 @@ void test_ld3d_z_p_bi_contiguous() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ld3d_z_p_bi_contiguous: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ld3d_z_p_br_contiguous() {
@@ -5752,7 +6894,9 @@ void test_ld3d_z_p_br_contiguous() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::MemoryRegOffset);
+#ifdef VEDA64_STRINGS
     std::cout << "  ld3d_z_p_br_contiguous: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ld3h_z_p_bi_contiguous() {
@@ -5764,7 +6908,9 @@ void test_ld3h_z_p_bi_contiguous() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ld3h_z_p_bi_contiguous: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ld3h_z_p_br_contiguous() {
@@ -5776,7 +6922,9 @@ void test_ld3h_z_p_br_contiguous() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::MemoryRegOffset);
+#ifdef VEDA64_STRINGS
     std::cout << "  ld3h_z_p_br_contiguous: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ld3q_z_p_bi_contiguous() {
@@ -5788,7 +6936,9 @@ void test_ld3q_z_p_bi_contiguous() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ld3q_z_p_bi_contiguous: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ld3q_z_p_br_contiguous() {
@@ -5800,7 +6950,9 @@ void test_ld3q_z_p_br_contiguous() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::MemoryRegOffset);
+#ifdef VEDA64_STRINGS
     std::cout << "  ld3q_z_p_br_contiguous: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ld3w_z_p_bi_contiguous() {
@@ -5812,7 +6964,9 @@ void test_ld3w_z_p_bi_contiguous() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ld3w_z_p_bi_contiguous: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ld3w_z_p_br_contiguous() {
@@ -5824,7 +6978,9 @@ void test_ld3w_z_p_br_contiguous() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::MemoryRegOffset);
+#ifdef VEDA64_STRINGS
     std::cout << "  ld3w_z_p_br_contiguous: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ld4b_z_p_bi_contiguous() {
@@ -5836,7 +6992,9 @@ void test_ld4b_z_p_bi_contiguous() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ld4b_z_p_bi_contiguous: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ld4b_z_p_br_contiguous() {
@@ -5848,7 +7006,9 @@ void test_ld4b_z_p_br_contiguous() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::MemoryRegOffset);
+#ifdef VEDA64_STRINGS
     std::cout << "  ld4b_z_p_br_contiguous: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ld4d_z_p_bi_contiguous() {
@@ -5860,7 +7020,9 @@ void test_ld4d_z_p_bi_contiguous() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ld4d_z_p_bi_contiguous: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ld4d_z_p_br_contiguous() {
@@ -5872,7 +7034,9 @@ void test_ld4d_z_p_br_contiguous() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::MemoryRegOffset);
+#ifdef VEDA64_STRINGS
     std::cout << "  ld4d_z_p_br_contiguous: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ld4h_z_p_bi_contiguous() {
@@ -5884,7 +7048,9 @@ void test_ld4h_z_p_bi_contiguous() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ld4h_z_p_bi_contiguous: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ld4h_z_p_br_contiguous() {
@@ -5896,7 +7062,9 @@ void test_ld4h_z_p_br_contiguous() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::MemoryRegOffset);
+#ifdef VEDA64_STRINGS
     std::cout << "  ld4h_z_p_br_contiguous: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ld4q_z_p_bi_contiguous() {
@@ -5908,7 +7076,9 @@ void test_ld4q_z_p_bi_contiguous() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ld4q_z_p_bi_contiguous: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ld4q_z_p_br_contiguous() {
@@ -5920,7 +7090,9 @@ void test_ld4q_z_p_br_contiguous() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::MemoryRegOffset);
+#ifdef VEDA64_STRINGS
     std::cout << "  ld4q_z_p_br_contiguous: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ld4w_z_p_bi_contiguous() {
@@ -5932,7 +7104,9 @@ void test_ld4w_z_p_bi_contiguous() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ld4w_z_p_bi_contiguous: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ld4w_z_p_br_contiguous() {
@@ -5944,7 +7118,9 @@ void test_ld4w_z_p_br_contiguous() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::MemoryRegOffset);
+#ifdef VEDA64_STRINGS
     std::cout << "  ld4w_z_p_br_contiguous: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldff1b_z_p_ai_s() {
@@ -5956,7 +7132,9 @@ void test_ldff1b_z_p_ai_s() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldff1b_z_p_ai_s: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldff1b_z_p_ai_d() {
@@ -5968,7 +7146,9 @@ void test_ldff1b_z_p_ai_d() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldff1b_z_p_ai_d: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldff1b_z_p_br_u8() {
@@ -5980,7 +7160,9 @@ void test_ldff1b_z_p_br_u8() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::MemoryRegOffset);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldff1b_z_p_br_u8: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldff1b_z_p_br_u16() {
@@ -5992,7 +7174,9 @@ void test_ldff1b_z_p_br_u16() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::MemoryRegOffset);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldff1b_z_p_br_u16: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldff1b_z_p_br_u32() {
@@ -6004,7 +7188,9 @@ void test_ldff1b_z_p_br_u32() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::MemoryRegOffset);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldff1b_z_p_br_u32: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldff1b_z_p_br_u64() {
@@ -6016,7 +7202,9 @@ void test_ldff1b_z_p_br_u64() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::MemoryRegOffset);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldff1b_z_p_br_u64: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldff1b_z_p_bz_d_x32_unscaled() {
@@ -6028,7 +7216,9 @@ void test_ldff1b_z_p_bz_d_x32_unscaled() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::MemoryRegOffset);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldff1b_z_p_bz_d_x32_unscaled: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldff1b_z_p_bz_s_x32_unscaled() {
@@ -6040,7 +7230,9 @@ void test_ldff1b_z_p_bz_s_x32_unscaled() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::MemoryRegOffset);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldff1b_z_p_bz_s_x32_unscaled: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldff1b_z_p_bz_d_64_unscaled() {
@@ -6052,7 +7244,9 @@ void test_ldff1b_z_p_bz_d_64_unscaled() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::MemoryRegOffset);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldff1b_z_p_bz_d_64_unscaled: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldff1d_z_p_ai_d() {
@@ -6064,7 +7258,9 @@ void test_ldff1d_z_p_ai_d() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldff1d_z_p_ai_d: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldff1d_z_p_br_u64() {
@@ -6076,7 +7272,9 @@ void test_ldff1d_z_p_br_u64() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::MemoryRegOffset);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldff1d_z_p_br_u64: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldff1d_z_p_bz_d_x32_scaled() {
@@ -6088,7 +7286,9 @@ void test_ldff1d_z_p_bz_d_x32_scaled() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::MemoryRegOffset);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldff1d_z_p_bz_d_x32_scaled: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldff1d_z_p_bz_d_x32_unscaled() {
@@ -6100,7 +7300,9 @@ void test_ldff1d_z_p_bz_d_x32_unscaled() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::MemoryRegOffset);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldff1d_z_p_bz_d_x32_unscaled: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldff1d_z_p_bz_d_64_scaled() {
@@ -6112,7 +7314,9 @@ void test_ldff1d_z_p_bz_d_64_scaled() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::MemoryRegOffset);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldff1d_z_p_bz_d_64_scaled: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldff1d_z_p_bz_d_64_unscaled() {
@@ -6124,7 +7328,9 @@ void test_ldff1d_z_p_bz_d_64_unscaled() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::MemoryRegOffset);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldff1d_z_p_bz_d_64_unscaled: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldff1h_z_p_ai_s() {
@@ -6136,7 +7342,9 @@ void test_ldff1h_z_p_ai_s() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldff1h_z_p_ai_s: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldff1h_z_p_ai_d() {
@@ -6148,7 +7356,9 @@ void test_ldff1h_z_p_ai_d() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldff1h_z_p_ai_d: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldff1h_z_p_br_u16() {
@@ -6160,7 +7370,9 @@ void test_ldff1h_z_p_br_u16() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::MemoryRegOffset);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldff1h_z_p_br_u16: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldff1h_z_p_br_u32() {
@@ -6172,7 +7384,9 @@ void test_ldff1h_z_p_br_u32() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::MemoryRegOffset);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldff1h_z_p_br_u32: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldff1h_z_p_br_u64() {
@@ -6184,7 +7398,9 @@ void test_ldff1h_z_p_br_u64() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::MemoryRegOffset);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldff1h_z_p_br_u64: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldff1h_z_p_bz_s_x32_scaled() {
@@ -6196,7 +7412,9 @@ void test_ldff1h_z_p_bz_s_x32_scaled() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::MemoryRegOffset);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldff1h_z_p_bz_s_x32_scaled: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldff1h_z_p_bz_d_x32_scaled() {
@@ -6208,7 +7426,9 @@ void test_ldff1h_z_p_bz_d_x32_scaled() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::MemoryRegOffset);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldff1h_z_p_bz_d_x32_scaled: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldff1h_z_p_bz_d_x32_unscaled() {
@@ -6220,7 +7440,9 @@ void test_ldff1h_z_p_bz_d_x32_unscaled() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::MemoryRegOffset);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldff1h_z_p_bz_d_x32_unscaled: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldff1h_z_p_bz_s_x32_unscaled() {
@@ -6232,7 +7454,9 @@ void test_ldff1h_z_p_bz_s_x32_unscaled() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::MemoryRegOffset);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldff1h_z_p_bz_s_x32_unscaled: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldff1h_z_p_bz_d_64_scaled() {
@@ -6244,7 +7468,9 @@ void test_ldff1h_z_p_bz_d_64_scaled() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::MemoryRegOffset);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldff1h_z_p_bz_d_64_scaled: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldff1h_z_p_bz_d_64_unscaled() {
@@ -6256,7 +7482,9 @@ void test_ldff1h_z_p_bz_d_64_unscaled() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::MemoryRegOffset);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldff1h_z_p_bz_d_64_unscaled: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldff1sb_z_p_ai_s() {
@@ -6268,7 +7496,9 @@ void test_ldff1sb_z_p_ai_s() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldff1sb_z_p_ai_s: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldff1sb_z_p_ai_d() {
@@ -6280,7 +7510,9 @@ void test_ldff1sb_z_p_ai_d() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldff1sb_z_p_ai_d: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldff1sb_z_p_br_s16() {
@@ -6292,7 +7524,9 @@ void test_ldff1sb_z_p_br_s16() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::MemoryRegOffset);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldff1sb_z_p_br_s16: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldff1sb_z_p_br_s32() {
@@ -6304,7 +7538,9 @@ void test_ldff1sb_z_p_br_s32() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::MemoryRegOffset);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldff1sb_z_p_br_s32: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldff1sb_z_p_br_s64() {
@@ -6316,7 +7552,9 @@ void test_ldff1sb_z_p_br_s64() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::MemoryRegOffset);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldff1sb_z_p_br_s64: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldff1sb_z_p_bz_d_x32_unscaled() {
@@ -6328,7 +7566,9 @@ void test_ldff1sb_z_p_bz_d_x32_unscaled() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::MemoryRegOffset);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldff1sb_z_p_bz_d_x32_unscaled: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldff1sb_z_p_bz_s_x32_unscaled() {
@@ -6340,7 +7580,9 @@ void test_ldff1sb_z_p_bz_s_x32_unscaled() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::MemoryRegOffset);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldff1sb_z_p_bz_s_x32_unscaled: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldff1sb_z_p_bz_d_64_unscaled() {
@@ -6352,7 +7594,9 @@ void test_ldff1sb_z_p_bz_d_64_unscaled() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::MemoryRegOffset);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldff1sb_z_p_bz_d_64_unscaled: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldff1sh_z_p_ai_s() {
@@ -6364,7 +7608,9 @@ void test_ldff1sh_z_p_ai_s() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldff1sh_z_p_ai_s: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldff1sh_z_p_ai_d() {
@@ -6376,7 +7622,9 @@ void test_ldff1sh_z_p_ai_d() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldff1sh_z_p_ai_d: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldff1sh_z_p_br_s32() {
@@ -6388,7 +7636,9 @@ void test_ldff1sh_z_p_br_s32() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::MemoryRegOffset);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldff1sh_z_p_br_s32: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldff1sh_z_p_br_s64() {
@@ -6400,7 +7650,9 @@ void test_ldff1sh_z_p_br_s64() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::MemoryRegOffset);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldff1sh_z_p_br_s64: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldff1sh_z_p_bz_s_x32_scaled() {
@@ -6412,7 +7664,9 @@ void test_ldff1sh_z_p_bz_s_x32_scaled() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::MemoryRegOffset);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldff1sh_z_p_bz_s_x32_scaled: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldff1sh_z_p_bz_d_x32_scaled() {
@@ -6424,7 +7678,9 @@ void test_ldff1sh_z_p_bz_d_x32_scaled() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::MemoryRegOffset);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldff1sh_z_p_bz_d_x32_scaled: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldff1sh_z_p_bz_d_x32_unscaled() {
@@ -6436,7 +7692,9 @@ void test_ldff1sh_z_p_bz_d_x32_unscaled() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::MemoryRegOffset);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldff1sh_z_p_bz_d_x32_unscaled: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldff1sh_z_p_bz_s_x32_unscaled() {
@@ -6448,7 +7706,9 @@ void test_ldff1sh_z_p_bz_s_x32_unscaled() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::MemoryRegOffset);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldff1sh_z_p_bz_s_x32_unscaled: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldff1sh_z_p_bz_d_64_scaled() {
@@ -6460,7 +7720,9 @@ void test_ldff1sh_z_p_bz_d_64_scaled() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::MemoryRegOffset);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldff1sh_z_p_bz_d_64_scaled: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldff1sh_z_p_bz_d_64_unscaled() {
@@ -6472,7 +7734,9 @@ void test_ldff1sh_z_p_bz_d_64_unscaled() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::MemoryRegOffset);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldff1sh_z_p_bz_d_64_unscaled: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldff1sw_z_p_ai_d() {
@@ -6484,7 +7748,9 @@ void test_ldff1sw_z_p_ai_d() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldff1sw_z_p_ai_d: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldff1sw_z_p_br_s64() {
@@ -6496,7 +7762,9 @@ void test_ldff1sw_z_p_br_s64() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::MemoryRegOffset);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldff1sw_z_p_br_s64: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldff1sw_z_p_bz_d_x32_scaled() {
@@ -6508,7 +7776,9 @@ void test_ldff1sw_z_p_bz_d_x32_scaled() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::MemoryRegOffset);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldff1sw_z_p_bz_d_x32_scaled: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldff1sw_z_p_bz_d_x32_unscaled() {
@@ -6520,7 +7790,9 @@ void test_ldff1sw_z_p_bz_d_x32_unscaled() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::MemoryRegOffset);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldff1sw_z_p_bz_d_x32_unscaled: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldff1sw_z_p_bz_d_64_scaled() {
@@ -6532,7 +7804,9 @@ void test_ldff1sw_z_p_bz_d_64_scaled() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::MemoryRegOffset);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldff1sw_z_p_bz_d_64_scaled: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldff1sw_z_p_bz_d_64_unscaled() {
@@ -6544,7 +7818,9 @@ void test_ldff1sw_z_p_bz_d_64_unscaled() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::MemoryRegOffset);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldff1sw_z_p_bz_d_64_unscaled: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldff1w_z_p_ai_s() {
@@ -6556,7 +7832,9 @@ void test_ldff1w_z_p_ai_s() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldff1w_z_p_ai_s: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldff1w_z_p_ai_d() {
@@ -6568,7 +7846,9 @@ void test_ldff1w_z_p_ai_d() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldff1w_z_p_ai_d: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldff1w_z_p_br_u32() {
@@ -6580,7 +7860,9 @@ void test_ldff1w_z_p_br_u32() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::MemoryRegOffset);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldff1w_z_p_br_u32: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldff1w_z_p_br_u64() {
@@ -6592,7 +7874,9 @@ void test_ldff1w_z_p_br_u64() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::MemoryRegOffset);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldff1w_z_p_br_u64: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldff1w_z_p_bz_s_x32_scaled() {
@@ -6604,7 +7888,9 @@ void test_ldff1w_z_p_bz_s_x32_scaled() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::MemoryRegOffset);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldff1w_z_p_bz_s_x32_scaled: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldff1w_z_p_bz_d_x32_scaled() {
@@ -6616,7 +7902,9 @@ void test_ldff1w_z_p_bz_d_x32_scaled() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::MemoryRegOffset);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldff1w_z_p_bz_d_x32_scaled: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldff1w_z_p_bz_d_x32_unscaled() {
@@ -6628,7 +7916,9 @@ void test_ldff1w_z_p_bz_d_x32_unscaled() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::MemoryRegOffset);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldff1w_z_p_bz_d_x32_unscaled: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldff1w_z_p_bz_s_x32_unscaled() {
@@ -6640,7 +7930,9 @@ void test_ldff1w_z_p_bz_s_x32_unscaled() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::MemoryRegOffset);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldff1w_z_p_bz_s_x32_unscaled: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldff1w_z_p_bz_d_64_scaled() {
@@ -6652,7 +7944,9 @@ void test_ldff1w_z_p_bz_d_64_scaled() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::MemoryRegOffset);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldff1w_z_p_bz_d_64_scaled: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldff1w_z_p_bz_d_64_unscaled() {
@@ -6664,7 +7958,9 @@ void test_ldff1w_z_p_bz_d_64_unscaled() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::MemoryRegOffset);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldff1w_z_p_bz_d_64_unscaled: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldnf1b_z_p_bi_u8() {
@@ -6676,7 +7972,9 @@ void test_ldnf1b_z_p_bi_u8() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldnf1b_z_p_bi_u8: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldnf1b_z_p_bi_u16() {
@@ -6688,7 +7986,9 @@ void test_ldnf1b_z_p_bi_u16() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldnf1b_z_p_bi_u16: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldnf1b_z_p_bi_u32() {
@@ -6700,7 +8000,9 @@ void test_ldnf1b_z_p_bi_u32() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldnf1b_z_p_bi_u32: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldnf1b_z_p_bi_u64() {
@@ -6712,7 +8014,9 @@ void test_ldnf1b_z_p_bi_u64() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldnf1b_z_p_bi_u64: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldnf1d_z_p_bi_u64() {
@@ -6724,7 +8028,9 @@ void test_ldnf1d_z_p_bi_u64() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldnf1d_z_p_bi_u64: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldnf1h_z_p_bi_u16() {
@@ -6736,7 +8042,9 @@ void test_ldnf1h_z_p_bi_u16() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldnf1h_z_p_bi_u16: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldnf1h_z_p_bi_u32() {
@@ -6748,7 +8056,9 @@ void test_ldnf1h_z_p_bi_u32() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldnf1h_z_p_bi_u32: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldnf1h_z_p_bi_u64() {
@@ -6760,7 +8070,9 @@ void test_ldnf1h_z_p_bi_u64() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldnf1h_z_p_bi_u64: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldnf1sb_z_p_bi_s16() {
@@ -6772,7 +8084,9 @@ void test_ldnf1sb_z_p_bi_s16() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldnf1sb_z_p_bi_s16: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldnf1sb_z_p_bi_s32() {
@@ -6784,7 +8098,9 @@ void test_ldnf1sb_z_p_bi_s32() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldnf1sb_z_p_bi_s32: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldnf1sb_z_p_bi_s64() {
@@ -6796,7 +8112,9 @@ void test_ldnf1sb_z_p_bi_s64() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldnf1sb_z_p_bi_s64: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldnf1sh_z_p_bi_s32() {
@@ -6808,7 +8126,9 @@ void test_ldnf1sh_z_p_bi_s32() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldnf1sh_z_p_bi_s32: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldnf1sh_z_p_bi_s64() {
@@ -6820,7 +8140,9 @@ void test_ldnf1sh_z_p_bi_s64() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldnf1sh_z_p_bi_s64: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldnf1sw_z_p_bi_s64() {
@@ -6832,7 +8154,9 @@ void test_ldnf1sw_z_p_bi_s64() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldnf1sw_z_p_bi_s64: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldnf1w_z_p_bi_u32() {
@@ -6844,7 +8168,9 @@ void test_ldnf1w_z_p_bi_u32() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldnf1w_z_p_bi_u32: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldnf1w_z_p_bi_u64() {
@@ -6856,7 +8182,9 @@ void test_ldnf1w_z_p_bi_u64() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldnf1w_z_p_bi_u64: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldnt1b_z_p_ar_s_x32_unscaled() {
@@ -6868,7 +8196,9 @@ void test_ldnt1b_z_p_ar_s_x32_unscaled() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::MemoryRegOffset);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldnt1b_z_p_ar_s_x32_unscaled: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldnt1b_z_p_ar_d_64_unscaled() {
@@ -6880,7 +8210,9 @@ void test_ldnt1b_z_p_ar_d_64_unscaled() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::MemoryRegOffset);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldnt1b_z_p_ar_d_64_unscaled: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldnt1b_z_p_bi_contiguous() {
@@ -6892,7 +8224,9 @@ void test_ldnt1b_z_p_bi_contiguous() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldnt1b_z_p_bi_contiguous: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldnt1b_z_p_br_contiguous() {
@@ -6904,7 +8238,9 @@ void test_ldnt1b_z_p_br_contiguous() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::MemoryRegOffset);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldnt1b_z_p_br_contiguous: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldnt1d_z_p_ar_d_64_unscaled() {
@@ -6916,7 +8252,9 @@ void test_ldnt1d_z_p_ar_d_64_unscaled() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::MemoryRegOffset);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldnt1d_z_p_ar_d_64_unscaled: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldnt1d_z_p_bi_contiguous() {
@@ -6928,7 +8266,9 @@ void test_ldnt1d_z_p_bi_contiguous() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldnt1d_z_p_bi_contiguous: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldnt1d_z_p_br_contiguous() {
@@ -6940,7 +8280,9 @@ void test_ldnt1d_z_p_br_contiguous() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::MemoryRegOffset);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldnt1d_z_p_br_contiguous: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldnt1h_z_p_ar_s_x32_unscaled() {
@@ -6952,7 +8294,9 @@ void test_ldnt1h_z_p_ar_s_x32_unscaled() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::MemoryRegOffset);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldnt1h_z_p_ar_s_x32_unscaled: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldnt1h_z_p_ar_d_64_unscaled() {
@@ -6964,7 +8308,9 @@ void test_ldnt1h_z_p_ar_d_64_unscaled() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::MemoryRegOffset);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldnt1h_z_p_ar_d_64_unscaled: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldnt1h_z_p_bi_contiguous() {
@@ -6976,7 +8322,9 @@ void test_ldnt1h_z_p_bi_contiguous() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldnt1h_z_p_bi_contiguous: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldnt1h_z_p_br_contiguous() {
@@ -6988,7 +8336,9 @@ void test_ldnt1h_z_p_br_contiguous() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::MemoryRegOffset);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldnt1h_z_p_br_contiguous: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldnt1sb_z_p_ar_s_x32_unscaled() {
@@ -7000,7 +8350,9 @@ void test_ldnt1sb_z_p_ar_s_x32_unscaled() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::MemoryRegOffset);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldnt1sb_z_p_ar_s_x32_unscaled: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldnt1sb_z_p_ar_d_64_unscaled() {
@@ -7012,7 +8364,9 @@ void test_ldnt1sb_z_p_ar_d_64_unscaled() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::MemoryRegOffset);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldnt1sb_z_p_ar_d_64_unscaled: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldnt1sh_z_p_ar_s_x32_unscaled() {
@@ -7024,7 +8378,9 @@ void test_ldnt1sh_z_p_ar_s_x32_unscaled() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::MemoryRegOffset);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldnt1sh_z_p_ar_s_x32_unscaled: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldnt1sh_z_p_ar_d_64_unscaled() {
@@ -7036,7 +8392,9 @@ void test_ldnt1sh_z_p_ar_d_64_unscaled() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::MemoryRegOffset);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldnt1sh_z_p_ar_d_64_unscaled: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldnt1sw_z_p_ar_d_64_unscaled() {
@@ -7048,7 +8406,9 @@ void test_ldnt1sw_z_p_ar_d_64_unscaled() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::MemoryRegOffset);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldnt1sw_z_p_ar_d_64_unscaled: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldnt1w_z_p_ar_s_x32_unscaled() {
@@ -7060,7 +8420,9 @@ void test_ldnt1w_z_p_ar_s_x32_unscaled() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::MemoryRegOffset);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldnt1w_z_p_ar_s_x32_unscaled: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldnt1w_z_p_ar_d_64_unscaled() {
@@ -7072,7 +8434,9 @@ void test_ldnt1w_z_p_ar_d_64_unscaled() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::MemoryRegOffset);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldnt1w_z_p_ar_d_64_unscaled: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldnt1w_z_p_bi_contiguous() {
@@ -7084,7 +8448,9 @@ void test_ldnt1w_z_p_bi_contiguous() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldnt1w_z_p_bi_contiguous: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldnt1w_z_p_br_contiguous() {
@@ -7096,7 +8462,9 @@ void test_ldnt1w_z_p_br_contiguous() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::MemoryRegOffset);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldnt1w_z_p_br_contiguous: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldr_p_bi_() {
@@ -7107,7 +8475,9 @@ void test_ldr_p_bi_() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldr_p_bi_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldr_z_bi_() {
@@ -7118,7 +8488,9 @@ void test_ldr_z_bi_() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldr_z_bi_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_lsl_z_p_zi_() {
@@ -7126,7 +8498,9 @@ void test_lsl_z_p_zi_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: lsl_z_p_zi_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::LSL);
+#ifdef VEDA64_STRINGS
     std::cout << "  lsl_z_p_zi_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_lsl_z_p_zw_() {
@@ -7134,7 +8508,9 @@ void test_lsl_z_p_zw_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: lsl_z_p_zw_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::LSL);
+#ifdef VEDA64_STRINGS
     std::cout << "  lsl_z_p_zw_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_lsl_z_p_zz_() {
@@ -7142,7 +8518,9 @@ void test_lsl_z_p_zz_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: lsl_z_p_zz_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::LSL);
+#ifdef VEDA64_STRINGS
     std::cout << "  lsl_z_p_zz_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_lsl_z_zi_() {
@@ -7150,7 +8528,9 @@ void test_lsl_z_zi_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: lsl_z_zi_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::LSL);
+#ifdef VEDA64_STRINGS
     std::cout << "  lsl_z_zi_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_lsl_z_zw_() {
@@ -7158,7 +8538,9 @@ void test_lsl_z_zw_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: lsl_z_zw_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::LSL);
+#ifdef VEDA64_STRINGS
     std::cout << "  lsl_z_zw_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_lslr_z_p_zz_() {
@@ -7166,7 +8548,9 @@ void test_lslr_z_p_zz_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: lslr_z_p_zz_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::LSLR);
+#ifdef VEDA64_STRINGS
     std::cout << "  lslr_z_p_zz_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_lsr_z_p_zi_() {
@@ -7174,7 +8558,9 @@ void test_lsr_z_p_zi_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: lsr_z_p_zi_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::LSR);
+#ifdef VEDA64_STRINGS
     std::cout << "  lsr_z_p_zi_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_lsr_z_p_zw_() {
@@ -7182,7 +8568,9 @@ void test_lsr_z_p_zw_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: lsr_z_p_zw_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::LSR);
+#ifdef VEDA64_STRINGS
     std::cout << "  lsr_z_p_zw_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_lsr_z_p_zz_() {
@@ -7190,7 +8578,9 @@ void test_lsr_z_p_zz_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: lsr_z_p_zz_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::LSR);
+#ifdef VEDA64_STRINGS
     std::cout << "  lsr_z_p_zz_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_lsr_z_zi_() {
@@ -7198,7 +8588,9 @@ void test_lsr_z_zi_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: lsr_z_zi_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::LSR);
+#ifdef VEDA64_STRINGS
     std::cout << "  lsr_z_zi_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_lsr_z_zw_() {
@@ -7206,7 +8598,9 @@ void test_lsr_z_zw_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: lsr_z_zw_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::LSR);
+#ifdef VEDA64_STRINGS
     std::cout << "  lsr_z_zw_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_lsrr_z_p_zz_() {
@@ -7214,7 +8608,9 @@ void test_lsrr_z_p_zz_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: lsrr_z_p_zz_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::LSRR);
+#ifdef VEDA64_STRINGS
     std::cout << "  lsrr_z_p_zz_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_luti2_z_zz_8() {
@@ -7226,7 +8622,9 @@ void test_luti2_z_zz_8() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::RegisterList);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  luti2_z_zz_8: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_luti2_z_zz_16() {
@@ -7238,7 +8636,9 @@ void test_luti2_z_zz_16() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::RegisterList);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  luti2_z_zz_16: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_luti4_z_zz_8() {
@@ -7250,7 +8650,9 @@ void test_luti4_z_zz_8() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::RegisterList);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  luti4_z_zz_8: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_luti4_z_zz_2x16() {
@@ -7262,7 +8664,9 @@ void test_luti4_z_zz_2x16() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::RegisterList);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  luti4_z_zz_2x16: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_luti4_z_zz_1x16() {
@@ -7274,7 +8678,9 @@ void test_luti4_z_zz_1x16() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::RegisterList);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  luti4_z_zz_1x16: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_luti6_z_zzz_16() {
@@ -7286,7 +8692,9 @@ void test_luti6_z_zzz_16() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::RegisterList);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  luti6_z_zzz_16: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_luti6_z_zzz_8() {
@@ -7298,7 +8706,9 @@ void test_luti6_z_zzz_8() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::RegisterList);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  luti6_z_zzz_8: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_mad_z_p_zzz_() {
@@ -7306,7 +8716,9 @@ void test_mad_z_p_zzz_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: mad_z_p_zzz_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::MAD);
+#ifdef VEDA64_STRINGS
     std::cout << "  mad_z_p_zzz_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_madpt_z_zzz_() {
@@ -7318,7 +8730,9 @@ void test_madpt_z_zzz_() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  madpt_z_zzz_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_match_p_p_zz_() {
@@ -7326,7 +8740,9 @@ void test_match_p_p_zz_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: match_p_p_zz_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::MATCH);
+#ifdef VEDA64_STRINGS
     std::cout << "  match_p_p_zz_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_mla_z_p_zzz_() {
@@ -7334,7 +8750,9 @@ void test_mla_z_p_zzz_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: mla_z_p_zzz_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::MLA);
+#ifdef VEDA64_STRINGS
     std::cout << "  mla_z_p_zzz_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_mla_z_zzzi_h() {
@@ -7346,7 +8764,9 @@ void test_mla_z_zzzi_h() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  mla_z_zzzi_h: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_mla_z_zzzi_s() {
@@ -7358,7 +8778,9 @@ void test_mla_z_zzzi_s() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  mla_z_zzzi_s: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_mla_z_zzzi_d() {
@@ -7370,7 +8792,9 @@ void test_mla_z_zzzi_d() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  mla_z_zzzi_d: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_mlapt_z_zzz_() {
@@ -7382,7 +8806,9 @@ void test_mlapt_z_zzz_() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  mlapt_z_zzz_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_mls_z_p_zzz_() {
@@ -7390,7 +8816,9 @@ void test_mls_z_p_zzz_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: mls_z_p_zzz_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::MLS);
+#ifdef VEDA64_STRINGS
     std::cout << "  mls_z_p_zzz_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_mls_z_zzzi_h() {
@@ -7402,7 +8830,9 @@ void test_mls_z_zzzi_h() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  mls_z_zzzi_h: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_mls_z_zzzi_s() {
@@ -7414,7 +8844,9 @@ void test_mls_z_zzzi_s() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  mls_z_zzzi_s: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_mls_z_zzzi_d() {
@@ -7426,14 +8858,18 @@ void test_mls_z_zzzi_d() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  mls_z_zzzi_d: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_movz_p_p_p__and_p_p_pp_z() {
     uint32_t insn = 0x25004000u;
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: movz_p_p_p__and_p_p_pp_z" << std::endl; throw std::runtime_error("decode failed"); }
+#ifdef VEDA64_STRINGS
     std::cout << "  movz_p_p_p__and_p_p_pp_z: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_mov_z_o_i__cpy_z_o_i_() {
@@ -7441,7 +8877,9 @@ void test_mov_z_o_i__cpy_z_o_i_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: mov_z_o_i__cpy_z_o_i_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::CPY);
+#ifdef VEDA64_STRINGS
     std::cout << "  mov_z_o_i__cpy_z_o_i_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_mov_z_p_i__cpy_z_p_i_() {
@@ -7449,7 +8887,9 @@ void test_mov_z_p_i__cpy_z_p_i_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: mov_z_p_i__cpy_z_p_i_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::CPY);
+#ifdef VEDA64_STRINGS
     std::cout << "  mov_z_p_i__cpy_z_p_i_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_mov_z_p_r__cpy_z_p_r_() {
@@ -7457,7 +8897,9 @@ void test_mov_z_p_r__cpy_z_p_r_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: mov_z_p_r__cpy_z_p_r_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::CPY);
+#ifdef VEDA64_STRINGS
     std::cout << "  mov_z_p_r__cpy_z_p_r_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_mov_z_p_v__cpy_z_p_v_() {
@@ -7465,7 +8907,9 @@ void test_mov_z_p_v__cpy_z_p_v_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: mov_z_p_v__cpy_z_p_v_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::CPY);
+#ifdef VEDA64_STRINGS
     std::cout << "  mov_z_p_v__cpy_z_p_v_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_mov_z_i__dup_z_i_() {
@@ -7473,7 +8917,9 @@ void test_mov_z_i__dup_z_i_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: mov_z_i__dup_z_i_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::DUP);
+#ifdef VEDA64_STRINGS
     std::cout << "  mov_z_i__dup_z_i_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_mov_z_r__dup_z_r_() {
@@ -7481,7 +8927,9 @@ void test_mov_z_r__dup_z_r_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: mov_z_r__dup_z_r_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::DUP);
+#ifdef VEDA64_STRINGS
     std::cout << "  mov_z_r__dup_z_r_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_mov_z_v__dup_z_zi_() {
@@ -7489,7 +8937,9 @@ void test_mov_z_v__dup_z_zi_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: mov_z_v__dup_z_zi_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::DUP);
+#ifdef VEDA64_STRINGS
     std::cout << "  mov_z_v__dup_z_zi_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_mov_z_zi__dup_z_zi_() {
@@ -7497,7 +8947,9 @@ void test_mov_z_zi__dup_z_zi_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: mov_z_zi__dup_z_zi_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::DUP);
+#ifdef VEDA64_STRINGS
     std::cout << "  mov_z_zi__dup_z_zi_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_mov_z_m__dupm_z_i_() {
@@ -7505,21 +8957,27 @@ void test_mov_z_m__dupm_z_i_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: mov_z_m__dupm_z_i_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::DUPM);
+#ifdef VEDA64_STRINGS
     std::cout << "  mov_z_m__dupm_z_i_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_mov_p_p__orr_p_p_pp_z() {
     uint32_t insn = 0x25804000u;
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: mov_p_p__orr_p_p_pp_z" << std::endl; throw std::runtime_error("decode failed"); }
+#ifdef VEDA64_STRINGS
     std::cout << "  mov_p_p__orr_p_p_pp_z: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_mov_z_z__orr_z_zz_() {
     uint32_t insn = 0x04603000u;
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: mov_z_z__orr_z_zz_" << std::endl; throw std::runtime_error("decode failed"); }
+#ifdef VEDA64_STRINGS
     std::cout << "  mov_z_z__orr_z_zz_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_movm_p_p_p__sel_p_p_pp_() {
@@ -7531,7 +8989,9 @@ void test_movm_p_p_p__sel_p_p_pp_() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  movm_p_p_p__sel_p_p_pp_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_mov_z_p_z__sel_z_p_zz_() {
@@ -7539,7 +8999,9 @@ void test_mov_z_p_z__sel_z_p_zz_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: mov_z_p_z__sel_z_p_zz_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::SEL);
+#ifdef VEDA64_STRINGS
     std::cout << "  mov_z_p_z__sel_z_p_zz_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_movprfx_z_p_z_() {
@@ -7547,7 +9009,9 @@ void test_movprfx_z_p_z_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: movprfx_z_p_z_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::MOVPRFX);
+#ifdef VEDA64_STRINGS
     std::cout << "  movprfx_z_p_z_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_movprfx_z_z_() {
@@ -7558,14 +9022,18 @@ void test_movprfx_z_z_() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  movprfx_z_z_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_movzs_p_p_p__ands_p_p_pp_z() {
     uint32_t insn = 0x25404000u;
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: movzs_p_p_p__ands_p_p_pp_z" << std::endl; throw std::runtime_error("decode failed"); }
+#ifdef VEDA64_STRINGS
     std::cout << "  movzs_p_p_p__ands_p_p_pp_z: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_movs_p_p__orrs_p_p_pp_z() {
@@ -7576,7 +9044,9 @@ void test_movs_p_p__orrs_p_p_pp_z() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  movs_p_p__orrs_p_p_pp_z: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_msb_z_p_zzz_() {
@@ -7584,7 +9054,9 @@ void test_msb_z_p_zzz_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: msb_z_p_zzz_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::MSB);
+#ifdef VEDA64_STRINGS
     std::cout << "  msb_z_p_zzz_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_mul_z_p_zz_() {
@@ -7592,7 +9064,9 @@ void test_mul_z_p_zz_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: mul_z_p_zz_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::MUL);
+#ifdef VEDA64_STRINGS
     std::cout << "  mul_z_p_zz_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_mul_z_zi_() {
@@ -7600,7 +9074,9 @@ void test_mul_z_zi_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: mul_z_zi_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::MUL);
+#ifdef VEDA64_STRINGS
     std::cout << "  mul_z_zi_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_mul_z_zz_() {
@@ -7608,7 +9084,9 @@ void test_mul_z_zz_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: mul_z_zz_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::MUL);
+#ifdef VEDA64_STRINGS
     std::cout << "  mul_z_zz_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_mul_z_zzi_h() {
@@ -7620,7 +9098,9 @@ void test_mul_z_zzi_h() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  mul_z_zzi_h: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_mul_z_zzi_s() {
@@ -7632,7 +9112,9 @@ void test_mul_z_zzi_s() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  mul_z_zzi_s: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_mul_z_zzi_d() {
@@ -7644,7 +9126,9 @@ void test_mul_z_zzi_d() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  mul_z_zzi_d: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_nand_p_p_pp_z() {
@@ -7657,7 +9141,9 @@ void test_nand_p_p_pp_z() {
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
     assert(result->operands[3].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  nand_p_p_pp_z: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_nands_p_p_pp_z() {
@@ -7670,7 +9156,9 @@ void test_nands_p_p_pp_z() {
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
     assert(result->operands[3].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  nands_p_p_pp_z: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_nbsl_z_zzz_() {
@@ -7683,7 +9171,9 @@ void test_nbsl_z_zzz_() {
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
     assert(result->operands[3].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  nbsl_z_zzz_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_neg_z_p_z_m() {
@@ -7691,7 +9181,9 @@ void test_neg_z_p_z_m() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: neg_z_p_z_m" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::NEG);
+#ifdef VEDA64_STRINGS
     std::cout << "  neg_z_p_z_m: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_neg_z_p_z_z() {
@@ -7699,7 +9191,9 @@ void test_neg_z_p_z_z() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: neg_z_p_z_z" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::NEG);
+#ifdef VEDA64_STRINGS
     std::cout << "  neg_z_p_z_z: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_nmatch_p_p_zz_() {
@@ -7707,7 +9201,9 @@ void test_nmatch_p_p_zz_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: nmatch_p_p_zz_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::NMATCH);
+#ifdef VEDA64_STRINGS
     std::cout << "  nmatch_p_p_zz_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_nor_p_p_pp_z() {
@@ -7720,7 +9216,9 @@ void test_nor_p_p_pp_z() {
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
     assert(result->operands[3].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  nor_p_p_pp_z: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_nors_p_p_pp_z() {
@@ -7733,7 +9231,9 @@ void test_nors_p_p_pp_z() {
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
     assert(result->operands[3].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  nors_p_p_pp_z: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_not_p_p_p_z_eor_p_p_pp_z() {
@@ -7745,7 +9245,9 @@ void test_not_p_p_p_z_eor_p_p_pp_z() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  not_p_p_p_z_eor_p_p_pp_z: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_not_z_p_z_m() {
@@ -7753,7 +9255,9 @@ void test_not_z_p_z_m() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: not_z_p_z_m" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::NOT);
+#ifdef VEDA64_STRINGS
     std::cout << "  not_z_p_z_m: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_not_z_p_z_z() {
@@ -7761,7 +9265,9 @@ void test_not_z_p_z_z() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: not_z_p_z_z" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::NOT);
+#ifdef VEDA64_STRINGS
     std::cout << "  not_z_p_z_z: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_nots_p_p_p_z_eors_p_p_pp_z() {
@@ -7773,21 +9279,27 @@ void test_nots_p_p_p_z_eors_p_p_pp_z() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  nots_p_p_p_z_eors_p_p_pp_z: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_orn_z_zi__orr_z_zi_() {
     uint32_t insn = 0x05000000u;
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: orn_z_zi__orr_z_zi_" << std::endl; throw std::runtime_error("decode failed"); }
+#ifdef VEDA64_STRINGS
     std::cout << "  orn_z_zi__orr_z_zi_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_orn_p_p_pp_z() {
     uint32_t insn = 0x25804010u;
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: orn_p_p_pp_z" << std::endl; throw std::runtime_error("decode failed"); }
+#ifdef VEDA64_STRINGS
     std::cout << "  orn_p_p_pp_z: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_orns_p_p_pp_z() {
@@ -7800,7 +9312,9 @@ void test_orns_p_p_pp_z() {
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
     assert(result->operands[3].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  orns_p_p_pp_z: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_orqv_z_p_z_() {
@@ -7808,35 +9322,45 @@ void test_orqv_z_p_z_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: orqv_z_p_z_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::ORQV);
+#ifdef VEDA64_STRINGS
     std::cout << "  orqv_z_p_z_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_orr_p_p_pp_z() {
     uint32_t insn = 0x25804000u;
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: orr_p_p_pp_z" << std::endl; throw std::runtime_error("decode failed"); }
+#ifdef VEDA64_STRINGS
     std::cout << "  orr_p_p_pp_z: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_orr_z_p_zz_() {
     uint32_t insn = 0x04180000u;
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: orr_z_p_zz_" << std::endl; throw std::runtime_error("decode failed"); }
+#ifdef VEDA64_STRINGS
     std::cout << "  orr_z_p_zz_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_orr_z_zi_() {
     uint32_t insn = 0x05000000u;
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: orr_z_zi_" << std::endl; throw std::runtime_error("decode failed"); }
+#ifdef VEDA64_STRINGS
     std::cout << "  orr_z_zi_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_orr_z_zz_() {
     uint32_t insn = 0x04603000u;
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: orr_z_zz_" << std::endl; throw std::runtime_error("decode failed"); }
+#ifdef VEDA64_STRINGS
     std::cout << "  orr_z_zz_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_orrs_p_p_pp_z() {
@@ -7849,7 +9373,9 @@ void test_orrs_p_p_pp_z() {
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
     assert(result->operands[3].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  orrs_p_p_pp_z: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_orv_r_p_z_() {
@@ -7857,7 +9383,9 @@ void test_orv_r_p_z_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: orv_r_p_z_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::ORV);
+#ifdef VEDA64_STRINGS
     std::cout << "  orv_r_p_z_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_pext_pn_rr_() {
@@ -7865,7 +9393,9 @@ void test_pext_pn_rr_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: pext_pn_rr_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::PEXT);
+#ifdef VEDA64_STRINGS
     std::cout << "  pext_pn_rr_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_pext_pp_rr_() {
@@ -7876,7 +9406,9 @@ void test_pext_pp_rr_() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  pext_pp_rr_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_pfalse_p_() {
@@ -7886,7 +9418,9 @@ void test_pfalse_p_() {
     assert(result->mnemonic == Mnemonic::PFALSE);
     assert(result->operands.size() >= 1);
     assert(result->operands[0].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  pfalse_p_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_pfirst_p_p_p_() {
@@ -7898,7 +9432,9 @@ void test_pfirst_p_p_p_() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  pfirst_p_p_p_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_pmlal_mz_zzzw_1x2() {
@@ -7910,7 +9446,9 @@ void test_pmlal_mz_zzzw_1x2() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  pmlal_mz_zzzw_1x2: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_pmov_p_zi_b() {
@@ -7921,7 +9459,9 @@ void test_pmov_p_zi_b() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  pmov_p_zi_b: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_pmov_p_zi_d() {
@@ -7932,7 +9472,9 @@ void test_pmov_p_zi_d() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::IndexedRegisterList);
+#ifdef VEDA64_STRINGS
     std::cout << "  pmov_p_zi_d: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_pmov_p_zi_h() {
@@ -7943,7 +9485,9 @@ void test_pmov_p_zi_h() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::IndexedRegisterList);
+#ifdef VEDA64_STRINGS
     std::cout << "  pmov_p_zi_h: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_pmov_p_zi_s() {
@@ -7954,7 +9498,9 @@ void test_pmov_p_zi_s() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::IndexedRegisterList);
+#ifdef VEDA64_STRINGS
     std::cout << "  pmov_p_zi_s: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_pmov_z_pi_b() {
@@ -7965,7 +9511,9 @@ void test_pmov_z_pi_b() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  pmov_z_pi_b: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_pmov_z_pi_d() {
@@ -7976,7 +9524,9 @@ void test_pmov_z_pi_d() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::IndexedRegisterList);
     assert(result->operands[1].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  pmov_z_pi_d: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_pmov_z_pi_h() {
@@ -7987,7 +9537,9 @@ void test_pmov_z_pi_h() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::IndexedRegisterList);
     assert(result->operands[1].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  pmov_z_pi_h: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_pmov_z_pi_s() {
@@ -7998,7 +9550,9 @@ void test_pmov_z_pi_s() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::IndexedRegisterList);
     assert(result->operands[1].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  pmov_z_pi_s: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_pmul_z_zz_() {
@@ -8010,7 +9564,9 @@ void test_pmul_z_zz_() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  pmul_z_zz_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_pmull_mz_zzw_1x2() {
@@ -8022,7 +9578,9 @@ void test_pmull_mz_zzw_1x2() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  pmull_mz_zzw_1x2: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_pmullb_z_zz_() {
@@ -8030,7 +9588,9 @@ void test_pmullb_z_zz_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: pmullb_z_zz_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::PMULLB);
+#ifdef VEDA64_STRINGS
     std::cout << "  pmullb_z_zz_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_pmullb_z_zz_q() {
@@ -8042,7 +9602,9 @@ void test_pmullb_z_zz_q() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  pmullb_z_zz_q: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_pmullt_z_zz_() {
@@ -8050,7 +9612,9 @@ void test_pmullt_z_zz_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: pmullt_z_zz_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::PMULLT);
+#ifdef VEDA64_STRINGS
     std::cout << "  pmullt_z_zz_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_pmullt_z_zz_q() {
@@ -8062,7 +9626,9 @@ void test_pmullt_z_zz_q() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  pmullt_z_zz_q: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_pnext_p_p_p_() {
@@ -8070,7 +9636,9 @@ void test_pnext_p_p_p_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: pnext_p_p_p_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::PNEXT);
+#ifdef VEDA64_STRINGS
     std::cout << "  pnext_p_p_p_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_prfb_i_p_ai_s() {
@@ -8082,7 +9650,9 @@ void test_prfb_i_p_ai_s() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  prfb_i_p_ai_s: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_prfb_i_p_ai_d() {
@@ -8094,7 +9664,9 @@ void test_prfb_i_p_ai_d() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  prfb_i_p_ai_d: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_prfb_i_p_bi_s() {
@@ -8106,7 +9678,9 @@ void test_prfb_i_p_bi_s() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  prfb_i_p_bi_s: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_prfb_i_p_br_s() {
@@ -8118,7 +9692,9 @@ void test_prfb_i_p_br_s() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::MemoryRegOffset);
+#ifdef VEDA64_STRINGS
     std::cout << "  prfb_i_p_br_s: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_prfb_i_p_bz_s_x32_scaled() {
@@ -8130,7 +9706,9 @@ void test_prfb_i_p_bz_s_x32_scaled() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::MemoryRegOffset);
+#ifdef VEDA64_STRINGS
     std::cout << "  prfb_i_p_bz_s_x32_scaled: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_prfb_i_p_bz_d_x32_scaled() {
@@ -8142,7 +9720,9 @@ void test_prfb_i_p_bz_d_x32_scaled() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::MemoryRegOffset);
+#ifdef VEDA64_STRINGS
     std::cout << "  prfb_i_p_bz_d_x32_scaled: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_prfb_i_p_bz_d_64_scaled() {
@@ -8154,7 +9734,9 @@ void test_prfb_i_p_bz_d_64_scaled() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::MemoryRegOffset);
+#ifdef VEDA64_STRINGS
     std::cout << "  prfb_i_p_bz_d_64_scaled: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_prfd_i_p_ai_s() {
@@ -8166,7 +9748,9 @@ void test_prfd_i_p_ai_s() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  prfd_i_p_ai_s: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_prfd_i_p_ai_d() {
@@ -8178,7 +9762,9 @@ void test_prfd_i_p_ai_d() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  prfd_i_p_ai_d: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_prfd_i_p_bi_s() {
@@ -8190,7 +9776,9 @@ void test_prfd_i_p_bi_s() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  prfd_i_p_bi_s: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_prfd_i_p_br_s() {
@@ -8202,7 +9790,9 @@ void test_prfd_i_p_br_s() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::MemoryRegOffset);
+#ifdef VEDA64_STRINGS
     std::cout << "  prfd_i_p_br_s: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_prfd_i_p_bz_s_x32_scaled() {
@@ -8214,7 +9804,9 @@ void test_prfd_i_p_bz_s_x32_scaled() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::MemoryRegOffset);
+#ifdef VEDA64_STRINGS
     std::cout << "  prfd_i_p_bz_s_x32_scaled: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_prfd_i_p_bz_d_x32_scaled() {
@@ -8226,7 +9818,9 @@ void test_prfd_i_p_bz_d_x32_scaled() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::MemoryRegOffset);
+#ifdef VEDA64_STRINGS
     std::cout << "  prfd_i_p_bz_d_x32_scaled: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_prfd_i_p_bz_d_64_scaled() {
@@ -8238,7 +9832,9 @@ void test_prfd_i_p_bz_d_64_scaled() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::MemoryRegOffset);
+#ifdef VEDA64_STRINGS
     std::cout << "  prfd_i_p_bz_d_64_scaled: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_prfh_i_p_ai_s() {
@@ -8250,7 +9846,9 @@ void test_prfh_i_p_ai_s() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  prfh_i_p_ai_s: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_prfh_i_p_ai_d() {
@@ -8262,7 +9860,9 @@ void test_prfh_i_p_ai_d() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  prfh_i_p_ai_d: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_prfh_i_p_bi_s() {
@@ -8274,7 +9874,9 @@ void test_prfh_i_p_bi_s() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  prfh_i_p_bi_s: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_prfh_i_p_br_s() {
@@ -8286,7 +9888,9 @@ void test_prfh_i_p_br_s() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::MemoryRegOffset);
+#ifdef VEDA64_STRINGS
     std::cout << "  prfh_i_p_br_s: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_prfh_i_p_bz_s_x32_scaled() {
@@ -8298,7 +9902,9 @@ void test_prfh_i_p_bz_s_x32_scaled() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::MemoryRegOffset);
+#ifdef VEDA64_STRINGS
     std::cout << "  prfh_i_p_bz_s_x32_scaled: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_prfh_i_p_bz_d_x32_scaled() {
@@ -8310,7 +9916,9 @@ void test_prfh_i_p_bz_d_x32_scaled() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::MemoryRegOffset);
+#ifdef VEDA64_STRINGS
     std::cout << "  prfh_i_p_bz_d_x32_scaled: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_prfh_i_p_bz_d_64_scaled() {
@@ -8322,7 +9930,9 @@ void test_prfh_i_p_bz_d_64_scaled() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::MemoryRegOffset);
+#ifdef VEDA64_STRINGS
     std::cout << "  prfh_i_p_bz_d_64_scaled: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_prfw_i_p_ai_s() {
@@ -8334,7 +9944,9 @@ void test_prfw_i_p_ai_s() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  prfw_i_p_ai_s: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_prfw_i_p_ai_d() {
@@ -8346,7 +9958,9 @@ void test_prfw_i_p_ai_d() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  prfw_i_p_ai_d: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_prfw_i_p_bi_s() {
@@ -8358,7 +9972,9 @@ void test_prfw_i_p_bi_s() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  prfw_i_p_bi_s: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_prfw_i_p_br_s() {
@@ -8370,7 +9986,9 @@ void test_prfw_i_p_br_s() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::MemoryRegOffset);
+#ifdef VEDA64_STRINGS
     std::cout << "  prfw_i_p_br_s: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_prfw_i_p_bz_s_x32_scaled() {
@@ -8382,7 +10000,9 @@ void test_prfw_i_p_bz_s_x32_scaled() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::MemoryRegOffset);
+#ifdef VEDA64_STRINGS
     std::cout << "  prfw_i_p_bz_s_x32_scaled: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_prfw_i_p_bz_d_x32_scaled() {
@@ -8394,7 +10014,9 @@ void test_prfw_i_p_bz_d_x32_scaled() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::MemoryRegOffset);
+#ifdef VEDA64_STRINGS
     std::cout << "  prfw_i_p_bz_d_x32_scaled: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_prfw_i_p_bz_d_64_scaled() {
@@ -8406,7 +10028,9 @@ void test_prfw_i_p_bz_d_64_scaled() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::MemoryRegOffset);
+#ifdef VEDA64_STRINGS
     std::cout << "  prfw_i_p_bz_d_64_scaled: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_psel_p_ppi_() {
@@ -8414,7 +10038,9 @@ void test_psel_p_ppi_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: psel_p_ppi_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::PSEL);
+#ifdef VEDA64_STRINGS
     std::cout << "  psel_p_ppi_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ptest__p_p_() {
@@ -8425,7 +10051,9 @@ void test_ptest__p_p_() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  ptest__p_p_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ptrue_p_s_() {
@@ -8435,7 +10063,9 @@ void test_ptrue_p_s_() {
     assert(result->mnemonic == Mnemonic::PTRUE);
     assert(result->operands.size() >= 1);
     assert(result->operands[0].type == OperandType::RegisterList);
+#ifdef VEDA64_STRINGS
     std::cout << "  ptrue_p_s_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ptrue_pn_i_() {
@@ -8443,7 +10073,9 @@ void test_ptrue_pn_i_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: ptrue_pn_i_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::PTRUE);
+#ifdef VEDA64_STRINGS
     std::cout << "  ptrue_pn_i_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ptrues_p_s_() {
@@ -8453,7 +10085,9 @@ void test_ptrues_p_s_() {
     assert(result->mnemonic == Mnemonic::PTRUES);
     assert(result->operands.size() >= 1);
     assert(result->operands[0].type == OperandType::RegisterList);
+#ifdef VEDA64_STRINGS
     std::cout << "  ptrues_p_s_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_punpkhi_p_p_() {
@@ -8463,7 +10097,9 @@ void test_punpkhi_p_p_() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  punpkhi_p_p_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_punpklo_p_p_() {
@@ -8473,7 +10109,9 @@ void test_punpklo_p_p_() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  punpklo_p_p_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_raddhnb_z_zz_() {
@@ -8481,7 +10119,9 @@ void test_raddhnb_z_zz_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: raddhnb_z_zz_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::RADDHNB);
+#ifdef VEDA64_STRINGS
     std::cout << "  raddhnb_z_zz_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_raddhnt_z_zz_() {
@@ -8489,7 +10129,9 @@ void test_raddhnt_z_zz_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: raddhnt_z_zz_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::RADDHNT);
+#ifdef VEDA64_STRINGS
     std::cout << "  raddhnt_z_zz_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_rax1_z_zz_() {
@@ -8501,7 +10143,9 @@ void test_rax1_z_zz_() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  rax1_z_zz_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_rbit_z_p_z_m() {
@@ -8509,7 +10153,9 @@ void test_rbit_z_p_z_m() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: rbit_z_p_z_m" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::RBIT);
+#ifdef VEDA64_STRINGS
     std::cout << "  rbit_z_p_z_m: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_rbit_z_p_z_z() {
@@ -8517,7 +10163,9 @@ void test_rbit_z_p_z_z() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: rbit_z_p_z_z" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::RBIT);
+#ifdef VEDA64_STRINGS
     std::cout << "  rbit_z_p_z_z: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_rdffr_p_f_() {
@@ -8527,7 +10175,9 @@ void test_rdffr_p_f_() {
     assert(result->mnemonic == Mnemonic::RDFFR);
     assert(result->operands.size() >= 1);
     assert(result->operands[0].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  rdffr_p_f_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_rdffr_p_p_f_() {
@@ -8538,7 +10188,9 @@ void test_rdffr_p_p_f_() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  rdffr_p_p_f_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_rdffrs_p_p_f_() {
@@ -8549,7 +10201,9 @@ void test_rdffrs_p_p_f_() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  rdffrs_p_p_f_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_rdsvl_r_i_() {
@@ -8557,7 +10211,9 @@ void test_rdsvl_r_i_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: rdsvl_r_i_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::RDSVL);
+#ifdef VEDA64_STRINGS
     std::cout << "  rdsvl_r_i_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_rdvl_r_i_() {
@@ -8565,7 +10221,9 @@ void test_rdvl_r_i_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: rdvl_r_i_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::RDVL);
+#ifdef VEDA64_STRINGS
     std::cout << "  rdvl_r_i_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_rev_p_p_() {
@@ -8573,7 +10231,9 @@ void test_rev_p_p_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: rev_p_p_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::REV);
+#ifdef VEDA64_STRINGS
     std::cout << "  rev_p_p_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_rev_z_z_() {
@@ -8581,35 +10241,45 @@ void test_rev_z_z_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: rev_z_z_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::REV);
+#ifdef VEDA64_STRINGS
     std::cout << "  rev_z_z_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_revb_z_z_m() {
     uint32_t insn = 0x05648000u;
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: revb_z_z_m" << std::endl; throw std::runtime_error("decode failed"); }
+#ifdef VEDA64_STRINGS
     std::cout << "  revb_z_z_m: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_revb_z_z_z() {
     uint32_t insn = 0x0564A000u;
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: revb_z_z_z" << std::endl; throw std::runtime_error("decode failed"); }
+#ifdef VEDA64_STRINGS
     std::cout << "  revb_z_z_z: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_revh_z_z_m() {
     uint32_t insn = 0x05A58000u;
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: revh_z_z_m" << std::endl; throw std::runtime_error("decode failed"); }
+#ifdef VEDA64_STRINGS
     std::cout << "  revh_z_z_m: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_revh_z_z_z() {
     uint32_t insn = 0x05A5A000u;
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: revh_z_z_z" << std::endl; throw std::runtime_error("decode failed"); }
+#ifdef VEDA64_STRINGS
     std::cout << "  revh_z_z_z: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_revw_z_z_m() {
@@ -8620,7 +10290,9 @@ void test_revw_z_z_m() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  revw_z_z_m: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_revw_z_z_z() {
@@ -8631,7 +10303,9 @@ void test_revw_z_z_z() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  revw_z_z_z: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_revd_z_p_z_m() {
@@ -8643,7 +10317,9 @@ void test_revd_z_p_z_m() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  revd_z_p_z_m: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_revd_z_p_z_z() {
@@ -8655,7 +10331,9 @@ void test_revd_z_p_z_z() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  revd_z_p_z_z: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_rshrnb_z_zi_() {
@@ -8663,7 +10341,9 @@ void test_rshrnb_z_zi_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: rshrnb_z_zi_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::RSHRNB);
+#ifdef VEDA64_STRINGS
     std::cout << "  rshrnb_z_zi_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_rshrnt_z_zi_() {
@@ -8671,7 +10351,9 @@ void test_rshrnt_z_zi_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: rshrnt_z_zi_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::RSHRNT);
+#ifdef VEDA64_STRINGS
     std::cout << "  rshrnt_z_zi_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_rsubhnb_z_zz_() {
@@ -8679,7 +10361,9 @@ void test_rsubhnb_z_zz_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: rsubhnb_z_zz_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::RSUBHNB);
+#ifdef VEDA64_STRINGS
     std::cout << "  rsubhnb_z_zz_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_rsubhnt_z_zz_() {
@@ -8687,7 +10371,9 @@ void test_rsubhnt_z_zz_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: rsubhnt_z_zz_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::RSUBHNT);
+#ifdef VEDA64_STRINGS
     std::cout << "  rsubhnt_z_zz_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_saba_z_zzz_() {
@@ -8695,7 +10381,9 @@ void test_saba_z_zzz_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: saba_z_zzz_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::SABA);
+#ifdef VEDA64_STRINGS
     std::cout << "  saba_z_zzz_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_sabal_z_zz_() {
@@ -8703,7 +10391,9 @@ void test_sabal_z_zz_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: sabal_z_zz_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::SABAL);
+#ifdef VEDA64_STRINGS
     std::cout << "  sabal_z_zz_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_sabalb_z_zzz_() {
@@ -8711,7 +10401,9 @@ void test_sabalb_z_zzz_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: sabalb_z_zzz_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::SABALB);
+#ifdef VEDA64_STRINGS
     std::cout << "  sabalb_z_zzz_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_sabalt_z_zzz_() {
@@ -8719,7 +10411,9 @@ void test_sabalt_z_zzz_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: sabalt_z_zzz_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::SABALT);
+#ifdef VEDA64_STRINGS
     std::cout << "  sabalt_z_zzz_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_sabd_z_p_zz_() {
@@ -8727,7 +10421,9 @@ void test_sabd_z_p_zz_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: sabd_z_p_zz_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::SABD);
+#ifdef VEDA64_STRINGS
     std::cout << "  sabd_z_p_zz_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_sabdlb_z_zz_() {
@@ -8735,7 +10431,9 @@ void test_sabdlb_z_zz_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: sabdlb_z_zz_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::SABDLB);
+#ifdef VEDA64_STRINGS
     std::cout << "  sabdlb_z_zz_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_sabdlt_z_zz_() {
@@ -8743,7 +10441,9 @@ void test_sabdlt_z_zz_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: sabdlt_z_zz_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::SABDLT);
+#ifdef VEDA64_STRINGS
     std::cout << "  sabdlt_z_zz_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_sadalp_z_p_z_() {
@@ -8751,7 +10451,9 @@ void test_sadalp_z_p_z_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: sadalp_z_p_z_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::SADALP);
+#ifdef VEDA64_STRINGS
     std::cout << "  sadalp_z_p_z_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_saddlb_z_zz_() {
@@ -8759,7 +10461,9 @@ void test_saddlb_z_zz_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: saddlb_z_zz_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::SADDLB);
+#ifdef VEDA64_STRINGS
     std::cout << "  saddlb_z_zz_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_saddlbt_z_zz_() {
@@ -8767,7 +10471,9 @@ void test_saddlbt_z_zz_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: saddlbt_z_zz_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::SADDLBT);
+#ifdef VEDA64_STRINGS
     std::cout << "  saddlbt_z_zz_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_saddlt_z_zz_() {
@@ -8775,7 +10481,9 @@ void test_saddlt_z_zz_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: saddlt_z_zz_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::SADDLT);
+#ifdef VEDA64_STRINGS
     std::cout << "  saddlt_z_zz_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_saddv_r_p_z_() {
@@ -8783,7 +10491,9 @@ void test_saddv_r_p_z_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: saddv_r_p_z_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::SADDV);
+#ifdef VEDA64_STRINGS
     std::cout << "  saddv_r_p_z_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_saddwb_z_zz_() {
@@ -8791,7 +10501,9 @@ void test_saddwb_z_zz_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: saddwb_z_zz_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::SADDWB);
+#ifdef VEDA64_STRINGS
     std::cout << "  saddwb_z_zz_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_saddwt_z_zz_() {
@@ -8799,7 +10511,9 @@ void test_saddwt_z_zz_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: saddwt_z_zz_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::SADDWT);
+#ifdef VEDA64_STRINGS
     std::cout << "  saddwt_z_zz_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_sbclb_z_zzz_() {
@@ -8807,7 +10521,9 @@ void test_sbclb_z_zzz_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: sbclb_z_zzz_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::SBCLB);
+#ifdef VEDA64_STRINGS
     std::cout << "  sbclb_z_zzz_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_sbclt_z_zzz_() {
@@ -8815,7 +10531,9 @@ void test_sbclt_z_zzz_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: sbclt_z_zzz_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::SBCLT);
+#ifdef VEDA64_STRINGS
     std::cout << "  sbclt_z_zzz_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_sclamp_z_zz_() {
@@ -8823,7 +10541,9 @@ void test_sclamp_z_zz_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: sclamp_z_zz_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::SCLAMP);
+#ifdef VEDA64_STRINGS
     std::cout << "  sclamp_z_zz_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_scvtf_z_p_z_h2fp16() {
@@ -8835,7 +10555,9 @@ void test_scvtf_z_p_z_h2fp16() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  scvtf_z_p_z_h2fp16: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_scvtf_z_p_z_h2fp16z() {
@@ -8847,7 +10569,9 @@ void test_scvtf_z_p_z_h2fp16z() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  scvtf_z_p_z_h2fp16z: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_scvtf_z_p_z_w2fp16() {
@@ -8859,7 +10583,9 @@ void test_scvtf_z_p_z_w2fp16() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  scvtf_z_p_z_w2fp16: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_scvtf_z_p_z_w2fp16z() {
@@ -8871,7 +10597,9 @@ void test_scvtf_z_p_z_w2fp16z() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  scvtf_z_p_z_w2fp16z: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_scvtf_z_p_z_w2s() {
@@ -8883,7 +10611,9 @@ void test_scvtf_z_p_z_w2s() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  scvtf_z_p_z_w2s: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_scvtf_z_p_z_w2sz() {
@@ -8895,7 +10625,9 @@ void test_scvtf_z_p_z_w2sz() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  scvtf_z_p_z_w2sz: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_scvtf_z_p_z_w2d() {
@@ -8907,7 +10639,9 @@ void test_scvtf_z_p_z_w2d() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  scvtf_z_p_z_w2d: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_scvtf_z_p_z_w2dz() {
@@ -8919,7 +10653,9 @@ void test_scvtf_z_p_z_w2dz() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  scvtf_z_p_z_w2dz: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_scvtf_z_p_z_x2fp16() {
@@ -8931,7 +10667,9 @@ void test_scvtf_z_p_z_x2fp16() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  scvtf_z_p_z_x2fp16: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_scvtf_z_p_z_x2fp16z() {
@@ -8943,7 +10681,9 @@ void test_scvtf_z_p_z_x2fp16z() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  scvtf_z_p_z_x2fp16z: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_scvtf_z_p_z_x2s() {
@@ -8955,7 +10695,9 @@ void test_scvtf_z_p_z_x2s() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  scvtf_z_p_z_x2s: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_scvtf_z_p_z_x2sz() {
@@ -8967,7 +10709,9 @@ void test_scvtf_z_p_z_x2sz() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  scvtf_z_p_z_x2sz: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_scvtf_z_p_z_x2d() {
@@ -8979,7 +10723,9 @@ void test_scvtf_z_p_z_x2d() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  scvtf_z_p_z_x2d: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_scvtf_z_p_z_x2dz() {
@@ -8991,7 +10737,9 @@ void test_scvtf_z_p_z_x2dz() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  scvtf_z_p_z_x2dz: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_scvtf_z_z_() {
@@ -8999,7 +10747,9 @@ void test_scvtf_z_z_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: scvtf_z_z_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::SCVTF);
+#ifdef VEDA64_STRINGS
     std::cout << "  scvtf_z_z_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_scvtflt_z_z_() {
@@ -9007,7 +10757,9 @@ void test_scvtflt_z_z_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: scvtflt_z_z_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::SCVTFLT);
+#ifdef VEDA64_STRINGS
     std::cout << "  scvtflt_z_z_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_sdiv_z_p_zz_() {
@@ -9015,7 +10767,9 @@ void test_sdiv_z_p_zz_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: sdiv_z_p_zz_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::SDIV);
+#ifdef VEDA64_STRINGS
     std::cout << "  sdiv_z_p_zz_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_sdivr_z_p_zz_() {
@@ -9023,7 +10777,9 @@ void test_sdivr_z_p_zz_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: sdivr_z_p_zz_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::SDIVR);
+#ifdef VEDA64_STRINGS
     std::cout << "  sdivr_z_p_zz_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_sdot_z16_zzz_h() {
@@ -9035,7 +10791,9 @@ void test_sdot_z16_zzz_h() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  sdot_z16_zzz_h: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_sdot_z32_zzz_() {
@@ -9047,7 +10805,9 @@ void test_sdot_z32_zzz_() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  sdot_z32_zzz_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_sdot_z16_zzzi_h() {
@@ -9059,7 +10819,9 @@ void test_sdot_z16_zzzi_h() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  sdot_z16_zzzi_h: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_sdot_z32_zzzi_() {
@@ -9071,7 +10833,9 @@ void test_sdot_z32_zzzi_() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  sdot_z32_zzzi_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_sdot_z_zzz_() {
@@ -9079,7 +10843,9 @@ void test_sdot_z_zzz_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: sdot_z_zzz_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::SDOT);
+#ifdef VEDA64_STRINGS
     std::cout << "  sdot_z_zzz_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_sdot_z_zzzi_s() {
@@ -9091,7 +10857,9 @@ void test_sdot_z_zzzi_s() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  sdot_z_zzzi_s: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_sdot_z_zzzi_d() {
@@ -9103,7 +10871,9 @@ void test_sdot_z_zzzi_d() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  sdot_z_zzzi_d: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_sel_p_p_pp_() {
@@ -9116,7 +10886,9 @@ void test_sel_p_p_pp_() {
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
     assert(result->operands[3].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  sel_p_p_pp_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_sel_z_p_zz_() {
@@ -9124,7 +10896,9 @@ void test_sel_z_p_zz_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: sel_z_p_zz_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::SEL);
+#ifdef VEDA64_STRINGS
     std::cout << "  sel_z_p_zz_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_setffr_f_() {
@@ -9132,7 +10906,9 @@ void test_setffr_f_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: setffr_f_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::SETFFR);
+#ifdef VEDA64_STRINGS
     std::cout << "  setffr_f_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_shadd_z_p_zz_() {
@@ -9140,7 +10916,9 @@ void test_shadd_z_p_zz_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: shadd_z_p_zz_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::SHADD);
+#ifdef VEDA64_STRINGS
     std::cout << "  shadd_z_p_zz_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_shrnb_z_zi_() {
@@ -9148,7 +10926,9 @@ void test_shrnb_z_zi_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: shrnb_z_zi_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::SHRNB);
+#ifdef VEDA64_STRINGS
     std::cout << "  shrnb_z_zi_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_shrnt_z_zi_() {
@@ -9156,7 +10936,9 @@ void test_shrnt_z_zi_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: shrnt_z_zi_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::SHRNT);
+#ifdef VEDA64_STRINGS
     std::cout << "  shrnt_z_zi_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_shsub_z_p_zz_() {
@@ -9164,7 +10946,9 @@ void test_shsub_z_p_zz_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: shsub_z_p_zz_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::SHSUB);
+#ifdef VEDA64_STRINGS
     std::cout << "  shsub_z_p_zz_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_shsubr_z_p_zz_() {
@@ -9172,7 +10956,9 @@ void test_shsubr_z_p_zz_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: shsubr_z_p_zz_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::SHSUBR);
+#ifdef VEDA64_STRINGS
     std::cout << "  shsubr_z_p_zz_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_sli_z_zzi_() {
@@ -9180,7 +10966,9 @@ void test_sli_z_zzi_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: sli_z_zzi_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::SLI);
+#ifdef VEDA64_STRINGS
     std::cout << "  sli_z_zzi_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_sm4e_z_zz_() {
@@ -9192,7 +10980,9 @@ void test_sm4e_z_zz_() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  sm4e_z_zz_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_sm4ekey_z_zz_() {
@@ -9204,7 +10994,9 @@ void test_sm4ekey_z_zz_() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  sm4ekey_z_zz_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_smax_z_p_zz_() {
@@ -9212,7 +11004,9 @@ void test_smax_z_p_zz_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: smax_z_p_zz_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::SMAX);
+#ifdef VEDA64_STRINGS
     std::cout << "  smax_z_p_zz_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_smax_z_zi_() {
@@ -9220,7 +11014,9 @@ void test_smax_z_zi_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: smax_z_zi_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::SMAX);
+#ifdef VEDA64_STRINGS
     std::cout << "  smax_z_zi_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_smaxp_z_p_zz_() {
@@ -9228,7 +11024,9 @@ void test_smaxp_z_p_zz_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: smaxp_z_p_zz_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::SMAXP);
+#ifdef VEDA64_STRINGS
     std::cout << "  smaxp_z_p_zz_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_smaxqv_z_p_z_() {
@@ -9236,7 +11034,9 @@ void test_smaxqv_z_p_z_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: smaxqv_z_p_z_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::SMAXQV);
+#ifdef VEDA64_STRINGS
     std::cout << "  smaxqv_z_p_z_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_smaxv_r_p_z_() {
@@ -9244,7 +11044,9 @@ void test_smaxv_r_p_z_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: smaxv_r_p_z_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::SMAXV);
+#ifdef VEDA64_STRINGS
     std::cout << "  smaxv_r_p_z_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_smin_z_p_zz_() {
@@ -9252,7 +11054,9 @@ void test_smin_z_p_zz_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: smin_z_p_zz_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::SMIN);
+#ifdef VEDA64_STRINGS
     std::cout << "  smin_z_p_zz_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_smin_z_zi_() {
@@ -9260,7 +11064,9 @@ void test_smin_z_zi_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: smin_z_zi_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::SMIN);
+#ifdef VEDA64_STRINGS
     std::cout << "  smin_z_zi_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_sminp_z_p_zz_() {
@@ -9268,7 +11074,9 @@ void test_sminp_z_p_zz_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: sminp_z_p_zz_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::SMINP);
+#ifdef VEDA64_STRINGS
     std::cout << "  sminp_z_p_zz_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_sminqv_z_p_z_() {
@@ -9276,7 +11084,9 @@ void test_sminqv_z_p_z_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: sminqv_z_p_z_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::SMINQV);
+#ifdef VEDA64_STRINGS
     std::cout << "  sminqv_z_p_z_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_sminv_r_p_z_() {
@@ -9284,7 +11094,9 @@ void test_sminv_r_p_z_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: sminv_r_p_z_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::SMINV);
+#ifdef VEDA64_STRINGS
     std::cout << "  sminv_r_p_z_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_smlalb_z_zzz_() {
@@ -9292,7 +11104,9 @@ void test_smlalb_z_zzz_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: smlalb_z_zzz_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::SMLALB);
+#ifdef VEDA64_STRINGS
     std::cout << "  smlalb_z_zzz_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_smlalb_z_zzzi_s() {
@@ -9304,7 +11118,9 @@ void test_smlalb_z_zzzi_s() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  smlalb_z_zzzi_s: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_smlalb_z_zzzi_d() {
@@ -9316,7 +11132,9 @@ void test_smlalb_z_zzzi_d() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  smlalb_z_zzzi_d: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_smlalt_z_zzz_() {
@@ -9324,7 +11142,9 @@ void test_smlalt_z_zzz_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: smlalt_z_zzz_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::SMLALT);
+#ifdef VEDA64_STRINGS
     std::cout << "  smlalt_z_zzz_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_smlalt_z_zzzi_s() {
@@ -9336,7 +11156,9 @@ void test_smlalt_z_zzzi_s() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  smlalt_z_zzzi_s: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_smlalt_z_zzzi_d() {
@@ -9348,7 +11170,9 @@ void test_smlalt_z_zzzi_d() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  smlalt_z_zzzi_d: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_smlslb_z_zzz_() {
@@ -9356,7 +11180,9 @@ void test_smlslb_z_zzz_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: smlslb_z_zzz_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::SMLSLB);
+#ifdef VEDA64_STRINGS
     std::cout << "  smlslb_z_zzz_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_smlslb_z_zzzi_s() {
@@ -9368,7 +11194,9 @@ void test_smlslb_z_zzzi_s() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  smlslb_z_zzzi_s: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_smlslb_z_zzzi_d() {
@@ -9380,7 +11208,9 @@ void test_smlslb_z_zzzi_d() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  smlslb_z_zzzi_d: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_smlslt_z_zzz_() {
@@ -9388,7 +11218,9 @@ void test_smlslt_z_zzz_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: smlslt_z_zzz_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::SMLSLT);
+#ifdef VEDA64_STRINGS
     std::cout << "  smlslt_z_zzz_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_smlslt_z_zzzi_s() {
@@ -9400,7 +11232,9 @@ void test_smlslt_z_zzzi_s() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  smlslt_z_zzzi_s: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_smlslt_z_zzzi_d() {
@@ -9412,7 +11246,9 @@ void test_smlslt_z_zzzi_d() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  smlslt_z_zzzi_d: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_smmla_z_zzz_() {
@@ -9424,7 +11260,9 @@ void test_smmla_z_zzz_() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  smmla_z_zzz_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_smulh_z_p_zz_() {
@@ -9432,7 +11270,9 @@ void test_smulh_z_p_zz_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: smulh_z_p_zz_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::SMULH);
+#ifdef VEDA64_STRINGS
     std::cout << "  smulh_z_p_zz_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_smulh_z_zz_() {
@@ -9440,7 +11280,9 @@ void test_smulh_z_zz_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: smulh_z_zz_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::SMULH);
+#ifdef VEDA64_STRINGS
     std::cout << "  smulh_z_zz_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_smullb_z_zz_() {
@@ -9448,7 +11290,9 @@ void test_smullb_z_zz_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: smullb_z_zz_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::SMULLB);
+#ifdef VEDA64_STRINGS
     std::cout << "  smullb_z_zz_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_smullb_z_zzi_s() {
@@ -9460,7 +11304,9 @@ void test_smullb_z_zzi_s() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  smullb_z_zzi_s: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_smullb_z_zzi_d() {
@@ -9472,7 +11318,9 @@ void test_smullb_z_zzi_d() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  smullb_z_zzi_d: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_smullt_z_zz_() {
@@ -9480,7 +11328,9 @@ void test_smullt_z_zz_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: smullt_z_zz_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::SMULLT);
+#ifdef VEDA64_STRINGS
     std::cout << "  smullt_z_zz_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_smullt_z_zzi_s() {
@@ -9492,7 +11342,9 @@ void test_smullt_z_zzi_s() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  smullt_z_zzi_s: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_smullt_z_zzi_d() {
@@ -9504,7 +11356,9 @@ void test_smullt_z_zzi_d() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  smullt_z_zzi_d: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_splice_z_p_zz_con() {
@@ -9512,7 +11366,9 @@ void test_splice_z_p_zz_con() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: splice_z_p_zz_con" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::SPLICE);
+#ifdef VEDA64_STRINGS
     std::cout << "  splice_z_p_zz_con: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_splice_z_p_zz_des() {
@@ -9520,7 +11376,9 @@ void test_splice_z_p_zz_des() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: splice_z_p_zz_des" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::SPLICE);
+#ifdef VEDA64_STRINGS
     std::cout << "  splice_z_p_zz_des: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_sqabs_z_p_z_m() {
@@ -9528,7 +11386,9 @@ void test_sqabs_z_p_z_m() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: sqabs_z_p_z_m" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::SQABS);
+#ifdef VEDA64_STRINGS
     std::cout << "  sqabs_z_p_z_m: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_sqabs_z_p_z_z() {
@@ -9536,7 +11396,9 @@ void test_sqabs_z_p_z_z() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: sqabs_z_p_z_z" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::SQABS);
+#ifdef VEDA64_STRINGS
     std::cout << "  sqabs_z_p_z_z: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_sqadd_z_p_zz_() {
@@ -9544,7 +11406,9 @@ void test_sqadd_z_p_zz_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: sqadd_z_p_zz_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::SQADD);
+#ifdef VEDA64_STRINGS
     std::cout << "  sqadd_z_p_zz_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_sqadd_z_zi_() {
@@ -9552,7 +11416,9 @@ void test_sqadd_z_zi_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: sqadd_z_zi_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::SQADD);
+#ifdef VEDA64_STRINGS
     std::cout << "  sqadd_z_zi_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_sqadd_z_zz_() {
@@ -9560,7 +11426,9 @@ void test_sqadd_z_zz_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: sqadd_z_zz_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::SQADD);
+#ifdef VEDA64_STRINGS
     std::cout << "  sqadd_z_zz_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_sqcadd_z_zz_() {
@@ -9568,7 +11436,9 @@ void test_sqcadd_z_zz_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: sqcadd_z_zz_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::SQCADD);
+#ifdef VEDA64_STRINGS
     std::cout << "  sqcadd_z_zz_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_sqcvtn_z_mz2_() {
@@ -9579,7 +11449,9 @@ void test_sqcvtn_z_mz2_() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::RegisterList);
+#ifdef VEDA64_STRINGS
     std::cout << "  sqcvtn_z_mz2_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_sqcvtun_z_mz2_() {
@@ -9590,7 +11462,9 @@ void test_sqcvtun_z_mz2_() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::RegisterList);
+#ifdef VEDA64_STRINGS
     std::cout << "  sqcvtun_z_mz2_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_sqdecb_r_rs_sx() {
@@ -9601,7 +11475,9 @@ void test_sqdecb_r_rs_sx() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::RegisterList);
+#ifdef VEDA64_STRINGS
     std::cout << "  sqdecb_r_rs_sx: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_sqdecb_r_rs_x() {
@@ -9611,7 +11487,9 @@ void test_sqdecb_r_rs_x() {
     assert(result->mnemonic == Mnemonic::SQDECB);
     assert(result->operands.size() >= 1);
     assert(result->operands[0].type == OperandType::RegisterList);
+#ifdef VEDA64_STRINGS
     std::cout << "  sqdecb_r_rs_x: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_sqdecd_r_rs_sx() {
@@ -9622,7 +11500,9 @@ void test_sqdecd_r_rs_sx() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::RegisterList);
+#ifdef VEDA64_STRINGS
     std::cout << "  sqdecd_r_rs_sx: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_sqdecd_r_rs_x() {
@@ -9632,7 +11512,9 @@ void test_sqdecd_r_rs_x() {
     assert(result->mnemonic == Mnemonic::SQDECD);
     assert(result->operands.size() >= 1);
     assert(result->operands[0].type == OperandType::RegisterList);
+#ifdef VEDA64_STRINGS
     std::cout << "  sqdecd_r_rs_x: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_sqdecd_z_zs_() {
@@ -9642,7 +11524,9 @@ void test_sqdecd_z_zs_() {
     assert(result->mnemonic == Mnemonic::SQDECD);
     assert(result->operands.size() >= 1);
     assert(result->operands[0].type == OperandType::RegisterList);
+#ifdef VEDA64_STRINGS
     std::cout << "  sqdecd_z_zs_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_sqdech_r_rs_sx() {
@@ -9653,7 +11537,9 @@ void test_sqdech_r_rs_sx() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::RegisterList);
+#ifdef VEDA64_STRINGS
     std::cout << "  sqdech_r_rs_sx: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_sqdech_r_rs_x() {
@@ -9663,7 +11549,9 @@ void test_sqdech_r_rs_x() {
     assert(result->mnemonic == Mnemonic::SQDECH);
     assert(result->operands.size() >= 1);
     assert(result->operands[0].type == OperandType::RegisterList);
+#ifdef VEDA64_STRINGS
     std::cout << "  sqdech_r_rs_x: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_sqdech_z_zs_() {
@@ -9673,7 +11561,9 @@ void test_sqdech_z_zs_() {
     assert(result->mnemonic == Mnemonic::SQDECH);
     assert(result->operands.size() >= 1);
     assert(result->operands[0].type == OperandType::RegisterList);
+#ifdef VEDA64_STRINGS
     std::cout << "  sqdech_z_zs_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_sqdecp_r_p_r_sx() {
@@ -9681,7 +11571,9 @@ void test_sqdecp_r_p_r_sx() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: sqdecp_r_p_r_sx" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::SQDECP);
+#ifdef VEDA64_STRINGS
     std::cout << "  sqdecp_r_p_r_sx: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_sqdecp_r_p_r_x() {
@@ -9689,7 +11581,9 @@ void test_sqdecp_r_p_r_x() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: sqdecp_r_p_r_x" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::SQDECP);
+#ifdef VEDA64_STRINGS
     std::cout << "  sqdecp_r_p_r_x: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_sqdecp_z_p_z_() {
@@ -9697,7 +11591,9 @@ void test_sqdecp_z_p_z_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: sqdecp_z_p_z_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::SQDECP);
+#ifdef VEDA64_STRINGS
     std::cout << "  sqdecp_z_p_z_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_sqdecw_r_rs_sx() {
@@ -9708,7 +11604,9 @@ void test_sqdecw_r_rs_sx() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::RegisterList);
+#ifdef VEDA64_STRINGS
     std::cout << "  sqdecw_r_rs_sx: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_sqdecw_r_rs_x() {
@@ -9718,7 +11616,9 @@ void test_sqdecw_r_rs_x() {
     assert(result->mnemonic == Mnemonic::SQDECW);
     assert(result->operands.size() >= 1);
     assert(result->operands[0].type == OperandType::RegisterList);
+#ifdef VEDA64_STRINGS
     std::cout << "  sqdecw_r_rs_x: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_sqdecw_z_zs_() {
@@ -9728,7 +11628,9 @@ void test_sqdecw_z_zs_() {
     assert(result->mnemonic == Mnemonic::SQDECW);
     assert(result->operands.size() >= 1);
     assert(result->operands[0].type == OperandType::RegisterList);
+#ifdef VEDA64_STRINGS
     std::cout << "  sqdecw_z_zs_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_sqdmlalb_z_zzz_() {
@@ -9736,7 +11638,9 @@ void test_sqdmlalb_z_zzz_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: sqdmlalb_z_zzz_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::SQDMLALB);
+#ifdef VEDA64_STRINGS
     std::cout << "  sqdmlalb_z_zzz_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_sqdmlalb_z_zzzi_s() {
@@ -9748,7 +11652,9 @@ void test_sqdmlalb_z_zzzi_s() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  sqdmlalb_z_zzzi_s: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_sqdmlalb_z_zzzi_d() {
@@ -9760,7 +11666,9 @@ void test_sqdmlalb_z_zzzi_d() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  sqdmlalb_z_zzzi_d: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_sqdmlalbt_z_zzz_() {
@@ -9768,7 +11676,9 @@ void test_sqdmlalbt_z_zzz_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: sqdmlalbt_z_zzz_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::SQDMLALBT);
+#ifdef VEDA64_STRINGS
     std::cout << "  sqdmlalbt_z_zzz_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_sqdmlalt_z_zzz_() {
@@ -9776,7 +11686,9 @@ void test_sqdmlalt_z_zzz_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: sqdmlalt_z_zzz_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::SQDMLALT);
+#ifdef VEDA64_STRINGS
     std::cout << "  sqdmlalt_z_zzz_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_sqdmlalt_z_zzzi_s() {
@@ -9788,7 +11700,9 @@ void test_sqdmlalt_z_zzzi_s() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  sqdmlalt_z_zzzi_s: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_sqdmlalt_z_zzzi_d() {
@@ -9800,7 +11714,9 @@ void test_sqdmlalt_z_zzzi_d() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  sqdmlalt_z_zzzi_d: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_sqdmlslb_z_zzz_() {
@@ -9808,7 +11724,9 @@ void test_sqdmlslb_z_zzz_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: sqdmlslb_z_zzz_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::SQDMLSLB);
+#ifdef VEDA64_STRINGS
     std::cout << "  sqdmlslb_z_zzz_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_sqdmlslb_z_zzzi_s() {
@@ -9820,7 +11738,9 @@ void test_sqdmlslb_z_zzzi_s() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  sqdmlslb_z_zzzi_s: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_sqdmlslb_z_zzzi_d() {
@@ -9832,7 +11752,9 @@ void test_sqdmlslb_z_zzzi_d() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  sqdmlslb_z_zzzi_d: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_sqdmlslbt_z_zzz_() {
@@ -9840,7 +11762,9 @@ void test_sqdmlslbt_z_zzz_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: sqdmlslbt_z_zzz_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::SQDMLSLBT);
+#ifdef VEDA64_STRINGS
     std::cout << "  sqdmlslbt_z_zzz_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_sqdmlslt_z_zzz_() {
@@ -9848,7 +11772,9 @@ void test_sqdmlslt_z_zzz_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: sqdmlslt_z_zzz_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::SQDMLSLT);
+#ifdef VEDA64_STRINGS
     std::cout << "  sqdmlslt_z_zzz_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_sqdmlslt_z_zzzi_s() {
@@ -9860,7 +11786,9 @@ void test_sqdmlslt_z_zzzi_s() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  sqdmlslt_z_zzzi_s: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_sqdmlslt_z_zzzi_d() {
@@ -9872,7 +11800,9 @@ void test_sqdmlslt_z_zzzi_d() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  sqdmlslt_z_zzzi_d: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_sqdmulh_z_zz_() {
@@ -9880,7 +11810,9 @@ void test_sqdmulh_z_zz_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: sqdmulh_z_zz_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::SQDMULH);
+#ifdef VEDA64_STRINGS
     std::cout << "  sqdmulh_z_zz_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_sqdmulh_z_zzi_h() {
@@ -9892,7 +11824,9 @@ void test_sqdmulh_z_zzi_h() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  sqdmulh_z_zzi_h: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_sqdmulh_z_zzi_s() {
@@ -9904,7 +11838,9 @@ void test_sqdmulh_z_zzi_s() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  sqdmulh_z_zzi_s: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_sqdmulh_z_zzi_d() {
@@ -9916,7 +11852,9 @@ void test_sqdmulh_z_zzi_d() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  sqdmulh_z_zzi_d: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_sqdmullb_z_zz_() {
@@ -9924,7 +11862,9 @@ void test_sqdmullb_z_zz_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: sqdmullb_z_zz_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::SQDMULLB);
+#ifdef VEDA64_STRINGS
     std::cout << "  sqdmullb_z_zz_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_sqdmullb_z_zzi_s() {
@@ -9936,7 +11876,9 @@ void test_sqdmullb_z_zzi_s() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  sqdmullb_z_zzi_s: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_sqdmullb_z_zzi_d() {
@@ -9948,7 +11890,9 @@ void test_sqdmullb_z_zzi_d() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  sqdmullb_z_zzi_d: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_sqdmullt_z_zz_() {
@@ -9956,7 +11900,9 @@ void test_sqdmullt_z_zz_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: sqdmullt_z_zz_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::SQDMULLT);
+#ifdef VEDA64_STRINGS
     std::cout << "  sqdmullt_z_zz_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_sqdmullt_z_zzi_s() {
@@ -9968,7 +11914,9 @@ void test_sqdmullt_z_zzi_s() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  sqdmullt_z_zzi_s: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_sqdmullt_z_zzi_d() {
@@ -9980,7 +11928,9 @@ void test_sqdmullt_z_zzi_d() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  sqdmullt_z_zzi_d: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_sqincb_r_rs_sx() {
@@ -9991,7 +11941,9 @@ void test_sqincb_r_rs_sx() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::RegisterList);
+#ifdef VEDA64_STRINGS
     std::cout << "  sqincb_r_rs_sx: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_sqincb_r_rs_x() {
@@ -10001,7 +11953,9 @@ void test_sqincb_r_rs_x() {
     assert(result->mnemonic == Mnemonic::SQINCB);
     assert(result->operands.size() >= 1);
     assert(result->operands[0].type == OperandType::RegisterList);
+#ifdef VEDA64_STRINGS
     std::cout << "  sqincb_r_rs_x: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_sqincd_r_rs_sx() {
@@ -10012,7 +11966,9 @@ void test_sqincd_r_rs_sx() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::RegisterList);
+#ifdef VEDA64_STRINGS
     std::cout << "  sqincd_r_rs_sx: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_sqincd_r_rs_x() {
@@ -10022,7 +11978,9 @@ void test_sqincd_r_rs_x() {
     assert(result->mnemonic == Mnemonic::SQINCD);
     assert(result->operands.size() >= 1);
     assert(result->operands[0].type == OperandType::RegisterList);
+#ifdef VEDA64_STRINGS
     std::cout << "  sqincd_r_rs_x: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_sqincd_z_zs_() {
@@ -10032,7 +11990,9 @@ void test_sqincd_z_zs_() {
     assert(result->mnemonic == Mnemonic::SQINCD);
     assert(result->operands.size() >= 1);
     assert(result->operands[0].type == OperandType::RegisterList);
+#ifdef VEDA64_STRINGS
     std::cout << "  sqincd_z_zs_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_sqinch_r_rs_sx() {
@@ -10043,7 +12003,9 @@ void test_sqinch_r_rs_sx() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::RegisterList);
+#ifdef VEDA64_STRINGS
     std::cout << "  sqinch_r_rs_sx: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_sqinch_r_rs_x() {
@@ -10053,7 +12015,9 @@ void test_sqinch_r_rs_x() {
     assert(result->mnemonic == Mnemonic::SQINCH);
     assert(result->operands.size() >= 1);
     assert(result->operands[0].type == OperandType::RegisterList);
+#ifdef VEDA64_STRINGS
     std::cout << "  sqinch_r_rs_x: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_sqinch_z_zs_() {
@@ -10063,7 +12027,9 @@ void test_sqinch_z_zs_() {
     assert(result->mnemonic == Mnemonic::SQINCH);
     assert(result->operands.size() >= 1);
     assert(result->operands[0].type == OperandType::RegisterList);
+#ifdef VEDA64_STRINGS
     std::cout << "  sqinch_z_zs_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_sqincp_r_p_r_sx() {
@@ -10071,7 +12037,9 @@ void test_sqincp_r_p_r_sx() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: sqincp_r_p_r_sx" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::SQINCP);
+#ifdef VEDA64_STRINGS
     std::cout << "  sqincp_r_p_r_sx: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_sqincp_r_p_r_x() {
@@ -10079,7 +12047,9 @@ void test_sqincp_r_p_r_x() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: sqincp_r_p_r_x" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::SQINCP);
+#ifdef VEDA64_STRINGS
     std::cout << "  sqincp_r_p_r_x: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_sqincp_z_p_z_() {
@@ -10087,7 +12057,9 @@ void test_sqincp_z_p_z_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: sqincp_z_p_z_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::SQINCP);
+#ifdef VEDA64_STRINGS
     std::cout << "  sqincp_z_p_z_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_sqincw_r_rs_sx() {
@@ -10098,7 +12070,9 @@ void test_sqincw_r_rs_sx() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::RegisterList);
+#ifdef VEDA64_STRINGS
     std::cout << "  sqincw_r_rs_sx: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_sqincw_r_rs_x() {
@@ -10108,7 +12082,9 @@ void test_sqincw_r_rs_x() {
     assert(result->mnemonic == Mnemonic::SQINCW);
     assert(result->operands.size() >= 1);
     assert(result->operands[0].type == OperandType::RegisterList);
+#ifdef VEDA64_STRINGS
     std::cout << "  sqincw_r_rs_x: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_sqincw_z_zs_() {
@@ -10118,7 +12094,9 @@ void test_sqincw_z_zs_() {
     assert(result->mnemonic == Mnemonic::SQINCW);
     assert(result->operands.size() >= 1);
     assert(result->operands[0].type == OperandType::RegisterList);
+#ifdef VEDA64_STRINGS
     std::cout << "  sqincw_z_zs_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_sqneg_z_p_z_m() {
@@ -10126,7 +12104,9 @@ void test_sqneg_z_p_z_m() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: sqneg_z_p_z_m" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::SQNEG);
+#ifdef VEDA64_STRINGS
     std::cout << "  sqneg_z_p_z_m: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_sqneg_z_p_z_z() {
@@ -10134,7 +12114,9 @@ void test_sqneg_z_p_z_z() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: sqneg_z_p_z_z" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::SQNEG);
+#ifdef VEDA64_STRINGS
     std::cout << "  sqneg_z_p_z_z: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_sqrdcmlah_z_zzz_() {
@@ -10142,7 +12124,9 @@ void test_sqrdcmlah_z_zzz_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: sqrdcmlah_z_zzz_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::SQRDCMLAH);
+#ifdef VEDA64_STRINGS
     std::cout << "  sqrdcmlah_z_zzz_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_sqrdcmlah_z_zzzi_h() {
@@ -10150,7 +12134,9 @@ void test_sqrdcmlah_z_zzzi_h() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: sqrdcmlah_z_zzzi_h" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::SQRDCMLAH);
+#ifdef VEDA64_STRINGS
     std::cout << "  sqrdcmlah_z_zzzi_h: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_sqrdcmlah_z_zzzi_s() {
@@ -10158,7 +12144,9 @@ void test_sqrdcmlah_z_zzzi_s() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: sqrdcmlah_z_zzzi_s" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::SQRDCMLAH);
+#ifdef VEDA64_STRINGS
     std::cout << "  sqrdcmlah_z_zzzi_s: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_sqrdmlah_z_zzz_() {
@@ -10166,7 +12154,9 @@ void test_sqrdmlah_z_zzz_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: sqrdmlah_z_zzz_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::SQRDMLAH);
+#ifdef VEDA64_STRINGS
     std::cout << "  sqrdmlah_z_zzz_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_sqrdmlah_z_zzzi_h() {
@@ -10178,7 +12168,9 @@ void test_sqrdmlah_z_zzzi_h() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  sqrdmlah_z_zzzi_h: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_sqrdmlah_z_zzzi_s() {
@@ -10190,7 +12182,9 @@ void test_sqrdmlah_z_zzzi_s() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  sqrdmlah_z_zzzi_s: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_sqrdmlah_z_zzzi_d() {
@@ -10202,7 +12196,9 @@ void test_sqrdmlah_z_zzzi_d() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  sqrdmlah_z_zzzi_d: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_sqrdmlsh_z_zzz_() {
@@ -10210,7 +12206,9 @@ void test_sqrdmlsh_z_zzz_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: sqrdmlsh_z_zzz_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::SQRDMLSH);
+#ifdef VEDA64_STRINGS
     std::cout << "  sqrdmlsh_z_zzz_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_sqrdmlsh_z_zzzi_h() {
@@ -10222,7 +12220,9 @@ void test_sqrdmlsh_z_zzzi_h() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  sqrdmlsh_z_zzzi_h: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_sqrdmlsh_z_zzzi_s() {
@@ -10234,7 +12234,9 @@ void test_sqrdmlsh_z_zzzi_s() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  sqrdmlsh_z_zzzi_s: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_sqrdmlsh_z_zzzi_d() {
@@ -10246,7 +12248,9 @@ void test_sqrdmlsh_z_zzzi_d() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  sqrdmlsh_z_zzzi_d: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_sqrdmulh_z_zz_() {
@@ -10254,7 +12258,9 @@ void test_sqrdmulh_z_zz_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: sqrdmulh_z_zz_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::SQRDMULH);
+#ifdef VEDA64_STRINGS
     std::cout << "  sqrdmulh_z_zz_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_sqrdmulh_z_zzi_h() {
@@ -10266,7 +12272,9 @@ void test_sqrdmulh_z_zzi_h() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  sqrdmulh_z_zzi_h: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_sqrdmulh_z_zzi_s() {
@@ -10278,7 +12286,9 @@ void test_sqrdmulh_z_zzi_s() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  sqrdmulh_z_zzi_s: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_sqrdmulh_z_zzi_d() {
@@ -10290,7 +12300,9 @@ void test_sqrdmulh_z_zzi_d() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  sqrdmulh_z_zzi_d: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_sqrshl_z_p_zz_() {
@@ -10298,7 +12310,9 @@ void test_sqrshl_z_p_zz_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: sqrshl_z_p_zz_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::SQRSHL);
+#ifdef VEDA64_STRINGS
     std::cout << "  sqrshl_z_p_zz_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_sqrshlr_z_p_zz_() {
@@ -10306,7 +12320,9 @@ void test_sqrshlr_z_p_zz_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: sqrshlr_z_p_zz_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::SQRSHLR);
+#ifdef VEDA64_STRINGS
     std::cout << "  sqrshlr_z_p_zz_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_sqrshrn_z_mz2_b() {
@@ -10314,7 +12330,9 @@ void test_sqrshrn_z_mz2_b() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: sqrshrn_z_mz2_b" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::SQRSHRN);
+#ifdef VEDA64_STRINGS
     std::cout << "  sqrshrn_z_mz2_b: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_sqrshrn_z_mz2_() {
@@ -10322,7 +12340,9 @@ void test_sqrshrn_z_mz2_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: sqrshrn_z_mz2_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::SQRSHRN);
+#ifdef VEDA64_STRINGS
     std::cout << "  sqrshrn_z_mz2_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_sqrshrnb_z_zi_() {
@@ -10330,7 +12350,9 @@ void test_sqrshrnb_z_zi_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: sqrshrnb_z_zi_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::SQRSHRNB);
+#ifdef VEDA64_STRINGS
     std::cout << "  sqrshrnb_z_zi_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_sqrshrnt_z_zi_() {
@@ -10338,7 +12360,9 @@ void test_sqrshrnt_z_zi_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: sqrshrnt_z_zi_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::SQRSHRNT);
+#ifdef VEDA64_STRINGS
     std::cout << "  sqrshrnt_z_zi_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_sqrshrun_z_mz2_b() {
@@ -10346,7 +12370,9 @@ void test_sqrshrun_z_mz2_b() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: sqrshrun_z_mz2_b" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::SQRSHRUN);
+#ifdef VEDA64_STRINGS
     std::cout << "  sqrshrun_z_mz2_b: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_sqrshrun_z_mz2_() {
@@ -10354,7 +12380,9 @@ void test_sqrshrun_z_mz2_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: sqrshrun_z_mz2_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::SQRSHRUN);
+#ifdef VEDA64_STRINGS
     std::cout << "  sqrshrun_z_mz2_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_sqrshrunb_z_zi_() {
@@ -10362,7 +12390,9 @@ void test_sqrshrunb_z_zi_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: sqrshrunb_z_zi_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::SQRSHRUNB);
+#ifdef VEDA64_STRINGS
     std::cout << "  sqrshrunb_z_zi_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_sqrshrunt_z_zi_() {
@@ -10370,7 +12400,9 @@ void test_sqrshrunt_z_zi_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: sqrshrunt_z_zi_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::SQRSHRUNT);
+#ifdef VEDA64_STRINGS
     std::cout << "  sqrshrunt_z_zi_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_sqshl_z_p_zi_() {
@@ -10378,7 +12410,9 @@ void test_sqshl_z_p_zi_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: sqshl_z_p_zi_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::SQSHL);
+#ifdef VEDA64_STRINGS
     std::cout << "  sqshl_z_p_zi_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_sqshl_z_p_zz_() {
@@ -10386,7 +12420,9 @@ void test_sqshl_z_p_zz_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: sqshl_z_p_zz_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::SQSHL);
+#ifdef VEDA64_STRINGS
     std::cout << "  sqshl_z_p_zz_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_sqshlr_z_p_zz_() {
@@ -10394,7 +12430,9 @@ void test_sqshlr_z_p_zz_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: sqshlr_z_p_zz_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::SQSHLR);
+#ifdef VEDA64_STRINGS
     std::cout << "  sqshlr_z_p_zz_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_sqshlu_z_p_zi_() {
@@ -10402,7 +12440,9 @@ void test_sqshlu_z_p_zi_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: sqshlu_z_p_zi_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::SQSHLU);
+#ifdef VEDA64_STRINGS
     std::cout << "  sqshlu_z_p_zi_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_sqshrn_z_mz2_() {
@@ -10410,7 +12450,9 @@ void test_sqshrn_z_mz2_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: sqshrn_z_mz2_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::SQSHRN);
+#ifdef VEDA64_STRINGS
     std::cout << "  sqshrn_z_mz2_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_sqshrnb_z_zi_() {
@@ -10418,7 +12460,9 @@ void test_sqshrnb_z_zi_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: sqshrnb_z_zi_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::SQSHRNB);
+#ifdef VEDA64_STRINGS
     std::cout << "  sqshrnb_z_zi_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_sqshrnt_z_zi_() {
@@ -10426,7 +12470,9 @@ void test_sqshrnt_z_zi_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: sqshrnt_z_zi_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::SQSHRNT);
+#ifdef VEDA64_STRINGS
     std::cout << "  sqshrnt_z_zi_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_sqshrun_z_mz2_() {
@@ -10434,7 +12480,9 @@ void test_sqshrun_z_mz2_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: sqshrun_z_mz2_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::SQSHRUN);
+#ifdef VEDA64_STRINGS
     std::cout << "  sqshrun_z_mz2_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_sqshrunb_z_zi_() {
@@ -10442,7 +12490,9 @@ void test_sqshrunb_z_zi_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: sqshrunb_z_zi_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::SQSHRUNB);
+#ifdef VEDA64_STRINGS
     std::cout << "  sqshrunb_z_zi_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_sqshrunt_z_zi_() {
@@ -10450,7 +12500,9 @@ void test_sqshrunt_z_zi_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: sqshrunt_z_zi_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::SQSHRUNT);
+#ifdef VEDA64_STRINGS
     std::cout << "  sqshrunt_z_zi_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_sqsub_z_p_zz_() {
@@ -10458,7 +12510,9 @@ void test_sqsub_z_p_zz_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: sqsub_z_p_zz_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::SQSUB);
+#ifdef VEDA64_STRINGS
     std::cout << "  sqsub_z_p_zz_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_sqsub_z_zi_() {
@@ -10466,7 +12520,9 @@ void test_sqsub_z_zi_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: sqsub_z_zi_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::SQSUB);
+#ifdef VEDA64_STRINGS
     std::cout << "  sqsub_z_zi_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_sqsub_z_zz_() {
@@ -10474,7 +12530,9 @@ void test_sqsub_z_zz_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: sqsub_z_zz_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::SQSUB);
+#ifdef VEDA64_STRINGS
     std::cout << "  sqsub_z_zz_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_sqsubr_z_p_zz_() {
@@ -10482,7 +12540,9 @@ void test_sqsubr_z_p_zz_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: sqsubr_z_p_zz_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::SQSUBR);
+#ifdef VEDA64_STRINGS
     std::cout << "  sqsubr_z_p_zz_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_sqxtnb_z_zz_() {
@@ -10490,7 +12550,9 @@ void test_sqxtnb_z_zz_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: sqxtnb_z_zz_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::SQXTNB);
+#ifdef VEDA64_STRINGS
     std::cout << "  sqxtnb_z_zz_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_sqxtnt_z_zz_() {
@@ -10498,7 +12560,9 @@ void test_sqxtnt_z_zz_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: sqxtnt_z_zz_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::SQXTNT);
+#ifdef VEDA64_STRINGS
     std::cout << "  sqxtnt_z_zz_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_sqxtunb_z_zz_() {
@@ -10506,7 +12570,9 @@ void test_sqxtunb_z_zz_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: sqxtunb_z_zz_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::SQXTUNB);
+#ifdef VEDA64_STRINGS
     std::cout << "  sqxtunb_z_zz_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_sqxtunt_z_zz_() {
@@ -10514,7 +12580,9 @@ void test_sqxtunt_z_zz_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: sqxtunt_z_zz_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::SQXTUNT);
+#ifdef VEDA64_STRINGS
     std::cout << "  sqxtunt_z_zz_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_srhadd_z_p_zz_() {
@@ -10522,7 +12590,9 @@ void test_srhadd_z_p_zz_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: srhadd_z_p_zz_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::SRHADD);
+#ifdef VEDA64_STRINGS
     std::cout << "  srhadd_z_p_zz_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_sri_z_zzi_() {
@@ -10530,7 +12600,9 @@ void test_sri_z_zzi_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: sri_z_zzi_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::SRI);
+#ifdef VEDA64_STRINGS
     std::cout << "  sri_z_zzi_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_srshl_z_p_zz_() {
@@ -10538,7 +12610,9 @@ void test_srshl_z_p_zz_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: srshl_z_p_zz_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::SRSHL);
+#ifdef VEDA64_STRINGS
     std::cout << "  srshl_z_p_zz_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_srshlr_z_p_zz_() {
@@ -10546,7 +12620,9 @@ void test_srshlr_z_p_zz_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: srshlr_z_p_zz_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::SRSHLR);
+#ifdef VEDA64_STRINGS
     std::cout << "  srshlr_z_p_zz_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_srshr_z_p_zi_() {
@@ -10554,7 +12630,9 @@ void test_srshr_z_p_zi_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: srshr_z_p_zi_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::SRSHR);
+#ifdef VEDA64_STRINGS
     std::cout << "  srshr_z_p_zi_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_srsra_z_zi_() {
@@ -10562,7 +12640,9 @@ void test_srsra_z_zi_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: srsra_z_zi_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::SRSRA);
+#ifdef VEDA64_STRINGS
     std::cout << "  srsra_z_zi_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_sshllb_z_zi_() {
@@ -10570,7 +12650,9 @@ void test_sshllb_z_zi_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: sshllb_z_zi_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::SSHLLB);
+#ifdef VEDA64_STRINGS
     std::cout << "  sshllb_z_zi_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_sshllt_z_zi_() {
@@ -10578,7 +12660,9 @@ void test_sshllt_z_zi_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: sshllt_z_zi_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::SSHLLT);
+#ifdef VEDA64_STRINGS
     std::cout << "  sshllt_z_zi_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ssra_z_zi_() {
@@ -10586,7 +12670,9 @@ void test_ssra_z_zi_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: ssra_z_zi_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::SSRA);
+#ifdef VEDA64_STRINGS
     std::cout << "  ssra_z_zi_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ssublb_z_zz_() {
@@ -10594,7 +12680,9 @@ void test_ssublb_z_zz_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: ssublb_z_zz_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::SSUBLB);
+#ifdef VEDA64_STRINGS
     std::cout << "  ssublb_z_zz_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ssublbt_z_zz_() {
@@ -10602,7 +12690,9 @@ void test_ssublbt_z_zz_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: ssublbt_z_zz_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::SSUBLBT);
+#ifdef VEDA64_STRINGS
     std::cout << "  ssublbt_z_zz_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ssublt_z_zz_() {
@@ -10610,7 +12700,9 @@ void test_ssublt_z_zz_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: ssublt_z_zz_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::SSUBLT);
+#ifdef VEDA64_STRINGS
     std::cout << "  ssublt_z_zz_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ssubltb_z_zz_() {
@@ -10618,7 +12710,9 @@ void test_ssubltb_z_zz_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: ssubltb_z_zz_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::SSUBLTB);
+#ifdef VEDA64_STRINGS
     std::cout << "  ssubltb_z_zz_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ssubwb_z_zz_() {
@@ -10626,7 +12720,9 @@ void test_ssubwb_z_zz_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: ssubwb_z_zz_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::SSUBWB);
+#ifdef VEDA64_STRINGS
     std::cout << "  ssubwb_z_zz_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ssubwt_z_zz_() {
@@ -10634,7 +12730,9 @@ void test_ssubwt_z_zz_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: ssubwt_z_zz_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::SSUBWT);
+#ifdef VEDA64_STRINGS
     std::cout << "  ssubwt_z_zz_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_st1b_z_p_ai_s() {
@@ -10646,7 +12744,9 @@ void test_st1b_z_p_ai_s() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  st1b_z_p_ai_s: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_st1b_z_p_ai_d() {
@@ -10658,7 +12758,9 @@ void test_st1b_z_p_ai_d() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  st1b_z_p_ai_d: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_st1b_z_p_bi_() {
@@ -10670,7 +12772,9 @@ void test_st1b_z_p_bi_() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  st1b_z_p_bi_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_st1b_z_p_br_() {
@@ -10682,7 +12786,9 @@ void test_st1b_z_p_br_() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::MemoryRegOffset);
+#ifdef VEDA64_STRINGS
     std::cout << "  st1b_z_p_br_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_st1b_z_p_bz_d_x32_unscaled() {
@@ -10694,7 +12800,9 @@ void test_st1b_z_p_bz_d_x32_unscaled() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::MemoryRegOffset);
+#ifdef VEDA64_STRINGS
     std::cout << "  st1b_z_p_bz_d_x32_unscaled: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_st1b_z_p_bz_s_x32_unscaled() {
@@ -10706,7 +12814,9 @@ void test_st1b_z_p_bz_s_x32_unscaled() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::MemoryRegOffset);
+#ifdef VEDA64_STRINGS
     std::cout << "  st1b_z_p_bz_s_x32_unscaled: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_st1b_z_p_bz_d_64_unscaled() {
@@ -10718,7 +12828,9 @@ void test_st1b_z_p_bz_d_64_unscaled() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::MemoryRegOffset);
+#ifdef VEDA64_STRINGS
     std::cout << "  st1b_z_p_bz_d_64_unscaled: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_st1d_z_p_ai_d() {
@@ -10730,7 +12842,9 @@ void test_st1d_z_p_ai_d() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  st1d_z_p_ai_d: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_st1d_z_p_bi_() {
@@ -10742,7 +12856,9 @@ void test_st1d_z_p_bi_() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  st1d_z_p_bi_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_st1d_z_p_bi_u128() {
@@ -10754,7 +12870,9 @@ void test_st1d_z_p_bi_u128() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  st1d_z_p_bi_u128: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_st1d_z_p_br_() {
@@ -10766,7 +12884,9 @@ void test_st1d_z_p_br_() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::MemoryRegOffset);
+#ifdef VEDA64_STRINGS
     std::cout << "  st1d_z_p_br_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_st1d_z_p_br_u128() {
@@ -10778,7 +12898,9 @@ void test_st1d_z_p_br_u128() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::MemoryRegOffset);
+#ifdef VEDA64_STRINGS
     std::cout << "  st1d_z_p_br_u128: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_st1d_z_p_bz_d_x32_scaled() {
@@ -10790,7 +12912,9 @@ void test_st1d_z_p_bz_d_x32_scaled() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::MemoryRegOffset);
+#ifdef VEDA64_STRINGS
     std::cout << "  st1d_z_p_bz_d_x32_scaled: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_st1d_z_p_bz_d_x32_unscaled() {
@@ -10802,7 +12926,9 @@ void test_st1d_z_p_bz_d_x32_unscaled() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::MemoryRegOffset);
+#ifdef VEDA64_STRINGS
     std::cout << "  st1d_z_p_bz_d_x32_unscaled: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_st1d_z_p_bz_d_64_scaled() {
@@ -10814,7 +12940,9 @@ void test_st1d_z_p_bz_d_64_scaled() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::MemoryRegOffset);
+#ifdef VEDA64_STRINGS
     std::cout << "  st1d_z_p_bz_d_64_scaled: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_st1d_z_p_bz_d_64_unscaled() {
@@ -10826,7 +12954,9 @@ void test_st1d_z_p_bz_d_64_unscaled() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::MemoryRegOffset);
+#ifdef VEDA64_STRINGS
     std::cout << "  st1d_z_p_bz_d_64_unscaled: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_st1h_z_p_ai_s() {
@@ -10838,7 +12968,9 @@ void test_st1h_z_p_ai_s() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  st1h_z_p_ai_s: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_st1h_z_p_ai_d() {
@@ -10850,7 +12982,9 @@ void test_st1h_z_p_ai_d() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  st1h_z_p_ai_d: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_st1h_z_p_bi_() {
@@ -10862,7 +12996,9 @@ void test_st1h_z_p_bi_() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  st1h_z_p_bi_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_st1h_z_p_br_() {
@@ -10874,7 +13010,9 @@ void test_st1h_z_p_br_() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::MemoryRegOffset);
+#ifdef VEDA64_STRINGS
     std::cout << "  st1h_z_p_br_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_st1h_z_p_bz_s_x32_scaled() {
@@ -10886,7 +13024,9 @@ void test_st1h_z_p_bz_s_x32_scaled() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::MemoryRegOffset);
+#ifdef VEDA64_STRINGS
     std::cout << "  st1h_z_p_bz_s_x32_scaled: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_st1h_z_p_bz_d_x32_scaled() {
@@ -10898,7 +13038,9 @@ void test_st1h_z_p_bz_d_x32_scaled() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::MemoryRegOffset);
+#ifdef VEDA64_STRINGS
     std::cout << "  st1h_z_p_bz_d_x32_scaled: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_st1h_z_p_bz_d_x32_unscaled() {
@@ -10910,7 +13052,9 @@ void test_st1h_z_p_bz_d_x32_unscaled() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::MemoryRegOffset);
+#ifdef VEDA64_STRINGS
     std::cout << "  st1h_z_p_bz_d_x32_unscaled: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_st1h_z_p_bz_s_x32_unscaled() {
@@ -10922,7 +13066,9 @@ void test_st1h_z_p_bz_s_x32_unscaled() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::MemoryRegOffset);
+#ifdef VEDA64_STRINGS
     std::cout << "  st1h_z_p_bz_s_x32_unscaled: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_st1h_z_p_bz_d_64_scaled() {
@@ -10934,7 +13080,9 @@ void test_st1h_z_p_bz_d_64_scaled() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::MemoryRegOffset);
+#ifdef VEDA64_STRINGS
     std::cout << "  st1h_z_p_bz_d_64_scaled: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_st1h_z_p_bz_d_64_unscaled() {
@@ -10946,7 +13094,9 @@ void test_st1h_z_p_bz_d_64_unscaled() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::MemoryRegOffset);
+#ifdef VEDA64_STRINGS
     std::cout << "  st1h_z_p_bz_d_64_unscaled: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_st1q_z_p_ar_d_64_unscaled() {
@@ -10958,7 +13108,9 @@ void test_st1q_z_p_ar_d_64_unscaled() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::MemoryRegOffset);
+#ifdef VEDA64_STRINGS
     std::cout << "  st1q_z_p_ar_d_64_unscaled: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_st1w_z_p_ai_s() {
@@ -10970,7 +13122,9 @@ void test_st1w_z_p_ai_s() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  st1w_z_p_ai_s: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_st1w_z_p_ai_d() {
@@ -10982,7 +13136,9 @@ void test_st1w_z_p_ai_d() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  st1w_z_p_ai_d: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_st1w_z_p_bi_() {
@@ -10994,7 +13150,9 @@ void test_st1w_z_p_bi_() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  st1w_z_p_bi_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_st1w_z_p_bi_u128() {
@@ -11006,7 +13164,9 @@ void test_st1w_z_p_bi_u128() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  st1w_z_p_bi_u128: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_st1w_z_p_br_() {
@@ -11018,7 +13178,9 @@ void test_st1w_z_p_br_() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::MemoryRegOffset);
+#ifdef VEDA64_STRINGS
     std::cout << "  st1w_z_p_br_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_st1w_z_p_br_u128() {
@@ -11030,7 +13192,9 @@ void test_st1w_z_p_br_u128() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::MemoryRegOffset);
+#ifdef VEDA64_STRINGS
     std::cout << "  st1w_z_p_br_u128: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_st1w_z_p_bz_s_x32_scaled() {
@@ -11042,7 +13206,9 @@ void test_st1w_z_p_bz_s_x32_scaled() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::MemoryRegOffset);
+#ifdef VEDA64_STRINGS
     std::cout << "  st1w_z_p_bz_s_x32_scaled: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_st1w_z_p_bz_d_x32_scaled() {
@@ -11054,7 +13220,9 @@ void test_st1w_z_p_bz_d_x32_scaled() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::MemoryRegOffset);
+#ifdef VEDA64_STRINGS
     std::cout << "  st1w_z_p_bz_d_x32_scaled: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_st1w_z_p_bz_d_x32_unscaled() {
@@ -11066,7 +13234,9 @@ void test_st1w_z_p_bz_d_x32_unscaled() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::MemoryRegOffset);
+#ifdef VEDA64_STRINGS
     std::cout << "  st1w_z_p_bz_d_x32_unscaled: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_st1w_z_p_bz_s_x32_unscaled() {
@@ -11078,7 +13248,9 @@ void test_st1w_z_p_bz_s_x32_unscaled() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::MemoryRegOffset);
+#ifdef VEDA64_STRINGS
     std::cout << "  st1w_z_p_bz_s_x32_unscaled: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_st1w_z_p_bz_d_64_scaled() {
@@ -11090,7 +13262,9 @@ void test_st1w_z_p_bz_d_64_scaled() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::MemoryRegOffset);
+#ifdef VEDA64_STRINGS
     std::cout << "  st1w_z_p_bz_d_64_scaled: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_st1w_z_p_bz_d_64_unscaled() {
@@ -11102,7 +13276,9 @@ void test_st1w_z_p_bz_d_64_unscaled() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::MemoryRegOffset);
+#ifdef VEDA64_STRINGS
     std::cout << "  st1w_z_p_bz_d_64_unscaled: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_st2b_z_p_bi_contiguous() {
@@ -11114,7 +13290,9 @@ void test_st2b_z_p_bi_contiguous() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  st2b_z_p_bi_contiguous: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_st2b_z_p_br_contiguous() {
@@ -11126,7 +13304,9 @@ void test_st2b_z_p_br_contiguous() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::MemoryRegOffset);
+#ifdef VEDA64_STRINGS
     std::cout << "  st2b_z_p_br_contiguous: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_st2d_z_p_bi_contiguous() {
@@ -11138,7 +13318,9 @@ void test_st2d_z_p_bi_contiguous() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  st2d_z_p_bi_contiguous: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_st2d_z_p_br_contiguous() {
@@ -11150,7 +13332,9 @@ void test_st2d_z_p_br_contiguous() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::MemoryRegOffset);
+#ifdef VEDA64_STRINGS
     std::cout << "  st2d_z_p_br_contiguous: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_st2h_z_p_bi_contiguous() {
@@ -11162,7 +13346,9 @@ void test_st2h_z_p_bi_contiguous() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  st2h_z_p_bi_contiguous: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_st2h_z_p_br_contiguous() {
@@ -11174,7 +13360,9 @@ void test_st2h_z_p_br_contiguous() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::MemoryRegOffset);
+#ifdef VEDA64_STRINGS
     std::cout << "  st2h_z_p_br_contiguous: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_st2q_z_p_bi_contiguous() {
@@ -11186,7 +13374,9 @@ void test_st2q_z_p_bi_contiguous() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  st2q_z_p_bi_contiguous: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_st2q_z_p_br_contiguous() {
@@ -11198,7 +13388,9 @@ void test_st2q_z_p_br_contiguous() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::MemoryRegOffset);
+#ifdef VEDA64_STRINGS
     std::cout << "  st2q_z_p_br_contiguous: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_st2w_z_p_bi_contiguous() {
@@ -11210,7 +13402,9 @@ void test_st2w_z_p_bi_contiguous() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  st2w_z_p_bi_contiguous: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_st2w_z_p_br_contiguous() {
@@ -11222,7 +13416,9 @@ void test_st2w_z_p_br_contiguous() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::MemoryRegOffset);
+#ifdef VEDA64_STRINGS
     std::cout << "  st2w_z_p_br_contiguous: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_st3b_z_p_bi_contiguous() {
@@ -11234,7 +13430,9 @@ void test_st3b_z_p_bi_contiguous() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  st3b_z_p_bi_contiguous: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_st3b_z_p_br_contiguous() {
@@ -11246,7 +13444,9 @@ void test_st3b_z_p_br_contiguous() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::MemoryRegOffset);
+#ifdef VEDA64_STRINGS
     std::cout << "  st3b_z_p_br_contiguous: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_st3d_z_p_bi_contiguous() {
@@ -11258,7 +13458,9 @@ void test_st3d_z_p_bi_contiguous() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  st3d_z_p_bi_contiguous: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_st3d_z_p_br_contiguous() {
@@ -11270,7 +13472,9 @@ void test_st3d_z_p_br_contiguous() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::MemoryRegOffset);
+#ifdef VEDA64_STRINGS
     std::cout << "  st3d_z_p_br_contiguous: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_st3h_z_p_bi_contiguous() {
@@ -11282,7 +13486,9 @@ void test_st3h_z_p_bi_contiguous() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  st3h_z_p_bi_contiguous: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_st3h_z_p_br_contiguous() {
@@ -11294,7 +13500,9 @@ void test_st3h_z_p_br_contiguous() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::MemoryRegOffset);
+#ifdef VEDA64_STRINGS
     std::cout << "  st3h_z_p_br_contiguous: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_st3q_z_p_bi_contiguous() {
@@ -11306,7 +13514,9 @@ void test_st3q_z_p_bi_contiguous() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  st3q_z_p_bi_contiguous: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_st3q_z_p_br_contiguous() {
@@ -11318,7 +13528,9 @@ void test_st3q_z_p_br_contiguous() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::MemoryRegOffset);
+#ifdef VEDA64_STRINGS
     std::cout << "  st3q_z_p_br_contiguous: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_st3w_z_p_bi_contiguous() {
@@ -11330,7 +13542,9 @@ void test_st3w_z_p_bi_contiguous() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  st3w_z_p_bi_contiguous: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_st3w_z_p_br_contiguous() {
@@ -11342,7 +13556,9 @@ void test_st3w_z_p_br_contiguous() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::MemoryRegOffset);
+#ifdef VEDA64_STRINGS
     std::cout << "  st3w_z_p_br_contiguous: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_st4b_z_p_bi_contiguous() {
@@ -11354,7 +13570,9 @@ void test_st4b_z_p_bi_contiguous() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  st4b_z_p_bi_contiguous: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_st4b_z_p_br_contiguous() {
@@ -11366,7 +13584,9 @@ void test_st4b_z_p_br_contiguous() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::MemoryRegOffset);
+#ifdef VEDA64_STRINGS
     std::cout << "  st4b_z_p_br_contiguous: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_st4d_z_p_bi_contiguous() {
@@ -11378,7 +13598,9 @@ void test_st4d_z_p_bi_contiguous() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  st4d_z_p_bi_contiguous: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_st4d_z_p_br_contiguous() {
@@ -11390,7 +13612,9 @@ void test_st4d_z_p_br_contiguous() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::MemoryRegOffset);
+#ifdef VEDA64_STRINGS
     std::cout << "  st4d_z_p_br_contiguous: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_st4h_z_p_bi_contiguous() {
@@ -11402,7 +13626,9 @@ void test_st4h_z_p_bi_contiguous() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  st4h_z_p_bi_contiguous: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_st4h_z_p_br_contiguous() {
@@ -11414,7 +13640,9 @@ void test_st4h_z_p_br_contiguous() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::MemoryRegOffset);
+#ifdef VEDA64_STRINGS
     std::cout << "  st4h_z_p_br_contiguous: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_st4q_z_p_bi_contiguous() {
@@ -11426,7 +13654,9 @@ void test_st4q_z_p_bi_contiguous() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  st4q_z_p_bi_contiguous: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_st4q_z_p_br_contiguous() {
@@ -11438,7 +13668,9 @@ void test_st4q_z_p_br_contiguous() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::MemoryRegOffset);
+#ifdef VEDA64_STRINGS
     std::cout << "  st4q_z_p_br_contiguous: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_st4w_z_p_bi_contiguous() {
@@ -11450,7 +13682,9 @@ void test_st4w_z_p_bi_contiguous() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  st4w_z_p_bi_contiguous: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_st4w_z_p_br_contiguous() {
@@ -11462,7 +13696,9 @@ void test_st4w_z_p_br_contiguous() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::MemoryRegOffset);
+#ifdef VEDA64_STRINGS
     std::cout << "  st4w_z_p_br_contiguous: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_stnt1b_z_p_ar_s_x32_unscaled() {
@@ -11474,7 +13710,9 @@ void test_stnt1b_z_p_ar_s_x32_unscaled() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::MemoryRegOffset);
+#ifdef VEDA64_STRINGS
     std::cout << "  stnt1b_z_p_ar_s_x32_unscaled: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_stnt1b_z_p_ar_d_64_unscaled() {
@@ -11486,7 +13724,9 @@ void test_stnt1b_z_p_ar_d_64_unscaled() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::MemoryRegOffset);
+#ifdef VEDA64_STRINGS
     std::cout << "  stnt1b_z_p_ar_d_64_unscaled: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_stnt1b_z_p_bi_contiguous() {
@@ -11498,7 +13738,9 @@ void test_stnt1b_z_p_bi_contiguous() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  stnt1b_z_p_bi_contiguous: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_stnt1b_z_p_br_contiguous() {
@@ -11510,7 +13752,9 @@ void test_stnt1b_z_p_br_contiguous() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::MemoryRegOffset);
+#ifdef VEDA64_STRINGS
     std::cout << "  stnt1b_z_p_br_contiguous: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_stnt1d_z_p_ar_d_64_unscaled() {
@@ -11522,7 +13766,9 @@ void test_stnt1d_z_p_ar_d_64_unscaled() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::MemoryRegOffset);
+#ifdef VEDA64_STRINGS
     std::cout << "  stnt1d_z_p_ar_d_64_unscaled: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_stnt1d_z_p_bi_contiguous() {
@@ -11534,7 +13780,9 @@ void test_stnt1d_z_p_bi_contiguous() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  stnt1d_z_p_bi_contiguous: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_stnt1d_z_p_br_contiguous() {
@@ -11546,7 +13794,9 @@ void test_stnt1d_z_p_br_contiguous() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::MemoryRegOffset);
+#ifdef VEDA64_STRINGS
     std::cout << "  stnt1d_z_p_br_contiguous: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_stnt1h_z_p_ar_s_x32_unscaled() {
@@ -11558,7 +13808,9 @@ void test_stnt1h_z_p_ar_s_x32_unscaled() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::MemoryRegOffset);
+#ifdef VEDA64_STRINGS
     std::cout << "  stnt1h_z_p_ar_s_x32_unscaled: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_stnt1h_z_p_ar_d_64_unscaled() {
@@ -11570,7 +13822,9 @@ void test_stnt1h_z_p_ar_d_64_unscaled() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::MemoryRegOffset);
+#ifdef VEDA64_STRINGS
     std::cout << "  stnt1h_z_p_ar_d_64_unscaled: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_stnt1h_z_p_bi_contiguous() {
@@ -11582,7 +13836,9 @@ void test_stnt1h_z_p_bi_contiguous() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  stnt1h_z_p_bi_contiguous: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_stnt1h_z_p_br_contiguous() {
@@ -11594,7 +13850,9 @@ void test_stnt1h_z_p_br_contiguous() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::MemoryRegOffset);
+#ifdef VEDA64_STRINGS
     std::cout << "  stnt1h_z_p_br_contiguous: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_stnt1w_z_p_ar_s_x32_unscaled() {
@@ -11606,7 +13864,9 @@ void test_stnt1w_z_p_ar_s_x32_unscaled() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::MemoryRegOffset);
+#ifdef VEDA64_STRINGS
     std::cout << "  stnt1w_z_p_ar_s_x32_unscaled: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_stnt1w_z_p_ar_d_64_unscaled() {
@@ -11618,7 +13878,9 @@ void test_stnt1w_z_p_ar_d_64_unscaled() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::MemoryRegOffset);
+#ifdef VEDA64_STRINGS
     std::cout << "  stnt1w_z_p_ar_d_64_unscaled: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_stnt1w_z_p_bi_contiguous() {
@@ -11630,7 +13892,9 @@ void test_stnt1w_z_p_bi_contiguous() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  stnt1w_z_p_bi_contiguous: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_stnt1w_z_p_br_contiguous() {
@@ -11642,7 +13906,9 @@ void test_stnt1w_z_p_br_contiguous() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::MemoryRegOffset);
+#ifdef VEDA64_STRINGS
     std::cout << "  stnt1w_z_p_br_contiguous: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_str_p_bi_() {
@@ -11653,7 +13919,9 @@ void test_str_p_bi_() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  str_p_bi_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_str_z_bi_() {
@@ -11664,28 +13932,36 @@ void test_str_z_bi_() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  str_z_bi_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_sub_z_p_zz_() {
     uint32_t insn = 0x04010000u;
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: sub_z_p_zz_" << std::endl; throw std::runtime_error("decode failed"); }
+#ifdef VEDA64_STRINGS
     std::cout << "  sub_z_p_zz_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_sub_z_zi_() {
     uint32_t insn = 0x2521C000u;
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: sub_z_zi_" << std::endl; throw std::runtime_error("decode failed"); }
+#ifdef VEDA64_STRINGS
     std::cout << "  sub_z_zi_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_sub_z_zz_() {
     uint32_t insn = 0x04200400u;
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: sub_z_zz_" << std::endl; throw std::runtime_error("decode failed"); }
+#ifdef VEDA64_STRINGS
     std::cout << "  sub_z_zz_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_subhnb_z_zz_() {
@@ -11693,7 +13969,9 @@ void test_subhnb_z_zz_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: subhnb_z_zz_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::SUBHNB);
+#ifdef VEDA64_STRINGS
     std::cout << "  subhnb_z_zz_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_subhnt_z_zz_() {
@@ -11701,7 +13979,9 @@ void test_subhnt_z_zz_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: subhnt_z_zz_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::SUBHNT);
+#ifdef VEDA64_STRINGS
     std::cout << "  subhnt_z_zz_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_subp_z_p_zz_() {
@@ -11709,7 +13989,9 @@ void test_subp_z_p_zz_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: subp_z_p_zz_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::SUBP);
+#ifdef VEDA64_STRINGS
     std::cout << "  subp_z_p_zz_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_subpt_z_p_zz_() {
@@ -11722,7 +14004,9 @@ void test_subpt_z_p_zz_() {
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
     assert(result->operands[3].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  subpt_z_p_zz_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_subpt_z_zz_() {
@@ -11734,7 +14018,9 @@ void test_subpt_z_zz_() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  subpt_z_zz_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_subr_z_p_zz_() {
@@ -11742,7 +14028,9 @@ void test_subr_z_p_zz_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: subr_z_p_zz_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::SUBR);
+#ifdef VEDA64_STRINGS
     std::cout << "  subr_z_p_zz_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_subr_z_zi_() {
@@ -11750,7 +14038,9 @@ void test_subr_z_zi_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: subr_z_zi_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::SUBR);
+#ifdef VEDA64_STRINGS
     std::cout << "  subr_z_zi_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_sudot_z_zzzi_s() {
@@ -11762,21 +14052,27 @@ void test_sudot_z_zzzi_s() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  sudot_z_zzzi_s: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_sunpkhi_z_z_() {
     uint32_t insn = 0x05713800u;
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: sunpkhi_z_z_" << std::endl; throw std::runtime_error("decode failed"); }
+#ifdef VEDA64_STRINGS
     std::cout << "  sunpkhi_z_z_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_sunpklo_z_z_() {
     uint32_t insn = 0x05703800u;
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: sunpklo_z_z_" << std::endl; throw std::runtime_error("decode failed"); }
+#ifdef VEDA64_STRINGS
     std::cout << "  sunpklo_z_z_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_suqadd_z_p_zz_() {
@@ -11784,35 +14080,45 @@ void test_suqadd_z_p_zz_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: suqadd_z_p_zz_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::SUQADD);
+#ifdef VEDA64_STRINGS
     std::cout << "  suqadd_z_p_zz_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_sxtb_z_p_z_m() {
     uint32_t insn = 0x0450A000u;
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: sxtb_z_p_z_m" << std::endl; throw std::runtime_error("decode failed"); }
+#ifdef VEDA64_STRINGS
     std::cout << "  sxtb_z_p_z_m: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_sxtb_z_p_z_z() {
     uint32_t insn = 0x0440A000u;
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: sxtb_z_p_z_z" << std::endl; throw std::runtime_error("decode failed"); }
+#ifdef VEDA64_STRINGS
     std::cout << "  sxtb_z_p_z_z: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_sxth_z_p_z_m() {
     uint32_t insn = 0x0492A000u;
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: sxth_z_p_z_m" << std::endl; throw std::runtime_error("decode failed"); }
+#ifdef VEDA64_STRINGS
     std::cout << "  sxth_z_p_z_m: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_sxth_z_p_z_z() {
     uint32_t insn = 0x0482A000u;
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: sxth_z_p_z_z" << std::endl; throw std::runtime_error("decode failed"); }
+#ifdef VEDA64_STRINGS
     std::cout << "  sxth_z_p_z_z: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_sxtw_z_p_z_m() {
@@ -11823,7 +14129,9 @@ void test_sxtw_z_p_z_m() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  sxtw_z_p_z_m: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_sxtw_z_p_z_z() {
@@ -11834,7 +14142,9 @@ void test_sxtw_z_p_z_z() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  sxtw_z_p_z_z: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_tbl_z_zz_1() {
@@ -11842,7 +14152,9 @@ void test_tbl_z_zz_1() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: tbl_z_zz_1" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::TBL);
+#ifdef VEDA64_STRINGS
     std::cout << "  tbl_z_zz_1: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_tbl_z_zz_2() {
@@ -11850,7 +14162,9 @@ void test_tbl_z_zz_2() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: tbl_z_zz_2" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::TBL);
+#ifdef VEDA64_STRINGS
     std::cout << "  tbl_z_zz_2: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_tblq_z_zz_() {
@@ -11858,7 +14172,9 @@ void test_tblq_z_zz_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: tblq_z_zz_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::TBLQ);
+#ifdef VEDA64_STRINGS
     std::cout << "  tblq_z_zz_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_tbx_z_zz_() {
@@ -11866,7 +14182,9 @@ void test_tbx_z_zz_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: tbx_z_zz_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::TBX);
+#ifdef VEDA64_STRINGS
     std::cout << "  tbx_z_zz_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_tbxq_z_zz_() {
@@ -11874,28 +14192,36 @@ void test_tbxq_z_zz_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: tbxq_z_zz_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::TBXQ);
+#ifdef VEDA64_STRINGS
     std::cout << "  tbxq_z_zz_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_trn1_p_pp_() {
     uint32_t insn = 0x05205000u;
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: trn1_p_pp_" << std::endl; throw std::runtime_error("decode failed"); }
+#ifdef VEDA64_STRINGS
     std::cout << "  trn1_p_pp_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_trn2_p_pp_() {
     uint32_t insn = 0x05205400u;
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: trn2_p_pp_" << std::endl; throw std::runtime_error("decode failed"); }
+#ifdef VEDA64_STRINGS
     std::cout << "  trn2_p_pp_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_trn1_z_zz_() {
     uint32_t insn = 0x05207000u;
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: trn1_z_zz_" << std::endl; throw std::runtime_error("decode failed"); }
+#ifdef VEDA64_STRINGS
     std::cout << "  trn1_z_zz_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_trn1_z_zz_q() {
@@ -11906,14 +14232,18 @@ void test_trn1_z_zz_q() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  trn1_z_zz_q: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_trn2_z_zz_() {
     uint32_t insn = 0x05207400u;
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: trn2_z_zz_" << std::endl; throw std::runtime_error("decode failed"); }
+#ifdef VEDA64_STRINGS
     std::cout << "  trn2_z_zz_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_trn2_z_zz_q() {
@@ -11924,7 +14254,9 @@ void test_trn2_z_zz_q() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  trn2_z_zz_q: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_uaba_z_zzz_() {
@@ -11932,7 +14264,9 @@ void test_uaba_z_zzz_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: uaba_z_zzz_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::UABA);
+#ifdef VEDA64_STRINGS
     std::cout << "  uaba_z_zzz_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_uabal_z_zz_() {
@@ -11940,7 +14274,9 @@ void test_uabal_z_zz_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: uabal_z_zz_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::UABAL);
+#ifdef VEDA64_STRINGS
     std::cout << "  uabal_z_zz_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_uabalb_z_zzz_() {
@@ -11948,7 +14284,9 @@ void test_uabalb_z_zzz_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: uabalb_z_zzz_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::UABALB);
+#ifdef VEDA64_STRINGS
     std::cout << "  uabalb_z_zzz_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_uabalt_z_zzz_() {
@@ -11956,7 +14294,9 @@ void test_uabalt_z_zzz_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: uabalt_z_zzz_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::UABALT);
+#ifdef VEDA64_STRINGS
     std::cout << "  uabalt_z_zzz_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_uabd_z_p_zz_() {
@@ -11964,7 +14304,9 @@ void test_uabd_z_p_zz_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: uabd_z_p_zz_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::UABD);
+#ifdef VEDA64_STRINGS
     std::cout << "  uabd_z_p_zz_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_uabdlb_z_zz_() {
@@ -11972,7 +14314,9 @@ void test_uabdlb_z_zz_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: uabdlb_z_zz_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::UABDLB);
+#ifdef VEDA64_STRINGS
     std::cout << "  uabdlb_z_zz_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_uabdlt_z_zz_() {
@@ -11980,7 +14324,9 @@ void test_uabdlt_z_zz_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: uabdlt_z_zz_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::UABDLT);
+#ifdef VEDA64_STRINGS
     std::cout << "  uabdlt_z_zz_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_uadalp_z_p_z_() {
@@ -11988,7 +14334,9 @@ void test_uadalp_z_p_z_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: uadalp_z_p_z_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::UADALP);
+#ifdef VEDA64_STRINGS
     std::cout << "  uadalp_z_p_z_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_uaddlb_z_zz_() {
@@ -11996,7 +14344,9 @@ void test_uaddlb_z_zz_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: uaddlb_z_zz_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::UADDLB);
+#ifdef VEDA64_STRINGS
     std::cout << "  uaddlb_z_zz_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_uaddlt_z_zz_() {
@@ -12004,7 +14354,9 @@ void test_uaddlt_z_zz_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: uaddlt_z_zz_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::UADDLT);
+#ifdef VEDA64_STRINGS
     std::cout << "  uaddlt_z_zz_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_uaddv_r_p_z_() {
@@ -12012,7 +14364,9 @@ void test_uaddv_r_p_z_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: uaddv_r_p_z_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::UADDV);
+#ifdef VEDA64_STRINGS
     std::cout << "  uaddv_r_p_z_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_uaddwb_z_zz_() {
@@ -12020,7 +14374,9 @@ void test_uaddwb_z_zz_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: uaddwb_z_zz_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::UADDWB);
+#ifdef VEDA64_STRINGS
     std::cout << "  uaddwb_z_zz_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_uaddwt_z_zz_() {
@@ -12028,7 +14384,9 @@ void test_uaddwt_z_zz_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: uaddwt_z_zz_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::UADDWT);
+#ifdef VEDA64_STRINGS
     std::cout << "  uaddwt_z_zz_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_uclamp_z_zz_() {
@@ -12036,7 +14394,9 @@ void test_uclamp_z_zz_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: uclamp_z_zz_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::UCLAMP);
+#ifdef VEDA64_STRINGS
     std::cout << "  uclamp_z_zz_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ucvtf_z_p_z_h2fp16() {
@@ -12048,7 +14408,9 @@ void test_ucvtf_z_p_z_h2fp16() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  ucvtf_z_p_z_h2fp16: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ucvtf_z_p_z_h2fp16z() {
@@ -12060,7 +14422,9 @@ void test_ucvtf_z_p_z_h2fp16z() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  ucvtf_z_p_z_h2fp16z: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ucvtf_z_p_z_w2fp16() {
@@ -12072,7 +14436,9 @@ void test_ucvtf_z_p_z_w2fp16() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  ucvtf_z_p_z_w2fp16: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ucvtf_z_p_z_w2fp16z() {
@@ -12084,7 +14450,9 @@ void test_ucvtf_z_p_z_w2fp16z() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  ucvtf_z_p_z_w2fp16z: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ucvtf_z_p_z_w2s() {
@@ -12096,7 +14464,9 @@ void test_ucvtf_z_p_z_w2s() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  ucvtf_z_p_z_w2s: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ucvtf_z_p_z_w2sz() {
@@ -12108,7 +14478,9 @@ void test_ucvtf_z_p_z_w2sz() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  ucvtf_z_p_z_w2sz: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ucvtf_z_p_z_w2d() {
@@ -12120,7 +14492,9 @@ void test_ucvtf_z_p_z_w2d() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  ucvtf_z_p_z_w2d: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ucvtf_z_p_z_w2dz() {
@@ -12132,7 +14506,9 @@ void test_ucvtf_z_p_z_w2dz() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  ucvtf_z_p_z_w2dz: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ucvtf_z_p_z_x2fp16() {
@@ -12144,7 +14520,9 @@ void test_ucvtf_z_p_z_x2fp16() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  ucvtf_z_p_z_x2fp16: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ucvtf_z_p_z_x2fp16z() {
@@ -12156,7 +14534,9 @@ void test_ucvtf_z_p_z_x2fp16z() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  ucvtf_z_p_z_x2fp16z: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ucvtf_z_p_z_x2s() {
@@ -12168,7 +14548,9 @@ void test_ucvtf_z_p_z_x2s() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  ucvtf_z_p_z_x2s: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ucvtf_z_p_z_x2sz() {
@@ -12180,7 +14562,9 @@ void test_ucvtf_z_p_z_x2sz() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  ucvtf_z_p_z_x2sz: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ucvtf_z_p_z_x2d() {
@@ -12192,7 +14576,9 @@ void test_ucvtf_z_p_z_x2d() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  ucvtf_z_p_z_x2d: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ucvtf_z_p_z_x2dz() {
@@ -12204,7 +14590,9 @@ void test_ucvtf_z_p_z_x2dz() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  ucvtf_z_p_z_x2dz: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ucvtf_z_z_() {
@@ -12212,7 +14600,9 @@ void test_ucvtf_z_z_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: ucvtf_z_z_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::UCVTF);
+#ifdef VEDA64_STRINGS
     std::cout << "  ucvtf_z_z_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ucvtflt_z_z_() {
@@ -12220,7 +14610,9 @@ void test_ucvtflt_z_z_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: ucvtflt_z_z_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::UCVTFLT);
+#ifdef VEDA64_STRINGS
     std::cout << "  ucvtflt_z_z_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_udiv_z_p_zz_() {
@@ -12228,7 +14620,9 @@ void test_udiv_z_p_zz_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: udiv_z_p_zz_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::UDIV);
+#ifdef VEDA64_STRINGS
     std::cout << "  udiv_z_p_zz_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_udivr_z_p_zz_() {
@@ -12236,7 +14630,9 @@ void test_udivr_z_p_zz_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: udivr_z_p_zz_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::UDIVR);
+#ifdef VEDA64_STRINGS
     std::cout << "  udivr_z_p_zz_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_udot_z16_zzz_h() {
@@ -12248,7 +14644,9 @@ void test_udot_z16_zzz_h() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  udot_z16_zzz_h: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_udot_z32_zzz_() {
@@ -12260,7 +14658,9 @@ void test_udot_z32_zzz_() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  udot_z32_zzz_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_udot_z16_zzzi_h() {
@@ -12272,7 +14672,9 @@ void test_udot_z16_zzzi_h() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  udot_z16_zzzi_h: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_udot_z32_zzzi_() {
@@ -12284,7 +14686,9 @@ void test_udot_z32_zzzi_() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  udot_z32_zzzi_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_udot_z_zzz_() {
@@ -12292,7 +14696,9 @@ void test_udot_z_zzz_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: udot_z_zzz_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::UDOT);
+#ifdef VEDA64_STRINGS
     std::cout << "  udot_z_zzz_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_udot_z_zzzi_s() {
@@ -12304,7 +14710,9 @@ void test_udot_z_zzzi_s() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  udot_z_zzzi_s: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_udot_z_zzzi_d() {
@@ -12316,7 +14724,9 @@ void test_udot_z_zzzi_d() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  udot_z_zzzi_d: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_uhadd_z_p_zz_() {
@@ -12324,7 +14734,9 @@ void test_uhadd_z_p_zz_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: uhadd_z_p_zz_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::UHADD);
+#ifdef VEDA64_STRINGS
     std::cout << "  uhadd_z_p_zz_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_uhsub_z_p_zz_() {
@@ -12332,7 +14744,9 @@ void test_uhsub_z_p_zz_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: uhsub_z_p_zz_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::UHSUB);
+#ifdef VEDA64_STRINGS
     std::cout << "  uhsub_z_p_zz_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_uhsubr_z_p_zz_() {
@@ -12340,7 +14754,9 @@ void test_uhsubr_z_p_zz_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: uhsubr_z_p_zz_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::UHSUBR);
+#ifdef VEDA64_STRINGS
     std::cout << "  uhsubr_z_p_zz_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_umax_z_p_zz_() {
@@ -12348,7 +14764,9 @@ void test_umax_z_p_zz_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: umax_z_p_zz_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::UMAX);
+#ifdef VEDA64_STRINGS
     std::cout << "  umax_z_p_zz_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_umax_z_zi_() {
@@ -12356,7 +14774,9 @@ void test_umax_z_zi_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: umax_z_zi_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::UMAX);
+#ifdef VEDA64_STRINGS
     std::cout << "  umax_z_zi_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_umaxp_z_p_zz_() {
@@ -12364,7 +14784,9 @@ void test_umaxp_z_p_zz_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: umaxp_z_p_zz_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::UMAXP);
+#ifdef VEDA64_STRINGS
     std::cout << "  umaxp_z_p_zz_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_umaxqv_z_p_z_() {
@@ -12372,7 +14794,9 @@ void test_umaxqv_z_p_z_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: umaxqv_z_p_z_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::UMAXQV);
+#ifdef VEDA64_STRINGS
     std::cout << "  umaxqv_z_p_z_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_umaxv_r_p_z_() {
@@ -12380,7 +14804,9 @@ void test_umaxv_r_p_z_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: umaxv_r_p_z_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::UMAXV);
+#ifdef VEDA64_STRINGS
     std::cout << "  umaxv_r_p_z_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_umin_z_p_zz_() {
@@ -12388,7 +14814,9 @@ void test_umin_z_p_zz_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: umin_z_p_zz_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::UMIN);
+#ifdef VEDA64_STRINGS
     std::cout << "  umin_z_p_zz_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_umin_z_zi_() {
@@ -12396,7 +14824,9 @@ void test_umin_z_zi_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: umin_z_zi_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::UMIN);
+#ifdef VEDA64_STRINGS
     std::cout << "  umin_z_zi_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_uminp_z_p_zz_() {
@@ -12404,7 +14834,9 @@ void test_uminp_z_p_zz_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: uminp_z_p_zz_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::UMINP);
+#ifdef VEDA64_STRINGS
     std::cout << "  uminp_z_p_zz_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_uminqv_z_p_z_() {
@@ -12412,7 +14844,9 @@ void test_uminqv_z_p_z_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: uminqv_z_p_z_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::UMINQV);
+#ifdef VEDA64_STRINGS
     std::cout << "  uminqv_z_p_z_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_uminv_r_p_z_() {
@@ -12420,7 +14854,9 @@ void test_uminv_r_p_z_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: uminv_r_p_z_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::UMINV);
+#ifdef VEDA64_STRINGS
     std::cout << "  uminv_r_p_z_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_umlalb_z_zzz_() {
@@ -12428,7 +14864,9 @@ void test_umlalb_z_zzz_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: umlalb_z_zzz_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::UMLALB);
+#ifdef VEDA64_STRINGS
     std::cout << "  umlalb_z_zzz_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_umlalb_z_zzzi_s() {
@@ -12440,7 +14878,9 @@ void test_umlalb_z_zzzi_s() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  umlalb_z_zzzi_s: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_umlalb_z_zzzi_d() {
@@ -12452,7 +14892,9 @@ void test_umlalb_z_zzzi_d() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  umlalb_z_zzzi_d: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_umlalt_z_zzz_() {
@@ -12460,7 +14902,9 @@ void test_umlalt_z_zzz_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: umlalt_z_zzz_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::UMLALT);
+#ifdef VEDA64_STRINGS
     std::cout << "  umlalt_z_zzz_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_umlalt_z_zzzi_s() {
@@ -12472,7 +14916,9 @@ void test_umlalt_z_zzzi_s() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  umlalt_z_zzzi_s: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_umlalt_z_zzzi_d() {
@@ -12484,7 +14930,9 @@ void test_umlalt_z_zzzi_d() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  umlalt_z_zzzi_d: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_umlslb_z_zzz_() {
@@ -12492,7 +14940,9 @@ void test_umlslb_z_zzz_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: umlslb_z_zzz_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::UMLSLB);
+#ifdef VEDA64_STRINGS
     std::cout << "  umlslb_z_zzz_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_umlslb_z_zzzi_s() {
@@ -12504,7 +14954,9 @@ void test_umlslb_z_zzzi_s() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  umlslb_z_zzzi_s: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_umlslb_z_zzzi_d() {
@@ -12516,7 +14968,9 @@ void test_umlslb_z_zzzi_d() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  umlslb_z_zzzi_d: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_umlslt_z_zzz_() {
@@ -12524,7 +14978,9 @@ void test_umlslt_z_zzz_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: umlslt_z_zzz_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::UMLSLT);
+#ifdef VEDA64_STRINGS
     std::cout << "  umlslt_z_zzz_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_umlslt_z_zzzi_s() {
@@ -12536,7 +14992,9 @@ void test_umlslt_z_zzzi_s() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  umlslt_z_zzzi_s: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_umlslt_z_zzzi_d() {
@@ -12548,7 +15006,9 @@ void test_umlslt_z_zzzi_d() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  umlslt_z_zzzi_d: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ummla_z_zzz_() {
@@ -12560,7 +15020,9 @@ void test_ummla_z_zzz_() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  ummla_z_zzz_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_umulh_z_p_zz_() {
@@ -12568,7 +15030,9 @@ void test_umulh_z_p_zz_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: umulh_z_p_zz_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::UMULH);
+#ifdef VEDA64_STRINGS
     std::cout << "  umulh_z_p_zz_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_umulh_z_zz_() {
@@ -12576,7 +15040,9 @@ void test_umulh_z_zz_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: umulh_z_zz_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::UMULH);
+#ifdef VEDA64_STRINGS
     std::cout << "  umulh_z_zz_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_umullb_z_zz_() {
@@ -12584,7 +15050,9 @@ void test_umullb_z_zz_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: umullb_z_zz_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::UMULLB);
+#ifdef VEDA64_STRINGS
     std::cout << "  umullb_z_zz_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_umullb_z_zzi_s() {
@@ -12596,7 +15064,9 @@ void test_umullb_z_zzi_s() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  umullb_z_zzi_s: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_umullb_z_zzi_d() {
@@ -12608,7 +15078,9 @@ void test_umullb_z_zzi_d() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  umullb_z_zzi_d: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_umullt_z_zz_() {
@@ -12616,7 +15088,9 @@ void test_umullt_z_zz_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: umullt_z_zz_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::UMULLT);
+#ifdef VEDA64_STRINGS
     std::cout << "  umullt_z_zz_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_umullt_z_zzi_s() {
@@ -12628,7 +15102,9 @@ void test_umullt_z_zzi_s() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  umullt_z_zzi_s: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_umullt_z_zzi_d() {
@@ -12640,7 +15116,9 @@ void test_umullt_z_zzi_d() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  umullt_z_zzi_d: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_uqadd_z_p_zz_() {
@@ -12648,7 +15126,9 @@ void test_uqadd_z_p_zz_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: uqadd_z_p_zz_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::UQADD);
+#ifdef VEDA64_STRINGS
     std::cout << "  uqadd_z_p_zz_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_uqadd_z_zi_() {
@@ -12656,7 +15136,9 @@ void test_uqadd_z_zi_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: uqadd_z_zi_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::UQADD);
+#ifdef VEDA64_STRINGS
     std::cout << "  uqadd_z_zi_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_uqadd_z_zz_() {
@@ -12664,7 +15146,9 @@ void test_uqadd_z_zz_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: uqadd_z_zz_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::UQADD);
+#ifdef VEDA64_STRINGS
     std::cout << "  uqadd_z_zz_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_uqcvtn_z_mz2_() {
@@ -12675,7 +15159,9 @@ void test_uqcvtn_z_mz2_() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::RegisterList);
+#ifdef VEDA64_STRINGS
     std::cout << "  uqcvtn_z_mz2_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_uqdecb_r_rs_uw() {
@@ -12685,7 +15171,9 @@ void test_uqdecb_r_rs_uw() {
     assert(result->mnemonic == Mnemonic::UQDECB);
     assert(result->operands.size() >= 1);
     assert(result->operands[0].type == OperandType::RegisterList);
+#ifdef VEDA64_STRINGS
     std::cout << "  uqdecb_r_rs_uw: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_uqdecb_r_rs_x() {
@@ -12695,7 +15183,9 @@ void test_uqdecb_r_rs_x() {
     assert(result->mnemonic == Mnemonic::UQDECB);
     assert(result->operands.size() >= 1);
     assert(result->operands[0].type == OperandType::RegisterList);
+#ifdef VEDA64_STRINGS
     std::cout << "  uqdecb_r_rs_x: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_uqdecd_r_rs_uw() {
@@ -12705,7 +15195,9 @@ void test_uqdecd_r_rs_uw() {
     assert(result->mnemonic == Mnemonic::UQDECD);
     assert(result->operands.size() >= 1);
     assert(result->operands[0].type == OperandType::RegisterList);
+#ifdef VEDA64_STRINGS
     std::cout << "  uqdecd_r_rs_uw: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_uqdecd_r_rs_x() {
@@ -12715,7 +15207,9 @@ void test_uqdecd_r_rs_x() {
     assert(result->mnemonic == Mnemonic::UQDECD);
     assert(result->operands.size() >= 1);
     assert(result->operands[0].type == OperandType::RegisterList);
+#ifdef VEDA64_STRINGS
     std::cout << "  uqdecd_r_rs_x: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_uqdecd_z_zs_() {
@@ -12725,7 +15219,9 @@ void test_uqdecd_z_zs_() {
     assert(result->mnemonic == Mnemonic::UQDECD);
     assert(result->operands.size() >= 1);
     assert(result->operands[0].type == OperandType::RegisterList);
+#ifdef VEDA64_STRINGS
     std::cout << "  uqdecd_z_zs_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_uqdech_r_rs_uw() {
@@ -12735,7 +15231,9 @@ void test_uqdech_r_rs_uw() {
     assert(result->mnemonic == Mnemonic::UQDECH);
     assert(result->operands.size() >= 1);
     assert(result->operands[0].type == OperandType::RegisterList);
+#ifdef VEDA64_STRINGS
     std::cout << "  uqdech_r_rs_uw: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_uqdech_r_rs_x() {
@@ -12745,7 +15243,9 @@ void test_uqdech_r_rs_x() {
     assert(result->mnemonic == Mnemonic::UQDECH);
     assert(result->operands.size() >= 1);
     assert(result->operands[0].type == OperandType::RegisterList);
+#ifdef VEDA64_STRINGS
     std::cout << "  uqdech_r_rs_x: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_uqdech_z_zs_() {
@@ -12755,7 +15255,9 @@ void test_uqdech_z_zs_() {
     assert(result->mnemonic == Mnemonic::UQDECH);
     assert(result->operands.size() >= 1);
     assert(result->operands[0].type == OperandType::RegisterList);
+#ifdef VEDA64_STRINGS
     std::cout << "  uqdech_z_zs_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_uqdecp_r_p_r_uw() {
@@ -12763,7 +15265,9 @@ void test_uqdecp_r_p_r_uw() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: uqdecp_r_p_r_uw" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::UQDECP);
+#ifdef VEDA64_STRINGS
     std::cout << "  uqdecp_r_p_r_uw: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_uqdecp_r_p_r_x() {
@@ -12771,7 +15275,9 @@ void test_uqdecp_r_p_r_x() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: uqdecp_r_p_r_x" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::UQDECP);
+#ifdef VEDA64_STRINGS
     std::cout << "  uqdecp_r_p_r_x: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_uqdecp_z_p_z_() {
@@ -12779,7 +15285,9 @@ void test_uqdecp_z_p_z_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: uqdecp_z_p_z_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::UQDECP);
+#ifdef VEDA64_STRINGS
     std::cout << "  uqdecp_z_p_z_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_uqdecw_r_rs_uw() {
@@ -12789,7 +15297,9 @@ void test_uqdecw_r_rs_uw() {
     assert(result->mnemonic == Mnemonic::UQDECW);
     assert(result->operands.size() >= 1);
     assert(result->operands[0].type == OperandType::RegisterList);
+#ifdef VEDA64_STRINGS
     std::cout << "  uqdecw_r_rs_uw: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_uqdecw_r_rs_x() {
@@ -12799,7 +15309,9 @@ void test_uqdecw_r_rs_x() {
     assert(result->mnemonic == Mnemonic::UQDECW);
     assert(result->operands.size() >= 1);
     assert(result->operands[0].type == OperandType::RegisterList);
+#ifdef VEDA64_STRINGS
     std::cout << "  uqdecw_r_rs_x: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_uqdecw_z_zs_() {
@@ -12809,7 +15321,9 @@ void test_uqdecw_z_zs_() {
     assert(result->mnemonic == Mnemonic::UQDECW);
     assert(result->operands.size() >= 1);
     assert(result->operands[0].type == OperandType::RegisterList);
+#ifdef VEDA64_STRINGS
     std::cout << "  uqdecw_z_zs_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_uqincb_r_rs_uw() {
@@ -12819,7 +15333,9 @@ void test_uqincb_r_rs_uw() {
     assert(result->mnemonic == Mnemonic::UQINCB);
     assert(result->operands.size() >= 1);
     assert(result->operands[0].type == OperandType::RegisterList);
+#ifdef VEDA64_STRINGS
     std::cout << "  uqincb_r_rs_uw: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_uqincb_r_rs_x() {
@@ -12829,7 +15345,9 @@ void test_uqincb_r_rs_x() {
     assert(result->mnemonic == Mnemonic::UQINCB);
     assert(result->operands.size() >= 1);
     assert(result->operands[0].type == OperandType::RegisterList);
+#ifdef VEDA64_STRINGS
     std::cout << "  uqincb_r_rs_x: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_uqincd_r_rs_uw() {
@@ -12839,7 +15357,9 @@ void test_uqincd_r_rs_uw() {
     assert(result->mnemonic == Mnemonic::UQINCD);
     assert(result->operands.size() >= 1);
     assert(result->operands[0].type == OperandType::RegisterList);
+#ifdef VEDA64_STRINGS
     std::cout << "  uqincd_r_rs_uw: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_uqincd_r_rs_x() {
@@ -12849,7 +15369,9 @@ void test_uqincd_r_rs_x() {
     assert(result->mnemonic == Mnemonic::UQINCD);
     assert(result->operands.size() >= 1);
     assert(result->operands[0].type == OperandType::RegisterList);
+#ifdef VEDA64_STRINGS
     std::cout << "  uqincd_r_rs_x: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_uqincd_z_zs_() {
@@ -12859,7 +15381,9 @@ void test_uqincd_z_zs_() {
     assert(result->mnemonic == Mnemonic::UQINCD);
     assert(result->operands.size() >= 1);
     assert(result->operands[0].type == OperandType::RegisterList);
+#ifdef VEDA64_STRINGS
     std::cout << "  uqincd_z_zs_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_uqinch_r_rs_uw() {
@@ -12869,7 +15393,9 @@ void test_uqinch_r_rs_uw() {
     assert(result->mnemonic == Mnemonic::UQINCH);
     assert(result->operands.size() >= 1);
     assert(result->operands[0].type == OperandType::RegisterList);
+#ifdef VEDA64_STRINGS
     std::cout << "  uqinch_r_rs_uw: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_uqinch_r_rs_x() {
@@ -12879,7 +15405,9 @@ void test_uqinch_r_rs_x() {
     assert(result->mnemonic == Mnemonic::UQINCH);
     assert(result->operands.size() >= 1);
     assert(result->operands[0].type == OperandType::RegisterList);
+#ifdef VEDA64_STRINGS
     std::cout << "  uqinch_r_rs_x: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_uqinch_z_zs_() {
@@ -12889,7 +15417,9 @@ void test_uqinch_z_zs_() {
     assert(result->mnemonic == Mnemonic::UQINCH);
     assert(result->operands.size() >= 1);
     assert(result->operands[0].type == OperandType::RegisterList);
+#ifdef VEDA64_STRINGS
     std::cout << "  uqinch_z_zs_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_uqincp_r_p_r_uw() {
@@ -12897,7 +15427,9 @@ void test_uqincp_r_p_r_uw() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: uqincp_r_p_r_uw" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::UQINCP);
+#ifdef VEDA64_STRINGS
     std::cout << "  uqincp_r_p_r_uw: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_uqincp_r_p_r_x() {
@@ -12905,7 +15437,9 @@ void test_uqincp_r_p_r_x() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: uqincp_r_p_r_x" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::UQINCP);
+#ifdef VEDA64_STRINGS
     std::cout << "  uqincp_r_p_r_x: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_uqincp_z_p_z_() {
@@ -12913,7 +15447,9 @@ void test_uqincp_z_p_z_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: uqincp_z_p_z_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::UQINCP);
+#ifdef VEDA64_STRINGS
     std::cout << "  uqincp_z_p_z_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_uqincw_r_rs_uw() {
@@ -12923,7 +15459,9 @@ void test_uqincw_r_rs_uw() {
     assert(result->mnemonic == Mnemonic::UQINCW);
     assert(result->operands.size() >= 1);
     assert(result->operands[0].type == OperandType::RegisterList);
+#ifdef VEDA64_STRINGS
     std::cout << "  uqincw_r_rs_uw: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_uqincw_r_rs_x() {
@@ -12933,7 +15471,9 @@ void test_uqincw_r_rs_x() {
     assert(result->mnemonic == Mnemonic::UQINCW);
     assert(result->operands.size() >= 1);
     assert(result->operands[0].type == OperandType::RegisterList);
+#ifdef VEDA64_STRINGS
     std::cout << "  uqincw_r_rs_x: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_uqincw_z_zs_() {
@@ -12943,7 +15483,9 @@ void test_uqincw_z_zs_() {
     assert(result->mnemonic == Mnemonic::UQINCW);
     assert(result->operands.size() >= 1);
     assert(result->operands[0].type == OperandType::RegisterList);
+#ifdef VEDA64_STRINGS
     std::cout << "  uqincw_z_zs_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_uqrshl_z_p_zz_() {
@@ -12951,7 +15493,9 @@ void test_uqrshl_z_p_zz_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: uqrshl_z_p_zz_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::UQRSHL);
+#ifdef VEDA64_STRINGS
     std::cout << "  uqrshl_z_p_zz_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_uqrshlr_z_p_zz_() {
@@ -12959,7 +15503,9 @@ void test_uqrshlr_z_p_zz_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: uqrshlr_z_p_zz_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::UQRSHLR);
+#ifdef VEDA64_STRINGS
     std::cout << "  uqrshlr_z_p_zz_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_uqrshrn_z_mz2_b() {
@@ -12967,7 +15513,9 @@ void test_uqrshrn_z_mz2_b() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: uqrshrn_z_mz2_b" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::UQRSHRN);
+#ifdef VEDA64_STRINGS
     std::cout << "  uqrshrn_z_mz2_b: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_uqrshrn_z_mz2_() {
@@ -12975,7 +15523,9 @@ void test_uqrshrn_z_mz2_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: uqrshrn_z_mz2_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::UQRSHRN);
+#ifdef VEDA64_STRINGS
     std::cout << "  uqrshrn_z_mz2_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_uqrshrnb_z_zi_() {
@@ -12983,7 +15533,9 @@ void test_uqrshrnb_z_zi_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: uqrshrnb_z_zi_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::UQRSHRNB);
+#ifdef VEDA64_STRINGS
     std::cout << "  uqrshrnb_z_zi_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_uqrshrnt_z_zi_() {
@@ -12991,7 +15543,9 @@ void test_uqrshrnt_z_zi_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: uqrshrnt_z_zi_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::UQRSHRNT);
+#ifdef VEDA64_STRINGS
     std::cout << "  uqrshrnt_z_zi_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_uqshl_z_p_zi_() {
@@ -12999,7 +15553,9 @@ void test_uqshl_z_p_zi_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: uqshl_z_p_zi_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::UQSHL);
+#ifdef VEDA64_STRINGS
     std::cout << "  uqshl_z_p_zi_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_uqshl_z_p_zz_() {
@@ -13007,7 +15563,9 @@ void test_uqshl_z_p_zz_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: uqshl_z_p_zz_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::UQSHL);
+#ifdef VEDA64_STRINGS
     std::cout << "  uqshl_z_p_zz_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_uqshlr_z_p_zz_() {
@@ -13015,7 +15573,9 @@ void test_uqshlr_z_p_zz_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: uqshlr_z_p_zz_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::UQSHLR);
+#ifdef VEDA64_STRINGS
     std::cout << "  uqshlr_z_p_zz_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_uqshrn_z_mz2_() {
@@ -13023,7 +15583,9 @@ void test_uqshrn_z_mz2_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: uqshrn_z_mz2_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::UQSHRN);
+#ifdef VEDA64_STRINGS
     std::cout << "  uqshrn_z_mz2_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_uqshrnb_z_zi_() {
@@ -13031,7 +15593,9 @@ void test_uqshrnb_z_zi_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: uqshrnb_z_zi_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::UQSHRNB);
+#ifdef VEDA64_STRINGS
     std::cout << "  uqshrnb_z_zi_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_uqshrnt_z_zi_() {
@@ -13039,7 +15603,9 @@ void test_uqshrnt_z_zi_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: uqshrnt_z_zi_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::UQSHRNT);
+#ifdef VEDA64_STRINGS
     std::cout << "  uqshrnt_z_zi_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_uqsub_z_p_zz_() {
@@ -13047,7 +15613,9 @@ void test_uqsub_z_p_zz_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: uqsub_z_p_zz_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::UQSUB);
+#ifdef VEDA64_STRINGS
     std::cout << "  uqsub_z_p_zz_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_uqsub_z_zi_() {
@@ -13055,7 +15623,9 @@ void test_uqsub_z_zi_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: uqsub_z_zi_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::UQSUB);
+#ifdef VEDA64_STRINGS
     std::cout << "  uqsub_z_zi_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_uqsub_z_zz_() {
@@ -13063,7 +15633,9 @@ void test_uqsub_z_zz_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: uqsub_z_zz_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::UQSUB);
+#ifdef VEDA64_STRINGS
     std::cout << "  uqsub_z_zz_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_uqsubr_z_p_zz_() {
@@ -13071,7 +15643,9 @@ void test_uqsubr_z_p_zz_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: uqsubr_z_p_zz_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::UQSUBR);
+#ifdef VEDA64_STRINGS
     std::cout << "  uqsubr_z_p_zz_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_uqxtnb_z_zz_() {
@@ -13079,7 +15653,9 @@ void test_uqxtnb_z_zz_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: uqxtnb_z_zz_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::UQXTNB);
+#ifdef VEDA64_STRINGS
     std::cout << "  uqxtnb_z_zz_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_uqxtnt_z_zz_() {
@@ -13087,7 +15663,9 @@ void test_uqxtnt_z_zz_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: uqxtnt_z_zz_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::UQXTNT);
+#ifdef VEDA64_STRINGS
     std::cout << "  uqxtnt_z_zz_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_urecpe_z_p_z_m() {
@@ -13099,7 +15677,9 @@ void test_urecpe_z_p_z_m() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  urecpe_z_p_z_m: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_urecpe_z_p_z_z() {
@@ -13111,7 +15691,9 @@ void test_urecpe_z_p_z_z() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  urecpe_z_p_z_z: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_urhadd_z_p_zz_() {
@@ -13119,7 +15701,9 @@ void test_urhadd_z_p_zz_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: urhadd_z_p_zz_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::URHADD);
+#ifdef VEDA64_STRINGS
     std::cout << "  urhadd_z_p_zz_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_urshl_z_p_zz_() {
@@ -13127,7 +15711,9 @@ void test_urshl_z_p_zz_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: urshl_z_p_zz_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::URSHL);
+#ifdef VEDA64_STRINGS
     std::cout << "  urshl_z_p_zz_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_urshlr_z_p_zz_() {
@@ -13135,7 +15721,9 @@ void test_urshlr_z_p_zz_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: urshlr_z_p_zz_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::URSHLR);
+#ifdef VEDA64_STRINGS
     std::cout << "  urshlr_z_p_zz_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_urshr_z_p_zi_() {
@@ -13143,7 +15731,9 @@ void test_urshr_z_p_zi_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: urshr_z_p_zi_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::URSHR);
+#ifdef VEDA64_STRINGS
     std::cout << "  urshr_z_p_zi_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ursqrte_z_p_z_m() {
@@ -13155,7 +15745,9 @@ void test_ursqrte_z_p_z_m() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  ursqrte_z_p_z_m: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ursqrte_z_p_z_z() {
@@ -13167,7 +15759,9 @@ void test_ursqrte_z_p_z_z() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  ursqrte_z_p_z_z: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ursra_z_zi_() {
@@ -13175,7 +15769,9 @@ void test_ursra_z_zi_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: ursra_z_zi_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::URSRA);
+#ifdef VEDA64_STRINGS
     std::cout << "  ursra_z_zi_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_usdot_z_zzz_s() {
@@ -13187,7 +15783,9 @@ void test_usdot_z_zzz_s() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  usdot_z_zzz_s: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_usdot_z_zzzi_s() {
@@ -13199,7 +15797,9 @@ void test_usdot_z_zzzi_s() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  usdot_z_zzzi_s: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ushllb_z_zi_() {
@@ -13207,7 +15807,9 @@ void test_ushllb_z_zi_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: ushllb_z_zi_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::USHLLB);
+#ifdef VEDA64_STRINGS
     std::cout << "  ushllb_z_zi_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ushllt_z_zi_() {
@@ -13215,7 +15817,9 @@ void test_ushllt_z_zi_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: ushllt_z_zi_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::USHLLT);
+#ifdef VEDA64_STRINGS
     std::cout << "  ushllt_z_zi_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_usmmla_z_zzz_() {
@@ -13227,7 +15831,9 @@ void test_usmmla_z_zzz_() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  usmmla_z_zzz_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_usqadd_z_p_zz_() {
@@ -13235,7 +15841,9 @@ void test_usqadd_z_p_zz_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: usqadd_z_p_zz_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::USQADD);
+#ifdef VEDA64_STRINGS
     std::cout << "  usqadd_z_p_zz_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_usra_z_zi_() {
@@ -13243,7 +15851,9 @@ void test_usra_z_zi_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: usra_z_zi_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::USRA);
+#ifdef VEDA64_STRINGS
     std::cout << "  usra_z_zi_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_usublb_z_zz_() {
@@ -13251,7 +15861,9 @@ void test_usublb_z_zz_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: usublb_z_zz_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::USUBLB);
+#ifdef VEDA64_STRINGS
     std::cout << "  usublb_z_zz_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_usublt_z_zz_() {
@@ -13259,7 +15871,9 @@ void test_usublt_z_zz_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: usublt_z_zz_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::USUBLT);
+#ifdef VEDA64_STRINGS
     std::cout << "  usublt_z_zz_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_usubwb_z_zz_() {
@@ -13267,7 +15881,9 @@ void test_usubwb_z_zz_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: usubwb_z_zz_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::USUBWB);
+#ifdef VEDA64_STRINGS
     std::cout << "  usubwb_z_zz_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_usubwt_z_zz_() {
@@ -13275,49 +15891,63 @@ void test_usubwt_z_zz_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: usubwt_z_zz_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::USUBWT);
+#ifdef VEDA64_STRINGS
     std::cout << "  usubwt_z_zz_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_uunpkhi_z_z_() {
     uint32_t insn = 0x05733800u;
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: uunpkhi_z_z_" << std::endl; throw std::runtime_error("decode failed"); }
+#ifdef VEDA64_STRINGS
     std::cout << "  uunpkhi_z_z_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_uunpklo_z_z_() {
     uint32_t insn = 0x05723800u;
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: uunpklo_z_z_" << std::endl; throw std::runtime_error("decode failed"); }
+#ifdef VEDA64_STRINGS
     std::cout << "  uunpklo_z_z_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_uxtb_z_p_z_m() {
     uint32_t insn = 0x0451A000u;
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: uxtb_z_p_z_m" << std::endl; throw std::runtime_error("decode failed"); }
+#ifdef VEDA64_STRINGS
     std::cout << "  uxtb_z_p_z_m: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_uxtb_z_p_z_z() {
     uint32_t insn = 0x0441A000u;
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: uxtb_z_p_z_z" << std::endl; throw std::runtime_error("decode failed"); }
+#ifdef VEDA64_STRINGS
     std::cout << "  uxtb_z_p_z_z: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_uxth_z_p_z_m() {
     uint32_t insn = 0x0493A000u;
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: uxth_z_p_z_m" << std::endl; throw std::runtime_error("decode failed"); }
+#ifdef VEDA64_STRINGS
     std::cout << "  uxth_z_p_z_m: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_uxth_z_p_z_z() {
     uint32_t insn = 0x0483A000u;
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: uxth_z_p_z_z" << std::endl; throw std::runtime_error("decode failed"); }
+#ifdef VEDA64_STRINGS
     std::cout << "  uxth_z_p_z_z: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_uxtw_z_p_z_m() {
@@ -13328,7 +15958,9 @@ void test_uxtw_z_p_z_m() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  uxtw_z_p_z_m: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_uxtw_z_p_z_z() {
@@ -13339,28 +15971,36 @@ void test_uxtw_z_p_z_z() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  uxtw_z_p_z_z: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_uzp1_p_pp_() {
     uint32_t insn = 0x05204800u;
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: uzp1_p_pp_" << std::endl; throw std::runtime_error("decode failed"); }
+#ifdef VEDA64_STRINGS
     std::cout << "  uzp1_p_pp_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_uzp2_p_pp_() {
     uint32_t insn = 0x05204C00u;
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: uzp2_p_pp_" << std::endl; throw std::runtime_error("decode failed"); }
+#ifdef VEDA64_STRINGS
     std::cout << "  uzp2_p_pp_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_uzp1_z_zz_() {
     uint32_t insn = 0x05206800u;
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: uzp1_z_zz_" << std::endl; throw std::runtime_error("decode failed"); }
+#ifdef VEDA64_STRINGS
     std::cout << "  uzp1_z_zz_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_uzp1_z_zz_q() {
@@ -13371,14 +16011,18 @@ void test_uzp1_z_zz_q() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  uzp1_z_zz_q: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_uzp2_z_zz_() {
     uint32_t insn = 0x05206C00u;
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: uzp2_z_zz_" << std::endl; throw std::runtime_error("decode failed"); }
+#ifdef VEDA64_STRINGS
     std::cout << "  uzp2_z_zz_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_uzp2_z_zz_q() {
@@ -13389,7 +16033,9 @@ void test_uzp2_z_zz_q() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  uzp2_z_zz_q: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_uzpq1_z_zz_() {
@@ -13397,7 +16043,9 @@ void test_uzpq1_z_zz_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: uzpq1_z_zz_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::UZPQ1);
+#ifdef VEDA64_STRINGS
     std::cout << "  uzpq1_z_zz_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_uzpq2_z_zz_() {
@@ -13405,7 +16053,9 @@ void test_uzpq2_z_zz_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: uzpq2_z_zz_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::UZPQ2);
+#ifdef VEDA64_STRINGS
     std::cout << "  uzpq2_z_zz_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_whilege_p_p_rr_() {
@@ -13413,7 +16063,9 @@ void test_whilege_p_p_rr_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: whilege_p_p_rr_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::WHILEGE);
+#ifdef VEDA64_STRINGS
     std::cout << "  whilege_p_p_rr_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_whilege_pn_rr_() {
@@ -13421,7 +16073,9 @@ void test_whilege_pn_rr_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: whilege_pn_rr_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::WHILEGE);
+#ifdef VEDA64_STRINGS
     std::cout << "  whilege_pn_rr_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_whilege_pp_rr_() {
@@ -13433,7 +16087,9 @@ void test_whilege_pp_rr_() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  whilege_pp_rr_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_whilegt_p_p_rr_() {
@@ -13441,7 +16097,9 @@ void test_whilegt_p_p_rr_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: whilegt_p_p_rr_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::WHILEGT);
+#ifdef VEDA64_STRINGS
     std::cout << "  whilegt_p_p_rr_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_whilegt_pn_rr_() {
@@ -13449,7 +16107,9 @@ void test_whilegt_pn_rr_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: whilegt_pn_rr_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::WHILEGT);
+#ifdef VEDA64_STRINGS
     std::cout << "  whilegt_pn_rr_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_whilegt_pp_rr_() {
@@ -13461,7 +16121,9 @@ void test_whilegt_pp_rr_() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  whilegt_pp_rr_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_whilehi_p_p_rr_() {
@@ -13469,7 +16131,9 @@ void test_whilehi_p_p_rr_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: whilehi_p_p_rr_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::WHILEHI);
+#ifdef VEDA64_STRINGS
     std::cout << "  whilehi_p_p_rr_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_whilehi_pn_rr_() {
@@ -13477,7 +16141,9 @@ void test_whilehi_pn_rr_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: whilehi_pn_rr_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::WHILEHI);
+#ifdef VEDA64_STRINGS
     std::cout << "  whilehi_pn_rr_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_whilehi_pp_rr_() {
@@ -13489,7 +16155,9 @@ void test_whilehi_pp_rr_() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  whilehi_pp_rr_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_whilehs_p_p_rr_() {
@@ -13497,7 +16165,9 @@ void test_whilehs_p_p_rr_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: whilehs_p_p_rr_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::WHILEHS);
+#ifdef VEDA64_STRINGS
     std::cout << "  whilehs_p_p_rr_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_whilehs_pn_rr_() {
@@ -13505,7 +16175,9 @@ void test_whilehs_pn_rr_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: whilehs_pn_rr_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::WHILEHS);
+#ifdef VEDA64_STRINGS
     std::cout << "  whilehs_pn_rr_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_whilehs_pp_rr_() {
@@ -13517,7 +16189,9 @@ void test_whilehs_pp_rr_() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  whilehs_pp_rr_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_whilele_p_p_rr_() {
@@ -13525,7 +16199,9 @@ void test_whilele_p_p_rr_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: whilele_p_p_rr_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::WHILELE);
+#ifdef VEDA64_STRINGS
     std::cout << "  whilele_p_p_rr_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_whilele_pn_rr_() {
@@ -13533,7 +16209,9 @@ void test_whilele_pn_rr_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: whilele_pn_rr_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::WHILELE);
+#ifdef VEDA64_STRINGS
     std::cout << "  whilele_pn_rr_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_whilele_pp_rr_() {
@@ -13545,7 +16223,9 @@ void test_whilele_pp_rr_() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  whilele_pp_rr_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_whilelo_p_p_rr_() {
@@ -13553,7 +16233,9 @@ void test_whilelo_p_p_rr_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: whilelo_p_p_rr_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::WHILELO);
+#ifdef VEDA64_STRINGS
     std::cout << "  whilelo_p_p_rr_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_whilelo_pn_rr_() {
@@ -13561,7 +16243,9 @@ void test_whilelo_pn_rr_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: whilelo_pn_rr_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::WHILELO);
+#ifdef VEDA64_STRINGS
     std::cout << "  whilelo_pn_rr_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_whilelo_pp_rr_() {
@@ -13573,7 +16257,9 @@ void test_whilelo_pp_rr_() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  whilelo_pp_rr_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_whilels_p_p_rr_() {
@@ -13581,7 +16267,9 @@ void test_whilels_p_p_rr_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: whilels_p_p_rr_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::WHILELS);
+#ifdef VEDA64_STRINGS
     std::cout << "  whilels_p_p_rr_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_whilels_pn_rr_() {
@@ -13589,7 +16277,9 @@ void test_whilels_pn_rr_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: whilels_pn_rr_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::WHILELS);
+#ifdef VEDA64_STRINGS
     std::cout << "  whilels_pn_rr_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_whilels_pp_rr_() {
@@ -13601,7 +16291,9 @@ void test_whilels_pp_rr_() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  whilels_pp_rr_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_whilelt_p_p_rr_() {
@@ -13609,7 +16301,9 @@ void test_whilelt_p_p_rr_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: whilelt_p_p_rr_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::WHILELT);
+#ifdef VEDA64_STRINGS
     std::cout << "  whilelt_p_p_rr_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_whilelt_pn_rr_() {
@@ -13617,7 +16311,9 @@ void test_whilelt_pn_rr_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: whilelt_pn_rr_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::WHILELT);
+#ifdef VEDA64_STRINGS
     std::cout << "  whilelt_pn_rr_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_whilelt_pp_rr_() {
@@ -13629,7 +16325,9 @@ void test_whilelt_pp_rr_() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  whilelt_pp_rr_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_whilerw_p_rr_() {
@@ -13637,7 +16335,9 @@ void test_whilerw_p_rr_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: whilerw_p_rr_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::WHILERW);
+#ifdef VEDA64_STRINGS
     std::cout << "  whilerw_p_rr_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_whilewr_p_rr_() {
@@ -13645,7 +16345,9 @@ void test_whilewr_p_rr_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: whilewr_p_rr_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::WHILEWR);
+#ifdef VEDA64_STRINGS
     std::cout << "  whilewr_p_rr_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_wrffr_f_p_() {
@@ -13655,7 +16357,9 @@ void test_wrffr_f_p_() {
     assert(result->mnemonic == Mnemonic::WRFFR);
     assert(result->operands.size() >= 1);
     assert(result->operands[0].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  wrffr_f_p_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_xar_z_zzi_() {
@@ -13663,28 +16367,36 @@ void test_xar_z_zzi_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: xar_z_zzi_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::XAR);
+#ifdef VEDA64_STRINGS
     std::cout << "  xar_z_zzi_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_zip2_p_pp_() {
     uint32_t insn = 0x05204400u;
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: zip2_p_pp_" << std::endl; throw std::runtime_error("decode failed"); }
+#ifdef VEDA64_STRINGS
     std::cout << "  zip2_p_pp_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_zip1_p_pp_() {
     uint32_t insn = 0x05204000u;
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: zip1_p_pp_" << std::endl; throw std::runtime_error("decode failed"); }
+#ifdef VEDA64_STRINGS
     std::cout << "  zip1_p_pp_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_zip2_z_zz_() {
     uint32_t insn = 0x05206400u;
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: zip2_z_zz_" << std::endl; throw std::runtime_error("decode failed"); }
+#ifdef VEDA64_STRINGS
     std::cout << "  zip2_z_zz_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_zip2_z_zz_q() {
@@ -13695,14 +16407,18 @@ void test_zip2_z_zz_q() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  zip2_z_zz_q: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_zip1_z_zz_() {
     uint32_t insn = 0x05206000u;
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: zip1_z_zz_" << std::endl; throw std::runtime_error("decode failed"); }
+#ifdef VEDA64_STRINGS
     std::cout << "  zip1_z_zz_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_zip1_z_zz_q() {
@@ -13713,7 +16429,9 @@ void test_zip1_z_zz_q() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  zip1_z_zz_q: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_zipq1_z_zz_() {
@@ -13721,7 +16439,9 @@ void test_zipq1_z_zz_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: zipq1_z_zz_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::ZIPQ1);
+#ifdef VEDA64_STRINGS
     std::cout << "  zipq1_z_zz_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_zipq2_z_zz_() {
@@ -13729,7 +16449,9 @@ void test_zipq2_z_zz_() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: zipq2_z_zz_" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::ZIPQ2);
+#ifdef VEDA64_STRINGS
     std::cout << "  zipq2_z_zz_: " << result->to_string() << std::endl;
+#endif
 }
 
 int main() {

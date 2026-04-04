@@ -15,6 +15,8 @@ A comprehensive ARM64 (AArch64) instruction encoder and decoder library with ful
 - **Disassembly**: Format decoded instructions as readable assembly
 - **IR lifting**: P-code style intermediate representation with AST layer, simplification pass, and interpreter
 - **JIT code generator**: xbyak/asmjit-style assembler API with typed registers, labels, and executable code emission
+- **Instruction relocation**: Relocate PC-relative instructions to new addresses
+- **Control flow analysis**: Classify instruction flow, walk basic blocks, build CFGs
 - **Comprehensive test suite**: CTest-integrated unit tests for all instruction classes
 - **CMake build system**: Cross-platform build configuration
 
@@ -30,6 +32,8 @@ veda64/
 │   ├── veda64.hpp              # Main library header
 │   ├── veda64/
 │   │   ├── ir.hpp              # IR lifting + interpreter API
+│   │   ├── relocation.hpp      # Instruction relocation API
+│   │   ├── branch_follow.hpp   # Control flow analysis API
 │   │   └── *.hpp               # Type headers (operand, mnemonic, etc.)
 │   ├── codegen/
 │   │   ├── codegen.hpp         # Umbrella include for JIT assembler
@@ -41,18 +45,13 @@ veda64/
 │   └── format/                 # Format-based decoder headers
 │       └── *.hpp               # Per-encoding-group decoders
 ├── lib/                        # Implementation files
-│   ├── core/                   # Core decode + enum tables
-│   │   ├── veda64.cpp          # Main decode, mnemonic strings
-│   │   └── *.cpp               # Barrier, pattern, prefetch, pstate, sysop, sysreg
-│   ├── assembler/
-│   │   └── assembler.cpp       # Text assembler
+│   ├── veda64.cpp              # Core implementation
+│   ├── relocation.cpp          # Instruction relocation
+│   ├── branch_follow.cpp       # Control flow analysis
+│   ├── hook.cpp                # Hooking implementation
 │   ├── codegen/
 │   │   ├── codegen.cpp         # Buffer management, I-cache flush, labels
 │   │   └── emitter.cpp         # Instruction method implementations
-│   ├── hook/
-│   │   ├── hook.cpp            # Inline hooking engine
-│   │   ├── relocation.cpp      # Instruction relocation
-│   │   └── branch_follow.cpp   # Branch tracing
 │   ├── ir/                     # IR subsystem
 │   │   ├── ir.cpp              # Lift dispatch, simplify, interpreter
 │   │   ├── ir_lift.cpp         # Template interpreters (28 templates)
@@ -65,6 +64,9 @@ veda64/
 │   ├── test_ir.cpp             # IR lifting + interpreter tests
 │   ├── test_codegen.cpp        # Codegen encode/decode roundtrip tests
 │   ├── test_codegen_run.cpp    # Codegen end-to-end execution tests
+│   ├── test_aliases.cpp        # ARM architectural alias tests
+│   ├── test_functional.cpp     # Functional validation (CLZ, RBIT, BFI, etc.)
+│   ├── test_branch_follow.cpp  # Control flow analysis tests
 │   ├── test_hook.cpp           # Inline hooking tests
 │   └── hook_examples.cpp       # Hook usage examples
 ├── examples/
@@ -72,10 +74,18 @@ veda64/
 │   ├── encode.cpp              # Encoding instructions
 │   ├── ir.cpp                  # IR lifting and interpreter
 │   ├── codegen.cpp             # JIT code generation
+│   ├── codegen_examples.cpp    # Advanced codegen (SIMD, atomics, bitfield)
 │   └── hook.cpp                # Inline hooking (Windows ARM64)
 ├── tools/
 │   ├── veda64-disasm.cpp       # Disassembler CLI tool
 │   └── veda64-interp.cpp       # IR interpreter CLI tool
+├── rust/
+│   └── veda64/                # Rust bindings (cxx-based)
+│       ├── Cargo.toml
+│       └── src/
+│           ├── lib.rs         # High-level Rust API
+│           ├── bridge.rs      # cxx bridge declarations
+│           └── mnemonic.rs    # Mnemonic enum (1,521 variants)
 ├── CMakeLists.txt              # Root build configuration
 ├── LICENSE                     # MIT license
 └── README.md
@@ -146,8 +156,7 @@ ctest
 | `VEDA64_STRINGS` | `OFF` | Enable string functions (`to_string()`, `mnemonic_to_string()`, etc.) |
 | `VEDA64_IR` | `OFF` | Enable IR lifting and interpreter support |
 | `VEDA64_HOOK` | `OFF` | Enable inline hooking support (Windows only). Links `ntdll.lib` for NT syscalls. |
-| `VEDA64_CODEGEN` | `OFF` | Enable JIT code generator API |
-| `VEDA64_ASSEMBLER` | `OFF` | Enable text assembler API (`assemble()`) |
+| `VEDA64_CODEGEN` | `OFF` | Enable JIT code generator / assembler API |
 | `VEDA64_TESTS` | `OFF` | Build the test executables |
 | `VEDA64_PYTHON` | `OFF` | Build Python bindings via nanobind (requires vcpkg toolchain) |
 | `VEDA64_EXAMPLES` | `OFF` | Build example programs (Windows ARM64 only) |
@@ -160,8 +169,11 @@ The `examples/` directory contains runnable programs demonstrating each feature:
 |------|---------|-------------|
 | `decode.cpp` | Decoding, disassembly, operand inspection | `-DVEDA64_STRINGS=ON` |
 | `encode.cpp` | Encoding instructions from field values | `-DVEDA64_STRINGS=ON` |
-| `ir.cpp` | IR lifting, simplification, interpreter | `-DVEDA64_IR=ON` |
-| `codegen.cpp` | JIT assembler: labels, memory, FP, fibonacci | `-DVEDA64_CODEGEN=ON` |
+| `ir.cpp` | IR lifting, simplification, interpreter | `-DVEDA64_STRINGS=ON -DVEDA64_IR=ON` |
+| `codegen.cpp` | JIT assembler: labels, memory, FP, fibonacci | `-DVEDA64_STRINGS=ON -DVEDA64_CODEGEN=ON` |
+| `codegen_examples.cpp` | Advanced codegen: SIMD, atomics, bitfield, carry | `-DVEDA64_STRINGS=ON -DVEDA64_CODEGEN=ON` |
+| `relocation.cpp` | Instruction relocation for PC-relative instructions | `-DVEDA64_STRINGS=ON` |
+| `branch_follow.cpp` | Control flow analysis: classify flow, basic blocks, CFG | `-DVEDA64_STRINGS=ON` |
 | `hook.cpp` | Inline hooking (Windows ARM64 only) | `-DVEDA64_HOOK=ON` |
 
 ```bash
@@ -401,7 +413,7 @@ ir::execute(ctx, 0xEB020020);  // SUBS X0, X1, X2
 
 ### JIT Code Generator
 
-The library includes an xbyak/asmjit-style assembler that emits executable ARM64 code at runtime. It provides typed registers, memory operand helpers, and automatic label resolution for branches.
+The library includes an xbyak/asmjit-style assembler that emits executable ARM64 code at runtime. It provides typed registers, memory operand helpers, automatic label resolution, and fluent method chaining — all instruction methods return `CodeGenerator&`.
 
 ```cpp
 #include "codegen/codegen.hpp"
@@ -411,18 +423,18 @@ using namespace veda64::codegen;
 CodeGenerator code(4096);
 Label loop, done;
 
-code.mov(w1, uint32_t(0));       // s = 0
-code.mov(w2, uint32_t(1));       // i = 1
-code.bind(loop);
-code.cmp(w2, w0);
-code.b(Condition::GT, done);     // if i > n, break
-code.add(w1, w1, w2);            // s += i
-code.add(w2, w2, uint32_t(1));   // i++
-code.b(loop);
-code.bind(done);
-code.mov(w0, w1);
-code.ret();
-code.ready();                    // flush I-cache, make executable
+code.mov(w1, uint32_t(0))         // s = 0
+    .mov(w2, uint32_t(1))         // i = 1
+    .bind(loop)
+    .cmp(w2, w0)
+    .b(Condition::GT, done)        // if i > n, break
+    .add(w1, w1, w2)              // s += i
+    .add(w2, w2, uint32_t(1))     // i++
+    .b(loop)
+    .bind(done)
+    .mov(w0, w1)
+    .ret()
+    .ready();                      // flush I-cache, make executable
 
 auto sum_to = code.get_code<int(*)(int)>();
 sum_to(100);  // returns 5050
@@ -447,17 +459,111 @@ sum_to(100);  // returns 5050
 | Load/Store pair | `ldp`, `stp` |
 | Load literal | `ldr(reg, label)` |
 | Scalar FP | `fadd`, `fsub`, `fmul`, `fdiv`, `fmov`, `fcmp` (single/double) |
+| SIMD arithmetic | `add`, `sub`, `mul`, `addp`, `abs`, `neg`, `cnt` (vector) |
+| SIMD logical | `and_`, `orr`, `eor`, `bic`, `not_`, `mvn` (vector) |
+| SIMD compare | `cmeq`, `cmge`, `cmgt`, `cmhi`, `cmhs` + zero variants |
+| SIMD shift | `shl`, `sshr`, `ushr` (vector by immediate) |
+| SIMD element | `dup`, `ins`, `umov`, `movi` |
+| Atomics | `cas`, `swp`, `ldadd`, `ldclr`, `ldset`, `ldeor`, `stlr`, `ldar`, `ldxr`, `stxr` |
+| Bitfield | `bfi`, `bfxil`, `ubfx`, `sbfx`, `ubfiz`, `sbfiz`, `extr`, `clz`, `cls`, `rbit`, `rev` |
+| Carry | `adc`, `adcs`, `sbc`, `sbcs` |
+| Conditional | `ccmp`, `ccmn`, `csinc`, `csinv`, `csneg` |
+| Extended multiply | `msub`, `mneg`, `ror`, `smull`, `umull`, `smulh`, `umulh` |
 | System | `svc`, `brk`, `nop`, `adr`, `adrp` |
 
 #### Memory Operands
 
 ```cpp
-ldr(x0, ptr(x1, 8));       // [x1, #8]     offset
-str(x0, pre(x1, -16));     // [x1, #-16]!  pre-index
-ldr(x0, post(x1, 8));      // [x1], #8     post-index
-ldr(x0, ptr(x1, x2, 3));   // [x1, x2, LSL #3]  register offset
-stp(x0, x1, ptr(sp, 16));  // [sp, #16]    pair
+code.ldr(x0, ptr(x1, 8))       // [x1, #8]     offset
+    .str(x0, pre(x1, -16))     // [x1, #-16]!  pre-index
+    .ldr(x0, post(x1, 8))      // [x1], #8     post-index
+    .ldr(x0, ptr(x1, x2, 3))   // [x1, x2, LSL #3]  register offset
+    .stp(x0, x1, ptr(sp, 16)); // [sp, #16]    pair
 ```
+
+#### Vector Register Arrangements
+
+SIMD instructions use `VArr` — a vector register with arrangement qualifier:
+
+```cpp
+using namespace veda64::codegen;
+
+CodeGenerator code(4096);
+
+// Create arranged vector registers via methods on VReg
+auto va = v0.s4();  // V0.4S
+auto vb = v1.s4();  // V1.4S
+
+code.add(va, vb, v2.s4())     // ADD V0.4S, V1.4S, V2.4S
+    .mul(va, vb, v2.s4())     // MUL V0.4S, V1.4S, V2.4S
+    .and_(v0.b16(), v1.b16(), v2.b16())  // AND V0.16B, V1.16B, V2.16B
+    .shl(v0.s4(), v1.s4(), 3)  // SHL V0.4S, V1.4S, #3
+    .cmeq(v0.s4(), v1.s4(), v2.s4());    // CMEQ V0.4S, V1.4S, V2.4S
+```
+
+### Instruction Relocation
+
+Relocate PC-relative instructions to new addresses, useful for hooking trampolines and code patching:
+
+```cpp
+#include "veda64/relocation.hpp"
+
+using namespace veda64;
+
+uint32_t insn = 0x14000010;  // B #0x40
+uint32_t out[4];
+size_t count;
+
+if (is_pc_relative(insn)) {
+    // Check if relocation is possible
+    if (can_relocate(insn)) {
+        // Relocate from 0x1000 to 0x5000
+        relocate_instruction(insn, 0x1000, 0x5000, out, &count);
+        // out[0] now contains the adjusted branch
+    }
+}
+```
+
+| Function | Description |
+|----------|-------------|
+| `is_pc_relative(insn)` | Check if instruction uses PC-relative addressing |
+| `can_relocate(insn)` | Check if instruction can be safely relocated |
+| `relocate_instruction(insn, old_pc, new_pc, out, &count)` | Relocate with adjusted offsets |
+
+### Control Flow Analysis
+
+Walk basic blocks and build control flow graphs:
+
+```cpp
+#include "veda64/branch_follow.hpp"
+
+using namespace veda64;
+
+// Classify a single instruction's flow
+auto flow = classify_flow(0x14000010, 0x1000);  // B #0x40 at address 0x1000
+// flow.type == FlowType::Branch
+// flow.target == 0x1040
+
+// Walk a basic block
+auto bb = walk_basic_block(0x1000, [](uint64_t addr) -> std::optional<uint32_t> {
+    // Read instruction at addr from your memory source
+    return read_insn_at(addr);
+});
+// bb.start, bb.end, bb.successors
+
+// Build a full CFG
+auto cfg = walk_cfg(0x1000, read_fn);
+// cfg is a vector of BasicBlock
+```
+
+| Type | Description |
+|------|-------------|
+| `FlowType` | `Sequential`, `Branch`, `Call`, `ConditionalBranch`, `Return`, `Exception`, `Unknown` |
+| `FlowInfo` | Flow type, instruction address, branch target, indirect flag |
+| `BasicBlock` | Start/end addresses, successor list |
+| `classify_flow(insn, addr)` | Classify single instruction |
+| `walk_basic_block(start, reader)` | Walk one basic block |
+| `walk_cfg(entry, reader)` | Build full control flow graph |
 
 The hook engine overwrites 16 bytes at the target (LDR X16 + BR X16 + 8-byte address) and relocates the original instructions into an executable trampoline. PC-relative instructions (ADR, ADRP, B, BL, etc.) are automatically patched during relocation.
 
@@ -586,9 +692,18 @@ ctest -V
 - AST expression tree tests
 - Interpreter end-to-end tests: arithmetic, flags (N/Z/C/V), division, CSEL, memory, branches
 
+**Alias Tests** (`test_aliases.cpp`)
+- 41 test cases validating ARM architectural aliases (MOV, CMP, CMN, NEG, TST, MUL, CSET, etc.)
+
+**Functional Tests** (`test_functional.cpp`)
+- Execution-level validation: CLZ, RBIT, REV, BFI, UBFX, SBFX, ADC, EXTR, MSUB
+
+**Branch Follow Tests** (`test_branch_follow.cpp`)
+- Flow classification, basic block walking, CFG construction
+
 **CodeGen Tests** (`test_codegen.cpp`, `test_codegen_run.cpp`)
-- Encode/decode roundtrip validation (arithmetic, branches, loads/stores, FP, MOV)
-- 27 end-to-end execution tests: identity, arithmetic, multiply (32/64-bit), loops (sum, factorial, fibonacci, GCD), conditionals (csel, cset, cbz, tbz), stack spill, LDP/STP, FP arithmetic, shifted register, nested branches, large immediate, multiple generators
+- Encode/decode roundtrip validation (arithmetic, branches, loads/stores, FP, MOV, SIMD, atomics, bitfield)
+- 27+ end-to-end execution tests: identity, arithmetic, multiply (32/64-bit), loops (sum, factorial, fibonacci, GCD), conditionals (csel, cset, cbz, tbz), stack spill, LDP/STP, FP arithmetic, shifted register, nested branches, large immediate, multiple generators
 
 **Hook Tests** (`test_hook.cpp`)
 - Tests inline hooking of NT syscalls (NtClose, NtQueryVirtualMemory)
@@ -615,8 +730,18 @@ ctest -V
 - **Total encoding variants**: 4,623
 - **Unique instruction patterns**: 4,471 (96.7%)
 - **Architectural aliases**: 152 (3.3%)
+- **Duplicate resolution**: 67.6% reduction from initial parsing
 
 ## Quality Assurance
+
+### Duplicate Pattern Resolution
+
+The library implements sophisticated pattern matching to distinguish between instruction variants:
+
+- **Bitdiffs parsing**: Handles simple, compound, and partial bit patterns from ARM XML
+- **Field inference**: Automatically infers distinguishing bits from encoding names
+- **Priority system**: Returns canonical/preferred disassembly forms for aliases
+- **67.6% duplicate reduction**: From 469 to 152 legitimate aliases
 
 ### Known Aliases
 
@@ -627,6 +752,154 @@ The decoder correctly handles ARM architectural aliases where multiple mnemonics
 - **Logical operations**: TST/ANDS, MVN/ORN
 - **Arithmetic operations**: CMP/SUBS, CMN/ADDS, NEG/SUB
 - **Move operations**: MOV/ORR, MOV/ADD
+
+## Python Bindings
+
+The library includes Python bindings via [nanobind](https://github.com/wjakob/nanobind), exposing all library features:
+
+```python
+import veda64_py as v
+
+# Decode an instruction
+insn = v.decode(0x8B020020)
+print(insn.mnemonic)      # Mnemonic.ADD
+print(insn.to_string())   # "add x0, x1, x2"
+print(len(insn.operands)) # 3
+
+# IR lifting (requires VEDA64_IR)
+lifted = v.ir.lift(0x8B020020)
+simplified = v.ir.simplify(lifted)
+for op in simplified:
+    print(op)
+
+# Relocation
+print(v.is_pc_relative(0x14000040))   # True (B instruction)
+print(v.can_relocate(0x14000040))     # True
+
+# Control flow classification
+flow = v.classify_flow(0x14000010, 0x1000)
+print(flow.type)    # FlowType.Branch
+print(flow.target)  # 0x1040
+
+# Walk basic blocks and CFG
+code = {0x1000: 0xD2800001, 0x1004: 0x8B000021, 0x1008: 0xF1000400,
+        0x100C: 0x54FFFFE1, 0x1010: 0xAA0103E0, 0x1014: 0xD65F03C0}
+bb = v.walk_basic_block(0x1000, lambda addr: code.get(addr, 0))
+blocks = v.walk_cfg(0x1000, lambda addr: code.get(addr, 0))
+print(f"{len(blocks)} basic blocks discovered")
+
+# JIT code generation (requires VEDA64_CODEGEN)
+cg = v.codegen
+gen = cg.CodeGenerator(4096)
+gen.mov_x_imm(cg.x0, 42)
+gen.add_x_imm(cg.x0, cg.x0, 8)
+gen.ret()
+gen.ready()
+# Decode the generated instructions
+data = gen.get_bytes()
+for i in range(0, gen.size(), 4):
+    insn = v.decode(int.from_bytes(data[i:i+4], 'little'))
+    print(insn.to_string())
+
+# Inline hooking (Windows only, requires VEDA64_HOOK)
+if hasattr(v, 'hook'):
+    v.hook.initialize()
+    # status, original, handle = v.hook.install(target_addr, detour_addr)
+    v.hook.shutdown()
+```
+
+### Building Python Bindings
+
+Requires [vcpkg](https://vcpkg.io/) with the nanobind overlay port:
+
+```bash
+cmake .. \
+    -DCMAKE_TOOLCHAIN_FILE=/path/to/vcpkg/scripts/buildsystems/vcpkg.cmake \
+    -DVCPKG_OVERLAY_PORTS=../vcpkg_overlay_ports \
+    -DVEDA64_PYTHON=ON -DVEDA64_STRINGS=ON -DVEDA64_IR=ON -DVEDA64_CODEGEN=ON
+cmake --build . --config Release
+```
+
+The built module (`veda64_py.pyd` on Windows, `veda64_py.so` on Linux) is placed in the build directory. Copy it to your Python path or use `PYTHONPATH`:
+
+```bash
+PYTHONPATH=build python -c "import veda64; print(veda64.decode(0x8B020020).to_string())"
+```
+
+## Rust Bindings
+
+The library includes Rust bindings via [cxx](https://cxx.rs/), providing a safe, idiomatic Rust API over the C++ decoder.
+
+```rust
+use veda64::{decode, disassemble, Mnemonic, Operand, Condition};
+
+// Decode an instruction
+let insn = decode(0x8B020020).unwrap();  // ADD X0, X1, X2
+println!("{}", insn);                     // "add x0, x1, x2"
+assert_eq!(insn.mnemonic, Mnemonic::ADD);
+assert_eq!(insn.operands.len(), 3);
+
+// Inspect operands
+for op in &insn.operands {
+    match op {
+        Operand::Register(reg) => println!("reg: {}", reg),
+        Operand::Immediate(val) => println!("imm: {:#x}", val),
+        Operand::Memory { base, offset, .. } => println!("[x{}, #{}]", base, offset),
+        Operand::Shift { shift_type, amount } => println!("{:?} #{}", shift_type, amount),
+        Operand::Label(off) => println!("label: {}", off),
+        _ => {}
+    }
+}
+
+// Quick disassembly (no struct allocation)
+assert_eq!(disassemble(0xD65F03C0).as_deref(), Some("ret"));
+assert_eq!(disassemble(0xD503201F).as_deref(), Some("nop"));
+
+// Conditional branches
+let insn = decode(0x54000040).unwrap();  // B.EQ
+assert_eq!(insn.mnemonic, Mnemonic::B);
+assert_eq!(insn.condition, Condition::EQ);
+
+// Memory operands
+let insn = decode(0xF9000420).unwrap();  // STR X0, [X1, #8]
+if let Some(Operand::Memory { offset, .. }) = insn.operands.iter()
+    .find(|op| matches!(op, Operand::Memory { .. })) {
+    assert_eq!(*offset, 8);
+}
+
+// Mnemonic names
+assert_eq!(Mnemonic::ADD.name(), "add");
+assert_eq!(format!("{}", Mnemonic::LDR), "ldr");
+```
+
+### Adding to your project
+
+```toml
+[dependencies]
+veda64 = { path = "path/to/veda64/rust/veda64" }
+```
+
+The crate compiles the C++ library from source via `cc` and `cxx-build` — no pre-built binaries or system dependencies needed beyond a C++17 compiler.
+
+### Building and Testing
+
+```bash
+cargo build -p veda64
+cargo test -p veda64     # 13 unit tests + 3 doc tests
+```
+
+### Test Coverage
+
+The crate includes tests for:
+- Arithmetic: ADD, SUB
+- Branches: B, B.EQ (conditional)
+- Loads/Stores: LDR, STR with memory offset verification
+- System: NOP, RET
+- Move: MOVZ
+- Atomics: LDADD
+- Invalid encodings
+- Mnemonic display/formatting
+- Disassembly string output
 
 ## License
 
@@ -639,3 +912,4 @@ Contributions are welcome! Please open an issue or pull request on GitHub.
 ## References
 
 - [ARM Architecture Reference Manual](https://developer.arm.com/documentation/ddi0487/latest)
+- ARM A64 ISA XML Specification (2025-12)

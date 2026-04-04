@@ -13,7 +13,9 @@ void test_abs_asisdmisc_r() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: abs_asisdmisc_r" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::ABS);
+#ifdef VEDA64_STRINGS
     std::cout << "  abs_asisdmisc_r: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_abs_asimdmisc_r() {
@@ -21,7 +23,9 @@ void test_abs_asimdmisc_r() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: abs_asimdmisc_r" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::ABS);
+#ifdef VEDA64_STRINGS
     std::cout << "  abs_asimdmisc_r: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_add_asisdsame_only() {
@@ -29,7 +33,9 @@ void test_add_asisdsame_only() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: add_asisdsame_only" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::ADD);
+#ifdef VEDA64_STRINGS
     std::cout << "  add_asisdsame_only: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_add_asimdsame_only() {
@@ -37,7 +43,9 @@ void test_add_asimdsame_only() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: add_asimdsame_only" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::ADD);
+#ifdef VEDA64_STRINGS
     std::cout << "  add_asimdsame_only: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_addhn_asimddiff_n() {
@@ -45,7 +53,9 @@ void test_addhn_asimddiff_n() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: addhn_asimddiff_n" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::ADDHN);
+#ifdef VEDA64_STRINGS
     std::cout << "  addhn_asimddiff_n: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_addp_asisdpair_only() {
@@ -53,7 +63,9 @@ void test_addp_asisdpair_only() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: addp_asisdpair_only" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::ADDP);
+#ifdef VEDA64_STRINGS
     std::cout << "  addp_asisdpair_only: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_addp_asimdsame_only() {
@@ -61,7 +73,9 @@ void test_addp_asimdsame_only() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: addp_asimdsame_only" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::ADDP);
+#ifdef VEDA64_STRINGS
     std::cout << "  addp_asimdsame_only: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_addv_asimdall_only() {
@@ -69,7 +83,9 @@ void test_addv_asimdall_only() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: addv_asimdall_only" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::ADDV);
+#ifdef VEDA64_STRINGS
     std::cout << "  addv_asimdall_only: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_aesd_b_cryptoaes() {
@@ -80,7 +96,9 @@ void test_aesd_b_cryptoaes() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  aesd_b_cryptoaes: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_aese_b_cryptoaes() {
@@ -91,7 +109,9 @@ void test_aese_b_cryptoaes() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  aese_b_cryptoaes: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_aesimc_b_cryptoaes() {
@@ -102,7 +122,9 @@ void test_aesimc_b_cryptoaes() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  aesimc_b_cryptoaes: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_aesmc_b_cryptoaes() {
@@ -113,14 +135,18 @@ void test_aesmc_b_cryptoaes() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  aesmc_b_cryptoaes: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_and_asimdsame_only() {
     uint32_t insn = 0x0E201C00u;
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: and_asimdsame_only" << std::endl; throw std::runtime_error("decode failed"); }
+#ifdef VEDA64_STRINGS
     std::cout << "  and_asimdsame_only: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_bcax_vvv16_crypto4() {
@@ -133,21 +159,27 @@ void test_bcax_vvv16_crypto4() {
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
     assert(result->operands[3].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  bcax_vvv16_crypto4: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_bf1cvtl_asimdmisc_v() {
     uint32_t insn = 0x2EA17800u;
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: bf1cvtl_asimdmisc_v" << std::endl; throw std::runtime_error("decode failed"); }
+#ifdef VEDA64_STRINGS
     std::cout << "  bf1cvtl_asimdmisc_v: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_bf2cvtl_asimdmisc_v() {
     uint32_t insn = 0x2EE17800u;
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: bf2cvtl_asimdmisc_v" << std::endl; throw std::runtime_error("decode failed"); }
+#ifdef VEDA64_STRINGS
     std::cout << "  bf2cvtl_asimdmisc_v: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_bfcvt_bs_floatdp1() {
@@ -155,7 +187,9 @@ void test_bfcvt_bs_floatdp1() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: bfcvt_bs_floatdp1" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::BFCVT);
+#ifdef VEDA64_STRINGS
     std::cout << "  bfcvt_bs_floatdp1: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_bfcvtn_asimdmisc_4s() {
@@ -163,7 +197,9 @@ void test_bfcvtn_asimdmisc_4s() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: bfcvtn_asimdmisc_4s" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::BFCVTN);
+#ifdef VEDA64_STRINGS
     std::cout << "  bfcvtn_asimdmisc_4s: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_bfdot_asimdelem_e() {
@@ -171,7 +207,9 @@ void test_bfdot_asimdelem_e() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: bfdot_asimdelem_e" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::BFDOT);
+#ifdef VEDA64_STRINGS
     std::cout << "  bfdot_asimdelem_e: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_bfdot_asimdsame2_d() {
@@ -179,7 +217,9 @@ void test_bfdot_asimdsame2_d() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: bfdot_asimdsame2_d" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::BFDOT);
+#ifdef VEDA64_STRINGS
     std::cout << "  bfdot_asimdsame2_d: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_bfmlal_asimdelem_f() {
@@ -191,7 +231,9 @@ void test_bfmlal_asimdelem_f() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  bfmlal_asimdelem_f: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_bfmlal_asimdsame2_f_() {
@@ -203,7 +245,9 @@ void test_bfmlal_asimdsame2_f_() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  bfmlal_asimdsame2_f_: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_bfmmla_asimdsame2_e() {
@@ -215,7 +259,9 @@ void test_bfmmla_asimdsame2_e() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  bfmmla_asimdsame2_e: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_bic_asimdimm_l_hl() {
@@ -223,7 +269,9 @@ void test_bic_asimdimm_l_hl() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: bic_asimdimm_l_hl" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::BIC);
+#ifdef VEDA64_STRINGS
     std::cout << "  bic_asimdimm_l_hl: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_bic_asimdimm_l_sl() {
@@ -231,7 +279,9 @@ void test_bic_asimdimm_l_sl() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: bic_asimdimm_l_sl" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::BIC);
+#ifdef VEDA64_STRINGS
     std::cout << "  bic_asimdimm_l_sl: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_bic_asimdsame_only() {
@@ -239,7 +289,9 @@ void test_bic_asimdsame_only() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: bic_asimdsame_only" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::BIC);
+#ifdef VEDA64_STRINGS
     std::cout << "  bic_asimdsame_only: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_bif_asimdsame_only() {
@@ -247,7 +299,9 @@ void test_bif_asimdsame_only() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: bif_asimdsame_only" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::BIF);
+#ifdef VEDA64_STRINGS
     std::cout << "  bif_asimdsame_only: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_bit_asimdsame_only() {
@@ -255,7 +309,9 @@ void test_bit_asimdsame_only() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: bit_asimdsame_only" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::BIT);
+#ifdef VEDA64_STRINGS
     std::cout << "  bit_asimdsame_only: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_bsl_asimdsame_only() {
@@ -263,7 +319,9 @@ void test_bsl_asimdsame_only() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: bsl_asimdsame_only" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::BSL);
+#ifdef VEDA64_STRINGS
     std::cout << "  bsl_asimdsame_only: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_cls_asimdmisc_r() {
@@ -271,7 +329,9 @@ void test_cls_asimdmisc_r() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: cls_asimdmisc_r" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::CLS);
+#ifdef VEDA64_STRINGS
     std::cout << "  cls_asimdmisc_r: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_clz_asimdmisc_r() {
@@ -279,7 +339,9 @@ void test_clz_asimdmisc_r() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: clz_asimdmisc_r" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::CLZ);
+#ifdef VEDA64_STRINGS
     std::cout << "  clz_asimdmisc_r: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_cmeq_asisdsame_only() {
@@ -287,7 +349,9 @@ void test_cmeq_asisdsame_only() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: cmeq_asisdsame_only" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::CMEQ);
+#ifdef VEDA64_STRINGS
     std::cout << "  cmeq_asisdsame_only: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_cmeq_asimdsame_only() {
@@ -295,7 +359,9 @@ void test_cmeq_asimdsame_only() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: cmeq_asimdsame_only" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::CMEQ);
+#ifdef VEDA64_STRINGS
     std::cout << "  cmeq_asimdsame_only: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_cmeq_asisdmisc_z() {
@@ -303,7 +369,9 @@ void test_cmeq_asisdmisc_z() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: cmeq_asisdmisc_z" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::CMEQ);
+#ifdef VEDA64_STRINGS
     std::cout << "  cmeq_asisdmisc_z: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_cmeq_asimdmisc_z() {
@@ -311,7 +379,9 @@ void test_cmeq_asimdmisc_z() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: cmeq_asimdmisc_z" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::CMEQ);
+#ifdef VEDA64_STRINGS
     std::cout << "  cmeq_asimdmisc_z: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_cmge_asisdsame_only() {
@@ -319,7 +389,9 @@ void test_cmge_asisdsame_only() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: cmge_asisdsame_only" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::CMGE);
+#ifdef VEDA64_STRINGS
     std::cout << "  cmge_asisdsame_only: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_cmge_asimdsame_only() {
@@ -327,7 +399,9 @@ void test_cmge_asimdsame_only() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: cmge_asimdsame_only" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::CMGE);
+#ifdef VEDA64_STRINGS
     std::cout << "  cmge_asimdsame_only: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_cmge_asisdmisc_z() {
@@ -335,7 +409,9 @@ void test_cmge_asisdmisc_z() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: cmge_asisdmisc_z" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::CMGE);
+#ifdef VEDA64_STRINGS
     std::cout << "  cmge_asisdmisc_z: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_cmge_asimdmisc_z() {
@@ -343,7 +419,9 @@ void test_cmge_asimdmisc_z() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: cmge_asimdmisc_z" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::CMGE);
+#ifdef VEDA64_STRINGS
     std::cout << "  cmge_asimdmisc_z: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_cmgt_asisdsame_only() {
@@ -351,7 +429,9 @@ void test_cmgt_asisdsame_only() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: cmgt_asisdsame_only" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::CMGT);
+#ifdef VEDA64_STRINGS
     std::cout << "  cmgt_asisdsame_only: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_cmgt_asimdsame_only() {
@@ -359,7 +439,9 @@ void test_cmgt_asimdsame_only() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: cmgt_asimdsame_only" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::CMGT);
+#ifdef VEDA64_STRINGS
     std::cout << "  cmgt_asimdsame_only: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_cmgt_asisdmisc_z() {
@@ -367,7 +449,9 @@ void test_cmgt_asisdmisc_z() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: cmgt_asisdmisc_z" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::CMGT);
+#ifdef VEDA64_STRINGS
     std::cout << "  cmgt_asisdmisc_z: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_cmgt_asimdmisc_z() {
@@ -375,7 +459,9 @@ void test_cmgt_asimdmisc_z() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: cmgt_asimdmisc_z" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::CMGT);
+#ifdef VEDA64_STRINGS
     std::cout << "  cmgt_asimdmisc_z: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_cmhi_asisdsame_only() {
@@ -383,7 +469,9 @@ void test_cmhi_asisdsame_only() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: cmhi_asisdsame_only" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::CMHI);
+#ifdef VEDA64_STRINGS
     std::cout << "  cmhi_asisdsame_only: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_cmhi_asimdsame_only() {
@@ -391,7 +479,9 @@ void test_cmhi_asimdsame_only() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: cmhi_asimdsame_only" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::CMHI);
+#ifdef VEDA64_STRINGS
     std::cout << "  cmhi_asimdsame_only: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_cmhs_asisdsame_only() {
@@ -399,7 +489,9 @@ void test_cmhs_asisdsame_only() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: cmhs_asisdsame_only" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::CMHS);
+#ifdef VEDA64_STRINGS
     std::cout << "  cmhs_asisdsame_only: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_cmhs_asimdsame_only() {
@@ -407,7 +499,9 @@ void test_cmhs_asimdsame_only() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: cmhs_asimdsame_only" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::CMHS);
+#ifdef VEDA64_STRINGS
     std::cout << "  cmhs_asimdsame_only: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_cmle_asisdmisc_z() {
@@ -415,7 +509,9 @@ void test_cmle_asisdmisc_z() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: cmle_asisdmisc_z" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::CMLE);
+#ifdef VEDA64_STRINGS
     std::cout << "  cmle_asisdmisc_z: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_cmle_asimdmisc_z() {
@@ -423,7 +519,9 @@ void test_cmle_asimdmisc_z() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: cmle_asimdmisc_z" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::CMLE);
+#ifdef VEDA64_STRINGS
     std::cout << "  cmle_asimdmisc_z: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_cmlt_asisdmisc_z() {
@@ -431,7 +529,9 @@ void test_cmlt_asisdmisc_z() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: cmlt_asisdmisc_z" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::CMLT);
+#ifdef VEDA64_STRINGS
     std::cout << "  cmlt_asisdmisc_z: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_cmlt_asimdmisc_z() {
@@ -439,7 +539,9 @@ void test_cmlt_asimdmisc_z() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: cmlt_asimdmisc_z" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::CMLT);
+#ifdef VEDA64_STRINGS
     std::cout << "  cmlt_asimdmisc_z: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_cmtst_asisdsame_only() {
@@ -447,7 +549,9 @@ void test_cmtst_asisdsame_only() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: cmtst_asisdsame_only" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::CMTST);
+#ifdef VEDA64_STRINGS
     std::cout << "  cmtst_asisdsame_only: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_cmtst_asimdsame_only() {
@@ -455,7 +559,9 @@ void test_cmtst_asimdsame_only() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: cmtst_asimdsame_only" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::CMTST);
+#ifdef VEDA64_STRINGS
     std::cout << "  cmtst_asimdsame_only: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_cnt_asimdmisc_r() {
@@ -463,7 +569,9 @@ void test_cnt_asimdmisc_r() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: cnt_asimdmisc_r" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::CNT);
+#ifdef VEDA64_STRINGS
     std::cout << "  cnt_asimdmisc_r: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_dup_asisdone_only() {
@@ -471,7 +579,9 @@ void test_dup_asisdone_only() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: dup_asisdone_only" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::DUP);
+#ifdef VEDA64_STRINGS
     std::cout << "  dup_asisdone_only: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_dup_asimdins_dv_v() {
@@ -479,7 +589,9 @@ void test_dup_asimdins_dv_v() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: dup_asimdins_dv_v" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::DUP);
+#ifdef VEDA64_STRINGS
     std::cout << "  dup_asimdins_dv_v: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_dup_asimdins_dr_r() {
@@ -487,7 +599,9 @@ void test_dup_asimdins_dr_r() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: dup_asimdins_dr_r" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::DUP);
+#ifdef VEDA64_STRINGS
     std::cout << "  dup_asimdins_dr_r: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_eor3_vvv16_crypto4() {
@@ -500,7 +614,9 @@ void test_eor3_vvv16_crypto4() {
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
     assert(result->operands[3].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  eor3_vvv16_crypto4: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_eor_asimdsame_only() {
@@ -508,7 +624,9 @@ void test_eor_asimdsame_only() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: eor_asimdsame_only" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::EOR);
+#ifdef VEDA64_STRINGS
     std::cout << "  eor_asimdsame_only: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ext_asimdext_only() {
@@ -516,21 +634,27 @@ void test_ext_asimdext_only() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: ext_asimdext_only" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::EXT);
+#ifdef VEDA64_STRINGS
     std::cout << "  ext_asimdext_only: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_f1cvtl_asimdmisc_v() {
     uint32_t insn = 0x2E217800u;
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: f1cvtl_asimdmisc_v" << std::endl; throw std::runtime_error("decode failed"); }
+#ifdef VEDA64_STRINGS
     std::cout << "  f1cvtl_asimdmisc_v: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_f2cvtl_asimdmisc_v() {
     uint32_t insn = 0x2E617800u;
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: f2cvtl_asimdmisc_v" << std::endl; throw std::runtime_error("decode failed"); }
+#ifdef VEDA64_STRINGS
     std::cout << "  f2cvtl_asimdmisc_v: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fabd_asisdsamefp16_only() {
@@ -538,7 +662,9 @@ void test_fabd_asisdsamefp16_only() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fabd_asisdsamefp16_only" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FABD);
+#ifdef VEDA64_STRINGS
     std::cout << "  fabd_asisdsamefp16_only: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fabd_asisdsame_only() {
@@ -550,7 +676,9 @@ void test_fabd_asisdsame_only() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  fabd_asisdsame_only: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fabd_asimdsamefp16_only() {
@@ -558,7 +686,9 @@ void test_fabd_asimdsamefp16_only() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fabd_asimdsamefp16_only" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FABD);
+#ifdef VEDA64_STRINGS
     std::cout << "  fabd_asimdsamefp16_only: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fabd_asimdsame_only() {
@@ -566,7 +696,9 @@ void test_fabd_asimdsame_only() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fabd_asimdsame_only" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FABD);
+#ifdef VEDA64_STRINGS
     std::cout << "  fabd_asimdsame_only: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fabs_asimdmiscfp16_r() {
@@ -574,7 +706,9 @@ void test_fabs_asimdmiscfp16_r() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fabs_asimdmiscfp16_r" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FABS);
+#ifdef VEDA64_STRINGS
     std::cout << "  fabs_asimdmiscfp16_r: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fabs_asimdmisc_r() {
@@ -582,7 +716,9 @@ void test_fabs_asimdmisc_r() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fabs_asimdmisc_r" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FABS);
+#ifdef VEDA64_STRINGS
     std::cout << "  fabs_asimdmisc_r: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fabs_h_floatdp1() {
@@ -590,7 +726,9 @@ void test_fabs_h_floatdp1() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fabs_h_floatdp1" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FABS);
+#ifdef VEDA64_STRINGS
     std::cout << "  fabs_h_floatdp1: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fabs_s_floatdp1() {
@@ -598,7 +736,9 @@ void test_fabs_s_floatdp1() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fabs_s_floatdp1" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FABS);
+#ifdef VEDA64_STRINGS
     std::cout << "  fabs_s_floatdp1: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fabs_d_floatdp1() {
@@ -606,7 +746,9 @@ void test_fabs_d_floatdp1() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fabs_d_floatdp1" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FABS);
+#ifdef VEDA64_STRINGS
     std::cout << "  fabs_d_floatdp1: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_facge_asisdsamefp16_only() {
@@ -614,7 +756,9 @@ void test_facge_asisdsamefp16_only() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: facge_asisdsamefp16_only" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FACGE);
+#ifdef VEDA64_STRINGS
     std::cout << "  facge_asisdsamefp16_only: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_facge_asisdsame_only() {
@@ -626,7 +770,9 @@ void test_facge_asisdsame_only() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  facge_asisdsame_only: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_facge_asimdsamefp16_only() {
@@ -634,7 +780,9 @@ void test_facge_asimdsamefp16_only() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: facge_asimdsamefp16_only" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FACGE);
+#ifdef VEDA64_STRINGS
     std::cout << "  facge_asimdsamefp16_only: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_facge_asimdsame_only() {
@@ -642,7 +790,9 @@ void test_facge_asimdsame_only() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: facge_asimdsame_only" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FACGE);
+#ifdef VEDA64_STRINGS
     std::cout << "  facge_asimdsame_only: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_facgt_asisdsamefp16_only() {
@@ -650,7 +800,9 @@ void test_facgt_asisdsamefp16_only() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: facgt_asisdsamefp16_only" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FACGT);
+#ifdef VEDA64_STRINGS
     std::cout << "  facgt_asisdsamefp16_only: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_facgt_asisdsame_only() {
@@ -662,7 +814,9 @@ void test_facgt_asisdsame_only() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  facgt_asisdsame_only: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_facgt_asimdsamefp16_only() {
@@ -670,7 +824,9 @@ void test_facgt_asimdsamefp16_only() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: facgt_asimdsamefp16_only" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FACGT);
+#ifdef VEDA64_STRINGS
     std::cout << "  facgt_asimdsamefp16_only: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_facgt_asimdsame_only() {
@@ -678,7 +834,9 @@ void test_facgt_asimdsame_only() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: facgt_asimdsame_only" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FACGT);
+#ifdef VEDA64_STRINGS
     std::cout << "  facgt_asimdsame_only: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fadd_asimdsamefp16_only() {
@@ -686,7 +844,9 @@ void test_fadd_asimdsamefp16_only() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fadd_asimdsamefp16_only" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FADD);
+#ifdef VEDA64_STRINGS
     std::cout << "  fadd_asimdsamefp16_only: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fadd_asimdsame_only() {
@@ -694,7 +854,9 @@ void test_fadd_asimdsame_only() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fadd_asimdsame_only" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FADD);
+#ifdef VEDA64_STRINGS
     std::cout << "  fadd_asimdsame_only: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fadd_h_floatdp2() {
@@ -702,7 +864,9 @@ void test_fadd_h_floatdp2() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fadd_h_floatdp2" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FADD);
+#ifdef VEDA64_STRINGS
     std::cout << "  fadd_h_floatdp2: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fadd_s_floatdp2() {
@@ -710,7 +874,9 @@ void test_fadd_s_floatdp2() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fadd_s_floatdp2" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FADD);
+#ifdef VEDA64_STRINGS
     std::cout << "  fadd_s_floatdp2: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fadd_d_floatdp2() {
@@ -718,7 +884,9 @@ void test_fadd_d_floatdp2() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fadd_d_floatdp2" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FADD);
+#ifdef VEDA64_STRINGS
     std::cout << "  fadd_d_floatdp2: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_faddp_asisdpair_only_h() {
@@ -726,7 +894,9 @@ void test_faddp_asisdpair_only_h() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: faddp_asisdpair_only_h" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FADDP);
+#ifdef VEDA64_STRINGS
     std::cout << "  faddp_asisdpair_only_h: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_faddp_asisdpair_only_sd() {
@@ -734,7 +904,9 @@ void test_faddp_asisdpair_only_sd() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: faddp_asisdpair_only_sd" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FADDP);
+#ifdef VEDA64_STRINGS
     std::cout << "  faddp_asisdpair_only_sd: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_faddp_asimdsamefp16_only() {
@@ -742,7 +914,9 @@ void test_faddp_asimdsamefp16_only() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: faddp_asimdsamefp16_only" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FADDP);
+#ifdef VEDA64_STRINGS
     std::cout << "  faddp_asimdsamefp16_only: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_faddp_asimdsame_only() {
@@ -750,7 +924,9 @@ void test_faddp_asimdsame_only() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: faddp_asimdsame_only" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FADDP);
+#ifdef VEDA64_STRINGS
     std::cout << "  faddp_asimdsame_only: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_famax_asimdsamefp16_only() {
@@ -758,7 +934,9 @@ void test_famax_asimdsamefp16_only() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: famax_asimdsamefp16_only" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FAMAX);
+#ifdef VEDA64_STRINGS
     std::cout << "  famax_asimdsamefp16_only: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_famax_asimdsame_only() {
@@ -766,7 +944,9 @@ void test_famax_asimdsame_only() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: famax_asimdsame_only" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FAMAX);
+#ifdef VEDA64_STRINGS
     std::cout << "  famax_asimdsame_only: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_famin_asimdsamefp16_only() {
@@ -774,7 +954,9 @@ void test_famin_asimdsamefp16_only() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: famin_asimdsamefp16_only" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FAMIN);
+#ifdef VEDA64_STRINGS
     std::cout << "  famin_asimdsamefp16_only: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_famin_asimdsame_only() {
@@ -782,7 +964,9 @@ void test_famin_asimdsame_only() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: famin_asimdsame_only" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FAMIN);
+#ifdef VEDA64_STRINGS
     std::cout << "  famin_asimdsame_only: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fcadd_asimdsame2_c() {
@@ -790,7 +974,9 @@ void test_fcadd_asimdsame2_c() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fcadd_asimdsame2_c" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FCADD);
+#ifdef VEDA64_STRINGS
     std::cout << "  fcadd_asimdsame2_c: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fccmp_h_floatccmp() {
@@ -798,7 +984,9 @@ void test_fccmp_h_floatccmp() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fccmp_h_floatccmp" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FCCMP);
+#ifdef VEDA64_STRINGS
     std::cout << "  fccmp_h_floatccmp: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fccmp_s_floatccmp() {
@@ -806,7 +994,9 @@ void test_fccmp_s_floatccmp() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fccmp_s_floatccmp" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FCCMP);
+#ifdef VEDA64_STRINGS
     std::cout << "  fccmp_s_floatccmp: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fccmp_d_floatccmp() {
@@ -814,7 +1004,9 @@ void test_fccmp_d_floatccmp() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fccmp_d_floatccmp" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FCCMP);
+#ifdef VEDA64_STRINGS
     std::cout << "  fccmp_d_floatccmp: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fccmpe_h_floatccmp() {
@@ -822,7 +1014,9 @@ void test_fccmpe_h_floatccmp() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fccmpe_h_floatccmp" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FCCMPE);
+#ifdef VEDA64_STRINGS
     std::cout << "  fccmpe_h_floatccmp: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fccmpe_s_floatccmp() {
@@ -830,7 +1024,9 @@ void test_fccmpe_s_floatccmp() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fccmpe_s_floatccmp" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FCCMPE);
+#ifdef VEDA64_STRINGS
     std::cout << "  fccmpe_s_floatccmp: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fccmpe_d_floatccmp() {
@@ -838,7 +1034,9 @@ void test_fccmpe_d_floatccmp() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fccmpe_d_floatccmp" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FCCMPE);
+#ifdef VEDA64_STRINGS
     std::cout << "  fccmpe_d_floatccmp: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fcmeq_asisdsamefp16_only() {
@@ -846,7 +1044,9 @@ void test_fcmeq_asisdsamefp16_only() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fcmeq_asisdsamefp16_only" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FCMEQ);
+#ifdef VEDA64_STRINGS
     std::cout << "  fcmeq_asisdsamefp16_only: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fcmeq_asisdsame_only() {
@@ -858,7 +1058,9 @@ void test_fcmeq_asisdsame_only() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  fcmeq_asisdsame_only: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fcmeq_asimdsamefp16_only() {
@@ -866,7 +1068,9 @@ void test_fcmeq_asimdsamefp16_only() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fcmeq_asimdsamefp16_only" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FCMEQ);
+#ifdef VEDA64_STRINGS
     std::cout << "  fcmeq_asimdsamefp16_only: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fcmeq_asimdsame_only() {
@@ -874,7 +1078,9 @@ void test_fcmeq_asimdsame_only() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fcmeq_asimdsame_only" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FCMEQ);
+#ifdef VEDA64_STRINGS
     std::cout << "  fcmeq_asimdsame_only: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fcmeq_asisdmiscfp16_fz() {
@@ -882,7 +1088,9 @@ void test_fcmeq_asisdmiscfp16_fz() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fcmeq_asisdmiscfp16_fz" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FCMEQ);
+#ifdef VEDA64_STRINGS
     std::cout << "  fcmeq_asisdmiscfp16_fz: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fcmeq_asisdmisc_fz() {
@@ -893,7 +1101,9 @@ void test_fcmeq_asisdmisc_fz() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  fcmeq_asisdmisc_fz: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fcmeq_asimdmiscfp16_fz() {
@@ -901,7 +1111,9 @@ void test_fcmeq_asimdmiscfp16_fz() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fcmeq_asimdmiscfp16_fz" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FCMEQ);
+#ifdef VEDA64_STRINGS
     std::cout << "  fcmeq_asimdmiscfp16_fz: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fcmeq_asimdmisc_fz() {
@@ -909,7 +1121,9 @@ void test_fcmeq_asimdmisc_fz() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fcmeq_asimdmisc_fz" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FCMEQ);
+#ifdef VEDA64_STRINGS
     std::cout << "  fcmeq_asimdmisc_fz: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fcmge_asisdsamefp16_only() {
@@ -917,7 +1131,9 @@ void test_fcmge_asisdsamefp16_only() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fcmge_asisdsamefp16_only" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FCMGE);
+#ifdef VEDA64_STRINGS
     std::cout << "  fcmge_asisdsamefp16_only: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fcmge_asisdsame_only() {
@@ -929,7 +1145,9 @@ void test_fcmge_asisdsame_only() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  fcmge_asisdsame_only: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fcmge_asimdsamefp16_only() {
@@ -937,7 +1155,9 @@ void test_fcmge_asimdsamefp16_only() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fcmge_asimdsamefp16_only" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FCMGE);
+#ifdef VEDA64_STRINGS
     std::cout << "  fcmge_asimdsamefp16_only: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fcmge_asimdsame_only() {
@@ -945,7 +1165,9 @@ void test_fcmge_asimdsame_only() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fcmge_asimdsame_only" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FCMGE);
+#ifdef VEDA64_STRINGS
     std::cout << "  fcmge_asimdsame_only: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fcmge_asisdmiscfp16_fz() {
@@ -953,7 +1175,9 @@ void test_fcmge_asisdmiscfp16_fz() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fcmge_asisdmiscfp16_fz" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FCMGE);
+#ifdef VEDA64_STRINGS
     std::cout << "  fcmge_asisdmiscfp16_fz: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fcmge_asisdmisc_fz() {
@@ -964,7 +1188,9 @@ void test_fcmge_asisdmisc_fz() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  fcmge_asisdmisc_fz: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fcmge_asimdmiscfp16_fz() {
@@ -972,7 +1198,9 @@ void test_fcmge_asimdmiscfp16_fz() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fcmge_asimdmiscfp16_fz" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FCMGE);
+#ifdef VEDA64_STRINGS
     std::cout << "  fcmge_asimdmiscfp16_fz: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fcmge_asimdmisc_fz() {
@@ -980,7 +1208,9 @@ void test_fcmge_asimdmisc_fz() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fcmge_asimdmisc_fz" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FCMGE);
+#ifdef VEDA64_STRINGS
     std::cout << "  fcmge_asimdmisc_fz: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fcmgt_asisdsamefp16_only() {
@@ -988,7 +1218,9 @@ void test_fcmgt_asisdsamefp16_only() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fcmgt_asisdsamefp16_only" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FCMGT);
+#ifdef VEDA64_STRINGS
     std::cout << "  fcmgt_asisdsamefp16_only: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fcmgt_asisdsame_only() {
@@ -1000,7 +1232,9 @@ void test_fcmgt_asisdsame_only() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  fcmgt_asisdsame_only: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fcmgt_asimdsamefp16_only() {
@@ -1008,7 +1242,9 @@ void test_fcmgt_asimdsamefp16_only() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fcmgt_asimdsamefp16_only" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FCMGT);
+#ifdef VEDA64_STRINGS
     std::cout << "  fcmgt_asimdsamefp16_only: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fcmgt_asimdsame_only() {
@@ -1016,7 +1252,9 @@ void test_fcmgt_asimdsame_only() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fcmgt_asimdsame_only" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FCMGT);
+#ifdef VEDA64_STRINGS
     std::cout << "  fcmgt_asimdsame_only: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fcmgt_asisdmiscfp16_fz() {
@@ -1024,7 +1262,9 @@ void test_fcmgt_asisdmiscfp16_fz() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fcmgt_asisdmiscfp16_fz" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FCMGT);
+#ifdef VEDA64_STRINGS
     std::cout << "  fcmgt_asisdmiscfp16_fz: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fcmgt_asisdmisc_fz() {
@@ -1035,7 +1275,9 @@ void test_fcmgt_asisdmisc_fz() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  fcmgt_asisdmisc_fz: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fcmgt_asimdmiscfp16_fz() {
@@ -1043,7 +1285,9 @@ void test_fcmgt_asimdmiscfp16_fz() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fcmgt_asimdmiscfp16_fz" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FCMGT);
+#ifdef VEDA64_STRINGS
     std::cout << "  fcmgt_asimdmiscfp16_fz: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fcmgt_asimdmisc_fz() {
@@ -1051,7 +1295,9 @@ void test_fcmgt_asimdmisc_fz() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fcmgt_asimdmisc_fz" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FCMGT);
+#ifdef VEDA64_STRINGS
     std::cout << "  fcmgt_asimdmisc_fz: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fcmla_advsimd_elt() {
@@ -1059,7 +1305,9 @@ void test_fcmla_advsimd_elt() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fcmla_advsimd_elt" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FCMLA);
+#ifdef VEDA64_STRINGS
     std::cout << "  fcmla_advsimd_elt: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fcmla_asimdsame2_c() {
@@ -1067,7 +1315,9 @@ void test_fcmla_asimdsame2_c() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fcmla_asimdsame2_c" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FCMLA);
+#ifdef VEDA64_STRINGS
     std::cout << "  fcmla_asimdsame2_c: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fcmle_asisdmiscfp16_fz() {
@@ -1075,7 +1325,9 @@ void test_fcmle_asisdmiscfp16_fz() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fcmle_asisdmiscfp16_fz" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FCMLE);
+#ifdef VEDA64_STRINGS
     std::cout << "  fcmle_asisdmiscfp16_fz: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fcmle_asisdmisc_fz() {
@@ -1086,7 +1338,9 @@ void test_fcmle_asisdmisc_fz() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  fcmle_asisdmisc_fz: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fcmle_asimdmiscfp16_fz() {
@@ -1094,7 +1348,9 @@ void test_fcmle_asimdmiscfp16_fz() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fcmle_asimdmiscfp16_fz" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FCMLE);
+#ifdef VEDA64_STRINGS
     std::cout << "  fcmle_asimdmiscfp16_fz: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fcmle_asimdmisc_fz() {
@@ -1102,7 +1358,9 @@ void test_fcmle_asimdmisc_fz() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fcmle_asimdmisc_fz" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FCMLE);
+#ifdef VEDA64_STRINGS
     std::cout << "  fcmle_asimdmisc_fz: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fcmlt_asisdmiscfp16_fz() {
@@ -1110,7 +1368,9 @@ void test_fcmlt_asisdmiscfp16_fz() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fcmlt_asisdmiscfp16_fz" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FCMLT);
+#ifdef VEDA64_STRINGS
     std::cout << "  fcmlt_asisdmiscfp16_fz: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fcmlt_asisdmisc_fz() {
@@ -1121,7 +1381,9 @@ void test_fcmlt_asisdmisc_fz() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  fcmlt_asisdmisc_fz: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fcmlt_asimdmiscfp16_fz() {
@@ -1129,7 +1391,9 @@ void test_fcmlt_asimdmiscfp16_fz() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fcmlt_asimdmiscfp16_fz" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FCMLT);
+#ifdef VEDA64_STRINGS
     std::cout << "  fcmlt_asimdmiscfp16_fz: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fcmlt_asimdmisc_fz() {
@@ -1137,7 +1401,9 @@ void test_fcmlt_asimdmisc_fz() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fcmlt_asimdmisc_fz" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FCMLT);
+#ifdef VEDA64_STRINGS
     std::cout << "  fcmlt_asimdmisc_fz: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fcmp_h_floatcmp() {
@@ -1145,7 +1411,9 @@ void test_fcmp_h_floatcmp() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fcmp_h_floatcmp" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FCMP);
+#ifdef VEDA64_STRINGS
     std::cout << "  fcmp_h_floatcmp: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fcmp_hz_floatcmp() {
@@ -1153,7 +1421,9 @@ void test_fcmp_hz_floatcmp() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fcmp_hz_floatcmp" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FCMP);
+#ifdef VEDA64_STRINGS
     std::cout << "  fcmp_hz_floatcmp: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fcmp_s_floatcmp() {
@@ -1161,7 +1431,9 @@ void test_fcmp_s_floatcmp() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fcmp_s_floatcmp" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FCMP);
+#ifdef VEDA64_STRINGS
     std::cout << "  fcmp_s_floatcmp: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fcmp_sz_floatcmp() {
@@ -1169,7 +1441,9 @@ void test_fcmp_sz_floatcmp() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fcmp_sz_floatcmp" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FCMP);
+#ifdef VEDA64_STRINGS
     std::cout << "  fcmp_sz_floatcmp: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fcmp_d_floatcmp() {
@@ -1177,7 +1451,9 @@ void test_fcmp_d_floatcmp() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fcmp_d_floatcmp" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FCMP);
+#ifdef VEDA64_STRINGS
     std::cout << "  fcmp_d_floatcmp: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fcmp_dz_floatcmp() {
@@ -1185,7 +1461,9 @@ void test_fcmp_dz_floatcmp() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fcmp_dz_floatcmp" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FCMP);
+#ifdef VEDA64_STRINGS
     std::cout << "  fcmp_dz_floatcmp: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fcmpe_h_floatcmp() {
@@ -1193,7 +1471,9 @@ void test_fcmpe_h_floatcmp() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fcmpe_h_floatcmp" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FCMPE);
+#ifdef VEDA64_STRINGS
     std::cout << "  fcmpe_h_floatcmp: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fcmpe_hz_floatcmp() {
@@ -1201,7 +1481,9 @@ void test_fcmpe_hz_floatcmp() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fcmpe_hz_floatcmp" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FCMPE);
+#ifdef VEDA64_STRINGS
     std::cout << "  fcmpe_hz_floatcmp: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fcmpe_s_floatcmp() {
@@ -1209,7 +1491,9 @@ void test_fcmpe_s_floatcmp() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fcmpe_s_floatcmp" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FCMPE);
+#ifdef VEDA64_STRINGS
     std::cout << "  fcmpe_s_floatcmp: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fcmpe_sz_floatcmp() {
@@ -1217,7 +1501,9 @@ void test_fcmpe_sz_floatcmp() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fcmpe_sz_floatcmp" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FCMPE);
+#ifdef VEDA64_STRINGS
     std::cout << "  fcmpe_sz_floatcmp: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fcmpe_d_floatcmp() {
@@ -1225,7 +1511,9 @@ void test_fcmpe_d_floatcmp() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fcmpe_d_floatcmp" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FCMPE);
+#ifdef VEDA64_STRINGS
     std::cout << "  fcmpe_d_floatcmp: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fcmpe_dz_floatcmp() {
@@ -1233,7 +1521,9 @@ void test_fcmpe_dz_floatcmp() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fcmpe_dz_floatcmp" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FCMPE);
+#ifdef VEDA64_STRINGS
     std::cout << "  fcmpe_dz_floatcmp: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fcsel_h_floatsel() {
@@ -1241,7 +1531,9 @@ void test_fcsel_h_floatsel() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fcsel_h_floatsel" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FCSEL);
+#ifdef VEDA64_STRINGS
     std::cout << "  fcsel_h_floatsel: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fcsel_s_floatsel() {
@@ -1249,7 +1541,9 @@ void test_fcsel_s_floatsel() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fcsel_s_floatsel" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FCSEL);
+#ifdef VEDA64_STRINGS
     std::cout << "  fcsel_s_floatsel: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fcsel_d_floatsel() {
@@ -1257,7 +1551,9 @@ void test_fcsel_d_floatsel() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fcsel_d_floatsel" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FCSEL);
+#ifdef VEDA64_STRINGS
     std::cout << "  fcsel_d_floatsel: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fcvt_sh_floatdp1() {
@@ -1265,7 +1561,9 @@ void test_fcvt_sh_floatdp1() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fcvt_sh_floatdp1" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FCVT);
+#ifdef VEDA64_STRINGS
     std::cout << "  fcvt_sh_floatdp1: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fcvt_dh_floatdp1() {
@@ -1273,7 +1571,9 @@ void test_fcvt_dh_floatdp1() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fcvt_dh_floatdp1" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FCVT);
+#ifdef VEDA64_STRINGS
     std::cout << "  fcvt_dh_floatdp1: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fcvt_hs_floatdp1() {
@@ -1281,7 +1581,9 @@ void test_fcvt_hs_floatdp1() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fcvt_hs_floatdp1" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FCVT);
+#ifdef VEDA64_STRINGS
     std::cout << "  fcvt_hs_floatdp1: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fcvt_ds_floatdp1() {
@@ -1289,7 +1591,9 @@ void test_fcvt_ds_floatdp1() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fcvt_ds_floatdp1" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FCVT);
+#ifdef VEDA64_STRINGS
     std::cout << "  fcvt_ds_floatdp1: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fcvt_hd_floatdp1() {
@@ -1297,7 +1601,9 @@ void test_fcvt_hd_floatdp1() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fcvt_hd_floatdp1" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FCVT);
+#ifdef VEDA64_STRINGS
     std::cout << "  fcvt_hd_floatdp1: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fcvt_sd_floatdp1() {
@@ -1305,7 +1611,9 @@ void test_fcvt_sd_floatdp1() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fcvt_sd_floatdp1" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FCVT);
+#ifdef VEDA64_STRINGS
     std::cout << "  fcvt_sd_floatdp1: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fcvtas_asisdmiscfp16_r() {
@@ -1313,7 +1621,9 @@ void test_fcvtas_asisdmiscfp16_r() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fcvtas_asisdmiscfp16_r" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FCVTAS);
+#ifdef VEDA64_STRINGS
     std::cout << "  fcvtas_asisdmiscfp16_r: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fcvtas_asisdmisc_r() {
@@ -1324,7 +1634,9 @@ void test_fcvtas_asisdmisc_r() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  fcvtas_asisdmisc_r: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fcvtas_asimdmiscfp16_r() {
@@ -1332,7 +1644,9 @@ void test_fcvtas_asimdmiscfp16_r() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fcvtas_asimdmiscfp16_r" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FCVTAS);
+#ifdef VEDA64_STRINGS
     std::cout << "  fcvtas_asimdmiscfp16_r: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fcvtas_asimdmisc_r() {
@@ -1340,7 +1654,9 @@ void test_fcvtas_asimdmisc_r() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fcvtas_asimdmisc_r" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FCVTAS);
+#ifdef VEDA64_STRINGS
     std::cout << "  fcvtas_asimdmisc_r: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fcvtas_32h_float2int() {
@@ -1348,7 +1664,9 @@ void test_fcvtas_32h_float2int() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fcvtas_32h_float2int" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FCVTAS);
+#ifdef VEDA64_STRINGS
     std::cout << "  fcvtas_32h_float2int: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fcvtas_64h_float2int() {
@@ -1356,7 +1674,9 @@ void test_fcvtas_64h_float2int() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fcvtas_64h_float2int" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FCVTAS);
+#ifdef VEDA64_STRINGS
     std::cout << "  fcvtas_64h_float2int: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fcvtas_32s_float2int() {
@@ -1364,7 +1684,9 @@ void test_fcvtas_32s_float2int() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fcvtas_32s_float2int" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FCVTAS);
+#ifdef VEDA64_STRINGS
     std::cout << "  fcvtas_32s_float2int: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fcvtas_64s_float2int() {
@@ -1372,7 +1694,9 @@ void test_fcvtas_64s_float2int() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fcvtas_64s_float2int" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FCVTAS);
+#ifdef VEDA64_STRINGS
     std::cout << "  fcvtas_64s_float2int: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fcvtas_32d_float2int() {
@@ -1380,7 +1704,9 @@ void test_fcvtas_32d_float2int() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fcvtas_32d_float2int" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FCVTAS);
+#ifdef VEDA64_STRINGS
     std::cout << "  fcvtas_32d_float2int: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fcvtas_64d_float2int() {
@@ -1388,7 +1714,9 @@ void test_fcvtas_64d_float2int() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fcvtas_64d_float2int" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FCVTAS);
+#ifdef VEDA64_STRINGS
     std::cout << "  fcvtas_64d_float2int: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fcvtas_sisd_32h() {
@@ -1396,7 +1724,9 @@ void test_fcvtas_sisd_32h() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fcvtas_sisd_32h" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FCVTAS);
+#ifdef VEDA64_STRINGS
     std::cout << "  fcvtas_sisd_32h: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fcvtas_sisd_64h() {
@@ -1404,7 +1734,9 @@ void test_fcvtas_sisd_64h() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fcvtas_sisd_64h" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FCVTAS);
+#ifdef VEDA64_STRINGS
     std::cout << "  fcvtas_sisd_64h: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fcvtas_sisd_64s() {
@@ -1412,7 +1744,9 @@ void test_fcvtas_sisd_64s() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fcvtas_sisd_64s" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FCVTAS);
+#ifdef VEDA64_STRINGS
     std::cout << "  fcvtas_sisd_64s: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fcvtas_sisd_32d() {
@@ -1420,7 +1754,9 @@ void test_fcvtas_sisd_32d() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fcvtas_sisd_32d" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FCVTAS);
+#ifdef VEDA64_STRINGS
     std::cout << "  fcvtas_sisd_32d: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fcvtau_asisdmiscfp16_r() {
@@ -1428,7 +1764,9 @@ void test_fcvtau_asisdmiscfp16_r() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fcvtau_asisdmiscfp16_r" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FCVTAU);
+#ifdef VEDA64_STRINGS
     std::cout << "  fcvtau_asisdmiscfp16_r: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fcvtau_asisdmisc_r() {
@@ -1439,7 +1777,9 @@ void test_fcvtau_asisdmisc_r() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  fcvtau_asisdmisc_r: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fcvtau_asimdmiscfp16_r() {
@@ -1447,7 +1787,9 @@ void test_fcvtau_asimdmiscfp16_r() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fcvtau_asimdmiscfp16_r" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FCVTAU);
+#ifdef VEDA64_STRINGS
     std::cout << "  fcvtau_asimdmiscfp16_r: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fcvtau_asimdmisc_r() {
@@ -1455,7 +1797,9 @@ void test_fcvtau_asimdmisc_r() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fcvtau_asimdmisc_r" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FCVTAU);
+#ifdef VEDA64_STRINGS
     std::cout << "  fcvtau_asimdmisc_r: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fcvtau_32h_float2int() {
@@ -1463,7 +1807,9 @@ void test_fcvtau_32h_float2int() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fcvtau_32h_float2int" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FCVTAU);
+#ifdef VEDA64_STRINGS
     std::cout << "  fcvtau_32h_float2int: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fcvtau_64h_float2int() {
@@ -1471,7 +1817,9 @@ void test_fcvtau_64h_float2int() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fcvtau_64h_float2int" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FCVTAU);
+#ifdef VEDA64_STRINGS
     std::cout << "  fcvtau_64h_float2int: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fcvtau_32s_float2int() {
@@ -1479,7 +1827,9 @@ void test_fcvtau_32s_float2int() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fcvtau_32s_float2int" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FCVTAU);
+#ifdef VEDA64_STRINGS
     std::cout << "  fcvtau_32s_float2int: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fcvtau_64s_float2int() {
@@ -1487,7 +1837,9 @@ void test_fcvtau_64s_float2int() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fcvtau_64s_float2int" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FCVTAU);
+#ifdef VEDA64_STRINGS
     std::cout << "  fcvtau_64s_float2int: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fcvtau_32d_float2int() {
@@ -1495,7 +1847,9 @@ void test_fcvtau_32d_float2int() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fcvtau_32d_float2int" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FCVTAU);
+#ifdef VEDA64_STRINGS
     std::cout << "  fcvtau_32d_float2int: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fcvtau_64d_float2int() {
@@ -1503,7 +1857,9 @@ void test_fcvtau_64d_float2int() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fcvtau_64d_float2int" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FCVTAU);
+#ifdef VEDA64_STRINGS
     std::cout << "  fcvtau_64d_float2int: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fcvtau_sisd_32h() {
@@ -1511,7 +1867,9 @@ void test_fcvtau_sisd_32h() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fcvtau_sisd_32h" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FCVTAU);
+#ifdef VEDA64_STRINGS
     std::cout << "  fcvtau_sisd_32h: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fcvtau_sisd_64h() {
@@ -1519,7 +1877,9 @@ void test_fcvtau_sisd_64h() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fcvtau_sisd_64h" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FCVTAU);
+#ifdef VEDA64_STRINGS
     std::cout << "  fcvtau_sisd_64h: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fcvtau_sisd_64s() {
@@ -1527,7 +1887,9 @@ void test_fcvtau_sisd_64s() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fcvtau_sisd_64s" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FCVTAU);
+#ifdef VEDA64_STRINGS
     std::cout << "  fcvtau_sisd_64s: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fcvtau_sisd_32d() {
@@ -1535,7 +1897,9 @@ void test_fcvtau_sisd_32d() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fcvtau_sisd_32d" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FCVTAU);
+#ifdef VEDA64_STRINGS
     std::cout << "  fcvtau_sisd_32d: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fcvtl_asimdmisc_l() {
@@ -1543,7 +1907,9 @@ void test_fcvtl_asimdmisc_l() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fcvtl_asimdmisc_l" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FCVTL);
+#ifdef VEDA64_STRINGS
     std::cout << "  fcvtl_asimdmisc_l: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fcvtms_asisdmiscfp16_r() {
@@ -1551,7 +1917,9 @@ void test_fcvtms_asisdmiscfp16_r() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fcvtms_asisdmiscfp16_r" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FCVTMS);
+#ifdef VEDA64_STRINGS
     std::cout << "  fcvtms_asisdmiscfp16_r: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fcvtms_asisdmisc_r() {
@@ -1562,7 +1930,9 @@ void test_fcvtms_asisdmisc_r() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  fcvtms_asisdmisc_r: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fcvtms_asimdmiscfp16_r() {
@@ -1570,7 +1940,9 @@ void test_fcvtms_asimdmiscfp16_r() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fcvtms_asimdmiscfp16_r" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FCVTMS);
+#ifdef VEDA64_STRINGS
     std::cout << "  fcvtms_asimdmiscfp16_r: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fcvtms_asimdmisc_r() {
@@ -1578,7 +1950,9 @@ void test_fcvtms_asimdmisc_r() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fcvtms_asimdmisc_r" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FCVTMS);
+#ifdef VEDA64_STRINGS
     std::cout << "  fcvtms_asimdmisc_r: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fcvtms_32h_float2int() {
@@ -1586,7 +1960,9 @@ void test_fcvtms_32h_float2int() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fcvtms_32h_float2int" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FCVTMS);
+#ifdef VEDA64_STRINGS
     std::cout << "  fcvtms_32h_float2int: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fcvtms_64h_float2int() {
@@ -1594,7 +1970,9 @@ void test_fcvtms_64h_float2int() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fcvtms_64h_float2int" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FCVTMS);
+#ifdef VEDA64_STRINGS
     std::cout << "  fcvtms_64h_float2int: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fcvtms_32s_float2int() {
@@ -1602,7 +1980,9 @@ void test_fcvtms_32s_float2int() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fcvtms_32s_float2int" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FCVTMS);
+#ifdef VEDA64_STRINGS
     std::cout << "  fcvtms_32s_float2int: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fcvtms_64s_float2int() {
@@ -1610,7 +1990,9 @@ void test_fcvtms_64s_float2int() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fcvtms_64s_float2int" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FCVTMS);
+#ifdef VEDA64_STRINGS
     std::cout << "  fcvtms_64s_float2int: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fcvtms_32d_float2int() {
@@ -1618,7 +2000,9 @@ void test_fcvtms_32d_float2int() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fcvtms_32d_float2int" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FCVTMS);
+#ifdef VEDA64_STRINGS
     std::cout << "  fcvtms_32d_float2int: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fcvtms_64d_float2int() {
@@ -1626,7 +2010,9 @@ void test_fcvtms_64d_float2int() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fcvtms_64d_float2int" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FCVTMS);
+#ifdef VEDA64_STRINGS
     std::cout << "  fcvtms_64d_float2int: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fcvtms_sisd_32h() {
@@ -1634,7 +2020,9 @@ void test_fcvtms_sisd_32h() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fcvtms_sisd_32h" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FCVTMS);
+#ifdef VEDA64_STRINGS
     std::cout << "  fcvtms_sisd_32h: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fcvtms_sisd_64h() {
@@ -1642,7 +2030,9 @@ void test_fcvtms_sisd_64h() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fcvtms_sisd_64h" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FCVTMS);
+#ifdef VEDA64_STRINGS
     std::cout << "  fcvtms_sisd_64h: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fcvtms_sisd_64s() {
@@ -1650,7 +2040,9 @@ void test_fcvtms_sisd_64s() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fcvtms_sisd_64s" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FCVTMS);
+#ifdef VEDA64_STRINGS
     std::cout << "  fcvtms_sisd_64s: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fcvtms_sisd_32d() {
@@ -1658,7 +2050,9 @@ void test_fcvtms_sisd_32d() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fcvtms_sisd_32d" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FCVTMS);
+#ifdef VEDA64_STRINGS
     std::cout << "  fcvtms_sisd_32d: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fcvtmu_asisdmiscfp16_r() {
@@ -1666,7 +2060,9 @@ void test_fcvtmu_asisdmiscfp16_r() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fcvtmu_asisdmiscfp16_r" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FCVTMU);
+#ifdef VEDA64_STRINGS
     std::cout << "  fcvtmu_asisdmiscfp16_r: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fcvtmu_asisdmisc_r() {
@@ -1677,7 +2073,9 @@ void test_fcvtmu_asisdmisc_r() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  fcvtmu_asisdmisc_r: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fcvtmu_asimdmiscfp16_r() {
@@ -1685,7 +2083,9 @@ void test_fcvtmu_asimdmiscfp16_r() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fcvtmu_asimdmiscfp16_r" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FCVTMU);
+#ifdef VEDA64_STRINGS
     std::cout << "  fcvtmu_asimdmiscfp16_r: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fcvtmu_asimdmisc_r() {
@@ -1693,7 +2093,9 @@ void test_fcvtmu_asimdmisc_r() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fcvtmu_asimdmisc_r" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FCVTMU);
+#ifdef VEDA64_STRINGS
     std::cout << "  fcvtmu_asimdmisc_r: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fcvtmu_32h_float2int() {
@@ -1701,7 +2103,9 @@ void test_fcvtmu_32h_float2int() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fcvtmu_32h_float2int" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FCVTMU);
+#ifdef VEDA64_STRINGS
     std::cout << "  fcvtmu_32h_float2int: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fcvtmu_64h_float2int() {
@@ -1709,7 +2113,9 @@ void test_fcvtmu_64h_float2int() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fcvtmu_64h_float2int" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FCVTMU);
+#ifdef VEDA64_STRINGS
     std::cout << "  fcvtmu_64h_float2int: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fcvtmu_32s_float2int() {
@@ -1717,7 +2123,9 @@ void test_fcvtmu_32s_float2int() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fcvtmu_32s_float2int" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FCVTMU);
+#ifdef VEDA64_STRINGS
     std::cout << "  fcvtmu_32s_float2int: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fcvtmu_64s_float2int() {
@@ -1725,7 +2133,9 @@ void test_fcvtmu_64s_float2int() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fcvtmu_64s_float2int" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FCVTMU);
+#ifdef VEDA64_STRINGS
     std::cout << "  fcvtmu_64s_float2int: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fcvtmu_32d_float2int() {
@@ -1733,7 +2143,9 @@ void test_fcvtmu_32d_float2int() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fcvtmu_32d_float2int" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FCVTMU);
+#ifdef VEDA64_STRINGS
     std::cout << "  fcvtmu_32d_float2int: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fcvtmu_64d_float2int() {
@@ -1741,7 +2153,9 @@ void test_fcvtmu_64d_float2int() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fcvtmu_64d_float2int" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FCVTMU);
+#ifdef VEDA64_STRINGS
     std::cout << "  fcvtmu_64d_float2int: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fcvtmu_sisd_32h() {
@@ -1749,7 +2163,9 @@ void test_fcvtmu_sisd_32h() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fcvtmu_sisd_32h" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FCVTMU);
+#ifdef VEDA64_STRINGS
     std::cout << "  fcvtmu_sisd_32h: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fcvtmu_sisd_64h() {
@@ -1757,7 +2173,9 @@ void test_fcvtmu_sisd_64h() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fcvtmu_sisd_64h" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FCVTMU);
+#ifdef VEDA64_STRINGS
     std::cout << "  fcvtmu_sisd_64h: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fcvtmu_sisd_64s() {
@@ -1765,7 +2183,9 @@ void test_fcvtmu_sisd_64s() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fcvtmu_sisd_64s" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FCVTMU);
+#ifdef VEDA64_STRINGS
     std::cout << "  fcvtmu_sisd_64s: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fcvtmu_sisd_32d() {
@@ -1773,7 +2193,9 @@ void test_fcvtmu_sisd_32d() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fcvtmu_sisd_32d" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FCVTMU);
+#ifdef VEDA64_STRINGS
     std::cout << "  fcvtmu_sisd_32d: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fcvtn_asimdmisc_n() {
@@ -1781,7 +2203,9 @@ void test_fcvtn_asimdmisc_n() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fcvtn_asimdmisc_n" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FCVTN);
+#ifdef VEDA64_STRINGS
     std::cout << "  fcvtn_asimdmisc_n: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fcvtn_asimdsame2_d() {
@@ -1789,7 +2213,9 @@ void test_fcvtn_asimdsame2_d() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fcvtn_asimdsame2_d" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FCVTN);
+#ifdef VEDA64_STRINGS
     std::cout << "  fcvtn_asimdsame2_d: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fcvtn_asimdsame2_h() {
@@ -1797,7 +2223,9 @@ void test_fcvtn_asimdsame2_h() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fcvtn_asimdsame2_h" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FCVTN);
+#ifdef VEDA64_STRINGS
     std::cout << "  fcvtn_asimdsame2_h: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fcvtns_asisdmiscfp16_r() {
@@ -1805,7 +2233,9 @@ void test_fcvtns_asisdmiscfp16_r() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fcvtns_asisdmiscfp16_r" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FCVTNS);
+#ifdef VEDA64_STRINGS
     std::cout << "  fcvtns_asisdmiscfp16_r: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fcvtns_asisdmisc_r() {
@@ -1816,7 +2246,9 @@ void test_fcvtns_asisdmisc_r() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  fcvtns_asisdmisc_r: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fcvtns_asimdmiscfp16_r() {
@@ -1824,7 +2256,9 @@ void test_fcvtns_asimdmiscfp16_r() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fcvtns_asimdmiscfp16_r" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FCVTNS);
+#ifdef VEDA64_STRINGS
     std::cout << "  fcvtns_asimdmiscfp16_r: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fcvtns_asimdmisc_r() {
@@ -1832,7 +2266,9 @@ void test_fcvtns_asimdmisc_r() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fcvtns_asimdmisc_r" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FCVTNS);
+#ifdef VEDA64_STRINGS
     std::cout << "  fcvtns_asimdmisc_r: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fcvtns_32h_float2int() {
@@ -1840,7 +2276,9 @@ void test_fcvtns_32h_float2int() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fcvtns_32h_float2int" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FCVTNS);
+#ifdef VEDA64_STRINGS
     std::cout << "  fcvtns_32h_float2int: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fcvtns_64h_float2int() {
@@ -1848,7 +2286,9 @@ void test_fcvtns_64h_float2int() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fcvtns_64h_float2int" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FCVTNS);
+#ifdef VEDA64_STRINGS
     std::cout << "  fcvtns_64h_float2int: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fcvtns_32s_float2int() {
@@ -1856,7 +2296,9 @@ void test_fcvtns_32s_float2int() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fcvtns_32s_float2int" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FCVTNS);
+#ifdef VEDA64_STRINGS
     std::cout << "  fcvtns_32s_float2int: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fcvtns_64s_float2int() {
@@ -1864,7 +2306,9 @@ void test_fcvtns_64s_float2int() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fcvtns_64s_float2int" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FCVTNS);
+#ifdef VEDA64_STRINGS
     std::cout << "  fcvtns_64s_float2int: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fcvtns_32d_float2int() {
@@ -1872,7 +2316,9 @@ void test_fcvtns_32d_float2int() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fcvtns_32d_float2int" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FCVTNS);
+#ifdef VEDA64_STRINGS
     std::cout << "  fcvtns_32d_float2int: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fcvtns_64d_float2int() {
@@ -1880,7 +2326,9 @@ void test_fcvtns_64d_float2int() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fcvtns_64d_float2int" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FCVTNS);
+#ifdef VEDA64_STRINGS
     std::cout << "  fcvtns_64d_float2int: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fcvtns_sisd_32h() {
@@ -1888,7 +2336,9 @@ void test_fcvtns_sisd_32h() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fcvtns_sisd_32h" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FCVTNS);
+#ifdef VEDA64_STRINGS
     std::cout << "  fcvtns_sisd_32h: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fcvtns_sisd_64h() {
@@ -1896,7 +2346,9 @@ void test_fcvtns_sisd_64h() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fcvtns_sisd_64h" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FCVTNS);
+#ifdef VEDA64_STRINGS
     std::cout << "  fcvtns_sisd_64h: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fcvtns_sisd_64s() {
@@ -1904,7 +2356,9 @@ void test_fcvtns_sisd_64s() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fcvtns_sisd_64s" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FCVTNS);
+#ifdef VEDA64_STRINGS
     std::cout << "  fcvtns_sisd_64s: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fcvtns_sisd_32d() {
@@ -1912,7 +2366,9 @@ void test_fcvtns_sisd_32d() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fcvtns_sisd_32d" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FCVTNS);
+#ifdef VEDA64_STRINGS
     std::cout << "  fcvtns_sisd_32d: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fcvtnu_asisdmiscfp16_r() {
@@ -1920,7 +2376,9 @@ void test_fcvtnu_asisdmiscfp16_r() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fcvtnu_asisdmiscfp16_r" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FCVTNU);
+#ifdef VEDA64_STRINGS
     std::cout << "  fcvtnu_asisdmiscfp16_r: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fcvtnu_asisdmisc_r() {
@@ -1931,7 +2389,9 @@ void test_fcvtnu_asisdmisc_r() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  fcvtnu_asisdmisc_r: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fcvtnu_asimdmiscfp16_r() {
@@ -1939,7 +2399,9 @@ void test_fcvtnu_asimdmiscfp16_r() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fcvtnu_asimdmiscfp16_r" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FCVTNU);
+#ifdef VEDA64_STRINGS
     std::cout << "  fcvtnu_asimdmiscfp16_r: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fcvtnu_asimdmisc_r() {
@@ -1947,7 +2409,9 @@ void test_fcvtnu_asimdmisc_r() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fcvtnu_asimdmisc_r" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FCVTNU);
+#ifdef VEDA64_STRINGS
     std::cout << "  fcvtnu_asimdmisc_r: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fcvtnu_32h_float2int() {
@@ -1955,7 +2419,9 @@ void test_fcvtnu_32h_float2int() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fcvtnu_32h_float2int" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FCVTNU);
+#ifdef VEDA64_STRINGS
     std::cout << "  fcvtnu_32h_float2int: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fcvtnu_64h_float2int() {
@@ -1963,7 +2429,9 @@ void test_fcvtnu_64h_float2int() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fcvtnu_64h_float2int" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FCVTNU);
+#ifdef VEDA64_STRINGS
     std::cout << "  fcvtnu_64h_float2int: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fcvtnu_32s_float2int() {
@@ -1971,7 +2439,9 @@ void test_fcvtnu_32s_float2int() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fcvtnu_32s_float2int" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FCVTNU);
+#ifdef VEDA64_STRINGS
     std::cout << "  fcvtnu_32s_float2int: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fcvtnu_64s_float2int() {
@@ -1979,7 +2449,9 @@ void test_fcvtnu_64s_float2int() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fcvtnu_64s_float2int" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FCVTNU);
+#ifdef VEDA64_STRINGS
     std::cout << "  fcvtnu_64s_float2int: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fcvtnu_32d_float2int() {
@@ -1987,7 +2459,9 @@ void test_fcvtnu_32d_float2int() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fcvtnu_32d_float2int" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FCVTNU);
+#ifdef VEDA64_STRINGS
     std::cout << "  fcvtnu_32d_float2int: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fcvtnu_64d_float2int() {
@@ -1995,7 +2469,9 @@ void test_fcvtnu_64d_float2int() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fcvtnu_64d_float2int" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FCVTNU);
+#ifdef VEDA64_STRINGS
     std::cout << "  fcvtnu_64d_float2int: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fcvtnu_sisd_32h() {
@@ -2003,7 +2479,9 @@ void test_fcvtnu_sisd_32h() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fcvtnu_sisd_32h" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FCVTNU);
+#ifdef VEDA64_STRINGS
     std::cout << "  fcvtnu_sisd_32h: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fcvtnu_sisd_64h() {
@@ -2011,7 +2489,9 @@ void test_fcvtnu_sisd_64h() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fcvtnu_sisd_64h" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FCVTNU);
+#ifdef VEDA64_STRINGS
     std::cout << "  fcvtnu_sisd_64h: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fcvtnu_sisd_64s() {
@@ -2019,7 +2499,9 @@ void test_fcvtnu_sisd_64s() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fcvtnu_sisd_64s" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FCVTNU);
+#ifdef VEDA64_STRINGS
     std::cout << "  fcvtnu_sisd_64s: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fcvtnu_sisd_32d() {
@@ -2027,7 +2509,9 @@ void test_fcvtnu_sisd_32d() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fcvtnu_sisd_32d" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FCVTNU);
+#ifdef VEDA64_STRINGS
     std::cout << "  fcvtnu_sisd_32d: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fcvtps_asisdmiscfp16_r() {
@@ -2035,7 +2519,9 @@ void test_fcvtps_asisdmiscfp16_r() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fcvtps_asisdmiscfp16_r" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FCVTPS);
+#ifdef VEDA64_STRINGS
     std::cout << "  fcvtps_asisdmiscfp16_r: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fcvtps_asisdmisc_r() {
@@ -2046,7 +2532,9 @@ void test_fcvtps_asisdmisc_r() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  fcvtps_asisdmisc_r: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fcvtps_asimdmiscfp16_r() {
@@ -2054,7 +2542,9 @@ void test_fcvtps_asimdmiscfp16_r() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fcvtps_asimdmiscfp16_r" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FCVTPS);
+#ifdef VEDA64_STRINGS
     std::cout << "  fcvtps_asimdmiscfp16_r: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fcvtps_asimdmisc_r() {
@@ -2062,7 +2552,9 @@ void test_fcvtps_asimdmisc_r() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fcvtps_asimdmisc_r" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FCVTPS);
+#ifdef VEDA64_STRINGS
     std::cout << "  fcvtps_asimdmisc_r: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fcvtps_32h_float2int() {
@@ -2070,7 +2562,9 @@ void test_fcvtps_32h_float2int() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fcvtps_32h_float2int" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FCVTPS);
+#ifdef VEDA64_STRINGS
     std::cout << "  fcvtps_32h_float2int: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fcvtps_64h_float2int() {
@@ -2078,7 +2572,9 @@ void test_fcvtps_64h_float2int() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fcvtps_64h_float2int" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FCVTPS);
+#ifdef VEDA64_STRINGS
     std::cout << "  fcvtps_64h_float2int: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fcvtps_32s_float2int() {
@@ -2086,7 +2582,9 @@ void test_fcvtps_32s_float2int() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fcvtps_32s_float2int" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FCVTPS);
+#ifdef VEDA64_STRINGS
     std::cout << "  fcvtps_32s_float2int: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fcvtps_64s_float2int() {
@@ -2094,7 +2592,9 @@ void test_fcvtps_64s_float2int() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fcvtps_64s_float2int" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FCVTPS);
+#ifdef VEDA64_STRINGS
     std::cout << "  fcvtps_64s_float2int: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fcvtps_32d_float2int() {
@@ -2102,7 +2602,9 @@ void test_fcvtps_32d_float2int() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fcvtps_32d_float2int" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FCVTPS);
+#ifdef VEDA64_STRINGS
     std::cout << "  fcvtps_32d_float2int: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fcvtps_64d_float2int() {
@@ -2110,7 +2612,9 @@ void test_fcvtps_64d_float2int() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fcvtps_64d_float2int" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FCVTPS);
+#ifdef VEDA64_STRINGS
     std::cout << "  fcvtps_64d_float2int: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fcvtps_sisd_32h() {
@@ -2118,7 +2622,9 @@ void test_fcvtps_sisd_32h() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fcvtps_sisd_32h" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FCVTPS);
+#ifdef VEDA64_STRINGS
     std::cout << "  fcvtps_sisd_32h: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fcvtps_sisd_64h() {
@@ -2126,7 +2632,9 @@ void test_fcvtps_sisd_64h() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fcvtps_sisd_64h" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FCVTPS);
+#ifdef VEDA64_STRINGS
     std::cout << "  fcvtps_sisd_64h: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fcvtps_sisd_64s() {
@@ -2134,7 +2642,9 @@ void test_fcvtps_sisd_64s() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fcvtps_sisd_64s" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FCVTPS);
+#ifdef VEDA64_STRINGS
     std::cout << "  fcvtps_sisd_64s: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fcvtps_sisd_32d() {
@@ -2142,7 +2652,9 @@ void test_fcvtps_sisd_32d() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fcvtps_sisd_32d" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FCVTPS);
+#ifdef VEDA64_STRINGS
     std::cout << "  fcvtps_sisd_32d: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fcvtpu_asisdmiscfp16_r() {
@@ -2150,7 +2662,9 @@ void test_fcvtpu_asisdmiscfp16_r() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fcvtpu_asisdmiscfp16_r" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FCVTPU);
+#ifdef VEDA64_STRINGS
     std::cout << "  fcvtpu_asisdmiscfp16_r: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fcvtpu_asisdmisc_r() {
@@ -2161,7 +2675,9 @@ void test_fcvtpu_asisdmisc_r() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  fcvtpu_asisdmisc_r: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fcvtpu_asimdmiscfp16_r() {
@@ -2169,7 +2685,9 @@ void test_fcvtpu_asimdmiscfp16_r() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fcvtpu_asimdmiscfp16_r" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FCVTPU);
+#ifdef VEDA64_STRINGS
     std::cout << "  fcvtpu_asimdmiscfp16_r: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fcvtpu_asimdmisc_r() {
@@ -2177,7 +2695,9 @@ void test_fcvtpu_asimdmisc_r() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fcvtpu_asimdmisc_r" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FCVTPU);
+#ifdef VEDA64_STRINGS
     std::cout << "  fcvtpu_asimdmisc_r: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fcvtpu_32h_float2int() {
@@ -2185,7 +2705,9 @@ void test_fcvtpu_32h_float2int() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fcvtpu_32h_float2int" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FCVTPU);
+#ifdef VEDA64_STRINGS
     std::cout << "  fcvtpu_32h_float2int: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fcvtpu_64h_float2int() {
@@ -2193,7 +2715,9 @@ void test_fcvtpu_64h_float2int() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fcvtpu_64h_float2int" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FCVTPU);
+#ifdef VEDA64_STRINGS
     std::cout << "  fcvtpu_64h_float2int: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fcvtpu_32s_float2int() {
@@ -2201,7 +2725,9 @@ void test_fcvtpu_32s_float2int() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fcvtpu_32s_float2int" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FCVTPU);
+#ifdef VEDA64_STRINGS
     std::cout << "  fcvtpu_32s_float2int: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fcvtpu_64s_float2int() {
@@ -2209,7 +2735,9 @@ void test_fcvtpu_64s_float2int() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fcvtpu_64s_float2int" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FCVTPU);
+#ifdef VEDA64_STRINGS
     std::cout << "  fcvtpu_64s_float2int: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fcvtpu_32d_float2int() {
@@ -2217,7 +2745,9 @@ void test_fcvtpu_32d_float2int() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fcvtpu_32d_float2int" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FCVTPU);
+#ifdef VEDA64_STRINGS
     std::cout << "  fcvtpu_32d_float2int: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fcvtpu_64d_float2int() {
@@ -2225,7 +2755,9 @@ void test_fcvtpu_64d_float2int() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fcvtpu_64d_float2int" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FCVTPU);
+#ifdef VEDA64_STRINGS
     std::cout << "  fcvtpu_64d_float2int: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fcvtpu_sisd_32h() {
@@ -2233,7 +2765,9 @@ void test_fcvtpu_sisd_32h() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fcvtpu_sisd_32h" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FCVTPU);
+#ifdef VEDA64_STRINGS
     std::cout << "  fcvtpu_sisd_32h: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fcvtpu_sisd_64h() {
@@ -2241,7 +2775,9 @@ void test_fcvtpu_sisd_64h() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fcvtpu_sisd_64h" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FCVTPU);
+#ifdef VEDA64_STRINGS
     std::cout << "  fcvtpu_sisd_64h: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fcvtpu_sisd_64s() {
@@ -2249,7 +2785,9 @@ void test_fcvtpu_sisd_64s() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fcvtpu_sisd_64s" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FCVTPU);
+#ifdef VEDA64_STRINGS
     std::cout << "  fcvtpu_sisd_64s: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fcvtpu_sisd_32d() {
@@ -2257,7 +2795,9 @@ void test_fcvtpu_sisd_32d() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fcvtpu_sisd_32d" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FCVTPU);
+#ifdef VEDA64_STRINGS
     std::cout << "  fcvtpu_sisd_32d: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fcvtxn_asisdmisc_n() {
@@ -2265,7 +2805,9 @@ void test_fcvtxn_asisdmisc_n() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fcvtxn_asisdmisc_n" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FCVTXN);
+#ifdef VEDA64_STRINGS
     std::cout << "  fcvtxn_asisdmisc_n: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fcvtxn_asimdmisc_n() {
@@ -2273,7 +2815,9 @@ void test_fcvtxn_asimdmisc_n() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fcvtxn_asimdmisc_n" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FCVTXN);
+#ifdef VEDA64_STRINGS
     std::cout << "  fcvtxn_asimdmisc_n: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fcvtzs_asisdshf_c() {
@@ -2281,7 +2825,9 @@ void test_fcvtzs_asisdshf_c() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fcvtzs_asisdshf_c" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FCVTZS);
+#ifdef VEDA64_STRINGS
     std::cout << "  fcvtzs_asisdshf_c: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fcvtzs_asimdshf_c() {
@@ -2289,7 +2835,9 @@ void test_fcvtzs_asimdshf_c() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fcvtzs_asimdshf_c" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FCVTZS);
+#ifdef VEDA64_STRINGS
     std::cout << "  fcvtzs_asimdshf_c: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fcvtzs_asisdmiscfp16_r() {
@@ -2297,7 +2845,9 @@ void test_fcvtzs_asisdmiscfp16_r() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fcvtzs_asisdmiscfp16_r" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FCVTZS);
+#ifdef VEDA64_STRINGS
     std::cout << "  fcvtzs_asisdmiscfp16_r: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fcvtzs_asisdmisc_r() {
@@ -2308,7 +2858,9 @@ void test_fcvtzs_asisdmisc_r() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  fcvtzs_asisdmisc_r: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fcvtzs_asimdmiscfp16_r() {
@@ -2316,7 +2868,9 @@ void test_fcvtzs_asimdmiscfp16_r() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fcvtzs_asimdmiscfp16_r" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FCVTZS);
+#ifdef VEDA64_STRINGS
     std::cout << "  fcvtzs_asimdmiscfp16_r: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fcvtzs_asimdmisc_r() {
@@ -2324,7 +2878,9 @@ void test_fcvtzs_asimdmisc_r() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fcvtzs_asimdmisc_r" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FCVTZS);
+#ifdef VEDA64_STRINGS
     std::cout << "  fcvtzs_asimdmisc_r: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fcvtzs_32h_float2fix() {
@@ -2332,7 +2888,9 @@ void test_fcvtzs_32h_float2fix() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fcvtzs_32h_float2fix" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FCVTZS);
+#ifdef VEDA64_STRINGS
     std::cout << "  fcvtzs_32h_float2fix: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fcvtzs_64h_float2fix() {
@@ -2340,7 +2898,9 @@ void test_fcvtzs_64h_float2fix() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fcvtzs_64h_float2fix" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FCVTZS);
+#ifdef VEDA64_STRINGS
     std::cout << "  fcvtzs_64h_float2fix: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fcvtzs_32s_float2fix() {
@@ -2348,7 +2908,9 @@ void test_fcvtzs_32s_float2fix() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fcvtzs_32s_float2fix" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FCVTZS);
+#ifdef VEDA64_STRINGS
     std::cout << "  fcvtzs_32s_float2fix: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fcvtzs_64s_float2fix() {
@@ -2356,7 +2918,9 @@ void test_fcvtzs_64s_float2fix() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fcvtzs_64s_float2fix" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FCVTZS);
+#ifdef VEDA64_STRINGS
     std::cout << "  fcvtzs_64s_float2fix: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fcvtzs_32d_float2fix() {
@@ -2364,7 +2928,9 @@ void test_fcvtzs_32d_float2fix() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fcvtzs_32d_float2fix" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FCVTZS);
+#ifdef VEDA64_STRINGS
     std::cout << "  fcvtzs_32d_float2fix: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fcvtzs_64d_float2fix() {
@@ -2372,7 +2938,9 @@ void test_fcvtzs_64d_float2fix() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fcvtzs_64d_float2fix" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FCVTZS);
+#ifdef VEDA64_STRINGS
     std::cout << "  fcvtzs_64d_float2fix: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fcvtzs_32h_float2int() {
@@ -2380,7 +2948,9 @@ void test_fcvtzs_32h_float2int() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fcvtzs_32h_float2int" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FCVTZS);
+#ifdef VEDA64_STRINGS
     std::cout << "  fcvtzs_32h_float2int: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fcvtzs_64h_float2int() {
@@ -2388,7 +2958,9 @@ void test_fcvtzs_64h_float2int() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fcvtzs_64h_float2int" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FCVTZS);
+#ifdef VEDA64_STRINGS
     std::cout << "  fcvtzs_64h_float2int: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fcvtzs_32s_float2int() {
@@ -2396,7 +2968,9 @@ void test_fcvtzs_32s_float2int() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fcvtzs_32s_float2int" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FCVTZS);
+#ifdef VEDA64_STRINGS
     std::cout << "  fcvtzs_32s_float2int: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fcvtzs_64s_float2int() {
@@ -2404,7 +2978,9 @@ void test_fcvtzs_64s_float2int() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fcvtzs_64s_float2int" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FCVTZS);
+#ifdef VEDA64_STRINGS
     std::cout << "  fcvtzs_64s_float2int: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fcvtzs_32d_float2int() {
@@ -2412,7 +2988,9 @@ void test_fcvtzs_32d_float2int() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fcvtzs_32d_float2int" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FCVTZS);
+#ifdef VEDA64_STRINGS
     std::cout << "  fcvtzs_32d_float2int: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fcvtzs_64d_float2int() {
@@ -2420,7 +2998,9 @@ void test_fcvtzs_64d_float2int() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fcvtzs_64d_float2int" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FCVTZS);
+#ifdef VEDA64_STRINGS
     std::cout << "  fcvtzs_64d_float2int: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fcvtzs_sisd_32h() {
@@ -2428,7 +3008,9 @@ void test_fcvtzs_sisd_32h() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fcvtzs_sisd_32h" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FCVTZS);
+#ifdef VEDA64_STRINGS
     std::cout << "  fcvtzs_sisd_32h: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fcvtzs_sisd_64h() {
@@ -2436,7 +3018,9 @@ void test_fcvtzs_sisd_64h() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fcvtzs_sisd_64h" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FCVTZS);
+#ifdef VEDA64_STRINGS
     std::cout << "  fcvtzs_sisd_64h: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fcvtzs_sisd_64s() {
@@ -2444,7 +3028,9 @@ void test_fcvtzs_sisd_64s() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fcvtzs_sisd_64s" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FCVTZS);
+#ifdef VEDA64_STRINGS
     std::cout << "  fcvtzs_sisd_64s: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fcvtzs_sisd_32d() {
@@ -2452,7 +3038,9 @@ void test_fcvtzs_sisd_32d() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fcvtzs_sisd_32d" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FCVTZS);
+#ifdef VEDA64_STRINGS
     std::cout << "  fcvtzs_sisd_32d: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fcvtzu_asisdshf_c() {
@@ -2460,7 +3048,9 @@ void test_fcvtzu_asisdshf_c() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fcvtzu_asisdshf_c" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FCVTZU);
+#ifdef VEDA64_STRINGS
     std::cout << "  fcvtzu_asisdshf_c: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fcvtzu_asimdshf_c() {
@@ -2468,7 +3058,9 @@ void test_fcvtzu_asimdshf_c() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fcvtzu_asimdshf_c" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FCVTZU);
+#ifdef VEDA64_STRINGS
     std::cout << "  fcvtzu_asimdshf_c: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fcvtzu_asisdmiscfp16_r() {
@@ -2476,7 +3068,9 @@ void test_fcvtzu_asisdmiscfp16_r() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fcvtzu_asisdmiscfp16_r" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FCVTZU);
+#ifdef VEDA64_STRINGS
     std::cout << "  fcvtzu_asisdmiscfp16_r: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fcvtzu_asisdmisc_r() {
@@ -2487,7 +3081,9 @@ void test_fcvtzu_asisdmisc_r() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  fcvtzu_asisdmisc_r: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fcvtzu_asimdmiscfp16_r() {
@@ -2495,7 +3091,9 @@ void test_fcvtzu_asimdmiscfp16_r() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fcvtzu_asimdmiscfp16_r" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FCVTZU);
+#ifdef VEDA64_STRINGS
     std::cout << "  fcvtzu_asimdmiscfp16_r: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fcvtzu_asimdmisc_r() {
@@ -2503,7 +3101,9 @@ void test_fcvtzu_asimdmisc_r() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fcvtzu_asimdmisc_r" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FCVTZU);
+#ifdef VEDA64_STRINGS
     std::cout << "  fcvtzu_asimdmisc_r: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fcvtzu_32h_float2fix() {
@@ -2511,7 +3111,9 @@ void test_fcvtzu_32h_float2fix() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fcvtzu_32h_float2fix" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FCVTZU);
+#ifdef VEDA64_STRINGS
     std::cout << "  fcvtzu_32h_float2fix: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fcvtzu_64h_float2fix() {
@@ -2519,7 +3121,9 @@ void test_fcvtzu_64h_float2fix() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fcvtzu_64h_float2fix" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FCVTZU);
+#ifdef VEDA64_STRINGS
     std::cout << "  fcvtzu_64h_float2fix: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fcvtzu_32s_float2fix() {
@@ -2527,7 +3131,9 @@ void test_fcvtzu_32s_float2fix() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fcvtzu_32s_float2fix" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FCVTZU);
+#ifdef VEDA64_STRINGS
     std::cout << "  fcvtzu_32s_float2fix: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fcvtzu_64s_float2fix() {
@@ -2535,7 +3141,9 @@ void test_fcvtzu_64s_float2fix() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fcvtzu_64s_float2fix" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FCVTZU);
+#ifdef VEDA64_STRINGS
     std::cout << "  fcvtzu_64s_float2fix: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fcvtzu_32d_float2fix() {
@@ -2543,7 +3151,9 @@ void test_fcvtzu_32d_float2fix() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fcvtzu_32d_float2fix" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FCVTZU);
+#ifdef VEDA64_STRINGS
     std::cout << "  fcvtzu_32d_float2fix: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fcvtzu_64d_float2fix() {
@@ -2551,7 +3161,9 @@ void test_fcvtzu_64d_float2fix() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fcvtzu_64d_float2fix" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FCVTZU);
+#ifdef VEDA64_STRINGS
     std::cout << "  fcvtzu_64d_float2fix: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fcvtzu_32h_float2int() {
@@ -2559,7 +3171,9 @@ void test_fcvtzu_32h_float2int() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fcvtzu_32h_float2int" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FCVTZU);
+#ifdef VEDA64_STRINGS
     std::cout << "  fcvtzu_32h_float2int: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fcvtzu_64h_float2int() {
@@ -2567,7 +3181,9 @@ void test_fcvtzu_64h_float2int() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fcvtzu_64h_float2int" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FCVTZU);
+#ifdef VEDA64_STRINGS
     std::cout << "  fcvtzu_64h_float2int: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fcvtzu_32s_float2int() {
@@ -2575,7 +3191,9 @@ void test_fcvtzu_32s_float2int() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fcvtzu_32s_float2int" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FCVTZU);
+#ifdef VEDA64_STRINGS
     std::cout << "  fcvtzu_32s_float2int: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fcvtzu_64s_float2int() {
@@ -2583,7 +3201,9 @@ void test_fcvtzu_64s_float2int() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fcvtzu_64s_float2int" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FCVTZU);
+#ifdef VEDA64_STRINGS
     std::cout << "  fcvtzu_64s_float2int: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fcvtzu_32d_float2int() {
@@ -2591,7 +3211,9 @@ void test_fcvtzu_32d_float2int() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fcvtzu_32d_float2int" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FCVTZU);
+#ifdef VEDA64_STRINGS
     std::cout << "  fcvtzu_32d_float2int: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fcvtzu_64d_float2int() {
@@ -2599,7 +3221,9 @@ void test_fcvtzu_64d_float2int() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fcvtzu_64d_float2int" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FCVTZU);
+#ifdef VEDA64_STRINGS
     std::cout << "  fcvtzu_64d_float2int: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fcvtzu_sisd_32h() {
@@ -2607,7 +3231,9 @@ void test_fcvtzu_sisd_32h() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fcvtzu_sisd_32h" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FCVTZU);
+#ifdef VEDA64_STRINGS
     std::cout << "  fcvtzu_sisd_32h: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fcvtzu_sisd_64h() {
@@ -2615,7 +3241,9 @@ void test_fcvtzu_sisd_64h() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fcvtzu_sisd_64h" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FCVTZU);
+#ifdef VEDA64_STRINGS
     std::cout << "  fcvtzu_sisd_64h: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fcvtzu_sisd_64s() {
@@ -2623,7 +3251,9 @@ void test_fcvtzu_sisd_64s() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fcvtzu_sisd_64s" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FCVTZU);
+#ifdef VEDA64_STRINGS
     std::cout << "  fcvtzu_sisd_64s: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fcvtzu_sisd_32d() {
@@ -2631,7 +3261,9 @@ void test_fcvtzu_sisd_32d() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fcvtzu_sisd_32d" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FCVTZU);
+#ifdef VEDA64_STRINGS
     std::cout << "  fcvtzu_sisd_32d: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fdiv_asimdsamefp16_only() {
@@ -2639,7 +3271,9 @@ void test_fdiv_asimdsamefp16_only() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fdiv_asimdsamefp16_only" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FDIV);
+#ifdef VEDA64_STRINGS
     std::cout << "  fdiv_asimdsamefp16_only: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fdiv_asimdsame_only() {
@@ -2647,7 +3281,9 @@ void test_fdiv_asimdsame_only() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fdiv_asimdsame_only" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FDIV);
+#ifdef VEDA64_STRINGS
     std::cout << "  fdiv_asimdsame_only: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fdiv_h_floatdp2() {
@@ -2655,7 +3291,9 @@ void test_fdiv_h_floatdp2() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fdiv_h_floatdp2" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FDIV);
+#ifdef VEDA64_STRINGS
     std::cout << "  fdiv_h_floatdp2: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fdiv_s_floatdp2() {
@@ -2663,7 +3301,9 @@ void test_fdiv_s_floatdp2() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fdiv_s_floatdp2" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FDIV);
+#ifdef VEDA64_STRINGS
     std::cout << "  fdiv_s_floatdp2: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fdiv_d_floatdp2() {
@@ -2671,7 +3311,9 @@ void test_fdiv_d_floatdp2() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fdiv_d_floatdp2" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FDIV);
+#ifdef VEDA64_STRINGS
     std::cout << "  fdiv_d_floatdp2: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fdot_asimdelem_g() {
@@ -2679,7 +3321,9 @@ void test_fdot_asimdelem_g() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fdot_asimdelem_g" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FDOT);
+#ifdef VEDA64_STRINGS
     std::cout << "  fdot_asimdelem_g: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fdot_asimdsame2_d() {
@@ -2687,7 +3331,9 @@ void test_fdot_asimdsame2_d() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fdot_asimdsame2_d" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FDOT);
+#ifdef VEDA64_STRINGS
     std::cout << "  fdot_asimdsame2_d: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fdot_asimdelem_d() {
@@ -2695,7 +3341,9 @@ void test_fdot_asimdelem_d() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fdot_asimdelem_d" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FDOT);
+#ifdef VEDA64_STRINGS
     std::cout << "  fdot_asimdelem_d: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fdot_asimdsame2_dd() {
@@ -2703,7 +3351,9 @@ void test_fdot_asimdsame2_dd() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fdot_asimdsame2_dd" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FDOT);
+#ifdef VEDA64_STRINGS
     std::cout << "  fdot_asimdsame2_dd: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fdot_asimdelem_fp16fp32() {
@@ -2711,7 +3361,9 @@ void test_fdot_asimdelem_fp16fp32() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fdot_asimdelem_fp16fp32" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FDOT);
+#ifdef VEDA64_STRINGS
     std::cout << "  fdot_asimdelem_fp16fp32: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fdot_asimdsame2_fp16fp32() {
@@ -2719,7 +3371,9 @@ void test_fdot_asimdsame2_fp16fp32() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fdot_asimdsame2_fp16fp32" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FDOT);
+#ifdef VEDA64_STRINGS
     std::cout << "  fdot_asimdsame2_fp16fp32: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fjcvtzs_32d_float2int() {
@@ -2727,7 +3381,9 @@ void test_fjcvtzs_32d_float2int() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fjcvtzs_32d_float2int" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FJCVTZS);
+#ifdef VEDA64_STRINGS
     std::cout << "  fjcvtzs_32d_float2int: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fmadd_h_floatdp3() {
@@ -2735,7 +3391,9 @@ void test_fmadd_h_floatdp3() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fmadd_h_floatdp3" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FMADD);
+#ifdef VEDA64_STRINGS
     std::cout << "  fmadd_h_floatdp3: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fmadd_s_floatdp3() {
@@ -2743,7 +3401,9 @@ void test_fmadd_s_floatdp3() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fmadd_s_floatdp3" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FMADD);
+#ifdef VEDA64_STRINGS
     std::cout << "  fmadd_s_floatdp3: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fmadd_d_floatdp3() {
@@ -2751,7 +3411,9 @@ void test_fmadd_d_floatdp3() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fmadd_d_floatdp3" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FMADD);
+#ifdef VEDA64_STRINGS
     std::cout << "  fmadd_d_floatdp3: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fmax_asimdsamefp16_only() {
@@ -2759,7 +3421,9 @@ void test_fmax_asimdsamefp16_only() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fmax_asimdsamefp16_only" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FMAX);
+#ifdef VEDA64_STRINGS
     std::cout << "  fmax_asimdsamefp16_only: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fmax_asimdsame_only() {
@@ -2767,7 +3431,9 @@ void test_fmax_asimdsame_only() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fmax_asimdsame_only" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FMAX);
+#ifdef VEDA64_STRINGS
     std::cout << "  fmax_asimdsame_only: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fmax_h_floatdp2() {
@@ -2775,7 +3441,9 @@ void test_fmax_h_floatdp2() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fmax_h_floatdp2" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FMAX);
+#ifdef VEDA64_STRINGS
     std::cout << "  fmax_h_floatdp2: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fmax_s_floatdp2() {
@@ -2783,7 +3451,9 @@ void test_fmax_s_floatdp2() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fmax_s_floatdp2" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FMAX);
+#ifdef VEDA64_STRINGS
     std::cout << "  fmax_s_floatdp2: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fmax_d_floatdp2() {
@@ -2791,7 +3461,9 @@ void test_fmax_d_floatdp2() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fmax_d_floatdp2" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FMAX);
+#ifdef VEDA64_STRINGS
     std::cout << "  fmax_d_floatdp2: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fmaxnm_asimdsamefp16_only() {
@@ -2799,7 +3471,9 @@ void test_fmaxnm_asimdsamefp16_only() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fmaxnm_asimdsamefp16_only" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FMAXNM);
+#ifdef VEDA64_STRINGS
     std::cout << "  fmaxnm_asimdsamefp16_only: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fmaxnm_asimdsame_only() {
@@ -2807,7 +3481,9 @@ void test_fmaxnm_asimdsame_only() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fmaxnm_asimdsame_only" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FMAXNM);
+#ifdef VEDA64_STRINGS
     std::cout << "  fmaxnm_asimdsame_only: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fmaxnm_h_floatdp2() {
@@ -2815,7 +3491,9 @@ void test_fmaxnm_h_floatdp2() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fmaxnm_h_floatdp2" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FMAXNM);
+#ifdef VEDA64_STRINGS
     std::cout << "  fmaxnm_h_floatdp2: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fmaxnm_s_floatdp2() {
@@ -2823,7 +3501,9 @@ void test_fmaxnm_s_floatdp2() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fmaxnm_s_floatdp2" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FMAXNM);
+#ifdef VEDA64_STRINGS
     std::cout << "  fmaxnm_s_floatdp2: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fmaxnm_d_floatdp2() {
@@ -2831,7 +3511,9 @@ void test_fmaxnm_d_floatdp2() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fmaxnm_d_floatdp2" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FMAXNM);
+#ifdef VEDA64_STRINGS
     std::cout << "  fmaxnm_d_floatdp2: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fmaxnmp_asisdpair_only_h() {
@@ -2839,7 +3521,9 @@ void test_fmaxnmp_asisdpair_only_h() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fmaxnmp_asisdpair_only_h" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FMAXNMP);
+#ifdef VEDA64_STRINGS
     std::cout << "  fmaxnmp_asisdpair_only_h: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fmaxnmp_asisdpair_only_sd() {
@@ -2847,7 +3531,9 @@ void test_fmaxnmp_asisdpair_only_sd() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fmaxnmp_asisdpair_only_sd" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FMAXNMP);
+#ifdef VEDA64_STRINGS
     std::cout << "  fmaxnmp_asisdpair_only_sd: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fmaxnmp_asimdsamefp16_only() {
@@ -2855,7 +3541,9 @@ void test_fmaxnmp_asimdsamefp16_only() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fmaxnmp_asimdsamefp16_only" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FMAXNMP);
+#ifdef VEDA64_STRINGS
     std::cout << "  fmaxnmp_asimdsamefp16_only: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fmaxnmp_asimdsame_only() {
@@ -2863,7 +3551,9 @@ void test_fmaxnmp_asimdsame_only() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fmaxnmp_asimdsame_only" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FMAXNMP);
+#ifdef VEDA64_STRINGS
     std::cout << "  fmaxnmp_asimdsame_only: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fmaxnmv_asimdall_only_h() {
@@ -2871,7 +3561,9 @@ void test_fmaxnmv_asimdall_only_h() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fmaxnmv_asimdall_only_h" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FMAXNMV);
+#ifdef VEDA64_STRINGS
     std::cout << "  fmaxnmv_asimdall_only_h: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fmaxnmv_asimdall_only_sd() {
@@ -2879,7 +3571,9 @@ void test_fmaxnmv_asimdall_only_sd() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fmaxnmv_asimdall_only_sd" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FMAXNMV);
+#ifdef VEDA64_STRINGS
     std::cout << "  fmaxnmv_asimdall_only_sd: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fmaxp_asisdpair_only_h() {
@@ -2887,7 +3581,9 @@ void test_fmaxp_asisdpair_only_h() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fmaxp_asisdpair_only_h" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FMAXP);
+#ifdef VEDA64_STRINGS
     std::cout << "  fmaxp_asisdpair_only_h: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fmaxp_asisdpair_only_sd() {
@@ -2895,7 +3591,9 @@ void test_fmaxp_asisdpair_only_sd() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fmaxp_asisdpair_only_sd" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FMAXP);
+#ifdef VEDA64_STRINGS
     std::cout << "  fmaxp_asisdpair_only_sd: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fmaxp_asimdsamefp16_only() {
@@ -2903,7 +3601,9 @@ void test_fmaxp_asimdsamefp16_only() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fmaxp_asimdsamefp16_only" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FMAXP);
+#ifdef VEDA64_STRINGS
     std::cout << "  fmaxp_asimdsamefp16_only: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fmaxp_asimdsame_only() {
@@ -2911,7 +3611,9 @@ void test_fmaxp_asimdsame_only() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fmaxp_asimdsame_only" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FMAXP);
+#ifdef VEDA64_STRINGS
     std::cout << "  fmaxp_asimdsame_only: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fmaxv_asimdall_only_h() {
@@ -2919,7 +3621,9 @@ void test_fmaxv_asimdall_only_h() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fmaxv_asimdall_only_h" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FMAXV);
+#ifdef VEDA64_STRINGS
     std::cout << "  fmaxv_asimdall_only_h: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fmaxv_asimdall_only_sd() {
@@ -2927,7 +3631,9 @@ void test_fmaxv_asimdall_only_sd() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fmaxv_asimdall_only_sd" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FMAXV);
+#ifdef VEDA64_STRINGS
     std::cout << "  fmaxv_asimdall_only_sd: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fmin_asimdsamefp16_only() {
@@ -2935,7 +3641,9 @@ void test_fmin_asimdsamefp16_only() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fmin_asimdsamefp16_only" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FMIN);
+#ifdef VEDA64_STRINGS
     std::cout << "  fmin_asimdsamefp16_only: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fmin_asimdsame_only() {
@@ -2943,7 +3651,9 @@ void test_fmin_asimdsame_only() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fmin_asimdsame_only" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FMIN);
+#ifdef VEDA64_STRINGS
     std::cout << "  fmin_asimdsame_only: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fmin_h_floatdp2() {
@@ -2951,7 +3661,9 @@ void test_fmin_h_floatdp2() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fmin_h_floatdp2" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FMIN);
+#ifdef VEDA64_STRINGS
     std::cout << "  fmin_h_floatdp2: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fmin_s_floatdp2() {
@@ -2959,7 +3671,9 @@ void test_fmin_s_floatdp2() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fmin_s_floatdp2" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FMIN);
+#ifdef VEDA64_STRINGS
     std::cout << "  fmin_s_floatdp2: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fmin_d_floatdp2() {
@@ -2967,7 +3681,9 @@ void test_fmin_d_floatdp2() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fmin_d_floatdp2" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FMIN);
+#ifdef VEDA64_STRINGS
     std::cout << "  fmin_d_floatdp2: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fminnm_asimdsamefp16_only() {
@@ -2975,7 +3691,9 @@ void test_fminnm_asimdsamefp16_only() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fminnm_asimdsamefp16_only" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FMINNM);
+#ifdef VEDA64_STRINGS
     std::cout << "  fminnm_asimdsamefp16_only: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fminnm_asimdsame_only() {
@@ -2983,7 +3701,9 @@ void test_fminnm_asimdsame_only() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fminnm_asimdsame_only" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FMINNM);
+#ifdef VEDA64_STRINGS
     std::cout << "  fminnm_asimdsame_only: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fminnm_h_floatdp2() {
@@ -2991,7 +3711,9 @@ void test_fminnm_h_floatdp2() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fminnm_h_floatdp2" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FMINNM);
+#ifdef VEDA64_STRINGS
     std::cout << "  fminnm_h_floatdp2: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fminnm_s_floatdp2() {
@@ -2999,7 +3721,9 @@ void test_fminnm_s_floatdp2() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fminnm_s_floatdp2" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FMINNM);
+#ifdef VEDA64_STRINGS
     std::cout << "  fminnm_s_floatdp2: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fminnm_d_floatdp2() {
@@ -3007,7 +3731,9 @@ void test_fminnm_d_floatdp2() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fminnm_d_floatdp2" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FMINNM);
+#ifdef VEDA64_STRINGS
     std::cout << "  fminnm_d_floatdp2: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fminnmp_asisdpair_only_h() {
@@ -3015,7 +3741,9 @@ void test_fminnmp_asisdpair_only_h() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fminnmp_asisdpair_only_h" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FMINNMP);
+#ifdef VEDA64_STRINGS
     std::cout << "  fminnmp_asisdpair_only_h: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fminnmp_asisdpair_only_sd() {
@@ -3023,7 +3751,9 @@ void test_fminnmp_asisdpair_only_sd() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fminnmp_asisdpair_only_sd" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FMINNMP);
+#ifdef VEDA64_STRINGS
     std::cout << "  fminnmp_asisdpair_only_sd: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fminnmp_asimdsamefp16_only() {
@@ -3031,7 +3761,9 @@ void test_fminnmp_asimdsamefp16_only() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fminnmp_asimdsamefp16_only" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FMINNMP);
+#ifdef VEDA64_STRINGS
     std::cout << "  fminnmp_asimdsamefp16_only: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fminnmp_asimdsame_only() {
@@ -3039,7 +3771,9 @@ void test_fminnmp_asimdsame_only() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fminnmp_asimdsame_only" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FMINNMP);
+#ifdef VEDA64_STRINGS
     std::cout << "  fminnmp_asimdsame_only: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fminnmv_asimdall_only_h() {
@@ -3047,7 +3781,9 @@ void test_fminnmv_asimdall_only_h() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fminnmv_asimdall_only_h" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FMINNMV);
+#ifdef VEDA64_STRINGS
     std::cout << "  fminnmv_asimdall_only_h: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fminnmv_asimdall_only_sd() {
@@ -3055,7 +3791,9 @@ void test_fminnmv_asimdall_only_sd() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fminnmv_asimdall_only_sd" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FMINNMV);
+#ifdef VEDA64_STRINGS
     std::cout << "  fminnmv_asimdall_only_sd: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fminp_asisdpair_only_h() {
@@ -3063,7 +3801,9 @@ void test_fminp_asisdpair_only_h() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fminp_asisdpair_only_h" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FMINP);
+#ifdef VEDA64_STRINGS
     std::cout << "  fminp_asisdpair_only_h: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fminp_asisdpair_only_sd() {
@@ -3071,7 +3811,9 @@ void test_fminp_asisdpair_only_sd() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fminp_asisdpair_only_sd" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FMINP);
+#ifdef VEDA64_STRINGS
     std::cout << "  fminp_asisdpair_only_sd: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fminp_asimdsamefp16_only() {
@@ -3079,7 +3821,9 @@ void test_fminp_asimdsamefp16_only() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fminp_asimdsamefp16_only" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FMINP);
+#ifdef VEDA64_STRINGS
     std::cout << "  fminp_asimdsamefp16_only: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fminp_asimdsame_only() {
@@ -3087,7 +3831,9 @@ void test_fminp_asimdsame_only() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fminp_asimdsame_only" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FMINP);
+#ifdef VEDA64_STRINGS
     std::cout << "  fminp_asimdsame_only: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fminv_asimdall_only_h() {
@@ -3095,7 +3841,9 @@ void test_fminv_asimdall_only_h() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fminv_asimdall_only_h" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FMINV);
+#ifdef VEDA64_STRINGS
     std::cout << "  fminv_asimdall_only_h: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fminv_asimdall_only_sd() {
@@ -3103,7 +3851,9 @@ void test_fminv_asimdall_only_sd() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fminv_asimdall_only_sd" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FMINV);
+#ifdef VEDA64_STRINGS
     std::cout << "  fminv_asimdall_only_sd: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fmla_asisdelem_rh_h() {
@@ -3111,7 +3861,9 @@ void test_fmla_asisdelem_rh_h() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fmla_asisdelem_rh_h" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FMLA);
+#ifdef VEDA64_STRINGS
     std::cout << "  fmla_asisdelem_rh_h: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fmla_asisdelem_r_sd() {
@@ -3119,7 +3871,9 @@ void test_fmla_asisdelem_r_sd() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fmla_asisdelem_r_sd" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FMLA);
+#ifdef VEDA64_STRINGS
     std::cout << "  fmla_asisdelem_r_sd: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fmla_asimdelem_rh_h() {
@@ -3127,7 +3881,9 @@ void test_fmla_asimdelem_rh_h() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fmla_asimdelem_rh_h" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FMLA);
+#ifdef VEDA64_STRINGS
     std::cout << "  fmla_asimdelem_rh_h: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fmla_asimdelem_r_sd() {
@@ -3135,7 +3891,9 @@ void test_fmla_asimdelem_r_sd() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fmla_asimdelem_r_sd" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FMLA);
+#ifdef VEDA64_STRINGS
     std::cout << "  fmla_asimdelem_r_sd: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fmla_asimdsamefp16_only() {
@@ -3143,7 +3901,9 @@ void test_fmla_asimdsamefp16_only() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fmla_asimdsamefp16_only" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FMLA);
+#ifdef VEDA64_STRINGS
     std::cout << "  fmla_asimdsamefp16_only: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fmla_asimdsame_only() {
@@ -3151,35 +3911,45 @@ void test_fmla_asimdsame_only() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fmla_asimdsame_only" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FMLA);
+#ifdef VEDA64_STRINGS
     std::cout << "  fmla_asimdsame_only: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fmlal_asimdelem_lh() {
     uint32_t insn = 0x0F800000u;
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fmlal_asimdelem_lh" << std::endl; throw std::runtime_error("decode failed"); }
+#ifdef VEDA64_STRINGS
     std::cout << "  fmlal_asimdelem_lh: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fmlal2_asimdelem_lh() {
     uint32_t insn = 0x2F808000u;
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fmlal2_asimdelem_lh" << std::endl; throw std::runtime_error("decode failed"); }
+#ifdef VEDA64_STRINGS
     std::cout << "  fmlal2_asimdelem_lh: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fmlal_asimdsame_f() {
     uint32_t insn = 0x0E20EC00u;
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fmlal_asimdsame_f" << std::endl; throw std::runtime_error("decode failed"); }
+#ifdef VEDA64_STRINGS
     std::cout << "  fmlal_asimdsame_f: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fmlal2_asimdsame_f() {
     uint32_t insn = 0x2E20CC00u;
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fmlal2_asimdsame_f" << std::endl; throw std::runtime_error("decode failed"); }
+#ifdef VEDA64_STRINGS
     std::cout << "  fmlal2_asimdsame_f: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fmlalb_asimdelem_h() {
@@ -3190,7 +3960,9 @@ void test_fmlalb_asimdelem_h() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  fmlalb_asimdelem_h: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fmlalt_asimdelem_h() {
@@ -3201,7 +3973,9 @@ void test_fmlalt_asimdelem_h() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  fmlalt_asimdelem_h: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fmlalb_asimdsame2_j() {
@@ -3212,7 +3986,9 @@ void test_fmlalb_asimdsame2_j() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  fmlalb_asimdsame2_j: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fmlalt_asimdsame2_j() {
@@ -3223,7 +3999,9 @@ void test_fmlalt_asimdsame2_j() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  fmlalt_asimdsame2_j: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fmlallbb_asimdelem_j() {
@@ -3234,7 +4012,9 @@ void test_fmlallbb_asimdelem_j() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  fmlallbb_asimdelem_j: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fmlallbt_asimdelem_j() {
@@ -3245,7 +4025,9 @@ void test_fmlallbt_asimdelem_j() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  fmlallbt_asimdelem_j: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fmlalltb_asimdelem_j() {
@@ -3256,7 +4038,9 @@ void test_fmlalltb_asimdelem_j() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  fmlalltb_asimdelem_j: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fmlalltt_asimdelem_j() {
@@ -3267,7 +4051,9 @@ void test_fmlalltt_asimdelem_j() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  fmlalltt_asimdelem_j: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fmlallbb_asimdsame2_g() {
@@ -3278,7 +4064,9 @@ void test_fmlallbb_asimdsame2_g() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  fmlallbb_asimdsame2_g: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fmlallbt_asimdsame2_g() {
@@ -3289,7 +4077,9 @@ void test_fmlallbt_asimdsame2_g() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  fmlallbt_asimdsame2_g: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fmlalltb_asimdsame2_g() {
@@ -3300,7 +4090,9 @@ void test_fmlalltb_asimdsame2_g() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  fmlalltb_asimdsame2_g: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fmlalltt_asimdsame2_g() {
@@ -3311,7 +4103,9 @@ void test_fmlalltt_asimdsame2_g() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  fmlalltt_asimdsame2_g: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fmls_asisdelem_rh_h() {
@@ -3319,7 +4113,9 @@ void test_fmls_asisdelem_rh_h() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fmls_asisdelem_rh_h" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FMLS);
+#ifdef VEDA64_STRINGS
     std::cout << "  fmls_asisdelem_rh_h: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fmls_asisdelem_r_sd() {
@@ -3327,7 +4123,9 @@ void test_fmls_asisdelem_r_sd() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fmls_asisdelem_r_sd" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FMLS);
+#ifdef VEDA64_STRINGS
     std::cout << "  fmls_asisdelem_r_sd: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fmls_asimdelem_rh_h() {
@@ -3335,7 +4133,9 @@ void test_fmls_asimdelem_rh_h() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fmls_asimdelem_rh_h" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FMLS);
+#ifdef VEDA64_STRINGS
     std::cout << "  fmls_asimdelem_rh_h: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fmls_asimdelem_r_sd() {
@@ -3343,7 +4143,9 @@ void test_fmls_asimdelem_r_sd() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fmls_asimdelem_r_sd" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FMLS);
+#ifdef VEDA64_STRINGS
     std::cout << "  fmls_asimdelem_r_sd: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fmls_asimdsamefp16_only() {
@@ -3351,7 +4153,9 @@ void test_fmls_asimdsamefp16_only() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fmls_asimdsamefp16_only" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FMLS);
+#ifdef VEDA64_STRINGS
     std::cout << "  fmls_asimdsamefp16_only: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fmls_asimdsame_only() {
@@ -3359,35 +4163,45 @@ void test_fmls_asimdsame_only() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fmls_asimdsame_only" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FMLS);
+#ifdef VEDA64_STRINGS
     std::cout << "  fmls_asimdsame_only: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fmlsl_asimdelem_lh() {
     uint32_t insn = 0x0F804000u;
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fmlsl_asimdelem_lh" << std::endl; throw std::runtime_error("decode failed"); }
+#ifdef VEDA64_STRINGS
     std::cout << "  fmlsl_asimdelem_lh: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fmlsl2_asimdelem_lh() {
     uint32_t insn = 0x2F80C000u;
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fmlsl2_asimdelem_lh" << std::endl; throw std::runtime_error("decode failed"); }
+#ifdef VEDA64_STRINGS
     std::cout << "  fmlsl2_asimdelem_lh: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fmlsl_asimdsame_f() {
     uint32_t insn = 0x0EA0EC00u;
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fmlsl_asimdsame_f" << std::endl; throw std::runtime_error("decode failed"); }
+#ifdef VEDA64_STRINGS
     std::cout << "  fmlsl_asimdsame_f: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fmlsl2_asimdsame_f() {
     uint32_t insn = 0x2EA0CC00u;
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fmlsl2_asimdsame_f" << std::endl; throw std::runtime_error("decode failed"); }
+#ifdef VEDA64_STRINGS
     std::cout << "  fmlsl2_asimdsame_f: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fmmla_asimd_fp16fp16() {
@@ -3399,7 +4213,9 @@ void test_fmmla_asimd_fp16fp16() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  fmmla_asimd_fp16fp16: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fmmla_asimd_fp16fp32() {
@@ -3411,7 +4227,9 @@ void test_fmmla_asimd_fp16fp32() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  fmmla_asimd_fp16fp32: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fmmla_asimd_fp8fp16() {
@@ -3423,7 +4241,9 @@ void test_fmmla_asimd_fp8fp16() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  fmmla_asimd_fp8fp16: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fmmla_asimd_fp8fp32() {
@@ -3435,7 +4255,9 @@ void test_fmmla_asimd_fp8fp32() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  fmmla_asimd_fp8fp32: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fmov_asimdimm_h_h() {
@@ -3443,7 +4265,9 @@ void test_fmov_asimdimm_h_h() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fmov_asimdimm_h_h" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FMOV);
+#ifdef VEDA64_STRINGS
     std::cout << "  fmov_asimdimm_h_h: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fmov_asimdimm_s_s() {
@@ -3451,7 +4275,9 @@ void test_fmov_asimdimm_s_s() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fmov_asimdimm_s_s" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FMOV);
+#ifdef VEDA64_STRINGS
     std::cout << "  fmov_asimdimm_s_s: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fmov_asimdimm_d2_d() {
@@ -3459,7 +4285,9 @@ void test_fmov_asimdimm_d2_d() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fmov_asimdimm_d2_d" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FMOV);
+#ifdef VEDA64_STRINGS
     std::cout << "  fmov_asimdimm_d2_d: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fmov_h_floatdp1() {
@@ -3467,7 +4295,9 @@ void test_fmov_h_floatdp1() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fmov_h_floatdp1" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FMOV);
+#ifdef VEDA64_STRINGS
     std::cout << "  fmov_h_floatdp1: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fmov_s_floatdp1() {
@@ -3475,7 +4305,9 @@ void test_fmov_s_floatdp1() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fmov_s_floatdp1" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FMOV);
+#ifdef VEDA64_STRINGS
     std::cout << "  fmov_s_floatdp1: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fmov_d_floatdp1() {
@@ -3483,7 +4315,9 @@ void test_fmov_d_floatdp1() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fmov_d_floatdp1" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FMOV);
+#ifdef VEDA64_STRINGS
     std::cout << "  fmov_d_floatdp1: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fmov_32h_float2int() {
@@ -3491,7 +4325,9 @@ void test_fmov_32h_float2int() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fmov_32h_float2int" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FMOV);
+#ifdef VEDA64_STRINGS
     std::cout << "  fmov_32h_float2int: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fmov_64h_float2int() {
@@ -3499,7 +4335,9 @@ void test_fmov_64h_float2int() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fmov_64h_float2int" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FMOV);
+#ifdef VEDA64_STRINGS
     std::cout << "  fmov_64h_float2int: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fmov_h32_float2int() {
@@ -3507,7 +4345,9 @@ void test_fmov_h32_float2int() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fmov_h32_float2int" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FMOV);
+#ifdef VEDA64_STRINGS
     std::cout << "  fmov_h32_float2int: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fmov_s32_float2int() {
@@ -3515,7 +4355,9 @@ void test_fmov_s32_float2int() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fmov_s32_float2int" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FMOV);
+#ifdef VEDA64_STRINGS
     std::cout << "  fmov_s32_float2int: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fmov_32s_float2int() {
@@ -3523,7 +4365,9 @@ void test_fmov_32s_float2int() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fmov_32s_float2int" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FMOV);
+#ifdef VEDA64_STRINGS
     std::cout << "  fmov_32s_float2int: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fmov_h64_float2int() {
@@ -3531,7 +4375,9 @@ void test_fmov_h64_float2int() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fmov_h64_float2int" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FMOV);
+#ifdef VEDA64_STRINGS
     std::cout << "  fmov_h64_float2int: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fmov_d64_float2int() {
@@ -3539,7 +4385,9 @@ void test_fmov_d64_float2int() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fmov_d64_float2int" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FMOV);
+#ifdef VEDA64_STRINGS
     std::cout << "  fmov_d64_float2int: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fmov_v64i_float2int() {
@@ -3550,7 +4398,9 @@ void test_fmov_v64i_float2int() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  fmov_v64i_float2int: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fmov_64d_float2int() {
@@ -3558,7 +4408,9 @@ void test_fmov_64d_float2int() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fmov_64d_float2int" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FMOV);
+#ifdef VEDA64_STRINGS
     std::cout << "  fmov_64d_float2int: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fmov_64vx_float2int() {
@@ -3569,7 +4421,9 @@ void test_fmov_64vx_float2int() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  fmov_64vx_float2int: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fmov_h_floatimm() {
@@ -3577,7 +4431,9 @@ void test_fmov_h_floatimm() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fmov_h_floatimm" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FMOV);
+#ifdef VEDA64_STRINGS
     std::cout << "  fmov_h_floatimm: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fmov_s_floatimm() {
@@ -3585,7 +4441,9 @@ void test_fmov_s_floatimm() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fmov_s_floatimm" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FMOV);
+#ifdef VEDA64_STRINGS
     std::cout << "  fmov_s_floatimm: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fmov_d_floatimm() {
@@ -3593,7 +4451,9 @@ void test_fmov_d_floatimm() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fmov_d_floatimm" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FMOV);
+#ifdef VEDA64_STRINGS
     std::cout << "  fmov_d_floatimm: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fmsub_h_floatdp3() {
@@ -3601,7 +4461,9 @@ void test_fmsub_h_floatdp3() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fmsub_h_floatdp3" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FMSUB);
+#ifdef VEDA64_STRINGS
     std::cout << "  fmsub_h_floatdp3: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fmsub_s_floatdp3() {
@@ -3609,7 +4471,9 @@ void test_fmsub_s_floatdp3() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fmsub_s_floatdp3" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FMSUB);
+#ifdef VEDA64_STRINGS
     std::cout << "  fmsub_s_floatdp3: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fmsub_d_floatdp3() {
@@ -3617,7 +4481,9 @@ void test_fmsub_d_floatdp3() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fmsub_d_floatdp3" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FMSUB);
+#ifdef VEDA64_STRINGS
     std::cout << "  fmsub_d_floatdp3: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fmul_asisdelem_rh_h() {
@@ -3625,7 +4491,9 @@ void test_fmul_asisdelem_rh_h() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fmul_asisdelem_rh_h" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FMUL);
+#ifdef VEDA64_STRINGS
     std::cout << "  fmul_asisdelem_rh_h: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fmul_asisdelem_r_sd() {
@@ -3633,7 +4501,9 @@ void test_fmul_asisdelem_r_sd() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fmul_asisdelem_r_sd" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FMUL);
+#ifdef VEDA64_STRINGS
     std::cout << "  fmul_asisdelem_r_sd: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fmul_asimdelem_rh_h() {
@@ -3641,7 +4511,9 @@ void test_fmul_asimdelem_rh_h() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fmul_asimdelem_rh_h" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FMUL);
+#ifdef VEDA64_STRINGS
     std::cout << "  fmul_asimdelem_rh_h: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fmul_asimdelem_r_sd() {
@@ -3649,7 +4521,9 @@ void test_fmul_asimdelem_r_sd() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fmul_asimdelem_r_sd" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FMUL);
+#ifdef VEDA64_STRINGS
     std::cout << "  fmul_asimdelem_r_sd: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fmul_asimdsamefp16_only() {
@@ -3657,7 +4531,9 @@ void test_fmul_asimdsamefp16_only() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fmul_asimdsamefp16_only" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FMUL);
+#ifdef VEDA64_STRINGS
     std::cout << "  fmul_asimdsamefp16_only: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fmul_asimdsame_only() {
@@ -3665,7 +4541,9 @@ void test_fmul_asimdsame_only() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fmul_asimdsame_only" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FMUL);
+#ifdef VEDA64_STRINGS
     std::cout << "  fmul_asimdsame_only: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fmul_h_floatdp2() {
@@ -3673,7 +4551,9 @@ void test_fmul_h_floatdp2() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fmul_h_floatdp2" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FMUL);
+#ifdef VEDA64_STRINGS
     std::cout << "  fmul_h_floatdp2: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fmul_s_floatdp2() {
@@ -3681,7 +4561,9 @@ void test_fmul_s_floatdp2() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fmul_s_floatdp2" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FMUL);
+#ifdef VEDA64_STRINGS
     std::cout << "  fmul_s_floatdp2: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fmul_d_floatdp2() {
@@ -3689,7 +4571,9 @@ void test_fmul_d_floatdp2() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fmul_d_floatdp2" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FMUL);
+#ifdef VEDA64_STRINGS
     std::cout << "  fmul_d_floatdp2: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fmulx_asisdelem_rh_h() {
@@ -3697,7 +4581,9 @@ void test_fmulx_asisdelem_rh_h() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fmulx_asisdelem_rh_h" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FMULX);
+#ifdef VEDA64_STRINGS
     std::cout << "  fmulx_asisdelem_rh_h: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fmulx_asisdelem_r_sd() {
@@ -3705,7 +4591,9 @@ void test_fmulx_asisdelem_r_sd() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fmulx_asisdelem_r_sd" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FMULX);
+#ifdef VEDA64_STRINGS
     std::cout << "  fmulx_asisdelem_r_sd: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fmulx_asimdelem_rh_h() {
@@ -3713,7 +4601,9 @@ void test_fmulx_asimdelem_rh_h() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fmulx_asimdelem_rh_h" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FMULX);
+#ifdef VEDA64_STRINGS
     std::cout << "  fmulx_asimdelem_rh_h: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fmulx_asimdelem_r_sd() {
@@ -3721,7 +4611,9 @@ void test_fmulx_asimdelem_r_sd() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fmulx_asimdelem_r_sd" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FMULX);
+#ifdef VEDA64_STRINGS
     std::cout << "  fmulx_asimdelem_r_sd: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fmulx_asisdsamefp16_only() {
@@ -3729,7 +4621,9 @@ void test_fmulx_asisdsamefp16_only() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fmulx_asisdsamefp16_only" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FMULX);
+#ifdef VEDA64_STRINGS
     std::cout << "  fmulx_asisdsamefp16_only: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fmulx_asisdsame_only() {
@@ -3741,7 +4635,9 @@ void test_fmulx_asisdsame_only() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  fmulx_asisdsame_only: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fmulx_asimdsamefp16_only() {
@@ -3749,7 +4645,9 @@ void test_fmulx_asimdsamefp16_only() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fmulx_asimdsamefp16_only" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FMULX);
+#ifdef VEDA64_STRINGS
     std::cout << "  fmulx_asimdsamefp16_only: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fmulx_asimdsame_only() {
@@ -3757,7 +4655,9 @@ void test_fmulx_asimdsame_only() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fmulx_asimdsame_only" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FMULX);
+#ifdef VEDA64_STRINGS
     std::cout << "  fmulx_asimdsame_only: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fneg_asimdmiscfp16_r() {
@@ -3765,7 +4665,9 @@ void test_fneg_asimdmiscfp16_r() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fneg_asimdmiscfp16_r" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FNEG);
+#ifdef VEDA64_STRINGS
     std::cout << "  fneg_asimdmiscfp16_r: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fneg_asimdmisc_r() {
@@ -3773,7 +4675,9 @@ void test_fneg_asimdmisc_r() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fneg_asimdmisc_r" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FNEG);
+#ifdef VEDA64_STRINGS
     std::cout << "  fneg_asimdmisc_r: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fneg_h_floatdp1() {
@@ -3781,7 +4685,9 @@ void test_fneg_h_floatdp1() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fneg_h_floatdp1" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FNEG);
+#ifdef VEDA64_STRINGS
     std::cout << "  fneg_h_floatdp1: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fneg_s_floatdp1() {
@@ -3789,7 +4695,9 @@ void test_fneg_s_floatdp1() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fneg_s_floatdp1" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FNEG);
+#ifdef VEDA64_STRINGS
     std::cout << "  fneg_s_floatdp1: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fneg_d_floatdp1() {
@@ -3797,7 +4705,9 @@ void test_fneg_d_floatdp1() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fneg_d_floatdp1" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FNEG);
+#ifdef VEDA64_STRINGS
     std::cout << "  fneg_d_floatdp1: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fnmadd_h_floatdp3() {
@@ -3805,7 +4715,9 @@ void test_fnmadd_h_floatdp3() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fnmadd_h_floatdp3" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FNMADD);
+#ifdef VEDA64_STRINGS
     std::cout << "  fnmadd_h_floatdp3: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fnmadd_s_floatdp3() {
@@ -3813,7 +4725,9 @@ void test_fnmadd_s_floatdp3() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fnmadd_s_floatdp3" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FNMADD);
+#ifdef VEDA64_STRINGS
     std::cout << "  fnmadd_s_floatdp3: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fnmadd_d_floatdp3() {
@@ -3821,7 +4735,9 @@ void test_fnmadd_d_floatdp3() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fnmadd_d_floatdp3" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FNMADD);
+#ifdef VEDA64_STRINGS
     std::cout << "  fnmadd_d_floatdp3: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fnmsub_h_floatdp3() {
@@ -3829,7 +4745,9 @@ void test_fnmsub_h_floatdp3() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fnmsub_h_floatdp3" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FNMSUB);
+#ifdef VEDA64_STRINGS
     std::cout << "  fnmsub_h_floatdp3: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fnmsub_s_floatdp3() {
@@ -3837,7 +4755,9 @@ void test_fnmsub_s_floatdp3() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fnmsub_s_floatdp3" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FNMSUB);
+#ifdef VEDA64_STRINGS
     std::cout << "  fnmsub_s_floatdp3: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fnmsub_d_floatdp3() {
@@ -3845,7 +4765,9 @@ void test_fnmsub_d_floatdp3() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fnmsub_d_floatdp3" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FNMSUB);
+#ifdef VEDA64_STRINGS
     std::cout << "  fnmsub_d_floatdp3: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fnmul_h_floatdp2() {
@@ -3853,7 +4775,9 @@ void test_fnmul_h_floatdp2() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fnmul_h_floatdp2" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FNMUL);
+#ifdef VEDA64_STRINGS
     std::cout << "  fnmul_h_floatdp2: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fnmul_s_floatdp2() {
@@ -3861,7 +4785,9 @@ void test_fnmul_s_floatdp2() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fnmul_s_floatdp2" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FNMUL);
+#ifdef VEDA64_STRINGS
     std::cout << "  fnmul_s_floatdp2: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fnmul_d_floatdp2() {
@@ -3869,7 +4795,9 @@ void test_fnmul_d_floatdp2() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fnmul_d_floatdp2" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FNMUL);
+#ifdef VEDA64_STRINGS
     std::cout << "  fnmul_d_floatdp2: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_frecpe_asisdmiscfp16_r() {
@@ -3877,7 +4805,9 @@ void test_frecpe_asisdmiscfp16_r() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: frecpe_asisdmiscfp16_r" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FRECPE);
+#ifdef VEDA64_STRINGS
     std::cout << "  frecpe_asisdmiscfp16_r: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_frecpe_asisdmisc_r() {
@@ -3888,7 +4818,9 @@ void test_frecpe_asisdmisc_r() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  frecpe_asisdmisc_r: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_frecpe_asimdmiscfp16_r() {
@@ -3896,7 +4828,9 @@ void test_frecpe_asimdmiscfp16_r() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: frecpe_asimdmiscfp16_r" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FRECPE);
+#ifdef VEDA64_STRINGS
     std::cout << "  frecpe_asimdmiscfp16_r: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_frecpe_asimdmisc_r() {
@@ -3904,7 +4838,9 @@ void test_frecpe_asimdmisc_r() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: frecpe_asimdmisc_r" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FRECPE);
+#ifdef VEDA64_STRINGS
     std::cout << "  frecpe_asimdmisc_r: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_frecps_asisdsamefp16_only() {
@@ -3912,7 +4848,9 @@ void test_frecps_asisdsamefp16_only() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: frecps_asisdsamefp16_only" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FRECPS);
+#ifdef VEDA64_STRINGS
     std::cout << "  frecps_asisdsamefp16_only: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_frecps_asisdsame_only() {
@@ -3924,7 +4862,9 @@ void test_frecps_asisdsame_only() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  frecps_asisdsame_only: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_frecps_asimdsamefp16_only() {
@@ -3932,7 +4872,9 @@ void test_frecps_asimdsamefp16_only() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: frecps_asimdsamefp16_only" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FRECPS);
+#ifdef VEDA64_STRINGS
     std::cout << "  frecps_asimdsamefp16_only: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_frecps_asimdsame_only() {
@@ -3940,7 +4882,9 @@ void test_frecps_asimdsame_only() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: frecps_asimdsame_only" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FRECPS);
+#ifdef VEDA64_STRINGS
     std::cout << "  frecps_asimdsame_only: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_frecpx_asisdmiscfp16_r() {
@@ -3948,7 +4892,9 @@ void test_frecpx_asisdmiscfp16_r() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: frecpx_asisdmiscfp16_r" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FRECPX);
+#ifdef VEDA64_STRINGS
     std::cout << "  frecpx_asisdmiscfp16_r: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_frecpx_asisdmisc_r() {
@@ -3959,7 +4905,9 @@ void test_frecpx_asisdmisc_r() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  frecpx_asisdmisc_r: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_frint32x_asimdmisc_r() {
@@ -3967,7 +4915,9 @@ void test_frint32x_asimdmisc_r() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: frint32x_asimdmisc_r" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FRINT32X);
+#ifdef VEDA64_STRINGS
     std::cout << "  frint32x_asimdmisc_r: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_frint32x_s_floatdp1() {
@@ -3975,7 +4925,9 @@ void test_frint32x_s_floatdp1() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: frint32x_s_floatdp1" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FRINT32X);
+#ifdef VEDA64_STRINGS
     std::cout << "  frint32x_s_floatdp1: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_frint32x_d_floatdp1() {
@@ -3983,7 +4935,9 @@ void test_frint32x_d_floatdp1() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: frint32x_d_floatdp1" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FRINT32X);
+#ifdef VEDA64_STRINGS
     std::cout << "  frint32x_d_floatdp1: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_frint32z_asimdmisc_r() {
@@ -3991,7 +4945,9 @@ void test_frint32z_asimdmisc_r() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: frint32z_asimdmisc_r" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FRINT32Z);
+#ifdef VEDA64_STRINGS
     std::cout << "  frint32z_asimdmisc_r: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_frint32z_s_floatdp1() {
@@ -3999,7 +4955,9 @@ void test_frint32z_s_floatdp1() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: frint32z_s_floatdp1" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FRINT32Z);
+#ifdef VEDA64_STRINGS
     std::cout << "  frint32z_s_floatdp1: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_frint32z_d_floatdp1() {
@@ -4007,7 +4965,9 @@ void test_frint32z_d_floatdp1() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: frint32z_d_floatdp1" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FRINT32Z);
+#ifdef VEDA64_STRINGS
     std::cout << "  frint32z_d_floatdp1: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_frint64x_asimdmisc_r() {
@@ -4015,7 +4975,9 @@ void test_frint64x_asimdmisc_r() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: frint64x_asimdmisc_r" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FRINT64X);
+#ifdef VEDA64_STRINGS
     std::cout << "  frint64x_asimdmisc_r: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_frint64x_s_floatdp1() {
@@ -4023,7 +4985,9 @@ void test_frint64x_s_floatdp1() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: frint64x_s_floatdp1" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FRINT64X);
+#ifdef VEDA64_STRINGS
     std::cout << "  frint64x_s_floatdp1: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_frint64x_d_floatdp1() {
@@ -4031,7 +4995,9 @@ void test_frint64x_d_floatdp1() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: frint64x_d_floatdp1" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FRINT64X);
+#ifdef VEDA64_STRINGS
     std::cout << "  frint64x_d_floatdp1: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_frint64z_asimdmisc_r() {
@@ -4039,7 +5005,9 @@ void test_frint64z_asimdmisc_r() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: frint64z_asimdmisc_r" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FRINT64Z);
+#ifdef VEDA64_STRINGS
     std::cout << "  frint64z_asimdmisc_r: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_frint64z_s_floatdp1() {
@@ -4047,7 +5015,9 @@ void test_frint64z_s_floatdp1() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: frint64z_s_floatdp1" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FRINT64Z);
+#ifdef VEDA64_STRINGS
     std::cout << "  frint64z_s_floatdp1: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_frint64z_d_floatdp1() {
@@ -4055,7 +5025,9 @@ void test_frint64z_d_floatdp1() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: frint64z_d_floatdp1" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FRINT64Z);
+#ifdef VEDA64_STRINGS
     std::cout << "  frint64z_d_floatdp1: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_frinta_asimdmiscfp16_r() {
@@ -4063,7 +5035,9 @@ void test_frinta_asimdmiscfp16_r() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: frinta_asimdmiscfp16_r" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FRINTA);
+#ifdef VEDA64_STRINGS
     std::cout << "  frinta_asimdmiscfp16_r: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_frinta_asimdmisc_r() {
@@ -4071,7 +5045,9 @@ void test_frinta_asimdmisc_r() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: frinta_asimdmisc_r" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FRINTA);
+#ifdef VEDA64_STRINGS
     std::cout << "  frinta_asimdmisc_r: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_frinta_h_floatdp1() {
@@ -4079,7 +5055,9 @@ void test_frinta_h_floatdp1() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: frinta_h_floatdp1" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FRINTA);
+#ifdef VEDA64_STRINGS
     std::cout << "  frinta_h_floatdp1: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_frinta_s_floatdp1() {
@@ -4087,7 +5065,9 @@ void test_frinta_s_floatdp1() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: frinta_s_floatdp1" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FRINTA);
+#ifdef VEDA64_STRINGS
     std::cout << "  frinta_s_floatdp1: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_frinta_d_floatdp1() {
@@ -4095,7 +5075,9 @@ void test_frinta_d_floatdp1() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: frinta_d_floatdp1" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FRINTA);
+#ifdef VEDA64_STRINGS
     std::cout << "  frinta_d_floatdp1: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_frinti_asimdmiscfp16_r() {
@@ -4103,7 +5085,9 @@ void test_frinti_asimdmiscfp16_r() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: frinti_asimdmiscfp16_r" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FRINTI);
+#ifdef VEDA64_STRINGS
     std::cout << "  frinti_asimdmiscfp16_r: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_frinti_asimdmisc_r() {
@@ -4111,7 +5095,9 @@ void test_frinti_asimdmisc_r() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: frinti_asimdmisc_r" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FRINTI);
+#ifdef VEDA64_STRINGS
     std::cout << "  frinti_asimdmisc_r: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_frinti_h_floatdp1() {
@@ -4119,7 +5105,9 @@ void test_frinti_h_floatdp1() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: frinti_h_floatdp1" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FRINTI);
+#ifdef VEDA64_STRINGS
     std::cout << "  frinti_h_floatdp1: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_frinti_s_floatdp1() {
@@ -4127,7 +5115,9 @@ void test_frinti_s_floatdp1() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: frinti_s_floatdp1" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FRINTI);
+#ifdef VEDA64_STRINGS
     std::cout << "  frinti_s_floatdp1: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_frinti_d_floatdp1() {
@@ -4135,7 +5125,9 @@ void test_frinti_d_floatdp1() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: frinti_d_floatdp1" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FRINTI);
+#ifdef VEDA64_STRINGS
     std::cout << "  frinti_d_floatdp1: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_frintm_asimdmiscfp16_r() {
@@ -4143,7 +5135,9 @@ void test_frintm_asimdmiscfp16_r() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: frintm_asimdmiscfp16_r" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FRINTM);
+#ifdef VEDA64_STRINGS
     std::cout << "  frintm_asimdmiscfp16_r: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_frintm_asimdmisc_r() {
@@ -4151,7 +5145,9 @@ void test_frintm_asimdmisc_r() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: frintm_asimdmisc_r" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FRINTM);
+#ifdef VEDA64_STRINGS
     std::cout << "  frintm_asimdmisc_r: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_frintm_h_floatdp1() {
@@ -4159,7 +5155,9 @@ void test_frintm_h_floatdp1() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: frintm_h_floatdp1" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FRINTM);
+#ifdef VEDA64_STRINGS
     std::cout << "  frintm_h_floatdp1: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_frintm_s_floatdp1() {
@@ -4167,7 +5165,9 @@ void test_frintm_s_floatdp1() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: frintm_s_floatdp1" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FRINTM);
+#ifdef VEDA64_STRINGS
     std::cout << "  frintm_s_floatdp1: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_frintm_d_floatdp1() {
@@ -4175,7 +5175,9 @@ void test_frintm_d_floatdp1() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: frintm_d_floatdp1" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FRINTM);
+#ifdef VEDA64_STRINGS
     std::cout << "  frintm_d_floatdp1: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_frintn_asimdmiscfp16_r() {
@@ -4183,7 +5185,9 @@ void test_frintn_asimdmiscfp16_r() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: frintn_asimdmiscfp16_r" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FRINTN);
+#ifdef VEDA64_STRINGS
     std::cout << "  frintn_asimdmiscfp16_r: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_frintn_asimdmisc_r() {
@@ -4191,7 +5195,9 @@ void test_frintn_asimdmisc_r() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: frintn_asimdmisc_r" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FRINTN);
+#ifdef VEDA64_STRINGS
     std::cout << "  frintn_asimdmisc_r: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_frintn_h_floatdp1() {
@@ -4199,7 +5205,9 @@ void test_frintn_h_floatdp1() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: frintn_h_floatdp1" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FRINTN);
+#ifdef VEDA64_STRINGS
     std::cout << "  frintn_h_floatdp1: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_frintn_s_floatdp1() {
@@ -4207,7 +5215,9 @@ void test_frintn_s_floatdp1() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: frintn_s_floatdp1" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FRINTN);
+#ifdef VEDA64_STRINGS
     std::cout << "  frintn_s_floatdp1: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_frintn_d_floatdp1() {
@@ -4215,7 +5225,9 @@ void test_frintn_d_floatdp1() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: frintn_d_floatdp1" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FRINTN);
+#ifdef VEDA64_STRINGS
     std::cout << "  frintn_d_floatdp1: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_frintp_asimdmiscfp16_r() {
@@ -4223,7 +5235,9 @@ void test_frintp_asimdmiscfp16_r() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: frintp_asimdmiscfp16_r" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FRINTP);
+#ifdef VEDA64_STRINGS
     std::cout << "  frintp_asimdmiscfp16_r: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_frintp_asimdmisc_r() {
@@ -4231,7 +5245,9 @@ void test_frintp_asimdmisc_r() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: frintp_asimdmisc_r" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FRINTP);
+#ifdef VEDA64_STRINGS
     std::cout << "  frintp_asimdmisc_r: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_frintp_h_floatdp1() {
@@ -4239,7 +5255,9 @@ void test_frintp_h_floatdp1() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: frintp_h_floatdp1" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FRINTP);
+#ifdef VEDA64_STRINGS
     std::cout << "  frintp_h_floatdp1: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_frintp_s_floatdp1() {
@@ -4247,7 +5265,9 @@ void test_frintp_s_floatdp1() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: frintp_s_floatdp1" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FRINTP);
+#ifdef VEDA64_STRINGS
     std::cout << "  frintp_s_floatdp1: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_frintp_d_floatdp1() {
@@ -4255,7 +5275,9 @@ void test_frintp_d_floatdp1() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: frintp_d_floatdp1" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FRINTP);
+#ifdef VEDA64_STRINGS
     std::cout << "  frintp_d_floatdp1: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_frintx_asimdmiscfp16_r() {
@@ -4263,7 +5285,9 @@ void test_frintx_asimdmiscfp16_r() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: frintx_asimdmiscfp16_r" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FRINTX);
+#ifdef VEDA64_STRINGS
     std::cout << "  frintx_asimdmiscfp16_r: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_frintx_asimdmisc_r() {
@@ -4271,7 +5295,9 @@ void test_frintx_asimdmisc_r() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: frintx_asimdmisc_r" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FRINTX);
+#ifdef VEDA64_STRINGS
     std::cout << "  frintx_asimdmisc_r: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_frintx_h_floatdp1() {
@@ -4279,7 +5305,9 @@ void test_frintx_h_floatdp1() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: frintx_h_floatdp1" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FRINTX);
+#ifdef VEDA64_STRINGS
     std::cout << "  frintx_h_floatdp1: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_frintx_s_floatdp1() {
@@ -4287,7 +5315,9 @@ void test_frintx_s_floatdp1() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: frintx_s_floatdp1" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FRINTX);
+#ifdef VEDA64_STRINGS
     std::cout << "  frintx_s_floatdp1: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_frintx_d_floatdp1() {
@@ -4295,7 +5325,9 @@ void test_frintx_d_floatdp1() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: frintx_d_floatdp1" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FRINTX);
+#ifdef VEDA64_STRINGS
     std::cout << "  frintx_d_floatdp1: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_frintz_asimdmiscfp16_r() {
@@ -4303,7 +5335,9 @@ void test_frintz_asimdmiscfp16_r() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: frintz_asimdmiscfp16_r" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FRINTZ);
+#ifdef VEDA64_STRINGS
     std::cout << "  frintz_asimdmiscfp16_r: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_frintz_asimdmisc_r() {
@@ -4311,7 +5345,9 @@ void test_frintz_asimdmisc_r() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: frintz_asimdmisc_r" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FRINTZ);
+#ifdef VEDA64_STRINGS
     std::cout << "  frintz_asimdmisc_r: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_frintz_h_floatdp1() {
@@ -4319,7 +5355,9 @@ void test_frintz_h_floatdp1() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: frintz_h_floatdp1" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FRINTZ);
+#ifdef VEDA64_STRINGS
     std::cout << "  frintz_h_floatdp1: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_frintz_s_floatdp1() {
@@ -4327,7 +5365,9 @@ void test_frintz_s_floatdp1() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: frintz_s_floatdp1" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FRINTZ);
+#ifdef VEDA64_STRINGS
     std::cout << "  frintz_s_floatdp1: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_frintz_d_floatdp1() {
@@ -4335,7 +5375,9 @@ void test_frintz_d_floatdp1() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: frintz_d_floatdp1" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FRINTZ);
+#ifdef VEDA64_STRINGS
     std::cout << "  frintz_d_floatdp1: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_frsqrte_asisdmiscfp16_r() {
@@ -4343,7 +5385,9 @@ void test_frsqrte_asisdmiscfp16_r() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: frsqrte_asisdmiscfp16_r" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FRSQRTE);
+#ifdef VEDA64_STRINGS
     std::cout << "  frsqrte_asisdmiscfp16_r: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_frsqrte_asisdmisc_r() {
@@ -4354,7 +5398,9 @@ void test_frsqrte_asisdmisc_r() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  frsqrte_asisdmisc_r: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_frsqrte_asimdmiscfp16_r() {
@@ -4362,7 +5408,9 @@ void test_frsqrte_asimdmiscfp16_r() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: frsqrte_asimdmiscfp16_r" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FRSQRTE);
+#ifdef VEDA64_STRINGS
     std::cout << "  frsqrte_asimdmiscfp16_r: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_frsqrte_asimdmisc_r() {
@@ -4370,7 +5418,9 @@ void test_frsqrte_asimdmisc_r() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: frsqrte_asimdmisc_r" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FRSQRTE);
+#ifdef VEDA64_STRINGS
     std::cout << "  frsqrte_asimdmisc_r: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_frsqrts_asisdsamefp16_only() {
@@ -4378,7 +5428,9 @@ void test_frsqrts_asisdsamefp16_only() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: frsqrts_asisdsamefp16_only" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FRSQRTS);
+#ifdef VEDA64_STRINGS
     std::cout << "  frsqrts_asisdsamefp16_only: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_frsqrts_asisdsame_only() {
@@ -4390,7 +5442,9 @@ void test_frsqrts_asisdsame_only() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  frsqrts_asisdsame_only: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_frsqrts_asimdsamefp16_only() {
@@ -4398,7 +5452,9 @@ void test_frsqrts_asimdsamefp16_only() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: frsqrts_asimdsamefp16_only" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FRSQRTS);
+#ifdef VEDA64_STRINGS
     std::cout << "  frsqrts_asimdsamefp16_only: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_frsqrts_asimdsame_only() {
@@ -4406,7 +5462,9 @@ void test_frsqrts_asimdsame_only() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: frsqrts_asimdsame_only" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FRSQRTS);
+#ifdef VEDA64_STRINGS
     std::cout << "  frsqrts_asimdsame_only: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fscale_asimdsamefp16_only() {
@@ -4414,7 +5472,9 @@ void test_fscale_asimdsamefp16_only() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fscale_asimdsamefp16_only" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FSCALE);
+#ifdef VEDA64_STRINGS
     std::cout << "  fscale_asimdsamefp16_only: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fscale_asimdsame_only() {
@@ -4422,7 +5482,9 @@ void test_fscale_asimdsame_only() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fscale_asimdsame_only" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FSCALE);
+#ifdef VEDA64_STRINGS
     std::cout << "  fscale_asimdsame_only: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fsqrt_asimdmiscfp16_r() {
@@ -4430,7 +5492,9 @@ void test_fsqrt_asimdmiscfp16_r() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fsqrt_asimdmiscfp16_r" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FSQRT);
+#ifdef VEDA64_STRINGS
     std::cout << "  fsqrt_asimdmiscfp16_r: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fsqrt_asimdmisc_r() {
@@ -4438,7 +5502,9 @@ void test_fsqrt_asimdmisc_r() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fsqrt_asimdmisc_r" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FSQRT);
+#ifdef VEDA64_STRINGS
     std::cout << "  fsqrt_asimdmisc_r: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fsqrt_h_floatdp1() {
@@ -4446,7 +5512,9 @@ void test_fsqrt_h_floatdp1() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fsqrt_h_floatdp1" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FSQRT);
+#ifdef VEDA64_STRINGS
     std::cout << "  fsqrt_h_floatdp1: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fsqrt_s_floatdp1() {
@@ -4454,7 +5522,9 @@ void test_fsqrt_s_floatdp1() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fsqrt_s_floatdp1" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FSQRT);
+#ifdef VEDA64_STRINGS
     std::cout << "  fsqrt_s_floatdp1: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fsqrt_d_floatdp1() {
@@ -4462,7 +5532,9 @@ void test_fsqrt_d_floatdp1() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fsqrt_d_floatdp1" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FSQRT);
+#ifdef VEDA64_STRINGS
     std::cout << "  fsqrt_d_floatdp1: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fsub_asimdsamefp16_only() {
@@ -4470,7 +5542,9 @@ void test_fsub_asimdsamefp16_only() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fsub_asimdsamefp16_only" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FSUB);
+#ifdef VEDA64_STRINGS
     std::cout << "  fsub_asimdsamefp16_only: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fsub_asimdsame_only() {
@@ -4478,7 +5552,9 @@ void test_fsub_asimdsame_only() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fsub_asimdsame_only" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FSUB);
+#ifdef VEDA64_STRINGS
     std::cout << "  fsub_asimdsame_only: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fsub_h_floatdp2() {
@@ -4486,7 +5562,9 @@ void test_fsub_h_floatdp2() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fsub_h_floatdp2" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FSUB);
+#ifdef VEDA64_STRINGS
     std::cout << "  fsub_h_floatdp2: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fsub_s_floatdp2() {
@@ -4494,7 +5572,9 @@ void test_fsub_s_floatdp2() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fsub_s_floatdp2" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FSUB);
+#ifdef VEDA64_STRINGS
     std::cout << "  fsub_s_floatdp2: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_fsub_d_floatdp2() {
@@ -4502,7 +5582,9 @@ void test_fsub_d_floatdp2() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: fsub_d_floatdp2" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::FSUB);
+#ifdef VEDA64_STRINGS
     std::cout << "  fsub_d_floatdp2: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ins_asimdins_iv_v() {
@@ -4510,7 +5592,9 @@ void test_ins_asimdins_iv_v() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: ins_asimdins_iv_v" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::INS);
+#ifdef VEDA64_STRINGS
     std::cout << "  ins_asimdins_iv_v: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ins_asimdins_ir_r() {
@@ -4518,7 +5602,9 @@ void test_ins_asimdins_ir_r() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: ins_asimdins_ir_r" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::INS);
+#ifdef VEDA64_STRINGS
     std::cout << "  ins_asimdins_ir_r: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_luti2_asimdtbl_l5() {
@@ -4530,7 +5616,9 @@ void test_luti2_asimdtbl_l5() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::RegisterList);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  luti2_asimdtbl_l5: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_luti2_asimdtbl_l6() {
@@ -4542,7 +5630,9 @@ void test_luti2_asimdtbl_l6() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::RegisterList);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  luti2_asimdtbl_l6: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_luti4_asimdtbl_l5() {
@@ -4554,7 +5644,9 @@ void test_luti4_asimdtbl_l5() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::RegisterList);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  luti4_asimdtbl_l5: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_luti4_asimdtbl_l7() {
@@ -4566,7 +5658,9 @@ void test_luti4_asimdtbl_l7() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::RegisterList);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  luti4_asimdtbl_l7: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_mla_asimdelem_r() {
@@ -4574,7 +5668,9 @@ void test_mla_asimdelem_r() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: mla_asimdelem_r" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::MLA);
+#ifdef VEDA64_STRINGS
     std::cout << "  mla_asimdelem_r: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_mla_asimdsame_only() {
@@ -4582,7 +5678,9 @@ void test_mla_asimdsame_only() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: mla_asimdsame_only" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::MLA);
+#ifdef VEDA64_STRINGS
     std::cout << "  mla_asimdsame_only: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_mls_asimdelem_r() {
@@ -4590,7 +5688,9 @@ void test_mls_asimdelem_r() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: mls_asimdelem_r" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::MLS);
+#ifdef VEDA64_STRINGS
     std::cout << "  mls_asimdelem_r: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_mls_asimdsame_only() {
@@ -4598,7 +5698,9 @@ void test_mls_asimdsame_only() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: mls_asimdsame_only" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::MLS);
+#ifdef VEDA64_STRINGS
     std::cout << "  mls_asimdsame_only: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_mov_dup_asisdone_only() {
@@ -4606,7 +5708,9 @@ void test_mov_dup_asisdone_only() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: mov_dup_asisdone_only" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::DUP);
+#ifdef VEDA64_STRINGS
     std::cout << "  mov_dup_asisdone_only: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_mov_ins_asimdins_iv_v() {
@@ -4614,7 +5718,9 @@ void test_mov_ins_asimdins_iv_v() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: mov_ins_asimdins_iv_v" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::INS);
+#ifdef VEDA64_STRINGS
     std::cout << "  mov_ins_asimdins_iv_v: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_mov_ins_asimdins_ir_r() {
@@ -4622,14 +5728,18 @@ void test_mov_ins_asimdins_ir_r() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: mov_ins_asimdins_ir_r" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::INS);
+#ifdef VEDA64_STRINGS
     std::cout << "  mov_ins_asimdins_ir_r: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_mov_orr_asimdsame_only() {
     uint32_t insn = 0x0EA01C00u;
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: mov_orr_asimdsame_only" << std::endl; throw std::runtime_error("decode failed"); }
+#ifdef VEDA64_STRINGS
     std::cout << "  mov_orr_asimdsame_only: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_mov_umov_asimdins_w_w() {
@@ -4640,7 +5750,9 @@ void test_mov_umov_asimdins_w_w() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  mov_umov_asimdins_w_w: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_mov_umov_asimdins_x_x() {
@@ -4651,7 +5763,9 @@ void test_mov_umov_asimdins_x_x() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  mov_umov_asimdins_x_x: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_movi_asimdimm_n_b() {
@@ -4659,7 +5773,9 @@ void test_movi_asimdimm_n_b() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: movi_asimdimm_n_b" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::MOVI);
+#ifdef VEDA64_STRINGS
     std::cout << "  movi_asimdimm_n_b: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_movi_asimdimm_l_hl() {
@@ -4667,7 +5783,9 @@ void test_movi_asimdimm_l_hl() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: movi_asimdimm_l_hl" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::MOVI);
+#ifdef VEDA64_STRINGS
     std::cout << "  movi_asimdimm_l_hl: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_movi_asimdimm_l_sl() {
@@ -4675,7 +5793,9 @@ void test_movi_asimdimm_l_sl() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: movi_asimdimm_l_sl" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::MOVI);
+#ifdef VEDA64_STRINGS
     std::cout << "  movi_asimdimm_l_sl: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_movi_asimdimm_m_sm() {
@@ -4683,7 +5803,9 @@ void test_movi_asimdimm_m_sm() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: movi_asimdimm_m_sm" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::MOVI);
+#ifdef VEDA64_STRINGS
     std::cout << "  movi_asimdimm_m_sm: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_movi_asimdimm_d_ds() {
@@ -4691,7 +5813,9 @@ void test_movi_asimdimm_d_ds() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: movi_asimdimm_d_ds" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::MOVI);
+#ifdef VEDA64_STRINGS
     std::cout << "  movi_asimdimm_d_ds: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_movi_asimdimm_d2_d() {
@@ -4699,7 +5823,9 @@ void test_movi_asimdimm_d2_d() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: movi_asimdimm_d2_d" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::MOVI);
+#ifdef VEDA64_STRINGS
     std::cout << "  movi_asimdimm_d2_d: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_mul_asimdelem_r() {
@@ -4707,7 +5833,9 @@ void test_mul_asimdelem_r() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: mul_asimdelem_r" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::MUL);
+#ifdef VEDA64_STRINGS
     std::cout << "  mul_asimdelem_r: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_mul_asimdsame_only() {
@@ -4715,7 +5843,9 @@ void test_mul_asimdsame_only() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: mul_asimdsame_only" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::MUL);
+#ifdef VEDA64_STRINGS
     std::cout << "  mul_asimdsame_only: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_mvn_not_asimdmisc_r() {
@@ -4723,7 +5853,9 @@ void test_mvn_not_asimdmisc_r() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: mvn_not_asimdmisc_r" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::NOT);
+#ifdef VEDA64_STRINGS
     std::cout << "  mvn_not_asimdmisc_r: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_mvni_asimdimm_l_hl() {
@@ -4731,7 +5863,9 @@ void test_mvni_asimdimm_l_hl() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: mvni_asimdimm_l_hl" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::MVNI);
+#ifdef VEDA64_STRINGS
     std::cout << "  mvni_asimdimm_l_hl: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_mvni_asimdimm_l_sl() {
@@ -4739,7 +5873,9 @@ void test_mvni_asimdimm_l_sl() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: mvni_asimdimm_l_sl" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::MVNI);
+#ifdef VEDA64_STRINGS
     std::cout << "  mvni_asimdimm_l_sl: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_mvni_asimdimm_m_sm() {
@@ -4747,7 +5883,9 @@ void test_mvni_asimdimm_m_sm() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: mvni_asimdimm_m_sm" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::MVNI);
+#ifdef VEDA64_STRINGS
     std::cout << "  mvni_asimdimm_m_sm: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_neg_asisdmisc_r() {
@@ -4755,7 +5893,9 @@ void test_neg_asisdmisc_r() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: neg_asisdmisc_r" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::NEG);
+#ifdef VEDA64_STRINGS
     std::cout << "  neg_asisdmisc_r: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_neg_asimdmisc_r() {
@@ -4763,7 +5903,9 @@ void test_neg_asimdmisc_r() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: neg_asimdmisc_r" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::NEG);
+#ifdef VEDA64_STRINGS
     std::cout << "  neg_asimdmisc_r: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_not_asimdmisc_r() {
@@ -4771,35 +5913,45 @@ void test_not_asimdmisc_r() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: not_asimdmisc_r" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::NOT);
+#ifdef VEDA64_STRINGS
     std::cout << "  not_asimdmisc_r: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_orn_asimdsame_only() {
     uint32_t insn = 0x0EE01C00u;
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: orn_asimdsame_only" << std::endl; throw std::runtime_error("decode failed"); }
+#ifdef VEDA64_STRINGS
     std::cout << "  orn_asimdsame_only: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_orr_asimdimm_l_hl() {
     uint32_t insn = 0x0F009400u;
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: orr_asimdimm_l_hl" << std::endl; throw std::runtime_error("decode failed"); }
+#ifdef VEDA64_STRINGS
     std::cout << "  orr_asimdimm_l_hl: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_orr_asimdimm_l_sl() {
     uint32_t insn = 0x0F001400u;
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: orr_asimdimm_l_sl" << std::endl; throw std::runtime_error("decode failed"); }
+#ifdef VEDA64_STRINGS
     std::cout << "  orr_asimdimm_l_sl: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_orr_asimdsame_only() {
     uint32_t insn = 0x0EA01C00u;
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: orr_asimdsame_only" << std::endl; throw std::runtime_error("decode failed"); }
+#ifdef VEDA64_STRINGS
     std::cout << "  orr_asimdsame_only: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_pmul_asimdsame_only() {
@@ -4807,7 +5959,9 @@ void test_pmul_asimdsame_only() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: pmul_asimdsame_only" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::PMUL);
+#ifdef VEDA64_STRINGS
     std::cout << "  pmul_asimdsame_only: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_pmull_asimddiff_l() {
@@ -4815,7 +5969,9 @@ void test_pmull_asimddiff_l() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: pmull_asimddiff_l" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::PMULL);
+#ifdef VEDA64_STRINGS
     std::cout << "  pmull_asimddiff_l: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_raddhn_asimddiff_n() {
@@ -4823,7 +5979,9 @@ void test_raddhn_asimddiff_n() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: raddhn_asimddiff_n" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::RADDHN);
+#ifdef VEDA64_STRINGS
     std::cout << "  raddhn_asimddiff_n: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_rax1_vvv2_cryptosha512_3() {
@@ -4835,7 +5993,9 @@ void test_rax1_vvv2_cryptosha512_3() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  rax1_vvv2_cryptosha512_3: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_rbit_asimdmisc_r() {
@@ -4843,7 +6003,9 @@ void test_rbit_asimdmisc_r() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: rbit_asimdmisc_r" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::RBIT);
+#ifdef VEDA64_STRINGS
     std::cout << "  rbit_asimdmisc_r: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_rev16_asimdmisc_r() {
@@ -4851,7 +6013,9 @@ void test_rev16_asimdmisc_r() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: rev16_asimdmisc_r" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::REV16);
+#ifdef VEDA64_STRINGS
     std::cout << "  rev16_asimdmisc_r: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_rev32_asimdmisc_r() {
@@ -4859,7 +6023,9 @@ void test_rev32_asimdmisc_r() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: rev32_asimdmisc_r" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::REV32);
+#ifdef VEDA64_STRINGS
     std::cout << "  rev32_asimdmisc_r: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_rev64_asimdmisc_r() {
@@ -4867,7 +6033,9 @@ void test_rev64_asimdmisc_r() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: rev64_asimdmisc_r" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::REV64);
+#ifdef VEDA64_STRINGS
     std::cout << "  rev64_asimdmisc_r: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_rshrn_asimdshf_n() {
@@ -4875,7 +6043,9 @@ void test_rshrn_asimdshf_n() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: rshrn_asimdshf_n" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::RSHRN);
+#ifdef VEDA64_STRINGS
     std::cout << "  rshrn_asimdshf_n: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_rsubhn_asimddiff_n() {
@@ -4883,7 +6053,9 @@ void test_rsubhn_asimddiff_n() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: rsubhn_asimddiff_n" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::RSUBHN);
+#ifdef VEDA64_STRINGS
     std::cout << "  rsubhn_asimddiff_n: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_saba_asimdsame_only() {
@@ -4891,7 +6063,9 @@ void test_saba_asimdsame_only() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: saba_asimdsame_only" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::SABA);
+#ifdef VEDA64_STRINGS
     std::cout << "  saba_asimdsame_only: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_sabal_asimddiff_l() {
@@ -4899,7 +6073,9 @@ void test_sabal_asimddiff_l() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: sabal_asimddiff_l" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::SABAL);
+#ifdef VEDA64_STRINGS
     std::cout << "  sabal_asimddiff_l: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_sabd_asimdsame_only() {
@@ -4907,7 +6083,9 @@ void test_sabd_asimdsame_only() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: sabd_asimdsame_only" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::SABD);
+#ifdef VEDA64_STRINGS
     std::cout << "  sabd_asimdsame_only: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_sabdl_asimddiff_l() {
@@ -4915,7 +6093,9 @@ void test_sabdl_asimddiff_l() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: sabdl_asimddiff_l" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::SABDL);
+#ifdef VEDA64_STRINGS
     std::cout << "  sabdl_asimddiff_l: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_sadalp_asimdmisc_p() {
@@ -4923,7 +6103,9 @@ void test_sadalp_asimdmisc_p() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: sadalp_asimdmisc_p" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::SADALP);
+#ifdef VEDA64_STRINGS
     std::cout << "  sadalp_asimdmisc_p: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_saddl_asimddiff_l() {
@@ -4931,7 +6113,9 @@ void test_saddl_asimddiff_l() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: saddl_asimddiff_l" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::SADDL);
+#ifdef VEDA64_STRINGS
     std::cout << "  saddl_asimddiff_l: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_saddlp_asimdmisc_p() {
@@ -4939,7 +6123,9 @@ void test_saddlp_asimdmisc_p() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: saddlp_asimdmisc_p" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::SADDLP);
+#ifdef VEDA64_STRINGS
     std::cout << "  saddlp_asimdmisc_p: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_saddlv_asimdall_only() {
@@ -4947,7 +6133,9 @@ void test_saddlv_asimdall_only() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: saddlv_asimdall_only" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::SADDLV);
+#ifdef VEDA64_STRINGS
     std::cout << "  saddlv_asimdall_only: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_saddw_asimddiff_w() {
@@ -4955,7 +6143,9 @@ void test_saddw_asimddiff_w() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: saddw_asimddiff_w" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::SADDW);
+#ifdef VEDA64_STRINGS
     std::cout << "  saddw_asimddiff_w: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_scvtf_asisdshf_c() {
@@ -4963,7 +6153,9 @@ void test_scvtf_asisdshf_c() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: scvtf_asisdshf_c" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::SCVTF);
+#ifdef VEDA64_STRINGS
     std::cout << "  scvtf_asisdshf_c: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_scvtf_asimdshf_c() {
@@ -4971,7 +6163,9 @@ void test_scvtf_asimdshf_c() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: scvtf_asimdshf_c" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::SCVTF);
+#ifdef VEDA64_STRINGS
     std::cout << "  scvtf_asimdshf_c: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_scvtf_asisdmiscfp16_r() {
@@ -4979,7 +6173,9 @@ void test_scvtf_asisdmiscfp16_r() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: scvtf_asisdmiscfp16_r" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::SCVTF);
+#ifdef VEDA64_STRINGS
     std::cout << "  scvtf_asisdmiscfp16_r: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_scvtf_asisdmisc_r() {
@@ -4990,7 +6186,9 @@ void test_scvtf_asisdmisc_r() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  scvtf_asisdmisc_r: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_scvtf_asimdmiscfp16_r() {
@@ -4998,7 +6196,9 @@ void test_scvtf_asimdmiscfp16_r() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: scvtf_asimdmiscfp16_r" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::SCVTF);
+#ifdef VEDA64_STRINGS
     std::cout << "  scvtf_asimdmiscfp16_r: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_scvtf_asimdmisc_r() {
@@ -5006,7 +6206,9 @@ void test_scvtf_asimdmisc_r() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: scvtf_asimdmisc_r" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::SCVTF);
+#ifdef VEDA64_STRINGS
     std::cout << "  scvtf_asimdmisc_r: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_scvtf_h32_float2fix() {
@@ -5014,7 +6216,9 @@ void test_scvtf_h32_float2fix() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: scvtf_h32_float2fix" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::SCVTF);
+#ifdef VEDA64_STRINGS
     std::cout << "  scvtf_h32_float2fix: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_scvtf_h64_float2fix() {
@@ -5022,7 +6226,9 @@ void test_scvtf_h64_float2fix() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: scvtf_h64_float2fix" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::SCVTF);
+#ifdef VEDA64_STRINGS
     std::cout << "  scvtf_h64_float2fix: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_scvtf_s32_float2fix() {
@@ -5030,7 +6236,9 @@ void test_scvtf_s32_float2fix() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: scvtf_s32_float2fix" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::SCVTF);
+#ifdef VEDA64_STRINGS
     std::cout << "  scvtf_s32_float2fix: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_scvtf_s64_float2fix() {
@@ -5038,7 +6246,9 @@ void test_scvtf_s64_float2fix() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: scvtf_s64_float2fix" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::SCVTF);
+#ifdef VEDA64_STRINGS
     std::cout << "  scvtf_s64_float2fix: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_scvtf_d32_float2fix() {
@@ -5046,7 +6256,9 @@ void test_scvtf_d32_float2fix() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: scvtf_d32_float2fix" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::SCVTF);
+#ifdef VEDA64_STRINGS
     std::cout << "  scvtf_d32_float2fix: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_scvtf_d64_float2fix() {
@@ -5054,7 +6266,9 @@ void test_scvtf_d64_float2fix() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: scvtf_d64_float2fix" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::SCVTF);
+#ifdef VEDA64_STRINGS
     std::cout << "  scvtf_d64_float2fix: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_scvtf_h32_float2int() {
@@ -5062,7 +6276,9 @@ void test_scvtf_h32_float2int() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: scvtf_h32_float2int" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::SCVTF);
+#ifdef VEDA64_STRINGS
     std::cout << "  scvtf_h32_float2int: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_scvtf_s32_float2int() {
@@ -5070,7 +6286,9 @@ void test_scvtf_s32_float2int() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: scvtf_s32_float2int" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::SCVTF);
+#ifdef VEDA64_STRINGS
     std::cout << "  scvtf_s32_float2int: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_scvtf_d32_float2int() {
@@ -5078,7 +6296,9 @@ void test_scvtf_d32_float2int() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: scvtf_d32_float2int" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::SCVTF);
+#ifdef VEDA64_STRINGS
     std::cout << "  scvtf_d32_float2int: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_scvtf_h64_float2int() {
@@ -5086,7 +6306,9 @@ void test_scvtf_h64_float2int() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: scvtf_h64_float2int" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::SCVTF);
+#ifdef VEDA64_STRINGS
     std::cout << "  scvtf_h64_float2int: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_scvtf_s64_float2int() {
@@ -5094,7 +6316,9 @@ void test_scvtf_s64_float2int() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: scvtf_s64_float2int" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::SCVTF);
+#ifdef VEDA64_STRINGS
     std::cout << "  scvtf_s64_float2int: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_scvtf_d64_float2int() {
@@ -5102,7 +6326,9 @@ void test_scvtf_d64_float2int() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: scvtf_d64_float2int" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::SCVTF);
+#ifdef VEDA64_STRINGS
     std::cout << "  scvtf_d64_float2int: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_scvtf_sisd_32h() {
@@ -5110,7 +6336,9 @@ void test_scvtf_sisd_32h() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: scvtf_sisd_32h" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::SCVTF);
+#ifdef VEDA64_STRINGS
     std::cout << "  scvtf_sisd_32h: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_scvtf_sisd_32d() {
@@ -5118,7 +6346,9 @@ void test_scvtf_sisd_32d() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: scvtf_sisd_32d" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::SCVTF);
+#ifdef VEDA64_STRINGS
     std::cout << "  scvtf_sisd_32d: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_scvtf_sisd_64h() {
@@ -5126,7 +6356,9 @@ void test_scvtf_sisd_64h() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: scvtf_sisd_64h" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::SCVTF);
+#ifdef VEDA64_STRINGS
     std::cout << "  scvtf_sisd_64h: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_scvtf_sisd_64s() {
@@ -5134,7 +6366,9 @@ void test_scvtf_sisd_64s() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: scvtf_sisd_64s" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::SCVTF);
+#ifdef VEDA64_STRINGS
     std::cout << "  scvtf_sisd_64s: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_sdot_asimdelem_d() {
@@ -5142,7 +6376,9 @@ void test_sdot_asimdelem_d() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: sdot_asimdelem_d" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::SDOT);
+#ifdef VEDA64_STRINGS
     std::cout << "  sdot_asimdelem_d: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_sdot_asimdsame2_d() {
@@ -5150,7 +6386,9 @@ void test_sdot_asimdsame2_d() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: sdot_asimdsame2_d" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::SDOT);
+#ifdef VEDA64_STRINGS
     std::cout << "  sdot_asimdsame2_d: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_sha1c_qsv_cryptosha3() {
@@ -5158,7 +6396,9 @@ void test_sha1c_qsv_cryptosha3() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: sha1c_qsv_cryptosha3" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::SHA1C);
+#ifdef VEDA64_STRINGS
     std::cout << "  sha1c_qsv_cryptosha3: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_sha1h_ss_cryptosha2() {
@@ -5166,7 +6406,9 @@ void test_sha1h_ss_cryptosha2() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: sha1h_ss_cryptosha2" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::SHA1H);
+#ifdef VEDA64_STRINGS
     std::cout << "  sha1h_ss_cryptosha2: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_sha1m_qsv_cryptosha3() {
@@ -5174,7 +6416,9 @@ void test_sha1m_qsv_cryptosha3() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: sha1m_qsv_cryptosha3" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::SHA1M);
+#ifdef VEDA64_STRINGS
     std::cout << "  sha1m_qsv_cryptosha3: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_sha1p_qsv_cryptosha3() {
@@ -5182,7 +6426,9 @@ void test_sha1p_qsv_cryptosha3() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: sha1p_qsv_cryptosha3" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::SHA1P);
+#ifdef VEDA64_STRINGS
     std::cout << "  sha1p_qsv_cryptosha3: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_sha1su0_vvv_cryptosha3() {
@@ -5194,7 +6440,9 @@ void test_sha1su0_vvv_cryptosha3() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  sha1su0_vvv_cryptosha3: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_sha1su1_vv_cryptosha2() {
@@ -5205,7 +6453,9 @@ void test_sha1su1_vv_cryptosha2() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  sha1su1_vv_cryptosha2: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_sha256h2_qqv_cryptosha3() {
@@ -5213,7 +6463,9 @@ void test_sha256h2_qqv_cryptosha3() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: sha256h2_qqv_cryptosha3" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::SHA256H2);
+#ifdef VEDA64_STRINGS
     std::cout << "  sha256h2_qqv_cryptosha3: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_sha256h_qqv_cryptosha3() {
@@ -5221,7 +6473,9 @@ void test_sha256h_qqv_cryptosha3() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: sha256h_qqv_cryptosha3" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::SHA256H);
+#ifdef VEDA64_STRINGS
     std::cout << "  sha256h_qqv_cryptosha3: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_sha256su0_vv_cryptosha2() {
@@ -5232,7 +6486,9 @@ void test_sha256su0_vv_cryptosha2() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  sha256su0_vv_cryptosha2: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_sha256su1_vvv_cryptosha3() {
@@ -5244,7 +6500,9 @@ void test_sha256su1_vvv_cryptosha3() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  sha256su1_vvv_cryptosha3: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_sha512h2_qqv_cryptosha512_3() {
@@ -5252,7 +6510,9 @@ void test_sha512h2_qqv_cryptosha512_3() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: sha512h2_qqv_cryptosha512_3" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::SHA512H2);
+#ifdef VEDA64_STRINGS
     std::cout << "  sha512h2_qqv_cryptosha512_3: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_sha512h_qqv_cryptosha512_3() {
@@ -5260,7 +6520,9 @@ void test_sha512h_qqv_cryptosha512_3() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: sha512h_qqv_cryptosha512_3" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::SHA512H);
+#ifdef VEDA64_STRINGS
     std::cout << "  sha512h_qqv_cryptosha512_3: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_sha512su0_vv2_cryptosha512_2() {
@@ -5271,7 +6533,9 @@ void test_sha512su0_vv2_cryptosha512_2() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  sha512su0_vv2_cryptosha512_2: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_sha512su1_vvv2_cryptosha512_3() {
@@ -5283,7 +6547,9 @@ void test_sha512su1_vvv2_cryptosha512_3() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  sha512su1_vvv2_cryptosha512_3: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_shadd_asimdsame_only() {
@@ -5291,7 +6557,9 @@ void test_shadd_asimdsame_only() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: shadd_asimdsame_only" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::SHADD);
+#ifdef VEDA64_STRINGS
     std::cout << "  shadd_asimdsame_only: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_shl_asisdshf_r() {
@@ -5299,7 +6567,9 @@ void test_shl_asisdshf_r() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: shl_asisdshf_r" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::SHL);
+#ifdef VEDA64_STRINGS
     std::cout << "  shl_asisdshf_r: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_shl_asimdshf_r() {
@@ -5307,7 +6577,9 @@ void test_shl_asimdshf_r() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: shl_asimdshf_r" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::SHL);
+#ifdef VEDA64_STRINGS
     std::cout << "  shl_asimdshf_r: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_shll_asimdmisc_s() {
@@ -5315,7 +6587,9 @@ void test_shll_asimdmisc_s() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: shll_asimdmisc_s" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::SHLL);
+#ifdef VEDA64_STRINGS
     std::cout << "  shll_asimdmisc_s: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_shrn_asimdshf_n() {
@@ -5323,7 +6597,9 @@ void test_shrn_asimdshf_n() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: shrn_asimdshf_n" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::SHRN);
+#ifdef VEDA64_STRINGS
     std::cout << "  shrn_asimdshf_n: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_shsub_asimdsame_only() {
@@ -5331,7 +6607,9 @@ void test_shsub_asimdsame_only() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: shsub_asimdsame_only" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::SHSUB);
+#ifdef VEDA64_STRINGS
     std::cout << "  shsub_asimdsame_only: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_sli_asisdshf_r() {
@@ -5339,7 +6617,9 @@ void test_sli_asisdshf_r() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: sli_asisdshf_r" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::SLI);
+#ifdef VEDA64_STRINGS
     std::cout << "  sli_asisdshf_r: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_sli_asimdshf_r() {
@@ -5347,7 +6627,9 @@ void test_sli_asimdshf_r() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: sli_asimdshf_r" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::SLI);
+#ifdef VEDA64_STRINGS
     std::cout << "  sli_asimdshf_r: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_sm3partw1_vvv4_cryptosha512_3() {
@@ -5359,7 +6641,9 @@ void test_sm3partw1_vvv4_cryptosha512_3() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  sm3partw1_vvv4_cryptosha512_3: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_sm3partw2_vvv4_cryptosha512_3() {
@@ -5371,7 +6655,9 @@ void test_sm3partw2_vvv4_cryptosha512_3() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  sm3partw2_vvv4_cryptosha512_3: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_sm3ss1_vvv4_crypto4() {
@@ -5384,7 +6670,9 @@ void test_sm3ss1_vvv4_crypto4() {
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
     assert(result->operands[3].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  sm3ss1_vvv4_crypto4: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_sm3tt1a_vvv4_crypto3_imm2() {
@@ -5396,7 +6684,9 @@ void test_sm3tt1a_vvv4_crypto3_imm2() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  sm3tt1a_vvv4_crypto3_imm2: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_sm3tt1b_vvv4_crypto3_imm2() {
@@ -5408,7 +6698,9 @@ void test_sm3tt1b_vvv4_crypto3_imm2() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  sm3tt1b_vvv4_crypto3_imm2: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_sm3tt2a_vvv4_crypto3_imm2() {
@@ -5420,7 +6712,9 @@ void test_sm3tt2a_vvv4_crypto3_imm2() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  sm3tt2a_vvv4_crypto3_imm2: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_sm3tt2b_vvv_crypto3_imm2() {
@@ -5432,7 +6726,9 @@ void test_sm3tt2b_vvv_crypto3_imm2() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  sm3tt2b_vvv_crypto3_imm2: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_sm4e_vv4_cryptosha512_2() {
@@ -5443,7 +6739,9 @@ void test_sm4e_vv4_cryptosha512_2() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  sm4e_vv4_cryptosha512_2: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_sm4ekey_vvv4_cryptosha512_3() {
@@ -5455,7 +6753,9 @@ void test_sm4ekey_vvv4_cryptosha512_3() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  sm4ekey_vvv4_cryptosha512_3: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_smax_asimdsame_only() {
@@ -5463,7 +6763,9 @@ void test_smax_asimdsame_only() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: smax_asimdsame_only" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::SMAX);
+#ifdef VEDA64_STRINGS
     std::cout << "  smax_asimdsame_only: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_smaxp_asimdsame_only() {
@@ -5471,7 +6773,9 @@ void test_smaxp_asimdsame_only() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: smaxp_asimdsame_only" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::SMAXP);
+#ifdef VEDA64_STRINGS
     std::cout << "  smaxp_asimdsame_only: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_smaxv_asimdall_only() {
@@ -5479,7 +6783,9 @@ void test_smaxv_asimdall_only() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: smaxv_asimdall_only" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::SMAXV);
+#ifdef VEDA64_STRINGS
     std::cout << "  smaxv_asimdall_only: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_smin_asimdsame_only() {
@@ -5487,7 +6793,9 @@ void test_smin_asimdsame_only() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: smin_asimdsame_only" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::SMIN);
+#ifdef VEDA64_STRINGS
     std::cout << "  smin_asimdsame_only: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_sminp_asimdsame_only() {
@@ -5495,7 +6803,9 @@ void test_sminp_asimdsame_only() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: sminp_asimdsame_only" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::SMINP);
+#ifdef VEDA64_STRINGS
     std::cout << "  sminp_asimdsame_only: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_sminv_asimdall_only() {
@@ -5503,7 +6813,9 @@ void test_sminv_asimdall_only() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: sminv_asimdall_only" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::SMINV);
+#ifdef VEDA64_STRINGS
     std::cout << "  sminv_asimdall_only: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_smlal_asimdelem_l() {
@@ -5511,7 +6823,9 @@ void test_smlal_asimdelem_l() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: smlal_asimdelem_l" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::SMLAL);
+#ifdef VEDA64_STRINGS
     std::cout << "  smlal_asimdelem_l: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_smlal_asimddiff_l() {
@@ -5519,7 +6833,9 @@ void test_smlal_asimddiff_l() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: smlal_asimddiff_l" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::SMLAL);
+#ifdef VEDA64_STRINGS
     std::cout << "  smlal_asimddiff_l: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_smlsl_asimdelem_l() {
@@ -5527,7 +6843,9 @@ void test_smlsl_asimdelem_l() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: smlsl_asimdelem_l" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::SMLSL);
+#ifdef VEDA64_STRINGS
     std::cout << "  smlsl_asimdelem_l: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_smlsl_asimddiff_l() {
@@ -5535,7 +6853,9 @@ void test_smlsl_asimddiff_l() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: smlsl_asimddiff_l" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::SMLSL);
+#ifdef VEDA64_STRINGS
     std::cout << "  smlsl_asimddiff_l: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_smmla_asimdsame2_g() {
@@ -5547,7 +6867,9 @@ void test_smmla_asimdsame2_g() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  smmla_asimdsame2_g: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_smov_asimdins_w_w() {
@@ -5555,7 +6877,9 @@ void test_smov_asimdins_w_w() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: smov_asimdins_w_w" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::SMOV);
+#ifdef VEDA64_STRINGS
     std::cout << "  smov_asimdins_w_w: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_smov_asimdins_x_x() {
@@ -5563,7 +6887,9 @@ void test_smov_asimdins_x_x() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: smov_asimdins_x_x" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::SMOV);
+#ifdef VEDA64_STRINGS
     std::cout << "  smov_asimdins_x_x: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_smull_asimdelem_l() {
@@ -5571,7 +6897,9 @@ void test_smull_asimdelem_l() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: smull_asimdelem_l" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::SMULL);
+#ifdef VEDA64_STRINGS
     std::cout << "  smull_asimdelem_l: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_smull_asimddiff_l() {
@@ -5579,7 +6907,9 @@ void test_smull_asimddiff_l() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: smull_asimddiff_l" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::SMULL);
+#ifdef VEDA64_STRINGS
     std::cout << "  smull_asimddiff_l: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_sqabs_asisdmisc_r() {
@@ -5590,7 +6920,9 @@ void test_sqabs_asisdmisc_r() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  sqabs_asisdmisc_r: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_sqabs_asimdmisc_r() {
@@ -5598,7 +6930,9 @@ void test_sqabs_asimdmisc_r() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: sqabs_asimdmisc_r" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::SQABS);
+#ifdef VEDA64_STRINGS
     std::cout << "  sqabs_asimdmisc_r: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_sqadd_asisdsame_only() {
@@ -5610,7 +6944,9 @@ void test_sqadd_asisdsame_only() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  sqadd_asisdsame_only: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_sqadd_asimdsame_only() {
@@ -5618,7 +6954,9 @@ void test_sqadd_asimdsame_only() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: sqadd_asimdsame_only" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::SQADD);
+#ifdef VEDA64_STRINGS
     std::cout << "  sqadd_asimdsame_only: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_sqdmlal_asisdelem_l() {
@@ -5626,7 +6964,9 @@ void test_sqdmlal_asisdelem_l() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: sqdmlal_asisdelem_l" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::SQDMLAL);
+#ifdef VEDA64_STRINGS
     std::cout << "  sqdmlal_asisdelem_l: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_sqdmlal_asimdelem_l() {
@@ -5634,7 +6974,9 @@ void test_sqdmlal_asimdelem_l() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: sqdmlal_asimdelem_l" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::SQDMLAL);
+#ifdef VEDA64_STRINGS
     std::cout << "  sqdmlal_asimdelem_l: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_sqdmlal_asisddiff_only() {
@@ -5642,7 +6984,9 @@ void test_sqdmlal_asisddiff_only() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: sqdmlal_asisddiff_only" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::SQDMLAL);
+#ifdef VEDA64_STRINGS
     std::cout << "  sqdmlal_asisddiff_only: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_sqdmlal_asimddiff_l() {
@@ -5650,7 +6994,9 @@ void test_sqdmlal_asimddiff_l() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: sqdmlal_asimddiff_l" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::SQDMLAL);
+#ifdef VEDA64_STRINGS
     std::cout << "  sqdmlal_asimddiff_l: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_sqdmlsl_asisdelem_l() {
@@ -5658,7 +7004,9 @@ void test_sqdmlsl_asisdelem_l() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: sqdmlsl_asisdelem_l" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::SQDMLSL);
+#ifdef VEDA64_STRINGS
     std::cout << "  sqdmlsl_asisdelem_l: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_sqdmlsl_asimdelem_l() {
@@ -5666,7 +7014,9 @@ void test_sqdmlsl_asimdelem_l() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: sqdmlsl_asimdelem_l" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::SQDMLSL);
+#ifdef VEDA64_STRINGS
     std::cout << "  sqdmlsl_asimdelem_l: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_sqdmlsl_asisddiff_only() {
@@ -5674,7 +7024,9 @@ void test_sqdmlsl_asisddiff_only() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: sqdmlsl_asisddiff_only" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::SQDMLSL);
+#ifdef VEDA64_STRINGS
     std::cout << "  sqdmlsl_asisddiff_only: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_sqdmlsl_asimddiff_l() {
@@ -5682,7 +7034,9 @@ void test_sqdmlsl_asimddiff_l() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: sqdmlsl_asimddiff_l" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::SQDMLSL);
+#ifdef VEDA64_STRINGS
     std::cout << "  sqdmlsl_asimddiff_l: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_sqdmulh_asisdelem_r() {
@@ -5690,7 +7044,9 @@ void test_sqdmulh_asisdelem_r() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: sqdmulh_asisdelem_r" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::SQDMULH);
+#ifdef VEDA64_STRINGS
     std::cout << "  sqdmulh_asisdelem_r: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_sqdmulh_asimdelem_r() {
@@ -5698,7 +7054,9 @@ void test_sqdmulh_asimdelem_r() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: sqdmulh_asimdelem_r" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::SQDMULH);
+#ifdef VEDA64_STRINGS
     std::cout << "  sqdmulh_asimdelem_r: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_sqdmulh_asisdsame_only() {
@@ -5710,7 +7068,9 @@ void test_sqdmulh_asisdsame_only() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  sqdmulh_asisdsame_only: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_sqdmulh_asimdsame_only() {
@@ -5718,7 +7078,9 @@ void test_sqdmulh_asimdsame_only() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: sqdmulh_asimdsame_only" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::SQDMULH);
+#ifdef VEDA64_STRINGS
     std::cout << "  sqdmulh_asimdsame_only: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_sqdmull_asimdelem_l() {
@@ -5726,7 +7088,9 @@ void test_sqdmull_asimdelem_l() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: sqdmull_asimdelem_l" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::SQDMULL);
+#ifdef VEDA64_STRINGS
     std::cout << "  sqdmull_asimdelem_l: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_sqdmull_asisdelem_l() {
@@ -5734,7 +7098,9 @@ void test_sqdmull_asisdelem_l() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: sqdmull_asisdelem_l" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::SQDMULL);
+#ifdef VEDA64_STRINGS
     std::cout << "  sqdmull_asisdelem_l: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_sqdmull_asisddiff_only() {
@@ -5742,7 +7108,9 @@ void test_sqdmull_asisddiff_only() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: sqdmull_asisddiff_only" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::SQDMULL);
+#ifdef VEDA64_STRINGS
     std::cout << "  sqdmull_asisddiff_only: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_sqdmull_asimddiff_l() {
@@ -5750,7 +7118,9 @@ void test_sqdmull_asimddiff_l() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: sqdmull_asimddiff_l" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::SQDMULL);
+#ifdef VEDA64_STRINGS
     std::cout << "  sqdmull_asimddiff_l: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_sqneg_asisdmisc_r() {
@@ -5761,7 +7131,9 @@ void test_sqneg_asisdmisc_r() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  sqneg_asisdmisc_r: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_sqneg_asimdmisc_r() {
@@ -5769,7 +7141,9 @@ void test_sqneg_asimdmisc_r() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: sqneg_asimdmisc_r" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::SQNEG);
+#ifdef VEDA64_STRINGS
     std::cout << "  sqneg_asimdmisc_r: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_sqrdmlah_asisdelem_r() {
@@ -5777,7 +7151,9 @@ void test_sqrdmlah_asisdelem_r() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: sqrdmlah_asisdelem_r" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::SQRDMLAH);
+#ifdef VEDA64_STRINGS
     std::cout << "  sqrdmlah_asisdelem_r: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_sqrdmlah_asimdelem_r() {
@@ -5785,7 +7161,9 @@ void test_sqrdmlah_asimdelem_r() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: sqrdmlah_asimdelem_r" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::SQRDMLAH);
+#ifdef VEDA64_STRINGS
     std::cout << "  sqrdmlah_asimdelem_r: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_sqrdmlah_asisdsame2_only() {
@@ -5797,7 +7175,9 @@ void test_sqrdmlah_asisdsame2_only() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  sqrdmlah_asisdsame2_only: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_sqrdmlah_asimdsame2_only() {
@@ -5805,7 +7185,9 @@ void test_sqrdmlah_asimdsame2_only() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: sqrdmlah_asimdsame2_only" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::SQRDMLAH);
+#ifdef VEDA64_STRINGS
     std::cout << "  sqrdmlah_asimdsame2_only: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_sqrdmlsh_asisdelem_r() {
@@ -5813,7 +7195,9 @@ void test_sqrdmlsh_asisdelem_r() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: sqrdmlsh_asisdelem_r" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::SQRDMLSH);
+#ifdef VEDA64_STRINGS
     std::cout << "  sqrdmlsh_asisdelem_r: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_sqrdmlsh_asimdelem_r() {
@@ -5821,7 +7205,9 @@ void test_sqrdmlsh_asimdelem_r() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: sqrdmlsh_asimdelem_r" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::SQRDMLSH);
+#ifdef VEDA64_STRINGS
     std::cout << "  sqrdmlsh_asimdelem_r: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_sqrdmlsh_asisdsame2_only() {
@@ -5833,7 +7219,9 @@ void test_sqrdmlsh_asisdsame2_only() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  sqrdmlsh_asisdsame2_only: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_sqrdmlsh_asimdsame2_only() {
@@ -5841,7 +7229,9 @@ void test_sqrdmlsh_asimdsame2_only() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: sqrdmlsh_asimdsame2_only" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::SQRDMLSH);
+#ifdef VEDA64_STRINGS
     std::cout << "  sqrdmlsh_asimdsame2_only: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_sqrdmulh_asisdelem_r() {
@@ -5849,7 +7239,9 @@ void test_sqrdmulh_asisdelem_r() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: sqrdmulh_asisdelem_r" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::SQRDMULH);
+#ifdef VEDA64_STRINGS
     std::cout << "  sqrdmulh_asisdelem_r: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_sqrdmulh_asimdelem_r() {
@@ -5857,7 +7249,9 @@ void test_sqrdmulh_asimdelem_r() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: sqrdmulh_asimdelem_r" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::SQRDMULH);
+#ifdef VEDA64_STRINGS
     std::cout << "  sqrdmulh_asimdelem_r: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_sqrdmulh_asisdsame_only() {
@@ -5869,7 +7263,9 @@ void test_sqrdmulh_asisdsame_only() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  sqrdmulh_asisdsame_only: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_sqrdmulh_asimdsame_only() {
@@ -5877,7 +7273,9 @@ void test_sqrdmulh_asimdsame_only() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: sqrdmulh_asimdsame_only" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::SQRDMULH);
+#ifdef VEDA64_STRINGS
     std::cout << "  sqrdmulh_asimdsame_only: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_sqrshl_asisdsame_only() {
@@ -5889,7 +7287,9 @@ void test_sqrshl_asisdsame_only() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  sqrshl_asisdsame_only: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_sqrshl_asimdsame_only() {
@@ -5897,7 +7297,9 @@ void test_sqrshl_asimdsame_only() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: sqrshl_asimdsame_only" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::SQRSHL);
+#ifdef VEDA64_STRINGS
     std::cout << "  sqrshl_asimdsame_only: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_sqrshrn_asisdshf_n() {
@@ -5905,7 +7307,9 @@ void test_sqrshrn_asisdshf_n() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: sqrshrn_asisdshf_n" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::SQRSHRN);
+#ifdef VEDA64_STRINGS
     std::cout << "  sqrshrn_asisdshf_n: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_sqrshrn_asimdshf_n() {
@@ -5913,7 +7317,9 @@ void test_sqrshrn_asimdshf_n() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: sqrshrn_asimdshf_n" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::SQRSHRN);
+#ifdef VEDA64_STRINGS
     std::cout << "  sqrshrn_asimdshf_n: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_sqrshrun_asisdshf_n() {
@@ -5921,7 +7327,9 @@ void test_sqrshrun_asisdshf_n() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: sqrshrun_asisdshf_n" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::SQRSHRUN);
+#ifdef VEDA64_STRINGS
     std::cout << "  sqrshrun_asisdshf_n: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_sqrshrun_asimdshf_n() {
@@ -5929,7 +7337,9 @@ void test_sqrshrun_asimdshf_n() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: sqrshrun_asimdshf_n" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::SQRSHRUN);
+#ifdef VEDA64_STRINGS
     std::cout << "  sqrshrun_asimdshf_n: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_sqshl_asisdshf_r() {
@@ -5937,7 +7347,9 @@ void test_sqshl_asisdshf_r() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: sqshl_asisdshf_r" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::SQSHL);
+#ifdef VEDA64_STRINGS
     std::cout << "  sqshl_asisdshf_r: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_sqshl_asimdshf_r() {
@@ -5945,7 +7357,9 @@ void test_sqshl_asimdshf_r() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: sqshl_asimdshf_r" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::SQSHL);
+#ifdef VEDA64_STRINGS
     std::cout << "  sqshl_asimdshf_r: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_sqshl_asisdsame_only() {
@@ -5957,7 +7371,9 @@ void test_sqshl_asisdsame_only() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  sqshl_asisdsame_only: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_sqshl_asimdsame_only() {
@@ -5965,7 +7381,9 @@ void test_sqshl_asimdsame_only() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: sqshl_asimdsame_only" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::SQSHL);
+#ifdef VEDA64_STRINGS
     std::cout << "  sqshl_asimdsame_only: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_sqshlu_asisdshf_r() {
@@ -5973,7 +7391,9 @@ void test_sqshlu_asisdshf_r() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: sqshlu_asisdshf_r" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::SQSHLU);
+#ifdef VEDA64_STRINGS
     std::cout << "  sqshlu_asisdshf_r: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_sqshlu_asimdshf_r() {
@@ -5981,7 +7401,9 @@ void test_sqshlu_asimdshf_r() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: sqshlu_asimdshf_r" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::SQSHLU);
+#ifdef VEDA64_STRINGS
     std::cout << "  sqshlu_asimdshf_r: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_sqshrn_asisdshf_n() {
@@ -5989,7 +7411,9 @@ void test_sqshrn_asisdshf_n() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: sqshrn_asisdshf_n" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::SQSHRN);
+#ifdef VEDA64_STRINGS
     std::cout << "  sqshrn_asisdshf_n: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_sqshrn_asimdshf_n() {
@@ -5997,7 +7421,9 @@ void test_sqshrn_asimdshf_n() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: sqshrn_asimdshf_n" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::SQSHRN);
+#ifdef VEDA64_STRINGS
     std::cout << "  sqshrn_asimdshf_n: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_sqshrun_asisdshf_n() {
@@ -6005,7 +7431,9 @@ void test_sqshrun_asisdshf_n() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: sqshrun_asisdshf_n" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::SQSHRUN);
+#ifdef VEDA64_STRINGS
     std::cout << "  sqshrun_asisdshf_n: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_sqshrun_asimdshf_n() {
@@ -6013,7 +7441,9 @@ void test_sqshrun_asimdshf_n() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: sqshrun_asimdshf_n" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::SQSHRUN);
+#ifdef VEDA64_STRINGS
     std::cout << "  sqshrun_asimdshf_n: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_sqsub_asisdsame_only() {
@@ -6025,7 +7455,9 @@ void test_sqsub_asisdsame_only() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  sqsub_asisdsame_only: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_sqsub_asimdsame_only() {
@@ -6033,7 +7465,9 @@ void test_sqsub_asimdsame_only() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: sqsub_asimdsame_only" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::SQSUB);
+#ifdef VEDA64_STRINGS
     std::cout << "  sqsub_asimdsame_only: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_sqxtn_asisdmisc_n() {
@@ -6041,7 +7475,9 @@ void test_sqxtn_asisdmisc_n() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: sqxtn_asisdmisc_n" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::SQXTN);
+#ifdef VEDA64_STRINGS
     std::cout << "  sqxtn_asisdmisc_n: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_sqxtn_asimdmisc_n() {
@@ -6049,7 +7485,9 @@ void test_sqxtn_asimdmisc_n() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: sqxtn_asimdmisc_n" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::SQXTN);
+#ifdef VEDA64_STRINGS
     std::cout << "  sqxtn_asimdmisc_n: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_sqxtun_asisdmisc_n() {
@@ -6057,7 +7495,9 @@ void test_sqxtun_asisdmisc_n() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: sqxtun_asisdmisc_n" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::SQXTUN);
+#ifdef VEDA64_STRINGS
     std::cout << "  sqxtun_asisdmisc_n: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_sqxtun_asimdmisc_n() {
@@ -6065,7 +7505,9 @@ void test_sqxtun_asimdmisc_n() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: sqxtun_asimdmisc_n" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::SQXTUN);
+#ifdef VEDA64_STRINGS
     std::cout << "  sqxtun_asimdmisc_n: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_srhadd_asimdsame_only() {
@@ -6073,7 +7515,9 @@ void test_srhadd_asimdsame_only() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: srhadd_asimdsame_only" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::SRHADD);
+#ifdef VEDA64_STRINGS
     std::cout << "  srhadd_asimdsame_only: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_sri_asisdshf_r() {
@@ -6081,7 +7525,9 @@ void test_sri_asisdshf_r() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: sri_asisdshf_r" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::SRI);
+#ifdef VEDA64_STRINGS
     std::cout << "  sri_asisdshf_r: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_sri_asimdshf_r() {
@@ -6089,7 +7535,9 @@ void test_sri_asimdshf_r() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: sri_asimdshf_r" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::SRI);
+#ifdef VEDA64_STRINGS
     std::cout << "  sri_asimdshf_r: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_srshl_asisdsame_only() {
@@ -6097,7 +7545,9 @@ void test_srshl_asisdsame_only() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: srshl_asisdsame_only" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::SRSHL);
+#ifdef VEDA64_STRINGS
     std::cout << "  srshl_asisdsame_only: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_srshl_asimdsame_only() {
@@ -6105,7 +7555,9 @@ void test_srshl_asimdsame_only() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: srshl_asimdsame_only" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::SRSHL);
+#ifdef VEDA64_STRINGS
     std::cout << "  srshl_asimdsame_only: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_srshr_asisdshf_r() {
@@ -6113,7 +7565,9 @@ void test_srshr_asisdshf_r() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: srshr_asisdshf_r" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::SRSHR);
+#ifdef VEDA64_STRINGS
     std::cout << "  srshr_asisdshf_r: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_srshr_asimdshf_r() {
@@ -6121,7 +7575,9 @@ void test_srshr_asimdshf_r() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: srshr_asimdshf_r" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::SRSHR);
+#ifdef VEDA64_STRINGS
     std::cout << "  srshr_asimdshf_r: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_srsra_asisdshf_r() {
@@ -6129,7 +7585,9 @@ void test_srsra_asisdshf_r() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: srsra_asisdshf_r" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::SRSRA);
+#ifdef VEDA64_STRINGS
     std::cout << "  srsra_asisdshf_r: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_srsra_asimdshf_r() {
@@ -6137,7 +7595,9 @@ void test_srsra_asimdshf_r() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: srsra_asimdshf_r" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::SRSRA);
+#ifdef VEDA64_STRINGS
     std::cout << "  srsra_asimdshf_r: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_sshl_asisdsame_only() {
@@ -6145,7 +7605,9 @@ void test_sshl_asisdsame_only() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: sshl_asisdsame_only" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::SSHL);
+#ifdef VEDA64_STRINGS
     std::cout << "  sshl_asisdsame_only: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_sshl_asimdsame_only() {
@@ -6153,7 +7615,9 @@ void test_sshl_asimdsame_only() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: sshl_asimdsame_only" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::SSHL);
+#ifdef VEDA64_STRINGS
     std::cout << "  sshl_asimdsame_only: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_sshll_asimdshf_l() {
@@ -6161,7 +7625,9 @@ void test_sshll_asimdshf_l() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: sshll_asimdshf_l" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::SSHLL);
+#ifdef VEDA64_STRINGS
     std::cout << "  sshll_asimdshf_l: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_sshr_asisdshf_r() {
@@ -6169,7 +7635,9 @@ void test_sshr_asisdshf_r() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: sshr_asisdshf_r" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::SSHR);
+#ifdef VEDA64_STRINGS
     std::cout << "  sshr_asisdshf_r: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_sshr_asimdshf_r() {
@@ -6177,7 +7645,9 @@ void test_sshr_asimdshf_r() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: sshr_asimdshf_r" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::SSHR);
+#ifdef VEDA64_STRINGS
     std::cout << "  sshr_asimdshf_r: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ssra_asisdshf_r() {
@@ -6185,7 +7655,9 @@ void test_ssra_asisdshf_r() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: ssra_asisdshf_r" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::SSRA);
+#ifdef VEDA64_STRINGS
     std::cout << "  ssra_asisdshf_r: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ssra_asimdshf_r() {
@@ -6193,7 +7665,9 @@ void test_ssra_asimdshf_r() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: ssra_asimdshf_r" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::SSRA);
+#ifdef VEDA64_STRINGS
     std::cout << "  ssra_asimdshf_r: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ssubl_asimddiff_l() {
@@ -6201,7 +7675,9 @@ void test_ssubl_asimddiff_l() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: ssubl_asimddiff_l" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::SSUBL);
+#ifdef VEDA64_STRINGS
     std::cout << "  ssubl_asimddiff_l: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ssubw_asimddiff_w() {
@@ -6209,21 +7685,27 @@ void test_ssubw_asimddiff_w() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: ssubw_asimddiff_w" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::SSUBW);
+#ifdef VEDA64_STRINGS
     std::cout << "  ssubw_asimddiff_w: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_sub_asisdsame_only() {
     uint32_t insn = 0x7EE08400u;
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: sub_asisdsame_only" << std::endl; throw std::runtime_error("decode failed"); }
+#ifdef VEDA64_STRINGS
     std::cout << "  sub_asisdsame_only: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_sub_asimdsame_only() {
     uint32_t insn = 0x2E208400u;
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: sub_asimdsame_only" << std::endl; throw std::runtime_error("decode failed"); }
+#ifdef VEDA64_STRINGS
     std::cout << "  sub_asimdsame_only: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_subhn_asimddiff_n() {
@@ -6231,7 +7713,9 @@ void test_subhn_asimddiff_n() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: subhn_asimddiff_n" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::SUBHN);
+#ifdef VEDA64_STRINGS
     std::cout << "  subhn_asimddiff_n: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_sudot_asimdelem_d() {
@@ -6239,7 +7723,9 @@ void test_sudot_asimdelem_d() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: sudot_asimdelem_d" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::SUDOT);
+#ifdef VEDA64_STRINGS
     std::cout << "  sudot_asimdelem_d: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_suqadd_asisdmisc_r() {
@@ -6250,7 +7736,9 @@ void test_suqadd_asisdmisc_r() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  suqadd_asisdmisc_r: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_suqadd_asimdmisc_r() {
@@ -6258,7 +7746,9 @@ void test_suqadd_asimdmisc_r() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: suqadd_asimdmisc_r" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::SUQADD);
+#ifdef VEDA64_STRINGS
     std::cout << "  suqadd_asimdmisc_r: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_sxtl_sshll_asimdshf_l() {
@@ -6266,7 +7756,9 @@ void test_sxtl_sshll_asimdshf_l() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: sxtl_sshll_asimdshf_l" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::SSHLL);
+#ifdef VEDA64_STRINGS
     std::cout << "  sxtl_sshll_asimdshf_l: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_tbl_asimdtbl_l1_1() {
@@ -6274,7 +7766,9 @@ void test_tbl_asimdtbl_l1_1() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: tbl_asimdtbl_l1_1" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::TBL);
+#ifdef VEDA64_STRINGS
     std::cout << "  tbl_asimdtbl_l1_1: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_tbl_asimdtbl_l2_2() {
@@ -6282,7 +7776,9 @@ void test_tbl_asimdtbl_l2_2() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: tbl_asimdtbl_l2_2" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::TBL);
+#ifdef VEDA64_STRINGS
     std::cout << "  tbl_asimdtbl_l2_2: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_tbl_asimdtbl_l3_3() {
@@ -6290,7 +7786,9 @@ void test_tbl_asimdtbl_l3_3() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: tbl_asimdtbl_l3_3" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::TBL);
+#ifdef VEDA64_STRINGS
     std::cout << "  tbl_asimdtbl_l3_3: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_tbl_asimdtbl_l4_4() {
@@ -6298,7 +7796,9 @@ void test_tbl_asimdtbl_l4_4() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: tbl_asimdtbl_l4_4" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::TBL);
+#ifdef VEDA64_STRINGS
     std::cout << "  tbl_asimdtbl_l4_4: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_tbx_asimdtbl_l1_1() {
@@ -6306,7 +7806,9 @@ void test_tbx_asimdtbl_l1_1() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: tbx_asimdtbl_l1_1" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::TBX);
+#ifdef VEDA64_STRINGS
     std::cout << "  tbx_asimdtbl_l1_1: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_tbx_asimdtbl_l2_2() {
@@ -6314,7 +7816,9 @@ void test_tbx_asimdtbl_l2_2() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: tbx_asimdtbl_l2_2" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::TBX);
+#ifdef VEDA64_STRINGS
     std::cout << "  tbx_asimdtbl_l2_2: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_tbx_asimdtbl_l3_3() {
@@ -6322,7 +7826,9 @@ void test_tbx_asimdtbl_l3_3() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: tbx_asimdtbl_l3_3" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::TBX);
+#ifdef VEDA64_STRINGS
     std::cout << "  tbx_asimdtbl_l3_3: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_tbx_asimdtbl_l4_4() {
@@ -6330,7 +7836,9 @@ void test_tbx_asimdtbl_l4_4() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: tbx_asimdtbl_l4_4" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::TBX);
+#ifdef VEDA64_STRINGS
     std::cout << "  tbx_asimdtbl_l4_4: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_trn1_asimdperm_only() {
@@ -6338,7 +7846,9 @@ void test_trn1_asimdperm_only() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: trn1_asimdperm_only" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::TRN1);
+#ifdef VEDA64_STRINGS
     std::cout << "  trn1_asimdperm_only: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_trn2_asimdperm_only() {
@@ -6346,7 +7856,9 @@ void test_trn2_asimdperm_only() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: trn2_asimdperm_only" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::TRN2);
+#ifdef VEDA64_STRINGS
     std::cout << "  trn2_asimdperm_only: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_uaba_asimdsame_only() {
@@ -6354,7 +7866,9 @@ void test_uaba_asimdsame_only() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: uaba_asimdsame_only" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::UABA);
+#ifdef VEDA64_STRINGS
     std::cout << "  uaba_asimdsame_only: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_uabal_asimddiff_l() {
@@ -6362,7 +7876,9 @@ void test_uabal_asimddiff_l() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: uabal_asimddiff_l" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::UABAL);
+#ifdef VEDA64_STRINGS
     std::cout << "  uabal_asimddiff_l: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_uabd_asimdsame_only() {
@@ -6370,7 +7886,9 @@ void test_uabd_asimdsame_only() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: uabd_asimdsame_only" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::UABD);
+#ifdef VEDA64_STRINGS
     std::cout << "  uabd_asimdsame_only: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_uabdl_asimddiff_l() {
@@ -6378,7 +7896,9 @@ void test_uabdl_asimddiff_l() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: uabdl_asimddiff_l" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::UABDL);
+#ifdef VEDA64_STRINGS
     std::cout << "  uabdl_asimddiff_l: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_uadalp_asimdmisc_p() {
@@ -6386,7 +7906,9 @@ void test_uadalp_asimdmisc_p() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: uadalp_asimdmisc_p" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::UADALP);
+#ifdef VEDA64_STRINGS
     std::cout << "  uadalp_asimdmisc_p: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_uaddl_asimddiff_l() {
@@ -6394,7 +7916,9 @@ void test_uaddl_asimddiff_l() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: uaddl_asimddiff_l" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::UADDL);
+#ifdef VEDA64_STRINGS
     std::cout << "  uaddl_asimddiff_l: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_uaddlp_asimdmisc_p() {
@@ -6402,7 +7926,9 @@ void test_uaddlp_asimdmisc_p() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: uaddlp_asimdmisc_p" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::UADDLP);
+#ifdef VEDA64_STRINGS
     std::cout << "  uaddlp_asimdmisc_p: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_uaddlv_asimdall_only() {
@@ -6410,7 +7936,9 @@ void test_uaddlv_asimdall_only() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: uaddlv_asimdall_only" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::UADDLV);
+#ifdef VEDA64_STRINGS
     std::cout << "  uaddlv_asimdall_only: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_uaddw_asimddiff_w() {
@@ -6418,7 +7946,9 @@ void test_uaddw_asimddiff_w() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: uaddw_asimddiff_w" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::UADDW);
+#ifdef VEDA64_STRINGS
     std::cout << "  uaddw_asimddiff_w: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ucvtf_asisdshf_c() {
@@ -6426,7 +7956,9 @@ void test_ucvtf_asisdshf_c() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: ucvtf_asisdshf_c" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::UCVTF);
+#ifdef VEDA64_STRINGS
     std::cout << "  ucvtf_asisdshf_c: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ucvtf_asimdshf_c() {
@@ -6434,7 +7966,9 @@ void test_ucvtf_asimdshf_c() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: ucvtf_asimdshf_c" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::UCVTF);
+#ifdef VEDA64_STRINGS
     std::cout << "  ucvtf_asimdshf_c: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ucvtf_asisdmiscfp16_r() {
@@ -6442,7 +7976,9 @@ void test_ucvtf_asisdmiscfp16_r() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: ucvtf_asisdmiscfp16_r" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::UCVTF);
+#ifdef VEDA64_STRINGS
     std::cout << "  ucvtf_asisdmiscfp16_r: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ucvtf_asisdmisc_r() {
@@ -6453,7 +7989,9 @@ void test_ucvtf_asisdmisc_r() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  ucvtf_asisdmisc_r: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ucvtf_asimdmiscfp16_r() {
@@ -6461,7 +7999,9 @@ void test_ucvtf_asimdmiscfp16_r() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: ucvtf_asimdmiscfp16_r" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::UCVTF);
+#ifdef VEDA64_STRINGS
     std::cout << "  ucvtf_asimdmiscfp16_r: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ucvtf_asimdmisc_r() {
@@ -6469,7 +8009,9 @@ void test_ucvtf_asimdmisc_r() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: ucvtf_asimdmisc_r" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::UCVTF);
+#ifdef VEDA64_STRINGS
     std::cout << "  ucvtf_asimdmisc_r: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ucvtf_h32_float2fix() {
@@ -6477,7 +8019,9 @@ void test_ucvtf_h32_float2fix() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: ucvtf_h32_float2fix" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::UCVTF);
+#ifdef VEDA64_STRINGS
     std::cout << "  ucvtf_h32_float2fix: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ucvtf_h64_float2fix() {
@@ -6485,7 +8029,9 @@ void test_ucvtf_h64_float2fix() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: ucvtf_h64_float2fix" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::UCVTF);
+#ifdef VEDA64_STRINGS
     std::cout << "  ucvtf_h64_float2fix: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ucvtf_s32_float2fix() {
@@ -6493,7 +8039,9 @@ void test_ucvtf_s32_float2fix() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: ucvtf_s32_float2fix" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::UCVTF);
+#ifdef VEDA64_STRINGS
     std::cout << "  ucvtf_s32_float2fix: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ucvtf_s64_float2fix() {
@@ -6501,7 +8049,9 @@ void test_ucvtf_s64_float2fix() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: ucvtf_s64_float2fix" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::UCVTF);
+#ifdef VEDA64_STRINGS
     std::cout << "  ucvtf_s64_float2fix: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ucvtf_d32_float2fix() {
@@ -6509,7 +8059,9 @@ void test_ucvtf_d32_float2fix() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: ucvtf_d32_float2fix" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::UCVTF);
+#ifdef VEDA64_STRINGS
     std::cout << "  ucvtf_d32_float2fix: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ucvtf_d64_float2fix() {
@@ -6517,7 +8069,9 @@ void test_ucvtf_d64_float2fix() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: ucvtf_d64_float2fix" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::UCVTF);
+#ifdef VEDA64_STRINGS
     std::cout << "  ucvtf_d64_float2fix: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ucvtf_h32_float2int() {
@@ -6525,7 +8079,9 @@ void test_ucvtf_h32_float2int() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: ucvtf_h32_float2int" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::UCVTF);
+#ifdef VEDA64_STRINGS
     std::cout << "  ucvtf_h32_float2int: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ucvtf_s32_float2int() {
@@ -6533,7 +8089,9 @@ void test_ucvtf_s32_float2int() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: ucvtf_s32_float2int" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::UCVTF);
+#ifdef VEDA64_STRINGS
     std::cout << "  ucvtf_s32_float2int: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ucvtf_d32_float2int() {
@@ -6541,7 +8099,9 @@ void test_ucvtf_d32_float2int() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: ucvtf_d32_float2int" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::UCVTF);
+#ifdef VEDA64_STRINGS
     std::cout << "  ucvtf_d32_float2int: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ucvtf_h64_float2int() {
@@ -6549,7 +8109,9 @@ void test_ucvtf_h64_float2int() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: ucvtf_h64_float2int" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::UCVTF);
+#ifdef VEDA64_STRINGS
     std::cout << "  ucvtf_h64_float2int: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ucvtf_s64_float2int() {
@@ -6557,7 +8119,9 @@ void test_ucvtf_s64_float2int() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: ucvtf_s64_float2int" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::UCVTF);
+#ifdef VEDA64_STRINGS
     std::cout << "  ucvtf_s64_float2int: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ucvtf_d64_float2int() {
@@ -6565,7 +8129,9 @@ void test_ucvtf_d64_float2int() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: ucvtf_d64_float2int" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::UCVTF);
+#ifdef VEDA64_STRINGS
     std::cout << "  ucvtf_d64_float2int: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ucvtf_sisd_32h() {
@@ -6573,7 +8139,9 @@ void test_ucvtf_sisd_32h() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: ucvtf_sisd_32h" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::UCVTF);
+#ifdef VEDA64_STRINGS
     std::cout << "  ucvtf_sisd_32h: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ucvtf_sisd_32d() {
@@ -6581,7 +8149,9 @@ void test_ucvtf_sisd_32d() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: ucvtf_sisd_32d" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::UCVTF);
+#ifdef VEDA64_STRINGS
     std::cout << "  ucvtf_sisd_32d: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ucvtf_sisd_64h() {
@@ -6589,7 +8159,9 @@ void test_ucvtf_sisd_64h() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: ucvtf_sisd_64h" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::UCVTF);
+#ifdef VEDA64_STRINGS
     std::cout << "  ucvtf_sisd_64h: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ucvtf_sisd_64s() {
@@ -6597,7 +8169,9 @@ void test_ucvtf_sisd_64s() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: ucvtf_sisd_64s" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::UCVTF);
+#ifdef VEDA64_STRINGS
     std::cout << "  ucvtf_sisd_64s: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_udot_asimdelem_d() {
@@ -6605,7 +8179,9 @@ void test_udot_asimdelem_d() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: udot_asimdelem_d" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::UDOT);
+#ifdef VEDA64_STRINGS
     std::cout << "  udot_asimdelem_d: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_udot_asimdsame2_d() {
@@ -6613,7 +8189,9 @@ void test_udot_asimdsame2_d() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: udot_asimdsame2_d" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::UDOT);
+#ifdef VEDA64_STRINGS
     std::cout << "  udot_asimdsame2_d: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_uhadd_asimdsame_only() {
@@ -6621,7 +8199,9 @@ void test_uhadd_asimdsame_only() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: uhadd_asimdsame_only" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::UHADD);
+#ifdef VEDA64_STRINGS
     std::cout << "  uhadd_asimdsame_only: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_uhsub_asimdsame_only() {
@@ -6629,7 +8209,9 @@ void test_uhsub_asimdsame_only() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: uhsub_asimdsame_only" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::UHSUB);
+#ifdef VEDA64_STRINGS
     std::cout << "  uhsub_asimdsame_only: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_umax_asimdsame_only() {
@@ -6637,7 +8219,9 @@ void test_umax_asimdsame_only() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: umax_asimdsame_only" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::UMAX);
+#ifdef VEDA64_STRINGS
     std::cout << "  umax_asimdsame_only: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_umaxp_asimdsame_only() {
@@ -6645,7 +8229,9 @@ void test_umaxp_asimdsame_only() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: umaxp_asimdsame_only" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::UMAXP);
+#ifdef VEDA64_STRINGS
     std::cout << "  umaxp_asimdsame_only: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_umaxv_asimdall_only() {
@@ -6653,7 +8239,9 @@ void test_umaxv_asimdall_only() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: umaxv_asimdall_only" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::UMAXV);
+#ifdef VEDA64_STRINGS
     std::cout << "  umaxv_asimdall_only: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_umin_asimdsame_only() {
@@ -6661,7 +8249,9 @@ void test_umin_asimdsame_only() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: umin_asimdsame_only" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::UMIN);
+#ifdef VEDA64_STRINGS
     std::cout << "  umin_asimdsame_only: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_uminp_asimdsame_only() {
@@ -6669,7 +8259,9 @@ void test_uminp_asimdsame_only() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: uminp_asimdsame_only" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::UMINP);
+#ifdef VEDA64_STRINGS
     std::cout << "  uminp_asimdsame_only: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_uminv_asimdall_only() {
@@ -6677,7 +8269,9 @@ void test_uminv_asimdall_only() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: uminv_asimdall_only" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::UMINV);
+#ifdef VEDA64_STRINGS
     std::cout << "  uminv_asimdall_only: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_umlal_asimdelem_l() {
@@ -6685,7 +8279,9 @@ void test_umlal_asimdelem_l() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: umlal_asimdelem_l" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::UMLAL);
+#ifdef VEDA64_STRINGS
     std::cout << "  umlal_asimdelem_l: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_umlal_asimddiff_l() {
@@ -6693,7 +8289,9 @@ void test_umlal_asimddiff_l() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: umlal_asimddiff_l" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::UMLAL);
+#ifdef VEDA64_STRINGS
     std::cout << "  umlal_asimddiff_l: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_umlsl_asimdelem_l() {
@@ -6701,7 +8299,9 @@ void test_umlsl_asimdelem_l() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: umlsl_asimdelem_l" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::UMLSL);
+#ifdef VEDA64_STRINGS
     std::cout << "  umlsl_asimdelem_l: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_umlsl_asimddiff_l() {
@@ -6709,7 +8309,9 @@ void test_umlsl_asimddiff_l() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: umlsl_asimddiff_l" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::UMLSL);
+#ifdef VEDA64_STRINGS
     std::cout << "  umlsl_asimddiff_l: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ummla_asimdsame2_g() {
@@ -6721,7 +8323,9 @@ void test_ummla_asimdsame2_g() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  ummla_asimdsame2_g: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_umov_asimdins_w_w() {
@@ -6729,7 +8333,9 @@ void test_umov_asimdins_w_w() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: umov_asimdins_w_w" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::UMOV);
+#ifdef VEDA64_STRINGS
     std::cout << "  umov_asimdins_w_w: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_umov_asimdins_x_x() {
@@ -6740,7 +8346,9 @@ void test_umov_asimdins_x_x() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  umov_asimdins_x_x: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_umull_asimdelem_l() {
@@ -6748,7 +8356,9 @@ void test_umull_asimdelem_l() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: umull_asimdelem_l" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::UMULL);
+#ifdef VEDA64_STRINGS
     std::cout << "  umull_asimdelem_l: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_umull_asimddiff_l() {
@@ -6756,7 +8366,9 @@ void test_umull_asimddiff_l() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: umull_asimddiff_l" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::UMULL);
+#ifdef VEDA64_STRINGS
     std::cout << "  umull_asimddiff_l: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_uqadd_asisdsame_only() {
@@ -6768,7 +8380,9 @@ void test_uqadd_asisdsame_only() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  uqadd_asisdsame_only: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_uqadd_asimdsame_only() {
@@ -6776,7 +8390,9 @@ void test_uqadd_asimdsame_only() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: uqadd_asimdsame_only" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::UQADD);
+#ifdef VEDA64_STRINGS
     std::cout << "  uqadd_asimdsame_only: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_uqrshl_asisdsame_only() {
@@ -6788,7 +8404,9 @@ void test_uqrshl_asisdsame_only() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  uqrshl_asisdsame_only: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_uqrshl_asimdsame_only() {
@@ -6796,7 +8414,9 @@ void test_uqrshl_asimdsame_only() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: uqrshl_asimdsame_only" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::UQRSHL);
+#ifdef VEDA64_STRINGS
     std::cout << "  uqrshl_asimdsame_only: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_uqrshrn_asisdshf_n() {
@@ -6804,7 +8424,9 @@ void test_uqrshrn_asisdshf_n() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: uqrshrn_asisdshf_n" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::UQRSHRN);
+#ifdef VEDA64_STRINGS
     std::cout << "  uqrshrn_asisdshf_n: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_uqrshrn_asimdshf_n() {
@@ -6812,7 +8434,9 @@ void test_uqrshrn_asimdshf_n() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: uqrshrn_asimdshf_n" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::UQRSHRN);
+#ifdef VEDA64_STRINGS
     std::cout << "  uqrshrn_asimdshf_n: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_uqshl_asisdshf_r() {
@@ -6820,7 +8444,9 @@ void test_uqshl_asisdshf_r() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: uqshl_asisdshf_r" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::UQSHL);
+#ifdef VEDA64_STRINGS
     std::cout << "  uqshl_asisdshf_r: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_uqshl_asimdshf_r() {
@@ -6828,7 +8454,9 @@ void test_uqshl_asimdshf_r() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: uqshl_asimdshf_r" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::UQSHL);
+#ifdef VEDA64_STRINGS
     std::cout << "  uqshl_asimdshf_r: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_uqshl_asisdsame_only() {
@@ -6840,7 +8468,9 @@ void test_uqshl_asisdsame_only() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  uqshl_asisdsame_only: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_uqshl_asimdsame_only() {
@@ -6848,7 +8478,9 @@ void test_uqshl_asimdsame_only() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: uqshl_asimdsame_only" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::UQSHL);
+#ifdef VEDA64_STRINGS
     std::cout << "  uqshl_asimdsame_only: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_uqshrn_asisdshf_n() {
@@ -6856,7 +8488,9 @@ void test_uqshrn_asisdshf_n() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: uqshrn_asisdshf_n" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::UQSHRN);
+#ifdef VEDA64_STRINGS
     std::cout << "  uqshrn_asisdshf_n: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_uqshrn_asimdshf_n() {
@@ -6864,7 +8498,9 @@ void test_uqshrn_asimdshf_n() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: uqshrn_asimdshf_n" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::UQSHRN);
+#ifdef VEDA64_STRINGS
     std::cout << "  uqshrn_asimdshf_n: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_uqsub_asisdsame_only() {
@@ -6876,7 +8512,9 @@ void test_uqsub_asisdsame_only() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  uqsub_asisdsame_only: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_uqsub_asimdsame_only() {
@@ -6884,7 +8522,9 @@ void test_uqsub_asimdsame_only() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: uqsub_asimdsame_only" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::UQSUB);
+#ifdef VEDA64_STRINGS
     std::cout << "  uqsub_asimdsame_only: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_uqxtn_asisdmisc_n() {
@@ -6892,7 +8532,9 @@ void test_uqxtn_asisdmisc_n() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: uqxtn_asisdmisc_n" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::UQXTN);
+#ifdef VEDA64_STRINGS
     std::cout << "  uqxtn_asisdmisc_n: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_uqxtn_asimdmisc_n() {
@@ -6900,7 +8542,9 @@ void test_uqxtn_asimdmisc_n() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: uqxtn_asimdmisc_n" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::UQXTN);
+#ifdef VEDA64_STRINGS
     std::cout << "  uqxtn_asimdmisc_n: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_urecpe_asimdmisc_r() {
@@ -6908,7 +8552,9 @@ void test_urecpe_asimdmisc_r() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: urecpe_asimdmisc_r" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::URECPE);
+#ifdef VEDA64_STRINGS
     std::cout << "  urecpe_asimdmisc_r: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_urhadd_asimdsame_only() {
@@ -6916,7 +8562,9 @@ void test_urhadd_asimdsame_only() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: urhadd_asimdsame_only" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::URHADD);
+#ifdef VEDA64_STRINGS
     std::cout << "  urhadd_asimdsame_only: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_urshl_asisdsame_only() {
@@ -6924,7 +8572,9 @@ void test_urshl_asisdsame_only() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: urshl_asisdsame_only" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::URSHL);
+#ifdef VEDA64_STRINGS
     std::cout << "  urshl_asisdsame_only: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_urshl_asimdsame_only() {
@@ -6932,7 +8582,9 @@ void test_urshl_asimdsame_only() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: urshl_asimdsame_only" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::URSHL);
+#ifdef VEDA64_STRINGS
     std::cout << "  urshl_asimdsame_only: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_urshr_asisdshf_r() {
@@ -6940,7 +8592,9 @@ void test_urshr_asisdshf_r() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: urshr_asisdshf_r" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::URSHR);
+#ifdef VEDA64_STRINGS
     std::cout << "  urshr_asisdshf_r: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_urshr_asimdshf_r() {
@@ -6948,7 +8602,9 @@ void test_urshr_asimdshf_r() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: urshr_asimdshf_r" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::URSHR);
+#ifdef VEDA64_STRINGS
     std::cout << "  urshr_asimdshf_r: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ursqrte_asimdmisc_r() {
@@ -6956,7 +8612,9 @@ void test_ursqrte_asimdmisc_r() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: ursqrte_asimdmisc_r" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::URSQRTE);
+#ifdef VEDA64_STRINGS
     std::cout << "  ursqrte_asimdmisc_r: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ursra_asisdshf_r() {
@@ -6964,7 +8622,9 @@ void test_ursra_asisdshf_r() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: ursra_asisdshf_r" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::URSRA);
+#ifdef VEDA64_STRINGS
     std::cout << "  ursra_asisdshf_r: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ursra_asimdshf_r() {
@@ -6972,7 +8632,9 @@ void test_ursra_asimdshf_r() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: ursra_asimdshf_r" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::URSRA);
+#ifdef VEDA64_STRINGS
     std::cout << "  ursra_asimdshf_r: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_usdot_asimdelem_d() {
@@ -6980,7 +8642,9 @@ void test_usdot_asimdelem_d() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: usdot_asimdelem_d" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::USDOT);
+#ifdef VEDA64_STRINGS
     std::cout << "  usdot_asimdelem_d: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_usdot_asimdsame2_d() {
@@ -6988,7 +8652,9 @@ void test_usdot_asimdsame2_d() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: usdot_asimdsame2_d" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::USDOT);
+#ifdef VEDA64_STRINGS
     std::cout << "  usdot_asimdsame2_d: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ushl_asisdsame_only() {
@@ -6996,7 +8662,9 @@ void test_ushl_asisdsame_only() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: ushl_asisdsame_only" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::USHL);
+#ifdef VEDA64_STRINGS
     std::cout << "  ushl_asisdsame_only: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ushl_asimdsame_only() {
@@ -7004,7 +8672,9 @@ void test_ushl_asimdsame_only() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: ushl_asimdsame_only" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::USHL);
+#ifdef VEDA64_STRINGS
     std::cout << "  ushl_asimdsame_only: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ushll_asimdshf_l() {
@@ -7012,7 +8682,9 @@ void test_ushll_asimdshf_l() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: ushll_asimdshf_l" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::USHLL);
+#ifdef VEDA64_STRINGS
     std::cout << "  ushll_asimdshf_l: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ushr_asisdshf_r() {
@@ -7020,7 +8692,9 @@ void test_ushr_asisdshf_r() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: ushr_asisdshf_r" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::USHR);
+#ifdef VEDA64_STRINGS
     std::cout << "  ushr_asisdshf_r: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ushr_asimdshf_r() {
@@ -7028,7 +8702,9 @@ void test_ushr_asimdshf_r() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: ushr_asimdshf_r" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::USHR);
+#ifdef VEDA64_STRINGS
     std::cout << "  ushr_asimdshf_r: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_usmmla_asimdsame2_g() {
@@ -7040,7 +8716,9 @@ void test_usmmla_asimdsame2_g() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  usmmla_asimdsame2_g: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_usqadd_asisdmisc_r() {
@@ -7051,7 +8729,9 @@ void test_usqadd_asisdmisc_r() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  usqadd_asisdmisc_r: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_usqadd_asimdmisc_r() {
@@ -7059,7 +8739,9 @@ void test_usqadd_asimdmisc_r() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: usqadd_asimdmisc_r" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::USQADD);
+#ifdef VEDA64_STRINGS
     std::cout << "  usqadd_asimdmisc_r: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_usra_asisdshf_r() {
@@ -7067,7 +8749,9 @@ void test_usra_asisdshf_r() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: usra_asisdshf_r" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::USRA);
+#ifdef VEDA64_STRINGS
     std::cout << "  usra_asisdshf_r: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_usra_asimdshf_r() {
@@ -7075,7 +8759,9 @@ void test_usra_asimdshf_r() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: usra_asimdshf_r" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::USRA);
+#ifdef VEDA64_STRINGS
     std::cout << "  usra_asimdshf_r: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_usubl_asimddiff_l() {
@@ -7083,7 +8769,9 @@ void test_usubl_asimddiff_l() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: usubl_asimddiff_l" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::USUBL);
+#ifdef VEDA64_STRINGS
     std::cout << "  usubl_asimddiff_l: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_usubw_asimddiff_w() {
@@ -7091,7 +8779,9 @@ void test_usubw_asimddiff_w() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: usubw_asimddiff_w" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::USUBW);
+#ifdef VEDA64_STRINGS
     std::cout << "  usubw_asimddiff_w: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_uxtl_ushll_asimdshf_l() {
@@ -7099,7 +8789,9 @@ void test_uxtl_ushll_asimdshf_l() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: uxtl_ushll_asimdshf_l" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::USHLL);
+#ifdef VEDA64_STRINGS
     std::cout << "  uxtl_ushll_asimdshf_l: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_uzp1_asimdperm_only() {
@@ -7107,7 +8799,9 @@ void test_uzp1_asimdperm_only() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: uzp1_asimdperm_only" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::UZP1);
+#ifdef VEDA64_STRINGS
     std::cout << "  uzp1_asimdperm_only: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_uzp2_asimdperm_only() {
@@ -7115,7 +8809,9 @@ void test_uzp2_asimdperm_only() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: uzp2_asimdperm_only" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::UZP2);
+#ifdef VEDA64_STRINGS
     std::cout << "  uzp2_asimdperm_only: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_xar_vvv2_crypto3_imm6() {
@@ -7123,7 +8819,9 @@ void test_xar_vvv2_crypto3_imm6() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: xar_vvv2_crypto3_imm6" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::XAR);
+#ifdef VEDA64_STRINGS
     std::cout << "  xar_vvv2_crypto3_imm6: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_xtn_asimdmisc_n() {
@@ -7131,7 +8829,9 @@ void test_xtn_asimdmisc_n() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: xtn_asimdmisc_n" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::XTN);
+#ifdef VEDA64_STRINGS
     std::cout << "  xtn_asimdmisc_n: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_zip1_asimdperm_only() {
@@ -7139,7 +8839,9 @@ void test_zip1_asimdperm_only() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: zip1_asimdperm_only" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::ZIP1);
+#ifdef VEDA64_STRINGS
     std::cout << "  zip1_asimdperm_only: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_zip2_asimdperm_only() {
@@ -7147,7 +8849,9 @@ void test_zip2_asimdperm_only() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: zip2_asimdperm_only" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::ZIP2);
+#ifdef VEDA64_STRINGS
     std::cout << "  zip2_asimdperm_only: " << result->to_string() << std::endl;
+#endif
 }
 
 int main() {

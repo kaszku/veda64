@@ -16,7 +16,9 @@ void test_cas_c32_comswap() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  cas_c32_comswap: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_casa_c32_comswap() {
@@ -27,7 +29,9 @@ void test_casa_c32_comswap() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  casa_c32_comswap: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_casal_c32_comswap() {
@@ -38,7 +42,9 @@ void test_casal_c32_comswap() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  casal_c32_comswap: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_casl_c32_comswap() {
@@ -49,7 +55,9 @@ void test_casl_c32_comswap() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  casl_c32_comswap: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_cas_c64_comswap() {
@@ -60,7 +68,9 @@ void test_cas_c64_comswap() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  cas_c64_comswap: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_casa_c64_comswap() {
@@ -71,7 +81,9 @@ void test_casa_c64_comswap() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  casa_c64_comswap: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_casal_c64_comswap() {
@@ -82,7 +94,9 @@ void test_casal_c64_comswap() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  casal_c64_comswap: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_casl_c64_comswap() {
@@ -93,7 +107,9 @@ void test_casl_c64_comswap() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  casl_c64_comswap: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_casb_c32_comswap() {
@@ -104,7 +120,9 @@ void test_casb_c32_comswap() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  casb_c32_comswap: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_casab_c32_comswap() {
@@ -115,7 +133,9 @@ void test_casab_c32_comswap() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  casab_c32_comswap: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_casalb_c32_comswap() {
@@ -126,7 +146,9 @@ void test_casalb_c32_comswap() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  casalb_c32_comswap: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_caslb_c32_comswap() {
@@ -137,7 +159,9 @@ void test_caslb_c32_comswap() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  caslb_c32_comswap: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_cash_c32_comswap() {
@@ -148,7 +172,9 @@ void test_cash_c32_comswap() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  cash_c32_comswap: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_casah_c32_comswap() {
@@ -159,7 +185,9 @@ void test_casah_c32_comswap() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  casah_c32_comswap: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_casalh_c32_comswap() {
@@ -170,7 +198,9 @@ void test_casalh_c32_comswap() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  casalh_c32_comswap: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_caslh_c32_comswap() {
@@ -181,7 +211,9 @@ void test_caslh_c32_comswap() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  caslh_c32_comswap: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_casp_cp32_comswappr() {
@@ -192,7 +224,9 @@ void test_casp_cp32_comswappr() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  casp_cp32_comswappr: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_caspa_cp32_comswappr() {
@@ -203,7 +237,9 @@ void test_caspa_cp32_comswappr() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  caspa_cp32_comswappr: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_caspal_cp32_comswappr() {
@@ -214,7 +250,9 @@ void test_caspal_cp32_comswappr() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  caspal_cp32_comswappr: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_caspl_cp32_comswappr() {
@@ -225,7 +263,9 @@ void test_caspl_cp32_comswappr() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  caspl_cp32_comswappr: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_casp_cp64_comswappr() {
@@ -236,7 +276,9 @@ void test_casp_cp64_comswappr() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  casp_cp64_comswappr: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_caspa_cp64_comswappr() {
@@ -247,7 +289,9 @@ void test_caspa_cp64_comswappr() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  caspa_cp64_comswappr: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_caspal_cp64_comswappr() {
@@ -258,7 +302,9 @@ void test_caspal_cp64_comswappr() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  caspal_cp64_comswappr: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_caspl_cp64_comswappr() {
@@ -269,7 +315,9 @@ void test_caspl_cp64_comswappr() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  caspl_cp64_comswappr: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_caspt_cp64_comswappr_unpriv() {
@@ -280,7 +328,9 @@ void test_caspt_cp64_comswappr_unpriv() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  caspt_cp64_comswappr_unpriv: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_caspat_cp64_comswappr_unpriv() {
@@ -291,7 +341,9 @@ void test_caspat_cp64_comswappr_unpriv() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  caspat_cp64_comswappr_unpriv: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_caspalt_cp64_comswappr_unpriv() {
@@ -302,7 +354,9 @@ void test_caspalt_cp64_comswappr_unpriv() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  caspalt_cp64_comswappr_unpriv: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_casplt_cp64_comswappr_unpriv() {
@@ -313,7 +367,9 @@ void test_casplt_cp64_comswappr_unpriv() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  casplt_cp64_comswappr_unpriv: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_cast_c64_comswap_unpriv() {
@@ -324,7 +380,9 @@ void test_cast_c64_comswap_unpriv() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  cast_c64_comswap_unpriv: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_casat_c64_comswap_unpriv() {
@@ -335,7 +393,9 @@ void test_casat_c64_comswap_unpriv() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  casat_c64_comswap_unpriv: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_casalt_c64_comswap_unpriv() {
@@ -346,7 +406,9 @@ void test_casalt_c64_comswap_unpriv() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  casalt_c64_comswap_unpriv: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_caslt_c64_comswap_unpriv() {
@@ -357,7 +419,9 @@ void test_caslt_c64_comswap_unpriv() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  caslt_c64_comswap_unpriv: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_cpyfp_cpy_memcms() {
@@ -367,7 +431,9 @@ void test_cpyfp_cpy_memcms() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Memory);
     assert(result->operands[1].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  cpyfp_cpy_memcms: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_cpyfm_cpy_memcms() {
@@ -377,7 +443,9 @@ void test_cpyfm_cpy_memcms() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Memory);
     assert(result->operands[1].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  cpyfm_cpy_memcms: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_cpyfe_cpy_memcms() {
@@ -387,7 +455,9 @@ void test_cpyfe_cpy_memcms() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Memory);
     assert(result->operands[1].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  cpyfe_cpy_memcms: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_cpyfpn_cpy_memcms() {
@@ -397,7 +467,9 @@ void test_cpyfpn_cpy_memcms() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Memory);
     assert(result->operands[1].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  cpyfpn_cpy_memcms: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_cpyfmn_cpy_memcms() {
@@ -407,7 +479,9 @@ void test_cpyfmn_cpy_memcms() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Memory);
     assert(result->operands[1].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  cpyfmn_cpy_memcms: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_cpyfen_cpy_memcms() {
@@ -417,7 +491,9 @@ void test_cpyfen_cpy_memcms() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Memory);
     assert(result->operands[1].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  cpyfen_cpy_memcms: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_cpyfprn_cpy_memcms() {
@@ -427,7 +503,9 @@ void test_cpyfprn_cpy_memcms() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Memory);
     assert(result->operands[1].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  cpyfprn_cpy_memcms: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_cpyfmrn_cpy_memcms() {
@@ -437,7 +515,9 @@ void test_cpyfmrn_cpy_memcms() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Memory);
     assert(result->operands[1].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  cpyfmrn_cpy_memcms: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_cpyfern_cpy_memcms() {
@@ -447,7 +527,9 @@ void test_cpyfern_cpy_memcms() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Memory);
     assert(result->operands[1].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  cpyfern_cpy_memcms: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_cpyfprt_cpy_memcms() {
@@ -457,7 +539,9 @@ void test_cpyfprt_cpy_memcms() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Memory);
     assert(result->operands[1].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  cpyfprt_cpy_memcms: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_cpyfmrt_cpy_memcms() {
@@ -467,7 +551,9 @@ void test_cpyfmrt_cpy_memcms() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Memory);
     assert(result->operands[1].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  cpyfmrt_cpy_memcms: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_cpyfert_cpy_memcms() {
@@ -477,7 +563,9 @@ void test_cpyfert_cpy_memcms() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Memory);
     assert(result->operands[1].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  cpyfert_cpy_memcms: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_cpyfprtn_cpy_memcms() {
@@ -487,7 +575,9 @@ void test_cpyfprtn_cpy_memcms() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Memory);
     assert(result->operands[1].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  cpyfprtn_cpy_memcms: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_cpyfmrtn_cpy_memcms() {
@@ -497,7 +587,9 @@ void test_cpyfmrtn_cpy_memcms() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Memory);
     assert(result->operands[1].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  cpyfmrtn_cpy_memcms: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_cpyfertn_cpy_memcms() {
@@ -507,7 +599,9 @@ void test_cpyfertn_cpy_memcms() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Memory);
     assert(result->operands[1].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  cpyfertn_cpy_memcms: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_cpyfprtrn_cpy_memcms() {
@@ -517,7 +611,9 @@ void test_cpyfprtrn_cpy_memcms() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Memory);
     assert(result->operands[1].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  cpyfprtrn_cpy_memcms: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_cpyfmrtrn_cpy_memcms() {
@@ -527,7 +623,9 @@ void test_cpyfmrtrn_cpy_memcms() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Memory);
     assert(result->operands[1].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  cpyfmrtrn_cpy_memcms: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_cpyfertrn_cpy_memcms() {
@@ -537,7 +635,9 @@ void test_cpyfertrn_cpy_memcms() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Memory);
     assert(result->operands[1].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  cpyfertrn_cpy_memcms: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_cpyfprtwn_cpy_memcms() {
@@ -547,7 +647,9 @@ void test_cpyfprtwn_cpy_memcms() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Memory);
     assert(result->operands[1].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  cpyfprtwn_cpy_memcms: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_cpyfmrtwn_cpy_memcms() {
@@ -557,7 +659,9 @@ void test_cpyfmrtwn_cpy_memcms() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Memory);
     assert(result->operands[1].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  cpyfmrtwn_cpy_memcms: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_cpyfertwn_cpy_memcms() {
@@ -567,7 +671,9 @@ void test_cpyfertwn_cpy_memcms() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Memory);
     assert(result->operands[1].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  cpyfertwn_cpy_memcms: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_cpyfpt_cpy_memcms() {
@@ -577,7 +683,9 @@ void test_cpyfpt_cpy_memcms() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Memory);
     assert(result->operands[1].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  cpyfpt_cpy_memcms: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_cpyfmt_cpy_memcms() {
@@ -587,7 +695,9 @@ void test_cpyfmt_cpy_memcms() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Memory);
     assert(result->operands[1].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  cpyfmt_cpy_memcms: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_cpyfet_cpy_memcms() {
@@ -597,7 +707,9 @@ void test_cpyfet_cpy_memcms() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Memory);
     assert(result->operands[1].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  cpyfet_cpy_memcms: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_cpyfptn_cpy_memcms() {
@@ -607,7 +719,9 @@ void test_cpyfptn_cpy_memcms() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Memory);
     assert(result->operands[1].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  cpyfptn_cpy_memcms: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_cpyfmtn_cpy_memcms() {
@@ -617,7 +731,9 @@ void test_cpyfmtn_cpy_memcms() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Memory);
     assert(result->operands[1].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  cpyfmtn_cpy_memcms: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_cpyfetn_cpy_memcms() {
@@ -627,7 +743,9 @@ void test_cpyfetn_cpy_memcms() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Memory);
     assert(result->operands[1].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  cpyfetn_cpy_memcms: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_cpyfptrn_cpy_memcms() {
@@ -637,7 +755,9 @@ void test_cpyfptrn_cpy_memcms() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Memory);
     assert(result->operands[1].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  cpyfptrn_cpy_memcms: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_cpyfmtrn_cpy_memcms() {
@@ -647,7 +767,9 @@ void test_cpyfmtrn_cpy_memcms() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Memory);
     assert(result->operands[1].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  cpyfmtrn_cpy_memcms: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_cpyfetrn_cpy_memcms() {
@@ -657,7 +779,9 @@ void test_cpyfetrn_cpy_memcms() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Memory);
     assert(result->operands[1].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  cpyfetrn_cpy_memcms: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_cpyfptwn_cpy_memcms() {
@@ -667,7 +791,9 @@ void test_cpyfptwn_cpy_memcms() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Memory);
     assert(result->operands[1].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  cpyfptwn_cpy_memcms: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_cpyfmtwn_cpy_memcms() {
@@ -677,7 +803,9 @@ void test_cpyfmtwn_cpy_memcms() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Memory);
     assert(result->operands[1].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  cpyfmtwn_cpy_memcms: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_cpyfetwn_cpy_memcms() {
@@ -687,7 +815,9 @@ void test_cpyfetwn_cpy_memcms() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Memory);
     assert(result->operands[1].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  cpyfetwn_cpy_memcms: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_cpyfpwn_cpy_memcms() {
@@ -697,7 +827,9 @@ void test_cpyfpwn_cpy_memcms() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Memory);
     assert(result->operands[1].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  cpyfpwn_cpy_memcms: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_cpyfmwn_cpy_memcms() {
@@ -707,7 +839,9 @@ void test_cpyfmwn_cpy_memcms() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Memory);
     assert(result->operands[1].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  cpyfmwn_cpy_memcms: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_cpyfewn_cpy_memcms() {
@@ -717,7 +851,9 @@ void test_cpyfewn_cpy_memcms() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Memory);
     assert(result->operands[1].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  cpyfewn_cpy_memcms: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_cpyfpwt_cpy_memcms() {
@@ -727,7 +863,9 @@ void test_cpyfpwt_cpy_memcms() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Memory);
     assert(result->operands[1].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  cpyfpwt_cpy_memcms: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_cpyfmwt_cpy_memcms() {
@@ -737,7 +875,9 @@ void test_cpyfmwt_cpy_memcms() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Memory);
     assert(result->operands[1].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  cpyfmwt_cpy_memcms: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_cpyfewt_cpy_memcms() {
@@ -747,7 +887,9 @@ void test_cpyfewt_cpy_memcms() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Memory);
     assert(result->operands[1].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  cpyfewt_cpy_memcms: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_cpyfpwtn_cpy_memcms() {
@@ -757,7 +899,9 @@ void test_cpyfpwtn_cpy_memcms() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Memory);
     assert(result->operands[1].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  cpyfpwtn_cpy_memcms: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_cpyfmwtn_cpy_memcms() {
@@ -767,7 +911,9 @@ void test_cpyfmwtn_cpy_memcms() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Memory);
     assert(result->operands[1].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  cpyfmwtn_cpy_memcms: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_cpyfewtn_cpy_memcms() {
@@ -777,7 +923,9 @@ void test_cpyfewtn_cpy_memcms() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Memory);
     assert(result->operands[1].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  cpyfewtn_cpy_memcms: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_cpyfpwtrn_cpy_memcms() {
@@ -787,7 +935,9 @@ void test_cpyfpwtrn_cpy_memcms() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Memory);
     assert(result->operands[1].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  cpyfpwtrn_cpy_memcms: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_cpyfmwtrn_cpy_memcms() {
@@ -797,7 +947,9 @@ void test_cpyfmwtrn_cpy_memcms() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Memory);
     assert(result->operands[1].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  cpyfmwtrn_cpy_memcms: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_cpyfewtrn_cpy_memcms() {
@@ -807,7 +959,9 @@ void test_cpyfewtrn_cpy_memcms() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Memory);
     assert(result->operands[1].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  cpyfewtrn_cpy_memcms: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_cpyfpwtwn_cpy_memcms() {
@@ -817,7 +971,9 @@ void test_cpyfpwtwn_cpy_memcms() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Memory);
     assert(result->operands[1].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  cpyfpwtwn_cpy_memcms: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_cpyfmwtwn_cpy_memcms() {
@@ -827,7 +983,9 @@ void test_cpyfmwtwn_cpy_memcms() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Memory);
     assert(result->operands[1].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  cpyfmwtwn_cpy_memcms: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_cpyfewtwn_cpy_memcms() {
@@ -837,7 +995,9 @@ void test_cpyfewtwn_cpy_memcms() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Memory);
     assert(result->operands[1].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  cpyfewtwn_cpy_memcms: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_cpyp_cpy_memcms() {
@@ -847,7 +1007,9 @@ void test_cpyp_cpy_memcms() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Memory);
     assert(result->operands[1].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  cpyp_cpy_memcms: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_cpym_cpy_memcms() {
@@ -857,7 +1019,9 @@ void test_cpym_cpy_memcms() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Memory);
     assert(result->operands[1].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  cpym_cpy_memcms: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_cpye_cpy_memcms() {
@@ -867,7 +1031,9 @@ void test_cpye_cpy_memcms() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Memory);
     assert(result->operands[1].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  cpye_cpy_memcms: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_cpypn_cpy_memcms() {
@@ -877,7 +1043,9 @@ void test_cpypn_cpy_memcms() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Memory);
     assert(result->operands[1].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  cpypn_cpy_memcms: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_cpymn_cpy_memcms() {
@@ -887,7 +1055,9 @@ void test_cpymn_cpy_memcms() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Memory);
     assert(result->operands[1].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  cpymn_cpy_memcms: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_cpyen_cpy_memcms() {
@@ -897,7 +1067,9 @@ void test_cpyen_cpy_memcms() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Memory);
     assert(result->operands[1].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  cpyen_cpy_memcms: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_cpyprn_cpy_memcms() {
@@ -907,7 +1079,9 @@ void test_cpyprn_cpy_memcms() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Memory);
     assert(result->operands[1].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  cpyprn_cpy_memcms: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_cpymrn_cpy_memcms() {
@@ -917,7 +1091,9 @@ void test_cpymrn_cpy_memcms() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Memory);
     assert(result->operands[1].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  cpymrn_cpy_memcms: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_cpyern_cpy_memcms() {
@@ -927,7 +1103,9 @@ void test_cpyern_cpy_memcms() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Memory);
     assert(result->operands[1].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  cpyern_cpy_memcms: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_cpyprt_cpy_memcms() {
@@ -937,7 +1115,9 @@ void test_cpyprt_cpy_memcms() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Memory);
     assert(result->operands[1].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  cpyprt_cpy_memcms: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_cpymrt_cpy_memcms() {
@@ -947,7 +1127,9 @@ void test_cpymrt_cpy_memcms() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Memory);
     assert(result->operands[1].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  cpymrt_cpy_memcms: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_cpyert_cpy_memcms() {
@@ -957,7 +1139,9 @@ void test_cpyert_cpy_memcms() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Memory);
     assert(result->operands[1].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  cpyert_cpy_memcms: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_cpyprtn_cpy_memcms() {
@@ -967,7 +1151,9 @@ void test_cpyprtn_cpy_memcms() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Memory);
     assert(result->operands[1].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  cpyprtn_cpy_memcms: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_cpymrtn_cpy_memcms() {
@@ -977,7 +1163,9 @@ void test_cpymrtn_cpy_memcms() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Memory);
     assert(result->operands[1].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  cpymrtn_cpy_memcms: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_cpyertn_cpy_memcms() {
@@ -987,7 +1175,9 @@ void test_cpyertn_cpy_memcms() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Memory);
     assert(result->operands[1].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  cpyertn_cpy_memcms: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_cpyprtrn_cpy_memcms() {
@@ -997,7 +1187,9 @@ void test_cpyprtrn_cpy_memcms() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Memory);
     assert(result->operands[1].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  cpyprtrn_cpy_memcms: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_cpymrtrn_cpy_memcms() {
@@ -1007,7 +1199,9 @@ void test_cpymrtrn_cpy_memcms() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Memory);
     assert(result->operands[1].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  cpymrtrn_cpy_memcms: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_cpyertrn_cpy_memcms() {
@@ -1017,7 +1211,9 @@ void test_cpyertrn_cpy_memcms() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Memory);
     assert(result->operands[1].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  cpyertrn_cpy_memcms: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_cpyprtwn_cpy_memcms() {
@@ -1027,7 +1223,9 @@ void test_cpyprtwn_cpy_memcms() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Memory);
     assert(result->operands[1].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  cpyprtwn_cpy_memcms: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_cpymrtwn_cpy_memcms() {
@@ -1037,7 +1235,9 @@ void test_cpymrtwn_cpy_memcms() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Memory);
     assert(result->operands[1].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  cpymrtwn_cpy_memcms: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_cpyertwn_cpy_memcms() {
@@ -1047,7 +1247,9 @@ void test_cpyertwn_cpy_memcms() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Memory);
     assert(result->operands[1].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  cpyertwn_cpy_memcms: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_cpypt_cpy_memcms() {
@@ -1057,7 +1259,9 @@ void test_cpypt_cpy_memcms() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Memory);
     assert(result->operands[1].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  cpypt_cpy_memcms: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_cpymt_cpy_memcms() {
@@ -1067,7 +1271,9 @@ void test_cpymt_cpy_memcms() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Memory);
     assert(result->operands[1].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  cpymt_cpy_memcms: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_cpyet_cpy_memcms() {
@@ -1077,7 +1283,9 @@ void test_cpyet_cpy_memcms() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Memory);
     assert(result->operands[1].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  cpyet_cpy_memcms: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_cpyptn_cpy_memcms() {
@@ -1087,7 +1295,9 @@ void test_cpyptn_cpy_memcms() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Memory);
     assert(result->operands[1].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  cpyptn_cpy_memcms: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_cpymtn_cpy_memcms() {
@@ -1097,7 +1307,9 @@ void test_cpymtn_cpy_memcms() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Memory);
     assert(result->operands[1].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  cpymtn_cpy_memcms: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_cpyetn_cpy_memcms() {
@@ -1107,7 +1319,9 @@ void test_cpyetn_cpy_memcms() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Memory);
     assert(result->operands[1].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  cpyetn_cpy_memcms: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_cpyptrn_cpy_memcms() {
@@ -1117,7 +1331,9 @@ void test_cpyptrn_cpy_memcms() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Memory);
     assert(result->operands[1].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  cpyptrn_cpy_memcms: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_cpymtrn_cpy_memcms() {
@@ -1127,7 +1343,9 @@ void test_cpymtrn_cpy_memcms() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Memory);
     assert(result->operands[1].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  cpymtrn_cpy_memcms: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_cpyetrn_cpy_memcms() {
@@ -1137,7 +1355,9 @@ void test_cpyetrn_cpy_memcms() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Memory);
     assert(result->operands[1].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  cpyetrn_cpy_memcms: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_cpyptwn_cpy_memcms() {
@@ -1147,7 +1367,9 @@ void test_cpyptwn_cpy_memcms() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Memory);
     assert(result->operands[1].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  cpyptwn_cpy_memcms: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_cpymtwn_cpy_memcms() {
@@ -1157,7 +1379,9 @@ void test_cpymtwn_cpy_memcms() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Memory);
     assert(result->operands[1].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  cpymtwn_cpy_memcms: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_cpyetwn_cpy_memcms() {
@@ -1167,7 +1391,9 @@ void test_cpyetwn_cpy_memcms() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Memory);
     assert(result->operands[1].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  cpyetwn_cpy_memcms: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_cpypwn_cpy_memcms() {
@@ -1177,7 +1403,9 @@ void test_cpypwn_cpy_memcms() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Memory);
     assert(result->operands[1].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  cpypwn_cpy_memcms: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_cpymwn_cpy_memcms() {
@@ -1187,7 +1415,9 @@ void test_cpymwn_cpy_memcms() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Memory);
     assert(result->operands[1].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  cpymwn_cpy_memcms: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_cpyewn_cpy_memcms() {
@@ -1197,7 +1427,9 @@ void test_cpyewn_cpy_memcms() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Memory);
     assert(result->operands[1].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  cpyewn_cpy_memcms: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_cpypwt_cpy_memcms() {
@@ -1207,7 +1439,9 @@ void test_cpypwt_cpy_memcms() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Memory);
     assert(result->operands[1].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  cpypwt_cpy_memcms: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_cpymwt_cpy_memcms() {
@@ -1217,7 +1451,9 @@ void test_cpymwt_cpy_memcms() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Memory);
     assert(result->operands[1].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  cpymwt_cpy_memcms: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_cpyewt_cpy_memcms() {
@@ -1227,7 +1463,9 @@ void test_cpyewt_cpy_memcms() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Memory);
     assert(result->operands[1].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  cpyewt_cpy_memcms: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_cpypwtn_cpy_memcms() {
@@ -1237,7 +1475,9 @@ void test_cpypwtn_cpy_memcms() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Memory);
     assert(result->operands[1].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  cpypwtn_cpy_memcms: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_cpymwtn_cpy_memcms() {
@@ -1247,7 +1487,9 @@ void test_cpymwtn_cpy_memcms() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Memory);
     assert(result->operands[1].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  cpymwtn_cpy_memcms: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_cpyewtn_cpy_memcms() {
@@ -1257,7 +1499,9 @@ void test_cpyewtn_cpy_memcms() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Memory);
     assert(result->operands[1].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  cpyewtn_cpy_memcms: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_cpypwtrn_cpy_memcms() {
@@ -1267,7 +1511,9 @@ void test_cpypwtrn_cpy_memcms() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Memory);
     assert(result->operands[1].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  cpypwtrn_cpy_memcms: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_cpymwtrn_cpy_memcms() {
@@ -1277,7 +1523,9 @@ void test_cpymwtrn_cpy_memcms() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Memory);
     assert(result->operands[1].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  cpymwtrn_cpy_memcms: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_cpyewtrn_cpy_memcms() {
@@ -1287,7 +1535,9 @@ void test_cpyewtrn_cpy_memcms() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Memory);
     assert(result->operands[1].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  cpyewtrn_cpy_memcms: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_cpypwtwn_cpy_memcms() {
@@ -1297,7 +1547,9 @@ void test_cpypwtwn_cpy_memcms() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Memory);
     assert(result->operands[1].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  cpypwtwn_cpy_memcms: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_cpymwtwn_cpy_memcms() {
@@ -1307,7 +1559,9 @@ void test_cpymwtwn_cpy_memcms() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Memory);
     assert(result->operands[1].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  cpymwtwn_cpy_memcms: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_cpyewtwn_cpy_memcms() {
@@ -1317,7 +1571,9 @@ void test_cpyewtwn_cpy_memcms() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Memory);
     assert(result->operands[1].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  cpyewtwn_cpy_memcms: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_gcsstr_64_ldst_gcs() {
@@ -1328,7 +1584,9 @@ void test_gcsstr_64_ldst_gcs() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  gcsstr_64_ldst_gcs: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_gcssttr_64_ldst_gcs() {
@@ -1339,7 +1597,9 @@ void test_gcssttr_64_ldst_gcs() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  gcssttr_64_ldst_gcs: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ld1_asisdlse_r1_1v() {
@@ -1350,7 +1610,9 @@ void test_ld1_asisdlse_r1_1v() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ld1_asisdlse_r1_1v: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ld1_asisdlse_r2_2v() {
@@ -1361,7 +1623,9 @@ void test_ld1_asisdlse_r2_2v() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ld1_asisdlse_r2_2v: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ld1_asisdlse_r3_3v() {
@@ -1372,7 +1636,9 @@ void test_ld1_asisdlse_r3_3v() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ld1_asisdlse_r3_3v: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ld1_asisdlse_r4_4v() {
@@ -1383,7 +1649,9 @@ void test_ld1_asisdlse_r4_4v() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ld1_asisdlse_r4_4v: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ld1_asisdlsep_i1_i1() {
@@ -1391,7 +1659,9 @@ void test_ld1_asisdlsep_i1_i1() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: ld1_asisdlsep_i1_i1" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::LD1);
+#ifdef VEDA64_STRINGS
     std::cout << "  ld1_asisdlsep_i1_i1: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ld1_asisdlsep_r1_r1() {
@@ -1403,7 +1673,9 @@ void test_ld1_asisdlsep_r1_r1() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Memory);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  ld1_asisdlsep_r1_r1: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ld1_asisdlsep_i2_i2() {
@@ -1411,7 +1683,9 @@ void test_ld1_asisdlsep_i2_i2() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: ld1_asisdlsep_i2_i2" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::LD1);
+#ifdef VEDA64_STRINGS
     std::cout << "  ld1_asisdlsep_i2_i2: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ld1_asisdlsep_r2_r2() {
@@ -1423,7 +1697,9 @@ void test_ld1_asisdlsep_r2_r2() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Memory);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  ld1_asisdlsep_r2_r2: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ld1_asisdlsep_i3_i3() {
@@ -1431,7 +1707,9 @@ void test_ld1_asisdlsep_i3_i3() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: ld1_asisdlsep_i3_i3" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::LD1);
+#ifdef VEDA64_STRINGS
     std::cout << "  ld1_asisdlsep_i3_i3: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ld1_asisdlsep_r3_r3() {
@@ -1443,7 +1721,9 @@ void test_ld1_asisdlsep_r3_r3() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Memory);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  ld1_asisdlsep_r3_r3: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ld1_asisdlsep_i4_i4() {
@@ -1451,7 +1731,9 @@ void test_ld1_asisdlsep_i4_i4() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: ld1_asisdlsep_i4_i4" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::LD1);
+#ifdef VEDA64_STRINGS
     std::cout << "  ld1_asisdlsep_i4_i4: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ld1_asisdlsep_r4_r4() {
@@ -1463,7 +1745,9 @@ void test_ld1_asisdlsep_r4_r4() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Memory);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  ld1_asisdlsep_r4_r4: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ld1_asisdlso_b1_1b() {
@@ -1474,7 +1758,9 @@ void test_ld1_asisdlso_b1_1b() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::IndexedRegisterList);
     assert(result->operands[1].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ld1_asisdlso_b1_1b: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ld1_asisdlso_h1_1h() {
@@ -1485,7 +1771,9 @@ void test_ld1_asisdlso_h1_1h() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::IndexedRegisterList);
     assert(result->operands[1].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ld1_asisdlso_h1_1h: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ld1_asisdlso_s1_1s() {
@@ -1496,7 +1784,9 @@ void test_ld1_asisdlso_s1_1s() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::IndexedRegisterList);
     assert(result->operands[1].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ld1_asisdlso_s1_1s: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ld1_asisdlso_d1_1d() {
@@ -1507,7 +1797,9 @@ void test_ld1_asisdlso_d1_1d() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::IndexedRegisterList);
     assert(result->operands[1].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ld1_asisdlso_d1_1d: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ld1_asisdlsop_b1_i1b() {
@@ -1518,7 +1810,9 @@ void test_ld1_asisdlsop_b1_i1b() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::IndexedRegisterList);
     assert(result->operands[1].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ld1_asisdlsop_b1_i1b: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ld1_asisdlsop_bx1_r1b() {
@@ -1530,7 +1824,9 @@ void test_ld1_asisdlsop_bx1_r1b() {
     assert(result->operands[0].type == OperandType::IndexedRegisterList);
     assert(result->operands[1].type == OperandType::Memory);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  ld1_asisdlsop_bx1_r1b: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ld1_asisdlsop_d1_i1d() {
@@ -1541,7 +1837,9 @@ void test_ld1_asisdlsop_d1_i1d() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::IndexedRegisterList);
     assert(result->operands[1].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ld1_asisdlsop_d1_i1d: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ld1_asisdlsop_dx1_r1d() {
@@ -1553,7 +1851,9 @@ void test_ld1_asisdlsop_dx1_r1d() {
     assert(result->operands[0].type == OperandType::IndexedRegisterList);
     assert(result->operands[1].type == OperandType::Memory);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  ld1_asisdlsop_dx1_r1d: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ld1_asisdlsop_h1_i1h() {
@@ -1564,7 +1864,9 @@ void test_ld1_asisdlsop_h1_i1h() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::IndexedRegisterList);
     assert(result->operands[1].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ld1_asisdlsop_h1_i1h: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ld1_asisdlsop_hx1_r1h() {
@@ -1576,7 +1878,9 @@ void test_ld1_asisdlsop_hx1_r1h() {
     assert(result->operands[0].type == OperandType::IndexedRegisterList);
     assert(result->operands[1].type == OperandType::Memory);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  ld1_asisdlsop_hx1_r1h: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ld1_asisdlsop_s1_i1s() {
@@ -1587,7 +1891,9 @@ void test_ld1_asisdlsop_s1_i1s() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::IndexedRegisterList);
     assert(result->operands[1].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ld1_asisdlsop_s1_i1s: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ld1_asisdlsop_sx1_r1s() {
@@ -1599,7 +1905,9 @@ void test_ld1_asisdlsop_sx1_r1s() {
     assert(result->operands[0].type == OperandType::IndexedRegisterList);
     assert(result->operands[1].type == OperandType::Memory);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  ld1_asisdlsop_sx1_r1s: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ld1r_asisdlso_r1() {
@@ -1610,7 +1918,9 @@ void test_ld1r_asisdlso_r1() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ld1r_asisdlso_r1: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ld1r_asisdlsop_r1_i() {
@@ -1618,7 +1928,9 @@ void test_ld1r_asisdlsop_r1_i() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: ld1r_asisdlsop_r1_i" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::LD1R);
+#ifdef VEDA64_STRINGS
     std::cout << "  ld1r_asisdlsop_r1_i: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ld1r_asisdlsop_rx1_r() {
@@ -1630,7 +1942,9 @@ void test_ld1r_asisdlsop_rx1_r() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Memory);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  ld1r_asisdlsop_rx1_r: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ld2_asisdlse_r2() {
@@ -1641,7 +1955,9 @@ void test_ld2_asisdlse_r2() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ld2_asisdlse_r2: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ld2_asisdlsep_i2_i() {
@@ -1649,7 +1965,9 @@ void test_ld2_asisdlsep_i2_i() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: ld2_asisdlsep_i2_i" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::LD2);
+#ifdef VEDA64_STRINGS
     std::cout << "  ld2_asisdlsep_i2_i: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ld2_asisdlsep_r2_r() {
@@ -1661,7 +1979,9 @@ void test_ld2_asisdlsep_r2_r() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Memory);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  ld2_asisdlsep_r2_r: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ld2_asisdlso_b2_2b() {
@@ -1672,7 +1992,9 @@ void test_ld2_asisdlso_b2_2b() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::IndexedRegisterList);
     assert(result->operands[1].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ld2_asisdlso_b2_2b: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ld2_asisdlso_h2_2h() {
@@ -1683,7 +2005,9 @@ void test_ld2_asisdlso_h2_2h() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::IndexedRegisterList);
     assert(result->operands[1].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ld2_asisdlso_h2_2h: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ld2_asisdlso_s2_2s() {
@@ -1694,7 +2018,9 @@ void test_ld2_asisdlso_s2_2s() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::IndexedRegisterList);
     assert(result->operands[1].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ld2_asisdlso_s2_2s: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ld2_asisdlso_d2_2d() {
@@ -1705,7 +2031,9 @@ void test_ld2_asisdlso_d2_2d() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::IndexedRegisterList);
     assert(result->operands[1].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ld2_asisdlso_d2_2d: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ld2_asisdlsop_b2_i2b() {
@@ -1716,7 +2044,9 @@ void test_ld2_asisdlsop_b2_i2b() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::IndexedRegisterList);
     assert(result->operands[1].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ld2_asisdlsop_b2_i2b: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ld2_asisdlsop_bx2_r2b() {
@@ -1728,7 +2058,9 @@ void test_ld2_asisdlsop_bx2_r2b() {
     assert(result->operands[0].type == OperandType::IndexedRegisterList);
     assert(result->operands[1].type == OperandType::Memory);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  ld2_asisdlsop_bx2_r2b: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ld2_asisdlsop_h2_i2h() {
@@ -1739,7 +2071,9 @@ void test_ld2_asisdlsop_h2_i2h() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::IndexedRegisterList);
     assert(result->operands[1].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ld2_asisdlsop_h2_i2h: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ld2_asisdlsop_hx2_r2h() {
@@ -1751,7 +2085,9 @@ void test_ld2_asisdlsop_hx2_r2h() {
     assert(result->operands[0].type == OperandType::IndexedRegisterList);
     assert(result->operands[1].type == OperandType::Memory);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  ld2_asisdlsop_hx2_r2h: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ld2_asisdlsop_s2_i2s() {
@@ -1762,7 +2098,9 @@ void test_ld2_asisdlsop_s2_i2s() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::IndexedRegisterList);
     assert(result->operands[1].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ld2_asisdlsop_s2_i2s: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ld2_asisdlsop_sx2_r2s() {
@@ -1774,7 +2112,9 @@ void test_ld2_asisdlsop_sx2_r2s() {
     assert(result->operands[0].type == OperandType::IndexedRegisterList);
     assert(result->operands[1].type == OperandType::Memory);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  ld2_asisdlsop_sx2_r2s: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ld2_asisdlsop_d2_i2d() {
@@ -1785,7 +2125,9 @@ void test_ld2_asisdlsop_d2_i2d() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::IndexedRegisterList);
     assert(result->operands[1].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ld2_asisdlsop_d2_i2d: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ld2_asisdlsop_dx2_r2d() {
@@ -1797,7 +2139,9 @@ void test_ld2_asisdlsop_dx2_r2d() {
     assert(result->operands[0].type == OperandType::IndexedRegisterList);
     assert(result->operands[1].type == OperandType::Memory);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  ld2_asisdlsop_dx2_r2d: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ld2r_asisdlso_r2() {
@@ -1808,7 +2152,9 @@ void test_ld2r_asisdlso_r2() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ld2r_asisdlso_r2: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ld2r_asisdlsop_r2_i() {
@@ -1816,7 +2162,9 @@ void test_ld2r_asisdlsop_r2_i() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: ld2r_asisdlsop_r2_i" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::LD2R);
+#ifdef VEDA64_STRINGS
     std::cout << "  ld2r_asisdlsop_r2_i: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ld2r_asisdlsop_rx2_r() {
@@ -1828,7 +2176,9 @@ void test_ld2r_asisdlsop_rx2_r() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Memory);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  ld2r_asisdlsop_rx2_r: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ld3_asisdlse_r3() {
@@ -1839,7 +2189,9 @@ void test_ld3_asisdlse_r3() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ld3_asisdlse_r3: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ld3_asisdlsep_i3_i() {
@@ -1847,7 +2199,9 @@ void test_ld3_asisdlsep_i3_i() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: ld3_asisdlsep_i3_i" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::LD3);
+#ifdef VEDA64_STRINGS
     std::cout << "  ld3_asisdlsep_i3_i: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ld3_asisdlsep_r3_r() {
@@ -1859,7 +2213,9 @@ void test_ld3_asisdlsep_r3_r() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Memory);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  ld3_asisdlsep_r3_r: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ld3_asisdlso_b3_3b() {
@@ -1870,7 +2226,9 @@ void test_ld3_asisdlso_b3_3b() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::IndexedRegisterList);
     assert(result->operands[1].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ld3_asisdlso_b3_3b: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ld3_asisdlso_h3_3h() {
@@ -1881,7 +2239,9 @@ void test_ld3_asisdlso_h3_3h() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::IndexedRegisterList);
     assert(result->operands[1].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ld3_asisdlso_h3_3h: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ld3_asisdlso_s3_3s() {
@@ -1892,7 +2252,9 @@ void test_ld3_asisdlso_s3_3s() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::IndexedRegisterList);
     assert(result->operands[1].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ld3_asisdlso_s3_3s: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ld3_asisdlso_d3_3d() {
@@ -1903,7 +2265,9 @@ void test_ld3_asisdlso_d3_3d() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::IndexedRegisterList);
     assert(result->operands[1].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ld3_asisdlso_d3_3d: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ld3_asisdlsop_b3_i3b() {
@@ -1914,7 +2278,9 @@ void test_ld3_asisdlsop_b3_i3b() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::IndexedRegisterList);
     assert(result->operands[1].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ld3_asisdlsop_b3_i3b: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ld3_asisdlsop_bx3_r3b() {
@@ -1926,7 +2292,9 @@ void test_ld3_asisdlsop_bx3_r3b() {
     assert(result->operands[0].type == OperandType::IndexedRegisterList);
     assert(result->operands[1].type == OperandType::Memory);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  ld3_asisdlsop_bx3_r3b: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ld3_asisdlsop_h3_i3h() {
@@ -1937,7 +2305,9 @@ void test_ld3_asisdlsop_h3_i3h() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::IndexedRegisterList);
     assert(result->operands[1].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ld3_asisdlsop_h3_i3h: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ld3_asisdlsop_hx3_r3h() {
@@ -1949,7 +2319,9 @@ void test_ld3_asisdlsop_hx3_r3h() {
     assert(result->operands[0].type == OperandType::IndexedRegisterList);
     assert(result->operands[1].type == OperandType::Memory);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  ld3_asisdlsop_hx3_r3h: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ld3_asisdlsop_s3_i3s() {
@@ -1960,7 +2332,9 @@ void test_ld3_asisdlsop_s3_i3s() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::IndexedRegisterList);
     assert(result->operands[1].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ld3_asisdlsop_s3_i3s: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ld3_asisdlsop_sx3_r3s() {
@@ -1972,7 +2346,9 @@ void test_ld3_asisdlsop_sx3_r3s() {
     assert(result->operands[0].type == OperandType::IndexedRegisterList);
     assert(result->operands[1].type == OperandType::Memory);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  ld3_asisdlsop_sx3_r3s: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ld3_asisdlsop_d3_i3d() {
@@ -1983,7 +2359,9 @@ void test_ld3_asisdlsop_d3_i3d() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::IndexedRegisterList);
     assert(result->operands[1].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ld3_asisdlsop_d3_i3d: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ld3_asisdlsop_dx3_r3d() {
@@ -1995,7 +2373,9 @@ void test_ld3_asisdlsop_dx3_r3d() {
     assert(result->operands[0].type == OperandType::IndexedRegisterList);
     assert(result->operands[1].type == OperandType::Memory);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  ld3_asisdlsop_dx3_r3d: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ld3r_asisdlso_r3() {
@@ -2006,7 +2386,9 @@ void test_ld3r_asisdlso_r3() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ld3r_asisdlso_r3: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ld3r_asisdlsop_r3_i() {
@@ -2014,7 +2396,9 @@ void test_ld3r_asisdlsop_r3_i() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: ld3r_asisdlsop_r3_i" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::LD3R);
+#ifdef VEDA64_STRINGS
     std::cout << "  ld3r_asisdlsop_r3_i: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ld3r_asisdlsop_rx3_r() {
@@ -2026,7 +2410,9 @@ void test_ld3r_asisdlsop_rx3_r() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Memory);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  ld3r_asisdlsop_rx3_r: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ld4_asisdlse_r4() {
@@ -2037,7 +2423,9 @@ void test_ld4_asisdlse_r4() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ld4_asisdlse_r4: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ld4_asisdlsep_i4_i() {
@@ -2045,7 +2433,9 @@ void test_ld4_asisdlsep_i4_i() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: ld4_asisdlsep_i4_i" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::LD4);
+#ifdef VEDA64_STRINGS
     std::cout << "  ld4_asisdlsep_i4_i: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ld4_asisdlsep_r4_r() {
@@ -2057,7 +2447,9 @@ void test_ld4_asisdlsep_r4_r() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Memory);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  ld4_asisdlsep_r4_r: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ld4_asisdlso_b4_4b() {
@@ -2068,7 +2460,9 @@ void test_ld4_asisdlso_b4_4b() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::IndexedRegisterList);
     assert(result->operands[1].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ld4_asisdlso_b4_4b: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ld4_asisdlso_h4_4h() {
@@ -2079,7 +2473,9 @@ void test_ld4_asisdlso_h4_4h() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::IndexedRegisterList);
     assert(result->operands[1].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ld4_asisdlso_h4_4h: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ld4_asisdlso_s4_4s() {
@@ -2090,7 +2486,9 @@ void test_ld4_asisdlso_s4_4s() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::IndexedRegisterList);
     assert(result->operands[1].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ld4_asisdlso_s4_4s: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ld4_asisdlso_d4_4d() {
@@ -2101,7 +2499,9 @@ void test_ld4_asisdlso_d4_4d() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::IndexedRegisterList);
     assert(result->operands[1].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ld4_asisdlso_d4_4d: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ld4_asisdlsop_b4_i4b() {
@@ -2112,7 +2512,9 @@ void test_ld4_asisdlsop_b4_i4b() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::IndexedRegisterList);
     assert(result->operands[1].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ld4_asisdlsop_b4_i4b: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ld4_asisdlsop_bx4_r4b() {
@@ -2124,7 +2526,9 @@ void test_ld4_asisdlsop_bx4_r4b() {
     assert(result->operands[0].type == OperandType::IndexedRegisterList);
     assert(result->operands[1].type == OperandType::Memory);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  ld4_asisdlsop_bx4_r4b: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ld4_asisdlsop_h4_i4h() {
@@ -2135,7 +2539,9 @@ void test_ld4_asisdlsop_h4_i4h() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::IndexedRegisterList);
     assert(result->operands[1].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ld4_asisdlsop_h4_i4h: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ld4_asisdlsop_hx4_r4h() {
@@ -2147,7 +2553,9 @@ void test_ld4_asisdlsop_hx4_r4h() {
     assert(result->operands[0].type == OperandType::IndexedRegisterList);
     assert(result->operands[1].type == OperandType::Memory);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  ld4_asisdlsop_hx4_r4h: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ld4_asisdlsop_s4_i4s() {
@@ -2158,7 +2566,9 @@ void test_ld4_asisdlsop_s4_i4s() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::IndexedRegisterList);
     assert(result->operands[1].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ld4_asisdlsop_s4_i4s: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ld4_asisdlsop_sx4_r4s() {
@@ -2170,7 +2580,9 @@ void test_ld4_asisdlsop_sx4_r4s() {
     assert(result->operands[0].type == OperandType::IndexedRegisterList);
     assert(result->operands[1].type == OperandType::Memory);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  ld4_asisdlsop_sx4_r4s: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ld4_asisdlsop_d4_i4d() {
@@ -2181,7 +2593,9 @@ void test_ld4_asisdlsop_d4_i4d() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::IndexedRegisterList);
     assert(result->operands[1].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ld4_asisdlsop_d4_i4d: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ld4_asisdlsop_dx4_r4d() {
@@ -2193,7 +2607,9 @@ void test_ld4_asisdlsop_dx4_r4d() {
     assert(result->operands[0].type == OperandType::IndexedRegisterList);
     assert(result->operands[1].type == OperandType::Memory);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  ld4_asisdlsop_dx4_r4d: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ld4r_asisdlso_r4() {
@@ -2204,7 +2620,9 @@ void test_ld4r_asisdlso_r4() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ld4r_asisdlso_r4: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ld4r_asisdlsop_r4_i() {
@@ -2212,7 +2630,9 @@ void test_ld4r_asisdlsop_r4_i() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: ld4r_asisdlsop_r4_i" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::LD4R);
+#ifdef VEDA64_STRINGS
     std::cout << "  ld4r_asisdlsop_r4_i: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ld4r_asisdlsop_rx4_r() {
@@ -2224,7 +2644,9 @@ void test_ld4r_asisdlsop_rx4_r() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Memory);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  ld4r_asisdlsop_rx4_r: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ld64b_64l_memop() {
@@ -2235,7 +2657,9 @@ void test_ld64b_64l_memop() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ld64b_64l_memop: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldadd_32_memop() {
@@ -2246,7 +2670,9 @@ void test_ldadd_32_memop() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldadd_32_memop: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldadda_32_memop() {
@@ -2257,7 +2683,9 @@ void test_ldadda_32_memop() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldadda_32_memop: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldaddal_32_memop() {
@@ -2268,7 +2696,9 @@ void test_ldaddal_32_memop() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldaddal_32_memop: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldaddl_32_memop() {
@@ -2279,7 +2709,9 @@ void test_ldaddl_32_memop() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldaddl_32_memop: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldadd_64_memop() {
@@ -2290,7 +2722,9 @@ void test_ldadd_64_memop() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldadd_64_memop: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldadda_64_memop() {
@@ -2301,7 +2735,9 @@ void test_ldadda_64_memop() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldadda_64_memop: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldaddal_64_memop() {
@@ -2312,7 +2748,9 @@ void test_ldaddal_64_memop() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldaddal_64_memop: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldaddl_64_memop() {
@@ -2323,7 +2761,9 @@ void test_ldaddl_64_memop() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldaddl_64_memop: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldaddb_32_memop() {
@@ -2334,7 +2774,9 @@ void test_ldaddb_32_memop() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldaddb_32_memop: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldaddab_32_memop() {
@@ -2345,7 +2787,9 @@ void test_ldaddab_32_memop() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldaddab_32_memop: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldaddalb_32_memop() {
@@ -2356,7 +2800,9 @@ void test_ldaddalb_32_memop() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldaddalb_32_memop: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldaddlb_32_memop() {
@@ -2367,7 +2813,9 @@ void test_ldaddlb_32_memop() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldaddlb_32_memop: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldaddh_32_memop() {
@@ -2378,7 +2826,9 @@ void test_ldaddh_32_memop() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldaddh_32_memop: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldaddah_32_memop() {
@@ -2389,7 +2839,9 @@ void test_ldaddah_32_memop() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldaddah_32_memop: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldaddalh_32_memop() {
@@ -2400,7 +2852,9 @@ void test_ldaddalh_32_memop() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldaddalh_32_memop: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldaddlh_32_memop() {
@@ -2411,7 +2865,9 @@ void test_ldaddlh_32_memop() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldaddlh_32_memop: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldap1_asisdlso_d1() {
@@ -2422,7 +2878,9 @@ void test_ldap1_asisdlso_d1() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::IndexedRegisterList);
     assert(result->operands[1].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldap1_asisdlso_d1: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldap_64_ldiappstilp() {
@@ -2434,7 +2892,9 @@ void test_ldap_64_ldiappstilp() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldap_64_ldiappstilp: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldapp_64_ldiappstilp() {
@@ -2446,7 +2906,9 @@ void test_ldapp_64_ldiappstilp() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldapp_64_ldiappstilp: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldapr_32l_ldapstl_writeback() {
@@ -2457,7 +2919,9 @@ void test_ldapr_32l_ldapstl_writeback() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldapr_32l_ldapstl_writeback: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldapr_64l_ldapstl_writeback() {
@@ -2468,7 +2932,9 @@ void test_ldapr_64l_ldapstl_writeback() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldapr_64l_ldapstl_writeback: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldapr_32l_memop() {
@@ -2479,7 +2945,9 @@ void test_ldapr_32l_memop() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldapr_32l_memop: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldapr_64l_memop() {
@@ -2490,7 +2958,9 @@ void test_ldapr_64l_memop() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldapr_64l_memop: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldaprb_32l_memop() {
@@ -2501,7 +2971,9 @@ void test_ldaprb_32l_memop() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldaprb_32l_memop: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldaprh_32l_memop() {
@@ -2512,7 +2984,9 @@ void test_ldaprh_32l_memop() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldaprh_32l_memop: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldapur_b_ldapstl_simd() {
@@ -2523,7 +2997,9 @@ void test_ldapur_b_ldapstl_simd() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldapur_b_ldapstl_simd: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldapur_h_ldapstl_simd() {
@@ -2531,7 +3007,9 @@ void test_ldapur_h_ldapstl_simd() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: ldapur_h_ldapstl_simd" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::LDAPUR);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldapur_h_ldapstl_simd: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldapur_s_ldapstl_simd() {
@@ -2539,7 +3017,9 @@ void test_ldapur_s_ldapstl_simd() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: ldapur_s_ldapstl_simd" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::LDAPUR);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldapur_s_ldapstl_simd: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldapur_d_ldapstl_simd() {
@@ -2547,7 +3027,9 @@ void test_ldapur_d_ldapstl_simd() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: ldapur_d_ldapstl_simd" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::LDAPUR);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldapur_d_ldapstl_simd: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldapur_q_ldapstl_simd() {
@@ -2555,7 +3037,9 @@ void test_ldapur_q_ldapstl_simd() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: ldapur_q_ldapstl_simd" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::LDAPUR);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldapur_q_ldapstl_simd: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldapur_32_ldapstl_unscaled() {
@@ -2566,7 +3050,9 @@ void test_ldapur_32_ldapstl_unscaled() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldapur_32_ldapstl_unscaled: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldapur_64_ldapstl_unscaled() {
@@ -2577,7 +3063,9 @@ void test_ldapur_64_ldapstl_unscaled() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldapur_64_ldapstl_unscaled: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldapurb_32_ldapstl_unscaled() {
@@ -2588,7 +3076,9 @@ void test_ldapurb_32_ldapstl_unscaled() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldapurb_32_ldapstl_unscaled: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldapurh_32_ldapstl_unscaled() {
@@ -2599,7 +3089,9 @@ void test_ldapurh_32_ldapstl_unscaled() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldapurh_32_ldapstl_unscaled: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldapursb_32_ldapstl_unscaled() {
@@ -2610,7 +3102,9 @@ void test_ldapursb_32_ldapstl_unscaled() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldapursb_32_ldapstl_unscaled: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldapursb_64_ldapstl_unscaled() {
@@ -2621,7 +3115,9 @@ void test_ldapursb_64_ldapstl_unscaled() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldapursb_64_ldapstl_unscaled: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldapursh_32_ldapstl_unscaled() {
@@ -2632,7 +3128,9 @@ void test_ldapursh_32_ldapstl_unscaled() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldapursh_32_ldapstl_unscaled: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldapursh_64_ldapstl_unscaled() {
@@ -2643,7 +3141,9 @@ void test_ldapursh_64_ldapstl_unscaled() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldapursh_64_ldapstl_unscaled: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldapursw_64_ldapstl_unscaled() {
@@ -2654,7 +3154,9 @@ void test_ldapursw_64_ldapstl_unscaled() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldapursw_64_ldapstl_unscaled: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldar_lr32_ldstord() {
@@ -2665,7 +3167,9 @@ void test_ldar_lr32_ldstord() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldar_lr32_ldstord: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldar_lr64_ldstord() {
@@ -2676,7 +3180,9 @@ void test_ldar_lr64_ldstord() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldar_lr64_ldstord: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldarb_lr32_ldstord() {
@@ -2687,7 +3193,9 @@ void test_ldarb_lr32_ldstord() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldarb_lr32_ldstord: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldarh_lr32_ldstord() {
@@ -2698,7 +3206,9 @@ void test_ldarh_lr32_ldstord() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldarh_lr32_ldstord: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldatxr_lr32_ldstexclr_unpriv() {
@@ -2709,7 +3219,9 @@ void test_ldatxr_lr32_ldstexclr_unpriv() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldatxr_lr32_ldstexclr_unpriv: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldatxr_lr64_ldstexclr_unpriv() {
@@ -2720,7 +3232,9 @@ void test_ldatxr_lr64_ldstexclr_unpriv() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldatxr_lr64_ldstexclr_unpriv: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldaxp_lp32_ldstexclp() {
@@ -2732,7 +3246,9 @@ void test_ldaxp_lp32_ldstexclp() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldaxp_lp32_ldstexclp: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldaxp_lp64_ldstexclp() {
@@ -2744,7 +3260,9 @@ void test_ldaxp_lp64_ldstexclp() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldaxp_lp64_ldstexclp: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldaxr_lr32_ldstexclr() {
@@ -2755,7 +3273,9 @@ void test_ldaxr_lr32_ldstexclr() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldaxr_lr32_ldstexclr: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldaxr_lr64_ldstexclr() {
@@ -2766,7 +3286,9 @@ void test_ldaxr_lr64_ldstexclr() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldaxr_lr64_ldstexclr: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldaxrb_lr32_ldstexclr() {
@@ -2777,7 +3299,9 @@ void test_ldaxrb_lr32_ldstexclr() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldaxrb_lr32_ldstexclr: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldaxrh_lr32_ldstexclr() {
@@ -2788,147 +3312,189 @@ void test_ldaxrh_lr32_ldstexclr() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldaxrh_lr32_ldstexclr: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldbfadd_16() {
     uint32_t insn = 0x3C200000u;
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: ldbfadd_16" << std::endl; throw std::runtime_error("decode failed"); }
+#ifdef VEDA64_STRINGS
     std::cout << "  ldbfadd_16: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldbfadda_16() {
     uint32_t insn = 0x3CA00000u;
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: ldbfadda_16" << std::endl; throw std::runtime_error("decode failed"); }
+#ifdef VEDA64_STRINGS
     std::cout << "  ldbfadda_16: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldbfaddal_16() {
     uint32_t insn = 0x3CE00000u;
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: ldbfaddal_16" << std::endl; throw std::runtime_error("decode failed"); }
+#ifdef VEDA64_STRINGS
     std::cout << "  ldbfaddal_16: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldbfaddl_16() {
     uint32_t insn = 0x3C600000u;
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: ldbfaddl_16" << std::endl; throw std::runtime_error("decode failed"); }
+#ifdef VEDA64_STRINGS
     std::cout << "  ldbfaddl_16: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldbfmax_16() {
     uint32_t insn = 0x3C204000u;
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: ldbfmax_16" << std::endl; throw std::runtime_error("decode failed"); }
+#ifdef VEDA64_STRINGS
     std::cout << "  ldbfmax_16: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldbfmaxa_16() {
     uint32_t insn = 0x3CA04000u;
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: ldbfmaxa_16" << std::endl; throw std::runtime_error("decode failed"); }
+#ifdef VEDA64_STRINGS
     std::cout << "  ldbfmaxa_16: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldbfmaxal_16() {
     uint32_t insn = 0x3CE04000u;
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: ldbfmaxal_16" << std::endl; throw std::runtime_error("decode failed"); }
+#ifdef VEDA64_STRINGS
     std::cout << "  ldbfmaxal_16: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldbfmaxl_16() {
     uint32_t insn = 0x3C604000u;
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: ldbfmaxl_16" << std::endl; throw std::runtime_error("decode failed"); }
+#ifdef VEDA64_STRINGS
     std::cout << "  ldbfmaxl_16: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldbfmaxnm_16() {
     uint32_t insn = 0x3C206000u;
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: ldbfmaxnm_16" << std::endl; throw std::runtime_error("decode failed"); }
+#ifdef VEDA64_STRINGS
     std::cout << "  ldbfmaxnm_16: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldbfmaxnma_16() {
     uint32_t insn = 0x3CA06000u;
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: ldbfmaxnma_16" << std::endl; throw std::runtime_error("decode failed"); }
+#ifdef VEDA64_STRINGS
     std::cout << "  ldbfmaxnma_16: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldbfmaxnmal_16() {
     uint32_t insn = 0x3CE06000u;
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: ldbfmaxnmal_16" << std::endl; throw std::runtime_error("decode failed"); }
+#ifdef VEDA64_STRINGS
     std::cout << "  ldbfmaxnmal_16: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldbfmaxnml_16() {
     uint32_t insn = 0x3C606000u;
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: ldbfmaxnml_16" << std::endl; throw std::runtime_error("decode failed"); }
+#ifdef VEDA64_STRINGS
     std::cout << "  ldbfmaxnml_16: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldbfmin_16() {
     uint32_t insn = 0x3C205000u;
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: ldbfmin_16" << std::endl; throw std::runtime_error("decode failed"); }
+#ifdef VEDA64_STRINGS
     std::cout << "  ldbfmin_16: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldbfmina_16() {
     uint32_t insn = 0x3CA05000u;
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: ldbfmina_16" << std::endl; throw std::runtime_error("decode failed"); }
+#ifdef VEDA64_STRINGS
     std::cout << "  ldbfmina_16: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldbfminal_16() {
     uint32_t insn = 0x3CE05000u;
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: ldbfminal_16" << std::endl; throw std::runtime_error("decode failed"); }
+#ifdef VEDA64_STRINGS
     std::cout << "  ldbfminal_16: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldbfminl_16() {
     uint32_t insn = 0x3C605000u;
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: ldbfminl_16" << std::endl; throw std::runtime_error("decode failed"); }
+#ifdef VEDA64_STRINGS
     std::cout << "  ldbfminl_16: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldbfminnm_16() {
     uint32_t insn = 0x3C207000u;
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: ldbfminnm_16" << std::endl; throw std::runtime_error("decode failed"); }
+#ifdef VEDA64_STRINGS
     std::cout << "  ldbfminnm_16: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldbfminnma_16() {
     uint32_t insn = 0x3CA07000u;
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: ldbfminnma_16" << std::endl; throw std::runtime_error("decode failed"); }
+#ifdef VEDA64_STRINGS
     std::cout << "  ldbfminnma_16: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldbfminnmal_16() {
     uint32_t insn = 0x3CE07000u;
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: ldbfminnmal_16" << std::endl; throw std::runtime_error("decode failed"); }
+#ifdef VEDA64_STRINGS
     std::cout << "  ldbfminnmal_16: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldbfminnml_16() {
     uint32_t insn = 0x3C607000u;
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: ldbfminnml_16" << std::endl; throw std::runtime_error("decode failed"); }
+#ifdef VEDA64_STRINGS
     std::cout << "  ldbfminnml_16: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldclr_32_memop() {
@@ -2939,7 +3505,9 @@ void test_ldclr_32_memop() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldclr_32_memop: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldclra_32_memop() {
@@ -2950,7 +3518,9 @@ void test_ldclra_32_memop() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldclra_32_memop: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldclral_32_memop() {
@@ -2961,7 +3531,9 @@ void test_ldclral_32_memop() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldclral_32_memop: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldclrl_32_memop() {
@@ -2972,7 +3544,9 @@ void test_ldclrl_32_memop() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldclrl_32_memop: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldclr_64_memop() {
@@ -2983,7 +3557,9 @@ void test_ldclr_64_memop() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldclr_64_memop: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldclra_64_memop() {
@@ -2994,7 +3570,9 @@ void test_ldclra_64_memop() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldclra_64_memop: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldclral_64_memop() {
@@ -3005,7 +3583,9 @@ void test_ldclral_64_memop() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldclral_64_memop: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldclrl_64_memop() {
@@ -3016,7 +3596,9 @@ void test_ldclrl_64_memop() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldclrl_64_memop: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldclrb_32_memop() {
@@ -3027,7 +3609,9 @@ void test_ldclrb_32_memop() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldclrb_32_memop: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldclrab_32_memop() {
@@ -3038,7 +3622,9 @@ void test_ldclrab_32_memop() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldclrab_32_memop: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldclralb_32_memop() {
@@ -3049,7 +3635,9 @@ void test_ldclralb_32_memop() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldclralb_32_memop: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldclrlb_32_memop() {
@@ -3060,7 +3648,9 @@ void test_ldclrlb_32_memop() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldclrlb_32_memop: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldclrh_32_memop() {
@@ -3071,7 +3661,9 @@ void test_ldclrh_32_memop() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldclrh_32_memop: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldclrah_32_memop() {
@@ -3082,7 +3674,9 @@ void test_ldclrah_32_memop() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldclrah_32_memop: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldclralh_32_memop() {
@@ -3093,7 +3687,9 @@ void test_ldclralh_32_memop() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldclralh_32_memop: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldclrlh_32_memop() {
@@ -3104,7 +3700,9 @@ void test_ldclrlh_32_memop() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldclrlh_32_memop: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldclrp_128_memop_128() {
@@ -3115,7 +3713,9 @@ void test_ldclrp_128_memop_128() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldclrp_128_memop_128: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldclrpa_128_memop_128() {
@@ -3126,7 +3726,9 @@ void test_ldclrpa_128_memop_128() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldclrpa_128_memop_128: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldclrpal_128_memop_128() {
@@ -3137,7 +3739,9 @@ void test_ldclrpal_128_memop_128() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldclrpal_128_memop_128: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldclrpl_128_memop_128() {
@@ -3148,7 +3752,9 @@ void test_ldclrpl_128_memop_128() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldclrpl_128_memop_128: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldeor_32_memop() {
@@ -3159,7 +3765,9 @@ void test_ldeor_32_memop() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldeor_32_memop: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldeora_32_memop() {
@@ -3170,7 +3778,9 @@ void test_ldeora_32_memop() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldeora_32_memop: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldeoral_32_memop() {
@@ -3181,7 +3791,9 @@ void test_ldeoral_32_memop() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldeoral_32_memop: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldeorl_32_memop() {
@@ -3192,7 +3804,9 @@ void test_ldeorl_32_memop() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldeorl_32_memop: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldeor_64_memop() {
@@ -3203,7 +3817,9 @@ void test_ldeor_64_memop() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldeor_64_memop: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldeora_64_memop() {
@@ -3214,7 +3830,9 @@ void test_ldeora_64_memop() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldeora_64_memop: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldeoral_64_memop() {
@@ -3225,7 +3843,9 @@ void test_ldeoral_64_memop() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldeoral_64_memop: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldeorl_64_memop() {
@@ -3236,7 +3856,9 @@ void test_ldeorl_64_memop() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldeorl_64_memop: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldeorb_32_memop() {
@@ -3247,7 +3869,9 @@ void test_ldeorb_32_memop() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldeorb_32_memop: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldeorab_32_memop() {
@@ -3258,7 +3882,9 @@ void test_ldeorab_32_memop() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldeorab_32_memop: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldeoralb_32_memop() {
@@ -3269,7 +3895,9 @@ void test_ldeoralb_32_memop() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldeoralb_32_memop: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldeorlb_32_memop() {
@@ -3280,7 +3908,9 @@ void test_ldeorlb_32_memop() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldeorlb_32_memop: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldeorh_32_memop() {
@@ -3291,7 +3921,9 @@ void test_ldeorh_32_memop() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldeorh_32_memop: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldeorah_32_memop() {
@@ -3302,7 +3934,9 @@ void test_ldeorah_32_memop() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldeorah_32_memop: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldeoralh_32_memop() {
@@ -3313,7 +3947,9 @@ void test_ldeoralh_32_memop() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldeoralh_32_memop: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldeorlh_32_memop() {
@@ -3324,427 +3960,549 @@ void test_ldeorlh_32_memop() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldeorlh_32_memop: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldfadd_16() {
     uint32_t insn = 0x7C200000u;
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: ldfadd_16" << std::endl; throw std::runtime_error("decode failed"); }
+#ifdef VEDA64_STRINGS
     std::cout << "  ldfadd_16: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldfadda_16() {
     uint32_t insn = 0x7CA00000u;
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: ldfadda_16" << std::endl; throw std::runtime_error("decode failed"); }
+#ifdef VEDA64_STRINGS
     std::cout << "  ldfadda_16: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldfaddal_16() {
     uint32_t insn = 0x7CE00000u;
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: ldfaddal_16" << std::endl; throw std::runtime_error("decode failed"); }
+#ifdef VEDA64_STRINGS
     std::cout << "  ldfaddal_16: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldfaddl_16() {
     uint32_t insn = 0x7C600000u;
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: ldfaddl_16" << std::endl; throw std::runtime_error("decode failed"); }
+#ifdef VEDA64_STRINGS
     std::cout << "  ldfaddl_16: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldfadd_32() {
     uint32_t insn = 0xBC200000u;
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: ldfadd_32" << std::endl; throw std::runtime_error("decode failed"); }
+#ifdef VEDA64_STRINGS
     std::cout << "  ldfadd_32: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldfadda_32() {
     uint32_t insn = 0xBCA00000u;
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: ldfadda_32" << std::endl; throw std::runtime_error("decode failed"); }
+#ifdef VEDA64_STRINGS
     std::cout << "  ldfadda_32: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldfaddal_32() {
     uint32_t insn = 0xBCE00000u;
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: ldfaddal_32" << std::endl; throw std::runtime_error("decode failed"); }
+#ifdef VEDA64_STRINGS
     std::cout << "  ldfaddal_32: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldfaddl_32() {
     uint32_t insn = 0xBC600000u;
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: ldfaddl_32" << std::endl; throw std::runtime_error("decode failed"); }
+#ifdef VEDA64_STRINGS
     std::cout << "  ldfaddl_32: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldfadd_64() {
     uint32_t insn = 0xFC200000u;
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: ldfadd_64" << std::endl; throw std::runtime_error("decode failed"); }
+#ifdef VEDA64_STRINGS
     std::cout << "  ldfadd_64: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldfadda_64() {
     uint32_t insn = 0xFCA00000u;
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: ldfadda_64" << std::endl; throw std::runtime_error("decode failed"); }
+#ifdef VEDA64_STRINGS
     std::cout << "  ldfadda_64: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldfaddal_64() {
     uint32_t insn = 0xFCE00000u;
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: ldfaddal_64" << std::endl; throw std::runtime_error("decode failed"); }
+#ifdef VEDA64_STRINGS
     std::cout << "  ldfaddal_64: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldfaddl_64() {
     uint32_t insn = 0xFC600000u;
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: ldfaddl_64" << std::endl; throw std::runtime_error("decode failed"); }
+#ifdef VEDA64_STRINGS
     std::cout << "  ldfaddl_64: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldfmax_16() {
     uint32_t insn = 0x7C204000u;
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: ldfmax_16" << std::endl; throw std::runtime_error("decode failed"); }
+#ifdef VEDA64_STRINGS
     std::cout << "  ldfmax_16: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldfmaxa_16() {
     uint32_t insn = 0x7CA04000u;
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: ldfmaxa_16" << std::endl; throw std::runtime_error("decode failed"); }
+#ifdef VEDA64_STRINGS
     std::cout << "  ldfmaxa_16: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldfmaxal_16() {
     uint32_t insn = 0x7CE04000u;
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: ldfmaxal_16" << std::endl; throw std::runtime_error("decode failed"); }
+#ifdef VEDA64_STRINGS
     std::cout << "  ldfmaxal_16: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldfmaxl_16() {
     uint32_t insn = 0x7C604000u;
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: ldfmaxl_16" << std::endl; throw std::runtime_error("decode failed"); }
+#ifdef VEDA64_STRINGS
     std::cout << "  ldfmaxl_16: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldfmax_32() {
     uint32_t insn = 0xBC204000u;
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: ldfmax_32" << std::endl; throw std::runtime_error("decode failed"); }
+#ifdef VEDA64_STRINGS
     std::cout << "  ldfmax_32: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldfmaxa_32() {
     uint32_t insn = 0xBCA04000u;
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: ldfmaxa_32" << std::endl; throw std::runtime_error("decode failed"); }
+#ifdef VEDA64_STRINGS
     std::cout << "  ldfmaxa_32: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldfmaxal_32() {
     uint32_t insn = 0xBCE04000u;
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: ldfmaxal_32" << std::endl; throw std::runtime_error("decode failed"); }
+#ifdef VEDA64_STRINGS
     std::cout << "  ldfmaxal_32: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldfmaxl_32() {
     uint32_t insn = 0xBC604000u;
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: ldfmaxl_32" << std::endl; throw std::runtime_error("decode failed"); }
+#ifdef VEDA64_STRINGS
     std::cout << "  ldfmaxl_32: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldfmax_64() {
     uint32_t insn = 0xFC204000u;
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: ldfmax_64" << std::endl; throw std::runtime_error("decode failed"); }
+#ifdef VEDA64_STRINGS
     std::cout << "  ldfmax_64: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldfmaxa_64() {
     uint32_t insn = 0xFCA04000u;
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: ldfmaxa_64" << std::endl; throw std::runtime_error("decode failed"); }
+#ifdef VEDA64_STRINGS
     std::cout << "  ldfmaxa_64: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldfmaxal_64() {
     uint32_t insn = 0xFCE04000u;
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: ldfmaxal_64" << std::endl; throw std::runtime_error("decode failed"); }
+#ifdef VEDA64_STRINGS
     std::cout << "  ldfmaxal_64: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldfmaxl_64() {
     uint32_t insn = 0xFC604000u;
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: ldfmaxl_64" << std::endl; throw std::runtime_error("decode failed"); }
+#ifdef VEDA64_STRINGS
     std::cout << "  ldfmaxl_64: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldfmaxnm_16() {
     uint32_t insn = 0x7C206000u;
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: ldfmaxnm_16" << std::endl; throw std::runtime_error("decode failed"); }
+#ifdef VEDA64_STRINGS
     std::cout << "  ldfmaxnm_16: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldfmaxnma_16() {
     uint32_t insn = 0x7CA06000u;
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: ldfmaxnma_16" << std::endl; throw std::runtime_error("decode failed"); }
+#ifdef VEDA64_STRINGS
     std::cout << "  ldfmaxnma_16: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldfmaxnmal_16() {
     uint32_t insn = 0x7CE06000u;
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: ldfmaxnmal_16" << std::endl; throw std::runtime_error("decode failed"); }
+#ifdef VEDA64_STRINGS
     std::cout << "  ldfmaxnmal_16: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldfmaxnml_16() {
     uint32_t insn = 0x7C606000u;
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: ldfmaxnml_16" << std::endl; throw std::runtime_error("decode failed"); }
+#ifdef VEDA64_STRINGS
     std::cout << "  ldfmaxnml_16: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldfmaxnm_32() {
     uint32_t insn = 0xBC206000u;
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: ldfmaxnm_32" << std::endl; throw std::runtime_error("decode failed"); }
+#ifdef VEDA64_STRINGS
     std::cout << "  ldfmaxnm_32: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldfmaxnma_32() {
     uint32_t insn = 0xBCA06000u;
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: ldfmaxnma_32" << std::endl; throw std::runtime_error("decode failed"); }
+#ifdef VEDA64_STRINGS
     std::cout << "  ldfmaxnma_32: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldfmaxnmal_32() {
     uint32_t insn = 0xBCE06000u;
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: ldfmaxnmal_32" << std::endl; throw std::runtime_error("decode failed"); }
+#ifdef VEDA64_STRINGS
     std::cout << "  ldfmaxnmal_32: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldfmaxnml_32() {
     uint32_t insn = 0xBC606000u;
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: ldfmaxnml_32" << std::endl; throw std::runtime_error("decode failed"); }
+#ifdef VEDA64_STRINGS
     std::cout << "  ldfmaxnml_32: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldfmaxnm_64() {
     uint32_t insn = 0xFC206000u;
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: ldfmaxnm_64" << std::endl; throw std::runtime_error("decode failed"); }
+#ifdef VEDA64_STRINGS
     std::cout << "  ldfmaxnm_64: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldfmaxnma_64() {
     uint32_t insn = 0xFCA06000u;
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: ldfmaxnma_64" << std::endl; throw std::runtime_error("decode failed"); }
+#ifdef VEDA64_STRINGS
     std::cout << "  ldfmaxnma_64: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldfmaxnmal_64() {
     uint32_t insn = 0xFCE06000u;
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: ldfmaxnmal_64" << std::endl; throw std::runtime_error("decode failed"); }
+#ifdef VEDA64_STRINGS
     std::cout << "  ldfmaxnmal_64: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldfmaxnml_64() {
     uint32_t insn = 0xFC606000u;
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: ldfmaxnml_64" << std::endl; throw std::runtime_error("decode failed"); }
+#ifdef VEDA64_STRINGS
     std::cout << "  ldfmaxnml_64: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldfmin_16() {
     uint32_t insn = 0x7C205000u;
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: ldfmin_16" << std::endl; throw std::runtime_error("decode failed"); }
+#ifdef VEDA64_STRINGS
     std::cout << "  ldfmin_16: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldfmina_16() {
     uint32_t insn = 0x7CA05000u;
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: ldfmina_16" << std::endl; throw std::runtime_error("decode failed"); }
+#ifdef VEDA64_STRINGS
     std::cout << "  ldfmina_16: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldfminal_16() {
     uint32_t insn = 0x7CE05000u;
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: ldfminal_16" << std::endl; throw std::runtime_error("decode failed"); }
+#ifdef VEDA64_STRINGS
     std::cout << "  ldfminal_16: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldfminl_16() {
     uint32_t insn = 0x7C605000u;
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: ldfminl_16" << std::endl; throw std::runtime_error("decode failed"); }
+#ifdef VEDA64_STRINGS
     std::cout << "  ldfminl_16: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldfmin_32() {
     uint32_t insn = 0xBC205000u;
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: ldfmin_32" << std::endl; throw std::runtime_error("decode failed"); }
+#ifdef VEDA64_STRINGS
     std::cout << "  ldfmin_32: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldfmina_32() {
     uint32_t insn = 0xBCA05000u;
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: ldfmina_32" << std::endl; throw std::runtime_error("decode failed"); }
+#ifdef VEDA64_STRINGS
     std::cout << "  ldfmina_32: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldfminal_32() {
     uint32_t insn = 0xBCE05000u;
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: ldfminal_32" << std::endl; throw std::runtime_error("decode failed"); }
+#ifdef VEDA64_STRINGS
     std::cout << "  ldfminal_32: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldfminl_32() {
     uint32_t insn = 0xBC605000u;
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: ldfminl_32" << std::endl; throw std::runtime_error("decode failed"); }
+#ifdef VEDA64_STRINGS
     std::cout << "  ldfminl_32: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldfmin_64() {
     uint32_t insn = 0xFC205000u;
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: ldfmin_64" << std::endl; throw std::runtime_error("decode failed"); }
+#ifdef VEDA64_STRINGS
     std::cout << "  ldfmin_64: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldfmina_64() {
     uint32_t insn = 0xFCA05000u;
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: ldfmina_64" << std::endl; throw std::runtime_error("decode failed"); }
+#ifdef VEDA64_STRINGS
     std::cout << "  ldfmina_64: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldfminal_64() {
     uint32_t insn = 0xFCE05000u;
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: ldfminal_64" << std::endl; throw std::runtime_error("decode failed"); }
+#ifdef VEDA64_STRINGS
     std::cout << "  ldfminal_64: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldfminl_64() {
     uint32_t insn = 0xFC605000u;
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: ldfminl_64" << std::endl; throw std::runtime_error("decode failed"); }
+#ifdef VEDA64_STRINGS
     std::cout << "  ldfminl_64: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldfminnm_16() {
     uint32_t insn = 0x7C207000u;
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: ldfminnm_16" << std::endl; throw std::runtime_error("decode failed"); }
+#ifdef VEDA64_STRINGS
     std::cout << "  ldfminnm_16: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldfminnma_16() {
     uint32_t insn = 0x7CA07000u;
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: ldfminnma_16" << std::endl; throw std::runtime_error("decode failed"); }
+#ifdef VEDA64_STRINGS
     std::cout << "  ldfminnma_16: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldfminnmal_16() {
     uint32_t insn = 0x7CE07000u;
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: ldfminnmal_16" << std::endl; throw std::runtime_error("decode failed"); }
+#ifdef VEDA64_STRINGS
     std::cout << "  ldfminnmal_16: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldfminnml_16() {
     uint32_t insn = 0x7C607000u;
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: ldfminnml_16" << std::endl; throw std::runtime_error("decode failed"); }
+#ifdef VEDA64_STRINGS
     std::cout << "  ldfminnml_16: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldfminnm_32() {
     uint32_t insn = 0xBC207000u;
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: ldfminnm_32" << std::endl; throw std::runtime_error("decode failed"); }
+#ifdef VEDA64_STRINGS
     std::cout << "  ldfminnm_32: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldfminnma_32() {
     uint32_t insn = 0xBCA07000u;
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: ldfminnma_32" << std::endl; throw std::runtime_error("decode failed"); }
+#ifdef VEDA64_STRINGS
     std::cout << "  ldfminnma_32: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldfminnmal_32() {
     uint32_t insn = 0xBCE07000u;
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: ldfminnmal_32" << std::endl; throw std::runtime_error("decode failed"); }
+#ifdef VEDA64_STRINGS
     std::cout << "  ldfminnmal_32: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldfminnml_32() {
     uint32_t insn = 0xBC607000u;
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: ldfminnml_32" << std::endl; throw std::runtime_error("decode failed"); }
+#ifdef VEDA64_STRINGS
     std::cout << "  ldfminnml_32: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldfminnm_64() {
     uint32_t insn = 0xFC207000u;
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: ldfminnm_64" << std::endl; throw std::runtime_error("decode failed"); }
+#ifdef VEDA64_STRINGS
     std::cout << "  ldfminnm_64: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldfminnma_64() {
     uint32_t insn = 0xFCA07000u;
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: ldfminnma_64" << std::endl; throw std::runtime_error("decode failed"); }
+#ifdef VEDA64_STRINGS
     std::cout << "  ldfminnma_64: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldfminnmal_64() {
     uint32_t insn = 0xFCE07000u;
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: ldfminnmal_64" << std::endl; throw std::runtime_error("decode failed"); }
+#ifdef VEDA64_STRINGS
     std::cout << "  ldfminnmal_64: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldfminnml_64() {
     uint32_t insn = 0xFC607000u;
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: ldfminnml_64" << std::endl; throw std::runtime_error("decode failed"); }
+#ifdef VEDA64_STRINGS
     std::cout << "  ldfminnml_64: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldg_64loffset_ldsttags() {
@@ -3755,7 +4513,9 @@ void test_ldg_64loffset_ldsttags() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldg_64loffset_ldsttags: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldgm_64bulk_ldsttags() {
@@ -3766,7 +4526,9 @@ void test_ldgm_64bulk_ldsttags() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldgm_64bulk_ldsttags: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldiapp_32le_ldiappstilp() {
@@ -3778,7 +4540,9 @@ void test_ldiapp_32le_ldiappstilp() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldiapp_32le_ldiappstilp: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldiapp_32l_ldiappstilp() {
@@ -3790,7 +4554,9 @@ void test_ldiapp_32l_ldiappstilp() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldiapp_32l_ldiappstilp: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldiapp_64ls_ldiappstilp() {
@@ -3802,7 +4568,9 @@ void test_ldiapp_64ls_ldiappstilp() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldiapp_64ls_ldiappstilp: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldiapp_64l_ldiappstilp() {
@@ -3814,7 +4582,9 @@ void test_ldiapp_64l_ldiappstilp() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldiapp_64l_ldiappstilp: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldlar_lr32_ldstord() {
@@ -3825,7 +4595,9 @@ void test_ldlar_lr32_ldstord() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldlar_lr32_ldstord: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldlar_lr64_ldstord() {
@@ -3836,7 +4608,9 @@ void test_ldlar_lr64_ldstord() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldlar_lr64_ldstord: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldlarb_lr32_ldstord() {
@@ -3847,7 +4621,9 @@ void test_ldlarb_lr32_ldstord() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldlarb_lr32_ldstord: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldlarh_lr32_ldstord() {
@@ -3858,7 +4634,9 @@ void test_ldlarh_lr32_ldstord() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldlarh_lr32_ldstord: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldnp_s_ldstnapair_offs() {
@@ -3866,7 +4644,9 @@ void test_ldnp_s_ldstnapair_offs() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: ldnp_s_ldstnapair_offs" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::LDNP);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldnp_s_ldstnapair_offs: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldnp_d_ldstnapair_offs() {
@@ -3874,7 +4654,9 @@ void test_ldnp_d_ldstnapair_offs() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: ldnp_d_ldstnapair_offs" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::LDNP);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldnp_d_ldstnapair_offs: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldnp_q_ldstnapair_offs() {
@@ -3882,7 +4664,9 @@ void test_ldnp_q_ldstnapair_offs() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: ldnp_q_ldstnapair_offs" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::LDNP);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldnp_q_ldstnapair_offs: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldnp_32_ldstnapair_offs() {
@@ -3894,7 +4678,9 @@ void test_ldnp_32_ldstnapair_offs() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldnp_32_ldstnapair_offs: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldnp_64_ldstnapair_offs() {
@@ -3906,7 +4692,9 @@ void test_ldnp_64_ldstnapair_offs() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldnp_64_ldstnapair_offs: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldp_s_ldstpair_post() {
@@ -3914,7 +4702,9 @@ void test_ldp_s_ldstpair_post() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: ldp_s_ldstpair_post" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::LDP);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldp_s_ldstpair_post: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldp_d_ldstpair_post() {
@@ -3922,7 +4712,9 @@ void test_ldp_d_ldstpair_post() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: ldp_d_ldstpair_post" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::LDP);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldp_d_ldstpair_post: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldp_q_ldstpair_post() {
@@ -3930,7 +4722,9 @@ void test_ldp_q_ldstpair_post() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: ldp_q_ldstpair_post" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::LDP);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldp_q_ldstpair_post: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldp_s_ldstpair_pre() {
@@ -3938,7 +4732,9 @@ void test_ldp_s_ldstpair_pre() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: ldp_s_ldstpair_pre" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::LDP);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldp_s_ldstpair_pre: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldp_d_ldstpair_pre() {
@@ -3946,7 +4742,9 @@ void test_ldp_d_ldstpair_pre() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: ldp_d_ldstpair_pre" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::LDP);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldp_d_ldstpair_pre: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldp_q_ldstpair_pre() {
@@ -3954,7 +4752,9 @@ void test_ldp_q_ldstpair_pre() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: ldp_q_ldstpair_pre" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::LDP);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldp_q_ldstpair_pre: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldp_s_ldstpair_off() {
@@ -3962,7 +4762,9 @@ void test_ldp_s_ldstpair_off() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: ldp_s_ldstpair_off" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::LDP);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldp_s_ldstpair_off: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldp_d_ldstpair_off() {
@@ -3970,7 +4772,9 @@ void test_ldp_d_ldstpair_off() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: ldp_d_ldstpair_off" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::LDP);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldp_d_ldstpair_off: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldp_q_ldstpair_off() {
@@ -3978,7 +4782,9 @@ void test_ldp_q_ldstpair_off() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: ldp_q_ldstpair_off" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::LDP);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldp_q_ldstpair_off: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldp_32_ldstpair_post() {
@@ -3986,7 +4792,9 @@ void test_ldp_32_ldstpair_post() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: ldp_32_ldstpair_post" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::LDP);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldp_32_ldstpair_post: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldp_64_ldstpair_post() {
@@ -3994,7 +4802,9 @@ void test_ldp_64_ldstpair_post() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: ldp_64_ldstpair_post" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::LDP);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldp_64_ldstpair_post: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldp_32_ldstpair_pre() {
@@ -4006,7 +4816,9 @@ void test_ldp_32_ldstpair_pre() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldp_32_ldstpair_pre: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldp_64_ldstpair_pre() {
@@ -4018,7 +4830,9 @@ void test_ldp_64_ldstpair_pre() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldp_64_ldstpair_pre: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldp_32_ldstpair_off() {
@@ -4030,7 +4844,9 @@ void test_ldp_32_ldstpair_off() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldp_32_ldstpair_off: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldp_64_ldstpair_off() {
@@ -4042,7 +4858,9 @@ void test_ldp_64_ldstpair_off() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldp_64_ldstpair_off: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldpsw_64_ldstpair_post() {
@@ -4050,7 +4868,9 @@ void test_ldpsw_64_ldstpair_post() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: ldpsw_64_ldstpair_post" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::LDPSW);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldpsw_64_ldstpair_post: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldpsw_64_ldstpair_pre() {
@@ -4062,7 +4882,9 @@ void test_ldpsw_64_ldstpair_pre() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldpsw_64_ldstpair_pre: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldpsw_64_ldstpair_off() {
@@ -4074,7 +4896,9 @@ void test_ldpsw_64_ldstpair_off() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldpsw_64_ldstpair_off: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldr_b_ldst_immpost() {
@@ -4082,7 +4906,9 @@ void test_ldr_b_ldst_immpost() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: ldr_b_ldst_immpost" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::LDR);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldr_b_ldst_immpost: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldr_h_ldst_immpost() {
@@ -4090,7 +4916,9 @@ void test_ldr_h_ldst_immpost() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: ldr_h_ldst_immpost" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::LDR);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldr_h_ldst_immpost: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldr_s_ldst_immpost() {
@@ -4098,7 +4926,9 @@ void test_ldr_s_ldst_immpost() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: ldr_s_ldst_immpost" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::LDR);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldr_s_ldst_immpost: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldr_d_ldst_immpost() {
@@ -4106,7 +4936,9 @@ void test_ldr_d_ldst_immpost() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: ldr_d_ldst_immpost" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::LDR);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldr_d_ldst_immpost: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldr_q_ldst_immpost() {
@@ -4114,7 +4946,9 @@ void test_ldr_q_ldst_immpost() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: ldr_q_ldst_immpost" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::LDR);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldr_q_ldst_immpost: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldr_b_ldst_immpre() {
@@ -4125,7 +4959,9 @@ void test_ldr_b_ldst_immpre() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldr_b_ldst_immpre: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldr_h_ldst_immpre() {
@@ -4133,7 +4969,9 @@ void test_ldr_h_ldst_immpre() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: ldr_h_ldst_immpre" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::LDR);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldr_h_ldst_immpre: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldr_s_ldst_immpre() {
@@ -4141,7 +4979,9 @@ void test_ldr_s_ldst_immpre() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: ldr_s_ldst_immpre" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::LDR);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldr_s_ldst_immpre: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldr_d_ldst_immpre() {
@@ -4149,7 +4989,9 @@ void test_ldr_d_ldst_immpre() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: ldr_d_ldst_immpre" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::LDR);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldr_d_ldst_immpre: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldr_q_ldst_immpre() {
@@ -4157,7 +4999,9 @@ void test_ldr_q_ldst_immpre() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: ldr_q_ldst_immpre" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::LDR);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldr_q_ldst_immpre: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldr_b_ldst_pos() {
@@ -4168,7 +5012,9 @@ void test_ldr_b_ldst_pos() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldr_b_ldst_pos: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldr_h_ldst_pos() {
@@ -4176,7 +5022,9 @@ void test_ldr_h_ldst_pos() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: ldr_h_ldst_pos" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::LDR);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldr_h_ldst_pos: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldr_s_ldst_pos() {
@@ -4184,7 +5032,9 @@ void test_ldr_s_ldst_pos() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: ldr_s_ldst_pos" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::LDR);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldr_s_ldst_pos: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldr_d_ldst_pos() {
@@ -4192,7 +5042,9 @@ void test_ldr_d_ldst_pos() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: ldr_d_ldst_pos" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::LDR);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldr_d_ldst_pos: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldr_q_ldst_pos() {
@@ -4200,7 +5052,9 @@ void test_ldr_q_ldst_pos() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: ldr_q_ldst_pos" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::LDR);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldr_q_ldst_pos: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldr_32_ldst_immpost() {
@@ -4208,7 +5062,9 @@ void test_ldr_32_ldst_immpost() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: ldr_32_ldst_immpost" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::LDR);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldr_32_ldst_immpost: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldr_64_ldst_immpost() {
@@ -4216,7 +5072,9 @@ void test_ldr_64_ldst_immpost() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: ldr_64_ldst_immpost" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::LDR);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldr_64_ldst_immpost: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldr_32_ldst_immpre() {
@@ -4227,7 +5085,9 @@ void test_ldr_32_ldst_immpre() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldr_32_ldst_immpre: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldr_64_ldst_immpre() {
@@ -4238,7 +5098,9 @@ void test_ldr_64_ldst_immpre() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldr_64_ldst_immpre: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldr_32_ldst_pos() {
@@ -4249,7 +5111,9 @@ void test_ldr_32_ldst_pos() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldr_32_ldst_pos: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldr_64_ldst_pos() {
@@ -4260,7 +5124,9 @@ void test_ldr_64_ldst_pos() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldr_64_ldst_pos: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldr_s_loadlit() {
@@ -4268,7 +5134,9 @@ void test_ldr_s_loadlit() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: ldr_s_loadlit" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::LDR);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldr_s_loadlit: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldr_d_loadlit() {
@@ -4276,7 +5144,9 @@ void test_ldr_d_loadlit() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: ldr_d_loadlit" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::LDR);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldr_d_loadlit: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldr_q_loadlit() {
@@ -4284,7 +5154,9 @@ void test_ldr_q_loadlit() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: ldr_q_loadlit" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::LDR);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldr_q_loadlit: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldr_32_loadlit() {
@@ -4292,7 +5164,9 @@ void test_ldr_32_loadlit() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: ldr_32_loadlit" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::LDR);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldr_32_loadlit: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldr_64_loadlit() {
@@ -4300,7 +5174,9 @@ void test_ldr_64_loadlit() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: ldr_64_loadlit" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::LDR);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldr_64_loadlit: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldr_b_ldst_regoff() {
@@ -4311,7 +5187,9 @@ void test_ldr_b_ldst_regoff() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::MemoryRegOffset);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldr_b_ldst_regoff: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldr_bl_ldst_regoff() {
@@ -4322,7 +5200,9 @@ void test_ldr_bl_ldst_regoff() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::MemoryRegOffset);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldr_bl_ldst_regoff: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldr_h_ldst_regoff() {
@@ -4330,7 +5210,9 @@ void test_ldr_h_ldst_regoff() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: ldr_h_ldst_regoff" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::LDR);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldr_h_ldst_regoff: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldr_s_ldst_regoff() {
@@ -4338,7 +5220,9 @@ void test_ldr_s_ldst_regoff() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: ldr_s_ldst_regoff" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::LDR);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldr_s_ldst_regoff: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldr_d_ldst_regoff() {
@@ -4346,7 +5230,9 @@ void test_ldr_d_ldst_regoff() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: ldr_d_ldst_regoff" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::LDR);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldr_d_ldst_regoff: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldr_q_ldst_regoff() {
@@ -4354,7 +5240,9 @@ void test_ldr_q_ldst_regoff() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: ldr_q_ldst_regoff" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::LDR);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldr_q_ldst_regoff: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldr_32_ldst_regoff() {
@@ -4365,7 +5253,9 @@ void test_ldr_32_ldst_regoff() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::MemoryRegOffset);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldr_32_ldst_regoff: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldr_64_ldst_regoff() {
@@ -4376,7 +5266,9 @@ void test_ldr_64_ldst_regoff() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::MemoryRegOffset);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldr_64_ldst_regoff: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldraa_64_ldst_pac() {
@@ -4386,7 +5278,9 @@ void test_ldraa_64_ldst_pac() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldraa_64_ldst_pac: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldraa_64w_ldst_pac() {
@@ -4396,7 +5290,9 @@ void test_ldraa_64w_ldst_pac() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldraa_64w_ldst_pac: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldrab_64_ldst_pac() {
@@ -4406,7 +5302,9 @@ void test_ldrab_64_ldst_pac() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldrab_64_ldst_pac: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldrab_64w_ldst_pac() {
@@ -4416,7 +5314,9 @@ void test_ldrab_64w_ldst_pac() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldrab_64w_ldst_pac: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldrb_32_ldst_immpost() {
@@ -4424,7 +5324,9 @@ void test_ldrb_32_ldst_immpost() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: ldrb_32_ldst_immpost" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::LDRB);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldrb_32_ldst_immpost: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldrb_32_ldst_immpre() {
@@ -4435,7 +5337,9 @@ void test_ldrb_32_ldst_immpre() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldrb_32_ldst_immpre: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldrb_32_ldst_pos() {
@@ -4446,7 +5350,9 @@ void test_ldrb_32_ldst_pos() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldrb_32_ldst_pos: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldrb_32b_ldst_regoff() {
@@ -4457,7 +5363,9 @@ void test_ldrb_32b_ldst_regoff() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::MemoryRegOffset);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldrb_32b_ldst_regoff: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldrb_32bl_ldst_regoff() {
@@ -4468,7 +5376,9 @@ void test_ldrb_32bl_ldst_regoff() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::MemoryRegOffset);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldrb_32bl_ldst_regoff: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldrh_32_ldst_immpost() {
@@ -4476,7 +5386,9 @@ void test_ldrh_32_ldst_immpost() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: ldrh_32_ldst_immpost" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::LDRH);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldrh_32_ldst_immpost: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldrh_32_ldst_immpre() {
@@ -4487,7 +5399,9 @@ void test_ldrh_32_ldst_immpre() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldrh_32_ldst_immpre: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldrh_32_ldst_pos() {
@@ -4498,7 +5412,9 @@ void test_ldrh_32_ldst_pos() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldrh_32_ldst_pos: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldrh_32_ldst_regoff() {
@@ -4509,7 +5425,9 @@ void test_ldrh_32_ldst_regoff() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::MemoryRegOffset);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldrh_32_ldst_regoff: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldrsb_32_ldst_immpost() {
@@ -4517,7 +5435,9 @@ void test_ldrsb_32_ldst_immpost() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: ldrsb_32_ldst_immpost" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::LDRSB);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldrsb_32_ldst_immpost: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldrsb_64_ldst_immpost() {
@@ -4525,7 +5445,9 @@ void test_ldrsb_64_ldst_immpost() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: ldrsb_64_ldst_immpost" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::LDRSB);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldrsb_64_ldst_immpost: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldrsb_32_ldst_immpre() {
@@ -4536,7 +5458,9 @@ void test_ldrsb_32_ldst_immpre() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldrsb_32_ldst_immpre: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldrsb_64_ldst_immpre() {
@@ -4547,7 +5471,9 @@ void test_ldrsb_64_ldst_immpre() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldrsb_64_ldst_immpre: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldrsb_32_ldst_pos() {
@@ -4558,7 +5484,9 @@ void test_ldrsb_32_ldst_pos() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldrsb_32_ldst_pos: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldrsb_64_ldst_pos() {
@@ -4569,7 +5497,9 @@ void test_ldrsb_64_ldst_pos() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldrsb_64_ldst_pos: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldrsb_32b_ldst_regoff() {
@@ -4580,7 +5510,9 @@ void test_ldrsb_32b_ldst_regoff() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::MemoryRegOffset);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldrsb_32b_ldst_regoff: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldrsb_32bl_ldst_regoff() {
@@ -4591,7 +5523,9 @@ void test_ldrsb_32bl_ldst_regoff() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::MemoryRegOffset);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldrsb_32bl_ldst_regoff: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldrsb_64b_ldst_regoff() {
@@ -4602,7 +5536,9 @@ void test_ldrsb_64b_ldst_regoff() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::MemoryRegOffset);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldrsb_64b_ldst_regoff: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldrsb_64bl_ldst_regoff() {
@@ -4613,7 +5549,9 @@ void test_ldrsb_64bl_ldst_regoff() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::MemoryRegOffset);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldrsb_64bl_ldst_regoff: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldrsh_32_ldst_immpost() {
@@ -4621,7 +5559,9 @@ void test_ldrsh_32_ldst_immpost() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: ldrsh_32_ldst_immpost" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::LDRSH);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldrsh_32_ldst_immpost: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldrsh_64_ldst_immpost() {
@@ -4629,7 +5569,9 @@ void test_ldrsh_64_ldst_immpost() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: ldrsh_64_ldst_immpost" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::LDRSH);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldrsh_64_ldst_immpost: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldrsh_32_ldst_immpre() {
@@ -4640,7 +5582,9 @@ void test_ldrsh_32_ldst_immpre() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldrsh_32_ldst_immpre: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldrsh_64_ldst_immpre() {
@@ -4651,7 +5595,9 @@ void test_ldrsh_64_ldst_immpre() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldrsh_64_ldst_immpre: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldrsh_32_ldst_pos() {
@@ -4662,7 +5608,9 @@ void test_ldrsh_32_ldst_pos() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldrsh_32_ldst_pos: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldrsh_64_ldst_pos() {
@@ -4673,7 +5621,9 @@ void test_ldrsh_64_ldst_pos() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldrsh_64_ldst_pos: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldrsh_32_ldst_regoff() {
@@ -4684,7 +5634,9 @@ void test_ldrsh_32_ldst_regoff() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::MemoryRegOffset);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldrsh_32_ldst_regoff: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldrsh_64_ldst_regoff() {
@@ -4695,7 +5647,9 @@ void test_ldrsh_64_ldst_regoff() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::MemoryRegOffset);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldrsh_64_ldst_regoff: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldrsw_64_ldst_immpost() {
@@ -4703,7 +5657,9 @@ void test_ldrsw_64_ldst_immpost() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: ldrsw_64_ldst_immpost" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::LDRSW);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldrsw_64_ldst_immpost: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldrsw_64_ldst_immpre() {
@@ -4714,7 +5670,9 @@ void test_ldrsw_64_ldst_immpre() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldrsw_64_ldst_immpre: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldrsw_64_ldst_pos() {
@@ -4725,7 +5683,9 @@ void test_ldrsw_64_ldst_pos() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldrsw_64_ldst_pos: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldrsw_64_loadlit() {
@@ -4733,7 +5693,9 @@ void test_ldrsw_64_loadlit() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: ldrsw_64_loadlit" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::LDRSW);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldrsw_64_loadlit: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldrsw_64_ldst_regoff() {
@@ -4744,7 +5706,9 @@ void test_ldrsw_64_ldst_regoff() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::MemoryRegOffset);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldrsw_64_ldst_regoff: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldset_32_memop() {
@@ -4755,7 +5719,9 @@ void test_ldset_32_memop() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldset_32_memop: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldseta_32_memop() {
@@ -4766,7 +5732,9 @@ void test_ldseta_32_memop() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldseta_32_memop: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldsetal_32_memop() {
@@ -4777,7 +5745,9 @@ void test_ldsetal_32_memop() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldsetal_32_memop: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldsetl_32_memop() {
@@ -4788,7 +5758,9 @@ void test_ldsetl_32_memop() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldsetl_32_memop: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldset_64_memop() {
@@ -4799,7 +5771,9 @@ void test_ldset_64_memop() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldset_64_memop: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldseta_64_memop() {
@@ -4810,7 +5784,9 @@ void test_ldseta_64_memop() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldseta_64_memop: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldsetal_64_memop() {
@@ -4821,7 +5797,9 @@ void test_ldsetal_64_memop() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldsetal_64_memop: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldsetl_64_memop() {
@@ -4832,7 +5810,9 @@ void test_ldsetl_64_memop() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldsetl_64_memop: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldsetb_32_memop() {
@@ -4843,7 +5823,9 @@ void test_ldsetb_32_memop() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldsetb_32_memop: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldsetab_32_memop() {
@@ -4854,7 +5836,9 @@ void test_ldsetab_32_memop() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldsetab_32_memop: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldsetalb_32_memop() {
@@ -4865,7 +5849,9 @@ void test_ldsetalb_32_memop() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldsetalb_32_memop: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldsetlb_32_memop() {
@@ -4876,7 +5862,9 @@ void test_ldsetlb_32_memop() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldsetlb_32_memop: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldseth_32_memop() {
@@ -4887,7 +5875,9 @@ void test_ldseth_32_memop() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldseth_32_memop: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldsetah_32_memop() {
@@ -4898,7 +5888,9 @@ void test_ldsetah_32_memop() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldsetah_32_memop: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldsetalh_32_memop() {
@@ -4909,7 +5901,9 @@ void test_ldsetalh_32_memop() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldsetalh_32_memop: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldsetlh_32_memop() {
@@ -4920,7 +5914,9 @@ void test_ldsetlh_32_memop() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldsetlh_32_memop: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldsetp_128_memop_128() {
@@ -4931,7 +5927,9 @@ void test_ldsetp_128_memop_128() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldsetp_128_memop_128: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldsetpa_128_memop_128() {
@@ -4942,7 +5940,9 @@ void test_ldsetpa_128_memop_128() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldsetpa_128_memop_128: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldsetpal_128_memop_128() {
@@ -4953,7 +5953,9 @@ void test_ldsetpal_128_memop_128() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldsetpal_128_memop_128: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldsetpl_128_memop_128() {
@@ -4964,7 +5966,9 @@ void test_ldsetpl_128_memop_128() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldsetpl_128_memop_128: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldsmax_32_memop() {
@@ -4975,7 +5979,9 @@ void test_ldsmax_32_memop() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldsmax_32_memop: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldsmaxa_32_memop() {
@@ -4986,7 +5992,9 @@ void test_ldsmaxa_32_memop() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldsmaxa_32_memop: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldsmaxal_32_memop() {
@@ -4997,7 +6005,9 @@ void test_ldsmaxal_32_memop() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldsmaxal_32_memop: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldsmaxl_32_memop() {
@@ -5008,7 +6018,9 @@ void test_ldsmaxl_32_memop() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldsmaxl_32_memop: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldsmax_64_memop() {
@@ -5019,7 +6031,9 @@ void test_ldsmax_64_memop() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldsmax_64_memop: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldsmaxa_64_memop() {
@@ -5030,7 +6044,9 @@ void test_ldsmaxa_64_memop() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldsmaxa_64_memop: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldsmaxal_64_memop() {
@@ -5041,7 +6057,9 @@ void test_ldsmaxal_64_memop() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldsmaxal_64_memop: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldsmaxl_64_memop() {
@@ -5052,7 +6070,9 @@ void test_ldsmaxl_64_memop() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldsmaxl_64_memop: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldsmaxb_32_memop() {
@@ -5063,7 +6083,9 @@ void test_ldsmaxb_32_memop() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldsmaxb_32_memop: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldsmaxab_32_memop() {
@@ -5074,7 +6096,9 @@ void test_ldsmaxab_32_memop() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldsmaxab_32_memop: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldsmaxalb_32_memop() {
@@ -5085,7 +6109,9 @@ void test_ldsmaxalb_32_memop() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldsmaxalb_32_memop: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldsmaxlb_32_memop() {
@@ -5096,7 +6122,9 @@ void test_ldsmaxlb_32_memop() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldsmaxlb_32_memop: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldsmaxh_32_memop() {
@@ -5107,7 +6135,9 @@ void test_ldsmaxh_32_memop() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldsmaxh_32_memop: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldsmaxah_32_memop() {
@@ -5118,7 +6148,9 @@ void test_ldsmaxah_32_memop() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldsmaxah_32_memop: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldsmaxalh_32_memop() {
@@ -5129,7 +6161,9 @@ void test_ldsmaxalh_32_memop() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldsmaxalh_32_memop: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldsmaxlh_32_memop() {
@@ -5140,7 +6174,9 @@ void test_ldsmaxlh_32_memop() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldsmaxlh_32_memop: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldsmin_32_memop() {
@@ -5151,7 +6187,9 @@ void test_ldsmin_32_memop() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldsmin_32_memop: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldsmina_32_memop() {
@@ -5162,7 +6200,9 @@ void test_ldsmina_32_memop() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldsmina_32_memop: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldsminal_32_memop() {
@@ -5173,7 +6213,9 @@ void test_ldsminal_32_memop() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldsminal_32_memop: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldsminl_32_memop() {
@@ -5184,7 +6226,9 @@ void test_ldsminl_32_memop() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldsminl_32_memop: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldsmin_64_memop() {
@@ -5195,7 +6239,9 @@ void test_ldsmin_64_memop() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldsmin_64_memop: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldsmina_64_memop() {
@@ -5206,7 +6252,9 @@ void test_ldsmina_64_memop() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldsmina_64_memop: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldsminal_64_memop() {
@@ -5217,7 +6265,9 @@ void test_ldsminal_64_memop() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldsminal_64_memop: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldsminl_64_memop() {
@@ -5228,7 +6278,9 @@ void test_ldsminl_64_memop() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldsminl_64_memop: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldsminb_32_memop() {
@@ -5239,7 +6291,9 @@ void test_ldsminb_32_memop() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldsminb_32_memop: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldsminab_32_memop() {
@@ -5250,7 +6304,9 @@ void test_ldsminab_32_memop() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldsminab_32_memop: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldsminalb_32_memop() {
@@ -5261,7 +6317,9 @@ void test_ldsminalb_32_memop() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldsminalb_32_memop: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldsminlb_32_memop() {
@@ -5272,7 +6330,9 @@ void test_ldsminlb_32_memop() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldsminlb_32_memop: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldsminh_32_memop() {
@@ -5283,7 +6343,9 @@ void test_ldsminh_32_memop() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldsminh_32_memop: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldsminah_32_memop() {
@@ -5294,7 +6356,9 @@ void test_ldsminah_32_memop() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldsminah_32_memop: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldsminalh_32_memop() {
@@ -5305,7 +6369,9 @@ void test_ldsminalh_32_memop() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldsminalh_32_memop: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldsminlh_32_memop() {
@@ -5316,7 +6382,9 @@ void test_ldsminlh_32_memop() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldsminlh_32_memop: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldtadd_32_memop_unpriv() {
@@ -5327,7 +6395,9 @@ void test_ldtadd_32_memop_unpriv() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldtadd_32_memop_unpriv: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldtadda_32_memop_unpriv() {
@@ -5338,7 +6408,9 @@ void test_ldtadda_32_memop_unpriv() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldtadda_32_memop_unpriv: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldtaddal_32_memop_unpriv() {
@@ -5349,7 +6421,9 @@ void test_ldtaddal_32_memop_unpriv() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldtaddal_32_memop_unpriv: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldtaddl_32_memop_unpriv() {
@@ -5360,7 +6434,9 @@ void test_ldtaddl_32_memop_unpriv() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldtaddl_32_memop_unpriv: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldtadd_64_memop_unpriv() {
@@ -5371,7 +6447,9 @@ void test_ldtadd_64_memop_unpriv() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldtadd_64_memop_unpriv: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldtadda_64_memop_unpriv() {
@@ -5382,7 +6460,9 @@ void test_ldtadda_64_memop_unpriv() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldtadda_64_memop_unpriv: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldtaddal_64_memop_unpriv() {
@@ -5393,7 +6473,9 @@ void test_ldtaddal_64_memop_unpriv() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldtaddal_64_memop_unpriv: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldtaddl_64_memop_unpriv() {
@@ -5404,7 +6486,9 @@ void test_ldtaddl_64_memop_unpriv() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldtaddl_64_memop_unpriv: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldtclr_32_memop_unpriv() {
@@ -5415,7 +6499,9 @@ void test_ldtclr_32_memop_unpriv() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldtclr_32_memop_unpriv: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldtclra_32_memop_unpriv() {
@@ -5426,7 +6512,9 @@ void test_ldtclra_32_memop_unpriv() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldtclra_32_memop_unpriv: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldtclral_32_memop_unpriv() {
@@ -5437,7 +6525,9 @@ void test_ldtclral_32_memop_unpriv() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldtclral_32_memop_unpriv: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldtclrl_32_memop_unpriv() {
@@ -5448,7 +6538,9 @@ void test_ldtclrl_32_memop_unpriv() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldtclrl_32_memop_unpriv: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldtclr_64_memop_unpriv() {
@@ -5459,7 +6551,9 @@ void test_ldtclr_64_memop_unpriv() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldtclr_64_memop_unpriv: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldtclra_64_memop_unpriv() {
@@ -5470,7 +6564,9 @@ void test_ldtclra_64_memop_unpriv() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldtclra_64_memop_unpriv: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldtclral_64_memop_unpriv() {
@@ -5481,7 +6577,9 @@ void test_ldtclral_64_memop_unpriv() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldtclral_64_memop_unpriv: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldtclrl_64_memop_unpriv() {
@@ -5492,7 +6590,9 @@ void test_ldtclrl_64_memop_unpriv() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldtclrl_64_memop_unpriv: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldtnp_q_ldstnapair_offs() {
@@ -5500,7 +6600,9 @@ void test_ldtnp_q_ldstnapair_offs() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: ldtnp_q_ldstnapair_offs" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::LDTNP);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldtnp_q_ldstnapair_offs: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldtnp_64_ldstnapair_offs() {
@@ -5512,7 +6614,9 @@ void test_ldtnp_64_ldstnapair_offs() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldtnp_64_ldstnapair_offs: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldtp_q_ldstpair_post() {
@@ -5520,7 +6624,9 @@ void test_ldtp_q_ldstpair_post() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: ldtp_q_ldstpair_post" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::LDTP);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldtp_q_ldstpair_post: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldtp_q_ldstpair_pre() {
@@ -5528,7 +6634,9 @@ void test_ldtp_q_ldstpair_pre() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: ldtp_q_ldstpair_pre" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::LDTP);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldtp_q_ldstpair_pre: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldtp_q_ldstpair_off() {
@@ -5536,7 +6644,9 @@ void test_ldtp_q_ldstpair_off() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: ldtp_q_ldstpair_off" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::LDTP);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldtp_q_ldstpair_off: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldtp_64_ldstpair_post() {
@@ -5544,7 +6654,9 @@ void test_ldtp_64_ldstpair_post() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: ldtp_64_ldstpair_post" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::LDTP);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldtp_64_ldstpair_post: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldtp_64_ldstpair_pre() {
@@ -5556,7 +6668,9 @@ void test_ldtp_64_ldstpair_pre() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldtp_64_ldstpair_pre: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldtp_64_ldstpair_off() {
@@ -5568,7 +6682,9 @@ void test_ldtp_64_ldstpair_off() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldtp_64_ldstpair_off: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldtr_32_ldst_unpriv() {
@@ -5579,7 +6695,9 @@ void test_ldtr_32_ldst_unpriv() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldtr_32_ldst_unpriv: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldtr_64_ldst_unpriv() {
@@ -5590,7 +6708,9 @@ void test_ldtr_64_ldst_unpriv() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldtr_64_ldst_unpriv: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldtrb_32_ldst_unpriv() {
@@ -5601,7 +6721,9 @@ void test_ldtrb_32_ldst_unpriv() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldtrb_32_ldst_unpriv: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldtrh_32_ldst_unpriv() {
@@ -5612,7 +6734,9 @@ void test_ldtrh_32_ldst_unpriv() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldtrh_32_ldst_unpriv: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldtrsb_32_ldst_unpriv() {
@@ -5623,7 +6747,9 @@ void test_ldtrsb_32_ldst_unpriv() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldtrsb_32_ldst_unpriv: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldtrsb_64_ldst_unpriv() {
@@ -5634,7 +6760,9 @@ void test_ldtrsb_64_ldst_unpriv() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldtrsb_64_ldst_unpriv: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldtrsh_32_ldst_unpriv() {
@@ -5645,7 +6773,9 @@ void test_ldtrsh_32_ldst_unpriv() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldtrsh_32_ldst_unpriv: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldtrsh_64_ldst_unpriv() {
@@ -5656,7 +6786,9 @@ void test_ldtrsh_64_ldst_unpriv() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldtrsh_64_ldst_unpriv: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldtrsw_64_ldst_unpriv() {
@@ -5667,7 +6799,9 @@ void test_ldtrsw_64_ldst_unpriv() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldtrsw_64_ldst_unpriv: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldtset_32_memop_unpriv() {
@@ -5678,7 +6812,9 @@ void test_ldtset_32_memop_unpriv() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldtset_32_memop_unpriv: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldtseta_32_memop_unpriv() {
@@ -5689,7 +6825,9 @@ void test_ldtseta_32_memop_unpriv() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldtseta_32_memop_unpriv: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldtsetal_32_memop_unpriv() {
@@ -5700,7 +6838,9 @@ void test_ldtsetal_32_memop_unpriv() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldtsetal_32_memop_unpriv: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldtsetl_32_memop_unpriv() {
@@ -5711,7 +6851,9 @@ void test_ldtsetl_32_memop_unpriv() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldtsetl_32_memop_unpriv: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldtset_64_memop_unpriv() {
@@ -5722,7 +6864,9 @@ void test_ldtset_64_memop_unpriv() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldtset_64_memop_unpriv: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldtseta_64_memop_unpriv() {
@@ -5733,7 +6877,9 @@ void test_ldtseta_64_memop_unpriv() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldtseta_64_memop_unpriv: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldtsetal_64_memop_unpriv() {
@@ -5744,7 +6890,9 @@ void test_ldtsetal_64_memop_unpriv() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldtsetal_64_memop_unpriv: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldtsetl_64_memop_unpriv() {
@@ -5755,7 +6903,9 @@ void test_ldtsetl_64_memop_unpriv() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldtsetl_64_memop_unpriv: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldtxr_lr32_ldstexclr_unpriv() {
@@ -5766,7 +6916,9 @@ void test_ldtxr_lr32_ldstexclr_unpriv() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldtxr_lr32_ldstexclr_unpriv: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldtxr_lr64_ldstexclr_unpriv() {
@@ -5777,7 +6929,9 @@ void test_ldtxr_lr64_ldstexclr_unpriv() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldtxr_lr64_ldstexclr_unpriv: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldumax_32_memop() {
@@ -5788,7 +6942,9 @@ void test_ldumax_32_memop() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldumax_32_memop: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldumaxa_32_memop() {
@@ -5799,7 +6955,9 @@ void test_ldumaxa_32_memop() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldumaxa_32_memop: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldumaxal_32_memop() {
@@ -5810,7 +6968,9 @@ void test_ldumaxal_32_memop() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldumaxal_32_memop: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldumaxl_32_memop() {
@@ -5821,7 +6981,9 @@ void test_ldumaxl_32_memop() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldumaxl_32_memop: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldumax_64_memop() {
@@ -5832,7 +6994,9 @@ void test_ldumax_64_memop() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldumax_64_memop: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldumaxa_64_memop() {
@@ -5843,7 +7007,9 @@ void test_ldumaxa_64_memop() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldumaxa_64_memop: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldumaxal_64_memop() {
@@ -5854,7 +7020,9 @@ void test_ldumaxal_64_memop() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldumaxal_64_memop: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldumaxl_64_memop() {
@@ -5865,7 +7033,9 @@ void test_ldumaxl_64_memop() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldumaxl_64_memop: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldumaxb_32_memop() {
@@ -5876,7 +7046,9 @@ void test_ldumaxb_32_memop() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldumaxb_32_memop: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldumaxab_32_memop() {
@@ -5887,7 +7059,9 @@ void test_ldumaxab_32_memop() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldumaxab_32_memop: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldumaxalb_32_memop() {
@@ -5898,7 +7072,9 @@ void test_ldumaxalb_32_memop() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldumaxalb_32_memop: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldumaxlb_32_memop() {
@@ -5909,7 +7085,9 @@ void test_ldumaxlb_32_memop() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldumaxlb_32_memop: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldumaxh_32_memop() {
@@ -5920,7 +7098,9 @@ void test_ldumaxh_32_memop() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldumaxh_32_memop: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldumaxah_32_memop() {
@@ -5931,7 +7111,9 @@ void test_ldumaxah_32_memop() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldumaxah_32_memop: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldumaxalh_32_memop() {
@@ -5942,7 +7124,9 @@ void test_ldumaxalh_32_memop() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldumaxalh_32_memop: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldumaxlh_32_memop() {
@@ -5953,7 +7137,9 @@ void test_ldumaxlh_32_memop() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldumaxlh_32_memop: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldumin_32_memop() {
@@ -5964,7 +7150,9 @@ void test_ldumin_32_memop() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldumin_32_memop: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldumina_32_memop() {
@@ -5975,7 +7163,9 @@ void test_ldumina_32_memop() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldumina_32_memop: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_lduminal_32_memop() {
@@ -5986,7 +7176,9 @@ void test_lduminal_32_memop() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  lduminal_32_memop: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_lduminl_32_memop() {
@@ -5997,7 +7189,9 @@ void test_lduminl_32_memop() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  lduminl_32_memop: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldumin_64_memop() {
@@ -6008,7 +7202,9 @@ void test_ldumin_64_memop() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldumin_64_memop: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldumina_64_memop() {
@@ -6019,7 +7215,9 @@ void test_ldumina_64_memop() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldumina_64_memop: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_lduminal_64_memop() {
@@ -6030,7 +7228,9 @@ void test_lduminal_64_memop() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  lduminal_64_memop: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_lduminl_64_memop() {
@@ -6041,7 +7241,9 @@ void test_lduminl_64_memop() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  lduminl_64_memop: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_lduminb_32_memop() {
@@ -6052,7 +7254,9 @@ void test_lduminb_32_memop() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  lduminb_32_memop: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_lduminab_32_memop() {
@@ -6063,7 +7267,9 @@ void test_lduminab_32_memop() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  lduminab_32_memop: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_lduminalb_32_memop() {
@@ -6074,7 +7280,9 @@ void test_lduminalb_32_memop() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  lduminalb_32_memop: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_lduminlb_32_memop() {
@@ -6085,7 +7293,9 @@ void test_lduminlb_32_memop() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  lduminlb_32_memop: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_lduminh_32_memop() {
@@ -6096,7 +7306,9 @@ void test_lduminh_32_memop() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  lduminh_32_memop: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_lduminah_32_memop() {
@@ -6107,7 +7319,9 @@ void test_lduminah_32_memop() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  lduminah_32_memop: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_lduminalh_32_memop() {
@@ -6118,7 +7332,9 @@ void test_lduminalh_32_memop() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  lduminalh_32_memop: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_lduminlh_32_memop() {
@@ -6129,7 +7345,9 @@ void test_lduminlh_32_memop() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  lduminlh_32_memop: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldur_b_ldst_unscaled() {
@@ -6140,7 +7358,9 @@ void test_ldur_b_ldst_unscaled() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldur_b_ldst_unscaled: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldur_h_ldst_unscaled() {
@@ -6148,7 +7368,9 @@ void test_ldur_h_ldst_unscaled() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: ldur_h_ldst_unscaled" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::LDUR);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldur_h_ldst_unscaled: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldur_s_ldst_unscaled() {
@@ -6156,7 +7378,9 @@ void test_ldur_s_ldst_unscaled() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: ldur_s_ldst_unscaled" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::LDUR);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldur_s_ldst_unscaled: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldur_d_ldst_unscaled() {
@@ -6164,7 +7388,9 @@ void test_ldur_d_ldst_unscaled() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: ldur_d_ldst_unscaled" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::LDUR);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldur_d_ldst_unscaled: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldur_q_ldst_unscaled() {
@@ -6172,7 +7398,9 @@ void test_ldur_q_ldst_unscaled() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: ldur_q_ldst_unscaled" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::LDUR);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldur_q_ldst_unscaled: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldur_32_ldst_unscaled() {
@@ -6183,7 +7411,9 @@ void test_ldur_32_ldst_unscaled() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldur_32_ldst_unscaled: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldur_64_ldst_unscaled() {
@@ -6194,7 +7424,9 @@ void test_ldur_64_ldst_unscaled() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldur_64_ldst_unscaled: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldurb_32_ldst_unscaled() {
@@ -6205,7 +7437,9 @@ void test_ldurb_32_ldst_unscaled() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldurb_32_ldst_unscaled: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldurh_32_ldst_unscaled() {
@@ -6216,7 +7450,9 @@ void test_ldurh_32_ldst_unscaled() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldurh_32_ldst_unscaled: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldursb_32_ldst_unscaled() {
@@ -6227,7 +7463,9 @@ void test_ldursb_32_ldst_unscaled() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldursb_32_ldst_unscaled: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldursb_64_ldst_unscaled() {
@@ -6238,7 +7476,9 @@ void test_ldursb_64_ldst_unscaled() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldursb_64_ldst_unscaled: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldursh_32_ldst_unscaled() {
@@ -6249,7 +7489,9 @@ void test_ldursh_32_ldst_unscaled() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldursh_32_ldst_unscaled: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldursh_64_ldst_unscaled() {
@@ -6260,7 +7502,9 @@ void test_ldursh_64_ldst_unscaled() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldursh_64_ldst_unscaled: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldursw_64_ldst_unscaled() {
@@ -6271,7 +7515,9 @@ void test_ldursw_64_ldst_unscaled() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldursw_64_ldst_unscaled: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldxp_lp32_ldstexclp() {
@@ -6283,7 +7529,9 @@ void test_ldxp_lp32_ldstexclp() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldxp_lp32_ldstexclp: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldxp_lp64_ldstexclp() {
@@ -6295,7 +7543,9 @@ void test_ldxp_lp64_ldstexclp() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldxp_lp64_ldstexclp: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldxr_lr32_ldstexclr() {
@@ -6306,7 +7556,9 @@ void test_ldxr_lr32_ldstexclr() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldxr_lr32_ldstexclr: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldxr_lr64_ldstexclr() {
@@ -6317,7 +7569,9 @@ void test_ldxr_lr64_ldstexclr() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldxr_lr64_ldstexclr: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldxrb_lr32_ldstexclr() {
@@ -6328,7 +7582,9 @@ void test_ldxrb_lr32_ldstexclr() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldxrb_lr32_ldstexclr: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_ldxrh_lr32_ldstexclr() {
@@ -6339,7 +7595,9 @@ void test_ldxrh_lr32_ldstexclr() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  ldxrh_lr32_ldstexclr: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_prfm_p_ldst_pos() {
@@ -6347,7 +7605,9 @@ void test_prfm_p_ldst_pos() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: prfm_p_ldst_pos" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::PRFM);
+#ifdef VEDA64_STRINGS
     std::cout << "  prfm_p_ldst_pos: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_prfm_p_loadlit() {
@@ -6355,7 +7615,9 @@ void test_prfm_p_loadlit() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: prfm_p_loadlit" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::PRFM);
+#ifdef VEDA64_STRINGS
     std::cout << "  prfm_p_loadlit: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_prfm_p_ldst_regoff() {
@@ -6363,7 +7625,9 @@ void test_prfm_p_ldst_regoff() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: prfm_p_ldst_regoff" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::PRFM);
+#ifdef VEDA64_STRINGS
     std::cout << "  prfm_p_ldst_regoff: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_prfum_p_ldst_unscaled() {
@@ -6371,7 +7635,9 @@ void test_prfum_p_ldst_unscaled() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: prfum_p_ldst_unscaled" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::PRFUM);
+#ifdef VEDA64_STRINGS
     std::cout << "  prfum_p_ldst_unscaled: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_rcwcas_c64_rcwcomswap() {
@@ -6382,7 +7648,9 @@ void test_rcwcas_c64_rcwcomswap() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  rcwcas_c64_rcwcomswap: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_rcwcasa_c64_rcwcomswap() {
@@ -6393,7 +7661,9 @@ void test_rcwcasa_c64_rcwcomswap() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  rcwcasa_c64_rcwcomswap: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_rcwcasal_c64_rcwcomswap() {
@@ -6404,7 +7674,9 @@ void test_rcwcasal_c64_rcwcomswap() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  rcwcasal_c64_rcwcomswap: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_rcwcasl_c64_rcwcomswap() {
@@ -6415,7 +7687,9 @@ void test_rcwcasl_c64_rcwcomswap() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  rcwcasl_c64_rcwcomswap: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_rcwcasp_c64_rcwcomswappr() {
@@ -6426,7 +7700,9 @@ void test_rcwcasp_c64_rcwcomswappr() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  rcwcasp_c64_rcwcomswappr: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_rcwcaspa_c64_rcwcomswappr() {
@@ -6437,7 +7713,9 @@ void test_rcwcaspa_c64_rcwcomswappr() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  rcwcaspa_c64_rcwcomswappr: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_rcwcaspal_c64_rcwcomswappr() {
@@ -6448,7 +7726,9 @@ void test_rcwcaspal_c64_rcwcomswappr() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  rcwcaspal_c64_rcwcomswappr: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_rcwcaspl_c64_rcwcomswappr() {
@@ -6459,7 +7739,9 @@ void test_rcwcaspl_c64_rcwcomswappr() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  rcwcaspl_c64_rcwcomswappr: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_rcwclr_64_memop() {
@@ -6470,7 +7752,9 @@ void test_rcwclr_64_memop() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  rcwclr_64_memop: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_rcwclra_64_memop() {
@@ -6481,7 +7765,9 @@ void test_rcwclra_64_memop() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  rcwclra_64_memop: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_rcwclral_64_memop() {
@@ -6492,7 +7778,9 @@ void test_rcwclral_64_memop() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  rcwclral_64_memop: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_rcwclrl_64_memop() {
@@ -6503,7 +7791,9 @@ void test_rcwclrl_64_memop() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  rcwclrl_64_memop: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_rcwclrp_128_memop_128() {
@@ -6514,7 +7804,9 @@ void test_rcwclrp_128_memop_128() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  rcwclrp_128_memop_128: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_rcwclrpa_128_memop_128() {
@@ -6525,7 +7817,9 @@ void test_rcwclrpa_128_memop_128() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  rcwclrpa_128_memop_128: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_rcwclrpal_128_memop_128() {
@@ -6536,7 +7830,9 @@ void test_rcwclrpal_128_memop_128() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  rcwclrpal_128_memop_128: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_rcwclrpl_128_memop_128() {
@@ -6547,7 +7843,9 @@ void test_rcwclrpl_128_memop_128() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  rcwclrpl_128_memop_128: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_rcwscas_c64_rcwcomswap() {
@@ -6558,7 +7856,9 @@ void test_rcwscas_c64_rcwcomswap() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  rcwscas_c64_rcwcomswap: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_rcwscasa_c64_rcwcomswap() {
@@ -6569,7 +7869,9 @@ void test_rcwscasa_c64_rcwcomswap() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  rcwscasa_c64_rcwcomswap: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_rcwscasal_c64_rcwcomswap() {
@@ -6580,7 +7882,9 @@ void test_rcwscasal_c64_rcwcomswap() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  rcwscasal_c64_rcwcomswap: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_rcwscasl_c64_rcwcomswap() {
@@ -6591,7 +7895,9 @@ void test_rcwscasl_c64_rcwcomswap() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  rcwscasl_c64_rcwcomswap: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_rcwscasp_c64_rcwcomswappr() {
@@ -6602,7 +7908,9 @@ void test_rcwscasp_c64_rcwcomswappr() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  rcwscasp_c64_rcwcomswappr: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_rcwscaspa_c64_rcwcomswappr() {
@@ -6613,7 +7921,9 @@ void test_rcwscaspa_c64_rcwcomswappr() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  rcwscaspa_c64_rcwcomswappr: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_rcwscaspal_c64_rcwcomswappr() {
@@ -6624,7 +7934,9 @@ void test_rcwscaspal_c64_rcwcomswappr() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  rcwscaspal_c64_rcwcomswappr: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_rcwscaspl_c64_rcwcomswappr() {
@@ -6635,7 +7947,9 @@ void test_rcwscaspl_c64_rcwcomswappr() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  rcwscaspl_c64_rcwcomswappr: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_rcwsclr_64_memop() {
@@ -6646,7 +7960,9 @@ void test_rcwsclr_64_memop() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  rcwsclr_64_memop: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_rcwsclra_64_memop() {
@@ -6657,7 +7973,9 @@ void test_rcwsclra_64_memop() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  rcwsclra_64_memop: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_rcwsclral_64_memop() {
@@ -6668,7 +7986,9 @@ void test_rcwsclral_64_memop() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  rcwsclral_64_memop: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_rcwsclrl_64_memop() {
@@ -6679,7 +7999,9 @@ void test_rcwsclrl_64_memop() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  rcwsclrl_64_memop: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_rcwsclrp_128_memop_128() {
@@ -6690,7 +8012,9 @@ void test_rcwsclrp_128_memop_128() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  rcwsclrp_128_memop_128: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_rcwsclrpa_128_memop_128() {
@@ -6701,7 +8025,9 @@ void test_rcwsclrpa_128_memop_128() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  rcwsclrpa_128_memop_128: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_rcwsclrpal_128_memop_128() {
@@ -6712,7 +8038,9 @@ void test_rcwsclrpal_128_memop_128() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  rcwsclrpal_128_memop_128: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_rcwsclrpl_128_memop_128() {
@@ -6723,7 +8051,9 @@ void test_rcwsclrpl_128_memop_128() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  rcwsclrpl_128_memop_128: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_rcwset_64_memop() {
@@ -6734,7 +8064,9 @@ void test_rcwset_64_memop() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  rcwset_64_memop: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_rcwseta_64_memop() {
@@ -6745,7 +8077,9 @@ void test_rcwseta_64_memop() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  rcwseta_64_memop: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_rcwsetal_64_memop() {
@@ -6756,7 +8090,9 @@ void test_rcwsetal_64_memop() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  rcwsetal_64_memop: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_rcwsetl_64_memop() {
@@ -6767,7 +8103,9 @@ void test_rcwsetl_64_memop() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  rcwsetl_64_memop: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_rcwsetp_128_memop_128() {
@@ -6778,7 +8116,9 @@ void test_rcwsetp_128_memop_128() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  rcwsetp_128_memop_128: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_rcwsetpa_128_memop_128() {
@@ -6789,7 +8129,9 @@ void test_rcwsetpa_128_memop_128() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  rcwsetpa_128_memop_128: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_rcwsetpal_128_memop_128() {
@@ -6800,7 +8142,9 @@ void test_rcwsetpal_128_memop_128() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  rcwsetpal_128_memop_128: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_rcwsetpl_128_memop_128() {
@@ -6811,7 +8155,9 @@ void test_rcwsetpl_128_memop_128() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  rcwsetpl_128_memop_128: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_rcwsset_64_memop() {
@@ -6822,7 +8168,9 @@ void test_rcwsset_64_memop() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  rcwsset_64_memop: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_rcwsseta_64_memop() {
@@ -6833,7 +8181,9 @@ void test_rcwsseta_64_memop() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  rcwsseta_64_memop: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_rcwssetal_64_memop() {
@@ -6844,7 +8194,9 @@ void test_rcwssetal_64_memop() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  rcwssetal_64_memop: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_rcwssetl_64_memop() {
@@ -6855,7 +8207,9 @@ void test_rcwssetl_64_memop() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  rcwssetl_64_memop: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_rcwssetp_128_memop_128() {
@@ -6866,7 +8220,9 @@ void test_rcwssetp_128_memop_128() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  rcwssetp_128_memop_128: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_rcwssetpa_128_memop_128() {
@@ -6877,7 +8233,9 @@ void test_rcwssetpa_128_memop_128() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  rcwssetpa_128_memop_128: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_rcwssetpal_128_memop_128() {
@@ -6888,7 +8246,9 @@ void test_rcwssetpal_128_memop_128() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  rcwssetpal_128_memop_128: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_rcwssetpl_128_memop_128() {
@@ -6899,7 +8259,9 @@ void test_rcwssetpl_128_memop_128() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  rcwssetpl_128_memop_128: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_rcwsswp_64_memop() {
@@ -6910,7 +8272,9 @@ void test_rcwsswp_64_memop() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  rcwsswp_64_memop: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_rcwsswpa_64_memop() {
@@ -6921,7 +8285,9 @@ void test_rcwsswpa_64_memop() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  rcwsswpa_64_memop: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_rcwsswpal_64_memop() {
@@ -6932,7 +8298,9 @@ void test_rcwsswpal_64_memop() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  rcwsswpal_64_memop: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_rcwsswpl_64_memop() {
@@ -6943,7 +8311,9 @@ void test_rcwsswpl_64_memop() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  rcwsswpl_64_memop: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_rcwsswpp_128_memop_128() {
@@ -6954,7 +8324,9 @@ void test_rcwsswpp_128_memop_128() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  rcwsswpp_128_memop_128: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_rcwsswppa_128_memop_128() {
@@ -6965,7 +8337,9 @@ void test_rcwsswppa_128_memop_128() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  rcwsswppa_128_memop_128: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_rcwsswppal_128_memop_128() {
@@ -6976,7 +8350,9 @@ void test_rcwsswppal_128_memop_128() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  rcwsswppal_128_memop_128: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_rcwsswppl_128_memop_128() {
@@ -6987,7 +8363,9 @@ void test_rcwsswppl_128_memop_128() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  rcwsswppl_128_memop_128: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_rcwswp_64_memop() {
@@ -6998,7 +8376,9 @@ void test_rcwswp_64_memop() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  rcwswp_64_memop: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_rcwswpa_64_memop() {
@@ -7009,7 +8389,9 @@ void test_rcwswpa_64_memop() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  rcwswpa_64_memop: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_rcwswpal_64_memop() {
@@ -7020,7 +8402,9 @@ void test_rcwswpal_64_memop() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  rcwswpal_64_memop: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_rcwswpl_64_memop() {
@@ -7031,7 +8415,9 @@ void test_rcwswpl_64_memop() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  rcwswpl_64_memop: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_rcwswpp_128_memop_128() {
@@ -7042,7 +8428,9 @@ void test_rcwswpp_128_memop_128() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  rcwswpp_128_memop_128: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_rcwswppa_128_memop_128() {
@@ -7053,7 +8441,9 @@ void test_rcwswppa_128_memop_128() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  rcwswppa_128_memop_128: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_rcwswppal_128_memop_128() {
@@ -7064,7 +8454,9 @@ void test_rcwswppal_128_memop_128() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  rcwswppal_128_memop_128: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_rcwswppl_128_memop_128() {
@@ -7075,7 +8467,9 @@ void test_rcwswppl_128_memop_128() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  rcwswppl_128_memop_128: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_rprfm_r_ldst_regoff() {
@@ -7083,7 +8477,9 @@ void test_rprfm_r_ldst_regoff() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: rprfm_r_ldst_regoff" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::RPRFM);
+#ifdef VEDA64_STRINGS
     std::cout << "  rprfm_r_ldst_regoff: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_setgp_set_memcms() {
@@ -7094,7 +8490,9 @@ void test_setgp_set_memcms() {
     assert(result->operands[0].type == OperandType::Memory);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  setgp_set_memcms: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_setgm_set_memcms() {
@@ -7105,7 +8503,9 @@ void test_setgm_set_memcms() {
     assert(result->operands[0].type == OperandType::Memory);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  setgm_set_memcms: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_setge_set_memcms() {
@@ -7116,7 +8516,9 @@ void test_setge_set_memcms() {
     assert(result->operands[0].type == OperandType::Memory);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  setge_set_memcms: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_setgpn_set_memcms() {
@@ -7127,7 +8529,9 @@ void test_setgpn_set_memcms() {
     assert(result->operands[0].type == OperandType::Memory);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  setgpn_set_memcms: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_setgmn_set_memcms() {
@@ -7138,7 +8542,9 @@ void test_setgmn_set_memcms() {
     assert(result->operands[0].type == OperandType::Memory);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  setgmn_set_memcms: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_setgen_set_memcms() {
@@ -7149,7 +8555,9 @@ void test_setgen_set_memcms() {
     assert(result->operands[0].type == OperandType::Memory);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  setgen_set_memcms: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_setgpt_set_memcms() {
@@ -7160,7 +8568,9 @@ void test_setgpt_set_memcms() {
     assert(result->operands[0].type == OperandType::Memory);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  setgpt_set_memcms: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_setgmt_set_memcms() {
@@ -7171,7 +8581,9 @@ void test_setgmt_set_memcms() {
     assert(result->operands[0].type == OperandType::Memory);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  setgmt_set_memcms: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_setget_set_memcms() {
@@ -7182,7 +8594,9 @@ void test_setget_set_memcms() {
     assert(result->operands[0].type == OperandType::Memory);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  setget_set_memcms: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_setgptn_set_memcms() {
@@ -7193,7 +8607,9 @@ void test_setgptn_set_memcms() {
     assert(result->operands[0].type == OperandType::Memory);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  setgptn_set_memcms: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_setgmtn_set_memcms() {
@@ -7204,7 +8620,9 @@ void test_setgmtn_set_memcms() {
     assert(result->operands[0].type == OperandType::Memory);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  setgmtn_set_memcms: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_setgetn_set_memcms() {
@@ -7215,7 +8633,9 @@ void test_setgetn_set_memcms() {
     assert(result->operands[0].type == OperandType::Memory);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  setgetn_set_memcms: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_setp_set_memcms() {
@@ -7226,7 +8646,9 @@ void test_setp_set_memcms() {
     assert(result->operands[0].type == OperandType::Memory);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  setp_set_memcms: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_setm_set_memcms() {
@@ -7237,7 +8659,9 @@ void test_setm_set_memcms() {
     assert(result->operands[0].type == OperandType::Memory);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  setm_set_memcms: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_sete_set_memcms() {
@@ -7248,7 +8672,9 @@ void test_sete_set_memcms() {
     assert(result->operands[0].type == OperandType::Memory);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  sete_set_memcms: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_setpn_set_memcms() {
@@ -7259,7 +8685,9 @@ void test_setpn_set_memcms() {
     assert(result->operands[0].type == OperandType::Memory);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  setpn_set_memcms: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_setmn_set_memcms() {
@@ -7270,7 +8698,9 @@ void test_setmn_set_memcms() {
     assert(result->operands[0].type == OperandType::Memory);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  setmn_set_memcms: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_seten_set_memcms() {
@@ -7281,7 +8711,9 @@ void test_seten_set_memcms() {
     assert(result->operands[0].type == OperandType::Memory);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  seten_set_memcms: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_setpt_set_memcms() {
@@ -7292,7 +8724,9 @@ void test_setpt_set_memcms() {
     assert(result->operands[0].type == OperandType::Memory);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  setpt_set_memcms: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_setmt_set_memcms() {
@@ -7303,7 +8737,9 @@ void test_setmt_set_memcms() {
     assert(result->operands[0].type == OperandType::Memory);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  setmt_set_memcms: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_setet_set_memcms() {
@@ -7314,7 +8750,9 @@ void test_setet_set_memcms() {
     assert(result->operands[0].type == OperandType::Memory);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  setet_set_memcms: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_setptn_set_memcms() {
@@ -7325,7 +8763,9 @@ void test_setptn_set_memcms() {
     assert(result->operands[0].type == OperandType::Memory);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  setptn_set_memcms: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_setmtn_set_memcms() {
@@ -7336,7 +8776,9 @@ void test_setmtn_set_memcms() {
     assert(result->operands[0].type == OperandType::Memory);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  setmtn_set_memcms: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_setetn_set_memcms() {
@@ -7347,7 +8789,9 @@ void test_setetn_set_memcms() {
     assert(result->operands[0].type == OperandType::Memory);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  setetn_set_memcms: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_st1_asisdlse_r1_1v() {
@@ -7358,7 +8802,9 @@ void test_st1_asisdlse_r1_1v() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  st1_asisdlse_r1_1v: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_st1_asisdlse_r2_2v() {
@@ -7369,7 +8815,9 @@ void test_st1_asisdlse_r2_2v() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  st1_asisdlse_r2_2v: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_st1_asisdlse_r3_3v() {
@@ -7380,7 +8828,9 @@ void test_st1_asisdlse_r3_3v() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  st1_asisdlse_r3_3v: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_st1_asisdlse_r4_4v() {
@@ -7391,7 +8841,9 @@ void test_st1_asisdlse_r4_4v() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  st1_asisdlse_r4_4v: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_st1_asisdlsep_i1_i1() {
@@ -7399,7 +8851,9 @@ void test_st1_asisdlsep_i1_i1() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: st1_asisdlsep_i1_i1" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::ST1);
+#ifdef VEDA64_STRINGS
     std::cout << "  st1_asisdlsep_i1_i1: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_st1_asisdlsep_r1_r1() {
@@ -7411,7 +8865,9 @@ void test_st1_asisdlsep_r1_r1() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Memory);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  st1_asisdlsep_r1_r1: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_st1_asisdlsep_i2_i2() {
@@ -7419,7 +8875,9 @@ void test_st1_asisdlsep_i2_i2() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: st1_asisdlsep_i2_i2" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::ST1);
+#ifdef VEDA64_STRINGS
     std::cout << "  st1_asisdlsep_i2_i2: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_st1_asisdlsep_r2_r2() {
@@ -7431,7 +8889,9 @@ void test_st1_asisdlsep_r2_r2() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Memory);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  st1_asisdlsep_r2_r2: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_st1_asisdlsep_i3_i3() {
@@ -7439,7 +8899,9 @@ void test_st1_asisdlsep_i3_i3() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: st1_asisdlsep_i3_i3" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::ST1);
+#ifdef VEDA64_STRINGS
     std::cout << "  st1_asisdlsep_i3_i3: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_st1_asisdlsep_r3_r3() {
@@ -7451,7 +8913,9 @@ void test_st1_asisdlsep_r3_r3() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Memory);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  st1_asisdlsep_r3_r3: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_st1_asisdlsep_i4_i4() {
@@ -7459,7 +8923,9 @@ void test_st1_asisdlsep_i4_i4() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: st1_asisdlsep_i4_i4" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::ST1);
+#ifdef VEDA64_STRINGS
     std::cout << "  st1_asisdlsep_i4_i4: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_st1_asisdlsep_r4_r4() {
@@ -7471,7 +8937,9 @@ void test_st1_asisdlsep_r4_r4() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Memory);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  st1_asisdlsep_r4_r4: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_st1_asisdlso_b1_1b() {
@@ -7482,7 +8950,9 @@ void test_st1_asisdlso_b1_1b() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::IndexedRegisterList);
     assert(result->operands[1].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  st1_asisdlso_b1_1b: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_st1_asisdlso_h1_1h() {
@@ -7493,7 +8963,9 @@ void test_st1_asisdlso_h1_1h() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::IndexedRegisterList);
     assert(result->operands[1].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  st1_asisdlso_h1_1h: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_st1_asisdlso_s1_1s() {
@@ -7504,7 +8976,9 @@ void test_st1_asisdlso_s1_1s() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::IndexedRegisterList);
     assert(result->operands[1].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  st1_asisdlso_s1_1s: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_st1_asisdlso_d1_1d() {
@@ -7515,7 +8989,9 @@ void test_st1_asisdlso_d1_1d() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::IndexedRegisterList);
     assert(result->operands[1].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  st1_asisdlso_d1_1d: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_st1_asisdlsop_b1_i1b() {
@@ -7526,7 +9002,9 @@ void test_st1_asisdlsop_b1_i1b() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::IndexedRegisterList);
     assert(result->operands[1].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  st1_asisdlsop_b1_i1b: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_st1_asisdlsop_bx1_r1b() {
@@ -7538,7 +9016,9 @@ void test_st1_asisdlsop_bx1_r1b() {
     assert(result->operands[0].type == OperandType::IndexedRegisterList);
     assert(result->operands[1].type == OperandType::Memory);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  st1_asisdlsop_bx1_r1b: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_st1_asisdlsop_h1_i1h() {
@@ -7549,7 +9029,9 @@ void test_st1_asisdlsop_h1_i1h() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::IndexedRegisterList);
     assert(result->operands[1].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  st1_asisdlsop_h1_i1h: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_st1_asisdlsop_hx1_r1h() {
@@ -7561,7 +9043,9 @@ void test_st1_asisdlsop_hx1_r1h() {
     assert(result->operands[0].type == OperandType::IndexedRegisterList);
     assert(result->operands[1].type == OperandType::Memory);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  st1_asisdlsop_hx1_r1h: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_st1_asisdlsop_s1_i1s() {
@@ -7572,7 +9056,9 @@ void test_st1_asisdlsop_s1_i1s() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::IndexedRegisterList);
     assert(result->operands[1].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  st1_asisdlsop_s1_i1s: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_st1_asisdlsop_sx1_r1s() {
@@ -7584,7 +9070,9 @@ void test_st1_asisdlsop_sx1_r1s() {
     assert(result->operands[0].type == OperandType::IndexedRegisterList);
     assert(result->operands[1].type == OperandType::Memory);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  st1_asisdlsop_sx1_r1s: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_st1_asisdlsop_d1_i1d() {
@@ -7595,7 +9083,9 @@ void test_st1_asisdlsop_d1_i1d() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::IndexedRegisterList);
     assert(result->operands[1].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  st1_asisdlsop_d1_i1d: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_st1_asisdlsop_dx1_r1d() {
@@ -7607,7 +9097,9 @@ void test_st1_asisdlsop_dx1_r1d() {
     assert(result->operands[0].type == OperandType::IndexedRegisterList);
     assert(result->operands[1].type == OperandType::Memory);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  st1_asisdlsop_dx1_r1d: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_st2_asisdlse_r2() {
@@ -7618,7 +9110,9 @@ void test_st2_asisdlse_r2() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  st2_asisdlse_r2: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_st2_asisdlsep_i2_i() {
@@ -7626,7 +9120,9 @@ void test_st2_asisdlsep_i2_i() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: st2_asisdlsep_i2_i" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::ST2);
+#ifdef VEDA64_STRINGS
     std::cout << "  st2_asisdlsep_i2_i: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_st2_asisdlsep_r2_r() {
@@ -7638,7 +9134,9 @@ void test_st2_asisdlsep_r2_r() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Memory);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  st2_asisdlsep_r2_r: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_st2_asisdlso_b2_2b() {
@@ -7649,7 +9147,9 @@ void test_st2_asisdlso_b2_2b() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::IndexedRegisterList);
     assert(result->operands[1].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  st2_asisdlso_b2_2b: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_st2_asisdlso_h2_2h() {
@@ -7660,7 +9160,9 @@ void test_st2_asisdlso_h2_2h() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::IndexedRegisterList);
     assert(result->operands[1].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  st2_asisdlso_h2_2h: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_st2_asisdlso_s2_2s() {
@@ -7671,7 +9173,9 @@ void test_st2_asisdlso_s2_2s() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::IndexedRegisterList);
     assert(result->operands[1].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  st2_asisdlso_s2_2s: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_st2_asisdlso_d2_2d() {
@@ -7682,7 +9186,9 @@ void test_st2_asisdlso_d2_2d() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::IndexedRegisterList);
     assert(result->operands[1].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  st2_asisdlso_d2_2d: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_st2_asisdlsop_b2_i2b() {
@@ -7693,7 +9199,9 @@ void test_st2_asisdlsop_b2_i2b() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::IndexedRegisterList);
     assert(result->operands[1].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  st2_asisdlsop_b2_i2b: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_st2_asisdlsop_bx2_r2b() {
@@ -7705,7 +9213,9 @@ void test_st2_asisdlsop_bx2_r2b() {
     assert(result->operands[0].type == OperandType::IndexedRegisterList);
     assert(result->operands[1].type == OperandType::Memory);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  st2_asisdlsop_bx2_r2b: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_st2_asisdlsop_h2_i2h() {
@@ -7716,7 +9226,9 @@ void test_st2_asisdlsop_h2_i2h() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::IndexedRegisterList);
     assert(result->operands[1].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  st2_asisdlsop_h2_i2h: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_st2_asisdlsop_hx2_r2h() {
@@ -7728,7 +9240,9 @@ void test_st2_asisdlsop_hx2_r2h() {
     assert(result->operands[0].type == OperandType::IndexedRegisterList);
     assert(result->operands[1].type == OperandType::Memory);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  st2_asisdlsop_hx2_r2h: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_st2_asisdlsop_s2_i2s() {
@@ -7739,7 +9253,9 @@ void test_st2_asisdlsop_s2_i2s() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::IndexedRegisterList);
     assert(result->operands[1].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  st2_asisdlsop_s2_i2s: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_st2_asisdlsop_sx2_r2s() {
@@ -7751,7 +9267,9 @@ void test_st2_asisdlsop_sx2_r2s() {
     assert(result->operands[0].type == OperandType::IndexedRegisterList);
     assert(result->operands[1].type == OperandType::Memory);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  st2_asisdlsop_sx2_r2s: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_st2_asisdlsop_d2_i2d() {
@@ -7762,7 +9280,9 @@ void test_st2_asisdlsop_d2_i2d() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::IndexedRegisterList);
     assert(result->operands[1].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  st2_asisdlsop_d2_i2d: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_st2_asisdlsop_dx2_r2d() {
@@ -7774,7 +9294,9 @@ void test_st2_asisdlsop_dx2_r2d() {
     assert(result->operands[0].type == OperandType::IndexedRegisterList);
     assert(result->operands[1].type == OperandType::Memory);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  st2_asisdlsop_dx2_r2d: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_st2g_64spost_ldsttags() {
@@ -7782,7 +9304,9 @@ void test_st2g_64spost_ldsttags() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: st2g_64spost_ldsttags" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::ST2G);
+#ifdef VEDA64_STRINGS
     std::cout << "  st2g_64spost_ldsttags: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_st2g_64spre_ldsttags() {
@@ -7793,7 +9317,9 @@ void test_st2g_64spre_ldsttags() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  st2g_64spre_ldsttags: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_st2g_64soffset_ldsttags() {
@@ -7804,7 +9330,9 @@ void test_st2g_64soffset_ldsttags() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  st2g_64soffset_ldsttags: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_st3_asisdlse_r3() {
@@ -7815,7 +9343,9 @@ void test_st3_asisdlse_r3() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  st3_asisdlse_r3: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_st3_asisdlsep_i3_i() {
@@ -7823,7 +9353,9 @@ void test_st3_asisdlsep_i3_i() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: st3_asisdlsep_i3_i" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::ST3);
+#ifdef VEDA64_STRINGS
     std::cout << "  st3_asisdlsep_i3_i: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_st3_asisdlsep_r3_r() {
@@ -7835,7 +9367,9 @@ void test_st3_asisdlsep_r3_r() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Memory);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  st3_asisdlsep_r3_r: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_st3_asisdlso_b3_3b() {
@@ -7846,7 +9380,9 @@ void test_st3_asisdlso_b3_3b() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::IndexedRegisterList);
     assert(result->operands[1].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  st3_asisdlso_b3_3b: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_st3_asisdlso_h3_3h() {
@@ -7857,7 +9393,9 @@ void test_st3_asisdlso_h3_3h() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::IndexedRegisterList);
     assert(result->operands[1].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  st3_asisdlso_h3_3h: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_st3_asisdlso_s3_3s() {
@@ -7868,7 +9406,9 @@ void test_st3_asisdlso_s3_3s() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::IndexedRegisterList);
     assert(result->operands[1].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  st3_asisdlso_s3_3s: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_st3_asisdlso_d3_3d() {
@@ -7879,7 +9419,9 @@ void test_st3_asisdlso_d3_3d() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::IndexedRegisterList);
     assert(result->operands[1].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  st3_asisdlso_d3_3d: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_st3_asisdlsop_b3_i3b() {
@@ -7890,7 +9432,9 @@ void test_st3_asisdlsop_b3_i3b() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::IndexedRegisterList);
     assert(result->operands[1].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  st3_asisdlsop_b3_i3b: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_st3_asisdlsop_bx3_r3b() {
@@ -7902,7 +9446,9 @@ void test_st3_asisdlsop_bx3_r3b() {
     assert(result->operands[0].type == OperandType::IndexedRegisterList);
     assert(result->operands[1].type == OperandType::Memory);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  st3_asisdlsop_bx3_r3b: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_st3_asisdlsop_h3_i3h() {
@@ -7913,7 +9459,9 @@ void test_st3_asisdlsop_h3_i3h() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::IndexedRegisterList);
     assert(result->operands[1].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  st3_asisdlsop_h3_i3h: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_st3_asisdlsop_hx3_r3h() {
@@ -7925,7 +9473,9 @@ void test_st3_asisdlsop_hx3_r3h() {
     assert(result->operands[0].type == OperandType::IndexedRegisterList);
     assert(result->operands[1].type == OperandType::Memory);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  st3_asisdlsop_hx3_r3h: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_st3_asisdlsop_s3_i3s() {
@@ -7936,7 +9486,9 @@ void test_st3_asisdlsop_s3_i3s() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::IndexedRegisterList);
     assert(result->operands[1].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  st3_asisdlsop_s3_i3s: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_st3_asisdlsop_sx3_r3s() {
@@ -7948,7 +9500,9 @@ void test_st3_asisdlsop_sx3_r3s() {
     assert(result->operands[0].type == OperandType::IndexedRegisterList);
     assert(result->operands[1].type == OperandType::Memory);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  st3_asisdlsop_sx3_r3s: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_st3_asisdlsop_d3_i3d() {
@@ -7959,7 +9513,9 @@ void test_st3_asisdlsop_d3_i3d() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::IndexedRegisterList);
     assert(result->operands[1].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  st3_asisdlsop_d3_i3d: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_st3_asisdlsop_dx3_r3d() {
@@ -7971,7 +9527,9 @@ void test_st3_asisdlsop_dx3_r3d() {
     assert(result->operands[0].type == OperandType::IndexedRegisterList);
     assert(result->operands[1].type == OperandType::Memory);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  st3_asisdlsop_dx3_r3d: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_st4_asisdlse_r4() {
@@ -7982,7 +9540,9 @@ void test_st4_asisdlse_r4() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  st4_asisdlse_r4: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_st4_asisdlsep_i4_i() {
@@ -7990,7 +9550,9 @@ void test_st4_asisdlsep_i4_i() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: st4_asisdlsep_i4_i" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::ST4);
+#ifdef VEDA64_STRINGS
     std::cout << "  st4_asisdlsep_i4_i: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_st4_asisdlsep_r4_r() {
@@ -8002,7 +9564,9 @@ void test_st4_asisdlsep_r4_r() {
     assert(result->operands[0].type == OperandType::RegisterList);
     assert(result->operands[1].type == OperandType::Memory);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  st4_asisdlsep_r4_r: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_st4_asisdlso_b4_4b() {
@@ -8013,7 +9577,9 @@ void test_st4_asisdlso_b4_4b() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::IndexedRegisterList);
     assert(result->operands[1].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  st4_asisdlso_b4_4b: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_st4_asisdlso_h4_4h() {
@@ -8024,7 +9590,9 @@ void test_st4_asisdlso_h4_4h() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::IndexedRegisterList);
     assert(result->operands[1].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  st4_asisdlso_h4_4h: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_st4_asisdlso_s4_4s() {
@@ -8035,7 +9603,9 @@ void test_st4_asisdlso_s4_4s() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::IndexedRegisterList);
     assert(result->operands[1].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  st4_asisdlso_s4_4s: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_st4_asisdlso_d4_4d() {
@@ -8046,7 +9616,9 @@ void test_st4_asisdlso_d4_4d() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::IndexedRegisterList);
     assert(result->operands[1].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  st4_asisdlso_d4_4d: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_st4_asisdlsop_b4_i4b() {
@@ -8057,7 +9629,9 @@ void test_st4_asisdlsop_b4_i4b() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::IndexedRegisterList);
     assert(result->operands[1].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  st4_asisdlsop_b4_i4b: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_st4_asisdlsop_bx4_r4b() {
@@ -8069,7 +9643,9 @@ void test_st4_asisdlsop_bx4_r4b() {
     assert(result->operands[0].type == OperandType::IndexedRegisterList);
     assert(result->operands[1].type == OperandType::Memory);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  st4_asisdlsop_bx4_r4b: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_st4_asisdlsop_h4_i4h() {
@@ -8080,7 +9656,9 @@ void test_st4_asisdlsop_h4_i4h() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::IndexedRegisterList);
     assert(result->operands[1].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  st4_asisdlsop_h4_i4h: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_st4_asisdlsop_hx4_r4h() {
@@ -8092,7 +9670,9 @@ void test_st4_asisdlsop_hx4_r4h() {
     assert(result->operands[0].type == OperandType::IndexedRegisterList);
     assert(result->operands[1].type == OperandType::Memory);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  st4_asisdlsop_hx4_r4h: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_st4_asisdlsop_s4_i4s() {
@@ -8103,7 +9683,9 @@ void test_st4_asisdlsop_s4_i4s() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::IndexedRegisterList);
     assert(result->operands[1].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  st4_asisdlsop_s4_i4s: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_st4_asisdlsop_sx4_r4s() {
@@ -8115,7 +9697,9 @@ void test_st4_asisdlsop_sx4_r4s() {
     assert(result->operands[0].type == OperandType::IndexedRegisterList);
     assert(result->operands[1].type == OperandType::Memory);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  st4_asisdlsop_sx4_r4s: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_st4_asisdlsop_d4_i4d() {
@@ -8126,7 +9710,9 @@ void test_st4_asisdlsop_d4_i4d() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::IndexedRegisterList);
     assert(result->operands[1].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  st4_asisdlsop_d4_i4d: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_st4_asisdlsop_dx4_r4d() {
@@ -8138,7 +9724,9 @@ void test_st4_asisdlsop_dx4_r4d() {
     assert(result->operands[0].type == OperandType::IndexedRegisterList);
     assert(result->operands[1].type == OperandType::Memory);
     assert(result->operands[2].type == OperandType::Register);
+#ifdef VEDA64_STRINGS
     std::cout << "  st4_asisdlsop_dx4_r4d: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_st64b_64l_memop() {
@@ -8149,7 +9737,9 @@ void test_st64b_64l_memop() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  st64b_64l_memop: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_st64bv_64_memop() {
@@ -8161,7 +9751,9 @@ void test_st64bv_64_memop() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  st64bv_64_memop: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_st64bv0_64_memop() {
@@ -8173,7 +9765,9 @@ void test_st64bv0_64_memop() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  st64bv0_64_memop: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_stadd_ldadd_32_memop() {
@@ -8183,7 +9777,9 @@ void test_stadd_ldadd_32_memop() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  stadd_ldadd_32_memop: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_staddl_ldaddl_32_memop() {
@@ -8193,7 +9789,9 @@ void test_staddl_ldaddl_32_memop() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  staddl_ldaddl_32_memop: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_stadd_ldadd_64_memop() {
@@ -8203,7 +9801,9 @@ void test_stadd_ldadd_64_memop() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  stadd_ldadd_64_memop: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_staddl_ldaddl_64_memop() {
@@ -8213,7 +9813,9 @@ void test_staddl_ldaddl_64_memop() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  staddl_ldaddl_64_memop: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_staddb_ldaddb_32_memop() {
@@ -8223,7 +9825,9 @@ void test_staddb_ldaddb_32_memop() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  staddb_ldaddb_32_memop: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_staddlb_ldaddlb_32_memop() {
@@ -8233,7 +9837,9 @@ void test_staddlb_ldaddlb_32_memop() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  staddlb_ldaddlb_32_memop: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_staddh_ldaddh_32_memop() {
@@ -8243,7 +9849,9 @@ void test_staddh_ldaddh_32_memop() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  staddh_ldaddh_32_memop: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_staddlh_ldaddlh_32_memop() {
@@ -8253,77 +9861,99 @@ void test_staddlh_ldaddlh_32_memop() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  staddlh_ldaddlh_32_memop: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_stbfadd_16() {
     uint32_t insn = 0x3C20801Fu;
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: stbfadd_16" << std::endl; throw std::runtime_error("decode failed"); }
+#ifdef VEDA64_STRINGS
     std::cout << "  stbfadd_16: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_stbfaddl_16() {
     uint32_t insn = 0x3C60801Fu;
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: stbfaddl_16" << std::endl; throw std::runtime_error("decode failed"); }
+#ifdef VEDA64_STRINGS
     std::cout << "  stbfaddl_16: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_stbfmax_16() {
     uint32_t insn = 0x3C20C01Fu;
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: stbfmax_16" << std::endl; throw std::runtime_error("decode failed"); }
+#ifdef VEDA64_STRINGS
     std::cout << "  stbfmax_16: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_stbfmaxl_16() {
     uint32_t insn = 0x3C60C01Fu;
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: stbfmaxl_16" << std::endl; throw std::runtime_error("decode failed"); }
+#ifdef VEDA64_STRINGS
     std::cout << "  stbfmaxl_16: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_stbfmaxnm_16() {
     uint32_t insn = 0x3C20E01Fu;
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: stbfmaxnm_16" << std::endl; throw std::runtime_error("decode failed"); }
+#ifdef VEDA64_STRINGS
     std::cout << "  stbfmaxnm_16: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_stbfmaxnml_16() {
     uint32_t insn = 0x3C60E01Fu;
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: stbfmaxnml_16" << std::endl; throw std::runtime_error("decode failed"); }
+#ifdef VEDA64_STRINGS
     std::cout << "  stbfmaxnml_16: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_stbfmin_16() {
     uint32_t insn = 0x3C20D01Fu;
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: stbfmin_16" << std::endl; throw std::runtime_error("decode failed"); }
+#ifdef VEDA64_STRINGS
     std::cout << "  stbfmin_16: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_stbfminl_16() {
     uint32_t insn = 0x3C60D01Fu;
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: stbfminl_16" << std::endl; throw std::runtime_error("decode failed"); }
+#ifdef VEDA64_STRINGS
     std::cout << "  stbfminl_16: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_stbfminnm_16() {
     uint32_t insn = 0x3C20F01Fu;
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: stbfminnm_16" << std::endl; throw std::runtime_error("decode failed"); }
+#ifdef VEDA64_STRINGS
     std::cout << "  stbfminnm_16: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_stbfminnml_16() {
     uint32_t insn = 0x3C60F01Fu;
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: stbfminnml_16" << std::endl; throw std::runtime_error("decode failed"); }
+#ifdef VEDA64_STRINGS
     std::cout << "  stbfminnml_16: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_stclr_ldclr_32_memop() {
@@ -8333,7 +9963,9 @@ void test_stclr_ldclr_32_memop() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  stclr_ldclr_32_memop: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_stclrl_ldclrl_32_memop() {
@@ -8343,7 +9975,9 @@ void test_stclrl_ldclrl_32_memop() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  stclrl_ldclrl_32_memop: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_stclr_ldclr_64_memop() {
@@ -8353,7 +9987,9 @@ void test_stclr_ldclr_64_memop() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  stclr_ldclr_64_memop: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_stclrl_ldclrl_64_memop() {
@@ -8363,7 +9999,9 @@ void test_stclrl_ldclrl_64_memop() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  stclrl_ldclrl_64_memop: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_stclrb_ldclrb_32_memop() {
@@ -8373,7 +10011,9 @@ void test_stclrb_ldclrb_32_memop() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  stclrb_ldclrb_32_memop: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_stclrlb_ldclrlb_32_memop() {
@@ -8383,7 +10023,9 @@ void test_stclrlb_ldclrlb_32_memop() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  stclrlb_ldclrlb_32_memop: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_stclrh_ldclrh_32_memop() {
@@ -8393,7 +10035,9 @@ void test_stclrh_ldclrh_32_memop() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  stclrh_ldclrh_32_memop: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_stclrlh_ldclrlh_32_memop() {
@@ -8403,7 +10047,9 @@ void test_stclrlh_ldclrlh_32_memop() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  stclrlh_ldclrlh_32_memop: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_steor_ldeor_32_memop() {
@@ -8413,7 +10059,9 @@ void test_steor_ldeor_32_memop() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  steor_ldeor_32_memop: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_steorl_ldeorl_32_memop() {
@@ -8423,7 +10071,9 @@ void test_steorl_ldeorl_32_memop() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  steorl_ldeorl_32_memop: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_steor_ldeor_64_memop() {
@@ -8433,7 +10083,9 @@ void test_steor_ldeor_64_memop() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  steor_ldeor_64_memop: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_steorl_ldeorl_64_memop() {
@@ -8443,7 +10095,9 @@ void test_steorl_ldeorl_64_memop() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  steorl_ldeorl_64_memop: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_steorb_ldeorb_32_memop() {
@@ -8453,7 +10107,9 @@ void test_steorb_ldeorb_32_memop() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  steorb_ldeorb_32_memop: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_steorlb_ldeorlb_32_memop() {
@@ -8463,7 +10119,9 @@ void test_steorlb_ldeorlb_32_memop() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  steorlb_ldeorlb_32_memop: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_steorh_ldeorh_32_memop() {
@@ -8473,7 +10131,9 @@ void test_steorh_ldeorh_32_memop() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  steorh_ldeorh_32_memop: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_steorlh_ldeorlh_32_memop() {
@@ -8483,217 +10143,279 @@ void test_steorlh_ldeorlh_32_memop() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  steorlh_ldeorlh_32_memop: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_stfadd_16() {
     uint32_t insn = 0x7C20801Fu;
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: stfadd_16" << std::endl; throw std::runtime_error("decode failed"); }
+#ifdef VEDA64_STRINGS
     std::cout << "  stfadd_16: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_stfaddl_16() {
     uint32_t insn = 0x7C60801Fu;
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: stfaddl_16" << std::endl; throw std::runtime_error("decode failed"); }
+#ifdef VEDA64_STRINGS
     std::cout << "  stfaddl_16: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_stfadd_32() {
     uint32_t insn = 0xBC20801Fu;
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: stfadd_32" << std::endl; throw std::runtime_error("decode failed"); }
+#ifdef VEDA64_STRINGS
     std::cout << "  stfadd_32: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_stfaddl_32() {
     uint32_t insn = 0xBC60801Fu;
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: stfaddl_32" << std::endl; throw std::runtime_error("decode failed"); }
+#ifdef VEDA64_STRINGS
     std::cout << "  stfaddl_32: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_stfadd_64() {
     uint32_t insn = 0xFC20801Fu;
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: stfadd_64" << std::endl; throw std::runtime_error("decode failed"); }
+#ifdef VEDA64_STRINGS
     std::cout << "  stfadd_64: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_stfaddl_64() {
     uint32_t insn = 0xFC60801Fu;
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: stfaddl_64" << std::endl; throw std::runtime_error("decode failed"); }
+#ifdef VEDA64_STRINGS
     std::cout << "  stfaddl_64: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_stfmax_16() {
     uint32_t insn = 0x7C20C01Fu;
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: stfmax_16" << std::endl; throw std::runtime_error("decode failed"); }
+#ifdef VEDA64_STRINGS
     std::cout << "  stfmax_16: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_stfmaxl_16() {
     uint32_t insn = 0x7C60C01Fu;
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: stfmaxl_16" << std::endl; throw std::runtime_error("decode failed"); }
+#ifdef VEDA64_STRINGS
     std::cout << "  stfmaxl_16: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_stfmax_32() {
     uint32_t insn = 0xBC20C01Fu;
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: stfmax_32" << std::endl; throw std::runtime_error("decode failed"); }
+#ifdef VEDA64_STRINGS
     std::cout << "  stfmax_32: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_stfmaxl_32() {
     uint32_t insn = 0xBC60C01Fu;
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: stfmaxl_32" << std::endl; throw std::runtime_error("decode failed"); }
+#ifdef VEDA64_STRINGS
     std::cout << "  stfmaxl_32: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_stfmax_64() {
     uint32_t insn = 0xFC20C01Fu;
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: stfmax_64" << std::endl; throw std::runtime_error("decode failed"); }
+#ifdef VEDA64_STRINGS
     std::cout << "  stfmax_64: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_stfmaxl_64() {
     uint32_t insn = 0xFC60C01Fu;
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: stfmaxl_64" << std::endl; throw std::runtime_error("decode failed"); }
+#ifdef VEDA64_STRINGS
     std::cout << "  stfmaxl_64: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_stfmaxnm_16() {
     uint32_t insn = 0x7C20E01Fu;
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: stfmaxnm_16" << std::endl; throw std::runtime_error("decode failed"); }
+#ifdef VEDA64_STRINGS
     std::cout << "  stfmaxnm_16: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_stfmaxnml_16() {
     uint32_t insn = 0x7C60E01Fu;
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: stfmaxnml_16" << std::endl; throw std::runtime_error("decode failed"); }
+#ifdef VEDA64_STRINGS
     std::cout << "  stfmaxnml_16: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_stfmaxnm_32() {
     uint32_t insn = 0xBC20E01Fu;
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: stfmaxnm_32" << std::endl; throw std::runtime_error("decode failed"); }
+#ifdef VEDA64_STRINGS
     std::cout << "  stfmaxnm_32: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_stfmaxnml_32() {
     uint32_t insn = 0xBC60E01Fu;
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: stfmaxnml_32" << std::endl; throw std::runtime_error("decode failed"); }
+#ifdef VEDA64_STRINGS
     std::cout << "  stfmaxnml_32: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_stfmaxnm_64() {
     uint32_t insn = 0xFC20E01Fu;
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: stfmaxnm_64" << std::endl; throw std::runtime_error("decode failed"); }
+#ifdef VEDA64_STRINGS
     std::cout << "  stfmaxnm_64: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_stfmaxnml_64() {
     uint32_t insn = 0xFC60E01Fu;
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: stfmaxnml_64" << std::endl; throw std::runtime_error("decode failed"); }
+#ifdef VEDA64_STRINGS
     std::cout << "  stfmaxnml_64: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_stfmin_16() {
     uint32_t insn = 0x7C20D01Fu;
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: stfmin_16" << std::endl; throw std::runtime_error("decode failed"); }
+#ifdef VEDA64_STRINGS
     std::cout << "  stfmin_16: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_stfminl_16() {
     uint32_t insn = 0x7C60D01Fu;
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: stfminl_16" << std::endl; throw std::runtime_error("decode failed"); }
+#ifdef VEDA64_STRINGS
     std::cout << "  stfminl_16: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_stfmin_32() {
     uint32_t insn = 0xBC20D01Fu;
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: stfmin_32" << std::endl; throw std::runtime_error("decode failed"); }
+#ifdef VEDA64_STRINGS
     std::cout << "  stfmin_32: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_stfminl_32() {
     uint32_t insn = 0xBC60D01Fu;
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: stfminl_32" << std::endl; throw std::runtime_error("decode failed"); }
+#ifdef VEDA64_STRINGS
     std::cout << "  stfminl_32: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_stfmin_64() {
     uint32_t insn = 0xFC20D01Fu;
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: stfmin_64" << std::endl; throw std::runtime_error("decode failed"); }
+#ifdef VEDA64_STRINGS
     std::cout << "  stfmin_64: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_stfminl_64() {
     uint32_t insn = 0xFC60D01Fu;
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: stfminl_64" << std::endl; throw std::runtime_error("decode failed"); }
+#ifdef VEDA64_STRINGS
     std::cout << "  stfminl_64: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_stfminnm_16() {
     uint32_t insn = 0x7C20F01Fu;
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: stfminnm_16" << std::endl; throw std::runtime_error("decode failed"); }
+#ifdef VEDA64_STRINGS
     std::cout << "  stfminnm_16: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_stfminnml_16() {
     uint32_t insn = 0x7C60F01Fu;
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: stfminnml_16" << std::endl; throw std::runtime_error("decode failed"); }
+#ifdef VEDA64_STRINGS
     std::cout << "  stfminnml_16: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_stfminnm_32() {
     uint32_t insn = 0xBC20F01Fu;
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: stfminnm_32" << std::endl; throw std::runtime_error("decode failed"); }
+#ifdef VEDA64_STRINGS
     std::cout << "  stfminnm_32: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_stfminnml_32() {
     uint32_t insn = 0xBC60F01Fu;
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: stfminnml_32" << std::endl; throw std::runtime_error("decode failed"); }
+#ifdef VEDA64_STRINGS
     std::cout << "  stfminnml_32: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_stfminnm_64() {
     uint32_t insn = 0xFC20F01Fu;
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: stfminnm_64" << std::endl; throw std::runtime_error("decode failed"); }
+#ifdef VEDA64_STRINGS
     std::cout << "  stfminnm_64: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_stfminnml_64() {
     uint32_t insn = 0xFC60F01Fu;
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: stfminnml_64" << std::endl; throw std::runtime_error("decode failed"); }
+#ifdef VEDA64_STRINGS
     std::cout << "  stfminnml_64: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_stg_64spost_ldsttags() {
@@ -8701,7 +10423,9 @@ void test_stg_64spost_ldsttags() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: stg_64spost_ldsttags" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::STG);
+#ifdef VEDA64_STRINGS
     std::cout << "  stg_64spost_ldsttags: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_stg_64spre_ldsttags() {
@@ -8712,7 +10436,9 @@ void test_stg_64spre_ldsttags() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  stg_64spre_ldsttags: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_stg_64soffset_ldsttags() {
@@ -8723,7 +10449,9 @@ void test_stg_64soffset_ldsttags() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  stg_64soffset_ldsttags: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_stgm_64bulk_ldsttags() {
@@ -8734,7 +10462,9 @@ void test_stgm_64bulk_ldsttags() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  stgm_64bulk_ldsttags: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_stgp_64_ldstpair_post() {
@@ -8742,7 +10472,9 @@ void test_stgp_64_ldstpair_post() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: stgp_64_ldstpair_post" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::STGP);
+#ifdef VEDA64_STRINGS
     std::cout << "  stgp_64_ldstpair_post: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_stgp_64_ldstpair_pre() {
@@ -8754,7 +10486,9 @@ void test_stgp_64_ldstpair_pre() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  stgp_64_ldstpair_pre: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_stgp_64_ldstpair_off() {
@@ -8766,7 +10500,9 @@ void test_stgp_64_ldstpair_off() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  stgp_64_ldstpair_off: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_stilp_32se_ldiappstilp() {
@@ -8778,7 +10514,9 @@ void test_stilp_32se_ldiappstilp() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  stilp_32se_ldiappstilp: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_stilp_32s_ldiappstilp() {
@@ -8790,7 +10528,9 @@ void test_stilp_32s_ldiappstilp() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  stilp_32s_ldiappstilp: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_stilp_64ss_ldiappstilp() {
@@ -8802,7 +10542,9 @@ void test_stilp_64ss_ldiappstilp() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  stilp_64ss_ldiappstilp: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_stilp_64s_ldiappstilp() {
@@ -8814,7 +10556,9 @@ void test_stilp_64s_ldiappstilp() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  stilp_64s_ldiappstilp: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_stl1_asisdlso_d1() {
@@ -8825,7 +10569,9 @@ void test_stl1_asisdlso_d1() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::IndexedRegisterList);
     assert(result->operands[1].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  stl1_asisdlso_d1: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_stllr_sl32_ldstord() {
@@ -8836,7 +10582,9 @@ void test_stllr_sl32_ldstord() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  stllr_sl32_ldstord: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_stllr_sl64_ldstord() {
@@ -8847,7 +10595,9 @@ void test_stllr_sl64_ldstord() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  stllr_sl64_ldstord: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_stllrb_sl32_ldstord() {
@@ -8858,7 +10608,9 @@ void test_stllrb_sl32_ldstord() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  stllrb_sl32_ldstord: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_stllrh_sl32_ldstord() {
@@ -8869,7 +10621,9 @@ void test_stllrh_sl32_ldstord() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  stllrh_sl32_ldstord: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_stlp_64_ldiappstilp() {
@@ -8881,7 +10635,9 @@ void test_stlp_64_ldiappstilp() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  stlp_64_ldiappstilp: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_stlr_sl32_ldstord() {
@@ -8892,7 +10648,9 @@ void test_stlr_sl32_ldstord() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  stlr_sl32_ldstord: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_stlr_sl64_ldstord() {
@@ -8903,7 +10661,9 @@ void test_stlr_sl64_ldstord() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  stlr_sl64_ldstord: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_stlr_32s_ldapstl_writeback() {
@@ -8914,7 +10674,9 @@ void test_stlr_32s_ldapstl_writeback() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  stlr_32s_ldapstl_writeback: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_stlr_64s_ldapstl_writeback() {
@@ -8925,7 +10687,9 @@ void test_stlr_64s_ldapstl_writeback() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  stlr_64s_ldapstl_writeback: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_stlrb_sl32_ldstord() {
@@ -8936,7 +10700,9 @@ void test_stlrb_sl32_ldstord() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  stlrb_sl32_ldstord: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_stlrh_sl32_ldstord() {
@@ -8947,7 +10713,9 @@ void test_stlrh_sl32_ldstord() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  stlrh_sl32_ldstord: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_stltxr_sr32_ldstexclr_unpriv() {
@@ -8959,7 +10727,9 @@ void test_stltxr_sr32_ldstexclr_unpriv() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  stltxr_sr32_ldstexclr_unpriv: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_stltxr_sr64_ldstexclr_unpriv() {
@@ -8971,7 +10741,9 @@ void test_stltxr_sr64_ldstexclr_unpriv() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  stltxr_sr64_ldstexclr_unpriv: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_stlur_b_ldapstl_simd() {
@@ -8982,7 +10754,9 @@ void test_stlur_b_ldapstl_simd() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  stlur_b_ldapstl_simd: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_stlur_h_ldapstl_simd() {
@@ -8990,7 +10764,9 @@ void test_stlur_h_ldapstl_simd() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: stlur_h_ldapstl_simd" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::STLUR);
+#ifdef VEDA64_STRINGS
     std::cout << "  stlur_h_ldapstl_simd: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_stlur_s_ldapstl_simd() {
@@ -8998,7 +10774,9 @@ void test_stlur_s_ldapstl_simd() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: stlur_s_ldapstl_simd" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::STLUR);
+#ifdef VEDA64_STRINGS
     std::cout << "  stlur_s_ldapstl_simd: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_stlur_d_ldapstl_simd() {
@@ -9006,7 +10784,9 @@ void test_stlur_d_ldapstl_simd() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: stlur_d_ldapstl_simd" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::STLUR);
+#ifdef VEDA64_STRINGS
     std::cout << "  stlur_d_ldapstl_simd: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_stlur_q_ldapstl_simd() {
@@ -9014,7 +10794,9 @@ void test_stlur_q_ldapstl_simd() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: stlur_q_ldapstl_simd" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::STLUR);
+#ifdef VEDA64_STRINGS
     std::cout << "  stlur_q_ldapstl_simd: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_stlur_32_ldapstl_unscaled() {
@@ -9025,7 +10807,9 @@ void test_stlur_32_ldapstl_unscaled() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  stlur_32_ldapstl_unscaled: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_stlur_64_ldapstl_unscaled() {
@@ -9036,7 +10820,9 @@ void test_stlur_64_ldapstl_unscaled() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  stlur_64_ldapstl_unscaled: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_stlurb_32_ldapstl_unscaled() {
@@ -9047,7 +10833,9 @@ void test_stlurb_32_ldapstl_unscaled() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  stlurb_32_ldapstl_unscaled: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_stlurh_32_ldapstl_unscaled() {
@@ -9058,7 +10846,9 @@ void test_stlurh_32_ldapstl_unscaled() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  stlurh_32_ldapstl_unscaled: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_stlxp_sp32_ldstexclp() {
@@ -9071,7 +10861,9 @@ void test_stlxp_sp32_ldstexclp() {
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
     assert(result->operands[3].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  stlxp_sp32_ldstexclp: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_stlxp_sp64_ldstexclp() {
@@ -9084,7 +10876,9 @@ void test_stlxp_sp64_ldstexclp() {
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
     assert(result->operands[3].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  stlxp_sp64_ldstexclp: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_stlxr_sr32_ldstexclr() {
@@ -9096,7 +10890,9 @@ void test_stlxr_sr32_ldstexclr() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  stlxr_sr32_ldstexclr: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_stlxr_sr64_ldstexclr() {
@@ -9108,7 +10904,9 @@ void test_stlxr_sr64_ldstexclr() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  stlxr_sr64_ldstexclr: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_stlxrb_sr32_ldstexclr() {
@@ -9120,7 +10918,9 @@ void test_stlxrb_sr32_ldstexclr() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  stlxrb_sr32_ldstexclr: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_stlxrh_sr32_ldstexclr() {
@@ -9132,7 +10932,9 @@ void test_stlxrh_sr32_ldstexclr() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  stlxrh_sr32_ldstexclr: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_stnp_s_ldstnapair_offs() {
@@ -9140,7 +10942,9 @@ void test_stnp_s_ldstnapair_offs() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: stnp_s_ldstnapair_offs" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::STNP);
+#ifdef VEDA64_STRINGS
     std::cout << "  stnp_s_ldstnapair_offs: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_stnp_d_ldstnapair_offs() {
@@ -9148,7 +10952,9 @@ void test_stnp_d_ldstnapair_offs() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: stnp_d_ldstnapair_offs" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::STNP);
+#ifdef VEDA64_STRINGS
     std::cout << "  stnp_d_ldstnapair_offs: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_stnp_q_ldstnapair_offs() {
@@ -9156,7 +10962,9 @@ void test_stnp_q_ldstnapair_offs() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: stnp_q_ldstnapair_offs" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::STNP);
+#ifdef VEDA64_STRINGS
     std::cout << "  stnp_q_ldstnapair_offs: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_stnp_32_ldstnapair_offs() {
@@ -9168,7 +10976,9 @@ void test_stnp_32_ldstnapair_offs() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  stnp_32_ldstnapair_offs: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_stnp_64_ldstnapair_offs() {
@@ -9180,7 +10990,9 @@ void test_stnp_64_ldstnapair_offs() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  stnp_64_ldstnapair_offs: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_stp_s_ldstpair_post() {
@@ -9188,7 +11000,9 @@ void test_stp_s_ldstpair_post() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: stp_s_ldstpair_post" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::STP);
+#ifdef VEDA64_STRINGS
     std::cout << "  stp_s_ldstpair_post: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_stp_d_ldstpair_post() {
@@ -9196,7 +11010,9 @@ void test_stp_d_ldstpair_post() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: stp_d_ldstpair_post" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::STP);
+#ifdef VEDA64_STRINGS
     std::cout << "  stp_d_ldstpair_post: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_stp_q_ldstpair_post() {
@@ -9204,7 +11020,9 @@ void test_stp_q_ldstpair_post() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: stp_q_ldstpair_post" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::STP);
+#ifdef VEDA64_STRINGS
     std::cout << "  stp_q_ldstpair_post: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_stp_s_ldstpair_pre() {
@@ -9212,7 +11030,9 @@ void test_stp_s_ldstpair_pre() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: stp_s_ldstpair_pre" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::STP);
+#ifdef VEDA64_STRINGS
     std::cout << "  stp_s_ldstpair_pre: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_stp_d_ldstpair_pre() {
@@ -9220,7 +11040,9 @@ void test_stp_d_ldstpair_pre() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: stp_d_ldstpair_pre" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::STP);
+#ifdef VEDA64_STRINGS
     std::cout << "  stp_d_ldstpair_pre: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_stp_q_ldstpair_pre() {
@@ -9228,7 +11050,9 @@ void test_stp_q_ldstpair_pre() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: stp_q_ldstpair_pre" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::STP);
+#ifdef VEDA64_STRINGS
     std::cout << "  stp_q_ldstpair_pre: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_stp_s_ldstpair_off() {
@@ -9236,7 +11060,9 @@ void test_stp_s_ldstpair_off() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: stp_s_ldstpair_off" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::STP);
+#ifdef VEDA64_STRINGS
     std::cout << "  stp_s_ldstpair_off: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_stp_d_ldstpair_off() {
@@ -9244,7 +11070,9 @@ void test_stp_d_ldstpair_off() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: stp_d_ldstpair_off" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::STP);
+#ifdef VEDA64_STRINGS
     std::cout << "  stp_d_ldstpair_off: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_stp_q_ldstpair_off() {
@@ -9252,7 +11080,9 @@ void test_stp_q_ldstpair_off() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: stp_q_ldstpair_off" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::STP);
+#ifdef VEDA64_STRINGS
     std::cout << "  stp_q_ldstpair_off: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_stp_32_ldstpair_post() {
@@ -9260,7 +11090,9 @@ void test_stp_32_ldstpair_post() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: stp_32_ldstpair_post" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::STP);
+#ifdef VEDA64_STRINGS
     std::cout << "  stp_32_ldstpair_post: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_stp_64_ldstpair_post() {
@@ -9268,7 +11100,9 @@ void test_stp_64_ldstpair_post() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: stp_64_ldstpair_post" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::STP);
+#ifdef VEDA64_STRINGS
     std::cout << "  stp_64_ldstpair_post: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_stp_32_ldstpair_pre() {
@@ -9280,7 +11114,9 @@ void test_stp_32_ldstpair_pre() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  stp_32_ldstpair_pre: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_stp_64_ldstpair_pre() {
@@ -9292,7 +11128,9 @@ void test_stp_64_ldstpair_pre() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  stp_64_ldstpair_pre: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_stp_32_ldstpair_off() {
@@ -9304,7 +11142,9 @@ void test_stp_32_ldstpair_off() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  stp_32_ldstpair_off: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_stp_64_ldstpair_off() {
@@ -9316,7 +11156,9 @@ void test_stp_64_ldstpair_off() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  stp_64_ldstpair_off: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_str_b_ldst_immpost() {
@@ -9324,7 +11166,9 @@ void test_str_b_ldst_immpost() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: str_b_ldst_immpost" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::STR);
+#ifdef VEDA64_STRINGS
     std::cout << "  str_b_ldst_immpost: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_str_h_ldst_immpost() {
@@ -9332,7 +11176,9 @@ void test_str_h_ldst_immpost() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: str_h_ldst_immpost" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::STR);
+#ifdef VEDA64_STRINGS
     std::cout << "  str_h_ldst_immpost: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_str_s_ldst_immpost() {
@@ -9340,7 +11186,9 @@ void test_str_s_ldst_immpost() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: str_s_ldst_immpost" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::STR);
+#ifdef VEDA64_STRINGS
     std::cout << "  str_s_ldst_immpost: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_str_d_ldst_immpost() {
@@ -9348,7 +11196,9 @@ void test_str_d_ldst_immpost() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: str_d_ldst_immpost" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::STR);
+#ifdef VEDA64_STRINGS
     std::cout << "  str_d_ldst_immpost: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_str_q_ldst_immpost() {
@@ -9356,7 +11206,9 @@ void test_str_q_ldst_immpost() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: str_q_ldst_immpost" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::STR);
+#ifdef VEDA64_STRINGS
     std::cout << "  str_q_ldst_immpost: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_str_b_ldst_immpre() {
@@ -9367,7 +11219,9 @@ void test_str_b_ldst_immpre() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  str_b_ldst_immpre: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_str_h_ldst_immpre() {
@@ -9375,7 +11229,9 @@ void test_str_h_ldst_immpre() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: str_h_ldst_immpre" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::STR);
+#ifdef VEDA64_STRINGS
     std::cout << "  str_h_ldst_immpre: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_str_s_ldst_immpre() {
@@ -9383,7 +11239,9 @@ void test_str_s_ldst_immpre() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: str_s_ldst_immpre" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::STR);
+#ifdef VEDA64_STRINGS
     std::cout << "  str_s_ldst_immpre: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_str_d_ldst_immpre() {
@@ -9391,7 +11249,9 @@ void test_str_d_ldst_immpre() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: str_d_ldst_immpre" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::STR);
+#ifdef VEDA64_STRINGS
     std::cout << "  str_d_ldst_immpre: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_str_q_ldst_immpre() {
@@ -9399,7 +11259,9 @@ void test_str_q_ldst_immpre() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: str_q_ldst_immpre" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::STR);
+#ifdef VEDA64_STRINGS
     std::cout << "  str_q_ldst_immpre: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_str_b_ldst_pos() {
@@ -9410,7 +11272,9 @@ void test_str_b_ldst_pos() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  str_b_ldst_pos: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_str_h_ldst_pos() {
@@ -9418,7 +11282,9 @@ void test_str_h_ldst_pos() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: str_h_ldst_pos" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::STR);
+#ifdef VEDA64_STRINGS
     std::cout << "  str_h_ldst_pos: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_str_s_ldst_pos() {
@@ -9426,7 +11292,9 @@ void test_str_s_ldst_pos() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: str_s_ldst_pos" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::STR);
+#ifdef VEDA64_STRINGS
     std::cout << "  str_s_ldst_pos: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_str_d_ldst_pos() {
@@ -9434,7 +11302,9 @@ void test_str_d_ldst_pos() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: str_d_ldst_pos" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::STR);
+#ifdef VEDA64_STRINGS
     std::cout << "  str_d_ldst_pos: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_str_q_ldst_pos() {
@@ -9442,7 +11312,9 @@ void test_str_q_ldst_pos() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: str_q_ldst_pos" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::STR);
+#ifdef VEDA64_STRINGS
     std::cout << "  str_q_ldst_pos: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_str_32_ldst_immpost() {
@@ -9450,7 +11322,9 @@ void test_str_32_ldst_immpost() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: str_32_ldst_immpost" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::STR);
+#ifdef VEDA64_STRINGS
     std::cout << "  str_32_ldst_immpost: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_str_64_ldst_immpost() {
@@ -9458,7 +11332,9 @@ void test_str_64_ldst_immpost() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: str_64_ldst_immpost" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::STR);
+#ifdef VEDA64_STRINGS
     std::cout << "  str_64_ldst_immpost: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_str_32_ldst_immpre() {
@@ -9469,7 +11345,9 @@ void test_str_32_ldst_immpre() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  str_32_ldst_immpre: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_str_64_ldst_immpre() {
@@ -9480,7 +11358,9 @@ void test_str_64_ldst_immpre() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  str_64_ldst_immpre: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_str_32_ldst_pos() {
@@ -9491,7 +11371,9 @@ void test_str_32_ldst_pos() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  str_32_ldst_pos: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_str_64_ldst_pos() {
@@ -9502,7 +11384,9 @@ void test_str_64_ldst_pos() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  str_64_ldst_pos: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_str_b_ldst_regoff() {
@@ -9513,7 +11397,9 @@ void test_str_b_ldst_regoff() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::MemoryRegOffset);
+#ifdef VEDA64_STRINGS
     std::cout << "  str_b_ldst_regoff: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_str_bl_ldst_regoff() {
@@ -9524,7 +11410,9 @@ void test_str_bl_ldst_regoff() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::MemoryRegOffset);
+#ifdef VEDA64_STRINGS
     std::cout << "  str_bl_ldst_regoff: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_str_h_ldst_regoff() {
@@ -9532,7 +11420,9 @@ void test_str_h_ldst_regoff() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: str_h_ldst_regoff" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::STR);
+#ifdef VEDA64_STRINGS
     std::cout << "  str_h_ldst_regoff: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_str_s_ldst_regoff() {
@@ -9540,7 +11430,9 @@ void test_str_s_ldst_regoff() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: str_s_ldst_regoff" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::STR);
+#ifdef VEDA64_STRINGS
     std::cout << "  str_s_ldst_regoff: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_str_d_ldst_regoff() {
@@ -9548,7 +11440,9 @@ void test_str_d_ldst_regoff() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: str_d_ldst_regoff" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::STR);
+#ifdef VEDA64_STRINGS
     std::cout << "  str_d_ldst_regoff: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_str_q_ldst_regoff() {
@@ -9556,7 +11450,9 @@ void test_str_q_ldst_regoff() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: str_q_ldst_regoff" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::STR);
+#ifdef VEDA64_STRINGS
     std::cout << "  str_q_ldst_regoff: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_str_32_ldst_regoff() {
@@ -9567,7 +11463,9 @@ void test_str_32_ldst_regoff() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::MemoryRegOffset);
+#ifdef VEDA64_STRINGS
     std::cout << "  str_32_ldst_regoff: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_str_64_ldst_regoff() {
@@ -9578,7 +11476,9 @@ void test_str_64_ldst_regoff() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::MemoryRegOffset);
+#ifdef VEDA64_STRINGS
     std::cout << "  str_64_ldst_regoff: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_strb_32_ldst_immpost() {
@@ -9586,7 +11486,9 @@ void test_strb_32_ldst_immpost() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: strb_32_ldst_immpost" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::STRB);
+#ifdef VEDA64_STRINGS
     std::cout << "  strb_32_ldst_immpost: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_strb_32_ldst_immpre() {
@@ -9597,7 +11499,9 @@ void test_strb_32_ldst_immpre() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  strb_32_ldst_immpre: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_strb_32_ldst_pos() {
@@ -9608,7 +11512,9 @@ void test_strb_32_ldst_pos() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  strb_32_ldst_pos: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_strb_32b_ldst_regoff() {
@@ -9619,7 +11525,9 @@ void test_strb_32b_ldst_regoff() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::MemoryRegOffset);
+#ifdef VEDA64_STRINGS
     std::cout << "  strb_32b_ldst_regoff: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_strb_32bl_ldst_regoff() {
@@ -9630,7 +11538,9 @@ void test_strb_32bl_ldst_regoff() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::MemoryRegOffset);
+#ifdef VEDA64_STRINGS
     std::cout << "  strb_32bl_ldst_regoff: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_strh_32_ldst_immpost() {
@@ -9638,7 +11548,9 @@ void test_strh_32_ldst_immpost() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: strh_32_ldst_immpost" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::STRH);
+#ifdef VEDA64_STRINGS
     std::cout << "  strh_32_ldst_immpost: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_strh_32_ldst_immpre() {
@@ -9649,7 +11561,9 @@ void test_strh_32_ldst_immpre() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  strh_32_ldst_immpre: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_strh_32_ldst_pos() {
@@ -9660,7 +11574,9 @@ void test_strh_32_ldst_pos() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  strh_32_ldst_pos: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_strh_32_ldst_regoff() {
@@ -9671,7 +11587,9 @@ void test_strh_32_ldst_regoff() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::MemoryRegOffset);
+#ifdef VEDA64_STRINGS
     std::cout << "  strh_32_ldst_regoff: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_stset_ldset_32_memop() {
@@ -9681,7 +11599,9 @@ void test_stset_ldset_32_memop() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  stset_ldset_32_memop: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_stsetl_ldsetl_32_memop() {
@@ -9691,7 +11611,9 @@ void test_stsetl_ldsetl_32_memop() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  stsetl_ldsetl_32_memop: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_stset_ldset_64_memop() {
@@ -9701,7 +11623,9 @@ void test_stset_ldset_64_memop() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  stset_ldset_64_memop: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_stsetl_ldsetl_64_memop() {
@@ -9711,7 +11635,9 @@ void test_stsetl_ldsetl_64_memop() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  stsetl_ldsetl_64_memop: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_stsetb_ldsetb_32_memop() {
@@ -9721,7 +11647,9 @@ void test_stsetb_ldsetb_32_memop() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  stsetb_ldsetb_32_memop: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_stsetlb_ldsetlb_32_memop() {
@@ -9731,7 +11659,9 @@ void test_stsetlb_ldsetlb_32_memop() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  stsetlb_ldsetlb_32_memop: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_stseth_ldseth_32_memop() {
@@ -9741,7 +11671,9 @@ void test_stseth_ldseth_32_memop() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  stseth_ldseth_32_memop: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_stsetlh_ldsetlh_32_memop() {
@@ -9751,7 +11683,9 @@ void test_stsetlh_ldsetlh_32_memop() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  stsetlh_ldsetlh_32_memop: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_stsmax_ldsmax_32_memop() {
@@ -9761,7 +11695,9 @@ void test_stsmax_ldsmax_32_memop() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  stsmax_ldsmax_32_memop: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_stsmaxl_ldsmaxl_32_memop() {
@@ -9771,7 +11707,9 @@ void test_stsmaxl_ldsmaxl_32_memop() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  stsmaxl_ldsmaxl_32_memop: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_stsmax_ldsmax_64_memop() {
@@ -9781,7 +11719,9 @@ void test_stsmax_ldsmax_64_memop() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  stsmax_ldsmax_64_memop: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_stsmaxl_ldsmaxl_64_memop() {
@@ -9791,7 +11731,9 @@ void test_stsmaxl_ldsmaxl_64_memop() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  stsmaxl_ldsmaxl_64_memop: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_stsmaxb_ldsmaxb_32_memop() {
@@ -9801,7 +11743,9 @@ void test_stsmaxb_ldsmaxb_32_memop() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  stsmaxb_ldsmaxb_32_memop: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_stsmaxlb_ldsmaxlb_32_memop() {
@@ -9811,7 +11755,9 @@ void test_stsmaxlb_ldsmaxlb_32_memop() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  stsmaxlb_ldsmaxlb_32_memop: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_stsmaxh_ldsmaxh_32_memop() {
@@ -9821,7 +11767,9 @@ void test_stsmaxh_ldsmaxh_32_memop() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  stsmaxh_ldsmaxh_32_memop: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_stsmaxlh_ldsmaxlh_32_memop() {
@@ -9831,7 +11779,9 @@ void test_stsmaxlh_ldsmaxlh_32_memop() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  stsmaxlh_ldsmaxlh_32_memop: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_stsmin_ldsmin_32_memop() {
@@ -9841,7 +11791,9 @@ void test_stsmin_ldsmin_32_memop() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  stsmin_ldsmin_32_memop: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_stsminl_ldsminl_32_memop() {
@@ -9851,7 +11803,9 @@ void test_stsminl_ldsminl_32_memop() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  stsminl_ldsminl_32_memop: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_stsmin_ldsmin_64_memop() {
@@ -9861,7 +11815,9 @@ void test_stsmin_ldsmin_64_memop() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  stsmin_ldsmin_64_memop: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_stsminl_ldsminl_64_memop() {
@@ -9871,7 +11827,9 @@ void test_stsminl_ldsminl_64_memop() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  stsminl_ldsminl_64_memop: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_stsminb_ldsminb_32_memop() {
@@ -9881,7 +11839,9 @@ void test_stsminb_ldsminb_32_memop() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  stsminb_ldsminb_32_memop: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_stsminlb_ldsminlb_32_memop() {
@@ -9891,7 +11851,9 @@ void test_stsminlb_ldsminlb_32_memop() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  stsminlb_ldsminlb_32_memop: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_stsminh_ldsminh_32_memop() {
@@ -9901,7 +11863,9 @@ void test_stsminh_ldsminh_32_memop() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  stsminh_ldsminh_32_memop: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_stsminlh_ldsminlh_32_memop() {
@@ -9911,7 +11875,9 @@ void test_stsminlh_ldsminlh_32_memop() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  stsminlh_ldsminlh_32_memop: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_sttadd_ldtadd_32_memop_unpriv() {
@@ -9921,7 +11887,9 @@ void test_sttadd_ldtadd_32_memop_unpriv() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  sttadd_ldtadd_32_memop_unpriv: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_sttaddl_ldtaddl_32_memop_unpriv() {
@@ -9931,7 +11899,9 @@ void test_sttaddl_ldtaddl_32_memop_unpriv() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  sttaddl_ldtaddl_32_memop_unpriv: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_sttadd_ldtadd_64_memop_unpriv() {
@@ -9941,7 +11911,9 @@ void test_sttadd_ldtadd_64_memop_unpriv() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  sttadd_ldtadd_64_memop_unpriv: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_sttaddl_ldtaddl_64_memop_unpriv() {
@@ -9951,7 +11923,9 @@ void test_sttaddl_ldtaddl_64_memop_unpriv() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  sttaddl_ldtaddl_64_memop_unpriv: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_sttclr_ldtclr_32_memop_unpriv() {
@@ -9961,7 +11935,9 @@ void test_sttclr_ldtclr_32_memop_unpriv() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  sttclr_ldtclr_32_memop_unpriv: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_sttclrl_ldtclrl_32_memop_unpriv() {
@@ -9971,7 +11947,9 @@ void test_sttclrl_ldtclrl_32_memop_unpriv() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  sttclrl_ldtclrl_32_memop_unpriv: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_sttclr_ldtclr_64_memop_unpriv() {
@@ -9981,7 +11959,9 @@ void test_sttclr_ldtclr_64_memop_unpriv() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  sttclr_ldtclr_64_memop_unpriv: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_sttclrl_ldtclrl_64_memop_unpriv() {
@@ -9991,7 +11971,9 @@ void test_sttclrl_ldtclrl_64_memop_unpriv() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  sttclrl_ldtclrl_64_memop_unpriv: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_sttnp_q_ldstnapair_offs() {
@@ -9999,7 +11981,9 @@ void test_sttnp_q_ldstnapair_offs() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: sttnp_q_ldstnapair_offs" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::STTNP);
+#ifdef VEDA64_STRINGS
     std::cout << "  sttnp_q_ldstnapair_offs: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_sttnp_64_ldstnapair_offs() {
@@ -10011,7 +11995,9 @@ void test_sttnp_64_ldstnapair_offs() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  sttnp_64_ldstnapair_offs: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_sttp_q_ldstpair_post() {
@@ -10019,7 +12005,9 @@ void test_sttp_q_ldstpair_post() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: sttp_q_ldstpair_post" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::STTP);
+#ifdef VEDA64_STRINGS
     std::cout << "  sttp_q_ldstpair_post: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_sttp_q_ldstpair_pre() {
@@ -10027,7 +12015,9 @@ void test_sttp_q_ldstpair_pre() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: sttp_q_ldstpair_pre" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::STTP);
+#ifdef VEDA64_STRINGS
     std::cout << "  sttp_q_ldstpair_pre: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_sttp_q_ldstpair_off() {
@@ -10035,7 +12025,9 @@ void test_sttp_q_ldstpair_off() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: sttp_q_ldstpair_off" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::STTP);
+#ifdef VEDA64_STRINGS
     std::cout << "  sttp_q_ldstpair_off: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_sttp_64_ldstpair_post() {
@@ -10043,7 +12035,9 @@ void test_sttp_64_ldstpair_post() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: sttp_64_ldstpair_post" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::STTP);
+#ifdef VEDA64_STRINGS
     std::cout << "  sttp_64_ldstpair_post: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_sttp_64_ldstpair_pre() {
@@ -10055,7 +12049,9 @@ void test_sttp_64_ldstpair_pre() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  sttp_64_ldstpair_pre: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_sttp_64_ldstpair_off() {
@@ -10067,7 +12063,9 @@ void test_sttp_64_ldstpair_off() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  sttp_64_ldstpair_off: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_sttr_32_ldst_unpriv() {
@@ -10078,7 +12076,9 @@ void test_sttr_32_ldst_unpriv() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  sttr_32_ldst_unpriv: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_sttr_64_ldst_unpriv() {
@@ -10089,7 +12089,9 @@ void test_sttr_64_ldst_unpriv() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  sttr_64_ldst_unpriv: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_sttrb_32_ldst_unpriv() {
@@ -10100,7 +12102,9 @@ void test_sttrb_32_ldst_unpriv() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  sttrb_32_ldst_unpriv: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_sttrh_32_ldst_unpriv() {
@@ -10111,7 +12115,9 @@ void test_sttrh_32_ldst_unpriv() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  sttrh_32_ldst_unpriv: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_sttset_ldtset_32_memop_unpriv() {
@@ -10121,7 +12127,9 @@ void test_sttset_ldtset_32_memop_unpriv() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  sttset_ldtset_32_memop_unpriv: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_sttsetl_ldtsetl_32_memop_unpriv() {
@@ -10131,7 +12139,9 @@ void test_sttsetl_ldtsetl_32_memop_unpriv() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  sttsetl_ldtsetl_32_memop_unpriv: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_sttset_ldtset_64_memop_unpriv() {
@@ -10141,7 +12151,9 @@ void test_sttset_ldtset_64_memop_unpriv() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  sttset_ldtset_64_memop_unpriv: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_sttsetl_ldtsetl_64_memop_unpriv() {
@@ -10151,7 +12163,9 @@ void test_sttsetl_ldtsetl_64_memop_unpriv() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  sttsetl_ldtsetl_64_memop_unpriv: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_sttxr_sr32_ldstexclr_unpriv() {
@@ -10163,7 +12177,9 @@ void test_sttxr_sr32_ldstexclr_unpriv() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  sttxr_sr32_ldstexclr_unpriv: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_sttxr_sr64_ldstexclr_unpriv() {
@@ -10175,7 +12191,9 @@ void test_sttxr_sr64_ldstexclr_unpriv() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  sttxr_sr64_ldstexclr_unpriv: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_stumax_ldumax_32_memop() {
@@ -10185,7 +12203,9 @@ void test_stumax_ldumax_32_memop() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  stumax_ldumax_32_memop: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_stumaxl_ldumaxl_32_memop() {
@@ -10195,7 +12215,9 @@ void test_stumaxl_ldumaxl_32_memop() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  stumaxl_ldumaxl_32_memop: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_stumax_ldumax_64_memop() {
@@ -10205,7 +12227,9 @@ void test_stumax_ldumax_64_memop() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  stumax_ldumax_64_memop: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_stumaxl_ldumaxl_64_memop() {
@@ -10215,7 +12239,9 @@ void test_stumaxl_ldumaxl_64_memop() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  stumaxl_ldumaxl_64_memop: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_stumaxb_ldumaxb_32_memop() {
@@ -10225,7 +12251,9 @@ void test_stumaxb_ldumaxb_32_memop() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  stumaxb_ldumaxb_32_memop: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_stumaxlb_ldumaxlb_32_memop() {
@@ -10235,7 +12263,9 @@ void test_stumaxlb_ldumaxlb_32_memop() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  stumaxlb_ldumaxlb_32_memop: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_stumaxh_ldumaxh_32_memop() {
@@ -10245,7 +12275,9 @@ void test_stumaxh_ldumaxh_32_memop() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  stumaxh_ldumaxh_32_memop: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_stumaxlh_ldumaxlh_32_memop() {
@@ -10255,7 +12287,9 @@ void test_stumaxlh_ldumaxlh_32_memop() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  stumaxlh_ldumaxlh_32_memop: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_stumin_ldumin_32_memop() {
@@ -10265,7 +12299,9 @@ void test_stumin_ldumin_32_memop() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  stumin_ldumin_32_memop: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_stuminl_lduminl_32_memop() {
@@ -10275,7 +12311,9 @@ void test_stuminl_lduminl_32_memop() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  stuminl_lduminl_32_memop: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_stumin_ldumin_64_memop() {
@@ -10285,7 +12323,9 @@ void test_stumin_ldumin_64_memop() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  stumin_ldumin_64_memop: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_stuminl_lduminl_64_memop() {
@@ -10295,7 +12335,9 @@ void test_stuminl_lduminl_64_memop() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  stuminl_lduminl_64_memop: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_stuminb_lduminb_32_memop() {
@@ -10305,7 +12347,9 @@ void test_stuminb_lduminb_32_memop() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  stuminb_lduminb_32_memop: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_stuminlb_lduminlb_32_memop() {
@@ -10315,7 +12359,9 @@ void test_stuminlb_lduminlb_32_memop() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  stuminlb_lduminlb_32_memop: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_stuminh_lduminh_32_memop() {
@@ -10325,7 +12371,9 @@ void test_stuminh_lduminh_32_memop() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  stuminh_lduminh_32_memop: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_stuminlh_lduminlh_32_memop() {
@@ -10335,7 +12383,9 @@ void test_stuminlh_lduminlh_32_memop() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  stuminlh_lduminlh_32_memop: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_stur_b_ldst_unscaled() {
@@ -10346,7 +12396,9 @@ void test_stur_b_ldst_unscaled() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  stur_b_ldst_unscaled: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_stur_h_ldst_unscaled() {
@@ -10354,7 +12406,9 @@ void test_stur_h_ldst_unscaled() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: stur_h_ldst_unscaled" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::STUR);
+#ifdef VEDA64_STRINGS
     std::cout << "  stur_h_ldst_unscaled: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_stur_s_ldst_unscaled() {
@@ -10362,7 +12416,9 @@ void test_stur_s_ldst_unscaled() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: stur_s_ldst_unscaled" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::STUR);
+#ifdef VEDA64_STRINGS
     std::cout << "  stur_s_ldst_unscaled: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_stur_d_ldst_unscaled() {
@@ -10370,7 +12426,9 @@ void test_stur_d_ldst_unscaled() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: stur_d_ldst_unscaled" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::STUR);
+#ifdef VEDA64_STRINGS
     std::cout << "  stur_d_ldst_unscaled: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_stur_q_ldst_unscaled() {
@@ -10378,7 +12436,9 @@ void test_stur_q_ldst_unscaled() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: stur_q_ldst_unscaled" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::STUR);
+#ifdef VEDA64_STRINGS
     std::cout << "  stur_q_ldst_unscaled: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_stur_32_ldst_unscaled() {
@@ -10389,7 +12449,9 @@ void test_stur_32_ldst_unscaled() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  stur_32_ldst_unscaled: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_stur_64_ldst_unscaled() {
@@ -10400,7 +12462,9 @@ void test_stur_64_ldst_unscaled() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  stur_64_ldst_unscaled: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_sturb_32_ldst_unscaled() {
@@ -10411,7 +12475,9 @@ void test_sturb_32_ldst_unscaled() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  sturb_32_ldst_unscaled: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_sturh_32_ldst_unscaled() {
@@ -10422,7 +12488,9 @@ void test_sturh_32_ldst_unscaled() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  sturh_32_ldst_unscaled: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_stxp_sp32_ldstexclp() {
@@ -10435,7 +12503,9 @@ void test_stxp_sp32_ldstexclp() {
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
     assert(result->operands[3].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  stxp_sp32_ldstexclp: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_stxp_sp64_ldstexclp() {
@@ -10448,7 +12518,9 @@ void test_stxp_sp64_ldstexclp() {
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Register);
     assert(result->operands[3].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  stxp_sp64_ldstexclp: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_stxr_sr32_ldstexclr() {
@@ -10460,7 +12532,9 @@ void test_stxr_sr32_ldstexclr() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  stxr_sr32_ldstexclr: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_stxr_sr64_ldstexclr() {
@@ -10472,7 +12546,9 @@ void test_stxr_sr64_ldstexclr() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  stxr_sr64_ldstexclr: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_stxrb_sr32_ldstexclr() {
@@ -10484,7 +12560,9 @@ void test_stxrb_sr32_ldstexclr() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  stxrb_sr32_ldstexclr: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_stxrh_sr32_ldstexclr() {
@@ -10496,7 +12574,9 @@ void test_stxrh_sr32_ldstexclr() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  stxrh_sr32_ldstexclr: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_stz2g_64spost_ldsttags() {
@@ -10504,7 +12584,9 @@ void test_stz2g_64spost_ldsttags() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: stz2g_64spost_ldsttags" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::STZ2G);
+#ifdef VEDA64_STRINGS
     std::cout << "  stz2g_64spost_ldsttags: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_stz2g_64spre_ldsttags() {
@@ -10515,7 +12597,9 @@ void test_stz2g_64spre_ldsttags() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  stz2g_64spre_ldsttags: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_stz2g_64soffset_ldsttags() {
@@ -10526,7 +12610,9 @@ void test_stz2g_64soffset_ldsttags() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  stz2g_64soffset_ldsttags: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_stzg_64spost_ldsttags() {
@@ -10534,7 +12620,9 @@ void test_stzg_64spost_ldsttags() {
     auto result = decode(insn);
     if (!result.has_value()) { std::cerr << "DECODE FAIL: stzg_64spost_ldsttags" << std::endl; throw std::runtime_error("decode failed"); }
     assert(result->mnemonic == Mnemonic::STZG);
+#ifdef VEDA64_STRINGS
     std::cout << "  stzg_64spost_ldsttags: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_stzg_64spre_ldsttags() {
@@ -10545,7 +12633,9 @@ void test_stzg_64spre_ldsttags() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  stzg_64spre_ldsttags: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_stzg_64soffset_ldsttags() {
@@ -10556,7 +12646,9 @@ void test_stzg_64soffset_ldsttags() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  stzg_64soffset_ldsttags: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_stzgm_64bulk_ldsttags() {
@@ -10567,7 +12659,9 @@ void test_stzgm_64bulk_ldsttags() {
     assert(result->operands.size() >= 2);
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  stzgm_64bulk_ldsttags: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_swp_32_memop() {
@@ -10578,7 +12672,9 @@ void test_swp_32_memop() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  swp_32_memop: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_swpa_32_memop() {
@@ -10589,7 +12685,9 @@ void test_swpa_32_memop() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  swpa_32_memop: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_swpal_32_memop() {
@@ -10600,7 +12698,9 @@ void test_swpal_32_memop() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  swpal_32_memop: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_swpl_32_memop() {
@@ -10611,7 +12711,9 @@ void test_swpl_32_memop() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  swpl_32_memop: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_swp_64_memop() {
@@ -10622,7 +12724,9 @@ void test_swp_64_memop() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  swp_64_memop: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_swpa_64_memop() {
@@ -10633,7 +12737,9 @@ void test_swpa_64_memop() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  swpa_64_memop: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_swpal_64_memop() {
@@ -10644,7 +12750,9 @@ void test_swpal_64_memop() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  swpal_64_memop: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_swpl_64_memop() {
@@ -10655,7 +12763,9 @@ void test_swpl_64_memop() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  swpl_64_memop: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_swpb_32_memop() {
@@ -10666,7 +12776,9 @@ void test_swpb_32_memop() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  swpb_32_memop: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_swpab_32_memop() {
@@ -10677,7 +12789,9 @@ void test_swpab_32_memop() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  swpab_32_memop: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_swpalb_32_memop() {
@@ -10688,7 +12802,9 @@ void test_swpalb_32_memop() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  swpalb_32_memop: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_swplb_32_memop() {
@@ -10699,7 +12815,9 @@ void test_swplb_32_memop() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  swplb_32_memop: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_swph_32_memop() {
@@ -10710,7 +12828,9 @@ void test_swph_32_memop() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  swph_32_memop: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_swpah_32_memop() {
@@ -10721,7 +12841,9 @@ void test_swpah_32_memop() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  swpah_32_memop: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_swpalh_32_memop() {
@@ -10732,7 +12854,9 @@ void test_swpalh_32_memop() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  swpalh_32_memop: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_swplh_32_memop() {
@@ -10743,7 +12867,9 @@ void test_swplh_32_memop() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  swplh_32_memop: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_swpp_128_memop_128() {
@@ -10754,7 +12880,9 @@ void test_swpp_128_memop_128() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  swpp_128_memop_128: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_swppa_128_memop_128() {
@@ -10765,7 +12893,9 @@ void test_swppa_128_memop_128() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  swppa_128_memop_128: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_swppal_128_memop_128() {
@@ -10776,7 +12906,9 @@ void test_swppal_128_memop_128() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  swppal_128_memop_128: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_swppl_128_memop_128() {
@@ -10787,7 +12919,9 @@ void test_swppl_128_memop_128() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  swppl_128_memop_128: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_swpt_32_memop_unpriv() {
@@ -10798,7 +12932,9 @@ void test_swpt_32_memop_unpriv() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  swpt_32_memop_unpriv: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_swpta_32_memop_unpriv() {
@@ -10809,7 +12945,9 @@ void test_swpta_32_memop_unpriv() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  swpta_32_memop_unpriv: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_swptal_32_memop_unpriv() {
@@ -10820,7 +12958,9 @@ void test_swptal_32_memop_unpriv() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  swptal_32_memop_unpriv: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_swptl_32_memop_unpriv() {
@@ -10831,7 +12971,9 @@ void test_swptl_32_memop_unpriv() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  swptl_32_memop_unpriv: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_swpt_64_memop_unpriv() {
@@ -10842,7 +12984,9 @@ void test_swpt_64_memop_unpriv() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  swpt_64_memop_unpriv: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_swpta_64_memop_unpriv() {
@@ -10853,7 +12997,9 @@ void test_swpta_64_memop_unpriv() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  swpta_64_memop_unpriv: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_swptal_64_memop_unpriv() {
@@ -10864,7 +13010,9 @@ void test_swptal_64_memop_unpriv() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  swptal_64_memop_unpriv: " << result->to_string() << std::endl;
+#endif
 }
 
 void test_swptl_64_memop_unpriv() {
@@ -10875,7 +13023,9 @@ void test_swptl_64_memop_unpriv() {
     assert(result->operands[0].type == OperandType::Register);
     assert(result->operands[1].type == OperandType::Register);
     assert(result->operands[2].type == OperandType::Memory);
+#ifdef VEDA64_STRINGS
     std::cout << "  swptl_64_memop_unpriv: " << result->to_string() << std::endl;
+#endif
 }
 
 int main() {
