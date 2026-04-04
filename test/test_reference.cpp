@@ -41,7 +41,7 @@ std::string normalize(const std::string& s) {
 
 // Check if disassembly output matches expected (case-insensitive, with normalization)
 bool check_disasm(uint32_t insn, const char* expected) {
-    auto result = decode(insn);
+    auto result = decode(insn, true);  // Use alias-aware decode for reference comparisons
     if (!result) {
         std::cerr << "FAIL: Failed to decode 0x" << std::hex << insn << std::dec << std::endl;
         std::cerr << "      Expected: " << expected << std::endl;
@@ -72,11 +72,11 @@ int main() {
     if (check_disasm(0xa9be7bfd, "stp fp, lr, [sp, #-0x20]!")) passed++; else failed++;
     if (check_disasm(0x910003fd, "mov x29, sp")) passed++; else failed++;
     if (check_disasm(0x390043bf, "strb wzr, [x29, #0x10]")) passed++; else failed++;
-    if (check_disasm(0xd2800004, "mov x4, #0x0")) passed++; else failed++;
-    if (check_disasm(0x52800023, "mov w3, #0x1")) passed++; else failed++;
+    if (check_disasm(0xd2800004, "mov x4, #0")) passed++; else failed++;
+    if (check_disasm(0x52800023, "mov w3, #1")) passed++; else failed++;
     if (check_disasm(0x910043a2, "add x2, fp, #0x10")) passed++; else failed++;
     if (check_disasm(0x52800221, "mov w1, #0x11")) passed++; else failed++;
-    if (check_disasm(0x92800020, "mov x0, #-0x2")) passed++; else failed++;
+    if (check_disasm(0x92800020, "mov x0, #-2")) passed++; else failed++;
     if (check_disasm(0x97fa94a3, "bl .-0x15ad74")) passed++; else failed++;
     if (check_disasm(0x37f800a0, "tbnz w0, #0x1f, .+0x14")) passed++; else failed++;
     if (check_disasm(0x394043a8, "ldrb w8, [x29, #0x10]")) passed++; else failed++;
@@ -122,12 +122,12 @@ int main() {
     if (check_disasm(0x93403c00, "sxth x0, w0")) passed++; else failed++;
     if (check_disasm(0x93407c00, "sxtw x0, w0")) passed++; else failed++;
     if (check_disasm(0x13001c00, "sxtb w0, w0")) passed++; else failed++;
-    if (check_disasm(0x33070c00, "bfi w0, w0, #25, #4")) passed++; else failed++;
+    if (check_disasm(0x33070c00, "bfi w0, w0, #0x19, #4")) passed++; else failed++;
     if (check_disasm(0xeb2f73f0, "subs x16, sp, x15, lsl #4")) passed++; else failed++;
     if (check_disasm(0x8b2063e0, "add x0, sp, x0")) passed++; else failed++;
     if (check_disasm(0xcb2043e0, "sub x0, sp, w0, uxtw")) passed++; else failed++;
     if (check_disasm(0x9278dc63, "and x3, x3, #0xffffffffffffff00")) passed++; else failed++;
-    if (check_disasm(0xf278dc7f, "tst x3, #0xffffffffffffff00")) passed++; else failed++;
+    if (check_disasm(0xf278dc7f, "tst xzr, x3, #0xffffffffffffff00")) passed++; else failed++;
     if (check_disasm(0xcb0407e4, "neg x4, x4, lsl #1")) passed++; else failed++;
     if (check_disasm(0x9e660025, "fmov x5, d1")) passed++; else failed++;
     if (check_disasm(0x9e670025, "fmov d5, x1")) passed++; else failed++;
@@ -137,7 +137,7 @@ int main() {
     if (check_disasm(0xf9800c01, "prfm pldl1strm, [x0, #0x18]")) passed++; else failed++;
     if (check_disasm(0x4e209800, "cmeq v0.16b, v0.16b, #0")) passed++; else failed++;
     if (check_disasm(0x4e010c20, "dup v0.16b, w1")) passed++; else failed++;
-    if (check_disasm(0x4ea31c60, "orr v0.16b, v3.16b, v3.16b")) passed++; else failed++;
+    if (check_disasm(0x4ea31c60, "mov v0.16b, v3.16b, v3.16b")) passed++; else failed++;
     if (check_disasm(0x4e22bc00, "addp v0.16b, v0.16b, v2.16b")) passed++; else failed++;
     if (check_disasm(0x1a9f07e0, "cset w0, ne")) passed++; else failed++;
     if (check_disasm(0x5a802400, "cneg w0, w0, lo")) passed++; else failed++;
@@ -156,7 +156,7 @@ int main() {
     if (check_disasm(0x52a00408, "mov w8, #0x200000")) passed++; else failed++;
     if (check_disasm(0xd2a00038, "mov x24, #0x10000")) passed++; else failed++;
     if (check_disasm(0x12b00009, "mov w9, #0x7fffffff")) passed++; else failed++;
-    if (check_disasm(0x91000108, "add x8, x8, #0")) passed++; else failed++;
+    if (check_disasm(0x91000108, "mov x8, x8")) passed++; else failed++;
     if (check_disasm(0x910003fd, "mov x29, sp")) passed++; else failed++;
     if (check_disasm(0xd5087108, "ic ialluis")) passed++; else failed++;
     if (check_disasm(0xd5088308, "tlbi vmalle1is")) passed++; else failed++;

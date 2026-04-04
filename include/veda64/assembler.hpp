@@ -3,6 +3,9 @@
 // Auto-generated — do not edit
 
 #pragma once
+
+#ifdef VEDA64_ASSEMBLER
+
 #include <cstdint>
 
 namespace veda64 {
@@ -17,3 +20,5 @@ AsmResult assemble(const char* text);
 AsmResult assemble(const char* text, uint64_t pc);
 
 } // namespace veda64
+
+#endif // VEDA64_ASSEMBLER

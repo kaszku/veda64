@@ -13,7 +13,8 @@ set_property(GLOBAL PROPERTY USE_FOLDERS ON)
 option(VEDA64_STRINGS "Enable string functions (to_string, mnemonic_to_string, etc.)" OFF)
 option(VEDA64_IR "Enable IR lifting and interpreter support" OFF)
 option(VEDA64_HOOK "Enable inline hooking support (Windows only)" OFF)
-option(VEDA64_CODEGEN "Enable JIT code generator / assembler API" OFF)
+option(VEDA64_CODEGEN "Enable JIT code generator API" OFF)
+option(VEDA64_ASSEMBLER "Enable text assembler API" OFF)
 option(VEDA64_TESTS "Build test executables" OFF)
 option(VEDA64_PYTHON "Build Python bindings via nanobind (requires vcpkg toolchain)" OFF)
 
@@ -37,6 +38,9 @@ endif()
 if(VEDA64_CODEGEN)
     add_compile_definitions(VEDA64_CODEGEN)
 endif()
+if(VEDA64_ASSEMBLER)
+    add_compile_definitions(VEDA64_ASSEMBLER)
+endif()
 
 # Collect all source and header files
 file(GLOB_RECURSE VEDA64_SOURCES "lib/*.cpp")
@@ -44,7 +48,10 @@ file(GLOB_RECURSE VEDA64_HEADERS "include/*.hpp")
 
 # Hook support
 if(NOT VEDA64_HOOK)
-    list(REMOVE_ITEM VEDA64_SOURCES "${CMAKE_CURRENT_SOURCE_DIR}/lib/hook.cpp")
+    file(GLOB_RECURSE HOOK_SOURCES "lib/hook/*.cpp")
+    if(HOOK_SOURCES)
+        list(REMOVE_ITEM VEDA64_SOURCES ${HOOK_SOURCES})
+    endif()
 endif()
 
 # CodeGen support
@@ -52,6 +59,14 @@ if(NOT VEDA64_CODEGEN)
     file(GLOB_RECURSE CODEGEN_SOURCES "lib/codegen/*.cpp")
     if(CODEGEN_SOURCES)
         list(REMOVE_ITEM VEDA64_SOURCES ${CODEGEN_SOURCES})
+    endif()
+endif()
+
+# Assembler support
+if(NOT VEDA64_ASSEMBLER)
+    file(GLOB_RECURSE ASM_SOURCES "lib/assembler/*.cpp")
+    if(ASM_SOURCES)
+        list(REMOVE_ITEM VEDA64_SOURCES ${ASM_SOURCES})
     endif()
 endif()
 

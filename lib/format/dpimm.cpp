@@ -2949,6 +2949,12 @@ std::optional<Instruction> decode_dpimm(uint32_t insn, bool aliases) {
                         result.operands.push_back(Operand::gp(enc.bfc_bfm32m_bitfield.Rd, is_64bit));
                         result.operands.push_back(Operand::imm(enc.bfc_bfm32m_bitfield.immr));
                         result.operands.push_back(Operand::imm(enc.bfc_bfm32m_bitfield.imms));
+            if (aliases && result.operands.size() >= 4) {
+                uint32_t _immr = static_cast<uint32_t>(result.operands[2].iv.value);
+                uint32_t _imms = static_cast<uint32_t>(result.operands[3].iv.value);
+                result.operands[2] = Operand::imm((32 - _immr) & 31);
+                result.operands[3] = Operand::imm(_imms + 1);
+            }
                         return result;
         }
         case 0xB34003E0u: { // BFC_BFM_64M_bitfield
@@ -2963,6 +2969,12 @@ std::optional<Instruction> decode_dpimm(uint32_t insn, bool aliases) {
                         result.operands.push_back(Operand::gp(enc.bfc_bfm64m_bitfield.Rd, is_64bit));
                         result.operands.push_back(Operand::imm(enc.bfc_bfm64m_bitfield.immr));
                         result.operands.push_back(Operand::imm(enc.bfc_bfm64m_bitfield.imms));
+            if (aliases && result.operands.size() >= 4) {
+                uint32_t _immr = static_cast<uint32_t>(result.operands[2].iv.value);
+                uint32_t _imms = static_cast<uint32_t>(result.operands[3].iv.value);
+                result.operands[2] = Operand::imm((64 - _immr) & 63);
+                result.operands[3] = Operand::imm(_imms + 1);
+            }
                         return result;
         }
         default: break;
@@ -3016,6 +3028,10 @@ std::optional<Instruction> decode_dpimm(uint32_t insn, bool aliases) {
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.mov_movn32movewide.Rd, false));
                         result.operands.push_back(Operand::imm(enc.mov_movn32movewide.imm16));
+            if (aliases && result.operands.size() >= 2) {
+                uint64_t _sh = static_cast<uint64_t>(enc.mov_movn32movewide.imm16) << (enc.mov_movn32movewide.hw * 16);
+                result.operands[1] = Operand::simm(static_cast<int64_t>(static_cast<int32_t>(~static_cast<uint32_t>(_sh))));
+            }
                         return result;
         }
         case 0x13000000u: { // SBFIZ_SBFM_32M_bitfield
@@ -3033,6 +3049,12 @@ std::optional<Instruction> decode_dpimm(uint32_t insn, bool aliases) {
                         result.operands.push_back(Operand::gp(enc.sbfiz_sbfm32m_bitfield.Rn, is_64bit));
                         result.operands.push_back(Operand::imm(enc.sbfiz_sbfm32m_bitfield.immr));
                         result.operands.push_back(Operand::imm(enc.sbfiz_sbfm32m_bitfield.imms));
+            if (aliases && result.operands.size() >= 4) {
+                uint32_t _immr = static_cast<uint32_t>(result.operands[2].iv.value);
+                uint32_t _imms = static_cast<uint32_t>(result.operands[3].iv.value);
+                result.operands[2] = Operand::imm((32 - _immr) & 31);
+                result.operands[3] = Operand::imm(_imms + 1);
+            }
                         return result;
         }
         case 0x32000000u: { // ORR_32_log_imm
@@ -3066,6 +3088,12 @@ std::optional<Instruction> decode_dpimm(uint32_t insn, bool aliases) {
                                 result.operands.push_back(Operand::gp(enc.bfi_bfm32m_bitfield.Rn, is_64bit));
                                 result.operands.push_back(Operand::imm(enc.bfi_bfm32m_bitfield.immr));
                                 result.operands.push_back(Operand::imm(enc.bfi_bfm32m_bitfield.imms));
+                if (aliases && result.operands.size() >= 4) {
+                    uint32_t _immr = static_cast<uint32_t>(result.operands[2].iv.value);
+                    uint32_t _imms = static_cast<uint32_t>(result.operands[3].iv.value);
+                    result.operands[2] = Operand::imm((32 - _immr) & 31);
+                    result.operands[3] = Operand::imm(_imms + 1);
+                }
                                 return result;
             }
             #ifdef VEDA64_IR
@@ -3108,6 +3136,9 @@ std::optional<Instruction> decode_dpimm(uint32_t insn, bool aliases) {
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.mov_movz32movewide.Rd, false));
                         result.operands.push_back(Operand::imm(enc.mov_movz32movewide.imm16));
+            if (aliases && result.operands.size() >= 2) {
+                result.operands[1] = Operand::imm(static_cast<uint64_t>(enc.mov_movz32movewide.imm16) << (enc.mov_movz32movewide.hw * 16));
+            }
                         return result;
         }
         case 0x53000000u: { // LSL_UBFM_32M_bitfield
@@ -3188,6 +3219,12 @@ std::optional<Instruction> decode_dpimm(uint32_t insn, bool aliases) {
                         result.operands.push_back(Operand::gp(enc.sbfiz_sbfm64m_bitfield.Rn, is_64bit));
                         result.operands.push_back(Operand::imm(enc.sbfiz_sbfm64m_bitfield.immr));
                         result.operands.push_back(Operand::imm(enc.sbfiz_sbfm64m_bitfield.imms));
+            if (aliases && result.operands.size() >= 4) {
+                uint32_t _immr = static_cast<uint32_t>(result.operands[2].iv.value);
+                uint32_t _imms = static_cast<uint32_t>(result.operands[3].iv.value);
+                result.operands[2] = Operand::imm((64 - _immr) & 63);
+                result.operands[3] = Operand::imm(_imms + 1);
+            }
                         return result;
         }
         case 0xB3400000u: { // BFI_BFM_64M_bitfield
@@ -3206,6 +3243,12 @@ std::optional<Instruction> decode_dpimm(uint32_t insn, bool aliases) {
                                 result.operands.push_back(Operand::gp(enc.bfi_bfm64m_bitfield.Rn, is_64bit));
                                 result.operands.push_back(Operand::imm(enc.bfi_bfm64m_bitfield.immr));
                                 result.operands.push_back(Operand::imm(enc.bfi_bfm64m_bitfield.imms));
+                if (aliases && result.operands.size() >= 4) {
+                    uint32_t _immr = static_cast<uint32_t>(result.operands[2].iv.value);
+                    uint32_t _imms = static_cast<uint32_t>(result.operands[3].iv.value);
+                    result.operands[2] = Operand::imm((64 - _immr) & 63);
+                    result.operands[3] = Operand::imm(_imms + 1);
+                }
                                 return result;
             }
             #ifdef VEDA64_IR
@@ -3448,6 +3491,10 @@ std::optional<Instruction> decode_dpimm(uint32_t insn, bool aliases) {
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.mov_movn64movewide.Rd, true));
                         result.operands.push_back(Operand::imm(enc.mov_movn64movewide.imm16));
+            if (aliases && result.operands.size() >= 2) {
+                uint64_t _sh = static_cast<uint64_t>(enc.mov_movn64movewide.imm16) << (enc.mov_movn64movewide.hw * 16);
+                result.operands[1] = Operand::simm(static_cast<int64_t>(~_sh));
+            }
                         return result;
         }
         case 0xB1000000u: { // ADDS_64S_addsub_imm
@@ -3519,6 +3566,9 @@ std::optional<Instruction> decode_dpimm(uint32_t insn, bool aliases) {
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.mov_movz64movewide.Rd, true));
                         result.operands.push_back(Operand::imm(enc.mov_movz64movewide.imm16));
+            if (aliases && result.operands.size() >= 2) {
+                result.operands[1] = Operand::imm(static_cast<uint64_t>(enc.mov_movz64movewide.imm16) << (enc.mov_movz64movewide.hw * 16));
+            }
                         return result;
         }
         case 0xF1000000u: { // SUBS_64S_addsub_imm

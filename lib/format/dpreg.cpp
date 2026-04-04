@@ -7087,6 +7087,7 @@ std::optional<Instruction> decode_dpreg(uint32_t insn, bool aliases) {
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.cset_csinc32condsel.Rd, false));
                         result.condition = static_cast<Condition>(enc.cset_csinc32condsel.cond);
+            if (aliases) result.condition = static_cast<Condition>(static_cast<int8_t>(result.condition) ^ 1);
                         return result;
         }
         case 0x5A9F03E0u: { // CSETM_CSINV_32_condsel
@@ -7099,6 +7100,7 @@ std::optional<Instruction> decode_dpreg(uint32_t insn, bool aliases) {
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.csetm_csinv32condsel.Rd, false));
                         result.condition = static_cast<Condition>(enc.csetm_csinv32condsel.cond);
+            if (aliases) result.condition = static_cast<Condition>(static_cast<int8_t>(result.condition) ^ 1);
                         return result;
         }
         case 0x9A9F07E0u: { // CSET_CSINC_64_condsel
@@ -7111,6 +7113,7 @@ std::optional<Instruction> decode_dpreg(uint32_t insn, bool aliases) {
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.cset_csinc64condsel.Rd, true));
                         result.condition = static_cast<Condition>(enc.cset_csinc64condsel.cond);
+            if (aliases) result.condition = static_cast<Condition>(static_cast<int8_t>(result.condition) ^ 1);
                         return result;
         }
         case 0xDA9F03E0u: { // CSETM_CSINV_64_condsel
@@ -7123,6 +7126,7 @@ std::optional<Instruction> decode_dpreg(uint32_t insn, bool aliases) {
                         enc.raw = insn;
                         result.operands.push_back(Operand::gp(enc.csetm_csinv64condsel.Rd, true));
                         result.condition = static_cast<Condition>(enc.csetm_csinv64condsel.cond);
+            if (aliases) result.condition = static_cast<Condition>(static_cast<int8_t>(result.condition) ^ 1);
                         return result;
         }
         default: break;
@@ -8261,6 +8265,7 @@ std::optional<Instruction> decode_dpreg(uint32_t insn, bool aliases) {
                                 result.operands.push_back(Operand::gp(enc.cinc_csinc32condsel.Rd, false));
                                 result.operands.push_back(Operand::gp(enc.cinc_csinc32condsel.Rn, false));
                                 result.condition = static_cast<Condition>(enc.cinc_csinc32condsel.cond);
+                if (aliases) result.condition = static_cast<Condition>(static_cast<int8_t>(result.condition) ^ 1);
                                 return result;
             }
             #ifdef VEDA64_IR
@@ -8289,6 +8294,7 @@ std::optional<Instruction> decode_dpreg(uint32_t insn, bool aliases) {
                                 result.operands.push_back(Operand::gp(enc.cinv_csinv32condsel.Rd, false));
                                 result.operands.push_back(Operand::gp(enc.cinv_csinv32condsel.Rn, false));
                                 result.condition = static_cast<Condition>(enc.cinv_csinv32condsel.cond);
+                if (aliases) result.condition = static_cast<Condition>(static_cast<int8_t>(result.condition) ^ 1);
                                 return result;
             }
             #ifdef VEDA64_IR
@@ -8316,6 +8322,7 @@ std::optional<Instruction> decode_dpreg(uint32_t insn, bool aliases) {
                         result.operands.push_back(Operand::gp(enc.cneg_csneg32condsel.Rd, false));
                         result.operands.push_back(Operand::gp(enc.cneg_csneg32condsel.Rn, false));
                         result.condition = static_cast<Condition>(enc.cneg_csneg32condsel.cond);
+            if (aliases) result.condition = static_cast<Condition>(static_cast<int8_t>(result.condition) ^ 1);
                         return result;
         }
         case 0x9A800000u: { // CSEL_64_condsel
@@ -8345,6 +8352,7 @@ std::optional<Instruction> decode_dpreg(uint32_t insn, bool aliases) {
                                 result.operands.push_back(Operand::gp(enc.cinc_csinc64condsel.Rd, true));
                                 result.operands.push_back(Operand::gp(enc.cinc_csinc64condsel.Rn, true));
                                 result.condition = static_cast<Condition>(enc.cinc_csinc64condsel.cond);
+                if (aliases) result.condition = static_cast<Condition>(static_cast<int8_t>(result.condition) ^ 1);
                                 return result;
             }
             #ifdef VEDA64_IR
@@ -8373,6 +8381,7 @@ std::optional<Instruction> decode_dpreg(uint32_t insn, bool aliases) {
                                 result.operands.push_back(Operand::gp(enc.cinv_csinv64condsel.Rd, true));
                                 result.operands.push_back(Operand::gp(enc.cinv_csinv64condsel.Rn, true));
                                 result.condition = static_cast<Condition>(enc.cinv_csinv64condsel.cond);
+                if (aliases) result.condition = static_cast<Condition>(static_cast<int8_t>(result.condition) ^ 1);
                                 return result;
             }
             #ifdef VEDA64_IR
@@ -8400,6 +8409,7 @@ std::optional<Instruction> decode_dpreg(uint32_t insn, bool aliases) {
                         result.operands.push_back(Operand::gp(enc.cneg_csneg64condsel.Rd, true));
                         result.operands.push_back(Operand::gp(enc.cneg_csneg64condsel.Rn, true));
                         result.condition = static_cast<Condition>(enc.cneg_csneg64condsel.cond);
+            if (aliases) result.condition = static_cast<Condition>(static_cast<int8_t>(result.condition) ^ 1);
                         return result;
         }
         default: break;

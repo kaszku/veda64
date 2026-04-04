@@ -20,7 +20,7 @@ static std::string to_lower(const std::string& s) {
 }
 
 static void check_mnemonic(uint32_t insn, const char* expected_mnemonic) {
-    auto r = decode(insn);
+    auto r = decode(insn, true);  // Use alias-aware decode
     if (!r) {
         std::cerr << "  FAIL: decode failed for 0x" << std::hex << insn << std::dec << std::endl;
         failures++; return;
