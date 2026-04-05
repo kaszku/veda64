@@ -1654,14 +1654,16 @@ NB_MODULE(veda64_py, m) {
         ;
 
     // Decode from raw 32-bit instruction word
-    m.def("decode", [](uint32_t insn) { return veda64::decode(insn); },
-          "insn"_a, "Decode a single ARM64 instruction from a uint32_t");
+    m.def("decode", [](uint32_t insn, bool aliases) { return veda64::decode(insn, aliases); },
+          "insn"_a, "aliases"_a = false,
+          "Decode a single ARM64 instruction. Set aliases=True for alias-aware decoding (MOV instead of ADD, CMP instead of SUBS, etc.)");
 
     // Decode from 4 little-endian bytes
-    m.def("decode_bytes", [](nb::bytes data) -> std::optional<veda64::Instruction> {
+    m.def("decode_bytes", [](nb::bytes data, bool aliases) -> std::optional<veda64::Instruction> {
         if (data.size() < 4) return std::nullopt;
-        return veda64::decode(reinterpret_cast<const uint8_t*>(data.data()));
-    }, "data"_a, "Decode a single ARM64 instruction from 4 little-endian bytes");
+        return veda64::decode(reinterpret_cast<const uint8_t*>(data.data()), aliases);
+    }, "data"_a, "aliases"_a = false,
+    "Decode a single ARM64 instruction from 4 little-endian bytes. Set aliases=True for alias-aware decoding");
 
     // Convert raw 4 bytes to uint32 (little-endian)
     m.def("from_bytes", [](nb::bytes data) -> uint32_t {
@@ -1679,6 +1681,21 @@ NB_MODULE(veda64_py, m) {
     m.attr("VERSION_MAJOR") = veda64::VERSION_MAJOR;
     m.attr("VERSION_MINOR") = veda64::VERSION_MINOR;
     m.attr("VERSION_PATCH") = veda64::VERSION_PATCH;
+
+#ifdef VEDA64_ASSEMBLER
+    // === Text Assembler ===
+    m.def("assemble", [](const char* text) {
+        auto r = veda64::assemble(text);
+        return nb::make_tuple(r.insn, r.success, r.error ? nb::str(r.error) : nb::none());
+    }, "text"_a,
+    "Assemble ARM64 text to a 32-bit instruction. Returns (insn, success, error_or_None)");
+
+    m.def("assemble", [](const char* text, uint64_t pc) {
+        auto r = veda64::assemble(text, pc);
+        return nb::make_tuple(r.insn, r.success, r.error ? nb::str(r.error) : nb::none());
+    }, "text"_a, "pc"_a,
+    "Assemble ARM64 text with PC address. Returns (insn, success, error_or_None)");
+#endif // VEDA64_ASSEMBLER
 
 #ifdef VEDA64_IR
     // === IR (Intermediate Representation) ===
