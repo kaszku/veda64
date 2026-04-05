@@ -8252,9 +8252,10 @@ std::optional<Instruction> decode_dpreg(uint32_t insn, bool aliases) {
                         result.condition = static_cast<Condition>(enc.csel32condsel.cond);
                         return result;
         }
-        case 0x1A800400u: { // CINC_CSINC_32_condsel
-            // Also matches: CSINC_32_condsel (CSINC)
-            if (!(((insn >> 16) & 0x1F) == 0x1F || ((insn >> 5) & 0x1F) == 0x1F)) {
+        case 0x1A800400u: { // CSINC_32_condsel
+            // Also matches: CINC_CSINC_32_condsel (CSINC)
+            { DpregEncoding _enc = {}; _enc.raw = insn;
+            if (aliases && _enc.cinc_csinc32condsel.Rn == _enc.cinc_csinc32condsel.Rm) {
                 #ifdef VEDA64_IR
                                 Instruction result(aliases ? Mnemonic::CINC : Mnemonic::CSINC, insn, EncodingId::CINC_CSINC_32_condsel);
                 #else
@@ -8267,7 +8268,7 @@ std::optional<Instruction> decode_dpreg(uint32_t insn, bool aliases) {
                                 result.condition = static_cast<Condition>(enc.cinc_csinc32condsel.cond);
                 if (aliases) result.condition = static_cast<Condition>(static_cast<int8_t>(result.condition) ^ 1);
                                 return result;
-            }
+            }}
             #ifdef VEDA64_IR
                         Instruction result(Mnemonic::CSINC, insn, EncodingId::CSINC_32_condsel);
             #else
@@ -8281,9 +8282,10 @@ std::optional<Instruction> decode_dpreg(uint32_t insn, bool aliases) {
                         result.condition = static_cast<Condition>(enc.csinc32condsel.cond);
                         return result;
         }
-        case 0x5A800000u: { // CINV_CSINV_32_condsel
-            // Also matches: CSINV_32_condsel (CSINV)
-            if (!(((insn >> 16) & 0x1F) == 0x1F || ((insn >> 5) & 0x1F) == 0x1F)) {
+        case 0x5A800000u: { // CSINV_32_condsel
+            // Also matches: CINV_CSINV_32_condsel (CSINV)
+            { DpregEncoding _enc = {}; _enc.raw = insn;
+            if (aliases && _enc.cinv_csinv32condsel.Rn == _enc.cinv_csinv32condsel.Rm) {
                 #ifdef VEDA64_IR
                                 Instruction result(aliases ? Mnemonic::CINV : Mnemonic::CSINV, insn, EncodingId::CINV_CSINV_32_condsel);
                 #else
@@ -8296,7 +8298,7 @@ std::optional<Instruction> decode_dpreg(uint32_t insn, bool aliases) {
                                 result.condition = static_cast<Condition>(enc.cinv_csinv32condsel.cond);
                 if (aliases) result.condition = static_cast<Condition>(static_cast<int8_t>(result.condition) ^ 1);
                                 return result;
-            }
+            }}
             #ifdef VEDA64_IR
                         Instruction result(Mnemonic::CSINV, insn, EncodingId::CSINV_32_condsel);
             #else
@@ -8310,19 +8312,34 @@ std::optional<Instruction> decode_dpreg(uint32_t insn, bool aliases) {
                         result.condition = static_cast<Condition>(enc.csinv32condsel.cond);
                         return result;
         }
-        case 0x5A800400u: { // CNEG_CSNEG_32_condsel
-            // Also matches: CSNEG_32_condsel (CSNEG)
+        case 0x5A800400u: { // CSNEG_32_condsel
+            // Also matches: CNEG_CSNEG_32_condsel (CSNEG)
+            { DpregEncoding _enc = {}; _enc.raw = insn;
+            if (aliases && _enc.cneg_csneg32condsel.Rn == _enc.cneg_csneg32condsel.Rm) {
+                #ifdef VEDA64_IR
+                                Instruction result(aliases ? Mnemonic::CNEG : Mnemonic::CSNEG, insn, EncodingId::CNEG_CSNEG_32_condsel);
+                #else
+                                Instruction result(aliases ? Mnemonic::CNEG : Mnemonic::CSNEG, insn);
+                #endif
+                                DpregEncoding enc = {};
+                                enc.raw = insn;
+                                result.operands.push_back(Operand::gp(enc.cneg_csneg32condsel.Rd, false));
+                                result.operands.push_back(Operand::gp(enc.cneg_csneg32condsel.Rn, false));
+                                result.condition = static_cast<Condition>(enc.cneg_csneg32condsel.cond);
+                if (aliases) result.condition = static_cast<Condition>(static_cast<int8_t>(result.condition) ^ 1);
+                                return result;
+            }}
             #ifdef VEDA64_IR
-                        Instruction result(aliases ? Mnemonic::CNEG : Mnemonic::CSNEG, insn, EncodingId::CNEG_CSNEG_32_condsel);
+                        Instruction result(Mnemonic::CSNEG, insn, EncodingId::CSNEG_32_condsel);
             #else
-                        Instruction result(aliases ? Mnemonic::CNEG : Mnemonic::CSNEG, insn);
+                        Instruction result(Mnemonic::CSNEG, insn);
             #endif
                         DpregEncoding enc = {};
                         enc.raw = insn;
-                        result.operands.push_back(Operand::gp(enc.cneg_csneg32condsel.Rd, false));
-                        result.operands.push_back(Operand::gp(enc.cneg_csneg32condsel.Rn, false));
-                        result.condition = static_cast<Condition>(enc.cneg_csneg32condsel.cond);
-            if (aliases) result.condition = static_cast<Condition>(static_cast<int8_t>(result.condition) ^ 1);
+                        result.operands.push_back(Operand::gp(enc.csneg32condsel.Rd, false));
+                        result.operands.push_back(Operand::gp(enc.csneg32condsel.Rn, false));
+                        result.operands.push_back(Operand::gp(enc.csneg32condsel.Rm, false));
+                        result.condition = static_cast<Condition>(enc.csneg32condsel.cond);
                         return result;
         }
         case 0x9A800000u: { // CSEL_64_condsel
@@ -8339,9 +8356,10 @@ std::optional<Instruction> decode_dpreg(uint32_t insn, bool aliases) {
                         result.condition = static_cast<Condition>(enc.csel64condsel.cond);
                         return result;
         }
-        case 0x9A800400u: { // CINC_CSINC_64_condsel
-            // Also matches: CSINC_64_condsel (CSINC)
-            if (!(((insn >> 16) & 0x1F) == 0x1F || ((insn >> 5) & 0x1F) == 0x1F)) {
+        case 0x9A800400u: { // CSINC_64_condsel
+            // Also matches: CINC_CSINC_64_condsel (CSINC)
+            { DpregEncoding _enc = {}; _enc.raw = insn;
+            if (aliases && _enc.cinc_csinc64condsel.Rn == _enc.cinc_csinc64condsel.Rm) {
                 #ifdef VEDA64_IR
                                 Instruction result(aliases ? Mnemonic::CINC : Mnemonic::CSINC, insn, EncodingId::CINC_CSINC_64_condsel);
                 #else
@@ -8354,7 +8372,7 @@ std::optional<Instruction> decode_dpreg(uint32_t insn, bool aliases) {
                                 result.condition = static_cast<Condition>(enc.cinc_csinc64condsel.cond);
                 if (aliases) result.condition = static_cast<Condition>(static_cast<int8_t>(result.condition) ^ 1);
                                 return result;
-            }
+            }}
             #ifdef VEDA64_IR
                         Instruction result(Mnemonic::CSINC, insn, EncodingId::CSINC_64_condsel);
             #else
@@ -8368,9 +8386,10 @@ std::optional<Instruction> decode_dpreg(uint32_t insn, bool aliases) {
                         result.condition = static_cast<Condition>(enc.csinc64condsel.cond);
                         return result;
         }
-        case 0xDA800000u: { // CINV_CSINV_64_condsel
-            // Also matches: CSINV_64_condsel (CSINV)
-            if (!(((insn >> 16) & 0x1F) == 0x1F || ((insn >> 5) & 0x1F) == 0x1F)) {
+        case 0xDA800000u: { // CSINV_64_condsel
+            // Also matches: CINV_CSINV_64_condsel (CSINV)
+            { DpregEncoding _enc = {}; _enc.raw = insn;
+            if (aliases && _enc.cinv_csinv64condsel.Rn == _enc.cinv_csinv64condsel.Rm) {
                 #ifdef VEDA64_IR
                                 Instruction result(aliases ? Mnemonic::CINV : Mnemonic::CSINV, insn, EncodingId::CINV_CSINV_64_condsel);
                 #else
@@ -8383,7 +8402,7 @@ std::optional<Instruction> decode_dpreg(uint32_t insn, bool aliases) {
                                 result.condition = static_cast<Condition>(enc.cinv_csinv64condsel.cond);
                 if (aliases) result.condition = static_cast<Condition>(static_cast<int8_t>(result.condition) ^ 1);
                                 return result;
-            }
+            }}
             #ifdef VEDA64_IR
                         Instruction result(Mnemonic::CSINV, insn, EncodingId::CSINV_64_condsel);
             #else
@@ -8397,19 +8416,34 @@ std::optional<Instruction> decode_dpreg(uint32_t insn, bool aliases) {
                         result.condition = static_cast<Condition>(enc.csinv64condsel.cond);
                         return result;
         }
-        case 0xDA800400u: { // CNEG_CSNEG_64_condsel
-            // Also matches: CSNEG_64_condsel (CSNEG)
+        case 0xDA800400u: { // CSNEG_64_condsel
+            // Also matches: CNEG_CSNEG_64_condsel (CSNEG)
+            { DpregEncoding _enc = {}; _enc.raw = insn;
+            if (aliases && _enc.cneg_csneg64condsel.Rn == _enc.cneg_csneg64condsel.Rm) {
+                #ifdef VEDA64_IR
+                                Instruction result(aliases ? Mnemonic::CNEG : Mnemonic::CSNEG, insn, EncodingId::CNEG_CSNEG_64_condsel);
+                #else
+                                Instruction result(aliases ? Mnemonic::CNEG : Mnemonic::CSNEG, insn);
+                #endif
+                                DpregEncoding enc = {};
+                                enc.raw = insn;
+                                result.operands.push_back(Operand::gp(enc.cneg_csneg64condsel.Rd, true));
+                                result.operands.push_back(Operand::gp(enc.cneg_csneg64condsel.Rn, true));
+                                result.condition = static_cast<Condition>(enc.cneg_csneg64condsel.cond);
+                if (aliases) result.condition = static_cast<Condition>(static_cast<int8_t>(result.condition) ^ 1);
+                                return result;
+            }}
             #ifdef VEDA64_IR
-                        Instruction result(aliases ? Mnemonic::CNEG : Mnemonic::CSNEG, insn, EncodingId::CNEG_CSNEG_64_condsel);
+                        Instruction result(Mnemonic::CSNEG, insn, EncodingId::CSNEG_64_condsel);
             #else
-                        Instruction result(aliases ? Mnemonic::CNEG : Mnemonic::CSNEG, insn);
+                        Instruction result(Mnemonic::CSNEG, insn);
             #endif
                         DpregEncoding enc = {};
                         enc.raw = insn;
-                        result.operands.push_back(Operand::gp(enc.cneg_csneg64condsel.Rd, true));
-                        result.operands.push_back(Operand::gp(enc.cneg_csneg64condsel.Rn, true));
-                        result.condition = static_cast<Condition>(enc.cneg_csneg64condsel.cond);
-            if (aliases) result.condition = static_cast<Condition>(static_cast<int8_t>(result.condition) ^ 1);
+                        result.operands.push_back(Operand::gp(enc.csneg64condsel.Rd, true));
+                        result.operands.push_back(Operand::gp(enc.csneg64condsel.Rn, true));
+                        result.operands.push_back(Operand::gp(enc.csneg64condsel.Rm, true));
+                        result.condition = static_cast<Condition>(enc.csneg64condsel.cond);
                         return result;
         }
         default: break;

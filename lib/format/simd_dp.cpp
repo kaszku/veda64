@@ -41505,20 +41505,37 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn, bool aliases) {
                         result.operands.push_back(Operand::vec(enc.fdot_asimdsame2fp16fp32.Rm, _simd_arr));
                         return result;
         }
-        case 0x0EA01C00u: { // MOV_ORR_asimdsame_only
-            // Also matches: ORR_asimdsame_only (ORR)
+        case 0x0EA01C00u: { // ORR_asimdsame_only
+            // Also matches: MOV_ORR_asimdsame_only (ORR)
+            { SimdDpEncoding _enc = {}; _enc.raw = insn;
+            if (aliases && _enc.mov_orr_asimdsame_only.Rm == _enc.mov_orr_asimdsame_only.Rn) {
+                #ifdef VEDA64_IR
+                                Instruction result(aliases ? Mnemonic::MOV : Mnemonic::ORR, insn, EncodingId::MOV_ORR_asimdsame_only);
+                #else
+                                Instruction result(aliases ? Mnemonic::MOV : Mnemonic::ORR, insn);
+                #endif
+                                SimdDpEncoding enc = {};
+                                enc.raw = insn;
+                                bool is_64bit = false;
+                                Arrangement _simd_arr = enc.mov_orr_asimdsame_only.Q ? Arrangement::B16 : Arrangement::B8;
+                                result.operands.push_back(Operand::vec(enc.mov_orr_asimdsame_only.Rd, _simd_arr));
+                                result.operands.push_back(Operand::vec(enc.mov_orr_asimdsame_only.Rn, _simd_arr));
+                                result.operands.push_back(Operand::vec(enc.mov_orr_asimdsame_only.Rm, _simd_arr));
+                if (aliases && result.operands.size() >= 3) result.operands.pop_back();
+                                return result;
+            }}
             #ifdef VEDA64_IR
-                        Instruction result(aliases ? Mnemonic::MOV : Mnemonic::ORR, insn, EncodingId::MOV_ORR_asimdsame_only);
+                        Instruction result(Mnemonic::ORR, insn, EncodingId::ORR_asimdsame_only);
             #else
-                        Instruction result(aliases ? Mnemonic::MOV : Mnemonic::ORR, insn);
+                        Instruction result(Mnemonic::ORR, insn);
             #endif
                         SimdDpEncoding enc = {};
                         enc.raw = insn;
                         bool is_64bit = false;
-                        Arrangement _simd_arr = enc.mov_orr_asimdsame_only.Q ? Arrangement::B16 : Arrangement::B8;
-                        result.operands.push_back(Operand::vec(enc.mov_orr_asimdsame_only.Rd, _simd_arr));
-                        result.operands.push_back(Operand::vec(enc.mov_orr_asimdsame_only.Rn, _simd_arr));
-                        result.operands.push_back(Operand::vec(enc.mov_orr_asimdsame_only.Rm, _simd_arr));
+                        Arrangement _simd_arr = enc.orr_asimdsame_only.Q ? Arrangement::B16 : Arrangement::B8;
+                        result.operands.push_back(Operand::vec(enc.orr_asimdsame_only.Rd, _simd_arr));
+                        result.operands.push_back(Operand::vec(enc.orr_asimdsame_only.Rn, _simd_arr));
+                        result.operands.push_back(Operand::vec(enc.orr_asimdsame_only.Rm, _simd_arr));
                         return result;
         }
         case 0x0EA0EC00u: { // FMLSL_asimdsame_F

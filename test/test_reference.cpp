@@ -139,7 +139,7 @@ int main() {
     if (check_disasm(0xf9800c01, "prfm pldl1strm, [x0, #0x18]")) passed++; else failed++;
     if (check_disasm(0x4e209800, "cmeq v0.16b, v0.16b, #0")) passed++; else failed++;
     if (check_disasm(0x4e010c20, "dup v0.16b, w1")) passed++; else failed++;
-    if (check_disasm(0x4ea31c60, "mov v0.16b, v3.16b, v3.16b")) passed++; else failed++;
+    if (check_disasm(0x4ea31c60, "mov v0.16b, v3.16b")) passed++; else failed++;
     if (check_disasm(0x4e22bc00, "addp v0.16b, v0.16b, v2.16b")) passed++; else failed++;
     if (check_disasm(0x1a9f07e0, "cset w0, ne")) passed++; else failed++;
     if (check_disasm(0x5a802400, "cneg w0, w0, lo")) passed++; else failed++;

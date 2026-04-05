@@ -147,6 +147,11 @@ int main() {
     check_mnemonic(0xD503201Fu, "nop");
     // NOT 8B → MVN
     check_mnemonic(0x2E205800u, "mvn");
+    // ORR SIMD Rm==Rn → MOV (runtime alias)
+    check_mnemonic(0x4EA31C60u, "mov");  // ORR v0.16b, v3.16b, v3.16b → MOV v0.16b, v3.16b
+    // DSB → SSBB/PSSBB
+    check_mnemonic(0xD503309Fu, "ssbb");
+    check_mnemonic(0xD503349Fu, "pssbb");
 
     // === decode(insn, aliases=true) tests ===
     std::cout << "  Testing decode with aliases=true..." << std::endl;
@@ -499,6 +504,14 @@ int main() {
         assert(a->mnemonic == Mnemonic::NEG);
         std::cout << "    NEG from SUB: " << a->operands.size() << " ops" << std::endl;
         if (a->operands.size() == 2) passed++; else { std::cerr << "  XFAIL: NEG has " << a->operands.size() << " ops (expected 2)" << std::endl; failures++; }
+    }
+
+    // MOV from ORR SIMD (Rm==Rn): should have 2 operands (Vd, Vn)
+    {
+        auto a = decode(0x4EA31C60u, true);  // mov v0.16b, v3.16b
+        assert(a->mnemonic == Mnemonic::MOV);
+        std::cout << "    MOV from ORR SIMD: " << a->operands.size() << " ops" << std::endl;
+        if (a->operands.size() == 2) passed++; else { std::cerr << "  FAIL: MOV SIMD has " << a->operands.size() << " ops (expected 2)" << std::endl; failures++; }
     }
 
     // MUL from MADD: should have 3 operands (Rd, Rn, Rm), no Ra=XZR

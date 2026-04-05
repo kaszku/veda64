@@ -900,7 +900,7 @@ static AsmResult asm_a(const Parsed& p, uint64_t pc) {
             return { format::simd_dp::encode_and_asimdsame_only(static_cast<uint32_t>(p.ops[0].v), static_cast<uint32_t>(p.ops[1].v), static_cast<uint32_t>(p.ops[2].v), (p.ops[0].v2 & 1)), true, nullptr };
         }
         if (p.n >= 3 && p.ops[0].k == T_P && p.ops[1].k == T_P && p.ops[2].k == T_P) {
-            return { format::sve::encode_movz_p_p_p__and_p_p_pp_z(static_cast<uint32_t>(p.ops[0].v), static_cast<uint32_t>(p.ops[2].v), static_cast<uint32_t>(p.ops[1].v), static_cast<uint32_t>(p.ops[0].v)), true, nullptr };
+            return { format::sve::encode_movz_p_p_p__and_p_p_pp_z(static_cast<uint32_t>(p.ops[0].v), static_cast<uint32_t>(p.ops[2].v), static_cast<uint32_t>(p.ops[1].v), static_cast<uint32_t>(p.ops[1].v)), true, nullptr };
         }
         if (p.n >= 3 && p.ops[0].k == T_W && p.ops[1].k == T_W && p.ops[2].k == T_W) {
             return { format::dpreg::encode_and_32_log_shift(static_cast<uint32_t>(p.ops[0].v), static_cast<uint32_t>(p.ops[1].v), 0, static_cast<uint32_t>(p.ops[2].v), (p.n > 3 && p.ops[3].k == T_SHIFT ? p.ops[3].v2 : 0)), true, nullptr };
@@ -2097,18 +2097,18 @@ static AsmResult asm_c(const Parsed& p, uint64_t pc) {
     case 'i': {
         if (std::strcmp(p.mn, "cinc") == 0) {
         if (p.n >= 3 && p.ops[0].k == T_W && p.ops[1].k == T_W && p.ops[2].k == T_COND) {
-            return { format::dpreg::encode_cinc_csinc_32_condsel(static_cast<uint32_t>(p.ops[0].v), static_cast<uint32_t>(p.ops[1].v), (static_cast<uint32_t>(p.ops[2].v) ^ 1), static_cast<uint32_t>(p.ops[0].v)), true, nullptr };
+            return { format::dpreg::encode_cinc_csinc_32_condsel(static_cast<uint32_t>(p.ops[0].v), static_cast<uint32_t>(p.ops[1].v), (static_cast<uint32_t>(p.ops[2].v) ^ 1), static_cast<uint32_t>(p.ops[1].v)), true, nullptr };
         }
         if (p.n >= 3 && p.ops[0].k == T_X && p.ops[1].k == T_X && p.ops[2].k == T_COND) {
-            return { format::dpreg::encode_cinc_csinc_64_condsel(static_cast<uint32_t>(p.ops[0].v), static_cast<uint32_t>(p.ops[1].v), (static_cast<uint32_t>(p.ops[2].v) ^ 1), static_cast<uint32_t>(p.ops[0].v)), true, nullptr };
+            return { format::dpreg::encode_cinc_csinc_64_condsel(static_cast<uint32_t>(p.ops[0].v), static_cast<uint32_t>(p.ops[1].v), (static_cast<uint32_t>(p.ops[2].v) ^ 1), static_cast<uint32_t>(p.ops[1].v)), true, nullptr };
         }
         }
         if (std::strcmp(p.mn, "cinv") == 0) {
         if (p.n >= 3 && p.ops[0].k == T_W && p.ops[1].k == T_W && p.ops[2].k == T_COND) {
-            return { format::dpreg::encode_cinv_csinv_32_condsel(static_cast<uint32_t>(p.ops[0].v), static_cast<uint32_t>(p.ops[1].v), (static_cast<uint32_t>(p.ops[2].v) ^ 1), static_cast<uint32_t>(p.ops[0].v)), true, nullptr };
+            return { format::dpreg::encode_cinv_csinv_32_condsel(static_cast<uint32_t>(p.ops[0].v), static_cast<uint32_t>(p.ops[1].v), (static_cast<uint32_t>(p.ops[2].v) ^ 1), static_cast<uint32_t>(p.ops[1].v)), true, nullptr };
         }
         if (p.n >= 3 && p.ops[0].k == T_X && p.ops[1].k == T_X && p.ops[2].k == T_COND) {
-            return { format::dpreg::encode_cinv_csinv_64_condsel(static_cast<uint32_t>(p.ops[0].v), static_cast<uint32_t>(p.ops[1].v), (static_cast<uint32_t>(p.ops[2].v) ^ 1), static_cast<uint32_t>(p.ops[0].v)), true, nullptr };
+            return { format::dpreg::encode_cinv_csinv_64_condsel(static_cast<uint32_t>(p.ops[0].v), static_cast<uint32_t>(p.ops[1].v), (static_cast<uint32_t>(p.ops[2].v) ^ 1), static_cast<uint32_t>(p.ops[1].v)), true, nullptr };
         }
         }
         break;
@@ -2366,10 +2366,10 @@ static AsmResult asm_c(const Parsed& p, uint64_t pc) {
     case 'n': {
         if (std::strcmp(p.mn, "cneg") == 0) {
         if (p.n >= 3 && p.ops[0].k == T_W && p.ops[1].k == T_W && p.ops[2].k == T_COND) {
-            return { format::dpreg::encode_cneg_csneg_32_condsel(static_cast<uint32_t>(p.ops[0].v), static_cast<uint32_t>(p.ops[1].v), (static_cast<uint32_t>(p.ops[2].v) ^ 1), static_cast<uint32_t>(p.ops[0].v)), true, nullptr };
+            return { format::dpreg::encode_cneg_csneg_32_condsel(static_cast<uint32_t>(p.ops[0].v), static_cast<uint32_t>(p.ops[1].v), (static_cast<uint32_t>(p.ops[2].v) ^ 1), static_cast<uint32_t>(p.ops[1].v)), true, nullptr };
         }
         if (p.n >= 3 && p.ops[0].k == T_X && p.ops[1].k == T_X && p.ops[2].k == T_COND) {
-            return { format::dpreg::encode_cneg_csneg_64_condsel(static_cast<uint32_t>(p.ops[0].v), static_cast<uint32_t>(p.ops[1].v), (static_cast<uint32_t>(p.ops[2].v) ^ 1), static_cast<uint32_t>(p.ops[0].v)), true, nullptr };
+            return { format::dpreg::encode_cneg_csneg_64_condsel(static_cast<uint32_t>(p.ops[0].v), static_cast<uint32_t>(p.ops[1].v), (static_cast<uint32_t>(p.ops[2].v) ^ 1), static_cast<uint32_t>(p.ops[1].v)), true, nullptr };
         }
         }
         if (std::strcmp(p.mn, "cnot") == 0) {
@@ -2498,10 +2498,10 @@ static AsmResult asm_c(const Parsed& p, uint64_t pc) {
             return { format::dpreg::encode_csinc_64_condsel(static_cast<uint32_t>(p.ops[0].v), static_cast<uint32_t>(p.ops[1].v), static_cast<uint32_t>(p.ops[3].v), static_cast<uint32_t>(p.ops[2].v)), true, nullptr };
         }
         if (p.n >= 3 && p.ops[0].k == T_W && p.ops[1].k == T_W && p.ops[2].k == T_COND) {
-            return { format::dpreg::encode_cinc_csinc_32_condsel(static_cast<uint32_t>(p.ops[0].v), static_cast<uint32_t>(p.ops[1].v), (static_cast<uint32_t>(p.ops[2].v) ^ 1), static_cast<uint32_t>(p.ops[0].v)), true, nullptr };
+            return { format::dpreg::encode_cinc_csinc_32_condsel(static_cast<uint32_t>(p.ops[0].v), static_cast<uint32_t>(p.ops[1].v), (static_cast<uint32_t>(p.ops[2].v) ^ 1), static_cast<uint32_t>(p.ops[1].v)), true, nullptr };
         }
         if (p.n >= 3 && p.ops[0].k == T_X && p.ops[1].k == T_X && p.ops[2].k == T_COND) {
-            return { format::dpreg::encode_cinc_csinc_64_condsel(static_cast<uint32_t>(p.ops[0].v), static_cast<uint32_t>(p.ops[1].v), (static_cast<uint32_t>(p.ops[2].v) ^ 1), static_cast<uint32_t>(p.ops[0].v)), true, nullptr };
+            return { format::dpreg::encode_cinc_csinc_64_condsel(static_cast<uint32_t>(p.ops[0].v), static_cast<uint32_t>(p.ops[1].v), (static_cast<uint32_t>(p.ops[2].v) ^ 1), static_cast<uint32_t>(p.ops[1].v)), true, nullptr };
         }
         if (p.n >= 2 && p.ops[0].k == T_W && p.ops[1].k == T_COND) {
             return { format::dpreg::encode_cset_csinc_32_condsel(static_cast<uint32_t>(p.ops[0].v), (static_cast<uint32_t>(p.ops[1].v) ^ 1)), true, nullptr };
@@ -2518,10 +2518,10 @@ static AsmResult asm_c(const Parsed& p, uint64_t pc) {
             return { format::dpreg::encode_csinv_64_condsel(static_cast<uint32_t>(p.ops[0].v), static_cast<uint32_t>(p.ops[1].v), static_cast<uint32_t>(p.ops[3].v), static_cast<uint32_t>(p.ops[2].v)), true, nullptr };
         }
         if (p.n >= 3 && p.ops[0].k == T_W && p.ops[1].k == T_W && p.ops[2].k == T_COND) {
-            return { format::dpreg::encode_cinv_csinv_32_condsel(static_cast<uint32_t>(p.ops[0].v), static_cast<uint32_t>(p.ops[1].v), (static_cast<uint32_t>(p.ops[2].v) ^ 1), static_cast<uint32_t>(p.ops[0].v)), true, nullptr };
+            return { format::dpreg::encode_cinv_csinv_32_condsel(static_cast<uint32_t>(p.ops[0].v), static_cast<uint32_t>(p.ops[1].v), (static_cast<uint32_t>(p.ops[2].v) ^ 1), static_cast<uint32_t>(p.ops[1].v)), true, nullptr };
         }
         if (p.n >= 3 && p.ops[0].k == T_X && p.ops[1].k == T_X && p.ops[2].k == T_COND) {
-            return { format::dpreg::encode_cinv_csinv_64_condsel(static_cast<uint32_t>(p.ops[0].v), static_cast<uint32_t>(p.ops[1].v), (static_cast<uint32_t>(p.ops[2].v) ^ 1), static_cast<uint32_t>(p.ops[0].v)), true, nullptr };
+            return { format::dpreg::encode_cinv_csinv_64_condsel(static_cast<uint32_t>(p.ops[0].v), static_cast<uint32_t>(p.ops[1].v), (static_cast<uint32_t>(p.ops[2].v) ^ 1), static_cast<uint32_t>(p.ops[1].v)), true, nullptr };
         }
         if (p.n >= 2 && p.ops[0].k == T_W && p.ops[1].k == T_COND) {
             return { format::dpreg::encode_csetm_csinv_32_condsel(static_cast<uint32_t>(p.ops[0].v), (static_cast<uint32_t>(p.ops[1].v) ^ 1)), true, nullptr };
@@ -2538,10 +2538,10 @@ static AsmResult asm_c(const Parsed& p, uint64_t pc) {
             return { format::dpreg::encode_csneg_64_condsel(static_cast<uint32_t>(p.ops[0].v), static_cast<uint32_t>(p.ops[1].v), static_cast<uint32_t>(p.ops[3].v), static_cast<uint32_t>(p.ops[2].v)), true, nullptr };
         }
         if (p.n >= 3 && p.ops[0].k == T_W && p.ops[1].k == T_W && p.ops[2].k == T_COND) {
-            return { format::dpreg::encode_cneg_csneg_32_condsel(static_cast<uint32_t>(p.ops[0].v), static_cast<uint32_t>(p.ops[1].v), (static_cast<uint32_t>(p.ops[2].v) ^ 1), static_cast<uint32_t>(p.ops[0].v)), true, nullptr };
+            return { format::dpreg::encode_cneg_csneg_32_condsel(static_cast<uint32_t>(p.ops[0].v), static_cast<uint32_t>(p.ops[1].v), (static_cast<uint32_t>(p.ops[2].v) ^ 1), static_cast<uint32_t>(p.ops[1].v)), true, nullptr };
         }
         if (p.n >= 3 && p.ops[0].k == T_X && p.ops[1].k == T_X && p.ops[2].k == T_COND) {
-            return { format::dpreg::encode_cneg_csneg_64_condsel(static_cast<uint32_t>(p.ops[0].v), static_cast<uint32_t>(p.ops[1].v), (static_cast<uint32_t>(p.ops[2].v) ^ 1), static_cast<uint32_t>(p.ops[0].v)), true, nullptr };
+            return { format::dpreg::encode_cneg_csneg_64_condsel(static_cast<uint32_t>(p.ops[0].v), static_cast<uint32_t>(p.ops[1].v), (static_cast<uint32_t>(p.ops[2].v) ^ 1), static_cast<uint32_t>(p.ops[1].v)), true, nullptr };
         }
         }
         break;
@@ -2839,10 +2839,10 @@ static AsmResult asm_e(const Parsed& p, uint64_t pc) {
             return { format::dpimm::encode_extr_64_extract(static_cast<uint32_t>(p.ops[0].v), static_cast<uint32_t>(p.ops[1].v), static_cast<uint32_t>(p.ops[3].v), static_cast<uint32_t>(p.ops[2].v)), true, nullptr };
         }
         if (p.n >= 3 && p.ops[0].k == T_W && p.ops[1].k == T_W && p.ops[2].k == T_SHIFT) {
-            return { format::dpimm::encode_ror_extr_32_extract(static_cast<uint32_t>(p.ops[0].v), static_cast<uint32_t>(p.ops[1].v), 0, static_cast<uint32_t>(p.ops[0].v)), true, nullptr };
+            return { format::dpimm::encode_ror_extr_32_extract(static_cast<uint32_t>(p.ops[0].v), static_cast<uint32_t>(p.ops[1].v), 0, static_cast<uint32_t>(p.ops[1].v)), true, nullptr };
         }
         if (p.n >= 3 && p.ops[0].k == T_X && p.ops[1].k == T_X && p.ops[2].k == T_SHIFT) {
-            return { format::dpimm::encode_ror_extr_64_extract(static_cast<uint32_t>(p.ops[0].v), static_cast<uint32_t>(p.ops[1].v), 0, static_cast<uint32_t>(p.ops[0].v)), true, nullptr };
+            return { format::dpimm::encode_ror_extr_64_extract(static_cast<uint32_t>(p.ops[0].v), static_cast<uint32_t>(p.ops[1].v), 0, static_cast<uint32_t>(p.ops[1].v)), true, nullptr };
         }
         }
         break;
@@ -8248,7 +8248,7 @@ static AsmResult asm_m(const Parsed& p, uint64_t pc) {
             return { format::sve::encode_movm_p_p_p__sel_p_p_pp_(static_cast<uint32_t>(p.ops[0].v), static_cast<uint32_t>(p.ops[2].v), static_cast<uint32_t>(p.ops[1].v), static_cast<uint32_t>(p.ops[0].v)), true, nullptr };
         }
         if (p.n >= 3 && p.ops[0].k == T_P && p.ops[1].k == T_P && p.ops[2].k == T_P) {
-            return { format::sve::encode_movz_p_p_p__and_p_p_pp_z(static_cast<uint32_t>(p.ops[0].v), static_cast<uint32_t>(p.ops[2].v), static_cast<uint32_t>(p.ops[1].v), static_cast<uint32_t>(p.ops[0].v)), true, nullptr };
+            return { format::sve::encode_movz_p_p_p__and_p_p_pp_z(static_cast<uint32_t>(p.ops[0].v), static_cast<uint32_t>(p.ops[2].v), static_cast<uint32_t>(p.ops[1].v), static_cast<uint32_t>(p.ops[1].v)), true, nullptr };
         }
         if (p.n >= 3 && p.ops[0].k == T_Z && p.ops[1].k == T_IMM && p.ops[2].k == T_MEM) {
             return { format::sme::encode_mov_mz2_za_h1_mova_mz2_za_h1(static_cast<uint32_t>(p.ops[1].v), 0, 0, static_cast<uint32_t>(p.ops[0].v), 0), true, nullptr };
@@ -8305,7 +8305,7 @@ static AsmResult asm_m(const Parsed& p, uint64_t pc) {
             return { format::sve::encode_mov_z_r__dup_z_r_(static_cast<uint32_t>(p.ops[0].v), static_cast<uint32_t>(p.ops[1].v), 0), true, nullptr };
         }
         if (p.n >= 2 && p.ops[0].k == T_Z && p.ops[1].k == T_Z) {
-            return { format::sve::encode_mov_z_z__orr_z_zz_(static_cast<uint32_t>(p.ops[0].v), static_cast<uint32_t>(p.ops[1].v), static_cast<uint32_t>(p.ops[0].v)), true, nullptr };
+            return { format::sve::encode_mov_z_z__orr_z_zz_(static_cast<uint32_t>(p.ops[0].v), static_cast<uint32_t>(p.ops[1].v), static_cast<uint32_t>(p.ops[1].v)), true, nullptr };
         }
         if (p.n >= 2 && p.ops[0].k == T_IMM && p.ops[1].k == T_MEM) {
             return { format::sme::encode_mov_mz2_za_b1_mova_mz2_za_b1(static_cast<uint32_t>(p.ops[1].v), 0, (p.n > 0 ? static_cast<uint32_t>(p.ops[0].v) : 0), 0), true, nullptr };
@@ -8317,7 +8317,7 @@ static AsmResult asm_m(const Parsed& p, uint64_t pc) {
             return { format::dpimm::encode_mov_orr_64_log_imm(static_cast<uint32_t>(p.ops[0].v), static_cast<uint32_t>(p.ops[1].v), 0, 0), true, nullptr };
         }
         if (p.n >= 2 && p.ops[0].k == T_V && p.ops[1].k == T_V) {
-            return { format::simd_dp::encode_mov_orr_asimdsame_only(static_cast<uint32_t>(p.ops[0].v), static_cast<uint32_t>(p.ops[1].v), static_cast<uint32_t>(p.ops[0].v), (p.ops[0].v2 & 1)), true, nullptr };
+            return { format::simd_dp::encode_mov_orr_asimdsame_only(static_cast<uint32_t>(p.ops[0].v), static_cast<uint32_t>(p.ops[1].v), static_cast<uint32_t>(p.ops[1].v), (p.ops[0].v2 & 1)), true, nullptr };
         }
         if (p.n >= 2 && p.ops[0].k == T_P && p.ops[1].k == T_P) {
             return { format::sve::encode_mov_p_p__orr_p_p_pp_z(static_cast<uint32_t>(p.ops[0].v), static_cast<uint32_t>(p.ops[1].v), static_cast<uint32_t>(p.ops[0].v), static_cast<uint32_t>(p.ops[1].v)), true, nullptr };
@@ -8991,13 +8991,13 @@ static AsmResult asm_o(const Parsed& p, uint64_t pc) {
             return { format::dpimm::encode_mov_orr_32_log_imm(static_cast<uint32_t>(p.ops[0].v), static_cast<uint32_t>(p.ops[1].v), 0), true, nullptr };
         }
         if (p.n >= 2 && p.ops[0].k == T_Z && p.ops[1].k == T_Z) {
-            return { format::sve::encode_mov_z_z__orr_z_zz_(static_cast<uint32_t>(p.ops[0].v), static_cast<uint32_t>(p.ops[1].v), static_cast<uint32_t>(p.ops[0].v)), true, nullptr };
+            return { format::sve::encode_mov_z_z__orr_z_zz_(static_cast<uint32_t>(p.ops[0].v), static_cast<uint32_t>(p.ops[1].v), static_cast<uint32_t>(p.ops[1].v)), true, nullptr };
         }
         if (p.n >= 2 && p.ops[0].k == T_X && p.ops[1].k == T_IMM) {
             return { format::dpimm::encode_mov_orr_64_log_imm(static_cast<uint32_t>(p.ops[0].v), static_cast<uint32_t>(p.ops[1].v), 0, 0), true, nullptr };
         }
         if (p.n >= 2 && p.ops[0].k == T_V && p.ops[1].k == T_V) {
-            return { format::simd_dp::encode_mov_orr_asimdsame_only(static_cast<uint32_t>(p.ops[0].v), static_cast<uint32_t>(p.ops[1].v), static_cast<uint32_t>(p.ops[0].v), (p.ops[0].v2 & 1)), true, nullptr };
+            return { format::simd_dp::encode_mov_orr_asimdsame_only(static_cast<uint32_t>(p.ops[0].v), static_cast<uint32_t>(p.ops[1].v), static_cast<uint32_t>(p.ops[1].v), (p.ops[0].v2 & 1)), true, nullptr };
         }
         if (p.n >= 2 && p.ops[0].k == T_P && p.ops[1].k == T_P) {
             return { format::sve::encode_mov_p_p__orr_p_p_pp_z(static_cast<uint32_t>(p.ops[0].v), static_cast<uint32_t>(p.ops[1].v), static_cast<uint32_t>(p.ops[0].v), static_cast<uint32_t>(p.ops[1].v)), true, nullptr };
@@ -9475,10 +9475,10 @@ static AsmResult asm_r(const Parsed& p, uint64_t pc) {
             return { format::dpreg::encode_ror_rorv_64_dp_2src(static_cast<uint32_t>(p.ops[0].v), static_cast<uint32_t>(p.ops[1].v), static_cast<uint32_t>(p.ops[2].v)), true, nullptr };
         }
         if (p.n >= 3 && p.ops[0].k == T_W && p.ops[1].k == T_W && p.ops[2].k == T_SHIFT) {
-            return { format::dpimm::encode_ror_extr_32_extract(static_cast<uint32_t>(p.ops[0].v), static_cast<uint32_t>(p.ops[1].v), 0, static_cast<uint32_t>(p.ops[0].v)), true, nullptr };
+            return { format::dpimm::encode_ror_extr_32_extract(static_cast<uint32_t>(p.ops[0].v), static_cast<uint32_t>(p.ops[1].v), 0, static_cast<uint32_t>(p.ops[1].v)), true, nullptr };
         }
         if (p.n >= 3 && p.ops[0].k == T_X && p.ops[1].k == T_X && p.ops[2].k == T_SHIFT) {
-            return { format::dpimm::encode_ror_extr_64_extract(static_cast<uint32_t>(p.ops[0].v), static_cast<uint32_t>(p.ops[1].v), 0, static_cast<uint32_t>(p.ops[0].v)), true, nullptr };
+            return { format::dpimm::encode_ror_extr_64_extract(static_cast<uint32_t>(p.ops[0].v), static_cast<uint32_t>(p.ops[1].v), 0, static_cast<uint32_t>(p.ops[1].v)), true, nullptr };
         }
         }
         if (std::strcmp(p.mn, "rorv") == 0) {
