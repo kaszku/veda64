@@ -3,7 +3,9 @@
 // Auto-generated — do not edit
 
 // Control flow analysis (branch following) example
-// Build with: -DVEDA64_STRINGS=ON
+// Build with: -DVEDA64_STRINGS=ON -DVEDA64_HOOK=ON
+
+#ifdef VEDA64_HOOK
 
 #include "veda64.hpp"
 #include <veda64/branch_follow.hpp>
@@ -75,3 +77,13 @@ int main() {
     std::cout << "Done!" << std::endl;
     return 0;
 }
+
+#else // !VEDA64_HOOK
+
+#include <cstdio>
+int main() {
+    printf("Branch follow example skipped (VEDA64_HOOK not set)\n");
+    return 0;
+}
+
+#endif

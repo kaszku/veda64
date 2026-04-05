@@ -2,6 +2,8 @@
 // Copyright (c) 2026 Kevin Szkudlapski
 // Auto-generated — do not edit
 
+#ifdef VEDA64_HOOK
+
 #include "veda64.hpp"
 #include <veda64/relocation.hpp>
 #include <iostream>
@@ -80,3 +82,13 @@ int main() {
     std::cout << passed << " / " << (passed + failures) << " relocation tests passed" << std::endl;
     return failures ? 1 : 0;
 }
+
+#else // !VEDA64_HOOK
+
+#include <cstdio>
+int main() {
+    printf("Relocation tests skipped (VEDA64_HOOK not set)\n");
+    return 0;
+}
+
+#endif

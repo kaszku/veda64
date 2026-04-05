@@ -80,8 +80,8 @@ set_target_properties(veda64 PROPERTIES FOLDER "lib")
 source_group(TREE "${CMAKE_CURRENT_SOURCE_DIR}/lib" PREFIX "Source Files" FILES ${VEDA64_SOURCES})
 source_group(TREE "${CMAKE_CURRENT_SOURCE_DIR}/include" PREFIX "Header Files" FILES ${VEDA64_HEADERS})
 
-# Link ntdll for NT syscalls on Windows (only when hooks are enabled)
-if(WIN32 AND VEDA64_HOOK)
+# Link ntdll for NT syscalls on Windows (hooks and codegen use NT memory APIs)
+if(WIN32 AND (VEDA64_HOOK OR VEDA64_CODEGEN))
     target_link_libraries(veda64 PUBLIC ntdll)
 endif()
 

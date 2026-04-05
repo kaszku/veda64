@@ -4,6 +4,8 @@
 
 #pragma once
 
+#ifdef VEDA64_HOOK
+
 #include <cstdint>
 #include <cstddef>
 
@@ -37,3 +39,5 @@ bool relocate_instruction(
 );
 
 } // namespace veda64
+
+#endif // VEDA64_HOOK

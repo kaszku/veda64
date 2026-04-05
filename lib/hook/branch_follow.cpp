@@ -2,6 +2,8 @@
 // Copyright (c) 2026 Kevin Szkudlapski
 // Auto-generated — do not edit
 
+#ifdef VEDA64_HOOK
+
 #include <veda64/branch_follow.hpp>
 #include "veda64.hpp"
 #include <unordered_set>
@@ -117,3 +119,5 @@ std::vector<BasicBlock> walk_cfg(uint64_t entry,
 }
 
 } // namespace veda64
+
+#endif // VEDA64_HOOK

@@ -2,6 +2,8 @@
 // Copyright (c) 2026 Kevin Szkudlapski
 // Auto-generated — do not edit
 
+#ifdef VEDA64_HOOK
+
 #include <veda64/relocation.hpp>
 #include "veda64.hpp"
 
@@ -125,3 +127,5 @@ bool relocate_instruction(uint32_t insn, uint64_t old_pc, uint64_t new_pc,
 }
 
 } // namespace veda64
+
+#endif // VEDA64_HOOK

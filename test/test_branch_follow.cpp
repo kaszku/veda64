@@ -2,6 +2,8 @@
 // Copyright (c) 2026 Kevin Szkudlapski
 // Auto-generated — do not edit
 
+#ifdef VEDA64_HOOK
+
 #include "veda64.hpp"
 #include <veda64/branch_follow.hpp>
 #include <iostream>
@@ -129,3 +131,13 @@ int main() {
     std::cout << passed << " / " << (passed + failures) << " branch following tests passed" << std::endl;
     return failures ? 1 : 0;
 }
+
+#else // !VEDA64_HOOK
+
+#include <cstdio>
+int main() {
+    printf("Branch follow tests skipped (VEDA64_HOOK not set)\n");
+    return 0;
+}
+
+#endif

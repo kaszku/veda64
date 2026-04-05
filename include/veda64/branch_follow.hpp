@@ -4,6 +4,8 @@
 
 #pragma once
 
+#ifdef VEDA64_HOOK
+
 #include <cstdint>
 #include <cstddef>
 #include <vector>
@@ -59,3 +61,5 @@ std::vector<BasicBlock> walk_cfg(
     size_t max_insns_per_block = 1024);
 
 } // namespace veda64
+
+#endif // VEDA64_HOOK
