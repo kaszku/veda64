@@ -730,28 +730,51 @@ ctest -V
 - **Total encoding variants**: 4,623
 - **Unique instruction patterns**: 4,471 (96.7%)
 - **Architectural aliases**: 152 (3.3%)
-- **Duplicate resolution**: 67.6% reduction from initial parsing
+- **Architectural aliases**: resolved via `decode(insn, true)`
 
-## Quality Assurance
+## Alias-Aware Decoding
 
-### Duplicate Pattern Resolution
+The decoder supports alias-aware mode via `decode(insn, true)`, returning the preferred ARM mnemonic and adjusted operands:
 
-The library implements sophisticated pattern matching to distinguish between instruction variants:
+```cpp
+auto raw   = veda64::decode(0x910003FD);        // ADD X29, SP, #0
+auto alias = veda64::decode(0x910003FD, true);   // MOV X29, SP (2 operands, no #0)
+```
 
-- **Bitdiffs parsing**: Handles simple, compound, and partial bit patterns from ARM XML
-- **Field inference**: Automatically infers distinguishing bits from encoding names
-- **Priority system**: Returns canonical/preferred disassembly forms for aliases
-- **67.6% duplicate reduction**: From 469 to 152 legitimate aliases
+### Compile-Time Aliases (Unconditional)
 
-### Known Aliases
+When an encoding always represents an alias, the decoder returns the alias mnemonic directly:
 
-The decoder correctly handles ARM architectural aliases where multiple mnemonics share the same encoding:
+- **Arithmetic**: CMP/SUBS, CMN/ADDS, NEG/SUB, NEGS/SUBS, NGC/SBC, NGCS/SBCS
+- **Logical**: TST/ANDS, MVN/ORN, MOV/ORR (register), MOV/ADD (SP)
+- **Move**: MOV/MOVZ, MOV/MOVN (with immediate computation), MOVS/ORR
+- **Multiply**: MUL/MADD, MNEG/MSUB, SMULL/SMADDL, UMULL/UMADDL, SMNEGL/SMSUBL, UMNEGL/UMSUBL
+- **Shift (register)**: LSL/LSLV, LSR/LSRV, ASR/ASRV, ROR/RORV
+- **Shift (immediate)**: LSL/UBFM, LSR/UBFM, ASR/SBFM
+- **Extend**: SXTB/SBFM, SXTH/SBFM, SXTW/SBFM, UXTB/UBFM, UXTH/UBFM
+- **Bitfield**: BFI/BFM, BFXIL/BFM, BFC/BFM, SBFIZ/SBFM, SBFX/SBFM, UBFIZ/UBFM, UBFX/UBFM (with lsb/width computation)
+- **Conditional**: CSET/CSINC, CSETM/CSINV (with condition inversion)
+- **Barriers**: SSBB/DSB, PSSBB/DSB
+- **SIMD**: MVN/NOT
 
-- **Shift operations**: ASR/ASRV, LSL/LSLV, LSR/LSRV, ROR/RORV
-- **Bitfield operations**: BFC/BFM, BFI/BFM, BFXIL/BFM
-- **Logical operations**: TST/ANDS, MVN/ORN
-- **Arithmetic operations**: CMP/SUBS, CMN/ADDS, NEG/SUB
-- **Move operations**: MOV/ORR, MOV/ADD
+### Runtime Aliases (Conditional)
+
+Some aliases apply only when specific fields match at decode time:
+
+- **CINC/CSINC, CINV/CSINV, CNEG/CSNEG**: when `Rn == Rm` (with condition inversion)
+- **MOV/ORR (SIMD vector)**: when `Rm == Rn` (operand reduced from 3 to 2)
+- **ROR/EXTR**: when `Rn == Rm`
+- **MOV/ORR (SVE vector)**: when `Zm == Zn`
+- **MOV/AND (SVE predicate)**: when `Pm == Pg`
+
+### Operand Adjustment
+
+Alias decoding also transforms operands to match the alias form:
+- **MOV from MOVZ/MOVN**: immediate shifted and/or inverted to final value
+- **BFI/SBFIZ/UBFIZ**: `lsb = (regsize - immr) % regsize`, `width = imms + 1`
+- **BFXIL/SBFX/UBFX**: `lsb = immr`, `width = imms - immr + 1`
+- **CSET/CSETM/CINC/CINV/CNEG**: condition XOR'd to invert
+- **MOV SIMD (ORR Rm==Rn)**: duplicate operand removed
 
 ## Python Bindings
 
