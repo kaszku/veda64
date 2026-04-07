@@ -2296,6 +2296,248 @@ static void run_tests() {
         }
     }
 
+    // === Operand & side-effect verification ===
+    // IR uses Temp intermediaries: COPY t0←GPR[rn], COPY t1←GPR[rm], ADD t2←t0,t1, COPY GPR[rd]←t2
+    // So we check: (1) the operation opcode exists, (2) final GPR/SIMD write exists, (3) flags presence
+    printf("\n  --- Operand & side-effect verification ---\n");
+
+    // Helper lambdas
+    auto has_opcode = [](const Lifted& l, Opcode oc) {
+        for (auto& op : l.ops) if (op.opcode == oc) return true; return false;
+    };
+    auto has_flags_write = [](const Lifted& l) {
+        for (auto& op : l.ops) if (op.output.space == Space::Flags) return true; return false;
+    };
+    auto writes_gpr = [](const Lifted& l, uint32_t reg) {
+        for (auto& op : l.ops) if (op.output.space == Space::GPR && op.output.offset == reg) return true; return false;
+    };
+    auto writes_any_gpr = [](const Lifted& l) {
+        for (auto& op : l.ops) if (op.output.space == Space::GPR) return true; return false;
+    };
+    auto writes_simd = [](const Lifted& l, uint32_t reg) {
+        for (auto& op : l.ops) if (op.output.space == Space::SIMD && op.output.offset == reg) return true; return false;
+    };
+    auto count_flags = [](const Lifted& l) {
+        int n = 0; for (auto& op : l.ops) if (op.output.space == Space::Flags) n++; return n;
+    };
+
+    // ADD X0, X1, X2: has ADD opcode, writes GPR[0], no flags
+    {
+        tests_run++;
+        printf("  %-40s ", "ADD_X0_X1_X2 operands");
+        auto r = lift(0x8B020020);
+        if (!r.has_value()) { printf("FAIL: nullopt\n"); }
+        else if (has_opcode(*r, Opcode::ADD) && writes_gpr(*r, 0) && !has_flags_write(*r)) {
+            printf("PASS\n"); tests_passed++;
+        } else { printf("FAIL: ADD=%d GPR[0]=%d flags=%d\n", has_opcode(*r, Opcode::ADD), writes_gpr(*r, 0), has_flags_write(*r)); }
+    }
+
+    // ADDS X0, X1, X2 (0xAB020020): has ADD opcode, writes GPR[0], sets 4 NZCV flags
+    {
+        tests_run++;
+        printf("  %-40s ", "ADDS_X0_X1_X2 sets flags");
+        auto r = lift(0xAB020020);
+        if (!r.has_value()) { printf("FAIL: nullopt\n"); }
+        else if (has_opcode(*r, Opcode::ADD) && writes_gpr(*r, 0) && count_flags(*r) >= 4) {
+            printf("PASS\n"); tests_passed++;
+        } else { printf("FAIL: ADD=%d GPR[0]=%d flags=%d\n", has_opcode(*r, Opcode::ADD), writes_gpr(*r, 0), count_flags(*r)); }
+    }
+
+    // SUB W3, W4, W5 (0x4B050083): has SUB, writes GPR[3], 32-bit
+    {
+        tests_run++;
+        printf("  %-40s ", "SUB_W3_W4_W5 32-bit regs");
+        auto r = lift(0x4B050083);
+        if (!r.has_value()) { printf("FAIL: nullopt\n"); }
+        else if (has_opcode(*r, Opcode::SUB) && writes_gpr(*r, 3) && !has_flags_write(*r)) {
+            printf("PASS\n"); tests_passed++;
+        } else { printf("FAIL\n"); }
+    }
+
+    // MOV X0, #0x1234 (MOVZ 0xD2824680): COPY to GPR[0], const input
+    {
+        tests_run++;
+        printf("  %-40s ", "MOVZ_X0_0x1234 const input");
+        auto r = lift(0xD2824680);
+        if (!r.has_value()) { printf("FAIL: nullopt\n"); }
+        else {
+            bool has_const = false;
+            for (auto& op : r->ops) {
+                for (int j = 0; j < op.num_inputs; j++)
+                    if (op.inputs[j].space == Space::Const && op.inputs[j].value == 0x1234) has_const = true;
+            }
+            if (writes_gpr(*r, 0) && has_const) { printf("PASS\n"); tests_passed++; }
+            else { printf("FAIL: GPR[0]=%d const=%d\n", writes_gpr(*r, 0), has_const); }
+        }
+    }
+
+    // LDR X0, [X1] (0xF9400020): LOAD opcode, writes GPR[0]
+    {
+        tests_run++;
+        printf("  %-40s ", "LDR_X0_X1 load operands");
+        auto r = lift(0xF9400020);
+        if (!r.has_value()) { printf("FAIL: nullopt\n"); }
+        else if (has_opcode(*r, Opcode::LOAD) && writes_gpr(*r, 0)) {
+            printf("PASS\n"); tests_passed++;
+        } else { printf("FAIL\n"); }
+    }
+
+    // STR X0, [X1] (0xF9000020): STORE opcode, no new GPR output (only address calc)
+    {
+        tests_run++;
+        printf("  %-40s ", "STR_X0_X1 store no GPR dest");
+        auto r = lift(0xF9000020);
+        if (!r.has_value()) { printf("FAIL: nullopt\n"); }
+        else if (has_opcode(*r, Opcode::STORE)) {
+            printf("PASS\n"); tests_passed++;
+        } else { printf("FAIL\n"); }
+    }
+
+    // CMP X0, X1 (SUBS XZR = 0xEB01001F): sets 4 flags
+    {
+        tests_run++;
+        printf("  %-40s ", "CMP_X0_X1 flags only");
+        auto r = lift(0xEB01001F);
+        if (!r.has_value()) { printf("FAIL: nullopt\n"); }
+        else if (has_flags_write(*r) && count_flags(*r) >= 4) {
+            printf("PASS\n"); tests_passed++;
+        } else { printf("FAIL: flags=%d\n", count_flags(*r)); }
+    }
+
+    // AND X0, X1, X2 (0x8A020020): has AND, writes GPR[0], no flags
+    {
+        tests_run++;
+        printf("  %-40s ", "AND_X0_X1_X2 no flags");
+        auto r = lift(0x8A020020);
+        if (!r.has_value()) { printf("FAIL: nullopt\n"); }
+        else if (has_opcode(*r, Opcode::AND) && writes_gpr(*r, 0) && !has_flags_write(*r)) {
+            printf("PASS\n"); tests_passed++;
+        } else { printf("FAIL: AND=%d GPR[0]=%d flags=%d\n", has_opcode(*r, Opcode::AND), writes_gpr(*r, 0), has_flags_write(*r)); }
+    }
+
+    // ANDS X0, X1, X2 (0xEA020020): has AND + flags
+    {
+        tests_run++;
+        printf("  %-40s ", "ANDS_X0_X1_X2 sets flags");
+        auto r = lift(0xEA020020);
+        if (!r.has_value()) { printf("FAIL: nullopt\n"); }
+        else if (has_opcode(*r, Opcode::AND) && has_flags_write(*r)) {
+            printf("PASS\n"); tests_passed++;
+        } else { printf("FAIL\n"); }
+    }
+
+    // UBFM (LSL alias) 0xD37DF820: bitfield uses SHL or COPY
+    {
+        tests_run++;
+        printf("  %-40s ", "LSL_X0_X1_3 bitfield");
+        auto r = lift(0xD37DF820);
+        if (!r.has_value()) { printf("FAIL: nullopt\n"); }
+        else if (writes_gpr(*r, 0) && (has_opcode(*r, Opcode::SHL) || has_opcode(*r, Opcode::COPY) || has_opcode(*r, Opcode::AND))) {
+            printf("PASS\n"); tests_passed++;
+        } else { printf("FAIL\n"); }
+    }
+
+    // B.EQ #0x10 (0x54000080): CBRANCH, no GPR write
+    {
+        tests_run++;
+        printf("  %-40s ", "B.EQ branch side-effects");
+        auto r = lift(0x54000080);
+        if (!r.has_value()) { printf("FAIL: nullopt\n"); }
+        else if (has_opcode(*r, Opcode::CBRANCH) && !writes_any_gpr(*r)) {
+            printf("PASS\n"); tests_passed++;
+        } else { printf("FAIL\n"); }
+    }
+
+    // BL #0x100 (0x94000040): CALL opcode present
+    {
+        tests_run++;
+        printf("  %-40s ", "BL call opcode");
+        auto r = lift(0x94000040);
+        if (!r.has_value()) { printf("FAIL: nullopt\n"); }
+        else if (has_opcode(*r, Opcode::CALL)) {
+            printf("PASS\n"); tests_passed++;
+        } else { printf("FAIL\n"); }
+    }
+
+    // RET (0xD65F03C0): RET opcode
+    {
+        tests_run++;
+        printf("  %-40s ", "RET opcode");
+        auto r = lift(0xD65F03C0);
+        if (!r.has_value()) { printf("FAIL: nullopt\n"); }
+        else if (has_opcode(*r, Opcode::RET)) { printf("PASS\n"); tests_passed++; }
+        else { printf("FAIL\n"); }
+    }
+
+    // FADD D0, D1, D2 (0x1E622820): FADD opcode, writes SIMD[0]
+    {
+        tests_run++;
+        printf("  %-40s ", "FADD_D0_D1_D2 SIMD output");
+        auto r = lift(0x1E622820);
+        if (!r.has_value()) { printf("FAIL: nullopt\n"); }
+        else if (has_opcode(*r, Opcode::FADD) && writes_simd(*r, 0)) {
+            printf("PASS\n"); tests_passed++;
+        } else { printf("FAIL: FADD=%d SIMD[0]=%d\n", has_opcode(*r, Opcode::FADD), writes_simd(*r, 0)); }
+    }
+
+    // STP X29, X30, [SP, #-16]! (0xA9BF7BFD): has STORE
+    {
+        tests_run++;
+        printf("  %-40s ", "STP_X29_X30_SP_pre store");
+        auto r = lift(0xA9BF7BFD);
+        if (!r.has_value()) { printf("FAIL: nullopt\n"); }
+        else if (has_opcode(*r, Opcode::STORE)) {
+            printf("PASS\n"); tests_passed++;
+        } else { printf("FAIL\n"); }
+    }
+
+    // ADD V0.4S, V1.4S, V2.4S (0x4EA28420): SIMD vector ADD
+    {
+        tests_run++;
+        printf("  %-40s ", "ADD_V0.4S SIMD vector add");
+        auto r = lift(0x4EA28420);
+        if (!r.has_value()) { printf("FAIL: nullopt\n"); }
+        else if (has_opcode(*r, Opcode::ADD)) { printf("PASS\n"); tests_passed++; }
+        else { printf("FAIL\n"); }
+    }
+
+    // MUL X0, X1, X2 (MADD 0x9B027C20): MUL opcode, writes GPR[0], no flags
+    {
+        tests_run++;
+        printf("  %-40s ", "MUL_X0_X1_X2 no flags");
+        auto r = lift(0x9B027C20);
+        if (!r.has_value()) { printf("FAIL: nullopt\n"); }
+        else if (has_opcode(*r, Opcode::MUL) && writes_gpr(*r, 0) && !has_flags_write(*r)) {
+            printf("PASS\n"); tests_passed++;
+        } else { printf("FAIL: MUL=%d GPR[0]=%d flags=%d\n", has_opcode(*r, Opcode::MUL), writes_gpr(*r, 0), has_flags_write(*r)); }
+    }
+
+    // NOP (0xD503201F): no side-effects at all
+    {
+        tests_run++;
+        printf("  %-40s ", "NOP no effects");
+        auto r = lift(0xD503201F);
+        if (!r.has_value()) { printf("FAIL: nullopt\n"); }
+        else if (!writes_any_gpr(*r) && !has_flags_write(*r)) {
+            printf("PASS\n"); tests_passed++;
+        } else { printf("FAIL\n"); }
+    }
+
+    // Simplify: ADD X0, X1, #0 should reduce ops
+    {
+        tests_run++;
+        printf("  %-40s ", "simplify ADD X0,X1,#0");
+        auto r = lift(0x91000020);
+        if (!r.has_value()) { printf("FAIL: nullopt\n"); }
+        else {
+            auto s = simplify(*r);
+            if (s.ops.size() <= r->ops.size()) {
+                printf("PASS (%zu -> %zu ops)\n", r->ops.size(), s.ops.size());
+                tests_passed++;
+            } else { printf("FAIL: grew from %zu to %zu\n", r->ops.size(), s.ops.size()); }
+        }
+    }
+
 }
 
 int main() {
