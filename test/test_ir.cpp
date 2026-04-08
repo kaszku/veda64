@@ -2538,6 +2538,47 @@ static void run_tests() {
         }
     }
 
+    // 32-bit W register write zero-extends to 64-bit X register
+    {
+        tests_run++;
+        printf("  %-40s ", "W_reg_zero_extends_to_X");
+        // ADD W0, W1, W2 (0x0B020020): 32-bit op should ZEXT result to 64-bit GPR
+        auto r = lift(0x0B020020);
+        if (!r.has_value()) { printf("FAIL: nullopt\n"); }
+        else {
+            bool has_zext = false;
+            bool writes_gpr_8 = false;
+            for (auto& op : r->ops) {
+                if (op.opcode == Opcode::ZEXT) has_zext = true;
+                if (op.output.space == Space::GPR && op.output.offset == 0 && op.output.size == 8)
+                    writes_gpr_8 = true;
+            }
+            if (has_zext && writes_gpr_8) {
+                printf("PASS\n"); tests_passed++;
+            } else {
+                printf("FAIL: ZEXT=%d GPR[0]/8=%d\n", has_zext, writes_gpr_8);
+            }
+        }
+    }
+
+    // Verify via interpreter: W register write clears upper 32 bits
+    {
+        tests_run++;
+        printf("  %-40s ", "interp_W_clears_upper32");
+        Context ctx;
+        uint8_t mem[1024] = {};
+        ctx.memory = mem; ctx.memory_size = sizeof(mem);
+        ctx.gpr[0] = 0x1'00000000ULL;  // X0 = 4GB (bit 32 set)
+        ctx.gpr[1] = 1;
+        ctx.gpr[2] = 0;
+        execute(ctx, 0x0B020020);  // ADD W0, W1, W2 → W0 = 1, X0 should be 1 (upper cleared)
+        if (ctx.gpr[0] == 1) {
+            printf("PASS\n"); tests_passed++;
+        } else {
+            printf("FAIL: X0=0x%llx (expected 0x1)\n", static_cast<unsigned long long>(ctx.gpr[0]));
+        }
+    }
+
 }
 
 int main() {

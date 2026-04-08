@@ -104,6 +104,18 @@ static Op make_op3(Opcode opc, VarNode out, VarNode in0, VarNode in1, VarNode in
     return o;
 }
 
+// Write a GP register. ARM64 rule: writing a 32-bit W register zeroes the upper 32 bits of the X register.
+static void emit_gpr_write(Lifted& l, uint32_t reg, uint8_t op_sz, VarNode value) {
+    if (op_sz == 4 && reg < 31) {
+        // 32-bit write: zero-extend to 64-bit
+        auto t = next_temp(8);
+        l.ops.push_back(make_op(Opcode::ZEXT, t, value));
+        l.ops.push_back(make_op(Opcode::COPY, VarNode::gpr(reg, 8), t));
+    } else {
+        l.ops.push_back(make_op(Opcode::COPY, VarNode::gpr(reg, op_sz), value));
+    }
+}
+
 // GP binary: Rd, Rn, Rm [, shift]
 static Lifted interpret_gp_binop(const Instruction& insn, const IrEntry& e, IrDetail) {
     Lifted l;
@@ -119,7 +131,7 @@ static Lifted interpret_gp_binop(const Instruction& insn, const IrEntry& e, IrDe
     l.ops.push_back(make_op(Opcode::COPY, t0, VarNode::gpr(rn, sz)));
     l.ops.push_back(make_op(Opcode::COPY, t1, VarNode::gpr(rm, sz)));
     l.ops.push_back(make_op2(e.opcode, t2, t0, t1));
-    l.ops.push_back(make_op(Opcode::COPY, VarNode::gpr(rd, sz), t2));
+    emit_gpr_write(l, rd, sz, t2);
     return l;
 }
 
@@ -166,15 +178,23 @@ static void emit_flags(Lifted& l, VarNode result, VarNode a, VarNode b, bool is_
 }
 
 static Lifted interpret_gp_binop_flags(const Instruction& insn, const IrEntry& e, IrDetail detail) {
-    Lifted l = interpret_gp_binop(insn, e, detail);
-    // The last op is COPY result -> gpr(rd). The input is the temp holding the result.
-    auto result = l.ops.back().inputs[0];
-    // a and b are the inputs to the binop (3rd from last op)
-    auto& binop = l.ops[l.ops.size() - 2];
-    auto a = binop.inputs[0];
-    auto b = binop.inputs[1];
+    Lifted l;
+    uint8_t sz = op_reg_sz(insn, 0);
+    uint32_t rd = op_reg(insn, 0);
+    uint32_t rn = op_reg(insn, 1);
+    uint32_t rm = op_reg(insn, 2);
+
+    auto t0 = next_temp(sz);
+    auto t1 = next_temp(sz);
+    auto t2 = next_temp(sz);
+
+    l.ops.push_back(make_op(Opcode::COPY, t0, VarNode::gpr(rn, sz)));
+    l.ops.push_back(make_op(Opcode::COPY, t1, VarNode::gpr(rm, sz)));
+    l.ops.push_back(make_op2(e.opcode, t2, t0, t1));
+    // Flags computed from the native-width (32 or 64 bit) result, BEFORE zero-extension
     bool is_sub = (e.opcode == Opcode::SUB);
-    emit_flags(l, result, a, b, is_sub, detail);
+    emit_flags(l, t2, t0, t1, is_sub, detail);
+    emit_gpr_write(l, rd, sz, t2);
     return l;
 }
 
@@ -191,19 +211,25 @@ static Lifted interpret_gp_binop_imm(const Instruction& insn, const IrEntry& e, 
 
     l.ops.push_back(make_op(Opcode::COPY, t0, VarNode::gpr(rn, sz)));
     l.ops.push_back(make_op2(e.opcode, t1, t0, VarNode::constant(imm, sz)));
-    l.ops.push_back(make_op(Opcode::COPY, VarNode::gpr(rd, sz), t1));
+    emit_gpr_write(l, rd, sz, t1);
     return l;
 }
 
 static Lifted interpret_gp_binop_imm_flags(const Instruction& insn, const IrEntry& e, IrDetail detail) {
-    Lifted l = interpret_gp_binop_imm(insn, e, detail);
-    // Last op is COPY result -> gpr(rd). Second-to-last is the binop.
-    auto result = l.ops[l.ops.size() - 2].output;
-    auto& binop = l.ops[l.ops.size() - 2];
-    auto a = binop.inputs[0];
-    auto b = binop.inputs[1];
+    Lifted l;
+    uint8_t sz = op_reg_sz(insn, 0);
+    uint32_t rd = op_reg(insn, 0);
+    uint32_t rn = op_reg(insn, 1);
+    int64_t imm = op_imm(insn, 2);
+
+    auto t0 = next_temp(sz);
+    auto t1 = next_temp(sz);
+
+    l.ops.push_back(make_op(Opcode::COPY, t0, VarNode::gpr(rn, sz)));
+    l.ops.push_back(make_op2(e.opcode, t1, t0, VarNode::constant(imm, sz)));
     bool is_sub = (e.opcode == Opcode::SUB);
-    emit_flags(l, result, a, b, is_sub, detail);
+    emit_flags(l, t1, t0, VarNode::constant(imm, sz), is_sub, detail);
+    emit_gpr_write(l, rd, sz, t1);
     return l;
 }
 
@@ -263,7 +289,7 @@ static Lifted interpret_gp_move_imm(const Instruction& insn, const IrEntry& e, I
 
     auto t0 = next_temp(sz);
     l.ops.push_back(make_op(Opcode::COPY, t0, VarNode::constant(val, sz)));
-    l.ops.push_back(make_op(Opcode::COPY, VarNode::gpr(rd, sz), t0));
+    emit_gpr_write(l, rd, sz, t0);
     return l;
 }
 
@@ -282,7 +308,7 @@ static Lifted interpret_gp_div(const Instruction& insn, const IrEntry& e, IrDeta
     l.ops.push_back(make_op(Opcode::COPY, t0, VarNode::gpr(rn, sz)));
     l.ops.push_back(make_op(Opcode::COPY, t1, VarNode::gpr(rm, sz)));
     l.ops.push_back(make_op2(e.opcode, t2, t0, t1));
-    l.ops.push_back(make_op(Opcode::COPY, VarNode::gpr(rd, sz), t2));
+    emit_gpr_write(l, rd, sz, t2);
     return l;
 }
 
@@ -309,15 +335,15 @@ static Lifted interpret_gp_mul(const Instruction& insn, const IrEntry& e, IrDeta
         auto tres = next_temp(sz);
         l.ops.push_back(make_op(Opcode::COPY, ta, VarNode::gpr(ra, sz)));
         l.ops.push_back(make_op2(Opcode::ADD, tres, ta, tmul));
-        l.ops.push_back(make_op(Opcode::COPY, VarNode::gpr(rd, sz), tres));
+        emit_gpr_write(l, rd, sz, tres);
     } else if (e.extra == 1) {
         auto ta = next_temp(sz);
         auto tres = next_temp(sz);
         l.ops.push_back(make_op(Opcode::COPY, ta, VarNode::gpr(ra, sz)));
         l.ops.push_back(make_op2(Opcode::SUB, tres, ta, tmul));
-        l.ops.push_back(make_op(Opcode::COPY, VarNode::gpr(rd, sz), tres));
+        emit_gpr_write(l, rd, sz, tres);
     } else {
-        l.ops.push_back(make_op(Opcode::COPY, VarNode::gpr(rd, sz), tmul));
+        emit_gpr_write(l, rd, sz, tmul);
     }
     return l;
 }
@@ -337,7 +363,7 @@ static Lifted interpret_gp_shift(const Instruction& insn, const IrEntry& e, IrDe
     l.ops.push_back(make_op(Opcode::COPY, t0, VarNode::gpr(rn, sz)));
     l.ops.push_back(make_op(Opcode::COPY, t1, VarNode::gpr(rm, sz)));
     l.ops.push_back(make_op2(e.opcode, t2, t0, t1));
-    l.ops.push_back(make_op(Opcode::COPY, VarNode::gpr(rd, sz), t2));
+    emit_gpr_write(l, rd, sz, t2);
     return l;
 }
 
@@ -353,7 +379,7 @@ static Lifted interpret_gp_bitfield(const Instruction& insn, const IrEntry& e, I
     auto t1 = next_temp(sz);
     l.ops.push_back(make_op(Opcode::COPY, t0, VarNode::gpr(rn, sz)));
     l.ops.push_back(make_op(Opcode::EXTRACT, t1, t0));
-    l.ops.push_back(make_op(Opcode::COPY, VarNode::gpr(rd, sz), t1));
+    emit_gpr_write(l, rd, sz, t1);
     return l;
 }
 
@@ -422,13 +448,13 @@ static Lifted interpret_load_pair(const Instruction& insn, const IrEntry& e, IrD
 
     auto tv1 = next_temp(sz);
     l.ops.push_back(make_op(Opcode::LOAD, tv1, taddr));
-    l.ops.push_back(make_op(Opcode::COPY, VarNode::gpr(rt1, sz), tv1));
+    emit_gpr_write(l, rt1, sz, tv1);
 
     auto taddr2 = next_temp(8);
     l.ops.push_back(make_op2(Opcode::ADD, taddr2, taddr, VarNode::constant(sz, 8)));
     auto tv2 = next_temp(sz);
     l.ops.push_back(make_op(Opcode::LOAD, tv2, taddr2));
-    l.ops.push_back(make_op(Opcode::COPY, VarNode::gpr(rt2, sz), tv2));
+    emit_gpr_write(l, rt2, sz, tv2);
     return l;
 }
 
@@ -620,14 +646,16 @@ static Lifted interpret_cond_select(const Instruction& insn, const IrEntry& e, I
 
     auto tcond = emit_condition(l, cond);
 
+    auto tsel = next_temp(sz);
     Op o;
     o.opcode = Opcode::COPY;
-    o.output = VarNode::gpr(rd, sz);
+    o.output = tsel;
     o.inputs[0] = VarNode::gpr(rn, sz);
     o.inputs[1] = VarNode::gpr(rm, sz);
     o.inputs[2] = tcond;
     o.num_inputs = 3;
     l.ops.push_back(o);
+    emit_gpr_write(l, rd, sz, tsel);
     return l;
 }
 
