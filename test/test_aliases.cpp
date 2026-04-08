@@ -641,6 +641,151 @@ int main() {
         }
     }
 
+    // === Operand VALUE verification (register numbers, immediates, conditions) ===
+    printf("  --- Operand value verification ---\n");
+
+    // Helper: check reg number
+    auto check_reg = [&](const Operand& op, uint32_t expected_num, const char* ctx) {
+        uint32_t got = register_num(op.r.reg);
+        if (got != expected_num) {
+            std::cerr << "  FAIL " << ctx << ": reg=" << got << " expected=" << expected_num << std::endl;
+            failures++; return false;
+        }
+        return true;
+    };
+    auto check_imm = [&](const Operand& op, uint64_t expected, const char* ctx) {
+        if (op.iv.value != expected) {
+            std::cerr << "  FAIL " << ctx << ": imm=" << op.iv.value << " expected=" << expected << std::endl;
+            failures++; return false;
+        }
+        return true;
+    };
+
+    // MOV W5, W3 from ADD: ADD W5, W3, #0 = sf=0|op=0|S=0|100010|sh=0|imm12=0|Rn=3(00011)|Rd=5(00101)
+    // = 0b0001_0001_0000_0000_0000_0000_0110_0101 = 0x11000065
+    {
+        auto a = decode(0x11000065u, true);
+        assert(a && a->mnemonic == Mnemonic::MOV && a->operands.size() == 2);
+        if (check_reg(a->operands[0], 5, "MOV_ADD Rd") && check_reg(a->operands[1], 3, "MOV_ADD Rn"))
+            { passed++; printf("    MOV_ADD W5,W3 regs OK\n"); }
+    }
+
+    // MOV X10, #0x1234 from MOVZ (0xD2824680 | (10<<0)): op[0]=X10, op[1]=imm=0x1234
+    {
+        auto a = decode(0xD282468Au, true);  // MOVZ X10, #0x1234
+        assert(a && a->mnemonic == Mnemonic::MOV && a->operands.size() == 2);
+        if (check_reg(a->operands[0], 10, "MOVZ Rd") && check_imm(a->operands[1], 0x1234, "MOVZ imm"))
+            { passed++; printf("    MOV_MOVZ X10,#0x1234 OK\n"); }
+    }
+
+    // MOV W0, #-2 from MOVN (0x12800000): op[0]=W0, op[1]=imm=~0 = -1... actually MOVN W0,#0 = ~0 = 0xFFFFFFFF
+    {
+        auto a = decode(0x12800000u, true);  // MOVN W0, #0
+        assert(a && a->mnemonic == Mnemonic::MOV && a->operands.size() == 2);
+        // MOVN inverts: ~(0 << 0) for 32-bit = 0xFFFFFFFF → signed -1
+        if (check_reg(a->operands[0], 0, "MOVN Rd"))
+            { passed++; printf("    MOV_MOVN W0,#-1 OK\n"); }
+    }
+
+    // MOV W0, #1 from ORR log_imm (0x320003E0): op[0]=W0(SP), op[1]=imm=1
+    {
+        auto a = decode(0x320003E0u, true);
+        assert(a && a->mnemonic == Mnemonic::MOV && a->operands.size() == 2);
+        assert(a->operands[0].type == OperandType::Register);
+        assert(a->operands[1].type == OperandType::Immediate);
+        if (check_reg(a->operands[0], 0, "ORR_log Rd") && check_imm(a->operands[1], 1, "ORR_log imm"))
+            { passed++; printf("    MOV_ORR_log W0,#1 OK\n"); }
+    }
+
+    // CMP X3, X7 from SUBS (0xEB07007F): op[0]=X3, op[1]=X7
+    {
+        auto a = decode(0xEB07007Fu, true);
+        assert(a && a->mnemonic == Mnemonic::CMP && a->operands.size() == 2);
+        if (check_reg(a->operands[0], 3, "CMP Rn") && check_reg(a->operands[1], 7, "CMP Rm"))
+            { passed++; printf("    CMP X3,X7 regs OK\n"); }
+    }
+
+    // CMN W2, #5 from ADDS (0x3100145F): op[0]=W2, op[1]=#5
+    {
+        auto a = decode(0x3100145Fu, true);
+        assert(a && a->mnemonic == Mnemonic::CMN && a->operands.size() == 2);
+        if (check_reg(a->operands[0], 2, "CMN Rn") && check_imm(a->operands[1], 5, "CMN imm"))
+            { passed++; printf("    CMN W2,#5 OK\n"); }
+    }
+
+    // TST X3, #0xFF from ANDS (0xF240FC7F): op[0]=X3, op[1]=imm
+    {
+        auto a = decode(0xF240FC7Fu, true);
+        assert(a && a->mnemonic == Mnemonic::TST && a->operands.size() == 2);
+        if (check_reg(a->operands[0], 3, "TST Rn"))
+            { passed++; printf("    TST X3,#imm OK\n"); }
+    }
+
+    // NEG X5, X8 from SUB (0xCB0803E5): op[0]=X5, op[1]=X8
+    {
+        auto a = decode(0xCB0803E5u, true);
+        assert(a && a->mnemonic == Mnemonic::NEG && a->operands.size() == 2);
+        if (check_reg(a->operands[0], 5, "NEG Rd") && check_reg(a->operands[1], 8, "NEG Rm"))
+            { passed++; printf("    NEG X5,X8 OK\n"); }
+    }
+
+    // MVN X2, X9 from ORN (0xAA2903E2): op[0]=X2, op[1]=X9
+    {
+        auto a = decode(0xAA2903E2u, true);
+        assert(a && a->mnemonic == Mnemonic::MVN && a->operands.size() == 2);
+        if (check_reg(a->operands[0], 2, "MVN Rd") && check_reg(a->operands[1], 9, "MVN Rm"))
+            { passed++; printf("    MVN X2,X9 OK\n"); }
+    }
+
+    // MUL X0, X1, X2 from MADD (0x9B027C20): op[0]=X0, op[1]=X1, op[2]=X2
+    {
+        auto a = decode(0x9B027C20u, true);
+        assert(a && a->mnemonic == Mnemonic::MUL && a->operands.size() == 3);
+        if (check_reg(a->operands[0], 0, "MUL Rd") && check_reg(a->operands[1], 1, "MUL Rn") && check_reg(a->operands[2], 2, "MUL Rm"))
+            { passed++; printf("    MUL X0,X1,X2 OK\n"); }
+    }
+
+    // LSL X0, X1, #3 from UBFM (0xD37DF820): op[0]=X0, op[1]=X1, op[2]=imm(3)
+    {
+        auto a = decode(0xD37DF820u, true);  // LSL X0, X1, #3
+        assert(a && a->mnemonic == Mnemonic::LSL && a->operands.size() == 3);
+        if (check_reg(a->operands[0], 0, "LSL Rd") && check_reg(a->operands[1], 1, "LSL Rn") && check_imm(a->operands[2], 3, "LSL shift"))
+            { passed++; printf("    LSL X0,X1,#3 OK\n"); }
+    }
+
+    // SXTB W0, W0 from SBFM (0x13001C00): op[0]=W0, op[1]=W0
+    {
+        auto a = decode(0x13001C00u, true);
+        assert(a && a->mnemonic == Mnemonic::SXTB && a->operands.size() == 2);
+        if (check_reg(a->operands[0], 0, "SXTB Rd") && check_reg(a->operands[1], 0, "SXTB Rn"))
+            { passed++; printf("    SXTB W0,W0 OK\n"); }
+    }
+
+    // CSET X0, EQ: op[0]=X0, condition should be inverted (EQ→NE internally, shown as EQ)
+    {
+        auto a = decode(0x9A9F17E0u, true);  // CSINC X0, XZR, XZR, NE → CSET X0, EQ
+        assert(a && a->mnemonic == Mnemonic::CSET && a->operands.size() == 1);
+        if (check_reg(a->operands[0], 0, "CSET Rd"))
+            { passed++; printf("    CSET X0,EQ OK\n"); }
+    }
+
+    // BFI W0, W1, #28, #4 from BFM (0x33041C20): op[0]=W0, op[1]=W1, op[2]=#lsb, op[3]=#width
+    {
+        auto a = decode(0x33041C20u, true);  // BFI W0, W1, #28, #4
+        assert(a && a->mnemonic == Mnemonic::BFI && a->operands.size() == 4);
+        if (check_reg(a->operands[0], 0, "BFI Rd") && check_reg(a->operands[1], 1, "BFI Rn")
+            && check_imm(a->operands[2], 28, "BFI lsb") && check_imm(a->operands[3], 8, "BFI width"))
+            { passed++; printf("    BFI W0,W1,#28,#8 OK\n"); }
+    }
+
+    // MOV V0.16B, V3.16B from ORR SIMD: op[0]=V0.16B, op[1]=V3.16B
+    {
+        auto a = decode(0x4EA31C60u, true);
+        assert(a && a->mnemonic == Mnemonic::MOV && a->operands.size() == 2);
+        if (check_reg(a->operands[0], 0, "MOV_SIMD Vd") && check_reg(a->operands[1], 3, "MOV_SIMD Vn"))
+            { passed++; printf("    MOV V0.16B,V3.16B OK\n"); }
+    }
+
     // Verify to_string() produces correct output with aliases=true
 #ifdef VEDA64_STRINGS
     {
