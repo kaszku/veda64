@@ -13,10 +13,15 @@ A comprehensive ARM64 (AArch64) instruction encoder and decoder library with ful
   - SME (Scalable Matrix Extension - mortlach, mortlach2)
 - **Type-safe bitfield structures**: Direct mapping to ARM64 instruction formats
 - **Disassembly**: Format decoded instructions as readable assembly
+- **Alias-aware decoding**: `decode(insn, true)` returns preferred ARM mnemonics (MOV instead of ADD, CMP instead of SUBS, etc.) with correct operands
+- **Text assembler**: Assemble ARM64 text to binary (`assemble("ADD X0, X1, X2")` → `0x8B020020`)
 - **IR lifting**: P-code style intermediate representation with AST layer, simplification pass, and interpreter
 - **JIT code generator**: xbyak/asmjit-style assembler API with typed registers, labels, and executable code emission
+- **Inline hooking**: Windows ARM64 inline hooking with instruction relocation via NT syscalls
 - **Instruction relocation**: Relocate PC-relative instructions to new addresses
 - **Control flow analysis**: Classify instruction flow, walk basic blocks, build CFGs
+- **Python bindings**: Full API access via nanobind (decode, assemble, IR, codegen, hooking)
+- **Rust bindings**: Safe FFI via cxx (decode, assemble, IR)
 - **Comprehensive test suite**: CTest-integrated unit tests for all instruction classes
 - **CMake build system**: Cross-platform build configuration
 
@@ -34,6 +39,7 @@ veda64/
 │   │   ├── ir.hpp              # IR lifting + interpreter API
 │   │   ├── relocation.hpp      # Instruction relocation API
 │   │   ├── branch_follow.hpp   # Control flow analysis API
+│   │   ├── assembler.hpp       # Text assembler API
 │   │   └── *.hpp               # Type headers (operand, mnemonic, etc.)
 │   ├── codegen/
 │   │   ├── codegen.hpp         # Umbrella include for JIT assembler
@@ -45,10 +51,14 @@ veda64/
 │   └── format/                 # Format-based decoder headers
 │       └── *.hpp               # Per-encoding-group decoders
 ├── lib/                        # Implementation files
-│   ├── veda64.cpp              # Core implementation
-│   ├── relocation.cpp          # Instruction relocation
-│   ├── branch_follow.cpp       # Control flow analysis
-│   ├── hook.cpp                # Hooking implementation
+│   ├── core/
+│   │   └── veda64.cpp          # Decode, to_string, mnemonic tables
+│   ├── hook/
+│   │   ├── hook.cpp            # Inline hooking (Windows ARM64)
+│   │   ├── relocation.cpp      # Instruction relocation
+│   │   └── branch_follow.cpp   # Control flow analysis
+│   ├── assembler/
+│   │   └── assembler.cpp       # Text assembler implementation
 │   ├── codegen/
 │   │   ├── codegen.cpp         # Buffer management, I-cache flush, labels
 │   │   └── emitter.cpp         # Instruction method implementations
@@ -157,6 +167,7 @@ ctest
 | `VEDA64_IR` | `OFF` | Enable IR lifting and interpreter support |
 | `VEDA64_HOOK` | `OFF` | Enable inline hooking support (Windows only). Links `ntdll.lib` for NT syscalls. |
 | `VEDA64_CODEGEN` | `OFF` | Enable JIT code generator / assembler API |
+| `VEDA64_ASSEMBLER` | `OFF` | Enable text assembler (`assemble("ADD X0, X1, X2")`) |
 | `VEDA64_TESTS` | `OFF` | Build the test executables |
 | `VEDA64_PYTHON` | `OFF` | Build Python bindings via nanobind (requires vcpkg toolchain) |
 | `VEDA64_EXAMPLES` | `OFF` | Build example programs (Windows ARM64 only) |
@@ -177,7 +188,7 @@ The `examples/` directory contains runnable programs demonstrating each feature:
 | `hook.cpp` | Inline hooking (Windows ARM64 only) | `-DVEDA64_HOOK=ON` |
 
 ```bash
-cmake -DVEDA64_STRINGS=ON -DVEDA64_IR=ON -DVEDA64_CODEGEN=ON -DVEDA64_HOOK=ON -DVEDA64_EXAMPLES=ON ..
+cmake -DVEDA64_STRINGS=ON -DVEDA64_IR=ON -DVEDA64_CODEGEN=ON -DVEDA64_ASSEMBLER=ON -DVEDA64_HOOK=ON -DVEDA64_EXAMPLES=ON ..
 cmake --build .
 ./examples/example_decode
 ```
@@ -775,6 +786,9 @@ Alias decoding also transforms operands to match the alias form:
 - **BFXIL/SBFX/UBFX**: `lsb = immr`, `width = imms - immr + 1`
 - **CSET/CSETM/CINC/CINV/CNEG**: condition XOR'd to invert
 - **MOV SIMD (ORR Rm==Rn)**: duplicate operand removed
+- **MOV from ORR log_imm**: WZR operand removed (3→2 operands)
+- **TST from ANDS**: XZR destination removed (3→2 operands)
+- **LSL from UBFM**: shift computed from immr, imms dropped (4→3 operands)
 
 ## Python Bindings
 
@@ -788,6 +802,14 @@ insn = v.decode(0x8B020020)
 print(insn.mnemonic)      # Mnemonic.ADD
 print(insn.to_string())   # "add x0, x1, x2"
 print(len(insn.operands)) # 3
+
+# Alias-aware decoding
+alias = v.decode(0x910003FD, aliases=True)
+print(alias.to_string())  # "mov x29, sp" (instead of "add x29, sp, #0")
+
+# Text assembler (requires VEDA64_ASSEMBLER)
+insn, ok, err = v.assemble("add x0, x1, x2")
+print(f"0x{insn:08x}")    # 0x8b020020
 
 # IR lifting (requires VEDA64_IR)
 lifted = v.ir.lift(0x8B020020)
