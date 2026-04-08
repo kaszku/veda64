@@ -129,7 +129,7 @@ int main() {
     if (check_disasm(0x8b2063e0, "add x0, sp, x0")) passed++; else failed++;
     if (check_disasm(0xcb2043e0, "sub x0, sp, w0, uxtw")) passed++; else failed++;
     if (check_disasm(0x9278dc63, "and x3, x3, #0xffffffffffffff00")) passed++; else failed++;
-    if (check_disasm(0xf278dc7f, "tst xzr, x3, #0xffffffffffffff00")) passed++; else failed++;
+    if (check_disasm(0xf278dc7f, "tst x3, #0xffffffffffffff00")) passed++; else failed++;
     if (check_disasm(0xcb0407e4, "neg x4, x4, lsl #1")) passed++; else failed++;
     if (check_disasm(0x9e660025, "fmov x5, d1")) passed++; else failed++;
     if (check_disasm(0x9e670025, "fmov d5, x1")) passed++; else failed++;

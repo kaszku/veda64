@@ -286,8 +286,8 @@ int main() {
     check_alias(0x6A01001Fu, Mnemonic::TST, 2, "TST_ANDS_32_shift");
     check_alias(0xEA00001Fu, Mnemonic::TST, 2, "TST_ANDS_64_shift");
     // TST from ANDS logical imm (32/64) — has Rn + N + immr + imms = 3 ops
-    check_alias(0x7200001Fu, Mnemonic::TST, 3, "TST_ANDS_32_imm");
-    check_alias(0xF200001Fu, Mnemonic::TST, 3, "TST_ANDS_64_imm");
+    check_alias(0x7200001Fu, Mnemonic::TST, 2, "TST_ANDS_32_imm");
+    check_alias(0xF200001Fu, Mnemonic::TST, 2, "TST_ANDS_64_imm");
 
     // NEG from SUB (32/64)
     check_alias(0x4B0003E0u, Mnemonic::NEG, 2, "NEG_SUB_32");
@@ -334,7 +334,7 @@ int main() {
     check_alias(0x9AC02C00u, Mnemonic::ROR, 3, "ROR_REG_64");
 
     // LSL/LSR/ASR immediate (from UBFM/SBFM 32/64)
-    check_alias(0xD37FF800u, Mnemonic::LSL, 4, "LSL_IMM_64");  // lsl x0, x0, #1 (has immr+imms=4 ops)
+    check_alias(0xD37FF800u, Mnemonic::LSL, 3, "LSL_IMM_64");  // lsl x0, x0, #1 (shift computed from immr)
     check_alias(0x53027C00u, Mnemonic::LSR, 3, "LSR_IMM_32");  // lsr w0, w0, #2
     check_alias(0xD342FC00u, Mnemonic::LSR, 3, "LSR_IMM_64");  // lsr x0, x0, #2
     check_alias(0x13027C00u, Mnemonic::ASR, 3, "ASR_IMM_32");  // asr w0, w0, #2
@@ -514,12 +514,131 @@ int main() {
         if (a->operands.size() == 2) passed++; else { std::cerr << "  FAIL: MOV SIMD has " << a->operands.size() << " ops (expected 2)" << std::endl; failures++; }
     }
 
-    // MUL from MADD: should have 3 operands (Rd, Rn, Rm), no Ra=XZR
+    // MOV from ORR log_imm: should have 2 operands (Rd, imm), no Rn=WZR
     {
-        auto a = decode(0x9B007C00u, true);  // mul x0, x0, x0
-        assert(a->mnemonic == Mnemonic::MUL);
-        std::cout << "    MUL from MADD: " << a->operands.size() << " ops" << std::endl;
-        if (a->operands.size() == 3) passed++; else { std::cerr << "  XFAIL: MUL has " << a->operands.size() << " ops (expected 3)" << std::endl; failures++; }
+        auto a = decode(0x320003E0u, true);  // mov w0, #1 (ORR w0, wzr, #1)
+        assert(a->mnemonic == Mnemonic::MOV);
+        std::cout << "    MOV from ORR log_imm: " << a->operands.size() << " ops" << std::endl;
+        if (a->operands.size() == 2) passed++; else { std::cerr << "  FAIL: MOV log_imm has " << a->operands.size() << " ops (expected 2)" << std::endl; failures++; }
+    }
+
+    // MOV from ORR log_imm 64-bit
+    {
+        auto a = decode(0xB20003E0u, true);  // mov x0, #1 (ORR x0, xzr, #1)
+        assert(a->mnemonic == Mnemonic::MOV);
+        std::cout << "    MOV from ORR log_imm64: " << a->operands.size() << " ops" << std::endl;
+        if (a->operands.size() == 2) passed++; else { std::cerr << "  FAIL: MOV log_imm64 has " << a->operands.size() << " ops (expected 2)" << std::endl; failures++; }
+    }
+
+    // === Comprehensive alias operand count verification ===
+    printf("  --- Comprehensive alias operand count ---\n");
+    {
+        struct AliasCase { uint32_t insn; Mnemonic mn; int ops; const char* desc; };
+        AliasCase cases[] = {
+            // dpimm: MOV from ADD (Rd, Rn — no #0)
+            {0x11000020u, Mnemonic::MOV, 2, "MOV_ADD_32"},
+            {0x91000020u, Mnemonic::MOV, 2, "MOV_ADD_64"},
+            // dpimm: MOV from ORR log_imm (Rd, imm — no WZR)
+            {0x320003E0u, Mnemonic::MOV, 2, "MOV_ORR_32_log_imm"},
+            {0xB20003E0u, Mnemonic::MOV, 2, "MOV_ORR_64_log_imm"},
+            // dpimm: MOV from MOVZ (Rd, imm)
+            {0x52800020u, Mnemonic::MOV, 2, "MOV_MOVZ_32"},
+            {0xD2800020u, Mnemonic::MOV, 2, "MOV_MOVZ_64"},
+            // dpimm: MOV from MOVN (Rd, imm)
+            {0x12800020u, Mnemonic::MOV, 2, "MOV_MOVN_32"},
+            {0x92800020u, Mnemonic::MOV, 2, "MOV_MOVN_64"},
+            // dpimm: extend aliases (Rd, Rn)
+            {0x13001C00u, Mnemonic::SXTB, 2, "SXTB_32"},
+            {0x13003C00u, Mnemonic::SXTH, 2, "SXTH_32"},
+            {0x93407C00u, Mnemonic::SXTW, 2, "SXTW_64"},
+            {0x53001C00u, Mnemonic::UXTB, 2, "UXTB_32"},
+            {0x53003C00u, Mnemonic::UXTH, 2, "UXTH_32"},
+            // dpimm: shift immediate aliases (Rd, Rn, #imm)
+            {0xD37FF800u, Mnemonic::LSL, 3, "LSL_imm_64"},
+            {0x53027C00u, Mnemonic::LSR, 3, "LSR_imm_32"},
+            {0x13027C00u, Mnemonic::ASR, 3, "ASR_imm_32"},
+            // dpimm: CMN/CMP immediate (Rn, #imm — no Rd=XZR)
+            {0x3100001Fu, Mnemonic::CMN, 2, "CMN_ADDS_32_imm"},
+            {0xB100001Fu, Mnemonic::CMN, 2, "CMN_ADDS_64_imm"},
+            {0x7100001Fu, Mnemonic::CMP, 2, "CMP_SUBS_32_imm"},
+            {0xF100001Fu, Mnemonic::CMP, 2, "CMP_SUBS_64_imm"},
+            // dpimm: TST immediate (Rn, #imm — no Rd=XZR)
+            {0x7200001Fu, Mnemonic::TST, 2, "TST_ANDS_32_imm"},
+            // dpimm: bitfield (Rd, Rn, #lsb, #width)
+            {0x33000400u, Mnemonic::BFI, 4, "BFI_32"},
+            {0x13000400u, Mnemonic::SBFIZ, 4, "SBFIZ_32"},
+            // dpreg: MOV from ORR register (Rd, Rm — no Rn=XZR)
+            {0x2A0003E0u, Mnemonic::MOV, 2, "MOV_ORR_32_reg"},
+            {0xAA0003E0u, Mnemonic::MOV, 2, "MOV_ORR_64_reg"},
+            // dpreg: CMP/CMN/TST register (Rn, Rm — no Rd=XZR)
+            {0x6B00001Fu, Mnemonic::CMP, 2, "CMP_SUBS_32_reg"},
+            {0xEB00001Fu, Mnemonic::CMP, 2, "CMP_SUBS_64_reg"},
+            {0x2B00001Fu, Mnemonic::CMN, 2, "CMN_ADDS_32_reg"},
+            {0xAB00001Fu, Mnemonic::CMN, 2, "CMN_ADDS_64_reg"},
+            {0x6A00001Fu, Mnemonic::TST, 2, "TST_ANDS_32_reg"},
+            {0xEA00001Fu, Mnemonic::TST, 2, "TST_ANDS_64_reg"},
+            // dpreg: NEG/NEGS (Rd, Rm — no Rn=XZR)
+            {0x4B0003E0u, Mnemonic::NEG, 2, "NEG_SUB_32"},
+            {0xCB0003E0u, Mnemonic::NEG, 2, "NEG_SUB_64"},
+            {0x6B0003E0u, Mnemonic::NEGS, 2, "NEGS_SUBS_32"},
+            {0xEB0003E0u, Mnemonic::NEGS, 2, "NEGS_SUBS_64"},
+            // dpreg: MVN (Rd, Rm — no Rn=XZR)
+            {0x2A2003E0u, Mnemonic::MVN, 2, "MVN_ORN_32"},
+            {0xAA2003E0u, Mnemonic::MVN, 2, "MVN_ORN_64"},
+            // dpreg: NGC/NGCS (Rd, Rm — no Rn=XZR)
+            {0x5A0003E0u, Mnemonic::NGC, 2, "NGC_SBC_32"},
+            {0xDA0003E0u, Mnemonic::NGC, 2, "NGC_SBC_64"},
+            {0x7A0003E0u, Mnemonic::NGCS, 2, "NGCS_SBCS_32"},
+            {0xFA0003E0u, Mnemonic::NGCS, 2, "NGCS_SBCS_64"},
+            // dpreg: MUL/MNEG (Rd, Rn, Rm — no Ra=XZR)
+            {0x1B007C00u, Mnemonic::MUL, 3, "MUL_MADD_32"},
+            {0x9B007C00u, Mnemonic::MUL, 3, "MUL_MADD_64"},
+            {0x1B00FC00u, Mnemonic::MNEG, 3, "MNEG_MSUB_32"},
+            {0x9B00FC00u, Mnemonic::MNEG, 3, "MNEG_MSUB_64"},
+            // dpreg: SMULL/UMULL/SMNEGL/UMNEGL (Xd, Wn, Wm)
+            {0x9B207C00u, Mnemonic::SMULL, 3, "SMULL"},
+            {0x9BA07C00u, Mnemonic::UMULL, 3, "UMULL"},
+            {0x9B20FC00u, Mnemonic::SMNEGL, 3, "SMNEGL"},
+            {0x9BA0FC00u, Mnemonic::UMNEGL, 3, "UMNEGL"},
+            // dpreg: shift register (Rd, Rn, Rm)
+            {0x1AC02000u, Mnemonic::LSL, 3, "LSL_LSLV_32"},
+            {0x9AC02000u, Mnemonic::LSL, 3, "LSL_LSLV_64"},
+            {0x1AC02400u, Mnemonic::LSR, 3, "LSR_LSRV_32"},
+            {0x9AC02400u, Mnemonic::LSR, 3, "LSR_LSRV_64"},
+            {0x1AC02800u, Mnemonic::ASR, 3, "ASR_ASRV_32"},
+            {0x9AC02800u, Mnemonic::ASR, 3, "ASR_ASRV_64"},
+            {0x1AC02C00u, Mnemonic::ROR, 3, "ROR_RORV_32"},
+            {0x9AC02C00u, Mnemonic::ROR, 3, "ROR_RORV_64"},
+            // dpreg: CSET/CSETM (Rd only + condition)
+            {0x9A9F07E0u, Mnemonic::CSET, 1, "CSET_64"},
+            {0x1A9F07E0u, Mnemonic::CSET, 1, "CSET_32"},
+            {0xDA9F03E0u, Mnemonic::CSETM, 1, "CSETM_64"},
+            {0x5A9F03E0u, Mnemonic::CSETM, 1, "CSETM_32"},
+            // simd_dp: MOV from ORR SIMD (Vd, Vn — no duplicate Vm)
+            {0x4EA31C60u, Mnemonic::MOV, 2, "MOV_ORR_SIMD"},
+            // simd_dp: MVN/NOT (Vd, Vn)
+            {0x2E205800u, Mnemonic::MVN, 2, "MVN_NOT_SIMD"},
+            // control: barrier aliases (0 operands)
+            {0xD503309Fu, Mnemonic::SSBB, 0, "SSBB"},
+            {0xD503349Fu, Mnemonic::PSSBB, 0, "PSSBB"},
+            // NOP
+            {0xD503201Fu, Mnemonic::NOP, 0, "NOP"},
+        };
+        for (size_t ci = 0; ci < sizeof(cases)/sizeof(cases[0]); ci++) { auto& c = cases[ci];
+            auto d = decode(c.insn, true);
+            if (!d) { std::cerr << "  FAIL: " << c.desc << " nullopt" << std::endl; failures++; continue; }
+            bool mn_ok = (d->mnemonic == c.mn);
+            bool ops_ok = ((int)d->operands.size() == c.ops);
+            if (mn_ok && ops_ok) {
+                passed++;
+            } else {
+                std::cerr << "  FAIL: " << c.desc
+                    << " mn=" << mnemonic_to_string(d->mnemonic)
+                    << " ops=" << d->operands.size()
+                    << " (expected " << mnemonic_to_string(c.mn) << " " << c.ops << ")" << std::endl;
+                failures++;
+            }
+        }
     }
 
     // Verify to_string() produces correct output with aliases=true

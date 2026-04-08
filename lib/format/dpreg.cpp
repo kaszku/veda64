@@ -8894,6 +8894,7 @@ std::optional<Instruction> decode_dpreg(uint32_t insn, bool aliases) {
                                 result.operands.push_back(Operand::shift(static_cast<ShiftType>(shift_type),shift_amount));
                             }
                         }
+            if (aliases && result.operands.size() >= 3) result.operands.erase(result.operands.begin());
                         return result;
         }
         case 0x6B00001Fu: { // CMP_SUBS_32_addsub_shift
@@ -8957,6 +8958,7 @@ std::optional<Instruction> decode_dpreg(uint32_t insn, bool aliases) {
                                 result.operands.push_back(Operand::shift(static_cast<ShiftType>(shift_type),shift_amount));
                             }
                         }
+            if (aliases && result.operands.size() >= 3) result.operands.erase(result.operands.begin());
                         return result;
         }
         case 0xEB00001Fu: { // CMP_SUBS_64_addsub_shift

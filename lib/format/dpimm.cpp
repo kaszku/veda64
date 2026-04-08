@@ -2935,6 +2935,7 @@ std::optional<Instruction> decode_dpimm(uint32_t insn, bool aliases) {
                         result.operands.push_back(Operand::gp(enc.mov_orr32log_imm.Rn, is_64bit));
                         uint64_t imm_val = decode_bit_masks(enc.mov_orr32log_imm.N, enc.mov_orr32log_imm.imms, enc.mov_orr32log_imm.immr, is_64bit);
                         result.operands.push_back(Operand::imm(imm_val));
+            if (aliases && result.operands.size() >= 3) result.operands.erase(result.operands.begin() + 1);
                         return result;
         }
         case 0x330003E0u: { // BFC_BFM_32M_bitfield
@@ -2995,6 +2996,7 @@ std::optional<Instruction> decode_dpimm(uint32_t insn, bool aliases) {
                         result.operands.push_back(Operand::gp(enc.tst_ands32s_log_imm.Rn, is_64bit));
                         uint64_t imm_val = decode_bit_masks(enc.tst_ands32s_log_imm.N, enc.tst_ands32s_log_imm.imms, enc.tst_ands32s_log_imm.immr, is_64bit);
                         result.operands.push_back(Operand::imm(imm_val));
+            if (aliases && result.operands.size() >= 3) result.operands.erase(result.operands.begin());
                         return result;
         }
         default: break;
@@ -3157,6 +3159,10 @@ std::optional<Instruction> decode_dpimm(uint32_t insn, bool aliases) {
                         result.operands.push_back(Operand::gp(enc.lsl_ubfm32m_bitfield.Rn, is_64bit));
                         result.operands.push_back(Operand::imm(enc.lsl_ubfm32m_bitfield.immr));
                         result.operands.push_back(Operand::imm(enc.lsl_ubfm32m_bitfield.imms));
+            if (aliases && result.operands.size() >= 4) {
+                result.operands[2] = Operand::imm((32 - static_cast<uint32_t>(result.operands[2].iv.value)) & 31);
+                result.operands.pop_back();
+            }
                         return result;
         }
         case 0x72000000u: { // ANDS_32S_log_imm
@@ -3296,6 +3302,10 @@ std::optional<Instruction> decode_dpimm(uint32_t insn, bool aliases) {
                         result.operands.push_back(Operand::gp(enc.lsl_ubfm64m_bitfield.Rn, is_64bit));
                         result.operands.push_back(Operand::imm(enc.lsl_ubfm64m_bitfield.immr));
                         result.operands.push_back(Operand::imm(enc.lsl_ubfm64m_bitfield.imms));
+            if (aliases && result.operands.size() >= 4) {
+                result.operands[2] = Operand::imm((64 - static_cast<uint32_t>(result.operands[2].iv.value)) & 63);
+                result.operands.pop_back();
+            }
                         return result;
         }
         default: break;
@@ -3316,6 +3326,7 @@ std::optional<Instruction> decode_dpimm(uint32_t insn, bool aliases) {
                         result.operands.push_back(Operand::gp(enc.mov_orr64log_imm.Rn, is_64bit));
                         uint64_t imm_val = decode_bit_masks(enc.mov_orr64log_imm.N, enc.mov_orr64log_imm.imms, enc.mov_orr64log_imm.immr, is_64bit);
                         result.operands.push_back(Operand::imm(imm_val));
+            if (aliases && result.operands.size() >= 3) result.operands.erase(result.operands.begin() + 1);
                         return result;
         }
         default: break;
@@ -3388,6 +3399,7 @@ std::optional<Instruction> decode_dpimm(uint32_t insn, bool aliases) {
                         result.operands.push_back(Operand::gp(enc.tst_ands64s_log_imm.Rn, is_64bit));
                         uint64_t imm_val = decode_bit_masks(enc.tst_ands64s_log_imm.N, enc.tst_ands64s_log_imm.imms, enc.tst_ands64s_log_imm.immr, is_64bit);
                         result.operands.push_back(Operand::imm(imm_val));
+            if (aliases && result.operands.size() >= 3) result.operands.erase(result.operands.begin());
                         return result;
         }
         default: break;
