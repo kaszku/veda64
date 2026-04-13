@@ -29,3 +29,7 @@
 #ifdef VEDA64_CODEGEN
 #include "codegen/codegen.hpp"
 #endif
+
+#if defined(VEDA64_IR) && defined(VEDA64_CODEGEN)
+#include "veda64/ir_emit.hpp"
+#endif

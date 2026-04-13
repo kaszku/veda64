@@ -5409,6 +5409,10 @@ CodeGenerator& CodeGenerator::ldrab(XReg rt, XReg rn, int32_t imm) {
     emit(ldst::encode_ldrab_64_ldst_pac(rt.idx, rn.idx, simm & 0x1FF, S));
     return *this;
 }
+CodeGenerator& CodeGenerator::emit_raw(uint32_t insn) {
+    emit(insn);
+    return *this;
+}
 
 // === Function prolog / epilog ===
 namespace {

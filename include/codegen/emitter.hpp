@@ -1344,6 +1344,10 @@ public:
     CodeGenerator& ldraa(XReg rt, XReg rn, int32_t imm = 0);
     CodeGenerator& ldrab(XReg rt, XReg rn, int32_t imm = 0);
 
+    /// Emit a raw 32-bit instruction word. Intended for callers that have
+    /// already computed an encoding via `format::*::encode_*`.
+    CodeGenerator& emit_raw(uint32_t insn);
+
 private:
     void emit(uint32_t insn);
     void patch(size_t offset, uint32_t insn);
