@@ -790,6 +790,69 @@ static int test_adr_adrp() {
     return 0;
 }
 
+static int test_emit_prolog_epilog() {
+    // Empty spec: just the FP/LR chain.
+    {
+        CodeGenerator cg(4096);
+        PrologSpec spec{};
+        spec.chain_fp_lr = true;
+        cg.emit_prolog(spec);
+        assert(cg.size() == 8);  // 2 insns * 4 bytes
+        auto r0 = decode(get_insn(cg, 0));
+        assert(r0 && r0->mnemonic == Mnemonic::STP);
+        auto r1 = decode(get_insn(cg, 1));
+        assert(r1 && (r1->mnemonic == Mnemonic::MOV || r1->mnemonic == Mnemonic::ADD));
+    }
+    // One saved pair + 32-byte frame.
+    {
+        CodeGenerator cg(4096);
+        PrologSpec spec{};
+        spec.chain_fp_lr = true;
+        spec.saved_pairs[0] = {x19, x20};
+        spec.num_pairs = 1;
+        spec.frame_size = 32;
+        cg.emit_prolog(spec);
+        assert(cg.size() == 16);  // stp fp/lr, mov, stp x19/x20, sub sp
+        auto r0 = decode(get_insn(cg, 0));
+        assert(r0 && r0->mnemonic == Mnemonic::STP);
+        auto r2 = decode(get_insn(cg, 2));
+        assert(r2 && r2->mnemonic == Mnemonic::STP);
+        auto r3 = decode(get_insn(cg, 3));
+        assert(r3 && r3->mnemonic == Mnemonic::SUB);
+
+        // Epilog should emit 4 instructions: add, ldp x19/x20, ldp fp/lr (3 actually).
+        CodeGenerator eg(4096);
+        eg.emit_epilog(spec);
+        assert(eg.size() == 12);  // add sp, ldp x19/x20, ldp fp/lr
+        auto e0 = decode(get_insn(eg, 0));
+        assert(e0 && e0->mnemonic == Mnemonic::ADD);
+        auto e1 = decode(get_insn(eg, 1));
+        assert(e1 && e1->mnemonic == Mnemonic::LDP);
+        auto e2 = decode(get_insn(eg, 2));
+        assert(e2 && e2->mnemonic == Mnemonic::LDP);
+    }
+    // SIMD callee-saved support (d8-d15)
+    {
+        CodeGenerator cg(4096);
+        PrologSpec spec{};
+        spec.chain_fp_lr = true;
+        spec.saved_dpairs[0] = {d8, d9};
+        spec.num_dpairs = 1;
+        cg.emit_prolog(spec);
+        assert(cg.size() == 12);  // stp fp/lr, mov, stp d8/d9
+        auto r2 = decode(get_insn(cg, 2));
+        assert(r2 && r2->mnemonic == Mnemonic::STP);
+
+        CodeGenerator eg(4096);
+        eg.emit_epilog(spec);
+        assert(eg.size() == 8);  // ldp d8/d9, ldp fp/lr
+        auto e0 = decode(get_insn(eg, 0));
+        assert(e0 && e0->mnemonic == Mnemonic::LDP);
+    }
+    std::cout << "  emit_prolog/epilog: OK" << std::endl;
+    return 0;
+}
+
 int main() {
     std::cout << "Running codegen tests..." << std::endl;
     int err = 0;
@@ -816,6 +879,7 @@ int main() {
     err |= test_more_simd();
     err |= test_extend_ops();
     err |= test_adr_adrp();
+    err |= test_emit_prolog_epilog();
 #if defined(__aarch64__) || defined(_M_ARM64)
     err |= test_execute();
     err |= test_execute_loop();

@@ -724,7 +724,8 @@ static Lifted interpret_simd_unary(const Instruction& insn, const IrEntry& e, Ir
 
     // Fall back to opaque for UNDEF/COPY or complex ops
     if (e.opcode == Opcode::UNDEF || e.opcode == Opcode::COPY || e.opcode == Opcode::SEXT ||
-        e.opcode == Opcode::ZEXT || e.opcode == Opcode::FLOAT2FLOAT) {
+        e.opcode == Opcode::ZEXT || e.opcode == Opcode::FLOAT2FLOAT ||
+        e.opcode == Opcode::CLZ || e.opcode == Opcode::POPCNT || e.opcode == Opcode::BITREV) {
         auto t0 = next_temp(16);
         auto t1 = next_temp(16);
         l.ops.push_back(make_op(Opcode::COPY, t0, VarNode::simd(rn)));

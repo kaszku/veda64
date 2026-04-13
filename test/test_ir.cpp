@@ -2579,6 +2579,20 @@ static void run_tests() {
         }
     }
 
+    // Bit manipulation opcodes: CLZ, RBIT (BITREV), CNT (POPCNT)
+    auto expect_op = [](uint32_t insn, Opcode oc, const char* name) {
+        tests_run++;
+        printf("  %-40s ", name);
+        auto r = lift(insn);
+        if (!r.has_value()) { printf("FAIL: lift returned nullopt\n"); return; }
+        for (auto& op : r->ops) {
+            if (op.opcode == oc) { printf("PASS\n"); tests_passed++; return; }
+        }
+        printf("FAIL: expected opcode not found\n");
+    };
+    expect_op(0xDAC01020, Opcode::CLZ,    "CLZ_X0_X1");
+    expect_op(0xDAC00020, Opcode::BITREV, "RBIT_X0_X1");
+    expect_op(0x0E205820, Opcode::POPCNT, "CNT_V0_8B_V1_8B");
 }
 
 int main() {

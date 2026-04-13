@@ -128,6 +128,7 @@ const char* opcode_names[] = {
     "branch", "cbranch", "call", "ret",
     "add_carry", "sub_carry", "carry_add", "carry_sub", "overflow_add", "overflow_sub",
     "extract", "insert", "concat",
+    "clz", "ctz", "popcnt", "bitrev",
     "vextract_elem", "vinsert_elem", "vbroadcast",
     "barrier", "nop", "undef",
 };

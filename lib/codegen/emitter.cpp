@@ -5410,5 +5410,53 @@ CodeGenerator& CodeGenerator::ldrab(XReg rt, XReg rn, int32_t imm) {
     return *this;
 }
 
+// === Function prolog / epilog ===
+namespace {
+void emit_sp_adjust(CodeGenerator& cg, uint32_t bytes, bool subtract) {
+    // AArch64 add/sub imm supports 12-bit imm optionally shifted left by 12.
+    // Handle 0 .. 0xFFF (direct) and 0x1000 .. 0xFFF000 (shift) and mixed.
+    uint32_t lo = bytes & 0xFFFu;
+    uint32_t hi = bytes >> 12;
+    if (hi) {
+        if (subtract) cg.sub(sp, sp, hi & 0xFFFu, /*lsl12=*/true);
+        else          cg.add(sp, sp, hi & 0xFFFu, /*lsl12=*/true);
+    }
+    if (lo) {
+        if (subtract) cg.sub(sp, sp, lo, /*lsl12=*/false);
+        else          cg.add(sp, sp, lo, /*lsl12=*/false);
+    }
+}
+} // namespace
+
+CodeGenerator& CodeGenerator::emit_prolog(const PrologSpec& spec) {
+    if (spec.chain_fp_lr) {
+        stp(XReg{29}, XReg{30}, pre(sp, -16));
+        mov(XReg{29}, sp);
+    }
+    for (uint8_t i = 0; i < spec.num_pairs; ++i) {
+        stp(spec.saved_pairs[i].a, spec.saved_pairs[i].b, pre(sp, -16));
+    }
+    for (uint8_t i = 0; i < spec.num_dpairs; ++i) {
+        stp(spec.saved_dpairs[i].a, spec.saved_dpairs[i].b, pre(sp, -16));
+    }
+    if (spec.frame_size) emit_sp_adjust(*this, spec.frame_size, /*subtract=*/true);
+    return *this;
+}
+
+CodeGenerator& CodeGenerator::emit_epilog(const PrologSpec& spec) {
+    if (spec.frame_size) emit_sp_adjust(*this, spec.frame_size, /*subtract=*/false);
+    // Reverse order: SIMD pairs first (pushed last), then X pairs.
+    for (int i = static_cast<int>(spec.num_dpairs) - 1; i >= 0; --i) {
+        ldp(spec.saved_dpairs[i].a, spec.saved_dpairs[i].b, post(sp, 16));
+    }
+    for (int i = static_cast<int>(spec.num_pairs) - 1; i >= 0; --i) {
+        ldp(spec.saved_pairs[i].a, spec.saved_pairs[i].b, post(sp, 16));
+    }
+    if (spec.chain_fp_lr) {
+        ldp(XReg{29}, XReg{30}, post(sp, 16));
+    }
+    return *this;
+}
+
 } // namespace codegen
 } // namespace veda64

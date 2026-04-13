@@ -83,6 +83,10 @@ enum class Opcode : uint8_t {
     EXTRACT,
     INSERT,
     CONCAT,
+    CLZ,        // count leading zeros (ARM: CLZ)
+    CTZ,        // count trailing zeros (reserved; no direct AArch64 instruction)
+    POPCNT,     // population count (ARM: CNT)
+    BITREV,     // bit reversal (ARM: RBIT)
 
     // Vector
     VEXTRACT_ELEM,

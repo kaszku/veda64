@@ -34,6 +34,24 @@ struct Extend {
     constexpr Extend(ExtendType t, uint8_t a = 0) : type(t), amount(a) {}
 };
 
+/// Spec for emit_prolog / emit_epilog
+struct PrologSpec {
+    // Pairs of callee-saved X regs to save (stored via STP, pre-indexed).
+    // Each inner pair consumes 16 bytes on the stack. Example: {{x19,x20},{x21,x22}}.
+    struct Pair { XReg a; XReg b; };
+    Pair saved_pairs[8] = {};   // fixed-size to avoid pulling in <vector>
+    uint8_t num_pairs = 0;
+    // Callee-saved SIMD pairs (d8-d15 on AAPCS64). Each pair = 16 bytes.
+    struct DPair { DReg a; DReg b; };
+    DPair saved_dpairs[4] = {};
+    uint8_t num_dpairs = 0;
+    // Local frame size (bytes). Must be 16-byte aligned. Subtracted from SP after
+    // callee-saves. Supports up to 0xFFF << 12 via optional 12-bit shift.
+    uint32_t frame_size = 0;
+    // Emit the standard FP/LR chain: STP X29,X30,[SP,#-16]! ; MOV X29,SP
+    bool chain_fp_lr = true;
+};
+
 /// JIT code generator / assembler
 class CodeGenerator {
 public:
@@ -226,6 +244,10 @@ public:
     CodeGenerator& sbfm(WReg rd, WReg rn, uint8_t immr, uint8_t imms);
     CodeGenerator& ubfm(XReg rd, XReg rn, uint8_t immr, uint8_t imms);
     CodeGenerator& ubfm(WReg rd, WReg rn, uint8_t immr, uint8_t imms);
+
+    // === Function prolog / epilog ===
+    CodeGenerator& emit_prolog(const PrologSpec& spec);
+    CodeGenerator& emit_epilog(const PrologSpec& spec);
 
     // === Branches ===
     CodeGenerator& b(Label& label);
