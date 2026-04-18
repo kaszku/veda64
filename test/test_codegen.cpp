@@ -82,6 +82,44 @@ static int test_forward_branch() {
     return 0;
 }
 
+static int test_raw_branch_offsets() {
+    // b(int32_t) — raw byte offset, positive
+    {
+        CodeGenerator cg(4096);
+        cg.b(16);
+        uint32_t insn = get_insn(cg, 0);
+        auto r = decode(insn);
+        assert(r && r->mnemonic == Mnemonic::B);
+        int32_t imm26 = static_cast<int32_t>(insn << 6) >> 6;
+        assert(imm26 == 4);  // 16 bytes = 4 instructions
+        (void)imm26;
+    }
+    // b(int32_t) — raw byte offset, negative
+    {
+        CodeGenerator cg(4096);
+        cg.b(-64);
+        uint32_t insn = get_insn(cg, 0);
+        auto r = decode(insn);
+        assert(r && r->mnemonic == Mnemonic::B);
+        int32_t imm26 = static_cast<int32_t>(insn << 6) >> 6;
+        assert(imm26 == -16);
+        (void)imm26;
+    }
+    // bl(int32_t) — raw byte offset
+    {
+        CodeGenerator cg(4096);
+        cg.bl(256);
+        uint32_t insn = get_insn(cg, 0);
+        auto r = decode(insn);
+        assert(r && r->mnemonic == Mnemonic::BL);
+        int32_t imm26 = static_cast<int32_t>(insn << 6) >> 6;
+        assert(imm26 == 64);
+        (void)imm26;
+    }
+    std::cout << "  raw branch offsets: OK" << std::endl;
+    return 0;
+}
+
 static int test_ldst() {
     CodeGenerator cg(4096);
     cg.ldr(x0, ptr(x1, 8));
@@ -786,6 +824,29 @@ static int test_adr_adrp() {
         assert(offset == 12);  // 3 * 4 bytes
     }
 
+    // ADR via CodeGenerator — raw byte offset
+    {
+        CodeGenerator cg(4096);
+        cg.adr(x3, int64_t{12});
+        uint32_t insn = get_insn(cg, 0);
+        auto result = decode(insn);
+        assert(result.has_value());
+        assert(result->mnemonic == Mnemonic::ADR);
+        int64_t offset = static_cast<int64_t>(result->operands[1].iv.value);
+        assert(offset == 12);
+    }
+    // ADR via CodeGenerator — negative raw offset
+    {
+        CodeGenerator cg(4096);
+        cg.adr(x5, int64_t{-8});
+        uint32_t insn = get_insn(cg, 0);
+        auto result = decode(insn);
+        assert(result.has_value());
+        assert(result->mnemonic == Mnemonic::ADR);
+        int64_t offset = static_cast<int64_t>(result->operands[1].iv.value);
+        assert(offset == -8);
+    }
+
     std::cout << "  ADR/ADRP tests passed." << std::endl;
     return 0;
 }
@@ -859,6 +920,7 @@ int main() {
     err |= test_arithmetic();
     err |= test_branches();
     err |= test_forward_branch();
+    err |= test_raw_branch_offsets();
     err |= test_ldst();
     err |= test_fp();
     err |= test_mov();

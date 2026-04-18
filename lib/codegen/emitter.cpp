@@ -199,6 +199,13 @@ CodeGenerator& CodeGenerator::adr(XReg rd, Label& label) {
     return *this;
 }
 
+CodeGenerator& CodeGenerator::adr(XReg rd, int64_t offset) {
+    int32_t immhi = static_cast<int32_t>((offset >> 2) & 0x7FFFF);
+    int32_t immlo = static_cast<int32_t>(offset & 0x3);
+    emit(dpimm::encode_adr_only_pcreladdr(rd.idx, immhi, immlo));
+    return *this;
+}
+
 CodeGenerator& CodeGenerator::adrp(XReg rd, int64_t imm) {
     int32_t immhi = static_cast<int32_t>((imm >> 14) & 0x7FFFF);
     int32_t immlo = static_cast<int32_t>((imm >> 12) & 0x3);
@@ -856,6 +863,11 @@ CodeGenerator& CodeGenerator::b(Label& label) {
     return *this;
 }
 
+CodeGenerator& CodeGenerator::b(int32_t offset) {
+    emit(control::encode_b_only_branch_imm(offset >> 2));
+    return *this;
+}
+
 CodeGenerator& CodeGenerator::b(Condition cc, Label& label) {
     int32_t off = label_offset(label, PatchType::Imm19);
     emit(control::encode_b_only_condbranch(static_cast<uint32_t>(cc), off >> 2));
@@ -865,6 +877,11 @@ CodeGenerator& CodeGenerator::b(Condition cc, Label& label) {
 CodeGenerator& CodeGenerator::bl(Label& label) {
     int32_t off = label_offset(label, PatchType::Imm26);
     emit(control::encode_bl_only_branch_imm(off >> 2));
+    return *this;
+}
+
+CodeGenerator& CodeGenerator::bl(int32_t offset) {
+    emit(control::encode_bl_only_branch_imm(offset >> 2));
     return *this;
 }
 

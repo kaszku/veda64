@@ -94,6 +94,7 @@ public:
     CodeGenerator& movk(XReg rd, uint16_t imm16, uint8_t hw = 0);
     CodeGenerator& movk(WReg rd, uint16_t imm16, uint8_t hw = 0);
     CodeGenerator& adr(XReg rd, Label& label);
+    CodeGenerator& adr(XReg rd, int64_t offset);
     CodeGenerator& adrp(XReg rd, int64_t imm);
 
     // === Data Processing - Register ===
@@ -251,8 +252,10 @@ public:
 
     // === Branches ===
     CodeGenerator& b(Label& label);
+    CodeGenerator& b(int32_t offset);
     CodeGenerator& b(Condition cc, Label& label);
     CodeGenerator& bl(Label& label);
+    CodeGenerator& bl(int32_t offset);
     CodeGenerator& br(XReg rn);
     CodeGenerator& blr(XReg rn);
     CodeGenerator& ret(XReg rn = XReg{30});
