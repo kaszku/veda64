@@ -53,8 +53,13 @@ bool relocate_instruction(uint32_t insn, uint64_t old_pc, uint64_t new_pc,
     auto m = decoded->mnemonic;
     int64_t delta = static_cast<int64_t>(old_pc) - static_cast<int64_t>(new_pc);
 
+    // The decoder maps both unconditional B (0x14...) and B.cond (0x54...) to
+    // Mnemonic::B, so we dispatch on the encoding pattern, not the mnemonic.
+    bool is_uncond_b = (m == Mnemonic::B && (insn & 0xFC000000u) == 0x14000000u);
+    bool is_b_cond   = (m == Mnemonic::B && (insn & 0xFF000010u) == 0x54000000u);
+
     // B/BL: 26-bit signed offset * 4
-    if (m == Mnemonic::B || m == Mnemonic::BL) {
+    if (is_uncond_b || m == Mnemonic::BL) {
         int32_t old_off = static_cast<int32_t>(insn << 6) >> 6;  // sign-extend imm26
         int64_t new_off = static_cast<int64_t>(old_off) + (delta >> 2);
         if (new_off < -0x2000000 || new_off > 0x1FFFFFF) { *out_count = 0; return false; }
@@ -63,23 +68,68 @@ bool relocate_instruction(uint32_t insn, uint64_t old_pc, uint64_t new_pc,
         return true;
     }
 
-    // B.cond/BC/CBZ/CBNZ: 19-bit signed offset * 4 at bits [23:5]
-    if (m == Mnemonic::BC || m == Mnemonic::CBZ || m == Mnemonic::CBNZ) {
+    // B.cond/BC/CBZ/CBNZ: 19-bit signed offset * 4 at bits [23:5].
+    // If the new imm19 is out of range, expand to a 2-insn sequence:
+    //   <same-class branch with inverted predicate> +8  ; skip the next insn
+    //   B <target>                                       ; imm26, ±128 MiB
+    // B.AL/B.NV (cond >= 14) collapse to a single unconditional B.
+    // Out of imm26 → return false (future work: 4-insn LDR+BR+literal tail
+    // requires growing out_insn buffer beyond 4).
+    if (is_b_cond || m == Mnemonic::BC || m == Mnemonic::CBZ || m == Mnemonic::CBNZ) {
         int32_t old_off = static_cast<int32_t>(insn << 8) >> 13;  // extract imm19
         int64_t new_off = static_cast<int64_t>(old_off) + (delta >> 2);
-        if (new_off < -0x40000 || new_off > 0x3FFFF) { *out_count = 0; return false; }
-        out_insn[0] = (insn & 0xFF00001Fu) | ((static_cast<uint32_t>(new_off) & 0x7FFFFu) << 5);
-        *out_count = 1;
+        if (new_off >= -0x40000 && new_off <= 0x3FFFF) {
+            out_insn[0] = (insn & 0xFF00001Fu) | ((static_cast<uint32_t>(new_off) & 0x7FFFFu) << 5);
+            *out_count = 1;
+            return true;
+        }
+        // imm19 overflow: compute imm26 from the second word position (new_pc+4)
+        int64_t target = static_cast<int64_t>(old_pc) + (static_cast<int64_t>(old_off) << 2);
+        int64_t imm26_off = (target - (static_cast<int64_t>(new_pc) + 4)) >> 2;
+        if (imm26_off < -0x2000000 || imm26_off > 0x1FFFFFF) { *out_count = 0; return false; }
+        uint32_t b_insn = 0x14000000u | (static_cast<uint32_t>(imm26_off) & 0x03FFFFFFu);
+        bool is_cond_class = is_b_cond || m == Mnemonic::BC;
+        // B.cond/BC with cond=AL(14)/NV(15): inversion would flip AL↔NV. Both
+        // behave as "always taken" in ARMv8, so collapse to a single B.
+        if (is_cond_class && (insn & 0xFu) >= 14) {
+            out_insn[0] = 0x14000000u | (static_cast<uint32_t>(
+                (target - static_cast<int64_t>(new_pc)) >> 2) & 0x03FFFFFFu);
+            *out_count = 1;
+            return true;
+        }
+        // Insn 1: clear imm19, set imm19 = 2 (skip the B that follows), invert
+        // the predicate (cond^1 for B.cond/BC, bit 24 for CBZ/CBNZ).
+        uint32_t inv;
+        if (is_cond_class) {
+            inv = (insn & 0xFF00001Eu) | (2u << 5) | ((insn & 0xFu) ^ 1u);
+        } else {
+            inv = ((insn & 0xFF00001Fu) ^ (1u << 24)) | (2u << 5);
+        }
+        out_insn[0] = inv;
+        out_insn[1] = b_insn;
+        *out_count = 2;
         return true;
     }
 
-    // TBZ/TBNZ: 14-bit signed offset * 4 at bits [18:5]
+    // TBZ/TBNZ: 14-bit signed offset * 4 at bits [18:5]. Same expansion strategy
+    // as imm19 branches; predicate is bit 24 (TBZ=0 / TBNZ=1).
     if (m == Mnemonic::TBZ || m == Mnemonic::TBNZ) {
         int32_t old_off = static_cast<int32_t>(insn << 13) >> 18;  // extract imm14
         int64_t new_off = static_cast<int64_t>(old_off) + (delta >> 2);
-        if (new_off < -0x2000 || new_off > 0x1FFF) { *out_count = 0; return false; }
-        out_insn[0] = (insn & 0xFFF8001Fu) | ((static_cast<uint32_t>(new_off) & 0x3FFFu) << 5);
-        *out_count = 1;
+        if (new_off >= -0x2000 && new_off <= 0x1FFF) {
+            out_insn[0] = (insn & 0xFFF8001Fu) | ((static_cast<uint32_t>(new_off) & 0x3FFFu) << 5);
+            *out_count = 1;
+            return true;
+        }
+        int64_t target = static_cast<int64_t>(old_pc) + (static_cast<int64_t>(old_off) << 2);
+        int64_t imm26_off = (target - (static_cast<int64_t>(new_pc) + 4)) >> 2;
+        if (imm26_off < -0x2000000 || imm26_off > 0x1FFFFFF) { *out_count = 0; return false; }
+        // Insn 1: preserve b40 [23:19] and Rt [4:0], clear imm14, set imm14 = 2,
+        // flip bit 24 (TBZ ↔ TBNZ).
+        uint32_t inv = ((insn & 0xFFF8001Fu) ^ (1u << 24)) | (2u << 5);
+        out_insn[0] = inv;
+        out_insn[1] = 0x14000000u | (static_cast<uint32_t>(imm26_off) & 0x03FFFFFFu);
+        *out_count = 2;
         return true;
     }
 

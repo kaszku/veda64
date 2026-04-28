@@ -24,12 +24,20 @@ bool can_relocate(uint32_t insn);
 /// For PC-relative instructions, the immediate is adjusted to maintain the
 /// original target address. Non-PC-relative instructions are copied as-is.
 ///
+/// Short-range conditional branches (B.cond/BC, CBZ, CBNZ, TBZ, TBNZ) expand
+/// to a 2-instruction sequence when the new offset overflows their native
+/// imm19/imm14 field but is still reachable by an unconditional B (imm26):
+///   <inverted-predicate same-class branch> +8 ; B <target>
+/// The expansion writes 2 words; *out_count reflects the actual count (1 or 2).
+///
 /// @param insn       The 32-bit instruction to relocate
 /// @param old_pc     The original PC address where the instruction was located
 /// @param new_pc     The new PC address where the instruction will be placed
 /// @param out_insn   Output buffer for relocated instruction(s) (must hold at least 4 uint32_t)
-/// @param out_count  Number of instructions written to out_insn
-/// @return true if relocation succeeded, false if the offset is out of range
+/// @param out_count  Number of instructions written to out_insn (1 or 2)
+/// @return true if relocation succeeded, false if the target is unreachable
+///         even after expansion (delta beyond ±128 MiB), or if the instruction
+///         cannot be relocated (e.g. authenticated return).
 bool relocate_instruction(
     uint32_t insn,
     uint64_t old_pc,

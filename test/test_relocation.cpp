@@ -72,6 +72,86 @@ void test_relocate_instruction() {
         auto d = decode(out[0]);
         if (d && d->mnemonic == Mnemonic::BL) { passed++; } else { failures++; std::cerr << "  FAIL: BL relocate decode" << std::endl; }
     } else { failures++; std::cerr << "  FAIL: BL relocate" << std::endl; }
+
+    // ---- Short-branch expansion (out-of-range imm19/imm14) ----
+
+    // B.EQ +8 at 0x1000, target 0x1008. Move to 0x102000 (delta beyond ±1 MiB
+    // imm19, inside ±128 MiB imm26). Expect: B.NE +8 ; B 0x1008.
+    // Both B.cond and unconditional B decode to Mnemonic::B; distinguish by
+    // the top-byte encoding pattern.
+    ok = relocate_instruction(0x54000040, 0x1000, 0x102000, out, &count);
+    if (ok && count == 2) {
+        auto d0 = decode(out[0]);
+        auto d1 = decode(out[1]);
+        bool cond_ok = d0 && d0->mnemonic == Mnemonic::B
+                       && (out[0] & 0xFF000010u) == 0x54000000u
+                       && (out[0] & 0xFu) == 1;  // NE
+        bool imm_ok  = ((static_cast<int32_t>(out[0] << 8) >> 13) == 2);
+        bool b_ok    = d1 && d1->mnemonic == Mnemonic::B
+                       && (out[1] & 0xFC000000u) == 0x14000000u;
+        int32_t imm26 = static_cast<int32_t>(out[1] << 6) >> 6;
+        int64_t target = static_cast<int64_t>(0x102000 + 4) + (static_cast<int64_t>(imm26) << 2);
+        if (cond_ok && imm_ok && b_ok && target == 0x1008) { passed++; }
+        else { failures++; std::cerr << "  FAIL: B.EQ out-of-range expansion" << std::endl; }
+    } else { failures++; std::cerr << "  FAIL: B.EQ out-of-range count" << std::endl; }
+
+    // CBZ X0, +8 at 0x1000, target 0x1008. Same delta as above.
+    ok = relocate_instruction(0xB4000040, 0x1000, 0x102000, out, &count);
+    if (ok && count == 2) {
+        auto d0 = decode(out[0]);
+        auto d1 = decode(out[1]);
+        bool cbnz_ok = d0 && d0->mnemonic == Mnemonic::CBNZ;
+        bool imm_ok  = ((static_cast<int32_t>(out[0] << 8) >> 13) == 2);
+        bool b_ok    = d1 && d1->mnemonic == Mnemonic::B
+                       && (out[1] & 0xFC000000u) == 0x14000000u;
+        int32_t imm26 = static_cast<int32_t>(out[1] << 6) >> 6;
+        int64_t target = static_cast<int64_t>(0x102000 + 4) + (static_cast<int64_t>(imm26) << 2);
+        if (cbnz_ok && imm_ok && b_ok && target == 0x1008) { passed++; }
+        else { failures++; std::cerr << "  FAIL: CBZ out-of-range expansion" << std::endl; }
+    } else { failures++; std::cerr << "  FAIL: CBZ out-of-range count" << std::endl; }
+
+    // TBZ W0, #0, +8 at 0x1000. Move to 0x11000 (delta beyond ±32 KiB imm14,
+    // inside imm26).
+    ok = relocate_instruction(0x36000040, 0x1000, 0x11000, out, &count);
+    if (ok && count == 2) {
+        auto d0 = decode(out[0]);
+        auto d1 = decode(out[1]);
+        bool tbnz_ok = d0 && d0->mnemonic == Mnemonic::TBNZ;
+        bool imm_ok  = ((static_cast<int32_t>(out[0] << 13) >> 18) == 2);
+        bool b_ok    = d1 && d1->mnemonic == Mnemonic::B
+                       && (out[1] & 0xFC000000u) == 0x14000000u;
+        int32_t imm26 = static_cast<int32_t>(out[1] << 6) >> 6;
+        int64_t target = static_cast<int64_t>(0x11000 + 4) + (static_cast<int64_t>(imm26) << 2);
+        if (tbnz_ok && imm_ok && b_ok && target == 0x1008) { passed++; }
+        else { failures++; std::cerr << "  FAIL: TBZ out-of-range expansion" << std::endl; }
+    } else { failures++; std::cerr << "  FAIL: TBZ out-of-range count" << std::endl; }
+
+    // Regression: B.EQ within imm19 range still emits a single instruction.
+    ok = relocate_instruction(0x54000040, 0x1000, 0x2000, out, &count);
+    if (ok && count == 1) {
+        auto d = decode(out[0]);
+        if (d && d->mnemonic == Mnemonic::B
+            && (out[0] & 0xFF000010u) == 0x54000000u
+            && (out[0] & 0xFu) == 0) { passed++; }  // still EQ
+        else { failures++; std::cerr << "  FAIL: B.EQ in-range single-insn" << std::endl; }
+    } else { failures++; std::cerr << "  FAIL: B.EQ in-range count" << std::endl; }
+
+    // Beyond imm26 too (delta > 128 MiB) → still fails.
+    ok = relocate_instruction(0x54000040, 0x1000, 0x10001000, out, &count);
+    if (!ok && count == 0) { passed++; }
+    else { failures++; std::cerr << "  FAIL: B.EQ beyond imm26 should fail" << std::endl; }
+
+    // B.AL +8 (cond=14): inversion would yield NV; collapse to plain B.
+    ok = relocate_instruction(0x5400004E, 0x1000, 0x102000, out, &count);
+    if (ok && count == 1) {
+        auto d = decode(out[0]);
+        bool b_ok = d && d->mnemonic == Mnemonic::B
+                    && (out[0] & 0xFC000000u) == 0x14000000u;
+        int32_t imm26 = static_cast<int32_t>(out[0] << 6) >> 6;
+        int64_t target = static_cast<int64_t>(0x102000) + (static_cast<int64_t>(imm26) << 2);
+        if (b_ok && target == 0x1008) { passed++; }
+        else { failures++; std::cerr << "  FAIL: B.AL collapse to B" << std::endl; }
+    } else { failures++; std::cerr << "  FAIL: B.AL collapse count" << std::endl; }
 }
 
 int main() {
