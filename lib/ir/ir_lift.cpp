@@ -43,6 +43,27 @@ static uint32_t op_mem_base(const Instruction& insn, int idx) {
     return register_num(static_cast<Register>(insn.operands[idx].mem.base));
 }
 
+// SP and XZR collide at register number 31; the disassembler distinguishes
+// them via Register::SP / Register::WSP. The IR uses VarNode::sp() (offset
+// sentinel SP_REG_INDEX) instead of VarNode::gpr(31) so the encoding-form
+// disambiguation reaches the codegen.
+
+static bool op_is_sp(const Instruction& insn, int idx) {
+    auto r = insn.operands[idx].r.reg;
+    return r == Register::SP || r == Register::WSP;
+}
+
+static bool op_mem_base_is_sp(const Instruction& insn, int idx) {
+    auto r = static_cast<Register>(insn.operands[idx].mem.base);
+    return r == Register::SP || r == Register::WSP;
+}
+
+// Build a VarNode for an integer register operand: SP gets the SP sentinel,
+// any other register (including XZR) keeps its numeric encoding.
+static VarNode gpr_or_sp(uint32_t num, uint8_t sz, bool is_sp) {
+    return is_sp ? VarNode::sp(sz) : VarNode::gpr(num, sz);
+}
+
 static uint8_t arr_elem_size(Register r) {
     Arrangement a = register_arrangement(r);
     switch (a) {
@@ -116,22 +137,42 @@ static void emit_gpr_write(Lifted& l, uint32_t reg, uint8_t op_sz, VarNode value
     }
 }
 
+// SP-aware GP write: routes to VarNode::sp() when the destination is SP.
+// Used by SP-permitting encodings (ADD/SUB-immediate, ADD/SUB-extended).
+static void emit_gpr_or_sp_write(Lifted& l, uint32_t reg, uint8_t op_sz,
+                                  bool is_sp, VarNode value) {
+    if (is_sp) {
+        l.ops.push_back(make_op(Opcode::COPY, VarNode::sp(op_sz), value));
+        return;
+    }
+    emit_gpr_write(l, reg, op_sz, value);
+}
+
 // GP binary: Rd, Rn, Rm [, shift]
+// Shared interpreter for ADD/SUB shifted-register and extended-register, plus
+// MOV (register), MVN, the SXT*/UXT* aliases, and the addsub_carry family.
+// In the addsub_ext form, SP is permitted at Rn (and at Rd for non-flag
+// ADD/SUB). The decoder hands us Register::SP / Register::XZR distinctly via
+// op_is_sp(), so we propagate the SP marker only when the source instruction
+// actually used SP — addsub_shift with Rn=31 keeps gpr(31)=XZR semantics.
+// Rm in any encoding never means SP (bit-31 always reads as XZR there).
 static Lifted interpret_gp_binop(const Instruction& insn, const IrEntry& e, IrDetail) {
     Lifted l;
     uint8_t sz = op_reg_sz(insn, 0);
     uint32_t rd = op_reg(insn, 0);
+    bool rd_sp = op_is_sp(insn, 0);
     uint32_t rn = op_reg(insn, 1);
+    bool rn_sp = op_is_sp(insn, 1);
     uint32_t rm = op_reg(insn, 2);
 
     auto t0 = next_temp(sz);
     auto t1 = next_temp(sz);
     auto t2 = next_temp(sz);
 
-    l.ops.push_back(make_op(Opcode::COPY, t0, VarNode::gpr(rn, sz)));
+    l.ops.push_back(make_op(Opcode::COPY, t0, gpr_or_sp(rn, sz, rn_sp)));
     l.ops.push_back(make_op(Opcode::COPY, t1, VarNode::gpr(rm, sz)));
     l.ops.push_back(make_op2(e.opcode, t2, t0, t1));
-    emit_gpr_write(l, rd, sz, t2);
+    emit_gpr_or_sp_write(l, rd, sz, rd_sp, t2);
     return l;
 }
 
@@ -199,33 +240,39 @@ static Lifted interpret_gp_binop_flags(const Instruction& insn, const IrEntry& e
 }
 
 // GP binary immediate: Rd, Rn, #imm [, shift]
+// ADD/SUB (immediate) without flags: both Rd and Rn may be SP.
 static Lifted interpret_gp_binop_imm(const Instruction& insn, const IrEntry& e, IrDetail) {
     Lifted l;
     uint8_t sz = op_reg_sz(insn, 0);
     uint32_t rd = op_reg(insn, 0);
+    bool rd_sp = op_is_sp(insn, 0);
     uint32_t rn = op_reg(insn, 1);
+    bool rn_sp = op_is_sp(insn, 1);
     int64_t imm = op_imm(insn, 2);
 
     auto t0 = next_temp(sz);
     auto t1 = next_temp(sz);
 
-    l.ops.push_back(make_op(Opcode::COPY, t0, VarNode::gpr(rn, sz)));
+    l.ops.push_back(make_op(Opcode::COPY, t0, gpr_or_sp(rn, sz, rn_sp)));
     l.ops.push_back(make_op2(e.opcode, t1, t0, VarNode::constant(imm, sz)));
-    emit_gpr_write(l, rd, sz, t1);
+    emit_gpr_or_sp_write(l, rd, sz, rd_sp, t1);
     return l;
 }
 
+// ADDS/SUBS (immediate): only Rn may be SP — Rd=31 is XZR (so the alias is
+// CMN/CMP rather than ADDS/SUBS into SP).
 static Lifted interpret_gp_binop_imm_flags(const Instruction& insn, const IrEntry& e, IrDetail detail) {
     Lifted l;
     uint8_t sz = op_reg_sz(insn, 0);
     uint32_t rd = op_reg(insn, 0);
     uint32_t rn = op_reg(insn, 1);
+    bool rn_sp = op_is_sp(insn, 1);
     int64_t imm = op_imm(insn, 2);
 
     auto t0 = next_temp(sz);
     auto t1 = next_temp(sz);
 
-    l.ops.push_back(make_op(Opcode::COPY, t0, VarNode::gpr(rn, sz)));
+    l.ops.push_back(make_op(Opcode::COPY, t0, gpr_or_sp(rn, sz, rn_sp)));
     l.ops.push_back(make_op2(e.opcode, t1, t0, VarNode::constant(imm, sz)));
     bool is_sub = (e.opcode == Opcode::SUB);
     emit_flags(l, t1, t0, VarNode::constant(imm, sz), is_sub, detail);
@@ -253,18 +300,20 @@ static Lifted interpret_gp_compare(const Instruction& insn, const IrEntry& e, Ir
     return l;
 }
 
-// GP compare immediate: Rn, #imm (Rd=XZR omitted from operands)
+// GP compare immediate: Rn, #imm (Rd=XZR omitted from operands).
+// CMP/CMN-immediate is an alias of SUBS/ADDS-imm; Rn may be SP.
 static Lifted interpret_gp_compare_imm(const Instruction& insn, const IrEntry& e, IrDetail detail) {
     Lifted l;
     uint8_t sz = op_reg_sz(insn, 0);
     uint32_t rn = op_reg(insn, 0);
+    bool rn_sp = op_is_sp(insn, 0);
     int64_t imm = op_imm(insn, 1);
 
     auto t0 = next_temp(sz);
     auto t1 = next_temp(sz);
     auto imm_v = VarNode::constant(imm, sz);
 
-    l.ops.push_back(make_op(Opcode::COPY, t0, VarNode::gpr(rn, sz)));
+    l.ops.push_back(make_op(Opcode::COPY, t0, gpr_or_sp(rn, sz, rn_sp)));
     l.ops.push_back(make_op2(e.opcode, t1, t0, imm_v));
     // Result discarded (Rd=XZR), only flags matter
     bool is_sub = (e.opcode == Opcode::SUB);
@@ -390,15 +439,17 @@ static Lifted interpret_load_reg(const Instruction& insn, const IrEntry& e, IrDe
     // Size from raw bits [31:30]
     uint8_t sz = 1 << ((insn.raw_value >> 30) & 3);
     uint32_t rd = op_reg(insn, 0);
-    // Operand 1 is Memory
+    // Operand 1 is Memory; the base register may be SP (the ARM ARM treats
+    // Rn=31 in the load/store base position as SP, never XZR).
     uint32_t rn = op_mem_base(insn, 1);
+    bool rn_sp = op_mem_base_is_sp(insn, 1);
     int64_t imm = op_mem_offset(insn, 1);
 
     auto taddr = next_temp(8);
     auto tval = next_temp(sz);
 
     l.ops.push_back(make_op2(Opcode::ADD, taddr,
-        VarNode::gpr(rn, 8), VarNode::constant(imm, 8)));
+        gpr_or_sp(rn, 8, rn_sp), VarNode::constant(imm, 8)));
     l.ops.push_back(make_op(Opcode::LOAD, tval, taddr));
     if (sz < 8) {
         auto text = next_temp(8);
@@ -417,17 +468,17 @@ static Lifted interpret_store_reg(const Instruction& insn, const IrEntry& e, IrD
     uint8_t sz = 1 << ((insn.raw_value >> 30) & 3);
     uint32_t rt = op_reg(insn, 0);
     uint32_t rn = op_mem_base(insn, 1);
+    bool rn_sp = op_mem_base_is_sp(insn, 1);
     int64_t imm = op_mem_offset(insn, 1);
 
     auto taddr = next_temp(8);
     auto tval = next_temp(sz);
 
     l.ops.push_back(make_op2(Opcode::ADD, taddr,
-        VarNode::gpr(rn, 8), VarNode::constant(imm, 8)));
+        gpr_or_sp(rn, 8, rn_sp), VarNode::constant(imm, 8)));
     l.ops.push_back(make_op(Opcode::COPY, tval, VarNode::gpr(rt, sz)));
-    l.ops.push_back(make_op(Opcode::STORE, VarNode::ram(sz), taddr));
-    l.ops[l.ops.size()-1].inputs[1] = tval;
-    l.ops[l.ops.size()-1].num_inputs = 2;
+    // STORE: inputs[0] = value, inputs[1] = address.
+    l.ops.push_back(make_op2(Opcode::STORE, VarNode::ram(sz), tval, taddr));
     return l;
 }
 
@@ -438,13 +489,14 @@ static Lifted interpret_load_pair(const Instruction& insn, const IrEntry& e, IrD
     uint8_t sz = op_reg_sz(insn, 0);
     uint32_t rt1 = op_reg(insn, 0);
     uint32_t rt2 = op_reg(insn, 1);
-    // Operand 2 is Memory
+    // Operand 2 is Memory; base may be SP.
     uint32_t rn = op_mem_base(insn, 2);
+    bool rn_sp = op_mem_base_is_sp(insn, 2);
     int64_t imm = op_mem_offset(insn, 2);
 
     auto taddr = next_temp(8);
     l.ops.push_back(make_op2(Opcode::ADD, taddr,
-        VarNode::gpr(rn, 8), VarNode::constant(imm, 8)));
+        gpr_or_sp(rn, 8, rn_sp), VarNode::constant(imm, 8)));
 
     auto tv1 = next_temp(sz);
     l.ops.push_back(make_op(Opcode::LOAD, tv1, taddr));
@@ -466,25 +518,22 @@ static Lifted interpret_store_pair(const Instruction& insn, const IrEntry& e, Ir
     uint32_t rt1 = op_reg(insn, 0);
     uint32_t rt2 = op_reg(insn, 1);
     uint32_t rn = op_mem_base(insn, 2);
+    bool rn_sp = op_mem_base_is_sp(insn, 2);
     int64_t imm = op_mem_offset(insn, 2);
 
     auto taddr = next_temp(8);
     l.ops.push_back(make_op2(Opcode::ADD, taddr,
-        VarNode::gpr(rn, 8), VarNode::constant(imm, 8)));
+        gpr_or_sp(rn, 8, rn_sp), VarNode::constant(imm, 8)));
 
     auto tv1 = next_temp(sz);
     l.ops.push_back(make_op(Opcode::COPY, tv1, VarNode::gpr(rt1, sz)));
-    l.ops.push_back(make_op(Opcode::STORE, VarNode::ram(sz), taddr));
-    l.ops[l.ops.size()-1].inputs[1] = tv1;
-    l.ops[l.ops.size()-1].num_inputs = 2;
+    l.ops.push_back(make_op2(Opcode::STORE, VarNode::ram(sz), tv1, taddr));
 
     auto taddr2 = next_temp(8);
     l.ops.push_back(make_op2(Opcode::ADD, taddr2, taddr, VarNode::constant(sz, 8)));
     auto tv2 = next_temp(sz);
     l.ops.push_back(make_op(Opcode::COPY, tv2, VarNode::gpr(rt2, sz)));
-    l.ops.push_back(make_op(Opcode::STORE, VarNode::ram(sz), taddr2));
-    l.ops[l.ops.size()-1].inputs[1] = tv2;
-    l.ops[l.ops.size()-1].num_inputs = 2;
+    l.ops.push_back(make_op2(Opcode::STORE, VarNode::ram(sz), tv2, taddr2));
     return l;
 }
 
@@ -815,6 +864,14 @@ static Lifted interpret_nop(const Instruction&, const IrEntry&, IrDetail) {
     return l;
 }
 
+// Opaque-instruction lifter: returns an empty Lifted{} so the consumer
+// preserves the original bytes verbatim. Used for HINTs whose semantics
+// the IR does not model (PAuth, BTI, etc.) — substituting a NOP would
+// silently drop security-critical guards.
+static Lifted interpret_opaque(const Instruction&, const IrEntry&, IrDetail) {
+    return Lifted{};
+}
+
 static Lifted interpret_system(const Instruction&, const IrEntry&, IrDetail) {
     Lifted l;
     Op o;
@@ -895,9 +952,7 @@ static Lifted interpret_atomic(const Instruction& insn, const IrEntry& e, IrDeta
         // For IR, emit both paths — consumer can interpret
         l.ops.push_back(make_op2(Opcode::CMP_EQ, tnew, trt, told));
         // Store (always emit — simplifier can optimize)
-        l.ops.push_back(make_op(Opcode::STORE, VarNode::ram(sz), taddr));
-        l.ops[l.ops.size()-1].inputs[1] = tnew;
-        l.ops[l.ops.size()-1].num_inputs = 2;
+        l.ops.push_back(make_op2(Opcode::STORE, VarNode::ram(sz), tnew, taddr));
         // Rs gets old value
         if (sz < 8) {
             auto text = next_temp(8);
@@ -950,9 +1005,7 @@ static Lifted interpret_atomic(const Instruction& insn, const IrEntry& e, IrDeta
     }
 
     // Store new value
-    l.ops.push_back(make_op(Opcode::STORE, VarNode::ram(sz), taddr));
-    l.ops[l.ops.size()-1].inputs[1] = tnew;
-    l.ops[l.ops.size()-1].num_inputs = 2;
+    l.ops.push_back(make_op2(Opcode::STORE, VarNode::ram(sz), tnew, taddr));
 
     // Copy old value to Rt (if present)
     if (has_rt) {
@@ -1006,6 +1059,7 @@ static Interpreter get_interpreter(IrTemplate tpl) {
     case IrTemplate::Atomic:          return interpret_atomic;
     case IrTemplate::System:          return interpret_system;
     case IrTemplate::Nop:             return interpret_nop;
+    case IrTemplate::Opaque:          return interpret_opaque;
     }
     return nullptr;
 }

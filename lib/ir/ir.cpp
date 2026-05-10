@@ -276,10 +276,11 @@ Ast to_ast(const Lifted& l) {
         eff.size = op.output.size;
 
         if (op.opcode == Opcode::STORE) {
+            // STORE convention: inputs[0] = value, inputs[1] = address.
             eff.kind = Effect::Kind::Store;
-            eff.expr = (op.num_inputs >= 1) ? build_expr(op.inputs[0]) : nullptr;
-            eff.value = (op.num_inputs >= 2) ? build_expr(op.inputs[1]) : nullptr;
-            eff.size = op.output.size;
+            eff.value = (op.num_inputs >= 1) ? build_expr(op.inputs[0]) : nullptr;
+            eff.expr  = (op.num_inputs >= 2) ? build_expr(op.inputs[1]) : nullptr;
+            eff.size  = op.output.size;
         } else if (op.opcode == Opcode::BRANCH) {
             eff.kind = Effect::Kind::Branch;
             eff.expr = (op.num_inputs >= 1) ? build_expr(op.inputs[0]) : nullptr;

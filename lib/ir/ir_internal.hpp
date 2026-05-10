@@ -42,7 +42,8 @@ enum class IrTemplate : uint8_t {
     FpConvert,      // FCVT*, SCVTF, UCVTF
     Atomic,         // LDADD, CAS, SWP, etc.
     System,         // MSR, MRS, SYS
-    Nop,            // NOP, HINT
+    Nop,            // True NOP (mnemonic NOP)
+    Opaque,         // HINT-class with un-modelled semantics (PACIBSP, BTI, ...)
     None_,          // Sentinel for unclassified encodings
 };
 

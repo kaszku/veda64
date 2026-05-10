@@ -129,6 +129,14 @@ struct VarNode {
     static VarNode gpr(uint32_t reg, uint8_t sz = 8) {
         return {Space::GPR, reg, sz, 0};
     }
+    // SP and XZR share architectural register number 31 but are distinct
+    // operands (the encoding form picks which one bit-31 means). Use offset
+    // sentinel 32 to mean SP, leaving 31 = XZR. Resolvers downstream must map
+    // 32 → XReg::sp() / WReg::wsp.
+    static VarNode sp(uint8_t sz = 8) {
+        return {Space::GPR, 32, sz, 0};
+    }
+    static constexpr uint32_t SP_REG_INDEX = 32;
     static VarNode simd(uint32_t reg, uint8_t sz = 16) {
         return {Space::SIMD, reg, sz, 0};
     }

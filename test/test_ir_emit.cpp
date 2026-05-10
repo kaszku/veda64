@@ -21,10 +21,12 @@ static uint32_t insn_at(const CodeGenerator& cg, size_t idx) {
 }
 
 // Simple identity context: GPR(n) → x(n), Temp(n) → x(9 + n % 7).
+// SP sentinel (offset == VarNode::SP_REG_INDEX) maps to codegen::sp.
 static EmitContext make_ctx() {
     EmitContext ctx;
     ctx.resolve = [](const VarNode& v) -> XReg {
         if (v.space == Space::Temp) return XReg{9 + (v.offset % 7)};
+        if (v.space == Space::GPR && v.offset == VarNode::SP_REG_INDEX) return codegen::sp;
         return XReg{static_cast<uint8_t>(v.offset)};
     };
     return ctx;
@@ -154,6 +156,7 @@ static int test_ldst() {
     auto ld = mk2(Opcode::LOAD, VarNode::gpr(3), VarNode::gpr(1), VarNode::constant(8, 8));
     assert(emit(ld, cg, ctx));
     // STORE: [X1 + 16] = X2
+    // Convention: inputs[0] = value (X2), inputs[1] = address (X1), inputs[2] = offset.
     auto st = mk(Opcode::STORE, VarNode{});
     st.inputs[0] = VarNode::gpr(2);
     st.inputs[1] = VarNode::gpr(1);
@@ -162,6 +165,11 @@ static int test_ldst() {
     assert(emit(st, cg, ctx));
     auto a = decode(insn_at(cg, 0)); assert(a && a->mnemonic == Mnemonic::LDR);
     auto b = decode(insn_at(cg, 1)); assert(b && b->mnemonic == Mnemonic::STR);
+    // Verify operand assignment: STR x2, [x1, #16] (NOT STR x1, [x2, #16]).
+    // Rt is at bits [4:0] and the base register is at bits [9:5] of the encoding.
+    uint32_t str_insn = insn_at(cg, 1);
+    assert((str_insn & 0x1Fu) == 2);          // Rt = x2 (value)
+    assert(((str_insn >> 5) & 0x1Fu) == 1);   // Rn = x1 (base)
     std::cout << "  ldst: OK" << std::endl;
     return 0;
 }
@@ -210,6 +218,26 @@ static int test_unsupported() {
     return 0;
 }
 
+// IR ADD with VarNode::sp() must lower to ADD (extended register), not the
+// shifted-register form that reads bit-31 as XZR.
+static int test_sp_marker() {
+    auto ctx = make_ctx();
+    CodeGenerator cg(4096);
+    auto add = mk2(Opcode::ADD, VarNode::gpr(0), VarNode::sp(), VarNode::gpr(17));
+    assert(emit(add, cg, ctx));
+    uint32_t insn = insn_at(cg, 0);
+    auto d = decode(insn);
+    assert(d && d->mnemonic == Mnemonic::ADD);
+    // Extended register form: bits[23:21] = 001
+    assert(((insn >> 21) & 0x7u) == 0b001);
+    // option = UXTX (011) for X-reg targeting SP
+    assert(((insn >> 13) & 0x7u) == 0b011);
+    // Rn = 31 (encoded SP)
+    assert(((insn >> 5) & 0x1Fu) == 31);
+    std::cout << "  sp marker: OK" << std::endl;
+    return 0;
+}
+
 int main() {
     std::cout << "Running ir_emit tests..." << std::endl;
     int err = 0;
@@ -223,6 +251,7 @@ int main() {
     err |= test_flags();
     err |= test_const_materialize();
     err |= test_unsupported();
+    err |= test_sp_marker();
     std::cout << "All ir_emit tests passed!" << std::endl;
     return err;
 }

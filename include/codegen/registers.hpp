@@ -12,17 +12,26 @@ namespace codegen {
 struct VArr;
 
 /// 64-bit GP register
+///
+/// The 5-bit register field encodes 0..31; bit value 31 is interpreted as
+/// either XZR or SP depending on the *encoding form* of the surrounding
+/// instruction (e.g. ADD shifted-register reads 31 as XZR, ADD extended-
+/// register and ADD immediate read it as SP). To let the codegen pick the
+/// correct encoding form, XReg carries an extra `sp` flag that
+/// disambiguates SP (idx=31, sp=true) from XZR (idx=31, sp=false).
 struct XReg {
     uint8_t idx;
-    constexpr bool is_sp() const { return idx == 31; }
-    constexpr bool is_zr() const { return idx == 31; }
+    bool sp = false;
+    constexpr bool is_sp() const { return idx == 31 && sp; }
+    constexpr bool is_zr() const { return idx == 31 && !sp; }
 };
 
-/// 32-bit GP register
+/// 32-bit GP register (mirror of XReg with WSP for register 31, sp=true).
 struct WReg {
     uint8_t idx;
-    constexpr bool is_sp() const { return idx == 31; }
-    constexpr bool is_zr() const { return idx == 31; }
+    bool sp = false;
+    constexpr bool is_sp() const { return idx == 31 && sp; }
+    constexpr bool is_zr() const { return idx == 31 && !sp; }
 };
 
 /// 128-bit SIMD register
@@ -135,8 +144,8 @@ inline constexpr XReg x27{27};
 inline constexpr XReg x28{28};
 inline constexpr XReg x29{29};
 inline constexpr XReg x30{30};  // LR
-inline constexpr XReg xzr{31};
-inline constexpr XReg sp{31};
+inline constexpr XReg xzr{31, false};
+inline constexpr XReg sp{31, true};
 
 inline constexpr WReg w0{0};
 inline constexpr WReg w1{1};
@@ -169,8 +178,8 @@ inline constexpr WReg w27{27};
 inline constexpr WReg w28{28};
 inline constexpr WReg w29{29};
 inline constexpr WReg w30{30};
-inline constexpr WReg wzr{31};
-inline constexpr WReg wsp{31};
+inline constexpr WReg wzr{31, false};
+inline constexpr WReg wsp{31, true};
 
 // Predeclared SIMD registers
 inline constexpr VReg v0{0};

@@ -914,6 +914,64 @@ static int test_emit_prolog_epilog() {
     return 0;
 }
 
+// Verify SP-form ADD/SUB/ADDS/SUBS take the extended-register encoding
+// (option=UXTX) rather than the shifted-register form (which reads bit-31
+// as XZR).
+static int test_sp_form_addsub() {
+    auto check_extended = [](uint32_t insn, const char* what) {
+        // bits 28:21 = 0_1011_001 for extended register form (3 bits 23:21 = 001)
+        // bits 23:21 = 001 for ext, 011 for shifted register
+        uint32_t form = (insn >> 21) & 0x7u;
+        assert(form == 0b001 && "expected extended-register encoding");
+        // option (bits 15:13) = 011 (UXTX) when targeting SP with X-reg Rm
+        uint32_t option = (insn >> 13) & 0x7u;
+        assert(option == 0b011 && "expected UXTX option for SP-form");
+        // Rn (bits 9:5) = 31 (encoded SP)
+        uint32_t Rn = (insn >> 5) & 0x1Fu;
+        assert(Rn == 31 && "expected Rn = 31 (SP)");
+        (void)what; (void)form; (void)option; (void)Rn;
+    };
+
+    {
+        CodeGenerator cg(4096);
+        cg.add(x0, sp, x17);
+        check_extended(get_insn(cg, 0), "add");
+        auto d = decode(get_insn(cg, 0));
+        assert(d && d->mnemonic == Mnemonic::ADD);
+    }
+    {
+        CodeGenerator cg(4096);
+        cg.sub(x2, sp, x3);
+        check_extended(get_insn(cg, 0), "sub");
+        auto d = decode(get_insn(cg, 0));
+        assert(d && d->mnemonic == Mnemonic::SUB);
+    }
+    {
+        // ADD with destination = SP (e.g. realigning the stack pointer).
+        CodeGenerator cg(4096);
+        cg.add(sp, sp, x4);
+        check_extended(get_insn(cg, 0), "add sp,sp,x4");
+    }
+    {
+        // ADDS with SP source still routes through extended form.
+        CodeGenerator cg(4096);
+        cg.adds(x5, sp, x6);
+        check_extended(get_insn(cg, 0), "adds");
+        auto d = decode(get_insn(cg, 0));
+        assert(d && d->mnemonic == Mnemonic::ADDS);
+    }
+    // Regression: with no SP operand, the shifted-register encoding is preserved.
+    {
+        CodeGenerator cg(4096);
+        cg.add(x0, x1, x2);
+        uint32_t form = (get_insn(cg, 0) >> 21) & 0x7u;
+        assert(form == 0b011 && "non-SP add must stay in shifted-register form");
+        (void)form;
+    }
+    std::cout << "  sp-form addsub: OK" << std::endl;
+    return 0;
+}
+
 int main() {
     std::cout << "Running codegen tests..." << std::endl;
     int err = 0;
@@ -921,6 +979,7 @@ int main() {
     err |= test_branches();
     err |= test_forward_branch();
     err |= test_raw_branch_offsets();
+    err |= test_sp_form_addsub();
     err |= test_ldst();
     err |= test_fp();
     err |= test_mov();

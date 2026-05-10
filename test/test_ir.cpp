@@ -2593,6 +2593,94 @@ static void run_tests() {
     expect_op(0xDAC01020, Opcode::CLZ,    "CLZ_X0_X1");
     expect_op(0xDAC00020, Opcode::BITREV, "RBIT_X0_X1");
     expect_op(0x0E205820, Opcode::POPCNT, "CNT_V0_8B_V1_8B");
+
+    // HINT-class instructions whose semantics the IR does not model must
+    // lift to an empty Lifted (so callers preserve the bytes verbatim),
+    // never to a single NOP op (which would silently drop PAuth/BTI guards).
+    auto expect_opaque = [](uint32_t insn, const char* name) {
+        tests_run++;
+        printf("  %-40s ", name);
+        auto r = lift(insn);
+        if (!r.has_value()) { printf("FAIL: lift returned nullopt\n"); return; }
+        if (!r->ops.empty()) {
+            printf("FAIL: expected empty Lifted, got %zu ops (first opcode=%d)\n",
+                   r->ops.size(), static_cast<int>(r->ops.front().opcode));
+            return;
+        }
+        printf("PASS\n");
+        tests_passed++;
+    };
+    expect_opaque(0xD503237F, "PACIBSP_must_be_opaque");
+    expect_opaque(0xD50323BF, "AUTIASP_must_be_opaque");
+    expect_opaque(0xD503233F, "PACIASP_must_be_opaque");
+    expect_opaque(0xD503245F, "BTI_must_be_opaque");
+
+    // True NOP (mnemonic NOP, hint #0) still lifts to a single NOP op.
+    {
+        tests_run++;
+        printf("  %-40s ", "NOP_remains_nop_op");
+        auto r = lift(0xD503201Fu);
+        if (r.has_value() && r->ops.size() == 1 && r->ops[0].opcode == Opcode::NOP) {
+            printf("PASS\n");
+            tests_passed++;
+        } else {
+            printf("FAIL\n");
+        }
+    }
+
+    // SP propagation through the lifters: instructions whose ARM-permitted
+    // operand position takes SP must lift to a VarNode carrying the SP
+    // sentinel, never to plain gpr(31)=XZR.
+    auto first_sp_input = [](const Lifted& l) -> int {
+        // Returns the index of the first op whose first input is SP_REG_INDEX.
+        for (size_t i = 0; i < l.ops.size(); ++i) {
+            const auto& op = l.ops[i];
+            if (op.num_inputs >= 1
+                && op.inputs[0].space == Space::GPR
+                && op.inputs[0].offset == VarNode::SP_REG_INDEX)
+                return static_cast<int>(i);
+        }
+        return -1;
+    };
+
+    // STP x29, x30, [sp, #-0x10]! — the address ADD must read SP, not XZR.
+    {
+        tests_run++;
+        printf("  %-40s ", "STP_writeback_sp_propagated");
+        auto r = lift(0xA9BF7BFDu);
+        if (r.has_value() && first_sp_input(*r) >= 0) {
+            printf("PASS\n");
+            tests_passed++;
+        } else {
+            printf("FAIL: no op reads gpr(SP_REG_INDEX)\n");
+        }
+    }
+
+    // ADD x0, sp, #16 — Rn is SP.
+    {
+        tests_run++;
+        printf("  %-40s ", "ADD_imm_sp_propagated");
+        auto r = lift(0x910043E0u);
+        if (r.has_value() && first_sp_input(*r) >= 0) {
+            printf("PASS\n");
+            tests_passed++;
+        } else {
+            printf("FAIL: no op reads gpr(SP_REG_INDEX)\n");
+        }
+    }
+
+    // ADD x0, x1, #16 — no SP anywhere; SP sentinel must NOT appear.
+    {
+        tests_run++;
+        printf("  %-40s ", "ADD_imm_non_sp_no_sentinel");
+        auto r = lift(0x91004020u);
+        if (r.has_value() && first_sp_input(*r) < 0) {
+            printf("PASS\n");
+            tests_passed++;
+        } else {
+            printf("FAIL: SP sentinel leaked into a non-SP encoding\n");
+        }
+    }
 }
 
 int main() {

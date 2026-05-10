@@ -214,8 +214,32 @@ CodeGenerator& CodeGenerator::adrp(XReg rd, int64_t imm) {
 }
 
 // === Data Processing - Register ===
+
+// ARMv8 has no bit distinguishing SP from XZR — the encoding form does it.
+// The shifted-register form of ADD/SUB/ADDS/SUBS reads register 31 as XZR;
+// the extended-register form reads it as SP. To target SP, the SP-aware
+// helpers below route to encode_*_addsub_ext with option=UXTX (0b011) and
+// imm3 = sh.amount (valid 0..4 in extended form).
+namespace {
+constexpr uint32_t SP_EXT_OPTION_UXTX = 0b011;
+
+template <typename ExtFn, typename ShiftFn>
+inline uint32_t pick_addsub64(uint32_t rd_idx, uint32_t rn_idx, uint32_t rm_idx,
+                              const Shift& sh, bool any_sp,
+                              ExtFn ext, ShiftFn shifted) {
+    if (any_sp) {
+        return ext(rd_idx, rn_idx, sh.amount, SP_EXT_OPTION_UXTX, rm_idx);
+    }
+    return shifted(rd_idx, rn_idx, sh.amount, rm_idx,
+                   static_cast<uint32_t>(sh.type));
+}
+}  // namespace
+
 CodeGenerator& CodeGenerator::add(XReg rd, XReg rn, XReg rm, Shift sh) {
-    emit(dpreg::encode_add_64_addsub_shift(rd.idx, rn.idx, sh.amount, rm.idx, static_cast<uint32_t>(sh.type)));
+    bool any_sp = rd.is_sp() || rn.is_sp();
+    emit(pick_addsub64(rd.idx, rn.idx, rm.idx, sh, any_sp,
+                       dpreg::encode_add_64_addsub_ext,
+                       dpreg::encode_add_64_addsub_shift));
     return *this;
 }
 
@@ -225,7 +249,10 @@ CodeGenerator& CodeGenerator::add(WReg rd, WReg rn, WReg rm, Shift sh) {
 }
 
 CodeGenerator& CodeGenerator::sub(XReg rd, XReg rn, XReg rm, Shift sh) {
-    emit(dpreg::encode_sub_64_addsub_shift(rd.idx, rn.idx, sh.amount, rm.idx, static_cast<uint32_t>(sh.type)));
+    bool any_sp = rd.is_sp() || rn.is_sp();
+    emit(pick_addsub64(rd.idx, rn.idx, rm.idx, sh, any_sp,
+                       dpreg::encode_sub_64_addsub_ext,
+                       dpreg::encode_sub_64_addsub_shift));
     return *this;
 }
 
@@ -235,7 +262,11 @@ CodeGenerator& CodeGenerator::sub(WReg rd, WReg rn, WReg rm, Shift sh) {
 }
 
 CodeGenerator& CodeGenerator::adds(XReg rd, XReg rn, XReg rm, Shift sh) {
-    emit(dpreg::encode_adds_64_addsub_shift(rd.idx, rn.idx, sh.amount, rm.idx, static_cast<uint32_t>(sh.type)));
+    // ADDS extended-register accepts SP only in the Rn position (not Rd).
+    bool any_sp = rn.is_sp();
+    emit(pick_addsub64(rd.idx, rn.idx, rm.idx, sh, any_sp,
+                       dpreg::encode_adds_64s_addsub_ext,
+                       dpreg::encode_adds_64_addsub_shift));
     return *this;
 }
 
@@ -245,7 +276,10 @@ CodeGenerator& CodeGenerator::adds(WReg rd, WReg rn, WReg rm, Shift sh) {
 }
 
 CodeGenerator& CodeGenerator::subs(XReg rd, XReg rn, XReg rm, Shift sh) {
-    emit(dpreg::encode_subs_64_addsub_shift(rd.idx, rn.idx, sh.amount, rm.idx, static_cast<uint32_t>(sh.type)));
+    bool any_sp = rn.is_sp();
+    emit(pick_addsub64(rd.idx, rn.idx, rm.idx, sh, any_sp,
+                       dpreg::encode_subs_64s_addsub_ext,
+                       dpreg::encode_subs_64_addsub_shift));
     return *this;
 }
 
