@@ -238,6 +238,48 @@ static int test_sp_marker() {
     return 0;
 }
 
+// ZEXT / SEXT must be emittable, and a lift→emit round-trip of any
+// instruction that writes a W register must succeed (it used to bail
+// because ZEXT had no emit case).
+static int test_zext_sext() {
+    auto ctx = make_ctx();
+
+    // Direct ZEXT op (register source): mov Wd, Wn.
+    {
+        CodeGenerator cg(4096);
+        assert(emit(mk1(Opcode::ZEXT, VarNode::gpr(3), VarNode::gpr(4)), cg, ctx));
+        auto d = decode(insn_at(cg, 0));
+        assert(d);
+        // 32-bit form (sf == 0).
+        assert(((insn_at(cg, 0) >> 31) & 1u) == 0);
+    }
+    // Direct ZEXT op (constant source): mov Wd, #imm.
+    {
+        CodeGenerator cg(4096);
+        assert(emit(mk1(Opcode::ZEXT, VarNode::gpr(3),
+                        VarNode::constant(0xFFFFFFFFll, 8)), cg, ctx));
+        assert(decode(insn_at(cg, 0)).has_value());
+    }
+    // Direct SEXT op (register source): sxtw Xd, Wn → SBFM.
+    {
+        CodeGenerator cg(4096);
+        assert(emit(mk1(Opcode::SEXT, VarNode::gpr(3), VarNode::gpr(4)), cg, ctx));
+        auto d = decode(insn_at(cg, 0));
+        assert(d && (d->mnemonic == Mnemonic::SXTW || d->mnemonic == Mnemonic::SBFM));
+    }
+
+    // Round-trip: lift then emit must succeed for W-writing instructions.
+    for (uint32_t insn : { 0x52800020u /*mov w0,#1*/, 0x0b020020u /*add w0,w1,w2*/,
+                           0xb9400260u /*ldr w0,[x19]*/, 0x2a0103e0u /*mov w0,w1*/ }) {
+        auto l = lift(insn);
+        assert(l.has_value());
+        CodeGenerator cg(4096);
+        assert(emit(*l, cg, ctx));
+    }
+    std::cout << "  zext_sext: OK" << std::endl;
+    return 0;
+}
+
 int main() {
     std::cout << "Running ir_emit tests..." << std::endl;
     int err = 0;
@@ -252,6 +294,7 @@ int main() {
     err |= test_const_materialize();
     err |= test_unsupported();
     err |= test_sp_marker();
+    err |= test_zext_sext();
     std::cout << "All ir_emit tests passed!" << std::endl;
     return err;
 }

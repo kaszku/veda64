@@ -132,7 +132,13 @@ static Op make_op3(Opcode opc, VarNode out, VarNode in0, VarNode in1, VarNode in
 // Write a GP register. ARM64 rule: writing a 32-bit W register zeroes the upper 32 bits of the X register.
 static void emit_gpr_write(Lifted& l, uint32_t reg, uint8_t op_sz, VarNode value) {
     if (op_sz == 4 && reg < 31) {
-        // 32-bit write: zero-extend to 64-bit
+        // 32-bit write: zero-extend to 64-bit. A constant source can be
+        // pre-masked into a single COPY instead of going through ZEXT.
+        if (value.space == Space::CONST) {
+            l.ops.push_back(make_op(Opcode::COPY, VarNode::gpr(reg, 8),
+                VarNode::constant(value.value & 0xFFFFFFFFll, 8)));
+            return;
+        }
         auto t = next_temp(8);
         l.ops.push_back(make_op(Opcode::ZEXT, t, value));
         l.ops.push_back(make_op(Opcode::COPY, VarNode::gpr(reg, 8), t));

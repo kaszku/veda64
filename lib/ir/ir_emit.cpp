@@ -133,6 +133,33 @@ bool emit(const Op& op, codegen::CodeGenerator& cg, const EmitContext& ctx) {
         // No direct scalar AArch64 instruction.
         return false;
 
+    case Opcode::ZEXT: {
+        // Zero-extend 32 -> 64. Writing the W view clears the upper 32 bits.
+        if (op.num_inputs != 1) return false;
+        XReg dst = ctx.resolve(op.output);
+        if (op.inputs[0].space == Space::CONST) {
+            cg.mov(codegen::WReg{dst.idx},
+                   static_cast<uint32_t>(op.inputs[0].value));
+        } else {
+            XReg src = to_reg(op.inputs[0], cg, ctx, ctx.scratch0);
+            cg.mov(codegen::WReg{dst.idx}, codegen::WReg{src.idx});
+        }
+        return true;
+    }
+    case Opcode::SEXT: {
+        // Sign-extend 32 -> 64.
+        if (op.num_inputs != 1) return false;
+        XReg dst = ctx.resolve(op.output);
+        if (op.inputs[0].space == Space::CONST) {
+            cg.mov(dst, static_cast<uint64_t>(
+                static_cast<int64_t>(static_cast<int32_t>(op.inputs[0].value))));
+        } else {
+            XReg src = to_reg(op.inputs[0], cg, ctx, ctx.scratch0);
+            cg.sxtw(dst, codegen::WReg{src.idx});
+        }
+        return true;
+    }
+
     case Opcode::CMP_EQ:  return emit_cmp_cset(op, cg, ctx, Condition::EQ);
     case Opcode::CMP_NE:  return emit_cmp_cset(op, cg, ctx, Condition::NE);
     case Opcode::CMP_SLT: return emit_cmp_cset(op, cg, ctx, Condition::LT);
