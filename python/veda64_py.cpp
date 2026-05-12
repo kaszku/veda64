@@ -1760,14 +1760,14 @@ NB_MODULE(veda64_py, m) {
         ;
 
     nb::enum_<veda64::ir::Space>(ir_mod, "Space")
-        .value("Const", veda64::ir::Space::Const)
-        .value("Temp", veda64::ir::Space::Temp)
+        .value("Const", veda64::ir::Space::CONST)
+        .value("Temp", veda64::ir::Space::TEMP)
         .value("GPR", veda64::ir::Space::GPR)
         .value("SIMD", veda64::ir::Space::SIMD)
         .value("SVE_Z", veda64::ir::Space::SVE_Z)
         .value("SVE_P", veda64::ir::Space::SVE_P)
-        .value("SysReg", veda64::ir::Space::SysReg)
-        .value("Flags", veda64::ir::Space::Flags)
+        .value("SysReg", veda64::ir::Space::SYS_REG)
+        .value("Flags", veda64::ir::Space::FLAGS)
         .value("RAM", veda64::ir::Space::RAM)
         ;
 

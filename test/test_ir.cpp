@@ -1346,7 +1346,7 @@ static void run_tests() {
         for (auto& op : sim.ops) {
             if (op.opcode == Opcode::ADD) {
                 for (int i = 0; i < 3; i++) {
-                    if (op.inputs[i].space == Space::Const && op.inputs[i].value == 8) {
+                    if (op.inputs[i].space == Space::CONST && op.inputs[i].value == 8) {
                         found_add_8 = true; break;
                     }
                 }
@@ -1426,7 +1426,7 @@ static void run_tests() {
         else {
             bool has_n = false, has_z = false, has_c = false, has_v = false;
             for (auto& op : r->ops) {
-                if (op.output.space == Space::Flags) {
+                if (op.output.space == Space::FLAGS) {
                     if (op.output.offset == 0) has_n = true;
                     if (op.output.offset == 1) has_z = true;
                     if (op.output.offset == 2) has_c = true;
@@ -1482,7 +1482,7 @@ static void run_tests() {
             bool reads_z = false;
             for (auto& op : r->ops) {
                 for (uint8_t i = 0; i < op.num_inputs; ++i) {
-                    if (op.inputs[i].space == Space::Flags && op.inputs[i].offset == 1)
+                    if (op.inputs[i].space == Space::FLAGS && op.inputs[i].offset == 1)
                         reads_z = true;
                 }
             }
@@ -1592,10 +1592,10 @@ static void run_tests() {
                 if (e.kind == Effect::Kind::Assign) {
                     assigns++;
                     if (e.dest.space == Space::GPR && e.dest.offset == 0) has_x0 = true;
-                    if (e.dest.space == Space::Flags && e.dest.offset == 0) has_n = true;
-                    if (e.dest.space == Space::Flags && e.dest.offset == 1) has_z = true;
-                    if (e.dest.space == Space::Flags && e.dest.offset == 2) has_c = true;
-                    if (e.dest.space == Space::Flags && e.dest.offset == 3) has_v = true;
+                    if (e.dest.space == Space::FLAGS && e.dest.offset == 0) has_n = true;
+                    if (e.dest.space == Space::FLAGS && e.dest.offset == 1) has_z = true;
+                    if (e.dest.space == Space::FLAGS && e.dest.offset == 2) has_c = true;
+                    if (e.dest.space == Space::FLAGS && e.dest.offset == 3) has_v = true;
                 }
             }
             if (assigns == 5 && has_x0 && has_n && has_z && has_c && has_v) {
@@ -2306,7 +2306,7 @@ static void run_tests() {
         for (auto& op : l.ops) if (op.opcode == oc) return true; return false;
     };
     auto has_flags_write = [](const Lifted& l) {
-        for (auto& op : l.ops) if (op.output.space == Space::Flags) return true; return false;
+        for (auto& op : l.ops) if (op.output.space == Space::FLAGS) return true; return false;
     };
     auto writes_gpr = [](const Lifted& l, uint32_t reg) {
         for (auto& op : l.ops) if (op.output.space == Space::GPR && op.output.offset == reg) return true; return false;
@@ -2318,7 +2318,7 @@ static void run_tests() {
         for (auto& op : l.ops) if (op.output.space == Space::SIMD && op.output.offset == reg) return true; return false;
     };
     auto count_flags = [](const Lifted& l) {
-        int n = 0; for (auto& op : l.ops) if (op.output.space == Space::Flags) n++; return n;
+        int n = 0; for (auto& op : l.ops) if (op.output.space == Space::FLAGS) n++; return n;
     };
 
     // ADD X0, X1, X2: has ADD opcode, writes GPR[0], no flags
@@ -2364,7 +2364,7 @@ static void run_tests() {
             bool has_const = false;
             for (auto& op : r->ops) {
                 for (int j = 0; j < op.num_inputs; j++)
-                    if (op.inputs[j].space == Space::Const && op.inputs[j].value == 0x1234) has_const = true;
+                    if (op.inputs[j].space == Space::CONST && op.inputs[j].value == 0x1234) has_const = true;
             }
             if (writes_gpr(*r, 0) && has_const) { printf("PASS\n"); tests_passed++; }
             else { printf("FAIL: GPR[0]=%d const=%d\n", writes_gpr(*r, 0), has_const); }
@@ -2632,7 +2632,7 @@ static void run_tests() {
     // operand position takes SP must lift to a VarNode carrying the SP
     // sentinel, never to plain gpr(31)=XZR.
     auto first_sp_input = [](const Lifted& l) -> int {
-        // Returns the index of the first op whose first input is SP_REG_INDEX.
+        // Returns the index of the first op whose first input is VarNode::SP_REG_INDEX.
         for (size_t i = 0; i < l.ops.size(); ++i) {
             const auto& op = l.ops[i];
             if (op.num_inputs >= 1
@@ -2652,7 +2652,7 @@ static void run_tests() {
             printf("PASS\n");
             tests_passed++;
         } else {
-            printf("FAIL: no op reads gpr(SP_REG_INDEX)\n");
+            printf("FAIL: no op reads gpr(VarNode::SP_REG_INDEX)\n");
         }
     }
 
@@ -2665,8 +2665,77 @@ static void run_tests() {
             printf("PASS\n");
             tests_passed++;
         } else {
-            printf("FAIL: no op reads gpr(SP_REG_INDEX)\n");
+            printf("FAIL: no op reads gpr(VarNode::SP_REG_INDEX)\n");
         }
+    }
+
+    // Helpers — derive the expected immediate from the decoded instruction so
+    // the tests don't hardcode encoding-specific literals.
+    auto sp_writeback_imm = [](const Lifted& l) -> std::optional<int64_t> {
+        for (auto& op : l.ops) {
+            if (op.opcode == Opcode::ADD
+                && op.output.space == Space::GPR
+                && op.output.offset == VarNode::SP_REG_INDEX
+                && op.num_inputs == 2
+                && op.inputs[0].space == Space::GPR
+                && op.inputs[0].offset == VarNode::SP_REG_INDEX
+                && op.inputs[1].space == Space::CONST) {
+                return op.inputs[1].value;
+            }
+        }
+        return std::nullopt;
+    };
+    auto mem_imm = [](uint32_t insn) -> int64_t {
+        auto d = decode(insn);
+        for (auto& o : d->operands) {
+            if (o.type == OperandType::Memory) return o.mem.offset;
+        }
+        return 0;
+    };
+
+    // STP x29, x30, [sp, #imm]! (PreIndex) — must emit SP += imm writeback.
+    {
+        tests_run++;
+        printf("  %-40s ", "STP_preindex_sp_writeback");
+        uint32_t insn = 0xA9BF7BFDu;
+        auto r = lift(insn);
+        auto wb = r.has_value() ? sp_writeback_imm(*r) : std::nullopt;
+        if (wb.has_value() && *wb == mem_imm(insn)) { printf("PASS\n"); tests_passed++; }
+        else printf("FAIL: writeback imm mismatch\n");
+    }
+
+    // LDP x29, x30, [sp], #imm (PostIndex) — first access must be SP unchanged,
+    // then writeback must add the instruction's imm to SP.
+    {
+        tests_run++;
+        printf("  %-40s ", "LDP_postindex_sp_writeback");
+        uint32_t insn = 0xA8C17BFDu;
+        auto r = lift(insn);
+        bool copy_sp_first = false;
+        if (r.has_value()) {
+            for (auto& op : r->ops) {
+                if (op.opcode == Opcode::LOAD) break;
+                if (op.opcode == Opcode::COPY && op.num_inputs == 1
+                    && op.inputs[0].space == Space::GPR
+                    && op.inputs[0].offset == VarNode::SP_REG_INDEX) {
+                    copy_sp_first = true; break;
+                }
+            }
+        }
+        auto wb = r.has_value() ? sp_writeback_imm(*r) : std::nullopt;
+        if (copy_sp_first && wb.has_value() && *wb == mem_imm(insn)) {
+            printf("PASS\n"); tests_passed++;
+        } else printf("FAIL: copy_sp=%d wb_match=%d\n", copy_sp_first, wb.has_value());
+    }
+
+    // STP x0, x1, [sp, #imm] — plain Offset must NOT emit a writeback into SP.
+    {
+        tests_run++;
+        printf("  %-40s ", "STP_offset_no_sp_writeback");
+        auto r = lift(0xA90107E0u);
+        auto wb = r.has_value() ? sp_writeback_imm(*r) : std::nullopt;
+        if (r.has_value() && !wb.has_value()) { printf("PASS\n"); tests_passed++; }
+        else printf("FAIL: offset form must not write back to SP\n");
     }
 
     // ADD x0, x1, #16 — no SP anywhere; SP sentinel must NOT appear.

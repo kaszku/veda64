@@ -43,6 +43,10 @@ static uint32_t op_mem_base(const Instruction& insn, int idx) {
     return register_num(static_cast<Register>(insn.operands[idx].mem.base));
 }
 
+static MemoryMode op_mem_mode(const Instruction& insn, int idx) {
+    return insn.operands[idx].mem.mode;
+}
+
 // SP and XZR collide at register number 31; the disassembler distinguishes
 // them via Register::SP / Register::WSP. The IR uses VarNode::sp() (offset
 // sentinel SP_REG_INDEX) instead of VarNode::gpr(31) so the encoding-form
@@ -444,12 +448,18 @@ static Lifted interpret_load_reg(const Instruction& insn, const IrEntry& e, IrDe
     uint32_t rn = op_mem_base(insn, 1);
     bool rn_sp = op_mem_base_is_sp(insn, 1);
     int64_t imm = op_mem_offset(insn, 1);
+    MemoryMode mode = op_mem_mode(insn, 1);
 
+    VarNode base = gpr_or_sp(rn, 8, rn_sp);
     auto taddr = next_temp(8);
     auto tval = next_temp(sz);
 
-    l.ops.push_back(make_op2(Opcode::ADD, taddr,
-        gpr_or_sp(rn, 8, rn_sp), VarNode::constant(imm, 8)));
+    // PostIndex accesses at base unchanged; Offset/PreIndex access at base+imm.
+    if (mode == MemoryMode::PostIndex) {
+        l.ops.push_back(make_op(Opcode::COPY, taddr, base));
+    } else {
+        l.ops.push_back(make_op2(Opcode::ADD, taddr, base, VarNode::constant(imm, 8)));
+    }
     l.ops.push_back(make_op(Opcode::LOAD, tval, taddr));
     if (sz < 8) {
         auto text = next_temp(8);
@@ -457,6 +467,10 @@ static Lifted interpret_load_reg(const Instruction& insn, const IrEntry& e, IrDe
         l.ops.push_back(make_op(Opcode::COPY, VarNode::gpr(rd, 8), text));
     } else {
         l.ops.push_back(make_op(Opcode::COPY, VarNode::gpr(rd, 8), tval));
+    }
+    // PreIndex/PostIndex: write back base = base + imm.
+    if (mode == MemoryMode::PreIndex || mode == MemoryMode::PostIndex) {
+        l.ops.push_back(make_op2(Opcode::ADD, base, base, VarNode::constant(imm, 8)));
     }
     return l;
 }
@@ -470,15 +484,23 @@ static Lifted interpret_store_reg(const Instruction& insn, const IrEntry& e, IrD
     uint32_t rn = op_mem_base(insn, 1);
     bool rn_sp = op_mem_base_is_sp(insn, 1);
     int64_t imm = op_mem_offset(insn, 1);
+    MemoryMode mode = op_mem_mode(insn, 1);
 
+    VarNode base = gpr_or_sp(rn, 8, rn_sp);
     auto taddr = next_temp(8);
     auto tval = next_temp(sz);
 
-    l.ops.push_back(make_op2(Opcode::ADD, taddr,
-        gpr_or_sp(rn, 8, rn_sp), VarNode::constant(imm, 8)));
+    if (mode == MemoryMode::PostIndex) {
+        l.ops.push_back(make_op(Opcode::COPY, taddr, base));
+    } else {
+        l.ops.push_back(make_op2(Opcode::ADD, taddr, base, VarNode::constant(imm, 8)));
+    }
     l.ops.push_back(make_op(Opcode::COPY, tval, VarNode::gpr(rt, sz)));
     // STORE: inputs[0] = value, inputs[1] = address.
     l.ops.push_back(make_op2(Opcode::STORE, VarNode::ram(sz), tval, taddr));
+    if (mode == MemoryMode::PreIndex || mode == MemoryMode::PostIndex) {
+        l.ops.push_back(make_op2(Opcode::ADD, base, base, VarNode::constant(imm, 8)));
+    }
     return l;
 }
 
@@ -493,10 +515,15 @@ static Lifted interpret_load_pair(const Instruction& insn, const IrEntry& e, IrD
     uint32_t rn = op_mem_base(insn, 2);
     bool rn_sp = op_mem_base_is_sp(insn, 2);
     int64_t imm = op_mem_offset(insn, 2);
+    MemoryMode mode = op_mem_mode(insn, 2);
 
+    VarNode base = gpr_or_sp(rn, 8, rn_sp);
     auto taddr = next_temp(8);
-    l.ops.push_back(make_op2(Opcode::ADD, taddr,
-        gpr_or_sp(rn, 8, rn_sp), VarNode::constant(imm, 8)));
+    if (mode == MemoryMode::PostIndex) {
+        l.ops.push_back(make_op(Opcode::COPY, taddr, base));
+    } else {
+        l.ops.push_back(make_op2(Opcode::ADD, taddr, base, VarNode::constant(imm, 8)));
+    }
 
     auto tv1 = next_temp(sz);
     l.ops.push_back(make_op(Opcode::LOAD, tv1, taddr));
@@ -507,6 +534,10 @@ static Lifted interpret_load_pair(const Instruction& insn, const IrEntry& e, IrD
     auto tv2 = next_temp(sz);
     l.ops.push_back(make_op(Opcode::LOAD, tv2, taddr2));
     emit_gpr_write(l, rt2, sz, tv2);
+
+    if (mode == MemoryMode::PreIndex || mode == MemoryMode::PostIndex) {
+        l.ops.push_back(make_op2(Opcode::ADD, base, base, VarNode::constant(imm, 8)));
+    }
     return l;
 }
 
@@ -520,10 +551,15 @@ static Lifted interpret_store_pair(const Instruction& insn, const IrEntry& e, Ir
     uint32_t rn = op_mem_base(insn, 2);
     bool rn_sp = op_mem_base_is_sp(insn, 2);
     int64_t imm = op_mem_offset(insn, 2);
+    MemoryMode mode = op_mem_mode(insn, 2);
 
+    VarNode base = gpr_or_sp(rn, 8, rn_sp);
     auto taddr = next_temp(8);
-    l.ops.push_back(make_op2(Opcode::ADD, taddr,
-        gpr_or_sp(rn, 8, rn_sp), VarNode::constant(imm, 8)));
+    if (mode == MemoryMode::PostIndex) {
+        l.ops.push_back(make_op(Opcode::COPY, taddr, base));
+    } else {
+        l.ops.push_back(make_op2(Opcode::ADD, taddr, base, VarNode::constant(imm, 8)));
+    }
 
     auto tv1 = next_temp(sz);
     l.ops.push_back(make_op(Opcode::COPY, tv1, VarNode::gpr(rt1, sz)));
@@ -534,6 +570,10 @@ static Lifted interpret_store_pair(const Instruction& insn, const IrEntry& e, Ir
     auto tv2 = next_temp(sz);
     l.ops.push_back(make_op(Opcode::COPY, tv2, VarNode::gpr(rt2, sz)));
     l.ops.push_back(make_op2(Opcode::STORE, VarNode::ram(sz), tv2, taddr2));
+
+    if (mode == MemoryMode::PreIndex || mode == MemoryMode::PostIndex) {
+        l.ops.push_back(make_op2(Opcode::ADD, base, base, VarNode::constant(imm, 8)));
+    }
     return l;
 }
 

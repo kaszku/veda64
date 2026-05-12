@@ -27,7 +27,7 @@ std::optional<Lifted> lift(const Instruction& insn, IrDetail detail) {
     return lift_from_instruction(insn, detail);
 }
 
-static bool is_temp(const VarNode& v) { return v.space == Space::Temp; }
+static bool is_temp(const VarNode& v) { return v.space == Space::TEMP; }
 
 static void replace_input(VarNode& v, const std::unordered_map<uint32_t, VarNode>& subs) {
     if (is_temp(v)) {
@@ -141,13 +141,13 @@ std::string opcode_name(Opcode op) {
 }
 
 std::string to_string(const VarNode& v) {
-    if (v.space == Space::Const) {
+    if (v.space == Space::CONST) {
         auto s = std::to_string(v.value);
         if (v.size > 0) s += ":" + std::to_string(v.size);
         return s;
     }
     switch (v.space) {
-    case Space::Temp: {
+    case Space::TEMP: {
         auto s = "tmp" + std::to_string(v.offset);
         if (v.size > 0) s += ":" + std::to_string(v.size);
         return s;
@@ -162,7 +162,7 @@ std::string to_string(const VarNode& v) {
         return "v" + std::to_string(v.offset);
     case Space::SVE_Z: return "z" + std::to_string(v.offset);
     case Space::SVE_P: return "p" + std::to_string(v.offset);
-    case Space::Flags:
+    case Space::FLAGS:
         switch (v.offset) {
         case 0: return "N";
         case 1: return "Z";
@@ -182,7 +182,7 @@ std::string to_string(const VarNode& v) {
 std::string to_string(const Op& op) {
     std::string s;
     // Output
-    if (op.output.space != Space::Const || op.output.size > 0) {
+    if (op.output.space != Space::CONST || op.output.size > 0) {
         s += to_string(op.output) + " = ";
     }
     s += opcode_name(op.opcode);
@@ -249,9 +249,9 @@ Ast to_ast(const Lifted& l) {
     // Recursive builder
     std::function<ExprPtr(const VarNode&)> build_expr;
     build_expr = [&](const VarNode& v) -> ExprPtr {
-        if (v.space == Space::Const)
+        if (v.space == Space::CONST)
             return Expr::make_const(v.value, v.size);
-        if (v.space != Space::Temp)
+        if (v.space != Space::TEMP)
             return Expr::make_var(v);
         // Temp: check cache
         auto cit = expr_cache.find(v.offset);
@@ -480,7 +480,7 @@ uint64_t eval_expr(const Context& ctx, const Expr& e) {
     case Expr::Kind::Var:
         switch (e.var.space) {
         case Space::GPR: return ctx.read_gpr(e.var.offset, e.var.size);
-        case Space::Flags: return ctx.flags[e.var.offset] ? 1ULL : 0ULL;
+        case Space::FLAGS: return ctx.flags[e.var.offset] ? 1ULL : 0ULL;
         case Space::SIMD: {
             uint64_t v = 0;
             uint8_t sz = e.var.size < 8 ? e.var.size : 8;
@@ -595,7 +595,7 @@ void execute_ast(Context& ctx, const Ast& ast) {
             uint64_t val = eff.expr ? eval_expr(ctx, *eff.expr) : 0;
             switch (eff.dest.space) {
             case Space::GPR: ctx.write_gpr(eff.dest.offset, val, eff.dest.size); break;
-            case Space::Flags: ctx.flags[eff.dest.offset] = val ? 1 : 0; break;
+            case Space::FLAGS: ctx.flags[eff.dest.offset] = val ? 1 : 0; break;
             case Space::SIMD: {
                 uint8_t sz = eff.dest.size < 16 ? eff.dest.size : 8;
                 for (uint8_t i = 0; i < sz && i < 8; ++i)

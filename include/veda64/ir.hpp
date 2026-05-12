@@ -107,52 +107,53 @@ enum class IrDetail : uint8_t {
 
 // Address space for VarNode
 enum class Space : uint8_t {
-    Const,      // Constant/immediate value
-    Temp,       // Temporary (SSA-like)
+    CONST,      // Constant/immediate value
+    TEMP,       // Temporary (SSA-like)
     GPR,        // General-purpose registers (X0-X30, SP)
     SIMD,       // SIMD/FP registers (V0-V31)
     SVE_Z,      // SVE Z registers
     SVE_P,      // SVE predicate registers
-    SysReg,     // System registers
-    Flags,      // NZCV flags (offset: 0=N, 1=Z, 2=C, 3=V)
+    SYS_REG,    // System registers
+    FLAGS,      // NZCV flags (offset: 0=N, 1=Z, 2=C, 3=V)
     RAM,        // Memory
 };
 
 // Variable node -- identifies a storage location or constant
 struct VarNode {
-    Space space = Space::Const;
+    Space space = Space::CONST;
     uint32_t offset = 0;    // Register number or temp index
     uint8_t size = 0;       // Size in bytes (1,2,4,8,16,32)
-    int64_t value = 0;      // Used only when space == Const
+    int64_t value = 0;      // Used only when space == CONST
+
+    // SP and XZR share architectural register number 31 but are distinct
+    // operands (the encoding form picks which one bit-31 means). Use offset
+    // sentinel SP_REG_INDEX to mean SP, leaving 31 = XZR. Resolvers downstream
+    // must map SP_REG_INDEX → XReg::sp() / WReg::wsp.
+    static constexpr uint32_t SP_REG_INDEX = 32;
 
     // Factory helpers
     static VarNode gpr(uint32_t reg, uint8_t sz = 8) {
         return {Space::GPR, reg, sz, 0};
     }
-    // SP and XZR share architectural register number 31 but are distinct
-    // operands (the encoding form picks which one bit-31 means). Use offset
-    // sentinel 32 to mean SP, leaving 31 = XZR. Resolvers downstream must map
-    // 32 → XReg::sp() / WReg::wsp.
     static VarNode sp(uint8_t sz = 8) {
-        return {Space::GPR, 32, sz, 0};
+        return {Space::GPR, SP_REG_INDEX, sz, 0};
     }
-    static constexpr uint32_t SP_REG_INDEX = 32;
     static VarNode simd(uint32_t reg, uint8_t sz = 16) {
         return {Space::SIMD, reg, sz, 0};
     }
     static VarNode temp(uint32_t idx, uint8_t sz = 8) {
-        return {Space::Temp, idx, sz, 0};
+        return {Space::TEMP, idx, sz, 0};
     }
     static VarNode constant(int64_t val, uint8_t sz = 8) {
-        return {Space::Const, 0, sz, val};
+        return {Space::CONST, 0, sz, val};
     }
     static VarNode flags(uint16_t flag_idx = 0) {
-        return {Space::Flags, flag_idx, 1, 0};
+        return {Space::FLAGS, flag_idx, 1, 0};
     }
-    static VarNode flags_n() { return {Space::Flags, 0, 1, 0}; }
-    static VarNode flags_z() { return {Space::Flags, 1, 1, 0}; }
-    static VarNode flags_c() { return {Space::Flags, 2, 1, 0}; }
-    static VarNode flags_v() { return {Space::Flags, 3, 1, 0}; }
+    static VarNode flags_n() { return {Space::FLAGS, 0, 1, 0}; }
+    static VarNode flags_z() { return {Space::FLAGS, 1, 1, 0}; }
+    static VarNode flags_c() { return {Space::FLAGS, 2, 1, 0}; }
+    static VarNode flags_v() { return {Space::FLAGS, 3, 1, 0}; }
     static VarNode ram(uint8_t sz = 8) {
         return {Space::RAM, 0, sz, 0};
     }

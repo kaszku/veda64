@@ -18,7 +18,7 @@ namespace {
 // via MOV into the supplied scratch register.
 XReg to_reg(const VarNode& v, codegen::CodeGenerator& cg,
             const EmitContext& ctx, XReg scratch) {
-    if (v.space == Space::Const) {
+    if (v.space == Space::CONST) {
         cg.mov(scratch, static_cast<uint64_t>(v.value));
         return scratch;
     }
@@ -50,7 +50,7 @@ bool emit(const Op& op, codegen::CodeGenerator& cg, const EmitContext& ctx) {
     case Opcode::COPY: {
         if (op.num_inputs != 1) return false;
         XReg dst = ctx.resolve(op.output);
-        if (op.inputs[0].space == Space::Const)
+        if (op.inputs[0].space == Space::CONST)
             cg.mov(dst, static_cast<uint64_t>(op.inputs[0].value));
         else
             cg.mov(dst, ctx.resolve(op.inputs[0]));
@@ -166,7 +166,7 @@ bool emit(const Op& op, codegen::CodeGenerator& cg, const EmitContext& ctx) {
     case Opcode::LOAD: {
         if (op.num_inputs < 1) return false;
         XReg base = ctx.resolve(op.inputs[0]);
-        int32_t offset = (op.num_inputs >= 2 && op.inputs[1].space == Space::Const)
+        int32_t offset = (op.num_inputs >= 2 && op.inputs[1].space == Space::CONST)
             ? static_cast<int32_t>(op.inputs[1].value) : 0;
         cg.ldr(ctx.resolve(op.output), codegen::ptr(base, offset));
         return true;
@@ -175,7 +175,7 @@ bool emit(const Op& op, codegen::CodeGenerator& cg, const EmitContext& ctx) {
         if (op.num_inputs < 2) return false;
         XReg val = to_reg(op.inputs[0], cg, ctx, ctx.scratch0);
         XReg base = ctx.resolve(op.inputs[1]);
-        int32_t offset = (op.num_inputs >= 3 && op.inputs[2].space == Space::Const)
+        int32_t offset = (op.num_inputs >= 3 && op.inputs[2].space == Space::CONST)
             ? static_cast<int32_t>(op.inputs[2].value) : 0;
         cg.str(val, codegen::ptr(base, offset));
         return true;

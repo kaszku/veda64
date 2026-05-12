@@ -48,7 +48,7 @@ int main() {
     // Resolve: Temp(n) → x9+n, GPR(n) → xn.
     EmitContext ctx;
     ctx.resolve = [](const VarNode& v) -> XReg {
-        return (v.space == Space::Temp)
+        return (v.space == Space::TEMP)
             ? XReg{static_cast<uint8_t>(9 + v.offset)}
             : XReg{static_cast<uint8_t>(v.offset)};
     };

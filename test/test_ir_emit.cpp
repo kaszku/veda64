@@ -25,7 +25,7 @@ static uint32_t insn_at(const CodeGenerator& cg, size_t idx) {
 static EmitContext make_ctx() {
     EmitContext ctx;
     ctx.resolve = [](const VarNode& v) -> XReg {
-        if (v.space == Space::Temp) return XReg{9 + (v.offset % 7)};
+        if (v.space == Space::TEMP) return XReg{9 + (v.offset % 7)};
         if (v.space == Space::GPR && v.offset == VarNode::SP_REG_INDEX) return codegen::sp;
         return XReg{static_cast<uint8_t>(v.offset)};
     };

@@ -15,9 +15,9 @@ namespace ir {
 /// Context for lowering IR ops to AArch64 via a CodeGenerator.
 ///
 /// `resolve` maps a VarNode to a physical X register. It is invoked for
-/// Space::GPR and Space::Temp inputs/outputs. For Space::Const, emit()
+/// Space::GPR and Space::TEMP inputs/outputs. For Space::CONST, emit()
 /// materializes the value into `scratch0` (or `scratch1` if the same op
-/// already consumes `scratch0`). Space::Flags inputs are handled
+/// already consumes `scratch0`). Space::FLAGS inputs are handled
 /// internally via condition-flag reads.
 struct EmitContext {
     std::function<codegen::XReg(const VarNode&)> resolve;
