@@ -14,11 +14,22 @@ namespace veda64::ir {
 // Operand helpers — extract from decoded Instruction
 // ============================================================================
 
+// Aliases decode to fewer operands than their canonical form (e.g.
+// MOV Rd, Rm == ORR Rd, XZR, Rm produces 2 operands, not 3). Every accessor
+// is bounds-checked: operands[] is a std::vector and operator[] past size()
+// is undefined behavior, which produced the nondeterministic "reads r21"
+// garbage. Out-of-range register reads return XZR (31).
+static bool op_in_range(const Instruction& insn, int idx) {
+    return idx >= 0 && static_cast<size_t>(idx) < insn.operands.size();
+}
+
 static uint32_t op_reg(const Instruction& insn, int idx) {
+    if (!op_in_range(insn, idx)) return 31; // XZR
     return register_num(insn.operands[idx].r.reg);
 }
 
 static uint8_t op_reg_sz(const Instruction& insn, int idx) {
+    if (!op_in_range(insn, idx)) return 8;
     auto r = insn.operands[idx].r.reg;
     // GP: W regs (0-32) = 4 bytes, X regs (33-65) = 8 bytes
     auto v = static_cast<uint16_t>(r);
@@ -27,6 +38,7 @@ static uint8_t op_reg_sz(const Instruction& insn, int idx) {
 }
 
 static int64_t op_imm(const Instruction& insn, int idx) {
+    if (!op_in_range(insn, idx)) return 0;
     auto& op = insn.operands[idx];
     if (op.type == OperandType::SignedImmediate || op.type == OperandType::Label)
         return op.si.offset;
@@ -36,14 +48,17 @@ static int64_t op_imm(const Instruction& insn, int idx) {
 }
 
 static int64_t op_mem_offset(const Instruction& insn, int idx) {
+    if (!op_in_range(insn, idx)) return 0;
     return insn.operands[idx].mem.offset;
 }
 
 static uint32_t op_mem_base(const Instruction& insn, int idx) {
+    if (!op_in_range(insn, idx)) return 31;
     return register_num(static_cast<Register>(insn.operands[idx].mem.base));
 }
 
 static MemoryMode op_mem_mode(const Instruction& insn, int idx) {
+    if (!op_in_range(insn, idx)) return MemoryMode::Offset;
     return insn.operands[idx].mem.mode;
 }
 
@@ -53,11 +68,13 @@ static MemoryMode op_mem_mode(const Instruction& insn, int idx) {
 // disambiguation reaches the codegen.
 
 static bool op_is_sp(const Instruction& insn, int idx) {
+    if (!op_in_range(insn, idx)) return false;
     auto r = insn.operands[idx].r.reg;
     return r == Register::SP || r == Register::WSP;
 }
 
 static bool op_mem_base_is_sp(const Instruction& insn, int idx) {
+    if (!op_in_range(insn, idx)) return false;
     auto r = static_cast<Register>(insn.operands[idx].mem.base);
     return r == Register::SP || r == Register::WSP;
 }
@@ -171,16 +188,25 @@ static Lifted interpret_gp_binop(const Instruction& insn, const IrEntry& e, IrDe
     uint8_t sz = op_reg_sz(insn, 0);
     uint32_t rd = op_reg(insn, 0);
     bool rd_sp = op_is_sp(insn, 0);
-    uint32_t rn = op_reg(insn, 1);
-    bool rn_sp = op_is_sp(insn, 1);
-    uint32_t rm = op_reg(insn, 2);
 
     auto t0 = next_temp(sz);
     auto t1 = next_temp(sz);
     auto t2 = next_temp(sz);
 
-    l.ops.push_back(make_op(Opcode::COPY, t0, gpr_or_sp(rn, sz, rn_sp)));
-    l.ops.push_back(make_op(Opcode::COPY, t1, VarNode::gpr(rm, sz)));
+    if (insn.operands.size() == 2) {
+        // Alias form: `ORR/ADD/EOR/SUB/AND Xd, XZR, Xm` — decoder
+        // folded the XZR out, only [Rd, Rm] present. Rn = XZR = 0
+        // makes e.opcode(0, Rm) correct for the whole family.
+        uint32_t rm = op_reg(insn, 1);
+        l.ops.push_back(make_op(Opcode::COPY, t0, VarNode::constant(0, sz)));
+        l.ops.push_back(make_op(Opcode::COPY, t1, VarNode::gpr(rm, sz)));
+    } else {
+        uint32_t rn = op_reg(insn, 1);
+        bool rn_sp = op_is_sp(insn, 1);
+        uint32_t rm = op_reg(insn, 2);
+        l.ops.push_back(make_op(Opcode::COPY, t0, gpr_or_sp(rn, sz, rn_sp)));
+        l.ops.push_back(make_op(Opcode::COPY, t1, VarNode::gpr(rm, sz)));
+    }
     l.ops.push_back(make_op2(e.opcode, t2, t0, t1));
     emit_gpr_or_sp_write(l, rd, sz, rd_sp, t2);
     return l;

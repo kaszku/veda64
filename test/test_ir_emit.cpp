@@ -280,6 +280,56 @@ static int test_zext_sext() {
     return 0;
 }
 
+// Bug A: emit must dispatch the load/store width off the operand size,
+// otherwise a 4-byte load becomes LDR X (8-byte read → page-edge fault).
+// Bug B: a constant ALU operand must use an immediate instruction form so
+// the scratch register (x16/x17, frequently live) is never materialized.
+// Bug C: a 2-operand alias (MOV Rd,Rm == ORR Rd,XZR,Rm) must lift+emit
+// without reading past the operand vector.
+static int test_size_and_scratch() {
+    auto ctx = make_ctx();
+
+    // Bug A — width-correct loads.
+    CodeGenerator cgw(4096);
+    assert(emit(mk1(Opcode::LOAD, VarNode::gpr(0, 4), VarNode::gpr(19)), cgw, ctx));
+    CodeGenerator cgx(4096);
+    assert(emit(mk1(Opcode::LOAD, VarNode::gpr(0, 8), VarNode::gpr(19)), cgx, ctx));
+    // 4-byte and 8-byte loads must encode differently (LDR W vs LDR X).
+    assert(insn_at(cgw, 0) != insn_at(cgx, 0));
+    auto lw = decode(insn_at(cgw, 0));
+    assert(lw && lw->mnemonic == Mnemonic::LDR);
+
+    // Byte/halfword loads/stores.
+    CodeGenerator cgb(4096);
+    assert(emit(mk1(Opcode::LOAD, VarNode::gpr(0, 1), VarNode::gpr(19)), cgb, ctx));
+    auto lb = decode(insn_at(cgb, 0));
+    assert(lb && lb->mnemonic == Mnemonic::LDRB);
+    CodeGenerator cgsb(4096);
+    Op st = mk2(Opcode::STORE, VarNode::ram(1), VarNode::gpr(2, 1), VarNode::gpr(19));
+    assert(emit(st, cgsb, ctx));
+    auto sb = decode(insn_at(cgsb, 0));
+    assert(sb && sb->mnemonic == Mnemonic::STRB);
+
+    // Bug B — ADD with a constant uses ADD immediate (one instruction, no
+    // MOV into the scratch register).
+    CodeGenerator cgi(4096);
+    assert(emit(mk2(Opcode::ADD, VarNode::gpr(0), VarNode::gpr(1),
+                    VarNode::constant(0x10)), cgi, ctx));
+    assert(cgi.size() == 4);  // exactly one instruction, scratch untouched
+    auto ai = decode(insn_at(cgi, 0));
+    assert(ai && ai->mnemonic == Mnemonic::ADD);
+
+    // Bug C — 2-operand alias MOV X0,X2 (== ORR X0,XZR,X2). Lift then emit
+    // must succeed without out-of-bounds operand reads.
+    auto la = lift(0xAA0203E0u /* mov x0, x2 */);
+    assert(la.has_value());
+    CodeGenerator cga(4096);
+    assert(emit(*la, cga, ctx));
+
+    std::cout << "  size_and_scratch: OK" << std::endl;
+    return 0;
+}
+
 int main() {
     std::cout << "Running ir_emit tests..." << std::endl;
     int err = 0;
@@ -295,6 +345,7 @@ int main() {
     err |= test_unsupported();
     err |= test_sp_marker();
     err |= test_zext_sext();
+    err |= test_size_and_scratch();
     std::cout << "All ir_emit tests passed!" << std::endl;
     return err;
 }
