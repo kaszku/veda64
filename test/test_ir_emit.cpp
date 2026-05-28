@@ -128,6 +128,30 @@ static int test_cmp() {
     return 0;
 }
 
+static int test_flag_setting() {
+    auto ctx = make_ctx();
+    CodeGenerator cg(4096);
+    // ADD_FLAGS register → ADDS
+    assert(emit(mk2(Opcode::ADD_FLAGS, VarNode::gpr(3), VarNode::gpr(1), VarNode::gpr(2)), cg, ctx));
+    auto a = decode(insn_at(cg, 0));
+    assert(a && a->mnemonic == Mnemonic::ADDS);
+    // SUB_FLAGS register → SUBS
+    assert(emit(mk2(Opcode::SUB_FLAGS, VarNode::gpr(3), VarNode::gpr(1), VarNode::gpr(2)), cg, ctx));
+    auto b = decode(insn_at(cg, 1));
+    assert(b && b->mnemonic == Mnemonic::SUBS);
+    // AND_FLAGS register → ANDS
+    assert(emit(mk2(Opcode::AND_FLAGS, VarNode::gpr(3), VarNode::gpr(1), VarNode::gpr(2)), cg, ctx));
+    auto c = decode(insn_at(cg, 2));
+    assert(c && c->mnemonic == Mnemonic::ANDS);
+    // SUB_FLAGS immediate → SUBS (immediate) — the cmp x1, #1 shape
+    CodeGenerator cg2(4096);
+    assert(emit(mk2(Opcode::SUB_FLAGS, VarNode::gpr(3), VarNode::gpr(1), VarNode::constant(1, 8)), cg2, ctx));
+    auto d = decode(insn_at(cg2, 0));
+    assert(d && d->mnemonic == Mnemonic::SUBS);
+    std::cout << "  flag_setting: OK" << std::endl;
+    return 0;
+}
+
 static int test_branches() {
     auto ctx = make_ctx();
     CodeGenerator cg(4096);
@@ -338,6 +362,7 @@ int main() {
     err |= test_shifts();
     err |= test_bitops();
     err |= test_cmp();
+    err |= test_flag_setting();
     err |= test_branches();
     err |= test_ldst();
     err |= test_flags();

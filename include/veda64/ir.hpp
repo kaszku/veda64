@@ -79,6 +79,13 @@ enum class Opcode : uint8_t {
     OVERFLOW_ADD,
     OVERFLOW_SUB,
 
+    // Flag-setting arithmetic — same value semantics as ADD/SUB/AND but
+    // also update NZCV. Emitter lowers these as adds/subs/ands so the
+    // subsequent flag readers (CARRY_*/OVERFLOW_*/cset) observe live flags.
+    ADD_FLAGS,
+    SUB_FLAGS,
+    AND_FLAGS,
+
     // Bit manipulation
     EXTRACT,
     INSERT,

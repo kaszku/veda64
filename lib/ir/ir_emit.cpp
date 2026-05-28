@@ -178,6 +178,34 @@ bool emit(const Op& op, codegen::CodeGenerator& cg, const EmitContext& ctx) {
         return false;
     };
 
+    // Flag-setting twin of try_alu_imm: emits adds/subs/ands-immediate so the
+    // op writes Rd and updates NZCV in one instruction. Same encodability
+    // constraints (12-bit add/sub imm, bitmask imm for ANDS).
+    auto try_alu_imm_flags = [&](char kind) -> bool {
+        if (op.num_inputs != 2) return false;
+        if (op.inputs[0].space == Space::CONST) return false;
+        if (op.inputs[1].space != Space::CONST) return false;
+        bool w = is_w(op.output);
+        XReg n = ctx.resolve(op.inputs[0]);
+        XReg o = ctx.resolve(op.output);
+        int64_t v = op.inputs[1].value;
+        if (kind == '+' || kind == '-') {
+            uint32_t imm12; bool lsl12, neg;
+            if (!addsub_imm(v, imm12, lsl12, neg)) return false;
+            bool sub = (kind == '-') ^ neg;
+            if (sub) { if (w) cg.subs(w_of(o), w_of(n), imm12, lsl12); else cg.subs(o, n, imm12, lsl12); }
+            else     { if (w) cg.adds(w_of(o), w_of(n), imm12, lsl12); else cg.adds(o, n, imm12, lsl12); }
+            return true;
+        }
+        if (kind == '&') {
+            uint64_t uimm = static_cast<uint64_t>(v);
+            if (!logical_imm_ok(uimm, !w)) return false;
+            if (w) cg.ands(w_of(o), w_of(n), uimm); else cg.ands(o, n, uimm);
+            return true;
+        }
+        return false;
+    };
+
     switch (op.opcode) {
     case Opcode::COPY: {
         if (op.num_inputs != 1) return false;
@@ -200,6 +228,12 @@ bool emit(const Op& op, codegen::CodeGenerator& cg, const EmitContext& ctx) {
     case Opcode::SUB:
         if (try_alu_imm('-')) return true;
         return bin_reg([&](auto d, auto x, auto y){ cg.sub(d, x, y); });
+    case Opcode::ADD_FLAGS:
+        if (try_alu_imm_flags('+')) return true;
+        return bin_reg([&](auto d, auto x, auto y){ cg.adds(d, x, y); });
+    case Opcode::SUB_FLAGS:
+        if (try_alu_imm_flags('-')) return true;
+        return bin_reg([&](auto d, auto x, auto y){ cg.subs(d, x, y); });
     case Opcode::MUL:
         return bin_reg([&](auto d, auto x, auto y){ cg.mul(d, x, y); });
     case Opcode::SDIV:
@@ -212,6 +246,9 @@ bool emit(const Op& op, codegen::CodeGenerator& cg, const EmitContext& ctx) {
     case Opcode::AND:
         if (try_alu_imm('&')) return true;
         return bin_reg([&](auto d, auto x, auto y){ cg.and_(d, x, y); });
+    case Opcode::AND_FLAGS:
+        if (try_alu_imm_flags('&')) return true;
+        return bin_reg([&](auto d, auto x, auto y){ cg.ands(d, x, y); });
     case Opcode::OR:
         if (try_alu_imm('|')) return true;
         return bin_reg([&](auto d, auto x, auto y){ cg.orr(d, x, y); });

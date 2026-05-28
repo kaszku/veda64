@@ -66,7 +66,7 @@ static void run_tests() {
         } else {
             bool found = false;
             for (auto& op : r->ops) {
-                if (op.opcode == Opcode::ADD) found = true;
+                if (op.opcode == Opcode::ADD_FLAGS) found = true;
             }
             if (found) {
                 printf("PASS\n");
@@ -206,7 +206,7 @@ static void run_tests() {
         } else {
             bool found = false;
             for (auto& op : r->ops) {
-                if (op.opcode == Opcode::SUB) found = true;
+                if (op.opcode == Opcode::SUB_FLAGS) found = true;
             }
             if (found) {
                 printf("PASS\n");
@@ -1929,6 +1929,19 @@ static void run_tests() {
         else { printf("FAIL: x0=0x%llx\n", static_cast<unsigned long long>(ctx.gpr[0])); }
     }
 
+    // interp_movn_w — MOV W0, #-1 (MOVN W0, #0): must produce 0xFFFFFFFF,
+    // not a stale low-chunk-only movz value (Bug: movn → mov inversion drop).
+    {
+        tests_run++;
+        printf("  %-40s ", "interp_movn_w");
+        Context ctx;
+        uint8_t mem[1024] = {};
+        ctx.memory = mem; ctx.memory_size = sizeof(mem);
+        execute(ctx, 0x12800000);  // MOV W0, #-1 (MOVN W0, #0)
+        if (ctx.gpr[0] == 0xFFFFFFFFULL) { printf("PASS\n"); tests_passed++; }
+        else { printf("FAIL: x0=0x%llx\n", static_cast<unsigned long long>(ctx.gpr[0])); }
+    }
+
     // interp_movz_shifted
     {
         tests_run++;
@@ -2338,9 +2351,9 @@ static void run_tests() {
         printf("  %-40s ", "ADDS_X0_X1_X2 sets flags");
         auto r = lift(0xAB020020);
         if (!r.has_value()) { printf("FAIL: nullopt\n"); }
-        else if (has_opcode(*r, Opcode::ADD) && writes_gpr(*r, 0) && count_flags(*r) >= 4) {
+        else if (has_opcode(*r, Opcode::ADD_FLAGS) && writes_gpr(*r, 0) && count_flags(*r) >= 4) {
             printf("PASS\n"); tests_passed++;
-        } else { printf("FAIL: ADD=%d GPR[0]=%d flags=%d\n", has_opcode(*r, Opcode::ADD), writes_gpr(*r, 0), count_flags(*r)); }
+        } else { printf("FAIL: ADD_FLAGS=%d GPR[0]=%d flags=%d\n", has_opcode(*r, Opcode::ADD_FLAGS), writes_gpr(*r, 0), count_flags(*r)); }
     }
 
     // SUB W3, W4, W5 (0x4B050083): has SUB, writes GPR[3], 32-bit
@@ -2421,7 +2434,7 @@ static void run_tests() {
         printf("  %-40s ", "ANDS_X0_X1_X2 sets flags");
         auto r = lift(0xEA020020);
         if (!r.has_value()) { printf("FAIL: nullopt\n"); }
-        else if (has_opcode(*r, Opcode::AND) && has_flags_write(*r)) {
+        else if (has_opcode(*r, Opcode::AND_FLAGS) && has_flags_write(*r)) {
             printf("PASS\n"); tests_passed++;
         } else { printf("FAIL\n"); }
     }

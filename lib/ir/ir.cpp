@@ -127,6 +127,7 @@ const char* opcode_names[] = {
     "fadd", "fsub", "fmul", "fdiv", "fsqrt", "fneg", "fabs",
     "branch", "cbranch", "call", "ret",
     "add_carry", "sub_carry", "carry_add", "carry_sub", "overflow_add", "overflow_sub",
+    "add_flags", "sub_flags", "and_flags",
     "extract", "insert", "concat",
     "clz", "ctz", "popcnt", "bitrev",
     "vextract_elem", "vinsert_elem", "vbroadcast",
@@ -504,8 +505,8 @@ uint64_t eval_expr(const Context& ctx, const Expr& e) {
         if (nc == 1) return c[0] & mask;
         if (nc == 3) return (c[0] & 1) ? c[1] : c[2]; // CSEL
         return c[0];
-    case Opcode::ADD: return (c[0] + c[1]) & mask;
-    case Opcode::SUB: return (c[0] - c[1]) & mask;
+    case Opcode::ADD: case Opcode::ADD_FLAGS: return (c[0] + c[1]) & mask;
+    case Opcode::SUB: case Opcode::SUB_FLAGS: return (c[0] - c[1]) & mask;
     case Opcode::MUL: return (c[0] * c[1]) & mask;
     case Opcode::SDIV: {
         int64_t sa = static_cast<int64_t>(sign_extend(c[0], e.size));
@@ -514,7 +515,7 @@ uint64_t eval_expr(const Context& ctx, const Expr& e) {
     }
     case Opcode::UDIV: return c[1] ? ((c[0] / c[1]) & mask) : 0;
     case Opcode::NEG: return ((~c[0] + 1) & mask);
-    case Opcode::AND: return (c[0] & c[1]) & mask;
+    case Opcode::AND: case Opcode::AND_FLAGS: return (c[0] & c[1]) & mask;
     case Opcode::OR:  return (c[0] | c[1]) & mask;
     case Opcode::XOR: return (c[0] ^ c[1]) & mask;
     case Opcode::NOT: return (~c[0]) & mask;

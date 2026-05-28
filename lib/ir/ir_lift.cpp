@@ -212,6 +212,19 @@ static Lifted interpret_gp_binop(const Instruction& insn, const IrEntry& e, IrDe
     return l;
 }
 
+// Convert a non-flag arithmetic opcode to its NZCV-setting twin. The "_flags"
+// interpreters (ADDS/SUBS/ANDS and their CMP/CMN/TST alias forms) lift the
+// value computation as ADD_FLAGS/SUB_FLAGS/AND_FLAGS so the emitter lowers as
+// adds/subs/ands and the subsequent flag readers see live NZCV.
+static Opcode flag_setting_variant(Opcode op) {
+    switch (op) {
+    case Opcode::ADD: return Opcode::ADD_FLAGS;
+    case Opcode::SUB: return Opcode::SUB_FLAGS;
+    case Opcode::AND: return Opcode::AND_FLAGS;
+    default: return op;
+    }
+}
+
 static void emit_flags(Lifted& l, VarNode result, VarNode a, VarNode b, bool is_sub, IrDetail detail) {
     uint8_t sz = result.size;
     int msb = sz * 8 - 1;
@@ -267,7 +280,7 @@ static Lifted interpret_gp_binop_flags(const Instruction& insn, const IrEntry& e
 
     l.ops.push_back(make_op(Opcode::COPY, t0, VarNode::gpr(rn, sz)));
     l.ops.push_back(make_op(Opcode::COPY, t1, VarNode::gpr(rm, sz)));
-    l.ops.push_back(make_op2(e.opcode, t2, t0, t1));
+    l.ops.push_back(make_op2(flag_setting_variant(e.opcode), t2, t0, t1));
     // Flags computed from the native-width (32 or 64 bit) result, BEFORE zero-extension
     bool is_sub = (e.opcode == Opcode::SUB);
     emit_flags(l, t2, t0, t1, is_sub, detail);
@@ -309,7 +322,7 @@ static Lifted interpret_gp_binop_imm_flags(const Instruction& insn, const IrEntr
     auto t1 = next_temp(sz);
 
     l.ops.push_back(make_op(Opcode::COPY, t0, gpr_or_sp(rn, sz, rn_sp)));
-    l.ops.push_back(make_op2(e.opcode, t1, t0, VarNode::constant(imm, sz)));
+    l.ops.push_back(make_op2(flag_setting_variant(e.opcode), t1, t0, VarNode::constant(imm, sz)));
     bool is_sub = (e.opcode == Opcode::SUB);
     emit_flags(l, t1, t0, VarNode::constant(imm, sz), is_sub, detail);
     emit_gpr_write(l, rd, sz, t1);
@@ -329,7 +342,7 @@ static Lifted interpret_gp_compare(const Instruction& insn, const IrEntry& e, Ir
 
     l.ops.push_back(make_op(Opcode::COPY, t0, VarNode::gpr(rn, sz)));
     l.ops.push_back(make_op(Opcode::COPY, t1, VarNode::gpr(rm, sz)));
-    l.ops.push_back(make_op2(e.opcode, t2, t0, t1));
+    l.ops.push_back(make_op2(flag_setting_variant(e.opcode), t2, t0, t1));
     // Result discarded (Rd=XZR), only flags matter
     bool is_sub = (e.opcode == Opcode::SUB);
     emit_flags(l, t2, t0, t1, is_sub, detail);
@@ -350,7 +363,7 @@ static Lifted interpret_gp_compare_imm(const Instruction& insn, const IrEntry& e
     auto imm_v = VarNode::constant(imm, sz);
 
     l.ops.push_back(make_op(Opcode::COPY, t0, gpr_or_sp(rn, sz, rn_sp)));
-    l.ops.push_back(make_op2(e.opcode, t1, t0, imm_v));
+    l.ops.push_back(make_op2(flag_setting_variant(e.opcode), t1, t0, imm_v));
     // Result discarded (Rd=XZR), only flags matter
     bool is_sub = (e.opcode == Opcode::SUB);
     emit_flags(l, t1, t0, imm_v, is_sub, detail);
@@ -369,12 +382,18 @@ static Lifted interpret_gp_move_imm(const Instruction& insn, const IrEntry& e, I
     uint32_t raw = insn.raw_value;
     uint32_t imm16 = (raw >> 5) & 0xFFFF;
     uint32_t hw = (raw >> 21) & 3;
-    int64_t val = static_cast<int64_t>(imm16) << (hw * 16);
-    if (e.opcode == Opcode::NOT) val = ~val;
+    uint64_t uval = static_cast<uint64_t>(imm16) << (hw * 16);
+    if (e.opcode == Opcode::NOT) uval = ~uval;
+    // Mask to operand width so the inverted bits don't leak past the W view:
+    // MOVN Wd, #0 must yield 0x00000000_FFFFFFFF, not 0xFFFFFFFF_FFFFFFFF.
+    if (sz == 4) uval &= 0xFFFFFFFFull;
+    int64_t val = static_cast<int64_t>(uval);
 
-    auto t0 = next_temp(sz);
-    l.ops.push_back(make_op(Opcode::COPY, t0, VarNode::constant(val, sz)));
-    emit_gpr_write(l, rd, sz, t0);
+    // Skip the temp + ZEXT chain: feed the constant straight to emit_gpr_write
+    // so the consumer (and the simplifier) sees a single COPY of a known
+    // constant — keeps the MOVN inversion observable instead of getting
+    // dropped when a downstream lowers a stale movz from the masked value.
+    emit_gpr_write(l, rd, sz, VarNode::constant(val, sz));
     return l;
 }
 
