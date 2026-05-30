@@ -8,43 +8,32 @@ fn main() {
     let include_dir = root.join("include");
     let lib_dir = root.join("lib");
 
-    // Collect all C++ source files from lib/
+    // Collect all C++ source files from lib/ and every subdirectory. lib/
+    // was reorganized into subdirs (assembler/, codegen/, core/, hook/, ...),
+    // so a one-level scan misses the modules the bridge depends on.
     let mut cpp_sources: Vec<PathBuf> = Vec::new();
 
-    // Top-level lib sources
-    for entry in std::fs::read_dir(&lib_dir).expect("failed to read lib/") {
-        let entry = entry.unwrap();
-        let path = entry.path();
-        if path.extension().map_or(false, |e| e == "cpp") {
-            // Skip hook.cpp on non-Windows
-            if !cfg!(target_os = "windows") && path.file_name().unwrap() == "hook.cpp" {
-                continue;
-            }
-            cpp_sources.push(path);
-        }
-    }
-
-    // lib/format/ sources
-    let format_dir = lib_dir.join("format");
-    for entry in std::fs::read_dir(&format_dir).expect("failed to read lib/format/") {
-        let entry = entry.unwrap();
-        let path = entry.path();
-        if path.extension().map_or(false, |e| e == "cpp") {
-            cpp_sources.push(path);
-        }
-    }
-
-    // lib/ir/ sources
-    let ir_dir = lib_dir.join("ir");
-    if ir_dir.exists() {
-        for entry in std::fs::read_dir(&ir_dir).expect("failed to read lib/ir/") {
+    fn collect_cpp(dir: &PathBuf, out: &mut Vec<PathBuf>) {
+        let entries = match std::fs::read_dir(dir) {
+            Ok(it) => it,
+            Err(_) => return,
+        };
+        for entry in entries {
             let entry = entry.unwrap();
             let path = entry.path();
-            if path.extension().map_or(false, |e| e == "cpp") {
-                cpp_sources.push(path);
+            if path.is_dir() {
+                collect_cpp(&path, out);
+            } else if path.extension().map_or(false, |e| e == "cpp") {
+                // hook code uses Win32-only syscalls.
+                let name = path.file_name().unwrap().to_string_lossy().to_string();
+                if !cfg!(target_os = "windows") && (name == "hook.cpp" || name.starts_with("hook")) {
+                    continue;
+                }
+                out.push(path);
             }
         }
     }
+    collect_cpp(&lib_dir, &mut cpp_sources);
 
     // Build the veda64 C++ library
     cc::Build::new()
@@ -52,6 +41,8 @@ fn main() {
         .std("c++17")
         .define("VEDA64_STRINGS", None)
         .define("VEDA64_IR", None)
+        .define("VEDA64_CODEGEN", None)
+        .define("VEDA64_ASSEMBLER", None)
         .include(&include_dir)
         .files(&cpp_sources)
         .compile("veda64_cpp");
@@ -67,6 +58,8 @@ fn main() {
         .std("c++17")
         .define("VEDA64_STRINGS", None)
         .define("VEDA64_IR", None)
+        .define("VEDA64_CODEGEN", None)
+        .define("VEDA64_ASSEMBLER", None)
         .include(&include_dir)
         .include(&bridge_hpp_dir)
         .compile("veda64_bridge");

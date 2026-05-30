@@ -480,14 +480,16 @@ pub mod ir {
         BRANCH = 36, CBRANCH = 37, CALL = 38, RET = 39,
         ADD_CARRY = 40, SUB_CARRY = 41, CARRY_ADD = 42, CARRY_SUB = 43,
         OVERFLOW_ADD = 44, OVERFLOW_SUB = 45,
-        EXTRACT = 46, INSERT = 47, CONCAT = 48,
-        VEXTRACT_ELEM = 49, VINSERT_ELEM = 50, VBROADCAST = 51,
-        BARRIER = 52, NOP = 53, UNDEF = 54,
+        ADD_FLAGS = 46, SUB_FLAGS = 47, AND_FLAGS = 48,
+        EXTRACT = 49, INSERT = 50, CONCAT = 51,
+        CLZ = 52, CTZ = 53, POPCNT = 54, BITREV = 55,
+        VEXTRACT_ELEM = 56, VINSERT_ELEM = 57, VBROADCAST = 58,
+        BARRIER = 59, NOP = 60, UNDEF = 61,
     }
 
     impl Opcode {
         pub fn from_u8(v: u8) -> Self {
-            if v <= 54 { unsafe { std::mem::transmute(v) } } else { Self::UNDEF }
+            if v <= 61 { unsafe { std::mem::transmute(v) } } else { Self::UNDEF }
         }
 
         pub fn name(&self) -> String {
@@ -1613,6 +1615,41 @@ mod tests {
         assert_eq!(ir::Opcode::ADD.name(), "add");
         assert_eq!(ir::Opcode::STORE.name(), "store");
         assert_eq!(ir::Opcode::NOP.name(), "nop");
+        // Pre-existing bit ops + new flag-setting variants must round-trip,
+        // i.e. the Rust enum discriminants line up with the C++ side.
+        assert_eq!(ir::Opcode::CLZ.name(), "clz");
+        assert_eq!(ir::Opcode::BITREV.name(), "bitrev");
+        assert_eq!(ir::Opcode::ADD_FLAGS.name(), "add_flags");
+        assert_eq!(ir::Opcode::SUB_FLAGS.name(), "sub_flags");
+        assert_eq!(ir::Opcode::AND_FLAGS.name(), "and_flags");
+        assert_eq!(ir::Opcode::UNDEF.name(), "undef");
+    }
+
+    #[test]
+    fn ir_lift_subs_emits_sub_flags() {
+        // SUBS X0, X1, X2 — must produce SUB_FLAGS so flag readers get live NZCV.
+        let lifted = ir::lift(0xEB020020).unwrap();
+        let has_sub_flags = (0..lifted.num_ops())
+            .any(|i| lifted.op_opcode(i) == ir::Opcode::SUB_FLAGS);
+        assert!(has_sub_flags, "SUBS should lift to SUB_FLAGS");
+    }
+
+    #[test]
+    fn ir_lift_cmp_imm_emits_sub_flags() {
+        // CMP X1, #1 (SUBS XZR, X1, #1) — alias must still emit SUB_FLAGS.
+        let lifted = ir::lift(0xF100043F).unwrap();
+        let has_sub_flags = (0..lifted.num_ops())
+            .any(|i| lifted.op_opcode(i) == ir::Opcode::SUB_FLAGS);
+        assert!(has_sub_flags, "CMP imm should lift to SUB_FLAGS");
+    }
+
+    #[test]
+    fn ir_lift_ands_emits_and_flags() {
+        // ANDS X0, X1, X2
+        let lifted = ir::lift(0xEA020020).unwrap();
+        let has_and_flags = (0..lifted.num_ops())
+            .any(|i| lifted.op_opcode(i) == ir::Opcode::AND_FLAGS);
+        assert!(has_and_flags, "ANDS should lift to AND_FLAGS");
     }
 
     #[test]
