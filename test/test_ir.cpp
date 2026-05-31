@@ -2439,6 +2439,51 @@ static void run_tests() {
         } else { printf("FAIL\n"); }
     }
 
+    // ORN_X0_X1_X2 (0xAA220020): must lift as OR with a NOT of operand 2,
+    // not plain OR — otherwise re-emit drops the bitwise inversion.
+    {
+        tests_run++;
+        printf("  %-40s ", "ORN_X0_X1_X2 inverts op2");
+        auto r = lift(0xAA220020);
+        if (!r.has_value()) { printf("FAIL: nullopt\n"); }
+        else if (has_opcode(*r, Opcode::OR) && has_opcode(*r, Opcode::NOT)) {
+            printf("PASS\n"); tests_passed++;
+        } else { printf("FAIL: OR=%d NOT=%d\n", has_opcode(*r, Opcode::OR), has_opcode(*r, Opcode::NOT)); }
+    }
+
+    // BIC_X0_X1_X2 (0x8A220020): must lift as AND with NOT-op2.
+    {
+        tests_run++;
+        printf("  %-40s ", "BIC_X0_X1_X2 inverts op2");
+        auto r = lift(0x8A220020);
+        if (!r.has_value()) { printf("FAIL: nullopt\n"); }
+        else if (has_opcode(*r, Opcode::AND) && has_opcode(*r, Opcode::NOT)) {
+            printf("PASS\n"); tests_passed++;
+        } else { printf("FAIL\n"); }
+    }
+
+    // EON_X0_X1_X2 (0xCA220020): must lift as XOR with NOT-op2.
+    {
+        tests_run++;
+        printf("  %-40s ", "EON_X0_X1_X2 inverts op2");
+        auto r = lift(0xCA220020);
+        if (!r.has_value()) { printf("FAIL: nullopt\n"); }
+        else if (has_opcode(*r, Opcode::XOR) && has_opcode(*r, Opcode::NOT)) {
+            printf("PASS\n"); tests_passed++;
+        } else { printf("FAIL\n"); }
+    }
+
+    // BICS_X0_X1_X2 (0xEA220020): must lift as AND_FLAGS with NOT-op2.
+    {
+        tests_run++;
+        printf("  %-40s ", "BICS_X0_X1_X2 inverts op2 + flags");
+        auto r = lift(0xEA220020);
+        if (!r.has_value()) { printf("FAIL: nullopt\n"); }
+        else if (has_opcode(*r, Opcode::AND_FLAGS) && has_opcode(*r, Opcode::NOT)) {
+            printf("PASS\n"); tests_passed++;
+        } else { printf("FAIL\n"); }
+    }
+
     // UBFM (LSL alias) 0xD37DF820: bitfield uses SHL or COPY
     {
         tests_run++;

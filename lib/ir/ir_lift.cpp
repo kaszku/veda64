@@ -175,6 +175,24 @@ static void emit_gpr_or_sp_write(Lifted& l, uint32_t reg, uint8_t op_sz,
     emit_gpr_write(l, reg, op_sz, value);
 }
 
+// The ARM64 logical-with-negated-second-operand mnemonics. The IR table
+// classifies these as plain OR/AND/XOR (via GpBinop/GpBinopFlags/SimdBinop)
+// because there is no distinct IR opcode for "OR with NOT-RHS", and the
+// table carries only one opcode column. Detect them here so the lifter
+// inserts a NOT on operand 2 before the binop — otherwise ORN/BIC/EON/MVN
+// lift to the same shape as plain ORR/AND/EOR, silently dropping the
+// bitwise inversion.
+//
+// MVN (register form, GP only) is `ORN Rd, XZR, Rm` — the decoder folds
+// XZR out so the interpreter sees the two-operand alias shape; the NOT
+// still has to land on operand 2 (which after folding is the only source
+// register).
+static bool logical_negates_op2(Mnemonic m) {
+    return m == Mnemonic::BIC || m == Mnemonic::BICS ||
+           m == Mnemonic::EON ||
+           m == Mnemonic::ORN || m == Mnemonic::MVN;
+}
+
 // GP binary: Rd, Rn, Rm [, shift]
 // Shared interpreter for ADD/SUB shifted-register and extended-register, plus
 // MOV (register), MVN, the SXT*/UXT* aliases, and the addsub_carry family.
@@ -206,6 +224,11 @@ static Lifted interpret_gp_binop(const Instruction& insn, const IrEntry& e, IrDe
         uint32_t rm = op_reg(insn, 2);
         l.ops.push_back(make_op(Opcode::COPY, t0, gpr_or_sp(rn, sz, rn_sp)));
         l.ops.push_back(make_op(Opcode::COPY, t1, VarNode::gpr(rm, sz)));
+    }
+    if (logical_negates_op2(insn.mnemonic)) {
+        auto tn = next_temp(sz);
+        l.ops.push_back(make_op(Opcode::NOT, tn, t1));
+        t1 = tn;
     }
     l.ops.push_back(make_op2(e.opcode, t2, t0, t1));
     emit_gpr_or_sp_write(l, rd, sz, rd_sp, t2);
@@ -280,6 +303,11 @@ static Lifted interpret_gp_binop_flags(const Instruction& insn, const IrEntry& e
 
     l.ops.push_back(make_op(Opcode::COPY, t0, VarNode::gpr(rn, sz)));
     l.ops.push_back(make_op(Opcode::COPY, t1, VarNode::gpr(rm, sz)));
+    if (logical_negates_op2(insn.mnemonic)) {
+        auto tn = next_temp(sz);
+        l.ops.push_back(make_op(Opcode::NOT, tn, t1));
+        t1 = tn;
+    }
     l.ops.push_back(make_op2(flag_setting_variant(e.opcode), t2, t0, t1));
     // Flags computed from the native-width (32 or 64 bit) result, BEFORE zero-extension
     bool is_sub = (e.opcode == Opcode::SUB);
@@ -835,6 +863,14 @@ static Lifted interpret_simd_binop(const Instruction& insn, const IrEntry& e, Ir
 
     auto src1_reg = VarNode::simd(rn, vec_size);
     auto src2_reg = VarNode::simd(rm, vec_size);
+    // BIC/ORN vector forms compute Vn & ~Vm and Vn | ~Vm respectively.
+    // Materialize the bitwise inversion into a temporary and feed the
+    // per-lane loop from it.
+    if (logical_negates_op2(insn.mnemonic)) {
+        auto tn = next_temp(vec_size);
+        l.ops.push_back(make_op(Opcode::NOT, tn, src2_reg));
+        src2_reg = tn;
+    }
     VarNode result = {};
 
     for (uint8_t lane = 0; lane < num_elems; ++lane) {

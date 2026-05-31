@@ -1685,6 +1685,34 @@ mod tests {
     }
 
     #[test]
+    fn ir_lift_orn_inverts_op2() {
+        // ORN X0, X1, X2 — must produce both NOT and OR ops.
+        let lifted = ir::lift(0xAA220020).unwrap();
+        let has_or = (0..lifted.num_ops()).any(|i| lifted.op_opcode(i) == ir::Opcode::OR);
+        let has_not = (0..lifted.num_ops()).any(|i| lifted.op_opcode(i) == ir::Opcode::NOT);
+        assert!(has_or && has_not, "ORN must lift as OR(Rn, NOT(Rm))");
+    }
+
+    #[test]
+    fn ir_lift_bic_inverts_op2() {
+        // BIC X0, X1, X2
+        let lifted = ir::lift(0x8A220020).unwrap();
+        let has_and = (0..lifted.num_ops()).any(|i| lifted.op_opcode(i) == ir::Opcode::AND);
+        let has_not = (0..lifted.num_ops()).any(|i| lifted.op_opcode(i) == ir::Opcode::NOT);
+        assert!(has_and && has_not, "BIC must lift as AND(Rn, NOT(Rm))");
+    }
+
+    #[test]
+    fn ir_lift_bics_inverts_op2_with_flags() {
+        // BICS X0, X1, X2
+        let lifted = ir::lift(0xEA220020).unwrap();
+        let has_and_flags = (0..lifted.num_ops())
+            .any(|i| lifted.op_opcode(i) == ir::Opcode::AND_FLAGS);
+        let has_not = (0..lifted.num_ops()).any(|i| lifted.op_opcode(i) == ir::Opcode::NOT);
+        assert!(has_and_flags && has_not, "BICS must lift as AND_FLAGS(Rn, NOT(Rm))");
+    }
+
+    #[test]
     fn ir_lift_fadd() {
         // FADD S0, S1, S2
         let lifted = ir::lift(0x1E222820).unwrap();
