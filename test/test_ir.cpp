@@ -636,24 +636,21 @@ static void run_tests() {
             }
         }
     }
-    // DSB barrier maps to NOP
+    // DSB barrier lifts opaquely (empty op list) so consumers preserve
+    // the original bytes — substituting NOP would silently drop memory
+    // ordering. Detailed coverage in the "DSB_SY lifts opaquely" block
+    // further down.
     {
         tests_run++;
         printf("  %-40s ", "DSB_SY");
         auto r = lift(0xD5033F9F);
         if (!r.has_value()) {
             printf("FAIL: lift returned nullopt\n");
+        } else if (r->ops.empty()) {
+            printf("PASS\n");
+            tests_passed++;
         } else {
-            bool found = false;
-            for (auto& op : r->ops) {
-                if (op.opcode == Opcode::NOP) found = true;
-            }
-            if (found) {
-                printf("PASS\n");
-                tests_passed++;
-            } else {
-                printf("FAIL: expected NOP\n");
-            }
+            printf("FAIL: expected empty op list, got %zu ops\n", r->ops.size());
         }
     }
     // Scalar FP add
@@ -2482,6 +2479,38 @@ static void run_tests() {
         else if (has_opcode(*r, Opcode::AND_FLAGS) && has_opcode(*r, Opcode::NOT)) {
             printf("PASS\n"); tests_passed++;
         } else { printf("FAIL\n"); }
+    }
+
+    // DMB ISH (0xD5033BBF) — memory barriers must lift to an empty op
+    // list so the consumer preserves the original bytes verbatim. A NOP
+    // substitution would silently drop the memory ordering guarantee.
+    {
+        tests_run++;
+        printf("  %-40s ", "DMB_ISH lifts opaquely");
+        auto r = lift(0xD5033BBF);
+        if (!r.has_value()) { printf("FAIL: nullopt\n"); }
+        else if (r->ops.empty()) { printf("PASS\n"); tests_passed++; }
+        else { printf("FAIL: %zu ops\n", r->ops.size()); }
+    }
+
+    // DSB SY (0xD5033F9F) — same as DMB.
+    {
+        tests_run++;
+        printf("  %-40s ", "DSB_SY lifts opaquely");
+        auto r = lift(0xD5033F9F);
+        if (!r.has_value()) { printf("FAIL: nullopt\n"); }
+        else if (r->ops.empty()) { printf("PASS\n"); tests_passed++; }
+        else { printf("FAIL: %zu ops\n", r->ops.size()); }
+    }
+
+    // ISB SY (0xD5033FDF) — same.
+    {
+        tests_run++;
+        printf("  %-40s ", "ISB_SY lifts opaquely");
+        auto r = lift(0xD5033FDF);
+        if (!r.has_value()) { printf("FAIL: nullopt\n"); }
+        else if (r->ops.empty()) { printf("PASS\n"); tests_passed++; }
+        else { printf("FAIL: %zu ops\n", r->ops.size()); }
     }
 
     // UBFM (LSL alias) 0xD37DF820: bitfield uses SHL or COPY

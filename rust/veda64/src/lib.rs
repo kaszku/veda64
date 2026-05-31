@@ -1712,6 +1712,27 @@ mod tests {
         assert!(has_and_flags && has_not, "BICS must lift as AND_FLAGS(Rn, NOT(Rm))");
     }
 
+    // Memory barriers must lift to an empty op list so the consumer keeps
+    // the original bytes; a NOP substitution would silently drop memory
+    // ordering guarantees.
+    #[test]
+    fn ir_lift_dmb_is_opaque() {
+        let lifted = ir::lift(0xD5033BBF).unwrap(); // DMB ISH
+        assert_eq!(lifted.num_ops(), 0, "DMB must lift opaquely");
+    }
+
+    #[test]
+    fn ir_lift_dsb_is_opaque() {
+        let lifted = ir::lift(0xD5033F9F).unwrap(); // DSB SY
+        assert_eq!(lifted.num_ops(), 0, "DSB must lift opaquely");
+    }
+
+    #[test]
+    fn ir_lift_isb_is_opaque() {
+        let lifted = ir::lift(0xD5033FDF).unwrap(); // ISB SY
+        assert_eq!(lifted.num_ops(), 0, "ISB must lift opaquely");
+    }
+
     #[test]
     fn ir_lift_fadd() {
         // FADD S0, S1, S2
