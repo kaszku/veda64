@@ -36200,6 +36200,7 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn, bool aliases) {
     // Switch for mask 0xFFE7FC00u (1 pattern, 1 encoding)
     switch (insn & 0xFFE7FC00u) {
         case 0x0E043C00u: { // MOV_UMOV_asimdins_W_w
+            if (!aliases) break;
             #ifdef VEDA64_IR
                         Instruction result(aliases ? Mnemonic::MOV : Mnemonic::UMOV, insn, EncodingId::MOV_UMOV_asimdins_W_w);
             #else
@@ -43658,6 +43659,7 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn, bool aliases) {
     switch (insn & 0xBF87FC00u) {
         case 0x0F00A400u: { // SXTL_SSHLL_asimdshf_L
             if (((insn >> 19) & 0xF) == 0x0) break;
+            if (!aliases) break;
             #ifdef VEDA64_IR
                         Instruction result(aliases ? Mnemonic::SXTL : Mnemonic::SSHLL, insn, EncodingId::SXTL_SSHLL_asimdshf_L);
             #else
@@ -43697,6 +43699,7 @@ std::optional<Instruction> decode_simd_dp(uint32_t insn, bool aliases) {
         }
         case 0x2F00A400u: { // UXTL_USHLL_asimdshf_L
             if (((insn >> 19) & 0xF) == 0x0) break;
+            if (!aliases) break;
             #ifdef VEDA64_IR
                         Instruction result(aliases ? Mnemonic::UXTL : Mnemonic::USHLL, insn, EncodingId::UXTL_USHLL_asimdshf_L);
             #else

@@ -7078,6 +7078,7 @@ std::optional<Instruction> decode_dpreg(uint32_t insn, bool aliases) {
     // Switch for mask 0xFFFF0FE0u (4 patterns, 4 encodings)
     switch (insn & 0xFFFF0FE0u) {
         case 0x1A9F07E0u: { // CSET_CSINC_32_condsel
+            if (!aliases) break;
             #ifdef VEDA64_IR
                         Instruction result(aliases ? Mnemonic::CSET : Mnemonic::CSINC, insn, EncodingId::CSET_CSINC_32_condsel);
             #else
@@ -7091,6 +7092,7 @@ std::optional<Instruction> decode_dpreg(uint32_t insn, bool aliases) {
                         return result;
         }
         case 0x5A9F03E0u: { // CSETM_CSINV_32_condsel
+            if (!aliases) break;
             #ifdef VEDA64_IR
                         Instruction result(aliases ? Mnemonic::CSETM : Mnemonic::CSINV, insn, EncodingId::CSETM_CSINV_32_condsel);
             #else
@@ -7104,6 +7106,7 @@ std::optional<Instruction> decode_dpreg(uint32_t insn, bool aliases) {
                         return result;
         }
         case 0x9A9F07E0u: { // CSET_CSINC_64_condsel
+            if (!aliases) break;
             #ifdef VEDA64_IR
                         Instruction result(aliases ? Mnemonic::CSET : Mnemonic::CSINC, insn, EncodingId::CSET_CSINC_64_condsel);
             #else
@@ -7117,6 +7120,7 @@ std::optional<Instruction> decode_dpreg(uint32_t insn, bool aliases) {
                         return result;
         }
         case 0xDA9F03E0u: { // CSETM_CSINV_64_condsel
+            if (!aliases) break;
             #ifdef VEDA64_IR
                         Instruction result(aliases ? Mnemonic::CSETM : Mnemonic::CSINV, insn, EncodingId::CSETM_CSINV_64_condsel);
             #else
@@ -7135,6 +7139,7 @@ std::optional<Instruction> decode_dpreg(uint32_t insn, bool aliases) {
     // Switch for mask 0xFFE0FFE0u (6 patterns, 6 encodings)
     switch (insn & 0xFFE0FFE0u) {
         case 0x2A0003E0u: { // MOV_ORR_32_log_shift
+            if (!aliases) break;
             #ifdef VEDA64_IR
                         Instruction result(aliases ? Mnemonic::MOV : Mnemonic::ORR, insn, EncodingId::MOV_ORR_32_log_shift);
             #else
@@ -7147,6 +7152,7 @@ std::optional<Instruction> decode_dpreg(uint32_t insn, bool aliases) {
                         return result;
         }
         case 0x5A0003E0u: { // NGC_SBC_32_addsub_carry
+            if (!aliases) break;
             #ifdef VEDA64_IR
                         Instruction result(aliases ? Mnemonic::NGC : Mnemonic::SBC, insn, EncodingId::NGC_SBC_32_addsub_carry);
             #else
@@ -7159,6 +7165,7 @@ std::optional<Instruction> decode_dpreg(uint32_t insn, bool aliases) {
                         return result;
         }
         case 0x7A0003E0u: { // NGCS_SBCS_32_addsub_carry
+            if (!aliases) break;
             #ifdef VEDA64_IR
                         Instruction result(aliases ? Mnemonic::NGCS : Mnemonic::SBCS, insn, EncodingId::NGCS_SBCS_32_addsub_carry);
             #else
@@ -7171,6 +7178,7 @@ std::optional<Instruction> decode_dpreg(uint32_t insn, bool aliases) {
                         return result;
         }
         case 0xAA0003E0u: { // MOV_ORR_64_log_shift
+            if (!aliases) break;
             #ifdef VEDA64_IR
                         Instruction result(aliases ? Mnemonic::MOV : Mnemonic::ORR, insn, EncodingId::MOV_ORR_64_log_shift);
             #else
@@ -7183,6 +7191,7 @@ std::optional<Instruction> decode_dpreg(uint32_t insn, bool aliases) {
                         return result;
         }
         case 0xDA0003E0u: { // NGC_SBC_64_addsub_carry
+            if (!aliases) break;
             #ifdef VEDA64_IR
                         Instruction result(aliases ? Mnemonic::NGC : Mnemonic::SBC, insn, EncodingId::NGC_SBC_64_addsub_carry);
             #else
@@ -7195,6 +7204,7 @@ std::optional<Instruction> decode_dpreg(uint32_t insn, bool aliases) {
                         return result;
         }
         case 0xFA0003E0u: { // NGCS_SBCS_64_addsub_carry
+            if (!aliases) break;
             #ifdef VEDA64_IR
                         Instruction result(aliases ? Mnemonic::NGCS : Mnemonic::SBCS, insn, EncodingId::NGCS_SBCS_64_addsub_carry);
             #else
@@ -7212,6 +7222,7 @@ std::optional<Instruction> decode_dpreg(uint32_t insn, bool aliases) {
     // Switch for mask 0xFFE0FC1Fu (1 pattern, 1 encoding)
     switch (insn & 0xFFE0FC1Fu) {
         case 0xBAC0001Fu: { // CMPP_SUBPS_64S_dp_2src
+            if (!aliases) break;
             #ifdef VEDA64_IR
                         Instruction result(aliases ? Mnemonic::CMPP : Mnemonic::SUBPS, insn, EncodingId::CMPP_SUBPS_64S_dp_2src);
             #else
@@ -7454,6 +7465,7 @@ std::optional<Instruction> decode_dpreg(uint32_t insn, bool aliases) {
                         return result;
         }
         case 0x1B007C00u: { // MUL_MADD_32A_dp_3src
+            if (!aliases) break;
             #ifdef VEDA64_IR
                         Instruction result(aliases ? Mnemonic::MUL : Mnemonic::MADD, insn, EncodingId::MUL_MADD_32A_dp_3src);
             #else
@@ -7467,6 +7479,7 @@ std::optional<Instruction> decode_dpreg(uint32_t insn, bool aliases) {
                         return result;
         }
         case 0x1B00FC00u: { // MNEG_MSUB_32A_dp_3src
+            if (!aliases) break;
             #ifdef VEDA64_IR
                         Instruction result(aliases ? Mnemonic::MNEG : Mnemonic::MSUB, insn, EncodingId::MNEG_MSUB_32A_dp_3src);
             #else
@@ -7744,6 +7757,7 @@ std::optional<Instruction> decode_dpreg(uint32_t insn, bool aliases) {
                         return result;
         }
         case 0x9B007C00u: { // MUL_MADD_64A_dp_3src
+            if (!aliases) break;
             #ifdef VEDA64_IR
                         Instruction result(aliases ? Mnemonic::MUL : Mnemonic::MADD, insn, EncodingId::MUL_MADD_64A_dp_3src);
             #else
@@ -7757,6 +7771,7 @@ std::optional<Instruction> decode_dpreg(uint32_t insn, bool aliases) {
                         return result;
         }
         case 0x9B00FC00u: { // MNEG_MSUB_64A_dp_3src
+            if (!aliases) break;
             #ifdef VEDA64_IR
                         Instruction result(aliases ? Mnemonic::MNEG : Mnemonic::MSUB, insn, EncodingId::MNEG_MSUB_64A_dp_3src);
             #else
@@ -7770,6 +7785,7 @@ std::optional<Instruction> decode_dpreg(uint32_t insn, bool aliases) {
                         return result;
         }
         case 0x9B207C00u: { // SMULL_SMADDL_64WA_dp_3src
+            if (!aliases) break;
             #ifdef VEDA64_IR
                         Instruction result(aliases ? Mnemonic::SMULL : Mnemonic::SMADDL, insn, EncodingId::SMULL_SMADDL_64WA_dp_3src);
             #else
@@ -7783,6 +7799,7 @@ std::optional<Instruction> decode_dpreg(uint32_t insn, bool aliases) {
                         return result;
         }
         case 0x9B20FC00u: { // SMNEGL_SMSUBL_64WA_dp_3src
+            if (!aliases) break;
             #ifdef VEDA64_IR
                         Instruction result(aliases ? Mnemonic::SMNEGL : Mnemonic::SMSUBL, insn, EncodingId::SMNEGL_SMSUBL_64WA_dp_3src);
             #else
@@ -7796,6 +7813,7 @@ std::optional<Instruction> decode_dpreg(uint32_t insn, bool aliases) {
                         return result;
         }
         case 0x9BA07C00u: { // UMULL_UMADDL_64WA_dp_3src
+            if (!aliases) break;
             #ifdef VEDA64_IR
                         Instruction result(aliases ? Mnemonic::UMULL : Mnemonic::UMADDL, insn, EncodingId::UMULL_UMADDL_64WA_dp_3src);
             #else
@@ -7809,6 +7827,7 @@ std::optional<Instruction> decode_dpreg(uint32_t insn, bool aliases) {
                         return result;
         }
         case 0x9BA0FC00u: { // UMNEGL_UMSUBL_64WA_dp_3src
+            if (!aliases) break;
             #ifdef VEDA64_IR
                         Instruction result(aliases ? Mnemonic::UMNEGL : Mnemonic::UMSUBL, insn, EncodingId::UMNEGL_UMSUBL_64WA_dp_3src);
             #else
@@ -8452,6 +8471,7 @@ std::optional<Instruction> decode_dpreg(uint32_t insn, bool aliases) {
     // Switch for mask 0xFFE0001Fu (4 patterns, 4 encodings)
     switch (insn & 0xFFE0001Fu) {
         case 0x2B20001Fu: { // CMN_ADDS_32S_addsub_ext
+            if (!aliases) break;
             #ifdef VEDA64_IR
                         Instruction result(aliases ? Mnemonic::CMN : Mnemonic::ADDS, insn, EncodingId::CMN_ADDS_32S_addsub_ext);
             #else
@@ -8473,6 +8493,7 @@ std::optional<Instruction> decode_dpreg(uint32_t insn, bool aliases) {
                         return result;
         }
         case 0x6B20001Fu: { // CMP_SUBS_32S_addsub_ext
+            if (!aliases) break;
             #ifdef VEDA64_IR
                         Instruction result(aliases ? Mnemonic::CMP : Mnemonic::SUBS, insn, EncodingId::CMP_SUBS_32S_addsub_ext);
             #else
@@ -8494,6 +8515,7 @@ std::optional<Instruction> decode_dpreg(uint32_t insn, bool aliases) {
                         return result;
         }
         case 0xAB20001Fu: { // CMN_ADDS_64S_addsub_ext
+            if (!aliases) break;
             #ifdef VEDA64_IR
                         Instruction result(aliases ? Mnemonic::CMN : Mnemonic::ADDS, insn, EncodingId::CMN_ADDS_64S_addsub_ext);
             #else
@@ -8515,6 +8537,7 @@ std::optional<Instruction> decode_dpreg(uint32_t insn, bool aliases) {
                         return result;
         }
         case 0xEB20001Fu: { // CMP_SUBS_64S_addsub_ext
+            if (!aliases) break;
             #ifdef VEDA64_IR
                         Instruction result(aliases ? Mnemonic::CMP : Mnemonic::SUBS, insn, EncodingId::CMP_SUBS_64S_addsub_ext);
             #else
@@ -8722,6 +8745,7 @@ std::optional<Instruction> decode_dpreg(uint32_t insn, bool aliases) {
     // Switch for mask 0xFF2003E0u (6 patterns, 6 encodings)
     switch (insn & 0xFF2003E0u) {
         case 0x2A2003E0u: { // MVN_ORN_32_log_shift
+            if (!aliases) break;
             #ifdef VEDA64_IR
                         Instruction result(aliases ? Mnemonic::MVN : Mnemonic::ORN, insn, EncodingId::MVN_ORN_32_log_shift);
             #else
@@ -8743,6 +8767,7 @@ std::optional<Instruction> decode_dpreg(uint32_t insn, bool aliases) {
                         return result;
         }
         case 0x4B0003E0u: { // NEG_SUB_32_addsub_shift
+            if (!aliases) break;
             #ifdef VEDA64_IR
                         Instruction result(aliases ? Mnemonic::NEG : Mnemonic::SUB, insn, EncodingId::NEG_SUB_32_addsub_shift);
             #else
@@ -8765,6 +8790,7 @@ std::optional<Instruction> decode_dpreg(uint32_t insn, bool aliases) {
         }
         case 0x6B0003E0u: { // NEGS_SUBS_32_addsub_shift
             if (((insn >> 0) & 0x1F) == 0x1F) break;
+            if (!aliases) break;
             #ifdef VEDA64_IR
                         Instruction result(aliases ? Mnemonic::NEGS : Mnemonic::SUBS, insn, EncodingId::NEGS_SUBS_32_addsub_shift);
             #else
@@ -8786,6 +8812,7 @@ std::optional<Instruction> decode_dpreg(uint32_t insn, bool aliases) {
                         return result;
         }
         case 0xAA2003E0u: { // MVN_ORN_64_log_shift
+            if (!aliases) break;
             #ifdef VEDA64_IR
                         Instruction result(aliases ? Mnemonic::MVN : Mnemonic::ORN, insn, EncodingId::MVN_ORN_64_log_shift);
             #else
@@ -8807,6 +8834,7 @@ std::optional<Instruction> decode_dpreg(uint32_t insn, bool aliases) {
                         return result;
         }
         case 0xCB0003E0u: { // NEG_SUB_64_addsub_shift
+            if (!aliases) break;
             #ifdef VEDA64_IR
                         Instruction result(aliases ? Mnemonic::NEG : Mnemonic::SUB, insn, EncodingId::NEG_SUB_64_addsub_shift);
             #else
@@ -8829,6 +8857,7 @@ std::optional<Instruction> decode_dpreg(uint32_t insn, bool aliases) {
         }
         case 0xEB0003E0u: { // NEGS_SUBS_64_addsub_shift
             if (((insn >> 0) & 0x1F) == 0x1F) break;
+            if (!aliases) break;
             #ifdef VEDA64_IR
                         Instruction result(aliases ? Mnemonic::NEGS : Mnemonic::SUBS, insn, EncodingId::NEGS_SUBS_64_addsub_shift);
             #else
@@ -8855,6 +8884,7 @@ std::optional<Instruction> decode_dpreg(uint32_t insn, bool aliases) {
     // Switch for mask 0xFF20001Fu (6 patterns, 6 encodings)
     switch (insn & 0xFF20001Fu) {
         case 0x2B00001Fu: { // CMN_ADDS_32_addsub_shift
+            if (!aliases) break;
             #ifdef VEDA64_IR
                         Instruction result(aliases ? Mnemonic::CMN : Mnemonic::ADDS, insn, EncodingId::CMN_ADDS_32_addsub_shift);
             #else
@@ -8876,6 +8906,7 @@ std::optional<Instruction> decode_dpreg(uint32_t insn, bool aliases) {
                         return result;
         }
         case 0x6A00001Fu: { // TST_ANDS_32_log_shift
+            if (!aliases) break;
             #ifdef VEDA64_IR
                         Instruction result(aliases ? Mnemonic::TST : Mnemonic::ANDS, insn, EncodingId::TST_ANDS_32_log_shift);
             #else
@@ -8898,6 +8929,7 @@ std::optional<Instruction> decode_dpreg(uint32_t insn, bool aliases) {
                         return result;
         }
         case 0x6B00001Fu: { // CMP_SUBS_32_addsub_shift
+            if (!aliases) break;
             #ifdef VEDA64_IR
                         Instruction result(aliases ? Mnemonic::CMP : Mnemonic::SUBS, insn, EncodingId::CMP_SUBS_32_addsub_shift);
             #else
@@ -8919,6 +8951,7 @@ std::optional<Instruction> decode_dpreg(uint32_t insn, bool aliases) {
                         return result;
         }
         case 0xAB00001Fu: { // CMN_ADDS_64_addsub_shift
+            if (!aliases) break;
             #ifdef VEDA64_IR
                         Instruction result(aliases ? Mnemonic::CMN : Mnemonic::ADDS, insn, EncodingId::CMN_ADDS_64_addsub_shift);
             #else
@@ -8940,6 +8973,7 @@ std::optional<Instruction> decode_dpreg(uint32_t insn, bool aliases) {
                         return result;
         }
         case 0xEA00001Fu: { // TST_ANDS_64_log_shift
+            if (!aliases) break;
             #ifdef VEDA64_IR
                         Instruction result(aliases ? Mnemonic::TST : Mnemonic::ANDS, insn, EncodingId::TST_ANDS_64_log_shift);
             #else
@@ -8962,6 +8996,7 @@ std::optional<Instruction> decode_dpreg(uint32_t insn, bool aliases) {
                         return result;
         }
         case 0xEB00001Fu: { // CMP_SUBS_64_addsub_shift
+            if (!aliases) break;
             #ifdef VEDA64_IR
                         Instruction result(aliases ? Mnemonic::CMP : Mnemonic::SUBS, insn, EncodingId::CMP_SUBS_64_addsub_shift);
             #else

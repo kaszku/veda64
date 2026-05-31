@@ -38865,6 +38865,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn, bool aliases) {
     // Switch for mask 0xFFE0FC1Fu (116 patterns, 116 encodings)
     switch (insn & 0xFFE0FC1Fu) {
         case 0x1920041Fu: { // STTADD_LDTADD_32_memop_unpriv
+            if (!aliases) break;
             #ifdef VEDA64_IR
                         Instruction result(Mnemonic::LDTADD, insn, EncodingId::STTADD_LDTADD_32_memop_unpriv);
             #else
@@ -38877,6 +38878,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn, bool aliases) {
                         return result;
         }
         case 0x1920141Fu: { // STTCLR_LDTCLR_32_memop_unpriv
+            if (!aliases) break;
             #ifdef VEDA64_IR
                         Instruction result(Mnemonic::LDTCLR, insn, EncodingId::STTCLR_LDTCLR_32_memop_unpriv);
             #else
@@ -38889,6 +38891,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn, bool aliases) {
                         return result;
         }
         case 0x1920341Fu: { // STTSET_LDTSET_32_memop_unpriv
+            if (!aliases) break;
             #ifdef VEDA64_IR
                         Instruction result(Mnemonic::LDTSET, insn, EncodingId::STTSET_LDTSET_32_memop_unpriv);
             #else
@@ -38901,6 +38904,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn, bool aliases) {
                         return result;
         }
         case 0x1960041Fu: { // STTADDL_LDTADDL_32_memop_unpriv
+            if (!aliases) break;
             #ifdef VEDA64_IR
                         Instruction result(Mnemonic::LDTADDL, insn, EncodingId::STTADDL_LDTADDL_32_memop_unpriv);
             #else
@@ -38913,6 +38917,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn, bool aliases) {
                         return result;
         }
         case 0x1960141Fu: { // STTCLRL_LDTCLRL_32_memop_unpriv
+            if (!aliases) break;
             #ifdef VEDA64_IR
                         Instruction result(Mnemonic::LDTCLRL, insn, EncodingId::STTCLRL_LDTCLRL_32_memop_unpriv);
             #else
@@ -38925,6 +38930,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn, bool aliases) {
                         return result;
         }
         case 0x1960341Fu: { // STTSETL_LDTSETL_32_memop_unpriv
+            if (!aliases) break;
             #ifdef VEDA64_IR
                         Instruction result(Mnemonic::LDTSETL, insn, EncodingId::STTSETL_LDTSETL_32_memop_unpriv);
             #else
@@ -38937,6 +38943,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn, bool aliases) {
                         return result;
         }
         case 0x3820001Fu: { // STADDB_LDADDB_32_memop
+            if (!aliases) break;
             #ifdef VEDA64_IR
                         Instruction result(Mnemonic::LDADDB, insn, EncodingId::STADDB_LDADDB_32_memop);
             #else
@@ -38949,6 +38956,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn, bool aliases) {
                         return result;
         }
         case 0x3820101Fu: { // STCLRB_LDCLRB_32_memop
+            if (!aliases) break;
             #ifdef VEDA64_IR
                         Instruction result(Mnemonic::LDCLRB, insn, EncodingId::STCLRB_LDCLRB_32_memop);
             #else
@@ -38961,6 +38969,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn, bool aliases) {
                         return result;
         }
         case 0x3820201Fu: { // STEORB_LDEORB_32_memop
+            if (!aliases) break;
             #ifdef VEDA64_IR
                         Instruction result(Mnemonic::LDEORB, insn, EncodingId::STEORB_LDEORB_32_memop);
             #else
@@ -38973,6 +38982,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn, bool aliases) {
                         return result;
         }
         case 0x3820301Fu: { // STSETB_LDSETB_32_memop
+            if (!aliases) break;
             #ifdef VEDA64_IR
                         Instruction result(Mnemonic::LDSETB, insn, EncodingId::STSETB_LDSETB_32_memop);
             #else
@@ -38985,6 +38995,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn, bool aliases) {
                         return result;
         }
         case 0x3820401Fu: { // STSMAXB_LDSMAXB_32_memop
+            if (!aliases) break;
             #ifdef VEDA64_IR
                         Instruction result(Mnemonic::LDSMAXB, insn, EncodingId::STSMAXB_LDSMAXB_32_memop);
             #else
@@ -38997,6 +39008,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn, bool aliases) {
                         return result;
         }
         case 0x3820501Fu: { // STSMINB_LDSMINB_32_memop
+            if (!aliases) break;
             #ifdef VEDA64_IR
                         Instruction result(Mnemonic::LDSMINB, insn, EncodingId::STSMINB_LDSMINB_32_memop);
             #else
@@ -39009,6 +39021,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn, bool aliases) {
                         return result;
         }
         case 0x3820601Fu: { // STUMAXB_LDUMAXB_32_memop
+            if (!aliases) break;
             #ifdef VEDA64_IR
                         Instruction result(Mnemonic::LDUMAXB, insn, EncodingId::STUMAXB_LDUMAXB_32_memop);
             #else
@@ -39021,6 +39034,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn, bool aliases) {
                         return result;
         }
         case 0x3820701Fu: { // STUMINB_LDUMINB_32_memop
+            if (!aliases) break;
             #ifdef VEDA64_IR
                         Instruction result(Mnemonic::LDUMINB, insn, EncodingId::STUMINB_LDUMINB_32_memop);
             #else
@@ -39033,6 +39047,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn, bool aliases) {
                         return result;
         }
         case 0x3860001Fu: { // STADDLB_LDADDLB_32_memop
+            if (!aliases) break;
             #ifdef VEDA64_IR
                         Instruction result(Mnemonic::LDADDLB, insn, EncodingId::STADDLB_LDADDLB_32_memop);
             #else
@@ -39045,6 +39060,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn, bool aliases) {
                         return result;
         }
         case 0x3860101Fu: { // STCLRLB_LDCLRLB_32_memop
+            if (!aliases) break;
             #ifdef VEDA64_IR
                         Instruction result(Mnemonic::LDCLRLB, insn, EncodingId::STCLRLB_LDCLRLB_32_memop);
             #else
@@ -39057,6 +39073,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn, bool aliases) {
                         return result;
         }
         case 0x3860201Fu: { // STEORLB_LDEORLB_32_memop
+            if (!aliases) break;
             #ifdef VEDA64_IR
                         Instruction result(Mnemonic::LDEORLB, insn, EncodingId::STEORLB_LDEORLB_32_memop);
             #else
@@ -39069,6 +39086,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn, bool aliases) {
                         return result;
         }
         case 0x3860301Fu: { // STSETLB_LDSETLB_32_memop
+            if (!aliases) break;
             #ifdef VEDA64_IR
                         Instruction result(Mnemonic::LDSETLB, insn, EncodingId::STSETLB_LDSETLB_32_memop);
             #else
@@ -39081,6 +39099,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn, bool aliases) {
                         return result;
         }
         case 0x3860401Fu: { // STSMAXLB_LDSMAXLB_32_memop
+            if (!aliases) break;
             #ifdef VEDA64_IR
                         Instruction result(Mnemonic::LDSMAXLB, insn, EncodingId::STSMAXLB_LDSMAXLB_32_memop);
             #else
@@ -39093,6 +39112,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn, bool aliases) {
                         return result;
         }
         case 0x3860501Fu: { // STSMINLB_LDSMINLB_32_memop
+            if (!aliases) break;
             #ifdef VEDA64_IR
                         Instruction result(Mnemonic::LDSMINLB, insn, EncodingId::STSMINLB_LDSMINLB_32_memop);
             #else
@@ -39105,6 +39125,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn, bool aliases) {
                         return result;
         }
         case 0x3860601Fu: { // STUMAXLB_LDUMAXLB_32_memop
+            if (!aliases) break;
             #ifdef VEDA64_IR
                         Instruction result(Mnemonic::LDUMAXLB, insn, EncodingId::STUMAXLB_LDUMAXLB_32_memop);
             #else
@@ -39117,6 +39138,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn, bool aliases) {
                         return result;
         }
         case 0x3860701Fu: { // STUMINLB_LDUMINLB_32_memop
+            if (!aliases) break;
             #ifdef VEDA64_IR
                         Instruction result(Mnemonic::LDUMINLB, insn, EncodingId::STUMINLB_LDUMINLB_32_memop);
             #else
@@ -39259,6 +39281,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn, bool aliases) {
                         return result;
         }
         case 0x5920041Fu: { // STTADD_LDTADD_64_memop_unpriv
+            if (!aliases) break;
             #ifdef VEDA64_IR
                         Instruction result(Mnemonic::LDTADD, insn, EncodingId::STTADD_LDTADD_64_memop_unpriv);
             #else
@@ -39271,6 +39294,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn, bool aliases) {
                         return result;
         }
         case 0x5920141Fu: { // STTCLR_LDTCLR_64_memop_unpriv
+            if (!aliases) break;
             #ifdef VEDA64_IR
                         Instruction result(Mnemonic::LDTCLR, insn, EncodingId::STTCLR_LDTCLR_64_memop_unpriv);
             #else
@@ -39283,6 +39307,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn, bool aliases) {
                         return result;
         }
         case 0x5920341Fu: { // STTSET_LDTSET_64_memop_unpriv
+            if (!aliases) break;
             #ifdef VEDA64_IR
                         Instruction result(Mnemonic::LDTSET, insn, EncodingId::STTSET_LDTSET_64_memop_unpriv);
             #else
@@ -39295,6 +39320,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn, bool aliases) {
                         return result;
         }
         case 0x5960041Fu: { // STTADDL_LDTADDL_64_memop_unpriv
+            if (!aliases) break;
             #ifdef VEDA64_IR
                         Instruction result(Mnemonic::LDTADDL, insn, EncodingId::STTADDL_LDTADDL_64_memop_unpriv);
             #else
@@ -39307,6 +39333,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn, bool aliases) {
                         return result;
         }
         case 0x5960141Fu: { // STTCLRL_LDTCLRL_64_memop_unpriv
+            if (!aliases) break;
             #ifdef VEDA64_IR
                         Instruction result(Mnemonic::LDTCLRL, insn, EncodingId::STTCLRL_LDTCLRL_64_memop_unpriv);
             #else
@@ -39319,6 +39346,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn, bool aliases) {
                         return result;
         }
         case 0x5960341Fu: { // STTSETL_LDTSETL_64_memop_unpriv
+            if (!aliases) break;
             #ifdef VEDA64_IR
                         Instruction result(Mnemonic::LDTSETL, insn, EncodingId::STTSETL_LDTSETL_64_memop_unpriv);
             #else
@@ -39331,6 +39359,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn, bool aliases) {
                         return result;
         }
         case 0x7820001Fu: { // STADDH_LDADDH_32_memop
+            if (!aliases) break;
             #ifdef VEDA64_IR
                         Instruction result(Mnemonic::LDADDH, insn, EncodingId::STADDH_LDADDH_32_memop);
             #else
@@ -39343,6 +39372,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn, bool aliases) {
                         return result;
         }
         case 0x7820101Fu: { // STCLRH_LDCLRH_32_memop
+            if (!aliases) break;
             #ifdef VEDA64_IR
                         Instruction result(Mnemonic::LDCLRH, insn, EncodingId::STCLRH_LDCLRH_32_memop);
             #else
@@ -39355,6 +39385,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn, bool aliases) {
                         return result;
         }
         case 0x7820201Fu: { // STEORH_LDEORH_32_memop
+            if (!aliases) break;
             #ifdef VEDA64_IR
                         Instruction result(Mnemonic::LDEORH, insn, EncodingId::STEORH_LDEORH_32_memop);
             #else
@@ -39367,6 +39398,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn, bool aliases) {
                         return result;
         }
         case 0x7820301Fu: { // STSETH_LDSETH_32_memop
+            if (!aliases) break;
             #ifdef VEDA64_IR
                         Instruction result(Mnemonic::LDSETH, insn, EncodingId::STSETH_LDSETH_32_memop);
             #else
@@ -39379,6 +39411,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn, bool aliases) {
                         return result;
         }
         case 0x7820401Fu: { // STSMAXH_LDSMAXH_32_memop
+            if (!aliases) break;
             #ifdef VEDA64_IR
                         Instruction result(Mnemonic::LDSMAXH, insn, EncodingId::STSMAXH_LDSMAXH_32_memop);
             #else
@@ -39391,6 +39424,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn, bool aliases) {
                         return result;
         }
         case 0x7820501Fu: { // STSMINH_LDSMINH_32_memop
+            if (!aliases) break;
             #ifdef VEDA64_IR
                         Instruction result(Mnemonic::LDSMINH, insn, EncodingId::STSMINH_LDSMINH_32_memop);
             #else
@@ -39403,6 +39437,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn, bool aliases) {
                         return result;
         }
         case 0x7820601Fu: { // STUMAXH_LDUMAXH_32_memop
+            if (!aliases) break;
             #ifdef VEDA64_IR
                         Instruction result(Mnemonic::LDUMAXH, insn, EncodingId::STUMAXH_LDUMAXH_32_memop);
             #else
@@ -39415,6 +39450,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn, bool aliases) {
                         return result;
         }
         case 0x7820701Fu: { // STUMINH_LDUMINH_32_memop
+            if (!aliases) break;
             #ifdef VEDA64_IR
                         Instruction result(Mnemonic::LDUMINH, insn, EncodingId::STUMINH_LDUMINH_32_memop);
             #else
@@ -39427,6 +39463,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn, bool aliases) {
                         return result;
         }
         case 0x7860001Fu: { // STADDLH_LDADDLH_32_memop
+            if (!aliases) break;
             #ifdef VEDA64_IR
                         Instruction result(Mnemonic::LDADDLH, insn, EncodingId::STADDLH_LDADDLH_32_memop);
             #else
@@ -39439,6 +39476,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn, bool aliases) {
                         return result;
         }
         case 0x7860101Fu: { // STCLRLH_LDCLRLH_32_memop
+            if (!aliases) break;
             #ifdef VEDA64_IR
                         Instruction result(Mnemonic::LDCLRLH, insn, EncodingId::STCLRLH_LDCLRLH_32_memop);
             #else
@@ -39451,6 +39489,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn, bool aliases) {
                         return result;
         }
         case 0x7860201Fu: { // STEORLH_LDEORLH_32_memop
+            if (!aliases) break;
             #ifdef VEDA64_IR
                         Instruction result(Mnemonic::LDEORLH, insn, EncodingId::STEORLH_LDEORLH_32_memop);
             #else
@@ -39463,6 +39502,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn, bool aliases) {
                         return result;
         }
         case 0x7860301Fu: { // STSETLH_LDSETLH_32_memop
+            if (!aliases) break;
             #ifdef VEDA64_IR
                         Instruction result(Mnemonic::LDSETLH, insn, EncodingId::STSETLH_LDSETLH_32_memop);
             #else
@@ -39475,6 +39515,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn, bool aliases) {
                         return result;
         }
         case 0x7860401Fu: { // STSMAXLH_LDSMAXLH_32_memop
+            if (!aliases) break;
             #ifdef VEDA64_IR
                         Instruction result(Mnemonic::LDSMAXLH, insn, EncodingId::STSMAXLH_LDSMAXLH_32_memop);
             #else
@@ -39487,6 +39528,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn, bool aliases) {
                         return result;
         }
         case 0x7860501Fu: { // STSMINLH_LDSMINLH_32_memop
+            if (!aliases) break;
             #ifdef VEDA64_IR
                         Instruction result(Mnemonic::LDSMINLH, insn, EncodingId::STSMINLH_LDSMINLH_32_memop);
             #else
@@ -39499,6 +39541,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn, bool aliases) {
                         return result;
         }
         case 0x7860601Fu: { // STUMAXLH_LDUMAXLH_32_memop
+            if (!aliases) break;
             #ifdef VEDA64_IR
                         Instruction result(Mnemonic::LDUMAXLH, insn, EncodingId::STUMAXLH_LDUMAXLH_32_memop);
             #else
@@ -39511,6 +39554,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn, bool aliases) {
                         return result;
         }
         case 0x7860701Fu: { // STUMINLH_LDUMINLH_32_memop
+            if (!aliases) break;
             #ifdef VEDA64_IR
                         Instruction result(Mnemonic::LDUMINLH, insn, EncodingId::STUMINLH_LDUMINLH_32_memop);
             #else
@@ -39653,6 +39697,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn, bool aliases) {
                         return result;
         }
         case 0xB820001Fu: { // STADD_LDADD_32_memop
+            if (!aliases) break;
             #ifdef VEDA64_IR
                         Instruction result(Mnemonic::LDADD, insn, EncodingId::STADD_LDADD_32_memop);
             #else
@@ -39665,6 +39710,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn, bool aliases) {
                         return result;
         }
         case 0xB820101Fu: { // STCLR_LDCLR_32_memop
+            if (!aliases) break;
             #ifdef VEDA64_IR
                         Instruction result(Mnemonic::LDCLR, insn, EncodingId::STCLR_LDCLR_32_memop);
             #else
@@ -39677,6 +39723,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn, bool aliases) {
                         return result;
         }
         case 0xB820201Fu: { // STEOR_LDEOR_32_memop
+            if (!aliases) break;
             #ifdef VEDA64_IR
                         Instruction result(Mnemonic::LDEOR, insn, EncodingId::STEOR_LDEOR_32_memop);
             #else
@@ -39689,6 +39736,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn, bool aliases) {
                         return result;
         }
         case 0xB820301Fu: { // STSET_LDSET_32_memop
+            if (!aliases) break;
             #ifdef VEDA64_IR
                         Instruction result(Mnemonic::LDSET, insn, EncodingId::STSET_LDSET_32_memop);
             #else
@@ -39701,6 +39749,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn, bool aliases) {
                         return result;
         }
         case 0xB820401Fu: { // STSMAX_LDSMAX_32_memop
+            if (!aliases) break;
             #ifdef VEDA64_IR
                         Instruction result(Mnemonic::LDSMAX, insn, EncodingId::STSMAX_LDSMAX_32_memop);
             #else
@@ -39713,6 +39762,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn, bool aliases) {
                         return result;
         }
         case 0xB820501Fu: { // STSMIN_LDSMIN_32_memop
+            if (!aliases) break;
             #ifdef VEDA64_IR
                         Instruction result(Mnemonic::LDSMIN, insn, EncodingId::STSMIN_LDSMIN_32_memop);
             #else
@@ -39725,6 +39775,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn, bool aliases) {
                         return result;
         }
         case 0xB820601Fu: { // STUMAX_LDUMAX_32_memop
+            if (!aliases) break;
             #ifdef VEDA64_IR
                         Instruction result(Mnemonic::LDUMAX, insn, EncodingId::STUMAX_LDUMAX_32_memop);
             #else
@@ -39737,6 +39788,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn, bool aliases) {
                         return result;
         }
         case 0xB820701Fu: { // STUMIN_LDUMIN_32_memop
+            if (!aliases) break;
             #ifdef VEDA64_IR
                         Instruction result(Mnemonic::LDUMIN, insn, EncodingId::STUMIN_LDUMIN_32_memop);
             #else
@@ -39749,6 +39801,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn, bool aliases) {
                         return result;
         }
         case 0xB860001Fu: { // STADDL_LDADDL_32_memop
+            if (!aliases) break;
             #ifdef VEDA64_IR
                         Instruction result(Mnemonic::LDADDL, insn, EncodingId::STADDL_LDADDL_32_memop);
             #else
@@ -39761,6 +39814,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn, bool aliases) {
                         return result;
         }
         case 0xB860101Fu: { // STCLRL_LDCLRL_32_memop
+            if (!aliases) break;
             #ifdef VEDA64_IR
                         Instruction result(Mnemonic::LDCLRL, insn, EncodingId::STCLRL_LDCLRL_32_memop);
             #else
@@ -39773,6 +39827,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn, bool aliases) {
                         return result;
         }
         case 0xB860201Fu: { // STEORL_LDEORL_32_memop
+            if (!aliases) break;
             #ifdef VEDA64_IR
                         Instruction result(Mnemonic::LDEORL, insn, EncodingId::STEORL_LDEORL_32_memop);
             #else
@@ -39785,6 +39840,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn, bool aliases) {
                         return result;
         }
         case 0xB860301Fu: { // STSETL_LDSETL_32_memop
+            if (!aliases) break;
             #ifdef VEDA64_IR
                         Instruction result(Mnemonic::LDSETL, insn, EncodingId::STSETL_LDSETL_32_memop);
             #else
@@ -39797,6 +39853,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn, bool aliases) {
                         return result;
         }
         case 0xB860401Fu: { // STSMAXL_LDSMAXL_32_memop
+            if (!aliases) break;
             #ifdef VEDA64_IR
                         Instruction result(Mnemonic::LDSMAXL, insn, EncodingId::STSMAXL_LDSMAXL_32_memop);
             #else
@@ -39809,6 +39866,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn, bool aliases) {
                         return result;
         }
         case 0xB860501Fu: { // STSMINL_LDSMINL_32_memop
+            if (!aliases) break;
             #ifdef VEDA64_IR
                         Instruction result(Mnemonic::LDSMINL, insn, EncodingId::STSMINL_LDSMINL_32_memop);
             #else
@@ -39821,6 +39879,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn, bool aliases) {
                         return result;
         }
         case 0xB860601Fu: { // STUMAXL_LDUMAXL_32_memop
+            if (!aliases) break;
             #ifdef VEDA64_IR
                         Instruction result(Mnemonic::LDUMAXL, insn, EncodingId::STUMAXL_LDUMAXL_32_memop);
             #else
@@ -39833,6 +39892,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn, bool aliases) {
                         return result;
         }
         case 0xB860701Fu: { // STUMINL_LDUMINL_32_memop
+            if (!aliases) break;
             #ifdef VEDA64_IR
                         Instruction result(Mnemonic::LDUMINL, insn, EncodingId::STUMINL_LDUMINL_32_memop);
             #else
@@ -39975,6 +40035,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn, bool aliases) {
                         return result;
         }
         case 0xF820001Fu: { // STADD_LDADD_64_memop
+            if (!aliases) break;
             #ifdef VEDA64_IR
                         Instruction result(Mnemonic::LDADD, insn, EncodingId::STADD_LDADD_64_memop);
             #else
@@ -39987,6 +40048,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn, bool aliases) {
                         return result;
         }
         case 0xF820101Fu: { // STCLR_LDCLR_64_memop
+            if (!aliases) break;
             #ifdef VEDA64_IR
                         Instruction result(Mnemonic::LDCLR, insn, EncodingId::STCLR_LDCLR_64_memop);
             #else
@@ -39999,6 +40061,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn, bool aliases) {
                         return result;
         }
         case 0xF820201Fu: { // STEOR_LDEOR_64_memop
+            if (!aliases) break;
             #ifdef VEDA64_IR
                         Instruction result(Mnemonic::LDEOR, insn, EncodingId::STEOR_LDEOR_64_memop);
             #else
@@ -40011,6 +40074,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn, bool aliases) {
                         return result;
         }
         case 0xF820301Fu: { // STSET_LDSET_64_memop
+            if (!aliases) break;
             #ifdef VEDA64_IR
                         Instruction result(Mnemonic::LDSET, insn, EncodingId::STSET_LDSET_64_memop);
             #else
@@ -40023,6 +40087,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn, bool aliases) {
                         return result;
         }
         case 0xF820401Fu: { // STSMAX_LDSMAX_64_memop
+            if (!aliases) break;
             #ifdef VEDA64_IR
                         Instruction result(Mnemonic::LDSMAX, insn, EncodingId::STSMAX_LDSMAX_64_memop);
             #else
@@ -40035,6 +40100,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn, bool aliases) {
                         return result;
         }
         case 0xF820501Fu: { // STSMIN_LDSMIN_64_memop
+            if (!aliases) break;
             #ifdef VEDA64_IR
                         Instruction result(Mnemonic::LDSMIN, insn, EncodingId::STSMIN_LDSMIN_64_memop);
             #else
@@ -40047,6 +40113,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn, bool aliases) {
                         return result;
         }
         case 0xF820601Fu: { // STUMAX_LDUMAX_64_memop
+            if (!aliases) break;
             #ifdef VEDA64_IR
                         Instruction result(Mnemonic::LDUMAX, insn, EncodingId::STUMAX_LDUMAX_64_memop);
             #else
@@ -40059,6 +40126,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn, bool aliases) {
                         return result;
         }
         case 0xF820701Fu: { // STUMIN_LDUMIN_64_memop
+            if (!aliases) break;
             #ifdef VEDA64_IR
                         Instruction result(Mnemonic::LDUMIN, insn, EncodingId::STUMIN_LDUMIN_64_memop);
             #else
@@ -40071,6 +40139,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn, bool aliases) {
                         return result;
         }
         case 0xF860001Fu: { // STADDL_LDADDL_64_memop
+            if (!aliases) break;
             #ifdef VEDA64_IR
                         Instruction result(Mnemonic::LDADDL, insn, EncodingId::STADDL_LDADDL_64_memop);
             #else
@@ -40083,6 +40152,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn, bool aliases) {
                         return result;
         }
         case 0xF860101Fu: { // STCLRL_LDCLRL_64_memop
+            if (!aliases) break;
             #ifdef VEDA64_IR
                         Instruction result(Mnemonic::LDCLRL, insn, EncodingId::STCLRL_LDCLRL_64_memop);
             #else
@@ -40095,6 +40165,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn, bool aliases) {
                         return result;
         }
         case 0xF860201Fu: { // STEORL_LDEORL_64_memop
+            if (!aliases) break;
             #ifdef VEDA64_IR
                         Instruction result(Mnemonic::LDEORL, insn, EncodingId::STEORL_LDEORL_64_memop);
             #else
@@ -40107,6 +40178,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn, bool aliases) {
                         return result;
         }
         case 0xF860301Fu: { // STSETL_LDSETL_64_memop
+            if (!aliases) break;
             #ifdef VEDA64_IR
                         Instruction result(Mnemonic::LDSETL, insn, EncodingId::STSETL_LDSETL_64_memop);
             #else
@@ -40119,6 +40191,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn, bool aliases) {
                         return result;
         }
         case 0xF860401Fu: { // STSMAXL_LDSMAXL_64_memop
+            if (!aliases) break;
             #ifdef VEDA64_IR
                         Instruction result(Mnemonic::LDSMAXL, insn, EncodingId::STSMAXL_LDSMAXL_64_memop);
             #else
@@ -40131,6 +40204,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn, bool aliases) {
                         return result;
         }
         case 0xF860501Fu: { // STSMINL_LDSMINL_64_memop
+            if (!aliases) break;
             #ifdef VEDA64_IR
                         Instruction result(Mnemonic::LDSMINL, insn, EncodingId::STSMINL_LDSMINL_64_memop);
             #else
@@ -40143,6 +40217,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn, bool aliases) {
                         return result;
         }
         case 0xF860601Fu: { // STUMAXL_LDUMAXL_64_memop
+            if (!aliases) break;
             #ifdef VEDA64_IR
                         Instruction result(Mnemonic::LDUMAXL, insn, EncodingId::STUMAXL_LDUMAXL_64_memop);
             #else
@@ -40155,6 +40230,7 @@ std::optional<Instruction> decode_ldst(uint32_t insn, bool aliases) {
                         return result;
         }
         case 0xF860701Fu: { // STUMINL_LDUMINL_64_memop
+            if (!aliases) break;
             #ifdef VEDA64_IR
                         Instruction result(Mnemonic::LDUMINL, insn, EncodingId::STUMINL_LDUMINL_64_memop);
             #else

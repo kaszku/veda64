@@ -578,12 +578,7 @@ mod tests {
         assert_eq!(disassemble(0xCB020020).as_deref(), Some("sub x0, x1, x2"));
     }
 
-    // The C++ dispatcher for ADD-imm matches the MOV_ADD_64_addsub_imm
-    // alias case before the canonical ADD case, returning Mnemonic::ADD with
-    // the alias's stripped operand list (no #0). Skip until the codegen
-    // dispatcher orders canonical cases before alias cases.
     #[test]
-    #[ignore = "decode dispatcher drops #0 operand: returns ADD with MOV-shape (kaszku/veda64#disasm-alias-order)"]
     fn disasm_add_imm() {
         assert_eq!(disassemble(0x91000108).as_deref(), Some("add x8, x8, #0"));
     }

@@ -62688,6 +62688,7 @@ std::optional<Instruction> decode_sve(uint32_t insn, bool aliases) {
     // Switch for mask 0xFF3FFFE0u (1 pattern, 1 encoding)
     switch (insn & 0xFF3FFFE0u) {
         case 0x2538C000u: { // fmov_z_0__dup_z_i_
+            if (!aliases) break;
             #ifdef VEDA64_IR
                         Instruction result(aliases ? Mnemonic::FMOV : Mnemonic::DUP, insn, EncodingId::fmov_z_0__dup_z_i_);
             #else
@@ -68776,6 +68777,7 @@ std::optional<Instruction> decode_sve(uint32_t insn, bool aliases) {
     // Switch for mask 0xFF30FFE0u (1 pattern, 1 encoding)
     switch (insn & 0xFF30FFE0u) {
         case 0x05104000u: { // fmov_z_p_0__cpy_z_p_i_
+            if (!aliases) break;
             #ifdef VEDA64_IR
                         Instruction result(aliases ? Mnemonic::FMOV : Mnemonic::CPY, insn, EncodingId::fmov_z_p_0__cpy_z_p_i_);
             #else
