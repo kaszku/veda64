@@ -101,5 +101,29 @@ pub mod ffi {
 
         /// Simplify IR (copy propagation + dead code elimination)
         fn ir_simplify(l: &LiftedIr) -> UniquePtr<LiftedIr>;
+
+        // Branch recognizer
+        type BranchInfoFfi;
+
+        /// Run recognize_branch over `insns` starting at `address`.
+        /// Always returns a non-null BranchInfoFfi; `kind == 0` (None) when
+        /// nothing matches.
+        fn branch_recognize(insns: &[u32], address: u64) -> UniquePtr<BranchInfoFfi>;
+
+        fn br_kind(b: &BranchInfoFfi) -> u8;
+        fn br_consumed_bytes(b: &BranchInfoFfi) -> u8;
+        fn br_is_conditional(b: &BranchInfoFfi) -> bool;
+        fn br_condition(b: &BranchInfoFfi) -> i8;
+        fn br_destination_known(b: &BranchInfoFfi) -> bool;
+        fn br_destination(b: &BranchInfoFfi) -> u64;
+        fn br_has_pointer_load(b: &BranchInfoFfi) -> bool;
+        fn br_pointer_load_address(b: &BranchInfoFfi) -> u64;
+        fn br_pointer_load_size(b: &BranchInfoFfi) -> u8;
+        fn br_target_register(b: &BranchInfoFfi) -> u16;
+        fn br_pac_authenticated(b: &BranchInfoFfi) -> bool;
+        fn br_has_fallthrough(b: &BranchInfoFfi) -> bool;
+        fn br_fallthrough(b: &BranchInfoFfi) -> u64;
+        fn br_test_register(b: &BranchInfoFfi) -> u16;
+        fn br_test_bit(b: &BranchInfoFfi) -> u8;
     }
 }

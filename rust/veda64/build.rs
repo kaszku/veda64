@@ -43,6 +43,7 @@ fn main() {
         .define("VEDA64_IR", None)
         .define("VEDA64_CODEGEN", None)
         .define("VEDA64_ASSEMBLER", None)
+        .define("VEDA64_HOOK", None)
         .include(&include_dir)
         .files(&cpp_sources)
         .compile("veda64_cpp");
@@ -60,6 +61,7 @@ fn main() {
         .define("VEDA64_IR", None)
         .define("VEDA64_CODEGEN", None)
         .define("VEDA64_ASSEMBLER", None)
+        .define("VEDA64_HOOK", None)
         .include(&include_dir)
         .include(&bridge_hpp_dir)
         .compile("veda64_bridge");

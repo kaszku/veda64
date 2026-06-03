@@ -471,6 +471,99 @@ pub fn disassemble_aliased(raw: u32) -> Option<String> {
     Some(bridge::ffi::insn_to_string(&d))
 }
 
+// ── Branch recognizer ──────────────────────────────────────────────
+
+/// All the control-flow shapes [`recognize_branch`] can return — both
+/// single-instruction branches and the multi-instruction patterns
+/// (ADRP+ADD, ADRP+LDR, ADR+BR, MOVZ/MOVK+BR, LDR-literal+BR, the
+/// relocator's long-conditional expansion).
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
+#[repr(u8)]
+#[allow(non_camel_case_types)]
+pub enum BranchKind {
+    None = 0,
+    DirectUncond,
+    DirectCall,
+    DirectCond,
+    CompareBranch,
+    TestBranch,
+    IndirectUncond,
+    IndirectCall,
+    Return,
+    Exception,
+    AdrpAddIndirect,
+    AdrpLdrIndirect,
+    AdrLiteralIndirect,
+    MovImmIndirect,
+    LiteralPoolIndirect,
+    LongConditional,
+}
+
+impl BranchKind {
+    fn from_u8(v: u8) -> Self {
+        if v <= 15 { unsafe { std::mem::transmute(v) } } else { Self::None }
+    }
+}
+
+/// Decoded summary of a branch sequence — see [`recognize_branch`].
+#[derive(Debug, Clone)]
+pub struct BranchInfo {
+    pub kind: BranchKind,
+    pub consumed_bytes: u8,
+    pub is_conditional: bool,
+    /// `None` when not conditional or the condition can't be expressed in
+    /// the standard `Condition` enum (e.g. compare/test-branch where the
+    /// register encodes the test).
+    pub condition: Option<Condition>,
+    pub destination_known: bool,
+    pub destination: u64,
+    pub has_pointer_load: bool,
+    pub pointer_load_address: u64,
+    pub pointer_load_size: u8,
+    pub target_register: u16,
+    pub pac_authenticated: bool,
+    pub has_fallthrough: bool,
+    pub fallthrough: u64,
+    pub test_register: u16,
+    pub test_bit: u8,
+}
+
+/// Recognize a branch sequence starting at `insns[0]`. `address` is the
+/// absolute PC of `insns[0]`. The recognizer scans at most 5 words.
+/// Returns `None` only on a null-equivalent input (empty `insns`); a
+/// non-branch first instruction yields `BranchInfo { kind: None, .. }`.
+pub fn recognize_branch(insns: &[u32], address: u64) -> Option<BranchInfo> {
+    if insns.is_empty() {
+        return None;
+    }
+    let b = bridge::ffi::branch_recognize(insns, address);
+    let cond_raw = bridge::ffi::br_condition(&b);
+    let condition = if cond_raw < 0 {
+        None
+    } else if cond_raw <= 15 {
+        Some(unsafe { std::mem::transmute::<u8, Condition>(cond_raw as u8) })
+    } else {
+        None
+    };
+    Some(BranchInfo {
+        kind: BranchKind::from_u8(bridge::ffi::br_kind(&b)),
+        consumed_bytes: bridge::ffi::br_consumed_bytes(&b),
+        is_conditional: bridge::ffi::br_is_conditional(&b),
+        condition,
+        destination_known: bridge::ffi::br_destination_known(&b),
+        destination: bridge::ffi::br_destination(&b),
+        has_pointer_load: bridge::ffi::br_has_pointer_load(&b),
+        pointer_load_address: bridge::ffi::br_pointer_load_address(&b),
+        pointer_load_size: bridge::ffi::br_pointer_load_size(&b),
+        target_register: bridge::ffi::br_target_register(&b),
+        pac_authenticated: bridge::ffi::br_pac_authenticated(&b),
+        has_fallthrough: bridge::ffi::br_has_fallthrough(&b),
+        fallthrough: bridge::ffi::br_fallthrough(&b),
+        test_register: bridge::ffi::br_test_register(&b),
+        test_bit: bridge::ffi::br_test_bit(&b),
+    })
+}
+
 /// Get the string name of a mnemonic from the C++ library.
 pub fn mnemonic_name(m: Mnemonic) -> String {
     bridge::ffi::mnemonic_name(m as u16)
@@ -1731,6 +1824,183 @@ mod tests {
     fn ir_lift_isb_is_opaque() {
         let lifted = ir::lift(0xD5033FDF).unwrap(); // ISB SY
         assert_eq!(lifted.num_ops(), 0, "ISB must lift opaquely");
+    }
+
+    // ── Branch recognizer ──────────────────────────────────────────
+
+    #[test]
+    fn branch_direct_uncond() {
+        // B .+0x100 at 0x1000 → 0x1100, no fallthrough.
+        let bi = recognize_branch(&[0x14000040], 0x1000).unwrap();
+        assert_eq!(bi.kind, BranchKind::DirectUncond);
+        assert_eq!(bi.consumed_bytes, 4);
+        assert!(bi.destination_known);
+        assert_eq!(bi.destination, 0x1100);
+        assert!(!bi.has_fallthrough);
+    }
+
+    #[test]
+    fn branch_direct_call() {
+        let bi = recognize_branch(&[0x94000040], 0x1000).unwrap();
+        assert_eq!(bi.kind, BranchKind::DirectCall);
+        assert_eq!(bi.destination, 0x1100);
+        assert!(bi.has_fallthrough);
+    }
+
+    #[test]
+    fn branch_direct_cond() {
+        // B.EQ .+0x40
+        let bi = recognize_branch(&[0x54000200], 0x1000).unwrap();
+        assert_eq!(bi.kind, BranchKind::DirectCond);
+        assert_eq!(bi.condition, Some(Condition::EQ));
+        assert_eq!(bi.destination, 0x1040);
+        assert!(bi.has_fallthrough);
+    }
+
+    #[test]
+    fn branch_compare_branch() {
+        // CBZ X0, .+0x40
+        let bi = recognize_branch(&[0xB4000200], 0x1000).unwrap();
+        assert_eq!(bi.kind, BranchKind::CompareBranch);
+        assert_eq!(bi.destination, 0x1040);
+        assert!(bi.has_fallthrough);
+    }
+
+    #[test]
+    fn branch_test_branch() {
+        // TBZ W0, #5, .+0x40
+        let bi = recognize_branch(&[0x36280200], 0x1000).unwrap();
+        assert_eq!(bi.kind, BranchKind::TestBranch);
+        assert_eq!(bi.test_bit, 5);
+        assert_eq!(bi.destination, 0x1040);
+    }
+
+    #[test]
+    fn branch_indirect_uncond() {
+        // BR X16
+        let bi = recognize_branch(&[0xD61F0200], 0x1000).unwrap();
+        assert_eq!(bi.kind, BranchKind::IndirectUncond);
+        assert!(!bi.destination_known);
+        assert!(!bi.has_fallthrough);
+        assert!(!bi.pac_authenticated);
+    }
+
+    #[test]
+    fn branch_indirect_call_pac() {
+        // BLRAA X16, X17
+        let bi = recognize_branch(&[0xD73F0A11], 0x1000).unwrap();
+        assert_eq!(bi.kind, BranchKind::IndirectCall);
+        assert!(bi.pac_authenticated);
+        assert!(bi.has_fallthrough);
+    }
+
+    #[test]
+    fn branch_return() {
+        let bi = recognize_branch(&[0xD65F03C0], 0x1000).unwrap();
+        assert_eq!(bi.kind, BranchKind::Return);
+        assert!(!bi.has_fallthrough);
+    }
+
+    #[test]
+    fn branch_exception_brk() {
+        let bi = recognize_branch(&[0xD4200000], 0x1000).unwrap();
+        assert_eq!(bi.kind, BranchKind::Exception);
+        assert!(!bi.has_fallthrough);
+    }
+
+    #[test]
+    fn branch_exception_svc() {
+        let bi = recognize_branch(&[0xD4000001], 0x1000).unwrap();
+        assert_eq!(bi.kind, BranchKind::Exception);
+        assert!(bi.has_fallthrough);
+    }
+
+    #[test]
+    fn branch_adrp_add_indirect() {
+        // ADRP X16, .+0 ; ADD X16, X16, #0x40 ; BR X16  at PC 0x1000
+        // → destination = 0x1000 + 0x40 = 0x1040
+        let bi = recognize_branch(
+            &[0x90000010, 0x91010210, 0xD61F0200],
+            0x1000,
+        )
+        .unwrap();
+        assert_eq!(bi.kind, BranchKind::AdrpAddIndirect);
+        assert_eq!(bi.consumed_bytes, 12);
+        assert!(bi.destination_known);
+        assert_eq!(bi.destination, 0x1040);
+        assert!(!bi.has_fallthrough);
+    }
+
+    #[test]
+    fn branch_adrp_ldr_indirect() {
+        // ADRP X16, .+0 ; LDR X16, [X16, #0x40] ; BLR X16  at PC 0x1000
+        let bi = recognize_branch(
+            &[0x90000010, 0xF9402210, 0xD63F0200],
+            0x1000,
+        )
+        .unwrap();
+        assert_eq!(bi.kind, BranchKind::AdrpLdrIndirect);
+        assert!(!bi.destination_known);
+        assert!(bi.has_pointer_load);
+        assert_eq!(bi.pointer_load_address, 0x1040);
+        assert_eq!(bi.pointer_load_size, 8);
+        assert!(bi.has_fallthrough);
+    }
+
+    #[test]
+    fn branch_adr_literal_indirect() {
+        // ADR X16, .+0 ; BR X16 at PC 0x1000
+        let bi = recognize_branch(&[0x10000010, 0xD61F0200], 0x1000).unwrap();
+        assert_eq!(bi.kind, BranchKind::AdrLiteralIndirect);
+        assert_eq!(bi.destination, 0x1000);
+    }
+
+    #[test]
+    fn branch_mov_imm_indirect() {
+        // MOVZ X16, #0x1234 ; MOVK X16, #0xABC lsl #16 ; BR X16
+        // destination = (0xABC << 16) | 0x1234 = 0x0ABC1234
+        let bi = recognize_branch(
+            &[0xD2824690, 0xF2A15790, 0xD61F0200],
+            0x1000,
+        )
+        .unwrap();
+        assert_eq!(bi.kind, BranchKind::MovImmIndirect);
+        assert_eq!(bi.consumed_bytes, 12);
+        assert_eq!(bi.destination, 0x0ABC1234);
+    }
+
+    #[test]
+    fn branch_literal_pool_indirect() {
+        // LDR X16, .+0x8 ; BR X16  at PC 0x1000
+        let bi = recognize_branch(&[0x58000050, 0xD61F0200], 0x1000).unwrap();
+        assert_eq!(bi.kind, BranchKind::LiteralPoolIndirect);
+        assert!(bi.has_pointer_load);
+        assert_eq!(bi.pointer_load_address, 0x1008);
+        assert_eq!(bi.pointer_load_size, 8);
+    }
+
+    #[test]
+    fn branch_long_conditional() {
+        // B.LS .+8 ; B .+0x100 — semantic branch is B.HI .+0x104
+        let bi = recognize_branch(&[0x54000049, 0x14000040], 0x1000).unwrap();
+        assert_eq!(bi.kind, BranchKind::LongConditional);
+        assert_eq!(bi.condition, Some(Condition::HI));
+        assert_eq!(bi.destination, 0x1104);
+    }
+
+    #[test]
+    fn branch_negative_cases() {
+        // Plain ADD
+        let bi = recognize_branch(&[0x8B020020], 0x1000).unwrap();
+        assert_eq!(bi.kind, BranchKind::None);
+        assert_eq!(bi.consumed_bytes, 0);
+
+        // ADRP alone
+        let bi = recognize_branch(&[0x90000010], 0x1000).unwrap();
+        assert_eq!(bi.kind, BranchKind::None);
+
+        // Empty slice
+        assert!(recognize_branch(&[], 0x1000).is_none());
     }
 
     #[test]

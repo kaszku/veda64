@@ -165,4 +165,31 @@ std::unique_ptr<LiftedIr> ir_simplify(const LiftedIr& l) {
     return result;
 }
 
+// Branch recognizer
+std::unique_ptr<BranchInfoFfi> branch_recognize(rust::Slice<const uint32_t> insns, uint64_t address) {
+    auto r = std::make_unique<BranchInfoFfi>();
+    veda64::recognize_branch(insns.data(), insns.size(), address, r->info);
+    return r;
+}
+
+uint8_t  br_kind(const BranchInfoFfi& b)                 { return static_cast<uint8_t>(b.info.kind); }
+uint8_t  br_consumed_bytes(const BranchInfoFfi& b)       { return b.info.consumed_bytes; }
+bool     br_is_conditional(const BranchInfoFfi& b)       { return b.info.is_conditional; }
+int8_t   br_condition(const BranchInfoFfi& b) {
+    return b.info.condition == veda64::Condition::None
+           ? int8_t{-1}
+           : static_cast<int8_t>(b.info.condition);
+}
+bool     br_destination_known(const BranchInfoFfi& b)    { return b.info.destination_known; }
+uint64_t br_destination(const BranchInfoFfi& b)          { return b.info.destination; }
+bool     br_has_pointer_load(const BranchInfoFfi& b)     { return b.info.has_pointer_load; }
+uint64_t br_pointer_load_address(const BranchInfoFfi& b) { return b.info.pointer_load_address; }
+uint8_t  br_pointer_load_size(const BranchInfoFfi& b)    { return b.info.pointer_load_size; }
+uint16_t br_target_register(const BranchInfoFfi& b)      { return static_cast<uint16_t>(b.info.target_register); }
+bool     br_pac_authenticated(const BranchInfoFfi& b)    { return b.info.pac_authenticated; }
+bool     br_has_fallthrough(const BranchInfoFfi& b)      { return b.info.has_fallthrough; }
+uint64_t br_fallthrough(const BranchInfoFfi& b)          { return b.info.fallthrough; }
+uint16_t br_test_register(const BranchInfoFfi& b)        { return static_cast<uint16_t>(b.info.test_register); }
+uint8_t  br_test_bit(const BranchInfoFfi& b)             { return b.info.test_bit; }
+
 } // namespace veda64_ffi
