@@ -1752,6 +1752,8 @@ NB_MODULE(veda64_py, m) {
         .value("ADD_FLAGS", veda64::ir::Opcode::ADD_FLAGS)
         .value("SUB_FLAGS", veda64::ir::Opcode::SUB_FLAGS)
         .value("AND_FLAGS", veda64::ir::Opcode::AND_FLAGS)
+        .value("ADD_CARRY_FLAGS", veda64::ir::Opcode::ADD_CARRY_FLAGS)
+        .value("SUB_CARRY_FLAGS", veda64::ir::Opcode::SUB_CARRY_FLAGS)
         .value("EXTRACT", veda64::ir::Opcode::EXTRACT)
         .value("INSERT", veda64::ir::Opcode::INSERT)
         .value("CONCAT", veda64::ir::Opcode::CONCAT)

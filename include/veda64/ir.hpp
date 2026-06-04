@@ -85,6 +85,12 @@ enum class Opcode : uint8_t {
     ADD_FLAGS,
     SUB_FLAGS,
     AND_FLAGS,
+    // Same value semantics as ADD_CARRY / SUB_CARRY but also update NZCV.
+    // Emitter lowers ADD_CARRY/SUB_CARRY as adc/sbc (no-S) and the _FLAGS
+    // twins as adcs/sbcs — otherwise plain ADC/SBC round-trips as ADCS/SBCS
+    // and gains a flag side-effect.
+    ADD_CARRY_FLAGS,
+    SUB_CARRY_FLAGS,
 
     // Bit manipulation
     EXTRACT,

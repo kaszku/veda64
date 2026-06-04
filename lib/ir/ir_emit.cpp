@@ -370,8 +370,12 @@ bool emit(const Op& op, codegen::CodeGenerator& cg, const EmitContext& ctx) {
     }
 
     case Opcode::ADD_CARRY:
-        return bin_reg([&](auto d, auto x, auto y){ cg.adcs(d, x, y); });
+        return bin_reg([&](auto d, auto x, auto y){ cg.adc(d, x, y); });
     case Opcode::SUB_CARRY:
+        return bin_reg([&](auto d, auto x, auto y){ cg.sbc(d, x, y); });
+    case Opcode::ADD_CARRY_FLAGS:
+        return bin_reg([&](auto d, auto x, auto y){ cg.adcs(d, x, y); });
+    case Opcode::SUB_CARRY_FLAGS:
         return bin_reg([&](auto d, auto x, auto y){ cg.sbcs(d, x, y); });
     case Opcode::CARRY_ADD:
         cg.cset(ctx.resolve(op.output), Condition::CS);

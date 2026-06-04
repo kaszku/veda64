@@ -244,6 +244,8 @@ static Opcode flag_setting_variant(Opcode op) {
     case Opcode::ADD: return Opcode::ADD_FLAGS;
     case Opcode::SUB: return Opcode::SUB_FLAGS;
     case Opcode::AND: return Opcode::AND_FLAGS;
+    case Opcode::ADD_CARRY: return Opcode::ADD_CARRY_FLAGS;
+    case Opcode::SUB_CARRY: return Opcode::SUB_CARRY_FLAGS;
     default: return op;
     }
 }

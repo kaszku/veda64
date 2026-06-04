@@ -588,15 +588,16 @@ pub mod ir {
         ADD_CARRY = 40, SUB_CARRY = 41, CARRY_ADD = 42, CARRY_SUB = 43,
         OVERFLOW_ADD = 44, OVERFLOW_SUB = 45,
         ADD_FLAGS = 46, SUB_FLAGS = 47, AND_FLAGS = 48,
-        EXTRACT = 49, INSERT = 50, CONCAT = 51,
-        CLZ = 52, CTZ = 53, POPCNT = 54, BITREV = 55,
-        VEXTRACT_ELEM = 56, VINSERT_ELEM = 57, VBROADCAST = 58,
-        BARRIER = 59, NOP = 60, UNDEF = 61,
+        ADD_CARRY_FLAGS = 49, SUB_CARRY_FLAGS = 50,
+        EXTRACT = 51, INSERT = 52, CONCAT = 53,
+        CLZ = 54, CTZ = 55, POPCNT = 56, BITREV = 57,
+        VEXTRACT_ELEM = 58, VINSERT_ELEM = 59, VBROADCAST = 60,
+        BARRIER = 61, NOP = 62, UNDEF = 63,
     }
 
     impl Opcode {
         pub fn from_u8(v: u8) -> Self {
-            if v <= 61 { unsafe { std::mem::transmute(v) } } else { Self::UNDEF }
+            if v <= 63 { unsafe { std::mem::transmute(v) } } else { Self::UNDEF }
         }
 
         pub fn name(&self) -> String {
@@ -1793,6 +1794,53 @@ mod tests {
         let has_and = (0..lifted.num_ops()).any(|i| lifted.op_opcode(i) == ir::Opcode::AND);
         let has_not = (0..lifted.num_ops()).any(|i| lifted.op_opcode(i) == ir::Opcode::NOT);
         assert!(has_and && has_not, "BIC must lift as AND(Rn, NOT(Rm))");
+    }
+
+    #[test]
+    fn ir_lift_adc_no_flags() {
+        // ADC X0, X1, X2 — must lift as ADD_CARRY (no _FLAGS variant) so
+        // emit picks adc, not adcs.
+        let lifted = ir::lift(0x9A020020).unwrap();
+        let has_add_carry = (0..lifted.num_ops())
+            .any(|i| lifted.op_opcode(i) == ir::Opcode::ADD_CARRY);
+        let has_add_carry_flags = (0..lifted.num_ops())
+            .any(|i| lifted.op_opcode(i) == ir::Opcode::ADD_CARRY_FLAGS);
+        assert!(has_add_carry, "ADC should lift to ADD_CARRY");
+        assert!(!has_add_carry_flags, "ADC must not lift to ADD_CARRY_FLAGS");
+    }
+
+    #[test]
+    fn ir_lift_adcs_flag_setting() {
+        // ADCS X0, X1, X2 — ADD_CARRY_FLAGS.
+        let lifted = ir::lift(0xBA020020).unwrap();
+        let has_add_carry_flags = (0..lifted.num_ops())
+            .any(|i| lifted.op_opcode(i) == ir::Opcode::ADD_CARRY_FLAGS);
+        assert!(has_add_carry_flags, "ADCS should lift to ADD_CARRY_FLAGS");
+    }
+
+    #[test]
+    fn ir_lift_sbc_no_flags() {
+        let lifted = ir::lift(0xDA020020).unwrap();
+        let has_sub_carry = (0..lifted.num_ops())
+            .any(|i| lifted.op_opcode(i) == ir::Opcode::SUB_CARRY);
+        let has_sub_carry_flags = (0..lifted.num_ops())
+            .any(|i| lifted.op_opcode(i) == ir::Opcode::SUB_CARRY_FLAGS);
+        assert!(has_sub_carry, "SBC should lift to SUB_CARRY");
+        assert!(!has_sub_carry_flags, "SBC must not lift to SUB_CARRY_FLAGS");
+    }
+
+    #[test]
+    fn ir_lift_sbcs_flag_setting() {
+        let lifted = ir::lift(0xFA020020).unwrap();
+        let has_sub_carry_flags = (0..lifted.num_ops())
+            .any(|i| lifted.op_opcode(i) == ir::Opcode::SUB_CARRY_FLAGS);
+        assert!(has_sub_carry_flags, "SBCS should lift to SUB_CARRY_FLAGS");
+    }
+
+    #[test]
+    fn ir_opcode_name_carry_flags() {
+        assert_eq!(ir::Opcode::ADD_CARRY_FLAGS.name(), "add_carry_flags");
+        assert_eq!(ir::Opcode::SUB_CARRY_FLAGS.name(), "sub_carry_flags");
     }
 
     #[test]

@@ -2436,6 +2436,57 @@ static void run_tests() {
         } else { printf("FAIL\n"); }
     }
 
+    // ADC_X0_X1_X2 (0x9A020020): must lift as ADD_CARRY (no-flag), not the
+    // _FLAGS variant. Otherwise re-emit changes ADC into ADCS and gains a
+    // NZCV side-effect.
+    {
+        tests_run++;
+        printf("  %-40s ", "ADC_X0_X1_X2 no flags");
+        auto r = lift(0x9A020020);
+        if (!r.has_value()) { printf("FAIL: nullopt\n"); }
+        else if (has_opcode(*r, Opcode::ADD_CARRY) &&
+                 !has_opcode(*r, Opcode::ADD_CARRY_FLAGS) &&
+                 !has_flags_write(*r)) {
+            printf("PASS\n"); tests_passed++;
+        } else { printf("FAIL\n"); }
+    }
+
+    // ADCS_X0_X1_X2 (0xBA020020): must lift as ADD_CARRY_FLAGS so the
+    // emitter picks adcs (with NZCV update).
+    {
+        tests_run++;
+        printf("  %-40s ", "ADCS_X0_X1_X2 flag-setting carry add");
+        auto r = lift(0xBA020020);
+        if (!r.has_value()) { printf("FAIL: nullopt\n"); }
+        else if (has_opcode(*r, Opcode::ADD_CARRY_FLAGS) && has_flags_write(*r)) {
+            printf("PASS\n"); tests_passed++;
+        } else { printf("FAIL\n"); }
+    }
+
+    // SBC_X0_X1_X2 (0xDA020020) — no flags.
+    {
+        tests_run++;
+        printf("  %-40s ", "SBC_X0_X1_X2 no flags");
+        auto r = lift(0xDA020020);
+        if (!r.has_value()) { printf("FAIL: nullopt\n"); }
+        else if (has_opcode(*r, Opcode::SUB_CARRY) &&
+                 !has_opcode(*r, Opcode::SUB_CARRY_FLAGS) &&
+                 !has_flags_write(*r)) {
+            printf("PASS\n"); tests_passed++;
+        } else { printf("FAIL\n"); }
+    }
+
+    // SBCS_X0_X1_X2 (0xFA020020) — flag-setting.
+    {
+        tests_run++;
+        printf("  %-40s ", "SBCS_X0_X1_X2 flag-setting carry sub");
+        auto r = lift(0xFA020020);
+        if (!r.has_value()) { printf("FAIL: nullopt\n"); }
+        else if (has_opcode(*r, Opcode::SUB_CARRY_FLAGS) && has_flags_write(*r)) {
+            printf("PASS\n"); tests_passed++;
+        } else { printf("FAIL\n"); }
+    }
+
     // ORN_X0_X1_X2 (0xAA220020): must lift as OR with a NOT of operand 2,
     // not plain OR — otherwise re-emit drops the bitwise inversion.
     {
