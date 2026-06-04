@@ -14,6 +14,7 @@
 #include <veda64.hpp>
 #include <veda64/relocation.hpp>
 #include <veda64/branch_follow.hpp>
+#include <veda64/branch_recognize.hpp>
 #ifdef VEDA64_IR
 #include <veda64/ir.hpp>
 #endif
@@ -1950,6 +1951,71 @@ NB_MODULE(veda64_py, m) {
         }, max_blocks, max_insns);
     }, "entry"_a, "read_insn"_a, "max_blocks"_a = 256, "max_insns_per_block"_a = 1024,
         "Walk a full CFG from entry point. Returns list of BasicBlocks.");
+
+    // ── Branch recognizer ──────────────────────────────────────────
+    nb::enum_<veda64::BranchKind>(m, "BranchKind")
+        .value("None_", veda64::BranchKind::None)
+        .value("DirectUncond", veda64::BranchKind::DirectUncond)
+        .value("DirectCall", veda64::BranchKind::DirectCall)
+        .value("DirectCond", veda64::BranchKind::DirectCond)
+        .value("CompareBranch", veda64::BranchKind::CompareBranch)
+        .value("TestBranch", veda64::BranchKind::TestBranch)
+        .value("IndirectUncond", veda64::BranchKind::IndirectUncond)
+        .value("IndirectCall", veda64::BranchKind::IndirectCall)
+        .value("Return", veda64::BranchKind::Return)
+        .value("Exception", veda64::BranchKind::Exception)
+        .value("AdrpAddIndirect", veda64::BranchKind::AdrpAddIndirect)
+        .value("AdrpLdrIndirect", veda64::BranchKind::AdrpLdrIndirect)
+        .value("AdrLiteralIndirect", veda64::BranchKind::AdrLiteralIndirect)
+        .value("MovImmIndirect", veda64::BranchKind::MovImmIndirect)
+        .value("LiteralPoolIndirect", veda64::BranchKind::LiteralPoolIndirect)
+        .value("LongConditional", veda64::BranchKind::LongConditional);
+
+    nb::class_<veda64::BranchInfo>(m, "BranchInfo")
+        .def_ro("kind", &veda64::BranchInfo::kind)
+        .def_ro("consumed_bytes", &veda64::BranchInfo::consumed_bytes)
+        .def_ro("is_conditional", &veda64::BranchInfo::is_conditional)
+        .def_ro("condition", &veda64::BranchInfo::condition)
+        .def_ro("destination_known", &veda64::BranchInfo::destination_known)
+        .def_ro("destination", &veda64::BranchInfo::destination)
+        .def_ro("has_pointer_load", &veda64::BranchInfo::has_pointer_load)
+        .def_ro("pointer_load_address", &veda64::BranchInfo::pointer_load_address)
+        .def_ro("pointer_load_size", &veda64::BranchInfo::pointer_load_size)
+        .def_ro("target_register", &veda64::BranchInfo::target_register)
+        .def_ro("pac_authenticated", &veda64::BranchInfo::pac_authenticated)
+        .def_ro("has_fallthrough", &veda64::BranchInfo::has_fallthrough)
+        .def_ro("fallthrough", &veda64::BranchInfo::fallthrough)
+        .def_ro("test_register", &veda64::BranchInfo::test_register)
+        .def_ro("test_bit", &veda64::BranchInfo::test_bit)
+        .def("__repr__", [](const veda64::BranchInfo& bi) {
+            return "<BranchInfo kind=" + std::to_string(static_cast<int>(bi.kind)) +
+                   " size=" + std::to_string(bi.consumed_bytes) +
+                   " dest=0x" + std::to_string(bi.destination) + ">";
+        });
+
+    m.def("recognize_branch", [](nb::sequence insns_seq, uint64_t address) -> nb::object {
+        // Accept any sequence of 32-bit ints; copy into a local buffer so we
+        // don't depend on the input's storage layout.
+        std::vector<uint32_t> buf;
+        for (auto it : insns_seq) buf.push_back(nb::cast<uint32_t>(it));
+        veda64::BranchInfo bi;
+        bool ok = veda64::recognize_branch(buf.data(), buf.size(), address, bi);
+        if (!ok) return nb::none();
+        return nb::cast(bi);
+    }, "insns"_a, "address"_a,
+       "Recognize a branch sequence starting at insns[0]. insns is any "
+       "sequence of 32-bit instruction words. Returns BranchInfo (kind=None_ "
+       "if the first instruction isn't a branch) or None on empty input.");
+
+    m.def("recognize_branch_at", [](uint64_t address, nb::callable read_fn) -> nb::object {
+        veda64::BranchInfo bi;
+        bool ok = veda64::recognize_branch_at(address,
+            [&](uint64_t addr) -> uint32_t { return nb::cast<uint32_t>(read_fn(addr)); },
+            bi);
+        if (!ok) return nb::none();
+        return nb::cast(bi);
+    }, "address"_a, "read_insn"_a,
+       "Streaming variant: read_insn(addr) returns the 32-bit word at addr.");
 
 #ifdef VEDA64_CODEGEN
     {
