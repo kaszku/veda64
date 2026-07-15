@@ -8,9 +8,11 @@
 
 #include <cassert>
 #include <cstdint>
+#include <cstdlib>
 #include <cstring>
 #include <iostream>
 #include <windows.h>
+#include <veda64/relocation.hpp>
 
 using namespace veda64;
 
@@ -235,14 +237,14 @@ void test_relocate_instruction() {
     bool ok;
 
     // Non-PC-relative (ADD) should be copied unchanged
-    ok = hook::detail::relocate_instruction(0x8b020020, 0x1000, 0x2000, out_insn, &out_count);
+    ok = veda64::relocate_instruction(0x8b020020, 0x1000, 0x2000, out_insn, &out_count);
     assert(ok);
     assert(out_count == 1);
     assert(out_insn[0] == 0x8b020020);
 
     // B .+4 relocated from 0x1000 to 0x2000
     // target=0x1004, new_offset=0x1004-0x2000=-0xFFC
-    ok = hook::detail::relocate_instruction(0x14000001, 0x1000, 0x2000, out_insn, &out_count);
+    ok = veda64::relocate_instruction(0x14000001, 0x1000, 0x2000, out_insn, &out_count);
     assert(ok);
     assert(out_count == 1);
     // new_imm26 = (-0xFFC / 4) & 0x03FFFFFF = 0x03FFFC01
@@ -250,7 +252,7 @@ void test_relocate_instruction() {
 
     // B.EQ .+8 relocated from 0x1000 to 0x3000
     // target=0x1008, new_offset=0x1008-0x3000=-0x1FF8
-    ok = hook::detail::relocate_instruction(0x54000040, 0x1000, 0x3000, out_insn, &out_count);
+    ok = veda64::relocate_instruction(0x54000040, 0x1000, 0x3000, out_insn, &out_count);
     assert(ok);
     assert(out_count == 1);
     // new_imm19 = (-0x1FF8 / 4) & 0x7FFFF = 0x7F802
@@ -259,7 +261,7 @@ void test_relocate_instruction() {
 
     // CBZ W0, .+0xC relocated from 0x1000 to 0x2000
     // target=0x100C, new_offset=0x100C-0x2000=-0xFF4
-    ok = hook::detail::relocate_instruction(0x34000060, 0x1000, 0x2000, out_insn, &out_count);
+    ok = veda64::relocate_instruction(0x34000060, 0x1000, 0x2000, out_insn, &out_count);
     assert(ok);
     assert(out_count == 1);
     // new_imm19 = (-0xFF4 / 4) & 0x7FFFF = 0x7FC03
@@ -268,7 +270,7 @@ void test_relocate_instruction() {
 
     // TBZ W0, #1, .+8 relocated from 0x1000 to 0x2000
     // target=0x1008, new_offset=0x1008-0x2000=-0xFF8
-    ok = hook::detail::relocate_instruction(0x36080040, 0x1000, 0x2000, out_insn, &out_count);
+    ok = veda64::relocate_instruction(0x36080040, 0x1000, 0x2000, out_insn, &out_count);
     assert(ok);
     assert(out_count == 1);
     // new_imm14 = (-0xFF8 / 4) & 0x3FFF = 0x3C02
@@ -277,7 +279,7 @@ void test_relocate_instruction() {
 
     // ADR X0, .+4 relocated from 0x1000 to 0x5000
     // target=0x1004, new_offset=0x1004-0x5000=-0x3FFC
-    ok = hook::detail::relocate_instruction(0x10000020, 0x1000, 0x5000, out_insn, &out_count);
+    ok = veda64::relocate_instruction(0x10000020, 0x1000, 0x5000, out_insn, &out_count);
     assert(ok);
     assert(out_count == 1);
     // new_imm21 = -0x3FFC & 0x1FFFFF = 0x1C0004
@@ -296,7 +298,7 @@ void test_relocate_instruction() {
     // ADRP X0, 0 relocated from 0x1000 to 0x5000
     // target_page = (0x1000 & ~0xFFF) + 0 = 0x1000
     // new_offset = 0x1000 - (0x5000 & ~0xFFF) = 0x1000 - 0x5000 = -0x4000
-    ok = hook::detail::relocate_instruction(0x90000000, 0x1000, 0x5000, out_insn, &out_count);
+    ok = veda64::relocate_instruction(0x90000000, 0x1000, 0x5000, out_insn, &out_count);
     assert(ok);
     assert(out_count == 1);
     {
@@ -670,6 +672,138 @@ void test_syscall_hook_query_memory() {
     hook::shutdown();
 }
 
+// Value checks below must run even in Release builds, where assert() is compiled
+// out (NDEBUG). expect() reports and fails the process on a false condition.
+static void expect(bool cond, const char* msg) {
+    if (!cond) {
+        std::cerr << "  FAIL: " << msg << std::endl;
+        std::exit(1);
+    }
+}
+
+// Execute a Tier-3 absolute veneer on real hardware. A CBNZ is relocated into a
+// stub placed >128 MiB from its target, forcing the guarded LDR X16/BR X16/.quad
+// expansion, and both branch outcomes are run.
+void test_veneer_execution() {
+    std::cout << "  test_veneer_execution (Tier-3 absolute veneer)..." << std::endl;
+
+    // Reserve 256 MiB so the stub and its target can sit >128 MiB apart.
+    const SIZE_T kSpan = 0x10000000;  // 256 MiB
+    void* region = VirtualAlloc(nullptr, kSpan, MEM_RESERVE, PAGE_NOACCESS);
+    if (!region) {
+        std::cout << "    (skipped: could not reserve 256 MiB)" << std::endl;
+        return;
+    }
+    uint8_t* base = static_cast<uint8_t*>(region);
+    void* dst  = VirtualAlloc(base, 0x1000, MEM_COMMIT, PAGE_EXECUTE_READWRITE);
+    void* stub = VirtualAlloc(base + kSpan - 0x1000, 0x1000, MEM_COMMIT, PAGE_EXECUTE_READWRITE);
+    if (!dst || !stub) {
+        std::cout << "    (skipped: could not commit endpoints)" << std::endl;
+        VirtualFree(region, 0, MEM_RELEASE);
+        return;
+    }
+
+    // Taken-branch destination: mov w0, #0xAA ; ret
+    {
+        uint32_t* d = static_cast<uint32_t*>(dst);
+        d[0] = 0x52801540;  // mov w0, #0xAA
+        d[1] = 0xD65F03C0;  // ret
+    }
+
+    // Relocate "cbnz w0, +8" so its absolute target is dst. old_pc is faked as
+    // (dst - 8) → target = old_pc + 8 = dst; new_pc = stub. Distance forces Tier 3.
+    uint32_t reloc[8];
+    size_t count = 0;
+    bool ok = veda64::relocate_instruction(
+        0x35000040 /* cbnz w0, +8 */,
+        reinterpret_cast<uint64_t>(dst) - 8,
+        reinterpret_cast<uint64_t>(stub),
+        reloc, &count);
+    expect(ok, "veneer relocate returned false");
+    expect(count == 5, "veneer relocate did not choose Tier 3 (count != 5)");
+
+    // stub: <relocated cbnz veneer> ; mov w0, #0xBB ; ret  (fall-through tail)
+    uint32_t* s = static_cast<uint32_t*>(stub);
+    for (size_t i = 0; i < count; ++i) s[i] = reloc[i];
+    s[count + 0] = 0x52801760;  // mov w0, #0xBB
+    s[count + 1] = 0xD65F03C0;  // ret
+
+    FlushInstructionCache(GetCurrentProcess(), dst, 0x1000);
+    FlushInstructionCache(GetCurrentProcess(), stub, 0x1000);
+
+    using fn_t = int (*)(int);
+    fn_t f = reinterpret_cast<fn_t>(stub);
+    int r_zero = f(0);  // w0==0 → guard CBZ taken → skip veneer → tail → 0xBB
+    int r_nz   = f(1);  // w0!=0 → guard not taken → veneer → BR X16 → dst → 0xAA
+    expect(r_zero == 0xBB, "veneer fall-through path (w0==0)");
+    expect(r_nz == 0xAA, "veneer taken path via BR X16 to far target (w0!=0)");
+
+    VirtualFree(region, 0, MEM_RELEASE);
+    std::cout << "    veneer OK (0xBB fall-through, 0xAA via BR X16 to far target)" << std::endl;
+}
+
+// End-to-end hook of a hand-written function whose prologue contains a CBNZ whose
+// target lies past the 16-byte hook region (the BaseThreadInitThunk shape).
+void test_live_cbnz_hook() {
+    std::cout << "  test_live_cbnz_hook..." << std::endl;
+
+    hook::initialize();
+    setup_test_config();
+
+    //   0x00 cbnz w0, L (=0x14)   ; hook region = [0x00,0x10): cbnz, mov, nop, nop
+    //   0x04 mov  w0, #11
+    //   0x08 nop
+    //   0x0C nop
+    //   0x10 ret                  ; w0==0 → 11 (reached via the trampoline jump-back)
+    //   0x14 L: mov w0, #22
+    //   0x18 ret                  ; w0!=0 → 22 (reached via the relocated CBNZ)
+    void* mem = VirtualAlloc(nullptr, 0x1000, MEM_COMMIT | MEM_RESERVE, PAGE_EXECUTE_READWRITE);
+    expect(mem != nullptr, "VirtualAlloc for CBNZ function failed");
+    uint32_t* code = static_cast<uint32_t*>(mem);
+    code[0] = 0x350000A0;  // cbnz w0, +0x14
+    code[1] = 0x52800160;  // mov  w0, #11
+    code[2] = 0xD503201F;  // nop
+    code[3] = 0xD503201F;  // nop
+    code[4] = 0xD65F03C0;  // ret
+    code[5] = 0x528002C0;  // mov  w0, #22
+    code[6] = 0xD65F03C0;  // ret
+    FlushInstructionCache(GetCurrentProcess(), mem, 0x1000);
+
+    using fn_t = int (*)(int);
+    fn_t f = reinterpret_cast<fn_t>(mem);
+
+    // Sanity (unhooked): 0 → 11, nonzero → 22.
+    expect(f(0) == 11, "unhooked f(0) != 11");
+    expect(f(7) == 22, "unhooked f(7) != 22");
+
+    static volatile int cbnz_hook_calls = 0;
+    static fn_t cbnz_orig = nullptr;
+    struct Detour { static int hooked(int a) { cbnz_hook_calls++; return cbnz_orig(a); } };
+
+    hook::HookHandle handle = nullptr;
+    auto status = hook::install(f, &Detour::hooked, &cbnz_orig, &handle);
+    expect(status == hook::HookStatus::Success, "install of CBNZ-prologue hook failed");
+    expect(handle != nullptr, "install returned null handle");
+    status = hook::enable(handle);
+    expect(status == hook::HookStatus::Success, "enable of CBNZ-prologue hook failed");
+
+    cbnz_hook_calls = 0;
+    int r0 = f(0);  // detour → trampoline (relocated CBNZ, not taken) → 11
+    int r1 = f(9);  // detour → trampoline (relocated CBNZ, taken) → 22
+    expect(r0 == 11, "hooked f(0) != 11 (fall-through via trampoline)");
+    expect(r1 == 22, "hooked f(9) != 22 (taken via relocated CBNZ)");
+    expect(cbnz_hook_calls == 2, "detour not invoked twice");
+
+    // Original behaviour still reachable directly through the trampoline.
+    expect(cbnz_orig(0) == 11, "trampoline cbnz_orig(0) != 11");
+    expect(cbnz_orig(3) == 22, "trampoline cbnz_orig(3) != 22");
+
+    hook::remove(handle);
+    hook::shutdown();
+    VirtualFree(mem, 0, MEM_RELEASE);
+    std::cout << "    CBNZ-prologue hook OK (11 fall-through, 22 taken)" << std::endl;
+}
+
 #endif // _M_ARM64 || __aarch64__
 
 int main() {
@@ -698,6 +832,8 @@ int main() {
     test_winapi_hook_getenv();
     test_syscall_hook();
     test_syscall_hook_query_memory();
+    test_veneer_execution();
+    test_live_cbnz_hook();
 #else
     std::cout << "  (ARM64-only tests skipped on this platform)" << std::endl;
 #endif

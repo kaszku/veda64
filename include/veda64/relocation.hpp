@@ -24,20 +24,26 @@ bool can_relocate(uint32_t insn);
 /// For PC-relative instructions, the immediate is adjusted to maintain the
 /// original target address. Non-PC-relative instructions are copied as-is.
 ///
-/// Short-range conditional branches (B.cond/BC, CBZ, CBNZ, TBZ, TBNZ) expand
-/// to a 2-instruction sequence when the new offset overflows their native
-/// imm19/imm14 field but is still reachable by an unconditional B (imm26):
-///   <inverted-predicate same-class branch> +8 ; B <target>
-/// The expansion writes 2 words; *out_count reflects the actual count (1 or 2).
+/// Conditional / compare / test branches (B.cond/BC, CBZ, CBNZ, TBZ, TBNZ) whose
+/// new displacement overflows their native imm19/imm14 field expand so the
+/// original target stays reachable at any distance:
+///   * within ±128 MiB — inverted-predicate guard over an unconditional B:
+///       <inverted same-class branch> +8 ; B <target>            (2 words)
+///   * beyond ±128 MiB — inverted-predicate guard over an absolute veneer:
+///       <inverted same-class branch> +20 ; LDR X16,[PC,#8] ; BR X16 ; .quad target
+///                                                                (5 words; clobbers X16/IP0)
+/// An unconditional B likewise falls back to the LDR X16/BR X16 veneer (4 words).
+/// BL beyond ±128 MiB is unsupported (a veneer would corrupt the link register)
+/// and returns false.
 ///
 /// @param insn       The 32-bit instruction to relocate
 /// @param old_pc     The original PC address where the instruction was located
 /// @param new_pc     The new PC address where the instruction will be placed
-/// @param out_insn   Output buffer for relocated instruction(s) (must hold at least 4 uint32_t)
-/// @param out_count  Number of instructions written to out_insn (1 or 2)
-/// @return true if relocation succeeded, false if the target is unreachable
-///         even after expansion (delta beyond ±128 MiB), or if the instruction
-///         cannot be relocated (e.g. authenticated return).
+/// @param out_insn   Output buffer for relocated instruction(s); must hold at
+///                   least 8 uint32_t (worst case is a 5-word expansion)
+/// @param out_count  Number of instructions written to out_insn (1 to 5)
+/// @return true if relocation succeeded, false if the instruction cannot be
+///         relocated (e.g. authenticated return, or BL beyond ±128 MiB).
 bool relocate_instruction(
     uint32_t insn,
     uint64_t old_pc,

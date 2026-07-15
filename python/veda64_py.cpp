@@ -1902,7 +1902,7 @@ NB_MODULE(veda64_py, m) {
     m.def("can_relocate", &veda64::can_relocate, "insn"_a,
         "Check if an instruction can be safely relocated");
     m.def("relocate_instruction", [](uint32_t insn, uint64_t old_pc, uint64_t new_pc) {
-        uint32_t out[4];
+        uint32_t out[8];  // relocation may expand to up to 5 words (guarded veneer)
         size_t count = 0;
         bool ok = veda64::relocate_instruction(insn, old_pc, new_pc, out, &count);
         nb::list result;

@@ -42,7 +42,7 @@ int main() {
     }
 
     // Example 2: Relocate a B instruction
-    uint32_t out[4];
+    uint32_t out[8];  // relocation may expand to up to 5 words (guarded veneer)
     size_t count;
     uint32_t b_insn = 0x14000040;  // B .+0x100 (at 0x1000)
     if (relocate_instruction(b_insn, 0x1000, 0x5000, out, &count)) {

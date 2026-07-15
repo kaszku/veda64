@@ -51,7 +51,7 @@ void test_can_relocate() {
 
 void test_relocate_instruction() {
     std::cout << "Testing relocate_instruction..." << std::endl;
-    uint32_t out[4];
+    uint32_t out[8];
     size_t count;
 
     // B .+0x100 at 0x1000, relocate to 0x2000
@@ -136,10 +136,20 @@ void test_relocate_instruction() {
         else { failures++; std::cerr << "  FAIL: B.EQ in-range single-insn" << std::endl; }
     } else { failures++; std::cerr << "  FAIL: B.EQ in-range count" << std::endl; }
 
-    // Beyond imm26 too (delta > 128 MiB) → still fails.
+    // Beyond imm26 (delta > 128 MiB) → Tier 3: inverted guard + absolute veneer.
+    // target for 0x54000040 at 0x1000 is 0x1008.
     ok = relocate_instruction(0x54000040, 0x1000, 0x10001000, out, &count);
-    if (!ok && count == 0) { passed++; }
-    else { failures++; std::cerr << "  FAIL: B.EQ beyond imm26 should fail" << std::endl; }
+    if (ok && count == 5) {
+        auto g = decode(out[0]);   // B.NE guard (skips the 5-word veneer)
+        auto l = decode(out[1]);   // LDR X16, [PC, #8]
+        auto b = decode(out[2]);   // BR X16
+        uint64_t tgt = static_cast<uint64_t>(out[3]) | (static_cast<uint64_t>(out[4]) << 32);
+        if (g && g->mnemonic == Mnemonic::B && g->condition == Condition::NE
+            && l && l->mnemonic == Mnemonic::LDR
+            && b && b->mnemonic == Mnemonic::BR
+            && tgt == 0x1008) { passed++; }
+        else { failures++; std::cerr << "  FAIL: B.EQ beyond imm26 veneer" << std::endl; }
+    } else { failures++; std::cerr << "  FAIL: B.EQ beyond imm26 count" << std::endl; }
 
     // B.AL +8 (cond=14): inversion would yield NV; collapse to plain B.
     ok = relocate_instruction(0x5400004E, 0x1000, 0x102000, out, &count);
@@ -154,11 +164,119 @@ void test_relocate_instruction() {
     } else { failures++; std::cerr << "  FAIL: B.AL collapse count" << std::endl; }
 }
 
+// Exercises all three expansion tiers (native field / imm26 guard+B / absolute
+// veneer) for every short-branch class, using the real BaseThreadInitThunk CBNZ
+// plus its siblings. Verification decodes each emitted word rather than matching
+// raw bits.
+void test_relocate_expansion_tiers() {
+    std::cout << "Testing relocate_instruction expansion tiers..." << std::endl;
+    uint32_t out[8];
+    size_t count;
+    bool ok;
+
+    // Read a branch's PC-relative displacement (bytes) from its decoded operand.
+    auto rel_bytes = [](const Instruction& in) -> int64_t {
+        for (const auto& op : in.operands)
+            if (op.type == OperandType::Relative) return static_cast<int64_t>(op.iv.value);
+        return INT64_MIN;
+    };
+
+    // --- Real BaseThreadInitThunk CBNZ: 0x35000240 = cbnz w0, +0x48 ---
+    const uint64_t bti_pc  = 0x00007ffc94ed870cULL;
+    const uint64_t bti_tgt = 0x00007ffc94ed8754ULL;  // bti_pc + 0x48
+
+    // Tier 1: near trampoline — single CBNZ, target preserved.
+    ok = relocate_instruction(0x35000240, bti_pc, bti_pc - 0x1000, out, &count);
+    if (ok && count == 1) {
+        auto d = decode(out[0]);
+        uint64_t tgt = d ? (bti_pc - 0x1000) + static_cast<uint64_t>(rel_bytes(*d)) : 0;
+        if (d && d->mnemonic == Mnemonic::CBNZ && tgt == bti_tgt) { passed++; }
+        else { failures++; std::cerr << "  FAIL: CBNZ tier1" << std::endl; }
+    } else { failures++; std::cerr << "  FAIL: CBNZ tier1 count" << std::endl; }
+
+    // Tier 2: 2 MiB away — inverted CBZ guard (skip 8) then B to target.
+    ok = relocate_instruction(0x35000240, bti_pc, bti_pc - 0x200000, out, &count);
+    if (ok && count == 2) {
+        auto g = decode(out[0]); auto b = decode(out[1]);
+        uint64_t tgt = b ? (bti_pc - 0x200000 + 4) + static_cast<uint64_t>(rel_bytes(*b)) : 0;
+        if (g && g->mnemonic == Mnemonic::CBZ && rel_bytes(*g) == 8
+            && b && b->mnemonic == Mnemonic::B && (out[1] & 0xFC000000u) == 0x14000000u
+            && tgt == bti_tgt) { passed++; }
+        else { failures++; std::cerr << "  FAIL: CBNZ tier2" << std::endl; }
+    } else { failures++; std::cerr << "  FAIL: CBNZ tier2 count" << std::endl; }
+
+    // Tier 3: >128 MiB away — inverted CBZ guard (skip 20) then LDR X16/BR X16/.quad.
+    ok = relocate_instruction(0x35000240, bti_pc, bti_pc - 0x8001000, out, &count);
+    if (ok && count == 5) {
+        auto g = decode(out[0]); auto l = decode(out[1]); auto b = decode(out[2]);
+        uint64_t tgt = static_cast<uint64_t>(out[3]) | (static_cast<uint64_t>(out[4]) << 32);
+        if (g && g->mnemonic == Mnemonic::CBZ && rel_bytes(*g) == 20
+            && l && l->mnemonic == Mnemonic::LDR
+            && b && b->mnemonic == Mnemonic::BR
+            && tgt == bti_tgt) { passed++; }
+        else { failures++; std::cerr << "  FAIL: CBNZ tier3" << std::endl; }
+    } else { failures++; std::cerr << "  FAIL: CBNZ tier3 count" << std::endl; }
+
+    // --- Sibling coverage: force Tier 3 (old_pc high, new_pc 0) and verify the
+    //     inverted guard mnemonic/condition + veneer + reconstructed target. ---
+    const uint64_t hi   = 0x10000000ULL;   // old_pc
+    const uint64_t tgt8 = hi + 8;          // +8 branch target
+
+    auto check_tier3 = [&](const char* name, uint32_t insn, Mnemonic exp_mn,
+                           Condition exp_cond) {
+        uint32_t o[8]; size_t c;
+        bool k = relocate_instruction(insn, hi, 0, o, &c);
+        auto g = decode(o[0]); auto l = decode(o[1]); auto b = decode(o[2]);
+        uint64_t tgt = static_cast<uint64_t>(o[3]) | (static_cast<uint64_t>(o[4]) << 32);
+        bool good = k && c == 5
+            && g && g->mnemonic == exp_mn && rel_bytes(*g) == 20
+            && (exp_cond == Condition::None || g->condition == exp_cond)
+            && l && l->mnemonic == Mnemonic::LDR
+            && b && b->mnemonic == Mnemonic::BR
+            && tgt == tgt8;
+        if (good) { passed++; }
+        else { failures++; std::cerr << "  FAIL: tier3 " << name << std::endl; }
+    };
+
+    check_tier3("CBZ->CBNZ",   0x34000040, Mnemonic::CBNZ, Condition::None);  // cbz  w0,+8
+    check_tier3("CBNZ->CBZ",   0x35000040, Mnemonic::CBZ,  Condition::None);  // cbnz w0,+8
+    check_tier3("B.EQ->B.NE",  0x54000040, Mnemonic::B,    Condition::NE);    // b.eq  +8
+    check_tier3("BC.EQ->BC.NE",0x54000050, Mnemonic::BC,   Condition::NE);    // bc.eq +8
+    check_tier3("TBZ->TBNZ",   0x36000040, Mnemonic::TBNZ, Condition::None);  // tbz  w0,#0,+8
+    check_tier3("TBNZ->TBZ",   0x37000040, Mnemonic::TBZ,  Condition::None);  // tbnz w0,#0,+8
+
+    // Unconditional B beyond imm26 → bare veneer (no guard), 4 words.
+    ok = relocate_instruction(0x14000002 /* b +8 */, hi, 0, out, &count);
+    if (ok && count == 4) {
+        auto l = decode(out[0]); auto b = decode(out[1]);
+        uint64_t tgt = static_cast<uint64_t>(out[2]) | (static_cast<uint64_t>(out[3]) << 32);
+        if (l && l->mnemonic == Mnemonic::LDR && b && b->mnemonic == Mnemonic::BR
+            && tgt == tgt8) { passed++; }
+        else { failures++; std::cerr << "  FAIL: B veneer" << std::endl; }
+    } else { failures++; std::cerr << "  FAIL: B veneer count" << std::endl; }
+
+    // B.AL beyond imm26 → bare veneer (always-taken, no guard), 4 words.
+    ok = relocate_instruction(0x5400004E /* b.al +8 */, hi, 0, out, &count);
+    if (ok && count == 4) {
+        auto l = decode(out[0]); auto b = decode(out[1]);
+        uint64_t tgt = static_cast<uint64_t>(out[2]) | (static_cast<uint64_t>(out[3]) << 32);
+        if (l && l->mnemonic == Mnemonic::LDR && b && b->mnemonic == Mnemonic::BR
+            && tgt == tgt8) { passed++; }
+        else { failures++; std::cerr << "  FAIL: B.AL veneer" << std::endl; }
+    } else { failures++; std::cerr << "  FAIL: B.AL veneer count" << std::endl; }
+
+    // BL beyond imm26 → unsupported (a veneer would corrupt the link register).
+    ok = relocate_instruction(0x94000002 /* bl +8 */, hi, 0, out, &count);
+    if (!ok && count == 0) { passed++; }
+    else { failures++; std::cerr << "  FAIL: BL beyond imm26 must fail" << std::endl; }
+}
+
 int main() {
     std::cout << "Running relocation tests..." << std::endl;
     test_is_pc_relative();
     test_can_relocate();
     test_relocate_instruction();
+    test_relocate_expansion_tiers();
     std::cout << passed << " / " << (passed + failures) << " relocation tests passed" << std::endl;
     return failures ? 1 : 0;
 }

@@ -15,6 +15,7 @@
 #include <algorithm>
 #include <cstring>
 #include <cstdio>
+#include <veda64/relocation.hpp>
 
 // ============================================================================
 // NT API Definitions (minimal, avoiding winternl.h conflicts)
@@ -720,209 +721,10 @@ bool is_syscall_stub(const uint8_t* target) {
     return is_svc && is_ret && is_pad;
 }
 
-// Relocate a single instruction
-bool relocate_instruction(
-    uint32_t insn,
-    uint64_t old_pc,
-    uint64_t new_pc,
-    uint32_t* out_insn,
-    size_t* out_count
-) {
-    auto decoded = decode(insn);
-    if (!decoded) {
-        *out_count = 0;
-        return false;
-    }
-
-    // If not PC-relative, just copy the instruction
-    if (!is_pc_relative(insn)) {
-        out_insn[0] = insn;
-        *out_count = 1;
-        return true;
-    }
-
-    // Handle PC-relative instructions
-    switch (decoded->mnemonic) {
-        case Mnemonic::B: {
-            // B.cond also decodes as Mnemonic::B; distinguish by encoding
-            // B.cond: bits [31:24]=0x54, bit4=0 -> mask 0xFF000010
-            if ((insn & 0xFF000010) == 0x54000000) {
-                // B.cond imm19 - 19-bit signed offset * 4
-                int32_t imm19 = static_cast<int32_t>((insn >> 5) & 0x7FFFF);
-                if (imm19 & 0x40000) { imm19 |= 0xFFF80000; }
-                int64_t offset = static_cast<int64_t>(imm19) * 4;
-                uint64_t target = old_pc + offset;
-                int64_t new_offset = static_cast<int64_t>(target - new_pc);
-                if (new_offset >= -1048576 && new_offset <= 1048572 && (new_offset & 3) == 0) {
-                    uint32_t new_imm19 = static_cast<uint32_t>((new_offset / 4) & 0x7FFFF);
-                    out_insn[0] = (insn & 0xFF00001F) | (new_imm19 << 5);
-                    *out_count = 1;
-                    return true;
-                }
-                *out_count = 0;
-                return false;
-            }
-            // Unconditional B: fall through to B/BL handling
-        }
-        [[fallthrough]];
-        case Mnemonic::BL: {
-            // B/BL imm26 - 26-bit signed offset * 4
-            int32_t imm26 = static_cast<int32_t>(insn & 0x03FFFFFF);
-            if (imm26 & 0x02000000) {  // Sign extend
-                imm26 |= 0xFC000000;
-            }
-            int64_t offset = static_cast<int64_t>(imm26) * 4;
-            uint64_t target = old_pc + offset;
-
-            // Calculate new offset
-            int64_t new_offset = static_cast<int64_t>(target - new_pc);
-
-            // Check if within range (±128MB)
-            if (new_offset >= -134217728 && new_offset <= 134217724 && (new_offset & 3) == 0) {
-                // Can use direct branch
-                uint32_t new_imm26 = static_cast<uint32_t>((new_offset / 4) & 0x03FFFFFF);
-                out_insn[0] = (insn & 0xFC000000) | new_imm26;
-                *out_count = 1;
-                return true;
-            }
-
-            // Need to use indirect branch sequence
-            // This is more complex - for now, return failure
-            *out_count = 0;
-            return false;
-        }
-
-        case Mnemonic::BC: {
-            // B.cond imm19 - 19-bit signed offset * 4
-            int32_t imm19 = static_cast<int32_t>((insn >> 5) & 0x7FFFF);
-            if (imm19 & 0x40000) {  // Sign extend
-                imm19 |= 0xFFF80000;
-            }
-            int64_t offset = static_cast<int64_t>(imm19) * 4;
-            uint64_t target = old_pc + offset;
-
-            int64_t new_offset = static_cast<int64_t>(target - new_pc);
-
-            // Check if within range (±1MB)
-            if (new_offset >= -1048576 && new_offset <= 1048572 && (new_offset & 3) == 0) {
-                uint32_t new_imm19 = static_cast<uint32_t>((new_offset / 4) & 0x7FFFF);
-                out_insn[0] = (insn & 0xFF00001F) | (new_imm19 << 5);
-                *out_count = 1;
-                return true;
-            }
-
-            *out_count = 0;
-            return false;
-        }
-
-        case Mnemonic::CBZ:
-        case Mnemonic::CBNZ: {
-            // CBZ/CBNZ imm19 - 19-bit signed offset * 4
-            int32_t imm19 = static_cast<int32_t>((insn >> 5) & 0x7FFFF);
-            if (imm19 & 0x40000) {
-                imm19 |= 0xFFF80000;
-            }
-            int64_t offset = static_cast<int64_t>(imm19) * 4;
-            uint64_t target = old_pc + offset;
-
-            int64_t new_offset = static_cast<int64_t>(target - new_pc);
-
-            if (new_offset >= -1048576 && new_offset <= 1048572 && (new_offset & 3) == 0) {
-                uint32_t new_imm19 = static_cast<uint32_t>((new_offset / 4) & 0x7FFFF);
-                out_insn[0] = (insn & 0xFF00001F) | (new_imm19 << 5);
-                *out_count = 1;
-                return true;
-            }
-
-            *out_count = 0;
-            return false;
-        }
-
-        case Mnemonic::TBZ:
-        case Mnemonic::TBNZ: {
-            // TBZ/TBNZ imm14 - 14-bit signed offset * 4
-            int32_t imm14 = static_cast<int32_t>((insn >> 5) & 0x3FFF);
-            if (imm14 & 0x2000) {
-                imm14 |= 0xFFFFC000;
-            }
-            int64_t offset = static_cast<int64_t>(imm14) * 4;
-            uint64_t target = old_pc + offset;
-
-            int64_t new_offset = static_cast<int64_t>(target - new_pc);
-
-            // Check if within range (±32KB)
-            if (new_offset >= -32768 && new_offset <= 32764 && (new_offset & 3) == 0) {
-                uint32_t new_imm14 = static_cast<uint32_t>((new_offset / 4) & 0x3FFF);
-                out_insn[0] = (insn & 0xFFF8001F) | (new_imm14 << 5);
-                *out_count = 1;
-                return true;
-            }
-
-            *out_count = 0;
-            return false;
-        }
-
-        case Mnemonic::ADR: {
-            // ADR Xd, label - 21-bit signed offset
-            uint32_t immlo = (insn >> 29) & 0x3;
-            uint32_t immhi = (insn >> 5) & 0x7FFFF;
-            int32_t imm21 = static_cast<int32_t>((immhi << 2) | immlo);
-            if (imm21 & 0x100000) {
-                imm21 |= 0xFFE00000;
-            }
-            uint64_t target = old_pc + imm21;
-
-            int64_t new_offset = static_cast<int64_t>(target - new_pc);
-
-            // Check if within range (±1MB)
-            if (new_offset >= -1048576 && new_offset <= 1048575) {
-                uint32_t new_imm21 = static_cast<uint32_t>(new_offset) & 0x1FFFFF;
-                uint32_t new_immlo = new_imm21 & 0x3;
-                uint32_t new_immhi = (new_imm21 >> 2) & 0x7FFFF;
-                out_insn[0] = (insn & 0x9F00001F) | (new_immlo << 29) | (new_immhi << 5);
-                *out_count = 1;
-                return true;
-            }
-
-            *out_count = 0;
-            return false;
-        }
-
-        case Mnemonic::ADRP: {
-            // ADRP Xd, label - page-aligned address
-            uint32_t immlo = (insn >> 29) & 0x3;
-            uint32_t immhi = (insn >> 5) & 0x7FFFF;
-            int32_t imm21 = static_cast<int32_t>((immhi << 2) | immlo);
-            if (imm21 & 0x100000) {
-                imm21 |= 0xFFE00000;
-            }
-            int64_t offset = static_cast<int64_t>(imm21) << 12;
-            uint64_t target = (old_pc & ~0xFFFULL) + offset;
-
-            int64_t new_offset = static_cast<int64_t>(target - (new_pc & ~0xFFFULL));
-
-            // Check if within range (±4GB pages)
-            if (new_offset >= -4294967296LL && new_offset <= 4294963200LL) {
-                int32_t new_imm21 = static_cast<int32_t>(new_offset >> 12);
-                uint32_t new_immlo = new_imm21 & 0x3;
-                uint32_t new_immhi = (new_imm21 >> 2) & 0x7FFFF;
-                out_insn[0] = (insn & 0x9F00001F) | (new_immlo << 29) | (new_immhi << 5);
-                *out_count = 1;
-                return true;
-            }
-
-            *out_count = 0;
-            return false;
-        }
-
-        default:
-            // For other PC-relative instructions (LDR literal, etc.)
-            // we'd need more complex handling
-            out_insn[0] = insn;
-            *out_count = 1;
-            return true;
-    }
-}
+// Instruction relocation is provided by veda64::relocate_instruction
+// (lib/hook/relocation.cpp) — the single source of truth used by both the hook
+// installer below and the public relocation API. create_trampoline calls it
+// directly; there is intentionally no hook-local copy.
 
 } // namespace detail
 
@@ -934,9 +736,10 @@ static HookStatus create_trampoline(void* target, size_t hook_size, Trampoline* 
     *out_tramp = {};
     Trampoline& tramp = *out_tramp;
 
-    // Allocate space for relocated instructions + jump back
-    // Each instruction might expand to multiple instructions during relocation
-    size_t max_size = (hook_size / 4) * 16 + 16;  // Worst case expansion + jump
+    // Allocate space for relocated instructions + jump back.
+    // Each instruction may expand to up to 5 words (a guarded absolute veneer)
+    // during relocation, hence 20 bytes per source instruction plus the jump.
+    size_t max_size = (hook_size / 4) * 20 + 16;  // Worst case expansion + jump
 
     // Allocate near the target for PC-relative instruction relocation
     tramp.code = static_cast<uint8_t*>(detail::alloc_executable_near(target, max_size));
@@ -989,11 +792,11 @@ static HookStatus create_trampoline(void* target, size_t hook_size, Trampoline* 
         // Track if we hit a RET — no jump-back needed after it
         if (insn == 0xD65F03C0) found_ret = true;
 
-        // Relocate the instruction
-        uint32_t relocated[4];
+        // Relocate the instruction (up to a 5-word guarded absolute veneer)
+        uint32_t relocated[8];
         size_t relocated_count = 0;
 
-        if (!detail::relocate_instruction(
+        if (!::veda64::relocate_instruction(
             insn,
             src_pc + src_offset,
             dst_pc + dst_offset,

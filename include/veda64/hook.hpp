@@ -161,14 +161,8 @@ bool is_syscall_stub(const uint8_t* target);
 // Resolve forwarding stubs (follows unconditional B chains)
 void* resolve_forwarding_stub(void* target);
 
-// Relocate a single instruction to a new address
-bool relocate_instruction(
-    uint32_t insn,
-    uint64_t old_pc,
-    uint64_t new_pc,
-    uint32_t* out_insn,
-    size_t* out_count
-);
+// Instruction relocation is provided by veda64::relocate_instruction
+// (include <veda64/relocation.hpp>), the single source of truth.
 
 // Allocate RW memory for trampolines (call make_executable after writing)
 void* alloc_executable(size_t size);
